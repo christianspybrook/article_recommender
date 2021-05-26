@@ -1,0 +1,451 @@
+Molecular Synchronization Waves in Arrays of Allosterically Regulated Enzymes
+Vanessa Casagrande,1 Yuichi Togashi,2, ∗ and Alexander S. Mikhailov2, †
+2
+
+1
+Hahn-Meitner-Institut, Glienicker Strasse 100, 14109 Berlin, Germany
+Fritz-Haber-Institut der Max-Planck-Gesellschaft, Faradayweg 4-6, 14195 Berlin, Germany
+
+Spatiotemporal pattern formation in a product-activated enzymic reaction at high enzyme concentrations is investigated. Stochastic simulations show that catalytic turnover cycles of individual
+enzymes can become coherent and that complex wave patterns of molecular synchronization can
+develop. The analysis based on the mean-field approximation indicates that the observed patterns
+result from the presence of Hopf and wave bifurcations in the considered system.
+
+arXiv:0704.0021v1 [nlin.PS] 31 Mar 2007
+
+PACS numbers: 82.40.Ck, 87.18.Pj, 82.39.Fk, 05.45.Xt
+
+Molecular machines, such as molecular motors, ion
+pumps and some enzymes, play a fundamental role in
+biological cells and can be also used in the emerging softmatter nanotechnology [1]. A protein machine is a cyclic
+device, where each cycle consists of conformational motions initiated by binding of an energy-bringing ligand
+[2, 3]. In motors, such internal motions generate mechanical work [4], while in enzymes they enable or facilitate chemical reaction events (see, e.g., [5, 6]). Much
+attention has been attracted to studies of biomembranes
+with ion pumps and molecular motors, where membrane
+instabilities and synchronization effects have been analyzed [7, 8, 9]. Here, a different class of distributed active molecular systems - formed by enzymes - is considered. The catalytic activity of an allosteric enzyme
+protein is activated or inhibited by binding of small regulatory molecules; the role of such regulatory molecules
+can be played by products of the same reaction [10]. Previous investigations of simple product-regulated enzymic
+systems [11, 12] and enzymic networks [13] in small spatial volume with full diffusional mixing have shown that
+spontaneous synchronization of molecular turnover cycles
+can take place there. External molecular synchronization of enzymes of the photosensitive P-450 dependent
+monooxygenase system by periodic optical forcing has
+been experimentally demonstrated [14].
+In this Letter, spatiotemporal pattern formation in enzymic arrays is investigated. In such systems, immobile
+enzymes are attached to a solid planar support immersed
+into a solution through which fresh substrate is supplied
+and product molecules are continuously removed. Product molecules released by an enzyme diffuse through the
+solution and activate catalytic turnover cycles of neighbouring enzymes in the array. We show that, at sufficiently high enzyme concentrations, diffusion-mediated
+interactions can lead to spontaneous development of complex spatiotemporal patterns of enzymic activity. Both
+stochastic simulations and the analysis of the mean-field
+approximation of the model are undertaken. Possibilities
+of experimental observation of such molecular synchronization patterns are discussed.
+A simple stochastic model [12] of an enzyme as a cyclic
+
+substrate
+enzyme
+
+regulatory
+molecule
+
+β
+
+α
+
+κ
+
+10
+φi
+φp
+
+product
+
+γ
+
+feedback
+loop
+
+FIG. 1: (Color online) A sketch of the model.
+
+machine (a stochastic phase oscillator), shown in Fig. 1,
+is used. Binding of a substrate molecule to an enzyme i
+initiates an ordered internal conformational motion, described by the conformational phase coordinate φi . The
+initial state corresponds to the phase φi = 0. The catalytic conversion event takes place and the product is
+released at the state φp inside the cycle. After that,
+the conformational motion continues until the equilibrium state of the enzyme (φi = 1) is finally reached.
+Initiation of a turnover cycle is a random event, occurring at a certain probability rate. We assume that substrate is present in abundance, and its concentration is
+not affected by the reactions. The conformational motion inside the cycle is modelled as a stochastic diffusional. drift process, described by the Langevin equation φi = v + ηi (t), where v is the mean drift velocity
+and ηi (t) is an internal white noise with the correlators
+hηi (t)ηj (t′ )i = 2σδij δ(t − t′ ). The parameter σ specifies
+the intensity of intramolecular fluctuations.
+Allosterically activated enzymes possess a separate
+binding site on their surface, where regulatory molecules
+can become bound. Binding of a regulatory molecule
+leads to a conformational change that enhances catalytic
+activity of an enzyme molecule. A regulatory molecule
+can bind to an enzyme with the rate constant β and
+dissociate from it with the rate constant κ. Binding of
+a regulatory molecule on an enzyme rises its probability to start a cycle from α0 to α1 . We assume that a
+
+2
+
+FIG. 2: Stochastic (a,b) and mean-field (c,d) simulations of
+2D wave patterns; (a) τp = 0.14, c = 1, and β = 300, (b)
+τp = 0.25, c = 10, and β = 10, (c) τp = 0.14, c = 1, and
+β = 300, (d) τp = 0.34, c = 100, and β = 1.42. Other
+parameters are α0 = 1, α1 = 1000, κ = 10, γ = 10, σ = 0,
+D = 100. The linear size of the shown area is L = 40 ldif f in
+all panels.
+
+regulatory molecule can bind to an enzyme only in its
+rest state and this molecule is released when the cycle is
+started. The role of regulatory molecules in the considered model is played by the product molecules of the same
+reaction. Immobile enzymes are randomly distributed in
+space with the concentration c. Product molecules, released by enzymes, diffuse through the medium at diffusion constant D and undergo decay at the rate constant γ. The characteristic
+diffusion length of product
+p
+molecules is ldif f = D/γ.
+In our stochastic 2D simulations, the medium was discretized into spatial cells (up to 256 × 256), each containing a number of enzyme molecules. The cells were
+so small that diffusional mixing of product molecules in
+a cell within the shortest characteristic time of the reaction could always take place. Each enzyme was described
+by the stochastic model given above; diffusion of product
+molecules was modeled as a random walk over a discrete
+cell lattice. The mean cycle time τ = 1/v was chosen
+as the time unit in all our simulations (τ = 1). Systems including up to 655 360 enzymes were used in the
+simulations.
+Figure 2a,b (for respective dynamical evolutions, see
+Videos 1 and 2 in ref. [15]) shows two typical examples
+of stochastic 2D simulations. Here, spatial distributions
+of product molecules are displayed. Waves of product
+concentration are propagating through the medium. In
+a peak of a wave, many locally present enzymes are simultaneously releasing product molecules. Since the product
+release can take place only at a certain stage inside the
+cycle, this means that the cycles of enzymes are locally
+synchronized. Not only regular wave structures, such as
+rotating spiral waves or target patterns (Fig. 2a), but
+also complex regimes of wave turbulence (Fig. 2b) have
+been observed in the simulations.
+To understand and interpret stochastic simulation results, an analytical study of the system in the mean-field
+approximation, which holds in the limit of high enzyme
+concentrations (see the discussion below), has been performed. In this approximation, the system is characterised by three continuous variables n0 (r, t), n1 (r, t) and
+
+m(r, t) which represent local concentrations of enzymes
+in the rest state without or with regulatory molecules attached (n0 and n1 ) and local concentration of the product (m). For simplicity, internal fluctuations in enzymes
+are neglected (σ = 0). Thus, all enzymes which have
+started their cycles at some time t would release their
+products at a definite time t + τp (with τp = φp /v) and
+finish their cycles, returning to the rest state, at time
+t + τ . Therefore, the system is described by a set of three
+reaction-diffusion equations with time delays,
+∂n1
+= βmn0 − κn1 − α1 n1
+(1a)
+∂t
+∂n0
+= −βmn0 + κn1 − α0 n0 + α0 n0 (t − τ )
+∂t
++α1 n1 (t − τ )
+(1b)
+∂m
+= −βmn0 + κn1 + α1 n1 − γm + α0 n0 (t − τp )
+∂t
++α1 n1 (t − τp ) + D∇2 m.
+(1c)
+The concentration n0 of free enzymes in the rest state
+decreases because they can start their cycles or bind regulatory product molecules; it increases due to those enzymes which return to the rest state after completing
+their turnover cycles and due to the enzymes in the rest
+state, for which dissociation of the regulatory molecule
+has occurred. The concentration n1 of enzymes in the
+rest state with attached regulatory molecules decreases
+because they can start their cycles or because dissociation of a regulatory molecule happens; it increases due
+to free enzymes in the rest state that bind regulatory
+molecules. The product concentration m decreases because products can die or bind to the enzymes; it rises
+due to the release of new product molecules and dissociation of the bound products.
+The system always has an uniform stationary state
+with certain concentrations n0 , n1 and m, which can be
+found as solutions of the respective algebraic equations.
+This state corresponds to the absence of synchronization.
+However, it may become unstable if allosteric activation
+is strong enough. To analyze the stability, small perturbations δn0 , δn1 and δm are added to the stationary
+state, the equations (1) are linearized and their solutions
+are sought in the form δn0 ∼ δn1 ∼ δm ∼ exp (λq t − iqx)
+with λq = μq + iωq . Thus, each spatial mode with the
+wavevector q is characterized by its frequency ωq and its
+rate of growth μq . The properties μq and ωq are given by
+the roots of a characteristic equation which is determined
+by the linearization matrix of equations (1). The steady
+state becomes unstable when at least one spatial mode
+with some wavenumber q0 starts to grow (μq0 > 0).
+As the bifurcation parameter, coefficient β can be chosen. If regulatory molecules cannot bind to enzymes
+(β = 0), feedback is absent and instabilities are not possible. On the other hand, allosteric activation becomes
+strong if regulatory molecules can easily bind and, in this
+
+3
+10
+
+pa
+
+ce
+
+p
+rip
+
+β
+
+higher frequency/
+mixed modes
+
+m
+
+ak
+
+les
+
+ers
+
+/w
+
+av
+
+es
+
+uniform
+oscillations
+
+standing−
+traveling
+
+waves
+
+1
+
+standing waves
+codimension−2
+wave−Hopf bifurcation
+
+0
+
+0.1
+
+0.2
+
+τp
+
+0.3
+
+0.4
+
+FIG. 3: Phase diagram (α0 = 1, α1 = 1000, κ = 10, γ = 10,
+c = 100, D = 1000). The Hopf bifurcation (solid line) and the
+wave bifurcation (dash-dotted line) boundaries are displayed.
+Gray lines show instability of the stationary state with respect
+to development of uniform oscillations with two (dashed) and
+three (dotted) groups in the well-mixed case. Lines separating
+parameter domains with different kinds of patterns are handdrawn, based on numerical simulations.
+
+FIG. 4: Spatiotemporal patterns in a 1D system (in each
+panel, the vertical axis is time, running down, and the horizontal axis is the coordinate). The upper two rows are
+stochastic simulations (σ = 0) with concentrations c = 1 and
+c = 10, the bottom row shows mean-field simulations with
+c = 100. (a) τp = 0.3, β = 95/c, (b) τp = 0.14, β = 260/c, (c)
+τp = 0.22, β = 600/c, and (d) τp = 0.16, β = 300/c. Other
+parameters as in Fig. 3; the system size shown is L = 51
+ldif f .
+
+case, the emergence of oscillations and wave patterns can
+be expected. Our bifurcation analysis reveals that, depending on other parameters of the system, it can exhibit
+either a Hopf or a wave bifurcation [16]. As a result of
+the Hopf bifurcation, uniform oscillations with q = 0 develop. Because of the presence of delays in equations (1),
+the characteristic equation is nonpolynomial in terms of
+λ and, generally, a number of oscillatory solutions with
+different frequencies ω are possible. Physically, such solutions correspond to the formation of several synchronous
+enzymic groups. This effect has been previously extensively investigated for similar systems in small spatial
+volumes with full diffusional mixing [11] and we shall
+not further discuss it here. The most robust uniform
+oscillations, which we consider, are characterized by the
+frequency ω ≈ 2π/τ and correspond to the single-group
+synchronization. As the result of a wave bifurcation (also
+known as the Hopf bifurcation with a finite wave number
+[17]), the first unstable modes are traveling waves with
+a certain wavenumber q0 . Figure 3 shows the computed
+bifurcation diagram of the system (1) in the parameter
+plane (τp , β). The bold solid line shows the boundary
+of the Hopf bifurcation and the dash-dotted line displays
+the boundary of the wave bifurcation; the steady state is
+unstable above these curves. It is important to note that
+the curves merge at a certain point, where a codimension2 Hopf-wave bifurcation takes place.
+To investigate nonlinear dynamics of the system, numerical simulations of equations (1) have been performed
+[16]. Explicit Euler integration method has been used;
+no-flux boundary conditions were applied. Results of 1D
+
+simulations are summarized in Fig. 3 and examples of
+typical observed patterns are shown in Fig. 4. Standing waves (Fig. 4a) develop when the boundary of the
+wave bifurcation (dash-dotted curve) is crossed and uniform oscillations are observed above the boundary of the
+Hopf bifurcation. Near the codimension-2 point, more
+complex behavior was found. This included rippled oscillations (Fig. 4b), self-organized pacemakers (Fig. 4c)
+and modulated traveling waves (Fig. 4d). The observed
+patterns are similar to those previously found in reactiondiffusion systems with the wave bifurcation [18]. In the
+right upper corner of the diagram in Fig. 3, higher frequency oscillations with several synchronous groups take
+place.
+Two-dimensional simulations of reaction-diffusion
+equations (1) with time delay have been performed for
+selected parameter values. In 2D simulations, spontaneously developing concentric waves (target patterns)
+and spiral waves have been observed; target patterns
+were however unstable and evolved into pairs of rotating spiral waves (Fig. 2c and Video 3 [15]). Complex
+wave regimes, which can be qualitatively characterized
+as turbulence of standing waves, have also been observed
+(Fig. 2d and Video 4 [15]).
+The mean-field approximation is based on neglecting statistical fluctuations in concentrations of reacting
+species [11] and, therefore, it should hold in the high concentration limit. In Fig. 4, two upper panel rows display
+spatiotemporal patterns, which are observed in stochastic simulations with the parameter values corresponding
+
+4
+to the respective mean-field simulations. To compare
+mean-field simulations with different enzyme densities,
+the following property of equations (1) can be used: introducing relative concentrations n
+e0 = n0 /c, n
+e1 = n1 /c
+and m
+e = m/c, it can be noticed that they obey the same
+equations, but with a rescaled coefficient βe = βc. Thus,
+essentially the same patterns are observed as long as as
+the parameter combination βc remains constant. In the
+stochastic simulations in Fig. 4, the coefficient β has
+been increased to compensate for a decrease in the enzyme concentration. For larger enzyme concentrations,
+good agreement between the mean-field predictions and
+stochastic simulations has indeed been found. In the
+mean-field equations (1), intramolecular fluctuations are
+not taken into account (σ = 0 and therefore each turnover
+cycle has the same fixed duration τ ). Stochastic simulations have been, however, also performed when such
+fluctuations were present. Synchronization waves could
+still be found even at internal noise levels which corresponded to the mean relative dispersion ξ of turnover
+1/2
+times of about 10% (with ξ = δτ 2
+/τ ≃ (2στ )1/2 ).
+A product molecule, released by an enzyme, diffuses
+in the solution until it either binds, as a regulatory
+molecule, to another enzyme or undergoes a decay. Here,
+it should be taken into account that a regulatory molecule
+can bind to an allosteric enzyme only at a certain binding site of characteristic radius R. Using the theory of
+diffusion-controlled reactions, the average time ttransit
+after which a regulatory product would find a binding
+site of one of the enzymes can be roughly estimated
+[11] as ttransit = 1/cDR, if enzymes are uniformly distributed inside the reaction volume with concentration
+c. Therefore, binding typically occurs within the dis1/2
+−1/2
+tance Lcorr = (Dttransit )
+= (cR)
+from the point
+where a molecule is released. Obviously, it can only
+take place if the product molecule has not undergone
+decay until that moment, i.e. if γttransit < 1. This
+condition puts a restriction on the enzyme concentration
+c, which must be higher than the critical concentration
+c∗ = γ/DR. Choosing γ = 103 s−1 , D = 10−5 cm2 s−1
+and R = 10−7 cm, the critical enzyme concentration is
+c∗ = 1015 cm−3 = 10−6 M. A similar estimate can be
+obtained when enzymes are immobilized on a plane immersed into a reactive solution; in this case the mean distance between the enzymes on the plane should be less
+than lc = (Rldif f )1/2 . Although the required enzyme
+concentrations are relatively large, they are within the
+range characteristic for biological cells (e.g., glycolytic
+enzymes are present [19] in a cell at even higher concentration of more than 10−5 M). The characteristic temporal period of the developing patterns is determined by
+the enzyme turnover time τ , which typically varies from
+milliseconds to seconds. The characteristic length scale
+of the developing wave patterns is determined by the diffusion length ldif f , which can vary under these conditions
+
+from a fraction of a micrometer to tens of micrometers.
+Our analysis shows that spontaneous molecular synchronization of allosteric product-activated enzymes can
+be observed in enzymic arrays. Similar phenomena are
+possible in dense enzyme solutions and can take place in
+biological cells. In the study by Petty et al. [20], traveling
+waves of NAD(P)H and proton concentrations with the
+wavelength of about a micrometer were observed inside
+neutrophil cells. These metabolic waves had the temporal
+period of about 300 ms, which is by two orders of magnitude shorter than the characteristic period of glycolytic
+oscillations in the cells and lies closer to the time scales
+of turnover cycles of individual enzymes. An intriguing
+question, requiring further detailed analysis, is whether
+molecular synchronization waves may have already been
+seen in these experiments.
+The authors are grateful to M. Falcke and P. Stange for
+valuable discussions. Financial support of Japan Society
+for the Promotion of Science through a fellowship for
+research abroad (Y. T.) is acknowledged.
+
+∗
+†
+
+[1]
+[2]
+
+[3]
+[4]
+[5]
+[6]
+[7]
+[8]
+[9]
+[10]
+[11]
+[12]
+[13]
+[14]
+[15]
+
+[16]
+
+[17]
+
+Electronic address: togashi@fhi-berlin.mpg.de
+Electronic address: mikhailov@fhi-berlin.mpg.de
+K. Kinbara, T. Aida, Chem. Rev. 105, 1377 (2005).
+L. A. Blumenfeld, A. N. Tikhonov, Biophysical Thermodynamics of Intracellular Processes: Molecular Machines
+of the Living Cell (Springer, Berlin 1994).
+M. Gerstein, A. M. Lesk, C. Chothia, Biochemistry 33,
+6739 (1994).
+F. Jülicher, A. Ajdari, J. Prost, Rev. Mod. Phys. 69, 1269
+(1997).
+H.-Ph. Lerch, A. S. Mikhailov, B. Hess, Proc. Natl. Acad.
+Sci. (USA) 99, 15410 (2002).
+H.-Ph. Lerch, R. Rigler, A. S. Mikhailov, Proc. Natl.
+Acad. Sci. (USA) 102, 10807 (2005).
+S. Ramaswamy, J. Toner, J. Prost, Phys. Rev. Lett. 84,
+3494 (2000).
+P. Lenz, J.-F. Joanny, F. Jülicher, J. Prost, Phys. Rev.
+Lett. 91, 108104 (2003).
+H.-Y. Chen, Phys. Rev. Lett. 92, 168101 (2004).
+A. Goldbeter, Biochemical Oscillations and Cellular
+Rhythms (Cambridge University Press, Cambridge 1996).
+P. Stange, A. S. Mikhailov, B. Hess, J. Phys. Chem. B
+102, 6273 (1998).
+P. Stange, A. S. Mikhailov, B. Hess, J. Phys. Chem. B
+103, 6111 (1999).
+K. Sun, Q. Ouyang, Phys. Rev. E 64, 026111 (2001).
+M. Schienbein, H. Gruler, Phys. Rev. E 56, 7116 (1997).
+See EPAPS Document No. [number will be inserted
+by publisher] for dynamical evolutions in the 2D
+simulations. For more information on EPAPS, see
+http://www.aip.org/pubservs/epaps.html .
+V.
+Casagrande,
+Doctoral
+thesis,
+Technical
+University,
+Berlin
+(2006).
+See
+http://opus.kobv.de/tuberlin/volltexte/2006/1273/
+.
+D. Walgraef, Spatio-Temporal Pattern Formation
+(Springer, Berlin 1997).
+
+5
+[18] A. M. Zhabotinsky, M. Dolnik, I. R. Epstein, J. Chem.
+Phys. 103, 10306 (1995).
+[19] B. Hess, A. Boiteux, J. Krüger, Adv. Enzyme Regul. 7,
+149 (1969).
+
+[20] H. R. Petty, R. G. Worth, A. L. Kindzelskii, Phys. Rev.
+Lett. 84, 2754 (2000).
+
+

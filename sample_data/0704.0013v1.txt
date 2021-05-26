@@ -1,0 +1,2316 @@
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS OF
+HALF INTEGRAL WEIGHT
+
+arXiv:0704.0013v1 [math.NT] 31 Mar 2007
+
+D. CHOI AND Y. CHOIE
+Abstract. In [18] Serre obtained the p-adic limit of the integral Fourier coefficient
+of modular forms on SL2 (Z) for p = 2, 3, 5, 7. In this paper, we extend the result of
+Serre to weakly holomorphic modular forms of half integral weight on Γ0 (4N ) for N =
+1, 2, 4. A proof is based on linear relations among Fourier coefficients of modular forms
+of half integral weight. As applications we obtain congruences of Borcherds exponents,
+congruences of quotient of Eisentein series and congruences of values of L-functions at a
+certain point are also studied. Furthermore, the congruences of the Fourier coefficients
+of Siegel modular forms on Maass Space are obtained using Ikeda lifting ([16] and [15]).
+
+August 9, 2013
+1. Introduction and Statement of Main Results
+In [18] Serre obtained the p-adic limits of the integral Fourier coefficient of modular
+forms on SL2 (Z) for p = 2, 3, 5, 7. In this paper, we extend the result of Serre to weakly
+holomorphic modular forms of half integral weight on Γ0 (4N) for N = 1, 2, 4. A proof
+is based on linear relations among Fourier coefficients of modular forms of half integral
+weight. As applications congruences of Borcherds exponents, congruences of values of Lfunctions at a certain point and congruences of quotient of Eisentein series are obtained.
+Furthermore, the congruences of the Fourier coefficients of Siegel modular forms on Maass
+Space are obtained using Ikeda lifting ([16] and [15]).
+First we need some notations to state the main theorems. Let, for odd d, by
+(
+1 if d ≡ 1 (mod 4)
+ǫd :=
+i if d ≡ 3 (mod 4),
+Γ0 (4N)t := {γ ∈ Γ0 (4N) : γ(t) = t}
+and
+1 ht
+0 1
+
+
+
+:= γΓ0 (4N)t γt−1 ,
+
+2000 Mathematics Subject Classification. 11F11,11F33.
+Key words and phrases. Modular forms, p-adic limit, Congruences, Borcherds exponents, L-functions,
+Maass space .
+This work was partially supported by KOSEF R01-2003-00011596-0 and ITRC.
+
+1
+
+2
+
+D. CHOI AND Y. CHOIE
+
+where γt = ( ac db ) ∈ Γ(1) such that γt (t) = ∞. Denote the q-expansion of a modular form
+f ∈ Mλ+ 1 (Γ0 (4N)) at each cusp t of Γ0 (4N) by
+2
+(1.1)
+
+
+∞
+ c 2λ+1
+X
+2πiz
+az + b
+r
+−1−2λ
+−λ− 21
+atf (n)qtn , qt := q ht .
+(f |λ+ 1 γt )(z) =
+= qt
+ǫd
+(cz + d)
+f
+2
+d
+cz + d
+n=b
+t
+
+When t ∼ ∞, we denote a∞
+f (n) by af (n). A cusp t is called a regular cusp if r = 0. Let
+U4N := {t1 , * * * , tν(4N ) } be the set of the inequivalent regular cusps of Γ0 (4N). Note that
+the genus of Γ0 (4N) is zero if and only if 1 ≤ N ≤ 4. Let Mλ+ 1 (Γ0 (4N)) be the space of
+2
+weakly holomorphic modular forms of weight λ + 21 on Γ0 (4N) and M0λ+ 1 (Γ0 (N)) denote
+2
+the set of f (z) ∈ Mλ+ 1 (Γ0 (N)) whose the constant term of q-expansion at each cusps is
+2
+P
+n
+zero. Define an operator Up for f (z) = ∞
+n=n0 af (n)q by
+f (z)|Up :=
+
+∞
+X
+
+af (pn)q n .
+
+n=n0
+
+With these notations we state the following theorem.
+Theorem 1. Suppose that p is a prime and that N = 1, 2 or 4. Let
+f (z) :=
+
+∞
+X
+
+n=n0
+
+af (n)q n ∈ M0λ+ 1 (Γ0 (4N)) ∩ Zp [[q]],
+2
+
+where Zp denotes the ring of p-adic integers.
+(1) If p = 2 and af (0) = 0, then, for each j ∈ N, there exists a positive integer b such
+that
+f (z)|(Up )b ≡ 0
+
+(mod pj ).
+
+(2) If p ≥ 3 and f (z) ∈ M0λ+ 1 (Γ0 (N)) with λ ≡ 2 or 2 +
+2
+each j ∈ N, there exists a positive integer b such that
+f (z)|(Up )b ≡ 0
+
+1
+N
+
+(mod
+
+p−1
+),
+2
+
+then, for
+
+(mod pj ).
+
+Remark 1.1. In [11] the p-adic limit of a certain sum of Fourier coefficients is obtained
+when the weight of a modular form is 32 .
+Let ∆4N,λ be the unique normalized modular form of weight λ + 21 on Γ0 (4N) with the
+zero of the maximum order at ∞. Further let
+R4 (z) :=
+R12 (z) :=
+
+η(8z)8
+η(4z)8
+,
+R
+(z)
+:=
+,
+8
+η(2z)4
+η(4z)4
+
+η(12z)12 η(2z)2
+η(16z)8
+and
+R
+(z)
+:=
+,
+16
+η(6z)6 η(4z)4
+η(8z)4
+
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS
+1
+
+where η(z) := q 24
+
+Q∞
+
+n=1 (1
+
+3
+
+− q n ). Define, for l, n ∈ N,
+
+m(l : n) :=
+and
+
+(
+
+ 2n 
+0 if l−1
+≡0
+ 2n 
+1 if l−1 ≡ 1
+
+(mod 2)
+(mod 2)
+
+
+
+l − 1 2n
+α(l : n) := n −
+.
+2
+l−1
+
+It turns out that the congruence properties of f (z) are more complicated if f (z) 6∈
+M0λ+ 1 (Γ0 (4N)).
+2
+
+Theorem 2. Suppose that p ≥ 5 is a prime and 1 ≤ N ≤ 4. Let
+f (z) :=
+
+X
+
+n≫−∞
+
+If λ ≡ 2 or 2 +
+
+1
+N
+
+(mod
+
+af (n)q n ∈ Mλ+ 1 (Γ0 (4N)) ∩ Zp [[q, q −1 ]].
+
+p−1
+),
+2
+
+2
+
+then there exists a positive integer b0 such that
+
+X
+
+ht at∆4N,3−α(p:λ) (z) (0)atf (0) (mod p)
+af p2b−m(p:λ) ≡ −
+t∈U4N
+
+R4N (z)e*ω(4N)
+
+for every positive integer b > b0 .
+Example 1.2. An overpatition of n is a partition of n in which the fist occurrence of a
+number may be overlined. Let P̄ (n) be the overpartition of n. It is known that
+∞
+X
+
+P̄ (n)q n =
+
+n=0
+
+and that
+
+η(2z)
+η(z)2
+
+η(2z)
+η(z)2
+
+∈ M− 1 (Γ0 (16)). From Theorem 2 we have
+2
+
+P̄ (52b ) ≡ 1
+
+(mod 5)
+
+for every positive integer b.
+
+2. Applications: More Congruences of Modular Forms of Half Integral
+Weight
+In this section, we study several results related to p-adic limit of Borcherds exponents,
+congruence relations of values of L-functions and congruences of quotients of Eisenstein
+series, which are derived from Theorem 1 and 2.
+
+4
+
+D. CHOI AND Y. CHOIE
+
+2.1. p-adic Limits of Borcherds Exponents. As the first application we obtain congruences of Borcherds exponents. Let MH denote the set of integer weight meromorphic
+modular forms on SL2 (Z) with a Heegner divisor, integer coefficients, and leading coefficient 1. Let
+M+1 (Γ0 (4)) := {f (z) =
+2
+
+If f (z) =
+
+P∞
+
+n=n0
+
+∞
+X
+
+n=m
+
+af (n)q n ∈ M 1 (Γ0 (4)) | a(n) = 0 for n ≡ 2, 3 (mod 4)}.
+2
+
+af (n)q n ∈ M+1 (Γ0 (4)), then define Ψ(f (z)) by
+2
+
+Ψ(f (z)) := q
+
+−h
+
+∞
+Y
+
+2
+
+(1 − q n )af (n ) ,
+
+n=1
+
+P
+1
+af (0) + 1<n≡0,1 (mod 4) af (−n)H(−n) and H(−n) denotes the usual Hurwhere h = − 12
+witz class number of discriminant −n. Borcherds proved that the map Ψ is an isomorphism.
+Theorem 2.1 ([4]). The map Ψ is an isomorphism from M+1 (Γ0 (4)) to MH , and the
+2
+
+weight of Ψ(f (z)) is af (0).
+
+Let j(z) be the usual j-invariant function. We denote the product expansion of j(z) by
+j(z) = q
+
+∞
+Y
+
+(1 − q n )A(n) .
+
+n=1
+
+Q
+(1 − q n )c(n) be a meromorphic modular form of weight k in MH . The
+Let F (z) := q h ∞
+Pn=1
+p-adic limit of d|n d * c(d) was studied in [5] for p = 2, 3, 5, 7. In the following theorem,
+we obtain the p-adic limit of c(d) for p = 2, 3, 5, 7.
+Theorem 3. Let F (z) := q h
+k in MH .
+
+Q∞
+
+n=1 (1
+
+− q n )c(n) be a meromorphic modular form of weight
+
+(1) If p = 2, then, for each j ∈ N, there exists a positive integer b such that
+c(mpb ) ≡ 2k
+
+(mod pj )
+
+for every positive integer m.
+(2) If p ∈ {3, 5, 7}, then, for for each j ∈ N, there exists a positive integer b such that
+5c(mpb ) − ̟(F )A(mpb ) ≡ 10k
+
+(mod pj )
+
+for every positive integer m. Here, ̟(F ) is a constant determined by the constant
+term of q-expansion of Ψ−1 (F ) at 0.
+
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS
+
+5
+
+2.2. Sums of n-Squares. As the second application we study congruences of representation numbers of the sums of n squares. Let, for u ∈ Z>0 ,
+rn (u) := ♯{(s1 , * * * , sn ) ∈ Zn : s21 + * * * + s2n = u}.
+), then there exists
+Theorem 4. Suppose that p ≥ 5 is a prime. If λ ≡ 2 or 3 (mod p−1
+2
+a positive integer C0 such that for every integer b > C0
+λ
+ [ p−1
+]+α(p:λ)m(p:λ)
+
+−1
+2b−m(p:λ)
+r2λ+1 p
+≡ − (14 − 4α (p : λ)) + 16
+(mod p).
+p
+
+Remark 2.2. For example, if λ ≡ 2 (mod p − 1) and p is a odd prime, then there exists
+a positive integer C0 such that, for every integer b > C0 ,
+
+r2λ+1 p2b ≡ 10 (mod p).
+
+2.3. Values of L-Functions. Thirdly we derive congruences among values of L-functions
+
+at a certain point. Let D be a fundamental discriminant and χD (n) := Dn . The Dirichlet
+L-function of χD is defined by
+L(s, χD ) :=
+
+∞
+X
+χD (n)
+n=1
+
+ns
+
+.
+
+In [6], Carlitz studied an analog of the Staudt-Clausen theorem for L(1 − m, χD ) modulo
+, χD ) modulo
+p was also
+prime p, where pe (p − 1)|m and p ∤ D. The value of L(1 − p+1
+2
+ 
+p+1
+
+studied in [2], where D := (−1) 2 pN is a fundamental discriminant and −N
+= 1. We
+p
+now give the values of L(1 − λ, χp ) modulo primes p ≥ 5.
+
+
+p−1
+(−1) 2 p
+. If λ ≡ 2 + p−1
+(mod p − 1),
+Theorem 5. Let p ≥ 5 be a prime and χp (n) :=
+n
+2
+then
+
+L(1 − λ, χp ) ≡ −10 *
+
+B2λ
+2λ
+
+(mod p).
+
+2.4. Quotients of Eisenstein Series. Congruences among the coefficients of quotients
+P
+n
+of Eisentein series have been studied in [3]. Let Hr+ 1 (z) := ∞
+N =0 H(r, N)q denote the
+2
+Cohen Eisenstein series of weight r + 12 , where r ≥ 2 is an integer. We derive congruences
+for the coefficients of quotients of Cohen-Eisentein series and Eisentein series.
+Theorem 6. Let
+F (z) :=
+
+G(z) :=
+
+H 5 (z)
+2
+
+E4 (z)
+H 7 (z)
+2
+
+E6 (z)
+
+=
+
+∞
+X
+
+aF (n)q n ,
+
+n=0
+
+=
+
+∞
+X
+n=0
+
+aG (n)q n
+
+6
+
+D. CHOI AND Y. CHOIE
+
+and
+W (z) :=
+
+H 9 (z)
+2
+
+E6 (z)
+
+=
+
+∞
+X
+
+aW (n)q n .
+
+n=0
+
+Then there exists a positive integer C0 such that
+
+aF (112b+1 ) ≡ 1 (mod 11),
+aG (112b+1 ) ≡ 6 (mod 11),
+aW (112b+1 ) ≡ 2 (mod 11),
+for every integer b > C0 .
+2.5. Maass Space. Next we deal with congruences of the Fourier coefficients of a Siegel
+modular form in Maass space. To define Maass space, we follow notations given in [15].
+Let T ∈ M2g (Q) be a rational, half-integral, symmetric, non-degenerate matrix of size
+2n and
+DT := (−1)g det(2T )
+be the discriminant of T . Then DT ≡ 0, 1 (mod 4)
+DT,0 is the corresponding fundamental discriminant.
+
+2
+0 −1 0
+0
+
+2
+0 −1 0
+ 0
+
+ −1 0
+2 −1 0
+
+ 0 −1 −1 2 −1
+
+G8 := 
+ 0
+0
+0 −1 2
+
+ 0
+0
+0
+0 −1
+
+
+ 0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+and we write DT = DT,0 fT2 , where
+Let
+
+0
+0
+0
+
+0
+0
+0 
+
+0
+0
+0 
+
+0
+0
+0 
+
+
+−1 0
+0 
+
+2 −1 0 
+
+
+−1 2 −1 
+0 −1 2
+
+and G7 be the upper (7, 7)-submatrix of G8 . Let
+( L
+(g−1)/8 L
+2,
+if g ≡ 1 (mod 8),
+GL
+8
+S0 :=
+(g−7)/8 L
+G8
+G7 , if g ≡ −1 (mod 8).
+
+For m ∈ N, the set of natural numbers N, with (−1)g m ≡ 0, 1 (mod 4) define a rational,
+half-integral, symmetric, positive definite matrix Tm of size 2g by
+
+!
+1
+
+S
+0
+
+s
+2
+
+,
+if m ≡ 0 (mod 4),
+
+
+0 m/4
+!
+Tm :=
+1
+1
+
+S
+e
+
+s
+2g−1
+2
+2
+
+, if m ≡ (−1)g (mod 4),
+
+
+1 ′
+e
+[m + 2 + (−1)n ]/4
+2 2g−1
+
+where e2g−1 = (0, . . . , 0, 1)′ ∈ Z(2n−1,1) is the standard column vector and e′2g−1 denotes
+the transpose of e2g−1 . Following Kohnen and Kojima (see [15]), we define the Maass
+space of weight g + k and genus 2g, which is realized as the image of Ikeda lifting.
+
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS
+
+7
+
+Definition 2.3. (Maass Space) Suppose that g ≡ 0, 1 (mod 4) and let k ∈ N with g ≡ k
+(mod 2). Let
+M aass
+Sk+g
+(Γ2g )
+
+
+X
+:= F (Z) =
+A(T )q tr(T Z) ∈ Sk+g (Γ2g )
+
+
+A(T ) =
+
+T >0
+
+X
+
+ak−1 φ(a; T )A(T|DT |/a2 )
+
+a|fT
+
+
+
+
+
+(see (6.2) for more detailed notations). This space is called as a Maass space of genus 2g
+and weight n + k.
+Recently it was proved in [15] that Maass space is the same as the image of Ikeda
+lifting when g ≡ 0, 1 (mod 4). Using this fact with Theorem 1, we derive the following
+M aass
+congruences of the Fourier coefficients of F (Z) in Sk+g
+(Γ2g ).
+Theorem 7. Suppose that g ≡ 0, 1 (mod 4). Let
+X
+M aass
+F (Z) :=
+A(T )q tr(T Z) ∈ Sk+g
+(Γ2g )
+T >0
+
+with an integral A(T ), T > 0. If k ≡ 2 or 3 (mod
+j ∈ N, there exists a positive integer b for which
+
+p−1
+)
+2
+
+for a prime p, then, for each
+
+A(T ) ≡ 0 (mod pj )
+for every T > 0 with det(2T ) ≡ 0 (mod pb ).
+This paper is organized as follows: Section 3 gives a linear relation among the Fourier
+coefficients of modular forms of half integral weight. Using this result, in Section 4 we
+prove Theorem 1 and 2. In Section 5 we give a proof of Theorem 3. We prove Theorem
+4, 5 6 and 7 in Section 5.
+3. Linear Relation among the Fourier Coefficients of modular forms of Half
+Integral Weight
+Let V (N; k, n) be the subspace of Cn generated by the first n coefficients of q-expansion
+of f at ∞ for f ∈ Sk (Γ0 (N)), where Sk (Γ0 (N)) denotes the space of cusp forms of weight
+k ∈ Z on Γ0 (N). Let L(N; k, n) be the orthogonal complement of V (N; k, n) in Cn
+with the usual inner product of Cn . The vector space L(1; k, d(k) + 1) was studied by
+Siegel when the value of Dedekind zeta function at a certain point was computed, where
+d(k) = dim(Sk (Γ(1))). The vector space L(1; k, n) is explicitly obtained by the principal
+part of negative weight modular forms in [8]. These results were extend in [7] to groups
+
+8
+
+D. CHOI AND Y. CHOIE
+
+Γ0 (N) of genus zero. Let, for 1 ≤ N ≤ 4,
+
+
+1
+EV 4N, λ + ; n
+2
+
+n
+tν(4N)
+t1
+(0), af (1), * * * , af (n) ∈ Cn+ν(4n)
+:=
+af (0), * * * , af
+
+o
+
+f ∈ Mλ+ 1 (Γ0 (4N)) ,
+2
+
+where U4N := {t1 , * * * , tν(4N ) } is the set of the inequivalent regular cusps of Γ0 (4N). We
+define EL(4N, λ + 21 ; n) to be the orthogonal complement of EV (4N, λ + 21 ; n) in Cn+ν(4N ) .
+Note that R4N (z) ∈ M2 (Γ0 (4N)) has its only zero at ∞. So, the valence formula (see
+[17]) implies that
+(3.1)
+
+ω(4) = 1, ω(8) = 2, ω(12) = 4, ω(16) = 4.
+
+For each g ∈ Mr+ 1 (Γ0 (4N)) and e ∈ N, let
+2
+
+e*ω(4N )
+X
+g(z)
+b(4N, e, g; ν)q −ν + O(1) at ∞.
+=
+R4N (z)e
+ν=1
+
+(3.2)
+
+With these notations we state the following theorem:
+Theorem 3.1. Suppose that λ ≥ 0 is an integer and 1 ≤ N ≤ 4. For each e ∈ N
+such that e ≥ λ2 − 1 take r = 2e − λ + 1. The linear map Φr,e (4N) : Mr+ 1 (Γ0 (4N)) →
+2
+EL(4N, λ + 21 ; e * ω(4N)), defined by
+Φr,e (4N)(g)
+
+=
+
+t1
+
+ht1 a
+
+g(z)
+R4N (z)e
+
+tν(4N)
+
+(0), * * * , htν(4N) a
+
+g(z)
+R4N (z)e
+
+
+
+(0), b(4N, e, g; 1), * * * , b(4N, e, g; e * ω(4N)) ,
+
+is an isomorphism.
+Proof of Theorem 3.1. Suppose that G(z) is a meromorphic modular form of weight 2 on
+Γ0 (4N). For τ ∈ H∪C4N , let Dτ be the image of τ under the canonical map from H∪C4N
+to a compact Riemann surface X0 (4N). Here, H is the usual complex upper half plane,
+and C4N denotes the set of all inequivalent cusps of Γ0 (4N). The residue ResDτ Gdz of
+G(z) at Dτ ∈ X0 (4N) is well-defined since we have a canonical correspondence between a
+meromorphic modular form of weight 2 on Γ0 (4N) and a meromorphic 1-form of X0 (4N).
+If Resτ G denotes the residue of G at τ on H, then
+ResDτ Gdz =
+
+1
+Resτ G.
+lτ
+
+Here, lτ is the order of the isotropy group at τ . The residue of G at each cusp t ∈ C4N is
+(3.3)
+
+ResDt Gdz = ht *
+
+atG (0)
+,
+2πi
+
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS
+
+9
+
+ P∞
+= n=mt atG (n)qtn for γt = ( ac db ) ∈ Γ(1) such that
+where (G |2 γt )(z) = (cz + d)−2G az+b
+cz+d
+γt (t) = ∞ and ht denotes the smallest positive integer such that (G |2 γt )(z + ht ) = (G |2
+2πiz
+γt )(z) and qt := e ht . Now we give a proof of Theorem 3.1.
+To prove Theorem 3.1, take
+g(z)
+f (z),
+R4N (z)e
+
+G(z) =
+
+P
+n
+where g ∈ Mr+ 1 (Γ0 (4N)) and f (z) = ∞
+n=1 af (n)q ∈ Mλ+ 21 (Γ0 (4N)). Note that G(z)
+2
+is holomorphic on H. Since g(z), R4N (z) and f (z) are holomorphic and R4N (z) has no
+zero on H, it is enough to compute the residues of G(z) only at the inequivalent cusps to
+g(z)
+f (z) at ∞ is
+apply the Residue theorem. The q-expansion of R4N
+(z)e
+
+
+!
+e*ω(4N )
+∞
+X
+X
+g(z)
+n
+−ν
+af (n)q .
+f (z) = 
+b(4N, e, g; ν)q + a g(z) e (0) + O(q)
+R4N (z)
+R4N (z)e
+n=0
+ν=1
+Since R4N (z) has no zero at t ≁ ∞, we have
+
+g(z)
+f (z) γt = at g(z) (0)af (0) + O(qt ).
+e
+R4N (z)
+R4N (z)e
+2
+Further, note that, for an irregular cusp t,
+at
+
+g(z)
+R4N (z)e
+
+(0)af (0) = 0.
+
+So, we have
+(3.4)
+
+X
+
+t∈U4N
+
+e*ω(4N )
+t
+
+ht a
+
+g
+e*ω(4N)
+R
+4N
+
+(0)atf (0)
+
++
+
+X
+
+b(4N, e, g; ν)af (ν) = 0.
+
+ν=1
+
+by the Residue Theorem and (3.3). This implies that Φr,e (4N) is well-defined. The
+linearity of the map Φr,e (4N) is clear.
+It remains to show that Φr,e (4N) is an isomorphism. Since there exists no holomorphic modular form of negative weight except the constantly zero function, we obtain the
+injectivity of Φr,e (4N). Note that for e ≥ λ−1
+2
+
+
+
+
+
+1
+dimC EL 4N; λ + , e * ω(4N)
+= e * ω(4N) + |U4N | − dimC Mλ+ 1 (Γ0 (4N)) .
+2
+2
+
+However, the set C4N of inequivalent cusps of Γ0 (4N) are, for 1 ≤ N ≤ 4,
+
+C4 = ∞, 0, 12 ,
+
+C8 = ∞, 0, 21 , 14 , 81 ,
+
+C12 = ∞, 0, 21 , 14 , 41 , 61 ,
+
+C16 = ∞, 0, 21 , 14 , 43 , 81 ,
+
+10
+
+D. CHOI AND Y. CHOIE
+
+and it can be checked that
+(3.5)
+
+|U4 | = 2, |U8 | = 3, |U12 | =, |U16 | = 6
+
+(for detail see Chapter 4. in [13]). We recall the dimension formula of Mλ+ 1 (Γ0 (4N)) for
+2
+1 ≤ N ≤ 4:
+Table 1. Dimension Formula for Mk (Γ0 (4N))
+N
+
+k = 2n +
+
+1
+2
+
+k = 2n +
+
+3
+2
+
+k = 2n
+
+N =1
+
+n+1
+
+n+1
+
+n+1
+
+N =2
+N =3
+
+2n + 1
+4n + 1
+
+2n + 2
+4n + 3
+
+2n + 1
+4n + 1
+
+N =4
+
+4n + 2
+
+4n + 4
+
+4n + 1
+
+So we have by (3.4), (3.5) and Table 1
+
+
+
+1
+dimC EL 4N, λ + ; e * ω(N)
+= dimC (Mr+ 1 (Γ0 (4N)))
+2
+2
+
+since r = 2e − λ + 1. This implies that Φr,e (4N) is surjective since the map Φr,e (4N) is
+injective. This completes the proof.
+
+4. Proofs of Theorem 1 and 2
+
+4.1. Proof of Theorem 1. First, we get linear relations among the Fourier coefficients
+of modular forms of half integral weight modulo primes p ≥ 5. Let
+∞
+X
+f
+Mλ+ 1 , p (Γ0 (4N)) := {H(z) =
+aH (n)q n ∈ Zp /pZp [[q]] |
+2
+
+n=0
+
+H≡h
+
+(mod p) for some h ∈ Zp [[q]] ∩ Mλ+ 1 (Γ0 (4N))}.
+2
+
+and
+Seλ+ 1 , p (Γ0 (4N)) := {H(z) =
+2
+
+∞
+X
+n=1
+
+aH (n)q n ∈ Zp /pZp [[q]] :
+
+H≡h
+
+(mod p) for some h ∈ Zp [[q]] ∩ Sλ+ 1 (Γ0 (4N))}.
+2
+
+fλ, p (Γ0 (4N)).
+The following lemma gives the dimension of M
+
+Lemma 4.1. Suppose that λ is a positive integer and 1 ≤ N ≤ 4. Let p be a prime such
+that
+(
+p ≥ 3 if N = 1, 2, 4,
+p ≥ 5 if N = 3.
+Then
+
+f 1 (Γ0 (4N)) = dim M 1 (Γ0 (4N))
+dim M
+λ+ , p
+λ+
+2
+
+2
+
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS
+
+11
+
+and
+dim Seλ+ 1 , p (Γ0 (4N)) = dim Sλ+ 1 (Γ0 (4N)).
+2
+
+Proof. Let
+
+2
+
+j4N (z) = q −1 + O(q)
+be a normalized meromorphic modular function with a pole only at ∞. Explicitly, they
+are
+η(z)8
++ 8,
+η(4z)8
+η(4z)4 η(6z)2
+,
+j12 (z) =
+η(2z)2 η(12z)4
+j4 (z) =
+
+η(4z)12
+,
+η(2z)4 η(8z)8
+η 2 (z)η(8z)
+j16 (z) =
++ 2.
+η(2z)η 2 (16z)
+
+j8 (z) =
+
+1
+are integral, the q-expansion of j4N (z) has
+Since the Fourier coefficients of η(z) and η(z)
+integral coefficients.
+Recall that ∆4N,λ is the unique normalized modular form of weight λ + 21 on Γ0 (4N)
+with the zero of the maximum order at ∞. Denote the order of zero of ∆4N,λ at ∞ by
+δλ (4N). Then the basis of Mλ+ 1 (Γ0 (4N)) can be chosen as
+2
+
+(4.1)
+
+{∆4N,λ (z)j4N (z)e | 0 ≤ e ≤ δλ (4N)} .
+
+If ∆4N,λ (z) is p-integral, then {∆4N,λ (z)j4N (z)e | 0 ≤ e ≤ δλ (4N)} forms also a basis of
+f 1 (Γ0 (4N)). Note that δλ (4N) = dim M 1 (Γ0 (4N)) − 1. So, we have, from Table
+M
+λ+ 2
+λ+ 2 ,p
+1,
+(4.2)
+
+∆4N,λ (z) = ∆4N,j (z)R4N (z)
+
+λ−j
+2
+
+,
+
+where λ ≡ j (mod 2) for j ∈ {0, 1}. One can choose ∆4N,j (z) as the following:
+∆4,0 (z) = θ(z), ∆4,1 (z) = θ(z)3 ,
+3
+2
+∆8,0 (z) = θ(z), ∆8,1 (z) = 41 (θ(z)
+),
+P − θ(z)θ(2z)
+
+P
+2 +2 y 2 +z 2 +yz
+3x
+1
+(
+)
+3x2 +4y 2 +4z 2 +4yz
+∆12,0 (z) = θ(z), ∆12,1 (z) = 6
+− x,y,z∈Z q
+,
+x,y,z∈Z q
+
+∆16,0 (z) = 21 (θ(z) − θ(4z)) , ∆16,1 (z) = 18 (θ(z)3 − 3θ(z)2 θ(4z) + 3θ(z)θ(4z)2 − θ(4z)3 ) .
+P
+n
+Since θ(z) = 1 + 2 ∞
+n=1 q , the coefficients of the q-expansion of ∆4N,j (z), j ∈ {0, 1}, are
+p-integral. This completes the proof with (4.1) and (4.2).
+
+Remark 4.2. The proof of Lemma 4.1 implies that the spaces of Mλ+ 1 (Γ0 (4N)) for
+N = 1, 2, 4 are generated by eta-quotients since θ(z) =
+
+η(2z)5
+.
+η(z)2 η(4z)2
+
+2
+
+For 1 ≤ N ≤ 4 denote
+
+
+o
+n
+1
+f
+VS 4N, λ + ; n := (af (1), * * * , af (n)) ∈ Fnp | f ∈ Seλ+ 1 (Γ0 (4N)) ,
+2
+2
+
+12
+
+D. CHOI AND Y. CHOIE
+
+fS (4N, λ + 1 ; n) to be the orthogonal complement of
+where Fp := Zp /pZp . We define L
+2
+fS (4N, λ + 1 ; n) in Fn . Using Lemma 4.1, we obtain the following proposition.
+V
+p
+2
+Proposition 4.3. Suppose that λ is a positive integer and 1 ≤ N ≤ 4. For each e ∈ N,
+g
+f
+f
+e ≥ λ2 − 1, take r = 2e − λ + 1. The linear map ψ
+r,e (4N) : Mr+ 1 (Γ0 (4N)) → LS (4N, λ +
+2
+1
+; e * ω(4N)), defined by
+2
+g
+ψ
+r,e (4N)(g) = (b(4N, e, g; 1), * * * , b(N, e, g; e * ω(4N))) ,
+
+is an isomorphism. Here, b(4N, e, g; ν) is given in (3.2).
+Proof. Note that dim S 3 (4N) = 0 and that
+2
+
+
+
+N
+dim Sλ+ 1 (4N) + N + 1 +
+2
+4
+
+
+
+= dim Mλ+ 1 (4N)
+2
+
+(see [9]). So, from Lemma 4.1 and Table 1, it is enough to show that ψr,e (4N) is injective.
+g(z)
+If g is in the kernel of ψr,e (4N), then R4N
+*R4N (z)e ≡ 0 (mod p) by the Sturm's formula
+(z)e
+(see [19]). So, we have g(z) ≡ 0 (mod p) since R4N (z)e 6≡ 0 (mod p). This completes our
+claim.
+
+Theorem 4.4. Suppose that p is a prime and that N = 1, 2 or 4. Let
+f (z) :=
+
+∞
+X
+n=1
+
+af (n)q n ∈ Sλ+ 1 (Γ0 (4N)) ∩ Zp [[q]].
+2
+
+ 
+If λ ≡ 2 or 2 + N1 (mod p−1
+) or p = 2, then there exists a positive integer b such that,
+2
+for every positive integer n,
+
+af npb ≡ 0 (mod p), ∀n ∈ N.
+
+Proof of Theorem 4.4. i) First, suppose that p ≥ 3: Take a positive integer l and b such
+that
+
+
+3 − 2α(p : λ) 2b
+1 m(p:λ)
+(4.3)
+p
++ l(p − 1) = 2.
+p + λ+
+2
+2
+
+
+ m(p:λ)
+2
+1
+Moreover, if b > logp 3−2α(p:λ) λ + 2 p
+− 2 , then there exists a positive integer l
+
+satisfying (4.3). Note that atf (0) = 0 for every cusp t of Γ0 (4N) since the given function
+f (z) is a cusp form. So, if r = 2e − α(p : λ) + 1, then Theorem 3.1 implies that, for every
+f 1 (Γ0 (4N)),
+g(z) ∈ M
+r+
+2
+
+e*ω(4N )
+
+X
+ν=1
+
+b(4N, e, g; ν)af (νp2b−m(p:λ) ) ≡ 0 (mod p)
+
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS
+
+since
+
+
+g(z)
+R4N (z)e
+
+p2b
+
+f (z)p
+
+
+m(p:λ)
+
+l
+Ep−1
+(z)
+
+e*ω(4N )
+
+≡
+*
+
+X
+
+2b
+
+b(4N, e, g; ν)q −νp + a
+
+ν=1
+
+∞
+X
+
+13
+
+af (n)q np
+
+m(p:λ)
+
+n=0
+
+!
+
+g(z)
+R4N (z)e
+
+(0) +
+
+∞
+X
+n=1
+
+a
+
+g(z)
+R4N (z)e
+
+
+
+2b
+(n)q np 
+
+(mod p).
+
+So, we have by Proposition 4.3 that
+
+
+
+a p2b−m(p:λ) , a 2p2b−m(p:λ) , * * * , a e * ω(4N)p2b−m(p:λ)
+
+fS 4N, α(p : λ) + 1 ; n .
+∈V
+2
+1
+If α(p : λ) = 2 or 2 + N , then
+
+
+1
+fS 4N, α(p : λ) + ; n = 0.
+dim Sα(p:λ)+ 1 (Γ0 (4N)) = V
+2
+2
+∆
+
+(z)
+
+= q −1 + O(1) for N = 1, 2, 4. So, there
+ii) We assume that p = 2: Note that R4N,1
+4N (z)
+exist a polynomial F (X) ∈ Z[X] such that
+F (j4N (z))
+For an integer b,
+
+∆4N,1 (z)
+= q −n + O(1).
+R4N (z)
+
+2
+2b
+
+> λ + 2, let
+
+2b
+∆4N,1 (z)
+1+2b
+G(z) := F (j4N (z))
+f (z)θ(z)2 −2λ+3 .
+R4N (z)
+
+Since θ(z) ≡ 1 (mod 2), Theorem 3.1 implies that af (2b * n) ≡ 0 (mod 2). Therefore, we
+completes the proof.
+
+Remark 4.5. In the proof of Theorem 4.4 the case when p ≥ 3 can be also treated as the
+same as the case of p = 2. However, one gets more structure information about f (z)|Up
+following the given proof.
+To apply Theorem 4.4, we need the following two propositions.
+Proposition 4.6 ([20]). Suppose that p is an odd prime, k and N are integers with
+(N, p) = 1, and χ is a Dirichlet character modulo 4N. Let
+X
+f (z) =
+a(n)q n ∈ Mλ+ 1 (Γ0 (4N)).
+2
+
+Suppose that that ξ := cpa2 db , with ac > 0. then there exists an integer n0 , a sequence
+{a0 (n)}n≥n0 , a positive integer h0 |N, and an r0 ∈ {0, 1, 2, 3} such that for each m ≥ 1,
+
+14
+
+D. CHOI AND Y. CHOIE
+
+we have
+X
+
+(f (z)|Upm )|λ+ 1 ξ =
+2
+
+4n+r0
+
+a0 (n)q 4h0 pm .
+
+n≥n0
+4n+r0 ≡0 (mod pm )
+
+Proposition 4.7 ([1]). Suppose that p is an odd prime. Suppose that p ∤ N, that j ≥ 1
+is an integer, and that
+g(z) =
+
+∞
+X
+n=1
+
+a(n)q n ∈ Sλ+ 1 (Γ0 (4Npj )) ∩ Z[[q]].
+2
+
+Then there is a cusp form G(z) ∈ Sλ′ + 1 (Γ0 (4N)) ∩ Z[[q]] such that
+2
+
+G(z) ≡ g(z)
+where λ′ +
+
+1
+2
+
+(mod p),
+
+= (λ + 12 )pj + pe (p − 1) for enough large e ∈ N.
+
+Remark 4.8. In [1], Proposition 4.7 is proved for p ≥ 5. But, one can check, by following
+the method given in [1], that Proposition 4.7 holds when p = 3.
+Now, we prove Theorem 1.
+Proof of Theorem 1. Let
+
+Gp (z) :=
+
+
+
+
+
+
+
+
+
+η(8z)48
+∈ M12 (Γ0 (16))
+η(16z)24
+η(z)27
+∈ M12 (Γ0 (9))
+η(9z)3
+2
+η(4z)p
+∈ M p2 −1 (Γ0 (p2 ))
+η(4p2 z)
+2
+
+if p = 2,
+if p = 3,
+if p ≥ 5.
+
+By the well known properties of eta-quotients (see [10]) and Proposition 4.6, there exit
+positive integers l, m such that
+(
+
+(f (z)|Upm )Gp (z)l ∈ Sk′ + 1 (Γ0 (16))
+2
+
+2
+
+l
+
+(f (z)|Upm )Gp (z) ∈ Sk′ + 1 (Γ0 (4p ))
+2
+
+if p = 2,
+if p ≥ 3,
+
+Using Proposition 4.7, we find
+F (z) ∈ Sk′′ + 1 (Γ0 (4N))
+2
+
+such that F (z) ≡ (f (z)|Upm )Gp (z)l ≡ (f (z)|Upm ) (mod p). Theorem 4.4 implies that
+there exist a positive integer b such that F (z)|Up2b ≡ 0 (mod p). So, we have that
+1
+* F (z)|Upm+2b ∈ Z[q, q −1 ]. Repeating this method, we obtain the result.
+
+p
+
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS
+
+15
+
+4.2. Proof of Theorem 2. Using Theorem 3.1 with a special modular form, we prove
+Theorem 2.
+Proof of Theorem 2. We take a positive integer l and a positive odd integer b such that
+
+
+1 m(p:λ)
+3 − 2α(p : λ) b
+p
++ l(p − 1) = 2.
+p + λ+
+2
+2
+
+
+∆4N,3−α(p:λ) (z)
+R4N (z)
+
+Let F (z) :=
+(mod p), we have
+
+F (z)G(z) ≡
+
+pb
+
+∞
+X
+
+and G(z) := Ep−1 (z)l f (z)p
+
+a ∆4N,3−α(p:λ) (z) (n)q
+
+npb
+
+R4N (z)
+
+n=−1
+
+!
+
+∞
+X
+
+m(p:λ)
+
+. Since that Ep−1 ≡ 1
+
+atf (n)q n
+
+n=m∞
+
+!
+
+(mod p).
+
+We claim that the Fourier coefficients of f (z) at each cusps are p-integral. Then we have
+!
+!
+∞
+∞
+X
+X
+(F * G|2 γt ) (z) ≡ qtr
+atG (n)qtn
+qtr
+atF (n)qtn
+n=mt
+
+≡
+
+qtr
+
+∞
+X
+
+atf (n)qtn
+
+n=mt
+
+!
+
+n=0
+
+q
+
+r u
+p
+ht
+
+∞
+X
+
+at∆4N,3−α(p:λ) (z) (n)q
+
+n=0
+
+n u
+p
+ht
+
+R4N (z)
+
+!
+
+(mod p)
+
+for t ≁ ∞. If u is large enough, then
+aF (z)G(z) (0) ≡ a ∆4N,3−α(p:λ) (z) (0)af (0) + af (pu )
+
+(mod p) ,
+
+atF (z)G(z) (0) ≡ at∆4N,3−α(p:λ) (z) (0)atf (0)
+
+(mod p)
+
+R4N (z)
+
+R4N (z)
+
+for t ≁ ∞.
+
+Then, using the Residue theorem again, we completes the proof.
+Q
+n 24
+We check the claim. Let ∆(z) := q ∞
+n=1 (1 − q ) . Note that ∆(z) is a cusp form
+of weight 12 on Γ(1). So, we may take a positive integer e such that ∆(z)e f (z) is a
+holomorphic modular form. Note that the q-expansion of j4N (z) and ∆4N,12e+λ (z) at each
+cusps are p-integral. Then we have
+δ12e+λ (4N )
+e
+
+∆(z) f (z) =
+
+X
+
+cn j4N (z)n ∆4N,12e+λ (z)
+
+n=0
+
+by the formula (4.1). Moreover, cn is p-integral since
+j4N (z)n ∆4N,12e+λ (z) = q δ12e+λ (4N )−n + O q δ12e+λ (4N )−n+1
+
+
+
+and f (z) ∈ Zp [[q, q −1 ]]. Note that p ∤ 4N since 1 ≤ N ≤ 4 and p > 3 is a prime. So,
+1
+the Fourier coefficients of j4N (z), ∆N,12e+λ (z) and ∆(z)
+at each cusps are p-integral. This
+completes the proof.
+
+
+16
+
+D. CHOI AND Y. CHOIE
+
+5. Proof of Theorem 3
+Using Theorem 1 and Theorem 2.1, we prove Theorem 3.
+Proof of Theorem 3. Note that j(z) ∈ MH . Let
+−1
+
+−1
+
+g(z) := Ψ (j(z)) and f (z) := Ψ (F (z)) =
+
+∞
+X
+
+af (n)q n .
+
+n=n0
+
+It is known (see §14 in [4]) that
+1
+g(z) =
+3
+
+d
+(θ(z))E10 (4z)
+dz
+
+4πi∆(4z)
+
+d
+θ(z) dz
+(E10 (4z)) 152
+−
+−
+θ(z).
+80πi∆(4z)
+5
+
+Since the constant terms of q-expansions at ∞ of f (z) − kθ(z) and g(z) are zero and
+a0θ(z) (0) = 1−i
+, we have
+2
+f (z) − kθ(z) −
+
+a0f (0) + k(1 − i)/2
+g(z) ∈ M01 (Γ0 (4)).
+2
+a0g (0)
+
+Here, a0g (0) is defined by (1.1). By Theorem 1, we completes the proof.
+
+
+
+6. Proofs of Theorem 4, 5 and 6
+We begin by introducing the following proposition.
+Proposition 6.1. Let p be an odd prime and
+f (z) :=
+
+∞
+X
+n=0
+
+If λ ≡ 2 or 3 (mod
+af p2b−m(p:λ)
+
+p−1
+),
+2
+
+af (n)q n ∈ Mλ+ 1 (Γ0 (4)) ∩ Zp [[q]].
+2
+
+then
+
+
+
+pb (7−2α(p:λ)) 0
+≡ −(14 − 4α(p : λ))af (0) + 28 2−1 − 2−1 i
+af (0) (mod p)
+
+
+ m(p:λ)
+2
+1
++2 .
+for every integer b > logp 2α(p:λ)−3 λ + 2 p
+
+P
+n
+Proof of Proposition 6.1. Note that the given function f (z) = ∞
+n=0 af (n)q is a modular
+). So let
+form of weight λ + 21 , where λ ≡ 2 or 3 (mod p−1
+2
+
+
+1
+1 m(p:λ)
+p
+:= ν * (p − 1) + α(p : λ) +
+λ+
+2
+2
+
+for ν ∈ Z≥0 . For every integer b,
+
+
+
+
+1
+1 m(p:λ)
+2
+b > logp
+λ+
+p
+−2
+,
+2
+3 − 2α(p : λ)
+2
+
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS
+
+17
+
+there exist an positive integer l such that
+
+
+1 m(p:λ)
+3 − 2α(p : λ) 2b
+p
++ l(p − 1) = 2,
+p + λ+
+2
+2
+
+since
+
+
+
+3 − 2α(p : λ) 2b
+1 m(p:λ)
+3 − 2α(p : λ) 2b
+p
+−2=
+p + λ+
+(p − 1) + ν(p − 1).
+2
+2
+2
+
+We have
+
+P
+npm(p:λ)
+F (z) ≡ ∞
+(mod p),
+n=0 af (n)q
+b
+G(z) ≡ q −p + 14 − 4α(p : λ) + aG (1)q + * * *
+
+(mod p).
+
+Note aG (n) is p-integral for every integer n. Moreover, we obtain
+!
+
+pb (7−2α(p:λ))
+
+1
+i
+b
+0
+−26p
+F (z)G(z)|2 ( 01 −1
+−
++***
+(mod p),
+0 ) ≡ af (0) + * * *
+2 2
+
+where a0f (0) is given in (1.1). Note that ∞, 0, 12 is the set of distinct cusps of Γ0 (4) and
+that 21 is a irregular cusp. So, Theorem 2 implies that that
+pb (7−2α(p:λ))
+
+1 i
+2u−m(p:n)
+8 0
+≡ 0 (mod p).
+−
+af (p
+) + (14 − 4α(p : λ))af (0) − 2 af (0)
+2 2
+This gives a proof of Proposition 6.1.
+
+
+
+6.1. Proof of Theorem 4. Now we prove Theorem 4.
+P
+2
+Proof of Theorem 4. Let θ(z) := 1 + 2 ∞
+n=1 q . To use Theorem 6.1, take
+f (z) := θ
+
+2λ+1
+
+(z) = 1 +
+
+∞
+X
+
+l
+
+r2λ+1 (l)q =
+
+Note that θ(z) ∈ M 1 (Γ0 (4)). Since θ(z)| 1 ( 10 −1
+0 ) =
+2
+
+af (0) = 1 and
+
+a0f (0)
+
+af (n)q n .
+
+n=0
+
+l=1
+
+2
+
+∞
+X
+
+=
+
+
+
+1−i
+2
+
+ 1
++ O q 4 , we obtain
+
+1 i
+−
+2 2
+
+2λ+1
+
+.
+
+
+1
+i 8
+1
+Since λ ≡ 2, 3 (mod p−1
+)
+and
+−
+, we have
+= 16
+2
+2
+2
+
+p2u (7−2α(p:λ))
+1
+i
+m(p:λ)
+−
+a0f (0)p
+2 2
+λ
+p2u (7−2α(p:λ)) 
+pm(p:λ) (2α(p:λ)+(p−1)(2[ p−1
+
+]+m(p:λ))+1)
+1 i
+1 i
+−
+−
+≡
+2 2
+2 2
+λ
+(7−2α(p:λ))(p2u −1) 
+8+2(p−1)[ p−1
+
+]+m(p:λ)pm(p:λ) (p−1)+(pm(p:λ) −1)(1+2α(p:λ))
+1 i
+1 i
+−
+−
+≡
+2 2
+2 2
+λ
+8+2[ p−1
+  λ +α(p:λ)m(p:λ)
+
+](p−1)+2α(p:λ)(pm(p:λ) −1)
+1 −1 [ p−1 ]
+1 i
+−
+≡
+≡
+(mod p),
+2 2
+16 p
+
+18
+
+D. CHOI AND Y. CHOIE
+
+where u is a positive integer. Applying Theorem 6.1, we derive the result.
+
+
+
+P∞
+n
+6.2. Proofs of Theorem 5 and 6. A modular form Hr+ 1 (z) :=
+N =0 H(r, N)q
+2
+denotes the Cohen Eisenstein series of weight r + 21 , where r ≥ 2 is an integer. If
+2r
+(−1)r N ≡ 0, 1 (mod 4), then H(r, N) = 0. If N = 0, then H(r, 0) = −B
+. If N is
+2r
+2
+r
+a positive integer and Df = (−1) N, where D is a fundamental discriminant, then
+X
+(6.1)
+H(r, N) = L(1 − r, χD )
+μ(d)χD (d)dr−1 σ2r−1 (f /d).
+d|f
+
+Here, μ(d) is a M öbius function. The following theorem implies that the Fourier coeffi∤ r.
+cients of Cohen Eisenstein series Hr+ 1 (z) are p-integral if p−1
+2
+2
+
+Theorem 6.2 ([6]). Let D be a fundamental discriminant. If D is divisible by at least two
+different primes, then L(1−n, χD ) is an integer for every positive integer n. If D = p, p >
+2, then L(1−n, χD ) is an integer for every positive integer n unless gcd(p, 1−χD (g)g n) 6= 1,
+where g is a primitive root (mod p).
+Using Hr+ 1 (z), we give proofs of Theorem 5 and 6.
+2
+
+P
+n
+Proof of Theorem 5. We take f (z) := Hλ+ 1 (z) = ∞
+n=0 af (n)q . Then the Fourier coeffi2
+cients of f (z) are p-integral by Theorem 6.2 and by the assumption that
+λ≡2+
+Note that
+af (p2n+1 ) = L(1 − λ, χp )
+af (0) =
+We have
+
+X
+
+p−1
+.
+2
+μ(d)χp (n)dλ−1 σ2λ−1 (pn /d),
+
+d|pn
+
+
+B2λ
+B2λ
+1 + i1+2λ (2i)−1−2λ .
+and a0f (0) =
+2λ
+2λ
+
+
+p(7−2α(p:λ)) 0
+3p B2λ
+1 + i1+2λ (2i)−1−2λ
+28 2−1 − 2−1 i
+af (0) ≡ 28 2−1 − 2−1 i
+2λ
+
+ 3
+ 
+
+ 
+−1
+−1
+B2λ
+−1
+−1
+≡ 1−i
+1+i
+i
+p
+2λ
+p
+p
+B2λ
+≡ −4
+(mod p).
+2λ
+So, we obtain
+L(1 − λ, χp ) ≡ −10 *
+Since L(1 − λ, χp ) and
+
+B2λ
+2λ
+
+B2λ
+2λ
+
+(mod p).
+
+are a p-integral rational number, this completes the proof. 
+
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS
+
+19
+
+Proof of Theorem 6. Note that E10 (z) = E4 (z)E6 (z). So, the functions E10 (z)F (z),
+E10 (z)G(z) and E10 (z)W (z) are a modular form of weight 8 * 12 , 7 * 21 and 8 * 21 respectively.
+Moreover, the Fourier coefficients of those are 11-integral, since the Fourier coefficients of
+H 5 (z), H 7 (z) and H 9 (z) are 11-integral by Theorem 6.2. We have
+2
+
+2
+
+2
+
+B4
++ O(q),
+4
+ 1
+B4
+−5
+(1
++
+i)(2i)
++
+O
+q4 ,
+)
+=
+E10 (z)F (z)| 17 ( 01 −1
+0
+4
+2
+E10 (z)G(z) = B66 + O(q),
+ 1
+B6
+−7
+(1
+−
+i)(2i)
++
+O
+q4 ,
+)
+=
+E10 (z)G(z)| 15 ( 01 −1
+0
+6
+2
+E10 (z)W (z) = B88 + O(q),
+ 1
+B8
+−9
+0 −1
+E10 (z)W (z)| 17 ( 1 0 ) = 8 (1 + i)(2i) + O q 4 ,
+2
+
+E10 (z)F (z) =
+
+where B2r is the 2rth Bernoulli number. The conclusion follows by Theorem 6.1.
+
+
+
+6.3. Proofs of Theorem 7. We begin by introducing some notations. Let V := (F2n
+p , Q)
+be the quadratic space over Fp , where Q is a quadratic form obtained from a quadratic
+form x 7→ T [x](x ∈ Z2n
+p ) by reducing modulo p. We denote by < x, y >:= Q(x, y) −
+Q(x) − Q(y)(x, y ∈ F2n
+p ) the associated bilinear form and let
+R(V ) := {x ∈ F2n
+: < x, y >= 0, ∀y ∈ F2n
+p
+p , Q(x) = 0}
+be the radical of R(V ). Following [12], define a polynomial
+
+
+if sp = 0,
+ 1Q
+[(sp −1)/2]
+2j−1
+2
+Hn,p (T ; X) :=
+(1 − p
+X )
+if sp > 0, sp odd,
+j=1
+
+Q[(sp −1)/2]
+
+(sp −1)/2
+2j−1 2
+(1 + λp (T )p
+X) j=1
+(1 − p
+X ) if sp > 0, sp even,
+where for even sp we denote
+(
+λp (T ) :=
+
+1
+if W is a hyperbolic space or sp = 2n,
+−1 otherwise.
+
+Following [14], for a nonnegative integer μ, define ρT (pμ ) by
+(
+X
+(1 − X 2 )Hn,p (T ; X), if p|fT ,
+ρT (pμ )X μ :=
+1
+otherwise.
+μ≥0
+We extend the functions ρT multiplicatively to natural numbers N by defining
+X
+Y
+((1 − X 2 )Hn,p(T ; X)).
+ρT (pμ )X −μ :=
+μ≥0
+
+p|fp
+
+Let
+D(T ) := GL2n (Z) \ {G ∈ M2n (Z) ∩ GL2n (Q) : T [G−1 ] half-integral},
+
+20
+
+D. CHOI AND Y. CHOIE
+
+where GL2n (Z) operates by left-multiplication and T [G−1 ] = T ′ G−1 T . Then D(T ) is
+finite. For a ∈ N with a|fT let
+X
+√ X
+(6.2)
+φ(a; T ) := a
+ρT [G−1 ] (a/d2 ).
+d2 |a G∈D(T ),| det(G)|=d
+
+Note that φ(a; T ) ∈ Z for all a. With these notations we state the following theorem:
+Theorem 6.3 ([15]). Suppose that g ≡ 0, 1 (mod 4) and let k ∈ N with g ≡ k (mod 2).
+M aass
+A Siegel modular form F is in Sk+n
+(Γ2g ) if and only if there exists
+f (z) =
+
+∞
+X
+n=1
+
+such that A(T ) =
+
+P
+
+a|fT
+
+ak−1 φ(a; T )c
+
+
+
+c(n)q n ∈ Sk+ 1 (Γ0 (4))
+2
+
+|DT |
+a2
+
+
+
+for all T . Here,
+
+DT := (−1)g * det(2T )
+
+and DT = DT,0 fT2 with DT,0 the corresponding fundamental discriminant and fT ∈ N.
+Remark 6.4. The proof of Theorem 6.3 in [15] implies that if A(T ) ∈ Z for all T , then
+c(m) ∈ Z for all m ∈ N.
+Proof of Theorem 7. From Theorem 6.3 we can take
+f (z) =
+
+∞
+X
+n=1
+
+c(n)q n ∈ Sk+ 1 (Γ0 (4)) ∩ Zp [[q]]
+2
+
+such that
+F (Z) =
+
+X
+
+A(T )q
+
+T >0
+
+tr(T Z)
+
+=
+
+XX
+T >0 a|fT
+
+k−1
+
+a
+
+
+
+|DT |
+φ(a; T )c
+a2
+
+
+
+q tr(T Z) .
+
+From Theorem 1 there exists a positive integer b such that, for every positive integer m,
+c(pb m) ≡ 0 (mod pj )
+p−1
+).
+2
+
+Suppose that pb+2j ||DT |. If pj |a and a|fT , then
+
+
+|DT |
+k−1
+a φ(a; T )c
+≡ 0 (mod pj ).
+a2
+
+
+If pj ∤ a and a|fT , then pb |Da2T | and ak−1 φ(a; T )c |Da2T | ≡ 0 (mod pj ). This completes
+the proof.
+
+
+since k ≡ 2 or 3 (mod
+
+p-ADIC LIMIT OF WEAKLY HOLOMORPHIC MODULAR FORMS
+
+21
+
+References
+[1] S. Ahlgren and M. Boylan Central Critical Values of Modular L-functions and Coeffients of Half
+Integral Weight Modular Forms Modulo l, To appear in Amer. J. Math.
+[2] A. Balog, H. Darmon, K. Ono, Congruences for Fourier coefficients of half-integer weight modular forms and special values of L-functions, Analytic Number Theory, 105–128. Progr. Math. 138
+Birkhauser, 1996.
+[3] B. Berndt and A. Yee, Congruences for the coefficients of quotients of Eisenstein series, Acta Arith.
+104 (2002), no. 3, 297–308.
+[4] R. E. Borcherds, Automorphic forms on Os+2,2 (R) and infinite products, Invent. Math. 120 (1995)
+161–213.
+[5] J. H. Bruinier, K. Ono, The arithmetic of Borcherds' exponents, Math. Ann. 327 (2003), no. 2,
+293–303.
+[6] L. Carlitz, Arithmetic properties of generalized Bernoulli numbers, J. Reine Angew. Math. 202 1959
+174–182.
+[7] D. Choi and Y. Choie, Linear Relations among the Fourier Coefficients of Modular Forms on Groups
+Γ0 (N ) of Genus Zero and Their Applications, to appear in J. Math. Anal. Appl.(2006).
+[8] Y. Choie, W. Kohnen, K. Ono, Linear relations between modular form coefficients and non-ordinary
+primes, Bull. London Math. Soc. 37 (2005), no. 3, 335–341.
+[9] H. Cohen and J. Oesterle, Dimensions des espaces de formes modulaires, Lecture Notes in Mathematics, 627 (1977), 69–78.
+[10] B. Gordon and K. Hughes, Multiplicative properties of eta-product, Cont. Math. 143 (1993), 415-430.
+[11] P. Guerzhoy, The Borcherds-Zagier isomorphism and a p-adic version of the Kohnen-Shimura map,
+Int. Math. Res. Not. 2005, no. 13, 799–814.
+[12] Y. Kitaoka, Dirichlet series in the theory of Siegel modular forms, Nagoya Math. J. 95 (1984), 73–84.
+[13] N. Koblitz, Introduction to elliptic curves and modular forms, Graduate Texts in Mathematics, 97.
+Springer-Verlag, New York, 1984.
+[14] W. Kohnen, Lifting modular forms of half-integral weight to Siegel modular forms of even genus,
+Math. Ann. 322 (2002), 787–809.
+[15] W. Kohnen and H. Kojima, A Maass space in higher genus, Compos. Math. 141 (2005), no. 2,
+313–322.
+[16] T. Ikeda,On the lifting of elliptic cusp forms to Siegel cusp forms of degree 2n, Ann. of Math. (2)
+154 (2001), no. 3, 641–681.
+[17] T. Miyake, Modular forms, Translated from the Japanese by Yoshitaka Maeda, Springer-Verlag,
+Berlin, 1989
+[18] J.-P. Serre, Formes modulaires et fonctions zeta p-adiques, Lecture Notes in Math. 350, Modular
+Functions of One Variable III. Springer, Berlin Heidelberg, 1973, pp. 191–268.
+[19] J. Sturm, On the congruence of modular forms, Number theory (New York, 1984–1985), 275–280,
+Lecture Notes in Math., 1240, Springer, Berlin, 1987.
+[20] S. Treneer, Congruences for the Coefficients of Weakly Holomorphic Modular Forms, to appear in
+the Proceedings of the London Mathematical Society.
+
+22
+
+D. CHOI AND Y. CHOIE
+
+School of Mathematics, KIAS, 207-43 Cheongnyangni 2-dong 130-722, Korea
+E-mail address: choija@postech.ac.kr
+Department of Mathematics, POSTECH, Pohang, 790–784, Korea
+E-mail address: yjc@postech.ac.kr
+
+

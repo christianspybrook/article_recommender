@@ -1,0 +1,1123 @@
+arXiv:0704.0008v1 [cond-mat.mtrl-sci] 31 Mar 2007
+
+Numerical solution of shock and ramp
+compression for general material properties
+Damian C. Swift
+Group P-24, Physics Division,
+Mail Stop E526, Los Alamos National Laboratory,
+Los Alamos, NM 87545, U.S.A.
+
+Abstract
+A general formulation was developed to represent material models for applications
+in dynamic loading. Numerical methods were devised to calculate response to shock
+and ramp compression, and ramp decompression, generalizing previous solutions
+for scalar equations of state. The numerical methods were found to be flexible and
+robust, and matched analytic results to a high accuracy. The basic ramp and shock
+solution methods were coupled to solve for composite deformation paths, such as
+shock-induced impacts, and shock interactions with a planar interface between different materials. These calculations capture much of the physics of typical material
+dynamics experiments, without requiring spatially-resolving simulations. Example
+calculations were made of loading histories in Be and Mo, illustrating the effects
+of plastic work on the temperatures induced in quasi-isentropic and shock-release
+experiments.
+Key words: material dynamics, shock, isentrope, adiabat, numerical solution,
+constitutive behavior
+PACS: 62.50.+p, 47.40.-x, 62.20.-x, 46.35.+z
+
+1
+
+Introduction
+
+The continuum representation of matter is widely used for material dynamics
+in science and engineering. Spatially-resolved continuum dynamics simulations
+are the most widespread and familiar, solving the initial value problem by discretizing the spatial domain and integrating the dynamical equations forward
+in time to predict the motion and deformation of components of the system.
+Email address: dswift@lanl.gov (Damian C. Swift).
+
+Preprint submitted to Elsevier
+
+March 7, 2007 – LA-UR-07-2051
+
+This type of simulation is used, for instance, to study hypervelocity impact
+problems such as the vulnerability of armor to projectiles [1,2], the performance of satellite debris shields [3], and the impact of meteorites with planets, notably the formation of the moon [4]. The problem can be divided into
+the dynamical equations of the continuum, the state field of the components
+s(~r), and the inherent properties of the materials. Given the local material
+state s, the material properties allow the stress τ to be determined. Given the
+stress field τ (~r) and mass density field ρ(~r), the dynamical equations describe
+the fields of acceleration, compression, and thermodynamic work done on the
+materials.
+The equations of continuum dynamics describe the behavior of a dynamically deforming system of arbitrary complexity. Particular, simpler deformation paths can be described more compactly by different sets of equations,
+and solved by different techniques than those used for continuum dynamics
+in general. Simpler deformation paths occur often in experiments designed
+to develop and calibrate models of material properties. These paths can be
+regarded as different ways of interrogating the material properties. The principal examples in material dynamics are shock and ramp compression. Typical
+experiments are designed to induce such loading histories and measure or infer the properties of the material in these states before they are destroyed by
+reflected waves.
+The development of the field of material dynamics was driven by applications
+in the physics of hypervelocity impact and high explosive systems, including
+nuclear weapons [5]. In the regimes of interest, typically components with
+dimensions ranging from millimeters to meters and pressures from 1 GPa to
+1 TPa, material behavior is dominated by the scalar equation of state (EOS):
+the relationship between pressure, compression (or mass density), and internal energy. Other components of stress (specifically shear stresses) are much
+smaller, and chemical explosives react promptly so can be treated by simple
+models of complete detonation. EOS were developed as fits to experimental data, particularly to series of shock states and to isothermal compression
+measurements [6]. It is relatively straightforward to construct shock and ramp
+compression states from an EOS algebraically or numerically depending on
+the EOS, and to fit an EOS to these measurements. More recently, applications and scientific interest have grown to include a wider range of pressures
+and time scales, such as laser-driven inertial confinement fusion [7], and experiments are designed to measure other aspects than the EOS, such as the
+kinetics of phase changes, constitutive behavior describing shear stresses, incomplete chemical reactions, and the effects of microstructure such as grain
+orientation and porosity. Theoretical techniques have also evolved to predict
+the EOS with ∼1% accuracy [8] and elastic contributions to shear stress with
+slightly poorer accuracy [9].
+2
+
+In this paper, a general convention for representing material states is described,
+and numerical methods are reported for calculating shock and ramp compression states from general representations of material properties.
+
+2
+
+Conceptual structure for material properties
+
+The desired structure for the description of the material state and properties
+under dynamic loading was developed to be as general as possible with respect
+to the types of material or models to be represented in the same framework,
+and designed from the greatest amount of commonality between spatiallyresolved simulations and calculations of shock and ramp compressions.
+In condensed matter on sub-microsecond time scales, heat conduction is often
+too slow to have a significant effect on the response of the material, and
+is ignored here. The equations of non-relativistic continuum dynamics are,
+in Lagrangian form i.e. along characteristics moving with the local material
+velocity ~u(~r),
+Dρ(~r, t)
+= −ρ(~r, t)div ~u(~r, t)
+Dt
+1
+D~u(~r, t)
+=−
+div τ (~r, t)
+Dt
+ρ(~r, t)
+De(~r, t)
+= −||τ (~r, t)grad ~u(~r, t)||
+Dt
+
+(1)
+(2)
+(3)
+
+where ρ is the mass density and e the specific internal energy. Changes in e
+can be related to changes in the temperature T through the heat capacity.
+The inherent properties of each material in the problem are described by
+its constitutive relation or equation of state τ (s). As well as experiencing
+compression and work from mechanical deformation, the local material state
+s(~r, t) can evolve through internal processes such as plastic flow. In general,
+Ds(~r, t)
+≡ ṡ[s(~r, t), U(~r, t)]
+Dt
+
+:
+
+U ≡ grad ~u(~r, t)
+
+(4)
+
+which can also include the equations for ∂ρ/∂t and ∂e/∂t. Thus the material properties must describe at a minimum τ (s) and ṡ[s(~r, t), U(~r, t)] for each
+material. If they also describe T (s), the conductivity, and ṡ(ė), then heat
+conduction can be treated. Other functions may be needed for particular numerical methods in continuum dynamics, such as the need for wave speeds
+(e.g. the longitudinal sound speed), which are needed for time step control in
+explicit time integration. Internally, within the material properties models, it
+3
+
+is desirable to re-use software as much as possible, and other functions of the
+state are therefore desirable to allow models to be constructed in a modular
+and hierarchical way. Inevitably, arithmetic manipulations must be performed
+on the state, which can be encoded neatly using operator overloading. For
+instance, if ṡ is calculated in a forward-time numerical method then changes
+of state are calculated using numerical evolution equations such as
+s(t + δt) = s(t) + δtṡ.
+
+(5)
+
+Thus for a general state s, it is necessary to multiply it by a real number
+and to add two states together. For a specific software implementation, other
+operations may be needed, for example to create, copy, or destroy a new
+instance of a state.
+A very wide range of types of material behavior can be represented with this
+formalism. At the highest level, different types of behavior are characterized
+by different structures for the state s (Table 1. For each type of state, different
+specific models can be defined, such as perfect gas and Grüneisen EOS. For
+each specific model, different materials are represented by choosing different
+values for the parameters in the model, and different local material states are
+represented through different values for the components of s. In the jargon
+object-oriented programming, this is polymorphism. States or models may
+be defined by extending or combining other states or models – this can be
+implemented using the object-oriented programming concept of inheritance.
+Trial implementations have been made as libraries in the C++ and Java programming languages. The external interface to the material properties was
+general at the level of representing a generic material type and state. The
+type of state and model were then selected when programs using the material
+properties library were run. In C++, objects which were polymorphic at run
+time had to be represented as pointers, requiring additional software constructions to allocate and free up physical memory associated with each object. It
+was possible to include general re-usable functions as polymorphic objects
+when defining models: real functions of one real parameter could be polynomials, transcendentals, tabular with different interpolation schemes, piecewise
+definitions over different regions of the one dimensional line, sums, products,
+etc; again defined specifically at run time. Object-oriented polymorphism and
+inheritance were thus very powerful techniques for increasing software re-use,
+making the software more compact and more reliable through the possibility
+of using functions which had already been tested.
+Given conceptual and software structures designed to represent general material properties suitable for use in spatially-resolved continuum dynamics
+simulations, we now consider the use of these generic material models for
+calculating ramp and shock compression.
+4
+
+Table 1
+Examples of types of material model, distinguished by different structures in the
+state vector.
+model
+state vector effect of mechanical strain
+s
+
+ṡm (s, gradu)
+
+equation of state
+
+ρ, e
+
+−ρdiv~u, −pdiv~u/ρ
+
+complete equation of state
+
+ρ, T
+
+−ρdiv~u, −pdiv~u/ρcv
+
+heterogeneous mixture
+
+{ρ, e, fv }i
+
+{−ρdiv~u, −pdiv~u/ρ, 0}i
+
+{−ρdiv~u, −pdiv~u/ρcv , 0 i
+−pdivu
+~ +fp ||σǫ̇p ||
+traditional deviatoric strength ρ, e, σ, ǫ̃p
+−ρdiv~u,
+, Gǫ̇e ,
+ρ
+q
+fǫ ||ǫ̇2p ||
+The symbols are ρ: mass density; e: specific internal energy, T : temperature, fv :
+volume fraction, fm : mass fraction, σ: stress deviator, fp : fraction of plastic work
+converted to heat, gradup : plastic part of velocity gradient, G: shear modulus, ǫ̇e,p:
+elastic and plastic parts of strain rate deviator, ǫ̃p : scalar equivalent plastic strain, fǫ :
+factor in effective strain magnitude. Reacting solid explosives can be represented as
+heterogeneous mixtures, one component being the reacted products; reaction, a process of internal evolution, transfers material from unreacted to reacted components.
+Gas-phase reaction can be represented as a homogeneous mixture, reactions transferring mass between components representing different types of molecule. Symmetric tensors such as the stress deviator are represented more compactly by their 6
+unique upper triangular components, e.g. using Voigt notation.
+homogeneous mixture
+
+3
+
+ρ, T, {fm }i
+
+Ramp compression
+
+Ramp compression is taken here to mean compression or decompression. If
+the material is represented by a scalar EOS, i.e. ignoring any effects of plastic
+flow, ramp compression follows an isentrope. This is no longer true when
+dissipative processes such as plastic heating occur. The term 'quasi-isentropic'
+is sometimes used in this context, particularly for shockless compression; here
+we prefer to refer to the thermodynamic trajectories as adiabats since this is
+a more appropriate term: no heat is exchanged with the surroundings on the
+time scales of interest.
+For adiabatic compression, the state evolves according to the second law of
+thermodynamics,
+de = −p dv
+
+(6)
+
+i.e.
+ė = −p v̇ = −
+
+pdiv~u
+,
+ρ
+
+(7)
+
+5
+
+of for a more general material whose stress tensor is more complicated than a
+scalar pressure,
+e = τn dv
+
+⇒
+
+ė =
+
+τn div~u
+ρ
+
+(8)
+
+where τn is the component of stress normal to the direction of deformation.
+The velocity gradient was expressed through a compression factor η ≡ ρ′ /rho
+and a strain rate ǫ̇. In all ramp experiments used in the development and calibration of accurate material models, the strain has been applied uniaxially.
+More general strain paths, for instance isotropic or including a shear component, can be treated by the same formalism, and that the heating rate would
+then be a full inner product of the stress and strain tensors.
+The acceleration or deceleration of the material normal to the wave as it is
+compressed or expanded adiabatically is
+s
+
+Du
+∂τn
+=− −
+,
+Dv
+∂v
+
+(9)
+
+from which it can be deduced that
+Du
+cl
+=
+Dρ
+ρ
+
+(10)
+
+where cl is the longitudinal wave speed.
+As with continuum dynamics, internal evolution of the material state can
+be calculated simultaneously with the continuum equations, or operator split
+and calculated periodically at constant compression. The results are the same
+to second order in the compression increment. Operator-splitting is desirable
+when internal evolution can produce highly nonlinear changes, such as reaction
+from solid to gas: rapid changes in state and properties can make numerical
+schemes unstable. Operator-splitting is also desirable when the integration
+time step for internal evolution is much shorter than the continuum dynamics
+time step. Neither of these considerations is very important for ramp compression without spatial resolution, but operator-splitting was used as an option in
+the ramp compression calculations for consistency with continuum dynamics
+simulations.
+The ramp compression equations were integrated using forward-time RungeKutta numerical schemes of second order. The fourth order scheme is a trivial
+extension. The sequence of operations to calculate an increment of ramp compression is as follows:
+6
+
+(1) Time increment:
+δt = −
+
+| ln η|
+ǫ̇
+
+(11)
+
+(2) Predictor:
+s(t + δt/2) = s(t) +
+
+δt
+ṡm (s(t), ǫ̇)
+2
+
+(12)
+
+(3) Corrector:
+s(t + δt) = s(t) + δtṡm (s(t + δt/2), ǫ̇)
+
+(13)
+
+(4) Internal evolution:
+s(t + δt) → s(t + δt) +
+
+t+δt
+Z
+
+ṡi (s(t′ ), ǫ̇) dt′
+
+(14)
+
+t
+
+where ṡm is the model-dependent state evolution from applied strain, and ṡi
+is internal evolution at constant compression.
+The independent variable for integration is specific volume v or mass density
+ρ; for numerical integration finite steps are taken in ρ and v. The step size
+∆ρ can be controlled so that the numerical error during integration remains
+within chosen limits. A tabular adiabat can be calculated by integrating over a
+range of v or ρ, but when simulating experimental scenarios the upper limit for
+integration is usually that one of the other thermodynamic quantities reaches
+a certain value, for example that the normal component of stress reaches
+zero, which is the case on release from a high pressure state at a free surface.
+Specific stop conditions were found by monitoring the quantity of interest until
+bracketed by a finite integration step, then bisecting until the stop condition
+was satisfied to a chosen accuracy. During bisection, each trial calculation was
+performed as an integration from the first side of the bracket by the trial
+compression.
+
+4
+
+Shock compression
+
+Shock compression is the solution of a Riemann problem for the dynamics
+of a jump in compression moving with constant speed and with a constant
+thickness. The Rankine-Hugoniot (RH) equations [10] describing the shock
+compression of matter are derived in the continuum approximation, where
+the shock is a formal discontinuity in the continuum fields. In reality, matter
+is composed of atoms, and shocks have a finite width governed by the kinetics
+7
+
+of dissipative processes – at a fundamental level, matter does not distinguish
+between shock compression and ramp compression with a high strain rate –
+but the RH equations apply as long as the width of the region of matter where
+unresolved processes occur is constant. Compared with the isentropic states
+induced by ramp compression in a material represented by an EOS, a shock
+always increases the entropy and hence the temperature. With dissipative
+processes included, the distinction between a ramp and a shock may become
+blurred.
+The RH equations express the conservation of mass, momentum, and energy
+across a moving discontinuity in state. They are usually expressed in terms of
+the pressure, but are readily generalized for materials supporting shear stresses
+by using the component of stress normal to the shock (i.e., parallel with the
+direction of propagation of the shock), τn :
+u2s = −v02
+
+τn − τn0
+,
+v0 − v
+
+(15)
+
+q
+
+−(τn − τn0 )(v0 − v),
+1
+e = e0 − (τn + τn0 )(v0 − v),
+2
+
+∆up =
+
+(16)
+(17)
+
+where us is the speed of the shock wave with respect to the material, ∆up is
+the change in material speed normal to the shock wave (i.e., parallel to its
+direction of propagation), and subscript 0 refers to the initial state.
+The RH relations can be applied to general material models if a time scale
+or strain rate is imposed, and an orientation chosen for the material with
+respect to the shock. Shock compression in continuum dynamics is almost
+always uniaxial.
+The RH equations involve only the initial and final states in the material. If a
+material has properties that depend on the deformation path – such as plastic flow or viscosity – then physically the detailed shock structure may make
+a difference [13]. This is a limitation of discontinuous shocks in continuum
+dynamics: it may be addressed as discussed above by including dissipative
+processes and considering ramp compression, if the dissipative processes can
+be represented adequately in the continuum approximation. Spatially-resolved
+simulations with numerical differentiation to obtain spatial derivatives and forward time differencing are usually not capable of representing shock discontinuities directly, and an artificial viscosity is used to smear shock compression
+over a few spatial cells [14]. The trajectory followed by the material in thermodynamic space is a smooth adiabat with dissipative heating supplied by
+the artificial viscosity. If plastic work is also included during this adiabatic
+compression, the overall heating for a given compression is greater than from
+the RH equations. To be consistent, plastic flow should be neglected while
+8
+
+the artificial viscosity is non-zero. This localized disabling of physical processes, particularly time-dependent ones, during the passage of the unphysically smeared shock was previously found necessary for numerically stable
+simulations of detonation waves by reactive flow [15].
+Detonation waves are reactive shock waves. Steady planar detonation (the
+Chapman-Jouguet state [16]) may be calculated using the RH relations, by
+imposing the condition that the material state behind the shock is fully reacted.
+Several numerical methods have been used to solve the RH equations for
+materials represented by an EOS only [11,12]. The general RH equations may
+be solved numerically for a given shock compression ∆ρ by varying the specific
+internal energy e until the normal stress from the material model equals that
+from the RH energy equation, Eq. 17. The shock and particle speeds are
+then calculated from Eqs 15 and 16. This numerical method is particularly
+convenient for EOS of the form p(ρ, e), as e may be varied directly. Solutions
+may still be found for general material models using ṡ(ė), by which the energy
+may be varied until the solution is found.
+Numerically, the solution was found by bracketing and bisection:
+(1) For given compression ∆ρ, take the low-energy end for bracketing as a
+nearby state s− (e.g. the previous state, of lower compression, on the
+Hugoniot), compressed adiabatically (to state s̃), and cooled so the specific internal energy is e(s− ).
+(2) Bracket the desired state: apply successively larger heating increments
+∆e to s̃, evolving each trial state internally, until τn (s) from the material
+model exceeds τn (e − e0 ) from Eq. 17.
+(3) Bisect in ∆e, evolving each trial state internally, until τn (s) equals τn (e −
+e0 ) to the desired accuracy.
+As with ramp compression, the independent variable for solution was mass
+density ρ, and finite steps ∆ρ were taken. Each shock state was calculated
+independently of the rest, so numerical errors did not accumulate along the
+shock Hugoniot. The accuracy of the solution was independent of ∆ρ. A tabular Hugoniot can be calculated by solving over a range of ρ, but again when
+simulating experimental scenarios it is usually more useful to calculate the
+shock state where one of the other thermodynamic quantities reaches a certain value, often that up and τn match the values from another, simultaneous
+shock calculation for another material – the situation in impact and shock
+transmission problems, discussed below. Specific stop conditions were found
+by monitoring the quantity of interest until bracketed by a finite solution step,
+then bisecting until the stop condition was satisfied to a chosen accuracy. During bisection, each trial calculation was performed as a shock from the initial
+9
+
+conditions to the trial shock compression.
+
+5
+
+Composite loading paths
+
+Given methods to calculate shock and adiabatic loading paths from arbitrary
+initial states, a considerable variety of experimental scenarios can be treated
+from the interaction of loading or unloading waves with interfaces between different materials, in planar geometry for uniaxial compression. The key physical
+constraint is that, if two dissimilar materials are to remain in contact after an
+interaction such as an impact or the passage of a shock, the normal stress τn
+and particle speed up in both materials must be equal on either side of the
+interface. The change in particle speed and stress normal to the waves were
+calculated above for compression waves running in the direction of increasing
+spatial ordinate (left to right). Across an interface, the sense is reversed for
+the material at the left. Thus a projectile impacting a stationary target to the
+right is decelerated from its initial speed by the shock induced by impact.
+The general problem at an interface can be analyzed by considering the
+states at the instant of first contact – on impact, or when a shock traveling through a sandwich of materials first reaches the interface. The initial
+states are {ul , sl ; ur , sr }. The final states are {uj , s′l ; uj , rr′ } where uj is the
+joint particle speed, τn (s′l ) = τn (s′r ), and s′i is connected to si by either a shock
+or an adiabat, starting at the appropriate initial velocity and stress, and with
+orientation given by the side of the system each material occurs on. Each type
+of wave is considered in turn, looking for an intersection in the up − τn plane.
+Examples of these wave interactions are the impact of a projectile with a stationary target (Fig. 1), release of a shock state at a free surface or a material
+(e.g. a window) of lower shock impedance (hence reflecting a release wave
+into the shocked material – Fig. 2), reshocking at a surface with a material of
+higher shock impedance (Fig. 2), or tension induced as materials try to separate in opposite directions when joined by a bonded interface (Fig. 3). Each of
+these scenarios may occur in turn following the impact of a projectile with a
+target: if the target is layered then a shock is transmitted across each interface
+with a release or a reshock reflected back, depending on the materials; release
+ultimately occurs at the rear of the projectile and the far end of the target,
+and the oppositely-moving release waves subject the projectile and target to
+tensile stresses when they interact (Fig. 4).
+An extension of this analysis can be used to calculate the interaction of oblique
+shocks with an interface [17].
+10
+
+principal
+Hugoniot
+of projectile
+
+principal Hugoniot
+of target
+
+normal stress
+
+shock state:
+intersection
+initial state
+of projectile
+initial state
+of target
+
+0
+
+particle speed
+
+Fig. 1. Wave interactions for the impact of a flat projectile moving from left to right
+with a stationary target. Dashed arrows are a guide to the sequence of states. For a
+projectile moving from right to left, the construction is the mirror image reflected
+in the normal stress axis.
+
+normal stress
+
+secondary
+Hugoniot
+of target
+
+0
+
+principal Hugoniot:
+high impedance window
+initial shock state
+in target
+
+low impedance
+window
+
+window
+release
+states
+
+target release isentrope
+
+particle speed
+target release at free surface
+
+Fig. 2. Wave interactions for the release of a shocked state (shock moving from left
+to right) into a stationary 'window' material to its right. The release state depends
+whether the window has a higher or lower shock impedance than the shocked material. Dashed arrows are a guide to the sequence of states. For a shock moving from
+right to left, the construction is the mirror image reflected in the normal stress axis.
+
+6
+
+Preferred representation of isotropic strength
+
+There is an inconsistency in the standard continuum dynamics treatment of
+scalar (pressure) and tensor (stress) response. The scalar EOS expresses the
+pressure p(ρ, e) as the dependent quantity, which is the most convenient form
+11
+
+normal stress
+
+initial shock state
+in projectile and target
+
+target release
+
+projectile release
+0
+
+particle speed
+
+projectile release
+
+target release
+
+final tensile state
+in projectile and target
+
+Fig. 3. Wave interactions for the release of a shocked state by tension induced as
+materials try to separate in opposite directions when joined by a bonded interface.
+Material damage, spall, and separation are neglected: the construction shows the
+maximum tensile stress possible. For general material properties, e.g. if plastic flow
+is included, the state of maximum tensile stress is not just the negative of the initial
+shock state. Dashed arrows are a guide to the sequence of states. The graph shows
+the initial state after an impact by a projectile moving from right to left; for a
+shock moving from right to left, the construction is the mirror image reflected in
+the normal stress axis.
+
+for use in the continuum equations. Standard practice is to use sub-Hookean
+elasticity (hypoelastic form) [18] described above, in which the state parameters include the stress deviator σ, evolved by integration
+σ̇ = G(s)ǫ̇
+
+(18)
+
+where G is the shear modulus and ǫ̇ the strain rate deviator. Thus the isotropic
+and deviatoric contributions to stress are not treated in an equivalent way:
+the pressure is calculated from a local state involving a strain-like parameter
+(mass density), whereas the stress deviator evolves with the time-derivative
+of strain. This inconsistency causes problems along complicated loading paths
+because G varies strongly with compression: if a material is subjected to a
+12
+
+time
+
+111
+000
+0000
+0001111
+111
+0000
+1111
+0001111
+111
+0000
+0001111
+111
+0000
+000
+111
+0000
+0001111
+111
+0000
+1111
+0001111
+111
+0000
+0001111
+111
+0000
+0001111
+111
+0000
+000
+111
+0000
+0001111
+111
+0000
+1111
+0001111
+111
+0000
+0001111
+111
+0000
+
+window
+
+projectile
+
+target
+
+impact shocks
+transmitted shock;
+reflected wave
+free surface
+release
+release interactions:
+tension
+
+Fig. 4. Schematic of uniaxial wave interactions induced by the impact of a flat
+projectile with a composite target.
+
+shear strain ǫ, then isotropic compression (increases the shear modulus from
+G to G′ , leaves ǫ unchanged), then shear unloading to isotropic stress, the
+true unloading strain is −ǫ, whereas the hypoelastic calculation would require
+a strain of −ǫG/G′ .
+The stress can be considered as a direct response of the material to the instantaneous state of elastic strain: σ(ǫ, T ). This relation can be predicted directly
+with electronic structure calculations of the stress tensor in a solid for a given
+compression and elastic strain state [9], and is a direct generalization of the
+scalar equation of state. A more consistent representation of the state parameters is to use the strain deviator ǫ rather than σ, and to calculate σ from
+scratch when required using
+σ = G(s)ǫ
+
+(19)
+
+– a hyperelastic formulation. The state parameters are then {ρ, e, ǫ, ǫ̃p }.
+The different formulations give different answers when deviatoric strain is
+accumulated at different compressions, in which case the hyperelastic formulation is correct. If the shear modulus varies with strain deviator – i.e., for
+nonlinear elasticity – then the definition of G(ǫ) must be adjusted to give the
+same stress for a given strain.
+13
+
+Many isotropic strength models use scalar measures of the strain and stress
+to parameterize work hardening and to apply a yield model of flow stress:
+ǫ̃ =
+
+q
+
+fǫ ||ǫ2 ||,
+
+σ̃ =
+
+q
+
+fσ ||σ 2||.
+
+(20)
+
+Inconsistent conventions for equivalent scalar measures have been used by
+different workers. In the present work, the common shock physics convention
+was used that the flow stress component of τn is 23 Y where Y is the flow stress.
+For consistency with published speeds and amplitudes for elastic waves, fǫ =
+fσ = 32 , in contrast to other values previously used for lower-rate deformation
+[19]. In principle, the values of fǫ and fσ do not matter as long as the strength
+parameters were calibrated using the same values then used in any simulations.
+
+7
+
+Examples
+
+In this section, the numerical methods described above are applied to example
+materials, demonstrating the effects of strength and chemical reaction on the
+loading paths. The materials chosen were air represented by a perfect gas EOS,
+the elemental metals Be and Mo. The perfect gas case tests the numerical
+schemes against analytic results. Be has been shown to exhibit relatively high
+flow stresses for deformation on the nanosecond time scales of interest for
+its application as the fuel capsule and ablator in inertial confinement fusion
+[20]. Mo is interesting as experimental measurements suggest that its shock
+temperature is significantly greater than expected using the EOS only [21].
+
+7.1 Air
+
+Air was chosen as an example of matter represented by the scalar EOS only,
+taken here to be the perfect gas EOS,
+p = (γ − 1)ρe,
+
+(21)
+
+with γ = 1.4. Air at standard temperature and pressure has approximately
+ρ = 10−3 g/cm3 and e = 0.25 MJ/kg. Isentropes for the perfect gas EOS have
+the form
+pρ−γ
+
+constant,
+
+(22)
+14
+
+0.01
+
+pressure (GPa)
+
+Hugoniot
+
+0.001
+
+isentrope
+
+0.0001
+0.001
+
+0.01
+3
+
+mass density (g/cm )
+
+pressure difference (%)
+
+1
+Hugoniot
+0.1
+
+0.01
+
+0.001
+
+isentrope
+
+0.0001
+0.001
+
+0.01
+3
+
+mass density (g/cm )
+
+Fig. 5. Principal isentrope and shock Hugoniot for air (perfect gas): numerical calculations for general material models, compared with analytic results.
+
+and shock Hugoniots have the form
+
+p = (γ − 1)
+
+2e0 ρ0 ρ + p0 (ρ − ρ0 )
+.
+(γ + 1)ρ0 − (γ − 1)ρ
+
+(23)
+
+The numerical methods above reproduced the principal isentrope and Hugoniot to 10−3% and 0.1% respectively, for a compression increment of 1% along
+the isentrope and a solution tolerance of 10−6 GPa for each shock state (Fig. 5).
+Over most of the range, the error in the Hugoniot was 0.02% or less, only approaching 0.1% near the maximum shock compression.
+15
+
+7.2 Complete equation of state for metals
+Empirical EOS for Be and Mo have been published [22] that were fitted
+to shock data acquired from microsecond scale impact experiments. This
+Grüneisen EOS had the form p(ρ, e), so the temperature T was not directly
+available. Temperatures were calculated by reference to a compression curve
+along which the temperature and specific internal energy were known, {Tr , er }(ρ),
+and using a specific heat capacity defined as a function of density cv (ρ) (constant in practice). The reference curve chosen was the zero kelvin isotherm
+('cold curve'), Tr = 0 K. This was calculated from the principal isentrope
+e(ρ)|s0 using the estimated density variation of Grüneisen parameter:
+a(1−ρ0 /ρ)
+
+er (ρ) = e(ρ)|s0 − T0 cp e
+
+ρ
+ρ0
+
+!γ0 −a
+
+.
+
+(24)
+
+In the calculations, this augmented EOS was represented as a 'mechanicalthermal' form comprising any p(ρ, e) EOS plus the reference curves – an example of inheritance and polymorphism.
+Empirical EOS are calibrated using experimental data. Shock and adiabatic
+compression measurements on strong materials inevitably include elastic-plastic
+contributions as well as the scalar EOS itself. If the elastic-plastic contributions
+are not taken into account self-consistently, the EOS may implicitly include
+contributions from the strength. A unique scalar EOS can be constructed to
+reproduce the normal stress as a function of compression for any unique loading path: shock or adiabat, for a constant or smoothly-varying strain rate.
+Such as EOS would not generally predict the normal stress for other loading histories. The Grüneisen EOS and Steinberg-Guinan strength model for
+the materials discussed below were constructed self-consistently from shock
+data – this does not mean the models are accurate for other loading paths, as
+neither the EOS nor the strength model includes all the physical terms that
+real materials exhibit. This does not in any case matter for the purposes of
+demonstrating the properties of the numerical schemes.
+7.3 Beryllium
+The flow stress measured from laser-driven shock experiments on Be crystals
+a few tens of micrometers thick is, at around 5-9 GPa, much greater than the
+0.3-1.3 GPa measured on microsecond time scales. A time-dependent crystal
+plasticity model for Be is being developed, and the behavior under dynamic
+loading depends on the detailed time dependence of plasticity. Calculations
+were performed with the Steinberg-Guinan strength model developed for mi16
+
+normal stress (GPa)
+
+90
+80
+
+each pair of lines:
+
+70
+
+upper is Hugoniot,
+
+60
+
+lower is adiabat
+
+50
+40
+30
+20
+10
+0
+0.7
+
+0.75
+
+0.8
+0.85
+0.9
+volume compression
+
+0.95
+
+1
+
+Fig. 6. Principal adiabat and shock Hugoniot for Be in normal stress-compression
+space, neglecting strength (dashed), for Steinberg-Guinan strength (solid), and for
+elastic-perfectly plastic with Y = 10 GPa (dotted).
+
+crosecond scale data [22], and, for the purposes of rough comparison, with
+elastic-perfectly plastic response with a flow stress of 10 GPa. The elasticperfectly plastic model neglected pressure and work hardening.
+Calculations were made of the principal adiabat and shock Hugoniot, and of
+a release adiabat from a state on the principal Hugoniot. Calculations were
+made with and without strength. Considering the state trajectories in stressvolume space, it is interesting to note that heating from plastic flow may push
+the adiabat above the Hugoniot, because of the greater heating obtained by
+integrating along the adiabat compared with jumping from the initial to the
+final state on the Hugoniot (Fig. 6). Even with an elastic-perfectly plastic
+strength model, the with-strength curves do not lie exactly 23 Y above the
+strengthless curves, because heating from plastic flow contributes an increasing
+amount of internal energy to the EOS as compression increases.
+An important characteristic for the seeding of instabilities by microstructural
+variations in shock response is the shock stress at which an elastic wave does
+not run ahead of the shock. In Be with the high flow stress of nanosecond
+response, the relation between shock and particle speeds is significantly different from the relation for low flow stress (Fig. 7). For low flow stress, the
+elastic wave travels at 13.2 km/s. A plastic shock travels faster than this for
+pressures greater than 110 GPa, independent of the constitutive model. The
+speed of a plastic shock following the initial elastic wave is similar to the low
+strength case, because the material is already at its flow stress, but the speed
+of a single plastic shock is appreciably higher.
+For compression to a given normal stress, the temperature is significantly
+17
+
+15
+
+shock speed (km/s)
+
+14
+13
+
+elastic wave
+
+12
+
+plastic shock
+
+11
+10
+9
+8
+0
+
+20
+
+40
+
+60
+80
+100
+normal stress (GPa)
+
+120
+
+140
+
+Fig. 7. Principal adiabat and shock Hugoniot for Be in shock speed-normal stress
+space, neglecting strength (dashed), for Steinberg-Guinan strength (solid), and for
+elastic-perfectly plastic with Y = 10 GPa (dotted).
+
+higher with plastic flow included. The additional heating is particularly striking on the principal adiabat: the temperature departs significantly from the
+principal isentrope. Thus ramp-wave compression of strong materials may lead
+to significant levels of heating, contrary to common assumptions of small temperature increases [23]. Plastic flow is largely irreversible, so heating occurs
+on unloading as well as loading. Thus, on adiabatic release from a shockcompressed state, additional heating occurs compared with the no-strength
+case. These levels of heating are important as shock or release melting may
+occur at a significantly lower shock pressure than would be expected ignoring
+the effect of strength. (Fig. 8.)
+
+7.4 Molybdenum
+
+Experiments have been reported in which samples of Mo were subjected to
+shock loading on microsecond time scales by projectile impact, and the temperature in the shocked state was measured by neutron resonance spectrometry [21]. The temperature measured was around 200 K greater than predicted
+using EOS that are thought to be accurate to a few percent.
+The principal shock Hugoniot of Mo was calculated using material properties
+previously published [22], with parameters for the Steinberg-Guinan strength
+model [24], which includes work-hardening, pressure-hardening, and thermal
+softening effects. The shock Hugoniot with strength lay at a significantly
+higher temperature than the calculation ignoring strength, which matched
+the previously-reported shock Hugoniot (Fig. 9). The temperature difference
+18
+
+200
+
+normal stress (GPa)
+
+principal
+adiabat
+150
+
+principal
+Hugoniot
+
+100
+
+50
+release
+adiabat
+
+0
+0
+
+1000
+
+2000
+3000
+temperature (K)
+
+4000
+
+5000
+
+Fig. 8. Principal adiabat, shock Hugoniot, and release adiabat for Be in normal stress-temperature space, neglecting strength (dashed), for Steinberg-Guinan
+strength (solid), and for elastic-perfectly plastic with Y = 10 GPa (dotted).
+
+70
+
+normal stress (GPa)
+
+60
+
+principal
+adiabat
+
+50
+40
+principal
+Hugoniot
+
+30
+20
+10
+0
+200
+
+release
+adiabat
+300
+
+400
+
+500
+600
+700
+temperature (K)
+
+800
+
+900
+
+Fig. 9. Principal shock Hugoniot for Mo in normal stress-temperature space, neglecting strength (dashed) and for Steinberg-Guinan strength (solid). Also shown
+is the experimental measurement of shock temperature by neutron resonance spectrometry.
+
+was around 50 K for the shock pressures of around 60 GPa of the experiments:
+a significant contribution to the discrepancy, but not all. The complete explanation involves non-idealities in the projectile accelerating system, and is
+discussed elsewhere [25].
+19
+
+8
+
+Conclusions
+
+A general formulation was developed to represent material models for applications in dynamic loading, suitable for software implementation in objectoriented programming languages. Numerical methods were devised to calculate the response of matter represented by the general material models to
+shock and ramp compression, and ramp decompression, by direct evaluation
+of the thermodynamic pathways for these compressions rather than spatiallyresolved simulations. This approach is a generalization of earlier work on solutions for materials represented by a scalar equation of state. The numerical
+methods were found to be flexible and robust: capable of application to materials with very different properties. The numerical solutions matched analytic
+results to a high accuracy.
+Care was needed with the interpretation of some types of physical response,
+such as plastic flow, when applied to deformation at high strain rates. The
+underlying time-dependence of processes occurring during deformation should
+be taken into account. The actual history of loading and heating experienced
+by material during the passage of a shock may influence the final state – this
+history is not captured in the continuum approximation to material dynamics,
+where shocks are treated as discontinuities. Thus care is also needed in spatially resolved simulations when shocks are modeled using artificial viscosity
+to smear them unphysically over a finite thickness.
+The basic ramp and shock solution methods were coupled to solve for composite deformation paths, such as shock-induced impacts, and shock interactions
+with a planar interface between different materials. Such calculations capture
+much of the physics of typical material dynamics experiments, without requiring spatially-resolving simulations.
+Example calculations were made of loading histories in Be and Mo, illustrating
+the effects of plastic work on the temperatures induced in quasi-isentropic and
+shock-release experiments.
+
+Acknowledgments
+
+Ian Gray introduced me to the concept of multi-model material properties
+software. Lee Markland developed a prototype Hugoniot-calculating computer
+program for equations of state while working for me as an undergraduate
+summer student.
+Evolutionary work on material properties libraries was supported by the U.K.
+20
+
+Atomic Weapons Establishment, Fluid Gravity Engineering Ltd, and Wessex
+Scientific and Technical Services Ltd.
+Thanks are due to Steve Batha for funding through the National Nuclear Security Agency's Campaign 10 (Inertial Confinement Fusion). The work was
+performed under the auspices of the U.S. Department of Energy under contracts W-7405-ENG-36 and DE-AC52-06NA25396,
+
+References
+[1] J.K. Dienes, J.M. Walsh, in R. Kinslow (Ed), High-Velocity Impact Phenomena,
+Academic Press, New York, 1970.
+[2] D.J. Benson, Comp. Mech. 15, 6 (1995): pp 558-571.
+[3] J.W. Gehring, Jr, in R. Kinslow (Ed), High-Velocity Impact Phenomena,
+Academic Press, New York, 1970.
+[4] R.M. Canup, E. Asphaug, Nature 412 (2001): pp 708-712.
+[5] M.A. Meyers, Dynamic Behavior of Materials, Wiley, New York, 1994.
+[6] G. McQueen, S.P. March, J.W. Taylor, J.N. Fritz, W.J. Carter, in R. Kinslow
+(Ed), High-Velocity Impact Phenomena, Academic Press, New York, 1970.
+[7] J.D. Lindl, Inertial Confinement Fusion, Springer-Verlag, New York, 1998.
+[8] D.C. Swift, G.J. Ackland, A. Hauer, G.A. Kyrala, First principles equations of
+state for simulations of shock waves in silicon, Phys. Rev. B 64, 214107 (2001).
+[9] J.P. Poirier, G.D. Price, Primary slip system of ǫ-iron and anisotropy of the
+Earth's inner core, Phys. of the Earth and Planetary Interiors 110 (1999):
+pp 147-56.
+[10] For a recent review and introduction, see e.g. M.R. Boslough, J.R. Asay, in
+J.R. Asay, M. Shahinpoor (Eds), High-Pressure Shock Compression of Solids,
+Springer-Verlag, New York, 1992.
+[11] R. Menikoff, B.J. Plohr, The Riemann problem for fluid flow of real materials,
+Rev. Mod. Phys. 61 (1989): pp 75-130.
+[12] A. Majda, The stability of multidimensional shock fronts, Mem. Amer. Math.
+Soc., 41, 275 (1983).
+[13] J.L. Ding, Thermal and mechanical analysis of material response to non-steady
+ramp and steady shock wave loading, J. Mech. and Phys. of Solids 54 (2006):
+pp 237-265.
+[14] J. von Neumann, R.D. Richtmyer, A method for the numerical calculation of
+hydrodynamic shocks, J. Appl. Phys. 21, 3 (1950): pp 232-237.
+
+21
+
+[15] R.M. Mulford, D.C. Swift, in preparation.
+[16] W. Fickett, W.C. Davis, 'Detonation, University of California Press, Berkeley,
+1979.
+[17] E. Loomis, D.C. Swift, Interaction of oblique shock waves with the interface
+between two materials, for general equations of state, in preparation.
+[18] D. Benson, Computational methods in Lagrangian and Eulerian hydrocodes,
+Computer Methods in Appl. Mechanics and Eng. 99, 235 (1992).
+[19] R. Hill, The Mathematical Theory of Plasticity, Clarendon Press, Oxford, 1950.
+[20] D.C. Swift, T.E. Tierney, S.-N. Luo, D.L. Paisley, G.A. Kyrala, A. Hauer,
+S.R. Greenfield, A.C. Koskelo, K.J. McClellan, H.E. Lorenzana, D. Kalantar,
+B.A. Remington, P. Peralta, E. Loomis, Dynamic response of materials on subnanosecond time scales, and beryllium properties for inertial confinement fusion,
+Phys.Plasmas 12, 056308 (2005).
+[21] V.W. Yuan, J.D. Bowman, D.J. Funk, G.L. Morgan, R.L. Rabie, C.E. Ragan,
+J.P. Quintana, H.L. Stacy, Phys. Rev. Lett. 94, 125504 (2005).
+[22] D.J. Steinberg, Equation of State and Strength Properties of Selected Materials,
+Lawrence Livermore National Laboratory report UCRL-MA-106439 change 1
+(1996).
+[23] C.A. Hall, Isentropic compression experiments on the Sandia Z accelerator,
+Phys. Plasmas 7, 5 (2000): pp 2069-2075.
+[24] D.J. Steinberg, S.G. Cochran, M.W. Guinan, A constitutive model for metals
+applicable at high strain rate, J. Appl. Phys. 51, 1498 (1980).
+[25] D.C. Swift et al, Explanation of Anomalous Shock Temperatures Measured by
+Neutron Resonance Spectroscopy, submitted.
+
+22
+
+

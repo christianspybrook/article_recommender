@@ -1,0 +1,2052 @@
+Convergence of the discrete dipole approximation.
+I. Theoretical analysis.
+Maxim A. Yurkin
+Faculty of Science, Section Computational Science, of the University of Amsterdam,
+Kruislaan 403, 1098 SJ, Amsterdam, The Netherlands
+and
+Institute of Chemical Kinetics and Combustion, Siberian Branch of the Russian Academy of
+Sciences, Institutskaya 3, Novosibirsk 630090 Russia
+myurkin@science.uva.nl
+Valeri P. Maltsev
+Institute of Chemical Kinetics and Combustion, Siberian Branch of the Russian Academy of
+Sciences, Institutskaya 3, Novosibirsk 630090 Russia
+and
+Novosibirsk State University, Pirogova Str. 2, 630090, Novosibirsk, Russia
+Alfons G. Hoekstra
+Faculty of Science, Section Computational Science, of the University of Amsterdam,
+Kruislaan 403, 1098 SJ, Amsterdam, The Netherlands
+alfons@sciene.uva.nl
+
+Abstract
+We performed a rigorous theoretical convergence analysis of the discrete dipole
+approximation (DDA). We prove that errors in any measured quantity are bounded by a sum
+of a linear and quadratic term in the size of a dipole d, when the latter is in the range of DDA
+applicability. Moreover, the linear term is significantly smaller for cubically than for noncubically shaped scatterers. Therefore, for small d errors for cubically shaped particles are
+much smaller than for non-cubically shaped. The relative importance of the linear term
+decreases with increasing size, hence convergence of DDA for large enough scatterers is
+quadratic in the common range of d. Extensive numerical simulations were carried out for a
+wide range of d. Finally we discuss a number of new developments in DDA and their
+consequences for convergence.
+Keywords: discrete dipole approximation, non-spherical particle light scattering, convergence
+analysis, accuracy
+OCIS code: 290.5850, 260.2110, 000.4430
+
+1
+
+1. Introduction
+The discrete dipole approximation (DDA) is a well-known method to solve the light
+scattering problem for arbitrary shaped particles. Since its introduction by Purcell and
+Pennypacker1 it has been improved constantly. The formulation of DDA summarized by
+Draine and Flatau2 more than 10 years ago is still most widely used for many applications,3
+partly due to the publicly available high-quality and user-friendly code DDSCAT.4 Although
+modern improvements of DDA (as discussed in detail in Section 2.F) exist, they are still in the
+research stage because they are not widely used in real applications.
+DDA directly discretizes the volume of the scatterer and hence is applicable to arbitrary
+shaped particles. However, the drawback of this discretization is the extreme computational
+complexity of DDA, although it is significantly decreased by advanced numerical
+techniques.2,5 That is why the usual application strategy for DDA is "single computation",
+where a discretization is chosen based on available computational resources and some
+empirical estimates of the expected errors.3,4 These error estimates are based on a limited
+number of benchmark calculations3 and hence are external to the light scattering problem
+under investigation. Such error estimates have evident drawbacks, however no better
+alternative is available. Some results of analytical analysis of errors in computational
+electromagnetics are known, e.g. 6,7, however they typically consider the surface integral
+equations. To the best of our knowledge, such analysis has not been done for volume integral
+equations (such as DDA).
+Usually errors in DDA are studied as a function of the size parameter of the scatterer x
+(at a constant or few different total numbers of dipoles N), e.g. 2,8. Only a small number of
+papers directly present errors versus discretization parameter (e.g. d – the size of a single
+dipole).9-17 The range of d typically studied in those papers is limited to a 5 times difference
+between minimum and maximum values, with the exception of two papers11,12 where it is 15
+times. Those plots of errors versus discretization parameter are always used to illustrate the
+performance of a new DDA formulation and compare it with others. No conclusions about the
+convergence properties of DDA, as a function of d, have been made based on these plots. To
+our knowledge, no theoretical analysis of DDA convergence has been performed, but only a
+few limited empirical studies have appeared in the literature.
+In this paper we perform a theoretical analysis of DDA convergence when refining the
+discretization (Section 2). We derive rigorous theoretical bounds on the error in any measured
+quantity for any scatterer. In Section 3 we present extensive numerical results of DDA
+computations for 5 different scatterers using many different discretizations. These results are
+discussed in Section 4 to support conclusions of the theoretical analysis. We formulate the
+conclusions of the paper in Section 5. In a follow-up paper18 (which from now on we refer to
+as Paper 2) the theoretical convergence results are used for an extrapolation technique to
+increase the accuracy of DDA computations.
+
+2. Theoretical analysis
+In this section we analyze theoretically the errors of DDA computations. We formulate the
+volume integral equation for the internal electric field and its operator counterpart in
+Section 2.A and its discretization in Section 2.B. Section 2.C contains integral and discretized
+formulae for measured quantities that are the final goal of any light scattering simulation. We
+derive the main results in Section 2.D, where we consider errors of the traditional DDA
+formulation2 without shape errors, which are considered separately in Section 2.E. Finally in
+2
+
+Section 2.F we discuss some recent DDA improvements from the viewpoint of our
+convergence theory.
+
+A.Integral Equation
+Throughout this paper we assume the exp(−iω t ) time dependence of all fields. The scatterer
+is assumed dielectric but not magnetic (magnetic permittivity μ = 1 ), and the electric
+permittivity is assumed isotropic (non-isotropic permittivity will significantly complicate the
+derivations but will not principally change the main conclusion of Section 2 – Eqs. (70) and
+(87)).
+The general form of the integral equation governing the electric field inside the
+dielectric scatterer is the following:19,20
+E(r ) = E inc (r ) + ∫ d 3 r ′G (r, r ′) χ (r ′)E(r ′) + M(V0 , r ) − L (∂V0 , r ) χ (r )E(r ) ,
+(1)
+V \V0
+
+where E (r), E(r) are the incident and total electric field at location r; χ (r ) = (ε (r ) − 1) 4π
+is the susceptibility of the medium at point r (ε(r) – relative permittivity). V is the volume of
+the particle (more general – the volume, which contains all points where the susceptibility is
+not zero), V0 is a smaller volume such that V0 ⊂ V , r ∈ V0 \ ∂V0 . G (r, r′) is the free space
+dyadic Green's function, defined as
+ˆˆ
+ˆˆ ⎤
+⎡
+ˆ∇
+ˆ g ( R) = g ( R) ⎢k 2 ⎛⎜ I − RR ⎞⎟ − 1 − ikR ⎛⎜ I − 3 RR ⎞⎟⎥ ,
+G (r, r ′) = k 2 I + ∇
+(2)
+⎜
+R 2 ⎟⎠
+R 2 ⎜⎝
+R 2 ⎟⎠⎦⎥
+⎣⎢ ⎝
+inc
+
+(
+
+)
+
+where I is the identity dyadic, k = ω c – free space wave vector, R = r − r′ , R = R , and
+Rˆ Rˆ is a dyadic defined as Rˆ Rˆ μν = Rμ Rν (μ, ν are Cartesian components of the vector or
+tensor), and g(R) is the scalar Green's function
+exp(ikR)
+g ( R) =
+.
+R
+M is the following integral associated with the finiteness of the exclusion volume V0
+M(V0 , r ) = ∫ d 3 r ′ G (r, r ′) χ (r ′)E(r ′) − G s (r, r ′) χ (r )E(r ) ,
+
+(
+
+)
+
+V0
+
+(3)
+
+(4)
+
+where G s (r, r ′) is the static limit ( k → 0 ) of G (r, r′) :
+
+ˆˆ
+ˆ∇
+ˆ 1 = − 1 ⎛⎜ I − 3 RR ⎞⎟ .
+G s (r, r ′) = ∇
+R
+R 3 ⎜⎝
+R 2 ⎟⎠
+
+(5)
+
+L is the so-called self-term dyadic:
+L (∂V0 , r ) = − ∫ d 2 r ′
+∂V0
+
+nˆ ′Rˆ
+,
+R3
+
+(6)
+
+where nˆ ′ is an external (as viewed from r) normal to the surface ∂V0 at point r'.
+Eq. (1) can be rewritten in operator form as follows
+~ ~ ~
+(7)
+A ⋅ E = Einc ,
+~
+~
+where E ∈ H 1 = L1 (V → C 3 ) – functions from V to C3 that have finite L1-norm, E inc ∈ H 2 –
+~
+subspace of H1 containing all functions that satisfy Maxwell equations in free space. A is a
+linear operator : H 1 → H 2 . Although the Sobolev norm is physically more sound (based on
+the finiteness of energy of the electric field),6,21 we use the L1-norm. A detailed discussion of
+all assumptions made for the electric field is performed in Section 2.D.
+3
+
+B.Discretization
+N
+
+To solve Eq. (1) numerically a discretization is done in the following way.20 Let V = UVi ,
+i =1
+
+Vi I V j = 0/ for i ≠ j . N denotes the number of subvolumes (dipoles). Assuming r ∈ Vi and
+
+choosing V0 = Vi , Eq. (1) can be rewritten as
+E(r ) = E inc (r ) + ∑ ∫ d 3 r ′G (r, r ′) χ (r ′)E(r ′) + M (Vi , r ) − L (∂Vi , r ) χ (r )E(r ) .
+j ≠i V j
+
+(8)
+
+The set of Eq. (8) (for all i) is exact. Further one fixed point ri inside each Vi (its center) is
+chosen and r = ri is set.
+The usual approximation20 is considering E and χ constant inside each subvolume:
+E(r ) = E(ri ) = E i , χ (r ) = χ (ri ) = χ i for r ∈ Vi .
+(9)
+Eq. (8) can then be rewritten as
+E i = E iinc + ∑ G ijV j χ j E j + (M i − Li )χ i Ei ,
+(10)
+j ≠i
+
+where E
+
+inc
+i
+
+= E (ri ) , L i = L (∂Vi , ri ) ,
+inc
+
+(
+
+)
+
+M i = ∫ d 3 r ′ G (ri , r ′) − G s (ri , r ′) ,
+Vi
+
+G ij =
+
+1
+d 3r ′G (ri , r′) .
+V j V∫j
+
+(11)
+(12)
+
+A further approximation, which is used in almost all formulations of DDA, is
+G ij( 0) = G (ri , r j ) .
+
+(13)
+This assumption is made implicitly by all formulations that start by replacing the scatterer
+with a set of point dipoles, as was done originally by Purcell and Pennypacker.1 For a cubical
+(as well as spherical) cell Vi with ri located at the center of the cell, L i can be calculated
+analytically yielding22
+4π
+Li =
+I.
+(14)
+3
+Eq. (10) together with Eqs. (13) and (14) and completely neglecting M i is equivalent to
+the original DDA by Purcell and Pennypacker (PP).1 The diagonal terms in Eq. (10) are then
+equivalent to the well-known Clausius-Mossotti (CM) polarizability for point dipoles.
+Modifications introduced by other DDA prescriptions are discussed in Section 2.F.
+In matrix notation Eq. (10) reads
+(15)
+A d E d = E inc,d ,
+
+( )
+
+N
+
+where Ed, Einc,d are elements of C 3 (vectors of size N where each element is a 3D complex
+vector) and A d is a N×N matrix where each element is a 3×3 tensor. d is the size of one
+dipole. In operator notation Eq. (8) (for r = ri ) is as follows
+~~
+~
+,d
+AE (ri ) = E inc (ri ) = E inc
+,
+(16)
+i
+We define the discretization error function as
+~~
+h id = AE (ri ) − A d E 0,d i ,
+(17)
+~
+where E0,d is the exact field at the centers of the dipoles – E i0,d = E(ri ) , in contrast to Ed that
+is only an approximation obtained from solution of Eq. (15) (here we neglect the numerical
+
+( )
+
+( )
+
+(
+
+4
+
+)
+
+error that appears from the solution of Eq. (15) itself, which is acceptable if this error is
+controlled to be much less than other errors). Comparing Eqs. (15) and (17) one can
+immediately obtain the error in internal fields due to discretization δEd:
+−1
+(18)
+δ E d = E d − E 0 ,d = − A d h d .
+
+( )
+
+C.Measured quantities
+After having determined the internal electric fields, scattered fields and cross sections can be
+calculated. Scattered fields are obtained by taking the limit r → ∞ of the integral in Eq. (1)
+(see e.g. 23)
+exp(ikr )
+Esca (r) =
+F(n) ,
+(19)
+− ikr
+where n = r r is the unit vector in the scattering direction, and F is the scattering amplitude:
+
+F(n) = −ik 3 ( I − nˆ nˆ )∑ ∫ d 3 r ′ exp(−ikr ′ ⋅ n) χ (r′)E(r′) .
+
+(20)
+
+i Vi
+
+All other differential scattering properties, such as the amplitude and Mueller scattering
+matrices, and asymmetry parameter < cos θ > can be easily derived from F(n), calculated for
+two incident polarizations.24 We consider an incident polarized plane wave:
+E inc (r ) = e 0 exp(ik ⋅ r ) ,
+(21)
+where k = ka , a is direction of incidence, and e 0 = 1 is assumed. The scattering and
+extinction cross sections (Csca, Cext) are derived from the scattering amplitude:23
+2
+1
+Csca = 2 ∫ dΩ F(n) ,
+(22)
+k
+4π
+Cext = 2 Re F(a) ⋅ e 0∗ ,
+(23)
+k
+where * denote complex conjugation. The expression for absorption cross section (Cabs)
+directly uses the internal fields:23
+2
+C abs = 4πk ∑ ∫ d 3 r ′ Im(χ (r ′) ) E(r ′) ,
+(24)
+
+(
+
+)
+
+i Vi
+
+Since only values of the internal field in the centers of dipoles are known, Eqs. (20) and
+(24) are approximated by (PP)
+F (n) = −ik 3 ( I − nˆ nˆ )∑ Vi χ i E id exp( −ikri ⋅ n) ,
+(25)
+i
+
+Cabs = 4πk ∑Vi Im(χ i ) E id .
+2
+
+(26)
+
+i
+
+Corrections to Eq. (26) are discussed in Section 2.F.
+~~
+Both Eqs. (20) (for each component) and (24) can be generalized as φ E (a functional
+that is not necessarily linear), which is approximated as:
+~~
+(27)
+φ E = φ d (E d ) + δφ d ,
+
+()
+
+()
+
+( ) corresponds to Eqs. (25) or (26) respectively, and the error δφ d consists of
+
+where φ E
+parts:
+d
+
+d
+
+[()
+
+(
+
+)] [ (
+
+)
+
+( )]
+
+two
+
+~~
+(28)
+δφ d = φ E − φ d E 0 , d + φ d E 0 , d − φ d E d .
+The first one comes from discretization (similar to Eq. (17)), and the second from errors in the
+internal fields.
+
+5
+
+D.Error analysis
+In this section we perform error analysis for the PP formulation of DDA. Improvements of
+DDA are further discussed in Section 2.F.
+We assume cubical subvolumes with size d. We also assume that the shape of the
+particle is exactly described by these cubical subvolumes (we call this cubically shaped
+scatterer). Moreover, χ is a smooth function inside V (exact assumptions on χ are formulated
+below). An extension of the theory to shapes that do not satisfy these conditions is presented
+in Section 2.E. If there are several regions with different values of χ (smooth inside each
+region), the analysis is still valid but interfaces inside V should be considered the same way as
+the outer boundary of V. We further fix the geometry of the scattering problem and incident
+field. Therefore we will be interested only in variation of discretization (which is
+characterized by the single parameter – d); for reasons that will become clear in the sequel, we
+assume that kd < 2 (this bound is not limiting since otherwise DDA is generally
+inapplicable2).
+We switch to dimensionless parameters by assuming k = 1 , which is equivalent to
+measuring all the distances in units of 1 k . The unit of electric field can be chosen arbitrary
+but constant. In all further derivations we will use two sets of constants: γi and ci. γ1-γ13 are
+basic constants that do not depend on the discretization d, but do depend directly upon all
+other problem parameters – size parameter x = kReq (Req – volume-equivalent radius), m,
+shape, and incident field – or some of them. On the contrary, c1-c94 are auxiliary values that
+either are numerical constants or can be derived in terms of constants γi. Although the
+dependencies of ci on γi are not explicitly derived in this paper, one can easily obtain them
+following the derivations of this section. That is the main motivation for using such vast
+amount of constants instead of an "order of magnitude" formalism. However, such explicit
+derivation has limited application because, as we will see further, constants in the final result
+depend upon almost all basic constants. Qualitative analysis of these dependencies will be
+performed in the end of this section. It should be noted that the main theoretical results
+concerning DDA convergence (boundedness of errors by a quadratic function, cf. Eq (70))
+can be formulated and applied without consideration of any constants (which is simpler).
+However our full derivation enables us to make additional conclusions related to the behavior
+of specific error terms.
+The total number of dipoles used to discretize the scatterer is
+N = γ 1d −3 .
+(29)
+~
+We assume that the internal field E is at least four times differentiable and all these
+derivatives are bounded inside V
+E(r ) ≤ γ 2 , ∂ μ E(r ) ≤ γ 3 , ∂ μ ∂ν E(r ) ≤ γ 4 , ∂ μ ∂ν ∂ ρ E(r ) ≤ γ 5 , ∂ μ ∂ν ∂ ρ ∂τ E(r ) ≤ γ 6
+(30)
+for r ∈ V and ∀μ ,ν , ρ ,τ .
+~
+This assumption is acceptable since there are no interfaces inside V, therefore E should be a
+smooth function. . denotes the Euclidian (L2) norm, which is used for all 3D objects: vectors
+and tensors. We use the L1-norm, . 1 , for N-dimensional vectors and matrices as well as for
+~
+functions and operators. Eq. (30) immediately implies that E ∈ L1 (V ) . We require that χ
+satisfies Eq. (30) with constants γ7-γ11. Further we will state an estimate for the norm of
+G ( R ) and its derivatives. One can easily obtain from Eq. (2) that for R > 1 G (R ) satisfies
+Eq. (30) (with constants c1-c5), while for R ≤ 2
+6
+
+G (R ) ≤ c6 R −3 , ∂ μ G (R ) ≤ c7 R −4 , ∂ μ ∂ν G (R ) ≤ c8 R −5 , ∂ μ ∂ν ∂ ρ G (R ) ≤ c9 R −6 ,
+∂ μ ∂ν ∂ ρ ∂τ G (R ) ≤ c10 R −7 for ∀μ ,ν , ρ ,τ .
+
+(31)
+
+Next we state two auxiliary facts that will be used later. Let Vc be a cube with size d and
+with its center at the origin and f(r) a four times differentiable function inside Vc. Then
+1
+d 3r f (r ) − f (0) ≤ c11d 2 max ∂ μ ∂ν f (r ) ,
+μν , r∈Vc
+d 3 V∫c
+
+(
+
+(32)
+
+)
+
+1
+d2 2
+3
+d r f (r ) − f (0) ≤
+∇ f (r ) r = 0 + c12 d 4 max ∂ μ ∂ν ∂ ρ ∂τ f (r ) .
+3 ∫
+μνρτ , r∈Vc
+24
+d Vc
+
+(33)
+
+Eqs. (32) and (33) are the corollary of expanding f into Taylor series. Odd orders of the Taylor
+expansion vanish because of cubical symmetry.
+Our first goal is to estimate h d . Starting from Eq. (17) we write h id as
+1
+
+⎛
+⎞
+h id = ∑ ⎜ ∫ d 3 r ′G (ri , r ′)P (r ′) − d 3 G ij( 0) P j ⎟ + M (Vi , ri ) ,
+(34)
+⎜
+⎟
+j ≠i V j
+⎝
+⎠
+where we have introduced the polarization vector for conciseness
+P(r ) = χ (r )E(r) , Pi = P(ri ) .
+(35)
+It is evident that P(r ) also satisfies Eq. (30) (with constants c13-c17). We start by estimating
+M (Vi , ri ) . Substituting a Taylor expansion of P(r )
+P ( R ) = P (0) + ∑ Rρ (∂ ρ P )(0) +
+
+1
+Rρ Rτ (∂ ρ ∂τ P )(~
+r ( ρ ,τ , R ) ) ,
+∑
+2 ρτ
+
+ρ
+
+where 0 ≤ ~
+rμ ≤ Rμ , into Eq (4) gives
+
+(
+
+)
+
+M (Vi , ri ) = ∫ d 3 R G (R ) − G s (R ) Pi +
+Vi
+
+1 3
+d RG (R )∑ Rρ Rτ (∂ ρ ∂τ P )(~
+r ( ρ ,τ , R ) ) .
+∫
+2V
+ρτ
+
+(36)
+
+(37)
+
+i
+
+The norms of these two terms can be estimated as
+
+∫ d R(G (R ) − G
+3
+
+s
+
+)
+
+( R ) Pi =
+
+Vi
+
+2
+IPi ∫ d 3 Rg ( R ) ≤ c18 d 2 ,
+3 V
+
+(38)
+
+i
+
+Rρ Rτ (∂ ρ ∂τ P )( r ( ρ ,τ , R )) ≤ 3c ∫ d R G (R ) R
+∫ d RG ( R )∑
+ρτ
+~
+
+3
+
+Vi
+
+3
+
+15
+
+2
+
+≤ c19 d 2 .
+
+(39)
+
+Vi
+
+Eq. (38) follows directly from the definitions in Eqs. (2), (5). To derive Eq. (39) we used
+Eq. (31) and the fact that ∑ Rρ Rτ ≤ 3R 2 . Finally, Eqs. (37)-(39) lead to
+ρτ
+
+M (Vi , ri ) ≤ c20 d 2 .
+
+(40)
+To estimate the sum in Eq. (34) we consider separately three cases: 1) dipole j lies in a
+complete shell of dipole i (we define the shell below); 2) j lies in a distant shell of dipole i –
+Rij = r j − ri > 1 ; 3) all j that fall between the first two cases (see Fig. 1). We define the first
+
+shell (S1(i)) of a cubical dipole as a set of dipoles that touch it (including touching in one point
+only). The second shell (S2(i)) is a set of dipoles that touch the outer surface of the first shell,
+and so on. The l-th shell (Sl(i)) is then a set of all dipoles that lie on the boundary of the cube
+with size (2l + 1)d and center coinciding with the center of the original dipole. We call a shell
+complete if all its elements lie inside the volume of the scatterer V. A shell is called a distant
+7
+
+(3)
+
+(2)
+
+(1) i
+K(i)
+
+vacuum
+
+Kmax
+
+scatterer
+
+Fig. 1. Partition of the scatterer's volume into three regions relative to dipole i.
+
+shell if all its elements satisfy Rij > 1 , i.e. if its order l > K max = [1 d ] . Let K(i) be the order of
+the first incomplete shell, which is an indicator of how close dipole i is to the surface. We
+demand K (i ) ≤ K max to separate cases (1) and (2) described above. All j that fall in the third
+case satisfy Rij < 2 (the exact value of this constant – slightly larger than 3 – depends on
+d). The number of dipoles in a shell Sl (which can be incomplete) – ns(l) – can be estimated as
+n s (l ) ≤ ( 2l + 1) 3 − (2l − 1) 3 ≤ c 21l 2 .
+(41)
+The sum of the error over all dipoles that lie in complete shells is then
+K ( i ) −1
+⎛
+⎞
+⎜ d 3r ′G (r , r′)P(r′) − d 3G ( 0) P ⎟ ,
+(42)
+∑
+∑ ⎜∫
+i
+ij
+j
+⎟
+l =1 j∈S l ( i ) V j
+⎝
+⎠
+Since each shell in Eq. (42) is complete it can be divided into pairs of dipoles that are
+symmetric over the center of the shell (j and –j). For convenience we set ri = 0 . The inner
+sum in Eq. (42) can then be rewritten as
+⎛
+⎞
+1
+⎜ d 3r ′G (r′)(P (r′) + P (−r′) ) − d 3G ( 0 ) (P + P )⎟ ,
+(43)
+∑
+ij
+j
+−j
+⎟
+2 j∈S l ( i ) ⎜ V∫j
+⎝
+⎠
+Further we introduce the auxiliary function
+1
+u(r ′) = (P(r ′) + P(−r ′) ) − P(0) ,
+(44)
+2
+which satisfies the following inequalities (follows from Eq. (30) for P(r) and Taylor series)
+u(r ) ≤ c22 r 2 , ∂ μ u(r ) ≤ c23 r , ∂ μ ∂ν u(r ) ≤ c24 for ∀μ ,ν .
+(45)
+Then Eq. (43) is equivalent to
+⎛
+⎞
+⎛
+⎞
+⎜ d 3 r ′G (r ′)u(r ′) − d 3 G ( 0) u ⎟ +
+⎜ d 3 r ′G (r ′) − d 3 G ( 0) ⎟P ,
+(46)
+∑ ⎜∫
+ij
+j
+ij
+⎟ j∈∑
+⎜∫
+⎟ i
+j∈S l ( i ) V j
+Sl (i ) V j
+⎝
+⎠
+⎝
+⎠
+where u j = u(r j ) . To estimate the first term we apply Eq. (32) to the whole function under
+the integral. Using Eqs. (31) and (45) one may obtain
+max ∂ μ ∂ν (G (r ′)u(r ′) ) ≤ c25 Rij−3 ,
+μν ,r′∈V j
+
+and hence
+
+8
+
+(47)
+
+⎛
+
+⎞
+u j ⎟ ≤ ∑ c26 d 5 Rij− 3 ≤ c27 d 2l −1 ,
+⎟ j ∈S l ( i )
+j ∈S l ( i ) V j
+⎝
+⎠
+where we have used Eq. (41) and Rij ≥ ld for j ∈ S l (i ) .
+
+∑ ⎜⎜ ∫ d r′G (r′)u(r′) − d G
+3
+
+3
+
+(0)
+ij
+
+(48)
+
+It is straightforward to show that
+2
+
+∑ ∫ d r′G (r′) = 3 I ∑ ∫ d r′g (r′) ,
+3
+
+3
+
+j∈S l ( i ) V j
+
+j∈S l ( i ) V j
+
+∑G
+
+j∈Sl ( i )
+
+(0)
+ij
+
+=
+
+2
+I ∑ g ( Rij ) .
+3 j∈Sl ( i )
+
+(49)
+(50)
+
+1
+Rˆ Rˆ
+⇔ I in all sums and integrals
+2
+R
+3
+that satisfy cubical symmetry. Then second part of Eq. (46) is transformed to
+⎛
+⎞
+3
+3
+4
+2 −3
+⎜ d 3r ′G (r′) − d 3G ( 0 ) ⎟P ≤ c
+′ ′
+,
+(51)
+∑
+28 ∑ ∫ d r g ( r ) − d g ( Rij ) ≤c29 d l + c30 d l
+ij
+i
+∫
+⎜
+⎟
+j ∈S l ( i ) V j
+j∈S l ( i ) V j
+⎝
+⎠
+where we apply Eq. (33) to derive the second inequality and use the identity ∇ 2 g (r ) = − g (r )
+and the following inequalities
+g (R ) ≤ c31R −1 , ∂ μ ∂ν ∂ ρ ∂τ g ( R) ≤ c32 R −5 for ∀μ ,ν , ρ ,τ .
+(52)
+
+The derivation is based upon Eq. (2) and the equivalence
+
+Substituting Eqs. (48) and (51) into Eq. (42) one can obtain
+K ( i ) −1
+⎛
+⎞
+⎜ d 3r ′G (r , r′)P(r′) − d 3G ( 0) P ⎟ ≤ (c + c ln K (i ) )d 2 ,
+(53)
+∑
+∑ ⎜∫
+33
+34
+i
+ij
+j
+⎟
+l =1 j∈S l ( i ) V j
+⎠
+⎝
+using the fact that K (i)d ≤ 1 .
+We now consider the second part of the sum in Eq. (34) (where Rij > 1 ). We first apply
+Eq. (32), then use Eq. (30) for P(r) and G (r ) , and finally invoke Eq. (29):
+⎛
+⎞
+⎜ d 3r ′G (r , r′)P(r′) − d 3G ( 0 ) P ⎟ ≤
+c35d 5 ≤ Nc35d 5 ≤ c36 d 2 .
+(54)
+∑
+∑
+i
+ij
+j
+∫
+⎜
+⎟
+j , Rij >1 V j
+j , Rij >1
+⎝
+⎠
+To analyze the third part of the sum in Eq. (34) we again sum over shells, however since
+they are incomplete we cannot use symmetry considerations. We apply Eq. (33) to the whole
+function under the integral and proceed analogous to the derivation of Eq. (51). Using the
+identity
+∇ 2 G (r ) = −G (r ) ,
+(55)
+(since we have assumed k = 1 ) we obtain
+∇ 2 (G (r )P (r ) )r =Rij ≤ c37 Rij−4 ,
+(56)
+max ∂ μ ∂ν ∂ ρ ∂τ (G (r′)P (r′) ) ≤ c38 Rij−7 ,
+
+μνρτ ,r′∈V j
+
+(57)
+
+which leads to
+⎛
+⎞
+⎜ d 3r ′G (r , r′)P (r′) − d 3G ( 0 ) P ⎟ ≤ c dl − 2 + c l − 5 ,
+∑ ⎜∫
+40
+i
+ij
+j
+⎟ 39
+j ∈S l ( i ) V j
+⎝
+⎠
+and then analogous to Eq. (53):
+
+9
+
+(58)
+
+⎛
+
+⎞
+P j ⎟ ≤ c41dK −1 (i ) + c42 K − 4 (i ) .
+⎟
+l = K ( i ) j ∈S l ( i ) V j
+⎝
+⎠
+Collecting Eqs. (40), (53), (54), (59) we finally obtain
+h id ≤ c 41 dK −1 (i ) + c 42 K −4 (i ) + (c 43 + c 44 ln K (i ) )d 2 .
+K max
+
+∑ ∑ ⎜⎜ ∫ d r′G (r , r′)P(r′) − d G
+3
+
+3
+
+i
+
+(0)
+ij
+
+(59)
+
+(60)
+
+Then
+hd
+
+∑ n( K )(c
+
+K max
+
+N
+
+1
+
+= ∑ h id ≤ (c 43 + c 44 ln K max )Nd 2 +
+i =1
+
+K =1
+
+41
+
+)
+
+dK −1 + c 42 K − 4 ,
+
+(61)
+
+where n(K) is the number of dipoles whose order of the first incomplete shell is equal to K. It
+is clear that
+n( K ) ≤ n(1) ≤ γ 12 Nd ,
+(62)
+where γ12 is surface to volume ratio of the scatterer. Finally we obtain
+h d ≤ N (c 43 − c 45 ln d )d 2 + c 46 d .
+(63)
+
+[
+
+1
+
+]
+
+The last term in Eq. (63) is mostly determined by dipoles that lie on the surface (or few
+dipoles deep) because it comes from the K-4 term in Eq. (61) (which rapidly decreases when
+moving from surface). We define surface errors as those associated with the linear term in
+Eq. (63). Our numerical simulation (see Section 0) show that this term is small compared to
+other terms for "typical" values of d, however it is always significant for small enough values
+of d.
+From Eq. (18) we directly obtain
+
+( )
+
+δE d ≤ A d
+1
+
+−1
+
+1
+
+hd .
+
+(64)
+
+1
+
+~
+We assume that a bounded solution of Eq. (7) uniquely exists for any E inc ∈ H 2 , moreover we
+~
+~
+assume that if E inc = 1 then E ≤ γ 13 . These assumptions are equivalent to the fact that
+1
+1
+~
+~
+~ −1
+exists and is finite (the operator A −1 is bounded). Because A d is a discretization of A
+A
+1
+
+one would expect that
+
+( )
+
+lim A d
+d →0
+
+−1
+
+1
+
+~
+= A −1 = γ 13 .
+
+(65)
+
+1
+
+Although Eq. (65) seems intuitively correct, its rigorous prove, even if feasible, lies outside
+the scope of this paper. For an intuitive understanding one may consult the paper by Rahola,25
+where he studied the spectrum of the discretized operator (for scattering by a sphere) and
+showed that it does converge to the spectrum of the integral operator with decreasing d. It
+should however be noted, that convergence of the spectrum only implies the convergence of
+the spectral (L2) norm of the operator and not necessarily the convergence of the L1-norm.
+Therefore Eq. (65) should be considered as an assumption. It implies that there exists a d0
+such that
+for d < d 0
+
+(A )
+
+d −1
+1
+
+≤ c 47 ,
+
+(66)
+
+where c47 is an arbitrary constant larger then γ13 (although d0 depends on its choice). For
+example c47 = 2γ 13 should lead to a rather large d0 (a rigorous estimate of d0 does not seem
+feasible). Therefore δE d
+
+1
+
+satisfies the same constrain as h d
+
+1
+
+(Eq. (63)) but with constants
+
+c48-c50.
+Next we estimate the errors in the measured quantities and start with the discretization
+error (first part in Eq. (28)). Examining Eqs. (20) and (24) one can see that Eq. (32) may be
+directly applied leading to
+10
+
+()
+
+φ E − φ d (E 0,d ) ≤ ∑ c51d 5 ≤ c52 d 2 .
+~~
+
+i
+
+The second part in Eq. (28) is estimated as
+φ d E0,d − φ d E d ≤ ∑ c53d 3 δEid ≤ c53d 3 δE d ≤ (c54 − c55 ln d )d 2 + c56 d ,
+
+( )
+
+( )
+
+1
+
+i
+
+(67)
+(68)
+
+where we used Eq. (29). The estimation of the error for Cabs additionally uses the fact
+2
+δEid ≤ c57 δEid ⎛⎜ c57 = max δEid ⎞⎟ .
+d <2, i
+⎝
+⎠
+By combining Eqs. (67) and (68) we obtain the final result of this section:
+δφ d ≤ (c58 − c55 ln d )d 2 + c56 d .
+(69)
+It is important to remember that the derivation was performed for constant x, m, shape, and
+incident field. There are 13 basic constants (γ1-γ13). γ1 (Eq. (29)) characterizes the total
+volume of the scatterer, hence it depends only on x. γ7-γ11 (Eq. (30) for χ(r)) can be easily
+obtained given the function χ(r), moreover it is completely trivial in the common case of
+homogenous scatterers. γ12 (surface to volume ratio, Eq. (62)) depends on the shape of the
+scatterer and is inversely proportional to x. It is not feasible (except for certain simple shapes)
+to obtain the values of constants γ2-γ6 (Eq. (30)), since it requires an exact solution for the
+internal fields. These constants definitely depend upon all the parameters of the scattering
+problem. Moreover, these dependencies can be rapidly varying, especially near the resonance
+regions. The same is true for γ13 (L1-norm of the inverse of the integral operator, Eq. (65)).
+Finally, there is the important constant d0 that also depends on all the parameters, however
+one may expect it to be large enough (e.g. d 0 ≥ 2 ) for most of the problems – then its
+variation can be neglected.
+Before proceeding we introduce the discretization parameter y = m kd . We employ the
+
+commonly used formula as proposed by Draine,8 however the exact dependence on m is not
+important because all the conclusions are still valid for constant m. Replacing d by y does not
+significantly change the dependence of the constants in Eq. (69) since they all already depend
+on m through the basic constants γ2-γ11, γ13. This leads to
+δφ y ≤ (c59 − c60 ln y ) y 2 + c61 y .
+(70)
+It is not feasible to make any rigorous conclusions about the variation of the constants in
+Eq. (70) with varying parameters because all these constants depend on γ2-γ6, γ13 that in turn
+depend in a complex way upon the parameters of the scattering problem. However we can
+make one conclusion about the general trend of this dependency.
+Following the derivation of the Eq. (70) one can observe that c61 is proportional to γ12,
+while c59 and c60 do not directly depend on it (at least part of the contributions to them are
+independent of γ12). Therefore the general trend will be a decrease of the ratio c61 c59 with
+increasing x (when all other parameters are fixed). This is a mathematical justification of the
+intuitively evident fact that surface errors are less significant for larger particles.
+In the analysis of the results of the numerical simulations (Section 0) we will neglect the
+variation of the logarithm. Eq. (70) then states that error is bounded by a quadratic function of
+y (for d ≤ d 0 ). However, keep in mind that our derivation does not lead to an optimal error
+estimation, i.e. it overestimates the error and can be improved. For example, the constants γ2γ6 are usually largest inside a small volume fraction of the scatterer (near the surface or some
+
+internal resonance regions), while in the rest of the scatterer the internal electric field and its
+derivatives are bounded by significantly smaller constants. However the order of the error is
+estimated correctly, as we will see in the numerical simulations.
+11
+
+It is important to note that Eq. (70) does not imply that δφ y (which is a signed value)
+actually depends on y as a quadratic function, but we will see later that it is the case for small
+enough y (Section 0, see detailed discussion in Paper 2). Moreover, the coefficients of linear
+and quadratic terms for δφ y may have different signs, which may lead to zero error for nonzero y (however, this y, if it exists, is unfortunately different for each measured quantity).
+
+E.Shape errors
+In this section we extend the error analysis as presented in Section 2.D to shapes that cannot
+be described exactly by a set of cubical subvolumes. We perform the discretization the same
+way as in Section 2.B but some of the Vi are not cubical (for i ∈ ∂V , which denotes that
+dipole i lies on the boundary of the volume V). We set ri to be still in the center of the cube
+(circumscribing Vi) not to break the regularity of the lattice. The standard PP prescription uses
+equal volumes ( Vi = d 3 ) in Eqs. (10), (14), (25), and (26), i.e. the discretization changes the
+shape of the particle a little bit. We will estimate the errors introduced by these boundary
+dipoles. These errors should then be added to those obtained in Section 2.D. We start by
+estimating h d . First we consider h id for i ∉ ∂V
+1
+
+⎛
+⎞
+⎜ d 3r ′G (r , r′)P (r′) − d 3G ( 0 ) P ⎟ ,
+(71)
+∑
+i
+ij
+j
+⎜∫
+⎟
+j∈∂V V j
+⎝
+⎠
+which is just a reduction of Eq. (34). For i ∈ ∂V h id is the same plus the error in the self-term
+hid =
+
+hid =
+
+⎞
+⎛
+⎜ d 3r′G (r , r′)P(r′) − d 3G ( 0) P ⎟ + M (V , r ) − ⎛⎜ L (∂V , r ) − 4π Ι ⎞⎟ χ E .
+∑⎜ ∫
+i
+ij
+j
+i i
+i i
+i i
+⎟
+3 ⎠
+⎝
+j∈∂V V j
+⎠
+⎝
+j ≠i
+
+(72)
+
+Let us define
+h ijsh = ∫ d 3r ′G (ri , r′)P (r′) − d 3G ij( 0) P j ,
+
+(73)
+
+Vj
+
+4π ⎞
+⎛
+h sh
+Ι ⎟ χ i Ei .
+(74)
+ii = M (Vi , ri ) − ⎜ L (∂Vi , ri ) −
+3 ⎠
+⎝
+We estimate each of the terms in Eq. (73) separately (since there is actually no significant
+cancellation, and the error is of the same order of magnitude as the values themselves) using
+Eq. (30) for P(r) and G (r ) and Eq. (31). This leads to
+
+⎧⎪c62 d 3 Rij −3 , Rij < 2,
+h ≤⎨
+(75)
+3
+Rij > 1.
+⎪⎩c63 d ,
+To estimate h sh
+ii we assume that the surface of the scatterer is a plane on the scale of the size
+of the dipole. A finite radius of curvature only changes the constants in the following
+expressions. We will prove that
+h iish ≤ c64 ,
+(76)
+therefore we do not need to consider the third term in Eq. (74) (coming from the unity tensor)
+at all, since it is bounded by a constant.
+M(Vi , ri ) = ∫ d 3r′ G (ri , r′) − G s (ri , r′) P(r′) + ∫ d 3r′G s (ri , r′)(P(r′) − P(ri ) ) .
+(77)
+sh
+ij
+
+(
+
+Vi
+
+)
+
+Vi
+
+The function in the first integral is always bounded by c 65 r ′ − ri
+for the second integral and hence
+12
+
+−2
+
+. If ri ∈ Vi the same is true
+
+M (Vi , ri ) ≤ c66 d .
+
+(78)
+If ri ∉ Vi we introduce an auxiliary point r ′′ that is symmetric to ri over the particle surface
+and apply the identity
+P(r ′) − P(ri ) = (P(r ′) − P(r ′′) ) + (P(r ′′) − P(ri ) )
+(79)
+′
+′
+to the second integral in Eq. (77). Using Taylor expansion of P near r and the fact that
+r ′ − r ′′ ≤ r ′ − ri for r ′ ∈ Vi one can show that
+M (Vi , ri ) ≤ c 67 d + c 68 ∫ d 3 r ′G s (ri , r ′) ,
+
+(80)
+
+Vi
+
+where the remaining integral can be proven to be equal to − L (∂Vi , ri ) . The last prove left
+(see Eqs. (74) and (80)) is to demonstrate that L (∂Vi , ri ) is bounded by a constant. The only
+potential problem may come from the subsurface of ∂Vi that is part of the particle surface
+(because it may be close to ri). This subsurface is assumed planar. We will calculate the
+integral in Eq. (6) over the infinite plane r ′ − ri = ρ + r such that ρ ⋅ r = 0 . Then n′ = ± ρ ρ
+and
+ρˆρˆ
+ρˆρˆ
+L (inf .plane, ri ) = m ∫ d 2 r
+= m2π 2 ,
+(81)
+2
+2 32
+ρ
+ρ ρ +r
+∂V0
+which is bounded. The rest of the integral (over the part of the cube surface) is bounded by a
+constant, which is a manifestation of a more general fact that (by its definition) L (∂Vi , ri )
+does not depend on the size but only on the shape of the volume. Finally we have
+L (∂Vi , ri ) ≤ c69 ,
+(82)
+which together with Eqs. (74), (78), and (80) prove Eq. (76).
+Using Eqs. (75) and (76) we obtain
+⎛ Kmax
+⎞
+d
+sh
+sh
+h ≤ ∑ ∑ h ij + ∑ h ii ≤ ∑ ⎜⎜ ∑ c62 ns (l )l −3 + c70 ⎟⎟ ≤ Nd (c71 − c72 ln d ) ,
+(83)
+1
+i j∈∂V
+i∈∂V
+j∈∂V ⎝ l =1
+⎠
+where we have changed the order of the summation in the double sum and split the
+summation over cubical shells for l ≤ K max and l > K max . Then we have grouped everything
+into one sum over boundary dipoles. Eqs. (41) and (62) were used in the last inequality.
+Combining Eqs. (63) and (83) one can obtain the total estimate of the h d for any scatterer:
+
+(
+
+h
+
+d
+1
+
+[
+
+)
+
+]
+
+≤ N (c 43 − c 45 ln d )d + (c73 − c72 ln d )d .
+2
+
+1
+
+(84)
+
+Using Eq. (66) we immediately obtain the same estimate for δE d .
+1
+
+The derivation of the errors in the measured quantities is slightly modified compared to
+Section 2.D, by the presence of the shape errors. Eqs. (67) and (68) are changed to
+~~
+φ E − φ d (E 0,d ) ≤ ∑ c51d 5 + ∑ c74 d 3 ≤ c52 d 2 + c75 d ,
+(85)
+
+φ
+
+d
+
+()
+(E ) − φ (E ) ≤ c
+0 ,d
+
+d
+
+d
+
+53
+
+i∈∂V
+
+i
+
+3
+
+d δE
+
+d
+1
+
+≤ (c54 − c55 ln d )d 2 + (c76 − c77 ln d )d .
+
+(86)
+
+The second term in Eq. (85) comes from surface dipoles for which errors are the same order
+as the values themselves. Finally the generalization of Eq. (70) is
+δφ y ≤ (c59 − c60 ln y ) y 2 + (c78 − c79 ln y ) y .
+(87)
+
+13
+
+The shape errors "reinforce" the surface errors (the linear term of discretization error), and
+although they both generally decrease with increasing size parameter x one may expect the
+linear term in Eq. (87) to be significant up to higher values of y than in Eq. (70).
+All the derivations in this section can in principle be extended to interfaces inside the
+particle, i.e. when a surface, which cannot be described exactly as a surface of a set of cubes,
+separates two regions where χ(r) varies smoothly. Two parts of the cubical dipole on the
+interface should be considered separately the same way as it was done above. This will
+however not change the main conclusion of this section – Eq.(87) – but only the constants.
+
+F.Different DDA formulations
+In this section we discuss how different DDA formulations modify the error estimates derived
+in Sections 2.D and 2.E.
+Most of the improvements of PP proposed in the literature are concerned with the selfterm – M (Vi , ri ) . They are the Radiative Reaction correction (RR),8 the Digitized Green's
+Function (DGF),23 the formulation by Lakhtakia (LAK),26,27 the a1-term method,28,29 the
+Lattice Dispersion Relation (LDR),30 the formulation by Peltoniemi (PEL),31 and the
+Corrected LDR (CLDR).32 All of them provide an expression for M (Vi , ri ) that is of order d2
+(except for RR that is of order d3). For instance LDR is equivalent to
+(88)
+M (Vi , ri ) = (b1 + b2 m 2 + b3 m 2 S )d 2 + ( 2 3)id 3 Pi ,
+
+[
+
+]
+
+(remember that we assumed k = 1 ) where b1, b2, b3 are numerical constants and S is a
+constant that depends only on the propagation and polarization vectors of the incident field.
+However, none of these formulations can exactly evaluate the integral in Eq. (39), because the
+variation of the electric field is not known beforehand (PEL solves this problem, but only for
+a spherical dipole). Therefore they (hopefully) decrease the constant in Eq. (40), thus
+decreasing the overall error in the measured quantities. However, these formulations are not
+expected to change the order of the error from d2 to some higher order.
+We do not analyze the improvements by Rahmani, Chaumet, and Bryant (RCB)33,34 and
+Surface Corrected LDR (SCLDR),17 as they are limited to certain particle shapes.
+There exist two improvements of the interaction term in PP: Filtered Coupled Dipoles
+(FCD)12 and Integration of Green's Tensor (IT).35 A rigorous analysis of FCD errors is
+beyond the scope of this paper, but it seems that FCD is not designed to reduce the linear term
+in Eq. (63) that comes from the incomplete (non-symmetric) shells. This is because FCD
+employs sampling theory to improve the accuracy of the overall discretization for regular
+cubical grids. FCD does not improve the accuracy of a single G ij calculation (approximation
+of an integral over one subvolume).
+IT, which numerically evaluates the integral in Eq. (12), has a more pronounced effect
+on the error estimate. Consider dipole j from l-th shell (incomplete) of dipole i, then
+3
+3
+3
+∫ d r ′G (ri , r′)P(r′) − d G ij P j = ∫ d r ′G (ri , r′)(P(r′) − P j )
+Vj
+
+Vj
+
+≤ c80 ∫ d 3 r ′ r ′ 2 max ∂ μ G (ri , r ′) + c81 ∫ d 3 r ′r ′ 2 G (ri , r ′) ≤ c82 dl −4 .
+Vj
+
+μ , r ′∈V j
+
+(89)
+
+Vj
+
+Here we have used Eq. (36) and Taylor expansion of Green's tensor up to the first order.
+Eq. (89) states that the second term in Eq. (58) is completely eliminated and so is the linear
+term in Eqs. (69) and (70) (surface errors). Therefore convergence of DDA with IT for
+cubically shaped scatterers is expected to be purely quadratic (neglecting the logarithm).
+However, for non cubically shaped scatterers the linear term reappears, due to the shape
+14
+
+errors. Both IT and FCD also modify the self-term, however the effect is basically the same as
+for the other formulations.
+Several papers aimed to reduce shape errors.10,11,36 The first one – Generalized SemiAnalytical (GSA) method10 – modifies the whole DDA scheme, while the other two propose
+averaging of the susceptibility over the boundary dipoles. We will analyze here Weighted
+Discretization (WD) by Piller11 as probably the most advanced method to reduce shape errors
+available today.
+WD modifies the susceptibility and self-term of the boundary subvolume. We slightly
+modify the definition of the boundary subvolume used in Sections 2.B and 2.E to
+automatically take into account interfaces inside the scatterer. We define Vi to be always
+cubical, but with a possible interface inside. The particle surface, crossing the subvolume Vi,
+is assumed planar and divides the subvolume into two parts: the principal volume Vi p
+(containing the center) and the secondary volume Vi s with susceptibilities χ ip ≡ χ i , χ is and
+electric fields Eip ≡ E i , E si respectively. The electric fields are considered constant inside
+each part and related to each other via the boundary condition tensor Ti :
+E is = Ti E i .
+(90)
+In WD the susceptibility of the boundary subvolume is replaced by an effective one, defined
+as
+χ ie = Vi p χ ip I + Vi s χ is Ti d 3 ,
+(91)
+which gives the correct total polarization of the cubical dipole. The effective self-term is
+directly evaluated starting from Eq. (4), considering χ and E constant inside each part,
+⎛
+⎞
+M (Vi , ri ) = ⎜ ∫ d 3r ′ G (ri , r′) − G s (ri , r′) χ ip + ∫ d 3r ′ G (ri , r′) − G s (ri , r′) χ is Ti ⎟Ei .
+(92)
+⎜ p
+⎟
+s
+V
+V
+i
+⎠
+⎝ i
+Piller evaluated the integrals in Eq. (92) numerically.11
+To take a smooth variation of the electric field and susceptibility into account we define
+χ is = χ (r′′) ( r′′ is defined in Section 2.E) and Ti is calculated at the surface between ri and
+
+(
+
+(
+
+)
+
+)
+
+(
+
+)
+
+r ′′ . Pip ≡ Pi and Pis = χ is E si = χ is Ti E i . Then
+P(r′′) − Pis ≤ c83 mins r − ri ,
+
+(93)
+
+r∈Vi
+
+where we have assumed that Eq. (30) for χ(r) and E(r) is also valid in Vi s .
+We start estimating errors of WD with h sh
+ij (cf. Eq. (73))
+
+(
+
+)
+
+(
+
+)
+
+hijsh = ∫ d 3r′ G (ri , r′)P(r′) − Gij( 0) P jp + ∫ d 3r′ G (ri , r′)P(r′) − Gij( 0) P js ,
+V jp
+
+V js
+
+(94)
+
+Using Taylor expansions of P(r′) near ri and r ′′ in Vi p and Vi s correspondingly and Eq. (93)
+one may obtain that the main contribution comes from the derivative of Green's tensor,
+leading to (cf. Eq. (75))
+⎧⎪c84 d 4 Rij −4 , Rij < 2,
+sh
+h ij ≤ ⎨
+(95)
+4
+Rij > 1.
+⎪⎩c85 d ,
+h sh
+ii is the following (cf. Eq. (74))
+
+15
+
+(
+
+p
+hsh
+ii = M (Vi , ri ) − L (∂Vi , ri ) Pi
+
+)
+
+⎛
+⎞
+− ⎜ ∫ d 3r ′ G (ri , r′) − G s (ri , r′) Pip + ∫ d 3r ′ G (ri , r′) − G s (ri , r′) Pis − L (∂Vi , ri ) χ ieEi ⎟
+⎜ p
+⎟
+Vis
+⎝ Vi
+⎠
+
+(
+
+)
+
+(
+
+(
+
+)
+
+)
+
+(
+
+)
+
+(
+
+= ∫ d r ′G (ri , r′) P(r′) − P + ∫ d r ′G (ri , r′) P (r′) − P + ∫ d r ′G (ri , r′) P − P
+3
+
+Vi
+
+p
+i
+
+p
+
+3
+
+Vi
+
+s
+i
+
+s
+
+3
+
+Vi
+
+s
+
+s
+i
+
+p
+i
+
+)
+
+(96)
+
+s
+
++ L (∂Vi , ri ) χ Ei − L (∂Vi , ri )P .
+The first two integrals can be easily shown to be ≤ с85 d (cf. Eq. (77)) and third one is
+e
+i
+
+p
+i
+
+transformed to L the same way as in Eq. (80), thus
+h iish ≤ c86 d + L (∂Vi p , ri )Pip + L (∂Vi s , ri )Pis − L (∂Vi , ri ) χ ie Ei ,
+
+(97)
+
+where the second term comes from the fact that averaged L P is not the same as L times
+averaged P. This error depends on the geometry of the interface inside Vi and generally is of
+order unity. For example, if the plane interface is described as z = zi + ε , taking limit ε → 0
+
+gives the error 2π (Pip − Pis )z (using Eq. (81)). Therefore WD does not principally improve
+
+the error estimate of h sh
+given by Eq. (76), although it may significantly decrease the
+ii
+constant. On the other hand, since L (∂Vi p , ri ) and L (∂Vi s , ri ) can be (analytically) evaluated
+for a cube intersected by a plane, WD can be further improved to reduce the error in h sh
+ii to
+linear in d, which is a subject of future research.
+Proceeding analogous to the derivation of Eq. (83) one can obtain
+⎞
+⎛ K max
+h d ≤ ∑ ⎜⎜ ∑ c84 n s (l )l −4 + c87 + c88 d ⎟⎟ ≤ c89 Nd .
+(98)
+1
+j∈∂V ⎝ l =1
+⎠
+It can be shown that for the scattering amplitude (Eq. (25)) the error estimate given by
+Eq. (85) can be improved, since WD correctly evaluates the zeroth order of value for the
+boundary dipoles, leading to
+~~
+φ E − φ d (E 0,d ) ≤ ∑ c51d 5 + ∑ c90 d 4 ≤ c91d 2 .
+(99)
+
+()
+
+11
+
+i∈∂V
+
+i
+
+In his original paper Piller did not specify the expression that should be used for Cabs. Direct
+application of the susceptibility provided by WD into Eq. (26) does not reduce the order of
+error when compared with the exact Eq. (24) (except when χ is = 0 ), since they are not linear
+functions of the electric field. However, if we consider separately Vi p and Vi s (which is
+equivalent to replacing Vi Im((χ ie E i )⋅ E∗i ) by Vi p Im(χ ip ) Ei + Vi s Im( χ is ) Ti Ei ) the same
+2
+
+2
+
+estimate as in Eq. (99) can be derived for Cabs.
+Using Eqs. (98), (99), and the first part of Eq. (86) one can derive the final error
+estimate for WD:
+δφ y ≤ (c92 − c93 ln y ) y 2 + c94 y ,
+(100)
+where the constant before the linear term, as compared to Eq. (87), does not contain a
+logarithm and is expected to be significantly smaller, because several factors contributing to it
+are eliminated in WD. Although WD has a potential for improving, it does not seem feasible
+to completely eliminate the linear term in the shape error. The accuracy of evaluation of the
+interaction term over the boundary dipole (cf. Eq. (94)) can be improved by integration of
+Green's tensor over Vi p and Vi s separately but that would ruin the block-Toeplitz structure of
+the interaction matrix and hinder the FFT-based algorithm for the solution of linear
+16
+
+4
+
+10
+
+cube kD=8
+discretized sphere kD=10
+sphere kD=3 (x10)
+sphere kD=10
+sphere kD=30
+
+3
+
+S11(θ )
+
+10
+
+2
+
+10
+
+1
+
+10
+
+0
+
+10
+
+0
+
+30
+
+60
+90
+120
+Scattering angle θ, deg
+
+150
+
+180
+
+Fig. 2. S11(θ ) for all 5 test cases in logarithmic scale. The result for the kD = 3 sphere is multiplied by
+10 for convenience.
+
+equations.5 Since there is no comparable alternative to FFT nowadays, this method seems
+inapplicable.
+Minor modifications of the expression for Cabs are possible. Draine8 proposed a
+modification of Eq. (26) that was widely used afterwards and which was further modified by
+Chaumet et al.35 However, for many cases these expressions are equivalent and, even when
+they are not, the difference is of order d3, which is neglected in our error analysis.
+
+3. Numerical simulations
+A.Discrete Dipole Approximation
+The basics of the DDA method were summarized by Draine and Flatau.2 In this paper we use
+the LDR prescription for dipole polarizability,30 which is most widely used nowadays, e.g. in
+the publicly available code DDSCAT 6.1.4 We also employ dipole size correction8 for noncubically shaped scatterers to ensure that the cubical approximation of the scatterer has the
+correct volume; this is believed to diminish shape errors, especially for small scatterers.2 We
+use a standard discretization scheme as described in Section 2.E, without any improvements
+for boundary dipoles. It is important to note that all the conclusions are valid for any DDA
+implementation, but with a few changes for specific improvements as discussed in
+Section 2.F.
+Our code – Amsterdam DDA (ADDA) – is capable of running on a cluster of computers
+(parallelizing a single DDA computation), which allows us to use practically unlimited
+number of dipoles, since we are not limited by the memory of a single computer.37,38 We used
+a relative error of residual < 10 −8 as a stopping criterion for the iterative solution of the DDA
+linear system. Tests suggest that the relative error of the measured quantities due to the
+iterative solver is then < 10 −7 (data not shown) and hence can be neglected (total relative
+errors in our simulations are > 10 −6 ÷ 10 −5 – see Section 0). More details about our code can
+be found in Paper 2. All DDA simulations were carried out on the Dutch national compute
+cluster LISA.39
+
+17
+
+Table 1. Exact values of Qext for the 5 test cases.
+Particle
+kD = 8 cube
+discretized kD = 10 sphere
+kD = 3 sphere
+kD = 10 sphere
+kD = 30 sphere
+-1
+
+Relative error of S11(θ )
+
+10
+
+Qext
+4.490
+3.916
+0.753
+3.928
+1.985
+
+(a)
+
+slope = 0.77
+
+-2
+
+10
+
+-3
+
+10
+
+-4
+
+10
+
+0.1
+-1
+
+Relative error of S11(θ )
+
+10
+
+(b)
+
+slope = 0.95
+
+-2
+
+10
+
+maximum
+θ = 0°
+θ = 45°
+θ = 90°
+θ = 135°
+θ = 180°
+
+-3
+
+10
+
+-4
+
+10
+
+0.1
+
+y = kd*m
+
+1
+
+Fig. 3. Relative errors of S11 at different angles θ and maximum over all θ versus y for (a) the kD = 8
+cube, (b) the cubical discretization of kD = 10 sphere. A log-log scale is used. A linear fit of maximum
+over θ errors is shown. (m = 1.5).
+
+B.Results
+We study five test cases: one cube with kD = 8 , three spheres with kD = 3, 10, 30 , and a
+particle obtained by a cubical discretization of the kD = 10 sphere using 16 dipoles per D
+(total 2176 dipoles, x equal to that of a sphere; see detailed description in Paper 2). By D we
+denote the diameter of a sphere or the edge size of a cube. All scatterers are homogenous with
+m = 1.5 . Although DDA errors significantly depend on m (see e.g. 14), we limit ourselves to
+one single value and study effects of size and shape of the scatterer.
+The maximum number of dipoles per D (nD) was 256. The values of nD that we used are
+of the form {4,5,6,7} ⋅ 2 p (p is an integer), except for the discretized sphere, where all nD are
+18
+
+-1
+
+Relative error of S11(θ )
+
+10
+
+(a)
+
+maximum
+θ = 0°
+θ = 45°
+θ = 90°
+θ = 135°
+θ = 180°
+
+-2
+
+10
+
+-3
+
+10
+
+slope 1.05
+
+-4
+
+10
+
+0.01
+
+0.1
+
+(b)
+
+slope 0.91
+-1
+
+Relative error of S11(θ )
+
+10
+
+-2
+
+10
+
+-3
+
+10
+
+0.1
+1
+
+Relative error of S11(θ )
+
+10
+
+1
+
+(c)
+
+slope 2.29
+
+0
+
+10
+
+-1
+
+10
+
+-2
+
+10
+
+-3
+
+10
+
+0.1
+
+y = kd*m
+
+1
+
+Fig. 4. Same as Fig. 3 but for (a) kD = 3, (b) kD = 10, and (c) kD = 30 spheres.
+
+multiples of 16 (this is required to exactly describe the shape of the particle composed from a
+number of cubes). The minimum values for nD were 8 for the kD = 3 sphere, 16 for the cube,
+the kD = 10 sphere, and the discretized sphere, and 40 for the kD = 30 sphere.
+All the computations use a direction of incidence parallel to one of the principal axes of
+the cubical dipoles. The scattering plane is parallel to one of the face of the cubical dipoles. In
+this paper we show results only for the extinction efficiency Qext (for incident light polarized
+parallel to one of the principal axes of the cubical dipoles) and phase function S11(θ ) as the
+19
+
+Relative error of Qext
+
+10
+
+10
+
+-1
+
+-2
+
+cube kD=8
+discretized sphere kD=10
+sphere kD=3
+sphere kD=10
+sphere kD=30
+slope = 0.89
+
+10
+
+-3
+
+10
+
+-4
+
+0.01
+
+0.1
+y=kd*m
+
+1
+
+Fig. 5. Relative errors of Qext versus y for all 5 test cases. A log-log scale is used. A linear fit through 5
+finest discretizations of kD = 3 sphere is shown.
+
+most commonly used in applications. However, the theory applies to any measured quantity.
+For instance, we have also confirmed it for other Mueller matrix elements (data not shown).
+Exact results of S11(θ ) for all 5 test cases are shown in Fig. 2. For spheres this is the
+result of Mie theory (the relative accuracy of the code we used24 is at least < 10 −6 ) and for the
+cube and discretized sphere an extrapolation over the 5 finest discretizations (the
+extrapolation technique is presented in Paper 2, together with all details of obtaining these
+results, including their estimated errors). We use such 'exact' results because analytical theory
+is unavailable for these shapes and because errors of the best discretization are larger than that
+of the extrapolation. Their use as references for computing real errors (difference between the
+computed and the exact value) of single DDA calculations is justified because all these real
+errors are significantly larger than the errors of the references themselves (see Paper 2; in
+general, real errors obtained this way have an uncertainty of reference error). Exact values of
+Qext for all test cases are presented in Table 1.
+In the following we show the results of DDA convergence. Fig. 3 and Fig. 4 present
+relative errors (absolute values) of S11 at different angles θ and maximum error over all θ
+versus y in log-log scale. In many cases the maximum errors are reached at exact
+backscattering direction, then these two sets of points overlap. Deep minima that happen at
+intermediate values of y for some values of θ (and also sometimes for Qext – Fig. 5) are due to
+the fact that the differences between simulated and reference values change sign near these
+values of y (see Paper 2 for detailed description of this behavior). The solid lines are linear fits
+to all or some points of maximum error. The slopes of these lines are depicted in the figures.
+Fig. 5 shows relative errors of Qext for all 5 studied cases in log-log scale. A linear fit through
+the 5 finest discretizations of the kD = 3 sphere is shown. More results of these numerical
+simulations are presented in Paper 2.
+
+4. Discussion
+Convergence of DDA for cubically shaped particles (Fig. 3) shows the following trends. All
+curves have linear and quadratic parts (the non-monotonic behavior of errors for some θ are
+also a manifestation of the fact that signed difference can be approximated by a sum of linear
+and quadratic terms that have different signs). The transition between these two regimes
+20
+
+occurs at different y (which indicates the relative importance of linear and quadratic
+coefficients). While for maximum errors that are close to those of the backscattering direction
+the linear term is significant for larger y, it is much smaller and not significant in the whole
+range of y studied for side scattering ( θ = 90° ). Results of DDA convergence for spheres (Fig.
+4) show a different behavior for different sizes. Errors for the small ( kD = 3 ) sphere converge
+purely linear (except for small deviation of errors of S11 (90°) for large values of y). Similar
+results are obtained for the kD = 10 sphere, but with significant oscillations superimposed
+upon the general trend. Convergence for the large ( kD = 30 ) sphere is quadratic or even faster
+in the range of y studied, also with significant oscillations.
+Comparing Fig. 3 and Fig. 4 (especially Fig. 3(b) and Fig. 4(b) showing results for
+almost the same particles) one can deduce the following differences in DDA convergence for
+cubically and non-cubically shaped scatterers. The linear term for cubically shaped scatterers
+is significantly smaller, resulting in smaller total errors, especially for small y. All these
+conclusions, together with the size dependence of the significance of the linear term in the
+total errors, are in perfect agreement with the theoretical predictions made in Sections 2.D and
+2.E. Errors for non-cubically shaped particles exhibit quasi-random oscillations that are not
+present for cubically shaped particles. This can be explained by the sharp variations of shape
+errors with changing y (discussed in details in Paper 2). Oscillations for the kD = 3 sphere
+(Fig. 4(a)) are very small (but still clearly present), which is due to the small size of the
+particle and hence featurelessness of its light scattering pattern – the surface structure is not
+that important and one may expect rather small shape errors. Results for Qext (Fig. 5) fully
+support the conclusions. Errors of Qext for the large sphere at small values of y are
+unexpectedly smaller than for smaller spheres. This feature requires further study before
+making any firm conclusions, however there is definitely no similar tendency for S11(θ ) (cf.
+Fig. 4).
+We have also studied a kD = 8 porous cube that was obtained by dividing a cube into
+27 smaller cubes and then removing randomly 9 of them. All the conclusions are the same as
+those reported for the cube, but with slightly higher overall errors (data not shown).
+In this paper we have used a traditional DDA formulation2 for numerical simulations.
+However, as we showed in Section 2.F several modern improvements of DDA (namely IT
+and WD) should significantly change its convergence behavior. IT should completely
+eliminate the linear term for cubically shaped scatterers, which should improve the accuracy
+especially for small y. WD should significantly decrease shape and hence total errors for noncubically shaped particles, moreover it should significantly decrease the amplitude of quasirandom error oscillations because it takes into account the location of the interface inside the
+boundary dipoles. Numerical testing of DDA convergence using IT and WD is a subject of a
+future study.
+
+5. Conclusion
+To the best of our knowledge, we conducted for the first time a rigorous theoretical
+convergence analysis of DDA. In the range of DDA applicability ( kd < 2 ) errors are bounded
+by a sum of a linear and quadratic term in the discretization parameter y; the linear term is
+significantly smaller for cubically than for non-cubically shaped scatterers. Therefore for
+small y errors for cubically shaped particles are much smaller than for non-cubically shaped.
+The relative importance of the linear term decreases with increasing size, hence convergence
+of DDA for large enough scatterers is quadratic in the common range of y. All these
+conclusions were verified by extensive numerical simulations.
+21
+
+Moreover, these simulations showed that errors are not only bounded by a quadratic
+function (as predicted in Section 2), but actually can be (with good accuracy) described by a
+quadratic function of y. This fact provides a basis for the extrapolation technique presented in
+Paper 2.
+Our theory predicts that modern DDA improvements (namely IT and WD) should
+significantly change the convergence of DDA, however numerical testing of these predictions
+is left for future research.
+
+Acknowledgements
+We thank Gorden Videen and Michiel Min for valuable comments on earlier version of this
+manuscript and anonymous reviewer for helpful suggestions. Our research is supported by the
+NATO Science for Peace program through grant SfP 977976.
+
+References
+1. E. M. Purcell and C. R. Pennypacker, "Scattering and adsorption of light by nonspherical dielectric
+grains," Astrophys. J. 186, 705-714 (1973).
+2. B. T. Draine and P. J. Flatau, "Discrete-dipole approximation for scattering calculations," J. Opt. Soc.
+Am. A 11, 1491-1499 (1994).
+3. B. T. Draine, "The discrete dipole approximation for light scattering by irregular targets," in Light
+Scattering by Nonspherical Particles, Theory, Measurements, and Applications, M. I. Mishchenko, J. W.
+Hovenier, and L. D. Travis, eds. (Academic Press, New York, 2000), pp. 131-145.
+4. B. T. Draine and P. J. Flatau, "User guide for the discrete dipole approximation code DDSCAT 6.1,"
+http://xxx.arxiv.org/abs/astro-ph/0409262 (2004).
+5. J. J. Goodman, B. T. Draine, and P. J. Flatau, "Application of fast-Fourier-transform techniques to the
+discrete-dipole approximation," Opt. Lett. 16, 1198-1200 (1991).
+6. G. C. Hsiao and R. E. Kleinman, "Mathematical foundations for error estimation in numerical solutions of
+integral equations in electromagnetics," IEEE Trans. Ant. Propag. 45, 316-328 (1997).
+7. K. F. Warnick and W. C. Chew, "Error analysis of the Moment Method," IEEE Ant. Prop. Mag. 46, 38-53
+(2004).
+8. B. T. Draine, "The discrete-dipole approximation and its application to interstellar graphite grains,"
+Astrophys. J. 333, 848-872 (1988).
+9. J. I. Hage, J. M. Greenberg, and R. T. Wang, "Scattering from arbitrarily shaped particles - theory and
+experiment," Appl. Opt. 30, 1141-1152 (1991).
+10. F. Rouleau and P. G. Martin, "A new method to calculate the extinction properties of irregularly shaped
+particles," Astrophys. J. 414, 803-814 (1993).
+11. N. B. Piller, "Influence of the edge meshes on the accuracy of the coupled-dipole approximation," Opt.
+Lett. 22, 1674-1676 (1997).
+12. N. B. Piller and O. J. F. Martin, "Increasing the performance of the coupled-dipole approximation: A
+spectral approach," IEEE Trans. Ant. Propag. 46, 1126-1137 (1998).
+13. N. B. Piller, "Coupled-dipole approximation for high permittivity materials," Opt. Comm. 160, 10-14
+(1999).
+14. A. G. Hoekstra, J. Rahola, and P. M. A. Sloot, "Accuracy of internal fields in volume integral equation
+simulations of light scattering," Appl. Opt. 37, 8482-8497 (1998).
+15. S. D. Druger and B. V. Bronk, "Internal and scattered electric fields in the discrete dipole approximation,"
+J. Opt. Soc. Am. B 16, 2239-2246 (1999).
+16. Y. L. Xu and B. A. S. Gustafson, "Comparison between multisphere light-scattering calculations:
+Rigorous solution and discrete-dipole approximation," Astrophys. J. 513, 894-909 (1999).
+17. M. J. Collinge and B. T. Draine, "Discrete-dipole approximation with polarizabilities that account for both
+finite wavelength and target geometry," J. Opt. Soc. Am. A 21, 2023-2028 (2004).
+18. M. A. Yurkin, V. P. Maltsev, and A. G. Hoekstra, "Convergence of the discrete dipole approximation. II.
+An extrapolation technique to increase the accuracy," J. Opt. Soc. Am. A 23, 2592-2601 (2006).
+19. A. Lakhtakia, "Strong and weak forms of the method of moments and the coupled dipole method for
+scattering of time-harmonic electromagnetic-fields," Int. J. Mod. Phys. C 3, 583-603 (1992).
+20. F. M. Kahnert, "Numerical methods in electromagnetic scattering theory," J. Quant. Spectrosc. Radiat.
+Transf. 79, 775-824 (2003).
+21. C. P. Davis and K. F. Warnick, "On the physical interpretation of the Sobolev norm in error estimation,"
+Appl. Comp. ElectroMagn. Soc. J. 20, 144-150 (2005).
+
+22
+
+22. A. D. Yanghjian, "Electric dyadic Green's function in the source region," IEEE Proc. 68, 248-263 (1980).
+23. G. H. Goedecke and S. G. O'Brien, "Scattering by irregular inhomogeneous particles via the digitized
+Green's function algorithm," Appl. Opt. 27, 2431-2438 (1988).
+24. C. F. Bohren and D. R. Huffman, Absorption and scattering of Light by Small Particles, (Wiley, New
+York, 1983).
+25. J. Rahola, "On the eigenvalues of the volume integral operator of electromagnetic scattering," SIAM J.
+Sci. Comp. 21, 1740-1754 (2000).
+26. A. Lakhtakia and G. W. Mulholland, "On 2 numerical techniques for light-scattering by dielectric
+agglomerated structures," J. Res. Nat. Inst. Stand. Technol. 98, 699-716 (1993).
+27. J. I. Hage and J. M. Greenberg, "A model for the optical-properties of porous grains," Astrophys. J. 361,
+251-259 (1990).
+28. C. E. Dungey and C. F. Bohren, "Light-scattering by nonspherical particles - a refinement to the coupleddipole method," J. Opt. Soc. Am. A 8, 81-87 (1991).
+29. H. Okamoto, "Light scattering by clusters: the a1-term method," Opt. Rev. 2, 407-412 (1995).
+30. B. T. Draine and J. J. Goodman, "Beyond clausius-mossotti - wave-propagation on a polarizable point
+lattice and the discrete dipole approximation," Astrophys. J. 405, 685-697 (1993).
+31. J. I. Peltoniemi, "Variational volume integral equation method for electromagnetic scattering by irregular
+grains," J. Quant. Spectrosc. Radiat. Transf. 55, 637-647 (1996).
+32. D. Gutkowicz-Krusin and B. T. Draine, "Propagation of electromagnetic waves on a rectangular lattice of
+polarizable points," http://xxx.arxiv.org/abs/astro-ph/0403082 (2004).
+33. A. Rahmani, P. C. Chaumet, and G. W. Bryant, "Coupled dipole method with an exact long-wavelength
+limit and improved accuracy at finite frequencies," Opt. Lett. 27, 2118-2120 (2002).
+34. A. Rahmani, P. C. Chaumet, and G. W. Bryant, "On the importance of local-field corrections for
+polarizable particles on a finite lattice: Application to the discrete dipole approximation," Astrophys. J.
+607, 873-878 (2004).
+35. P. C. Chaumet, A. Sentenac, and A. Rahmani, "Coupled dipole method for scatterers with large
+permittivity," Phys. Rev. E 70, 036606 (2004).
+36. K. F. Evans and G. L. Stephens, "Microwave radiative-transfer through clouds composed of realistically
+shaped ice crystals .1. Single scattering properties," J. Atmos. Sci. 52, 2041-2057 (1995).
+37. A. G. Hoekstra, M. D. Grimminck, and P. M. A. Sloot, "Large scale simulations of elastic light scattering
+by a fast discrete dipole approximation," Int. J. Mod. Phys. C 9, 87-102 (1998).
+38. M. A. Yurkin, K. A. Semyanov, P. A. Tarasov, A. V. Chernyshev, A. G. Hoekstra, and V. P. Maltsev,
+"Experimental and theoretical study of light scattering by individual mature red blood cells with scanning
+flow cytometry and discrete dipole approximation," Appl. Opt. 44, 5249-5256 (2005).
+39. "Description of the national compute cluster Lisa," http://www.sara.nl/userinfo/lisa/description/ (2005).
+
+23
+
+

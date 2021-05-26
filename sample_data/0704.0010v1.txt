@@ -1,0 +1,1523 @@
+arXiv:0704.0010v1 [math.CO] 31 Mar 2007
+
+Partial cubes: structures, characterizations, and
+constructions
+Sergei Ovchinnikov
+Mathematics Department
+San Francisco State University
+San Francisco, CA 94132
+sergei@sfsu.edu
+May 8, 2006
+Abstract
+Partial cubes are isometric subgraphs of hypercubes. Structures on a
+graph defined by means of semicubes, and Djoković's and Winkler's relations play an important role in the theory of partial cubes. These structures are employed in the paper to characterize bipartite graphs and partial cubes of arbitrary dimension. New characterizations are established
+and new proofs of some known results are given.
+The operations of Cartesian product and pasting, and expansion and
+contraction processes are utilized in the paper to construct new partial
+cubes from old ones. In particular, the isometric and lattice dimensions of
+finite partial cubes obtained by means of these operations are calculated.
+
+Key words: Hypercube, partial cube, semicube
+
+1
+
+Introduction
+
+A hypercube H(X) on a set X is a graph which vertices are the finite subsets
+of X; two vertices are joined by an edge if they differ by a singleton. A partial
+cube is a graph that can be isometrically embedded into a hypercube.
+There are three general graph-theoretical structures that play a prominent
+role in the theory of partial cubes; namely, semicubes, Djoković's relation θ, and
+Winkler's relation Θ. We use these structures, in particular, to characterize bipartite graphs and partial cubes. The characterization problem for partial cubes
+was considered as an important one and many characterizations are known.
+We list contributions in the chronological order: Djoković [9] (1973), Avis [2]
+(1981), Winkler [20] (1984), Roth and Winkler [18] (1986), Chepoi [6, 7] (1988
+and 1994). In the paper, we present new proofs for the results of Djoković [9],
+Winkler [20], and Chepoi [6], and obtain two more characterizations of partial
+cubes.
+1
+
+The paper is also concerned with some ways of constructing new partial
+cubes from old ones. Properties of subcubes, the Cartesian product of partial
+cubes, and expansion and contraction of a partial cube are investigated. We
+introduce a construction based on pasting two graphs together and show how
+new partial cubes can be obtained from old ones by pasting them together.
+The paper is organized as follows.
+Hypercubes and partial cubes are introduced in Section 2 together with
+two basic examples of infinite partial cubes. Vertex sets of partial cubes are
+described in terms of well graded families of finite sets.
+In Section 3 we introduce the concepts of a semicube, Djoković's θ and Winkler's Θ relations, and establish some of their properties. Bipartite graphs and
+partial cubes are characterized by means of these structures. One more characterization of partial cubes is obtained in Section 4, where so-called fundamental
+sets in a graph are introduced.
+The rest of the paper is devoted to constructions: subcubes and the Cartesian product (Section 6), pasting (Section 7), and expansions and contractions
+(Section 8). We show that these constructions produce new partial cubes from
+old ones. Isometric and lattice dimensions of new partial cubes are calculated.
+These dimensions are introduced in Section 5.
+Few words about conventions used in the paper are in order. The sum
+(disjoint union) A + B of two sets A and B is the union
+({1} × A) ∪ ({2} × B).
+All graphs in the paper are simple undirected graphs. In the notation G =
+(V, E), the symbol V stands for the set of vertices of the graph G and E stands
+for its set of edges. By abuse of language, we often write ab for an edge in a
+graph; if this is the case, ab is an unordered pair of distinct vertices. We denote
+hU i the graph induced by the set of vertices U ⊆ V . If G is a connected graph,
+then dG (a, b) stands for the distance between two vertices a and b of the graph
+G. Wherever it is clear from the context which graph is under consideration, we
+drop the subscript G in dG (a, b). A subgraph H ⊆ G is an isometric subgraph
+if dH (a, b) = dG (a, b) for all vertices a and b of H; it is convex if any shortest
+path in G between vertices of H belongs to H.
+
+2
+
+Hypercubes and partial cubes
+
+Let X be a set. We denote Pf (X) the set of all finite subsets of X.
+Definition 2.1. A graph H(X) has the set Pf (X) as the set of its vertices; a
+pair of vertices P Q is an edge of H(X) if the symmetric difference P ∆Q is a
+singleton. The graph H(X) is called the hypercube on X [9]. If X is a finite
+set of cardinality n, then the graph H(X) is the n-cube Qn . The dimension of
+the hypercube H(X) is the cardinality of the set X.
+
+2
+
+The shortest path distance d(P, Q) on the hypercube H(X) is the Hamming
+distance between sets P and Q:
+d(P, Q) = |P ∆Q| for P, Q ∈ Pf .
+
+(2.1)
+
+The set Pf (X) is a metric space with the metric d.
+Definition 2.2. A graph G is a partial cube if it can be isometrically embedded
+into a hypercube H(X) for some set X. We often identify G with its isometric
+image in the hypercube H(X), and say that G is a partial cube on the set X.
+
+Figure 2.1: A graph and its isometric embedding into Q3 .
+An example of a partial cube and its isometric embedding into the cube Q3
+is shown in Figure 2.1.
+Clearly, a family F of finite subsets of X induces a partial cube on X if and
+only if for any two distinct subsets P, Q ∈ F there is a sequence
+R0 = P, R1 , . . . , Rn = Q
+of sets in F such that
+d(Ri , Ri+1 ) = 1 for all 0 ≤ i < n, and d(P, Q) = n.
+
+(2.2)
+
+The families of sets satisfying condition (2.2) are known as well graded families of sets [10]. Note that a sequence (Ri ) satisfying (2.2) is a shortest path
+from P to Q in H(X) (and in the subgraph induced by F).
+Definition 2.3. A family F of arbitrary subsets of X is a wg-family (well graded
+family of sets) if, for any two distinct subsets P, Q ∈ F, the set P ∆Q is finite
+and there is a sequence
+R0 = P, R1 , . . . , Rn = Q
+of sets in F such that |Ri ∆Ri+1 | = 1 for all 0 ≤ i < n and |P ∆Q| = n.
+Example 2.1. The induced graph can be a partial cube on a different set if
+the family F is not well graded. Consider, for instance, the family
+F = {∅, {a}, {a, b}, {a, b, c}, {b, c}}
+of subsets of X = {a, b, c}. The graph induced by this family is a path of length
+4 in the cube Q3 (cf. Figure 2.2). Clearly, F is not well graded. On the other
+hand, as it can be easily seen, any path is a partial cube.
+3
+
+Figure 2.2: A nonisometric path in the cube Q3 .
+Any family F of subsets of X defines a graph GF = (F, EF ), where
+EF = {{P, Q} ⊆ F : |P ∆Q| = 1}.
+Theorem 2.1. The graph GF defined by a family F of subsets of a set X is
+isomorphic to a partial cube on X if and only if the family F is well graded.
+Proof. We need to prove sufficiency only. Let S be a fixed set in F. We define
+a mapping f : F → Pf (X) by f (R) = R∆S for R ∈ F. Then
+d(f (R), f (T )) = |(R∆S)∆(T ∆S)| = |R∆T |.
+Thus f is an isometric embedding of F into Pf (X). Let (Ri ) be a sequence of
+sets in F such that R0 = P , Rn = Q, |P ∆Q| = n, and |Ri ∆Ri+1 | = 1 for all
+0 ≤ i < n. Then the sequence (f (Ri )) satisfies conditions (2.2). The result
+follows.
+A set R ∈ Pf (X) is said to be lattice between sets P, Q ∈ Pf (X) if
+P ∩ Q ⊆ R ⊆ P ∪ Q.
+It is metrically between P and Q if
+d(P, R) + d(R, Q) = d(P, Q).
+The following theorem is a well-known result about these two betweenness relations on Pf (X) (see, for instance, [3]).
+Theorem 2.2. Lattice and metric betweenness relations coincide on Pf (X).
+Let F be a family of finite subsets of X. The set of all R ∈ F that are
+between P, Q ∈ F is the interval I(P, Q) between P and Q in F. Thus,
+I(P, Q) = F ∩ [P ∩ Q, P ∪ Q],
+where [P ∩ Q, P ∪ Q] is the usual interval in the lattice Pf .
+
+4
+
+Two distinct sets P, Q ∈ F are adjacent in F if J(P, Q) = {P, Q}. If sets P
+and Q form an edge in the graph induced by F, then P and Q are adjacent in
+F, but, generally speaking, not vice versa. For instance, in Example 2.1, the
+vertices ∅ and {b, c} are adjacent in F but do not define an edge in the induced
+graph (cf. Figure 2.2).
+The following theorem is a 'local' characterization of wg-families of sets.
+Theorem 2.3. A family F ⊆ Pf (X) is well graded if and only if d(P, Q) = 1
+for any two sets P and Q that are adjacent in F.
+Proof. (Necessity.) Let F be a wg-family of sets. Suppose that P and Q are
+adjacent in F. There is a sequence R0 = P, R1 , . . . , Rn = Q that satisfies
+conditions (2.2). Since the sequence (Ri ) is a shortest path in F, we have
+d(P, Pi ) + d(Pi , Q) = d(P, Q)
+
+for all 0 ≤ i ≤ n.
+
+Thus, Pi ∈ I(P, Q) = {P, Q}. It follows that d(P, Q) = n = 1.
+(Sufficiency.) Let P and Q be two distinct sets in F. We prove by induction
+on n = d(P, Q) that there is a sequence (Ri ) ∈ F satisfying conditions (2.2).
+The statement is trivial for n = 1. Suppose that n > 1 and that the
+statement is true for all k < n. Let P and Q be two sets in F such that
+d(P, Q) = n. Since d(P, Q) > 1, the sets P and Q are not adjacent in F.
+Therefore there exists R ∈ F that lies between P and Q and is distinct from
+these two sets. Then d(P, R) + d(R, Q) = d(P, Q) and both distances d(P, R)
+and d(R, Q) are less than n. By the induction hypothesis, there is a sequence
+(Ri ) ∈ F such that
+P = R0 , R = Rj , Q = Rn
+
+for some 0 < j < n,
+
+satisfying conditions (2.2) for 0 ≤ i < j and j ≤ i < n. It follows that F is a
+wg-family of sets.
+We conclude this section with two examples of infinite partial cubes (more
+examples are found in [17]).
+Example 2.2. Let Z be the graph on the set Z of integers with edges defined
+by pairs of consecutive integers. This graph is a partial cube since its vertex set
+is isometric to the wg-family of intervals {(−∞, m) : m ∈ Z} in Z.
+Example 2.3. Let us consider Zn as a metric space with respect to the l1 metric. The graph Zn has Zn as the vertex set; two vertices in Zn are connected
+if they are on the unit distance from each other. We will show in Section 6
+(Corollary 6.1) that Zn is a partial cube.
+
+3
+
+Characterizations
+
+Only connected graphs are considered in this section.
+5
+
+Definition 3.1. Let G = (V, E) be a graph and d be its distance function. For
+any two adjacent vertices a, b ∈ V let Wab be the set of vertices that are closer
+to a than to b:
+Wab = {w ∈ V : d(w, a) < d(w, b)}.
+Following [11], we call the sets Wab and induced subgraphs hWab i semicubes of
+the graph G. The semicubes Wab and Wba are called opposite semicubes.
+Remark 3.1. The subscript ab in Wab stands for an ordered pair of vertices,
+not for an edge of G. In his original paper [9], Djoković uses notation G(a, b)
+(cf. [8]). We use the notation from [15].
+Clearly, two opposite semicubes are disjoint. They can be used to characterize bipartite graphs as follows.
+Theorem 3.1. A graph G = (V, E) is bipartite if and only if the semicubes Wab
+and Wba form a partition of V for any edge ab ∈ E.
+Proof. Let us recall that a connected graph G is bipartite if and only if for every
+vertex x there is no edge ab with d(x, a) = d(x, b) (see, for instance, [1]). For
+any edge ab ∈ E and vertex x ∈ V we clearly have
+d(x, a) = d(x, b)
+
+⇔
+
+x∈
+/ Wab ∪ Wba .
+
+The result follows.
+The following lemma is instrumental and will be used frequently in the rest
+of the paper.
+Lemma 3.1. Let G = (V, E) be a graph and w ∈ Wab for some edge ab ∈ E.
+Then
+d(w, b) = d(w, a) + 1.
+Accordingly,
+Wab = {w ∈ V : d(w, b) = d(w, a) + 1}.
+Proof. By the triangle inequality, we have
+d(w, a) < d(w, b) ≤ d(w, a) + d(a, b) = d(w, a) + 1.
+The result follows, since d takes values in N.
+There are two binary relations on the set of edges of a graph that play a
+central role in characterizing partial cubes.
+Definition 3.2. Let G = (V, E) be a graph and e = xy and f = uv be two
+edges of G.
+(i) (Djoković [9]) The relation θ on E is defined by
+e θf ⇔ f joins a vertex in Wxy with a vertex in Wyx .
+The notation can be chosen such that u ∈ Wxy and v ∈ Wyx .
+6
+
+(ii) (Winkler [20]) The relation Θ on E is defined by
+e Θf
+
+⇔
+
+d(x, u) + d(y, v) 6= d(x, v) + d(y, u).
+
+It is clear that both relations θ and Θ are reflexive and Θ is symmetric.
+Lemma 3.2. The relation θ is a symmetric relation on E.
+Proof. Suppose that xy θ uv with u ∈ Wxy and v ∈ Wyx . By Lemma 3.1 and
+the triangle inequality, we have
+d(u, x) = d(u, y) − 1 ≤ d(u, v) + d(v, y) − 1 = d(v, y) =
+= d(v, x) − 1 ≤ d(v, u) + d(u, x) − 1 = d(u, x).
+Hence, d(u, x) = d(v, x) − 1 and d(v, y) = d(u, y) − 1. Therefore, x ∈ Wuv and
+y ∈ Wvu . It follows that uv θ xy.
+Lemma 3.3. θ ⊆ Θ.
+Proof. Suppose that xy θ uv with u ∈ Wxy , v ∈ Wyx . By Lemma 3.1,
+d(x, u) + d(y, v) = d(x, v) − 1 + d(y, u) − 1 6= d(x, v) + d(y, u).
+Hence, xy Θ uv.
+Example 3.1. It is easy to verify that θ is the identity relation on the set of
+edges of the cycle C3 . On the other hand, any two edges of C3 stand in the
+relation Θ. Thus, θ 6= Θ in this case.
+Bipartite graphs can be characterized in terms of relations θ and Θ as follows.
+Theorem 3.2. A graph G = (V, E) is bipartite if and only if θ = Θ.
+Proof. (Necessity.) Suppose that G is a bipartite graph, two edges xy and uv
+stand in the relation Θ, that is,
+d(x, u) + d(y, v) 6= d(x, v) + d(y, u),
+and that edges xy and uv do not stand in the relation θ. By Theorem 3.1, we
+may assume that u, v ∈ Wxy . By Lemma 3.1, we have
+d(x, u) + d(y, v) = d(y, u) − 1 + d(x, v) + 1 = d(x, v) + d(y, u),
+a contradiction. It follows that Θ ⊆ θ. By Lemma 3.3, θ = Θ.
+(Sufficiency.) Suppose that G is not bipartite. By Theorem 3.1, there is an
+edge xy such that Wxy ∪ Wyx is a proper subset of V . Since G is connected,
+there is an edge uv with u ∈
+/ Wxy ∪ Wyx and v ∈ Wxy ∪ Wyx . Clearly, uv does
+not stand in the relation θ to xy. On the other hand,
+d(x, u) + d(y, v) 6= d(x, v) + d(y, u),
+since u ∈
+/ Wxy ∪ Wyx and v ∈ Wxy ∪ Wyx . Thus, xy Θ uv, a contradiction, since
+we assumed that θ = Θ.
+7
+
+By Theorem 3.2, the relations θ and Θ coincide on bipartite graphs. For
+this reason we use the relation θ in the rest of the paper.
+Lemma 3.4. Let G = (V, E) be a bipartite graph such that all its semicubes are
+convex sets. Then two edges xy and uv stand in the relation θ if and only if the
+corresponding pairs of mutually opposite semicubes form equal partitions of V :
+xy θ uv
+
+⇔
+
+{Wxy , Wyx } = {Wuv , Wvu }.
+
+Proof. (Necessity) We assume that the notation is chosen such that u ∈ Wxy
+and v ∈ Wyx . Let z ∈ Wxy ∩ Wvu . By Lemma 3.1, d(z, u) = d(z, v) + d(v, u).
+Since z, u ∈ Wxy and Wxy is convex, we have v ∈ Wxy , a contradiction to the
+assumption that v ∈ Wyx . Thus Wxy ∩ Wvu = ∅. Since two opposite semicubes
+in a bipartite graph form a partition of V , we have Wuv = Wxy and Wvu = Wyx .
+A similar argument shows that Wuv = Wyx and Wvu = Wxy , if u ∈ Wyx
+and v ∈ Wxy .
+(Sufficiency.) Follows from the definition of the relation θ.
+We need another general property of the relation θ (cf. Lemma 2.2 in [15]).
+Lemma 3.5. Let P be a shortest path in a graph G. Then no two distinct edges
+of P stand in the relation θ.
+Proof. Let i < j and xi xi+1 and xj xj+1 be two edges in a shortest path P from
+x0 to xn . Then
+d(xi , xj ) < d(xi , xj+1 ) and d(xi+1 , xj ) < d(xi+1 , xj+1 ),
+so xi , xi+1 ∈ Wxj xj+1 . It follows that edges xi xi+1 and xj xj+1 do not stand in
+the relation θ.
+The converse statement is true for bipartite graphs (we omit the proof); a
+counterexample is the cycle C5 which is not bipartite.
+Lemma 3.6. Let G = (V, E) be a bipartite graph. The following statements are
+equivalent
+(i) All semicubes of G are convex.
+(ii) The relation θ is an equivalence relation on E.
+Proof. (i) ⇒ (ii). Follows from Lemma 3.4.
+(ii) ⇒ (i). Suppose that θ is transitive and there is a nonconvex semicube
+Wab . Then there are two vertices u, v ∈ Wab and a shortest path P from u to
+v that intersects Wba . This path contains two distinct edges e and f joining
+vertices of semicubes Wab and Wba . The edges e and f stand in the relation θ
+to the edge ab. By transitivity of θ, we have e θf . This contradicts the result
+of Lemma 3.5. Thus all semicubes of G are convex.
+
+8
+
+We now establish some basic properties of partial cubes.
+Theorem 3.3. Let G = (V, E) be a partial cube. Then
+(i) G is a bipartite graph.
+(ii) Each pair of opposite semicubes form a partition of V .
+(iii) All semicubes are convex subsets of V .
+(iv) θ is an equivalence relation on E.
+Proof. We may assume that G is an isometric subgraph of some hypercube
+H(X), that is, G = (F, EF ) for a wg-family F of finite subsets of X.
+(i) It suffices to note that if two sets in H(X) are connected by an edge then
+they have different parity. Thus, H(X) is a bipartite graph and so is G.
+(ii) Follows from (i) and Theorem 3.1.
+(iii) Let WAB be a semicube of G. By Lemma 3.1 and Theorem 2.2, we have
+WAB = {S ∈ F : S ∩ B ⊆ A ⊆ S ∪ B}.
+Let Q, R ∈ WAB and P be a vertex of G such that
+d(Q, P ) + d(P, R) = d(Q, R).
+By Theorem 2.2,
+Q ∩ R ⊆ P ⊆ Q ∪ R.
+Since Q, R ∈ WAB , we have
+Q∩B ⊆A⊆Q∪B
+
+and R ∩ B ⊆ A ⊆ R ∪ B,
+
+which implies
+P ∩ B ⊆ (Q ∪ R) ∩ B ⊆ A ⊆ (Q ∩ R) ∪ B ⊆ S ∪ B.
+Hence, P ∈ WAB , and the result follows.
+(iv) Follows from (iii) and Lemma 3.6.
+Remark 3.2. Since semicubes of a partial cube G = (V, E) are convex subsets
+of the metric space V , they are half-spaces in V [19]. This terminology is used
+in [6, 7].
+The following theorem presents four characterizations of partial cubes. The
+first two are due to Djoković [9] and Winkler [20] (cf. Theorem 2.10 in [15]).
+Theorem 3.4. Let G = (V, E) be a connected graph. The following statements
+are equivalent:
+(i) G is a partial cube.
+9
+
+(ii) G is bipartite and all semicubes of G are convex.
+(iii) G is bipartite and θ is an equivalence relation.
+(iv) G is bipartite and, for all xy, uv ∈ E,
+xy θ uv
+
+⇒
+
+{Wxy , Wyx } = {Wuv , Wvu }.
+
+(3.1)
+
+(v) G is bipartite and, for any pair of adjacent vertices of G, there is a unique
+pair of opposite semicubes separating these two vertices.
+Proof. By Lemma 3.6, the statements (ii) and (iii) are equivalent and, by Theorem 3.3, (i) implies both (ii) and (iii).
+(iii) ⇒ (i). By Theorem 3.1, each pair {Wab , Wba } of opposite semicubes of
+G form a partition of V . We orient these partitions by calling, in an arbitrary
+way, one of the two opposite semicubes in each partition a positive semicube.
+Let us assign to each x ∈ V the set W + (x) of all positive semicubes containing
+x. In the next paragraph we prove that the family F = {W + (x)}x∈V is well
+graded and that the assignment x 7→ W + (x) is an isometry between V and F.
+Let x and y be two distinct vertices of G. We say that a positive semicube
+Wab separates x and y if either x ∈ Wab , y ∈ Wba or x ∈ Wba , y ∈ Wab . It is
+clear that Wab separates x and Y if and only if Wab ∈ W + (x)∆W + (y). Let P
+be a shortest path x0 = x, x1 , . . . , xn = y from x to y. By Lemma 3.5, no two
+distinct edges of P stand in the relation θ. By Lemma 3.4, distinct edges of P
+define distinct positive semicubes; clearly, these semicubes separate x and y. Let
+Wab be a positive semicube separating x and y, and, say, x ∈ Wab and y ∈ Wba .
+There is an edge f ∈ P that joins vertices in Wab and Wba . Hence, f stands in
+the relation θ to ab and, by Lemma 3.4, Wab is defined by f . It follows that any
+semicube in W + (x)∆W + (y) is defined by a unique edge in P and any edge in P
+defines a semicube in W + (x)∆W + (y). Therefore, d(W + (x), W + (y)) = d(x, y),
+that is x 7→ W + (x) is an isometry. Clearly, F is a wg-family of sets.
+By Theorem 2.1, the family F is isometric to a wg-family of finite sets.
+Hence, G is a partial cube.
+(iv) ⇒ (ii). Suppose that there exist an edge ab such that semicube Wba is
+not convex. Let p and q be two vertices in Wba such that there is a shortest
+path P from p to q that intersects Wab . There are two distinct edges xy and uv
+in P such that x, u ∈ Wab and y, v ∈ Wba . Since ab θ xy and ab θ uv, we have,
+by (3.1),
+Wab = Wxy = Wuv .
+Hence, u ∈ Wxy and v ∈ Wyx . By Lemma 3.1,
+d(x, u) = d(x, v) − 1 = 1 + d(v, y) − 1 = d(v, y),
+a contradiction, since P is a shortest path from p to q.
+(ii) ⇒ (iv). Follows from Lemma 3.4.
+It is clear that (iv) and (v) are equivalent.
+10
+
+4
+
+Fundamental sets in partial cubes
+
+Semicubes played an important role in the previous section. In this section we
+introduce three more classes of useful subsets of graphs. We also establish one
+more characterization of partial cubes.
+Let G = (V, E) be a connected graph. For a given edge e = ab ∈ E, we
+define the following sets (cf. [15, 16]):
+Fab = {f ∈ E : e θf } = {uv ∈ E : u ∈ Wab , v ∈ Wba },
+Uab = {w ∈ Wab : w is adjacent to a vertex in Wba },
+Uba = {w ∈ Wba : w is adjacent to a vertex in Wab }.
+The five sets are schematically shown in Figure 4.1.
+
+Figure 4.1: Fundamental sets in a partial cube.
+Remark 4.1. In the case of a partial cube G = (V, E), the semicubes Wab and
+Wba are complementary half-spaces in the metric space V (cf. Remark 3.2).
+Then the set Fab can be regarded as a 'hyperplane' separating these half-spaces
+(see [17] where this analogy is formalized in the context of hyperplane arrangements).
+The following theorem generalizes the result obtained in [16] for median
+graphs (see also [15]).
+Theorem 4.1. Let ab be an edge of a connected bipartite graph G. If the
+semicubes Wab and Wba are convex, then the set Fab is a matching and induces
+an isomorphism between the graphs hUab i and hUba i.
+Proof. Suppose that Fab is not a matching. Then there are distinct edges xu
+and xv with, say, x ∈ Uab and u, v ∈ Uba . By the triangle inequality, d(u, v) ≤ 2.
+Since G does not have triangles, d(u, v) 6= 1. Hence, d(u, v) = 2, which implies
+that x lies between u and v. This contradicts convexity of Wba , since x ∈ Wab .
+Therefore Fab is a matching.
+To show that Fab induces an isomorphism, let xy, uv ∈ Fab and xu ∈ E,
+where x, u ∈ Uab and y, v ∈ Uba . Since G does not have odd cycles, d(v, y) 6= 2.
+11
+
+By the triangle inequality,
+d(v, y) ≤ d(v, u) + d(u, x) + d(x, y) = 3.
+Since Wba is convex, d(v, y) 6= 3. Thus d(v, y) = 1, that is, vy is an edge. The
+result follows by symmetry.
+By Theorem 3.4(ii), we have the following corollary.
+Corollary 4.1. Let G = (V, E) be a partial cube. For any edge ab the set Fab
+is a matching and induces an isomorphism between induced graphs hUab i and
+hUba i.
+
+Figure 4.2: Graph G.
+Example 4.1. Let G be the graph depicted in Figure 4.2. The set
+Fab = {ab, xu, yv}
+is a matching and defines an isomorphism between the graphs induced by subsets
+Uab = {a, x, y} and Uba = {b, u, v}. The set Wba is not convex, so G is not a
+partial cube. Thus the converse of Corollary 4.1 does not hold.
+We now establish another characterization of partial cubes that utilizes a
+geometric property of families Fab .
+Theorem 4.2. For a connected graph G the following statements are equivalent:
+(i) G is a partial cube.
+(ii) G is bipartite and
+d(x, u) = d(y, v)
+
+and
+
+for any ab ∈ E and xy, uv ∈ Fab .
+
+12
+
+d(x, v) = d(y, u),
+
+(4.1)
+
+Proof. (i)⇒(ii). We may assume that x, u ∈ Wab and y, v ∈ Wba . Since θ is an
+equivalence relation, we have xy θ uv θab. By Lemma 3.4, Wuv = Wxy = Wab .
+By Lemma 3.1,
+d(x, u) = d(x, v) − 1 = d(v, y) + 1 − 1 = d(y, v).
+We also have
+d(x, v) = d(y, v) + 1 = d(y, u),
+by the same lemma.
+(ii)⇒(i). Suppose that G is not a partial cube. Then, by Theorem 3.4, there
+exist an edge ab such that, say, semicube Wba is not convex. Let p and q be two
+vertices in Wba such that there is a shortest path P from p to q that intersects
+Wab . Let uv be the first edge in P which belongs to Fab and xy be the last edge
+in P with the same property (see Figure 4.3).
+
+Figure 4.3: An illustration to the proof of theorem 4.2.
+Since P is a shortest path, we have
+d(v, y) = d(v, u) + d(u, x) + d(x, y) 6= d(x, u),
+which contradicts condition (4.1). Thus all semicubes of G are convex. By
+Theorem 3.4, G is a partial cube.
+Remark 4.2. One can say that four vertices satisfying conditions (4.1) define
+a rectangle in G. Then Theorem 4.2 states that a connected graph is a partial
+cube if and only if it is bipartite and for any edge ab pairs of edges in Fab define
+rectangles in G.
+
+5
+
+Dimensions of partial cubes
+
+There are many different ways in which a given partial cube can be isometrically
+embedded into a hypercube. For instance, the graph K2 can be isometrically
+embedded in different ways into any hypercube H(X) with |X| > 2.
+Following Djoković [9] (see also [8]), we define the isometric dimension,
+dimI (G), of a partial cube G as the minimum possible dimension of a hypercube
+H(X) in which G is isometrically embeddable. Recall (see Section 2) that the
+dimension of H(X) is the cardinality of the set X.
+13
+
+Theorem 5.1. (Theorem 2 in [9].) Let G = (V, E) be a partial cube. Then
+dimI (G) = |E/θ|,
+
+(5.1)
+
+where θ is Djoković's equivalence relation on E and E/θ is the set of its equivalence classes (the quotient-set).
+The quotient-set E/θ can be identified with the family of all distinct sets Fab
+(see Section 4). If G is a finite partial cube, we may consider it as an isometric
+subgraph of some hypercube Qn . Then the edges in each family Fab are parallel
+edges in Qn (cf. Theorem 4.2). This observation essentially proves (5.1) in the
+finite case.
+Let G be a partial cube on a set X. The vertex set of G is a wg-family F of
+finite subsets of X (see Section 2). We define the retraction of F as a family F′
+of subsets of X ′ = ∪ F \ ∩ F consisting of the intersections of sets in F with X ′ .
+It is clear that F′ satisfies conditions
+∩ F′ = ∅ and
+
+∪ F′ = X ′ .
+
+(5.2)
+
+Proposition 5.1. The partial cubes induced by a wg-family F and its retraction
+F′ are isomorphic.
+Proof. It suffices to prove that metric spaces F and F′ are isometric. Clearly,
+α : P 7→ P ∩ X ′ is a mapping from F onto F′ . For P, Q ∈ F, we have
+(P ∩ X ′ )∆(Q ∩ X ′ ) = (P ∆Q) ∩ X ′ = (P ∆Q) ∩ (∪F \ ∩F) = P ∆Q.
+Thus, d(α(P ), α(Q)) = d(P, Q). Consequently, α is an isometry.
+Let G be a partial cube on some set X induced by a wg-family F satisfying
+conditions (5.2), and let P Q be an edge of G. By definition, there is x ∈ X such
+that P ∆Q = {x}. The following two lemmas are instrumental.
+Lemma 5.1. Let P Q be an edge of a partial cube G on X and let P ∆Q = {x}.
+The two sets
+{R ∈ F : x ∈ R} and {R ∈ F : x ∈
+/ R}
+form the same bipartition of the family F as semicubes WP Q and WQP .
+Proof. We may assume that Q = P + {x}. Then, for any R ∈ F,
+(
+(R∆P ) + {x}, if x ∈ R,
+R∆Q = R∆(P + {x}) =
+R∆P,
+if x ∈
+/ R.
+Hence, |R∆P | < |R∆Q| if and only if x ∈ R. It follows that
+WP Q = {R ∈ F : x ∈ R}.
+A similar argument shows that WQP = {R ∈ F : x ∈
+/ R}.
+14
+
+Lemma 5.2. If F is a wg-family of sets satisfying conditions (5.2), then for
+any x ∈ X there are sets P, Q ∈ F such that P ∆Q = {x}.
+Proof. By conditions 5.2, for a given x ∈ X there are sets S and T in F such
+that x ∈ S and x ∈
+/ T . Let R0 = S, R1 , . . . , Rn = T be a sequence of sets in
+F satisfying conditions (2.2). It is clear that there is i such that x ∈ Ri and
+x∈
+/ Ri+1 . Hence, Ri ∆Ri+1 = {x}, so we can choose P = Ri and Q = Ri+1 .
+By Lemmas 5.1 and 5.2, there is one-to-one correspondence between the set
+X and the quotient-set E/θ. From Theorem 5.1 we obtain the following result.
+Theorem 5.2. Let F be a wg-family of finite subsets of a set X such that
+∩ F = ∅ and ∪ F = X, and let G be a partial cube on X induced by F. Then
+dimI (G) = |X|.
+Clearly, a graph which is isometrically embeddable into a partial cube is a
+partial cube itself. We will show in Section 6 (Corollary 6.1) that the integer
+lattice Zn is a partial cube. Thus a graph which is isometrically embeddable
+into an integer lattice is a partial cube. It follows that a finite graph is a partial
+cube if and only if it is embeddable in some integer lattice. Examples of infinite
+partial cubes isometrically embeddable into a finite dimensional integer lattice
+are found in [17].
+We call the minimum possible dimension n of an integer lattice Zn , in which
+a given graph G is isometrically embeddable, its lattice dimension and denote
+it dimZ (G). The lattice dimension of a partial cube can be expressed in terms
+of maximum matchings in so-called semicube graphs [11].
+Definition 5.1. The semicube graph Sc(G) has all semicubes in G as the set
+of its vertices. Two vertices Wab and Wcd are connected in Sc(G) if
+Wab ∪ Wcd = V
+
+and Wab ∩ Wcd 6= ∅.
+
+(5.3)
+
+If G is a partial cube, then condition (5.3) is equivalent to each of the two
+equivalent conditions:
+Wba ⊂ Wcd
+
+⇔
+
+Wdc ⊂ Wab ,
+
+(5.4)
+
+where ⊂ stands for the proper inclusion.
+Theorem 5.3. (Theorem 1 in [11].) Let G be a finite partial cube. Then
+dimZ (G) = dimI (G) − |M |,
+where M is a maximum matching in the semicube graph Sc(G).
+Example 5.1. Let G be the graph shown in Figure 2.1. It is easy to see that
+dimI (G) = 3
+
+and
+15
+
+dimZ (G) = 2.
+
+Example 5.2. Let T be a tree with n edges and m leaves. Then
+dimI (T ) = n and
+
+dimZ (T ) = ⌈m/2⌉
+
+(cf. [8] and [14], respectively).
+Example 5.3. For the cycle C6 we have (see Figure 8.2)
+dimI (C6 ) = dimZ (C6 ) = 3.
+
+6
+
+Subcubes and Cartesian products
+
+Let G be a partial cube. We say that G′ is a subcube of G if it is an isometric
+subgraph of G.
+Clearly, a subcube is itself a partial cube. The converse does not hold; a
+subgraph of a graph G can be a partial cube but not an isometric subgraph of
+G (cf. Example 2.1).
+If G′ is a subcube of a partial cube G, then dimI (G′ ) ≤ dimI (G) and
+dimZ (G′ ) ≤ dimZ (G). In general, the two inequalities are not strict. For
+instance, the cycle C6 is an isometric subgraph of the cube Q3 (see Figure 8.2)
+and
+dimI (C6 ) = dimZ (C6 ) = dimI (Q3 ) = dimZ (Q3 ) = 3.
+Semicubes of a partial cube are examples of subcubes. Indeed, by Theorem 3.4, semicubes are convex subgraphs and therefore isometric. In general,
+the converse is not true; a path connecting two opposite vertices in C6 is an
+isometric subgraph but not a convex one.
+Another common way of constructing new partial cubes from old ones is by
+forming their Cartesian products (see [15] for details and proofs).
+Definition 6.1. Given two graphs G1 = (V1 , E1 ) and G2 = (V2 , E2 ), their
+Cartesian product
+G = G1  G2
+has vertex set V = V1 × V2 ; a vertex u = (u1 , u2 ) is adjacent to a vertex
+v = (v1 , v2 ) if and only if u1 v1 ∈ E1 and u2 = v2 , or u1 = v1 and u2 v2 ∈ E2 .
+The operation  is associative, so we can write
+G = G1  * * *  Gn =
+
+n
+Y
+
+Gi
+
+i=1
+
+for the Cartesian product of graphs G1 , . . . , Gn . A Cartesian product
+is connected if and only if the factors are connected. Then we have
+dG (u, v) =
+
+n
+X
+i=1
+
+16
+
+dGi (ui , vi ).
+
+Qn
+
+i=1
+
+Gi
+
+(6.1)
+
+Pn
+Example 6.1. Let {Xi }ni=1 be a family of sets and Y = i=1 be their sum.
+Then the Cartesian product of the hypercubes H(Xi ) is isomorphic to the hypercube H(Y ). The isomorphism is established by the mapping
+f : (P1 , . . . , Pn ) 7→
+
+n
+X
+
+Pi .
+
+i=1
+
+Formula (6.1) yields immediately the following results.
+Proposition 6.1. Let Hi beQ
+isometric subgraphs of graphs Gi for all 1 ≤ i ≤ n.
+n
+Then theQCartesian product i=1 Hi is an isometric subgraph of the Cartesian
+n
+product i=1 Gi .
+
+Corollary 6.1. The Cartesian product of a finite family of partial cubes is a
+partial cube. In particular, the integer lattice Zn (cf. Examples 2.2 and 2.3) is
+a partial cube.
+The results of the next two theorems can be easily extended to arbitrary
+finite products of finite partial cubes.
+Theorem 6.1. Let G = G1  G2 be the Cartesian product of two finite partial
+cubes. Then
+dimI (G) = dimI (G1 ) + dimI (G2 ).
+
+Proof. We may assume that G1 (resp. G2 ) is induced by a wg-family F1 (resp.
+F2 ) of subsets of a finite set X1 (resp. X2 ) such that ∩ F1 = ∅ and ∪ F1 = X1
+(resp. ∩ F2 = ∅ and ∪ F2 = X1 ) (see Section 5). By Theorem 5.2,
+dimI (G1 ) = |X1 |
+
+and
+
+dimI (G2 ) = |X2 |.
+
+It is clear that the graph G is induced by the wg-family F = F1 + F2 of subsets
+of the set X = X1 + X2 (cf. Example 6.1) with ∩ F = ∅, ∪ F = X. By
+Theorem 5.2,
+dimI (G) = |X| = |X1 | + |X2 | = dimI (G1 ) + dimI (G2 ).
+
+Theorem 6.2. Let G = (V, E) be the Cartesian product of two finite partial
+cubes G1 = (V1 , E1 ) and G2 = (V2 , E2 ). Then
+dimZ (G) = dimZ (G1 ) + dimZ (G2 ).
+Proof. Let W(a,b)(c,d) be a semicube of the graph G. There are two possible
+cases:
+(i) c = a, bd ∈ E2 . Let (x, y) be a vertex of G. Then, by (6.1),
+dG ((x, y), (a, b)) = dG1 (x, a) + dG2 (y, b)
+
+17
+
+and
+dG ((x, y), (c, d)) = dG1 (x, c) + dG2 (y, d).
+Hence,
+dG ((x, y), (a, b)) < dG ((x, y), (c, d))
+
+⇔
+
+dG2 (y, b) < dG2 (y, d).
+
+It follows that
+W(a,b)(c,d) = V1 × Wbd .
+
+(6.2)
+
+(ii) d = b, ac ∈ E1 . Like in (i), we have
+W(a,b)(c,d) = Wac × V2 .
+
+(6.3)
+
+Clearly, two semicubes given by (6.2) form an edge in the semicube graph
+Sc(G) if and only if their second factors form an edge in the semicube graph
+Sc(G2 ). The same is true for semicubes in the form (6.3) with respect to their
+first factors. It is also clear that semicubes in the form (6.2) and in the form (6.3)
+are not connected by an edge in Sc(G). Therefore the semicube graph Sc(G) is
+isomorphic to the disjoint union of semicube graphs Sc(G1 ) and Sc(G2 ). If M1
+is a maximum matching in Sc(G1 ) and M2 is a maximum matching in Sc(G2 ),
+then M = M1 ∪ M2 is a maximum matching in Sc(G). The result follows from
+theorems 5.3 and 6.1.
+Remark 6.1. The result of Corollary 6.1 does not hold for infinite Cartesian
+products of partial cubes, as these products are disconnected. On the other
+hand, it can be shown that arbitrary weak Cartesian products (connected components of Cartesian products [15]) of partial cubes are partial cubes.
+
+7
+
+Pasting partial cubes
+
+In this section we use the set pasting technique [5, ch.I, §2.5] to build new partial
+cubes from old ones.
+Let G1 = (V1 , E1 ) and G2 = (V2 , E2 ) be two graphs, H1 = (U1 , F1 ) and
+H2 = (U2 , F2 ) be two isomorphic subgraphs of G1 and G2 , respectively, and
+ψ : U1 → U2 be a bijection defining an isomorphism between H1 and H2 . The
+bijection ψ defines an equivalence relation R on the sum V1 + V2 as follows: any
+element in (V1 \ U1 ) ∪ (V2 \ U2 ) is equivalent to itself only and elements u1 ∈ U1
+and u2 ∈ U2 are equivalent if and only if u2 = ψ(u1 ). We say that the quotient
+set V = (V1 + V2 )/R is obtained by pasting together the sets V1 and V2 along
+the subsets U1 and U2 . Since the graphs H1 and H2 are isomorphic, the pasting
+of the sets V1 and V2 can be naturally extended to a pasting of sets of edges
+E1 and E2 resulting in the set E of edges joining vertices in V . We say that
+the graph G = (E, V ) is obtained by pasting together the graphs G1 and G2
+along the isomorphic subgraphs H1 and H2 . The pasting construction allows
+for identifying in a natural way the graphs G1 and G2 with subgraphs of G, and
+the isomorphic graphs H1 and H2 with a common subgraph H of both graphs
+G1 and G2 . We often follow this convention below.
+18
+
+Remark 7.1. Note that in the above construction the resulting graph G depends not only on graphs G1 and G2 and their isomorphic subgraphs H1 and
+H2 but also on the bijection ψ defining an isomorphism from H1 onto H2 (see
+the drawings in Figures 7.1 and 7.2).
+
+Figure 7.1: Pasting of two trees.
+
+Figure 7.2: Another pasting of the same trees.
+In general, pasting of two partial cubes G1 and G2 along two isomorphic
+subgraphs H1 and H2 does not produce a partial cube even under strong assumptions about these subgraphs as the next example illustrates.
+
+Figure 7.3: Pasting partial cubes G1 and G2 .
+Example 7.1. Pasting of two partial cubes G1 = C6 and G2 = C6 along
+subgraphs H1 and H2 is shown in Figure 7.3. The resulting graph G is not a
+partial cube. Indeed, the semicube Wab is not a convex set. Note that subgraphs
+H1 and H2 are convex subgraphs of the respective partial cubes.
+In this section we study two simple pastings of connected graphs together,
+the vertex-pasting and the edge-pasting, and show that these pastings produce
+partial cubes from partial cubes. We also compute the isometric and lattice
+dimensions of the resulting graphs.
+Let G1 = (V1 , E1 ) and G2 = (V2 , E2 ) be two connected graphs, a1 ∈ V1 ,
+a2 ∈ V2 , and H1 = ({a1 }, ∅), H2 = ({a2 }, ∅). Let G be the graph obtained
+19
+
+by pasting G1 and G2 along subgraphs H1 and H2 . In this case we say that
+the graph G is obtained from graphs G1 and G2 by vertex-pasting. We also say
+that G is obtained from G1 and G2 by identifying vertices a1 and a2 . Figure 7.4
+illustrates this construction. Note that the vertex a = {a1 , a2 } is a cut vertex
+of G, since G1 ∪ G2 = G and G1 ∩ G2 = {a}. (We follow our convention and
+identify graphs G1 and G2 with subgraphs of G.)
+
+Figure 7.4: An example of vertex-pasting.
+In what follows we use superscripts to distinguish subgraphs of the graphs
+(2)
+G1 and G2 . For instance, Wab stands for the semicube of G2 defined by two
+adjacent vertices a, b ∈ V2 .
+Theorem 7.1. A graph G = (V, E) obtained by vertex-pasting from partial
+cubes G1 = (V1 , E1 ) and G2 = (V2 , E2 ) is a partial cube.
+Proof. We denote a = {a1 , a2 } the vertex of G obtained by identifying vertices
+a1 ∈ V1 and a2 ∈ V2 . Clearly, G is a bipartite graph. Let xy be an edge of G.
+Without loss of generality we may assume that xy ∈ E1 and a ∈ Wxy . Note
+that any path between vertices in V1 and V2 must go through a. Since a ∈ Wxy ,
+we have, for any v ∈ V2 ,
+d(v, x) = d(v, a) + d(a, x) < d(v, a) + d(a, y) = d(v, y),
+(1)
+
+which implies V2 ⊆ Wxy and Wyx ⊆ V1 . It follows that Wxy = Wxy ∪ V2 and
+(1)
+(1)
+(1)
+Wyx = Wyx . The sets Wxy , Wyx and V2 are convex subsets of V . Since
+(1)
+(1)
+Wxy ∩ V2 = {a}, the set Wxy = Wxy ∪ V2 is also convex. By Theorem 3.4(ii),
+the graph G is a partial cube.
+The vertex-pasting construction introduced above can be generalized as
+follows. Let G = {Gi = (Vi , Ei )}i∈J be a family of connected graphs and
+A = {ai ∈ Gi }i∈J be a family of distinguished vertices of these graphs. Let G
+be the graph obtained from the graphs Gi by identifying vertices in the set A.
+We say that G is obtained by vertex-pasting together the graphs Gi (along the
+set A).
+Example 7.2. Let J = {1, . . . , n} with n ≥ 2,
+G = {Gi = ({ai , bi }, {ai bi })}i∈J ,
+
+and A = {ai }i∈J .
+
+Clearly, each Gi is K2 . By vertex-pasting these graphs along A, we obtain the
+n-star graph K1,n .
+20
+
+Since the star K1,n is a tree it can be also obtained from K1 by successive
+vertex-pasting as in Example 7.3.
+Example 7.3. Let G1 be a tree and G2 = K2 . By vertex-pasting these graphs
+we obtain a new tree. Conversely, let G be a tree and v be its leaf. Let G1 be
+a tree obtained from G by deleting the leaf v. Clearly, G can be obtained by
+vertex-pasting G1 and K2 . It follows that any tree can obtained from the graph
+K1 by successive vertex-pasting of copies of K2 (cf. Theorem 2.3(e) in [12]).
+Any connected graph G can be constructed by successive vertex-pasting of
+its blocks using its block cut-vertex tree [4] structure. Let G1 be an endblock of
+G with a cut vertex v and G2 be the union of the remaining blocks of G. Then
+G can be obtained from G1 and G2 by vertex-pasting along the vertex v. It
+follows that any connected graph can be obtained from its blocks by successive
+vertex-pastings.
+Let G = (V, E) be a partial cube. We recall that the isometric dimension
+dimI (G) of G is the cardinality of the quotient set E/θ, where θ is Djoković's
+equivalence relation on the set E (cf. formula (5.1)).
+Theorem 7.2. Let G = (V, E) be a partial cube obtained by vertex-pasting
+together partial cubes G1 = (V1 , E1 ) and G2 = (V2 , E2 ). Then
+dimI (G) = dimI (G1 ) + dimI (G2 ).
+Proof. It suffices to prove that there are no edges xy ∈ E1 and uv ∈ E2 which
+are in Djoković's relation θ with each other. Suppose that G1 and G2 are
+vertex-pasted along vertices a1 ∈ E1 and a2 ∈ E2 and let a = {a1 , a2 } ∈ E. Let
+xy ∈ E1 and uv ∈ E2 be two edges in E. We may assume that u ∈ Wxy . Since
+a is a cut-vertex of G and u ∈ Wxy , we have
+d(u, a) + d(a, x) = d(u, x) < d(u, y) = d(u, a) + d(a, y).
+Hence, d(a, x) < d(a, y), which implies
+d(v, x) = d(v, a) + d(a, x) < d(v, a) + d(a, y) = d(v, y).
+It follows that v ∈ Wxy . Therefore the edge xy does not stand in the relation θ
+to the vertex uv.
+The next result follows immediately from the previous theorem. Note that
+blocks of a partial cube are partial cubes themselves.
+Corollary 7.1. Let G be a partial cube and {G1 , . . . , Gn } be the family of its
+blocks. Then
+n
+X
+dimI (Gi ).
+dimI (G) =
+i=1
+
+In the case of the lattice dimension of a partial cube we can claim only much
+weaker result than one stated in Theorem 7.2 for the isometric dimension. We
+omit the proof.
+21
+
+Theorem 7.3. Let G be a partial cube obtained by vertex-pasting together partial
+cubes G1 and G2 . Then
+max{dimZ (G1 ), dimZ (G2 )} ≤ dimZ (G) ≤ dimZ (G1 ) + dimZ (G2 ).
+The following example illustrate possible cases for inequalities in Theorem 7.3. Let us recall that the lattice dimension of a tree with m leaves is
+⌈m/2⌉ (cf. [14]).
+Example 7.4. The star K1,6 can be obtained from the stars K1,2 and K1,4 by
+vertex-pasting these two stars along their centers. Clearly,
+max{dimZ (K1,2 ), dimZ (K1,4 )} < dimZ (K1,6 ) = dimZ (K1,2 ) + dimZ (K1,4 ).
+The same star K1,6 is obtained from two copies of the star K1,3 by vertexpasting along their centers. We have dimZ (K1,3 ) = 2, dimZ (K1,6 ) = 3, so
+max{dimZ (K1,3 ), dimZ (K1,3 )} < dimZ (K1,6 ) < dimZ (K1,3 ) + dimZ (K1,3 ).
+Let us vertex-paste two stars K1,3 along their two leaves. The resulting
+graph T is a tree with four vertices. Therefore,
+max{dimZ (K1,3 ), dimZ (K1,3 )} = dimZ (T ) < dimZ (K1,3 ) + dimZ (K1,3 ).
+We now consider another simple way of pasting two graphs together.
+Let G1 = (V1 , E1 ) and G2 = (V2 , E2 ) be two connected graphs, a1 b1 ∈ E1 ,
+a2 b2 ∈ E2 , and H1 = ({a1 , b1 }, {a1 b1 }), H2 = ({a2 , b2 }, {a2 b2 }). Let G be the
+graph obtained by pasting G1 and G2 along subgraphs H1 and H2 . In this case
+we say that the graph G is obtained from graphs G1 and G2 by edge-pasting.
+Figures 7.1, 7.2, and 7.5 illustrate this construction.
+
+Figure 7.5: An example of edge-pasting.
+As before, we identify the graphs G1 and G2 with subgraphs of the graph
+G and denote a = {a1 , a2 }, b = {b1 , b2 } the two vertices obtained by pasting
+together vertices a1 and a2 and, respectively, b1 and b2 . The edge ab ∈ E is
+obtained by pasting together edges a1 b1 ∈ E1 and a2 b2 ∈ E2 (cf. Figure 7.5).
+Then G = G1 ∪G2 , V1 ∩V2 = {a, b} and E1 ∩E2 = {ab}. We use these notations
+in the rest of this section.
+Proposition 7.1. A graph G obtained by edge-pasting together bipartite graphs
+G1 and G2 is bipartite.
+22
+
+Proof. Let C be a cycle in G. If C ⊆ G1 or C ⊆ G2 , then the length of C is
+even, since the graphs G1 and G2 are bipartite. Otherwise, the vertices a and
+b separate C into two paths each of odd length. Therefore C is a cycle of even
+length. The result follows.
+The following lemma is instrumental; it describes the semicubes of the graph
+G in terms of semicubes of graphs G1 and G2 .
+Lemma 7.1. Let uv be an edge of G. Then
+(1)
+
+(1)
+
+(2)
+
+(2)
+
+(i) For uv ∈ E1 ,
+
+a, b ∈ Wuv
+
+⇒
+
+Wuv = Wuv ∪ V2 , Wvu = Wvu .
+
+(ii) For uv ∈ E2 ,
+
+a, b ∈ Wuv
+
+⇒
+
+Wuv = Wuv ∪ V1 , Wvu = Wvu .
+
+(iii) a ∈ Wuv , b ∈ Wvu
+
+⇒
+
+Wuv = Wab .
+
+Figure 7.6: Edge-pasting of graphs G1 and G2 .
+Proof. We prove parts (i) and (iii) (see Figure 7.6).
+(i) Since any path from w ∈ V2 to u or v contains a or b and a, b ∈ Wuv , we
+(1)
+(1)
+have w ∈ Wuv . Hence, Wuv = Wuv ∪ V2 and Wvu = Wvu .
+(1)
+
+(1)
+
+(iii) Since ab θ uv in G1 , we have Wuv = Wab , by Theorem 3.4(iv). Let w
+(2)
+be a vertex in Wuv . Then, by the triangle inequality,
+d(w, u) < d(w, v) ≤ d(w, b) + d(b, v) < d(w, b) + d(b, u).
+Since any shortest path from w to u contains a or b, we have
+d(w, a) + d(a, u) = d(w, u).
+Therefore,
+d(w, a) + d(a, u) < d(w, b) + d(b, u).
+Since ab θ uv in G1 , we have d(a, u) = d(b, v), by Theorem 4.2. It follows that
+(2)
+(2)
+(2)
+d(w, a) < d(w, b), that is, w ∈ Wab . We proved that Wuv ⊆ Wab . By
+(2)
+(2)
+symmetry, Wvu ⊆ Wba . Since two opposite semicubes form a partition of V2 ,
+(2)
+(2)
+we have Wuv = Wab . The result follows.
+Theorem 7.4. A graph G obtained by edge-pasting together partial cubes G1
+and G2 is a partial cube.
+23
+
+Proof. By Theorem 3.4(ii) and Proposition 7.1, we need to show that for any
+edge uv of G the semicube Wuv is a convex subset of V . There are two possible
+cases.
+(1)
+(2)
+(i) uv = ab. The semicube Wab is the union of semicubes Wab and Wab
+which are convex subsets of V1 and V2 , respectively. It is clear that any shortest
+(1)
+(2)
+path connecting a vertex in Wab with a vertex in Wab contains vertex a and
+therefore is contained in Wab . Hence, Wab is a convex set. A similar argument
+proves that the set Wba is convex.
+(ii) uv 6= ab. We may assume that uv ∈ E1 . To prove that the semicube
+Wuv is a convex set, we consider two cases.
+(a) a, b ∈ Wuv . (The case when a, b ∈ Wvu is treated similarly.) By
+(1)
+Lemma 7.1(i), the semicube Wuv is the union of the semicube Wuv and the
+set V2 which are both convex sets. Any shortest path P from a vertex in V2 to
+(1)
+(1)
+a vertex in Wuv contains either a or b. It follows that P ⊆ Wuv ∪ V2 = Wuv .
+Therefore the semicube Wuv is convex.
+(b) a ∈ Wuv , b ∈ Wvu . (The case when b ∈ Wuv , a ∈ Wvu is treated
+similarly.) By Lemma 7.1(ii), Wuv = Wab . The result follows from part (i) of
+the proof.
+Theorem 7.5. Let G be a graph obtained by edge-pasting together finite partial
+cubes G1 and G2 . Then
+dimI (G) = dimI (G1 ) + dimI (G2 ) − 1.
+Proof. Let θ, θ1 , and θ2 be Djoković's relations on E, E1 , and E2 , respectively.
+By Lemma 7.1, for uv, xy ∈ E1 (resp. uv, xy ∈ E2 ) we have
+uv θ xy
+
+⇔
+
+uv θ1 xy
+
+(resp. uv θ xy
+
+⇔
+
+uv θ2 xy).
+
+Let uv ∈ E1 , xy ∈ E2 , and uv θ xy. Suppose that (uv, ab) ∈
+/ θ. We may
+assume that a, b ∈ Wuv . By Lemma 7.1(i), V2 ⊂ Wuv , a contradiction, since
+xy ∈ E2 . Hence, uv θ xy θ ab. It follows that each equivalence class of the
+relation θ is either an equivalence class of θ1 , an equivalence class of θ2 or the
+class containing the edge ab. Therefore
+|E/θ| = |E1 /θ1 | + |E2 /θ2 | − 1.
+The result follows, since the isometric dimension of a partial cube is equal to the
+cardinality of the set of equivalence classes of Djoković's relation (formula (5.1)).
+We need some results about semicube graphs in order to prove an analog of
+Theorem 7.3 for a partial cube obtained by edge-pasting of two partial cubes.
+Lemma 7.2. Let G be a partial cube and Wpq Wuv , Wqp Wxy be two edges in
+the graph Sc(G). Then Wxy Wuv is an edge in Sc(G).
+24
+
+Proof. By condition (5.4), Wqp ⊂ Wuv and Wyx ⊂ Wqp . Hence, Wyx ⊂ Wuv .
+By the same condition, Wxy Wuv ∈ Sc(G).
+As before, we identify partial cubes G1 and G2 with subgraphs of the partial
+cube G. Then G1 ∪ G2 = G and G1 ∩ G2 = ({a, b}, {ab}) = K2 (cf. Figure 7.6).
+Lemma 7.3. Let G be a partial cube obtained by edge-pasting together partial
+(1)
+(1)
+(2)
+(2)
+cubes G1 and G2 . Let Wuv Wxy (resp. Wuv Wxy ) be an edge in the semicube
+Sc(G1 ) (resp. Sc(G2 )). Then Wuv Wxy is an edge in Sc(G).
+
+Figure 7.7: Semicubes forming an edge in Sc(G1 ).
+Proof. It suffices to consider the case of Sc(G1 ) (see Figure 7.7). By condi(1)
+(1)
+(1)
+(1)
+(1)
+(1)
+tion (5.4), Wvu ⊂ Wxy and Wyx ⊂ Wuv . Suppose that a ∈ Wvu and b ∈ Wyx
+(1)
+(1)
+(the case when b ∈ Wvu and a ∈ Wyx is treated similarly). Then ab θ1 xy and
+ab θ1 uv. By transitivity of θ1 , we have uv θ1 xy, a contradiction, since semicubes
+(1)
+(1)
+(1)
+Wuv and Wxy are distinct. Therefore we may assume that, say, a, b ∈ Wuv .
+(1)
+(1)
+(1)
+Then, by Lemma 7.1, Wvu = Wvu ⊂ V1 . Since Wvu ⊂ Wxy ⊆ Wxy , we have
+Wvu ⊂ Wxy . By condition (5.4), Wuv Wxy is an edge in Sc(G).
+Lemma 7.4. Let M1 and M2 be matchings in graphs Sc(G1 ) and Sc(G2 ). There
+is a matching M in Sc(G) such that
+|M | ≥ |M1 | + |M2 | − 1.
+Proof. By Lemma 7.3, M1 and M2 induce matchings in Sc(G) which we denote
+by the same symbols. The intersection M1 ∩ M2 is either empty or a subgraph
+of the empty graph with vertices Wab and Wba .
+If M1 ∩ M2 is empty, then M = M1 ∪ M2 is a matching in Sc(G) and the
+result follows.
+If M1 ∩ M2 is an empty graph with a single vertex, say, in M1 , we remove
+from M1 the edge that has this vertex as its end vertex, resulting in the matching
+M1′ . Clearly, M = M1′ ∪ M2 is a matching in Sc(G) and |M | = |M1 | + |M2 | − 1.
+Suppose now that M1 ∩ M2 is the empty graph with vertices Wab and Wba .
+Let Wab Wuv , Wba Wpq (resp. Wab Wxy , Wba Wrs ) be edges in M1 (resp. M2 ).
+By Lemma 7.2, Wxy Wrs is an edge in Sc(G2 ). Let us replace edges Wab Wxy and
+Wba Wrs in M2 by a single edge Wxy Wrs , resulting in the matching M2′ . Then
+M = M1 ∪ M2′ is a matching in Sc(G) and |M | = |M1 | + |M2 | − 1.
+25
+
+Corollary 7.2. Let M1 and M2 be maximum matchings in Sc(G1 ) and Sc(G2 ),
+respectively, and M be a maximum matching in Sc(G). Then
+|M | ≥ |M1 | + |M2 | − 1.
+
+(7.1)
+
+By Theorem 5.3, we have
+dimI (G1 ) = dimZ (G1 ) + |M1 |,
+
+dimI (G2 ) = dimZ (G2 ) + |M2 |,
+
+and
+dimI (G) = dimZ (G) + |M |,
+where M1 and M2 are maximum matchings in Sc(G1 ) and Sc(G2 ), respectively,
+and M is a maximum matching in Sc(G). Therefore, by Theorem 7.5 and (7.1),
+we have the following result (cf. Theorem 7.3).
+Theorem 7.6. Let G be a partial cube obtained by edge-pasting from partial
+cubes G1 and G2 . Then
+max{dimZ (G1 ), dimZ (G2 )} ≤ dimZ (G) ≤ dimZ (G1 ) + dimZ (G2 ).
+Example 7.5. Let us consider two edge-pastings of the stars G1 = K1,3 and
+G2 = K1,3 of lattice dimension 2 shown in figures 7.1 and 7.2. In the first case
+the resulting graph is the star G = K1,5 of lattice dimension 3. Then we have
+max{dimZ (G1 ), dimZ (G2 )} < dimZ (G) < dimZ (G1 ) + dimZ (G2 ).
+In the second case the resulting graph is a tree with 4 leaves. Therefore,
+max{dimZ (G1 ), dimZ (G2 )} = dimZ (G) < dimZ (G1 ) + dimZ (G2 ).
+Let c1 a1 and c2 a2 be edges of stars G1 = K1,4 and G2 = K1,4 (each of
+which has lattice dimension 2), where c1 and c2 are centers of the respective
+stars. Let us edge-paste these two graphs by identifying c1 with c2 and a1 with
+a2 , respectively. The resulting graph G is the star K1,7 of lattice dimension 4.
+Thus,
+max{dimZ (G1 ), dimZ (G2 )} ≤ dimZ (G) = dimZ (G1 ) + dimZ (G2 ).
+
+8
+
+Expansions and contractions of partial cubes
+
+The graph expansion procedure was introduced by Mulder in [16], where it is
+shown that a graph is a median graph if and only if it can be obtained from
+K1 by a sequence of convex expansions (see also [15]). A similar result for
+partial cubes was established in [6] (see also [7]) as a corollary to a more general
+result concerning isometric embeddability into Hamming graphs; it was also
+established in [13] in the framework of oriented matroids theory.
+26
+
+In this section we investigate properties of (isometric) expansion and contraction operations and, in particular, prove in two different ways that a graph is
+a partial cube if and only if it can be obtained from the graph K1 by a sequence
+of expansions.
+A remark about notations is in order. In the product {1, 2} × (V1 ∪ V2 ), we
+denote Vi′ = {i} × Vi and xi = (i, x) for x ∈ Vi , where i, j = 1, 2.
+Definition 8.1. Let G = (V, E) be a connected graph, and let G1 = (V1 , E1 )
+and G2 = (V2 , E2 ) be two isometric subgraphs of G such that G = G1 ∪ G2 .
+The expansion of G with respect to G1 and G2 is the graph G′ = (V ′ , E ′ )
+constructed as follows from G (see Figure 8.1):
+(i) V ′ = V1 + V2 = V1′ ∪ V2′ ;
+(ii) E ′ = E1 + E2 + M , where M is the matching
+
+1 2
+x∈V1 ∩V2 {x x }.
+
+S
+
+In this case, we also say that G is a contraction of G′ .
+
+Figure 8.1: Expansion/contraction processes.
+It is clear that the graphs G1 and hV1′ i are isomorphic, as well as the graphs
+G2 and hV2′ i.
+We define a projection p : V ′ → V by p(xi ) = x for x ∈ V . Clearly, the
+restriction of p to V1′ is a bijection p1 : V1′ → V1 and its restriction to V2′ is a
+bijection p2 : V2′ → V2 . These bijections define isomorphisms hV1′ i → G1 and
+hV2′ i → G2 .
+Let P ′ be a path in G′ . The vertices of G obtained from the vertices in P ′
+under the projection p define a walk P in G; we call this walk P the projection
+of the path P ′ . It is clear that
+l(P ) = l(P ′ ),
+
+if P ′ ⊆ hV1′ i or P ′ ⊆ hV2′ i.
+
+27
+
+(8.1)
+
+In this case, P is a path in G and either P = p1 (P ′ ) or P = p2 (P ′ ). On the
+other hand,
+l(P ) < l(P ′ ),
+
+if P ′ ∩ hV1′ i =
+6 ∅ and P ′ ∩ hV2′ i =
+6 ∅,
+
+(8.2)
+
+and P is not necessarily a path.
+We will frequently use the results of the following lemma in this section.
+Lemma 8.1. (i) For u1 , v 1 ∈ V1′ , any shortest path Pu1 v1 in G′ belongs to hV1′ i
+and its projection Puv = p1 (Pu1 v1 ) is a shortest path in G. Accordingly,
+dG′ (u1 , v 1 ) = dG (u, v)
+and hV1′ i is a convex subgraph of G′ . A similar statement holds for u2 , v 2 ∈ V2′ .
+(ii) For u1 ∈ V1′ and v 2 ∈ V2′ ,
+dG′ (u1 , v 2 ) = dG (u, v) + 1.
+Let Pu1 v2 be a shortest path in G′ . There is a unique edge x1 x2 ∈ M such that
+x1 , x2 ∈ Pu1 v2 and the sections Pu1 x1 and Px2 v2 of the path Pu1 v2 are shortest
+paths in hV1′ i and hV2′ i, respectively. The projection Puv of Pu1 v2 in G′ is a
+shortest path in G.
+Proof. (i) Let Pu1 v1 be a path in G′ that intersects V2′ . Since hV1 i is an isometric
+subgraph of G, there is a path Puv in G that belongs to hV1 i. Then p−1
+1 (Puv ) is
+a path in hV1′ i of the same length as Puv . By (8.1) and (8.2),
+l(p1−1 (Puv )) < l(Pu1 v1 ).
+Therefore any shortest path Pu1 v1 in G′ belongs to hV1′ i. The result follows.
+(ii) Let Pu1 v2 be a shortest path in G′ and Puv be its projection to V .
+By (8.2),
+dG′ (u1 , v 2 ) = l(Pu1 v2 ) > l(Puv ) ≥ dG (u, v).
+Since there is no edge of G joining vertices in V1 \ V2 and V2 \ V1 , a shortest
+path in G from u to v must contain a vertex x ∈ V1 ∩ V2 . Since G1 and G2
+are isometric subgraphs, there are shortest paths Pux in G1 and Pxv in G2 such
+that their union is a shortest path from u to v. Then, by the triangle inequality
+and part (i) of the proof, we have (cf. Figure 8.1)
+dG′ (u1 , v 2 ) ≤ dG′ (u1 , x1 ) + dG′ (x1 , x2 ) + dG′ (x2 , v 2 ) = dG (u, v) + 1.
+The last two displayed formulas imply dG′ (u1 , v 2 ) = dG (u, v) + 1.
+Since u1 ∈ V1′ and v 2 ∈ V2′ the path Pu1 v2 must contain an edge, say x1 x2 , in
+M . Since this path is a shortest path in G′ , this edge is unique. Then the sections Pu1 x1 and Px2 v2 of Pu1 v2 are shortest paths in hV1′ i and hV2′ i, respectively.
+Clearly, Puv is a shortest path in G.
+
+28
+
+Let a1 a2 be an edge in the matching M = ∪x∈V1 ∩V2 {x1 x2 }. This edge defines
+five fundamental sets (cf. Section 4): the semicubes Wa1 a2 and Wa2 a1 , the sets
+of vertices Ua1 a2 and Ua2 a1 , and the set of edges Fa1 a2 . The next theorem
+follows immediately from Lemma 8.1. It gives a hint to a connection between
+the expansion process and partial cubes.
+Theorem 8.1. Let G′ be an expansion of a connected graph G and notations
+are chosen as above. Then
+(i) Wa1 a2 = V1′ and Wa2 a1 = V2′ are convex semicubes of G′ .
+(ii) Fa1 a2 = M defines an isomorphism between induced subgraphs hUa1 a2 i and
+hUa2 a1 i, which are isomorphic to the subgraph G1 ∩ G2 .
+The result of Theorem 8.1 justifies the following constructive definition of
+the contraction process.
+Definition 8.2. Let ab be an edge of a connected graph G′ = (V ′ , E ′ ) such
+that
+(i) semicubes Wab and Wba are convex and form a partition of V ′ ;
+(ii) the set Fab is a matching and defines an isomorphism between subgraphs
+hUab i and hUba i.
+A graph G obtained from the graphs hWab i and hWba i by pasting them along
+subgraphs hUab i and hUba i is said to be a contraction of the graph G′ .
+Remark 8.1. If G′ is bipartite, then semicubes Wab and Wba form a partition of
+its vertex set. Then, by Theorem 4.1, condition (i) implies condition (ii). Thus
+any pair of opposite convex semicubes in a connected bipartite graph defines a
+contraction of this graph.
+By Theorem 8.1, a graph is a contraction of its expansion. It is not difficult
+to see that any connected graph is also an expansion of its contraction.
+The following three examples give geometric illustrations for the expansion
+and contraction procedures.
+Example 8.1. Let a and b be two opposite vertices in the graph G = C4 .
+Clearly, the two distinct paths P1 and P2 from a to b are isometric subgraphs
+of G defining an expansion G′ = C6 of G (see Figure 8.2). Note that P1 and P2
+are not convex subsets of V .
+Example 8.2. Another isometric expansion of the graph G = C4 is shown
+in Figure 8.3. Here, the path P1 is the same as in the previous example and
+G2 = G.
+Example 8.3. Lemma 8.1 claims, in particular, that the projection of a shortest
+path in an extension G′ of a graph G is a shortest path in G. Generally speaking,
+
+29
+
+Figure 8.2: An expansion of the cycle C4 .
+
+Figure 8.3: Another isometric expansion of the cycle C4 .
+the converse is not true. Consider the graph G shown in Figure 8.4 and two
+paths in G:
+V1 = abcef and V2 = bde.
+The graph G′ in Figure 8.4 is the convex expansion of G with respect to V1 and
+V2 . The path abdef is a shortest path in G; it is not a projection of a shortest
+path in G′ .
+
+Figure 8.4: A shortest path which is not a projection of a shortest path.
+One can say that, in the case of finite partial cubes, the contraction procedure
+is defined by an orthogonal projection of a hypercube onto one of its facets.
+By Theorem 8.1, the sets V1′ and V2′ are opposite semicubes of the graph G′
+defined by edges in M . Their projections are the sets V1 and V2 which are not
+necessarily semicubes of G. For other semicubes in G′ we have the following
+result.
+Lemma 8.2. For any two adjacent vertices u, v ∈ V ,
+Wui vi = p−1 (Wuv )
+
+for u, v ∈ Vi and i = 1, 2.
+
+Proof. By Lemma 8.1,
+dG′ (xj , ui ) < dG′ (xj , v i )
+
+⇔
+30
+
+dG (x, u) < dG (x, v)
+
+for x ∈ V and i, j = 1, 2. The result follows.
+Corollary 8.1. If uv is an edge of G1 ∩ G2 , then Wu1 v1 = Wu2 v2 .
+The following lemma is an immediate consequence of Lemma 8.1. We shall
+use it implicitly in our arguments later.
+Lemma 8.3. Let u, v ∈ V1 and x ∈ V1 ∩ V2 . Then
+x1 ∈ Wu1 v1
+
+⇔
+
+x2 ∈ Wu1 v1 .
+
+The same result holds for semicubes in the form Wu2 v2 .
+Generally speaking, the projection of a convex subgraph of G′ is not a convex subgraph of G. For instance, the projection of the convex path b2 d2 e2 in
+Figure 8.4 is the path bde which is not a convex subgraph of G. On the other
+hand, we have the following result.
+Theorem 8.2. Let G′ = (V ′ , E ′ ) be an expansion of a graph G = (V, E) with
+respect to subgraphs G1 = (V1 , E1 ) and G2 = (V2 , E2 ). The projection of a
+convex semicube of G′ different from hV1′ i and hV2′ i is a convex semicube of G.
+Proof. It suffices to consider the case when Wuv = p(Wu1 v1 ) for u, v ∈ V1 (cf.
+Theorem 8.2). Let x, y ∈ Wuv and z ∈ V be a vertex such that
+dG (x, z) + dG (z, y) = dG (x, y).
+We need to show that z ∈ Wuv .
+
+Figure 8.5: A shortest path from x to y.
+(i) x, y ∈ V1 (the case when x, y ∈ V2 is treated similarly). Suppose that
+z ∈ V1 . Then x1 , y 1 , z 1 ∈ V1′ and, by Lemma 8.1,
+dG′ (x1 , z 1 ) + dG′ (z 1 , y 1 ) = dG′ (z 1 , y 1 ).
+Since x1 , y 1 ∈ Wu1 v1 and Wu1 v1 is convex, z 1 ∈ Wu1 v1 . Hence, z ∈ Wuv .
+Suppose now that z ∈ V2 \ V1 . Consider a shortest path Pxy in G from x
+to y containing z. This path contains vertices x′ , y ′ ∈ V1 ∩ V2 such that (see
+Figure 8.5)
+dG (x, x′ ) + dG (x′ , z) = dG (x, z) and dG (y, y ′ ) + dG (y ′ , z) = dG (y, z).
+
+31
+
+Since Pxy is a shortest path in G, we have
+dG (x, x′ ) + dG (x′ , y) = dG (x, y),
+
+dG (x, y ′ ) + dG (y ′ , y) = dG (x, y),
+
+and
+dG (x′ , z) + dG (z, y ′ ) = dG (x′ , y ′ ).
+Since x, x′ , y ∈ V1 , we have x1 , x′1 , y 1 ∈ V1′ . Because x1 , y 1 ∈ Wu1 v1 and Wu1 v1
+is convex, x′1 ∈ Wu1 v1 . Hence, x′ ∈ Wuv and, similarly, y ′ ∈ Wuv . Since
+x′2 , y ′2 , z 2 ∈ V2′ and Wu1 v1 is convex, z 2 ∈ Wu1 v1 . Hence, z ∈ Wuv .
+(ii) x ∈ V1 \ V2 and y ∈ V2 \ V1 . We may assume that z ∈ V1 . By Lemma 8.1,
+dG′ (x1 , y 2 ) = dG (x, y) + 1 = dG (x, z) + dG (z, y) + 1
+= dG′ (x1 , z 1 ) + dG′ (z 1 , y 2 ).
+Since x1 , y 2 ∈ Wu1 v1 and Wu1 v1 is convex, z 1 ∈ Wu1 v1 . Hence, z ∈ Wuv .
+By using the results of Lemma 8.1, it is not difficult to show that the class
+of connected bipartite graphs is closed under the expansion and contraction
+operations. The next theorem establishes this result for the class of partial
+cubes.
+Theorem 8.3. (i) An expansion G′ of a partial cube G is a partial cube.
+(ii) A contraction G of a partial cube G′ is a partial cube.
+Proof. (i) Let G = (V, E) be a partial cube and G′ = (V ′ , E ′ ) be its expansion
+with respect to isometric subgraphs G1 = (V1 , E1 ) and G2 = (V2 , E2 ). By
+Theorem 3.4(ii), it suffices to show that the semicubes of G′ are convex.
+By Lemma 8.1, the semicubes hV1′ i and hV2′ i are convex, so we consider a
+semicube in the form Wu1 v1 where uv ∈ E1 (the other case is treated similarly).
+Let Px′ y′ be a shortest path connecting two vertices in Wu1 v1 and Pxy be its
+projection to G. By Theorem 8.2, x, y ∈ Wuv and, by Lemma 8.1, Pxy is a
+shortest path in G. Since Wuv is convex, Pxy belongs to Wuv . Let z ′ be a
+vertex in Px′ y′ and z = p(z ′ ) ∈ Pxy . By Lemma 8.1,
+dG (z, u) < dG (z, v)
+
+dG′ (z ′ , u1 ) ≤ dG′ (z ′ , v 1 ).
+
+⇒
+
+Since G′ is a bipartite graph, dG′ (z ′ , u1 ) < dG′ (z ′ , v 1 ). Hence, Px′ y′ ⊆ Wu1 v1 ,
+so Wu1 v1 is convex.
+(ii) Let G = (V, E) be a contraction of a partial cube G′ = (V ′ , E ′ ). By
+Theorem 3.4, we need to show that the semicubes of G are convex. By Theorem 8.2, all semicubes of G are projections of semicubes of G′ distinct from
+hV1′ i and hV2′ i. By Theorem 8.2, the semicubes of G are convex.
+Corollary 8.2. (i) A finite connected graph is a partial cube if and only if it
+can be obtained from K1 by a sequence of expansions.
+(ii) The number of expansions needed to produce a partial cube G from K1
+is dimI (G).
+32
+
+Proof. (i) Follows immediately from Theorem 8.3.
+(ii) Follows from theorems 8.2 and 5.1 (see the discussion in Section 5 just
+before Theorem 5.2 ).
+The processes of expansion and contraction admit useful descriptions in the
+case of partial cubes on a set. Let G = (V, E) be a partial cube on a set X,
+that is an isometric subgraph of the hypercube H(X). Then it is induced by
+some wg-family F of finite subsets of X (cf. Theorem 2.1). We may assume (see
+Section 5) that ∩ F = ∅ and ∪ F = X.
+In what follows we present proofs of the results of Theorem 8.3 and Corollary 8.2 given in terms of wg-families of sets.
+The expansion process for a partial cube G on X can be described as follows:
+Let F1 and F2 be wg-families of finite subsets of X such that F1 ∩ F2 6= ∅,
+F1 ∪ F2 = F, and the distance between any two sets P ∈ F1 \ F2 and Q ∈ F2 \ F1
+is greater than one. Note that hF1 i and hF2 i are partial cubes, hF1 i ∩ hF2 i =
+6 ∅,
+and hF1 i ∪ hF2 i = hFi = G. Let X ′ = X + {p}, where p ∈
+/ X, and
+F2′ = {Q + {p} : Q ∈ F2 },
+
+F′ = F1 ∪ F2′ .
+
+It is quite clear that the graphs hF2′ i and hF2 i are isomorphic and the graph
+G′ = hF′ i is an isometric expansion of the graph G.
+Theorem 8.4. An expansion of a partial cube is a partial cube.
+Proof. We need to verify that F′ is a wg-family of finite subsets of X ′ . By
+Theorem 2.3, it suffices to show that the distance between any two adjacent
+sets in F′ is 1. It is obvious if each of these two sets belong to one of the families
+F1 or F2′ . Suppose that P ∈ F1 and Q + {p} ∈ F2′ are adjacent, that is, for any
+S ∈ F′ we have
+P ∩ (Q + {p}) ⊆ S ⊆ P ∪ (Q + {p})
+
+⇒
+
+S = P or S = Q + {p}.
+
+If Q ∈ F1 , then
+P ∩ (Q + {p}) ⊆ Q ⊆ P ∪ (Q + {p}),
+since p ∈
+/ P . By (8.3), Q = P implying d(P, Q + {p}) = 1.
+If Q ∈ F2 \ F1 , there is R ∈ F1 ∩ F2 such that
+d(P, R) + d(R, Q) = d(P, Q),
+since F is well graded. By Theorem 2.2,
+P ∩ Q ⊆ R ⊆ P ∪ Q,
+which implies
+P ∩ (Q + {p}) ⊆ R + {p} ⊆ P ∪ (Q + {p}).
+By (8.3), R + {p} = Q + {p}, a contradiction.
+33
+
+(8.3)
+
+It is easy to recognize the fundamental sets (cf. Section 4) in an isometric
+expansion G′ of a partial cube G = hFi. Let P ∈ F1 ∩ F2 and Q = P + {p} ∈ F2′
+be two vertices defining an edge in G′ according to Definition 8.1(ii). Clearly,
+the families F1 and F2′ are the semicubes WP Q and WQP of the graph G′ (cf.
+Lemma 5.1) and therefore are convex subsets of F′ . The set FP Q is the set
+of edges defined by p as in Lemma 5.1. In addition, UP Q = F1 ∩ F2 and
+UQP = {R + {p} : R ∈ F1 ∩ F2 }.
+Let G be a partial cube induced by a wg-family F of finite subsets of a set
+X. As before, we assume that ∩ F = ∅ and ∪ F = X. Let P Q be an edge of G.
+We may assume that Q = P + {p} for some p ∈
+/ P . Then (see Lemma 5.1)
+WP Q = {R ∈ F : p ∈
+/ R} and WQP = {R ∈ F : p ∈ R}.
+Let X ′ = X \ {p} and F′ = {R \ {p} : R ∈ F}. It is clear that the graph G′
+induced by the family F′ is isomorphic to the contraction of G defined by the
+edge P Q. Geometrically, the graph G′ is the orthogonal projection of the graph
+G along the edge P Q (cf. figures 8.2 and 8.3).
+Theorem 8.5. (i) A contraction G′ of a partial cube G is a partial cube.
+(ii) If G is finite, then dimI (G′ ) = dimI (G) − 1.
+Proof. (i) For p ∈ X we define F1 = {R ∈ F : p ∈
+/ R}, F2 = {R ∈ F : p ∈ R},
+and F2′ = {R \ {p} ∈ F : p ∈ R}. Note that F1 and F2 are semicubes of G
+and F2′ is isometric to F2 . Hence, F1 and F2′ are wg-families of finite subsets
+of X ′ . We need to prove that F′ = F1 ∪ F2′ is a wg-family. By Theorem 2.3,
+it suffices to show that d(P, Q) = 1 for any two adjacent sets P, Q ∈ F′ . This
+is true if P, Q ∈ F1 or P, Q ∈ F2′ , since these two families are well graded. For
+P ∈ F1 \ F2′ and Q ∈ F2′ \ F1 , the sets P and Q + {p} are not adjacent in F,
+since F is well graded and Q ∈
+/ F. Hence there is R ∈ F1 such that
+P ∩ (Q + {p}) ⊆ R ⊆ P ∪ (Q + {p})
+and R 6= P . Since p ∈
+/ R, we have
+P ∩ Q ⊆ R ⊆ P ∪ Q.
+Since R 6= P and R 6= Q, the sets P and Q are not adjacent in F′ . The result
+follows.
+(ii) If G is a finite partial cube, then, by Theorem 5.2,
+dimI (G′ ) = |X ′ | = |X| − 1 = dimI (G) − 1.
+
+9
+
+Conclusion
+
+The paper focuses on two themes of a rather general mathematical nature.
+34
+
+1. The characterization problem. It is a common practice in mathematics
+to characterize a particular class of object in different terms. We present new
+characterizations of the classes of bipartite graphs and partial cubes, and give
+new proofs for known characterization results.
+2. Constructions. The problem of constructing new objects from old ones
+is a standard topic in many branches of mathematics. For the class of partial
+cubes, we discuss operations of forming the Cartesian product, expansion and
+contraction, and pasting. It is shown that the class of partial cubes is closed
+under these operations.
+Because partial cubes are defined as graphs isometrically embeddable into
+hypercubes, the theory of partial cubes has a distinctive geometric flavor. The
+three main structures on a graph-semicubes and Djoković's and Winkler's
+relations-are defined in terms of the metric structure on a graph. One can say
+that this theory is a branch of discrete metric geometry. Not surprisingly, geometric structures play an important role in our treatment of the characterization
+and construction problems.
+
+References
+[1] A.S. Asratian, T.M.J. Denley, and R. Häggkvist, Bipartite Graphs and
+their Applications, Cambridge University Press, 1998.
+[2] D. Avis, Hypermetric spaces and the Hamming cone, Canadian Journal of
+Mathematics 33 (1981) 795–802.
+[3] L. Blumenthal, Theory and Applications of Distance Geometry, Oxford
+University Press, London, Great Britain, 1953.
+[4] J.A. Bondy, Basic graph theory: Paths and circuits, in: R.L. Graham,
+M. Grötshel, and L. Lovász (Eds.), Handbook of Combinatorics, The MIT
+Press, Cambridge, Massachusetts, 1995, pp. 3–110.
+[5] N. Bourbaki, General Topology, Addison-Wesley Publ. Co., 1966.
+[6] V. Chepoi, Isometric subgraphs of Hamming graphs and d-convexity, Control and Cybernetics 24 (1988) 6–11.
+[7] V. Chepoi, Separation of two convex sets in convexity structures, Journal
+of Geometry 50 (1994) 30–51.
+[8] M.M. Deza and M. Laurent, Geometry of Cuts and Metrics, Springer, 1997.
+[9] D.Ž. Djoković, Distance preserving subgraphs of hypercubes, J. Combin.
+Theory Ser. B 14 (1973) 263–267.
+[10] J.-P. Doignon and J.-Cl. Falmagne, Well-graded families of relations, Discrete Math. 173 (1997) 35–44.
+
+35
+
+[11] D. Eppstein, The lattice dimension of a graph, European J. Combinatorics
+26 (2005) 585–592, doi: 10.1016/j.ejc.2004.05.001.
+[12] A. Frank, Connectivity and network flows, in: R.L. Graham, M. Grötshel,
+and L. Lovász (Eds.), Handbook of Combinatorics, The MIT Press, Cambridge, Massachusetts, 1995, pp. 111–177.
+[13] K. Fukuda and K. Handa, Antipodal graphs and oriented matroids, Discrete Mathematics 111 (1993) 245–256.
+[14] F. Hadlock and F. Hoffman, Manhattan trees, Util. Math. 13 (1978) 55–67.
+[15] W. Imrich and S. Klavžar, Product Graphs, John Wiley & Sons, 2000.
+[16] H.M. Mulder, The Interval Function of a Graph, Mathematical Centre
+Tracts 132, Mathematisch Centrum, Amsterdam, 1980.
+[17] S. Ovchinnikov, Media theory: representations and examples, Discrete Applied Mathematics, (in review, e-print available at
+http://arxiv.org/abs/math.CO/0512282).
+[18] R.I. Roth and P.M. Winkler, Collapse of the metric hierarchy for bipartite
+graphs, European Journal of Combinatorics 7 (1986) 371–375.
+[19] M.L.J. van de Vel, Theory of Convex Structures, Elsevier, The Netherlands,
+1993.
+[20] P.M. Winkler, Isometric embedding in products of complete graphs, Discrete Appl. Math. 8 (1984) 209–212.
+
+36
+
+

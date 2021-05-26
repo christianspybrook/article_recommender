@@ -1,0 +1,908 @@
+arXiv:0704.0002v1 [math.CO] 31 Mar 2007
+
+Sparsity-certifying Graph Decompositions
+Ileana Streinu∗
+
+Louis Theran†
+
+Abstract
+We describe a new algorithm, the (k, `)-pebble game with colors,
+and use it obtain a characterization of the family of (k, `)-sparse graphs
+and algorithmic solutions to a family of problems concerning tree decompositions of graphs. Special instances of sparse graphs appear in
+rigidity theory and have received increased attention in recent years. In
+particular, our colored pebbles generalize and strengthen the previous
+results of Lee and Streinu [13] and give a new proof of the TutteNash-Williams characterization of arboricity. We also present a new
+decomposition that certifies sparsity based on the (k, `)-pebble game
+with colors. Our work also exposes connections between pebble game
+algorithms and previous sparse graph algorithms by Gabow [6], Gabow
+and Westermann [5] and Hendrickson [9, 10].
+
+1
+
+Introduction and preliminaries
+
+The focus of this paper is decompositions of (k, `)-sparse graphs into edgedisjoint subgraphs that certify sparsity. We use graph to mean a multigraph, possibly with loops. We say that a graph is (k, `)-sparse if no subset of n0 vertices spans more than kn0 − ` edges in the graph; a (k, `)-sparse
+graph with kn0 − ` edges is (k, `)-tight. We call the range k ≤ ` ≤ 2k − 1
+the upper range of sparse graphs and 0 ≤ ` ≤ k the lower range.
+In this paper, we present efficient algorithms for finding decompositions
+that certify sparsity in the upper range of `. Our algorithms also apply in the
+lower range, which was already addressed by [6, 5, 3, 18, 4]. A decomposition
+certifies the sparsity of a graph if the sparse graphs and graphs admitting
+the decomposition coincide.
+∗
+
+Computer
+Science
+Department,
+Smith
+College,
+Northampton,
+MA.
+streinu@cs.smith.edu
+†
+Department of Computer Science, University of Massachusetts, Amherst.
+theran@cs.umass.edu
+
+1
+
+Our algorithms are based on a new characterization of sparse graphs,
+which we call the pebble game with colors. The pebble game with colors
+is a simple graph construction rule that produces a sparse graph along with
+a sparsity-certifying decomposition.
+We define and study a canonical class of pebble game constructions,
+which correspond to previously studied decompostion of sparse graphs into
+edge disjoint trees. Our results provide a unifying framework for all the
+previously known special cases, including Nash-Williams-Tutte and [23, 7].
+Indeed, in the lower range, canonical pebble game constructions capture the
+properties of the augmenting paths used in matroid union and intersection
+algorithms[6, 5]. Since the sparse graphs in the upper range are not known
+to be unions or intersections of the matroids for which there are efficient
+augmenting path algorithms, these do not easily apply in the upper range.
+Pebble game with colors constructions may thus be considered a strengthening of augmenting paths to the upper range of matroidal sparse graphs.
+
+1.1
+
+Sparse graphs
+
+A graph is (k, `)-sparse if for any non-empty subgraph with m0 edges and
+n0 vertices, m0 ≤ kn0 − `. We observe that this condition implies that 0 ≤
+` ≤ 2k − 1, and from now on in this paper we will make this assumption. A
+sparse graph that has n vertices and exactly kn − ` edges is called tight.
+For a graph G = (V, E), and V 0 ⊂ V , we use the notation span V 0 for
+the number of edges in the subgraph induced by V 0 . In a directed graph,
+out V 0 is the number of edges with the tail in V 0 and the head in V − V 0 ;
+for a subgraph induced by V 0 , we call such an edge an out-edge
+There are two important types of subgraphs of sparse graphs. A block
+is a tight subgraph of a sparse graph. A component is a maximal block.
+Table 1 summarizes the sparse graph terminology used in this paper.
+
+1.2
+
+Sparsity-certifying decompositions.
+
+A k-arborescence is a graph that admits a decomposition into k edge-disjoint
+spanning trees. Figure 1(a) shows an example of a 3-arborescence. The karborescent graphs are described by the well-known theorems of Tutte [22]
+and Nash-Williams [16] as exactly the (k, k)-tight graphs.
+A map is a graph that admits an orientation such that the out degree of
+each vertex is exactly one. A k-map is a graph that admits a decomposition
+into k edge-disjoint maps. Figure 1(b) shows an example of a 2-map; the
+edges are oriented in one possible configuration certifying that each color
+
+2
+
+Term
+Sparse graph G
+Tight graph G
+Block H in G
+Component H of G
+Map
+(k, `)-maps-and-trees
+`Tk
+Set of subtrees in V 0 ⊂ V
+Proper `Tk
+
+Meaning
+Every non-empty subgraph on n0 vertices has ≤ kn0 − ` edges
+G = (V, E) is sparse and |V | = n, |E| = kn − `
+G is sparse, and H is a tight subgraph
+G is sparse and H is a maximal block
+Graph that admits an out-degree exactly one orientation
+` trees and (k − `)-maps
+` trees, each vertex is in exactly k of them
+Connected components of the trees in a `Tk in E(V 0 )
+The set of subtrees in every subgraph has size ≥ `
+
+Table 1: Sparse graph and decomposition terminology used in this paper.
+forms a map. Maps may be equivalently defined (see, e.g., [17]) as having
+exactly one cycle per connected component. 1
+Another characterization of maps, which we will use extensively in this
+paper, is as the (1, 0)-tight graphs [23, 8]. The k-maps are evidently (k, 0)tight, and [23, 8] show that the converse holds as well.
+An `Tk is a decomposition into ` edge-disjoint trees such that each vertex
+is in exactly k of them. Figure 2(a) shows an example of a 3T2.
+Given a subgraph H of a `Tk graph G, the set of subtrees in H is the
+collection of the connected components of the trees in G in H. We observe
+that these subtrees may come from the same tree or be single-vertex "empty
+trees." It is also helpful to note that the definition of a subtree is relative to
+a specific subgraph.
+Figure 2(a) shows a graph with a 3T2 decomposition; we note that one
+of the trees is an isolated vertex in the bottom-right corner. The subgraph
+in Figure 2(b) has three black subtrees and one gray subtree: an isolated
+vertex at the top-right corner, and two single edges. These count as three
+subtrees, even though they come from the same back tree when the whole
+graph in considered. Figure 2(c) shows another subgraph; in this case there
+are three gray subtrees and one black one.
+Table 1 contains the decomposition terminology used in this paper.
+The decomposition problem. We define the decomposition problem
+for sparse graphs as taking a graph as its input and producing as output,
+a decomposition that can be used to certify sparsity. In this paper, we will
+1
+Our terminology follows Lovász in [15]. In the matroid literature maps are sometimes
+known as bases of the bicycle matroid or spanning pseudoforests.
+
+3
+
+2
+c
+b
+e
+a
+d
+
+4
+
+1
+
+3
+
+(a)
+
+(b)
+
+(c)
+
+Figure 1: Examples of sparsity-certifying decompositions: (a) a 3arborescence; (b) a 2-map; (c) a (2, 1)-maps-and-trees. Edges with the same
+line style belong to the same subgraph. The 2-map is shown with a certifying
+orientation.
+
+4
+
+1
+
+4
+
+1
+
+3
+
+3
+
+0
+
+3
+
+0
+
+5
+
+2
+
+(a)
+
+4
+
+1
+
+0
+
+5
+
+2
+
+(b)
+
+5
+
+2
+
+(c)
+
+Figure 2: (a) A graph with a 3T2 decomposition; one of the three trees is
+a single vertex in the bottom right corner. (b) The highlighted subgraph
+in color has three black subtrees and one gray subtree. (c) The highlighted
+subgraph in color has three gray subtrees and one black subtree.
+
+4
+
+study three kinds of outputs: maps-and-trees; proper `Tk decompositions;
+and the pebble game with colors decomposition, which is defined in the next
+section.
+
+2
+
+Historical background
+
+The well-known theorems of Tutte [22] and Nash-Williams [16] relate the
+(k, k)-tight graphs to the existence of decompositions into edge-disjoint spanning trees. Taking a matroid viewpoint, Edmonds [3, 4] gave another proof of
+this result using matroid unions. The equivalence of maps-and-trees graphs
+and tight graphs in the lower range is shown using matroid unions in [23],
+and matroid augmenting paths are the basis of the algorithms for the lower
+range of [18, 6, 5].
+In rigidity theory a foundational theorem of Laman [12] shows that (2, 3)tight (Laman) graphs correspond to generically minimally rigid bar-andjoint frameworks in the plane. Tay [19, 20] proved an analogous touchstone
+result for body-bar frameworks in any dimension using (k, k)-tight graphs.
+Rigidity by counts motivated interest in the upper range, and Crapo [2]
+proved the equivalence of Laman graphs and proper 3T2 graphs. Tay [21]
+used this condition to give a direct proof of Laman's theorem and generalized the 3T2 condition to all `Tk for k ≤ ` ≤ 2k − 1. Haas [7] studied
+`Tk decompositions in detail and proved the equivalence of tight graphs and
+proper `Tk graphs for the general upper range. We observe the aside from
+our new pebble game with colors decomposition, all the combinatorial characterizations of the upper range of sparse graphs, including the counts, have
+a geometric interpretation [23, 12, 21, 19, 20].
+A pebble game algorithm was first proposed in [11] as an elegant alternative to Hendrickson's Laman graph algorithms [9, 10]. Berg and Jordan
+[1], provided the formal analysis of the pebble game of [11] and introduced
+the idea of playing the game on a directed graph. Lee and Streinu [13] generalized the pebble game to the entire range of parameters 0 ≤ ` ≤ 2k − 1,
+and left as an open problem using the pebble game to find sparsity certifying
+decompositions.
+
+3
+
+The pebble game with colors
+
+Our pebble game with colors is a set of rules for constructing graphs
+indexed by nonnegative integers k and `. We will use the pebble game with
+colors as the basis of an efficient algorithm for the decomposition problem
+5
+
+later in this paper. Since the phrase "with colors" is necessary only for
+comparison to [13], we will omit it in the rest of the paper when the context
+is clear.
+We now present the pebble game with colors. The game is played by
+a single player on a fixed finite set of vertices. The player makes a finite
+sequence of moves; a move consists in the addition and/or orientation of
+an edge. At any moment of time, the state of the game is captured by a
+directed graph H: we call H, taken as an undirected graph a pebble game
+with colors graph.
+We describe the pebble game with colors in terms of its initial configuration and the allowed moves.
+
+(a)
+
+(b)
+
+Figure 3: Examples of pebble game with colors moves. (a) Add edge. (b)
+Pebble slide. Pebbles on vertices are shown as black or gray dots. Edges are
+colored with the color of the pebble on them.
+Initialization: in the beginning of the pebble game, H has n vertices
+and no edges. We start by placing k pebbles on each vertex of H, one of
+each color ci , for i = 1, 2, . . . , k.
+Add edge with colors: Let v and w be vertices with at least ` + 1
+pebbles on them. Let t ∈ {v, w} have a pebble on it, and let s be other
+vertex. Pick up a pebble from t, add the edge ts to E(H) and put the
+pebble picked up from t on the new edge.
+While playing the pebble game all edges are directed, and we use the
+notation vw to indicate a directed edge from v to w. Figure 3(a) shows
+examples of the add edge move.
+Pebble slide: Let w be a vertex with a pebble p on it, and let vw be
+an edge in H. Replace vw with wv in E(H); put the pebble that was on on
+vw on v; and put p on wv.
+Note that the color of an edge can change with a pebble slide move.
+Figure 3(b) shows examples. The convention in these figures, and throughout this paper, is that pebbles on vertices are represented as colored dots,
+and that edges are shown in the color of the pebble on them.
+From the definition of the pebble slide move, it is easy to see that a
+
+6
+
+particular pebble is always either on the vertex where it started or on an
+edge that has this vertex as the tail. However, when making a sequence
+of pebble slide moves that reverse the orientation of a path in H, it is
+sometimes convenient to think of this path reversal sequence as bringing a
+pebble from the end of the path to the beginning.
+The output of playing the pebble game is its complete configuration.
+Output: At the end of the game, we obtain the directed graph H, along
+with the location and colors of the pebbles. Observe that since each edge
+has exactly one pebble on it, the pebble game configuration colors the edges.
+We say that H, taken as an undirected graph G, is constructed by the
+(k, `)-pebble game or that H is a pebble game graph.
+Since each edge of H has exactly one pebble on it, the pebble game's
+configuration partitions the edges into k different colors. We call this decomposition of H a pebble game decomposition. Figure 4(a) shows an
+example of a (2, 2)-tight graph with a pebble game decomposition.
+
+(a)
+
+(b)
+
+(c)
+
+Figure 4: A (2, 2)-tight graph with one possible pebble game decomposition.
+The edges are oriented to show (1, 0)-sparsity for each color. (a) The graph
+K4 with a pebble game decomposition. There is an empty black tree at the
+center vertex and a gray spanning tree. (b) The highlighted subgraph has
+two black trees and a gray tree; the black edges are part of a larger cycle
+but contribute a tree to the subgraph. (c) The highlighted subgraph (with a
+light gray background) has three empty gray trees; the black edges contain
+a cycle and do not contribute a subtree to the subgraph.
+Generalizing the definition of the set of subtrees in an `Tk , the set of
+subtrees in a subgraph G0 of a pebble game graph G is the set of monochromatic acyclic connected components of the (1, 0)-sparse graphs in a pebble
+game graph. As before, these are taken relative to a specific subgraph and
+may be empty trees or subtrees of a larger tree. They may also be part of
+a monochromatic cycle in G.
+
+7
+
+Notation
+span V 0
+peb V 0
+out V 0
+pebi v
+outi v
+
+Meaning
+Number of
+Number of
+Number of
+Number of
+Number of
+
+edges spanned in H by V 0 ⊂ V ; i.e. |EH (V 0 )|
+pebbles on V 0 ⊂ V
+edges vw in H with v ∈ V 0 and w ∈ V − V 0
+pebbles of color ci on v ∈ V
+edges vw colored ci for v ∈ V
+
+Table 2: Pebble game notation used in this paper.
+The properties of pebble game decompositions are studied in Section 6,
+and Theorem 2 shows that each color must be (1, 0)-sparse. The orientation
+of the edges in Figure 4(a) shows this.
+For example Figure 4(a) shows a (2, 2)-tight graph with one possible
+pebble game decomposition. The whole graph contains a gray subtree and
+a black subtree that is an isolated vertex. The subgraph in Figure 4(b) has
+a black tree and a gray tree, with the edges of the black tree coming from a
+cycle in the larger graph. In Figure 4(c), however, the black cycle does not
+contribute a subtree. All three subtrees in this subgraph are single-vertex
+gray trees.
+In the following discussion, we use the notation peb(v) for the number
+of pebbles on v and pebi (v) to indicate the number of pebbles of colors i on
+v.
+Table 2 lists the pebble game notation used in this paper.
+
+4
+
+Our Results
+
+We describe our results in this section. The rest of the paper provides the
+proofs.
+Our first result is a strengthening of the pebble games of [13] to include
+colors. It says that sparse graphs are exactly pebble game graphs. Recall
+that from now on, all pebble games discussed in this paper are our pebble
+game with colors unless noted explicitly.
+Theorem 1 (Sparse graphs and pebble game graphs coincide). A
+graph G is (k, `)-sparse with 0 ≤ ` ≤ 2k − 1 if and only if G is a pebble game
+graph.
+Next we consider pebble game decompositions, showing that they are a
+generalization of proper `Tk decompositions that extend to the entire matroidal range of sparse graphs.
+8
+
+Theorem 2 (The pebble game with colors decomposition). A graph
+G is a pebble game graph if and only if it admits a decomposition into k
+edge-disjoint subgraphs such that each is (1, 0)-sparse and every subgraph of
+G contains at least ` subtrees of the (1, 0)-sparse graphs in the decomposition.
+The (1, 0)-sparse subgraphs in the statement of Theorem 2 are the colors. We observe that the subtrees condition in the pebble game with colors
+decomposition is similar to that of a proper `Tk , and that this is one of the
+main facts used by Tay in [21]. We do not, however, know how to realize
+a (2, 3)-tight graph as a rigid bar-and-joint framework in the plane directly
+from an arbitrary pebble game decomposition of a graph.
+Our next results show that for any pebble game graph, we can specialize its pebble game construction to generate a decomposition that is a
+maps-and-trees or proper `Tk . We call these specialized pebble game constructions canonical, and using canonical pebble game constructions, we
+obtain new direct proofs of existing arboricity results.
+It is easy to see from Theorem 2 maps-and-trees are special cases of the
+pebble game decomposition; each of the spanning trees contributes at least
+one piece of tree to every subgraph.
+The case of proper `Tk graphs is more subtle; if each color in a pebble
+game decomposition is a forest, then we have found a proper `Tk , but this
+class is a subset of all possible proper `Tk decompositions of a tight graph.
+We show that this class of proper `Tk decompositions is sufficient to certify
+sparsity.
+We now state the main theorem for the upper and lower range.
+Theorem 3 (Main Theorem (Lower Range): Maps-and-trees coincide with pebble game graphs). Let 0 ≤ ` ≤ k. A graph G is a tight
+pebble game graph if and only if G is a (k − `, `)-maps-and-trees.
+Theorem 4 (Main Theorem (Upper Range): Proper `Tk graphs
+coincide with pebble game graphs). Let k ≤ ` ≤ 2k − 1. A graph G is
+a tight pebble game graph if and only if it is a proper `Tk with kn − ` edges.
+As corollaries, we obtain the existing decomposition results for sparse
+graphs.
+Corollary 5 (Crapo, Haas [7, 2]). Let k ≤ ` ≤ 2k − 1. A graph G is tight
+if and only if it is a proper `Tk .
+Corollary 6 (Tutte, Nash-Williams, White and Whiteley [22, 16, 24]). Let
+` ≤ k. A graph G is tight if and only if has a (k − `, `)-maps-and-trees
+decomposition.
+9
+
+Efficiently finding canonical pebble game constructions. The proofs
+of Theorem 3 and Theorem 4 lead to an obvious algorithm with O(n3 ) running time for the decomposition problem. Our last result improves on
+this, showing that a canonical pebble game construction, and thus a mapsand-trees or proper `Tk decomposition can be found using a pebble game
+algorithm in O(n2 ) time and space.
+These time and space bounds mean that our algorithm can be combined
+with those of [13] without any change in complexity.
+
+5
+
+Pebble game graphs
+
+In this section we prove Theorem 1, a strengthening of results from [13] to
+the pebble game with colors. Since many of the relevant properties of the
+pebble game with colors carry over directly from the pebble games of [13],
+we refer the reader there for the proofs.
+We begin by establishing some invariants that hold during the execution
+of the pebble game.
+Lemma 7 (Pebble game invariants). During the execution of the pebble
+game, the following invariants are maintained in H:
+(I1) There are at least ` pebbles on V . [13]
+(I2) For each vertex v, span v + out v + peb v = k. [13]
+(I3) For each V 0 ⊂ V , span V 0 + out V 0 + peb V 0 = kn0 . [13]
+(I4) For every vertex v ∈ V , outi v + pebi v = 1.
+(I5) Every maximal path consisting only of edges with color ci ends in either
+the first vertex with a pebble of color ci or a cycle.
+Proof. (I1) [13] (I2) [13] (I3) [13]
+(I4) This invariant clearly holds at the initialization phase of the pebble
+game with colors. That add edge and pebble slide moves preserve (I4)
+is clear from inspection.
+(I5) By (I4), a monochromatic path of edges is forced to end only at a
+vertex with a pebble of the same color on it. If there is no pebble of that
+color reachable, then the path must eventually visit some vertex twice.
+From these invariants, we can show that the pebble game constructible
+graphs are sparse.
+10
+
+Lemma 8 (Pebble game graphs are sparse [13]). Let H be a graph
+constructed with the pebble game. Then H is sparse. If there are exactly `
+pebbles on V (H), then H is tight.
+The main step in proving that every sparse graph is a pebble game graph
+is the following. Recall that by bringing a pebble to v we mean reorienting
+H with pebble slide moves to reduce the out degree of v by one.
+Lemma 9 (The ` + 1 pebble condition [13]). Let vw be an edge such
+that H + vw is sparse. If peb{v, w} < ` + 1, then a pebble not on vw can be
+brought to either v or w.
+It follows that any sparse graph has a pebble game construction.
+Theorem 1 (Sparse graphs and pebble game graphs coincide). A
+graph G is (k, `)-sparse with 0 ≤ ` ≤ 2k − 1 if and only if G is a pebble game
+graph.
+
+6
+
+The pebble game with colors decomposition
+
+In this section we prove Theorem 2, which characterizes all pebble game
+decompositions. We start with the following lemmas about the structure of
+monochromatic connected components in H, the directed graph maintained
+during the pebble game.
+Lemma 10 (Monochromatic pebble game subgraphs are (1, 0)-sparse).
+Let Hi be the subgraph of H induced by edges with pebbles of color ci on them.
+Then Hi is (1, 0)-sparse, for i = 1, . . . , k.
+Proof. By (I4) Hi is a set of edges with out degree at most one for every
+vertex.
+Lemma 11 (Subtrees in a pebble game graph). Every subgraph of the
+directed graph H in a pebble game construction contains at least ` monochromatic subtrees, and each of these is rooted at either a vertex with a pebble
+on it or a vertex that is the tail of an out-edge.
+Recall that an out-edge from a subgraph H 0 = (V 0 , E 0 ) is an edge vw
+with v ∈ V 0 and vw ∈
+/ E0.
+
+11
+
+Proof. Let H 0 = (V 0 , E 0 ) be a non-empty subgraph of H, and assume without loss of generality that H 0 is induced by V 0 . By (I3), out V 0 +peb V 0 ≥ `.
+We will show that each pebble and out-edge tail is the root of a subtree.
+Consider a vertex v ∈ V 0 and a color ci . By (I4) there is a unique
+monochromatic directed path of color ci starting at v. By (I5), if this
+path ends at a pebble, it does not have a cycle. Similarly, if this path
+reaches a vertex that is the tail of an out-edge also in color ci (i.e., if the
+monochromatic path from v leaves V 0 ), then the path cannot have a cycle
+in H 0 .
+Since this argument works for any vertex in any color, for each color
+there is a partitioning of the vertices into those that can reach each pebble,
+out-edge tail, or cycle. It follows that each pebble and out-edge tail is the
+root of a monochromatic tree, as desired.
+Applied to the whole graph Lemma 11 gives us the following.
+Lemma 12 (Pebbles are the roots of trees). In any pebble game configuration, each pebble of color ci is the root of a (possibly empty) monochromatic
+subtree of color ci .
+Remark: Haas showed in [7] that in an `Tk , a subgraph induced by
+n0 ≥ 2 vertices with m0 edges has exactly kn0 − m0 subtrees in it. Lemma
+11 strengthens Haas' result by extending it to the lower range and giving
+a construction that finds the subtrees, showing the connection between the
+` + 1 pebble condition and the hereditary condition on proper `Tk .
+We conclude our investigation of arbitrary pebble game constructions
+with a description of the decomposition induced by the pebble game with
+colors.
+Theorem 2 (The pebble game with colors decomposition). A graph
+G is a pebble game graph if and only if it admits a decomposition into k
+edge-disjoint subgraphs such that each is (1, 0)-sparse and every subgraph of
+G contains at least ` subtrees of the (1, 0)-sparse graphs in the decomposition.
+Proof. Let G be a pebble game graph. The existence of the k edge-disjoint
+(1, 0)-sparse subgraphs was shown in Lemma 10, and Lemma 11 proves the
+condition on subgraphs.
+For the other direction, we observe that a color ci with ti trees in a given
+subgraph can span at most n − ti edges; summing over all the colors shows
+that a graph with a pebble game decomposition must be sparse. Apply
+Theorem 1 to complete the proof.
+
+12
+
+Remark: We observe that a pebble game decomposition for a Laman
+graph may be read out of the bipartite matching used in Hendrickson's
+Laman graph extraction algorithm. Indeed, pebble game orientations have
+a natural correspondence with the bipartite matchings used in [9, 10].
+Maps-and-trees are a special case of pebble game decompositions for
+tight graphs: if there are no cycles in ` of the colors, then the trees rooted
+at the corresponding ` pebbles must be spanning, since they have n − 1
+edges. Also, if each color forms a forest in an upper range pebble game
+decomposition, then the subtrees condition ensures that the pebble game
+decomposition is a proper `Tk .
+In the next section, we show that the pebble game can be specialized to
+correspond to maps-and-trees and proper `Tk decompositions.
+
+7
+
+Canonical Pebble Game Constructions
+
+In this section we prove the main theorem (Theorem 3 and Theorem 4),
+continuing the investigation of decompositions induced by pebble game constructions by investigating the case where a minimum number of monochromatic cycles are created. The proof of the main theorem shows that for these
+constructions, the pebble game decomposition is either a maps-and-trees or
+proper `Tk . Every decomposition characterization of tight graphs discussed
+above follows immediately from the main theorem, giving new proofs of the
+previous results in a unified framework.
+The proof of the main theorem relies on two specializations of the pebble
+game, which we describe. The first is a modification of the add edge move.
+Canonical add edge: When performing an add edge move, cover the
+new edge with a color that is on both vertices if possible. If not, then take
+the highest numbered color present.
+The second is a restriction on which pebble slide moves we allow.
+Canonical pebble slide: A pebble slide moves is allowed only when
+it does not create a monochromatic cycle.
+We call a pebble game construction that uses only these moves canonical. In this section we will show that ever pebble game graph has a canonical
+pebble game construction (Lemma 14 and Lemma 15) and that canonical
+pebble game constructions correspond to proper `Tk and maps-and-trees
+decompositions (Theorem 3 and Theorem 4).
+We begin with a technical lemma that motivates the definition of canonical pebble game constructions. It shows that the situations disallowed by
+the canonical moves are all the ways for cycles to form in the lowest ` colors.
+
+13
+
+Lemma 13 (Monochromatic cycle creation). Let v ∈ V have a pebble
+p of color ci on it. A monochromatic cycle colored ci is created in exactly
+one of the following ways:
+(M1) The is a vertex w in a tree of edges colored ci rooted at v and the edge
+vw is added with an add edge move and p is used to cover vw.
+(M2) There is a vertex w in a tree of edges colored ci that contains v, the
+edge wv is present, and a pebble slide move over wv uses p to cover
+the reversed edge vw.
+Proof. Observe that the preconditions in the statement of the lemma are
+implied by Lemma 7. By Lemma 12 monochromatic cycles form when the
+last pebble of color ci is removed from a connected monochromatic subgraph.
+(M1) and (M2) are the only ways to do this in a pebble game construction,
+since the color of an edge only changes when it is inserted the first time or
+a new pebble is put on it by a pebble slide move.
+Figure 5(a) and Figure 5(b) show examples of (M1) and (M2) map
+creation moves, respectively, in a (2, 0)-pebble game construction.
+
+w
+
+w
+
+v
+
+w
+
+w
+
+v
+
+v
+
+v
+
+(a)
+
+(b)
+
+Figure 5: Creating monochromatic cycles in a (2, 0)-pebble game. (a) A
+type (M1) move creates a cycle by adding a black edge. (b) A type (M2)
+move creates a cycle with a pebble slide move. The vertices are labeled
+according to their role in the definition of the moves.
+We next show that if a graph has a pebble game construction, then it has
+a canonical pebble game construction. This is done in two steps, considering
+the cases (M1) and (M2) separately. The proof gives two constructions that
+implement the canonical add edge and canonical pebble slide moves.
+Lemma 14 (The canonical add edge move). Let G be a graph with a
+pebble game construction. Cycle creation steps of type (M1) can be eliminated in colors ci for 1 ≤ i ≤ `0 . Here `0 = min{k, `}.
+
+14
+
+Proof. For add edge moves, cover the edge with a color present on both v
+and w if possible. If this is not possible, then there are ` + 1 distinct colors
+present. Use the highest numbered color to cover the new edge.
+Remark: We note that in the upper range, there is always a repeated
+color, so no canonical add edge moves create cycles in the upper range.
+The canonical pebble slide move is defined by a global condition. To
+prove that we obtain the same class of graphs using only canonical pebble
+slide moves, we need to extend Lemma 9 to only canonical moves. The
+main step is to show that if there is any sequence of moves that reorients a
+path from v to w, there is a sequence of canonical moves that does the same
+thing.
+Lemma 15 (The canonical pebble slide move). Any sequence of pebble slide moves leading to an add edge move can be replaced with one that
+has no (M2) steps and allows the same add edge move.
+Figure 7 and Figure 8 illustrate the construction used in the proof of
+Lemma 15. We call this the shortcut construction by analogy to matroid
+union and intersection augmenting paths used in previous work on the lower
+range.
+Figure 6 shows the structure of the proof. The shortcut construction
+removes an (M2) step at the beginning of a sequence of pebble slides that
+reorient a path from v to w. Since one application of the shortcut construction reorients a simple path from a vertex w0 to w, and a path from v to
+w0 is preserved, the shortcut construction can be applied inductively to find
+the sequence of moves we want.
+Proof. Without loss of generality, we can assume that our sequence of moves
+reorients a simple path in H, and that the first move (the end of the path)
+is (M2). The (M2) step moves a pebble of color ci from a vertex w onto
+the edge vw, which is reversed. Because the move is (M2), v and w are
+contained in a maximal monochromatic tree of color ci . Call this tree Hi0 ,
+and observe that it is rooted at w.
+Now consider the edges reversed in our sequence of moves. As noted
+above, before we make any of the moves, these sketch out a simple path in
+H ending at w. Let z be the first vertex on this path in Hi0 . We modify our
+sequence of moves as follows: delete, from the beginning, every move before
+the one that reverses some edge yz; prepend onto what is left a sequence of
+moves that moves the pebble on w to z in Hi0 .
+
+15
+
+w
+w
+
+v
+
+v
+(a)
+
+(b)
+
+w
+
+w'
+v
+(c)
+
+Figure 6: Outline of the shortcut construction: (a) An arbitrary simple path
+from v to w with curved lines indicating simple paths. (b) An (M2) step,
+with the gray tree spanning the black edge that will flip shown in dashed
+lines; the solid gray edges were part of the original path from (a). (c) The
+shortened path to the gray pebble; the new path follows the gray tree all
+the way from the first time the original path touched the gray tree. The
+doubled path from v to w0 is simple, and the shortcut construction can be
+applied inductively to it.
+
+(a)
+
+(b)
+
+Figure 7: Eliminating (M2) moves: (a) an (M2) move; (b) avoiding the
+(M2) by moving along another path. The path where the pebbles move is
+indicated by doubled lines.
+
+16
+
+(a)
+
+(b)
+
+Figure 8: Eliminating (M2) moves: (a) the first step to move the black pebble along the doubled path is (M2); (b) avoiding the (M2) and simplifying
+the path.
+Since no edges change color in beginning of the new sequence, we have
+eliminated the (M2) move at the beginning. Because our construction does
+not change any of the edges involved in the remaining tail of the original
+sequence, the part of the original path that is left in the new sequence will
+still be a simple path in H, meeting our initial hypothesis.
+The rest of the lemma follows by induction.
+Together Lemma 14 and Lemma 15 prove the following.
+Lemma 16. If G is a pebble game graph, then G has a canonical pebble
+game construction.
+Using canonical pebble game constructions, we can identify the tight
+pebble game graphs with maps-and-trees and `Tk .
+Theorem 3 (Main Theorem (Lower Range): Maps-and-trees coincide with pebble game graphs). Let 0 ≤ ` ≤ k. A graph G is a tight
+pebble game graph if and only if G is a (k − `, `)-maps-and-trees.
+Proof. As observed above, a maps-and-trees decomposition is a special case
+of the pebble game decomposition. Applying Theorem 2, we see that any
+maps-and-trees must be a pebble game graph.
+For the reverse direction, consider a canonical pebble game construction
+of a tight graph. From Lemma 8, we see that there are ` pebbles left on
+G at the end of the construction. The definition of the canonical add
+edge move implies that there must be at least one pebble of each ci for
+i = 1, 2, . . . , `. It follows that there is exactly one of each of these colors.
+By Lemma 12, each of these pebbles is the root of a monochromatic subtree
+with n − 1 edges, yielding the required ` edge-disjoint spanning trees.
+Corollary 6 (Tutte, Nash-Williams, White and Whiteley [22, 16, 24]). Let
+` ≤ k. A graph G is tight if and only if has a (k − `, `)-maps-and-trees
+decomposition.
+17
+
+We next consider the decompositions induced by canonical pebble game
+constructions when ` ≥ k + 1.
+Theorem 4 (Main Theorem (Upper Range): Proper `Tk graphs
+coincide with pebble game graphs). Let k ≤ ` ≤ 2k − 1. A graph G is
+a tight pebble game graph if and only if it is a proper `Tk with kn − ` edges.
+Proof. As observed above, a proper `Tk decomposition must be sparse. What
+we need to show is that a canonical pebble game construction of a tight graph
+produces a proper `Tk .
+By Theorem 2 and Lemma 16, we already have the condition on subtrees
+and the decomposition into ` edge-disjoint trees. Finally, an application of
+(I4), shows that every vertex must in in exactly k of the trees, as required.
+Corollary 5 (Crapo, Haas [7, 2]). Let k ≤ ` ≤ 2k − 1. A graph G is tight
+if and only if it is a proper `Tk .
+
+8
+
+Pebble game algorithms for decompositions
+
+A nave implementation of the constructions in the previous section leads
+to an algorithm requiring Θ(n2 ) time to collect each pebble in a canonical
+construction: in the worst case Θ(n) applications of the construction in
+Lemma 15 requiring Θ(n) time each.
+In this section, we describe algorithms for the decomposition problem
+that run in time O(n2 ). We begin with the overall structure of the algorithm.
+Algorithm 17 (The canonical pebble game with colors). Input: A graph
+G.
+Output: A pebble game graph H, and the components of H.
+Method: Set V (H) = V (G) and place one pebble of each color on the
+vertices of H.
+For each edge vw ∈ E(G) try to collect ` + 1 pebbles on v and w using
+pebble slide moves as described by Lemma 15. If ` + 1 pebbles can be
+collected, add vw to H using an add edge move as in Lemma 14, otherwise
+discard vw.
+Finally, return H, the locations of the pebbles, and a list of components.
+Correctness. Theorem 1 and the observation from [24] that the sparse
+graphs are the independent sets of a matroid show that H is a maximum
+sized sparse subgraph of G. Since the construction found is canonical, the
+18
+
+main theorem shows that the coloring of the edges in H gives a maps-andtrees or proper `Tk decomposition.
+Complexity. We start by observing that the running time of Algorithm
+17 is the time taken to process O(n) edges added to H and O(m) edges not
+added to H. We first consider the cost of an edge of G that is added to H.
+Each of the pebble game moves can be implemented in constant time.
+What remains is to describe an efficient way to find and move the pebbles.
+We use the following algorithm as a subroutine of Algorithm 17 to do this.
+Algorithm 18 (Finding a canonical path to a pebble.). Input: Vertices v
+and w, and a pebble game configuration on a directed graph H.
+Output: If a pebble was found, 'yes', and 'no' otherwise. The configuration of H is updated.
+Method: Start by doing a depth-first search from from v in H. If no
+pebble not on w is found, stop and return 'no.'
+Otherwise a pebble was found. We now have a path v = v1 , e1 , . . . , ep−1 , vp =
+u, where the vi are vertices and ei is the edge vi vi+1 . Let c[ei ] be the color
+of the pebble on ei . We will use the array c[] to keep track of the colors of
+pebbles on vertices and edges after we move them and the array s[] to sketch
+out a canonical path from v to u by finding a successor for each edge.
+Set s[u] = 'end0 and set c[u] to the color of an arbitrary pebble on u. For
+each edge ep−1 , ep−2 , . . . , e1 : check to see if c[vi ] is set; if so, go on to the
+next edge. Otherwise, check to see if c[vi+1 ] = c[ei ]. If it is, set s[vi ] = ei
+and set c[vi ] = c[ei ], and go on to the next edge.
+Otherwise, try to find a monochromatic path in color c[vi+1 ] from vi
+to vi+1 . If a vertex x with c[x] set is encountered, we have a path vi =
+x1 , f1 , . . . , fq−1 , xq = x that is monochromatic in c[vi+1 ]; set c[xi ] = c[fi ]
+and s[xi ] = fi for i = 1, 2, . . . , q − 1. If c[x] = c[fq−1 ], stop. Otherwise,
+recursively check that there is not a monochromatic c[x] path from xq−1 to
+x using this same procedure.
+Finally, slide pebbles along the path from v to u specified by s[v], s[s[v]],
+etc.
+The correctness of Algorithm 18 comes from the fact that it is implementing the shortcut construction. Efficiency comes from the fact that instead of
+potentially moving the pebble back and forth, Algorithm 18 pre-computes
+a canonical path crossing each edge of H at most three times: once in the
+initial depth-first search, and twice while converting the initial path to a
+canonical one. It follows that each accepted edges takes O(n) time, for a
+total of O(n2 ) time spent processing edges in H.
+19
+
+From [13], we know that after each accepted edge, the components of H
+can be updated in time O(n). Finally, using the results of [13, 14] we see
+that the rejected edges take an amortized O(1) time each.
+Summarizing, we have shown that the canonical pebble game with colors
+solves the decomposition problem in time O(n2 ).
+
+9
+
+Conclusions and open problems
+
+We presented a new characterization of sparse graphs, the pebble game with
+colors, and used it to give an efficient algorithm for finding decompositions
+of sparse graphs into edge-disjoint trees. Our algorithm, which is the first
+that finds such sparsity-certifying decompositions runs in time O(n2 ), which
+is as fast as the algorithms for recognizing sparse graphs in the upper range
+from [13].
+We also use the pebble game with colors to describe a new sparsitycertifying decomposition that applies to the entire matroidal range of sparse
+graphs.
+We defined and studied a class of canonical pebble game constructions
+that correspond to either a maps-and-trees or proper `Tk decomposition.
+This gives a new proof of the Tutte-Nash-Williams arboricity theorem and a
+unified proof of the previously studied decomposition certificates of sparsity.
+Canonical pebble game constructions also show the relationship between the
+` + 1 pebble condition, which applies to the upper range of `, to matroid
+union augmenting paths, which do not apply in the upper range.
+Algorithmic consequences and open problems. In [5], Gabow and
+Westermann give an O(n3/2 ) algorithm for recognizing sparse graphs in the
+lower range and extracting sparse subgraphs from dense ones. Their technique is based on efficiently finding matroid union augmenting paths, which
+extend a maps-and-trees decomposition. The O(n3/2 ) algorithm uses two
+subroutines to find augmenting paths: cyclic scanning, which finds augmenting paths one at a time, and batch scanning, which finds groups of
+disjoint augmenting paths.
+We observe that Algorithm 17 can be used to replace cyclic scanning
+in Gabow and Westermann's algorithm without changing the running time.
+The data structures used in the implementation of the pebble game, detailed
+in [14, 13] are simpler and easier to implement than those used to support
+cyclic scanning.
+
+20
+
+The two major open algorithmic problems related to the pebble game
+are then:
+Open problem 19. Develop a pebble game algorithm with the properties
+of batch scanning and obtain an implementable O(n3/2 ) algorithm for the
+lower range.
+Open problem 20. Extend batch scanning to the ` + 1 pebble condition
+and derive an O(n3/2 ) pebble game algorithm for the upper range.
+
+References
+[1] A. R. Berg and T. Jordan. Algorithms for graph rigidity and scene
+analysis. In G. D. Battista and U. Zwick, editors, ESA, volume 2832
+of Lecture Notes in Computer Science. Algorithms - ESA 2003, 11th
+Annual European Symposium, Budapest,Hungary, Springer, 2003.
+[2] H. Crapo. On the generic rigidity of plane frameworks structures in the
+plane. Advances in Applied Mathematics, 1996.
+[3] J. Edmonds. Minimum partition of a matroid into independent sets. J.
+Res. Nat. Bur. Standards Sect. B, 69B:67–72, 1965.
+[4] J. Edmonds. Submodular functions, matroids, and certain polyhedra.
+In M. Jünger, G. Reinelt, and G. Rinaldi, editors, Combinatorial Optimization, volume 2570 of Lecture Notes in Computer Science, pages
+11–26. Springer, 2001.
+[5] H. Gabow and H. Westermann. Forests, frames, and games: algorithms
+for matroid sums and applications. In Proceedings of the twentieth
+annual ACM symposium on Theory of computing, pages 407–421. ACM
+Press, 1988.
+[6] H. N. Gabow. A matroid approach to finding edge connectivity and
+packing arborescences. J. Comput. System Sci., 50, 1995.
+[7] R. Haas. Characterizations of arboricity of graphs. Ars Combinatorica,
+63:129–137, 2002.
+[8] R. Haas, A. Lee, I. Streinu, and L. Theran. Characterizing sparse graphs
+by map decompositions. To appear in the Journal of Combinatorial
+Mathematics and Combinatorial Computing, 2006.
+
+21
+
+[9] B. Hendrickson. The molecule problem: determining conformation from
+pairwise distances. PhD thesis, Cornell University, 1991.
+[10] B. Hendrickson. Conditions for unique graph realizations. SIAM Journal of Computing, 21(1), 1992.
+[11] D. J. Jacobs and B. Hendrickson. An algorithm for two dimensional
+rigidity percolation: The pebble game. J. Comput. Phys., 137:346–365,
+1997.
+[12] G. Laman. On graphs and rigidity of plane skeletal structures. Journal
+of Engineering Mathematics (Historical Archive), 4(4):331–340, 1970.
+[13] A. Lee and I. Streinu. Pebble game algorithms and sparse graphs.
+Submitted to Discrete Applied Mathematics, 2005.
+[14] A. Lee, I. Streinu, and L. Theran. Finding and maintaining rigid components. In Proceeding of the Canadian Conference of Computational
+Geometry. Windsor, Ontario, 2005.
+[15] L. Lovász. Combinatorial Problems and Exercises. Akademiai Kiado
+and North-Holland, Amsterdam, 1979.
+[16] C. S. A. Nash-Williams. Edge-disjoint spanning trees of finite graphs.
+Journal London Math. Soc., 36:445–450, 1961.
+[17] J. G. Oxley. Matroid theory. Oxford University Press, New York, 1992.
+[18] J. Roskind and R. E. Tarjan. A note on finding minimum cost edge disjoint spanning trees. Mathematics of Operations Research, 10(4):701–
+708, 1985.
+[19] T.-S. Tay. Rigidity problems in bar and joint frameworks. PhD thesis,
+Department of Pure Mathematics,University of Waterloo, 1980.
+[20] T.-S. Tay. Rigidity of multigraphs I: linking rigid bodies in n-space.
+Journal of Combinatorial Theory Series, B 26:95–112, 1984.
+[21] T.-S. Tay. A new proof of Laman's theorem. Graphs and Combinatorics,
+9:365–370, 1993.
+[22] W. T. Tutte. On the problem of decomposing a graph into n connected
+factors. Journal London Math. Soc., 142:221–230, 1961.
+
+22
+
+[23] W. Whiteley. The union of matroids and the rigidity of frameworks.
+SIAM Journal Discrete Mathematics, 1(2):237–255, May 1988.
+[24] W. Whiteley. Some matroids from discrete applied geometry. In J. O.
+J. Bonin and B. Servatius, editors, Matroid Theory, volume 197 of Contemporary Mathematics, pages 171–311. American Mathematical Society, 1996.
+
+23
+
+

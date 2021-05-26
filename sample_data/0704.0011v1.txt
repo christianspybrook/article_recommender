@@ -1,0 +1,1181 @@
+arXiv:0704.0011v1 [math.NT] 31 Mar 2007
+
+EXPLICIT JACQUET-LANGLANDS FOR GENUS
+√2
+HILBERT-SIEGEL MODULAR FORMS OVER Q( 5)
+CLIFTON CUNNINGHAM AND LASSINA DEMBÉLÉ
+Abstract. In this paper we present an algorithm for computing Hecke
+eigensystems of Hilbert-Siegel cusp forms over real quadratic fields of
+narrow class number
+√ one. We give some illustrative examples using the
+quadratic field Q( 5). In those examples, we identify Hilbert-Siegel
+eigenforms that are possible lifts from Hilbert eigenforms.
+
+Introduction
+Let F be a real quadratic field of narrow class number one and let B be the
+unique (up to isomorphism) quaternion algebra over F which is ramified at
+both archimedean places of F and unramified everywhere else. Let GU2 (B)
+be the unitary similitude group of B ⊕2 . This is the set of Q-rational points
+of an algebraic group GB defined over Q. The group GB is an inner form of
+G := ResF/Q (GSp4 ) such that GB (R) is compact modulo its centre.
+In this paper we develop an algorithm which computes automorphic forms
+on GB in the following sense: given an ideal N in OF and an integer k greater
+than 3, the algorithm returns the Hecke eigensystems of all automorphic
+forms f of level N and parallel weight k. More precisely, given a prime p in
+OF , the algorithm returns the Hecke eigenvalues of f at p, and hence the
+Euler factor Lp(f, s), for each eigenform f of level N and parallel weight k.
+The algorithm is a generalization of the one developed in [D1 2005] to the
+genus 2 case. Although we have only described the algorithm in the case of
+a real quadratic field in this paper, it should be clear from our presentation
+that it can be adapted to any totally real number field of narrow class
+number one. And so, it can be seen as a slight improvement of Lansky and
+Pollack [LP 2002].
+The Jacquet-Langlands Correspondence predicts the existence of a transfer map JL : Π(GB ) → Π(G) from automorphic representations of GB to
+automorphic representations on G, which is injective, matches L-functions
+and enjoys other properties compatible with the principle of functoriality;
+in particular, the image of the Jacquet-Langlands Correspondence is to be
+Date: August 10, 2013.
+1991 Mathematics Subject Classification. Primary: 11F42 (Hilbert and Hilbert-Siegel
+modular forms);
+Key words and phrases. Hilbert-Siegel modular forms, Jacquet-Langlands Correspondence, Brandt matrices, Satake parameters.
+1
+
+2
+
+CLIFTON CUNNINGHAM AND LASSINA DEMBÉLÉ
+
+contained in the space of holomorphic automorphic representations. If we
+admit this conjecture, then the algorithm above provides a way to produce
+examples of cuspidal Hilbert-Siegel modular forms of genus 2 over F and
+allows us to compute the L-factors of the corresponding automorphic representations for arbitrary finite primes p of F .
+In order to support the claim that we are in fact computing HilbertSiegel modular forms, we must compare the Euler factors we find with those
+of known Hilbert-Siegel modular forms. This we do in the final section of the
+paper where we observe that, in certain cases, the Euler factors we compute
+match those of lifts of Hilbert modular forms, for the primes we computed.
+The first systematic approach to Siegel modular forms from a computational viewpoint is due to Skoruppa [S 1992] who used Jacobi symbols
+to generate spaces of such forms. His algorithm, which has been extensively exploited by Ryan [R 2006], works only for the full level structure.
+More recently, Faber and van der Geer [FvdG1 2004] and [FvdG2 2004] also
+produced examples of Siegel modular forms by counting points on hyperelliptic curves of genus 2, but again their results are available only in the
+full level structure case. The most substantial progress toward the computation of Siegel modular forms for proper level structure is by Gunnells
+[Gu 2000] who extended the theory of modular symbols to the symplectic
+group Sp4 /Q. However, this work does not see the cuspidal cohomology
+which is relevant to us. To the best of our knowledge, there are no numerical examples of Hilbert-Siegel modular forms for proper level structure in
+the literature, with the exception of those produced from liftings of Hilbert
+modular forms.
+The outline of the paper is as follows. In Section 1 we recall the basic
+properties of Hilbert-Siegel modular forms and algebraic automorphic forms
+together with the Jacquet-Langlands Correspondence. In Section 2 we give
+a detailed description of our algorithm. Finally,
+in Section 3 we present
+√
+numerical results for the quadratic field Q( 5).
+Acknowledgements. During the course of the preparation of this paper,
+the second author had helpful email exchanges with several people including Alexandru Ghitza, David Helm, Marc-Hubert Nicole, David Pollack,
+Jacques Tilouine and Eric Urban. The authors wish to thank them all.
+Also, we would like to thank William Stein for allowing us to use the SAGE
+computer cluster at the University of Washington. And finally, the second author would like to thank the PIMS institute for their postdoctoral
+fellowship support, and the University of Calgary for their hospitality.
+1. Hilbert-Siegel modular forms and the Jacquet-Langlands
+correspondence
+Throughout this paper, F denotes a real quadratic field of narrow class
+number one. The two archimedean places of F and the real embeddings of
+F will both be denoted v0 and v1 . For every a ∈ F , we write a0 (resp. a1 )
+
+EXPLICIT JACQUET-LANGLANDS FOR GENUS 2
+
+3
+
+for the image of a under v0 (resp. v1 ). The ring of integers of F is denoted
+by OF . For every prime ideal p in OF , the completion of F and OF at p
+will be denoted by Fp and OFp , respectively.
+Let B be the unique (up to isomorphism) totally definite quaternion algebra over F which is unramified at all finite primes of F . We fix a maximal
+order OB of B. Also, we choose a splitting field K/F of B that is Galois over Q and such that there exists an isomorphism j : OB ⊗Z OK ∼
+=
+M2 (OK ) ⊕ M2 (OK ), where M2 (A) denotes the ring of 2 × 2-matrices with
+entries from a ring A. For every finite prime p in F , we fix an isomorphism
+Bp ∼
+= M2 (Fp) which restricts to an isomorphism from OB, p onto M2 (OFp ).
+We denote the finite adèles of Q (resp. Z) by Q̂ (resp. Ẑ), and for any
+Q-algebra (resp. Z-algebra) A, we set Â := A ⊗Q Q̂ (resp. Â := A ⊗Z Ẑ).
+Recall that the algebraic group G = ResF/Q (GSp4 ) is defined as follows.
+For any Q-algebra A, the set of A-rational points is given by
+
+
+γJ2 γ t = νG (γ)J2
+G(A) = γ ∈ GL4 (A ⊗Q F )
+,
+νG (γ) ∈ (A ⊗Q F )×
+where
+
+
+
+
+0
+12
+.
+−12 0
+This group admits an integral model denoted the same way, and whose
+A-rational points for every Z-algebra A is given by
+
+
+γJ2 γ t = νG (γ)J2
+G(A) = γ ∈ GL4 (A ⊗Z OF )
+.
+νG (γ) ∈ (A ⊗Z OF )×
+J2 =
+
+Now, for any Q-algebra A, the conjugation on B extends in a natural way
+to the matrix algebra M2 (B ⊗Q A). The algebraic group GB /Q is defined
+by letting
+
+
+γγ̄ t = νGB (γ)12
+B
+.
+G (A) = γ ∈ M2 (B ⊗Q A)
+νGB (γ) ∈ (A ⊗Q F )×
+This group admits an integral model denoted the same way, and whose
+A-rational points for every Z-algebra is given by
+
+
+γγ̄ t = νGB (γ)12
+B
+G (A) = γ ∈ M2 (OB ⊗Z A)
+.
+νGB (γ) ∈ (A ⊗Z OF )×
+
+The group GB /Q is an inner form of G/Q such that GB (R) is compact
+modulo its center. By the choice of the quaternion algebra B, we have
+GB (Q̂) ∼
+= G(Q̂). Also, combining the isomorphism j with conjugation by a
+permutation matrix, we obtain an isomorphism GB (OK ) ∼
+= G(OK ), which
+we fix from now on.
+
+1.1. Hilbert-Siegel modular forms. We fix an integer k ≥ 3 and, for
+simplicity, we restrict ourselves to Hilbert-Siegel modular forms of parallel
+weight k. The real embeddings v0 and v1 of F extend to G(Q) = GSp4 (F )
+in a natural way. We denote by GSp+
+4 (F ) the subgroup of elements γ
+
+4
+
+CLIFTON CUNNINGHAM AND LASSINA DEMBÉLÉ
+
+with totally positive similitude factor νG (γ) ≫ 0. We recall that the Siegel
+upper-half plane of genus 2 is defined by
+H2 = {γ ∈ GL2 (C) γ t = γ and Im(γ) > 0},
+2
+and that GSp+
+4 (F ) acts on H2 by
+
+
+
+a b
+(τ0 , τ1 ) := (a0 τ0 + b0 )(c0 τ0 + d0 )−1 , (a1 τ1 + b1 )(c1 τ1 + d1 )−1 .
+c d
+
+This induces an action on the space of functions f : H22 → C by
+
+
+1
+Y
+νG (γi )k/2
+a b
+f (τ ).
+∀γ =
+,
+f |k γ(τ ) =
+c d
+det(ci τi + di )k
+i=0
+
+Let N be an ideal in OF and set
+
+
+
+a b
++
+Γ0 (N ) =
+∈ GSp4 (OF ) c ≡ 0(N ) .
+c d
+A Hilbert-Siegel modular form of level N and parallel weight k is a
+holomorphic function f : H22 → C such that
+∀γ ∈ Γ0 (N ),
+
+f |k γ = f.
+
+The space of Hilbert-Siegel modular forms of parallel weight k and level N
+is denoted Mk (N ). Each f ∈ Mk (N ) admits a Fourier expansion, which by
+the Koecher principle takes the form
+X
+f (τ ) =
+aQ e2πiTr(Qτ ) ,
+∀τ ∈ H22 ,
+{Q≫0}∪{0}
+
+where Q ∈ M2 (F ) runs over all symmetric totally positive and semi-definite
+matrices. A Hilbert-Siegel modular forms f is a cusp form if, for all γ ∈
+GSp+
+4 (F ), the first coefficient in the Fourier expansion of f |k γ is zero. The
+space of Hilbert-Siegel cusp forms is denoted Sk (N ).
+1.2. The Hecke algebra. The space Sk (N ) comes equipped with a Hecke
+action, which we now recall. Take u ∈ GSp+
+4 (F ) ∩ M4 (OF ), and write the
+finite disjoint union
+a
+Γ0 (N )uΓ0 (N ) =
+Γ0 (N )ui .
+i
+
+Then the Hecke operator [Γ0 (N )uΓ0 (N )] on Sk (N ) is given by
+X
+[Γ0 (N )uΓ0 (N )]f =
+f |k ui .
+i
+
+Let p be a prime ideal in OF and let πp be a totally positive generator of
+p; let T1 (p) and T2 (p) be the Hecke operators corresponding to the double
+
+EXPLICIT JACQUET-LANGLANDS FOR GENUS 2
+
+Γ0 (N )-cosets of the matrices
+
+
+1 0 0 0
+0 1 0 0 
+
+
+0 0 πp 0 
+0 0 0 πp
+
+and
+
+5
+
+
+
+1 0 0 0
+0 πp 0 0 
+
+
+0 0 πp2 0  ,
+0 0 0 πp
+
+respectively. The Hecke algebra Tk (N ) is the Z-algebra generated by the
+operators T1 (p) and T2 (p), where p runs over all primes not dividing N .
+1.3. Algebraic Hilbert-Siegel autormorphic forms. We only consider
+level structure of Siegel type. Namely, we define the compact open subgroup
+U0 (N ) of G(Q̂) by
+Y
+Y
+U0 (N ) =
+GSp4 (OFp ) ×
+U0 (pep ),
+p∤N
+
+p|N
+
+pep and
+
+
+
+a b
+ep
+ep
+U0 (p ) :=
+∈ GSp4 (OFp ) c ≡ 0 mod p
+.
+c d
+
+where N =
+
+Q
+
+p|N
+
+The weight representation is defined as follows. Let Lk be the representation of GSp4 (C) of highest weight (k − 3, k − 3). We let Vk = Lk ⊗ Lk
+and define the complex representation (ρk , Vk ) by
+ρk : GB (R) −→ GL(Vk ),
+where the action on the first factor is via v0 , and the action on the second
+one is via v1 .
+The space of algebraic Hilbert-Siegel modular forms of weight k and
+level N is given by
+o
+n
+MkB (N ) := f : GB (Q̂)/U0 (N ) → Vk ∀γ ∈ GB (Q), f |k γ = f ,
+where f |k γ(x) = f (γx)γ, for all x ∈ GB (Q̂)/U0 (N ). When k = 3, we let
+n
+o
+IkB (N ) := f : GB (Q)\GB (Q̂)/U0 (N ) → C f is constant .
+Then, the space of algebraic Hilbert-Siegel cusp forms of weight k and
+level N is defined by
+
+if k > 3,
+ MkB (N )
+B
+Sk (N ) :=
+
+MkB (N )/IkB (N ) if k = 3.
+The action of the Hecke algebra on SkB (N ) is given as follows. For any
+u ∈ G(Q̂), write the finite disjoint union
+a
+U0 (N )uU0 (N ) =
+ui U0 (N ),
+i
+
+6
+
+CLIFTON CUNNINGHAM AND LASSINA DEMBÉLÉ
+
+and define
+
+by
+
+[U0 (N )uU0 (N )] : SkB (N ) → SkB (N )
+f 7→ f |k [U0 (N )uU0 (N )],
+f |k [U0 (N )uU0 (N )](x) =
+
+X
+i
+
+f (xui ), x ∈ G(Q̂).
+
+For any prime p ∤ N , let ̟p be a local uniformizer at p. The local Hecke algebra at p is generated by the Hecke operators T1 (p) and T2 (p) corresponding
+to the double U0 (N )-cosets ∆1 (p) and ∆2 (p) of the matrices
+
+
+
+
+1 0
+0
+0
+1 0 0
+0
+0 1 0
+0 ̟p 0
+0
+0
+
+
+
+
+0 0 ̟p 0  and 0 0 ̟p2 0  ,
+0 0 0 ̟p
+0 0
+0 ̟p
+respectively. We let TB
+k (N ) be the Hecke algebra generated by T1 (p) and
+T2 (p) for all primes p ∤ N .
+
+1.4. The Jacquet-Langlands Correspondence. The Hecke modules Sk (N )
+and SkB (N ) are related by the following conjecture known as the JacquetLanglands Correspondence for symplectic groups.
+Conjecture 1 (Jacquet-Langlands). The Hecke algebras Tk (N ) and TB
+k (N )
+are isomorphic and there is a compatible isomorphism of Hecke modules
+∼
+
+JL : SkB (N ) −→ Sk (N ).
+The Jacquet-Langlands Correspondence is a special case of the Langlands
+transfer map between autormorphic forms on the inner forms of a group and
+the group itself. To the best of our knowledge, the correspondence in this
+form was first discussed by Ihara [Ih 1964] in the case F = Q, and by
+Ibukiyama [Ib 1984] who provided some numerical evidences. The authors
+intend to investigate some cases of the conjecture using theta series. The
+Fundamental Lemma should be the main ingredient in giving a full proof of
+the conjecture, although this would not be a straightforward exercise. We
+were told by several people that the result would be a consequence of some
+work in progress by James Arthur.
+2. The Algorithm
+In this section, we present the algorithm we used in order to compute
+the Hecke module of (algebraic) Hilbert-Siegel modular forms. The main
+assumption in this section is that the class number of the principal genus
+of GB is 1. (This is not a very strong restriction and we refer to [D3 2007]
+to see how one could relax it). We recall that since B is totally definite,
+GB satisfies Proposition 1.4 in Gross [Gr 1999]. Thus the group GB (R) is
+compact modulo its centre, and Γ = GB (Z)/OF× is finite.
+
+EXPLICIT JACQUET-LANGLANDS FOR GENUS 2
+
+7
+
+For any prime p in F , let Fp = OF /p be the residue field at p and define
+the reduction map
+M2 (OB, p) → M4 (Fp)
+g 7→ g̃.
+
+Now, choose a totally positive generator πp of p and put
+
+Θ1 (p) := Γ\ u ∈ M2 (OB ) uūt = πp12 and rank(g̃) = 2 ,
+
+Θ2 (p) := Γ\ u ∈ M2 (OB ) uūt = πp2 12 and rank(g̃) = 1 .
+
+We let H02 (N ) = G(Ẑ)/U0 (N ). Then the group Γ acts on H02 (N ), thus on
+the space of functions f : H02 (N ) → Vk by
+∀x ∈ H02 (N ), ∀γ ∈ Γ,
+
+f |k γ(x) := f (γx)γ.
+
+The following theorem is our main result.
+
+Theorem 2. There is an isomorphism of Hecke modules
+∼ 
+MkB (N ) −→ f : H02 (N ) → Vk f |k γ = f, γ ∈ Γ ,
+
+where the Hecke action on the right hand side is given by
+X
+f |k T1 (p) =
+f |k u,
+u∈Θ1 (p)
+
+f |k T2 (p) =
+
+X
+
+u∈Θ2 (p)
+
+f |k u.
+
+Proof. We first observe that the sets Θ1 (p) and Θ2 (p) give global cosets
+representatives for the double cosets ∆1 (p) and ∆2 (p) respectively. Since
+the class number of the principal genus of GB is one, the rest of the theorem
+follows using a similar argument as in [D1 2005, Proposition 3.1]. (See also
+[D3 2007] for additional details).
+
+It is not hard to see that Theorem 2 provides us with a description of the
+Hecke action on the zero-dimensional flag scheme H02 (N ) defined on OF /N
+that lends itself better to computation than the classical approach to Brandt
+matrices in terms of ideal classes or lattices. In the rest of this section, we
+explain the main steps of our algorithm.
+2.1. The quotientQ
+H02 (N ). Keeping the notations of the previous section,
+we recall that N = p|N pep . Let p be a prime dividing N and consider the
+
+4
+free rank 4 OFp /pep -module L = OFp /pep endowed with the symplectic
+pairing h , i given by the matrix
+
+
+0
+12
+J2 =
+,
+−12 0
+
+where 12 is the identity matrix in M2 (OFp /pep ). Let M be a rank 2
+OFp /pep -submodule which is a direct factor in L. We say that M is symplectic if hu, vi = 0 for all u, v ∈ M . We recall that GSp4 (OFp ) acts
+
+8
+
+CLIFTON CUNNINGHAM AND LASSINA DEMBÉLÉ
+
+
+transitively on the set of symplectic OFp /pep -submodules of rank 2 and
+that the stabilizer of the submodule generated by e1 = (1, 0, 0, 0)T and
+e2 = (0, 1, 0, 0)T is U0 (pep ). The quotient H02 (pep ) = GSp4 (OFp )/U0 (pep )
+is the set of OFp /pep -rational points of the Lagrange scheme defined over
+OFp /pep . Via the reduction map ÔF → OF /N , the quotient G(Ẑ)/U0 (N )
+can be identified with the product
+Y
+H02 (N ) =
+H02 (pep ).
+p|N
+
+The cardinality of H02 (N ) is extremely useful and is determined using the
+following lemma.
+Lemma 1. Let p be a prime in F and ep ≥ 1 an integer. Then, the cardinality of the set H02 (pep ) is given by
+#H02 (pep ) = N(p)3(ep −1) (N(p) + 1)(N(p)2 + 1).
+Proof. For ep = 1, the cardinality of the Lagrange variety over the finite
+field Fp = OF /p is given by (N(p) + 1)(N(p)2 + 1). Proceed by induction on
+ep.
+
+2.2. Brandt matrices. Let F = {x1 , . . . , xh } be a fundamental domain
+for the action of Γ on H02 (N ) and, for each i, let Γi be the stabilizer of xi .
+It is well known that there is an isomorphism of complex spaces
+MkB (N ) →
+f
+
+h
+M
+
+VkΓi
+
+i=1
+
+7→ (f (xi )),
+
+where VkΓi is the subspace of Γi -invariants in Vk . For any x, y ∈ H02 (N ), we
+let
+
+Θ1 (x, y, p) := u ∈ Θ1 (p) ∃γ ∈ Γ, ux = γy ,
+
+Θ2 (x, y, p) := u ∈ Θ2 (p) ∃γ ∈ Γ, ux = γy
+Proposition 3. The actions of the Hecke operators Ts (p), s = 1, 2, are
+given by the Brandt matrices Bs (p) = (bsij (p)), where
+Γ
+
+bsji (p) : Vk j
+
+→ VkΓi
+
+
+v 7→ v * 
+
+X
+
+u∈Θs (xi , xj , p)
+
+
+
+γu−1 u .
+
+Proof. The proof of Proposition 3 follows the lines of [D1 2005, §3].
+
+
+
+2.3. Splitting GB at a prime p. The splitting of GB amounts to the one
+of the quaternion algebra B/F and we refer to [D1 2005] for further details.
+
+EXPLICIT JACQUET-LANGLANDS FOR GENUS 2
+
+9
+
+2.4. Computing the group GB (Z). It is enough to compute the subgroup
+Γ consisting of the elements in GB (Z) with similitude factor 1. But it is easy
+to see that
+
+
+ 
+
+
+u 0
+0 u
+1
+1
+Γ=
+u, v ∈ OB ∪
+u, v ∈ OB ,
+0 v
+v 0
+1 is the group of norm 1 elements.
+where OB
+
+2.5. Computing the sets Θ1 (p) and Θ2 (p). Let us consider the quadratic
+form on the vector space V = B 2 given by
+V → F
+(a, b) 7→ ||(a, b)|| := nr(a) + nr(b),
+
+where nr is the reduced norm on B. This determines an inner form
+V ×V → F
+(u, v) 7→ hu, vi.
+
+An element of Θ1 (p) (resp. Θ2 (p)) is a unitary matrix γ ∈ M2 (OB ) with
+respect to this inner form such that the norm of each row is πp (resp. πp2
+and the rank of the reduced matrix is 1). So we first start by computing
+2 such that ||u|| = π (resp. ||u|| = π 2 ). And
+all the vectors u = (a, b) ∈ OB
+p
+p
+2 of the same
+for each such vector u, we compute the vectors v = (c, d) ∈OB
+
+a b
+norm such that hu, vi = 0. The corresponding matrix γ =
+belongs
+c d
+to Θ1 (p) (resp. Θ2 (p)) when its reduction mod p has the appropriate rank.
+We list all these matrices up to equivalence and stop when we reach the
+right cardinality.
+2.6. The implementation of the algorithm. The implementation of the
+algorithm is similar to that of [D1 2005]. However, it is important to note
+how we represent elements in H02 (N ) so that we can retrieve them easily
+once stored. As in [D1 2005] we choose to work with the product
+Y
+H02 (N ) =
+H02 (pep ).
+p|N
+
+Using Plucker's coordinates, we can view H02 (pep ) as a closed subspace of
+P5 (OFp /pep ). We then represent each element in H02 (pep ) by choosing a
+point x = (a0 : * * * : a5 ) = [u ∧ v] ∈ P5 (OFp /pep ) such that the submodule
+M generated by u and v is a Lagrange submodule, and the first invertible
+coordinate is scaled to 1.
+
+
+√
+3. Numerical examples: F = Q( 5) and B = −1,F−1
+In this section,
+we provide some numerical examples using the quadratic
+√
+field F = Q( 5). It is proven in K. Hashimoto and T. Ibukiyama [HI 1980]
+that, for the Hamilton quaternion algebra B over F , the class number of
+
+10
+
+CLIFTON CUNNINGHAM AND LASSINA DEMBÉLÉ
+
+the principal genus of GB is one. We use our algorithm to compute all the
+systems of Hecke eigenvalues of Hilbert-Siegel cusp forms of weight 3 and
+level N that are defined over real quadratic fields, where N runs over all
+prime ideals of norm less than 50. We then determine which of the forms
+we obtained are possible lifts of Hilbert cusp forms by comparing the Hecke
+eigenvalues for those primes.
+3.1. Tables of Hilbert-Siegel cusp forms of parallel weight 3. In
+Table 1 below, we list all the systems of eigenvalues of Hilbert-Siegel cusp
+forms of weight 3 and level N that are defined over real quadratic fields,
+where N runs over all prime ideals in F of norm less than 50. Here are the
+conventions we use in the tables.
+(1) For a quadratic field K of discriminant D, we let ωD be a generator
+of the ring of integers OK of K.
+(2) The first row contains the level N , given in the format (Norm(N ), α)
+for some generator α ∈ F of N , and the dimensions of the relevant
+spaces.
+(3) The second row lists the Hecke operators that have been computed.
+(4) For each eigenform f , the Hecke eigenvalues are given in a row, and
+the last entry of that row indicates if the form f is a probable lift.
+(5) The levels and the eigenforms are both listed up to Galois conjugation.
+For an eigenform f and a given prime p ∤ N , let a1 (p, f ) and a2 (p, f ) be the
+eigenvalues of the Hecke operators T1 (p) and T2 (p), respectively. Then the
+Euler factor Lp(f, s) is given by
+Lp(f, s) = Qp(q −s )−1 ,
+where
+Qp(x) = 1 − a1 (p, f )x + b1 (p, f )x2 − a1 (p, f )q 2k−3 x3 + q 4k−6 x4 ,
+
+b1 (p, f ) = a1 (p, f )2 − a2 (p, f ) − q 2k−4 ,
+q = N(p).
+
+3.2. Tables of Hilbert cusp forms of parellel weight 4. In
+we list all the Hilbert cusp forms of parallel weight 4 and level N
+defined over real quadratic fields, with N running over all prime
+norm less than 50. We use this data in order to determine the
+Table 1 that are possible lifts from GL2 .
+
+Table 2,
+that are
+ideals of
+forms in
+
+3.3. Lifts. There are two types of lifts from GL2 to GSp4 . The first one
+corresponds to the homomorphism of L-groups determined by the long root
+embedding into GSp4 , and the second one by the short root embedding.
+(For further details, we refer to [LP 2002]). Let f be a Hilbert cusp form of
+parallel weight k and level N with Hecke eigenvalues a(p, f ), where p is a
+
+EXPLICIT JACQUET-LANGLANDS FOR GENUS 2
+B
+N = (4, 2) : dim M3B (N ) = 2, dim
+√ S3 (N ) = 1 √
+T1 (2)
+T2 (2)
+T1 ( 5)
+T2 ( 5)
+f1
+−4
+0
+20
+−36
+
+N = (5, 2 + ω5 ) :
+T1 (2)
+f1
+20
+
+B
+dim M3B (N ) = 2,
+√ dim S3 (N )√= 1
+T2 (2)
+T1 ( 5)
+T2 ( 5)
+15
+−5
+0
+
+B
+N = (9, 3) : dim M3B (N ) = 3, dim
+√ S3 (N ) = 2 √
+T1 (2)
+T2 (2)
+T1 ( 5)
+T2 ( 5)
+f1 25 − 3ω41 40 − 15ω41 30 + 6ω41
+24 + 36ω41
+
+N = (11, 3 + ω5 ) :
+T1 (2)
+f1
+24
+f2
+−20
+
+dim M3B (N ) =√
+3, dim S3B (N√
+)=2
+T2 (2)
+T1 ( 5)
+T2 ( 5)
+35
+34
+48
+35
+−10
+4
+
+T1 (3)
+140
+
+T2 (3) Lift?
+580 yes
+
+T1 (3)
+40
+
+T2 (3) Lift?
+−420 yes
+
+T1 (3)
+−9
+
+T2 (3)
+0
+
+Lift?
+yes
+
+T1 (3)
+88
+0
+
+T2 (3)
+60
+60
+
+Lift?
+yes
+no
+
+N = (19, 4 + ω5 ) : dim M3B (N ) =√
+5, dim S3B (N√
+)=4
+T1 (2)
+T2 (2)
+T1 ( 5)
+T2 ( 5)
+T1 (3)
+f1
+4
+11
+−20
+28
+6
+f2
+7
+−50
+15
+−66
+73
+f3 24 + ω161 35 + 5ω161 36 − ω161
+60 − 6ω161
+98 − 3ω161
+N = (29, 5 + ω5 ) :
+T1 (2)
+f1
+−4
+f2
+8
+f3
+17
+N = (31, 5 + 2ω5 ) :
+T1 (2)
+f1
+13
+
+dim M3B (N ) =√
+9, dim S3B (N√
+)=8
+T2 (2)
+T1 ( 5)
+T2 ( 5)
+11
+10
+20
+−45
+30
+24
+0
+9
+−102
+dim M3B (N ) =
+√12,
+T2 (2)
+T1 ( 5)
+−20
+20
+
+dim S3B (N
+√ ) = 11
+T2 ( 5)
+−36
+
+11
+
+T2 (3) Lift?
+76 no
+−90 yes
+160 − 30ω161 yes
+
+T1 (3)
+30
+50
+86
+
+T2 (3) Lift?
+60 no
+−320 yes
+40 yes
+
+T1 (3)
+76
+
+T2 (3) Lift?
+−60 yes
+
+N = (41, 6 + ω5 ) : dim M3B (N ) =√
+19, dim S3B (N
+√) = 18
+T1 (2)
+T2 (2)
+T1 ( 5)
+T2 ( 5)
+T1 (3)
+T2 (3) Lift?
+f1
+10
+20
+−10
+29
+30
+−20 no
+f2
+−1
+1
+5
+14
+−2
+−56 no
+f3
+27
+50
+40
+84
+124
+420 yes
+f4
+−12
+19
+30
+65
+0
+0 no
+f5 16 − 2ω21 −5 − 10ω21 21 + 4ω21 −30 + 24ω21
+72 − 2ω21 −100 − 20ω21 yes
+f6
+2 − 6ω5
+11 − 2ω5
+8 + 4ω5
+11 − 4ω5 −12 + 54ω5
+160 + 40ω5
+no
+N = (49, 7) : dim M3B (N ) = 26, √dim S3B (N ) = √
+25
+T1 (2)
+T2 (2)
+T1 ( 5)
+T2 ( 5)
+f1
+5
+−60
+46
+120
+f2
+4 + 4ω65
+32 + 3ω65 12 − 4ω65
+44 − 4ω65
+
+T1 (3)
+40
+−6 − 12ω65
+
+Table 1. Hilbert-Siegel eigenforms of weight 3
+
+T2 (3) Lift?
+−420 yes
+145 + 8ω65
+no
+
+12
+
+CLIFTON CUNNINGHAM AND LASSINA DEMBÉLÉ
+
+N
+N(p)
+p
+4
+2
+5
+2 + ω5
+9
+3
+11
+3 + 2ω5
+11
+3 + ω5
+19
+4 + 3ω5
+19
+4 + ω5
+
+(4, 2)
+(5, 2 + ω5 )
+(9, 3)
+a(p, f1 )
+a(p, f1 )
+a(p, f1 )
+−4
+0
+5 − 3ω41
+−10
+−5
+6ω41
+50
+−50
+−9
+−28
+32
+−18 − 6ω41
+−28
+32
+−18 − 6ω41
+60
+100
+−40 + 24ω41
+60
+100
+−40 + 24ω41
+
+N
+N(p)
+p
+4
+2
+5
+2 + ω5
+9
+3
+11
+3 + 2ω5
+11
+3 + ω5
+19
+4 + 3ω5
+19
+4 + ω5
+
+(19, 4 + ω5 )
+a(p, f1 )
+a(p, f2 )
+−13
+5 − ω161
+−15
+5 + ω161
+−17
+5 + 3ω161
+−6
+2 + 8ω161
+33
+7 − 7ω161
+−139
+−15 − 9ω161
+19
+−19
+
+N
+N(p)
+p
+4
+2
+5
+2 + ω5
+9
+3
+11
+3 + 2ω5
+11
+3 + ω5
+19
+4 + 3ω5
+19
+4 + ω5
+
+(31, 5 + 2ω5 )
+a(p, f1 )
+−7
+−10
+−14
+−20
+−28
+−12
+28
+
+N
+N(p)
+p
+4
+2
+5
+2 + ω5
+9
+3
+11
+3 + 2ω5
+11
+3 + ω5
+19
+4 + 3ω5
+19
+4 + ω5
+
+(11, 3 + ω5 )
+a(p, f1 )
+4
+4
+−2
+−10
+−11
+−94
+28
+
+(29, 5 + ω5 )
+a(p, f1 ) a(p, f2 )
+−12
+−3
+0
+−21
+−40
+−4
+−68
+37
+30
+−66
+−28
+−40
+84
+−9
+
+(41, 6 + ω5 )
+a(p, f1 )
+a(p, f2 )
+7
+−4 − 2ω21
+10
+−9 + 4ω21
+34
+−18 − 2ω21
+−60
+−19
+−2
+−24 − 4ω21
+74
+4 − 50ω21
+16
+−29 + 44ω21
+
+(49, 7)
+a(p, f1 )
+a(p, f2 )
+−15
+−2
+16
+−10
+−50
+−11
+−8
+−7 − 28ω13
+−8
+−35 + 28ω13
+−110
+−26 + 14ω13
+−110
+−12 − 14ω13
+
+Table 2. Hilbert eigenforms of weight 4
+prime not dividing N . Let φ be the lift of f to GSp4 via the long root, and
+ψ the one via the short root. Then the Hecke eigenvalues of φ are given by
+a1 (p, φ) = a(p, f ) N(p)
+a2 (p, φ) = a(p, f ) N(p)
+
+4−k
+2
+4−k
+2
+
++ N(p)2 + N(p)
+(N(p) + 1) + N(p)2 − 1,
+
+EXPLICIT JACQUET-LANGLANDS FOR GENUS 2
+
+13
+
+and the Hecke eigenvalues of ψ are given by
+a1 (p, ψ) = a(p, f )3 N(p)
+
+6−3k
+2
+
+− 2 a(p, f ) N(p)
+
+4−k
+2
+
+a2 (p, ψ) = a(p, f )4 N(p)4−2k − 3 a(p, f )2 N(p)3−k + N(p)2 − 1.
+
+The second lift ψ is the so-called symmetric cube lifting.
+Recently, Ramakrishnan and Shahidi [RS 2007] showed the existence of
+symmetric cube liftings for non-CM elliptic curves E/Q to GSp4 /Q. This
+result should hold for other totally real number fields, and we expect the
+levels of those lifts to be of Klingen type. But all the lifts in Table 1 are
+via√the long root embedding. Since there are modular elliptic curves over
+Q( 5) whose conductors have norm 31, 41 and 49, there are probably more
+lifts than appear in Table 1.
+References
+√
+[D1 2005] L. Dembélé, Explicit computations of Hilbert modular forms on Q( 5). Experiment. Math. 14 (2005), no. 4, 457–466.
+[D2 2007] L. Dembélé, Quaternionic M -symbols, Brandt matrices and Hilbert modular
+forms. Math. Comp. 76 (2007), 1039-1057. Also available electronically.
+[D3 2007] L. Dembélé, On the computation of algebraic modular forms. (In preparation).
+[RS 2007] Dinakar Ramakrishnan and Freydoon Shahidi, Siegel modular forms of genus
+2 attached to elliptic curves (preprint). Available at www.math.arxiv.
+[FvdG1 2004] Carel Faber and Gerard van der Geer, Sur la cohomologie des systèmes
+locaux sur les espaces de modules des courbes de genre 2 et des surfaces abéliennes.
+I, C. R. Math. Acad. Sci. Paris 338 (2004), no. 5, 381–384.
+[FvdG2 2004] Carel Faber and Gerard van der Geer, Sur la cohomologie des systèmes
+locaux sur les espaces de modules des courbes de genre 2 et des surfaces abéliennes.
+II, C. R. Math. Acad. Sci. Paris 338 (2004), no. 6, 467–470.
+[Gr 1999] Benedict H. Gross, Algebraic modular forms. Israel J. Math. 113 (1999), 61–93.
+[Gu 2000] P. Gunnells, Symplectic modular symbols, Duke Math. J. 102 (2000), no. 2,
+329-350.
+[HI 1980] K. Hashimoto and T. Ibukiyama, On the class numbers of positive definite
+binary quaternion hermitian forms. J. Fac. Sci. Univ. Tokyo Sect. IA Math. 27 (1980),
+549-601.
+[Ib 1984] T. Ibukiyama, On symplectic Euler factors of genus 2. J. Fac. Sci. Univ. Tokyo
+30 (1984), 587614.
+[Ih 1964] Y. Ihara, On certain Dirichlet series, J. Math. Soc. Japan 16 (1964), 214-225.
+[LP 2002] J. Lansky and D. Pollack, Hecke algebras and automorphic forms. Compositio
+Math. 130 (2002), no. 1, 21–48.
+[R 2006] N. C. Ryan, Computing the Satake p-parameters of Siegel modular forms. (submitted).
+[S 1992] Nils-Peter Skoruppa, Computations of Siegel modular forms of genus two. Math.
+Comp. 58 (1992), no. 197, 381–398.
+Department of Mathematics, University of Calgary
+E-mail address: cunning@math.ucalgary.ca
+E-mail address: dembele@math.ucalgary.ca
+
+

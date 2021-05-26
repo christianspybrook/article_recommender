@@ -1,0 +1,8693 @@
+The Spitzer c2d Survey of Large, Nearby, Insterstellar Clouds. IX.
+The Serpens YSO Population As Observed With IRAC and MIPS
+
+arXiv:0704.0009v1 [astro-ph] 2 Apr 2007
+
+Paul Harvey1 , Bruno Merı́n2 , Tracy L. Huard3 , Luisa M. Rebull4 , Nicholas Chapman5 ,
+Neal J. Evans II1 , Philip C. Myers3
+ABSTRACT
+We discuss the results from the combined IRAC and MIPS c2d Spitzer Legacy
+observations of the Serpens star-forming region. In particular we present a set of
+criteria for isolating bona fide young stellar objects, YSO's, from the extensive
+background contamination by extra-galactic objects. We then discuss the properties of the resulting high confidence set of YSO's. We find 235 such objects in
+the 0.85 deg2 field that was covered with both IRAC and MIPS. An additional
+set of 51 lower confidence YSO's outside this area is identified from the MIPS
+data combined with 2MASS photometry. To understand the properties of the
+circumstellar material that produces the observed infrared emission, we describe
+two sets of results, the use of color-color diagrams to compare our observed source
+properties with those of theoretical models for star/disk/envelope systems and
+our own modeling of the subset of our objects that appear to be well represented
+by a stellar photosphere plus circumstellar disk. These objects exhibit a very
+wide range of disk properties, from many that can be fit with actively accreting
+disks to some with both passive disks and even possibly debris disks. We find
+that the luminosity function of YSO's in Serpens extends down to at least a
+few ×10−3 L⊙ or lower for an assumed distance of 260 pc. The lower limit may
+be set by our inability to distinguish YSO's from extra-galactic sources more
+than by the lack of YSO's at very low luminosities. We find no evidence for
+1
+
+Astronomy Department, University of Texas at Austin, 1 University Station C1400, Austin, TX 787120259; pmh@astro.as.utexas.edu, nje@astro.as.utexas.edu
+2
+
+Research and Scientific Support Dept., ESTEC (ESA), Keplerlaan, 1, PO Box 299, 2200 AG Noordwijk, The Netherlands and Leiden Observatory, Leiden University, Postbus 9513, 2300 RA Leiden, The
+Netherlands; bmerin@rssd.esa.int
+3
+
+Smithsonian Astrophysical Observatory, 60 Garden Street,
+thuard@cfa.harvard.edu, pmyers@cfa.harvard.edu
+
+MS42,
+
+Cambridge,
+
+MA 02138;
+
+4
+
+Spitzer Science Center, MC 220-6, Pasadena, CA 91125; rebull@ipac.caltech.edu
+
+5
+
+Astronomy Department, University of Maryland, College Park, MD 20742; chapman@astro.umd.edu
+
+–2–
+variability in the shorter IRAC bands between the two epochs of our data set,
+∆t ∼ 6 hours. A spatial clustering analysis shows that the nominally less-evolved
+YSO's are more highly clustered than the later stages and that the background
+extra-galactic population can be fit by the same two-point correlation function as
+seen in other extra-galactic studies. We also present a table of matches between
+several previous infrared and X-ray studies of the Serpens YSO population and
+our Spitzer data set. The clusters in Serpens have a very high surface density
+of YSOs, primarily with SEDs suggesting extreme youth. The total number of
+YSOs, mostly Class II, is greater in the region outside the clusters.
+Subject headings: infrared: general - clouds: star forming regions
+
+1.
+
+Introduction
+
+The Serpens star-forming cloud is one of five such large clouds selected for observation
+as part of The Spitzer Legacy project "From Molecular Cores to Planet-forming Disks" (c2d)
+(Evans et al. 2003). Previous papers in this series have described the observational results in
+the Serpens Cloud as seen with IRAC (Harvey et. al. 2006)(Paper I) and MIPS (Harvey et al.
+2007) as well as some of the other clouds (Jorgensen et al. 2006; Rebull et al. 2006). In this
+paper we examine how the combination of the IRAC and MIPS data together with other
+published results on this region can be used to find and characterize a highly reliable catalog
+of young stellar objects (YSO's) in the surveyed area. With the combination of broad
+wavelength coverage and amazing depth of Spitzer's sensitivity we are able to probe to both
+extremely low luminosity limits for YSO's and to cover a very wide range in dust emission,
+both in optical depth and in range of emitting temperatures. The Spitzer wavelength region
+is particularly well tuned for sensitivity to dust at temperatures appropriate for solar-system
+size disks around young stars.
+The region of the Serpens Cloud mapped in our survey is an area rich in star formation. Eiroa, Djupvik & Casali (2007) have extensively reviewed studies at a variety of
+wavelengths of this area. There is evidence from previous observations of strong clustering (Testi et al. 2000; Testi & Sargent 1998), dense sub-mm cores (Casali, Eiroa & Duncan
+1993; Enoch et al. 2007), and high-velocity outflows (Ziener & Eisloffel 1999; Davis et al.
+1999). Pre-Spitzer infrared surveys of the cloud have been made by IRAS (Zhang et al. 1988;
+Zhang, Laureijs, & Clark 1988) and ISO (Kaas et al. 2004; Djupvik et al. 2006) as well as the
+pioneering ground-based surveys that first identified it as an important region of star formation (Strom, Vrba & Strom 1976). Using MIPS and all four bands of IRAC the c2d program
+has mapped a 0.85 deg2 portion of this cloud that includes a very well-studied cluster of in-
+
+–3–
+frared and sub-millimeter sources (Eiroa & Casali 1992; Hogerheijde, van Dishoeck, & Salverda
+1999; Hurt & Barsony 1996; Harvey, Wilking, & Joy 1984; Testi & Sargent 1998). At its
+distance of 260 ± 10 pc (Straizys, Cernis, & Bartasiute 1996) this corresponds to an area of
+about 2.5 × 9 pc. In paper I we identified at least two main centers of star formation as
+seen by Spitzer in this cloud, that we referred to as Cluster A and B. Cluster A is the very
+well-studied grouping also commonly referred to as the Serpens Core. Cluster B was the
+subject of a recent multi-wavelength study by Djupvik et al. (2006), who referred to it as
+the Serpens G3-G6 cluster.
+The 235 YSO's with high signal-to-noise that we have catalogued constitute a sufficiently
+large number that we can examine statistically the numbers of objects in various evolutionary
+states and the range of disk properties for different classes of YSO's. We characterize the
+circumstellar material with color-color diagrams that allow comparison with other recent
+studies of star-forming regions, and we model the energy distributions of the large number
+of YSO's that appear to be star+circumstellar disk systems. We are able to construct the
+YSO luminosity function for Serpens since we have complete spectral coverage for all the
+sources over the range of wavelengths where their luminosity is emitted, and we are able to
+characterize the selection effects inherent in the luminosity function from comparison with
+the publicly available and signicantly deeper SWIRE survey (Surace et al. 2004). We find
+that the population of YSO's extends down to luminosities below 10−2 L⊙ , and we discuss the
+significance of this population. Our complete coverage in wavelength and luminosity space
+also permits us to discuss the spatial distribution of YSO's to an unprecedented completeness
+level. We note also that, unlike the situation discussed by Jorgensen et al. (2006) for Perseus,
+in Serpens there do not appear to be any very deeply embedded YSO's that are not found
+by our YSO selection criteria.
+In §2 we briefly review the observational details of this program and then in §3 we
+describe in detail the process by which we identify YSO's and eliminate background contaminants. In §4 we describe a search for variability in our dataset. We compare our general
+results on YSO's with those of earlier studies of the Serpens star-forming region in §5. We
+discuss in §6 the YSO luminosity function in Serpens and, in particular, the low end of this
+function. We next analyze the spatial distribution of star formation in the surveyed area
+and compare it to the distribution of dust extinction as derived from our observations in
+§7. In §8 we construct several color-color diagrams that characterize the global properties
+of the circumstellar material and show modeling results for a large fraction of our YSO's
+that appear to be star+disk systems. Finally, §9 discusses several specific groups of objects
+including the coldests YSO's and a previously identified "disappearing" YSO. We also mention several obvious high-velocity outflows from YSO's that will certainly be the subject of
+further study.
+
+–4–
+2.
+
+Observations
+
+The parameters of our observations have already been described in detail in Paper I for
+IRAC and in a companion study (Harvey et al. 2007) for MIPS. We summarize here some
+of the issues most relevant to this study.
+We remind the reader that the angular resolution of the Spitzer imaging instruments
+varies widely with wavelength, since Spitzer is diffraction limited longward of λ ∼ 10μm. In
+the shorter IRAC bands the spatial resolution is of order 2′′ , while from 24–160μm, it goes
+from roughly 5′′ to 50′′ . The area chosen for mapping was defined by the AV > 6 contour
+in the extinction map of Cambrésy (1999) and by practical time constraints (Evans et al.
+2003). With the exception of a small area of 0.04 deg2 on the northeast edge of the IRAC
+map, all of the area mapped with IRAC was also covered with MIPS at both 24 and 70μm,
+and most of it at 160μm. As described by Harvey et al. (2007), some substantial additional
+area was observed with MIPS without matching IRAC observations. In this current paper
+we restrict our attention to only the area that was observed from 3.6 to 70μm, 0.85 deg2 .
+This entire region was observed from 3.6 to 24μm at two epochs, with a time separation of
+several hours to several days, but at only one epoch at 70μm. We also specifically do not
+include the 160μm observations in our discussion because they did not cover the entire area
+and because most of the YSO's in Serpens are too closely clustered to be distinguishable in
+the large beam of the 160μm data. Harvey et al. (2007) discuss briefly the extended 160μm
+emission in this region and the four point-like sources found at 160μm. Figure 1 shows the
+entire area mapped with all four IRAC bands and MIPS at 24 and 70μm and also indicates
+the locations of several areas mentioned in the text.
+In addition to this area of the Serpens cloud defined by relatively high AV , we also
+observed small off-cloud regions around the molecular cloud with relatively low AV in order
+to determine the background star and galaxy counts. The area of combined IRAC/MIPS
+coverage of these off-cloud regions, however, was relatively small and so these observations
+are not discussed further in this paper. As detailed below, we have used the much larger
+and deeper SWIRE (Surace et al. 2004) survey to understand the characteristics of the most
+serious background contaminants in our maps, the extra-galactic objects.
+
+3.
+
+YSO Selection
+
+Paper I described a process for classifying infrared objects into several categories: those
+whose energy distributions could be well-fitted as reddened stellar photospheres, those that
+had a high likelihood of being background galaxies, and those that were viable YSO candi-
+
+–5–
+
+Fig. 1.- Three color image of the area mapped in Serpens. The color mapping is:
+blue/4.5μm, green/8.0μm, and red/24μm. The locations of Cluster A (Core Cluster), Cluster
+B (Serpens G3-G6 Cluster), and VV Ser are indicated.
+
+–6–
+dates. We have refined this process by combining MIPS and IRAC data together as well as
+by producing an improved comparison catalog from the SWIRE (Surace et al. 2004) survey,
+trimmed as accurately as possible to the c2d sensitivity limits. As shown by the number
+counts versus Wainscoat models of the Galactic background toward Serpens in paper I,
+nearly all the sources observed in our survey are likely to be background stars. Because of
+the high sensitivity of IRAC channels 1 and 2 relative to both 2MASS and to IRAC channels
+3 and 4, most of the more than 200,000 sources extracted from our Serpens dataset do not
+have enough spectral coverage for any reliable classification algorithm. In particular, "only"
+34,000 sources had enough spectral information from a combination of 2MASS and IRAC
+data to permit a test for consistency with a stellar photosphere-plus-extinction model, and
+nearly 32,000 of these objects were classified as reddened stellar photospheres. These normal
+stellar objects are not considered further in our discussion and are not plotted on the various
+color and magnitude diagrams. The details of this classification process and the criteria for
+fitting are described in detail by Evans et al. (2007).
+In order to pursue the classification process for YSO's beyond that described in Paper
+I, we added one more step to the data processing described there. This final step was
+"band-filling" the catalog to obtain upper limits or low S/N detections of objects that were
+not found in the original source extraction processing. This step is described in detail
+in the delivery documentation for the final c2d data delivery (Evans et al. 2007). In short,
+though, it involved fixing the position of the source during an extraction at the position of an
+existing catalog source and fitting the image data at that fixed position for two parameters,
+a background level and source flux, assuming it was a point source. For this processing step,
+the fluxes of all the originally extracted sources were subtracted from the image first. In the
+case of the data discussed in this paper, the most important contribution of this band-filling
+step is to give us flux estimates for the YSO candidates and extra-galactic candidates at
+24μm. Because our knowledge of the true PSF is imperfect and because the 24μm PSF is
+so much larger than the IRAC ones, it was also necessary to examine these results carefully
+to be sure a band-filled 24μm flux was not simply the poorly subtracted wings of a nearby
+bright source that, in fact, completely masked the source being band-filled. For the purposes
+of this paper, all upper limits are given as 5σ values.
+Three of the sources eventually selected as YSO's by the process described below had
+24μm fluxes that were obviously saturated. These are the objects in Table 2 numbered 127,
+137, and 182. For these three objects we derived the 24μm flux from a fit to the wings of the
+source profiles, rather than a fit to the whole profile as is done by the standard c2d source
+extraction.
+
+–7–
+3.1.
+
+Constructing a Control Catalog from Deep Extragalactic SWIRE
+Observations
+
+We use the IRAC and MIPS images of the ELAIS N1 field obtained by the SWIRE team
+as a control field for understanding the extragalactic population with colors that mimic those
+of YSOs present in our Serpens field. This SWIRE field, expected to contain no extinction
+from a molecular cloud and no YSOs, has coverage by both IRAC and MIPS of 5.31 deg2
+and has a limiting flux roughly a factor of four below that of our observations of Serpens.
+The analysis described below is designed to produce a resampled version of the SWIRE field
+as it would have been observed with the typical c2d sensitivity and as if it were located
+behind a molecular cloud with the range of extinctions observed in Serpens. The process of
+simulating these effects is discussed in detail in the final c2d data delivery documentation
+(Evans et al. 2007), but the steps are summarized here.
+To avoid effects that may result from differences in data processing, the BCD images for
+this SWIRE field were processed by our pipeline in exactly the same way as our own observations. Once a bandmerged catalog of SWIRE sources was constructed, we first simulated
+the reddening of sources that would occur if Serpens had been in the foreground of this field.
+This reddening was accomplished by randomly applying extinction to each SWIRE source
+according to the extinction profile of Serpens, shown in Figure 2. For example, ∼23% of
+SWIRE sources were randomly selected and visual extinctions in the range 6.5 ≤ AV < 7.5
+were applied, ∼19% of sources were extincted by extinctions in the range 7.5 ≤ AV < 8.5,
+and so forth. The extinctions were applied to each of the infrared bands according to the
+extinction law appropriate for molecular clouds and cores (Huard et al., in prep.).
+Second, we degraded the sensitivity of the reddened SWIRE photometry to match that
+of our Serpens observations. This was accomplished by matching the detection rates as a
+function of magnitude in each of the bands. The 90% completeness limits of the Serpens
+observations are approximately 16.6, 15.6, 15.0, 16.6, 16.2, 15.2, 13.4, and 9.6 mag at J, H,
+K, [3.6], [4.5], [5.8], [8.0], and [24], respectively. Thus, for each band, all reddened SWIRE
+sources brighter than the completeness limit in Serpens would be detectable by c2d-like
+observations and are identified as such in the resampled SWIRE catalog. Most, but not all,
+sources fainter than the completeness limit will not be detected by c2d-like observations. We
+randomly select which sources to identify as detections, in a given band, in such as way as to
+reproduce the empirically determined shape of the completeness function. This resampling
+process is performed for each band, resulting in those sources fainter than the completeness
+limits in some bands being detected or not detected with the same probabilities as those for
+similar sources in Serpens. The photometric uncertainties of all sources in the resampled
+catalog of reddened SWIRE sources are re-assigned uncertainties similar to those of Serpens
+
+–8–
+sources with similar magnitudes.
+Finally, each source in the resampled SWIRE catalog is re-classified, based on its degraded photometry, e.g. "star", "YSOc", "GALc", .... The magnitudes, colors, and classifications of sources in this resampled SWIRE catalog are then directly comparable to those
+in our Serpens catalog and may be used to estimate the population of extragalactic sources
+satisfying various color and magnitude criteria. At this level of the classification, the terms
+YSOc and GALc imply candidate classification status.
+
+3.2.
+
+Classification Based on Color and Magnitude
+
+In Paper I we described a simple set of criteria that basically categorized all objects that
+were faint and red in several combinations of IRAC and MIPS colors as likely to be galaxies
+(after removal of normal reddened stars). In our new classification we have extended this
+concept to include the color and magnitude spaces in Figure 3 together with several additional
+criteria to compute a proxy for the probability that a source is a YSO or a background galaxy.
+Figure 3 shows a collection of three color-magnitude diagrams and one color-color diagram
+used to classify the sources found in our 3.6 to 70μm survey of the Serpens Cloud that
+had S/N ≥ 3 in all the Spitzer bands between 3 and 24μm and that were not classified as
+reddened stellar photospheres. In addition to the Serpens sources shown in the left panels,
+the comparable set of sources from the full-sensitivity SWIRE catalog are shown in the
+center panels, and the sources remaining in the extincted/sensitivity-resampled version of
+the SWIRE catalog described above are shown in the right panels. The exact details of
+our classification scheme are described in Appendix A. Basically we form the product of
+individual probabilities from each of the three color-magnitude diagrams in Figure 3 and
+then use additional factors to modify that total "probability" based on source properties
+such as: its K - [4.5] color, whether it was found to be extended in either of the shorter
+IRAC bands, and whether its flux density is above or below some empirically determined
+limits in several critical bands. Table 1 summarizes the criteria used for this class separation.
+The cutoffs in each of the color-magnitude diagrams and the final probability threshold to
+separate YSO's from extragalactic objects were chosen: (1) to provide a nearly complete
+elimination of all SWIRE objects from the YSO class, and (2) to maximize the number
+of YSO's selected in Serpens consistent with visual inspection of the images to eliminate
+obvious extragalactic objects (such as a previously uncatalogued obvious spiral galaxy at
+RA = 18h 29m 57.4s , Dec = +00◦ 31' 41" J2000 ).
+The cutoffs in color-magnitude space were constructed as smooth, exponentially decaying probabilities around the dashed lines in each of the three diagrams. Sources far
+
+–9–
+
+Fig. 2.- The distribution of visual extinctions found toward the roughly 50,000 sources
+classified as stars in our Serpens observations.
+
+– 10 –
+below the lines were assigned a high probability of being extra-galactic contamination with
+a smoothly decreasing probability to low levels well above the lines. In the case of the [24]
+versus [8.0]-[24] relation, the probability dropped off radially away from the center of the
+elliptical segment shown in the figure. After inclusion of these three color-magnitude criteria,
+we added the additional criteria listed in Table 1. These included: (1) a factor dependent
+on the K - [4.5] color, P rob/(K − [4.5]), to reflect the higher probability of a source being an
+extra-galactic (GALc) contaminant if it is bluer in that color, (2) a higher GALc probability
+for sources that are extended at either 3.6 or 4.8μm where our survey had the best sensitivity
+and highest spatial resolution, (3) a decrease in GALc probability for sources with a 70μm
+flux density above 400 mJy, empirically determined from examination of the SWIRE data,
+and (4) identification as "extragalactic" for any source fainter than [24] = 10.0. Again, we
+emphasize that these criteria are based only on the empirical approach of trying to characterize the SWIRE population in color-magnitude space as precisely as possible, not on any
+kind of modeling of the energy distributions.
+Figure 4 graphically shows the division between YSO's and likely extragalactic contaminants. The number counts versus our "probability" are shown for both the Serpens cloud
+and for the resampled SWIRE catalog (normalized to the Serpens area). This illustrates
+how cleanly the objects in the SWIRE catalog are identified by this probability criterion.
+In the Serpens sample there are clearly two well-separated groups of objects plus a tail of
+intermediate probability objects that we have mostly classified as YSO's since no such tail
+is apparent in the SWIRE sample.
+Our choice of the exact cut between "YSO" and "XGal" in Figure 4 is somewhat arbitrary because of the low level tail of objects in Serpens in the area of log(probability) ∼
+-1.5. Since the area of sky included in our SWIRE sample is more than six times as large
+as the mapped area of Serpens, we chose our final "probability" cut, log(P ) ≤ −1.47, to
+allow two objects from the full (not resampled) SWIRE catalog into the "YSO" classification bin. Thus, aside from the vagaries of small-number statistics, we expect of order 0 – 1
+extragalactic interlopers in our list of Serpens YSO's. The right panels in Figure 3, which
+use the resampled version of the SWIRE catalog, show that the effects of sensitivity and,
+especially, the extinction in Serpens make our cutoff limits particularly conservative in terms
+of likelihood of misclassification. We examined all the YSO candidates chosen with these
+criteria both in terms of the quality of the photometry and their appearance in the images.
+A significant number, ∼ 50 candidates were discarded because of the poor quality of the
+bandfilling process at 24μm due to contamination by a nearby brighter source or because
+of their appearance in the images. It is possible that a small number of these discarded
+candidates are, in fact, true YSO's in the Serpens Cloud. We also manually classified one
+source as "YSO" (# 75 in Table 2) that may be the exciting source for an HH-like outflow in
+
+– 11 –
+Cluster B (see also discussion of this region by Harvey et al. (2007)), but which was not so
+classified because of its extended structure in the IRAC bands. Table 2 lists the 235 YSO's
+that resulted from this selection process.
+Another test of the success of our separation of background contaminants is to simply
+plot the locations of the YSO's and likely galaxies on the sky. Figure 5 shows such a plot
+in addition to a plot of visual extinction discussed later. There is clearly a very uniform
+distribution of background contaminants and a quite clustered distribution of YSO's (see
+further discussion in §7).
+There is one additional kind of contaminant that is likely to appear in our data at a
+relatively low level, AGB stars. The ISO observations by, for example, van Loon et al. (1999)
+and Trams et al. (1999) show that the range of brightnesses of AGB stars in the LMC covers a
+span equivalent roughly to 8 < [8.0] < 12, with colors generally equivalent to [4.5]−[8.0] < 1.
+Very compact proto-planetary nebulae are generally redder, but even brighter at 8μm (see
+e.g. Hora et al. 1996). For typical galactic AGB stars, between 5 and 15 kpc from the sun,
+this would imply 3 < [8.0] < 9. The off-cloud fields (when normalized to the same area as
+the Serpens data) provide the best handle on the degree of contamination from AGB stars;
+in Paper I we saw one object classified as a YSO candidate in the off-cloud panel of Figure 9
+with [8.0] < 9. Therefore, based on the ratio of areas mapped in Serpens versus the off-cloud
+observations, we expect the number of AGB stars contaminating the YSO candidate list in
+the Serpens cloud to be of order a half dozen. As a further check, we have examined the
+entire set of off-cloud fields for such objects. In this combined area of 0.58 deg2 , there are
+only 3 such YSO candidates. Finally, Merı́n et al. (2007) have classified four AGB stars by
+their Spitzer-IRS spectra in the Serpens cloud; these are identified in the diagrams of Figure
+3 by black open diamonds and obviously are not included in our final list of high-probability
+YSO's. Statistically then, it is possible that a couple of our brightest YSO's are in fact AGB
+stars. In fact, Merı́n et al. (2007) have obtained modest S/N optical spectra of a number of
+our YSO's. They find five objects whose estimated extinction seems inconsistent with their
+location in the Serpens cloud and which suggests they might be background objects at much
+larger distances with modest circumstellar shells like AGB stars. We have indicated these
+five objects in Table 2 with a footnote "b".
+It is also interesting to ask the reverse question, to what extent have our criteria successfully selected objects that were known YSO's from previous observations. Alcalá et al.
+(2007) have used the same criteria to search for YSO's in the c2d data for Chamaeleon
+II. They conclude that all but one of the known YSO's in that region are identified. In
+§5 we discuss the comparison of our results with several previous studies of Serpens that
+searched for YSO's. Our survey found counterparts to all the previously known objects in
+
+– 12 –
+
+Fig. 3.- Color-magnitude and color-color diagrams for the Serpens Cloud (left), full SWIRE
+(center), and trimmed SWIRE regions. The black dashed lines show the "fuzzy" colormagnitude cuts that define the YSO candidate criterion in the various color-magnitude
+spaces. The red dashed lines show hard limits, fainter than which objects are excluded from
+the YSO category.
+
+– 13 –
+
+Fig. 4.- Plot of the number of sources versus probability (of being a background contaminant) for the Serpens cloud and for the trimmed SWIRE catalog described in the text. The
+vertical dashed line shows the separation chosen for YSO's versus extra-galactic candidates.
+For both samples, only sources with detections in all four IRAC bands are plotted to keep
+the number counts of contaminants on scale!
+
+– 14 –
+
+Fig. 5.- Left panel: image of the entire mapped area of Serpens at 8.0μm with the positions
+of YSO's plotted with circles and likely extra-galactic background contaminants with asterisks; center panel: same image with YSO's of luminosity L < 2 × 10−2 L⊙ plotted with boxes,
+and higher luminosity YSO's plotted with circles; right panel: contours of visual extinction
+Av at levels of 5, 10, 20, 30 magnitudes as derived from fitting the energy distributions of
+sources that were well-fit as reddened stellar photospheres in our data set.
+
+– 15 –
+our observed area that had S/N > 5 in those studies, but we did not classify many of them
+as YSO's because of the lack of significant excess in the IRAC or MIPS bands. Most of
+these were indeed suggested only as candidate YSO's by the authors, so we do not consider
+this fact to be a problem for our selection criteria. We again emphasize the fact that our
+selection criteria for youth are based solely on the presence of an infrared excess at some
+Spitzer wavelength.
+The total number of objects classified as YSO's in the IRAC/MIPS overlap area of the
+Serpens cloud is 235. From the statistics of our classification of the SWIRE data we expect
+of order 1 ± 1 of these are likely to be galaxies. On the other hand, as we discuss in §6,
+some of the faint red objects in Figure 3 (below the dashed line) may also be young substellar objects. For example, we note the case of the young brown dwarf BD-Ser 1 found by
+Lodieu et al. (2002) that was not selected by our criteria because of its relative faintness. Of
+these 235, 198 were detected in at least the H and Ks bands of the 2MASS survey at better
+than 7σ. The number of YSO's in each of the four classes of the system suggested by Lada
+(1987) and extended by Greene et al. (1994) is: 39 Class I, 25 Class "Flat", 132 Class II,
+and 39 Class III, using the flux densities available between 1 and 24μm. Because we require
+some infrared excess to be identified as a YSO, the Class III candidates were necessarily
+selected by some measurable excess typically at the longer wavelengths, 8 or 24μm. An
+obvious corollary is that objects identified as young on the basis of other indicators, e.g.
+X-ray emission, lithium abundance, but without excesses in the range of 1 – 24μm are not
+selected with our criteria.
+
+3.3.
+
+YSO's Selected By MIPS
+
+Harvey et al. (2007) found 250 YSO candidates in the entire area mapped by MIPS
+at 24μm in Serpens, an area of 1.8 deg2 ; 51 of these are outside the IRAC/MIPS overlap
+area and are listed in Table 3. We can make a comparison of those statistics with the YSO
+counts here in two ways. First in the area covered by both IRAC and MIPS24 there are
+197 objects that satisfy the criteria of Harvey et al. (2007), i.e., Ks < 14, Ks − [24] > 2,
+[24] < 10 and 24μm S/N ≥ 5. Of these, 184 satisfy our more restrictive criteria in this study
+based on the combination of 2MASS, IRAC, and MIPS data, or 93%. We would classify the
+other 13 as likely background galaxies. Secondly, of the 235 YSO's found in this study, 200
+have sufficient data to be classifiable by the "mips only" criteria above, but only 167 or 84%
+actually meet the mips-only YSO criteria. In other words, 33 objects have been classified
+as high quality YSO's in this paper in the MIPS/IRAC overlap region that did not meet
+the criteria based only on MIPS and 2MASS data. If these ratios can be extrapolated to
+
+– 16 –
+the larger area covered only by MIPS, then we would expect Harvey et al. (2007) to have
+missed 16% (8 or 9) of the YSO's but to have included 7% (3 or 4) that would not meet
+our combined IRAC/MIPS criteria. With these corrections we might have expected to find
+235 + 56 = 291 YSO's in the entire 1.8 deg2 area covered by MIPS if we had matching IRAC
+observations. Finally, in light of our earlier discussion of AGB contaminants, it is possible
+that 6 – 9 of these YSO's would actually be found to be background AGB stars.
+
+4.
+
+Search for Variability
+
+The fact that our data were taken in two epochs separated by 6 hours or more gives
+us the opportunity to search for variability over that time scale. Rebull et al. (2006) and
+Harvey et al. (2007) have performed similar tests for variability of the 24μm emission from
+sources in the c2d observations of Perseus and Serpens and found no reliable evidence for
+variability at that wavelength. There is, however, substantial evidence for short term variability in the near-infrared for YSO's. We, therefore, performed a similar investigation in
+the two shortest IRAC bands, 3.6 and 4.5μm. No clear evidence was found at the level of ±
+25% for any sources in the field over the 6-hour time scale of our multi-epoch observations.
+
+5.
+
+Comparison with Previous Studies of Serpens
+
+We have cross-correlated our source catalog with those from previous studies of Serpens
+that searched for YSO's. We chose three studies that covered much of Cluster A at both nearIR, ISO, and X-ray wavelengths (Eiroa & Casali 1992; Kaas et al. 2004; Preibisch 2003), and
+one recent ISO study of Cluster B (Djupvik et al. 2006). Table 4 lists the sources from each
+of these previous studies and the best-matching Spitzer source from our complete catalog.
+In brief, we find good matches for essentially all the previous IR-selected YSO's that had
+S/N > 4 in the earlier studies and which were included in our mapped area. In detail,
+however, a number of YSO candidates from the earlier studies were not classified as YSO's
+in our study. The reasons for this are different for the various catalogs. From the X-ray
+catalog of Preibisch (Preibisch 2003) in Cluster A, we only identified 17 of the 45 X-ray
+sources as YSO's on the basis of their infrared excesses. The X-ray sources that were not
+identified as YSO's included both many objects that were well-fitted as reddened stellar
+photospheres (21 sources) and objects with some likely infrared excess but too little to fit
+our criteria aimed at eliminating extra-galactic interlopers. The situation with the infrared
+catalogs is somewhat different. Examining our non-matches from the ground-based study of
+Eiroa & Casali (1992), we find that a large fraction of their YSO's are classified as such by
+
+– 17 –
+our criteria, but not all. From the ISO surveys (Kaas et al. 2004; Djupvik et al. 2006) we
+typically identify ∼50–60% as YSO's. The ones that we do not classify as such are typically
+those with low S/N in the ISO observations or where the amount of infrared excess was not
+large enough to satisfy our test of whether the object could not be fitted as an extincted
+stellar photosphere as described by Evans et al. (2007).
+
+6.
+6.1.
+
+Luminosities
+
+The YSO Luminosity Function in Serpens
+
+One of the most important physical parameters for any star is its mass. For premain-sequence stars this is problematic, because the determination of mass depends on the
+placement of the star on an HR diagram and the use of model evolutionary tracks for which
+there is significant uncertainty at the level of at least a factor of 1.5 – 2 in the literature
+(Hillenbrand & White 2004; Stassun et al. 2004). For young stars in a cluster, a poor, but
+still useful proxy for mass is the stellar luminosity since it is possible that most of the stars
+have formed more or less simultaneously. With all these caveats in mind, we display in Figure
+6 the histogram of total luminosities for the 235 YSO's found in Serpens in our survey with
+the assumed distance of 260 pc. We remind the reader that these objects were selected
+specifically on the basis of infrared excess emission, so this list is limited to YSO's that show
+substantial IR excess at least somewhere in the range of 3.5 - 70μm. For example, as we
+discussed in §5, a comparison of our list of YSO's with the list of X-ray sources in Cluster A
+(Preibisch 2003) showed that more than half the X-ray sources were not classified as YSO's
+by our infrared excess criteria. In some sense then, it is likely that the IR-selected and xray-selected samples are complementary in selecting less-evolved and more-evolved samples
+of YSO's respectively. The luminosity function of our IR-excess-defined YSO sample peaks
+at roughly 2 × 10−2 L⊙ and drops off steeply below 10−2 L⊙ . This is interestingly equal
+to the luminosity of objects at the hydrogen-burning limit of 0.075 M⊙ in the models of
+Baraffe et al. (2002), for objects with ages of ∼2 Myr, a common estimate for the age of the
+Serpens star forming event (Kaas et al. 2004; Djupvik et al. 2006). Of course an important
+question to ask is to what extent this luminosity distribution in Figure 6 is influenced by
+selection effects.
+We can estimate the selection effects in our sample from the statistics in the SWIRE
+samples discussed above. The completeness limits of the full catalog are nearly 2 magnitudes
+fainter than the trimmed version, so we assume for simplicity that the full catalog is 100%
+complete down to the faintest magnitudes of interest for this test in the c2d Serpens data
+set. Figure 7 shows the number counts as a function of "luminosity" (all sources assumed
+
+– 18 –
+to be at 260 pc) for three versions of our c2d-processed SWIRE catalog: 1) the full-depth
+catalog, 2) the catalog cut-off with c2d sensitivity limits but without added extinction, and
+3) the catalog corrected for both c2d sensitivity levels and extinction in the Serpens cloud.
+The ratio of the second to the first version serves as a good proxy for a completeness function
+since it includes the effects of c2d sensitivity only. The lower panel of Figure 7 then shows
+this ratio as our estimate of the completeness function at the range of luminosities of Serpens
+YSO's observed in Figure 6. In Figure 6, then, we also indicate how the YSO luminosity
+function might be adjusted to account for this estimate of our survey completeness (with an
+assumed completeness of 100% at the bright end). Although substantial adjustments must
+be made to the number counts at fainter luminosities, the general conclusion remains intact
+that the luminosity function peaks around f ew × 10−2 L⊙ and drops to both lower and
+higher luminosities. Interestingly, if our completeness estimates are valid, there may still be
+a substantial population of IR excess sources down to luminosities of 10−3 L⊙ as was already
+suggested in Paper I. For example, as noted earlier in §3.2, the young brown dwarf found by
+Lodieu et al. (2002) was not selected as a YSO with our criteria because it was faint enough
+that its colors placed it into the color and magnitude ranges where extra-galactic objects
+begin to be prominent.
+
+6.2.
+
+The Lowest Luminosity Sources
+
+There are 37 YSO's with total luminosities (1 – 70μm) less than 2 × 10−2 L⊙ , without
+any correction for selection effects in either our observations or our selection criteria. Figure
+5 presented in §3.2 shows the spatial distribution of the low (L < 2 × 10−2 L⊙ ) and "high"
+(L > 2 × 10−2 L⊙ ) luminosity YSO's in Serpens. There does not appear to be any significant
+difference between these two distributions. Likewise Figure 8 shows the distribution of spectral slopes, α, for the low luminosity sample relative to two higher luminosity samples, and
+Table 5 lists the average and standard deviation for the spectral slopes for three luminosity samples. Again, there is no obvious difference in the distributions within the statistical
+uncertainties of the samples. (See also discussion in §8.1). These two facts suggest that
+the mechanisms and timing of formation of these two luminosity groups may not be very
+different. Finally, Figure 9 shows the distribution of extinction for stars nearby each YSO.
+For this analysis we selected all objects within 80" of each YSO that were classified as "star"
+by the process described earlier. We averaged the fitted extinction values for these stars;
+the number of stars contributing to the average ranged from 5 to 48. This figure shows that
+the lower luminosity YSO's have at least as much typical extinction as the higher luminosity ones, a fact that would be unlikely if they were mis-classified background extragalactic
+objects.
+
+– 19 –
+
+Fig. 6.- Luminosity function for Serpens YSO's (solid) and estimate of correction for
+completeness effects (dashed).
+
+– 20 –
+
+Fig. 7.- Upper panel – number counts for the full SWIRE catalog as processed through
+the c2d pipeline for objects detected in all four IRAC bands versus those for the "trimmed"
+version of the catalog with completeness limits for each individual band comparable to those
+for c2d. Lower panel – the ratio of the two number counts, i.e. completeness factor.
+
+– 21 –
+
+Fig. 8.- Histogram of distribution of spectral slopes, "alpha", for three luminosity "classes"
+of YSO's.
+
+– 22 –
+
+Fig. 9.- Histogram of distribution of average extinction for stars within 80" of each YSO
+for "high" and "low" luminosity YSO's (above or below 2 × 10−2 L⊙ ).
+
+– 23 –
+7.
+
+Spatial Distribution of Star Formation
+
+We have already noted in §1 that the Serpens star-forming region has been identified
+as one displaying strong evidence of clustering of the youngest objects. We also showed
+in Figure 5 that the spatial distribution of our high quality YSO candidates was highly
+clustered. A number of authors have attempted to quantify the degree of clustering as
+a function of spatial scale using the two-point correlation function (Johnstone et al. 2000;
+Enoch et al. 2006; Simon 1995; Gomez & Lada 1998; Bate, Clarke & McCaughrean 1998).
+Typical results have found a steep slope, γ ∝ d−2 on small spatial scales implying a rapid
+decrease in clustering on scales out to ∼ 10000 AU, and a substantially shallower slope,
+γ ∝ d−0.5 beyond that (Simon 1995; Gomez & Lada 1998). Figure 10 shows the two-point
+correlation function, W, for the YSO's in our Serpens catalog and the sample of objects
+classified as extra-galactic background sources. The Serpens samples are divided into two
+groups, those with spectral slopes, α, that place them in the Class I or "Flat" categories
+of Greene et al. (1994), and those whose slopes imply Class II or III. Although our range
+of good sampling only extends down to ∼ 1000 AU, equivalent to 4", our data suggest
+that the slope for separations under 104 AU is of order 0.5, and drops steeply for the more
+embedded and likely youngest Class I and Flat-SED objects beyond 104 AU. The nominally
+more evolved objects in Class II and III, exhibit a lower level of clustering and more uniform
+slope in the two-point correlation function. These results are consistent with the appearance
+of the source distributions as shown, for example, in Figure 13 of Paper I. As shown in
+Figure 10, the slope and magnitude of the correlation for our sample of background extragalactic objects is consistent with that found by, for example, Maddox et al. (1990) for a
+bright sample of galaxies.
+The total surface density of young stellar objects in a cluster is an indicator of the
+richness of star formation in the cluster. Allen et al. (2006) have computed surface densities
+for YSO's identified by infrared excess in a sample of 10 young clusters. They find typical
+peak surface densities of 500 – 1000 pc−2 and average values of order 100 – 200 pc−2 . The
+peak surface density in Cluster A of our YSO's identified by IR excess is comparable to these,
+of order 103 pc−2 , and a factor of about two less in Cluster B. The average values are about a
+factor of 4 less than the peak in both clusters. In particular, if we define the cluster edges by
+the Av = 20 contour for comparison with other c2d clusters, we obtain the values in Table 6
+for the number of stars per solid angle and per square parsec. We have compared the values
+for clusters A and B with those for the rest of the cloud and for the total cloud surveyed.
+The surface densities of YSOs are 10 to 20 times higher in the clusters as in the rest of the
+cloud. As shown by Allen et al. (2006), Cluster A in Serpens is particularly striking in terms
+of the contrast between the peak surface density and how quickly, within 1 pc, the density
+drops to very low values, ∼ f ew × pc−2 . In terms of volume density, though, even Cluster
+
+– 24 –
+A has a substantially lower volume density of star formation than such rich clusters as the
+Trapezium (5000 pc−3 ) or Mon R2 (9000 pc−3 ) (Elmegreen et al. 2000).
+Figure 5 also shows the spatial distribution of visual extinction in the cloud as derived
+from our data. These extinction values were derived from the combination of 2MASS and
+Spitzer data for sources that were well fit as reddened stellar photospheres as described in
+detail by Evans et al. (2007). As already noted in our previous studies of the IRAC data
+alone (Harvey et. al. 2006) and the MIPS data alone (Harvey et al. 2007), there is clearly
+a striking correspondence between the areas of high extinction and the densest clusters of
+YSO's, particularly those containing Class I and Class Flat sources.
+
+8.
+
+Disk Properties
+
+The properties of the circumstellar dust surrounding young stars can be estimated from
+the overall energy distributions of the objects in a variety of ways. These properties include:
+the overall amount of dust, the density distribution as a function of radial distance from
+the central star, the morphology of the circumstellar disks which probably represent the
+configuration of many of these circumstellar distributions, and to some extent, the degree
+of evolution of the dust from typical interstellar dust to larger and more chemically evolved
+grains likely to represent some stage in the formation of planetary systems. We discuss
+several approaches to classifying the dust emission in this section, beginning with the use of
+infrared colors.
+
+8.1.
+
+Color-color diagrams
+
+Numerous authors have shown how combinations of colors in the infrared can provide
+significant diagnostic information on the configuration and total amount of circumstellar
+material around young stars. Whitney et al. (2003) modelled a wide range of disk and
+envelope configurations and computed their appearance in a number of infrared color-color
+and color-magnitude diagrams particularly relevant to Spitzer's wavelength range. Similarly
+Allen et al. (2004) have published IRAC color-color diagrams for another set of models of
+objects with circumstellar disks and/or envelopes. Recently, Robitaille et al. (2007) have
+computed a very large grid of models to extend the predictions from those of Whitney et al.
+(2003) to a much larger parameter space. Observationally, Lada et al. (2006) have used
+IRAC and MIPS colors from Spitzer observations to classify the optical thickness of disks
+around pre-main-sequence stars in IC 348, using the terms "anemic disks" and "thick disks"
+
+– 25 –
+
+Fig. 10.- Left panel: the two-point correlation function, W, for Serpens. The dotted
+histogram is for sources identified as Class I and "Flat" SED objects, i.e. α ≥ −0.3. The
+solid histogram is for the Class II/III objects, i.e. α < −0.3. The dashed lines show several
+possible power law slopes for the portions of the YSO curves. Right panel: the dashed
+histogram is for the objects classified as likely background galaxies with S/N > 7 in all four
+IRAC bands. The dash-dot line shows the slope and amplitude found by Maddox et al.
+(1990) for the bright end of the extra-galactic population, which is a quite good fit to our
+estimate of the background contamination in our sample.
+
+– 26 –
+to point to objects roughly in the Class III and Class II portions of the ubiquitous "Class
+System" (Lada 1987; Greene et al. 1994).
+Figure 11 shows three color-color diagrams and one color-magnitude diagram for the
+235 Serpens YSO's compared to the density of models from Robitaille et al. (2007) for a
+model cluster at the distance of Serpens with brightnesses limited to those appropriate for
+our sensitivity levels. For two of the diagrams the figure also indicates the approximate
+areas where most of the models fall for the three physical stages, I, II, and III, described
+by Robitaille et al. (2007) that roughly correspond to the observational "classes" I+Flat,
+II, and III. These diagrams display, first of all, that YSO's come in a wide range of colors
+and brightnesses; large areas of all the diagrams are occupied. In a general way we find
+objects located in these diagrams where the models of Whitney et al. (2003), Allen et al.
+(2004), and Robitaille et al. (2007) would predict for pre-main-sequence stars with a range
+of evolutionary states as well as general agreement with the locations of young objects found
+in IC348 by Lada et al. (2006). For example, consistent with our finding in paper I that the
+bulk of the YSO's are class II objects, we see a strong concentration in the area around [5.8][8.0]= 0.8, [3.6]-[4.5]=0.5 where both Allen et al. and Whitney et al. predict such sources
+should be located. Additionally, there is structure in the [8.0] vs. [3.6]-[8.0] color magnitude
+diagram for the distribution of Serpens YSO's that is also evident in the density of models
+of Robitaille et al. (2007). There are, however, some interesting differences. The "Stage II"
+area from Robitaille et al. (2007) includes a smaller fraction of our nominal Class II objects
+than might be expected. There is also a larger number of very red objects in several of the
+diagrams than is predicted by the density of models in those areas, considering that the
+faintest grey levels correspond to a probability equal to 10−4 of the maximum probability.
+Some of this may be due to effects of reddening, but it suggests that the models may also
+need some refinement, despite their rough agreement with the distribution of observed colors.
+These data can also be examined to see if there is any correlation between luminosity
+and infrared excess, e.g. the [8.0] vs. [3.6]-[8.0] color magnitude diagram. For example, if
+higher luminosity young objects had higher levels of multiplicity (e.g. Lada 2006), then it is
+possible this would be manifested in less massive disks with perhaps large inner holes. Figure
+11 shows no such correlation; in fact, if anything there appears to be a lack of relatively blue
+colors for the brightest objects. Figure 8 that displays the distribution of spectral slopes and
+the accompanying Table 5 also show no measurable effect within the scatter for a dependence
+of spectral slope on luminosity.
+
+– 27 –
+
+Fig. 11.- Color-color and color-magnitude plots of the 235 Serpens YSO's compared with
+the distributions from models of Robitaille et al. (2007). The symbols are for the three
+different luminosity groups discussed in the text: open diamonds, L > 1 L⊙ ; light filled
+circles, 0.02 L⊙ < L < 1 L⊙ ; plus signs, L < 0.02 L⊙ . The model data were those for their
+model cluster, with a distance of 260 pc for Serpens and with the c2d completeness limits.
+Also shown are the rough areas from Robitaille et al. (2007) occupied by mainly stage I, II,
+and III models.
+
+– 28 –
+8.2.
+
+Spectral Energy Distribution Modeling
+
+In order to go beyond the general conclusions possible from color-color and colormagnitude plots, we have modelled the large fraction of our sources for which enough data
+are available to characterize them as likely star-plus-disk objects. For this analysis we have
+selected all Class II and Class III YSO's. We expect these objects to have a reddened photosphere plus an infrared excess coming from the circumstellar material, most likely in a disk
+configuration. For completeness we show, without modeling, the SED's of the remaining
+YSO's. Figures 12 to 20 show the SEDs of all Class I, Class Flat, Class II and Class III
+sources. The open dots are the observed fluxes and generally include 2MASS J, H, and
+K fluxes followed by the four IRAC fluxes at 3.6, 4.5, 5.8 and 8.0 μm and by the MIPS
+fluxes at 24 and 70 μm when available. For the Class IIs and IIIs, we characterize the
+emission from the disk by comparing the energy distribution with that of a low-mass star.
+For this, we have computed the extinction from the J-K colors assuming a K7 underlying
+star, and then we have dereddened the observed fluxes with the interstellar extinction law
+of Weingartner & Draine (2001) with Rv = 5.5 to fit the dereddened SEDs to a NEXTGEN
+(Hauschildt et al. 1999) model of a K7 stellar photosphere. In the plots, the filled dots are
+the dereddened fluxes and the grey line is the photospheric emission from the star. Each
+SED is labeled with the identification number in Table 2. The parameters of the model fits
+are listed in Tables 7 and 8.
+Two main assumptions are used in this approach. The first is that the star is a low-mass
+star; this is reasonable given the fact that the luminosity function discussed earlier peaks at
+L ∼ f ew × 10−2 L⊙ . In addition, Oliveira et al. (2007) have found that 30 of the 39 YSO's
+they observed out of our sample had spectral types of K or M. The second assumption is
+that there is no substantial excess in the near infrared bands, where we consider all flux to
+be photospheric. This assumption is obviously only correct for those stars in the sample
+without strong on-going disk accretion. Cieza et al. (2005) have demonstrated that nearIR excesses as short as J-band can be seen in some actively accreting T Tauri stars, and
+they give an observed range of J-band excesses of 0.1 – 1.0 mag for their sample of sources
+in Taurus. The effect of this excess on the computed parameters implies that the stellar
+luminosities for the Class II objects are upper limits and therefore the disk luminosities are
+lower limits. More specifically, neglecting an excess flux in the J-band of 1.1 magnitude in
+one object would reduce its Ldisk/Lstar ratio by 12 % and modify the disk emission SED,
+diminishing its excess mostly at the shorter wavelengths. That would only happen, however,
+to the fraction of objects that are strongly accreting. Oliveira et al. (2007) found strong
+H-α emission indicative of active accretion in only 12 out of 39 Serpens YSO's observed. We
+ran a test removing these objects from the final statistics and this did not change the overall
+picture.
+
+– 29 –
+The dashed line in the SED plots is the median SED of T Tauri stars in Taurus
+(Hartmann et al. 2005) normalized to the dereddened J-band flux of our SEDs. It represents the typical SED of an optically thick accreting disk around a Classical T Tauri star
+and is shown here to allow a qualitative estimation of the presence of disk evolution and
+dust settling. Based on similarity to this median SED, we define as T an SED which is
+identical to it, within the errors, as L, an SED with lower fluxes at some wavelengths, and H
+an object with larger fluxes than the median T Tauri SED. We have labeled the objects with
+these codes and use them to interpret the state of disk evolution. We interpret the L-type
+objects as thin disks which could perhaps result from dust grain growth and settling to the
+mid-plane, similar to the "anemic disks" in Lada et al. (2006). Objects 3 and 5 are good
+examples of T-type objects, numbers 11 and 18 are L-type stars, and number 8 is a H-type
+object. Also, we have labeled as LU objects that have photospheric fluxes up to around 8μm
+but then a sudden jump at longer wavelengths to the levels of a T-Tauri disk. We believe
+these objects may have large inner holes in their still optically thick disks; number 19 is one
+example of these.
+Out of the 171 sources in the sample that are Class II or Class III, 44 (26 %) are Ttype, so equivalent to a classical T Tauri star, 125 (73 %) are L-type, so show evidence
+of some degree of disk evolution, and finally 2 (1 %) show larger fluxes than the median
+SED of Taurus. This latter category is generally the result of imperfect fitting to the stellar
+photosphere due to lack of near-IR data and will not be considered further.
+The numbers above indicate that there are many young stars in Serpens with disks
+that are virtually identical to those in Taurus. This points to a very similar origin of the
+disk structure across star forming regions. Within the uncertainties in our modeling process
+discussed above, however, we see a majority of L-type objects (73 %) in Serpens. This
+suggests that the disks in Serpens may be generally more evolved or flattened that those in
+Taurus. Also, interestingly the number of LU-type objects, or those with large inner holes,
+amounts to 14 (11 % of the L-type objects and only 6 % of the total YSO sample including
+Class I and F sources). This very small incidence indicates that either the process producing
+these large inner holes is a very fast transitional phase in the disk evolution or that only
+a small number of systems undergo that phase. We examine this issue below. In order to
+put firmer limits on these numbers it will be necessary to get optical spectral types for the
+stars and optical photometry in order to produce more accurate photosphere/disk/extinction
+models.
+The SEDs also allow a rough study of the disk properties across the surveyed area. For
+this purpose we integrated the stellar and total fluxes to calculate a ratio between the stellar
+and the disk fluxes. The corresponding distribution is shown in Figure 21. Again, the solid
+
+– 30 –
+line is the whole Class II and III sample and the dotted line corresponds to the T-type SEDs.
+To guide the eye, we have marked the approximate regimes of these ratios measured in debris
+disks (Ldisk/Lstar < 0.02), passive disks (0.02 < Ldisk/Lstar < 0.08 Kenyon & Hartmann
+1987), and accretion disks (Ldisk/Lstar > 0.1), respectively. The figure illustrates well the
+large variety of disk evolutionary phases that we observe in Serpens, as well as the large
+majority of massive, accreting disks in the region.
+In order to study the disk evolution in the cloud, there is need for a better characterization of the full sample with optical spectroscopy. That work is in progress and will
+be published elsewhere. Here we explore further the shapes of the SEDs to test another
+evolutionary diagnostic of the disk status. We have found that the more commonly used
+evolutionary metrics, e.g. spectral slope, α, bolometric temperature, Tbol , or the Class system discussed earlier do not seem to capture the full range of phenomena apparent in our
+distribution of SED's for young stellar objects. We, therefore, use αexcess and λexcess , two
+new second-order SED parameters presented in Cieza et al. (2006) that will be discussed in
+more detail in a separate paper. In short, λexcess is the last wavelength where the observed
+flux is photospheric and αexcess is the slope computed as dlog(λFλ )/dlog(λ) starting from
+λexcess . The first parameter gives us an indication of how close the circumstellar matter is
+to the central object and the latter one a measure of how optically thick it is. Given the
+assumptions above for the fitting process, our values are upper limits for λexcess , and correspondingly lower limits for αexcess for the Class IIs. We assume good stellar fits for the Class
+III sources.
+Figure 22 shows both values for a sample of Classical T Tauri stars (CTTs) from
+Cieza et al. (2005), weak-lined T Tauri stars (wTTs) from Cieza et al. (2006), debris disks
+from Chen et al. (2005), and our sample of YSOs in Serpens. Cieza et al. (2006) found that
+λexcess is well correlated with evolutionary phase and also, as seen in Figure 22, that α is
+observed over wider ranges for later evolutionary phases. This suggests a large range of
+possible evolutionary paths for circumstellar disks. Objects could either evolve to the lower
+right side of the diagram, which could be interpreted as a sign of dust grain growth and
+settling to the disk mid-plane; they could also move to the right and up, from creation of a
+large inner hole in their disks while retaining a massive outer disk, and also, as this diagram
+shows, all intermediate pathways in between both extremes.
+
+– 31 –
+
+Fig. 12.- Spectral Energy Distributions of the Class I sources in the sample. The open
+dots signal the observed fluxes from J-band to MIPS-70 when available. The label gives the
+index in Table 2.
+
+– 32 –
+
+Fig. 13.- Spectral Energy Distributions of the Class I sources in the sample (continued).
+Symbols as in Figure 12.
+
+– 33 –
+
+Fig. 14.- Spectral Energy Distributions of the Flat sources in the sample. Symbols as in
+Figure 12.
+
+– 34 –
+
+Fig. 15.- Spectral Energy Distributions (SED) of the Class II sources in the sample. The
+open and solid dots are the observed and dereddened fluxes respectively. The grey line is
+the stellar model of a K7 star and the dashed line is the median SED of the TTauri stars in
+Taurus by Hartmann et al. (2005) normalized to the dereddened J-band flux for comparison.
+See text for more information.
+
+– 35 –
+
+Fig. 16.- Spectral Energy Distributions of the Class II sources in the sample (continued).
+
+– 36 –
+
+Fig. 17.- Spectral Energy Distributions of the Class II sources in the sample (continued).
+
+– 37 –
+
+Fig. 18.- Spectral Energy Distributions of the Class II sources in the sample (continued).
+
+– 38 –
+
+Fig. 19.- Spectral Energy Distributions of the Class III sources in the sample.
+
+– 39 –
+
+Fig. 20.- Spectral Energy Distributions of the Class III sources in the sample.
+
+– 40 –
+9.
+9.1.
+
+Selected Sources
+The Coldest Objects
+
+Table 9 lists the 15 YSO's that display the coldest energy distributions. These are the
+objects whose ratio of F70 /F24 > 8. Six of these are in Cluster A (the core) and four in
+Cluster B. Two are in a small grouping about 0.2◦ northeast of Cluster B, and the remaining
+three appear as isolated cold objects, though in areas with other moderately red objects.
+All of these except for two of the isolated cold objects, ID's 105 and 148, are associated
+with dense clumps of millimeter emission as seen by Enoch et al. (2007). As discussed in the
+following section, two in Cluster A and one in Cluster B are associated with high velocity
+outflows. As has been noted already by Padgett et al. (2004) and Rebull et al. (2006), it is
+striking how many of these coldest, most obscured YSO's are located in compact clusters
+together with objects that are substantially more evolved in the nominal system of classes,
+e.g. Class II and III.
+
+9.2.
+
+Outflow Sources
+
+A number of recent Spitzer studies have found that high-velocity shocked outflows from
+young stars are visible in IRAC images, typically strongest at 4.5μm (Noreiga-Crespo et al.
+2004). We have examined our images for such outflows as well as for correspondance with the
+lists of published HH objects in the region (Ziener & Eisloffel 1999). Table 10 summarizes
+the results of this effort. Two strong, obvious jet-like features are seen in Cluster A and
+one in Cluster B. In addition, as shown in Table 10, we find small extended features at the
+positions of most of the known HH objects in Serpens that were within our covered area. The
+two "jets" in Cluster A appear to originate from two of the most deeply embedded objects in
+this cluster that are associated with the sub-mm sources SMM1 and SMM5 (Testi & Sargent
+1998). Both these outflows are aligned roughly in the NW-SE direction and are visible on
+both sides of the central 24μm likely exciting sources. In Cluster B there is one obvious
+jet-like feature extending mostly south of YSO # 75. There is also probably faint emission
+visible 30′′ to the north of the embedded source as well. Harvey et al. (2007) discuss the
+Cluster B jet and several nearby Spitzer sources in more detail. Figures 23 and 24 show
+3-color images of Clusters A and B with the color tables chosen to make these jets most
+visible. In addition to the optical HH objects in the Serpens Clouds, there are a number
+of high-velocity molecular outflows that have been mapped in Cluster A (Davis et al. 1999).
+These maps present a confusing picture of outflows, and because of the relatively larger
+beamwidth of the mm observations and close packing of infrared sources in this cluster, it is
+
+– 41 –
+
+Fig. 21.- Distribution of disk to star luminosity ratios. The solid and dashed lines are the
+total sample and T Tauri-like sample of SEDs, respectively. Also marked are the typical
+ranges of Ldisk /Lstar ratios for debris disks, passive irradiated disks and accretion disks. The
+figure indicates that objects of all three evolutionary stages are found in Serpens, with a
+predominance of young accreting T Tauri-type stars.
+
+– 42 –
+
+Fig. 22.- Distribution of excess slopes αexcess with respect to the wavelength at which the
+infrared excess begins λturn−off for the sample of wTTs (solid dots), a sample of cTTs in
+Lupus from Cieza et al. (2006), the median SED of cTTs in Taurus from D'Alessio et al.
+(1999) in asterisks (marked as D99), and a sample of debris disks from Chen et al. (2005) in
+diamonds. The arrows represent the limits for the class II objects in Serpens and the triangles
+the Class III sources. The diagram shows a much larger spread in inner disk morphologies
+in the more evolved objects than in the least evolved ones. The Serpens objects follow the
+previously observed trend.
+
+– 43 –
+very difficult to associate the radio outflows unequivocally with particular Spitzer sources.
+
+9.3.
+
+Other Objects
+
+Horrobin, Casali & Eiroa (1997) reported on the disappearance of a bright near-infrared
+source in Serpens from the earlier study of EC92. Table 4 shows that we also see no obvious
+source at the position of EC92-81, other than a low S/N single-band detection of a source
+moderately distant from the nominal position. Interestingly, though, this area marked in
+Figure 23 appears to contain several small knots of emission that may represent shocked gas.
+For example, there are two small knots visible in our 4.5 and 8.0μm images that have no 3.6
+or 24μm counterparts (and therefore not classified as YSO's). These two knots at RA = 18
+29 56.7, Dec = +01 13 19 (J2000), are only 12′′ south of the position of EC92-81. Therefore
+it is possible that the original source was a small clump of excited gas that has moved or
+dissipated since the original study of EC92, and perhaps, these Spitzer knots are related to
+that earlier source in some way.
+
+10.
+
+Overall Results on Star Formation
+
+The overall picture of star formation in Serpens is summarized in Table 6. As noted
+earlier, the surface density of young stars is much higher in Clusters A and B than in the
+rest of the cloud, by factors of 10 to 20. On the other hand, the majority of YSOs (74%)
+are not in the clusters, but in the rest of the cloud. If we assume a mean mass for the stars
+of 0.5 M⊙ and assume that star formation has been proceeding for 2 Myr, we can estimate
+the rate at which the clusters and the whole cloud are converting mass into stars. These
+values are also given in Table 6. The Serpens cloud that we have surveyed is turning nearly
+60 M⊙ into stars per Myr. The rates for the clusters are probably underestimates because
+they are probably younger than 2 Myr, a typical duration for the Class II SED. Of course, a
+significant number of the older objects outside the clusters may have, in fact, formed in these
+or earlier clusters. A 1 km s−1 random motion of a YSO relative to its birthplace results in
+1 pc of movement in 106 yr, or nearly 1/4 degree at the distance of Serpens.
+The distribution of YSOs over class supports the younger age for the clusters than for
+star formation in general in Serpens. While the ratio of the number of Class I and Flat
+spectrum sources to the number of Class II and Class III sources is 0.37 for the whole cloud,
+similar to other clouds surveyed by c2d (Evans et al., in prep.), the same ratio is 3.0 for
+Cluster A and 1.4 for Cluster B. These high ratios strongly suggest that Cluster A is too
+
+– 44 –
+
+Fig. 23.- Three-color image of the Cluster A area of Serpens. The color coding is:
+blue/4.5μm, green/8.0μm, and red/24μm. Some of the more obvious objects that are likely
+to be jets are marked by arrows. The region of the disappearing source 81 of Eiroa & Casali
+(1992) is circled.
+
+– 45 –
+
+Fig. 24.- Three-color image of the Cluster B area of Serpens as for Figure 23.
+
+– 46 –
+young for most YSOs to have reached the Class II stage. In contrast, this ratio is 0.14 for
+the rest of the cloud, outside the clusters, which is strongly dominated by Class II and Class
+III objects.
+
+11.
+
+Summary
+
+We have identified a high-confidence set of 235 YSO's in Serpens by a set of criteria
+based on comparison with data from the Spitzer SWIRE Legacy program. This is a large
+enough number that we can draw important statistical conclusions about various properties
+of this set. If we assume that the "Class System" of Lada (1987) and Greene et al. (1994)
+represents an evolutionary sequence, then the relative numbers of YSO's found in each of
+the first three classes (I, flat, and II) suggests that the Class II phase lasts substantially
+longer than the combined total of the Class I and "Flat" phases, based on the overall cloud
+statistics. The clusters, however, show more YSOs in the Class I and Flat phases than
+in Class II, indicating that they are very young. The majority of YSOs (mostly Class II)
+are outside the clusters and probably represent a somewhat older epoch of star formation
+compared to the intense star formation now going on in the clusters. The surface density of
+YSOs in the clusters exceeds that of the rest of the cloud by factors of 10 to 20 (Table 6).
+The luminosity function for the Serpens YSO's is populated down to luminosities of
+3 × 10−3 L⊙ . It may extend even lower, but our ability to distinguish low luminosity YSO's
+is severely restricted by the large population of background galaxies at these flux levels. The
+lower luminosity YSO's, L < 2 × 10−2 L⊙ , exhibit a similar spatial distribution and SED
+slope distribution to those of their higher luminosity counterparts. This is consistent with
+the conclusion that they have formed in similar ways.
+
+12.
+
+Acknowledgments
+
+Support for this work, part of the Spitzer Legacy Science Program, was provided by
+NASA through contracts 1224608, 1230782, and 1230779 issued by the Jet Propulsion Laboratory, California Institute of Technology, under NASA contract 1407. Astrochemistry in
+Leiden is supported by a NWO Spinoza grant and a NOVA grant. B.M. thanks the Fundación
+Ramón Areces for financial support. This publication makes use of data products from the
+Two Micron All Sky Survey, which is a joint project of the University of Massachusetts
+and the Infrared Processing and Analysis Center/California Institute of Technology, funded
+by NASA and the National Science Foundation. We also acknowledge extensive use of the
+
+– 47 –
+SIMBAD data base.
+
+– 48 –
+A.
+
+YSO Selection Process
+
+The procedure we use to select YSO's and de-select extra-galactic background sources
+is based on the color-magnitude diagrams shown in Figure 3. We construct "probability"
+functions for each of the three color-magnitude diagrams based on where a source falls relative
+to the black dashed lines in each diagram. These three "probabilities" are multiplied and then
+additional adjustments to the probability are made based on several additional properties
+of the source fluxes and whether or not they were found to be larger than point-like in the
+source extraction process.
+In the [4.5] vs. [4.5]-[8.0] color magnitude diagram, the probability function is:
+Pi2i4 = 0.7 × {1 − exp(−[1.2 + 0.5(M4.5 − D)]3 )}
+where:
+D = 13.05 for M4.5 − M8.0 > 1.4
+= 14.5 for 0.5 ≥ M4.5 − M8.0 < 1.4 and object was found to be pointlike in all IRAC bands
+= 12.5 for 0.5 ≥ M4.5 − M8.0 < 1.4 and object was found to be extended at 3.6 or 4.5μm
+= 14.5 for M4.5 − M8.0 < 0.5
+
+In the [24] vs. [8.0]-[24] color magnitude diagram, the probability function is:
+Pi4m1 = exp(−{[(M8 − M24 − 3.5)/1.7]2 + [(M24 − 9)/2)2 }
+and Pi4−m1 is set to a minimum of 0.1.
+In the [24] vs. [4.5]-[8.0] color magnitude diagram, the probability function is:
+Pi24m1 = 0.7 × {1 − exp(−[M4.5 − M8 + 0.8 − (10 − M24 )/1.8}
+and Pi24m1 is set to a minimum of 0.
+The combined "probability" is then:
+Ptot = Pi2i4 × Pi4m1 × Pi24m1
+Additionally, the following factors influence modifications to Ptot :
+Ptot
+
+/ (K − [4.5])
+
+Ptot × 2 for sources that are extended at 3.6 or 4.5μm
+Ptot = 0.1 where [24] > 10 (i.e. assumed GALc)
+Ptot × 0.1 where F70 > 400 mJy and source detected at 5.8,8, and 24μm
+
+– 49 –
+Based on the distribution of Ptot shown in Figure 4, we chose the dividing line between
+YSO's and extra-galactic sources to be log10 (Ptot ) = −1.47.
+
+– 50 –
+
+Table 1. YSO vs. X-Gal Discrimination Criteria
+Criterion
+
+Contaminant Probability
+
+K - [4.5]
+[4.5] (for [4.5]-[8.0] < 0.5)
+[4.5] (for 0.5 < [4.5]-[8.0] < 1.4, Extended)
+[4.5] (for 0.5 < [4.5]-[8.0] < 1.4, Pointlike)
+[4.5] (for 1.4 < [4.5]-[8.0])
+([8.0] − [24] − 3.5)2 /1.7 + ([24] − 9.0)2 /2
+[4.5] − [8.0] − 0.55(10. − [24])
+[24] (for all colors)
+Extended at 3.6 or 4.5μm
+F70
+
+Prob/(K − [4.5])
+Smooth increase for [4.5] > 14.5
+Smooth increase for [4.5] > 12.5
+Smooth increase for [4.5] > 14.5
+Smooth increase for [4.5] > 13.0
+Smooth increase for values < 1
+Smooth increase for values > 1
+100% probability for [24] > 10.0
+Twice as likely to be X-gal
+X-gal prob × 0.1 for F70 > 400 mJy
+
+Table 2. YSO's in Serpens
+Name/Position
+SSTc2dJ...
+
+1
+2b
+3
+4b
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15b
+16
+17
+18
+19
+20
+21
+22
+23
+24
+
+18275381−0002333
+18280503+0006593
+18280845−0001064
+18281100−0001393
+18281350−0002491
+18281501−0002588
+18281519−0001405
+18281525−0002432
+18281628−0003161
+18281852−0003329
+18281981−0001474
+18282010+0029145
+18282143+0010411
+18282158+0000164
+18282432+0034545
+18282738−0011499
+18282740+0000239
+18282849+0026500
+18282905+0027561
+18284025+0016173
+18284052+0022145
+18284186−0003213
+18284400+0053379
+18284477+0051257
+
+Prev. Namea
+
+CDF88-2
+
+CoKu Ser-G1
+
+D-002
+
+D-007
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+25.5± 1.2
+783± 55
+140± 7
+104± 5
+105± 5
+33.3± 1.6
+7.18±0.35
+174± 9
+53.1± 2.7
+3.38±0.17
+5.52±0.27
+237± 21
+13.7± 0.7
+60.3± 3.0
+62.4± 4.2
+1130± 60
+87.3± 4.5
+2.47±0.16
+9.80±0.57
+3.71±0.20
+68.2± 3.7
+13.7± 0.7
+18.1± 0.9
+0.65±0.04
+
+20.2± 1.0
+426± 29
+108± 8
+63.4± 3.2
+88.1± 4.7
+45.6± 2.3
+6.18±0.30
+177± 9
+48.4± 2.4
+3.14±0.15
+5.28±0.26
+109± 9
+10.1± 0.6
+54.0± 2.8
+46.1± 3.0
+660± 35
+54.6± 2.7
+2.28±0.15
+8.51±0.47
+3.86±0.20
+41.2± 2.4
+24.8± 1.2
+29.7± 1.4
+1.77±0.09
+
+15.6± 0.7
+358± 18
+129± 6
+54.6± 2.6
+77.5± 3.7
+61.5± 3.1
+5.15±0.25
+180± 11
+45.4± 2.1
+3.13±0.16
+4.90±0.24
+116± 8
+9.99±0.49
+45.5± 2.2
+41.1± 2.5
+631± 30
+47.3± 2.2
+2.27±0.15
+7.03±0.38
+3.60±0.19
+39.2± 2.0
+39.6± 1.9
+40.3± 2.0
+3.08±0.16
+
+13.9± 0.7
+218± 14
+122± 8
+35.4± 1.9
+94.3± 5.0
+96.3± 5.8
+5.01±0.26
+191± 11
+46.2± 2.5
+2.99±0.15
+4.02±0.21
+76.6± 4.8
+8.90±0.50
+61.4± 3.4
+32.5± 2.0
+399± 22
+32.3± 1.6
+2.52±0.16
+5.46±0.30
+3.59±0.18
+25.5± 1.4
+49.0± 2.6
+49.9± 2.5
+4.81±0.23
+
+22.7± 2.1
+76.4± 7.1
+161± 14
+9.51±0.90
+254± 23
+225± 20
+8.00±0.77
+1200± 25
+74.7± 6.9
+2.96±0.36
+5.58±0.54
+17.5± 1.6
+10.5± 1.0
+170± 15
+13.9± 1.3
+120± 11
+12.9± 1.2
+2.62±0.37
+43.4± 4.0
+2.89±0.35
+11.7± 1.1
+155± 14
+260± 24
+37.6± 3.5
+
+***
+***
+314± 36
+***
+382± 43
+320± 41
+***
+1670± 169
+129± 24
+***
+***
+***
+***
+126± 21
+***
+***
+***
+***
+***
+***
+***
+538± 54
+***
+***
+
+– 51 –
+
+ID
+
+Table 2-Continued
+Name/Position
+SSTc2dJ...
+
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+
+18284481+0048085
+18284496+0052035
+18284497+0045239
+18284558−0007127
+18284613+0003016
+18284784+0008402
+18284808+0019266
+18285020+0009497
+18285038−0012550
+18285122+0019273
+18285200+0015516
+18285249+0020260
+18285276+0028467
+18285364+0019409
+18285395+0045530
+18285404+0029299
+18285450+0028523
+18285486+0029525
+18285489+0018326
+18285529+0020522
+18285577+0029447
+18285664+0030082
+18285715+0048360
+18285808+0017244
+
+Prev. Namea
+
+IRAS 18262+0050
+IRAS 18261-0009
+VV Ser
+
+D-060
+
+D-062/D-066
+D-064
+D-065
+
+IRAS 18263+0027
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+7.80±0.40
+4.32±0.28
+41.3± 2.1
+2920± 182
+8.40±0.45
+2460± 176
+2.37±0.14
+105± 5
+322± 17
+3.47±0.18
+1.65±0.09
+81.4± 4.7
+1.84±0.10
+3.56±0.19
+12.5± 0.6
+5.81±0.50
+14.7± 0.9
+1.94±0.12
+0.95±0.05
+24.5± 1.3
+0.26±0.02
+0.055±0.007
+1.55±0.08
+52.5± 3.0
+
+7.30±0.36
+14.2± 0.8
+33.7± 1.6
+2790± 172
+9.41±0.47
+2530± 180
+2.68±0.15
+107± 6
+252± 12
+5.12±0.26
+1.60±0.08
+95.7± 5.8
+2.45±0.14
+4.34±0.24
+10.5± 0.5
+27.6± 2.3
+34.2± 2.0
+10.6± 0.6
+2.54±0.15
+29.1± 1.7
+1.87±0.14
+0.14±0.01
+1.38±0.07
+36.7± 2.5
+
+5.68±0.28
+25.6± 1.3
+31.3± 1.5
+3070± 155
+9.80±0.47
+3430± 256
+2.42±0.14
+113± 5
+232± 12
+5.81±0.29
+1.30±0.08
+115± 5
+2.58±0.15
+4.03±0.21
+9.45±0.46
+44.8± 2.6
+44.8± 2.3
+20.4± 1.1
+4.24±0.23
+32.7± 1.7
+2.23±0.14
+0.12±0.03
+1.18±0.07
+31.2± 1.7
+
+6.68±0.33
+31.5± 2.0
+30.7± 1.6
+2990± 222
+10.5± 0.6
+3830± 271
+2.57±0.14
+121± 6
+170± 9
+7.42±0.39
+1.58±0.09
+129± 7
+3.44±0.19
+3.72±0.20
+11.2± 0.6
+56.4± 3.2
+25.4± 1.4
+30.2± 1.6
+5.88±0.32
+47.2± 2.6
+3.08±0.17
+0.22±0.05
+0.74±0.06
+28.5± 1.7
+
+10.0± 0.9
+547± 11
+20.8± 1.9
+2150± 200
+7.95±0.76
+2970± 281
+2.50±0.36
+291± 27
+62.3± 5.8
+65.4± 6.1
+1.31±0.22
+177± 16
+15.7± 1.5
+5.56±0.56
+25.4± 2.4
+918± 85
+4.53±0.48
+765± 70
+39.4± 3.7
+75.6± 7.0
+126± 11
+13.0± 1.2
+8.83±0.83
+9.74±0.92
+
+***
+***
+***
+206± 23
+***
+600± 59
+***
+129± 28
+***
+130± 16
+***
+102± 19
+***
+***
+***
+11100± 1040
+***
+7250± 675
+179± 23
+***
+***
+***
+***
+1040± 101
+
+– 52 –
+
+ID
+
+Table 2-Continued
+Name/Position
+SSTc2dJ...
+
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72b
+
+18285860+0048594
+18285945+0030031
+18290025+0016580
+18290057+0045079
+18290082+0027468
+18290089+0029316
+18290107+0031452
+18290122+0029330
+18290153+0017299
+18290175+0029465
+18290184+0029546
+18290211+0031206
+18290283+0030095
+18290393+0020217
+18290437+0033240
+18290517+0038439
+18290575+0022325
+18290615+0019444
+18290619+0030432
+18290675+0030343
+18290697+0038380
+18290741+0019215
+18290763+0052223
+18290775+0054037
+
+Prev. Namea
+
+D-074
+
+D-080
+D-078
+D-081
+CoKu Ser-G6
+CoKu Ser-G4
+CoKu Ser-G3
+D-084
+D-086
+
+IRAS 18265+0028?
+IRAS 18265+0028?
+D-096
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+10.8± 0.5
+38.4± 2.1
+44.4± 2.5
+17.2± 0.8
+8.81±0.52
+246± 13
+59.2± 3.6
+88.8± 4.8
+3.16±0.18
+141± 8
+586± 51
+1.19±0.07
+15.4± 1.0
+182± 10
+133± 7
+3.43±0.23
+36.3± 2.2
+7.24±0.40
+8.05±0.41
+3.27±0.21
+21.3± 1.4
+3.07±0.17
+4.50±0.23
+10.2± 0.5
+
+9.32±0.48
+41.0± 2.2
+34.2± 2.2
+17.0± 0.8
+9.62±0.55
+290± 16
+72.8± 4.3
+97.4± 5.1
+2.69±0.17
+133± 6
+553± 33
+1.62±0.09
+19.2± 1.1
+175± 11
+165± 12
+4.04±0.20
+27.1± 1.5
+5.80±0.31
+45.0± 2.8
+11.7± 0.7
+29.3± 1.5
+2.28±0.13
+4.03±0.20
+9.86±0.48
+
+7.40±0.35
+43.5± 2.3
+33.2± 1.7
+13.4± 0.6
+10.5± 0.6
+308± 19
+76.2± 4.1
+91.0± 5.3
+2.92±0.16
+111± 6
+504± 28
+1.58±0.10
+34.5± 2.0
+179± 9
+256± 13
+2.52±0.16
+17.8± 1.0
+4.70±0.25
+93.9± 4.8
+14.9± 0.8
+22.5± 1.3
+2.17±0.12
+3.59±0.18
+9.66±0.47
+
+7.25±0.43
+49.4± 2.7
+33.4± 1.8
+13.0± 0.6
+13.2± 0.7
+392± 23
+75.5± 4.3
+100± 6
+2.43±0.14
+107± 10
+461± 27
+1.13±0.07
+30.6± 1.8
+171± 12
+300± 18
+2.04±0.11
+13.6± 0.7
+4.90±0.26
+129± 7
+20.7± 1.2
+22.7± 1.1
+1.71±0.09
+4.66±0.23
+10.2± 0.5
+
+13.4± 1.2
+81.6± 7.6
+39.2± 3.6
+23.6± 2.2
+29.0± 2.7
+711± 67
+72.5± 6.7
+215± 21
+1.43±0.26
+361± 33
+407± 38
+22.1± 2.0
+94.2± 8.7
+255± 23
+615± 57
+6.73±0.64
+15.1± 1.4
+10.3± 1.0
+1320± 139
+1000± 105
+40.2± 3.7
+0.93±0.19
+9.58±0.89
+11.0± 1.0
+
+***
+204± 32
+***
+***
+***
+736± 75
+***
+***
+***
+***
+503± 52
+276± 29
+535± 54
+283± 30
+651± 67
+***
+***
+***
+7240± 713
+11400± 1180
+***
+***
+***
+***
+
+– 53 –
+
+ID
+
+Table 2-Continued
+Name/Position
+SSTc2dJ...
+
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90b
+91
+92
+93
+94
+95
+96
+
+18290808−0007371
+18290817+0105445
+18290904+0031280
+18290955+0037020
+18290980+0034459
+18291148+0020387
+18291249+0018150
+18291288+0009477
+18291407+0002589
+18291432+0107300
+18291508+0052124
+18291513+0039378
+18291539−0012519
+18291557+0039119
+18291562+0039230
+18291617+0018227
+18291969+0018031
+18292001+0024497
+18292003+0121015
+18292042+0121037
+18292095+0030346
+18292184+0019386
+18292616+0020518
+18292640+0030043
+
+Prev. Namea
+
+IRAS 18266+0035
+D-105
+
+IRAS 18266+0050
+
+IRAS 18267+0016
+D-132
+K-112
+D-137
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+121± 6
+31.2± 1.6
+0.95±0.11
+837± 66
+1260± 70
+4.46±0.27
+5.46±0.31
+2.60±0.13
+313± 16
+2.98±0.16
+1210± 64
+35.4± 2.4
+73.1± 3.7
+13.6± 0.9
+6.42±0.46
+284± 27
+19.6± 1.3
+146± 8
+126± 6
+48.9± 2.4
+911± 60
+11.8± 0.7
+742± 55
+3.89±0.31
+
+71.5± 3.6
+20.7± 1.0
+2.78±0.23
+784± 48
+1060± 72
+3.36±0.19
+5.15±0.29
+2.02±0.11
+197± 10
+2.56±0.13
+663± 36
+37.7± 1.8
+52.1± 2.5
+16.2± 0.8
+7.33±0.35
+412± 33
+20.0± 1.1
+96.0± 5.3
+73.9± 3.7
+40.5± 2.0
+414± 36
+11.2± 0.6
+377± 26
+3.36±0.20
+
+61.1± 2.9
+14.1± 0.7
+2.92±0.24
+873± 61
+1070± 72
+2.39±0.15
+4.26±0.25
+1.98±0.11
+170± 8
+2.29±0.12
+616± 31
+30.8± 1.8
+44.3± 2.1
+15.1± 0.9
+5.99±0.35
+446± 27
+16.4± 0.9
+83.6± 4.3
+61.5± 2.9
+33.0± 1.6
+511± 31
+10.6± 0.6
+382± 28
+3.42±0.18
+
+38.8± 2.1
+9.66±0.47
+5.03±0.40
+904± 46
+1000± 52
+1.72±0.10
+4.22±0.21
+2.14±0.11
+104± 5
+2.15±0.11
+468± 24
+25.9± 1.3
+42.1± 2.3
+25.6± 1.3
+8.05±0.39
+478± 24
+18.0± 0.9
+56.8± 2.9
+38.6± 2.0
+27.1± 1.4
+377± 20
+10.8± 0.6
+245± 14
+3.87±0.21
+
+9.83±0.92
+6.58±0.63
+14.0± 1.9
+531± 49
+778± 72
+16.0± 1.5
+6.49±0.67
+2.18±0.31
+30.7± 2.9
+1.94±0.24
+295± 27
+5.44±0.52
+25.2± 2.3
+60.5± 5.6
+32.5± 3.0
+943± 88
+31.8± 3.0
+16.0± 1.5
+9.95±0.95
+25.5± 2.4
+187± 17
+14.4± 1.4
+84.6± 7.8
+8.75±0.82
+
+***
+***
+***
+85.6±20.2
+76.8±13.1
+***
+***
+***
+***
+***
+***
+***
+***
+***
+135± 15
+1740± 165
+***
+***
+***
+***
+***
+***
+***
+***
+
+– 54 –
+
+ID
+
+Table 2-Continued
+Name/Position
+SSTc2dJ...
+
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+
+18292678+0039498
+18292729+0039066
+18292735+0038497
+18292822−0022571
+18292897+0013104
+18292927+0018000
+18293083+0101072
+18293195+0118429
+18293254−0013233
+18293300+0040089
+18293319+0012122
+18293336+0108245
+18293381+0053118
+18293561+0035038
+18293619+0042167
+18293635+0033560
+18293644+0046217
+18293670+0047579
+18293767+0111299
+18293881+0044381
+18293986+0117561
+18294020+0015131
+18294121+0049020
+18294124+0047296
+
+Prev. Namea
+
+IRAS 18268-0025
+
+K-150
+K-159
+CDF88-4
+
+K-173
+D-176
+
+K-190
+K-202
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+9.98±0.73
+2.18±0.15
+1.56±0.11
+1280± 76
+308± 21
+7.00±0.37
+38.8± 1.9
+481± 24
+654± 39
+6.05±0.43
+687± 37
+85.6± 4.9
+278± 14
+30.5± 2.0
+21.1± 1.2
+8.01±0.52
+1.59±0.08
+17.3± 0.8
+156± 8
+4.99±0.25
+11.9± 0.6
+3.93±0.22
+7.47±0.37
+0.96±0.05
+
+13.3± 0.6
+3.08±0.15
+2.95±0.14
+1300± 74
+186± 14
+5.90±0.34
+35.2± 1.8
+786± 42
+370± 19
+6.64±0.32
+445± 30
+72.3± 4.1
+163± 8
+24.1± 1.4
+19.9± 1.0
+5.68±0.33
+1.48±0.07
+15.7± 0.8
+103± 5
+4.58±0.22
+10.5± 0.5
+7.40±0.41
+6.04±0.29
+0.93±0.05
+
+9.40±0.62
+2.29±0.16
+3.65±0.24
+1550± 104
+196± 10
+5.35±0.27
+27.6± 1.3
+1140± 57
+276± 13
+4.70±0.31
+469± 22
+75.6± 3.6
+138± 6
+17.0± 1.0
+15.6± 0.8
+4.54±0.27
+1.37±0.08
+12.4± 0.6
+84.2± 4.0
+3.93±0.19
+9.98±0.49
+13.4± 0.7
+5.67±0.28
+0.88±0.06
+
+11.9± 0.6
+2.37±0.12
+6.25±0.30
+1760± 116
+139± 7
+5.31±0.28
+30.7± 1.6
+1830± 138
+156± 8
+5.53±0.27
+339± 17
+116± 6
+85.0± 4.3
+12.8± 0.7
+12.8± 0.6
+2.90±0.15
+1.49±0.08
+11.9± 0.6
+56.3± 2.9
+3.72±0.19
+11.7± 0.6
+24.4± 1.3
+7.37±0.35
+0.84±0.06
+
+34.5± 3.2
+1.73±0.22
+18.4± 1.7
+414± 85
+39.8± 3.7
+4.51±0.44
+54.3± 5.0
+4370± 407
+39.7± 3.7
+9.71±0.91
+86.7± 8.0
+148± 13
+25.9± 2.4
+74.2± 6.9
+81.1± 7.5
+1.25±0.18
+1.27±0.19
+17.3± 1.6
+21.4± 2.0
+3.35±0.34
+18.4± 1.7
+113± 10
+7.54±0.71
+1.17±0.17
+
+64.9±11.5
+***
+***
+730± 85
+***
+***
+***
+5190± 501
+429± 47
+***
+***
+320± 37
+***
+57.6±13.1
+126± 17
+***
+***
+***
+***
+***
+***
+126± 15
+***
+***
+
+– 55 –
+
+ID
+
+Table 2-Continued
+Name/Position
+SSTc2dJ...
+
+Prev. Namea
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+
+18294146+0107380
+18294152+0110043
+18294168+0044270
+18294216+0120211
+18294392+0107208
+18294410+0033561
+18294430+0104534
+18294452+0113115
+18294503+0035266
+18294627+0110254
+18294700+0116268
+18294725+0039556
+18294726+0032230
+18294763+0104223
+18294810+0116449
+18294878+0113422
+18294913+0116198
+18294924+0116314
+18294957+0117060
+18294962+0050528
+18294963+0115219
+18294969+0114568
+18295001+0051015
+18295015+0056081
+
+K-207
+K-210
+
+95.4± 4.8
+33.2± 1.6
+20.6± 1.0
+7.27±0.42
+18.4± 0.9
+20.8± 1.2
+2530± 276
+9.59±0.46
+13.9± 0.8
+9.20±0.46
+11.0± 0.6
+5.75±0.29
+10.4± 0.6
+8.59±0.46
+1.96±0.10
+5.08±0.25
+12.0± 1.0
+16.8± 0.8
+42.5± 2.1
+80.4± 4.1
+0.85±0.08
+13.8± 0.7
+11.1± 0.6
+29.5± 1.4
+
+83.2± 4.1
+21.2± 1.0
+16.5± 0.8
+6.13±0.30
+17.8± 0.9
+13.7± 0.7
+3920± 263
+7.78±0.38
+12.5± 0.7
+7.90±0.39
+15.2± 0.8
+4.17±0.20
+9.28±0.51
+7.54±0.39
+6.98±0.42
+5.17±0.25
+72.6± 5.4
+36.9± 1.8
+95.8± 4.8
+56.5± 2.8
+2.64±0.27
+39.0± 2.0
+9.03±0.44
+28.4± 1.4
+
+72.2± 3.4
+16.5± 0.8
+14.9± 0.7
+7.00±0.35
+16.1± 0.8
+11.0± 0.6
+5010± 272
+6.62±0.32
+10.8± 0.6
+7.02±0.34
+18.6± 0.9
+3.39±0.18
+8.20±0.45
+6.20±0.34
+12.1± 0.6
+5.12±0.25
+221± 12
+65.2± 3.1
+143± 6
+47.3± 2.2
+2.32±0.28
+66.6± 3.2
+7.73±0.38
+28.0± 1.3
+
+81.0± 4.3
+11.0± 0.6
+20.1± 1.0
+13.0± 0.6
+13.3± 0.6
+6.97±0.34
+5040± 401
+7.86±0.38
+11.2± 0.6
+6.89±0.34
+19.3± 0.9
+4.77±0.23
+10.6± 0.5
+5.77±0.30
+16.7± 0.8
+5.22±0.25
+602± 33
+101± 5
+184± 13
+34.2± 1.7
+3.54±0.31
+74.3± 3.8
+6.71±0.33
+31.3± 1.5
+
+147± 13
+7.69±0.75
+40.0± 3.7
+19.9± 1.9
+10.1± 1.0
+19.7± 1.8
+5840± 1750
+10.8± 1.0
+16.4± 1.5
+4.90±0.48
+42.2± 4.1
+16.1± 1.5
+18.2± 1.7
+27.5± 2.6
+219± 21
+6.24±0.63
+6640± 1990
+1360± 218
+526± 48
+10.8± 1.0
+1180± 117
+132± 12
+5.47±0.53
+48.7± 4.6
+
+***
+***
+***
+***
+***
+140± 17
+655± 65
+***
+***
+***
+***
+***
+***
+***
+14900± 1420
+***
+18300± 1790
+***
+***
+***
+82800± 7810
+***
+***
+***
+
+K-216
+K-219
+IRAS 18271+0102
+EC-11
+
+EC-28
+
+K-241
+EC-33
+OO Ser
+V370 Ser
+EC-38
+K-258a
+EC-40
+K-252
+
+– 56 –
+
+ID
+
+Table 2-Continued
+Name/Position
+SSTc2dJ...
+
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+
+18295041+0043437
+18295114+0116406
+18295117+0113197
+18295130+0027479
+18295206+0036436
+18295219+0115478
+18295220+0115590
+18295239+0035529
+18295244+0031496
+18295252+0036117
+18295285+0114560
+18295304+0040105
+18295305+0036067
+18295307+0100346
+18295309+0106179
+18295316+0112277
+18295322+0033129
+18295359+0117018
+18295383+0113306
+18295407+0107109
+18295422+0045076
+18295430+0036013
+18295493+0059140
+18295518+0113224
+
+Prev. Namea
+
+V371 Ser
+EC-51
+
+K-270
+
+ETC-11
+IRAS 18273+0034
+
+EC-67
+EC-68
+K-287
+IRAS 18273+0034
+EC-73
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+36.9± 2.2
+31.1± 2.6
+2.44±0.12
+33.8± 2.0
+3.83±0.20
+7.38±0.41
+0.072±0.008
+38.0± 2.2
+2.86±0.15
+2.49±0.14
+8.65±0.44
+5.17±0.28
+21.0± 1.2
+9.26±0.48
+7.90±0.38
+1.20±0.06
+115± 7
+41.1± 2.0
+5.31±0.26
+5.59±0.27
+52.4± 2.7
+2.39±0.25
+7.16±0.37
+14.6± 0.7
+
+41.7± 2.0
+72.6± 4.6
+1.93±0.10
+22.3± 1.3
+4.64±0.27
+33.0± 2.1
+1.54±0.09
+51.5± 2.8
+3.49±0.18
+4.24±0.23
+34.6± 1.8
+4.57±0.22
+22.5± 1.2
+11.7± 0.6
+6.72±0.32
+1.18±0.06
+87.0± 4.8
+38.9± 1.9
+5.24±0.25
+5.79±0.28
+36.7± 1.8
+6.57±0.42
+6.23±0.30
+14.8± 0.7
+
+30.5± 1.5
+141± 7
+1.75±0.10
+16.2± 0.9
+5.59±0.29
+41.3± 2.2
+4.96±0.25
+54.9± 3.0
+3.69±0.21
+5.18±0.28
+72.0± 3.4
+3.84±0.20
+22.5± 1.2
+7.45±0.37
+5.59±0.28
+1.17±0.07
+71.2± 3.8
+33.6± 1.6
+5.40±0.27
+5.32±0.27
+24.2± 1.2
+7.32±0.44
+4.57±0.23
+13.8± 0.7
+
+24.0± 1.2
+208± 10
+1.87±0.10
+10.1± 0.6
+6.19±0.32
+40.0± 2.6
+5.90±0.29
+54.7± 2.9
+4.56±0.24
+6.55±0.36
+110± 5
+3.79±0.19
+35.0± 1.9
+6.74±0.41
+5.84±0.29
+1.43±0.08
+51.2± 2.7
+33.0± 1.6
+5.39±0.26
+5.95±0.29
+15.2± 0.7
+5.80±0.31
+4.89±0.25
+15.6± 0.8
+
+21.1± 2.0
+992± 92
+2.37±0.39
+4.81±0.50
+21.0± 1.9
+1640± 154
+75.1±10.2
+105± 9
+4.61±0.45
+100± 9
+1040± 96
+7.07±0.67
+333± 30
+17.3± 1.6
+7.44±0.73
+1.18±0.22
+18.4± 1.7
+26.7± 2.5
+6.05±0.65
+11.0± 1.0
+7.78±0.73
+16.0± 1.5
+9.62±0.93
+74.7± 6.9
+
+***
+8480± 805
+***
+163± 18
+***
+15200± 1420
+***
+562± 55
+***
+1910± 179
+5570± 523
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+1270± 121
+***
+***
+
+– 57 –
+
+ID
+
+Table 2-Continued
+Name/Position
+SSTc2dJ...
+
+Prev. Namea
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+
+18295531+0049393
+18295537+0053242
+18295569+0114315
+18295592+0040150
+18295620+0033391
+18295655+0112595
+18295667+0112392
+18295687+0114465
+18295701+0033003
+18295714+0033185
+18295758+0113005
+18295762+0100057
+18295766+0113046
+18295772+0114057
+18295780+0115318
+18295780+0112279
+18295783+0112514
+18295784+0112378
+18295789+0112462
+18295819+0115218
+18295871+0036205
+18295877+0114262
+18295902+0112251
+18295911+0111202
+
+IRAS 18273+0047
+
+578± 36
+5.47±0.28
+63.5± 3.2
+9.63±0.49
+13.4± 0.8
+25.4± 1.2
+16.3± 0.8
+581± 30
+377± 25
+124± 8
+66.1± 3.2
+2.36±0.12
+23.5± 1.2
+2480± 189
+65.0± 3.2
+14.1± 0.7
+108± 5
+40.1± 2.0
+131± 6
+153± 9
+10.8± 0.7
+49.2± 2.6
+2.38±0.14
+8.16±0.41
+
+475± 24
+4.39±0.22
+92.3± 4.7
+8.88±0.45
+15.5± 0.8
+26.9± 1.3
+35.9± 1.8
+688± 36
+353± 20
+144± 8
+175± 8
+1.95±0.10
+32.5± 1.9
+2970± 279
+68.4± 3.2
+20.6± 1.0
+167± 8
+55.9± 2.7
+160± 7
+181± 9
+10.2± 0.6
+90.8± 4.6
+3.66±0.18
+5.94±0.28
+
+421± 20
+3.23±0.17
+121± 5
+7.98±0.40
+12.8± 0.7
+28.0± 1.3
+37.4± 1.8
+822± 41
+305± 18
+138± 7
+251± 11
+1.71±0.10
+41.1± 1.9
+5100± 375
+59.3± 2.8
+20.2± 1.0
+222± 10
+61.1± 2.9
+181± 8
+170± 8
+8.68±0.48
+134± 6
+4.83±0.25
+4.29±0.21
+
+345± 18
+2.66±0.14
+134± 6
+10.2± 0.5
+10.7± 0.6
+29.4± 1.5
+30.9± 1.5
+1580± 86
+284± 14
+126± 7
+289± 15
+1.86±0.13
+56.2± 3.4
+5360± 384
+52.6± 2.6
+17.2± 0.9
+361± 19
+61.6± 3.2
+180± 10
+194± 10
+9.33±0.49
+143± 8
+6.20±0.31
+2.58±0.14
+
+913± 84
+2.15±0.27
+229± 21
+12.8± 1.2
+7.49±0.71
+49.1± 5.1
+36.8± 4.0
+4280± 406
+198± 18
+80.2± 7.4
+1990± 191
+1.39±0.34
+276± 32
+7860± 2350
+86.2± 9.9
+22.9± 5.0
+2860± 285
+84.2± 9.8
+388± 50
+525± 49
+13.0± 1.2
+620± 58
+28.4± 2.8
+5.17±0.55
+
+2340± 222
+***
+***
+***
+***
+***
+***
+19700± 1880
+71.0±12.2
+***
+***
+***
+***
+26000± 2440
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+EC-74
+
+EC-79
+EC-80
+CoKu Ser-G7
+
+EC-88
+EC-89
+EC-90
+K-319
+EC-91
+EC-92
+EC-94
+EC-95
+EC-97
+EC-103
+K-327
+HH 456
+
+– 58 –
+
+ID
+
+Table 2-Continued
+Name/Position
+SSTc2dJ...
+
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+
+18295914+0037355
+18295923+0114077
+18295927+0114016
+18295937+0110410
+18295956+0111590
+18295992+0113116
+18300007+0103057
+18300019+0114036
+18300030+0109447
+18300047+0037287
+18300070+0113014
+18300109+0113244
+18300166+0104430
+18300178+0032162
+18300208+0113589
+18300273+0112282
+18300339+0116194
+18300350+0023450
+18300358+0116409
+18300382+0053406
+18300384+0056206
+18300408+0106559
+18300490+0114395
+18300501+0112360
+
+Prev. Namea
+
+EC-105
+HH 457
+K-330
+K-331
+EC-114
+K-332
+GCNM-130
+EC-121
+
+EC-125
+EC-129
+EC-135
+EC-137
+
+EC-149
+EC-152
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+3.81±0.19
+179± 11
+2.72±0.28
+0.65±0.04
+80.2± 5.1
+2.77±0.16
+6.19±0.30
+8.71±0.43
+18.3± 0.9
+6.18±0.35
+0.38±0.04
+10.3± 0.5
+4.34±0.22
+18.2± 1.4
+15.7± 0.8
+238± 12
+39.7± 2.0
+11.3± 0.6
+2.50±0.13
+4.76±0.24
+3.58±0.18
+1.42±0.07
+6.57±0.33
+2.48±0.12
+
+3.02±0.15
+201± 12
+5.76±0.44
+2.91±0.14
+261± 15
+29.5± 1.5
+4.79±0.23
+9.51±0.47
+47.3± 2.4
+5.52±0.28
+1.23±0.10
+13.9± 0.7
+4.95±0.25
+17.6± 0.9
+21.9± 1.1
+369± 18
+34.5± 1.7
+11.5± 0.6
+2.58±0.13
+3.86±0.19
+2.94±0.14
+1.22±0.06
+5.71±0.28
+2.38±0.12
+
+2.50±0.14
+215± 12
+7.78±1.16
+5.31±0.26
+414± 21
+103± 4
+4.35±0.21
+9.34±0.56
+75.6± 3.6
+4.30±0.24
+2.08±0.16
+13.6± 0.7
+4.51±0.23
+11.9± 0.7
+27.6± 1.3
+497± 23
+32.4± 1.5
+8.05±0.44
+2.31±0.12
+2.94±0.15
+2.54±0.14
+1.14±0.07
+5.15±0.26
+2.28±0.12
+
+2.54±0.13
+182± 23
+36.0± 5.4
+5.82±0.29
+483± 28
+199± 10
+7.07±0.36
+15.0± 0.8
+82.7± 4.3
+3.34±0.17
+3.55±0.21
+13.0± 0.6
+5.65±0.28
+13.3± 0.8
+34.6± 1.7
+551± 30
+53.2± 2.7
+8.78±0.48
+2.34±0.12
+2.59±0.14
+2.33±0.12
+1.05±0.07
+5.53±0.27
+2.33±0.12
+
+5.79±0.55
+119± 25
+109± 19
+11.4± 1.1
+1720± 161
+2620± 249
+34.3± 3.2
+36.3± 3.8
+78.8± 7.3
+7.24±0.68
+95.8±11.4
+56.9± 5.4
+11.1± 1.1
+26.1± 2.4
+167± 15
+1910± 178
+112± 10
+13.5± 1.3
+3.91±0.48
+1.59±0.31
+1.56±0.29
+3.53±0.38
+4.26±0.46
+3.32±0.42
+
+***
+***
+12200± 1160
+***
+***
+6830± 675
+***
+***
+***
+***
+8640± 829
+***
+***
+***
+***
+5230± 488
+***
+***
+***
+***
+***
+***
+***
+***
+
+– 59 –
+
+ID
+
+Table 2-Continued
+Name/Position
+SSTc2dJ...
+
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+
+18300543+0101023
+18300608+0106171
+18300640+0101058
+18300769+0112046
+18300849+0101374
+18300861+0058466
+18300891+0047221
+18300921+0117526
+18300942+0102473
+18301084+0047008
+18301109+0112382
+18301327+0102489
+18301395+0108515
+18301698+0113075
+18301728+0121328
+18301816+0114169
+18302239+0120440
+18302311+0120097
+18302342+0105047
+
+a Source
+
+Prev. Namea
+
+K-357
+K-359
+K-366
+K-367
+K-370
+K-382
+K-379
+K-393
+K-407
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+4.58±0.22
+19.0± 1.0
+41.7± 2.0
+80.2± 4.1
+15.9± 0.8
+63.6± 3.1
+5.83±0.29
+8.35±0.41
+280± 14
+1.83±0.09
+9.72±0.48
+5.50±0.28
+5.38±0.29
+1.41±0.07
+412± 21
+18.7± 1.0
+6.71±0.34
+4.73±0.23
+14.5± 0.7
+
+3.23±0.16
+16.8± 0.8
+41.2± 2.0
+76.1± 3.9
+16.0± 0.8
+52.2± 2.6
+3.93±0.19
+8.15±0.40
+179± 9
+1.51±0.07
+9.13±0.45
+4.31±0.21
+4.09±0.20
+1.27±0.06
+246± 13
+20.3± 1.0
+4.79±0.24
+3.28±0.16
+13.9± 0.7
+
+2.37±0.12
+15.2± 0.7
+40.2± 1.9
+77.2± 3.7
+12.7± 0.6
+47.7± 2.4
+2.75±0.15
+7.34±0.38
+151± 7
+1.20±0.07
+9.71±0.47
+3.54±0.18
+3.55±0.18
+1.18±0.07
+219± 11
+22.7± 1.1
+3.65±0.19
+2.21±0.12
+13.4± 0.7
+
+2.07±0.12
+19.1± 0.9
+49.6± 2.5
+81.4± 4.2
+15.2± 0.7
+73.1± 4.1
+1.60±0.09
+7.15±0.37
+107± 5
+1.18±0.08
+12.9± 0.6
+3.68±0.19
+3.89±0.20
+1.24±0.07
+141± 7
+34.6± 1.7
+2.52±0.14
+1.37±0.09
+15.2± 0.7
+
+11.6± 1.1
+36.6± 3.4
+66.3± 6.1
+124± 11
+39.4± 3.7
+229± 21
+7.95±0.77
+9.83±0.93
+51.1± 4.7
+0.99±0.19
+18.4± 1.7
+4.56±0.55
+7.48±0.73
+4.35±0.45
+45.6± 4.2
+111± 10
+8.56±0.84
+3.90±0.43
+56.9± 5.3
+
+***
+***
+***
+363± 42
+***
+303± 31
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+names from SIMBAD, including numbers from the following catalogs: EC, Eiroa & Casali (1992); D,
+Djupvik et al. (2006); K, Kaas et al. (2004).
+
+– 60 –
+
+ID
+
+b May
+
+be AGB star, based on Av derived from optical spectrum.
+
+– 61 –
+
+Table 3. YSO Candidates in Serpens Without 4-Band IRAC Observations
+Name/Position
+SSTc2dJ...
+
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+
+18273421+0040260
+18274024+0035221
+18274264+0020389
+18274399+0025135
+18274484+0052436
+18274506+0006110
+18275926+0056012
+18280449+0049498
+18281904+0101333
+18282591−0032587
+18283708+0149440
+18283939+0106157
+18284039+0106144
+18285056+0101121
+18285486+0108548
+18295035+0008472
+18295096−0033057
+18295439+0002476
+18300035+0011201
+18300130+0159309
+18300155+0037339
+18300181−0037039
+18300237+0040549
+18300403+0034240
+
+Prev. Name
+
+IRAC 18251+0023
+IRAS 18251+0004
+
+IRAS 18257+0059
+IRAS 18258-0034
+IRAS 18261+0104
+IRAS 18261+0104
+IRAS 18264+0106
+
+IRAS 18275-0039
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+***
+***
+***
+***
+***
+1730± 93
+***
+***
+***
+***
+***
+***
+***
+4.43±0.22
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+322± 26
+299± 20
+***
+96.0± 6.5
+***
+3.72±0.20
+***
+4.56±0.22
+***
+
+***
+***
+***
+***
+***
+965± 47
+***
+***
+***
+***
+***
+***
+***
+3.08±0.16
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+258± 14
+146± 7
+***
+60.7± 3.3
+***
+1.94±0.11
+***
+4.52±0.22
+***
+
+17.8± 1.7
+1.36±0.25
+42.0± 3.9
+5430± 509
+1.49±0.27
+173± 16
+40.7± 3.9
+15.2± 1.4
+112± 10
+279± 43
+57.3± 5.3
+356± 33
+160± 14
+1.93±0.31
+329± 30
+89.4± 8.3
+50.8± 4.7
+77.5± 7.2
+19.5± 1.8
+1.14±0.22
+1.22±0.20
+29.9± 2.8
+3.45±0.38
+217± 20
+
+***
+***
+***
+655± 68
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+798± 77
+
+– 62 –
+
+ID
+
+Table 3-Continued
+Name/Position
+SSTc2dJ...
+
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+
+18300528+0036467
+18300569+0039318
+18300615+0042339
+18301017+0039290
+18301188+0036118
+18301547+0028278
+18301771+0036115
+18301831+0021589
+18301943+0055171
+18301948+0037211
+18301981+0040273
+18301983+0002536
+18301991+0041532
+18302200+0043377
+18302248+0033169
+18302274+0044382
+18302320+0033388
+18302326+0042297
+18302419+0035072
+18302892+0037532
+18302984+0035007
+18303313+0026437
+18303413+0038011
+18303587+0040272
+
+Prev. Name
+
+GSC00446-00153
+
+IRAS 18277+0034
+IRAS 18277+0019
+
+HD 170635
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+***
+19.6± 1.0
+1040± 58
+7.50±0.37
+***
+***
+***
+***
+1.64±0.08
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+***
+17.9± 0.9
+1180± 62
+8.12±0.39
+***
+***
+***
+***
+0.72±0.06
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+1.93±0.25
+34.6± 3.2
+3020± 283
+12.2± 1.1
+10.8± 1.0
+2.76±0.40
+946± 87
+320± 29
+1.63±0.26
+377± 34
+2.16±0.31
+122± 11
+27.2± 2.5
+118± 10
+9.64±0.92
+15.1± 1.4
+1.70±0.24
+14.8± 1.4
+2.39±0.31
+3.06±0.35
+26.0± 2.4
+87.7± 8.2
+11.8± 1.1
+130± 12
+
+***
+76.2±19.5
+3920± 370
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+120± 18
+***
+***
+***
+***
+***
+***
+274± 32
+***
+***
+***
+
+– 63 –
+
+ID
+
+Table 3-Continued
+ID
+
+Name/Position
+SSTc2dJ...
+
+284
+285
+286
+
+18303595+0040385
+18303898+0034530
+18304881+0038000
+
+Prev. Name
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+70.0 μm
+(mJy)
+
+***
+***
+***
+
+***
+***
+***
+
+***
+***
+***
+
+***
+***
+***
+
+71.7± 6.7
+20.1± 1.9
+98.8± 9.1
+
+136± 23
+***
+***
+
+– 64 –
+
+Table 4. Matching Spitzer Sources/Fluxes For Previously Identified IR Sources In Serpens
+Sourcea
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+18282432+0034545
+18282442+0026509
+18282649+0031421
+18282783+0028390
+18282792+0029288
+18282864+0024120
+18282905+0027561
+18282912+0034193
+18283208+0025036
+18283221+0035361
+18283261+0037322
+18283317+0025451
+18283351+0026595
+18283434+0031119
+18283503+0026406
+18283572+0038458
+18283576+0038231
+18283579+0026160
+18283639+0026388
+18283741+0027100
+18283752+0032311
+18283791+0025512
+
+62.4± 4.2
+105± 9
+38.1± 2.7
+6.72±0.45
+5.12±0.32
+5.68±0.38
+9.80±0.57
+193± 13
+11.2± 0.6
+33.6± 2.0
+15.0± 0.9
+24.9± 1.5
+60.6± 3.6
+10.2± 0.6
+53.0± 3.2
+227± 15
+6.23±0.38
+191± 12
+31.8± 1.9
+9.45±0.54
+7.64±0.49
+46.4± 2.8
+
+46.1± 3.0
+95.6± 7.8
+25.8± 1.7
+4.47±0.29
+3.56±0.25
+3.71±0.25
+8.51±0.47
+93.2± 6.4
+6.47±0.38
+20.6± 1.1
+9.38±0.50
+15.0± 0.9
+34.5± 2.2
+7.06±0.41
+34.2± 2.1
+130± 7
+4.19±0.23
+122± 8
+21.1± 1.3
+6.52±0.40
+5.69±0.30
+26.1± 1.6
+
+41.1± 2.5
+97.9± 6.5
+20.1± 1.2
+3.44±0.21
+2.76±0.16
+3.27±0.20
+7.03±0.38
+86.6± 4.5
+5.42±0.27
+16.1± 0.9
+7.02±0.39
+12.1± 0.6
+26.4± 1.4
+5.39±0.31
+31.8± 1.7
+104± 5
+2.82±0.16
+114± 6
+19.4± 1.0
+5.68±0.36
+4.05±0.24
+26.5± 1.4
+
+32.5± 2.0
+65.0± 4.2
+12.2± 0.8
+2.27±0.14
+1.79±0.12
+1.92±0.12
+5.46±0.30
+49.3± 2.9
+3.15±0.20
+9.61±0.49
+4.40±0.23
+7.15±0.41
+15.9± 0.9
+3.42±0.19
+19.2± 1.1
+61.0± 3.5
+1.72±0.10
+63.5± 3.9
+11.3± 0.7
+3.35±0.20
+2.52±0.14
+15.3± 0.9
+
+13.9± 1.3
+13.9± 1.3
+1.26±0.28
+< 1.53
+< 1.45
+< 1.44
+43.4± 4.0
+5.99±0.58
+< 1.25
+0.99±0.23
+< 1.41
+0.70±0.25
+1.46±0.22
+< 1.54
+2.71±0.35
+6.91±0.66
+< 1.19
+7.10±0.69
+1.20±0.23
+< 1.26
+< 1.22
+2.38±0.31
+
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+– 65 –
+
+D002
+D001
+D003
+D004
+D005
+D006
+D007
+D008
+D010
+D009
+D011
+D012
+D013
+D014
+D015
+D017
+D016
+D018
+D019
+D020
+D021
+D022
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Sourcea
+
+Spitzer
+SSTc2dJ...
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+– 66 –
+
+D023
+18283828+0027182 8.55±0.48
+5.58±0.34 4.71±0.26 2.88±0.17
+< 1.21
+D024 D025 18283964+0038339
+145± 9
+102± 5
+70.6± 3.8 42.1± 2.3 4.46±0.46
+D026
+18284001+0028563 4.77±0.28
+4.10±0.24 3.04±0.17 1.83±0.10
+< 1.17
+D027
+18284011+0027502
+95.4± 6.1
+59.6± 3.5
+56.2± 3.0 29.4± 1.7 3.61±0.37
+D028
+18284031+0032419 0.024±0.008 0.019±0.005
+< 0.23
+< 0.19
+< 1.59
+D031
+18284042+0028246 0.93±0.05
+0.69±0.04 0.58±0.05 0.35±0.04
+< 1.19
+D030
+18284079+0035281
+42.1± 2.7
+28.8± 1.8
+21.8± 1.2 13.1± 0.8 1.27±0.26
+D029
+18284080+0033242 1.66±0.10
+1.09±0.07 0.81±0.06 0.46±0.05
+< 1.44
+D032
+18284099+0034194 9.15±0.56
+5.76±0.34 4.35±0.26 2.83±0.16
+< 1.53
+D033
+18284118+0025187
+183± 10
+93.6± 6.7
+103± 5
+56.0± 3.4 7.33±0.73
+D035
+18284174+0037017
+19.3± 1.2
+13.7± 0.7
+10.5± 0.6 6.47±0.33 0.57±0.26
+D034
+18284196+0027242 6.04±0.35
+4.17±0.25 3.47±0.19 2.05±0.12
+< 1.37
+D036
+18284219+0029341 0.033±0.006 0.041±0.008
+< 0.21
+< 0.25
+< 1.48
+K007
+18284240+0114314
+***
+***
+***
+***
+2.27±0.47
+D037
+18284310+0035378
+30.1± 1.9
+18.8± 1.0
+14.9± 0.8 8.71±0.47 1.01±0.20
+D038
+18284335+0024502
+22.5± 1.3
+14.0± 0.8
+12.0± 0.6 6.73±0.39 0.88±0.21
+D040
+18284345+0037174 9.95±0.62
+6.82±0.35 5.19±0.28 3.17±0.16
+< 1.27
+D039
+18284349+0031102 9.79±0.60
+6.65±0.40 5.70±0.33 3.58±0.26
+< 1.58
+K011
+18284519+0110253
+***
+***
+***
+***
+1.46±0.25
+K012
+18284527+0116473
+***
+***
+***
+***
+5.27±0.59
+D042
+18284557+0027582 6.44±0.37
+4.39±0.24 3.75±0.21 2.21±0.12
+< 1.19
+D041
+18284558+0023099 0.13±0.01
+0.10±0.01
+< 0.26
+< 0.26
+< 1.59
+
+70μm
+(mJy)
+
+Table 4-Continued
+Sourcea
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+18284560+0037485 6.99±0.38
+4.42±0.23 3.42±0.18 2.07±0.11
+< 1.30
+18284702+0110409
+***
+***
+***
+***
+5.75±0.57
+18284742+0031450 5.98±0.32
+3.96±0.20 3.02±0.16 1.85±0.10
+< 1.20
+18284763+0024552 0.079±0.010 0.098±0.030
+< 0.31
+0.28±0.09
+< 1.26
+18284770+0036054
+10.8± 0.6
+6.97±0.36 5.06±0.27 2.84±0.15
+< 1.53
+18284797+0037432
+187± 13
+104± 6
+98.4± 5.2 56.9± 3.0 7.07±0.68
+18284838+0032471 7.20±0.42
+4.46±0.24 3.57±0.20 1.93±0.11
+< 1.47
+18284846+0113192
+***
+***
+***
+***
+2.53±0.37
+18284889+0038131
+110± 6
+70.0± 3.6
+54.3± 2.8 33.4± 1.7 3.50±0.37
+18284958+0023296 9.17±0.47
+6.38±0.35 5.55±0.28 2.99±0.22
+< 1.24
+18284973+0119129
+***
+***
+***
+***
+5.99±0.62
+18284976+0028116 9.02±0.51
+6.10±0.31 4.83±0.26 2.75±0.15
+< 1.48
+18285032+0026518 9.29±0.52
+6.78±0.37 5.99±0.32 3.55±0.20
+< 1.41
+18285062+0034513
+49.5± 2.7
+27.3± 1.7
+25.0± 1.3 14.8± 0.9 1.76±0.27
+18285066+0030514
+21.8± 1.3
+18.2± 1.0
+16.1± 0.9 10.1± 0.5 1.09±0.23
+18285136+0031540 9.11±0.53
+6.38±0.35 4.88±0.28 3.13±0.17
+< 1.25
+18285139+0025421
+21.5± 1.1
+15.7± 0.9
+12.0± 0.6 7.38±0.41 0.73±0.29
+18285175+0024408
+15.4± 1.0
+13.4± 0.8
+10.1± 0.6 6.13±0.34 0.85±0.30
+18285198+0037205
+23.7± 1.3
+14.7± 0.8
+12.3± 0.6 7.35±0.37 0.77±0.27
+18285266+0028243
+208± 14
+149± 9
+175± 10 90.7± 5.1 13.3± 1.2
+18285276+0028467 1.84±0.10
+2.45±0.14 2.58±0.15 3.44±0.19 15.7± 1.5
+18285340+0037191 8.18±0.45
+5.24±0.27 4.42±0.24 2.68±0.14
+< 1.26
+
+70μm
+(mJy)
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+– 67 –
+
+D043
+K016
+D044
+D045
+D046
+D047
+D048
+K020
+D049
+D050
+K024
+D051
+D052
+D054
+D053
+D057
+D055
+D056
+D058
+D059
+D060
+D061
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Sourcea
+
+Spitzer
+SSTc2dJ...
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+– 68 –
+
+D063
+18285387+0038462 0.10±0.01 0.072±0.008 0.074±0.032 0.12±0.04
+< 1.38
+***
+D062 D066 18285404+0029299 5.81±0.50
+27.6± 2.3
+44.8± 2.6
+56.4± 3.2 918± 85 11100± 1040
+D064
+18285450+0028523 14.7± 0.9
+34.2± 2.0
+44.8± 2.3
+25.4± 1.4 4.53±0.48
+***
+D065
+18285486+0029525 1.94±0.12
+10.6± 0.6
+20.4± 1.1
+30.2± 1.6 765± 70
+7250± 675
+D067
+18285526+0035589 8.88±0.50 5.79±0.32
+4.75±0.26 2.84±0.15
+< 1.49
+***
+D069
+18285597+0037435 6.72±0.38 4.77±0.25
+3.79±0.21 2.23±0.12
+< 1.50
+***
+D068
+18285612+0023551 42.4± 2.8
+25.4± 1.5
+22.5± 1.3
+12.5± 0.8 1.50±0.23
+***
+D070
+18285711+0028082 12.7± 0.7
+9.32±0.49
+7.45±0.40 4.29±0.23
+< 1.23
+***
+D071
+18285742+0033539 75.8± 4.6
+41.2± 2.7
+39.5± 2.1
+22.1± 1.4 3.14±0.39
+***
+D072
+18285770+0036535 9.91±0.55 6.46±0.34
+5.27±0.29 3.24±0.17
+< 1.21
+***
+K042
+18285843+0111012
+***
+***
+***
+***
+1.62±0.24
+***
+D073
+18285866+0023300 149± 10
+101± 5
+75.7± 4.3
+48.3± 2.7 5.63±0.55
+***
+D076
+18285940+0032514 2.96±0.17 2.11±0.12
+1.72±0.10 1.05±0.07
+< 1.21
+***
+D074
+18285945+0030031 38.4± 2.1
+41.0± 2.2
+43.5± 2.3
+49.4± 2.7 81.6± 7.6
+204± 32
+D075
+18285949+0034486 31.8± 1.8
+16.8± 1.1
+16.4± 0.9
+9.67±0.56 0.94±0.19
+***
+D077
+18285971+0027292
+102± 6
+61.7± 3.7
+52.2± 2.8
+31.0± 1.7 3.36±0.40
+***
+K046
+18285996+0110016
+***
+***
+***
+***
+2.16±0.27
+***
+K049
+18290054+0118202 523± 29
+280± 17
+221± 11
+122± 6
+12.9± 1.2
+***
+D080
+18290082+0027468 8.81±0.52 9.62±0.55
+10.5± 0.6
+13.2± 0.7 29.0± 2.7
+***
+D078
+18290089+0029316 246± 13
+290± 16
+308± 19
+392± 23
+711± 67
+736± 75
+D081
+18290107+0031452 59.2± 3.6
+72.8± 4.3
+76.2± 4.1
+75.5± 4.3 72.5± 6.7
+***
+D079
+18290112+0026387 47.8± 3.0
+29.4± 1.7
+24.8± 1.3
+14.6± 0.8 1.54±0.28
+***
+
+Table 4-Continued
+Sourcea
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+18290184+0029546
+18290261+0033003
+18290283+0030095
+18290315+0023092
+18290366+0118347
+18290381+0110426
+18290436+0116208
+18290437+0033240
+18290445+0109470
+18290487+0120082
+18290507+0122115
+18290521+0029254
+18290560+0026244
+18290576+0032516
+18290619+0030432
+18290642+0032354
+18290670+0035267
+18290675+0030343
+18290697+0038380
+18290700+0027395
+18290731+0027137
+18290742+0033498
+
+586± 51
+93.8± 5.8
+15.4± 1.0
+290± 20
+53.7± 2.7
+68.4± 3.4
+183± 9
+133± 7
+0.39±0.02
+117± 5
+88.2± 4.5
+48.1± 2.6
+560± 35
+10.6± 0.5
+8.05±0.41
+6.40±0.34
+10.5± 0.6
+3.27±0.21
+21.3± 1.4
+22.6± 1.3
+154± 9
+11.3± 0.6
+
+553± 33
+63.6± 3.7
+19.2± 1.1
+172± 10
+34.5± 1.7
+38.3± 1.9
+113± 5
+165± 12
+0.26±0.02
+65.5± 3.3
+52.1± 2.6
+41.6± 2.3
+290± 21
+8.53±0.48
+45.0± 2.8
+5.65±0.33
+7.01±0.40
+11.7± 0.7
+29.3± 1.5
+16.5± 0.9
+91.5± 5.1
+6.91±0.40
+
+504± 28
+54.8± 2.9
+34.5± 2.0
+142± 8
+28.3± 1.3
+28.8± 1.4
+90.5± 4.3
+256± 13
+0.11±0.03
+50.8± 2.6
+38.5± 1.8
+33.9± 1.8
+227± 12
+7.66±0.38
+93.9± 4.8
+6.30±0.32
+5.93±0.31
+14.9± 0.8
+22.5± 1.3
+12.3± 0.6
+75.1± 3.8
+5.99±0.31
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+461± 27
+407± 38
+503± 52
+32.3± 1.8 3.57±0.37
+***
+30.6± 1.8 94.2± 8.7
+535± 54
+84.9± 4.8 9.92±0.93
+***
+19.1± 0.9 2.28±0.28
+***
+17.6± 0.9 1.47±0.22
+***
+51.8± 2.7 5.65±0.55
+***
+300± 18
+615± 57
+651± 67
+< 0.27
+< 1.04
+***
+29.7± 1.5 2.86±0.45
+***
+22.7± 1.1 2.15±0.34
+***
+19.7± 1.1
+< 1.30
+***
+125± 7
+13.5± 1.3
+***
+4.16±0.25 0.61±0.26
+***
+129± 7
+1320± 139 7240± 713
+3.38±0.20
+< 1.28
+***
+3.66±0.22
+< 1.10
+***
+20.7± 1.2 1000± 105 11400± 1180
+22.7± 1.1 40.2± 3.7
+***
+7.21±0.39 0.67±0.29
+***
+43.0± 2.3 4.96±0.51
+***
+3.37±0.19 0.51±0.23
+***
+
+– 69 –
+
+D082
+D083
+D084
+D085
+K061
+K063
+K066
+D086
+P01
+K065
+K069
+D087
+D088
+D089
+D090
+D091
+D093
+D094
+D096
+D092
+D097
+D095
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Sourcea
+
+18290793+0112390
+18290864+0032408
+18290899+0109232
+18290906+0031323
+18290910+0022557
+18290911+0037223
+18290953+0038320
+18290955+0037020
+18290980+0034459
+18290982+0031557
+18290986+0029331
+18291069+0118320
+18291088+0029263
+18291088+0118091
+18291216+0029147
+18291221+0026581
+18291224+0030087
+18291267+0111234
+18291317+0038481
+18291324+0031464
+18291343+0035188
+18291345+0037450
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+40.1± 2.0
+23.4± 1.1
+17.3± 0.8
+8.69±0.46 5.32±0.34 5.18±0.27
+127± 6
+69.6± 3.5
+53.4± 2.5
+< 0.12
+0.29±0.03 0.40±0.09
+9.89±0.56 6.97±0.37 5.16±0.27
+10.4± 0.7
+8.53±0.44 6.28±0.45
+3.68±0.24 3.16±0.16 2.23±0.14
+837± 66
+784± 48
+873± 61
+1260± 70
+1060± 72
+1070± 72
+1.60±0.12 1.72±0.12 1.89±0.11
+33.3± 2.1
+22.1± 1.4
+17.9± 1.0
+88.8± 4.4
+52.7± 2.7
+40.5± 1.9
+414± 27
+169± 14
+195± 10
+36.6± 1.8
+21.9± 1.1
+16.1± 0.8
+32.9± 2.1
+20.9± 1.3
+17.4± 0.9
+106± 6
+63.5± 3.4
+49.4± 2.7
+11.4± 0.7
+7.71±0.47 7.17±0.40
+76.0± 3.8
+46.5± 2.3
+34.8± 1.7
+84.4± 6.1
+68.8± 3.5
+52.9± 3.0
+< 0.041 0.020±0.006
+< 0.21
+76.4± 4.4
+42.2± 3.2
+31.0± 1.8
+6.26±0.41 4.85±0.25 3.48±0.22
+
+8.0μm
+(mJy)
+10.2± 0.5
+3.06±0.18
+31.7± 1.6
+0.31±0.08
+3.12±0.18
+4.22±0.23
+1.42±0.08
+904± 46
+1000± 52
+1.16±0.09
+10.6± 0.6
+24.2± 1.2
+112± 6
+9.93±0.49
+10.2± 0.6
+31.3± 1.5
+4.48±0.25
+21.2± 1.0
+34.6± 1.7
+< 0.25
+19.5± 1.0
+2.35±0.12
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+0.99±0.21
+***
+< 1.08
+***
+3.18±0.35
+***
+64.6± 6.0 6380± 611
+< 1.47
+***
+0.86±0.24
+***
+< 1.04
+***
+531± 49 85.6±20.2
+778± 72 76.8±13.1
+< 1.11
+***
+1.74±0.23
+***
+1.87±0.26
+***
+13.2± 1.2
+***
+0.84±0.19
+***
+0.96±0.17
+***
+3.20±0.34
+***
+< 1.05
+***
+1.72±0.24
+***
+3.79±0.38
+***
+< 1.05
+***
+1.86±0.26
+***
+< 0.94
+***
+
+– 70 –
+
+K074
+D099
+K080
+D101
+D098
+D100
+D102
+D103
+D105
+D106
+D104
+K082
+D107
+K084
+D109
+D110
+D108
+K091
+D112
+D111
+D114
+D115
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Sourcea
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+18291346+0112002
+18291370+0025256
+18291405+0121318
+18291426+0031255
+18291450+0026112
+18291454+0025044
+18291485+0023081
+18291506+0122014
+18291599+0109383
+18291602+0026436
+18291629+0022503
+18291698+0037093
+18291699+0037193
+18291703+0118401
+18291746+0026188
+18291805+0030493
+18291836+0038233
+18291867+0034383
+18291878+0033382
+18291884+0031402
+18291891+0029522
+18291966+0027073
+
+438± 23
+35.5± 1.9
+114± 5
+29.0± 1.5
+13.4± 0.7
+7.86±0.43
+15.4± 0.8
+280± 17
+531± 40
+19.1± 1.3
+21.6± 1.2
+29.3± 1.9
+93.1± 6.6
+92.8± 4.7
+6.99±0.38
+10.1± 0.6
+9.53±0.60
+20.9± 1.1
+3.63±0.19
+3.33±0.20
+108± 6
+15.7± 1.0
+
+241± 12
+21.2± 1.1
+63.2± 3.1
+22.0± 1.4
+9.59±0.50
+4.95±0.26
+8.88±0.50
+167± 8
+262± 16
+12.5± 0.7
+13.8± 0.8
+22.2± 1.1
+65.7± 3.4
+54.1± 2.7
+4.74±0.25
+7.12±0.44
+6.95±0.34
+12.4± 0.8
+3.06±0.17
+2.15±0.14
+56.7± 4.1
+11.8± 0.6
+
+199± 9
+16.5± 0.8
+51.8± 2.5
+25.3± 1.3
+6.66±0.34
+3.66±0.20
+7.18±0.45
+122± 6
+222± 11
+9.31±0.52
+10.4± 0.5
+16.5± 1.0
+54.9± 3.2
+43.7± 2.1
+3.35±0.18
+5.53±0.28
+5.11±0.30
+10.8± 0.5
+3.29±0.17
+1.60±0.10
+53.2± 2.9
+8.44±0.47
+
+114± 6
+10.0± 0.5
+29.5± 1.5
+14.7± 0.8
+4.39±0.22
+2.27±0.12
+4.25±0.23
+71.1± 3.7
+125± 6
+6.01±0.30
+6.26±0.34
+10.5± 0.5
+35.1± 1.8
+25.7± 1.3
+2.19±0.12
+3.32±0.19
+3.27±0.17
+6.54±0.34
+1.92±0.11
+0.89±0.07
+30.1± 1.7
+5.44±0.27
+
+13.2± 1.2
+1.05±0.19
+3.51±0.39
+1.49±0.21
+< 1.33
+< 1.35
+< 1.27
+7.29±0.70
+14.5± 1.4
+0.60±0.27
+0.74±0.32
+0.85±0.15
+4.13±0.40
+2.34±0.33
+< 1.35
+< 0.98
+< 0.97
+0.51±0.19
+< 0.93
+< 0.94
+3.02±0.32
+< 1.13
+
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+– 71 –
+
+K094
+D113
+K096
+D116
+D117
+D118
+D119
+K098
+K102
+D121
+D120
+D122
+D123
+K104
+D124
+D125
+D126
+D129
+D128
+D130
+D127
+D131
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Sourcea
+
+3.6μm
+(mJy)
+
+18291972+0037596
+18291979+0024109
+18292001+0024497
+18292003+0121015
+18292007+0034121
+18292014+0028576
+18292049+0108550
+18292095+0030346
+18292135+0035320
+18292162+0036571
+18292184+0037545
+18292253+0034176
+18292272+0110329
+18292277+0031579
+18292342+0031061
+18292342+0034309
+18292351+0033054
+18292387+0029197
+18292387+0032070
+18292395+0038145
+18292449+0035215
+18292452+0037405
+
+25.6± 1.7
+65.3± 3.3
+146± 8
+126± 6
+2.37±0.12
+7.31±0.43
+15.3± 0.8
+911± 60
+5.18±0.28
+43.0± 3.0
+9.49±0.60
+37.6± 2.0
+15.1± 0.8
+8.02±0.45
+13.9± 0.7
+1.59±0.09
+< 0.035
+7.74±0.45
+9.46±0.52
+13.4± 0.9
+20.3± 1.2
+7.19±0.52
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+21.3± 1.1
+15.1± 0.9
+9.77±0.49 0.88±0.16
+34.1± 1.8
+28.1± 1.4
+16.3± 0.8 1.67±0.26
+96.0± 5.3
+83.6± 4.3
+56.8± 2.9 16.0± 1.5
+73.9± 3.7
+61.5± 2.9
+38.6± 2.0 9.95±0.95
+1.71±0.10 1.47±0.09 0.88±0.07
+< 1.19
+4.86±0.27 3.99±0.23 2.37±0.13
+< 0.93
+9.97±0.48 6.77±0.33 4.12±0.20 0.45±0.19
+414± 36
+511± 31
+377± 20
+187± 17
+3.41±0.20 2.81±0.16 1.91±0.15
+< 1.02
+34.2± 1.7
+27.6± 1.6
+17.2± 0.9 1.46±0.20
+7.58±0.37 5.39±0.33 3.62±0.18
+< 0.95
+24.3± 1.4
+17.7± 0.9
+9.85±0.79
+< 3.80
+9.81±0.48 6.72±0.33 4.13±0.21 0.51±0.19
+4.83±0.30 3.83±0.20 2.24±0.13 0.42±0.19
+8.14±0.50 6.27±0.33 3.99±0.22
+< 1.01
+1.21±0.07 0.87±0.06 0.55±0.12
+< 2.03
+< 0.052 0.071±0.028
+< 0.29
+< 1.00
+4.91±0.30 3.92±0.22 2.36±0.14
+< 1.02
+6.14±0.36 4.60±0.25 2.87±0.16
+< 0.99
+11.3± 0.6
+8.05±0.50 5.47±0.27 0.56±0.20
+13.9± 0.8
+10.7± 0.6
+7.24±0.36 0.62±0.21
+6.34±0.31 4.29±0.28 2.96±0.15
+< 0.96
+
+70μm
+(mJy)
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+– 72 –
+
+D134
+D133
+D132
+K112
+D136
+D135
+P02
+D137
+D138
+D139
+D140
+D141
+P03
+D142
+D144
+D143
+D145
+D148
+D146
+D147
+D149
+D150
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Sourcea
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+18292541+0029304 0.39±0.03
+0.25±0.02 0.16±0.03 0.10±0.03
+< 0.97
+18292551+0027152 0.015±0.004
+< 0.044
+< 0.16
+< 0.24
+< 0.98
+18292557+0025269
+46.8± 2.6
+28.9± 1.5
+22.8± 1.2 14.4± 0.8 1.32±0.21
+18292571+0103470
+206± 13
+117± 6
+90.6± 4.3 52.2± 2.6 5.60±0.53
+18292640+0030043 3.89±0.31
+3.36±0.20 3.42±0.18 3.87±0.21 8.75±0.82
+18292647+0029471 5.66±0.32
+3.32±0.21 3.14±0.17 1.81±0.10
+< 0.93
+18292653+0118033 0.031±0.006 0.024±0.006
+< 0.20
+< 0.26
+< 1.19
+18292674+0111552
+66.3± 3.3
+38.2± 1.9
+29.1± 1.4 17.7± 0.9 1.54±0.22
+18292735+0023101 9.24±0.59
+6.43±0.35 4.86±0.26 3.03±0.17
+< 1.11
+18292740+0027111 6.73±0.38
+4.26±0.23 3.76±0.20 2.15±0.16
+< 0.97
+18292758+0112585
+54.7± 2.7
+34.3± 1.7
+22.6± 1.1 12.9± 0.6 1.11±0.18
+18292777+0032075
+14.9± 1.1
+9.08±0.65 8.07±0.46 5.03±0.27 0.50±0.18
+18292800+0032334
+47.2± 3.2
+24.8± 1.8
+24.2± 1.4 15.4± 0.8 1.48±0.22
+18292834+0023041
+37.7± 2.4
+24.8± 1.3
+19.6± 1.0 11.9± 0.6 1.07±0.18
+18292859+0110274
+176± 9
+96.6± 4.9
+80.4± 3.8 46.2± 2.3 5.48±0.52
+18292879+0028197
+12.6± 0.6
+7.33±0.47 7.63±0.38 4.44±0.25 0.53±0.20
+18292927+0029121
+15.0± 0.8
+7.12±0.44 7.56±0.38 3.97±0.22 0.48±0.21
+18292958+0114076
+160± 8
+92.8± 4.6
+75.0± 3.6 44.6± 2.2 4.82±0.47
+18292968+0113132
+131± 6
+81.8± 4.0
+58.1± 2.8 34.6± 1.7 3.37±0.35
+18292993+0032007 5.70±0.39
+3.37±0.25 3.33±0.20 2.15±0.12
+< 0.95
+18293046+0024411 7.15±0.44
+4.58±0.25 3.68±0.21 2.19±0.12
+< 0.99
+18293057+0033377 2.84±0.18
+2.26±0.14 2.47±0.16 3.34±0.17 6.73±0.64
+
+70μm
+(mJy)
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+
+– 73 –
+
+D153
+D152
+D151
+K126
+D154
+D155
+P04
+K132
+D157
+D156
+K134
+D159
+D158
+D160
+K140
+D161
+D162
+K144
+K145
+D163
+D165
+D166
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Sourcea
+
+3.6μm
+(mJy)
+
+18293057+0024559
+71.8± 4.9
+18293083+0101072
+38.8± 1.9
+18293103+0025073
+24.6± 1.5
+18293106+0115216
+31.2± 1.6
+18293119+0105515 9.82±0.51
+18293172+0108205
+34.2± 1.7
+18293191+0118345
+137± 6
+18293195+0118429
+481± 24
+18293201+0032348 6.06±0.38
+18293260+0109502
+68.7± 3.3
+18293306+0117164
+40.5± 2.2
+18293336+0108245
+85.6± 4.9
+18293342+0022487
+10.3± 0.6
+18293355+0029030
+17.9± 0.9
+18293358+0106599
+11.2± 0.5
+18293444+0106067 5.50±0.28
+18293447+0029322
+12.3± 0.6
+18293450+0031497
+15.9± 1.0
+18293473+0105289
+21.2± 1.0
+18293490+0034055 8.93±0.59
+18293514+0123390 0.45±0.02
+18293536+0024147 0.010±0.005
+
+4.5μm
+(mJy)
+42.5± 2.8
+35.2± 1.8
+16.0± 1.0
+19.5± 0.9
+6.42±0.31
+22.2± 1.1
+101± 5
+786± 42
+3.57±0.25
+42.2± 2.1
+26.1± 1.3
+72.3± 4.1
+7.01±0.36
+9.87±0.62
+7.31±0.35
+3.69±0.18
+6.39±0.42
+9.94±0.68
+14.2± 0.7
+6.68±0.39
+0.53±0.03
+< 0.034
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+38.5± 2.2 23.0± 1.3 2.08±0.25
+***
+27.6± 1.3 30.7± 1.6 54.3± 5.0
+***
+12.7± 0.7 7.74±0.43 0.68±0.22
+***
+14.0± 0.7 8.83±0.43
+< 1.50
+***
+4.55±0.24 2.71±0.14
+< 1.12
+***
+14.6± 0.7 8.44±0.43 0.94±0.26
+***
+107± 10 94.8±16.9
+< 161
+***
+1140± 57 1830± 138 4370± 407 5190± 501
+3.24±0.20 2.14±0.12
+< 0.96
+***
+31.2± 1.5 18.7± 0.9 1.53±0.22
+***
+18.8± 0.9 10.9± 0.5
+< 1.74
+***
+75.6± 3.6
+116± 6
+148± 13
+320± 37
+5.04±0.29 3.24±0.17
+< 1.08
+***
+9.31±0.47 5.27±0.29 0.62±0.20
+***
+5.12±0.26 3.09±0.16
+< 1.08
+***
+2.60±0.14 1.59±0.09
+< 1.33
+***
+6.06±0.31 3.47±0.19
+< 0.99
+***
+8.55±0.51 5.75±0.31 0.55±0.20
+***
+9.75±0.47 6.06±0.29 0.89±0.20
+***
+5.56±0.33 3.46±0.23
+< 0.88
+***
+0.60±0.04 1.42±0.08 3.13±0.38
+***
+< 0.22
+< 0.21
+< 0.96
+***
+
+– 74 –
+
+D164
+K150
+D167
+K153
+P05
+K158
+K160
+K159
+D168
+K166
+P06
+K173
+D170
+D169
+P07
+P09
+D172
+D171
+P08
+D173
+P10
+D174
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Sourcea
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+18293551+0024262 0.37±0.02
+0.25±0.02 0.14±0.04
+< 0.24
+< 0.94
+***
+18293561+0035038
+30.5± 2.0
+24.1± 1.4
+17.0± 1.0
+12.8± 0.7
+74.2± 6.9 57.6±13.1
+18293604+0035233
+10.9± 0.7
+8.07±0.46 6.37±0.37 4.12±0.21
+< 0.98
+***
+18293629+0027058
+21.0± 1.1
+11.3± 0.7
+11.0± 0.5
+6.61±0.35 0.62±0.20
+***
+18293686+0024171 0.39±0.04
+0.28±0.02 0.23±0.04 0.096±0.033
+< 0.95
+***
+18293712+0031033 2.93±0.15
+1.54±0.11 1.36±0.08 0.86±0.06
+< 0.99
+***
+18293713+0027007
+75.7± 4.2
+42.0± 2.7
+44.1± 2.2
+25.6± 1.4
+3.38±0.34
+***
+18293716+0029526
+21.7± 1.1
+10.2± 0.7
+9.91±0.50 5.74±0.30 0.56±0.21
+***
+18293721+0038386 7.09±0.56
+6.56±0.33 4.26±0.29 3.07±0.15
+< 0.96
+***
+18293747+0109109
+524± 27
+298± 16
+252± 13
+140± 7
+16.9± 1.6
+***
+18293758+0111174
+200± 10
+139± 7
+110± 5
+70.4± 3.8
+13.7± 1.3
+***
+18293767+0111299
+156± 8
+103± 5
+84.2± 4.0
+56.3± 2.9
+21.4± 2.0
+***
+18293804+0100340
+171± 8
+102± 5
+80.0± 3.8
+46.8± 2.4
+5.08±0.50
+***
+18293859+0023210
+14.2± 0.9
+10.8± 0.5
+7.64±0.44 5.09±0.25 0.45±0.20
+***
+18293914+0036584 0.093±0.012 0.077±0.010
+< 0.22
+< 0.26
+< 0.98
+***
+18293955+0028263
+38.6± 2.0
+19.5± 1.2
+18.5± 0.9
+10.8± 0.6
+1.04±0.18
+***
+18293986+0117561
+11.9± 0.6
+10.5± 0.5
+9.98±0.49
+11.7± 0.6
+18.4± 1.7
+***
+18294094+0112387
+95.1± 4.8
+62.6± 3.2
+52.3± 2.5
+27.9± 1.5
+2.97±0.37
+***
+18294102+0120585
+148± 7
+81.7± 4.1
+65.1± 3.1
+38.6± 1.9
+4.18±0.43
+***
+18294146+0107380
+95.4± 4.8
+83.2± 4.1
+72.2± 3.4
+81.0± 4.3
+147± 13
+***
+18294152+0110043
+33.2± 1.6
+21.2± 1.0
+16.5± 0.8
+11.0± 0.6
+7.69±0.75
+***
+18294216+0120211 7.27±0.42
+6.13±0.30 7.00±0.35
+13.0± 0.6
+19.9± 1.9
+***
+
+– 75 –
+
+D175
+D176
+D177
+D178
+D182
+D181
+D179
+D180
+D183
+K184
+K189
+K190
+K191
+D184
+D186
+D185
+P11 K202
+K208
+K209
+P12 K207
+K210
+K216
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Sourcea
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+18294392+0107208 18.4± 0.9 17.8± 0.9 16.1± 0.8 13.3± 0.6
+10.1± 1.0
+***
+18294430+0104534 2530± 276 3920± 263 5010± 272 5040± 401 5840± 1750
+655± 65
+18294452+0113115 9.59±0.46 7.78±0.38 6.62±0.32 7.86±0.38
+10.8± 1.0
+***
+18294474+0115407 2.99±0.15 2.07±0.10 1.85±0.10 1.08±0.07
+< 1.78
+***
+18294506+0118472 238± 12
+164± 8
+138± 6
+78.8± 4.2
+8.20±0.78
+***
+18294598+0116240 14.8± 0.7 11.2± 0.5 9.60±0.46 5.70±0.28
+< 3.00
+***
+18294623+0113473 12.5± 0.6 9.48±0.46 7.94±0.39 4.70±0.23
+< 1.32
+***
+18294624+0112134 16.6± 0.8 10.3± 0.5 7.41±0.36 4.51±0.22
+< 1.29
+***
+18294683+0116084 3.66±0.18 4.17±0.20 3.96±0.20 2.36±0.12
+< 10.0
+***
+18294700+0116268 11.0± 0.6 15.2± 0.8 18.6± 0.9 19.3± 0.9
+42.2± 4.1
+***
+18294723+0122346 33.0± 1.6 21.7± 1.1 15.7± 0.8 9.28±0.62
+0.78±0.27
+***
+18294760+0105075 2290± 215 2140± 134 1930± 97 1100± 64
+111± 10
+***
+18294810+0116449 1.96±0.10 6.98±0.42 12.1± 0.6 16.7± 0.8
+219± 21
+14900± 1420
+18294878+0113422 5.08±0.25 5.17±0.25 5.12±0.25 5.22±0.25
+6.24±0.63
+***
+18294898+0111443
+113± 5
+67.6± 3.3 52.6± 2.5 31.0± 1.5
+3.02±0.41
+***
+18294905+0058520 53.1± 2.6 34.4± 1.7 28.4± 1.4 17.8± 0.9
+2.09±0.31
+***
+18294913+0116198 12.0± 1.0 72.6± 5.4
+221± 12
+602± 33 6640± 1990 18300± 1790
+18294914+0112596 3.84±0.19 2.77±0.14 2.08±0.11 1.11±0.07
+< 1.52
+***
+18294924+0116314 16.8± 0.8 36.9± 1.8 65.2± 3.1
+101± 5
+1360± 218
+***
+18294957+0117060 42.5± 2.1 95.8± 4.8
+143± 6
+184± 13
+526± 48
+***
+18294963+0115219 0.85±0.08 2.64±0.27 2.32±0.28 3.54±0.31 1180± 117 82800± 7810
+18294969+0114568 13.8± 0.7 39.0± 2.0 66.6± 3.2 74.3± 3.8
+132± 12
+***
+
+– 76 –
+
+K219
+K221
+K224 EC011
+K226
+K228
+K231 EC021
+EC022
+K232 EC023
+K234
+K237 EC028
+P13
+K238
+K241
+K242 EC033
+K243
+K244
+K250
+EC036
+K249
+K254 EC038
+K258a EC041
+K253
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Sourcea
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+18294994+0115190 0.053±0.014
+< 2.50
+3.78±0.35 5.90±0.43 336± 50
+***
+18295015+0056081
+29.5± 1.4
+28.4± 1.4 28.0± 1.3 31.3± 1.5 48.7± 4.6
+***
+18295021+0109152
+375± 23
+197± 10
+172± 8
+96.8± 5.0 11.2± 1.1
+***
+18295054+0114169 0.085±0.025 0.32±0.03 0.36±0.10 0.43±0.06 1.20±0.48
+***
+18295058+0101329 0.46±0.02 0.34±0.02 0.29±0.04
+< 1.31
+< 4.26
+***
+18295114+0116406
+31.1± 2.6
+72.6± 4.6
+141± 7
+208± 10
+992± 92
+8480± 805
+18295117+0113197 2.44±0.12 1.93±0.10 1.75±0.10 1.87±0.10 2.37±0.39
+***
+18295169+0056173
+37.0± 1.8
+25.3± 1.2 18.3± 0.9 10.7± 0.5 0.94±0.19
+***
+18295199+0110323
+137± 7
+80.8± 4.0 64.9± 3.1 37.8± 1.9 3.92±0.42
+***
+18295213+0113219 2.81±0.14 2.11±0.10 1.59±0.09 0.99±0.07
+< 1.50
+***
+18295219+0115478 7.38±0.41
+33.0± 2.1 41.3± 2.2 40.0± 2.6 1640± 154 15200± 1420
+18295249+0112467 8.56±0.42 6.26±0.31 5.48±0.27 3.15±0.16
+< 1.29
+***
+18295285+0114560 8.65±0.44
+34.6± 1.8 72.0± 3.4
+110± 5
+1040± 96
+5570± 523
+18295301+0104351
+77.3± 4.0
+46.2± 2.3 38.2± 1.8 22.5± 1.1 2.24±0.33
+***
+18295316+0112277 1.20±0.06 1.18±0.06 1.17±0.07 1.43±0.08 1.18±0.22
+***
+18295317+0115457 8.78±0.42
+10.8± 0.6 13.5± 0.7 8.29±0.43
+< 35.4
+***
+18295355+0113051 1.89±0.09 1.56±0.08 1.30±0.08 1.07±0.07 0.82±0.36
+***
+18295359+0117018
+41.1± 2.0
+38.9± 1.9 33.6± 1.6 33.0± 1.6 26.7± 2.5
+***
+18295383+0113306 5.31±0.26 5.24±0.25 5.40±0.27 5.39±0.26 6.05±0.65
+***
+18295407+0107109 5.59±0.27 5.79±0.28 5.32±0.27 5.95±0.29 11.0± 1.0
+***
+18295426+0117468
+57.9± 2.8
+40.7± 2.0 37.3± 1.8 21.1± 1.0
+< 1.76
+***
+18295432+0115017
+35.0± 1.7
+25.5± 1.2 22.1± 1.0 13.2± 0.6 2.98±0.54
+***
+
+– 77 –
+
+K258b
+K252
+K255
+K260
+K259
+P14 K265 EC053
+K266 EC051
+K264
+K267
+K269
+K270
+K272 EC059
+K276
+K271
+EC064
+K277
+K279
+P15 K283 EC067
+K285 EC068
+K287
+K290
+K289 EC069
+
+Spitzer
+SSTc2dJ...
+
+Table 4-Continued
+Spitzer
+SSTc2dJ...
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+K291
+K294 EC073
+P16
+P17 K298 EC074
+K296
+P18 K300
+P19
+EC077
+EC081
+K304 EC079
+K306 EC080
+K308
+K307 EC082
+EC083
+K309 EC084
+P20 EC086
+K313
+K311
+K312 EC088
+P21
+EC089
+P22 K314 EC090
+
+18295452+0114469
+18295518+0113224
+18295536+0110340
+18295569+0114315
+18295603+0104146
+18295606+0100229
+18295618+0110574
+18295635+0112180
+18295638+0113331
+18295655+0112595
+18295667+0112392
+18295671+0113206
+18295687+0114465
+18295695+0116085
+18295696+0112477
+18295740+0114502
+18295750+0113491
+18295756+0110471
+18295758+0113005
+18295764+0110536
+
+3.73±0.18
+14.6± 0.7
+2.98±0.14
+63.5± 3.2
+353± 19
+182± 10
+9.06±0.46
+1.74±0.09
+0.17±0.03
+25.4± 1.2
+16.3± 0.8
+0.31±0.06
+581± 30
+0.45±0.03
+31.3± 1.5
+22.7± 1.3
+16.8± 1.1
+67.1± 3.5
+66.1± 3.2
+181± 9
+
+2.69±0.13
+14.8± 0.7
+2.02±0.10
+92.3± 4.7
+214± 11
+130± 6
+5.90±0.29
+1.23±0.06
+0.11±0.04
+26.9± 1.3
+35.9± 1.8
+2.36±0.14
+688± 36
+0.31±0.03
+29.7± 1.4
+14.9± 0.9
+28.3± 2.2
+44.7± 2.1
+175± 8
+117± 5
+
+1.96±0.12
+13.8± 0.7
+1.41±0.08
+121± 5
+188± 9
+84.5± 4.1
+3.92±0.20
+0.91±0.06
+< 0.33
+28.0± 1.3
+37.4± 1.8
+1.70±0.11
+822± 41
+0.24±0.05
+30.0± 1.4
+14.4± 1.0
+29.2± 2.2
+28.1± 1.4
+251± 11
+71.9± 3.4
+
+1.23±0.09
+15.6± 0.8
+0.75±0.06
+134± 6
+109± 5
+48.2± 2.5
+2.52±0.13
+0.38±0.07
+< 0.34
+29.4± 1.5
+30.9± 1.5
+1.97±0.25
+1580± 86
+< 0.56
+25.9± 1.4
+10.0± 1.1
+27.8± 2.3
+16.9± 0.8
+289± 15
+40.9± 2.0
+
+< 2.64
+74.7± 6.9
+< 1.33
+229± 21
+14.9± 1.4
+4.28±0.93
+0.87±0.31
+< 2.40
+< 13.1
+49.1± 5.1
+36.8± 4.0
+< 9.45
+4280± 406
+< 3.01
+14.2± 6.2
+< 365
+< 229
+2.00±0.31
+1990± 191
+4.63±0.48
+
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+***
+19700± 1880
+***
+***
+***
+***
+***
+***
+***
+
+18295772+0114057 2480± 189 2970± 279 5100± 375 5360± 384 7860± 2350 26000± 2440
+
+– 78 –
+
+Sourcea
+
+Table 4-Continued
+Spitzer
+SSTc2dJ...
+
+P24 K319 EC093
+K320 EC091
+P23 K317 EC092
+K318 EC094
+EC095
+P25 K321 EC097
+K324
+K322 EC098
+EC100
+K326 EC103
+K327
+P26 K328 EC105
+K330
+K334
+K331
+EC114
+K332
+K339
+K337 EC118
+P27 K338 EC117
+EC120
+K341 EC121
+
+18295780+0115318
+18295780+0112279
+18295783+0112514
+18295784+0112378
+18295789+0112462
+18295819+0115218
+18295829+0120270
+18295844+0112501
+18295872+0116207
+18295877+0114262
+18295902+0112251
+18295923+0114077
+18295956+0111590
+18295978+0121561
+18295992+0113116
+18300019+0114036
+18300030+0109447
+18300055+0119402
+18300061+0115204
+18300065+0113402
+18300107+0116498
+18300109+0113244
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+65.0± 3.2 68.4± 3.2 59.3± 2.8 52.6± 2.6 86.2± 9.9
+***
+14.1± 0.7 20.6± 1.0 20.2± 1.0 17.2± 0.9 22.9± 5.0
+***
+108± 5
+167± 8
+222± 10
+361± 19 2860± 285
+***
+40.1± 2.0 55.9± 2.7 61.1± 2.9 61.6± 3.2 84.2± 9.8
+***
+131± 6
+160± 7
+181± 8
+180± 10
+388± 50
+***
+153± 9
+181± 9
+170± 8
+194± 10
+525± 49
+***
+52.5± 2.7 34.1± 1.6 24.0± 1.2 14.6± 0.7 1.42±0.24
+***
+16.5± 1.0 17.4± 0.9 15.5± 0.8 13.0± 0.7 96.9±41.9
+***
+19.4± 1.0 13.8± 0.7 9.73±0.49 5.92±0.29
+< 1.54
+***
+49.2± 2.6 90.8± 4.6
+134± 6
+143± 8
+620± 58
+***
+2.38±0.14 3.66±0.18 4.83±0.25 6.20±0.31 28.4± 2.8
+***
+179± 11
+201± 12
+215± 12
+182± 23
+119± 25
+***
+80.2± 5.1 261± 15
+414± 21
+483± 28 1720± 161
+***
+553± 30
+296± 15
+245± 12
+141± 7
+15.3± 1.4
+***
+2.77±0.16 29.5± 1.5
+103± 4
+199± 10 2620± 249 6830± 675
+8.71±0.43 9.51±0.47 9.34±0.56 15.0± 0.8 36.3± 3.8
+***
+18.3± 0.9 47.3± 2.4 75.6± 3.6 82.7± 4.3 78.8± 7.3
+***
+219± 11
+123± 6
+96.7± 4.6 56.0± 2.8 5.78±0.56
+***
+587± 35
+464± 24
+590± 29
+339± 20
+< 27.8
+***
+42.7± 2.2 31.0± 1.6 23.7± 1.1 13.7± 0.7 3.20±1.43
+***
+0.95±0.05 0.70±0.04 0.51±0.05 0.19±0.05
+< 1.29
+***
+10.3± 0.5 13.9± 0.7 13.6± 0.7 13.0± 0.6 56.9± 5.4
+***
+
+– 79 –
+
+Sourcea
+
+Table 4-Continued
+Spitzer
+SSTc2dJ...
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+P28
+K342
+K345 EC125
+K347 EC129
+EC131
+P29 K348 EC135
+EC137
+EC138
+K349
+K351
+EC142
+P30
+EC149
+EC152
+EC160 EC161
+P32 K357
+P31 K359
+P33
+P34 K366
+P35
+K372
+K367
+
+18300124+0115036
+18300162+0059300
+18300208+0113589
+18300273+0112282
+18300278+0113219
+18300339+0116194
+18300359+0116408
+18300368+0116143
+18300370+0104492
+18300374+0112400
+18300387+0116094
+18300453+0122335
+18300490+0114395
+18300501+0112360
+18300585+0113483
+18300608+0106171
+18300640+0101058
+18300677+0112101
+18300769+0112046
+18300820+0105510
+18300844+0055257
+18300849+0101374
+
+8.90±0.45
+108± 6
+15.7± 0.8
+238± 12
+0.62±0.04
+39.7± 2.0
+2.50±0.13
+3.16±0.16
+257± 13
+8.41±0.42
+4.79±0.24
+0.18±0.01
+6.57±0.33
+2.48±0.12
+9.62±0.47
+19.0± 1.0
+41.7± 2.0
+0.88±0.04
+80.2± 4.1
+5.25±0.26
+188± 9
+15.9± 0.8
+
+6.47±0.33
+68.8± 3.4
+21.9± 1.1
+369± 18
+0.46±0.03
+34.5± 1.7
+2.58±0.13
+2.54±0.12
+145± 7
+5.88±0.31
+4.09±0.20
+0.18±0.01
+5.71±0.28
+2.38±0.12
+7.44±0.36
+16.8± 0.8
+41.2± 2.0
+0.62±0.04
+76.1± 3.9
+3.55±0.18
+113± 5
+16.0± 0.8
+
+5.09±0.29
+53.7± 2.6
+27.6± 1.3
+497± 23
+0.25±0.05
+32.4± 1.5
+2.31±0.12
+1.71±0.12
+134± 6
+4.92±0.26
+3.56±0.19
+0.24±0.04
+5.15±0.26
+2.28±0.12
+6.06±0.29
+15.2± 0.7
+40.2± 1.9
+0.50±0.04
+77.2± 3.7
+2.55±0.13
+91.1± 4.3
+12.7± 0.6
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+3.24±0.17
+< 2.24
+***
+30.4± 1.6 3.51±0.40
+***
+34.6± 1.7
+167± 15
+***
+551± 30 1910± 178 5230± 488
+< 0.29
+< 2.80
+***
+53.2± 2.7
+112± 10
+***
+2.34±0.12 3.91±0.48
+***
+1.27±0.08
+< 4.76
+***
+77.4± 4.0
+< 3.93
+***
+2.92±0.18
+< 3.06
+***
+2.21±0.12
+< 3.1
+***
+0.34±0.04 0.87±0.20
+***
+5.53±0.27 4.26±0.46
+***
+2.33±0.12 3.32±0.42
+***
+3.58±0.18
+< 1.70
+***
+19.1± 0.9 36.6± 3.4
+***
+49.6± 2.5 66.3± 6.1
+***
+0.32±0.04
+< 2.55
+***
+81.4± 4.2
+124± 11
+363± 42
+1.58±0.09
+< 1.53
+***
+51.9± 2.6 6.80±0.65
+***
+15.2± 0.7 39.4± 3.7
+***
+
+– 80 –
+
+Sourcea
+
+Table 4-Continued
+Sourcea
+
+3.6μm
+(mJy)
+
+4.5μm
+(mJy)
+
+5.8μm
+(mJy)
+
+8.0μm
+(mJy)
+
+24μm
+(mJy)
+
+70μm
+(mJy)
+
+18300861+0058466
+63.6± 3.1
+52.2± 2.6
+47.7± 2.4
+73.1± 4.1 229± 21 303± 31
+18300883+0055151
+309± 23
+188± 10
+146± 7
+83.4± 4.4 10.4± 1.0
+***
+18300894+0114443
+151± 7
+95.5± 4.9
+81.7± 4.0
+48.1± 2.4 5.86±0.60
+***
+18300921+0117526 8.35±0.41
+8.15±0.40
+7.34±0.38 7.15±0.37 9.83±0.93
+***
+18300942+0102473
+280± 14
+179± 9
+151± 7
+107± 5
+51.1± 4.7
+***
+18300986+0124398 0.045±0.005 0.034±0.013 0.057±0.027
+< 0.34
+< 2.14
+***
+18301035+0119355
+64.7± 4.0
+41.9± 2.2
+26.7± 1.3
+16.0± 0.8 1.50±0.27
+***
+18301109+0112382 9.72±0.48
+9.13±0.45
+9.71±0.47
+12.9± 0.6 18.4± 1.7
+***
+18301206+0116424
+146± 7
+112± 5
+79.6± 3.8
+46.8± 2.3 4.66±0.49
+***
+18301395+0108515 5.38±0.29
+4.09±0.20
+3.55±0.18 3.89±0.20 7.48±0.73
+***
+18301475+0106166
+70.1± 3.5
+39.9± 2.0
+30.2± 1.4
+18.4± 0.9 1.97±0.31
+***
+18301491+0105189
+50.6± 2.5
+31.6± 1.5
+22.4± 1.1
+13.7± 0.7 0.92±0.23
+***
+18301816+0114169
+18.7± 1.0
+20.3± 1.0
+22.7± 1.1
+34.6± 1.7 111± 10
+***
+18302190+0121076 4.64±0.23
+3.09±0.16
+2.05±0.13 0.86±0.09
+< 2.88
+***
+18302239+0120440 6.71±0.34
+4.79±0.24
+3.65±0.19 2.52±0.14 8.56±0.84
+***
+18302342+0105047
+14.5± 0.7
+13.9± 0.7
+13.4± 0.7
+15.2± 0.7 56.9± 5.3
+***
+18302613+0109257 0.12±0.01
+0.11±0.01
+0.10±0.03
+< 0.33
+< 1.58
+***
+18303533+0105576 8.36±0.41
+5.34±0.26
+3.70±0.18 2.23±0.12
+< 2.39
+***
+18303741+0117582
+17.6± 0.9
+10.9± 0.5
+7.57±0.37 4.35±0.23
+***
+***
+18303953+0118030
+11.1± 0.6
+7.12±0.34
+4.95±0.25 2.90±0.16
+***
+***
+18304022+0110149 0.23±0.02
+0.15±0.01
+0.12±0.04
+< 0.29
+***
+***
+
+– 81 –
+
+K370
+K375
+K378
+K382
+K379
+P36
+K389
+K393
+K401
+K407
+K410
+K409
+P37
+P38
+P39
+P40
+P41
+P42
+P43
+P44
+P45
+
+Spitzer
+SSTc2dJ...
+
+a
+
+Source numbers from the following catalogs: EC, Eiroa & Casali (1992); D, Djupvik et al. (2006); P,
+Preibisch (2003), K, Kaas et al. (2004).
+
+– 82 –
+
+– 83 –
+
+Table 5. Average/Std Dev of Spectral Slope α Versus Luminosity of YSO's
+Luminosity Range
+
+Average α
+
+σα
+
+< 0.02 L⊙
+0.02 − −1.0 L⊙
+> 1.0 L⊙
+
+-0.73
+-0.70
+-0.60
+
+1.47
+1.04
+.74
+
+Table 6. Numbers, Densities, Star Formation Rates
+Region
+
+Area
+
+N(YSOs)
+(pc2 )
+
+N/Ω
+(deg−2 )
+
+Cluster A
+Cluster B
+Rest of Cloud
+All of Cloud
+
+0.20
+0.14
+17.2
+17.5
+
+44
+17
+174
+235
+
+4580
+2450
+209
+276
+
+N/Area N/Vol
+SFR
+−2
+−3
+(pc ) (pc ) (M⊙ Myr−1 )
+
+222
+119
+10.1
+13.4
+
+500
+315
+2.5
+3.2
+
+11
+4.3
+44
+59
+
+SFR/Area
+(M⊙ Myr−1 pc−2 )
+
+56
+30
+2.5
+3.4
+
+– 84 –
+
+Table 7. Disk Modeling Results in Class II Sources
+Star
+
+SED Type
+
+AV
+
+Lstar
+
+Ldisk /Lstar
+
+λturn−off
+
+αexcess
+
+1
+3
+5
+7
+9
+10
+11
+13
+14
+18
+19
+20
+25
+27
+28
+29
+30
+31
+33
+35
+38
+39
+47
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+
+L
+T
+T
+L
+L
+L
+L
+L
+L
+L
+LU
+L
+T
+L
+L
+L
+L
+T
+L
+L
+T
+T
+LU
+T
+L
+L
+L
+T
+T
+L
+T
+L
+T
+
+2.9
+4.6
+4.9
+3.8
+6.6
+9.9
+8.4
+2.8
+6.6
+10.8
+12.6
+14.3
+4.8
+4.0
+15.7
+12.7
+8.3
+10.4
+10.2
+7.4
+18.9
+5.1
+14.5
+5.4
+18.4
+7.4
+10.0
+10.5
+9.3
+23.3
+10.4
+12.0
+6.1
+
+0.33
+1.06
+1.64
+0.09
+0.91
+0.05
+0.07
+0.19
+1.03
+0.07
+0.33
+0.09
+0.09
+0.54
+67.31
+0.14
+33.93
+0.02
+5.58
+0.03
+0.05
+0.21
+0.02
+0.13
+1.31
+0.57
+0.29
+0.12
+3.14
+2.50
+1.06
+0.06
+1.94
+
+0.088
+0.330
+0.165
+0.110
+0.141
+0.190
+0.186
+0.084
+0.182
+0.098
+0.073
+0.160
+0.159
+0.112
+0.197
+0.253
+0.291
+0.454
+0.111
+0.113
+0.588
+0.104
+0.247
+0.141
+0.201
+0.155
+0.148
+0.305
+0.409
+0.198
+0.306
+0.146
+0.147
+
+5.8
+2.2
+3.6
+3.6
+3.6
+3.6
+2.2
+5.8
+3.6
+3.6
+3.6
+2.2
+3.6
+3.6
+2.2
+2.2
+2.2
+2.2
+2.2
+3.6
+2.2
+5.8
+4.5
+3.6
+3.6
+2.2
+2.2
+2.2
+2.2
+2.2
+2.2
+2.2
+3.6
+
+-0.7
+-0.8
+-0.5
+-1.0
+-0.8
+-1.3
+-1.2
+-1.0
+-0.7
+-1.1
+-0.4
+-1.4
+-0.9
+-1.4
+-1.8
+-1.3
+-1.5
+-1.1
+-2.0
+-1.2
+-1.1
+-0.4
+-0.6
+-0.9
+-1.0
+-1.2
+-1.1
+-0.7
+-0.8
+-1.4
+-0.8
+-1.6
+-0.6
+
+– 85 –
+
+Table 7-Continued
+Star
+
+SED Type
+
+AV
+
+Lstar
+
+Ldisk /Lstar
+
+λturn−off
+
+αexcess
+
+59
+62
+64
+66
+69
+70
+71
+72
+76
+77
+78
+79
+80
+82
+84
+86
+87
+89
+92
+94
+96
+97
+98
+100
+102
+103
+106
+108
+110
+111
+113
+114
+116
+
+L
+L
+L
+L
+T
+L
+T
+L
+L
+L
+LU
+L
+L
+L
+L
+T
+T
+L
+L
+L
+L
+T
+T
+L
+L
+T
+L
+T
+LU
+LU
+L
+L
+L
+
+8.8
+8.9
+11.0
+4.1
+15.2
+3.8
+5.3
+3.9
+25.2
+15.0
+4.3
+13.9
+3.0
+3.5
+9.7
+10.9
+6.5
+9.1
+9.1
+5.4
+13.4
+19.4
+11.1
+22.4
+4.5
+5.4
+9.2
+0.0
+5.0
+6.2
+5.3
+7.4
+8.8
+
+6.11
+2.81
+0.11
+0.14
+0.52
+0.04
+0.07
+0.13
+76.59
+29.56
+0.09
+0.15
+0.04
+0.04
+0.58
+0.31
+0.14
+0.53
+0.92
+0.15
+0.13
+0.42
+0.01
+46.34
+0.09
+0.47
+0.20
+1.34
+0.67
+0.28
+0.02
+0.22
+0.09
+
+0.267
+0.205
+0.062
+0.054
+0.188
+0.088
+0.123
+0.154
+0.099
+0.154
+0.049
+0.106
+0.087
+0.101
+0.145
+0.210
+0.224
+0.079
+0.091
+0.158
+0.092
+0.186
+0.863
+0.218
+0.125
+0.155
+0.058
+0.137
+0.071
+0.244
+0.136
+0.157
+0.108
+
+2.2
+2.2
+3.6
+5.8
+3.6
+5.8
+3.6
+3.6
+4.5
+3.6
+8.0
+4.5
+5.8
+5.8
+2.2
+3.6
+3.6
+3.6
+3.6
+3.6
+4.5
+3.6
+2.2
+3.6
+3.6
+3.6
+3.6
+5.8
+8.0
+3.6
+3.6
+2.2
+3.6
+
+-1.2
+-1.0
+-0.9
+-0.5
+-1.2
+-1.6
+-0.6
+-1.0
+-2.1
+-1.9
+0.9
+-1.4
+-1.0
+-1.2
+-2.1
+-0.4
+-0.0
+-0.9
+-1.5
+-1.0
+-1.3
+-1.0
+-1.2
+-1.6
+-1.3
+-0.9
+-0.9
+-0.5
+-0.4
+-0.4
+-1.2
+-1.2
+-1.4
+
+– 86 –
+
+Table 7-Continued
+Star
+
+SED Type
+
+AV
+
+Lstar
+
+117
+119
+120
+121
+123
+124
+125
+127
+128
+129
+130
+132
+133
+134
+136
+144
+145
+147
+153
+156
+158
+159
+160
+162
+163
+164
+167
+168
+169
+172
+173
+174
+177
+
+L
+L
+T
+T
+L
+T
+L
+L
+L
+L
+L
+LU
+L
+LU
+T
+T
+L
+L
+L
+L
+T
+L
+L
+L
+L
+T
+L
+T
+T
+T
+L
+T
+L
+
+9.2
+5.7
+9.3
+6.2
+1.7
+2.4
+8.0
+12.4
+3.6
+9.8
+2.6
+3.3
+6.4
+0.0
+15.8
+9.5
+8.8
+11.1
+19.6
+5.2
+8.6
+5.5
+8.4
+7.4
+14.0
+8.9
+6.3
+17.0
+7.3
+3.9
+15.0
+14.2
+7.5
+
+0.21
+0.16
+0.01
+1.32
+0.35
+0.10
+0.26
+118.71
+0.15
+0.36
+0.12
+0.10
+0.25
+0.15
+0.05
+0.46
+0.75
+0.05
+0.09
+0.08
+0.13
+0.08
+0.02
+0.73
+0.12
+0.05
+0.12
+0.40
+5.39
+0.09
+0.15
+0.49
+5.42
+
+Ldisk /Lstar
+
+λturn−off
+
+αexcess
+
+0.147
+0.073
+0.241
+0.144
+0.078
+0.183
+0.153
+0.131
+0.092
+0.078
+0.108
+0.075
+0.070
+0.053
+0.656
+0.191
+0.095
+0.105
+0.240
+0.108
+0.175
+0.172
+0.178
+0.108
+0.165
+0.379
+0.095
+0.193
+0.285
+0.223
+0.375
+0.229
+0.151
+
+3.6
+5.8
+2.2
+3.6
+5.8
+5.8
+2.2
+3.6
+5.8
+3.6
+5.8
+5.8
+5.8
+8.0
+2.2
+2.2
+3.6
+3.6
+2.2
+3.6
+2.2
+3.6
+3.6
+3.6
+3.6
+2.2
+3.6
+4.5
+2.2
+3.6
+2.2
+3.6
+3.6
+
+-0.9
+-0.9
+-1.1
+-0.8
+-0.3
+-0.4
+-1.5
+-1.7
+-0.7
+-1.0
+-1.3
+0.1
+-0.5
+0.4
+-1.1
+-1.0
+-1.5
+-1.1
+-1.3
+-0.9
+-1.0
+-1.1
+-1.1
+-1.4
+-1.3
+-0.8
+-0.9
+-0.9
+-0.7
+-0.9
+-1.2
+-1.1
+-1.7
+
+– 87 –
+
+Table 7-Continued
+Star
+
+SED Type
+
+AV
+
+Lstar
+
+Ldisk /Lstar
+
+λturn−off
+
+αexcess
+
+178
+180
+183
+189
+193
+194
+199
+202
+205
+206
+209
+210
+211
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+224
+226
+227
+228
+229
+230
+232
+235
+
+L
+L
+L
+L
+L
+L
+LU
+T
+T
+L
+T
+L
+T
+L
+LU
+L
+L
+LU
+T
+T
+T
+T
+T
+T
+L
+T
+L
+L
+T
+T
+T
+
+9.6
+4.6
+24.4
+5.4
+2.9
+7.7
+6.7
+15.1
+11.5
+5.0
+5.9
+4.3
+16.7
+3.2
+9.6
+3.3
+7.5
+4.5
+4.9
+6.8
+7.4
+5.7
+3.4
+8.9
+5.6
+2.7
+3.1
+3.4
+7.7
+8.6
+4.4
+
+1.76
+0.04
+2.44
+0.16
+0.05
+1.72
+0.14
+0.09
+0.09
+0.30
+0.65
+0.18
+0.04
+0.05
+0.03
+0.09
+0.03
+0.09
+0.27
+0.60
+0.99
+0.19
+0.65
+0.08
+0.03
+0.08
+0.08
+0.08
+0.02
+0.52
+0.16
+
+0.218
+0.087
+0.192
+0.127
+0.113
+0.305
+0.098
+0.352
+0.188
+0.088
+0.155
+0.095
+0.297
+0.082
+0.119
+0.105
+0.175
+0.050
+0.139
+0.184
+0.259
+0.187
+0.332
+0.289
+0.081
+0.331
+0.078
+0.081
+0.156
+0.141
+0.225
+
+2.2
+5.8
+2.2
+3.6
+5.8
+2.2
+5.8
+2.2
+2.2
+3.6
+3.6
+3.6
+2.2
+5.8
+3.6
+5.8
+3.6
+8.0
+3.6
+3.6
+2.2
+3.6
+3.6
+2.2
+3.6
+3.6
+5.8
+5.8
+3.6
+3.6
+3.6
+
+-1.4
+-1.2
+-1.4
+-1.0
+-0.4
+-1.3
+0.4
+-1.3
+-0.9
+-0.9
+-0.5
+-1.0
+-1.1
+-1.4
+-0.6
+-1.2
+-1.0
+0.5
+-0.7
+-0.8
+-0.7
+-0.6
+-0.4
+-1.0
+-1.4
+-0.7
+-0.9
+-0.5
+-0.5
+-0.2
+-0.3
+
+– 88 –
+
+– 89 –
+
+Table 8. Disk Modeling Results in Class III Sources
+Star
+
+SED Type
+
+AV
+
+Lstar
+
+Ldisk /Lstar
+
+λturn−off
+
+αexcess
+
+2
+4
+12
+15
+16
+17
+21
+48
+65
+73
+74
+81
+83
+85
+90
+91
+93
+95
+101
+105
+107
+109
+112
+115
+122
+126
+140
+143
+148
+161
+165
+170
+192
+
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+LU
+L
+L
+L
+L
+L
+LU
+L
+L
+LU
+L
+L
+L
+L
+
+6.3
+7.6
+9.1
+7.7
+10.8
+11.1
+11.7
+2.5
+0.0
+7.5
+0.0
+8.7
+8.0
+7.2
+7.7
+8.5
+16.7
+8.5
+8.6
+0.7
+8.3
+10.7
+7.4
+9.7
+9.6
+3.3
+8.8
+4.2
+0.0
+11.2
+0.7
+3.7
+8.1
+
+19.19
+2.50
+8.76
+2.02
+31.18
+2.69
+2.16
+1.13
+0.70
+3.06
+0.60
+9.23
+28.57
+1.66
+3.50
+3.55
+38.30
+23.79
+6.09
+11.61
+15.02
+7.62
+0.24
+3.90
+0.96
+0.36
+2.25
+0.21
+0.67
+4.26
+0.94
+0.07
+0.20
+
+0.013
+0.028
+0.015
+0.025
+0.041
+0.036
+0.038
+0.054
+0.016
+0.022
+0.010
+0.021
+0.034
+0.048
+0.034
+0.020
+0.051
+0.015
+0.074
+0.010
+0.055
+0.037
+0.018
+0.044
+0.028
+0.062
+0.032
+0.052
+0.017
+0.032
+0.014
+0.079
+0.034
+
+24.0
+24.0
+24.0
+8.0
+8.0
+8.0
+8.0
+8.0
+8.0
+24.0
+8.0
+24.0
+8.0
+5.8
+8.0
+24.0
+8.0
+24.0
+5.8
+24.0
+5.8
+8.0
+8.0
+8.0
+8.0
+8.0
+8.0
+5.8
+24.0
+8.0
+8.0
+5.8
+8.0
+
+-99.0
+-99.0
+-99.0
+-1.9
+-2.3
+-2.1
+-2.0
+0.6
+-0.9
+-99.0
+-1.3
+-99.0
+-1.6
+-1.5
+-2.3
+-99.0
+-2.2
+-99.0
+-2.2
+1.2
+-2.3
+-2.3
+-1.9
+-2.1
+-1.5
+0.3
+-2.2
+-1.3
+2.3
+-2.2
+-1.6
+-1.3
+-0.5
+
+– 90 –
+
+Table 8-Continued
+Star
+
+SED Type
+
+AV
+
+Lstar
+
+Ldisk /Lstar
+
+λturn−off
+
+αexcess
+
+212
+223
+225
+231
+233
+234
+
+L
+LU
+L
+L
+L
+L
+
+3.5
+3.5
+9.3
+7.5
+2.1
+1.9
+
+0.07
+0.11
+7.38
+10.29
+0.11
+0.08
+
+0.062
+0.025
+0.036
+0.025
+0.038
+0.022
+
+5.8
+8.0
+8.0
+8.0
+8.0
+8.0
+
+-1.5
+0.4
+-1.9
+-2.2
+0.1
+-0.1
+
+Table 9. The Coldest YSO's (F70 /F24 > 8)
+ID
+Tbl 2
+
+3.6 μm
+(mJy)
+
+4.5 μm
+(mJy)
+
+5.8 μm
+(mJy)
+
+8.0 μm
+(mJy)
+
+24.0 μm
+(mJy)
+
+18285404+0029299
+18285486+0029525
+18285808+0017244
+18290211+0031206
+18290675+0030343
+18293254−0013233
+18294810+0116449
+18294963+0115219
+18295114+0116406
+18295130+0027479
+18295219+0115478
+18295252+0036117
+18295430+0036013
+18295927+0114016
+18300070+0113014
+
+5.81±0.50
+1.94±0.12
+52.5± 3.0
+1.19±0.07
+3.27±0.21
+654± 39
+1.96±0.10
+0.85±0.08
+31.1± 2.6
+33.8± 2.0
+7.38±0.41
+2.49±0.14
+2.39±0.25
+2.72±0.28
+0.38±0.04
+
+27.6± 2.3
+10.6± 0.6
+36.7± 2.5
+1.62±0.09
+11.7± 0.7
+370± 19
+6.98±0.42
+2.64±0.27
+72.6± 4.6
+22.3± 1.3
+33.0± 2.1
+4.24±0.23
+6.57±0.42
+5.76±0.44
+1.23±0.10
+
+44.8± 2.6
+20.4± 1.1
+31.2± 1.7
+1.58±0.10
+14.9± 0.8
+276± 13
+12.1± 0.6
+2.32±0.28
+141± 7
+16.2± 0.9
+41.3± 2.2
+5.18±0.28
+7.32±0.44
+7.78±1.16
+2.08±0.16
+
+56.4± 3.2
+30.2± 1.6
+28.5± 1.7
+1.13±0.07
+20.7± 1.2
+156± 8
+16.7± 0.8
+3.54±0.31
+208± 10
+10.1± 0.6
+40.0± 2.6
+6.55±0.36
+5.80±0.31
+36.0± 5.4
+3.55±0.21
+
+918± 85
+765± 70
+9.74±0.92
+22.1± 2.0
+1000± 105
+39.7± 3.7
+219± 21
+1180± 117
+992± 92
+4.81±0.50
+1640± 154
+100± 9
+16.0± 1.5
+109± 19
+95.8±11.4
+
+70.0 μm
+(mJy)
+11100±
+7250±
+1040±
+276±
+11400±
+429±
+14900±
+82800±
+8480±
+163±
+15200±
+1910±
+1270±
+12200±
+8640±
+
+1040
+675
+101
+29
+1180
+47
+1420
+7810
+805
+18
+1420
+179
+121
+1160
+829
+
+– 91 –
+
+40
+42
+48
+60
+68
+105
+135
+141
+146
+148
+150
+154
+166
+195
+203
+
+Name/Position
+SSTc2dJ...
+
+– 92 –
+
+Table 10. Probable High Velocity Outflows in Serpens
+YSO ID
+
+141
+146
+75
+
+RA (J2000) Dec (J2000)
+18
+18
+18
+18
+18
+18
+18
+18
+18
+18
+
+29
+29
+30
+30
+30
+29
+29
+29
+29
+29
+
+18.8
+47.7
+22.7
+22.6
+02.6
+38.5
+56.6
+49.6
+51.2
+09.0
+
++01
++01
++01
++01
++01
++01
++01
++01
++01
++00
+
+14
+25
+16
+16
+14
+18
+15
+15
+16
+31
+
+15
+52
+18
+05
+45
+26
+37
+21
+41
+30
+
+Matching Name
+HH 106A,B,E
+HH 107A
+HH 455A
+HH 455B,D
+HH 459A,B
+HH 460A,B,C,D
+HH 478A,B
+SMM 1
+SMM 5
+
+Comments
+
+Jets to NW and SE
+Jets to NW and SE
+Jets to N and S
+
+– 93 –
+REFERENCES
+Alcala, J. et al. 2007, ApJ, submitted
+Allen, L. E. et al. 2004, ApJS, 154, 363
+Allen, L. E. et al. 2004, "Protostars & Planets V", in press.
+Baraffe, I., Chabrier, G., Allard, F. & Hauschildt, P.H. 1998, A&A, 337, 403
+Baraffe, I., Chabrier, G., Allard, F. & Hauschildt, P.H. 2002, A&A, 382, 563
+Bate, M.R., Clarke, C.J. & McCaughrean, M.J. 1998, MNRAS, 297, 1163
+Blake, G. A. & Boogert, A. C. A. 2004, ApJ, 606, L73
+Cambrésy, L. 1999 A & A, 345, 965
+Casali, M.M., Eiroa, C. & Duncan, W.D. 1993, A&A, 275, 195
+Chavarria-K., C., de Lara, E., Finkenzeller, U., Mendoza, E. E., & Ocegueda, J. 1988, A&A,
+197, 151
+Chen, C.H. et al. 2005, ApJ, 634, 1372
+Cieza, L. et al. 2005, ApJ, 635, 422
+Cieza, L. et al. 2006, ApJ, in press
+Cohen, M. & Kuhi, L. V. 1979, ApJS, 41, 743
+D'Alessio, P., Calvet, N., Hartmann, L., Lizano, S. & Canto, J. 1999, ApJ, 527, 893
+D'Alessio, P. et al. 2005, ApJ, 621, 416
+Davis, C.J., Matthews, H.E, Ray, T.P., Dent, W.R.F., & Richer, J.S. 1999, MNRAS, 309,
+141
+Djupvik, A.A., Andre,́ Ph., Bontemps, S., Motte, F., Olofsson, G., Galfalk, M. & Floren,
+H.-G. 2006,A&A, in press.
+Evans, N. J., II, et al. 2003, PASP, 115, 965
+Eiroa, C. & Casali, M. M. 1992, A&A, 262, 468
+
+– 94 –
+Eiroa, C., Djupvik, A.A. & Casali, M.M. 2007, in Handbook of Star Forming Regions, (ASP
+Conf. Series), ed. B. Reipurth, in press
+Elmegreen, B.G., Efremov, Y., Pudritz, R.E. & Zinnecker, H. 2000, "Protostars & Planets
+IV", U. Az. Press, p. 179
+Enoch, M. L. et al. 2006, ApJ, 638, 293
+Enoch, M. L. et al. 2006, ApJ, submitted
+Evans, N. J., II et al. 2005, Second Delivery of Data ...: IRAC and MIPS,
+http://data.spitzer.caltech.edu/popular/c2d/20050705 enhanced v1/Documents/
+Evans, N. J., II et al. 2007, Final Delivery of Data ...: IRAC and MIPS,...
+Gomez, M. & Lada, C.J. 1998, ApJ, 115, 1524
+Greene, T. P., Wilking, B. A., André, P., Young, E. T. & Lada, C. J. 1994, ApJ, 434, 614
+Hartmann, L., Megeath, S.T., Allen, L., Luhman, K., Calvet, N., D'Alessio, P., FrancoHernandez, R. & Fazio, G. 2005, ApJ, 629, 881
+Harvey, P. M., Wilking, B. A., & Joy, M. 1984, ApJ, 300, 729
+Harvey, P.M. et al. 2006, ApJ, 644, 307
+Harvey, P.M. et al. 2007, ApJ, in press
+Herbig, G. H. & Bell, K. R. 1988, Third Catalog of Emission-Line Stars of the Orion Population, http://www-int.stsci.edu/∼welty/HBC/HBCintro.html
+Herbst, T. M., Beckwith, S. V. W., & Robberto, M. 1997, ApJ, L59
+Hillenbrand, L. A., Strom, S. E., Vrba, F. J., & Keene, J. 1992, ApJ, 397, 613
+Hillenbrand, L.A. & White, R.J. 2004, ApJ, 604, 741
+Hodapp, K. W. 1999, AJ, 118, 1338
+Hogerheijde, M. R., van Dishoeck, E. F., & Salverda, J. M. 1999, ApJ, 513, 350
+Hora, J.L., Deutsch, L.K., Hoffmann, W.F. & Fazio, G.G. 1996, AJ, 112, 2064
+Horrobin, M.J., Casali, M.M. & Eiroa, C. 1997, A&A, 320, L41
+Huard, T. L. et al. 2006, ApJ, in press (astro-ph/0509302)
+
+– 95 –
+Huard, T. L., Weintraub, D. A., & Kastner, J. H. 1997, MNRAS, 290, 598
+Hurt, R. L. & Barsony, M. 1996, ApJ, 460, L45
+Indebetouw, R. et al. 2005, ApJ, 619, 931
+Johnstone, D., Wilson, C.D., Moriarty-Schieven, G., Joncas, G., Smith, G., Gregersen, E. &
+Fich, M. 2000, ApJ, 545, 327
+Jorgensen, J.K. et al. 2006, ApJ, 645, 1246
+Kaas, A. A. et al. 2004, A & A, 421, 623
+Kenyon, S.J. & Hartmann, L. 1987, ApJ, 323, 714
+Klotz, A., Caux, E., Monin, J.-L., & Lodieu, N. 2004, A&A, 425, 927
+Koornneef, J. 1983, A&A, 128, 84
+Lada, C. J. 1987, Star Forming Regions, M. Peimbert & J. Jugaku (eds.), IAU, 1
+Lada, C. J., Alves, J., & Lada, E. A. 1999, in "The Physics and Chemistry of the Interstellar
+Medium", eds. V. Ossenkopf, J. Stutzki, G. Winnewisser, 161
+Lada, C.J. 2006, ApJ, 640, L63
+Lada, C.J. et al. 2006, AJ, 131, 1574
+Lai, S.-P. et al. 2006, in prep.
+Li, W., Evans II, N. J., Harvey, P. M., & Colomé, C. 1994, ApJ, 433, 199 128, 84
+Lodieu, N., Caux, E., Monin, J.-L. & Klotz, A.(2002), A&A, 383, L15
+Maddox, S.J., Efstathiou, G., Sutherland, W.J. & Loveday, J. 1990, MNRAS, 242, 43p
+Makovoz, D. & Marleau, F. R. 2005, PASP, 117, 1113
+Merı́n, B. et al. 2007, in prep.
+Muzerolle, J. et al.(2006), ApJ, 643, 1010
+Noreiga-Crespo, A. et al. 2004, ApJS, 154, 352
+Padgett, D.L. et al. 2004, ApJS, 154, 433
+Pontoppidan, K. M. et al. 2006, in press.
+
+– 96 –
+Pontoppidan, K. M. et al. 2006, in press.
+Preibisch, T. 2003, A&A, 410, 951
+Press, W. H., Teukolsky, S. A., Vetterling, W. T., & Flannery, B. P. 1992, Numerical Recipes
+in C, Cambridge Univ. Press
+Rebull, L. et al.(2006), ApJ, in press
+Robitaille, T.P., Whitney, B.A., Indebetouw, R., Wood, K. & Denzmore, P. 2007, ApJ, in
+press
+Schechter, P. L., Mateo, M., & Saha, A. 1993, PASP, 105, 1342
+Simon, M. (1995), ApJ, 482, L81
+Sivia, D. S. 1996, A Bayesian Tutorial, Clarendon Press
+Smith, M. D. & Rosen, R. 2005, MNRAS, 357, 1370
+Stassun, K.G., Mathieu, R.D., Luiz, P.R.V., Stroud, N. & Vrba, F.J. 2004, ApJS, 151, 357
+Straizys, V., Cernis, K., & Bartasiute, S. 1996, Balt. Astr, 5, 125
+Strom, S.E., Vrba, F. & Strom, K.M. 1976, AJ, 81, 314
+Surace, J. A. et al. 2004, The SWIRE ELAIS N1 Image Atlases and Source Catalogs,
+(Pasadena: Spitzer Science Center), http://ssc.spitzer.caltech.edu/legacy/
+Testi, L. & Sargent, A. L. 1998, ApJ, 508, L91
+Testi, L., Sargent, A. L., Olmi, L. & Onello, J. S. 1998, ApJ, 540, L53
+Trams, N. R. et al. 1999, A&A, 346, 843
+van Loon, J. Th., et al. 1999, A&A, 351, 559
+Wainscoat, R. J. et al. 1992, ApJS, 83, 111
+Weingartner, J. C., & Draine, B. T. 2001, ApJ, 548, 296
+Whitney, B. A., Wood, K., Bjorkman, J. E., & Cohen, M. 2003, ApJ, 598, 1079
+Young, K. E. 2005, ApJ, 628, 283
+Zhang, C. Y. et al. 1988, A&A, 199, 170
+
+– 97 –
+Zhang, C. Y., Laureijs, R. J., & Clark, F. O. 1988, A&A, 196, 236
+Ziener, R. & Eisloffel, J. 1999, A&A, 347, 565
+
+This preprint was prepared with the AAS LATEX macros v5.2.
+
+

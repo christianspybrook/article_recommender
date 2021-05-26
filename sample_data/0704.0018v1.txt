@@ -1,0 +1,1631 @@
+arXiv:0704.0018v1 [hep-th] 2 Apr 2007
+
+In quest of a generalized Callias index theorem
+
+Andreas Gustavsson1
+
+Förstamajgatan 24,
+S-415 10 Göteborg, Sweden
+
+Abstract
+We give a prescription for how to compute the Callias index, using as regulator an
+exponential function. We find agreement with old results in all odd dimensions. We
+show that the problem of computing the dimension of the moduli space of self-dual
+strings can be formulated as an index problem in even-dimensional (loop-)space. We
+think that the regulator used in this Letter can be applied to this index problems.
+
+1 a.r.gustavsson@swipnet.se
+
+1
+
+Introduction
+
+We do not know what six-dimensional (2, 0) theory really is. It is believed
+that it can sustain solitonic self-dual strings [1], although no one today knows
+what a (non-Abelian) self-dual string really is. But if we break the gauge group
+maximally to U (1)r , then we should be able to define the charges of these
+mysterious self-dual strings by the asymptotic behaviour of the U (1) gauge
+fields. One should expect these asymptotic U (1) fields to be (at least isomorphic
+with) a copy of the familiar abelian two-form gauge potentials (with self-dual
+field strengths).
+It now seems to make sense to ask a question like, what is the dimension of
+the moduli space of self-dual strings of a given charge?
+If the gauge group is SU (2) and is broken to U (1) by the Higgs vacuum
+expectation value (that should also determine the tension of the string), then the
+intuitive answer to this question is 4N where N is the U (1) charge in a suitable
+normalization, such that N = 1 corresponds to one self-dual string. One may
+argue that half the supersymmetry is broken by the string. Therefore one string
+should sustains 4 fermionic zero modes. Since some (half) of the supersymmety
+is unbroken there should also be 4 corresponding bosonic zero modes. These
+are naturally identified with the translational zero modes associated with the
+four transverse directions to the string. Furthermore, the strings being BPS,
+should be possible to separate at no cost of energy (thus staying in the moduli
+space approximation). If we take them far from each other, one may suspect
+that we can just add 4 bosonic zero modes from each string, to get 4N bosonic
+zero modes in total in a configuration of N strings [2].
+It would of course be nice to have a proof of this conjecture. Could it be
+proven if one had some index theorem? We will not provide a full solution to
+this problem in this Letter. But we will make it plausible that the problem can
+indeed be solved by computing the index of a certain Dirac operator in loop
+space.
+To address our index problem, we think that one can lend the methods
+that Callias [3] used to prove his index theorem in odd-dimensional spaces. In
+our case we have an even number of dimensions (namely the four transverse
+direction) so it is apparent that we would have to construct a new type of
+index. This we do in section 3.
+In section 2 we recall the Callias method [3] to address index problems
+in open spaces, though we will modify Callias' regularization, using the more
+convergent exponential function to obtain the index, as the limit
+
+
+2
+(1)
+lim Tr γe−sD ,
+s→∞
+
+(here D2 > 0 and γ =diag (1, −1)) rather than
+
+
+M2
+,
+lim Tr γ 2
+M→0
+D + M2
+
+(2)
+
+which is the regularization that Callias used. We think that using the more
+convergent regularization of an exponential function is interesting in itself, as
+it could possibly extend the Callias index theorem to a wider class of index
+problems. Therefore we will devote the first part of this Letter on this subject.
+2
+
+But let us at once say that our regulator probably has no advantages when
+attacking these old problems. It does not provide us with a solution for how to
+count the number of zero modes in a multimonopole configuration with a nonmaximally broken gauge group, where the index can not be reliable computed
+due to a contribution from the continuum portion of the spectrum. What we
+hope though, is that our regulatization can be useful when attacking our new
+index problem associated with the moduli space of self-dual strings.
+In section 2 we obtain the index in one and three dimensions. In three
+dimensions we apply this on the multimonopole moduli space and re-derive the
+result in [4]. A recent review article on monopoles and supersymmetry is [5].
+The one and three-dimensional index problems have also been studied in [6].
+We then indicate how our method manages to reproduce the correct results in
+any odd dimensions. In section 3 we show how one at least in principle should
+be able to compute the dimension of the moduli space of N self-dual strings by
+computing a certain index.
+
+2
+
+Computing the Callias index in odd-dimensional
+spaces
+
+For Dirac operators on open n − 1-dimensional space where n − 1 is odd, there
+is an index theorem by Callias [3]. This applies to Dirac equations of the form
+Dψ = 0
+
+(3)
+
+where the Dirac operator D is of the form
+D = γi iDi + γn φ.
+
+(4)
+
+Here i = 1, ..., n − 1 and γμ ≡ (γi , γn ) denote the Dirac gamma matrices,
+{γμ , γν } = 2δμν .
+
+(5)
+
+We define the gauge covariant derivative as iDis = i∂is + Ais and all our fields
+are hermitian. If n − 1 is odd, the gamma matrices can be represented as
+
+
+0 γi
+γi =
+,
+γi 0 
+0 i
+γn =
+(6)
+−i 0
+One may use the n-dimesional notation Aμ = (Ai , φ), D = γμ iDμ , but one must
+then remember that space is really n − 1 dimensional.
+If n − 1 is even there is no Weyl representation of the gamma matrices
+(because of the inclusion of the 'gamma-five'), and no index theorem of this
+form exists.
+We define the 'gamma-five' for even n as
+n
+
+γ ≡ −i− 2 γ1***n
+
+(7)
+
+which then is hermitian, and we define the projectors
+P± =
+
+1
+(1 ∓ γ) .
+2
+3
+
+(8)
+
+In odd dimensions n − 1, the Dirac operator splits into two Weyl operators
+D
+D†
+
+≡
+≡
+
+P+ DP−
+P− DP+
+
+(9)
+
+Because P± and D are all hermitian, it follows that D† is the hermitian conjugate
+of D. Also, because D is already of an off-block diagonal form, it suffices to
+include just one of the projectors, so we can just as well write this as
+D = P+ D = DP−
+D† = P− D = DP+
+
+(10)
+
+The index can now be defined as
+dim ker D − dim ker D†
+(11)
+
+
+Since ker D = ker D† D and ker D† = ker DD† we can express this as2
+
+
+
+(12)
+dim ker D† D − dim ker DD† = dim ker γD2 .
+
+where we have noted that γ = P− − P+ .
+Callias, Weinberg and others used the regulator
+
+
+M2
+2
+I(M ) = Tr γ 2
+D + M2
+
+(13)
+
+to obtain the index as the limit M 2 → 0. In this Letter we will be slightly more
+general. We define
+Ji (x, y) ≡ tr hx |γγi f (D)| yi ,
+
+(14)
+
+for any function f (and of course D is not dimensionless, so D has to be accompanied by M in a suitable way). Then we notice that
+W (x, y) ≡
+=
+where (manifestly)
+
+(iγi ∂xi + γμ Aμ (x) + M ) hx |f (D)| yi 
+hx |f (D)| yi −iγi ∂yi + γμ Aμ (y) + M
+
+W (x, y) = hx |(D + M )f (D)| yi .
+From this, we obtain the following identity
+
+i ∂xi + ∂yi Ji (x, y) = 2tr hx |γDf (D)| yi
++tr (Aμ (y) − Aμ (x)) hx |γγμ f (D)| yi
+
+(15)
+
+(16)
+
+(17)
+
+In odd dimensions, the second term in the right hand side vanishes as x approaches y. This can be seen as being equivalent to the statement that there is
+no chiral anomaly in odd dimensions (by using point-splitting and inserting a
+Wilson line). So we get
+i∂i Ji (x, x)
+2 To
+
+=
+
+2tr hx |γDf (D)| xi
+
+ker D † D
+
+(18)
+
+see this that ker D =
+we apply
+the definition of hermitian conjugate
+R
+with respect to the inner product (ψ, χ) =
+dxψ† χ and the property of the norm, to
+0 = (ψ, D † Dψ) = (Dψ, Dψ).
+
+4
+
+If we wish to compute the index as in Eq (13), then we can take
+f (D) =
+
+M2
+1
+2
+D D + M2
+
+(19)
+
+(however there is no unique choice of Ji ). We then get
+
+
+1
+M2
+Ji (x, y) = tr x γγi
+y
+D D2 + M 2
+
+
+
+1
+1
+y
+−D2 + D2 + M 2
+= tr x γγi
+D
+D2 + M 2
+
+
+1
+= −tr x γγi D 2
+y .
+D + M2
+
+(20)
+
+The virtue of expressing Eq (13) as a total divergence, is that we then can
+compute the index as a boundary integral over an (n − 2)-sphere at infinity as
+Z
+i
+dΩn−2 rn−2 x̂i Ji (x, x).
+(21)
+I(M 2 ) =
+n−2
+2 S∞
+where r is the radius of the sphere and dΩn−2 denotes the volume element of
+the unit sphere.
+If instead we wish to compute the index as the limit of
+
+
+2
+I(s) = Tr γe−sD .
+(22)
+as s → ∞, then we get
+
+Ji (x, y)
+
+=
+
+
+
+2
+1
+tr x γγi e−sD y .
+D
+
+(23)
+
+We will now illustrate how one can use this Ji to compute the index in odd
+dimensions.
+
+One dimension
+We choose our gamma matrices as
+
+
+
+
+0 1
+0 i
+γ1 =
+, γ2 =
+1 0
+−i 0
+
+(24)
+
+and we have
+γ = iγ1 γ2 =
+
+
+
+1
+0
+
+0
+−1
+
+
+
+.
+
+(25)
+
+The Dirac operator reads
+D = iγ1 ∂ + γ2 φ
+
+(26)
+
+We need the square of the Dirac operator,
+D2 = −∂ 2 + φ2 + γ∂φ.
+5
+
+(27)
+
+We make the choice
+
+J1 (x, y) = −tr x γγ1 D
+
+1
+y
+2
+D + M2
+
+
+
+(28)
+
+We assume that φ(x) converges towards some constant values at x = −∞ and
+x = +∞. That means that we may ignore ∂φ(x) for sufficiently large |x|, where
+we then get
+Z ∞
+dk
+φ
+φ
+(29)
+J1 (x, x) = tr (γγ1 γ2 )
+= −i p
+2 + φ2 + M 2
+2
+2π
+k
+φ + M2
+−∞
+The index is now given by
+lim
+
+M→0
+
+i
+(J1 (+∞) − J1 (−∞)) = ±1
+2
+
+(30)
+
+if φ flips the sign an odd number of times when going from −∞ to +∞, and 0
+otherwise.
+If instead we choose
+
+
+1 −sD2
+y
+(31)
+J(x, y) = tr x γγ1 D 2 e
+D
+then we get
+Z
+
+J(x, x) = tr (γγ1 γ2 )
+
+2
+2
+φ
+dk
+e−s(k +φ )
+2π k 2 + φ2
+
+(32)
+
+If we compute the integral over k in the most natural way, then we get a result
+that vanishes in the limit s → ∞. Could there be another way of defining this
+integral, such that we do not get zero as the result? We notice that the integral
+A(s) ≡
+
+2
+
+Z
+
+dk
+
+e−s(k +1)
+k2 + 1
+
+(33)
+
+for s > 0 is convergent only if we integrate k along a line in the complex plane
+which is such that it asymptotically is such that − π2 < θ < π2 where k = |k|eiθ .
+Integrating along any such line in the complex plane, we get the same value of
+this integral. If on the other hand we integrate over a line that asymptotically
+lies outside this cone, then we get a divergent integral for s > 0. But we get
+a convergent integral for s < 0. We then define the value of the integral for
+s > 0 as the analytic continuation of the same integral for s < 0. It remains to
+compute this convergent integral. Replacing k by ik and s by −s, we get the
+integral
+A(−s) = i
+
+Z
+
+2
+
+∞
+
+dk
+
+−∞
+
+We can compute its derivative
+Z
+A′ (−s) = i
+
+∞
+
+e−s(k −1)
+k2 − 1
+
+dke−s(k
+
+−∞
+
+6
+
+2
+
+−1)
+
+=i
+
+r
+
+(34)
+
+π s
+e
+s
+
+(35)
+
+The right-hand side can obviously be analytically continued to −s, and that is
+how we will define A(s) where the integral representation does not converge.
+We can then integrate up A′ (s),
+ 
+Z ∞ r
+√
+π −s
+1
+A(∞) = A(0) +
+ds
+= A(0) + π
+(36)
+e = A(0) + πΓ
+s
+2
+o
+and we then need to compute
+A(0) =
+
+i
+
+Z
+
+∞
+
+dk
+
+−∞
+
+k2
+
+1
+−1
+
+(37)
+
+We define this as the principal value. This is ad hoc – we have no argument
+why one should define it like this. But if we accept this, then we get A(0) = 0.
+We conclude that we could just as well define the integral that we had, as
+lim
+
+s→∞
+
+Z
+
+2
+
+dk
+
+e−s(k +1)
+= π.
+k2 + 1
+
+(38)
+
+But this requires us to perform the integration of k in the cone where it diverges
+for s > 0, and then define this integral by analytic continuation. This seem to
+be rather ad hoc. We have three rather week arguments why one should Wick
+rotate. First, if we keep x − y as a small number, then we get the factor
+eik(x−y) and this can act as a convergence factor only if we Wick rotate. (We
+illustrate this in the Appendix where we compute the corresponding integral in
+any complex number of dimensions.) Second, it seems to be the only way that
+we could produce a non-trivial answer. Third, with this prescription we will
+manage to reproduce the right answer in any odd number of dimensions, where
+we can check our result against the safer regularization used by Callias.
+If we compute the integral by this prescription, then we get
+Z
+2
+2
+dk
+φ
+φ
+(39)
+e−s(k +φ ) = −i p
+J(x, x) = tr (γγ1 γ2 ) lim
+s→∞
+2π k 2 + φ2
+φ2
+and we see that we indeed get the right answer.
+
+Three dimensions and magnetic monopoles
+The physics problem that we will consider in three dimensions, is to compute
+number of zero modes of the Bogomolnyi equation
+Fij = ǫijk Dk φ
+
+(40)
+
+We choose the convention that our fields are hermitian. It is convenient to group
+the fields into 'gauge potential'
+Aμ = (Ai , φ)
+
+(41)
+
+We define Dμ = (Di , φ) such that iDμ = i∂μ + Aμ and we let Gμν = i[Dμ , Dν ]
+be the associated 'field strength'. Then the Bogomolnyi equation reads
+Gμν =
+
+1
+ǫμνρσ Gρσ .
+2
+7
+
+(42)
+
+Linearizing this, we get
+Dμ δAν =
+
+1
+ǫμνρσ Dρ δAσ
+2
+
+(43)
+
+Contracting with γμν , we get
+(1 + γ)γμν Dμ δAν = 0
+
+(44)
+
+and if we impose the background gauge condition
+Dμ δAμ = 0
+
+(45)
+
+which is to say that zero modes are orthogonal to gauge variations with respect
+to the moduli space metric, then we can write this linearized equation as a Dirac
+equation
+Dψ ≡ γμ Dμ ψ = 0
+
+(46)
+
+ψ := (1 + γ)γμ δAμ .
+
+(47)
+
+1
+D2 = −Di2 + φ2 + iγμν Gμν
+2
+
+(48)
+
+where
+
+We compute
+
+Inserting the Bogomolnyi configuration we can write this, thus using the fact
+that Gμν is selfdual,
+1
+D2 = −Di2 + φ2 + (1 + γ)iγμν Gμν .
+4
+
+(49)
+
+and get a vanishing theorem. Namely, dim ker DD† = 0 as DD† > 0 is strictly
+postive. Hence we can compute the dimension of the moduli space dim ker D ≡
+dim ker D† D just by computing the index of D. To compute the index, we now
+wish to compute
+
+
+1 −sD2
+x
+(50)
+Ji (x, x) = tr x γγi γk Dk 2 e
+D
+We assume that asymptotically φ approaches a constant value at infinity. This
+corresponds to a gauge choice where we have a Dirac string singularity. Some
+further examination reveals that we get a non-negligible contribution to Ji , for
+a sufficiently large two-sphere, only from the term
+
+
+Z
+d3 k
+1
+−s(k2 +φ2 + 12 iγμν Gμν )
+e
+(51)
+Ji (x, x) = tr γγi γ4 φ
+(2π)3 k 2 + φ2 + 12 iγμν Gμν
+We thus need to perform an integral of the form
+Z
+2
+k2
+e−s(k +1)
+A(s) = dk 2
+k +1
+8
+
+(52)
+
+If we choose the same prescription as we did in one dimension, then we get the
+result
+A(+∞) = −π.
+
+(53)
+
+For details of such a computation we refer to appendix A.
+If we apply this result to the integral that we had, we get
+!
+r
+1
+1
+Ji (x, x) = − tr γγi γ4 φ φ2 + iγμν Gμν
+2π
+2
+We expand the square root,
+r
+1
+1
+φ2 + iγμν Gμν = φ + p iγμν Gμν + ...
+2
+4 φ2
+
+(54)
+
+(55)
+
+In the far distance, in a charge Q monopole configuration, we find that
+γμν Gμν = 2γi γ4 (1 − γ)
+
+x̂k
+Q
+r2
+
+(56)
+
+and so when we trace over the gamma matrices, we get
+!
+φQ
+i
+ǫijk tr p
+.
+Ji (x, x) = −
+2πr2
+φ2
+
+(57)
+
+If we now for instance assume SU (2) gauge group, broken to U (1), then if we
+integrate 2i Ji over S 2 , we get the index 2Q. The number of bosonic zero modes
+is twice the index, i.e. 4Q [4, 5].
+
+(2m + 1) dimensions
+In 2m + 1 dimensions we get the integral
+Z
+k 2m −s(k2 +μ2 )
+A(μ) ≡ lim
+dk 2
+e
+s→∞
+k + μ2
+
+(58)
+
+if we use our regulator. Here
+μ2 ≡ v 2 + G
+
+(59)
+
+1
+2 iγμν Gμν .)
+
+This should be compared to the
+
+Z
+
+k 2m
+
+(and G is an abbreviation for
+integral
+m
+
+B(μ) ≡ lim (−1)
+M→0
+
+dk
+
+(k 2 + v 2 + M 2 )m+1
+
+that we get using the Callias regulator.
+we rewrite them as
+A(μ)
+3 This
+
+3
+
+Gm
+
+(60)
+
+In order to compare these integrals,
+
+= μ2m−1 a
+
+integral comes from expanding
+1
+1
+= 2
++ ...
+k 2 + v2 + G + M 2
+k + v2 + M 2
+
+in powers of G as a geometric series [4].
+
+9
+
+(61)
+
+= v −1 bGm
+
+(62)
+
+ξ 2m −s̃(ξ2 +1)
+e
+s̃→∞
+ξ 2Z+ 1
+ξ 2m
+lim (−1)m dξ 
+m+1
+M̃→0
+ξ 2 + 1 + M̃ 2
+
+(63)
+
+B(μ)
+where
+a
+
+=
+
+b
+
+=
+
+lim
+
+Z
+
+dξ
+
+We compute a according the prescription introduced above in one and three
+dimensions, that is by Wick rotating ξ and continue analytically in s. (Details
+are in appendix A.) We can compute b using residue calculus (introducing a
+regulator so that we can close the contour on a semi-circle at infinity). The
+result is
+a
+
+=
+
+b =
+We next expand
+vA(μ)
+
+vB(μ)
+
+(−1)m π
+1 Γ m − 21
+
+−(−1)m π
+2
+Γ 21
+
+
+
+m− 21
+= v v2 + G
+a
+
+Γ
+m − 21
+2m
+ aGm + ...
+= v a + ... +
+Γ − 21
+= bGm
+
+and we find that the coefficient of Gm becomes equal to
+
+1
+m Γ m − 2
+(−1)
+π
+Γ − 21
+
+(64)
+
+(65)
+
+(66)
+
+if one uses our regularization, and equal to
+
+
+Γ m − 12
+
+−(−1)
+π
+2 Γ 21
+m1
+
+(67)
+
+if one uses the Callias regularization. We see that the two expressions coincide
+for all m.
+We have now showed that if we use our prescription of Wick rotating k to
+compute the integrals over the exponential, then we get the right answer for all
+cases that can be safely computed using a regulator that is less convergent. We
+are inclined to think that our prescription for how to compute the integral, will
+also work for index problems where the Callias regulator diverges. But we have
+no proof. It is perhaps not so obvious that more general index problems can be
+formulated. In the next section we will give one example of a more general type
+of index problem.
+
+3
+
+Four dimensions and self-dual strings
+
+To introduce the notation, we first consider the free Abelian tensor multiplet
+theory in 1 + 5 dimensions. The on-shell field content is a two-form gauge
+10
+
+potential Bμν , five scalar fields φA and corresponding Weyl fermions ψ. The
+field strength Hμνρ = ∂μ Bνρ + ∂ρ Bμν + ∂ν Bρμ is selfdual. The supersymmetry
+variation of the Weyl fermions is
+
+
+1 μνρ
+μ
+A
+Γ Hμνρ + Γ ΓA ∂μ φ
+δψ =
+ǫ
+(68)
+12
+where we use eleven-dimensional gamma matrices splitted into SO(1, 5)×SO(5),
+so that in particular
+{Γμ , ΓA }
+
+= 0.
+
+(69)
+
+In a static and x5 independent field configuration, in which only φ5 =: φ is
+non-zero, we find the SUSY variation
+
+δψ = Γ0i5 H0i5 + Γi ΓA=5 ∂i φ ǫ
+(70)
+
+If we assume that the classical bosonic field configuration is such that
+∂i φ = H0i5
+
+(71)
+
+then the SUSY variation reduces to
+
+δψ = ∂i φΓi Γ05 + ΓA=5 ǫ
+
+(72)
+
+and we find the condition for unbroken SUSY as
+
+1 + Γ05 ΓA=5 ǫ = 0
+
+(73)
+
+If we use the Weyl condition
+
+Γǫ = −ǫ
+
+(74)
+
+of the (2, 0) supersymmetry parameter ǫ, then we can also write this as
+
+1 + Γ1234 ΓA=5 ǫ = 0.
+
+(75)
+
+We may represent the gamma matrices as
+Γμ
+ΓA
+
+=
+=
+
+(Γ0 , Γi , Γ5 ) = 1 ⊗ iσ 2 ⊗ 1, γi ⊗ σ 1 ⊗ 1, γ ⊗ σ 1 ⊗ 1
+1 ⊗ iσ 2 ⊗ σA
+
+
+
+(76)
+
+where σ 1,2,3 are the Pauli sigma matrices, γ = γ1234 . Then the condition for
+unbroken SUSY is
+(1 + γ ⊗ σ) ǫ = 0
+
+(77)
+
+Hijk = ǫijkl ∂l φ
+
+(78)
+
+where σ = σ1234 = σA=5 .
+We have found that if
+
+then half SUSY is unbroken. This equation is the Bogomolnyi equation for selfdual strings [1]. We are interested in finding the number of parameters needed
+to describe solutions of this equation. We can linearize it and get the equation
+γi ∂i χ = 0
+11
+
+(79)
+
+for the bosonic zero modes, that we have gathered into a matrix
+χ ≡ γij δBij + γδφ.
+
+(80)
+
+For this to work we must also assume the background gauge condition
+∂i Bij = 0.
+
+(81)
+
+Now this linearized equation Eq (79) does not make any reference to the gauge
+field. So there is no way that we could count the number of parameters of a
+multi-string configuration just using this equation. This should of course not be
+a surprise. The strings that we have in the Abelian theory are not solutions of
+the field equations. They have to be inserted by hand, that is we need to insert
+delta function sources by hand, in the same spirit as for Dirac monopoles.
+To be able to count the number of zero modes, we must consider some
+interacting theory which (at the classical level) has solitonic string solutions.
+To pass to non-Abelian theory we begin by rewriting the Abelian theory
+in loop space. Loop space consists of parametrized loops C: s 7→ C μ (s). We
+introduce the Abelian 'loop fields' [7]
+Aμs
+φμs
+ψ μs
+
+= Bμν (C(s))Ċ ν (s)
+= φ(C(s))Ċ μ (s)
+= ψ(C(s))Ċ μ (s)
+
+(82)
+
+With these definitions, a short computation reveals that Aμs transforms as a vector and φμs a contra-variant vector under diffeomorphisms in loop space induced
+by diffeomorphisms in space-time. One may then extend these transformation
+properties to any diffeomorphism in loop space. Space-time diffeomorphism and
+reparametrizations of the loops then get unified and are both diffemorphisms
+in loop space. The only thing to remember is what is kept fixed under the
+variation. If it is the parameter of the loop, or the loop itself.
+The field strength becomes
+Fμs,νt = Hμνρ (C(s))Ċ ρ (s)δ(s − t)
+
+(83)
+
+In terms of these fields, the Bogomolnyi equation will read4
+Fis,jt = ǫijkl ∂k(s φlt) .
+
+(84)
+
+We pass to the non-Abelian theory by letting these loop fields become nonAbelian, in the sense that Aμs = Aaμs λa (s) where λa (s) are generators of a loop
+algebra associated to the gauge group [7]. We introduce a covariant derivative
+Dμs
+
+= ∂μs + Aμs .
+
+(85)
+
+= Dμs Λ
+= [φμs , Λ].
+
+(86)
+
+Local gauge transformations act as
+δΛ Aμs
+δΛ φμs
+
+Given a loop C, we automatically get a tangent vector Ċ μ (s) that makes no
+reference to space-time. We can therefore impose the loop space constraints
+Ċ μ (s)Aμs = 0
+4 We
+
+denote by ∂is the usual functional derivative with respect to
+
+12
+
+(87)
+C μ (s).
+
+for each s, and also
+φμs = Ċ μ (s)φ(s; C)
+
+(88)
+
+for some subtle field φ(s; C) on loop space. As a consequence, we find that
+Aμs φμs = 0.
+
+(89)
+
+These constraints are covariant under diffeomorphisms of space-time and reparametrizations of loops. They are invariant also under local gauge transformations, provided that the gauge parameter is subject to the condition
+Ċ μ (s)∂μs Λ = 0
+
+(90)
+
+which is the condition of reparametrization invariance. With the assumption
+made that λa (s) are generators of a loop algebra, we find that the constraint
+can also be written as
+[Aμs , φμt ] = 0
+
+(91)
+
+A local gauge variation of this constraint is
+[Dμs Λ, φμt ] + [Aμs , [φμt , Λ]] =
+=
+
+[∂μs Λ, φμt ] + [[Aμs , Λ], φμt ] + [Aμs , [φμt , Λ]]
+[∂μs Λ, φμt ] + [Λ, [φμt , Aμs ]]
+(92)
+
+The last term vanishes by the constraint. The first term gives us the constraint
+Eq (91) that we must impose on the gauge parameter
+Z
+Λ = dsΛa (s, C)λa (s).
+(93)
+We have now introduced non-local non-Abelian fields with infinitely many
+components. It is also likely that consisteny of the theory requires an infinite
+set of constraints on these fields. Maybe then, it could be that we may in the
+end descend to a finite degrees of freedom. But this is just a speculation. The
+problem appears to be difficult and ill-defined – How should one define a degree
+of freedom in a strongly coupled non-local theory?
+The non-Abelian generalization of the Bogomolnyi equation should be given
+by [7]
+Fis,jt = ±ǫijkl Dks φlt .
+
+(94)
+
+This equation is gauge invariant and invariant under the residual SO(4) Lorentz
+group that is preserved by the strings. We can not think of any reasonable
+modification of this equation that would preserve these symmetries, so on this
+grounds alone one could suspect this equation to be correct. Of course this is not
+the only requirement that the BPS condition imposes. We also get conditions
+on the 0s and the 5s components. But these BPS equations will be of no interest
+to us right now.
+We will show below that the linearized Bogomolnyi equation can be written
+as
+
+(95)
+γi Di(s + σφi(s χt) = 0
+13
+
+We will also see below that we (presumably) can actually drop the symmetrization in s and t in this equation. The fields transform in the adjoint representation of the loop algebra, by which we mean that φis χt = [φis , χt ]. We define
+the Dirac operator
+Ds = γi (Dis + σφis )
+
+(96)
+
+and the projectors
+P± ≡
+
+1
+(1 ∓ γσ) ,
+2
+
+(97)
+
+We can now formulate an index problem, in an even-dimensional (loop-)space.
+The even-dimensional space in this case is given by the 4-dimensional transverse
+space to the strings, and the index is given by
+dim ker Ds − dim ker Ds†
+
+(98)
+
+Ds = P+ Ds = Ds P−
+Ds† = P− Ds = Ds P+ .
+
+(99)
+
+where
+
+Since Ds and P± are hermitian, it is manifest that Ds† defined this way will be
+the hermitian conjugate of Ds , thus justifying the notation.
+Computing the index alone is not sufficient in order to obtain the dimension
+of the moduli space of self-dual strings. We also need a vanishing theorem that
+says that dim ker Ds† = 0.
+Linearizing the Bogomolnyi equation, we get
+2D[is δAjt] = ±ǫijkl (Dks δφlt + φks δAlt )
+
+(100)
+
+Contracting by γ ij , we get
+γ ij D̃is χjt = 0
+
+(101)
+
+where we have defined
+D̃is
+χis
+
+≡
+≡
+
+Dis ∓ γφis
+δAis ∓ γδφis
+
+(102)
+
+To see that the linearized BPS equation can be written like this, one must use
+the constraint
+γ ij φis δφjt = 0.
+
+(103)
+
+We can avoid having explicit ± signs by introducing the other chiraly matrix
+at our disposal, namely σ that lives in a different vector space than γ. We can
+then hide the ± signs in the tensor product
+γ ⊗ σ = ±1
+which amounts to
+D̃is
+
+≡ Dis + σφis
+14
+
+(104)
+
+χis
+
+≡ δAis + σδφis
+
+(105)
+
+without any ±.5 If we define
+χs ≡ γ i χis
+
+(107)
+
+then we can write the zero mode equation as
+γ i D̃is χt + D̃si χit = 0.
+
+(108)
+
+Let us analyze the second term in this equation. It is given by
+Dsi δAit + φis δφit 
+γ φis δAit + Dsi δφit
+
+(109)
+
+(δΛ Ais , δAit ) + (δΛ φis , δφjt ) = 0
+
+(110)
+
+−
+
+We should not count variations that are gauge variations as bosonic zero modes.
+We can insure this by demanding the zero modes to be orthogonal to gauge
+variations, with respect to the metric on the moduli space,
+
+This leads to the background gauge condition
+Dsi δAit + φis δφit = 0.
+
+(111)
+
+This condition implies that the gauge variation of the zero modes vanishes,
+δΛ δAis = 0 = δΛ δφis
+
+(112)
+
+To see this, we make a gauge variation δΛ δAis = Dis Λ, δΛ φis = φis Λ, and
+ask which gauge parameters Λ will respect the background gauge condition.
+Inserting this gauge variation into the background gauge condition, we get
+
+Dsi Dit + φis φit Λ = 0.
+(113)
+
+For this to work nicely, it seems that we must constrain the non-locality of our
+i
+∂it) < 0. Then the only solution to this equation is Λ = 0.
+loop field such that ∂(s
+In other words all gauge variations of the zero modes have to vanish.
+Furthermore we want the variation to preserve the orthogonality between
+Ais and φis ,
+(Ais , δφit ) + (δAis , φit ) = 0
+
+(114)
+
+If we make a gauge variation of this, then we get the condition
+(δΛ Ais , δφit ) + (δAis , δΛ φit ) = 0
+
+(115)
+
+φis δAit + Dsi δφit = 0.
+
+(116)
+
+which amounts to
+
+5 To
+
+really understand what is going on, one should apply (1 ± γσ) on everything, on ψs
+and on Ds . Then one notices that
+∓γ (1 ∓ γσ) = σ (1 ∓ γσ) .
+
+(106)
+
+That is, we can trade ∓γ for σ, once we apply (1 ± γσ) on everything. This is what we really
+should do, but to keep the notation simple, we do not spell this out.
+
+15
+
+We conclude that the zero mode equation can be written as
+D s χt = 0
+
+(117)
+
+Ds = γi (Dis + σφis )
+
+(118)
+
+where
+
+We are interested in counting the number of such modes in a background of k
+BPS strings. We compute
+1
+(119)
+(Dis )2 + (φis )2 + γ ij (Fis,js + γσǫijkl Dks φls )
+2
+R ds
+Ds Ds , and analogously for the other fields or opera(Here D2 ≡ Ds Ds ≡ 2π
+tors.) In a BPS configuration, we get is
+D2
+
+=
+
+D2
+
+=
+
+1
+(Dis )2 + (φis )2 + γ ij (1 + γσ) Fis,js
+2
+
+(120)
+
+Furthermore, in the subspace where 1 + γσ = 0, we find that
+D2
+
+=
+
+(Dis )2 + (φis )2
+
+(121)
+
+is a strictly negative operator, hence has no zero modes. This means that we
+have a vanishing theorem, dim ker D† = 0.
+
+A small comment
+The zero mode equation was really
+D(s χt) = 0
+
+(122)
+
+where we should symmetrize in s and t. That means that we should rather
+consider
+Ds D(s χt)
+
+=
+=
+
+1
+(Ds Ds χt + Ds Dt χs )
+2
+1
+(Ds Ds χt + Dt Ds χs + [Ds , Dt ]χs ) .
+2
+
+(123)
+
+If now D[s Dt] = 0 and Ds χs = 0, then we get
+D s D s χt = 0
+
+(124)
+
+The latter condition, Ds χs = 0 is of course a consequence of D(s χt) = 0 with
+s = t. The former condition reads
+0
+
+= D[s Dt]
+= Di[s Dit] + φi[s φit] + σDi[s φit]
+
+(125)
+
+In the Abelian case we find that ∂i[s ∂|i|t] = 0 and φi[s φ|i|t] = 0. A delicate
+computation also shows that ∂i[s φ|i|t] χs = 0. The philosophy we have is that
+any Abelian constraints are lifted to non-Abelian ones by covariantizing.
+
+16
+
+If we accept these constraints, then we have now seen that the zero mode
+equation Eq (122) implies
+Z
+dsDs† Ds χt = 0
+(126)
+because Ds is anti-self-adjoint with respect to the inner product
+Z
+
+(ψs , χt ) = DCtr ψs† (C)χt (C)
+
+(127)
+
+on loop space. We can also go in the opposite direction. Assuming that Eq
+(126) holds, we get
+
+(128)
+0 = χt , Ds† Ds χt = (Ds χt , Ds χt )
+
+and we conclude that (122) implies
+
+D s χt = 0
+
+(129)
+
+with no symmetrization in s, t.
+
+How to compute the index
+We should now be able to compute an index associated to self-dual strings, as
+the limit
+
+
+2
+(130)
+I(s) = Tr γσesD
+when s → ∞. We define the quantity
+
+
+2
+1
+Jis (C, C ′ ) = −tr C γσγk (Dks + σφis ) 2 esD C ′
+D
+
+(131)
+
+(it should be clear that the two s's involved in this formula are totally unrelated)
+and find that
+Z
+Z
+ds
+I(s) =
+DC∂is J is (C, C)
+(132)
+2π
+We can separate the functional integral over parametrized loops C into several
+pieces. We can keep a point on the loops C(s) = x fixed, and separate it as
+Z
+Z
+Z
+4
+DC = d x Dx C
+(133)
+Then we can write I(s) as an integral over a large three-sphere at spatial infinity,
+Z
+Z
+Z
+Z
+Z
+Z
+ds
+∂Jis (C)
+ds
+i
+=
+dΩ
+x̂
+d4 x Dx C
+Dx CJis (C, C)
+(134)
+3
+2π
+∂C i (s)
+2π S 3
+where thus x = C(s).
+If we assume that the gauge group is maximally broken to a product of
+U (1)'s by the Higgs vacuum expectation values, then we should have U (1) loop
+fields at spatial infinity.
+17
+
+If we assume that the gauge group is SU (2) and that it is broken to U (1),
+then we need only the asymptotic form of the U (1) fields at spatial infinity,
+= Hijl (x)Ċ l (s)δ(s − t)
+= v Ċk (s)
+
+Fis,jt
+φks
+
+(135)
+
+Without doing any computations, we can guess what the outcome of the
+index calculation should be. A term like
+Z
+ǫijkl Dx Ctr (Fis,jt (C)Fks,jt (C))
+(136)
+can (and hence probably does) arise, but here this term vanishes identically if
+one uses the Bogomolnyi equation and notices the constraint
+Fis,jt Dis φjt = 0
+
+(137)
+
+For the U (1) fields, this is just the fact that
+Fis,jt ∂is φjt ∼ Hijk (C(s))∂i φ(C(s))Ċ k (s)Ċ j (s)δ(s − t)2 ≡ 0.
+
+(138)
+
+Then there can be a term
+ǫijkl
+
+Z
+
+Dx Ctr
+
+
+
+Fis,jt φks
+v
+
+
+
+(139)
+
+that should arise in a very similar way as the corresponding term arose for
+monopoles. If we insert the asymptotic U (1) fields, this term becomes proportional to
+ǫijkl Hijk (x)
+
+(140)
+
+That means that the index should be given by some numerical constant, times
+the magnetic charge
+Z
+H.
+(141)
+3
+S∞
+
+18
+
+A
+
+Integrals over the exponential
+
+The integral we will analyze here is
+Z +∞
+k 2ζ −s(k2 +1) iǫk
+a(s) =
+dk 2
+e
+e
+k +1
+−∞
+
+(142)
+
+for any complex number ζ. (The ǫ > 0, say, will be taken towards zero. It
+arose from ǫ = x − y and we keep it here just as a convergence factor.) We first
+compute
+Z +∞
+k 2ζ iǫk
+a(0) =
+dk 2
+e
+(143)
+k +1
+−∞
+In order to make this integral converge for any ζ, we should Wick rotate k to
+ik, and henceforth we will always mean by i the branch eiπ/2 , and by −1 we
+mean eiπ . Then we get
+Z +∞
+k 2ζ −ǫk
+e
+(144)
+a(0) = −i2ζ+1
+dk 2
+k −1
+−∞
+and this integral we evaluate as a principal value. That means to evaluate the
+residues along the real axis and multiply them not by 2πi, but by half of it, that
+is, by πi. We get
+a(0) = (−1)ζ π
+
+1 − (−1)2ζ
+.
+2
+
+(145)
+
+Next we turn to our integral a(s). It is easier to first compute the derivative.
+We should still work with the Wick rotated integral. Making the substitution
+ξ = k 2 we can put it on the form of two gamma functions. The result is that
+
+
+
+1 1
+1 −ζ− 12 s
+a′ (−s) = eiπ(ζ+ 2 ) 1 + (−1)2ζ Γ ζ +
+e
+(146)
+s
+2
+2
+
+which we can trivially continue analytically to +s, and then integrate up. The
+result is
+a(+∞) = π
+
+1 + (−1)2ζ
+1
+1 − (−1)2ζ
++ π(−1)ζ
+.
+2
+cos(πζ)
+2
+
+19
+
+(147)
+
+References
+[1] P. S. Howe, N. D. Lambert and P. C. West, "The self-dual string soliton,"
+Nucl. Phys. B 515, 203 (1998) [arXiv:hep-th/9709014].
+[2] D. S. Berman and J. A. Harvey, "The self-dual string and anomalies in
+the M5-brane," JHEP 0411, 015 (2004) [arXiv:hep-th/0408198].
+[3] C. Callias, "Index Theorems On Open Spaces," Commun. Math. Phys.
+62, 213 (1978).
+[4] E. J. Weinberg, "Parameter Counting For Multi - Monopole Solutions,"
+Phys. Rev. D 20, 936 (1979).
+[5] E. J. Weinberg and P. Yi, "Magnetic monopole dynamics, supersymmetry,
+and duality," Phys. Rept. 43, 65 (2007) [arXiv:hep-th/0609055].
+[6] M. Hirayama, "Supersymmetric Quantum Mechanics And Index Theorem," Prog. Theor. Phys. 70, 1444 (1983).
+[7] A. Gustavsson, "A reparametrization invariant surface ordering," JHEP
+0511, 035 (2005) [arXiv:hep-th/0508243].
+A. Gustavsson, "The non-Abelian tensor multiplet in loop space," JHEP
+0601, 165 (2006) [arXiv:hep-th/0512341].
+
+20
+
+

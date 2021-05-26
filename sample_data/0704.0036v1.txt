@@ -1,0 +1,1418 @@
+arXiv:0704.0036v1 [q-bio.QM] 31 Mar 2007
+
+A remark on the number of steady states in a multiple futile cycle
+Liming Wang and Eduardo D. Sontag
+Department of Mathematics
+Rutgers University, New Brunswick, NJ, USA
+
+Abstract
+This note studies the number of positive steady states in biomolecular reactions consisting of activation/deactivation futile cycles, such as those arising from phosphorylations and dephosphorylations
+at each level of a MAPK cascade. It is shown that (1) for some parameter ranges, there are at least
+n + 1 (if n is even) or n (if n is odd) steady states; (2) There never are more than 2n steady states;
+(3) for parameters near the standard Michaelis-Menten quasi-steady state conditions, there are at most
+n + 1 steady states; and (4) for parameters far from the standard Michaelis-Menten quasi-steady state
+conditions, there is at most one steady state.
+
+Keywords: futile cycles, bistability, signaling pathways, biomolecular networks, steady states
+
+1
+
+Introduction
+
+A motif of great interest in current systems biology research is that of a "futile cycle" in which a substrate,
+denoted here by S0 , is ultimately converted into a product, denoted here by Sn , through a cascade of
+"activation" reactions triggered or facilitated by an enzyme E; conversely, Sn is transformed back (or
+"deactivated") into the original S0 , helped on by the action of a second enzyme F . See Figure 1.
+E
+S0
+
+E
+
+E
+
+S1
+F
+
+S2
+
+S n−2
+
+S n−1
+
+F
+
+F
+
+Figure 1: Futile cycle
+The chemical reactions are as follows:
+S0 + E
+
+kon0
+−→
+←−
+
+koff0
+..
+.
+
+kcat
+ES0 → 0 S1 + E
+
+konn−1
+Sn−1 + E
+
+−→
+←−
+
+koffn−1
+
+ES0
+
+1
+
+kcat
+
+n−1
+
+→
+
+E
+
+Sn + E
+
+Sn
+F
+
+S1 + F
+
+lon0
+−→
+←−
+
+loff0
+..
+.
+
+lcat
+F S1 → 0 S0 + F
+
+lonn−1
+Sn + F
+
+−→
+←−
+
+loffn−1
+
+F Sn
+
+lcat
+
+n−1
+
+→
+
+Sn−1 + F
+
+where kon0 , etc., are kinetic parameters for binding and unbinding, ES0 denotes the complex consisting
+of the enzyme E and the substrate S0 , and so forth. A mass-action kinetics ODE model, described later,
+is used.
+Futile cycles (with any number of intermediate steps, and also called substrate cycles, enzymatic cycles,
+or enzymatic inter-conversions, see [1]) underlie signaling processes such as GTPase cycles [2], bacterial
+two-component systems and phosphorelays [3, 4] actin treadmilling [5]), and glucose mobilization [6], as
+well as metabolic control [7] and cell division and apoptosis [8] and cell-cycle checkpoint control [9]. One
+very important instance is that of Mitogen-Activated Protein Kinase ("MAPK") cascades, which regulate
+primary cellular activities such as proliferation, differentiation, and apoptosis [10–13] in eukaryotes from
+yeast to humans. MAPK cascades usually consist of three tiers of similar structures with multiple feedbacks [14–16]. An individual level of a MAPK cascade is often modeled as a futile cycle as depicted in
+Figure 1 with n = 2.
+Numerical analysis of the model with n = 2 to n = 5 indicates that the system may be monostable or
+bistable (subject to conservation relations), depending on parameter values [17–19]. Bistable parameter
+regimes allow possible switch-like behavior and memory, which are ubiquitous in cellular pathways [20–23].
+In either case, simulations under meaningful biological parameters show convergence, not other dynamical properties such as periodic behavior or even chaotic behavior. Analytical studies done for the
+quasi-steady-state version of the model (slow dynamics), which is a monotone system, indicate that the reduced system is indeed monostable or bistable, see [24]. Our paper [25] (see also [26] for preliminary results)
+established mathematically, for n = 2 and based upon the theory of singular perturbations of monotone
+systems, that, at least in certain parameter ranges (as required by singular perturbation theory), the full
+system indeed inherits convergence properties from the reduced system. Other related theoretical work
+is [27], where the general case n = 2 (any parameter values, not necessarily near quasi-steady state) is
+studied and a persistence result is shown, as well as [28], where, for n = 1, it is shown, also for all parameter
+values, that global convergence to steady states (subject to stoichiometric constraints) holds.
+In this note, we study a complementary problem, namely the question of analyzing how many positive
+steady states are possible. (Hereafter, when we say "steady state" we always mean a positive steady state.
+Observe that there always exists at least one nonnegative steady state, because the dynamics evolve in a
+compact convex set.)
+Our main results are informally summarized as follows (precise statements are given later):
+1. For some parameter ranges, there are at least n + 1 (if n is even) or n (if n is odd) steady states.
+2. There never are more than 2n steady states.
+3. For parameter ranges near the standard Michaelis-Menten quasi-steady state conditions, there are at
+most n + 1 steady states.
+2
+
+4. For parameter ranges very far from the standard Michaelis-Menten quasi-steady state conditions,
+there is at most one steady state.
+Our results make heavy use of beautiful observations made in [18], that allow one to reduce the search
+for positive steady states to the study of algebraic equations involving the ratio u = e/f , where e and f are
+the concentrations of E and F respectively. This construction was also used in [29] in order to show that
+there are, for some parameters sets, n (or n + 1) steady states for a limiting quasi-steady state reduction
+of the same system, as well as numerical evidence for the existence of n + 1 states for the full system.
+
+Acknowledgment
+We thank Jeremy Gunawardena for very helpful discussions.
+
+2
+
+Statements and Proofs of Results
+
+We model the futile cycle described in the introduction by means of a system of 3n + 3 differential-algebraic
+equations, consisting of the ordinary differential equations:
+ds0
+dt
+dsi
+dt
+dcj
+dt
+ddk
+dt
+
+= −kon0 s0 e + koff0 c0 + lcat0 d1
+= −koni si e + koffi ci + kcati−1 ci−1 − loni−1 si f + loffi−1 di + lcati di+1 , i = 1, . . . , n − 1
+= konj sj e − (koffj + kcatj )cj , j = 0, . . . , n − 1
+
+(1)
+
+= lonk−1 sk f − (loffk−1 + lcatk−1 )dk , k = 1, . . . , n,
+
+together with the algebraic "conservation equations":
+Etot = e +
+Ftot = f +
+
+n−1
+X
+
+ci ,
+
+0
+n
+X
+
+di ,
+
+(2)
+
+1
+
+Stot =
+
+n
+X
+
+si +
+
+n−1
+X
+0
+
+0
+
+ci +
+
+n
+X
+
+di .
+
+1
+
+The variables s0 , . . . , sn , c0 , . . . , cn−1 , d1 , . . . , dn , e, f stand for the concentrations of
+S0 , . . . , Sn , ES0 , . . . , ESn−1 , F S1 , . . . , F Sn , E, F
+respectively. For each positive vector
+κ =(kon0 , . . . , konn−1 , koff0 , . . . , koffn−1 , kcat0 , . . . , kcatn−1 ,
+6n−6
+lon0 , . . . , lonn−1 , loff0 , . . . , loffn−1 , lcat0 , . . . , lcatn−1 ) ∈ R+
+
+(of "kinetic constants") and each positive triple C = (Etot , Ftot , Stot ), we have a different system Σ(κ, C).
+3
+
+We introduce a mapping
+6n−6
+3n+3
+× R3+ −→ R3n+3
+× R+
+Φ : R+
+3n+3
+as:
+as follows. We write the coordinates of a vector x ∈ R+
+
+x = (s0 , . . . , sn , c0 , . . . , cn−1 , d1 , . . . , dn , e, f ),
+and let Φ(x, κ, C) have components Φ1 , . . . , Φ3n+3 where the first 3n components are
+Φ1 (x, κ, C) = −kon0 s0 e + koff0 c0 + lcat0 d1 ,
+and so forth, listing the right hand sides of the equations (1), Φ3n+1 is
+e+
+
+n−1
+X
+
+ci − Etot ,
+
+0
+
+and similarly for Φ3n+2 and Φ3n+3 , we use the remaining equations in (2).
+For each κ, C, let
+Z(κ, C) = {x | Φ(x, κ, C) = 0}.
+3n+3
+, x is a positive steady state of Σ(κ, C) if and only if x ∈ Z(κ, C).
+Observe that, by definition, given x ∈ R+
+
+For each κ, we introduce the functions φκ0 , φκ1 , φκ2 : R+ −→ R+ as follows:
+φκ0 (u) = 1 + λ0 u + λ0 λ1 u2 + * * * + λ0 * * * λn−1 un
+1
+λ0
+λ0 * * * λn−2 n−1
+φκ1 (u) =
++
+u + *** +
+u
+KM0
+KM1
+KMn−1
+λ0
+λ0 λ1 2
+λ0 * * * λn−1 n
+φκ2 (u) =
+u+
+u + *** +
+u ,
+LM 0
+LM 1
+LMn−1
+where
+λi =
+
+lcati + loffi
+kcati + koffi
+kcati LMi
+, LM i =
+, i = 0, . . . , n − 1.
+, KMi =
+KMi lcati
+koni
+loni
+
+(3)
+
+such that:
+For each κ, C, define Z̃(κ, C) as the set of x ∈ R3n+3
++
+si+1 = λi (e/f )si ,
+esi
+ci =
+KMi
+f si+1
+,
+di+1 =
+LM i
+Etot
+e=
+1 + s0 φκ1 (e/f )
+
+(4)
+(5)
+(6)
+(7)
+
+for i = 0, . . . , n − 1, and
+s0
+
+
+
+
+e κ e
+Etot κ e
+E
+e
+φ1 ( ) −
+φ2 ( ) = tot −
+f
+f
+Ftot
+f
+Ftot
+f
+κ,C
+G (s0 , e/f ) = 0,
+
+where Gκ,C : R2+ −→ R is given by
+Gκ,C (s0 , u) = φκ0 (u)φκ2 (u)s20 + (φκ0 (u) − Stot φκ2 (u) + Ftot uφκ1 (u) + Ftot φκ2 (u)) s0 − Stot .
+
+4
+
+(8)
+(9)
+
+Lemma 1 For each κ, C, we have Z(κ, C) = Z̃(κ, C).
+Proof. We pick an arbitrary x ∈ Z(κ, C). Since Φn+1 (x, κ, C), . . . , Φ3n (x, κ, C) are all zero, equations (5)
+and (6) follow easily. We next prove that
+k
+di+1
+= cati
+(10)
+ci
+lcati
+for all i = 0, . . . , n − 1 by induction.
+When i = 0, from Φ1 (x, κ, C) + Φn+1 (x, κ, C) = 0, we get
+k
+d1
+= cat0 .
+c0
+lcat0
+Suppose that (10) holds for i = k, then for i = k + 1, we have
+0 = Φk+2 (x, κ, C) + Φn+k+2 (x, κ, C) + Φ2n+k+1 (x, κ, C)
+= kcatk ck + lcatk+1 dk+2 − kcatk+1 ck+1 − lcatk dk+1
+= lcatk+1 dk+2 − kcatk+1 ck+1 ,
+which is (10) when i = k + 2. Therefore, by induction, (10) holds for all i =P
+0, . . . , P
+n − 1. Together
+Pn with
+n
+n−1
+equations (5) and (6), we can obtain (4). Using (4)-(6), we may now express 0 si , 0 ci and 1 di in
+terms of κ, e and f :
+ 
+ n !
+ 2
+ 
+n
+X
+e
+e
+e
+e
+κ
++ * * * + λ0 * * * λn−1
+= s0 φ0
++ λ0 λ1
+,
+s i = s 0 1 + λ0
+f
+f
+f
+f
+0
+!
+ 
+ 
+ 
+n−1
+X
+1
+e
+λ0
+e
+λ0 * * * λn−2 e n−1
+κ
+ci = es0
++
+= es0 φ1
++ *** +
+,
+(11)
+K
+K
+f
+K
+f
+f
+M0
+M1
+Mn−1
+0
+ 
+ 
+  !
+ 
+n
+X
+e
+e
+λ0 * * * λn−1 e n
+λ0 λ1 e 2
+λ0
+κ
++ *** +
+= f s0 φ2
++
+.
+di = f s0
+LM 0 f
+LM 1 f
+LMn−1
+f
+f
+1
+
+From Φ3n+2 (x, κ, C) = 0, we have
+
+e
+Etot = e + es0 φκ1 ( ),
+f
+
+and thus (7) holds. To check (8), we use Φ3n+2 (x, κ, C) = 0 and Φ3n+3 (x, κ, C) = 0 to get:
+Etot
+e(1 + s0 φκ1 (e/f ))
+,
+=
+Ftot
+f (1 + s0 φκ2 (e/f ))
+
+(12)
+
+which is (8) after multiplying by 1 + s0 φκ2 (e/f ) and rearranging terms. From Φ3n+3 (x, κ, C) = 0, we get
+Stot =
+
+n
+X
+0
+
+si +
+
+n−1
+X
+0
+
+e
+= s0 φκ0 ( ) +
+f
+e
+= s0 φκ0 ( ) +
+f
+
+ci +
+
+n
+X
+
+di
+
+1
+
+Etot s0 φκ1 (e/f ) Ftot s0 φκ2 (e/f )
++
+1 + s0 φκ1 (e/f )
+1 + s0 φκ2 (e/f )
+eFtot s0 φκ1 (e/f )
+F s0 φκ (e/f )
++ tot κ2
+.
+κ
+f (1 + s0 φ2 (e/f ))
+1 + s0 φ2 (e/f )
+5
+
+After multiplying by 1 + s0 φκ2 (e/f ), and simplifying, we get
+
+
+e
+κ e
+κ e 2
+κ e
+κ e
+κ e
+κ
+φ0 ( )φ2 ( )s0 + φ0 ( ) − Stot φ2 ( ) + Ftot φ1 ( ) + Ftot φ2 (u) s0 − Stot = 0,
+f
+f
+f
+f
+f
+f
+that is, Gκ,C (s0 , e/f ) = 0. Now we have checked that x satisfies (4)-(9), so x ∈ Z̃(κ, C).
+Conversely, for any x ∈ Z̃(κ, C), because of (5) and (6), we know that Φn+1 (x, κ, C), . . . , Φ3n (x, κ, C)
+are all zero. For each i = 0, . . . , n − 1, because of (4), we have
+kcati
+di+1
+=
+,
+ci
+lcati
+and thus
+Φ1 (x, κ, C) + Φn+1 (x, κ, C) = 0, when i = 0,
+and
+Φi+1 (x, κ, C) + Φn+i+1 (x, κ, C) + Φ2n+i (x, κ, C) = 0, otherwise.
+We already know that Φn+1 (x, κ, C), . . . , Φ3n (x, κ, C) are zero, so Φ1 (x, κ, C), . . . , Φn (x, κ, C) are zero too.
+We next check Φ3n+1 (x, κ, C) = 0, . . . , Φ3n+3 (x, κ, C) = 0. By (4)-(6), (11) holds. Because of (7), we have
+that Φ3n+1 (x, κ, C) = 0 since:
+
+
+n−1
+X
+κ e
+ci = e 1 + s0 φ1 ( ) = Etot .
+e+
+f
+0
+
+From (8), we can derive (12), and therefore Φ3n+2 (x, κ, C) = 0:
+f+
+
+n
+X
+1
+
+Since 1 + s0 φκ2 (e/f ) > 0, we have
+
+
+
+κ e
+di = f 1 + s0 φ2 ( ) = Ftot .
+f
+Gκ,C (s0 , e/f )
+= 0,
+1 + s0 φκ2 (e/f )
+
+which implies
+n
+X
+0
+
+si +
+
+n−1
+X
+0
+
+ci +
+
+n
+X
+1
+
+di = s0 φκ0 (e/f ) +
+
+eFtot s0 φκ1 (e/f )
+F s0 φκ (e/f )
++ tot κ2
+= Stot .
+κ
+f (1 + s0 φ2 (e/f ))
+1 + s0 φ2 (e/f )
+
+Therefore, x ∈ Z̃(κ, C).
+For each κ, C, let us define two functions H κ,C , F κ,C : R+ −→ R as:
+H κ,C (u) = φκ0 (u) − Stot φκ2 (u) + Ftot uφκ1 (u) + Ftot φκ2 (u)
+p
+
+
+−H κ,C (u) + H κ,C (u)2 + 4Stot φκ0 (u)φκ2 (u)
+Etot κ
+E
+κ,C
+κ
+κ
+F (u) = uφ0 (u) +
+uφ1 (u) −
+φ2 (u) − tot φκ0 (u).
+κ
+2φ2 (u)
+Ftot
+Ftot
+Lemma 2 For each κ, C, there is a bijection between the set Z̃(κ, C) and the set of solutions of F κ,C (u) = 0.
+6
+
+Proof. We will show that the mapping θ(x) := u = e/f is a bijection.
+First, we show that θ maps Z̃ into the set of solutions of F κ,C (u) = 0. Any x ∈ Z̃(κ, C) is a solution of
+(9), i.e. Gκ,C (s0 , e/f ) = 0. Regarding Gκ,C (s0 , e/f ) as a quadratic polynomial in s0 with Gκ,C (0, e/f ) < 0,
+it has a unique positive root, namely
+p
+−H κ,C (e/f ) + H κ,C (e/f )2 + 4Stot φκ0 (e/f )φκ2 (e/f )
+s0 =
+.
+(13)
+2φκ0 (e/f )φκ2 (e/f )
+Plugging into (8) and multiplying by φκ0 (e/f ), we get F κ,C (e/f ) = 0.
+Next, we show that θ is onto. Pick any solution u of F κ,C (u) = 0. We can construct a solution of
+(4)-(9), i.e. an element of Z̃(κ, C), as follows.
+Let
+s0 =
+
+−H κ,C (u) +
+
+p
+
+H κ,C (u)2 + 4Stot φκ0 (u)φκ2 (u)
+,
+2φκ0 (u)φκ2 (u)
+
+so that Gκ,C (s0 , u) = 0. Substituting (14) into F κ,C (u) = 0 and dividing by φκ0 (u), we get
+
+
+E
+Etot κ
+κ
+s0 uφ1 (u) −
+φ2 (u) = tot − u.
+Ftot
+Ftot
+
+(14)
+
+(15)
+
+If we define
+si+1 = λi usi ,
+Etot
+e=
+1 + s0 φκ1 (u)
+e
+f=
+u
+esi
+ci =
+KMi
+f si+1
+di+1 =
+LM i
+
+(16)
+
+for i = 0, . . . , n − 1, then the vector (s0 , . . . , sn , c0 , . . . , cn−1 , d1 , . . . , dn , e, f ) is an element of Z̃(κ, C) such
+that θ(x) = u.
+Finally, we show that θ is one to one. Suppose that θ(x1 ) = θ(x2 ). The formula (13) shows that s0 is
+the same for x1 and x2 . Equation (7) gives that
+e1 =
+
+Etot
+
+1
+
++ s10 φκ1 (θ(x1 ))
+
+=
+
+Etot
+
+1+
+
+s20 φκ1 (θ(x2 ))
+
+= e2 .
+
+So also f1 = f2 . Now equations (4)-(6) show that x1 = x2 .
+6n−6
+such that the following
+Theorem 1 For each positive numbers Stot , γ, there exist ε0 > 0 and κ ∈ R+
+property holds. Pick any Etot , Ftot such that
+
+Ftot = Etot /γ < ε0 Stot /γ;
+
+(17)
+
+then the system Σ(κ, C) with C = (Etot , Ftot , Stot ) has at least n + 1 (n) positive steady states when n is
+even (odd).
+7
+
+Proof. For each κ, γ, Stot , let us define two functions R+ × R+ −→ R as follows:
+H̃ κ,γ,Stot (ε, u) = H κ,(εStot ,εStot /γ,Stot ) (u)
+S
+S
+= φκ0 (u) − Stot φκ2 (u) + ε tot uφκ1 (u) + ε tot φκ2 (u),
+γ
+γ
+
+(18)
+
+and
+F̃ κ,γ,Stot (ε, u) = F κ,(εStot ,εStot /γ,Stot ) (u)
+=
+
+uφκ0 (u)
+
++
+
+(19)
+
+−H̃ κ,γ,Stot (ε, u) +
+
+q
+
+H̃ κ,γ,Stot (ε, u)2 + 4Stot φκ0 (u)φκ2 (u)
+2φκ2 (u)
+
+(uφκ1 (u) − γφκ2 (u)) − γφκ0 (u).
+
+6n−6
+such that for all
+By Lemma 1 and Lemma 2, it is enough to show that there exist ε0 > 0 and κ ∈ R+
+κ,γ,Stot
+ε ∈ (0, ε0 ), the equation F̃
+(ε, u) = 0 has at least n + 1 (n) positive solutions when n is even (odd).
+(Then, given Stot , γ, Etot , and Ftot satisfying (17), we let ε = Etot /Stot < ε0 , and apply the result.)
+
+A straightforward computation shows that when ε = 0,
+F̃ κ,γ,Stot (0, u) = uφκ0 (u) + Stot (uφκ1 (u) − γφκ2 (u)) − γφκ0 (u)
+
+
+Stot
+n+1
+(1 − γβn−1 ) − γλn−1 un
+= λ0 * * * λn−1 u
++ λ0 * * * λn−2 1 +
+KMn−1
+
+
+Stot
+(1 − γβi−1 ) − γλi−1 ui + * * *
++ * * * + λ0 * * * λi−2 1 +
+KMi−1
+
+
+Stot
++ 1+
+(1 − γβ0 ) − γλ0 u − γ,
+KM0
+
+(20)
+
+where the λi 's and KMi 's are defined as in (3), and βi = kcati /lcati . The polynomial F̃ κ,γ,Stot (0, u)
+is of degree n + 1, so there are at most n + 1 positive roots. Notice that u = 0 is not a root because
+F̃ κ,γ,Stot (0, u) = −γ < 0, which also implies that when n is odd, there can not be n + 1 positive roots.
+Now fix any Stot and γ. We will construct a vector κ such that F̃ κ,γ,Stot (0, u) has n + 1 distinct positive
+roots when n is even.
+Let us pick any n + 1 positive real numbers u1 < * * * < un+1 , such that their product is γ, and assume
+that
+(u − u1 ) * * * (u − un+1 ) = un+1 + an un + * * * + a1 u + a0 ,
+(21)
+6n−6
+such that (20) and (21) are the same. We pick
+where a0 = −γ < 0. Our goal is to find a vector κ ∈ R+
+
+λ0 = * * * = λn−1 = 1.
+For each i = 0, . . . , n − 1, comparing the coefficients of ui+1 in (20) and (21), we have:
+Stot
+(1 + a0 βi ) = ai+1 − a0 − 1.
+KMi
+Let us pick KMi > 0 such that
+
+K Mi
+Stot (ai+1
+
+βi =
+
+− a0 − 1) − 1 < 0, then take
+K Mi
+Stot (ai+1
+
+− a0 − 1) − 1
+a0
+8
+
+>0
+
+(22)
+
+in order to satisfy (22). From the given
+λ0 , . . . , λn−1 , KM0 , . . . , KMn−1 , β0 , . . . , βn−1 ,
+we will find a vector
+κ =(kon0 , . . . , konn−1 , koff0 , . . . , koffn−1 , kcat0 , . . . , kcatn−1 ,
+6n−6
+lon0 , . . . , lonn−1 , loff0 , . . . , loffn−1 , lcat0 , . . . , lcatn−1 ) ∈ R+
+
+such that βi = kcati /lcati , i = 0, . . . , n − 1, and (3) holds. This vector κ will guarantee that F̃ κ,γ,Stot (0, u)
+has n + 1 positive distinct roots. When n is odd, a similar construction will give a vector κ such that
+F̃ κ,γ,Stot (0, u) has n positive roots and one negative root.
+One construction of κ is as follows. For each i = 0, . . . , n − 1, we start by defining:
+LM i =
+
+λi KMi
+,
+βi
+
+consistently with the definitions in (3). Then, we take
+koni = 1, loni = 1,
+and
+koffi = αi KMi , kcati = (1 − αi )KMi , lcati =
+
+1 − αi
+KMi , loffi = LMi − lcati ,
+βi
+
+where αi ∈ (0, 1) is chosen such that
+loffi = LMi −
+
+1 − αi
+KMi > 0.
+βi
+
+This κ satisfies βi = kcati /lcati , i = 0, . . . , n − 1, and (3).
+In order to apply the Implicit Function Theorem, we now view the functions defined by formulas in
+(18) and (19) as defined also for ε ≤ 0, i.e. as functions R × R+ −→ R. It is easy to see that F̃ κ,γ,Stot (ε, u)
+is C 1 on R × R+ because the polynomial under the square root sign in F̃ κ,γ,Stot (ε, u) is never zero. On
+κ,γ,S
+tot (0, u ) 6= 0. By the
+the other hand, since F̃ κ,γ,Stot (0, u) is a polynomial in u with distinct roots, ∂ F̃
+∂u
+
+i
+
+Implicit Function Theorem, for each i = 1, . . . , n + 1, there exist open intervals Ei containing 0 and Ui
+containing ui , and a differentiable function
+αi : Ei → Ui
+such that αi (0) = ui , F̃ κ,γ,Stot (ε, αi (ε)) = 0 for all ε ∈ Ei , and the images αi (Ei )'s are non-overlapping. If
+we take
+n+1
+\
+\
+(0, +∞),
+Ei
+(0, ε0 ) :=
+1
+
+then for any ε ∈ (0, ε0 ), we have {αi (ε)} as n + 1 distinct positive roots of F̃ κ,γ,Stot (ε, u). The case when
+n is odd can be proved similarly.
+
+9
+
+Remark 3 For an arbitrary vector κ, we do not expect the derivative at each positive root to be non zero.
+Here is an example to show that more conditions are needed: with
+n = 2, λ0 = 1, λ1 = 3, γ = 6, β0 = β1 = 1/12, K0 = 1/8, K1 = 1/2, Stot = 5,
+we have that
+
+F̃ κ,γ,Stot (0, u) = 3u3 − 12u2 + 15u − 6 = 3(u − 1)2 (u + 2)
+
+has a double root at u = 1.
+However, the following theorem provides a sufficient condition for
+solution u = ū of F̃ κ,γ,Stot (0, u) = 0.
+
+∂F
+
+κ,γ,S
+
+∂u
+
+tot (0, ū) 6= 0, for any positive
+
+6n−6
+, if
+Theorem 2 For each positive numbers Stot , γ, and vector κ ∈ R+
+
+Stot
+holds for all j = 1, * * * , n − 1, then
+
+∂ F̃
+
+κ,γ,S
+
+∂u
+
+1
+1 − γβj
+≤
+KMj
+n
+
+tot (0, ū) 6= 0.
+
+Proof. Recall that (dropping the u's in φκi , i = 0, 1, 2)
+F̃ κ,γ,Stot (0, u) = uφκ0 + Stot (uφκ1 − γφκ2 ) − γφκ0 .
+So
+∂ F̃ κ,γ,Stot
+(0, u) = φκ0 + Stot (uφκ1 − γφκ2 )′ − (γ − u)(φκ0 )′ .
+∂u
+Since F̃ κ,γ,Stot (0, ū) = 0,
+Stot (ūφκ1 − γφκ2 ) = (γ − ū)φκ0 ,
+that is,
+γ − ū =
+
+Stot (ūφκ1 − γφκ2 )
+.
+φκ0
+
+10
+
+(23)
+
+Therefore,
+∂ F̃ κ,γ,Stot
+S (ūφκ1 − γφκ2 ) κ ′
+(φ0 )
+(0, ū) = φκ0 + Stot (uφκ1 − γφκ2 )′ − tot
+∂u
+φκ0
+
+S
+= φκ0 + tot
+φκ0 (uφκ1 − γφκ2 )′ − (ūφκ1 − γφκ2 )(φκ0 )′
+κ
+φ0
+S
+((1 + λ0 ū + λ0 λ1 ū2 + * * * + λ0 * * * λn−1 ūn )×
+= φκ0 + tot
+φκ0
+
+
+λ0
+λ0 * * * λn−2
+1
+n−1
+(1 − γβ0 ) + 2
+(1 − γβ1 )ū + * * * + n
+(1 − γβn−1 )ū
+KM0
+KM1
+KMn−1
+
+− λ0 + 2λ0 λ1 ū + * * * + nλ0 * * * λn−1 ūn−1 ×
+
+
+λ0
+λ0 * * * λn−2
+1
+2
+n
+(1 − γβ0 )ū +
+(1 − γβ1 )ū + * * * +
+(1 − γβn−1 )ū )
+KM0
+KM1
+KMn−1
+
+
+n
+n−1
+X
+X
+λ
+*
+*
+*
+λ
+S
+0
+j−1
+= φκ0 + tot
+λ0 * * * λi−1 ūi  (j + 1 − i)
+(1 − γβj )ūj 
+φκ0
+KMj
+i=0
+
+j=0
+
+n
+n
+X
+1 X
+i
+λ0 * * * λj−1 ūj
+λ
+*
+*
+*
+λ
+ū
+0
+i−1
+φκ0
+j=0
+i=0
+
+
+n−1
+n
+X
+X
+λ0 * * * λj−1
+(1 − γβj )ūj )
+λ0 * * * λi−1 ūi  (j + 1 − i)
++ Stot
+KMj
+j=0
+i=0
+
+
+
+
+n−1
+n
+X
+1
+−
+γβ
+1 X
+j 
+λ0 * * * λj−1 ūj 1 + Stot (j + 1 − i)
+λ0 * * * λi−1 ūi λ0 * * * λn−1 ūn +
+,
+= κ
+φ
+K
+
+=
+
+0 i=0
+
+j=0
+
+Mj
+
+where λ0 * * * λ−1 is defined to be 1 for the convenience of notation.
+Because of (23),
+Stot (j + 1 − i)
+so we have
+
+∂ F̃
+
+κ,γ,S
+
+∂u
+
+1 − γβj
+≤ 1,
+KMj
+
+tot (0, ū) > 0.
+
+6n−6
+satisfying condition (23), there
+Corollary 4 For each positive numbers Stot , γ, and vector κ ∈ R+
+exists ε0 > 0 such that for any Ftot , Etot satisfying Ftot = Etot /γ < ε0 Stot /γ, the number of positive
+steady states of system Σ(κ, C) is greater or equal to the number of (positive) roots of F̃ κ,γ,Stot (0, u).
+
+Proof. Follows directly from Lemmas 1, 2, the Implicit Function Theorem and Theorem 2.
+Theorem 3 For each κ, C, the system Σ(κ, C) has at most 2n positive steady states.
+Proof. Let us define a polynomial P κ,C : C −→ C as:
+
+2
+
+
+
+
+
+Etot
+Etot κ
+Etot κ 2
+κ
+κ
+κ
+κ
+κ κ Etot
+κ
+κ
+.
+φ0 φ2
+− u +(φ0 − Stot φ2 + Ftot uφ1 + Ftot φ2 )
+−u
+uφ1 −
+φ −Stot uφ1 −
+φ
+Ftot
+Ftot
+Ftot 2
+Ftot 2
+11
+
+We claim that the number of positive steady states of Σ(κ, C) is less or equal to the number of positive
+roots of P κ,C (u). Recall that Z = Z̃ and the map θ is a bijection between the set Z̃ and the set of (positive)
+roots of F κ,C (u). Then it is enough to show that the set of (positive) roots of F κ,C (u) is a subset of the
+set of positive real roots of P κ,C (u).
+In the proof of Lemma 2, we have showed that for any root u > 0 of F κ,C (u), s0 defined as in (14)
+satisfies Gκ,C (s0 , u) = 0 and (15). Multiplying the equation Gκ,C (s0 , u) = 0 by (uφκ1 (u) − Etot /Ftot φκ2 (u))2
+and substituting (15) into it, we get P κ,C (u) = 0, that is, u is a positive root of P κ,C (u).
+Next we will show that the polynomial P κ,C (u) of degree 2n + 2 has at most 2n positive real roots, and
+thus Σ(κ, C) has at most 2n positive steady states.
+It is easy to see that P κ,C (u) is divisible by u; therefore, if we can find one more non positive root, we
+are done. Consider the polynomial P κ,C (u)/u of degree 2n + 1. The coefficient of u2n+1 is
+(λ0 * * * λn−1 )2
+> 0,
+LMn−1
+and the constant term is
+
+Etot
+> 0.
+Ftot KM0
+So the polynomial P κ,C (u)/u has at least one negative root, and so does P κ,C (u).
+Remark 5 This upper bound holds for every κ and C.
+The following is a standard result on continuity of roots; see for instance Lemma A.4.1 in [30]:
+Lemma 6 Let g(z) = z n + a1 z n−1 + * * * + an be a polynomial of degree n and complex coefficients having
+distinct roots
+λ1 , . . . , λq ,
+with multiplicities
+n1 + * * * + nq = n,
+respectively. Given any small enough δ > 0 there exists a ε > 0 so that, if
+h(z) = z n + b1 z n−1 + * * * + bn , |ai − bi | < ε for i = 1, . . . , n,
+then h has precisely ni roots in Bδ (λi ) for each i = 1, . . . , q.
+6n−6
+such that φκ1 (γ) 6= φκ2 (γ), and each Stot > 0, there exists
+Theorem 4 For each γ > 0 and κ ∈ R+
+ε1 > 0 such that for all positive numbers Ftot , Etot satisfying Ftot = Etot /γ < ε1 Stot /γ, the system
+Σ(κ, C) has at most n + 1 positive steady states.
+
+Proof. Let us define a function R+ × C −→ C as follows:
+P̃ κ,γ,Stot (ε, u) = P κ,(εStot ,εStot /γ,Stot ) (u)
+
+
+Stot κ
+Stot κ
+2
+κ κ
+κ
+κ
+uφ1 + ε
+φ (uφκ1 − γφκ2 ) (γ − u)
+= φ0 φ2 (γ − u) + φ0 − Stot φ2 + ε
+γ
+γ 2
+− Stot (uφκ1 − γφκ2 )2 .
+
+12
+
+As shown in the proof of Theorem 3, there is a bijection, given by the map θ, between Z̃(κ, (εStot , εStot /γ, Stot ))
+(denoted as Z̃ for the rest of the proof) and a subset of the real positive roots of P̃ κ,γ,Stot (ε, u). Since
+P̃ κ,γ,Stot (ε, u) is a polynomial of degree 2n + 2, if we can show that there exists ε1 > 0 such that for any
+ε ∈ (0, ε1 ), P̃ κ,γ,Stot (ε, u) has at least n + 1 roots that are not in θ(Z̃), that is, do not have pre-images in
+Z̃, then we are done.
+First of all, any root of P̃ κ,γ,Stot (ε, u) that is not real or positive does not have a pre-image in Z̃ under
+the map θ. Since P̃ κ,γ,Stot (ε, u) is divisible by u, u = 0 is a root of P̃ κ,γ,Stot (ε, u) that is not in θ(Z̃).
+In order to apply Lemma 6, we regard the function P̃ κ,γ,Stot as defined on R × C. At ε = 0:
+P̃ κ,γ,Stot (0, u)/u = [φκ0 φκ2 (γ − u)2 + (φκ0 − Stot φκ2 )(uφκ1 − γφκ2 )(γ − u) − Stot (uφκ1 − γφκ2 )2 ]/u
+= [φκ0 φκ2 (γ − u)2 + φκ0 (uφκ1 − γφκ2 )(γ − u) − Stot φκ2 (uφκ1 − γφκ2 )(γ − u) − Stot (uφκ1 − γφκ2 )2 ]/u
+= [φκ0 (γ − u)u(φκ1 − φκ2 ) + Stot u(uφκ1 − γφκ2 )(φκ2 − φκ1 )]/u
+= (φκ2 − φκ1 )(uφκ0 + Stot (uφκ1 − γφκ2 ) − γφκ0 )
+= (φκ2 − φκ1 )F̃ κ,γ,Stot (0, u)
+Let us denote the distinct roots of P̃ κ,γ,Stot (0, u)/u as
+u1 , . . . , uq ,
+with multiplicities
+n1 + * * * + nq = 2n + 1,
+and the roots of φκ1 − φκ2 as
+u1 , . . . , up , p ≤ q,
+with multiplicities
+m1 + * * * + mp = n, ni ≥ mi , for i = 1, . . . , p.
+For each i = 1, . . . , p, if ui is real, then there are two cases (ui 6= γ as φκ1 (γ) 6= φκ2 (γ)):
+1. ui > γ. We have
+2. ui < γ. We have
+
+ui φκ1 (ui ) − γφκ2 (ui ) > γ(φκ1 (ui ) − φκ2 (ui )) = 0.
+ui φκ1 (ui ) − γφκ2 (ui ) < γ(φκ1 (ui ) − φκ2 (ui )) = 0.
+
+In both cases, ui φκ1 (ui ) − γφκ2 (ui ) and γ − ui have opposite signs, i.e.
+(ui φκ1 (ui ) − γφκ2 (ui ))(γ − ui ) < 0.
+Let us pick δ > 0 small enough such that the following conditions hold:
+1. For all i = 1, . . . , p, if ui is not real, then Bδ (ui ) has no intersection with the real axis.
+2. For all i = 1, . . . , p, if ui is real, then for any real u ∈ Bδ (ui ), the following inequality holds:
+(uφκ1 (u) − γφκ2 (u))(γ − u) < 0.
+
+13
+
+(24)
+
+3. Bδ (uj )
+
+T
+
+Bδ (uk ) = ∅ for all j 6= k = 1, . . . , q.
+
+By Lemma 6, there exists ε1 > 0 such that for all ε ∈ (0, ε1 ), the polynomial P̃ κ,γ,Stot (ε, u)/u has exactly
+nj roots in each Bδ (uj ), j = 1, . . . , q, denoted by ukj (ε), k = 1, . . . , nj .
+We pick one such ε, and we claim
+none of the roots in Bδ (ui ), i = 1, . . . , p has pre-image in Z̃.
+Pp that P
+If so, we are done, since there are 1 ni ≥ p1 mi = n such roots of them, together with the root u = 0,
+there are at least n + 1 roots of P̃ κ,γ,Stot (ε, u) that do not have pre-images in Z̃.
+For each i = 1, . . . , p, there are two cases:
+1. ui is not real. Then condition 1 guarantees that uki (ε) is not real for all k = 1, . . . , ni , and thus is not
+in θ(Z̃).
+2. ui is real. Suppose one of the roots uki (ε) has pre-image in Z̃, i.e. θ(x) = uki (ε) for some x ∈ Z̃ and
+k = 1, . . . , ni . Since x is constructed as in the proof of Lemma 2, the s0 coordinate of x satisfies (15),
+i.e.
+
+s0 uki (ε)φκ1 (uki (ε)) − γφκ2 (uki (ε)) = γ − uki (ε).
+But condition 2 says that uki (ε)φκ1 (uki (ε)) − γφκ2 (uki (ε)) and γ − uki (ε) have opposite signs, so s0 has
+.
+to be negative, which contradicts the fact that x ∈ R3n+3
++
+
+6n−6
+such that φκ1 (γ) 6= φκ2 (γ), and each Etot > 0, there exists ε2 > 0
+Theorem 5 For each γ > 0, κ ∈ R+
+such that for all positive numbers Ftot , Stot satisfying Ftot = Etot /γ > Stot /(ε2 γ), the system Σ(κ, C) has
+at most one positive steady state.
+6n−6
+such that φκ1 (γ) 6= φκ2 (γ), and each Etot > 0, we define a function
+Proof. For each γ > 0, κ ∈ R+
+R+ × C −→ C as follows:
+
+P̄ κ,γ,Etot (ε, u) = P κ,(Etot ,Etot /γ,εEtot ) (u)
+
+
+Etot κ Etot κ
+2 κ κ
+κ
+κ
+= (γ − u) φ0 φ2 + φ0 − εEtot φ2 +
+uφ1 +
+φ2 (γ − u) (uφκ1 − γφκ2 )
+γ
+γ
+− εEtot (uφκ1 − γφκ2 )2 .
+
+By the same argument as in the proof of Theorem 4, it is enough to show that there exists ε2 > 0
+such that for any ε ∈ (0, ε2 ) there is at most one positive root of P̄ κ,γ,Etot (ε, u) that has pre-image in
+Z̃(κ, (Etot , Etot /γ, εEtot )) (denoted as Z̃ for the rest of the proof).
+In order to apply Lemma 6, we now view the function P̄ κ,γ,Etot as defined on R × C. At ε = 0:
+
+
+
+
+Etot κ Etot κ
+κ,γ,Etot
+κ
+κ
+κ κ
+κ
+uφ1 +
+φ2 (uφ1 − γφ2 ) := (γ − u) Qκ,γ,Etot (u).
+P̄
+(0, u) := (γ − u) (γ − u) φ0 φ2 + φ0 +
+γ
+γ
+Let us denote the distinct roots of P̄ κ,γ,Etot (0, u)/u (P̄ κ,γ,Etot (ε, u) is divisible by u) as
+u1 = γ, u2 , . . . , uq ,
+
+14
+
+with multiplicities
+n1 + * * * + nq = 2n + 1,
+and u2 , . . . , uq are the roots of Qκ,γ,Etot (u)/u other than γ.
+Since φκ1 (γ) 6= φκ2 (γ), Qκ,γ,Etot (u)/u is not divisible by u − γ, and thus n1 = 1.
+For each i = 2, . . . , q, we have
+(γ −
+
+ui ) φκ0 (ui )φκ2 (ui )
+
+=−
+
+
+
+φκ0 (ui ) +
+
+
+Etot
+Etot κ
+κ
+ui φ1 (ui ) +
+φ2 (ui ) (ui φκ1 (ui ) − γφκ2 (ui )) .
+γ
+γ
+
+E
+Etot κ
+κ
+κ
+If ui > 0, then φκ0 (ui )φκ2 (ui ) and φκ0 (ui ) + tot
+γ ui φ1 (ui ) + γ φ2 (ui ) are both positive. Since ui φ1 (ui ) −
+κ
+κ
+κ
+γφ2 (ui ) and γ − ui are non zero, ui φ1 (ui ) − γφ2 (ui ) and γ − ui must have opposite signs, that is
+
+(ui φκ1 (ui ) − γφκ2 (ui ))(γ − ui ) < 0.
+Let pick δ > 0 small enough such that the following conditions hold for all i = 2, . . . , q:
+1. If ui is not real, then Bδ (ui ) has no intersection with the real axis.
+2. If ui is real and positive, then for any real u ∈ Bδ (ui ), the following inequality holds:
+(uφκ1 (u) − γφκ2 (u))(γ − u) < 0.
+
+(25)
+
+3. If ui is real and negative, then Bδ (ui ) has no intersection with the imaginary axis.
+T
+4. Bδ (uj ) Bδ (uk ) = ∅ for all i 6= k = 2, . . . , q.
+
+By Lemma 6, there exists ε2 > 0 such that for all ε ∈ (0, ε2 ), the polynomial P̄ κ,γ,Etot (ε, u) has exactly
+nj roots in each Bδ (uj ), j = 1, . . . , q, denoted by ukj (ε), k = 1, . . . , nj .
+We pick one such ε, and if we can show that none of the roots in Bδ (ui ), i = 2, . . . , q has pre-images
+in Z̃, then we are done, since the only roots that may have pre-images in Z̃ are the roots in Bδ (u1 ), and
+there is n1 = 1 root in Bδ (u1 ).
+For each i = 2, . . . , p, there are three cases:
+1. ui is not real. Then condition 1 guarantees that uki (ε) is not real for all k = 1, . . . , ni , and thus is not
+in θ(Z̃).
+2. ui is real and negative. By conditions 1 and 3, uki (ε) is not in θ(Z̃) neither.
+3. ui is real and positive. Suppose one of the roots uki (ε) has pre-image in Z̃, i.e. θ(x) = uki (ε) for some
+x ∈ Z̃ and k = 1, . . . , ni . Since x is constructed as in the proof of Lemma 2, the s0 coordinate of x
+satisfies (15), i.e.
+
+s0 uki (ε)φκ1 (uki (ε)) − γφκ2 (uki (ε)) = γ − uki (ε).
+But condition 2 says that uki (ε)φκ1 (uki (ε)) − γφκ2 (uki (ε)) and γ − uki (ε) have opposite signs, so s0 has
+.
+to be negative, which contradicts the fact that x ∈ R3n+3
++
+
+15
+
+References
+[1] M. Samoilov, S. Plyasunov, and A.P. Arkin. Stochastic amplification and signaling in enzymatic futile
+cycles through noise-induced bistability with oscillations. Proc Natl Acad Sci USA, 102:2310–2315,
+2005.
+[2] S. Donovan, K.M. Shannon, and G. Bollag. GTPase activating proteins: critical regulators of intracellular signaling. Biochim. Biophys Acta, 1602:23–45, 2002.
+[3] J.J. Bijlsma and E.A. Groisman. Making informed decisions: regulatory interactions between twocomponent systems. Trends Microbiol, 11:359–366, 2003.
+[4] A.D. Grossman. Genetic networks controlling the initiation of sporulation and the development of
+genetic competence in bacillus subtilis. Annu Rev Genet., 29:477–508, 1995.
+[5] H. Chen, B.W. Bernstein, and J.R. Bamburg. Regulating actin filament dynamics in vivo. Trends
+Biochem. Sci., 25:19–23, 2000.
+[6] G. Karp. Cell and Molecular Biology. Wiley, 2002.
+[7] L. Stryer. Biochemistry. Freeman, 1995.
+[8] M.L. Sulis and R. Parsons. PTEN: from pathology to biology. Trends Cell Biol., 13:478–483, 2003.
+[9] D.J. Lew and D.J. Burke. The spindle assembly and spindle position checkpoints. Annu Rev Genet.,
+37:251–282, 2003.
+[10] A.R. Asthagiri and D.A. Lauffenburger. A computational study of feedback effects on signal dynamics
+in a mitogen-activated protein kinase (mapk) pathway model. Biotechnol. Prog., 17:227–239, 2001.
+[11] L. Chang and M. Karin. Mammalian MAP kinase signaling cascades. Nature, 410:37–40, 2001.
+[12] C-Y.F. Huang and J.E. Ferrell Jr. Ultrasensitivity in the mitogen-activated protein kinase cascade.
+Proc. Natl. Acad. Sci. USA, 93:10078–10083, 1996.
+[13] C. Widmann, G. Spencer, M.B. Jarpe, and G.L. Johnson. Mitogen-activated protein kinase: Conservation of a three-kinase module from yeast to human. Physiol. Rev., 79:143–180, 1999.
+[14] W.R. Burack and T.W. Sturgill. The activating dual phosphorylation of MAPK by MEK is nonprocessive. Biochemistry, 36:5929–5933, 1997.
+[15] J.E. Ferrell and R.R. Bhatt. Mechanistic studies of the dual phosphorylation of mitogen-activated
+protein kinase. J. Biol. Chem., 272:19008–19016, 1997.
+[16] Y. Zhao and Z.Y. Zhang. The mechanism of dephosphorylation of extracellular signal-regulated kinase
+2 by mitogen-activated protein kinase phosphatase 3. J. Biol. Chem., 276:32382–32391, 2001.
+[17] N.I. Markevich, J.B. Hoek, and B.N. Kholodenko. Signaling switches and bistability arising from
+multisite phosphorylation in protein kinase cascades. J. Cell Biol., 164:353–359, 2004.
+[18] J. Gunawardena. Multisite protein phosphorylation makes a good threshold but can be a poor switch.
+Proc. Natl. Acad. Sci., 102:14617–14622, 2005.
+16
+
+[19] C. Conradi, J. Saez-Rodriguez, E.-D. Gilles, and J. Raisch. Using chemical reaction network theory
+to discard a kinetic mechanism hypothesis. In Proc. FOSBE 2005 (Foundations of Systems Biology
+in Engineering), Santa Barbara, Aug. 2005, pages 325–328. 2005.
+[20] T.S. Gardner, C.R. Cantor, and J.J. Collins. Construction of a genetic toggle switch in Escherichia
+coli. Nature, 403:339–342, 2000.
+[21] D. Angeli, J. E. Ferrell, and E.D. Sontag.
+Detection of multistability, bifurcations,
+and hysteresis in a large class of biological positive-feedback systems.
+Proc Natl Acad
+Sci USA, 101(7):1822–1827, February 2004.
+A revision of Suppl. Fig. 7(b) is here:
+http://www.math.rutgers.edu/(tilde)sontag/FTPDIR/nullclines-f-g-REV.jpg; and typos can be found
+here: http://www.math.rutgers.edu/(tilde)sontag/FTPDIR/angeli-ferrell-sontag-pnas04-errata.txt.
+[22] E.E. Sel'kov. Stabilization of energy charge, generation of oscillation and multiple steady states in
+energy metabolism as a result of purely stoichiometric regulation. Eur. J. Biochem, 59(1):151–157,
+1975.
+[23] W. Sha, J. Moore, K. Chen, A.D. Lassaletta, C.S. Yi, J.J. Tyson, and J.C. Sible. Hysteresis drives
+cell-cycle transitions in Xenopus laevis egg extracts. Proc. Natl. Acad. Sci., 100:975–980, 2003.
+[24] F. Ortega, J. Garcés, F. Mas, B.N. Kholodenko, and M. Cascante. Bistability from double phosphorylation in signal transduction: Kinetic and structural requirements. FEBS J, 273:3915–3926,
+2006.
+[25] L. Wang and E.D. Sontag. Singularly perturbed monotone systems and an application to double
+phosphorylation cycles. (Submitted to IEEE Transactions Autom. Control, Special Issue on Systems
+Biology, January 2007, Preprint version in arXiv math.OC/0701575, 20 Jan 2007), 2007.
+[26] L. Wang and E.D. Sontag. Almost global convergence in singular perturbations of strongly monotone
+systems. In Positive Systems, pages 415–422. Springer-Verlag, Berlin/Heidelberg, 2006. (Lecture Notes
+in Control and Information Sciences Volume 341, Proceedings of the second Multidisciplinary International Symposium on Positive Systems: Theory and Applications (POSTA 06) Grenoble, France).
+[27] D. Angeli, P. de Leenheer, and E.D. Sontag. A Petri net approach to the study of persistence in
+chemical reaction networks. (Submitted to Mathematical Biosciences, also arXiv q-bio.MN/068019v2,
+10 Aug 2006), 2007.
+[28] D. Angeli and E.D. Sontag. Translation-invariant monotone systems, and a global convergence result
+for enzymatic futile cycles. Nonlinear Analysis Series B: Real World Applications, to appear, 2007.
+[29] M Thompson and J. Gunawardena. Multi-bit information storage by multisite phosphorylation. Submitted, 2007.
+[30] E.D. Sontag. Mathematical Control Theory. Deterministic Finite-Dimensional Systems, volume 6 of
+Texts in Applied Mathematics. Springer-Verlag, New York, second edition, 1998.
+
+17
+
+

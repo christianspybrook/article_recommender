@@ -1,0 +1,3196 @@
+arXiv:0704.0025v1 [cond-mat.str-el] 2 Apr 2007
+
+Spectroscopic Properties of Polarons in
+Strongly Correlated Systems by Exact
+Diagrammatic Monte Carlo Method
+A. S. Mishchenko1,2 and N. Nagaosa3
+1
+
+2
+3
+
+CREST, Japan Science and Technology Agency (JST), AIST, 1-1-1, Higashi,
+Tsukuba 305-8562, Japan.
+Russian Research Centre "Kurchatov Institute", 123182 Moscow, Russia.
+Department of Applied Physics, The University of Tokyo, 7-3-1 Hongo,
+Bunkyo-ku, Tokyo 113, Japan.
+
+1 Introduction
+Theoretical study of polarons in the strongly correlated system is like an attempt to view contents of a Pandora box embedded into another, even more
+sinister and obscure, container of riddles, enigmas and mysteries. This desperate situation occurs because solution is not known even for the simplest
+polaron problem, i.e. when a perfectly stable quasiparticle (QP) with momentum as a single quantum number interacts with a well defined bath of
+bosonic elementary excitations. To the contrary, the definition of the strongly
+correlated system implies that QPs might be highly unstable and the very
+notion of QPs, both in electronic and bosonic subsystems, is under question.
+Thus, one faces the problem of an interplay between ill defined objects and
+it is crucial to solve the problem without approximations. Further difficulty,
+pertinent to realistic systems, is an interplay of the momentum and other
+quantum numbers characterizing internal states of a QP.
+The problem of polaron originally emerged as that of an electron coupled
+to phonons (see [1, 2]). In the initial formulation a structureless QP is characterized by the only quantum number, momentum, which changes due to
+interaction of the QP with phonons [3, 4]. Later, depending on what can be
+called "particle" and "environment", and how they interact with each other,
+the polaron concept was related to extreme diversity of physical phenomena.
+There are many other objects which, having nothing to do with phonons, are
+isomorphic to simple polaron [5], as, e.g. an exciton-polaron in the intraband
+scattering approximation [6, 7, 8, 9]. Another example is the problem of a hole
+in the antiferromagnet which is closely related to polaron since hole movement
+is accompanied by the spin flips which, in the spin wave approximation, are
+equivalent to creation and annihilation of magnons [10, 11].
+
+2
+
+A. S. Mishchenko and N. Nagaosa
+
+The concept of polaron was further generalized to include internal degrees
+of freedom which, interacting with environment, change their quantum numbers. Example of a complex QP is the Jahn-Teller polaron, where electronphonon interaction (EPI) changes quantum numbers of degenerate electronic
+states [12, 13, 14]. This generalization is important due to it's relevance to
+the colossal magnetoresistance phenomena in the manganese oxides [15, 16].
+Another example is the pseudo Jahn-Teller polaron, where EPI is inelastic
+and leads to transitions between close in energy electronic levels of a QP
+[17, 18, 19]. Further generalization is a system of several QPs which interact
+both with each other and environment. For example, effective interaction of
+two electrons through exchange by phonons can overcome the Coulomb repulsion and form a bound state, bipolaron [20, 21, 22, 23, 24]. On the other hand,
+coupling of attracting hole and electron to the lattice vibrations [25, 26, 27]
+can create a lot of qualitatively different objects: localized exciton, weakly
+bound pair of localized hole and localized electron, etc. [28, 7]. Scattering by
+impurities introduces additional complexity to the polaron problem because
+interference of impurity potential with lattice distortion, which accompanies
+the polaron movement, can contribute either constructively or destructively
+to the localization of a QP on impurity [29, 30, 7].
+In addition, a bare QP and bosonic bath can not be considered as well
+defined in the correlated systems. Angle Resolved Photoemission Spectra
+(ARPES), revealing the Lehmann Function (LF) of quasiparticle, demonstrate
+broad peaks in many correlated systems: cooper oxide high-temperature superconductors [31, 32, 33], colossal magnetoresistive manganites [34, 35, 36],
+quasi-one-dimensional Peierls conductors [37, 38], and Verwey magnetites [39].
+Besides, phonons are also broadened in many correlated systems, e.g. in hightemperature semiconductors [40] and mixed-valent materials [41, 42]. One of
+possible reasons for these broadenings is the interaction of the QPs with the
+lattice degrees of freedom. However, in many realistic cases other subsystems,
+not explicitly included into the polaron Hamiltonian, are responsible for the
+decay of QP and phonons, e.g., another electronic bands, phonon anharmonicity, interaction with nuclear spins, etc. Then, if this auxiliary broadening is
+known in some approximation, one can formulate an ambitious goal to study
+spectral response when "bare" quasiparticle with known damping interacts
+with "broadened" bosonic excitations.
+No one of traditional numerical methods, to say nothing of analytical ones,
+can give approximation free results for measurable quantities of polaron, such
+as optical conductivity or angle resolved photoemission spectra, for in macroscopic system of arbitrary dimension. Besides, we are not aware of any numerical method which can incorporate in an approximation free way the information on the damping of QP and bosonic bath. Below we describe basics of recently developed Diagrammatic Monte Carlo (DMC) method for numerically
+exact computation of Green functions and correlation functions in imaginary
+time for few polarons in a macroscopic system [43, 44, 45, 46, 47, 48, 49, 50, 51].
+Analytic continuation of imaginary time functions to real frequencies is per-
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+3
+
+formed by a novel approximation free approach of stochastic optimization
+(SO) [45, 50, 51], circumventing difficulties of popular Maximal Enthropy
+method. Finally we focus on results of application of the DMC-SO machinery
+to various problems [52, 53, 54, 55, 56, 57]
+The basic models, related to the polaronic objects in correlated systems,
+which can be solved by DMC-SO methods, are stated in the next Sect. It
+is followed in Sect. 1.2 by description of stumbling blocks encountered by
+analytic methods. Sect. 2 concerns the basics of DMC-SO methods. However,
+those who are not interested in the details of the methods can briefly look
+through the definitions in the introduction for Sect. 2 and turn to Sect. 3
+where LF and optical conductivity of Fröhlich polaron are discussed (see also
+[58]). Results of studies of the self-trapping phenomenon are presented in Sect.
+4 and application of DMC-SO methods to the exciton problem can be found
+in Sect. 5. The chapter is completed by Sect. 6 devoted to studies of ARPES
+of high temperature superconductors.
+1.1 Formulation of a General Model with Interacting Polarons
+In general terms, the simplest problem of a complex polaronic object, where
+center-of-mass motion does not separate from the rest of degrees of freedom,
+is introduced as system of two QPs
+X
+X
+Ĥ0par =
+εa (k)a†k ak +
+εh (k)hk h†k
+(1)
+k
+
+k
+
+(ak and hk are annihilation operators, and εa (k) and εh (k) are dispersions of
+QPs), which interact with each other
+X
+Ĥa-h = −N −1
+U(p, k, k′ )a†p+k h†p−k hp−k′ ap+k′ .
+(2)
+pkk′
+
+(N is the number of lattice sites) through the instantaneous Coulomb potential
+and the scattering by bosons
+Ĥpar-bos = i
+
+Q P
+P
+
+(b†q,κ − b−q,κ )
+
+κ=1 k,q
+
+i
+h
+γaa,κ (k, q)a†k−q ak + γhh,κ (k, q)h†k−q hk + γah,κ (k, q)h†k−q ak + h.c. (3)
+
+(γ[aa,ah,hh],κ are interaction constants) where quanta of Q different branches
+of bosonic excitations are created or annihilated, which are described by
+Ĥbos =
+
+Q X
+X
+
+ωq,κ b†q,κ bq,κ .
+
+(4)
+
+κ=1 q
+
+In general, each QP can be a composite one with internal degree of freedom
+represented by T different states
+
+4
+
+A. S. Mishchenko and N. Nagaosa
+
+Ĥ0PJT =
+
+T
+XX
+k
+
+ǫi (k)a†i,k ai,k ,
+
+(5)
+
+i=1
+
+which quantum numbers can be also changed due to nondiagonal part of
+particle-boson interaction
+Ĥpar-bos = i
+
+Q X X
+T
+X
+κ
+
+k,q i,j=1
+
+γij,κ (k, q)(b†q,κ − b−q,κ)a†i,k−q aj,k + h.c.
+
+(6)
+
+Complicated model (1)-(6) is still too far from the cases encountered in
+strongly correlated systems. Due to coupling of QPs (1) and (5) and bosonic
+fields (4) to additional degrees of freedom, these excitations are not well defined from the onset. Namely, the dispersion relation of the QP spectrum ǫ(k)
+in realistic system is ill-defined. One can speak of a Lehmann Function (LF)
+[59, 60, 61] of a QP
+X
+Lk (ω) =
+δ(ω − Eν (k)) |hν|a†k |vaci|2
+(7)
+ν
+
+R +∞
+,which is normalized to unity 0 dωLk (ω) = 1 and can be interpreted as
+a probability that a QP has momentum k and energy ω. (Here {|νi} is a
+complete set of eigenstates of Hamiltonian Ĥ in a sector of given momentum
+k: H |ν(k)i = Eν (k) |ν(k)i.) Only for noninteracting system the LF reduces
+to delta function LNONINT
+(ω) = δ(ω − ǫ(k)) and, thus, sets up dispersion
+k
+relation ω = ǫ(k).
+Specific cases of model (1)-(6) describe enormous variety of physical problems. Hamiltonians (1) and (2), in case of attractive potential U(p, k, k′ ) > 0,
+describe an exciton with static screening [62, 63]. Besides, expressions (1)-(4)
+describe bipolaron for repulsive interaction [20, 21, 22, 23, 24] U(p, k, k′ ) < 0
+and exciton-polaron otherwise [25, 26, 27]. The simplest model for excitonphonon interaction, when only two (T = 2) lowest states of relative electronhole motion are relevant (e.g. in one-dimensional charge-transfer exciton
+[64, 65, 66]), is defined by Hamiltonians (4)-(6)). The same relations (4)-(6)
+describe the problems of Jahn-Teller [all ǫi in Hamiltonian (5) are the same]
+and pseudo Jahn-Teller polaron. The problem of a hole in an antiferromagnet
+in spin-wave approximation is expressed in terms of Hamiltonians (4)-(6) with
+Q = 1 and T = 1. When hole also interacts with phonons, one has to take into
+account one more bosonic branch and set Q = 2 in (4) and (6). Finally, the
+simplest nontrivial problem of a polaron, i.e. of a structureless QP interacting
+with one phonon branch, is described by noninteracting Hamiltonians of QP
+Ĥpar and phonons Ĥph
+X
+X
+Ĥ0 =
+ǫ(k)a†k ak +
+ωq b†q bq ,
+(8)
+k
+
+and interaction term
+
+q
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+Ĥint =
+
+X
+k,q
+
+V (k, q)(b†q − b−q )a†k−q ak + h.c. .
+
+5
+
+(9)
+
+The simplest polaron problem, in turn, can be subdivided into continuous and
+lattice polaron models.
+1.2 Limitations of Analytic Methods in Problem of Polarons
+Analytic solution for the problem of exciton in a rigid lattice is available
+only for small radius Frenkel regime [67] and large radius Wannier regime
+[68]. However, even limits of validity for these approximations are not known.
+Random phase approximation approaches [62, 63], are capable of obtaining
+some qualitative conclusions for intermediate radius regime though its' quantitative results are not reliable due to uncontrolled errors. The situation is
+similar with the problem of structureless polaron, where analytic solutions
+are known only in the weak and strong coupling regimes. Besides, reliable
+results for these regimes are available only for ground state properties.
+Although several novel methods, capable of obtaining properties of excited
+states, were developed recently, variational coherent-states expansion [69] and
+free propagator momentum average summation [70] as a few examples, all of
+them, to provide reliable data in a specific regime, need either comparison
+with exact sum rules [71, 72] or with exact numerical results.
+Application of variational methods to study of excitations is a tricky issue since, strictly speaking, they are valid only for the ground state. As an
+example for the importance of sum rules in variational treatment, we refer
+to the problem of the optical conductivity of the Fröchlich polaron. Possibility of existence of Relaxed Excited State (RES), which is a metastable state
+where lattice deformation has adjusted to the electronic excitation rendering
+stability and narrow linewidth of the spectroscopic response, was briefly mentioned by S. I. Pekar in early 50's. Then, conception of RES was rigorously
+formulated by J. T. Devreese with coworkers and has been a subject of extensive investigations for years [5, 73, 74, 75, 76, 77, 48, 57]. Calculations of
+impedance [75] in the framework of technique [78] supported the existence of
+a narrow stable peak in the optical conductivity. However, even the authors
+of [75] were skeptical about the fact that the width of RES in the strong
+coupling regime appeared to be more narrow than the phonon frequency, i.e.
+inverse time which is, according to the Heisenberg uncertainty principle, is
+required for the lattice readaptation. In consequent paper [77] they realized
+the importance of many-phonon processes and studied two-phonon contribution to optical conductivity. Importance of many phonon processes was
+confirmed when variational results [75] were compared with exact DMC simulations [48]. Variational result well reproduced the position of the peak in
+exact data though failed in description of the peak width in the strong coupling regime [48]. Finally, when approach [75] was modified and several sum
+rules were accurately introduced into variational model [57], both position
+
+6
+
+A. S. Mishchenko and N. Nagaosa
+
+and width of the peak were quantitatively reproduced. Studies [57] (see Sect.
+3.1), do not address rather philosophical question whether RES exists or not,
+though inevitably prove that, in contrast to the foregoing beliefs, there in no
+stable excited state of the Fröhlich polaron in the strong coupling regime.
+Note that sometimes excited states can not be handled by analytic methods
+even for weak couplings: perturbation theory expression for LF of the Fröhlich
+polaron model diverges at the phonon energy ωph [See (34) in Sect. 3.1.] and
+more elaborate treatment is necessary.
+Difficulties of semianalytic methods enhance in the intermediate coupling
+regime where results are sometimes wrong even for ground state properties.
+For example, the variatioanl approach [79], which has been considered as an
+intermediate coupling theory, appeared to be valid only in the weak coupling
+limit [45]. Special interest to the methods, giving reliable information on excited states, is triggered by the self-trapping phenomenon which occurs just
+in the intermediate coupling regime. This phenomenon is a dramatic transformation of QP properties when system parameters are slightly changed
+[3, 7, 9, 80]. In the intermediate coupling regime "trapped" QP state with
+strong lattice deformation around it and "free" state with weakly perturbed
+lattice may hybridize and resonate because of close energies at some critical
+value of electron-lattice interaction γc . It is clear that, to study self-trapping,
+one has to apply a method giving reliable information on excited states in the
+intermediate coupling regime.
+
+2 Diagrammatic Monte Carlo and Stochastic
+Optimization Methods
+In this section we introduce definitions of exciton-polaron properties which
+can be evaluated by DMC and SO methods. An idea of DMC approach for
+numerically exact calculation of Green functions (GFs) in imaginary times
+is presented in Sect. 2.1, and a short description of SO method, which is
+capable of making unbiased analytic continuation from imaginary times to
+real frequencies, is given in Sect. 2.2. Using combination of DMC and SO,
+one can often circumvent difficulties of analytic and traditional numerical
+methods. Therefore, a brief comparative analysis of advantages and drawbacks
+of DMC-SO machinery is given in Sect. 2.3.
+To obtain information on QPs it is necessary to calculate Matsubara GF
+in imaginary time representation and make analytic continuation to the real
+frequencies [60]. For the two-particle problem (1)-(4) the relevant quantity is
+the two-particle GF [46, 47]
+′
+
+†
+†
+′
+′
+Gpp
+k (τ ) = hvac | ak+p (τ )hk−p (τ )hk−p ak+p | vaci .
+
+(10)
+
+(Here hk−p (τ ) = eĤτ hk−p e−Ĥτ , τ > 0.) In the case of exciton-polaron, vacuum state | vaci is the state with filled valence and empty conduction bands.
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+7
+
+For the bipolaron problem it is a system without particles. In the simpler case
+of a QP with two-level internal structure described by (4)-(6) the relevant
+quantity is the one-particle matrix GF [52, 47]
+Gk,ij (τ ) = hvac | ai,k (τ )a†j,k | vaci, i, j = 1, 2.
+
+(11)
+
+For a structureless polaron the matrix (11) reduces to one-particle scalar GF
+Gk (τ ) = hvac | ak (τ )a†k | vaci .
+
+(12)
+
+Information on the response to an external weak perturbation (e.g. optical
+absorption) is contained in the current-current correlation function hJβ (τ )Jδ i
+(β/δ are Cartesian indexes).
+Lehmann spectral representation of Gk (τ ) [60, 61] at zero temperature
+Z ∞
+Gk (τ ) =
+dω Lk (ω) e−ωτ ,
+(13)
+0
+
+with the Lehmann function (LF) Lk (ω) given in (7), reveals information on
+the ground and excited states. Here {|νi} is a complete set of eigenstates of
+Hamiltonian Ĥ in a sector of given momentum k: H |ν(k)i = Eν (k) |ν(k)i.
+The LF Lk (ω) has poles (sharp peaks) on the energies of stable (metastable)
+states of particle. For example, if there is a stable state at energy E(k), the LF
+reads Lk (ω) = Z (k) δ(ω − E(k)) + . . ., and the state with the lowest energy
+Eg.s. (k) in a sector of a given momentum k is highlighted by asymptotic
+behavior of GF
+ −1 
+) → Z (k) exp[−Eg.s. (k)τ ] ,
+(14)
+Gk (τ ≫ max ωq,κ
+where Z (k) -factor is the weight of the state. Analyzing the asymptotic behavior
+of similar n-phonon GFs [45, 52]
+Gk (n, τ ; q1 , . . . , qn ) =
+Pn
+hvac| bqn (τ ) * * * bq1 (τ ) ap (τ )a†p b†q1 * * * b†qn |vaci , p = k − j=1 qj .
+
+(15)
+
+one obtains detailed information about lowest state. For example, important
+characteristics of the lowest state wave function
+Ψg.s. (k) =
+
+T X
+∞
+X
+X
+
+i=1 n=0 q1 ...qn
+
+θi (k; q1 , ..., qn )c†i,k−q1 ...−qn b†q1 ...b†qn | vaci
+
+(16)
+
+are partial n-phonon contribution
+Z (k) (n) ≡
+
+T
+X
+X
+
+which is normalized to unity
+phonons
+
+i=1 q1 ...qn
+
+P∞
+
+n=0
+
+| θi (k; q1 , ..., qn ) |2
+
+(17)
+
+Z (k) (n) ≡ 1, and the average number of
+
+8
+
+A. S. Mishchenko and N. Nagaosa
+
+hN i ≡ hΨg.s. (k) |
+
+X
+q
+
+b†q bq
+
+| Ψg.s. (k)i =
+
+∞
+X
+
+nZ (k) (n)
+
+(18)
+
+n=1
+
+in polaronic cloud. Another example is the wave function of relative electronhole motion of exciton in the lowest state in the sector of given momentum
+X
+Ψg.s. (k) =
+ξk p (g.s.)a†k+p h†k-p | vaci .
+(19)
+p
+
+The amplitudes ξk p (g.s.) of this wave function can be obtained [46] from
+asymptotic behavior of the following GF (10)
+′
+
+Gkp=p (τ → ∞) =| ξk p (g.s.) |2 e−Eg.s. (k)τ .
+
+(20)
+
+Information on the excited states is obtained by the analytic continuation
+of imaginary time GF to real frequencies which requires to solve the Fredholm
+equation Gk (τ ) = F̂ [Lk (ω)] (13)
+Lk (ω) = F̂ω−1 [Gk (τ )] .
+
+(21)
+
+The equation (13) is a rather general relation between imaginary time GF/correlator and spectral properties of the system. For example, the absorption
+coefficient of light by excitons I(ω) is obtained as solution of the same equation
+[46]
+
+
+X pp′
+I(ω) = F̂ω−1 
+Gk=0 (τ ) .
+(22)
+pp′
+
+Besides, the real part of the optical conductivity σβδ (ω) is expressed [48] in
+terms of current-current correlation function hJβ (τ )Jδ i by relation
+σβδ (ω) = π F̂ω−1 [hJβ (τ )Jδ i] /ω .
+
+(23)
+
+2.1 Diagrammatic Monte Carlo Method
+DMC Method is an algorithm which calculates GF (10)-(12) without any
+systematic errors. This algorithm is described below for the simplest case of
+structureless polaron [45], and generalizations to more complex cases can be
+found in consequent references4 . DMC is based on the Feynman expansion of
+the Matsubara GF in imaginary time in the interaction representation
+4
+
+Generalization of described below technique to the case of exciton (1-2) is given
+in [46] and its modification for pseudo-Jahn-Teller polaron (4-6) is developed in
+[52, 47]. Method for evaluation of current-current correlation function can be
+found in [48] and a case of a polaron interacting with two kinds of bosonic fields
+is considered in [49].
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+
+ Z
+
+Gk (τ ) = vac Tτ ak (τ )a†k (0) exp −
+
+∞
+
+0
+
+Ĥint (τ ′ )dτ ′
+
+
+
+vac
+
+
+
+9
+
+; τ >0.
+
+con
+
+(24)
+Here Tτ is the imaginary time ordering operator, |vaci is a vacuum state without particle and phonons, Ĥint is the interaction Hamiltonian in (9). Symbol of
+exponent denotes Taylor expansion which results in multiple integration over
+internal variables {τ1′ , τ2′ , . . .}. Operators are in the interaction representation
+Â(τ ) = exp[τ (Ĥpar + Ĥph )]Â exp[−τ (Ĥpar + Ĥph )]. Index "con" means that
+expansion contains only connected terms where no one integral over internal
+time variables {τ1′ , τ2′ , . . .} can be factorized.
+Vick theorem expresses matrix element of time-ordered operators as a
+sum of terms, each is a factor of matrix elements of pairs of operators, and
+expansion (24) becomes an infinite series of integrals with an ever increasing
+number of integration variables
+Gk (τ ) =
+
+∞
+X
+
+XZ
+
+m=0,2,4... ξm
+
+(ξm )
+dx′1 * * * dx′m Dm
+(τ ; {x′1 , . . . , x′m }) .
+
+(25)
+
+Here index ξm stands for different Feynman diagrams (FDs) of the same
+(0)
+order m. Term with m = 0 is the GF of the noninteracting QP Gk (τ ).
+(ξ )
+Function Dmm (τ ; {x′1 , . . . , x′m }) of any order m can be expressed as a factor of GFs of noninteracting quasiparticle, GFs of phonons, and interaction
+vortexes V (k, q). For the simplest case of Hamiltonian system expressions
+(0)
+for GFs of QP Gk (τ2 − τ1 ) = exp [−ǫ(k)(τ2 − τ1 )] (τ2 > τ1 ) and phonons
+(0)
+Dq (τ2 − τ1 ) = exp [−ωq (τ2 − τ1 )] (τ2 > τ1 ) are well known.
+An important feature of the DMC method, which is distinct from the
+row of other exact numerical approaches, is the explicit possibility to include
+renormalized GFs into exact expansion without any change of the algorithm.
+For example, if a damping of QP, caused by some interactions not included
+in the Hamiltonian, is known, i.e. retarded self-energy of QP Σret (k, ω) is
+available, renormalized GF
+Z ∞
+ImΣret (k, ω)
+e(0) (τ ) = 1
+(26)
+G
+dωe−ωτ
+k
+π −∞
+[ω − ǫ(k) − ReΣret (k, ω)]2 + [ImΣret (k, ω]2
+(0)
+
+can be introduced instead of bare GF Gk (τ ). Explicit rules for evaluation of
+(ξ )
+Dmm do not depend on the order and topology of FD. GFs of noninteracting
+(0)
+e(0) (τ2 −τ1 )) with corresponding times and momenta are
+QPs Gk (τ2 −τ1 ) (or G
+k
+(0)
+ascribed to horizontal lines and noninteracting GFs of phonon Dq (τ2 − τ1 )
+(multiplied by the factor of corresponding vortexes V (k′ , q)V ∗ (k′′ , q)) are
+(ξ )
+attributed to phonon propagator arch (see Fig. 1a). Then, Dmm is the factor
+of all GSs. For example, expression for the weight of the second order term
+(Fig. 1b) is the following
+
+10
+
+A. S. Mishchenko and N. Nagaosa
+
+2
+
+D2 (τ ; {τ2′ , τ1′ , q}) =
+
+(0)
+
+(0)
+
+(0)
+
+(0)
+
+|V (k, q)| Dq (τ2′ − τ1′ )Gk (τ1′ )Gk−q (τ2′ − τ1′ )Gk (τ − τ2′ ) .
+
+(a)
+
+(b)
+k
+0 τ 1'
+
+(c)
+
+q
+k-q
+
+k
+
+τ 2' τ
+
+k
+
+τ 1' τ 3'
+
+(27)
+
+q
+q'
+k-q-q
+' k-q k
+
+τ 4'
+
+τ 2'
+
+Fig. 1. (a) Typical FD contributing into expansion (25). (b) FD of the second
+order and (c) forth order.
+
+The DMC process is a numerical procedure which, basing on the Metropolis principle [81, 82], samples different FDs in the parameter space (τ, m, ξm , {x′m })
+and collects statistics of external variable τ in a way that the result of this
+statistics converges to exact GF Gk (τ ). Although sampling of the internal
+parameters of one term in (25) and switch between different orders is performed within the the framework of one and the same numerical process,
+it is instructive to start with the procedure of evaluation of a specific term
+(ξ )
+Dmm (τ ; {x′1 , . . . , x′m }).
+(old)
+(new)
+Starting from a set {τ ; {x′1 , . . . , x′m }}, an update xl
+→ xl
+of an
+arbitrary chosen parameter is suggested. This update is accepted or rejected
+according to Metropolis principle. After many steps, altering all variables,
+statistics of external variable converges to exact dependence of the term on
+(new)
+τ . Suggestion for new value of parameter xl
+= Ŝ −1 (R) is generated by
+random number R ∈ [0, 1] with a normalized distribution function W (xl )
+(min)
+(max)
+in a range xl
+< xl < xl
+. There are only two restrictions for this
+(new)
+otherwise arbitrary function. First, new parameters xl
+must not violate
+FD topology, i.e., for example, internal time τ1′ in Fig. 1c must be in the range
+[x(min) = 0, x(max) = τ3′ ]. Second, the distribution must be nonzero for the
+whole, allowed by FD topology, domain. This ergodicity property is crucial
+since it is necessary to sample the whole domain for convergence to exact
+(old)
+(new)
+answer. At each step, update xl
+→ xl
+is accepted with probability
+Pacc = M (if M < 1) and always otherwise. The ratio M has the following
+form
+(ξ )
+(new)
+(new)
+Dmm (τ ; {x′1 , . . . , xl
+, . . . , x′m })/W (xl
+)
+M=
+.
+(28)
+(ξm )
+(old)
+(old)
+′
+′
+Dm (τ ; {x1 , . . . , xl , . . . , xm })/W (xl )
+
+−1
+(max)
+(max)
+, the probability
+For uniform distribution W = const = xl
+− xl
+of any combination of parameters is proportional to the weight function D.
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+11
+
+However, for better convergence the distribution W (xnew
+) must be as close as
+l
+(new)
+(ξm )
+possible to the actual distribution given by function Dm ({. . . , xl
+, . . . , }).
+For sampling over FDs of all orders and topologies it is enough to introduce
+(ξ )
+two complimentary updates. Update A transforms FD Dmm (τ ; {x′1 , . . . , x′m })
+(ξm+2 )
+′
+′
+′ ′
+′
+into higher order FD Dm+2 (τ ; {x1 , . . . , xm ; q , τ3 , τ4 }) with extra phonon
+arch, connecting some time points τ3′ and τ4′ by phonon propagator with mo(ξm+2 )
+(ξ )
+mentum q′ (Fig. 1c). Note that the ratio of weights Dm+2
+/Dmm is not
+dimensionless. Dimensionless Metropolis ratio
+(ξ
+
+M=
+
+)
+
+m+2
+(τ ; {x′1 , . . . , x′m ; q′ , τ ′ , τ ′′ })
+pA Dm+2
+.
+(ξm )
+pB Dm
+(τ ; {x′1 , . . . , x′m })W (q′ , τ ′ , τ ′′ )
+
+(29)
+
+contains normalized probability function W (q′ , τ ′ , τ ′′ ), which is used for generating of new parameters5. Complementary update B, removing the phonon
+propagator, uses ratio M −1 [45].
+Note that all updates are local, i.e. do not depend on the structure of the
+whole FD. Neither rules nor CPU time, needed for update, depends on the
+FD order. DMC method does not imply any explicit truncation of FDs order
+due to finite size of computer memory. Ever for strong coupling, where typical
+number of phonon propagators Nph , contributing to result, is large, influence
+of finite size of memory is not essential. Really, according to Central Limit
+Theorem, number of phonon propagators
+p obeys Gauss distribution centered
+at N̄ph with half width of the order of N̄ph [83]. Hence, if a memory for at
+least 2N̄ph propagators is reserved, diagram order hardly surpasses this limit.
+2.2 Stochastic Optimization Method
+The problem of inverting of integral equation (13) is an ill posed problem.
+Due to incomplete noisy information about GF Gk (τ ), which is known with
+statistic errors on a finite number of imaginary times in a finite range [0, τmax ],
+there is infinite number of approximate solutions which reproduce GF within
+some range of deviations and the problem is to chose "the best one". Another
+problem, which is a stumbling block for decades, is the saw tooth noise instability. It occurs when solution is obtained by a naive method, e.g. by using
+least-squares approach for minimizing deviation measure
+Z τmax
+Gk (τ ) − G̃k (τ ) G−1
+(30)
+D[L̃k (ω)] =
+k (τ )dτ .
+0
+
+Here G̃k (τ ) is obtained
+h from
+i approximate LF L̃k (ω) by applying of integral
+operator G̃k (τ ) = F L̃k (ω) in (13). Saw tooth instability corrupts LF in the
+
+ranges where actual LF is smooth. Fast fluctuations of the solution L̃k (ω) often
+5
+
+The factor pA /pB depends on the probability to address add/remove processes.
+
+12
+
+A. S. Mishchenko and N. Nagaosa
+
+have much larger amplitude than the value of actual LF Lk (ω). Standard tools
+for saw tooth noise suppression are based on the early 60-es idea of FillipsTikhonov regularization method [84, 85, 86, 87]. A nonlinear functional, which
+suppresses large derivatives of approximate solution L̃k (ω), is added to the
+linear deviation measure (30). Most popular variant of regularization methods
+is the Maximal Entropy Method [61].
+However, typical LF of a QP in a boson field consists of δ-functional peaks
+and smooth incoherent continuum with a sharp border [45, 54]. Hence, suppression of high derivatives, as a general strategy of the regularization method,
+fails. Moreover, any specific implementation of the regularization method uses
+predefined mesh in the ω space, which could be absolutely unacceptable for
+the case of sharp peaks. If the actual location of a sharp peak is between
+predefined discrete points, the rest of spectral density can be distorted beyond recognition. Finally, regularization Maximal Entropy approach requires
+assumption of Gauss distribution of statistic errors in Gk (τ ), which might be
+invalid in some cases [61].
+Recently, a Stochastic Optimization (SO) method, which circumvents
+abovementioned difficulties, was developed [45]. The idea of the SO method
+is to generate a large enough number M of statistically independent nonreg(s)
+ularized solutions {L̃k (ω)}, s = 1, ..., M , which deviation measures D(s) are
+smaller than some upper limit Du , depending of the statistic noise of the GF
+Gk (τ ). Then, using linearity of expressions (13), (30), the final solution is
+(s)
+found as the average of particular solutions {L̃k (ω)}
+Lk (ω) = M
+
+−1
+
+M
+X
+
+(s)
+
+L̃k (ω) .
+
+(31)
+
+s=1
+
+(s)
+
+Particular solution L̃k (ω) is parameterized in terms of sum
+(s)
+
+L̃k (ω) =
+
+K
+X
+t=1
+
+χ{Pt } (ω)
+
+(32)
+
+of rectangles {Pt } = {ht , wt , ct } with height ht > 0, width wt > 0, and center
+ct . Configuration
+C = {{Pt }, t = 1, ..., K} ,
+(33)
+PK
+which satisfies normalization condition
+t=1 ht wt = 1, defines function
+G̃k (τ ). The procedure of generating particular solution starts from stochastic
+choice of initial configuration Csinit . Then, deviation measure is optimized by
+a randomly chosen consequence of updates until deviation is less than Du . In
+addition to updates, which do not change number of terms in the sum (32),
+there are updates which increase or decrease number K. Hence, since the
+number of elements K is not fixed, any spectral function can be reproduced
+with desired accuracy.
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+13
+
+(s)
+
+Although each particular solution L̃k (ω) suffers from saw tooth noise at
+the area of smooth LF, statistical independence of each solution leads to self
+averaging of this noise in the sum (32). Note that suppression of noise happens
+without suppression of high derivatives and, hence, sharp peaks and edges
+are not smeared out in contrast to regularization approaches. Therefore, saw
+tooth noise instability is defeated without corruption of sharp peaks and edges.
+Moreover, continuous parameterization (32) does not need predefined mesh in
+ω-space. Besides, since the Hilbert space of solution is sampled directly, any
+assumption about distribution of statistical errors is not necessary.
+SO method was successfully applied to restore LF of Fröhlich polaron
+[45], Rashba-Pekar exciton-polaron [54], hole-polaron in t-J-model [53, 49],
+and many-particle spin system [88]. Calculation of the optical conductivity of
+polaron by SO method can be found in [48]. SO method appeared to be helpful
+in cases when GF's asymptotic limit, giving information about ground state,
+can not be reached. For example, sign fluctuations of the terms in expansion
+(25) for a hole in the t-J-model lead to poor statistics at large times [53],
+though, SO method is capable of recovering energy and Z-factor even from
+GF known only at small imaginary times [53].
+2.3 Advantages and Drawbacks of DMC-SO Machinery
+Among numerical methods, capable of obtaining quantitative results in the
+problem of exciton (1) and (2), one can list time-dependent density functional theory [89], Hanke-Sham technique of correcting particle-hole excitation energy [90, 91], and approaches directly solving Bethe-Salpeter equation
+[92, 93, 94]. The latter ones provide rather accurate information on the twoparticle GF. However, usage of finite mesh in direct/reciprocal space, which
+is avoided in DMC method, leads to its' failure in Wannier regime [93].
+In contrast to DMC method, none of the traditional numeric methods
+can give reliable results for measurable properties of excited states of polaron
+at arbitrary range of electron-phonon interaction for the macroscopic system
+in the thermodynamic limit. Exact diagonalization method [95, 96, 97, 98]
+can study excited states though only on rather small finite size systems and
+results of this method are not even justified in the variational sense in the
+thermodynamic limit [99]. There is a batch of rather effective variational "exact translation" methods [99, 100, 101, 102, 103] where basis is chosen in
+the momentum space and, hence, the variational principle is applied in the
+thermodynamic limit. Although these methods can reveal few discrete excited
+states, its fail for long-range interaction and for dispersive, especially acoustic
+phonons due to catastrophic growth of variational basis. A non perturbative
+theory, which is able to give information about spectral properties in the thermodynamic limit at least for one electron, is Dynamical Mean Field Theory
+[104, 105, 106, 107]. However it gives an exact solution only in the case of
+infinite dimension which does not correspond to a realistic system and can be
+considered only as a guide for extrapolation to finite dimensions [108].
+
+14
+
+A. S. Mishchenko and N. Nagaosa
+
+Recently developed cluster perturbation theory, where exact diagonalization of a cluster is further improved by taking into account inter-cluster interaction [109, 110, 111, 112, 113], is applicable for study of the excited states,
+but limited to one-dimensional lattices or two-dimensional systems with shortrange interaction. Traditional density-matrix renormalization group method
+[114, 115, 116, 117, 118] is very effective though mostly limited to onedimensional systems and ladders. Finally, recently developed path integral
+quantum Monte Carlo algorithm [119, 120, 121, 122] is valid for any dimension and properly takes into account quasi long-range interactions [123]. Path
+integral method is capable of obtaining the density of states [119, 120] and
+isotope exponents [121, 124]. However calculations of measurable characteristics of excited states, such as ARPES or optical conductivity, by this method
+were never reported.
+In conclusion, none of methods, except DMC-SO combination, can obtain
+at the moment approximation-free results for measurable physical quantities
+for a few QPs interacting with a macroscopic bosonic bath in the thermodynamic limit. Indeed, there are limitations of the DMC and SO methods. DMC
+method does not work in many-fermion systems due to sign problem and SO
+method fails at high temperatures, comparable to energies of dominant spectral peaks, because even very small statistical noise of GFs turns Fredholm
+equation (13) into essentially "ill defined" problem [84].
+
+3 Spectral Properties of the Fröhlich Polaron
+Before development of DMC-SO methods, the information on the excited
+states of polaron models, especially the Fröhlich one, was very limited. Knowledge of LF was based on results of infinite-dimensions approximation [125],
+exact diagonalization [126, 96, 97, 97], or strong coupling expansion [127]. No
+one of the above techniques was capable of obtaining the LF of polaron without approximations, especially for long-range interaction where difficulties of
+traditional numerical methods dramatically increase. In a similar way, optical
+conductivity (OC) of Fröhlich model was known only in strong coupling expansion approximation [128], within the framework of the perturbation theory
+[129], or was based on the variational Feynman path integral technique [75].
+In this sect. we consider exact DMC-SO results on LF [45] and OC [48, 57] of
+Fröhlich polaron model.
+3.1 Lehmann Function of the Fröhlich Polaron
+The perturbation theory expression for the high-energy part (ω > 0) of the
+LF for arbitrary interaction potential V (| q |) reads [45] (frequency of the
+optical phonon ωph is set to unity)
+√
+p
+ω−1
+1
+| V ( 2(ω − 1)) |2 θ(ω − 1) .
+(34)
+Lk=0 (ω > 0) = √
+2
+2
+ω
+2π
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+15
+
+Low-energy part of the LF for the short-range interaction V (| q |) =
+0.06
+0.006
+0.04
+
+L
+
+L
+
+(b)
+
+0.004
+
+(a)
+
+0.02
+
+0.002
+
+0.00
+0
+
+/
+
+2
+
+0.000
+4
+
+ph
+
+6
+
+0
+
+2
+
+0.8
+
+0.5
+
+1.0
+
+/
+
+4
+
+6
+
+ph
+
+0.8
+
+0.8
+
+0.6
+
+0.4
+
+(d)
+
+L
+
+(c)
+
+0.6
+
+L
+
+0.3
+
+0.4
+
+L
+
+L
+
+0.6
+
+0.4
+
+(f)
+
+0.2
+0.0
+
+0.2
+
+0.4
+
+1.0
+
+0.2
+0.1
+
+0.0
+2
+
+/
+
+4
+
+ph
+
+6
+
+2
+
+/
+
+4
+
+ph
+
+6
+
+/
+
+ph
+
+(e)
+
+0.2
+
+0.0
+
+1.2
+
+0.0
+2
+
+/
+
+4
+
+6
+
+ph
+
+Fig. 2. Comparison of the numerical results (solid lines) and the perturbation
+theory (dashed lines) for the LFs of the Fröhlich model with α = 0.05 (a) and the
+short-range interaction model with α = 0.05 and κ = 1 (b). LFs of Fröhlich polaron
+for α = 0.5 (c), α = 1 (d) and α = 2 (e). Energy is measured from that of the
+ground state of the polaron. The initial fragment of the LF for α = 1 is shown in
+the inset (f).
+
+√
+1/2 2
+i 2 2απ
+(q + κ2 )−1/2 , reducing to the Fröhlich one when κ → 0, is
+!
+√
+2
+α
+√ δ ω+α
+√
+.
+(35)
+Lk=0 (ω < 0) =
+(κ + 2)2
+κ+ 2
+Comparison of low-energy parts of the LF of the Fröhlich model, obtained
+by DMC-SO and taken from (35), shows perfect agreement for α = 0.05: the
+accuracy for the polaron energy and Z-factor is about 10−4 . On the other hand,
+high-energy part of numeric result (Fig. 2) significantly deviates from that of
+the analytic expression (35). This is not surprising since for Fröhlich polaron
+the perturbation theory expression is diverging as ω → ωph and, therefore
+the perturbation theory breaks down. When perturbation theory is obviously
+valid, e.g. for the case of finite κ = 1, there is a perfect agreement between
+analytic expression and DMC-SO results (Fig. 2b). Note that the high-energy
+part of Lk=0 (ω) is successfully restored by SO method despite the fact that
+the total weight of the feature for α = 0.05 is less than 10−2 .
+The main deviation of the actual LF from the perturbation theory result
+is the extra broad peak in the actual LF at ω ∼ 3.5. To study this feature
+Lk=0 (ω) was calculated for α = 0.5, α = 1, and α = 2 (Fig. 2c-e). The peak
+
+16
+
+A. S. Mishchenko and N. Nagaosa
+
+0.6
+
+0.3
+
+0.20
+
+0.5
+
+=4
+
+0.4
+
+=6
+
+L
+
+L
+
+L
+0.3
+
+0.2
+
+=8
+
+0.15
+
+0.2
+
+0.10
+
+0.1
+0.05
+
+0.1
+
+0.0
+0
+
+4
+
+8
+
+/
+
+12
+
+ph
+
+0.0
+
+0.00
+0
+
+4
+
+8
+
+/
+
+12
+
+ph
+
+0
+
+4
+
+8
+
+/
+
+12
+
+ph
+
+Fig. 3. Evolution of spectral density with α in the cross-over region from intermediate to strong couplings. The polaron ground state peak is shown only for α = 8.
+Note that the spectral analysis still resolves it, despite its very small weight < 10−3 .
+
+is seen for higher values of the interaction constant and its weight grows with
+α. √
+Near the threshold, ω = 1, LF demonstrates the square-root dependence
+∼ ω − 1 (Fig. 2f).
+To trace the evolution of the peak at higher values of α the LF was calculated [45] for α = 4, α = 6, and α = 8 (Fig. 3). At α = 4 the peak at
+ω ∼ 4 already dominates. Moreover, a distinct high-energy shoulder appears
+at α = 4, which transforms into a broad peak at ω ∼ 8.5 in the LF for α = 6.
+The LF for α = 8 demonstrates further redistribution of the spectral weight
+between different maxima without significant shift of the peak positions.
+3.2 Optical Conductivity of the Fröhlich Polaron: Validity of the
+Franck-Condon Principle in the Optical Spectroscopy
+The FC principle [130, 131] and its validity have been widely discussed in studies of optical transitions in atoms, molecules [132, 133], and solids [134, 9].
+Generally, the FC principle means that if only one of two coupled subsystems, e.g. an electronic subsystem, is affected by an external perturbation,
+the second subsystem, e.g., the lattice, is not fast enough to follow the reconstruction of the electronic configuration. It is clear that the justification
+for the FC principle is the short characteristic time of the measurement process τmp ≪ τic , where τmp is related to the energy gap between the initial
+and final states, ∆E, through the uncertainty principle: τmp ≃ h̄/(∆E) and
+τic is the time necessary to adjust the lattice when the electronic component
+is perturbed. Then, the spectroscopic response considerably depends on the
+value of the ratio τmp /τic For example, in mixed valence systems, where the
+ionic valence fluctuates between configurations f 5 and f 6 with characteristic
+time τic ≈ 10−13 s, spectra of fast and slow experiments are dramatically different [135, 136]. Photoemission experiments with short characteristic times
+τmp ≈ 10−16 s (FC regime), reveal two lines, corresponding to f 5 and f 6
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+17
+
+states. On the other hand slow Mössbauer isomer shift measurements with
+τmp ≈ 10−9 s show a single broad peak with mean frequency lying between
+signals from pure f 5 and f 6 shells. Finally, according to paradigm of measurement process time, magnetic neutron scattering with τmp ≈ τic revealed
+both coherent lines with all subsystems dynamically adjusted and broad incoherent remnants of strongly damped excitation of f 5 and f 6 shells [137, 138].
+Actually, the meaning of the times τic and τmp varies with the system and
+with the measurement process.
+To study the interplay between measurement process time τmp and adjustment time τic , the OC of the Fröhlich polaron was studied in [57] from
+the weak to the strong coupling regime by three methods. DMC method gives
+numerically exact answer which is compared with memory function formalism
+(MFF), which is able to take dynamical lattice relaxation into account, and
+strong coupling expansion (SCE) which assumes FC approach. It was found
+that near critical coupling αc ≈ 8.5 a dramatic change of the OC spectrum
+occurs: dominating peak of OC splits into two satellites. In this critical regime
+the upper (lower) one quickly decreases (increases) it's spectral weight as the
+value of coupling constant increases. Besides, while OC follows prediction of
+MFF at α < αc , its dependence switches to that predicted by SCE for larger
+couplings. It was concluded that, for the OC measurement of polaron, the
+adjustment time τic ≈ h̄/D is set by typical nonadiabatic energy D. Nonadiabaticity destroys FC classification at α < αc while FC principle rapidly
+regains its validity at large couplings due to fast growth of energy separation
+between initial and final states of optical transitions.
+Comparison of exact DMC-SO data for OC with existing results of approximate methods showed [48] that the Feynman path integral technique
+[75] of Devreese, De Sitter, and Goovaerts, where OC is calculated starting
+from the Feynman variational model [139], is the only successfully describing
+evolution of the energy of the main peak in OC with coupling constant α (see
+[58]). However, starting from the intermediate coupling regime this approach
+fails to reproduce the peak width. Subsequently, the path integral approach
+was rewritten in terms of MFF [140]. Then, in [57] the extended MFF formalism, which introduces dissipation processes fixed by exact sum rules, was
+developed [141].
+As shown in Fig. 4a, in the weak coupling regime, the MFF, with or without dissipation, is in very good agreement with DMC data, showing significant
+improvement with respect to weak coupling perturbation approach [129] which
+provides a good description of OC spectra only for very small values of α. For
+1 ≤ α ≤ 8, where standard MFF fails to reproduce peak width (Fig. 4b-d)
+and even the peak position (Fig. 4c), the damping, introduced to extended
+MFF scheme, becomes crucial. Results of extended MFF are accurate for the
+peak energy and quite satisfactory for the peak width (Fig. 4b-e). Note that
+the broadening of the peak in DMC data is not a consequence of poor quality
+of analytic continuation procedure since DMC-SO methods is capable of revealing such fine features as 2- and 3-phonon thresholds of emission (Fig. 4b).
+
+18
+
+A. S. Mishchenko and N. Nagaosa
+
+0.15
+
+4
+
+(b)
+
+(a)
+
+(d)
+
+(c)
+
+0.5
+
+(e)
+
+0.4
+
+0.3
+0.4
+
+0.10
+
+=1
+
+=4.5
+
+0.2
+
+0.3
+
+0.4
+
+=5.25
+
+0.3
+
+=6.5
+
+=8
+0.2
+
+0.2
+
+0.05
+
+0.2
+
+0.1
+
+0.1
+0.1
+
+0.00
+
+0.0
+0
+
+2
+
+4
+
+/
+
+6
+
+8
+
+0
+
+2
+
+4
+
+/
+
+ph
+
+6
+
+8
+
+0.0
+
+0.0
+
+0.0
+0
+
+2
+
+4
+
+/
+ph
+
+6
+
+8
+
+0
+
+10 12
+
+5
+
+10
+
+/
+ph
+
+15
+
+0
+
+5
+
+10
+
+/
+
+ph
+
+15
+
+ph
+
+Fig. 4. Comparison of the optical conductivity calculated by DMC method (circles),
+extended MFF (solid line), and DSG [75, 140] (dashed line) for different values of
+α. The slanted arrows indicate 2- and 3-phonon thresholds of absorption.
+0.4
+
+30
+
+0.2
+
+(a)
+
+(c)
+
+(b)
+
+0.3
+
+=8.5
+
+(d)
+
+1.0
+
+AC
+
+0.2
+
+=15
+
+0.5
+
+20
+
+ph
+
+=13
+
+0.2
+
+0.0
+
+FC
+
+/
+
+0.1
+
+0
+
+0.1
+
+5
+
+10
+
+15
+
+10
+0.1
+
+0.0
+0
+
+5
+
+10
+
+/
+
+ph
+
+15
+
+0.0
+20
+0
+
+0
+
+0.0
+10
+
+20
+
+/
+
+ph
+
+30
+
+0
+
+10
+
+20
+
+30
+
+/
+
+40
+
+0
+
+5
+
+10
+
+15
+
+ph
+
+Fig. 5. (a)-(c) Comparison of the optical conductivity calculated within the DMC
+method (circles), the extended MFF (solid line), and SCE (dotted line) for different
+values of α. (d) The energy of lower- and higher-frequency features (circles and triangles, respectively) compared with the FC transition energy with the SCE (dashed
+line) and with the energy of the peak obtained from the extended MFF (solid line).
+In the inset, the weights of FC and adiabatically connected transitions are shown as
+a function of α (for η = 1.3.)
+
+However, a dramatic change of OC occurs around critical coupling strength
+αc ≈ 8.5. The dominating peak of OC splits into two ones, the energy of lover
+one corresponding to the predictions of SCR expansion and that of upper
+one obeying extended MFF value (Fig. 5a). The shoulder, corresponding to
+dynamical extended MFF contribution, rapidly decreases it's intensity with
+increase of α and at large α (Fig. 5b-c) the OC is in good agreement with
+strong coupling expansion, assuming FC scheme. Finally, comparing energies
+of the peaks, obtained by DMC, extended MFF and FC strong coupling expansion (Fig. 5d), we conclude that at critical coupling αc ≈ 8.5 the spectral
+properties rapidly switch from dynamic, when lattice relaxes at transition, to
+FC regime, where nuclei are frozen in initial configuration.
+In order get an idea of the FC breakdown authors of [57] consider the following arguments. The approximate adiabatic states are not exact eigenstates
+of the system. These states are mixed by nondiagonal matrix elements of the
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+19
+
+nonadiabatic operator D and exact eigenstates are linear combinations of the
+adiabatic wavefunctions. Being interested in the properties of transition from
+ground (g) to an excited (ex) state, whose energy correspond to that of the OC
+peak, it is necessary to consider mixing of only these states and express exact
+wavefunctions as a linear combinations [142, 143] of ground and excited adiabatic states. The coefficients of superposition are determined from standard
+techniques [142, 143] where nondiagonal matrix elements of the nonadiabatic
+operator [142] are expressed in terms of matrix elements of the kinetic energy
+operator M , the gap between excited and ground state ∆E = Eex − Eg and
+the number nβ of phonons in adiabatic state:
+q
+D± = M (∆E)−1 nβ + 1/2 ± 1/2 + M 2 (∆E)−2 .
+(36)
+The extent to which lattice can follow transition between electronic states,
+depends on the degree of mixing between initial and final exact eigenstates
+through the nonadiabatic interaction. If initial and ground states are strongly
+mixed, the adiabatic classification has no sense and, therefore, the FC processes have no place and lattice is adjusted to the change of electronic states
+during the transition. In the opposite limit adiabatic approximation is valid
+and FC processes dominate. The estimation for the weight of FC component
+IF C [57] is equal to unity in the case of zero mixing and zero in the case
+of maximal mixing. The weight of adiabatically connected (AC) transition
+IAC = 1 − IF C is defined accordingly. Non-diagonal matrix element M is proportional to the root square of α with a coefficient η of the order of unity.
+In the strong coupling regime, assuming that ∆E ≈ γα2 (γ ≈ 0.1 from MC
+data), and nβ ≈ ∆E (nβ ≫ 1), one gets
+−1
+
+,
+(37)
+IF C = 1 + 4(τmp /τic )2
+
+where τmp = 1/∆E and τic = 1/D. For η of the order of unity one obtains
+qualitative description of a rather fast transition from AC- to FC-dominated
+transition, when IF C and IAC exchange half of their weights in the range
+of α from 7 to 9. The physical reason for such quick change is the faster
+growth of energy separation ∆E ∼ α2 compared to that of the matrix element M ∼ α1/2 . Finally, for large couplings, initial and final states become
+adiabatically disconnected. The rapid AC-FC switch has nothing to do with
+the self-trapping phenomenon where crossing and hybridization of the ground
+and an excited states occurs. This phenomenon is a property of transition
+between different states and related to the choice whether lattice can or can
+not follow adiabatically the change of electronic state at the transition.
+
+4 Self-Trapping
+In this section we consider the self-trapping (ST) phenomenon which, due to
+essential importance of many-particle interaction of QP with bosonic bath of
+
+20
+
+A. S. Mishchenko and N. Nagaosa
+
+macroscopic system, was never addressed by exact method before. We start
+with a basic definition of the ST phenomenon and introduce the adopted
+criterion for it's existence. Then, generic features of ST are demonstrated
+on a simple model of Rashba-Pekar exciton-polaron in Sect. 4.1. It is shown
+in Sect. 4.2 that the criterion is not a dogma since even in one dimensional
+system, where ST is forbidden by criterion of existence, one can observe all
+main features of ST due to peculiar nature of electronic states.
+In general terms [7, 80], ST is a dramatic transformation of a QP properties
+when system parameters are slightly changed. The physical reason of ST is a
+quantum resonance, which happens at some critical interaction constant γc ,
+between "trapped" (T) state of QP with strong lattice deformation around
+it and "free" (F) state. Naturally, ST transition is not abrupt because of
+nonadiabatic interaction between T and F states and all properties of the QP
+are analytic in γ [144]. At small γ < γc , ground state is an F state which is
+weakly coupled to phonons while excited states are T states and have a large
+lattice deformation. At critical couplings γ ≈ γc a crossover and hybridization
+of these states occurs. Then, for γ > γc the roles of the states exchange. The
+lowest state is a T state while the upper one is an F state.
+First, and up to now the only quantitative criterion for ST existence was
+given in terms of the ground state properties in the adiabatic approximation.
+This criterion considers stability of the delocalized state in undistorted lattice
+∆ = 0 with respect to the energy gain due to lattice distortion ∆′ 6= 0. ST
+phenomenon occurs when completely delocalized state with ∆ = 0 is separated
+from distorted state with ∆′ 6= 0 by a barrier of adiabatic potential. One of
+these states is stable while another one is meta-stable. The criterion of barrier
+existence is defined in terms of the stability index
+s = d − 2(1 + l) ,
+
+(38)
+
+where d is the system dimensionality. Index l determines the range of the force
+limq→0 ψ(q) ∼ q −l , where ψ(R) is the kernel of interaction U (Rn ) = ψ(Rn −
+Rn′ )ν(Rn′ ) connecting potential U (Rn ) with generalized lattice distortion
+ν(Rn′ ) [7]. The barrier exists for s > 0 and does not exist for s < 0. The
+discontinuous change of the polaron state, i.e. ST, occurs in the former case
+while does not happen in the latter case. When s = 0, this scaling argument
+alone can not conclude the presence or absence of the ST and more detailed
+discussion for each model is needed.
+4.1 Typical Example of the Self-Trapping: Rasba-Pekar
+Exciton-Polaron
+Classical example of a system with ST phenomenon is the three dimensional
+continuous Rasba-Pekar exciton-polaron in the approximation of intraband
+scattering, i.e. when polar electron-phonon interaction (EPI) with dispersionless optical phonons ωph = 1 does not change the wave function of internal
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+1000
+
+0
+
+21
+
+0.18
+
+40
+
+0.17
+
+a
+
+b
+
+<N>
+
+log (m*)
+
+-5
+
+d
+
+Z(n)
+
+30
+
+100
+
+c
+
+20
+
+0.05
+
+10
+10
+
+-10
+0
+
+5
+
+10 15 20
+
+1
+
+0
+
+5
+
+10 15 20
+
+0
+
+0.00
+0
+
+5
+
+10 15 20
+
+0
+
+10
+
+20
+
+30
+
+n
+
+40
+
+Fig. 6. The ground-state energy (a), effective mass (b), and average number of
+phonons as function of coupling constant (c). Partial weights of n-phonon states (d)
+in the polaron ground state (k = 0) at γ = 18 (circles), γ = 18.35 (squares), and
+γ = 19 (diamonds). Dotted line in panel (a) is the result of strong coupling limit
+and dashed line is the result of perturbation theory.
+
+electron-hole motion. System is defined as a structureless QP with dispersion
+ǫ(k) = k 2 /2 and short range coupling to phonons [54, 7]. General criterion of
+the existence of ST is satisfied for three dimensional system with short range
+interaction [54, 7, 50] and, thus, one expects to observe typical features of the
+phenomenon.
+It is shown [54] that in the vicinity of the critical coupling γc ≈ 18 the
+average number of phonons hN i in (18) and effective mass m∗ quickly increase in the ground state by several orders of magnitude (Fig. 6b-c). Besides,
+a quantum resonance between polaronic phonon clouds of F and T state is
+demonstrated. Distribution of partial n-phonon contributions Z (k=0) (n) in
+(17) has one maximum at n = 0 in the weak coupling regime, which corresponds to weak deformation, and one maximum at n ≫ 1 in the strong
+coupling regime, which is the consequence of a strong lattice distortion. However, due to F-T resonance there are two distinct peaks at n = 0 and n ≫ 1
+for γ ≈ γc (Fig. 6d).
+Near the critical coupling γc the LF of polaron has several stable states
+(Fig. 7 a-b) below the threshold of incoherent continuum Egs + ωph . Any state
+above the threshold is unstable because emission of a phonon with transition
+to the ground state at k = 0 with energy Egs is allowed. On the other hand,
+decay is forbidden by conservation laws for states below the threshold. Dependence of the energies of ground and excited resonances on the interaction
+constant resembles a picture of crossing of several states interacting with each
+other (Fig. 7c).
+According to the general picture of the ST phenomenon, lowest F state in
+the weak coupling regime at k = 0 has small effective mass m∗ ≈ m of the
+order of the bare QP mass m. To the contrary, the effective mass of excited
+state m∗ ≫ m is large. Hence, below the critical coupling the energy of the
+F state, which is lowest at k = 0, has to reach a flat band of T state at
+some momentum. Then, F and T state have to hybridize and exchange in
+
+22
+
+A. S. Mishchenko and N. Nagaosa
+
+a
+
+1
+
+-2.5
+
+c
+
+-3.5
+
+-3.0
+
+L
+
+-3.6
+
+d
+
+-3.7
+
+-3.5
+-3.8
+
+0
+
+12
+
+-4.0
+
+<N>
+
+b
+
+1
+
+L
+
+-4.5
+
+0
+
+e
+
+8
+
+0
+
+1
+
+2
+
+3
+
+4
+0
+
+17
+
+18
+
+19
+
+0
+
+2
+
+k
+
+4
+
+Fig. 7. LF L(k=0) (ω) at critical coupling γ = γc (a) and for γ > γc (b). Energy is
+counted from the polaron ground state. (c) Dependence of energy of ground state
+(squares) and stable excited states (circles, diamonds, and triangles) on the coupling
+constant. Dashed line is the threshold of the incoherent continuum. Dependence
+of energy (d) and average number of phonons (e) on the wave vector at γ < γc
+(circles and rectangles). Dashed line is the effective mass approximation E (k) =
+Egs + k2 /2m∗ for parameters Egs = −3.7946 and m∗ = 2.258, obtained by DMC
+estimators for given value of γ. Dotted line is a parabolic dispersion law which is
+fitted to last 4 points of energy dispersion curve with parameters E1 = −3.5273 and
+m∗1 = 195. Empty square is the energy of first excited stable state at zero momentum
+obtained by SO method.
+
+energy. DMC data visualize this picture (Fig. 7 d-e). After F state crosses the
+flat band of excited T state, the average number of phonons increases and
+dispersion becomes flat.
+It is natural to assume that above the critical coupling the situation is
+opposite: ground state is the T state with large effective mass while excited
+F state has small, nearly bare, effective mass. Indeed, this assumption was
+confirmed in the framework of another model which is considered in Sect. 6.1.
+Moreover, it was shown that in the strong coupling regime excited resonance
+inherits not only bare effective mass around k = 0 but the whole dispersion
+law of the bare QP [49].
+4.2 Degeneracy Driven Self-Trapping
+According to the criterion (38), ST phenomenon in one-dimensional system does not occur. Although this statement is probably valid for the
+case of single band in relevant energy range, it is not the case for the
+generic multi-band cases. This fact has been unnoticed for many years,
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+23
+
+Z(n)
+
+which prevented the proper explanation of puzzling physics of quasi-onedimensional compound Anthracene-PMDA, although it's optical properties
+[65, 145, 146, 147, 66, 148] directly suggested resonance of T and F states.
+The reason is that in Anthracene-PMDA, in contrast to conditions at which
+criterion (38) is obtained, there are two, nearly degenerate exciton bands.
+Then, one can consider quasi-degenerate self-trapping mechanism when ST
+phenomenon is driven by nondiagonal interaction of phonons with quasidegenerate exciton levels [52]. Such mechanism was already suggested for explanation of properties of mixed valence systems [143] though it's relevance was
+never proved by an exact approach.
+
+0.0
+<N>
+
+30
+
+20
+
+a
+
+b
+
+-0.6
+
+Z(n)
+
+-0.4
+
+c
+
+0.2
+0.0
+
+Z(n)
+
+-0.2
+
+0.4
+
+10
+
+0.06
+
+d
+
+0.03
+0.00
+
+e
+
+0.02
+
+-0.8
+0.0
+
+0.5
+
+1.0
+
+1.5
+12
+
+0
+0.0
+
+0.5
+
+1.0
+
+1.5
+12
+
+0.00
+
+0
+
+10
+
+n
+
+20
+
+Fig. 8. Dependence of energy (a) and average number of phonons (b) on the nondiagonal coupling constant λ12 at λ11 = 0 and λ22 = 0.25. Phonon distributions in
+polaron cloud below ST point at λ12 = 1.0125 (c), at ST point at λ12 = 1.0435 (d),
+and above ST coupling at λ12 = 1.0625 (e).
+
+The minimal model to demonstrate the mechanism of quasi-degenerate
+self-trapping involves one optical phonon branch with frequency ωph = 0.1
+and two exciton branches with energies ǫ1,2 (q) = ∆1,2 + 2[1 − cos(q)], where
+∆1 = 0 and ∆2 = 1. Presence of short range diagonal γ22 and nondiagonal
+2
+γ12 interactions (with corresponding dimensionless constants λ22 = γ22
+/(2ω)
+2
+and λ12 = γ12 /(2ω)) leads to classical self-trapping behavior even in onedimensional system [52] (see Fig. 8).
+
+5 Exciton
+Despite numerous efforts over the years, there has been no rigorous technique to solve for exciton properties even for the simplest model (1)-(2) which
+treats electron-electron interactions as a static renormalized Coulomb potential with averaged dynamical screening. The only solvable cases are the Frenkel
+small-radius limit [67] and the Wannier large-radius limit [68] which describe
+molecular crystals and wide gap insulators with large dielectric constant, respectively. Meanwhile, even the accurate data for the limits of validity of the
+
+24
+
+A. S. Mishchenko and N. Nagaosa
+
+Wannier and Frenkel approximations have not been available. As discussed in
+Sects. 1.2 and 2.3, semianalytic approaches has little to add to problem when
+quantitative results are needed whereas traditional numerical methods fail to
+reproduce them even in the Wannier regime. To the contrary, DMC results
+do not contain any approximation.
+
+100
+
+0
+1.0
+
+0
+0.0
+0.0
+
+10−3
+
+0.0
+
+20.0
+
+0.05
+
+Wave function
+
+0
+
+0.5
+
+0.5
+1.0
+1.5
+Bandwidth
+
+40.0
+Bandwidth
+
+60.0
+
+0
+
+2.0
+
+80.0
+
+0
+
+0
+
+200
+
+400
+
+600
+
+0
+
+5
+
+10
+15
+Coordinate sphere
+
+800
+
+1000
+
+Electron−hole distance
+
+0.25
+
+d
+
+0.2
+
+0.15
+
+0.1
+
+0.05
+
+0
+
+2
+
+4
+6
+Coordinate sphere
+
+8
+
+10
+
+e
+
+b
+
+−0.05
+
+−0.1
+
+Envelope function (a.u.)
+
+10−2
+
+10−4
+
+c
+
+0
+
+Binding energy
+
+Log (Binding energy)
+
+a
+10−1
+
+20
+
+25
+
+0
+
+1
+
+2
+
+3
+
+4
+
+Coordinate sphere
+
+Fig. 9. Panel (a): dependence of the exciton binding energy on the bandwidth
+Ec = Ev for conduction and valence bands. The dashed line corresponds to the
+Wannier model. The solid line is the cubic spline, the derivatives at the right and left
+ends being fixed by the Wannier limit and perturbation theory, respectively. Inset
+in panel (a): the initial part of the plot. Panel (b): the wave function of internal
+motion in real space for the optically forbidden monopolar exciton. Panels (c)-(e):
+the wave function of internal motion in real space: (c) Wannier [Ec = Ev = 60]; (d)
+intermediate [Ec = Ev = 10]; (e) near-Frenkel [Ec = Ev = 0.4] regimes. The solid
+line in the panel (c) is the Wannier model result while solid lines in other panels are
+to guide the eyes only.
+
+To study conditions of validity of limiting regimes by DMC method,
+electron-hole spectrum of three dimensional system was chosen in the form
+of symmetric valence and conduction bands with width Ec and direct gap Eg
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+25
+
+at zero momentum [46]. For large ratio W = Ec /Eg , when W > 30, exciton binding energy is in good agreement with Wannier approximation results
+(Fig. 9a) and probability density of relative electron-hole motion corresponds
+(Fig. 9c) to hydrogen-like result. The striking result is the requirement of
+rather large valence and conduction bandwidths (W > 20) for applicability of
+Wannier approximation. For smaller values of W the binding energy and wave
+function of relative motion (Fig. 9d) deviate from large radius results. In the
+similar way, conditions of validity of Frenkel approach are rather restricted
+too. Moreover, even strong localization of wave function does not guarantee
+good agreement between exact and Frenkel approximation result for binding
+energy. At 1 < W < 10 the wave function is already strongly localized though
+binding energy considerably differs from Frenkel approximation result. For
+example, at W = 0.4 relative motion is well localized (Fig. 9e) whereas the
+binding energy of Frenkel approximation is two times larger than exact result
+(Inset in Fig. 9a).
+A study of conditions necessary for formation of charge transfer exciton in
+three dimensional systems is crucial to finalize protracted discussion of numerous models concerning properties of mixed valence semiconductors [149]. A
+decade ago unusual properties of SmS and SmB6 were explained by invoking
+the excitonic instability mechanism assuming charge-transfer nature of the
+optically forbidden exciton [150, 151]. Although this model explained quantitatively the phonon spectra [152, 153], optical properties [154, 155], and magnetic neutron scattering data [138], it's basic assumption has been criticized
+as being groundless [156, 157]. To study excitonic wavefunction, dispersions
+of valence and conduction bands were chosen as it is typical for mixed valence
+materials: almost flat valence band is separated from broad conduction band,
+having maximum in the centre and minimum at the border of Brillouin zone
+[46]. Results presented in Fig. 9b support assumption of [150, 151] since wave
+function of relative motion has almost zero on-site component and maximal
+charge density at near neighbors.
+
+6 Polarons in Undoped High Temperature
+Superconductors
+It is now well established that the physics of high temperature superconductors is that of hole doping a Mott insulator [158, 159, 160]. Even a single
+hole in a Mott insulator, i.e. a hole in an antiferromagnet in case of infinite
+Hubbard repulsion U , is substantially influenced by many-body effects [10] because it's jump to a neighboring site disturbs antiferromagnetic arrangement
+of spins. Hence a thorough understanding of the dynamics of doped holes in
+Mott insulators has attracted a great deal of recent interest. The two major
+interactions relevant to the electrons in solids are electron-electron interactions (EEI) and electron-phonon interactions (EPI). The importance of the
+former at low doping is no doubt essential since the Mott insulator is driven
+
+26
+
+A. S. Mishchenko and N. Nagaosa
+
+by strong Hubbard repulsion, while the latter was considered to be largely
+irrelevant to superconductivity based on the observations of a small isotope
+effect on the optimal Tc [161] and an absence of a phonon contribution to the
+resistivity (for review see [162]).
+On the other hand, there are now accumulating evidences that the EPI
+plays an important role in the physics of cuprates such as (i) an isotope effect
+on superfluid density ρs and Tc away from optimal doping [163], (ii) neutron
+and Raman scattering [164, 165, 166] experiments showing strong phonon softening with both temperature and hole doping, indicating that EPI is strong
+[167, 168]. Furthermore, the recent studies of cuprates by the angle resolved
+photoemission spectroscopy (ARPES), which spectra are proportional to the
+LF (7) [32], resulted in the discovery of the dispersion "kinks" at around 4070meV measured from the Fermi energy, in the correct range of the relevant
+oxygen related phonons [169, 170, 171]. These particular phonons - oxygen
+buckling and half-breathing modes are known to soften with doping [172, 164]
+and with temperature [170, 171, 172, 164, 165, 166] indicating strong coupling. The quick change of the velocity can be predicted by any interaction of
+a quasiparticle with a bosonic mode, either with a phonon [170, 171] or with
+a collective magnetic resonance mode [173, 174, 175]. However, the recently
+discovered "universality" of the kink energy for LSCO over the entire doping
+range [176] casts doubts on the validity of the latter scenario as the energy
+scale of the magnetic excitation changes strongly with doping.
+Besides, measured in undoped high Tc materials ARPES revealed apparent contradiction between momentum dependence of the energy and linewidth
+of the QP peak. On the one hand the experimental energy dispersion of the
+broad peak in many underdoped compounds [31, 177] obeys the theoretical
+predictions [178, 179], whereas the experimental peak width is comparable
+with the bandwidth and orders of magnitude larger than that obtained from
+theory of Mott insulator [53]. Early attempts to interpret this anomalously
+short lifetime of a hole by an interaction with additional nonmagnetic bosonic
+excitations, e.g. phonons [180], faced generic question: is it possible that interaction with media leaves the energy dispersion absolutely unrenormalized,
+while, induces a decay which inverse life-time is comparable or even larger
+than the QP energy dispersion? A possibility of an extrinsic origin of this
+width can be ruled out since the doping induces further disorder, while a
+sharper peak is observed in the overdoped region.
+In order to understand whether phonons can be responsible for peculiar
+shape of the ARPES in the undoped cuprates, the LF of an interacting with
+phonons hole in Mott insulator was studied by DMC-SO [49]. The case of the
+LF of a single hole corresponds to the ARPES in an undoped compound. For
+a system with large Hubbard repulsion U , when U is much larger than the
+typical bandwidth W of noninteracting QP, the problem reduces to the t-J
+model [181, 182, 158, 11]
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+Ĥt-J = −t
+
+X
+
+c†is cjs + J
+
+X
+hiji
+
+hijis
+
+(Si Sj − ni nj /4) .
+
+27
+
+(39)
+
+Here cjσ is projected (to avoid double occupancy) fermion annihilation operator, ni (< 2) is the occupation number, Si is spin 1/2 operator, J is an
+exchange integral, and hiji denotes nearest-neighbor sites in two dimensional
+square lattice. Different theoretical approaches revealed [158, 183, 53] basic
+properties of the LF. The LF has a sharp peak in the low energy part of the
+spectrum which disperses with a bandwidth WJ/t ∼ 2J and, therefore, the
+large QP width in experiment can not be explained. More complicated tt′ t′′ -J
+model takes into account hoppings to the second t′ and third t′′ nearest neighbors and, hence, dispersion of the hole changes [184, 185, 186, 178, 179, 32].
+However, for parameters, which are necessary for description of dispersion
+in realistic high Tc superconductors [31, 178], peak in the low energy part
+remains sharp and well defined for all momenta [187].
+After expressing spin operators in terms of Holstein-Primakoff spin wave
+operators and diagonalizing the spin part of Hamiltonian (39) by Fourier
+and Bogoliubov transformations [188, 10, 189, 190], tt′ t′′ -J Hamiltonian is
+reduced to the boson-holon model, where hole (annihilation operator is hk )
+with dispersion ε(k) = 4t′ cos(kx ) cos(ky )+2t′′ [cos(2kx )+cos(2ky )] propagates
+in the magnon (annihilation operator is αk ) bath
+X
+X
+0
+Ĥt-J
+=
+ε(k)h†k hk +
+ωk α†k αk
+(40)
+k
+
+k
+
+p
+with magnon dispersion ωk = 2J 1 − γk2 , where γk = (cos kx + cos ky )/2.
+The hole is scattered by magnons as described by
+h
+i
+X
+h-m
+Ĥt-J
+= N −1/2
+Mk,q h†k hk−q αk + h.c.
+(41)
+k,q
+
+with the scattering vertex Mk,q . Parameters t, t′ and t′′ are hopping amplitudes to the first, second and third near neighbors, respectively. If hopping
+integrals t′ and t′′ are set to zero and bare hole has no dispersion, the problem
+(40-41) corresponds to t-J model.
+Short range
+P interaction of a hole with dispersionless optical phonons
+Ĥ e-ph = Ω0 k b†k bk of the frequency Ω0 is introduced by Holstein Hamiltonian
+h
+i
+X
+σ
+√
+Ĥ e-ph = N −1/2
+h†k hk−q bq + h.c. ,
+(42)
+2M Ω0
+k,q
+
+where σ is the momentum and isotope independent coupling constant, M is
+the mass of the vibrating lattice ions, and Ω0 is the frequency of dispersionless
+phonon. The coefficient inp
+front of square brackets is the standard Holstein interaction constant γ = σ/ (2M Ω0 ). In the following we characterize strength
+of EPI in terms of dimensionless coupling constant λ = γ 2 /4tΩ0 . Note, if interaction with magnetic subsystem (41) is neglected and hole dispersion ε(k)
+
+28
+
+A. S. Mishchenko and N. Nagaosa
+
+is chosen in the form ε(k) = 2t[cos(kx ) + cos(ky )], the problem (40), (42) corresponds to standard Holstein model where hole with near neighbor hopping
+amplitude t interacts with dispersionless phonons.
+We consider the evolution of ARPES of a single hole in t-J-Holstein model
+(40)-(42) from the weak to the strong coupling regime and dispersion of the LF
+in the strong coupling regime in Sect. 6.1. It occurs that properties of the LF in
+the strong coupling regime of the EPI explain the puzzle of broad lineshape
+in ARPES in underdoped high Tc superconductors. Therefore, in order to
+suggest a crucial test for the mechanism of phonon-induced broadening, we
+present calculations of the effect of the isotope substitution on the ARPES in
+Sect. 6.2.
+6.1 Spectral Function of a Hole Interacting with Phonons in the
+t-J Model: Self-Trapping and Momentum Dependence
+Previously, the LF of t-J-Holstein model was studied by exact diagonalization
+method on small clusters [191] and in the non-crossing approximation (NCA)6
+for both phonons and magnons [192, 193]. However, the small system size in
+exact diagonalization method implies a discrete spectrum and, therefore, the
+problem of lineshape could not be addressed. The latter method omits the
+FDs with mutual crossing of phonon propagators and, hence, is an invalid
+approximation for phonons in strong and intermediate couplings of EPI. This
+statement was demonstrated by DMC, which can sum all FDs for Holstein
+model both exactly and in the NCA [49]. Exact results and those of NCA are
+in good agreement for small values λ ≤ 0.4 and drastically different for λ > 1.
+For example, for Ω0 /t = 0.1 exact result shows a sharp crossover to strong
+coupling regime for λ > λcH ≈ 1.2 whereas NCA result does not undergo such
+crossover even at λ = 100. On the other hand, NCA is valid for interaction of a
+hole with magnons since spin S=1/2 can not flip more than once and number
+of magnons in the polaronic cloud can not be large. Note that the t-J-Holstein
+model is reduced to problem of polaron which interacts with several bosonic
+fields (3)-(4).
+DMC expansion in [49] takes into account mutual crossing of phonon propagators and, in the framework of partial NCA, neglects mutual crossing of
+magnon propagators, to avoid sign problem. NCA for magnons is justified for
+J/t ≤ 0.4 by good agreement of results of NCA and exact diagonalization on
+small clusters [188, 10, 194, 195, 190]. Recently results of exact diagonalization
+were compared in the limit of small EPI for t-J-Holstein model, boson-holon
+model (40-42) without NCA, and boson-holon model with NCA [196]. Although agreement is not so good as for pure t-J model, it was concluded that
+NCA for magnons is still good enough to suggest that one can use NCA for a
+qualitative description of the t-J-Holstein model.
+6
+
+NCA is equivalent to self-consistent Born approximation (SCBA)
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+20
+
+L
+
+a
+
+10
+0.2
+
+0
+
+2
+
+4
+
+15
+
+/t
+
+L
+
+0.0
+0.0
+
+/t
+
+0.0
+20
+10
+
+L
+
+0.1
+
+-2.0
+
+b
+
+0.2
+
+0.2
+
+0.4
+
+c
+
+2
+
+-2.4
+
+1
+
+0
+7.5
+6.0
+
+L
+
+Z
+
+-2
+
+30
+
+g
+
+0.2
+
+f
+
+d
+
+1
+
+10
+
+0
+
+-2.8
+
+1.5
+
+L
+
+e
+
+<N>
+
+0.0
+
+29
+
+-1.6
+
+0
+
+0.0
+
+h
+
+0.2
+
+0.4
+
+0.0
+-2.50
+
+-2.25
+
+-2.00
+
+/t
+
+0.0
+
+0.2
+
+0.4
+
+0.6
+
+Fig. 10. (a) The LF of a hole in the ground state k = (π/2, π, 2) at J/t = 0.3 and
+λ = 0. Low energy part of the LF of a hole in the ground state k = (π/2, π, 2) at
+J/t = 0.3: (b) λ = 0; (c) λ = 0.3; (d) λ = 0.4; (e) λ = 0.46. Dependence on coupling
+strength λ at J/t = 0.3: (f) energies of lowest LF resonances; (g) Z-factor of lowest
+peak; (h) average number of phonons hN i.
+
+Figures 10a-e show low energy part of LF in the ground state at k =
+(π/2, π/2) in the weak, intermediate, and strong coupling regimes of interaction with phonons. Dependence on the coupling constant of energies of
+resonances (Fig. 10f), Z k=(π/2,π/2) -factor of lowest peak (Fig. 10g), and average number of phonons in the polaronic cloud hN i (Fig. 10h) demonstrates a
+picture which is typical for ST (see [80, 54] and Sect. 4). Two states cross and
+hybridize in the vicinity of critical coupling constant λct-J ≈ 0.38, Z k=(π/2,π/2) factor of lowest resonance sharply drops and average number of phonons in
+polaronic cloud quickly rises. According to the general understanding of the
+ST phenomenon, above the critical couplings λ > λct-J one expects that the
+lowest state is dispersionless while the upper one has small effective mass.
+This assumption is supported by the momentum dependence of the LF in
+the strong coupling regime (Fig. 11a-e). Dispersion of upper broad shake-off
+Franck-Condon peak nearly perfectly obeys relation
+εk = εmin +WJ/t /5{[cos kx +cos ky ]2 +[cos(kx +ky )+cos(kx −ky )]2 /4}, (43)
+which describes dispersion of the pure t-J model in the broad range of exchange constant 0.1 < J/t < 0.9 [194] (Fig. 11f). Note that this property of
+the shake-off peak is general for the whole strong coupling regime (Fig. 11f).
+Momentum dependence of the shake-off peak, reproducing that of the free
+particle, is the direct consequence of the adiabatic regime. Actually, phonon
+frequency Ω0 is much smaller than the coherent bandwidth 2J of the t-J
+
+A. S. Mishchenko and N. Nagaosa
+2
+
+C
+
+-1.75
+
+L
+
+a
+
+b
+
+C
+1
+
+k=( /2, /2)
+
+0
+
+-2.25
+
+L
+
+k=( /2, /2)
+
+f
+-2.00
+
+C
+
+0.7
+
+c
+
+/t
+
+30
+
+-2.50
+
+M
+
+k
+
+S(
+
+0.25
+
+(0,0)
+
+)
+M ( 0,
+
+L
+
+L
+
+d
+
+C
+
+( 0, /2 )
+
+-2.75
+
+0.0
+
+/2,
+
+I
+
+1
+
+/2 )
+
+k=(0, )
+
+40
+
+k=(0, /4)
+
+L
+
+0.00
+
+e
+
+C
+
+0
+-2
+
+0
+
+2
+
+/t
+
+0.0
+
+g
+20
+
+E
+
+0.5
+
+k=( /4, /4)
+-2.5
+
+-2.0
+
+/t
+
+0
+-10
+
+-5
+
+0
+
+Q
+
+5
+
+10
+
+Fig. 11. The LF of a hole at J/t = 0.3 and λ = 0.46: (a) full energy range
+for k = (π/2, π/2); (b–e) low energy part for different momenta. Slanted arrows
+show broad peaks which can be interpreted in ARPES spectra as coherent (C) and
+incoherent (I) part. Vertical arrows in panels (b)–(e) indicate position of "invisible"
+lowest resonance. (f) Dispersion of resonances energies at J/t = 0.3: broad resonance
+(filled circles) and lowest polaron pole (filled squares) at λ = 0.46; broad resonance
+(open circles) and lowest polaron pole (open squares) at λ = 0.4. The solid curves
+are dispersions (43) of a hole in pure t-J model at J/t = 0.3 (WJ/t=0.3 = 0.6):
+εmin = −2.396 (εmin = −2.52) for dotted (solid) line. Panel (g) shows ground state
+potential Q2 /2 (solid line), excited state potential without relaxation D + Q2 /2
+(dashed line), and relaxed excited state potential D + (Q − λ)2 /2 − λ2 /2 (dotted
+line).
+
+model, giving the adiabatic ratio Ω/2J = 1/6 ≪ 1. Besides, as experience
+with the OC of the Fröhlich polaron (Sect. 3.2) shows, there is one more
+important parameter in the strong coupling limit. Namely, the ratio between
+measurement process time τmp = h̄/∆E where ∆E is the energy separation of
+shake-off hump from the ground state pole, and that of characteristic lattice
+time τ ≈ 1/Ω0 is much less than unity. Hence, fast photoemission probe sees
+the ions frozen in one of possible configurations [197]. The LF in the FC limit
+is a sum of transitions between a lower Elow (Q) and an upper Eup (Q) sheets
+of adiabatic potential, weighted by the adiabatic wave function of the lower
+sheet | ψlow (Q) |2 [198]. If EPI is absent both in initial Elow (Q) = Q2 /2
+and final Eup (Q) = D + Q2 /2 states, the LF is peaked at the energy D.
+Then, if there is EPI ∆Eup (Q) = −λQ only in the final state, i.e. when hole
+is removed from the Mott insulator, the upper sheet of adiabatic potential
+Eup (Q) = D − λ2 /2 + (Q − λ)2 /2 has the same energy D at Q = 0. Since the
+probability function | ψlow (Q) |2 has maximum at Q = 0, the peak of the LF
+broadens but it's energy does not shift [198] (Fig. 11g).
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+31
+
+Behavior of the LF is the same as observed in the ARPES of undoped
+cuprates. The LF consists of a broad peak and a high energy incoherent continuum (see Fig. 11a). Besides, dispersion of the broad peak "c" in Figs. 11
+reproduces that of sharp peak in pure t-J model (Fig. 11b-f). The lowest dispersionless peak, corresponding to small radius polaron, has very small weight
+and, hence, can not be seen in experiment. On the other hand, according to ex′
+periment, momentum dependence of spectral weight Z (k) of broad resonance
+exactly reproduces dispersion of Z (k) -factor of pure t-J model. The reason
+for such perfect mapping is that in adiabatic case Ω0 /2J ≪ 1 all weight of
+the sharp resonance in t-J model without EPI is transformed at strong EPI
+into the broad peak. This picture implies that the chemical potential in the
+heavily underdoped cuprates is not connected with the broad resonance but
+pinned to the real quasiparticle pole with small Z-factor. This conclusion was
+recently confirmed experimentally [177].
+Comparing the critical EPI for a hole in the t-J-Holstein model (40-42)
+λct-J ≈ 0.38 and that for Holstein model λcH ≈ 1.2 with the same value of
+hopping t, we conclude that spin-hole interaction accelerates transition into
+the strong coupling regime. The reason for enhancement of the role of EPI is
+found in [196]. Comparison of the EPI driven renormalization of the effective
+mass in t-J-Holstein and Holstein model shows that large effective mass in the
+t-J model is responsible for this effect. The enhancement of the role of EPI
+by EEI takes place at least for a single hole at the bottom of the t-J band.
+Had the comparison been made with half-filled model, the result would have
+been smaller enhancement or no enhancement at all [199]. On the other hand,
+coupling constant of half-breathing phonon is increased by correlations [200].
+Finally, we conclude that effect of enhancement of the effective EPI by EEI is
+not unambiguous and depends on details of interaction and filling. However,
+this effect is present for small filling in the t-J-Holstein model.
+6.2 Isotope Effect on ARPES in Underdoped High-Temperature
+Superconductors
+The magnetic resonance mode and the phonon modes are the two major
+candidates to explain the "kink" structure of the electron energy dispersion
+around 40-70 meV below the Fermi energy, and the isotope effect (IE) on
+ARPES should be the smoking-gun experiment to distinguish between these
+two. Gweon et al. [201] performed the ARPES experiment on O18 -replaced
+Bi2212 at optimal doping and found an appreciable IE, which however can
+not be explained within the conventional weak-coupling Migdal-Eliashberg
+theory. Namely the change of the spectral function due to O18 -replacement
+has been observed at higher energy region beyond the phonon energy (∼
+60meV). This is in sharp contrast to the weak coupling theory prediction, i.e.,
+the IE should occur only near the phonon energy. Hence the IE in optimal
+Bi2212 remains still a puzzle. On the other hand, the ARPES in undoped
+materials, as described in Sect. 6.1, has recently been understood in terms of
+
+32
+
+A. S. Mishchenko and N. Nagaosa
+
+the small polaron formation [49, 202, 198]. Therefore, it is essential to compare
+experiment in undoped systems with presented in this Sect. DMC-SO data,
+where theory can offer quantitative results.
+In addition to high-Tc problem, strong EPI mechanism of ARPES spectra broadening was considered as one of alternative scenarios for diatomic
+molecules [203], colossal magnetoresistive manganites [34], quasi-one-dimensional Peierls conductors [37, 38], and Verwey magnetites [39]. Therefore, exact
+analysis of the IE on ARPES at strong EPI is of general interest for conclusive
+experiments in a broad variety of compound classes.
+Dimensionless coupling constant λ = γ 2 /4tΩ in (42) is an invariant quan√
+tity for the simplest case of IE. Indeed, assuming natural relation Ω ∼ 1/ M
+between phonon frequency and mass,
+p we find that λ does not depend on
+the isotope factor κiso = Ω/Ω0 = M0 /M , which is defined as the ratio of
+phonon frequency in isotope substituted (Ω) and normal (Ω0 ) systems. We
+chose adopted parameters of the tt′ t′′ -J model which reproduce the experimental dispersion of ARPES [178]: J/t = 0.4, t′ /t = −0.34, and t′′ /t = 0.23 .
+The frequencypof the relevant phonon [32] is set to Ω0 /t = 0.2 and the isotope
+factor κiso = 16/18 corresponds to substitution of O18 isotope for O16 .
+To sweep aside any doubts of possible instabilities of analytic continuation,
+we calculate
+the LF for normal compound (κnor = 1),pisotope substituted
+p
+(κiso = 16/18) and "anti-isotope" substituted (κant = 18/16) compounds.
+Monotonic dependence of LF on κ ensures stability of analytic continuation
+and gives possibility to evaluate the error-bars of a quantity A using quantities
+Aiso − Anor , Anor − Aant , and (Aiso − Aant )/2.
+Since LF is sensitive to strengths of EPI only for low frequencies [55], we
+concentrate on the low energy part of the spectrum. Figure 12 shows IE on the
+hole LF for different couplings in nodal and antinodal points, respectively. The
+general trend is a shift of all spectral features to larger energies with increase
+of the isotope mass (κ < 1). One can also note that the shift of broad FCP is
+much larger than that of narrow real-QP peak. Moreover, for large couplings
+λ the shift of QP energy approaches zero and only decrease of QP spectral
+weight Z is observed for larger isotope mass. On the other hand, the shift
+of FCP is not suppressed for larger couplings. Except for the LF in nodal
+point at λ = 0.62 (Fig. 12a, b), where LF still has significant weight of QP
+δ-functional peak, there is one more notable feature of the IE. With increase
+of the isotope mass theR height of FCP increases. Taking into account the
++∞
+conservation law for LF −∞ Lk (ω) = 1 and insensitivity of high energy part
+of LF to EPI strength [55], the narrowing of the FCP for larger isotope mass
+can be concluded. To understand the trends of the IE in the strong coupling
+regime we analyze the exactly solvable independent oscillators model (IOM)
+[60]. The LF in IOM is the Poisson distribution
+L(ω) = exp[−ξ0 /κ]
+
+∞
+X
+[ξ0 /κ]l
+l=0
+
+l!
+
+Gκ,l (ω) ,
+
+(44)
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+33
+
+Fig. 12. Low energy part of hole LFs: normal compound (solid line), isotope substituted compound (dotted line) and "antiisotope" substituted compound (dashed
+line). LFs at different couplings in the nodal (a, c, e) and antinodal (g, i, l) points.
+Insets (b, d, f, h, k) show low energy peak of real QP.
+
+where ξ0 = γ02 /Ω02 = 4tλ/Ω0 is dimensionless coupling constant for normal
+system and Gκ,l (ω) = δ[ω + 4tλ− Ω0 κl] is the δ-function. The properties of the
+Poisson distribution quantitatively explain many features of the IE on LF7 .
+The energy ωQP = −4tλ of the zero-phonon line l = 0 in (44) depends
+only on isotope independent quantities which explains very weak isotope dependence of QP peak energy in insets of Fig. 12. Besides, change of the zero(0)
+(0)
+phonon line weight Z (0) obeys relation Ziso /Znor = exp [−ξ0 (1 − κ)/κ] in
+IOM. These IOM estimates agree with DMC data within 15% in the nodal
+point and within 25% in the antinodal one. IE on FCP
+in the strong couR +∞
+pling regime follows from the properties of zero M0 = −∞ L(ω)dω = 1, first
+R +∞
+R +∞
+M1 = −∞ ωL(ω)dω = 0, and second M2 = −∞ ω 2 L(ω)dω = κξ0 Ω02 moments of shifted Poisson distribution
+(44). Moments M0 and M2 establish
+√
+FCP
+relation D = hFCP
+/h
+=
+1/
+κ
+≈
+1.03
+between heights of FCP in normal
+nor
+iso
+and substituted compounds. DMC data in the antinodal point perfectly agree
+with the above estimate for all couplings. This is consistent with the idea that
+the anti-nodal region remains in the strong coupling regime even though the
+nodal region is in the crossover region. In the nodal point DMC data well
+agree with IOM estimate for λ = 0.75 (D ≈ 1.025) whereas at λ = 0.69 and
+7
+
+Cautions should be made about approximate form of EPI (42). Strictly speaking,
+actual momentum dependence of the interaction constant σ [204, 205] can slightly
+change the obtained differences between nodal and antinodal points though the
+general trends have to be left intact because ST is caused solely by the short
+range part of EPI [80].
+
+34
+
+A. S. Mishchenko and N. Nagaosa
+-2.9
+
+(a)
+
+0.06
+
+(b)
+
+-3.0
+
+0.02
+
+-3.1
+
+1/3
+
+P
+
+/t
+
+0.02
+
+1/2
+
+0.04
+
+-3.2
+-3.3
+-3.4
+
+0.01
+
+0.02
+
+0.01
+
+-3.5
+-3.6
+-3.7
+
+(c)
+
+k=( /2, /2)
+0.5
+
+0.6
+
+0.7
+
+0.00
+
+(d)
+
+0.00
+0.65
+
+0.70
+
+0.75
+
+0.65
+
+0.70
+
+0.75
+
+0.00
+0.65
+
+0.70
+
+0.75
+
+Fig. 13. (a) Energies of ground state and broad peaks for normal (triangles),
+isotope substituted (circles) and "antiisotope" substituted (diamonds) compounds.
+Comparison of IOM estimates (lines) with DMC data in the nodal (squares) and
+antinodal (diamonds) points: (b) shift of the FCP top, (c) FCP leading edge at 1/2
+of height, and (d) FCP leading edge at 1/3 of height.
+
+λ = 0.62 influence of the ST point leads to anomalous values of D: D ≈ 1.07
+and D ≈ 0.98, respectively. Shift of the low energy edge at half maximum
+∆1/2 must√be proportional
+to change of the root square of second moment
+√
+∆√M2 = ξ0 Ω0 [1 − κ]. As we found in numeric simulations of (44) with
+Gaussian functions8 Gκ,l (ω), relation ∆1/2 ≈ ∆√M2 /2 is accurate to 10% for
+0.62 < λ < 0.75. Also, simulations show that the shift of the edge at one
+third of maximum ∆1/3 obeys relation ∆1/3 ≈ ∆√M2 . DMC data with IOM
+estimates are in good agreement for strong EPI λ = 0.75 (Fig. 13). However, shift of the FCP top ∆p and ∆1/2 are considerably enhanced in the
+self-trapping (ST) transition region. The physical reason for enhancement of
+IE in this region is a general property regardless of the QP dispersion, range
+of EPI, etc. The influence of nonadiabatic matrix element, mixing excited
+and ground states, on the energies of resonances essentially depends on the
+phonon frequency. While in the adiabatic approximation ST transition is sudden and nonanalytic in λ [80], nonadiabatic matrix elements turn it to smooth
+crossover [144]. Thus, as illustrated in Fig. 13a, the smaller the frequency the
+sharper the kink in the dependence of excited state energy on the interaction
+constant
+In the undoped case the present results can be directly compared with
+the experiments. It is found that the IE on the ARPES lineshape of a single hole is anomalously enhanced in the intermediate coupling regime while
+can be described by the simple independent oscillators model in the strong
+coupling regime. The shift of FCP top and change of the FCP height are relevant quantities to pursue experimentally in the intermediate coupling regime
+since IE on these characteristics is enhanced near the self trapping point. In
+8
+
+Results are almost
+√ independent on the parameter η of the Gaussian distribution
+Gκ,l (ω) = 1/(η 2π) exp(−[ω + 4tλ − Ω0 κl]/(2η 2 )) in the range [0.12, 0.2].
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+35
+
+contrast, shift of the leading edge of the broad peak is the relevant quantity
+√
+in the strong coupling regime since this value increases with coupling as λ.
+These conclusions, depending on the fact whether self trapping phenomenon
+is encountered in specific case, can be applied fully or partially to another
+compounds with strong EPI [34, 37, 38, 39].
+6.3 Conclusions and Perspectives
+In this article, we have focused mainly on the polaron problem in strongly
+correlated systems. This offers an approach from the limit of low carrier concentration doped into the (Mott) insulator, which is complementary to the
+conventional Eliashberg-Migdal approach for the EPI in metals. In the latter
+case, we have the Fermi energy εF as a relevant energy scale, which is usually
+much larger than the phonon frequency Ω0 . In this case, the adiabatic Migdal
+approximation is valid and the vertex corrections, which correspond to the
+multi-phonon cloud and are essential to the self-trapping phenomenon, are
+suppressed by the ratio Ω0 /εF . Therefore an important issue is the crossover
+from the strong coupling polaronic picture to the weak coupling EliashbergMigdal picture. This occurs as one increases the carrier doping into the insulator. As is observed by ARPES experiments in high temperature superconductors, the polaronic states continue to survive even at finite doping [177].
+This suggests a novel polaronic metallic state in underdoped cuprates, which
+is common also in CMR manganites [36] and is most probably universal in
+transition metal oxides. In the optimal and overdoped region, the EliashbergMigdal picture becomes appropriate [170, 171], but still a nontrivial feature of
+the EPI is its strong momentum dependence leading to the dichotomy between
+the nodal and anti-nodal regions. It is an interesting observation that the highest superconducting transition temperature is attained at the crossover region
+between the two pictures above, which suggests that both the itinerancy and
+strong coupling to the phonons are essential to the quantum coherence. It
+should be noted that this crossover occurs in a nontrivial way also in the momentum space, i.e., the nodal and anti-nodal regions behave quite differently
+as discussed in Sect. 6.2. However, the relevance of the EPI to the high Tc
+superconductivity is still left for future investigations.
+We hope that this article convinces the readers the vital role of ARPES
+experiments and numerically exact solutions to the EPI problem, the combination of them offers a powerful tool for the momentum-energy resolved
+analysis of these rather complicated strongly correlated electronic systems.
+This will pave a new path to the deeper understanding of the many-body
+electronic systems.
+We thank Y. Toyozawa, Z. X. Shen, T. Cuk, T. Devereaux, J. Zaanen, S.
+Ishihara, A. Sakamoto, N. V. Prokofev, B. V. Svistunov, E. A. Burovski, J. T.
+Devreese, G. de Filippis, V. Cataudella, P. E. Kornilovitch, O. Gunnarsson,
+N. M. Plakida, and K. A. Kikoin, for collaborations and discussions.
+
+36
+
+A. S. Mishchenko and N. Nagaosa
+
+References
+1. J. Appel: Solid State Physics, Vol. 21, ed by H. Ehrenreich, F. Seitz and D.
+Turnbull (Academic, New York 1968).
+2. S. I. Pekar: Untersuchungen über die Elektronentheorie der Kristalle,
+(Akademie Verlag, Berlin 1954)
+3. L. D. Landau: Sow. Phys. 3, 664 (1933).
+4. H. Fröhlich, H. Pelzer, S. Zienau: Philos. Mag. 41, 221 (1950)
+5. J. T. Devreese: Encyclopedia of Applied Physics Vol. 14, ed by G. L. Trigg
+(VCH, New York 1996), p. 383
+6. A. I. Anselm, Yu. A. Firsov: J. Exp. Theor. Phys. 28, 151 (1955); ibid. 30, 719
+(1956)
+7. M. Ueta, H. Kanzaki, K. Kobayashi, Y. Toyozawa, E. Hanamura: Excitonic
+Processes in Solids, (Springer-Verlag, Berlin 1986)
+8. Y. Toyozawa: Progr. Theor. Phys. 20 53 (1958).
+9. Y. Toyozawa: Optical Processes in Solids, (University Press, Cambridge 2003)
+10. C. L. Kane, P. A. Lee, N. Read: Phys. Rev. B 39, 6880 (1989)
+11. Yu. A. Izymov: Usp. Fiz. Nauk 167, 465 (1997) [Physics-Uspekhi 40, 445
+(1997)]
+12. J. Kanamori: Appl. Phys. 31, S14 (1960).
+13. A. Abragam, B. Bleaney: Electron Paramagnetic Resonance of Transition Ions,
+(Clarendon Press, Oxford 1970)
+14. K. I. Kugel, D. I. Khomskii: Sov. Phys. Usp. 25, 231 (1982)
+15. A. J. Millis, P. B. Littlewood, B. I. Shraiman: Phys. Rev. Lett. 74, 5144 (1995)
+16. A. S. Alexandrov, A. M. Bratkovsky: Phys. Rev. Lett. 82, 141 (1999)
+17. E. I. Rashba: Sov. Phys. JETP 23, 708 (1966)
+18. Y. Toyozawa, J. Hermanson: Phys. Rev. Lett. 21, 1637 (1968)
+19. I. B. Bersuker: The Jahn-Teller Effect, (IFI/Plenum, New York 1983)
+20. V. L. Vinetskii: Zh. Exp. Teor. Fiz 40, 1459 (1961) [Sov. Phys. - JETP 13,
+1023 (1961)]
+21. P. W. Anderson: Phys. Rev. Lett. 34 953 (1975)
+22. H. Hiramoto, Y. Toyozawa: J. Phys. Soc. Jpn. 54, 245 (1985)
+23. A. Alexandrov, and J. Ranninger: Phys. Rev. B 23 1796 (1981)
+24. A. Alexandrov, and J. Ranninger: Phys. Rev. B 24 1164 (1981)
+25. H. Haken: Il Nuovo Cimento 3, 1230 (1956)
+26. F. Bassani, G. Pastori Parravicini: Electronic States and Optical Transitions
+in Solids, (Pergamon, Oxford 1975)
+27. J. Pollman, H. Büttner: Phys. Rev. B 16, 4480 (1977)
+28. A. Sumi: J. Phys. Soc. Jpn. 43, 1286 (1977)
+29. Y. Shinozuka, Y. Toyozawa: J. Phys. Soc. Jpn. 46, 505 (1979)
+30. Y. Toyozawa: Physica 116B, 7 (1983)
+31. B. O. Wells, Z.-X. Shen, A. Matsuura et al: Phys. Rev. Lett. 74, 964 (1995)
+32. A. Danmascelli, Z.-X. Shen, and Z. Hussain: Rev. Mod. Phys. 75, 473 (2003)
+33. X. J. Zhou, T. Yoshida, D.-H. Lee et al: Phys. Rev. Lett. 92, 187001 (2004)
+34. D. S. Dessau, T. Saitoh, C.-H. Park et al: Phys. Rev. Lett. 81, 192 (1998);
+35. N. Mannella, A. Rosenhahn, C. H. Booth et al: Phys. Rev. Lett. 92, 166401
+(2004)
+36. N. Mannella, W. L. Yang, X. J. Zhou et al: Nature 438, 474 (2005)
+37. L. Perfetti, H. Berger, A. Reginelli et al: Phys. Rev. Lett. 87, 216404 (2001)
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+37
+
+38. L. Perfetti, S. Mitrovic, G. Margaritondo et al: Phys. Rev. B 66, 075107 (2002)
+39. D. Schrupp, M. Sing, M. Tsunekawa et al: Eur. Phys. Lett. 70, 789 (2005)
+40. R. J. Mc Queeney, T. Egami, G. Shirane and Y. Endoh: Phys. Rev. B 54 R9689
+(1996)
+41. H. A. Mook, R. M. Nicklow: Phys. Rev. B 20 1656 (1979)
+42. H. A. Mook, D. B. McWhan, F. Holtzberg: Phys. Rev. B 25 4321 (1982)
+43. N. V. Prokof'ev, B. V. Svistunov, I. S. Tupitsyn: J. Exp. Theor. Phys. 114,
+570 (1998) [Sov. Phys. - JETP 87, 310 (1998)]
+44. N. V. Prokof'ev, B. V. Svistunov: Phys. Rev. Lett. 81, 2514 (1998)
+45. A. S. Mishchenko, N. V. Prokof'ev, A. Sakamoto, B. V. Svistunov: Phys. Rev.
+B 62, 6317 (2000)
+46. E. A. Burovski, A. S. Mishchenko, N. V. Prokof'ev, B. V. Svistunov: Phys.
+Rev. Lett. 87, 186402 (2001)
+47. A. S. Mishchenko, N. Nagaosa, N. V. Prokof'ev, B. V. Svistunov, E. A.
+Burovski: Nonlinear Optics 29, 257 (2002)
+48. A. S. Mishchenko, N. Nagaosa, N. V. Prokof'ev, A. Sakamoto, B. V. Svistunov:
+Phys. Rev. Lett. 91, 236401 (2003)
+49. A. S. Mishchenko, N. Nagaosa: Phys. Rev. Lett. 93, 036402 (2004)
+50. A. S. Mishchenko: Usp. Phys. Nauk 175, 925 (2005) [Physics-Uspekhi 48, 887
+(2005)]
+51. A. S. Mishchenko, N. Nagaosa: J. Phys. Soc. J. 75, 011003 (2006)
+52. A. S. Mishchenko, N. Nagaosa: Phys. Rev. Lett. 86, 4624 (2001)
+53. A. S. Mishchenko, N. V. Prokof'ev, B. V. Svistunov: Phys. Rev. B 64, 033101
+(2001)
+54. A. S. Mishchenko, N. Nagaosa, N. V. Prokof'ev, A. Sakamoto, B. V. Svistunov:
+Phys. Rev. B 66 020301 (2002)
+55. A. S. Mishchenko, N. Nagaosa: Phys. Rev. B 73, 092502 (2006)
+56. A. S. Mishchenko, N. Nagaosa: J. Phys. Chem. Solids 67, 259 (2006)
+57. G. De Fillipis, V. Cataudella, A. S. Mishchenko, J. T. Devreese, C. A. Perroni:
+Phys. Rev. Lett. 96, 136405 (2006)
+58. J. T. Devreese: Optical Properties of Few and Many Fröhlich Polarons from
+3D to 0D, contribution to the present book.
+59. A. A. Abrikosov, L. P. Gor'kov, I. E. Dzyaloshinskii: Quantum field theoretical
+method in statistical physics (Pergamon Press, Oxford 1965)
+60. G. D. Mahan: Many particle physics (Plenum Press, Plenum Press 2000)
+61. M. Jarrell, J. Gubernatis: Phys. Rep. 269, 133 (1996)
+62. R. Knox: Theory of Excitons, (Academic Press, New York 1963)
+63. I. Egri: Phys. Rep 119, 364 (1985)
+64. D. Haarer: Chem. Phys. Lett 31, 192 (1975)
+65. D. Haarer, M. R. Philpot, H. Morawitz: J. Chem. Phys 63, 5238 (1975)
+66. A. Elscner, G. Weiser: Chem. Phys 98 465 (1985)
+67. J. I. Frenkel: Phys. Rev. 17, 17 (1931)
+68. J. H. Wannier: Phys. Rev. 52, 191 (1937)
+69. G. De Filippis, V. Cataudella, V. Marigliano Ramaglia, C. A. Perroni: Phys.
+Rev. B 72, 014307 (2005)
+70. M. Berciu: cond-mat/0602195
+71. J. T. Devreese, L. F. Lemmens, J. Van Royen: Phys. Rev. B 15, 1212 (1977)
+72. P. E. Kornilovitch: Europhys. Lett. 59, 735 (2002)
+73. J. Devreese, R. Evrard: Phys. Lett. 11, 278 (1966)
+
+38
+
+A. S. Mishchenko and N. Nagaosa
+
+74. E. Kartheuzer, R. Evrard, J. Devreese: Phys. Rev. Lett. 22, 94 (1969)
+75. J. Devreese, J. De Sitter, M. Goovaerts: Phys. Rev. B 5, 2367 (1972)
+76. J. T. Devreese: Internal structure of free Fröhlich polarons, optical absorption
+and cyclotron resonance. In Polarons in Ionic crystals and Polar Semiconductors (North Holland, Amsterdam 1972) pp 83–159
+77. M. J. Goovaerts, J. M. De Sitter, J. T. Devreese: Phys. Rev. B 7, 2639 (1973)
+78. R. Feynman, R. Hellwarth, C. Iddings, and P. Platzman: Phys. Rev. 127, 1004
+(1962)
+79. T. D. Lee, F. E. Low, D. Pines: Phys. Rev. 90, 297 (1953)
+80. E. I. Rashba: Self-trapping of excitons. In Modern Problems in Condensed
+Matter Sciences, vol. 2, ed by V. M. Agranovich and A. A. Maradudin (Notrh
+Holland, Amsterdam 1982) pp 543–602
+81. N. Metropolis, A. W. Rosenbluth, M. N. Rosenbluth, A. M. Teller and E.
+Teller: J. Chem. Phys. 21, 1087 (1953)
+82. D. P. Landau, K. Binder: A Guide to Monte Carlo Simulations in Statistical
+Physics, (University Press, Cambridge 2000)
+83. A. W. Sandvik, J. Kurkijärvi: Phys. Rev. B 43, 5950 (1991)
+84. A. N. Tikhonov, V. Y. Arsenin: Solutions of Ill-Posed Problems, (Winston,
+Washington 1977)
+85. E. Perchik: math-ph/0302045
+86. D. L. Phillips: J. Assoc. Comut. Mach. 9 84 (1962)
+87. A. N. Tikhonov: DAN USSR 151 501 (1963)
+88. S. S. Aplesnin: J. Exp. Theor. Phys 97 969 (2003)
+89. G. Onida, L. Reining, A. Rubio: Rev. Mod. Phys. 74, 601 (2002)
+90. L. J. Sham, T. M. Rice: Phys. Rev. 144, 708 (1965).
+91. L. X. Benedict, E. L. Shirley, R. B. Bohn: Phys. Rev. Lett. 80, 4514 (1998)
+92. S. Albrecht, L. Reining, R. Del Sole, G. Onida: Phys. Rev. Lett. 80, 4510
+(1998)
+93. M. Rohlfing, S. G. Louie: Phys. Rev. Lett. 81, 2312 (1998)
+94. A. Marini, R. Del Sole: Phys. Rev. Lett. 91, 176402 (2003)
+95. W. Stephan: Phys. Rev. B 54, 8981 (1996)
+96. G. Wellein, H. Fehske: Phys. Rev. B 56, 4513 (1997)
+97. H. Fehske, J. Loos, G. Wellein: Z. Phys. B 104, 619 (1997)
+98. H. Fehske, J. Loos, G. Wellein: Phys. Rev. B 61, 8016 (2000)
+99. J. Bonča, S. A. Trugman, I. Batistić: Phys. Rev. B 60, 1633 (1999)
+100. L.-C. Ku, S. A. Trugman, J. Bonča: Phys. Rev. B 65, 174306 (2002)
+101. S. E. Shawish, J. Bonča, L.-C. Ku, S. A. Trugman: Phys. Rev. B 67, 014301
+(2003)
+102. O. S. Barisic: Phys. Rev. B 65, 144301 (2002)
+103. O. S. Barisic: Phys. Rev. B 69, 064302 (2004)
+104. A. Georges, G. Kotliar: Phys. Rev. B 45, 647 (1992)
+105. M. Jarrel: Phys. Rev. Lett. 69, 168 (1992)
+106. P. G. J. van Dongen, D. Vollhardt: Phys. Rev. Lett. 65, 1663 (1990)
+107. A. Georges, G. Kotliar, W. Krauth, M. J. Rozenberg: Rev. Mod. Phys. 68, 13
+(1996)
+108. S. Ciuchi, F. de Pasquale, S. Fratini, D. Feinberg: Phys. Rev. B 56 4494 (1997)
+109. D. Sénéchal, D. Perez, M. Pioro-Landriére: Phys. Rev. Lett. 84, 522 (2000)
+110. D. Sénéchal, D. Perez, M. Plouffe: Phys. Rev. B 66, 075129 (2002)
+111. M. Hohenadler, M. Aichhorn, W. von der Linden: Phys. Rev. B 68, 18430
+(2003)
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+39
+
+112. M. Hohenadler, M. Aichhorn, W. von der Linden: Phys. Rev. B 71, 014302
+(2005)
+113. M. Hohenadler, D. Neuber, W. von der Linden, G. Wellein, J. Loos, H. Fehske:
+ibid. 71, 245111 (2005)
+114. S. R. White: Phys. Rev. Lett. 69, 2863 (1992)
+115. S. R. White: Phys. Rev. B 48, 10345 (1993)
+116. S. R. White: Phys. Rev. Lett. 77, 363 (1996)
+117. E. Jeckelmann, S. R. White: Phys. Rev. B 57, 6376 (1998)
+118. G. Hager, G. Wellein, E.Jeckelmann, H. Fehske: Phys. Rev. B 71, 075108 (2005)
+119. P. E. Kornilovitch: Phys. Rev. Lett. 81, 5382 (1998)
+120. P. E. Kornilovitch: Phys. Rev. B 60, 3237 (1999)
+121. P. E. Spenser, J. H. Samson, P. E. Kornilovitch, A. S. Alexandrov: Phys. Rev.
+B 71, 184310 (2005)
+122. J. P. Hague, P. E. Kornilovitch, A. S. Alexandrov, J. H. Samson: Phys. Rev.
+B 73, 054303 (2006)
+123. A. S. Alexandrov, P. E. Kornilovitch: Phys. Rev. Lett. 82, 807 (1999)
+124. A. S. Alexandrov, P. E. Kornilovitch: Phys. Rev. B 70, 224511 (2004)
+125. S. Ciuchi, F. de Pasquale, D. Feinberg: Europhys. Lett. 30, 151 (1995)
+126. A. S. Alexandrov, V. V. Labanov, D. K. Ray: Phys. Rev. B 49, 9915 (1994)
+127. A. S. Alexandrov, J. Ranninger: Phys. Rev. B 45, 13109 (1992)
+128. L. D. Landau, S. I. Pekar: Zh. Eksp. Teor. Fiz. 18, 419 (1948) [Sov. Phys.
+JETP 18, 341 (1948)]
+129. V. L. Gurevich, I. G. Lang, Yu. A. Firsov: Fiz. Tverd. Tela (Leningrad) 4, 1252
+(1962) [Sov. Phys. Solid State 4, 918 (1962)]
+130. J. Franck, E. G. Dymond: Trans. Faraday Soc. 21, 536 (1926)
+131. E. U. Condon: Phys. Rev. 32, 858 (1928)
+132. D. N. Bertran, J. J. Hopfield: J. Chem. Phys. 81, 5753 (1984)
+133. X. Urbain, B. Fabre, E. M. Staice-Casagrande et al: Phys. Rev. Lett. 92, 163004
+(2004)
+134. M. Lax: J. Chem. Phys. 20, 1752 (1952)
+135. D. I. Khomskii: Usp. Fiz. Nauk 129, 443 (1979) [Sov. Phys. Usp. 22, 879
+(1979)]
+136. C. E. T. Goncalves da Silva, L. M. Falicov: Phys. Rev. B 13, 3948 (1976).
+137. P. A. Alekseev, J. M. Mignot, J. Rossat-Mignot: J. Phys.: Condens. Matter 7,
+289 (1995)
+138. K. A. Kikoin, A. S. Mishchenko: J. Phys.: Condens. Matter 7, 307 (1995)
+139. R. Feynman: Phys. Rev. 97, 660 (1955)
+140. F. M. Peeters, J. T. Devreese: Phys. Rev. B 28, 6051 (1983)
+141. V. Cataudella, G. De. Filippis, C. A. Perroni: Single polaron properties in
+different electron phonon models, contribution to the present book.
+142. E. G. Brovman, Yu. Kagan: Zh. Eksp. Teor. Fiz. 52, 557 (1967) [Sov. Phys.
+JETP 25, 365 (1967)]
+143. K. A. Kikoin, A. S. Mishchenko: Zh. Eksp. Teor. Fiz. 104, 3810 (1993) [Sov.
+Phys. JETP 77, 828 (1993)]
+144. B. Gerlach, H. L"owen: Rev. Mod. Phys. 63, 63 (1991)
+145. A. Brillante, M. R. Philpott: J. Chem. Phys. 72, 4019 (1980)
+146. D. Haarer: Chem. Phys. Lett. 27, 91 (1974)
+147. D. Haarer: J. Chem. Phys. 67, 4076 (1977)
+148. M. Kuwata-Gonokami, N. Peyghambarian, K. Meissner et al: Nature 367, 47
+(1994)
+
+40
+
+A. S. Mishchenko and N. Nagaosa
+
+149. S. Curnoe, K. A. Kikoin: Phys. Rev. B 61, 15714 (2000)
+150. K. A. Kikoin, A. S. Mishchenko: Zh. Eksp. Teor. Fiz. 94, 237 (1988) [Sov.
+Phys. JETP 67, 2309 (1988)]
+151. K. A. Kikoin, A. S. Mishchenko: J. Phys.: Condens. Matter 2, 6491 (1990)
+152. P. A. Alekseev, A. S. Ivanov, B. Dorner et al: Europhys. Lett. 10, (1989) 457.
+153. A. S. Mishchenko, K. A. Kikoin: J. Phys.: Condens. Matter 3, 5937 (1991).
+154. G. Trawaglini P. Wachter: Phys. Rev. B 29, 893 (1984)
+155. P. Lemmens, A. Hoffman, A. S. Mishchenko et al: Physica B 206&207, 371
+(1995)
+156. T. Kasuya: Europhys. Lett. 26, 277 (1994)
+157. T. Kasuya: Europhys. Lett. 26, 283 (1994)
+158. E. Manousakis: Rev. Mod. Phys. 63, 1 (1991)
+159. E. Dagotto: Rev. Mod. Phys. 66, 763 (1994)
+160. P. A. Lee, N. Nagaosa, X. G. Wen: Rev. Mod. Phys. 78, 17 (2006)
+161. B. Batlogg, R. J. Cava, A. Jayaraman et al: Phys. Rev. Lett. 58, 2333 (1987)
+162. O. Gunnarsson, M. Calandra, J. E. Han: Rev. Mod. Phys. 75, 1085 (2003)
+163. R. Khasanov, D. G. Eshchenko, H. Luetkens et.al: Phys. Rev. Lett. 92, 057602
+(2004)
+164. L. Pintschovius, M. Braden: Phys. Rev. B, 60, R15039 (1999).
+165. C. Thomsen, M. Cardona, B. Gegenheimer et. al: Phys. Rev. B 37, 9860 (1988)
+166. V. G. Hadjiev, X. Zhou, T. Strohm, et. al: Phys. Rev. B 58, 1043 (1998)
+167. G. Khaliullin, P. Horsch: Physica C 282-287, 1751 (1997)
+168. O. Rösch, O. Gunnarsson: Phys. Rev. Lett. 93, 237001 (2004)
+169. A. Lanzara, P. V. Bogdanov, X. J. Zhou et al: Nature 412, 510 (2001)
+170. T. Cuk, F. Baumberger, D. H. Lu et al: Phys. Rev. Lett. 93, 117003 (2004)
+171. T. P. Devereaux, T. Cuk, Z.-X. Shen, N. Nagaosa: Phys. Rev. Lett. 93, 117004
+(2004)
+172. R. J. McQueeney, Y. Petrov, T. Egami et al: Phys. Rev. Lett. 82, 628 (1999)
+173. A. V. Chubukov, M. R. Norman: Phys. Rev. B 70, 174505 (2004)
+174. M. Eschrig, M. R. Norman: Phys. Rev. Lett. 85, 3261 (2000)
+175. M. Eschrig, M. R. Norman: Phys. Rev. B 67, 144503 (2003)
+176. X. J. Zhou, T. Yoshida, A. Lanzara et al: Nature 423, 398 (2003)
+177. K. M. Shen, F. Ronnig, D. H. Lu et al: Phys. Rev. Lett. 93, 267002 (2004)
+178. T. Xiang, J. M. Wheatley: Phys. Rev. B 54, R12653 (1996)
+179. B. Kyung, R. A. Ferrell: Phys. Rev. B 54, 10125 (1996)
+180. J. J. M. Pothuizen1, R. Eder1, N. T. Hien et al: Phys. Rev. Lett. 78, 717 (1997)
+181. K. A. Chao, J. Spalek, A. M. Oles: J. Phys. C 10, L271 (1977)
+182. C. Gross, R. Joynt, T. M. Rice: Phys. Rev. B 36, 381 (1987)
+183. M. Brunner, F. F. Assaad, A. Muramatsu: Phys. Rev. B 62, 15480 (2000).
+184. V. I. Belinicher, A. L. Chernyshev, V. A. Shubin: Phys. Rev. B 53, 335 (1996)
+185. V. I. Belinicher, A. L. Chernyshev, V. A. Shubin: Phys. Rev. B 54, 14914
+(1996)
+186. T. Tohyama, S. Maekawa: Superconductors Science and Technology 13, R17
+(2000)
+187. J. Bala, A. M. Oleś, J. Zaanen: Phys. Rev. B 52 4597 (1995)
+188. S. Schmitt-Rink, C. M. Varma, A. E. Ruckenstein: Phys. Rev. Lett. 60, 2793
+(1988)
+189. Z. Liu, E. Manousakis: Phys. Rev. B 44, 2414 (1991)
+190. Z. Liu, E. Manousakis: Phys. Rev. B 45, 2425 (1992)
+
+Spectroscopic Properties of Polarons by Exact Monte Carlo
+
+41
+
+191. B. Bauml, G. Wellein, H. Fehske: Phys. Rev. B 58, 3663 (1998)
+192. A. Ramšak, P. Horsch, P. Fulde: Phys. Rev. B 46, 14305 (1992)
+193. B. Kyung, S. I. Mukhin, V. N. Kostur, R. A. Ferrell: Phys. Rev. B 54, 13167
+(1996)
+194. F. Marsiglio F, A. E. Ruckenstein, S. Schmitt-Rink, C. Varma: Phys. Rev. B
+43, 10882 (1991)
+195. G. Martinez, P. Horsch: Phys. Rev. B 44, 317 (1991)
+196. O. Rösch, O. Gunnarsson: Phys. Rev. B 73, 174521 (2006)
+197. A. S. Mishchenko: Pis'ma Zh. Eksp. Teor. Fiz. 66, 460 (1997) [JETP Lett. 66,
+487 (1997)]
+198. O. Rösch, O. Gunnarsson: Europhys. Phys. J. B 43, 11 (2005)
+199. G. Sangiovanni, O. Gunnarsson, E. Koch, C. Castellani, M. Capone: condmat/0602606.
+200. O. Rösch, O. Gunnarsson: Phys. Rev. B 70, 224518 (2004).
+201. G.-H. Gweon, T. Sasagawa, S. Y. Zhou et al: Nature 430, 187 (2004)
+202. O. Rösch, O. Gunnarsson, X. J. Zhou et al: Phys. Rev. Lett. 95, 227002 (2005)
+203. G. A. Sawatzky: Nature (London) 342B, 480 (1989)
+204. O. Rösch, O. Gunnarsson: Phys. Rev. Lett. 92, 146403 (2004)
+205. S. Ishihara , N. Nagaosa: Phys. Rev. B 69, 144520 (2004)
+
+
