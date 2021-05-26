@@ -23,7 +23,7 @@ Now that the raw text has been extracted from the full PDFs, preprocessing of th
 
 This is a sample selection of the raw text data:
 
-[sample_data](https://github.com/christianspybrook/article_recommender/blob/master/sample_data/raw_sample.csv)
+[sample_data](https://github.com/christianspybrook/article_recommender/blob/master/sample_data/)
 
 <!-- Algorithms, Framaeworks, and Libraries Demonstrated:
 ----------------------------------------------------
