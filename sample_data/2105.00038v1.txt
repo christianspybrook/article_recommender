@@ -1,0 +1,1096 @@
+L IMIT LAWS FOR LARGE k TH - NEAREST NEIGHBOR BALLS
+
+arXiv:2105.00038v1 [math.PR] 30 Apr 2021
+
+A P REPRINT
+Nicolas Chenavier
+Université du Littoral Côte d'Opale
+50 rue F. Buisson 62228 Calais
+nicolas.chenavier@univ-littoral.fr
+
+Norbert Henze
+Institute of Stochastics
+Karlsruhe Institute of Technology (KIT)
+Englerstr. 2, D-76133 Karlsruhe
+Norbert.Henze@kit.edu
+
+Moritz Otto
+Institute for Mathematical Stochastics
+Otto von Guericke University Magdeburg
+Universitätsplatz 2, D-39106 Magdeburg
+Moritz.Otto@ovgu.de
+
+May 4, 2021
+
+A BSTRACT
+Let X1 , X2 , . . . , Xn be a sequence of independent random points in Rd with common Lebesgue
+density f . Under some conditions on f , we obtain a Poisson limit theorem, as n → ∞, for the
+number of large probability kth-nearest neighbor balls of X1 , . . . , Xn . Our result generalizes Theorem 2.2 of [10], which refers to the special case k = 1. Our proof is completely different since it
+employs the Chen-Stein method instead of the method of moments. Moreover, we obtain a rate of
+convergence for the Poisson approximation.
+
+1 Introduction and main results
+The starting point of this paper is the following result, see [10]. Let X, X1 , . . . , Xn , . . . be a sequence of independent
+and identically distributed (i.i.d.) random points in Rd that are defined on a common probability space (Ω, A, P). We
+assume that the distribution of X, which is denoted by μ, is absolutely continuous with respect to Lebesgue measure
+λ, and we denote the density of μ by f . Writing k * k for the Euclidean norm in Rd , and putting Xn := {X1 , . . . , Xn },
+let Ri,n := minj6=i,j≤n kXi − Xj k be the distance from Xi to its nearest neighbor in the set Xn \ {Xi }. Moreover,
+let 1 {A} denote the indicator function of a set A, and write B(x, r) = {y ∈ Rd : kx − yk ≤ r} for the closed ball
+centered at x with radius r. Finally, let
+n
+n
+X
+ t + log n o
+1 μ B(Xi , Ri,n ) >
+Cn :=
+n
+i=1
+denote the number of exceedances of probability volumes of nearest neighbor balls that are larger than the threshold
+(t + log n)/n. The main result of [10] is Theorem 2.2 of that paper, which states that, under a weak condition on the
+density f , for each fixed t ∈ R, we have
+D
+(1)
+Cn −→ Po(exp(−t))
+D
+
+as n → ∞, where −→ denotes convergence in distribution, and Po(ξ) is the Poisson distribution with parameter ξ > 0.
+Since the maximum probability content of these nearest balls, denoted by Pn , is at most (t + log n)/n if, and only if,
+Cn = 0, we immediately obtain a Gumbel limit limn→∞ P(nPn − log n ≤ t) = exp(− exp(−t)) for Pn .
+MSC 2010 subject classifications. Primary 60F05 Secondary 60D05
+Key words and phrases Binomial point process; large kth-nearest neighbor balls; Chen-Stein method; Poisson convergence;
+Gumbel distribution
+
+Limit laws for large kth-nearest neighbor balls
+
+To state a sufficient condition on f that guarantees (1), let supp(μ) := {x ∈ Rd : μ(B(x, r)) > 0 for each r > 0}
+denote the support of μ. Theorem 2.2 of [10] requires that there are β ∈ (0, 1), cmax < ∞ and δ > 0 such that, for
+any r, s > 0 and any x, z ∈ supp(μ) with kx − zk ≥ max{r, s} and μ (B(x, r)) = μ (B(z, s)) ≤ δ, one has
+μ (B(x, r) ∩ B(z, s))
+≤β
+μ (B(z, s))
+
+and μ B(z, 2s) ≤ cmax μ (B(z, s)).
+
+These conditions hold if supp(f ) is a compact set K (say), and there are f− , f+ ∈ (0, ∞) such that
+f− ≤ f (x) ≤ f+ ,
+
+x ∈ K.
+
+(2)
+
+Thus, the density f of X is bounded and bounded away from zero.
+The purpose of this paper is to generalize (1) to kth-nearest neighbors, and to derive a rate of convergence for the
+Poisson approximation of the number of exceedances.
+Before stating our main results, we give some more notation. For fixed k ≤ n − 1, we denote by Ri,n,k the Euclidean
+distance of Xi to its kth-nearest neighbor among Xn \ {Xi }, and we write B(Xi , Ri,n,k ) for the kth-nearest neighbor
+ball centered at Xi with radius Ri,n,k . For fixed t ∈ R, put
+vn,k := vn,k (t) :=
+and let
+Cn,k :=
+
+t + log n + (k − 1) log log n − log(k − 1)!
+,
+n
+n
+X
+
+
+1 μ B(Xi , Ri,n,k ) > vn,k
+
+(3)
+
+(4)
+
+i=1
+
+denote the number of exceedances of probability contents of kth-nearest neighbor balls over the threshold vn,k defined
+in (3).
+The threshold vn,k is in some sense universal in dealing with the number of exceedances of probability contents of kthnearest neighbor balls. To this end, suppose that, in much more generality than considered so far, X, X1 , X2 , . . . are
+i.i.d. random elements taking values in a separable metric space (S, ρ). We retain the notations μ for the distribution
+of X and B(x, r) := {y ∈ S : ρ(x, y) ≤ r} for the closed ball with radius r centered at x ∈ S. Regarding the
+distribution μ, we assume that
+μ({y ∈ S : ρ(x, y) = r}) = 0,
+
+x ∈ S, r ≥ 0.
+
+(5)
+
+As a consequence, the distances ρ(Xi , Xj ), where j ∈ {1, . . . , n} \ {i}, are different with probability one for each
+i ∈ {1, . . . , n}. Thus, for fixed k ≤ n − 1, there is almost surely a unique kth-nearest neighbor of Xi , and we also
+retain the notations Ri,n,k for the distance of Xi to its kth-nearest neighbor among Xn \{Xi } and B(Xi , Ri,n,k ) for the
+ball centered at Xi with radius Ri,n,k . Notice that the condition (5) excludes discrete metric spaces (see, e.g., Section
+4 of [17]), but not function spaces like, e.g., the space C[0, 1] of continuous functions on [0, 1] with the supremum
+metric, and with Wiener measure μ.
+In what follows, for sequences (an )n≥0 and (bn )n≥0 of real numbers, write an = O(bn ) if |an | ≤ C|bn |, n ≥ 1, for
+some positive constant C.
+Theorem 1.1. If X1 , X2 , . . . are i.i.d. random elements of a metric space (S, ρ), and if (5) holds, then the sequence
+(Cn,k ) satisfies
+
+
+log log n
+−t
+E[Cn,k ] = e + O
+.
+log n
+In particular, the mean number of exceedances Cn,k converges to e−t as n goes to infinity. By Markov's inequality,
+this result implies the tightness of the sequence (Cn,k )n≥1 . Thus, at least a subsequence converges in distribution.
+The next result states convergence of Cn,k to a Poisson distribution if (S, ρ) = (Rd , k * k) and (2) holds. To this end,
+let dT V (Y, Z) be the total variation between two integer-valued random variables Y and Z, i.e.,
+dT V (Y, Z) = 2 sup |P(Y ∈ A) − P(Z ∈ A)|.
+A⊂N
+
+2
+
+Limit laws for large kth-nearest neighbor balls
+
+Theorem 1.2. Let Z be a Poisson random variable with parameter e−t . If X, X1 , X2 , . . . are i.i.d. in Rd with density
+f , and if the distribution μ of X has compact support [0, 1]d and satisfies (2), then, as n → ∞,
+
+
+log log n
+dT V (Cn,k , Z) = O
+.
+log n
+Theorem 1.2 is not only a generalization of Theorem 2.2 of [10] over all k ≥ 1: it also provides a rate of convergence
+for the Poisson approximation of Cn,k . Our theorem is stated in the particular case that the support of μ is [0, 1]d but
+we think that it can be extended to any measure μ whose support is a general convex body. For the sake of readibility
+of the manuscript, we did not deal with such a generalization.
+Remark 1.3. The study of extremes of kth-nearest neighbor balls is classical in stochastic geometry, and it has various
+applications, see e.g. [16]. In Section 4 in [15], bounds for the total variation distance of the process of Poisson points
+with large kth-nearest neighbor ball (with respect to the intensity measure) and a Poisson process were obtained.
+Parallel to our work, these results have been extended by Bobrowski et al. to the Kantorovich-Rubinstein distance and
+generalized to the binomial process in Section 6.2 of a paper which has just been submitted [5]. While the results in
+[5] and [15] rely on Palm couplings of a thinned Poisson/binomial process and employ distances of point processes,
+we derive a bound on the total variation distance of the number of large kth-nearest-neighbor balls and a Poissondistributed random variable. Our approach permits to build arguments on classical Poisson approximation theory [2]
+and an asymptotic independence property stated in Lemma 2.2 below, and it thus results in a considerably shorter and
+less technical proof.
+
+Now, let Pn,k = max1≤i≤n μ B(Xi , Ri,n,k ) be the maximum probability content of the kth-nearest neighbor balls.
+Since Cn,k = 0 if, and only if, Pn,k ≤ vn,k , we obtain the following corollary.
+Corollary 1.4. Under the conditions of Theorem 1.2, we have
+
+lim P nPn,k − log n − (k − 1) log log n + log(k − 1)! ≤ t = G(t),
+
+n→∞
+
+t ∈ R,
+
+where G(t) = exp(− exp(−t)) is the distribution function of the Gumbel distribution.
+
+Remark 1.5. If, in the Euclidean case, the density f is continuous, then μ(B(Xi , Ri,n,k )) is approximately equal
+d
+to f (Xi )κd Ri,n,k
+, where κd = π d/2 /Γ(1 + d/2) is the volume of the unit ball in Rd . Under additional smoothness
+assumptions on f and (2), [11, 12] proved that
+
+
+
+d
+(6)
+lim P max f (Xi )κd min Ri,n,k
+, kXi − ∂Kkd ≤ vn,k = G(t),
+n→∞
+
+i=1,...,n
+
+where K is the support of μ. Here, the distance kXi − ∂Kk of Xi to the boundary of K is important to overcome
+edge effects. These effects dominate the asymptotic behavior of the maximum of the kth-nearest neighbor distances if
+k ≥ d, see [8, 9]. In fact, [11] proved convergence of the factorial moments of
+en,k :=
+C
+
+n
+o
+n
+X
+
+d
+1 f (Xi )κd min Ri,n,k
+, kXi − ∂Kkd > vn,k
+i=1
+
+to the corresponding factorial moments of a random variable with the Poisson distribution Po(e−t ) and thus, by the
+
+D
+en,k →
+Po e−t . However, our proof of Theorem 1.2 is completely
+method of moments, more than (6), namely C
+different thereof, since it is based on the Chen-Stein method and provides a rate of convergence.
+
+2 Proofs
+2.1 Proof of Theorem 1.1
+Proof. By symmetry, we have
+
+
+
+E Cn,k
+
+= n P (μ(B(X1 , R1,n,k )) > vn,k )
+= n E [P (μ(B(X1 , R1,n,k ))) > vn,k |X1 ] .
+
+For a fixed x ∈ S, let
+Hx (r) := P (ρ(x, X) ≤ r) ,
+3
+
+r ≥ 0,
+
+Limit laws for large kth-nearest neighbor balls
+
+be the distribution function of ρ(x, X). Due to the condition (5), the function Hx is continuous, and by the probability
+integral transform (see e.g. [4], p. 8), the random variable
+
+Hx (ρ(x, X)) = μ B(x, ρ(x, X))
+
+is uniformly distributed in the unit interval [0, 1]. Put Uj := Hx (ρ(x, Xj+1 )), j = 1, . . . , n − 1. Then U1 , . . . , Un−1
+are i.i.d. random variables with a uniform distribution in (0, 1). Hence, conditionally on X1 = x, the random variable
+μ(B(X1 , R1,n,k )) has the same distribution as Uk:n−1 , where U1:n−1 < . . . < Un−1:n−1 are the order statistics
+of U1 , . . . , Un−1 , and this distribution does not depend on x. Now, because of a well-known relation between the
+distribution of order statistics from the uniform distribution on (0, 1) and the binomial distribution (see, e.g., [1], p.
+16), we have
+k−1
+X n − 1
+sj (1 − s)n−1−j
+P(Uk:n−1 > s) =
+j
+j=0
+and thus
+
+k−1
+X n − 1 j
+
+
+vn,k (1 − vn,k )n−1−j .
+E Cn,k = n
+j
+j=0
+
+(7)
+
+Here, the summand for j = k − 1 equals
+
+
+k−1
+Y n−i
+n − 1 k−1
+n
+n
+vn,k (1 − vn,k )n−k =
+(nvn,k )k−1
+(1 − vn,k )n−k .
+k−1
+(k − 1)!
+n
+i=1
+Using Taylor expansions, (3) yields
+nvn,k = log n + O (log log n) ,
+
+k−1
+Y
+i=1
+
+n−i
+=1+O
+n
+
+ 
+1
+n
+
+and
+
+
+
+ 2
+log (n)
+(k − 1)!
+.
+exp −t − (k − 1) log log n + O
+(1 − vn,k )
+=
+n
+n
+Straigthforward computations now give
+
+
+
+
+n − 1 k−1
+log log n
+n
+vn,k (1 − vn,k )n−k = e−t + O
+.
+k−1
+log n
+n−k
+
+Regarding the remaining summands on the right hand side of (7), it is readily seen that
+ 
+
+
+k−2
+X n − 1 j
+1
+n − 1 k−1
+n−1−j
+n−k
+vn,k (1 − vn,k )
+=O n
+v
+(1 − vn,k )
+*
+,
+nvn,k
+j
+k − 1 n,k
+j=0
+with the convention that the sum equals 0 if k = 1. From the above computations and from (3), it follows that this
+sum equals O (1/ log n), which concludes the proof of Theorem 1.1.
+Remark 2.1. In the proof given above, we conditioned on the realizations x of X1 . Since the distribution of
+Hx (ρ(x, X)) = μ B(x, ρ(x, X)) does not depend on X, we obtain as a by-product that
+P (μ(B(X1 , R1,n,k )) > vn,k ) =
+
+k−1
+X
+
+
+e−t
+n−1 j
+vn,k (1 − vn,k )n−1−j ∼
+,
+j
+n
+
+j=0
+
+if X1 , X2 , . . . , Xn are independent and X2 , . . . , Xn are i.i.d. according to μ. Here, X1 may have an arbitrary distribution and an ∼ bn means that an /bn → 1 as n → ∞.
+2.2 Proof of Theorem 1.2
+The main idea to derive Theorem 1.2 is to discretize supp(μ) = [0, 1]d into finitely many "small sets" and then to
+employ the Chen-Stein method. To apply this method, we will have to check an asymptotic independence property and
+a local property which ensures that, with high probability, two exceedances cannot appear in the same neighborhood.
+We introduce these properties below and recall a result due to Arratia et al. [2] on the Chen-Stein method.
+4
+
+Limit laws for large kth-nearest neighbor balls
+
+The asymptotic independence property Fix ε > 0. Writing ⌊*⌋ for the floor function, we partition [0, 1]d into
+a set Vn of Nnd subcubes (i.e., subsets that are cubes) of equal size that can only have boundary points in common, where Nn = ⌊n/ log(n)1+ε ⌋. The subcubes are indexed by the set [1, Nn ]d = {j := (j1 , . . . , jd ) : jm ∈
+{1, . . . , Nn } for m ∈ {1, . . . , d}}. With a slight abuse of notation, we identify a cube with its index. Let
+\
+{Xn ∩ j 6= ∅}
+En =
+j∈Vn
+
+be the event that each of the subcubes contains at least one of the points of Xn . The event En is extensively used in
+stochastic geometry to derive central limit theorems or to deal with extremes [3, 6, 7], and it will play a crucial role
+throughout the rest of the paper. The following lemma, which captures the idea of "asymptotic independence" , is at
+the heart of our development.
+Lemma 2.2. For each α > 0, we have P ( Enc ) = o(n−α ) as n → ∞.
+Proof. By subadditivity and independence, it follows that
+X
+P ( Xn ∩ j = ∅ )
+P ( Enc ) ≤
+j∈Vn
+
+=
+
+X
+
+P ( X1 6∈ j )
+
+j∈Vn
+
+=
+
+X
+
+n
+1 − μ(j)
+
+j∈Vn
+
+≤
+
+X
+
+n
+
+exp(−nμ(j)).
+
+j∈Vn
+
+Here, the
+R last inequality holds since log(1 − x) ≤ −x for each x ∈ [0, 1). Since f ≥ f− > 0 on K, we have
+μ(j) = j f dλ ≥ f− λ(j), whence – writing #M for the cardinality of a finite set M –
+X
+
+
+exp − nf− λ(j)
+P Enc ≤
+j∈Vn
+
+
+≤ #Vn exp − f− (log n)1+ε .
+
+Since #Vn ≤ n/(log n)1+ε , it follows that nα P ( Enc ) → 0 as n → ∞.
+
+The local property We now define a metric d on Vn by putting d(j, j′ ) := max1≤s≤d |js − js′ | for any two different
+subcubes j and j′ , and d(j, j) := 0, j ∈ Vn . Let S(j, r) = {j′ ∈ Vn : d(j, j′ ) ≤ r} be the ball of subcubes of radius r
+centered at j. For any j ∈ Vn , put
+Mj := max μ(B(Xi , Ri,n,k )),
+i≤n,Xi ∈j
+
+with the convention Mj = 0 if Xn ∩ j = ∅. Conditionally on the event En , and provided that d(j, j′ ) ≥ 2k + 1, the
+random variables Mj and Mj′ are independent. Lemma 2.2 is referred to as the asymptotic independence property:
+conditionally on the event En , which occurs with high probability, the extremes Mj and Mj′ attained on two subcubes
+which are sufficiently distant from each other are independent.
+The following lemma claims that, with high probability, two exceedances cannot occur in the same neighborhood.
+Lemma 2.3. With the notation a ∧ b := min(a, b) for a, b ∈ R, let
+X
+
+R(n) = sup
+P Xi , Xi′ ∈ S(j, 2k); μ(B(Xi , Ri,n,k )) ∧ μ(B(Xi′ , Ri′ ,n,k )) > vn,k .
+j∈Vn i6=i′ ≤n
+
+Then R(n) = O(n−1 (log n)2−d+ε ) as n → ∞.
+Here, with aSslight
+of notation, we have identified the family of subcubes S(j, 2k) = {j′ ∈ Vn : d(j, j′ ) ≤ 2k}
+ ′ abuse
+with the set
+j : j′ ∈ Vn and d(j, j′ ) ≤ 2k}.
+We prepare the proof of Lemma 2.3 with the following result that gives the volume of two d-dimensional balls.
+5
+
+Limit laws for large kth-nearest neighbor balls
+
+Lemma 2.4. If x ∈ B(0, 2) then
+
+ 
+
+d−1 
+arccos(kxk/2)
+kxkκd−1 p
+2
+λ(B(0, 1) ∪ B(x, 1)) = 2 κd 1 −
+.
+1 − (kxk/2)
++
+π
+2d
+
+Proof. We calculate the volume of λ(B(0, 1) ∪ B(x, 1)) as the sum of the volumes of the following two congruent
+sets. The first one, say B, is given by the set of all points in B(0, 1) ∪ B(x, 1) that are closer top
+0 than to x and
+for the second one we change the roles of 0 and x. The set B is the union of a cone C with radius 1 − (kxk/2)2 ,
+height kxk/2 and apex at the origin and a set D := B(0, 1) \ S, where S is a simplicial cone with external angle
+arccos(kxk/2). From elementary geometry, we obtain that the volumes of C and D are given by
+
+
+d−1
+kxkκd−1 p
+arccos(kxk/2)
+λ(C) =
+1 − (kxk/2)2
+.
+, λ(D) = κd 1 −
+2d
+π
+This finishes the proof of the lemma.
+
+Proof of Lemma 2.3. For z ∈ [0, 1]d , let
+rn,k (z) := inf{r > 0 : μ(B(z, r)) > vn,k }.
+Writing #Y(A) for the number of points of a finite set Y of random points in Rd that fall into a Borel set A, we have
+μ(B(z, Rn,k (z))) > vn,k
+
+⇐⇒
+
+#Xn (B(z, rn,k (z))) ≤ k − 1.
+
+In the following, we assume that rn,k (Xi′ ) ≤ rn,k (Xi ) (which is at the cost of a factor 2) and distinguish the two
+cases Xi′ ∈ B(Xi , rn,k (Xi )) and Xi′ ∈ S(j, 2k) \ B(Xi , rn,k (Xi )). This distinction of cases gives
+
+P Xi , Xi′ ∈ S(j, 2k); μ(B(Xi , Ri,n,k )) ∧ μ(B(Xi′ , Ri′ ,n,k )) > vn,k
+
+≤ 2P Xi , Xi′ ∈ S(j, 2k); rn,k (Xi′ ) ≤ rn,k (Xi ); μ(B(Xi , Ri,n,k )) ∧ μ(B(Xi′ , Ri′ ,n,k )) > vn,k
+≤ 2P Xi ∈ S(j, 2k); Xi′ ∈ B(Xi , rn,k (Xi )); rn,k (Xi′ ) ≤ rn,k (Xi );
+
+μ(B(Xi , Ri,n,k )) ∧ μ(B(Xi′ , Ri′ ,n,k )) > vn,k
+
++ 2P Xi ∈ S(j, 2k), Xi′ ∈ S(j, 2k) \ B(Xi , rn,k (Xi )); rn,k (Xi′ ) ≤ rn,k (Xi );
+
+μ(B(Xi , Ri,n,k )) ∧ μ(B(Xi′ , Ri′ ,n,k )) > vn,k .
+
+We bound the summands (8) and (9) separately. Since Xi and Xi′ are independent, (8) takes the form
+Z
+Z
+1{rn,k (y) ≤ rn,k (x)} P(#(Xn \ {Xi , Xi′ } ∪ {x})(B(y, rn,k (y))) ≤ k − 1;
+2
+S(j,2k)
+
+(8)
+(9)
+
+B(x,rn,k (x))
+
+#(Xn \ {Xi , Xi′ } ∪ {y})(B(x, rn,k (x))) ≤ k − 1) μ(dy) μ(dx).
+
+(10)
+
+For y ∈ B(x, rn,k (x)), the probability in the integrand figuring above is bounded from above by
+P(#(Xn \ {Xi , Xi′ })(B(y, rn,k (y))) ≤ k − 1;
+#(Xn \ {Xi , Xi′ })(B(x, rn,k (x))) ≤ k − 2)
+≤ P(#(Xn \ {Xi , Xi′ })(B(y, rn,k (y))) ≤ k − 1;
+#(Xn \ {Xi , Xi′ })(B(x, rn,k (x)) \ B(y, rn,k (y)) ≤ k − 2).
+
+(11)
+
+Since the random vector
+(#(Xn \ {Xi , Xi′ })(B(y, rn,k (y))), #(Xn \ {Xi , Xi′ })(B(x, rn,k (x)) \ B(y, rn,k (y))))
+is negatively quadrant dependent (see [13, Section 3.1]), Equation (11) has the upper bound
+P(#(Xn \ {Xi , Xi′ })(B(y, rn,k (y))) ≤ k − 1)
+× P(#(Xn \ {Xi , Xi′ })(B(x, rn,k (x)) \ B(y, rn,k (y))) ≤ k − 2)
+≤ P(#(Xn \ {Xi , Xi′ })(B(y, rn,k (y))) ≤ k − 1)
+× P(#(Xn \ {Xi , Xi′ })(B(x, rn,k (x)) \ B(y, rn,k (x))) ≤ k − 2),
+where the last inequality holds since rn,k (y) ≤ rn,k (x). Analogously to Remark 2.1, the first probability is
+
+k−1 
+X
+e−t
+n−2 j
+.
+vn,k (1 − vn,k )n−2−j ∼
+P(#(Xn \ {Xi , Xi′ })(B(y, rn,k (y))) ≤ k − 1) =
+n
+j
+j=0
+6
+
+(12)
+
+Limit laws for large kth-nearest neighbor balls
+
+The latter probability in (12) is given by
+k−2
+X n − 2
+l
+n−2−l
+μ B(x, rn,k (x)) \ B(y, rn,k (x)) 1 − μ(B(x, rn,k (x)) \ B(y, rn,k (x)))
+.
+(13)
+l
+l=0
+
+In a next step, we estimate μ B(x, rn,k (x)) \ B(y, rn,k (x)) . Since f (x) ≥ f− > 0, x ∈ [0, 1]d, and by the
+homogeneity of d-dimensional Lebesgue measure λ, we obtain
+
+μ B(x, rn,k (x)) \ B(y, rn,k (x)) ≥ f− λ(B(x, rn,k (x)) \ B(y, rn,k (x)))
+= f− rn,k (x)d λ(B(0, 1) \ B(rn,k (x)−1 (y − x), 1))
+
+
+= f− rn,k (x)d λ(B(0, 1) ∪ B(rn,k (x)−1 (y − x), 1)) − κd .
+
+For y ∈ B(x, rn,k (x)), Lemma 2.4 yields
+
+μ B(x, rn,k (x)) \ B(y, rn,k (x))
+
+d−1 !
+
+q
+2 arccos(kx − yk/2rn,k (x))
+kx − ykκd−1
+d
+2
+.
+≥ f− rn,k (x) κd 1 −
+1 − (kx − yk/2rn,k (x))
++
+π
+2drn,k (x)
+Since inf s>0 s−1 (1 − 2 arccos(s)/π) > 0, there is c0 > 0 such that
+
+μ B(x, rn,k (x)) \ B(y, rn,k (x)) ≥ c0 kx − ykrn,k (x)d−1 ,
+
+x ∈ S(j, 2k), y ∈ B(x, rn,k (x)).
+
+d
+
+Equation (13) and the bound f (x) ≤ f+ , x ∈ [0, 1] , give
+Z
+
+1{rn,k (y) ≤ rn,k (x)}P #(Xn \ {Xi , Xi′ })(B(x, rn,k (x)) \ B(y, rn,k (x))) ≤ k − 1 μ(dy)
+B(x,rn,k (x))
+
+≤ f+
+
+k−2
+X
+l=0
+
+Z
+n−2−l
+l 
+
+n−2
+λ(dy).
+1 − c0 kx − ykrn,k (x)d−1
+c0 kx − ykrn,k (x)d−1
+l
+B(x,rn,k (x))
+
+We now introduce spherical coordinates and obtain
+k−2
+n−2−l
+l 
+X n − 2 Z rn,k (x) 
+td−1 dt
+1 − c0 trn,k (x)d−1
+f+ dκd
+c0 trn,k (x)d−1
+l
+0
+l=0
+
+k−2
+l
+
+
+X n − 2 Z rn,k (x) 
+= f+ dκd
+c0 trn,k (x)d−1 exp (n − 2 − l) log(1 − c0 trn,k (x)d−1 ) td−1 dt
+l
+0
+l=0
+
+
+k−2
+
+l
+
+X n − 2 Z rn,k (x) 
+≤ f+ dκd
+c0 trn,k (x)d−1 exp − c0 (n − 2 − l)trn,k (x)d−1 td−1 dt.
+l
+0
+l=0
+
+Here, the last line follows from the inequality log s ≤ s − 1, s > 0. Next, we apply the change of variables
+
+
+t := (c0 (n − 2 − l))−1 rn,k (x)1−d s
+i.e., s = c0 (n − 2 − l)trn,k (x)d−1 ,
+
+which shows that the last upper bound takes the form
+Z c0 (n−2−l)rn,k (x)d
+k−2
+X n − 2
+d(1−d)
+−d−l
+f+ dκd c−d
+r
+(x)
+(n
+−
+2
+−
+l)
+sl+d−1 e−s ds.
+(14)
+n,k
+0
+l
+0
+l=0
+
+We now use the bounds f− κd rn,k (x)d ≤ vn,k , n−2
+≤ nl /l!, and the fact that the integral figuring in (14) converges
+l
+as n → ∞. Hence, the expression in (14) is bounded from above by c1 n−1 (log n)1−d , where c1 is some positive
+constant. Consequently, (8) is bounded from above by
+c1 n−1 (log n)1−d λ(S(j, 2k))
+
+sup
+
+P(#(Xn \ {Xi , Xi′ })(B(y, rn,k (y))) ≤ k − 1)
+
+y∈S(j,2k)
+
+∼ c2 n−3 (log n)2−d+ε
+
+(15)
+
+for some c2 > 0.
+7
+
+Limit laws for large kth-nearest neighbor balls
+
+By analogy with the reasoning above, (9) is given by the integral
+Z
+Z
+
+1{rn,k (y) ≤ rn,k (x)} P #(Xn \ {Xi , Xi′ } ∪ {x})(B(y, rn,k (y))) ≤ k − 1
+2
+S(j,2k)
+
+S(j,2k)\B(x,rn,k (x))
+
+× P(#(Xn \ {Xi , Xi′ })(B(x, rn,k (x)) \ B(y, rn,k (y))) ≤ k − 1) μ(dy) μ(dx).
+
+(16)
+
+If y ∈
+/ B(x, rn,k (x)) and rn,k (x) ≥ rn,k (y), we have the lower bound
+λ(B(x, rn,k (x)) \ B(y, rn,k (y))) ≥
+
+λ(B(x, rn,k (x)))
+.
+2
+
+Since f+ κd rn,k (x)d ≥ vn,k , we find a constant c3 > 0 such that
+λ(B(x, rn,k (x)) \ B(y, rn,k (y))) ≥ c3 vn,k ,
+whence
+P #(Xn \ {Xi , Xi′ })(B(x, rn,k (x)) \ B(y, rn,k (y))) ≤ k − 1
+k−1
+X n − 2
+l
+n−2−l
+≤
+c3 vn,k 1 − c3 vn,k
+l
+∼
+
+l=0
+c3k−1
+
+(k − 1)!
+
+log n
+
+k−1
+
+
+
+
+exp n log(1 − c3 vn,k )
+
+as n → ∞. Since log s ≤ s − 1 for s > 0, (16) is bounded from above by
+c4 n−c3 λ(S(j, 2k))2
+
+P(#(Xn \ {Xi , Xi′ })(B(y, rn,k (y))) ≤ k − 1)
+
+sup
+y∈S(j,2k)
+
+∼ c5 (4k + 1)2d
+
+(log n)2+2ε
+,
+n3+c3
+
+(17)
+
+where c4 and c5 are positive constants. Summing over all i 6= i′ ≤ n, it follows from (15) and (17) that R(n) =
+O(n−1 (log n)2−d+ε ) as n → ∞, which finishes the proof of Lemma 2.3.
+A Poisson approximation result based on the Chen-Stein method In this paragraph, we recall a Poisson approximation result due to Arratia et al. [2], which is based on the Chen-Stein method. To this end, we consider
+a finite or countable collection (Yα )α∈I of {0, 1}-valued random variables and we let pα = P(Yα = 1) > 0,
+pαβ = P(Yα = 1, Yβ = 1). Moreover, suppose that for each α ∈ I, there is a set Bα ⊂ I that contains α. The
+set Bα is regarded as a neighborhood of α that consists of the set of indices β such that Yα and Yβ are not independent. Finally, put
+X 
+X X
+X X
+
+pαβ , b3 =
+pα pβ , b 2 =
+E |E[Yα − pα |σ(Yβ : β 6∈ Bα )]| .
+(18)
+b1 =
+α∈I β∈Bα
+
+α∈I
+
+α∈I α6=β∈Bα
+
+Theorem 2.5. (Theorem 1 of [2] ) Let W =
+
+P
+
+α∈I
+
+Yα , and assume λ := E(W ) ∈ (0, ∞). Then
+
+dT V (W, Po(λ)) ≤ 2(b1 + b2 + b3 ).
+Proof of Theorem 1.2 Recall vn,k from (3) and Cn,k from (4). Put
+X 
+bn,k :=
+1 Mj > vn,k .
+C
+j∈Vn
+
+The following lemma claims that the number Cn,k of exceedances is close to the number of subcubes for which there
+bn,k , and that C
+bn,k can be approximated by a Poisson random variable.
+exists at least one exceedance, i.e. C
+Lemma 2.6. We have
+
+
+
+bn,k ) = O (log n)1−d ,
+a) P(Cn,k 6= C
+
+
+
+bn,k , Po(E[C
+bn,k ])) = O (log n)1−d ,
+b) dT V (C
+
+8
+
+Limit laws for large kth-nearest neighbor balls
+
+bn,k ] = e−t + O
+c) E[C
+
+
+
+log log n
+log n
+
+
+
+.
+
+Proof. Assertion a) is a direct consequence of Lemma 2.3 and of the inequalities
+bn,k ) = P ∃j ∈ Vn , ∃i, l s.t. Xi , Xl ∈ j; μ(B(Xi , Ri,n,k )) ∧ μ(B(Xl , Rl,n,k )) > vn,k
+P(Cn,k 6= C
+X X
+≤
+P ( Xi , Xl ∈ j; μ(B(Xi , Ri,n,k )) ∧ μ(B(Xl , Rl,n,k )) > vn,k )
+
+
+
+j∈Vn i6=l≤n
+
+≤
+
+n
+× R(n).
+(log n)1+ε
+
+To prove b), we apply Theorem 2.5 to the collection (Yα )α∈I = (Mj )j∈Vn . Recall that, conditionally on the event En ,
+the random variables Mj and Mj′ are independent provided that d(j, j′ ) ≥ 2k + 1. With a slight abuse of notation, we
+omit to condition on En since this event occurs with probability tending to 1 as n → ∞ (Lemma 2.2) at a rate which
+is at least polynomial. The first two terms in (18) are
+X
+X X
+X
+pjj′ ,
+pj pj′ , b2 =
+b1 =
+j∈Vn j6=j′ ∈S(j,2k)
+
+j∈Vn j′ ∈S(j,2k)
+
+where
+pj = P(Mj > vn,k ), pjj′ = P(Mj > vn,k , Mj′ > vn,k ).
+The term b3 figuring in (18) equals 0 since, conditionally on En , the random variable Mj is independent of the σ-field
+σ(Mj′ : j′ 6∈ S(j, 2k)). Thus, according to Theorem 2.5, we have
+bn,k , Po(E[C
+bn,k ])) ≤ 2(b1 + b2 ).
+dT V (C
+
+Fist, we deal with b1 . As for the first assertion, notice that for each j ∈ Vn , using symmetry, we obtain
+[
+
+pj = P
+{Xi ∈ j, μ(B(Xi , Ri,n,k )) > vn,k }
+i≤n
+
+
+≤ n * P X1 ∈ j, μ(B(X1 , R1,n,k )) > vn,k
+Z
+= n * P(μ(B(x, R1,n,k )) > vn,k |X1 = x)f (x) dx
+j
+Z
+1
++
+≤ nf λ(j) P(μ(B(x, R1,n,k )) > vn,k |X1 = x)
+dx
+λ(j)
+j
+e1 , R1,n,k )) > vn,k ),
+= nf + λ(j)P(μ(B(X
+
+e1 is independent of X2 , . . . , Xn and has a uniform distribution over j. Invoking Remark 2.1, the probability
+where X
+
+figuring in the last line is asymptotically equal to e−t /n as n → ∞. Since λ(j) = O (log n)1+ε /n , we thus have
+pj ≤ C *
+
+(log n)1+ε
+,
+n
+
+n
+d
+where C is a constant that does not depend on j. Since #Vn ≤ (log n)
+1+ε and #S(j, 2k) ≤ (4k + 1) , summing over
+′
+j, j gives
+
+
+X X  (log n)1+ε 2
+(log n)1+ε
+.
+=O
+b1 ≤ C 2
+n
+n
+′
+j∈Vn j ∈S(j,2k)
+
+To deal with b2 , notice that, for each j, j′ ∈ Vn and j′ ∈ S(j, 2k), we have
+ [
+
+pjj′ = P
+{Xi ∈ j, Xi′ ∈ S(j, 2k), μ(B(Xi , Ri,n,k )) ∧ μ(B(Xi′ , Ri′ ,n,k )) > vn,k }
+i6=i′ ≤n
+
+≤P
+
+ [
+
+i6=i′ ≤n
+
+
+{Xi , Xi′ ∈ S(j, 2k); μ(B(Xi , Ri,n,k )) ∧ μ(B(Xi′ , Ri′ ,n,k )) > vn,k } .
+9
+
+Limit laws for large kth-nearest neighbor balls
+
+Using subadditivity, and taking the supremum, we obtain
+X X
+X
+
+sup
+b2 ≤
+P Xi , Xi′ ∈ S(j, 2k), μ(B(Xi , Ri,n,k )) ∧ μ(B(Xi′ , Ri′ ,n,k )) > vn,k
+j∈Vn j′ ∈S(j,2k)
+
+≤
+
+j∈Vn
+
+i6=i′ ≤n
+
+n
+× (4k + 1)d × R(n).
+(log n)1+ε
+
+
+
+1−d
+, which concludes the proof of b).
+According to Lemma 2.3, the last term equals O (log n)
+To prove c), observe that
+bn,k ] − e−t ≤ E[C
+bn,k ] − E[Cn,k ] + E[Cn,k ] − e−t .
+E[C
+
+
+bn,k , we further have
+By Theorem 1.1, the last summand is O logloglogn n . Since Cn,k ≥ C
+
+bn,k ] − E[Cn,k ] = E[Cn,k − C
+bn,k ]
+E[C
+X
+
+X
+=E
+1 {Mj > vn,k }
+1 {μ(B(Xi , Ri,n,k )) > vn,k } −
+i≤n
+
+=
+
+X
+
+j∈Vn
+
+≤
+
+j∈Vn
+
+ X
+
+
+E
+1 {Xi ∈ j}11{μ(B(Xi , Ri,n,k )) > vn,k } − 1 1 {Mj > vn,k }
+i≤n
+
+X X
+
+P Xi , Xi′ ∈ j, μ(B(Xi , Ri,n,k )), μ(B(Xi′ , Ri′ ,n,k )) > vn,k
+
+j∈Vn i6=i′ ≤n
+
+≤ #Vn × R(n).
+
+
+
+
+
+1−d
+. This concludes the proof of Lemma 2.6 and thus of
+According to Lemma 2.3, the last term equals O (log n)
+Theorem 1.2.
+
+3 Concluding remarks
+When dealing with limit laws for large kth-nearest neighbor distances of a sequence of i.i.d. random points in Rd with
+density f , which take values in a bounded region K, the modification of the kth-nearest neighbor distances made in
+(6) (by introducing the "boundary distances" kXi − ∂Kk) and the condition that f is bounded away from zero, which
+have been adopted in [11] and [12], seem to be crucial, since boundary effects play a decisive role ([8, 9]). Regarding
+kth-nearest neighbor balls with large probability volume, there is no need to introduce kXi − ∂Kk. It is an open
+problem, however, whether Theorem 1.2 continues to hold for densities that are not bounded away from zero.
+A second open problem refers to Theorem 1.1, which states convergence of expectations of Cn,k in a setting beyond
+the finite-dimensional case. Since Cn,k is non-negative, the sequence (Cn,k )k is tight by Markov's inequality. Can
+one find conditions on the underlying distribution that ensure convergence in distribution to some random element of
+the metric space?
+
+References
+[1] Ahsanullah, M., Nevzzorov, V.B., and Shakil, M. (2013). An Introduction to Order Statistics. Atlantis Press.
+Amsterdam, Paris, Beijing.
+[2] Arratia, R., Goldstein, L., and Gordon, L., (1990). Poisson approximation and the Chen-Stein method. Statist. Sci.
+5: 403–434.
+[3] Avram, F. and Bertsimas, D., (1993). On central limit theorem in geometrical probability. Ann. Appl. Probab.
+3(4):1033–1046, 1993.
+[4] Biau, G. and Devroye, L. (2015). Lectures on the Nearest Neighbor Method. Springer, New York.
+[5] Bobrowski, O., Schulte, M., and Yogeshwaran, D. (2021). Poisson process approximation under stabilization and
+Palm coupling. Available at https://arxiv.org/abs/2104.13261.
+10
+
+Limit laws for large kth-nearest neighbor balls
+
+[6] Bonnet, G. and Chenavier, N., (2020). The maximal degree in a Poisson-Delaunay graph. Bernoulli 26: 948–979.
+[7] Chenavier, N. and Robert, C. Y. (2018). Cluster size distributions of extreme values for the Poisson-Voronoi
+tessellation. Ann. Appl. Probab. 28(6): 3291–3323.
+[8] Dette, H. and Henze, N. (1989). The limit distributionof the largest nearest-neighbour link in the unit d-cube. J.
+Appl. Probab. 26:67–80.
+[9] Dette, H. and Henze, N. (1990). Some peculiar boundary phenomena for extremes of rth nearest neighbor links.
+Statist. & Prob. Lett. 10:381–390.
+[10] Györfi, L., Henze, N., and Walk, H. (2019). The limit distribution of the maximum probability nearest neighbor
+ball. J. Appl. Probab. 56: 574–589.
+[11] Henze, N. (1982). The limit distribution for maxima of "weighted" rth-nearest-neighbour distances. J. Appl.
+Probab. 19:344–354.
+[12] Henze, N. (1983). Ein asymptotischer Satz über den maximalen Minimalabstand von unabhängigen Zufallsvektoren mit Anwendung auf einen Anpassungstest im Rp und auf der Kugel. [An asymptotic theorem on the maximum minimum distance of independent random vectors, with application to a goodness-of-fit test in Rp and on
+the sphere]. Metrika 30:245–259 (in German).
+[13] Joag-Dev, K. and Proschan, F. (1983). Negative association of random variables with applications. Ann. Stat.
+11:286–295.
+[14] Last, G. and Penrose, M. D. (2017). Lectures on the Poisson Process. Cambridge University Press (IMS Textbook).
+[15] Otto, M. (2020). Poisson approximation of Poisson-driven point processes and extreme values in stochastic
+geometry. Available at https://arxiv.org/pdf/2005.10116.pdf.
+[16] Penrose, M. D. (1997). The longest edge of the random minimal spanning tree. Ann. Appl. Probab. 7(2): 340-361.
+[17] Zubkov, A. N. and Orlov, O. P. (2018). Limit distributions of extremal distances to the nearest neighbor. Discrete
+Math. Appl. 28:189–199.
+
+11
+
+

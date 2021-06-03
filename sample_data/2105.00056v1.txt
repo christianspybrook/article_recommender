@@ -1,0 +1,513 @@
+Anytime Decoding by Monte-Carlo Tree Search
+
+arXiv:2105.00056v1 [cs.IT] 30 Apr 2021
+
+Aolin Xu
+
+Abstract-An anytime decoding algorithm for tree codes using
+Monte-Carlo tree search is proposed. The meaning of anytime
+decoding here is twofold: 1) the decoding algorithm is an anytime algorithm, whose decoding performance improves as more
+computational resource, measured by decoding time, is allowed,
+and 2) the proposed decoding algorithm can approximate the
+maximum-likelihood sequence decoding of tree codes, which has
+the anytime reliability when the code is properly designed. The
+above anytime properties are demonstrated through experiments.
+The proposed method may be extended to the decoding of convolutional codes and block codes by Monte-Carlo trellis search,
+to enable smooth complexity-performance trade-offs in these
+decoding tasks. Some other extensions and possible improvements
+are also discussed.
+
+I. I NTRODUCTION
+A. Tree code
+Tree code is a type of error correction code for which
+the encoding can be performed sequentially as tree traversal:
+starting from a root node, in the ith encoding step, the ith
+information symbol determines which child node to traverse,
+and the ith encoded symbol is taken as the label on the branch
+towards the chosen child node. For example, a rate k/n tree
+code encoding d information symbols defined over {0, 1}k can
+be described by a regular 2k -ary tree of depth d, where each
+nonleaf node has 2k child nodes and each branch has a label
+drawn from {0, 1}n . Figure 1 shows such an example with
+k = 1, n = 2 and d = 4. Many familiar error correction
+codes can be represented as tree codes. Examples include
+the convolutional codes [1] and the block codes, both linear
+[2] and nonlinear [3], as both types of codes have trellis
+representations, which can be expanded to trees.
+An interesting property a tree code can have is the anytime
+reliability [4], meaning that the probability of decoding error
+of each information symbol can be exponentially smaller as
+the delay for decoding that symbol linearly increases. Tree
+codes with anytime reliability are shown to be essential for
+interactive communication over noisy channels [5] and for stabilizing an unstable linear system over a noisy channel [4]. The
+anytime reliability of random convolutional codes over binary
+symmetric channel is claimed in the original paper where the
+convolutional code was proposed [6]. The existence of tree
+codes with explicit distance properties that guarantee anytime
+reliability under maximum-likelihood sequence decoding is
+proved in [5]. Recent studies on more explicit constructions
+of codes having such a property include [7]–[9].
+xuaolin@gmail.com
+
+Fig. 1. A tree code example with k = 1, n = 2, d = 4. The encoding path
+for the information sequence (0, 1, 1, 0) is shown in bold.
+
+B. Decoding by tree search
+A natural choice for decoding a tree code is the maximumlikelihood sequence decoding (MLSD). Over a discrete memoryless channel (DMC), the MLSD reduces to the minimum
+distance decoding, which is equivalent to searching for the
+minimum-length path from the root node to a leaf node.
+The length of each candidate path is the summation of the
+Hamming distance between the label on the i branch in that
+path and the ith received symbol, over i = 1, . . . , d. The
+complexity of full search on a 2k -ary tree of depth d is
+proportional to the number of leaves, which is O(2kd ).
+To manage the decoding complexity at the expense of
+compromising the optimality in the sense of MLSD, a number
+of approximate tree-search decoding algorithms have been
+proposed, mostly in the early literature of convolutional code
+decoding [10] [11, Chapter 8]. Prominent examples are sequential decoding and stack decoding, the complexity of
+which are random variables and are likely to be small when
+the channel noise is light. Other examples include feedback
+decoding and majority logic decoding or threshold decoding,
+where the complexity can be explicitly controlled by restricting
+the search depth, which however results in inferior decoding
+performance. This paper presents a novel approximate treesearch decoding method, for which the complexity, determined
+by the run time, can be explicitly controlled, and the performance constantly improves as the run time increases. The
+method is based on Monte-Carlo tree search.
+C. Monte-Carlo tree search
+Monte-Carlo tree search (MCTS) is a heuristic tree search
+algorithm first proposed in the filed of computer game playing
+[12] [13]. It served as a major workhorse for the recent
+breakthroughs of computer Go [14] [15]. In MCTS, each
+node in the tree represents a state in a game or a decisionmaking problem, while each branch emanating from that node
+corresponds to a move or an action, and is associated with a
+reward. The goal is to find a move from the root node with
+
+the largest expected accumulated reward towards a leaf node.
+The core ideas behind MCTS are selecting the most promising
+move at each node while maintaining sufficient exploration
+during the search, and expanding the search tree based on
+random samplings of the search space. The major advantage
+of MCTS is its low complexity. For a 2k -ary tree of depth
+d, the complexity of MCTS is O(md), where m is the total
+number of rounds of search to run. This is in contrast to the
+exponential complexity of O(2kd ) for the full tree search.
+At the same time, MCTS is an anytime algorithm, meaning
+that it can be stopped at any time and would return the best
+result it has found so far, and its result gradually improves if
+more rounds of search are run. Being an anytime algorithm is a
+desirable feature for the algorithms used in intelligent systems
+[16], as it allows for flexible trade-offs between complexity
+and performance of an algorithm.
+
+to evaluate the Q∗ function, and for each node there are 2k
+entries. This decoding method will serve as the benchmark for
+both the complexity and the performance in the experiments.
+B. Proposed decoding algorithm
+1) Single-round decoding: We first consider a basic decoding algorithm based on MCTS, the single-round decoding,
+which is an approximation of MLSD. It is adapted from the
+upper confidence bound for trees (UCT) implementation of
+MCTS [13]. The algorithm involves running many rounds of
+search, during which an estimate of the Q∗ function defined
+in (2), denoted as Q(s, a), is constantly updated. Each round
+of search starts from the root node and ends at a leaf node,
+and can be executed in a recursive manner. There are three
+stages in each round of search:
+•
+
+Selection. If the current state in the search is in the set T ,
+initially empty, then the search enters the selection stage.
+Otherwise it proceeds to the expansion stage. During the
+selection stage, the function Q(s, a) is updated for the states
+and actions visited and tried in the search. The number of
+times N (s, a) an action a has been taken at a state s is also
+tracked. During the selection, at each state, the action that
+maximizes
+s
+log N (s)
+,
+(5)
+Q(s, a) + C
+N (s, a)
+P
+is taken, where N (s) = a∈A N (s, a) is the total number
+of times the state s has been visited, and C is a parameter
+that controls the amount of exploration in the search. The
+second term in (5) can be thought as an exploration bonus
+that encourages selecting actions that have not been tried as
+frequently. Once an action is taken, a reward as in (1) is
+received, and the state transits to the child node where the
+action leads to. The selection stage can be executed recursively until a leaf node or a node not in T is reached [17],
+[18]. At the end of each selection stage, the accumulated
+reward is returned either from a sub-selection stage or from
+the exploration stage, and is used to update the value for
+Q(s, a).
+
+•
+
+Expansion. Once a state s that is not in the set T is reached,
+the function values N (s, a) and Q(s, a) are initialized with
+N0 (s, a) and Q0 (s, a), respectively, by iterating over all of
+the actions available at that state. The initializing functions
+N0 and Q0 can be simply all-zero, or can be based on
+any available prior knowledge of the decoding problem. The
+state is then added to the set T .
+
+•
+
+Exploration. After the expansion stage, the actions are selected according to some default exploration policy π0 . The
+exploration policy does not have to be close to optimal, but
+it is a way to bias the search into areas that are promising.
+It can be stochastic, e.g. sampling a from A uniformly at
+random, or can be in a deterministic round-robin fashion.
+The reward generation and state transition in the exploration
+stage is the same as in the selection stage. The exploration
+
+II. D ECODING BY M ONTE -C ARLO TREE SEARCH
+A. Tree search as sequential decision making
+As reviewed in Section I-B, for a tree code transmitted over
+a DMC, the MLSD is equivalent to the minimum-length path
+search. Searching for a minimum-length path over a tree can
+be further cast as a sequential decision-making problem as
+follows. Each node s in the tree represents a state in this
+decision-making problem; the branches emanating from this
+node towards its child nodes represent the available actions
+A(s) at this state; and each branch a ∈ A(s) is associated
+with a reward
+r(s, a) = n − dH (x(s, a), yi ),
+
+(1)
+
+where dH denotes the Hamming distance, x(s, a) is the label
+on the branch a, and yi is the ith received encoded symbol,
+assuming that the branch a is at depth i in the tree. At each
+state, once an action is chosen, the next state becomes the
+child node where the chosen branch leads to. The goal is to
+sequentially choose actions from the root node to a leaf node
+to maximize the accumulated reward.
+This sequential decision-making problem can be straightforwardly solved by dynamic programming through backward
+tracking. Define V ∗ (s) = 0 for all the leaf nodes s. For each
+nonleaf node s and each a ∈ A(s), define recursively
+Q∗ (s, a) = r(s, a) + V ∗ (s0 ),
+
+(2)
+
+where s0 is the next state when a is chosen at state s, and
+V ∗ (s) = max Q∗ (s, a).
+a∈A(s)
+
+(3)
+
+With the function Q∗ , the optimal actions of the sequential
+decision-making problem can be found as
+â∗i = arg max Q∗ (s, a)
+
+(4)
+
+a∈A(s)
+
+for i = 1, . . . , d, where s evolves from the root node to a leaf
+node according to each â∗i . The sequence (â∗1 , . . . , â∗d ) form
+an MLSD solution.
+On a 2k -ary tree with depth d, the complexity of the above
+computation is O(2k(d+1) ), as there are 2kd − 1 nonleaf nodes
+
+stage can also be executed recursively, until a leaf node or
+a desired depth is reached.
+The single-round decoding is run until some stopping criterion is met, which could simply be a fixed number of rounds
+of search. The information symbols can then be decoded
+sequentially by taking the action that maximizes Q(s, a) at
+each state, from the root node to an leaf node.
+Algorithm 1 below presents a detailed example of the singleround decoding method described above, where the number of
+rounds of search is fixed to m. The tree is assumed to have
+depth d, and the received sequence of encoded symbols is
+denoted by y.
+Algorithm 1 Single-round decoding by MCTS
+1: global variables: T , N (*, *), Q(*, *)
+2: function D ECODE B Y MCTS(d, m, y)
+3:
+i ← 0, T ← ∅, N (*, *) ← 0, Q(*, *) ← 0
+4:
+while i < m do
+5:
+S EARCH(root, d, y)
+6:
+i←i+1
+7:
+s1 ← root
+8:
+for j = 1 to d do
+9:
+âj ← arg maxa∈A(sj ) Q(sj , a)
+10:
+sj+1 ← N EXT S TATE(sj , âj )
+11:
+return (â1 , . . . , âd )
+12:
+13:
+14:
+15:
+16:
+17:
+18:
+19:
+20:
+21:
+22:
+23:
+24:
+25:
+26:
+27:
+28:
+29:
+30:
+31:
+32:
+33:
+34:
+
+function S EARCH(s, d, y)
+if d = 0 then
+return 0
+if s ∈
+/ T then
+for a ∈ A(s) do
+(N (s, a), Q(s, a)) ← (N0 (s, a), Q0 (s, a))
+T ← T ∪ {s}
+return E XPLORE(s, d, y)
+P
+N (s) ← a∈A(s) N (s, a)
+q
+N (s)
+a ← arg maxa∈A(s) Q(s, a) + C log
+N (s,a)
+r ← R EWARD(s, a, y)
+s0 ← N EXT S TATE(s, a)
+q ← r + S EARCH(s0 , d − 1, y)
+N (s, a) ← N (s, a) + 1
+q
+1
+)Q(s, a) + N (s,a)
+Q(s, a) ← (1 − N (s,a)
+return q
+function E XPLORE(s, d, y)
+if d = 0 then
+return 0
+a ∼ π0 (s)
+r ← R EWARD(s, a, y)
+s0 ← N EXT S TATE(s, a)
+return r + E XPLORE(s0 , d − 1, y)
+
+C. Sliding-root MCTS decoding
+In the single-round MCTS decoding described above, each
+search starts from the root node and ends at a leaf node,
+
+and finally all d information symbols are decoded. When d
+is large, this method may not work well with an affordable
+number of rounds of search; especially for the information
+symbols with large indices, i.e. those near the leaf nodes, the
+decoding error can be high. One way to improve is performing
+multiple rounds of MCTS decoding, where the root of the
+search in the successive rounds of decoding slides toward the
+leaf nodes according to the previously decoded information
+symbols; moreover, the depth of search can be smaller than d,
+and different for different rounds of decoding.
+For example, a total number of d rounds of decoding can be
+performed, where in the ith round of decoding, each round of
+search starts from a node in the ith level of the tree, determined
+by the previously decoded information symbols, and in the end
+of the ith round of decoding only the ith information symbol
+is decoded. The depth of search in the ith round of decoding
+can be d + 1 − i, which allows it to search to a leaf node, or
+it can be some number smaller than d + 1 − i.
+D. Support for anytime reliability
+To support anytime reliability, the decoding does not need to
+wait for receiving all d encoded symbols to start. Instead, the
+ith information symbol can start to be decoded immediately
+after the ith encoded symbol is received.
+One specific way to support anytime reliability is to perform
+d rounds of MCTS decoding, where the ith round of decoding
+starts immediately after the ith encoded symbol is received,
+and each search in that round starts from the root node and
+ends at a leaf node in the ith level in the tree, namely, the
+depth of search is i. In the end of the ith round of decoding,
+the first i information symbols are decoded. The larger the
+i is, the more reliable the decoded information symbols are.
+Moreover, the earlier an information symbol is sent, the more
+reliably it can be decoded.
+III. E XPERIMENTS
+Two tree codes are used for performing experiments on the
+proposed algorithm. Both of them are binary codes with rate
+1/2, namely k = 1 and n = 2. One of them has depth 10,
+and the other has depth 25. Each code is selected from a pool
+of randomly generated codes with the specified parameters
+to have the best decoding performance under MLSD. The
+codeword is sent over a BSC with crossover probability 0.1.
+For MCTS decoding, the parameter C in (5) is set to be in
+the same order as the search depth.
+Figures 2 to 4 show the bit error rate (BER) for multiple
+rounds of MCTS decoding that supports anytime reliability,
+with the code with depth 10. The number of rounds of search
+in each round of decoding is set to m = 10, 100, and 1000,
+respectively. The grey curves in Figure 3 and Figure 4 indicate
+BER for MLSD. From these figures it is seen that 1) the
+decoding performance increases as m is increased: when m is
+increased to 1000, the BER of MCTS decoding is even lower
+than the MLSD, which should not be surprising, as MLSD
+minimizes the sequence error rate, not necessarily the BER;
+and 2) for each bit, the BER decreases as the decoding delay
+
+increases, namely, when it is decoded in a later round. We
+can also see the unequal error protection ability of this coding
+and decoding scheme, that is, the bits sent earlier are better
+protected against the channel noise, while the most recently
+sent bits can have a decoding error rate even larger than the
+channel transition probability. This is a natural property of
+random tree codes. By increasing the code length, more bits
+can be protected by the increased search depth.
+Figures 5 and 6 show the same BER plots for the code with
+depth 25. One is for the MCTS decoding with m = 1000, and
+the other is for MLSD. It can be seen that with a much lower
+computation complexity, the MCTS decoding has comparable
+performance with MLSD for bits with indices i ≤ 4. At the
+same time, the BER for the bits with large index can be much
+higher than those with smaller indices, which is a downside to
+have all the bits decoded in a single-round MCTS decoding.
+To further improve the decoding performance, one could either
+increase m, or perform sliding-root MCTS decoding.
+Figure 7 compares the BERs for the sliding-root MCTS
+decoding, the sliding-window full search decoding, and the
+MLSD, on the code with depth 25. For the sliding-root MCTS
+decoding, every search is run to the leaf node and m = 2048
+rounds of search is run in each round of decoding; while for
+the sliding-window full search decoding, the search depth is
+set to 10, so that these two decoding methods have roughly
+the same computational complexity. It can be seen that for
+bits with smaller indices, e.g. i ≤ 7, the sliding-root MCTS
+decoding performs slightly better than the sliding-window full
+search decoding under similar computation complexity.
+
+Fig. 3. BER for multiple rounds of MCTS decoding supporting anytime
+reliability, with d = 10 and m = 100. Grey curves indicate BER for MLSD.
+
+Fig. 4. BER for multiple rounds of MCTS decoding supporting anytime
+reliability, with d = 10 and m = 1000. Grey curves indicate BER for
+MLSD.
+
+Fig. 2. BER for multiple rounds of MCTS decoding supporting anytime
+reliability, with d = 10 and m = 10.
+•
+
+IV. P OSSIBLE IMPROVEMENTS AND EXTENSIONS
+Some possible improvements and extensions of the proposed decoding method are listed below.
+•
+
+Reuse of Q(s, a)
+
+When multiple rounds of MCTS decoding are performed,
+the values of Q(s, a) obtained in each round of decoding
+may be reused for the future rounds. This reuse may
+improve the decoding performance without a heavy increase
+of the computation complexity. Following the practice in
+AlphaGo [14], [15], Q(s, a) as a function of (s, a) can
+even be represented by neural networks and updated by a
+reinforcement learning scheme.
+Support for soft output and/or soft input
+The proposed decoding method can be modified to support
+the soft output, or reliability, for each information symbol.
+For example, with the sliding-root MCTS decoding, the
+probability of the ith information symbol being a can be
+computed as Z1 eβQ(s,a) , where s is the node determined by
+
+•
+
+•
+
+the hard decisions of the previous information symbols, β
+is a parameter that can be tuned, and Z is a normalization
+factor. The soft input may also be supported by incorporating any prior knowledge into the initialization functions Q0
+and N0 .
+Decoding by Monte-Carlo trellis search
+The proposed decoding method based on MCTS can be
+naturally extended to decoding codes with a trellis structure.
+Instead of searching over a tree, the proposed method can
+be used for searching for the minimum-length path over a
+trellis, which amounts to the MLSD decoding of the trellis
+codes over DMC. The decoding method may be termed as
+decoding by Monte-Carlo trellis search.
+Decoding irregular tree codes
+The proposed decoding method can also be used for irregular tree codes, e.g. the recently proposed polar-adjusted
+convolutional (PAC) codes [19].
+Fig. 6. BER for MLSD, with d = 25.
+
+Fig. 5. BER for multiple rounds of MCTS decoding supporting anytime
+reliability, with d = 25 and m = 1000.
+
+Fig. 7. BER for sliding-root MCTS decoding, with d = 25 and m = 2048,
+compared with BER for sliding-window full search decoding with search
+depth 10 and BER for MLSD.
+
+R EFERENCES
+[1] J. Wozencraft, "Sequential decoding for reliable communication," Research Lab of Electronics, MIT, Tech. Rep., 1957.
+[2] L. Bahl, J. Cocke, F. Jelinek, and J. Raviv, "Optimal decoding of
+linear codes for minimizing symbol error rate," IEEE Transactions on
+Information Theory, vol. 20, no. 2, pp. 284–287, 1974.
+[3] F. R. Kschischang and V. Sorokine, "On the trellis structure of block
+codes," IEEE Transactions on Information Theory, vol. 41, no. 6, pp.
+1924–1937, 1995.
+[4] A. Sahai and S. Mitter, "The necessity and sufficiency of anytime
+capacity for stabilization of a linear system over a noisy communication
+link, Part I: Scalar systems," IEEE Trans. Inform. Theory, vol. 52, no. 8,
+pp. 3369–3395, 2006.
+[5] L. Schulman, "Coding for interactive communication," IEEE Trans.
+Inform. Theory, vol. 42, no. 6, pp. 1745–1756, 1996.
+[6] P. Elias, "Coding for noisy channels," IRE Conv. Rec., pp. 37–46, Mar.
+1955.
+[7] R. T. Sukhavasi and B. Hassibi, "Linear time-invariant anytime codes for
+control over noisy channels," IEEE Transactions on Automatic Control,
+vol. 61, no. 12, pp. 3826–3841, 2016.
+
+[8] L. Grosjean, L. K. Rasmussen, R. Thobaben, and M. Skoglund, "Systematic LDPC convolutional codes: Asymptotic and finite-length anytime
+properties," IEEE Transactions on Communications, vol. 62, no. 12, pp.
+4165–4183, 2014.
+[9] M. Noor-A-Rahim, K. D. Nguyen, and G. Lechner, "Anytime reliability
+of spatially coupled codes," IEEE Transactions on Communications,
+vol. 63, no. 4, pp. 1069–1080, 2015.
+[10] S. Lin and D. J. Costello, Error Control Coding, 2nd ed. Pearson,
+2005.
+[11] J. G. Proakis and M. Salehi, Digital Communications, 5th ed. McGrawHill Education, 2007.
+[12] R. Coulom, "Efficient selectivity and backup operators in Monte-Carlo
+tree search," in Proceedings Computers and Games. Springer-Verlag,
+2006.
+[13] L. Kocsis and C. Szepesvári, "Bandit based Monte-Carlo planning," in
+European Conference on Machine Learning. Springer, 2006.
+[14] D. Silver, A. Huang, C. J. Maddison, A. Guez, L. Sifre, G. van den
+Driessche, J. Schrittwieser, I. Antonoglou, V. Panneershelvam, M. Lanctot, S. Dieleman, D. Grewe, J. Nham, N. Kalchbrenner, I. Sutskever,
+T. Lillicrap, M. Leach, K. Kavukcuoglu, T. Graepel, and D. Hassabis,
+
+[15]
+
+[16]
+[17]
+[18]
+[19]
+
+"Mastering the game of Go with deep neural networks and tree search,"
+Nature, vol. 529, no. 7587, pp. 484–489, Jan. 2016.
+D. Silver, J. Schrittwieser, K. Simonyan, I. Antonoglou, A. Huang,
+A. Guez, T. Hubert, L. Baker, M. Lai, A. Bolton, Y. Chen, T. Lillicrap,
+F. Hui, L. Sifre, G. van den Driessche, T. Graepel, and D. Hassabis,
+"Mastering the game of Go without human knowledge," Nature, vol.
+550, no. 7676, pp. 354–359, Oct. 2017.
+S. Zilberstein, "Using anytime algorithms in intelligent systems," AI
+Magazine, vol. 17, no. 3, p. 73, Mar. 1996.
+H. S. Chang, M. C. Fu, J. Hu, and S. I. Marcus, "An adaptive sampling
+algorithm for solving Markov decision processes," Operations Research,
+vol. 53, no. 1, pp. 126–139, 2005.
+M. J. Kochenderfer, Decision Making Under Uncertainty Theory and
+Application. MIT Press, 2015.
+E. Arıkan, "From sequential decoding to channel polarization and back
+again," IEEE Information Theorey Society Newsletter, Sep. 2019.
+
+

@@ -1,0 +1,6959 @@
+Limit Distributions and Sensitivity Analysis for Entropic
+Optimal Transport on Countable Spaces
+Shayan Hundrieser
+
+∗ †
+
+Marcel Klatt
+
+∗
+
+Axel Munk
+
+∗ † ‡
+
+arXiv:2105.00049v1 [math.PR] 30 Apr 2021
+
+April 30, 2021
+
+Abstract
+For probability measures supported on countable spaces we derive limit distributions
+for empirical entropic optimal transport quantities. In particular, we prove that the
+corresponding plan converges weakly to a centered Gaussian process. Furthermore, its
+optimal value is shown to be asymptotically normal. The results are valid for a large
+class of ground cost functions and generalize recently obtained limit laws for empirical
+entropic optimal transport quantities on finite spaces. Our proofs are based on a
+sensitivity analysis with respect to a weighted l1 -norm relying on the dual formulation
+of entropic optimal transport as well as necessary and sufficient optimality conditions
+for the entropic transport plan. This can be used to derive weak convergence of the
+empirical entropic optimal transport plan and value that results in weighted BorisovDudley-Durst conditions on the underlying probability measures. The weights are
+linked to an exponential penalty term for dual entropic optimal transport and the
+underlying ground cost function under consideration. Finally, statistical applications,
+such as bootstrap, are discussed.
+
+Keywords: Optimal transport, entropy regularization, central limit theorem, bootstrap,
+sensitivity analysis
+MSC 2020 subject classification Primary: 60B12, 60F05, 62E20
+Secondary: 90C06, 90C25, 90C31
+
+1
+
+Introduction
+
+Over the last decades, the theory of optimal transport (OT), originating in the seminal
+work by Monge (1781) and later by Kantorovich (1958), has gradually established itself as
+an active area of modern mathematical research and related areas (see Rachev & Rüschendorf
+(1998a,b), Villani (2008), Santambrogio (2015), or Galichon (2016) for comprehensive
+monographs). Recently, OT and variants thereof have also been recognized as an important tool for statistical data analysis, e.g., in genetics (Evans & Matsen, 2012), fingerprint
+identification (Sommerfeld & Munk, 2018), computational biology (Schiebinger et al., 2019;
+Tameling et al., 2021), deformation analysis (Zemel & Panaretos, 2019), and medical imaging (Chen, 2020), among others. However, for routine data analysis the computational
+speed to solve the underlying linear program is still a bottleneck and the development
+of algorithms for fast computation is a highly active area of research. Common linear OT solvers (for bounded costs) such as the Auction algorithm (Bertsekas, 1981;
+∗
+
+Institute for Mathematical Stochastics, University of Göttingen, Goldschmidtstrasse 7, 37077 Göttingen
+Cluster of Excellence "Multiscale Bioimaging: from Molecular Machines to Networks of Excitable Cells"
+(MBExC), University of Göttingen, Germany
+‡
+Max Planck Institute for Biophysical Chemistry, Am Fassberg 11, 37077 Göttingen
+†
+
+1
+
+Bertsekas & Castanon, 1989) or Orlin's algorithm (Orlin, 1988) have a worst case complexity Õ(N 3 ) for N denoting the size of the data and where Õ suppresses polylogarithmic
+terms. The best known (theoretical) worst case complexity to solve OT as a linear program
+is given by Õ(N 2.5 ) (Lee & Sidford, 2014) for which, however, no practical implementation is known. As an alternative approach Cuturi (2013) suggests to replace the original
+OT optimization problem by an entropy regularized surrogate. The proposed algorithm
+based on the work by Sinkhorn (1964, 1967) solves the corresponding optimization problem in about O(N 2 ) elementary operations (Altschuler et al., 2017; Dvurechensky et al.,
+2018). Since then, entropy regularized OT (EROT) has become a frequently used computational scheme for the approximation of OT (Peyré & Cuturi, 2019; Amari et al., 2019;
+Clason et al., 2021; Tong & Kobayashi, 2021).
+In this paper we are concerned with EROT on countable spaces X = {x1 , x2 , . . . } and
+Y = {y1 , y2 , . . . } (possibly X = Y). A probability measure r on X (s on Y) is represented
+as an element in l1 (X ) (resp. l1 (Y)), the space of absolutely summable sequences indexed
+over X (resp. Y), such that ∑x∈X rx = 1 and r ≥ 0. The set of couplings between r and s,
+also known as transport plans, on the product space X × Y is defined by
+r
+Π(r, s) ∶= {π ∈ l1 (X × Y)∶ A(π) = ( ) , π ≥ 0} ,
+s
+where A is the marginalization operator
+(∑
+π )
+π ↦ ( y∈Y xy x∈X ) .
+(∑x∈X πxy )y∈Y
+
+A∶ l1 (X × Y) → l1 (X ) × l1 (Y),
+
+For a cost function c ∶ X × Y → R and a regularization parameter λ > 0 the entropic optimal
+transport value between probability measures r and s is defined as
+EROT λ (r, s) ∶=
+
+inf
+
+⟨c, π⟩ + λM (π).
+
+π∈Π(r,s)
+
+(EROT)
+
+The quantity ⟨c, π⟩ = ∑(x,y)∈X ×Y c(x, y)πxy denotes the total costs associated to a transport
+plan π ∈ Π(r, s) and M (π) represents the mutual information
+M (π) ∶= ∑ πxy log
+x∈X
+y∈Y
+
+⎞
+⎛
+πxy
+πxy
+) ∈ [0, ∞],
+= ∑ πxy log (
+rx sy
+⎝ ( ∑y′ ∈Y πxy′ )( ∑x′ ∈X πx′ y ) ⎠ x∈X
+y∈Y
+
+where by convention 0 log(0) = 0. If there exists π ∈ Π(r, s) such that ⟨c, π⟩ + λM (π) < ∞
+and EROT λ (r, s) > −∞, i.e., if (EROT) is feasible, then there exists a unique minimizer
+π λ (r, s) ∶= argmin ⟨c, π⟩ + λM (π),
+
+(1.1)
+
+π∈Π(r,s)
+
+known as entropic optimal transport plan (Proposition 2.1). Plugging π λ (r, s) into the
+functional for total costs ⟨c, ⋅⟩ yields the Sinkhorn costs
+S λ (r, s) ∶= ⟨c, π λ (r, s)⟩.
+
+Moreover, (EROT) is a convex optimization problem and hence exhibits a dual formulation
+sup ⟨α, r⟩ + ⟨β, s⟩ − λ[ ∑ exp (
+
+α∈l1r (X )
+β∈l1s (Y)
+
+x∈X
+y∈Y
+
+αx + βy − c(x, y)
+)rx sy − rx sy ],
+λ
+2
+
+(DEROT)
+
+where l1r (X ) and l1s (Y) denote the spaces of functions on X , Y with finite expectation
+under r and s, respectively (for a general dual formulation on Polish spaces see Chizat et al.
+(2016)). Elements α = (αx )x∈X ∈ l1r (X ), β = (βy )y∈Y ∈ l1s (Y) attaining the supremum in
+(DEROT) are called optimal entropic dual potentials and the quantities ⟨α, r⟩ = ∑x∈X αx rx ,
+⟨β, s⟩ = ∑y∈Y βy sy are equal to their expectation with respect to r and s.
+Statistical questions arise as soon as the probability measures r and s are estimated by
+(discrete) empirical measures
+r̂n =
+
+1 n
+∑ δX
+n i=1 i
+
+and
+
+1 m
+∑ δY
+m j=1 j
+
+ŝm =
+
+i.i.d.
+
+(1.2)
+
+i.i.d.
+
+for samples X1 , . . . , Xn ∼ r and independent Y1 , . . . , Ym ∼ s where δx is the Dirac measure at x. This scenario occurs, e.g., if the underlying probability measures are unknown
+(Genevay et al., 2019), when subsampling methods are applied for randomized approximations (Sommerfeld et al., 2019), or if statistical inference based on EROT is aimed for
+(Bigot et al., 2019; Klatt et al., 2020b). Fundamental to such tasks are asymptotic limit
+laws of the empirical EROT value and its corresponding plan. So far, existing results are
+limited to certain restrictions on the ground space. For probability measures supported on
+finitely many points Bigot et al. (2019) proved that the limit law for the empirical EROT
+value centered by its population counterpart is normal and Klatt et al. (2020b) showed
+asymptotic normality for the empirical EROT plan and empirical Sinkhorn costs. For the
+Euclidean space Rd and squared Euclidean costs Mena & Niles-Weed (2019) derived a normal limit law of the empirical EROT value when sampling from sub-Gaussian probability
+measures. In contrast to the finite case, the centering constant is given by the expected
+value of the empirical estimator rather than the population quantity.
+Herein, we extend such results to countable spaces. Under suitable assumptions (to
+be discussed below) on the ground costs and probability measures r, s we prove that the
+empirical EROT value is asymptotically normal
+√
+
+n(EROT λ (r̂n , s) − EROT λ (r, s)) ÐÐ→ N (0, σλ2 (r∣s)),
+D
+
+(1.3)
+
+D
+
+as n → ∞ (Theorem 4.1). Throughout this paper ÐÐ→ denotes weak convergence (Billingsley,
+1999). The asymptotic variance σλ2 (r∣s) depends on the variance of the optimal entropic
+dual potential αλ for (DEROT) with respect to r and is equal to
+σλ2 (r∣s) = ∑ (αλx )2 rx − ( ∑ αλx rx ) .
+2
+
+x∈X
+
+x∈X
+
+Concerning the EROT plan, we show for the empirical version centered by its population
+counterpart, as n → ∞, that
+√
+D
+n(π λ (r̂n , s) − π λ (r, s)) ÐÐ→ G(0, Σλ,πλ (r∣s)),
+
+(1.4)
+
+√
+D
+2
+n(S λ (r̂n , s) − S λ (r, s)) ÐÐ→ N (0, σ̃λ,π
+λ (r∣s)),
+
+(1.5)
+
+for a centered Gaussian process G with covariance Σλ,πλ (r∣s) (Theorem 4.2). The covariance Σλ,πλ (r∣s) can be stated explicitly and depends on the regularization parameter λ
+and the EROT plan π λ between r and s. Notably, weak convergence in (1.4) takes place in
+a suitable weighted l1 -space over X × Y. This allows to characterize the limit distribution
+of empirical Sinkhorn costs (Corollary 4.4)
+
+3
+
+2
+as n → ∞. The asymptotic variance σ̃λ,π
+λ (r∣s) is given by
+
+2
+′ ′
+σ̃λ,π
+∑ c(x, y)c(x , y )(Σλ,πλ (r∣s))(x,y),(x′ ,y′ ) .
+λ (r∣s) =
+x,x′ ∈X
+y,y ′ ∈Y
+
+Our limit laws are generically Gaussian for r ≠ s and r = s. This is in strict contrast to
+limit results obtained for the empirical non-regularized (λ = 0) OT value (Tameling et al.,
+2019) and for the OT plan (Klatt et al., 2020a) on discrete spaces. Heuristically speaking, whereas the asymptotic law of the non-regularized OT quantities depends on the
+geometry of the boundary of the underlying transport simplex, the entropy regularization
+smoothes such quantities (unique solutions are attained in the interior of the simplex).
+Consequently, Gaussian fluctuations in the marginals translate to Gaussian fluctuations
+of EROT quantities.
+Additionally, our results extend to the two-samples case and our method of proof
+implies consistency of the naı̈ve n-out-of-n bootstrap (Theorem 4.9), which is also in
+contrast to non-regularized OT (Sommerfeld & Munk, 2018). The latter being useful as
+the limit quantities in (1.4) and (1.5) are in general not accessible and its estimation from
+data is computationally cumbersome.
+Our analysis reveals an interesting interplay between the cost function and the probability measures r and s in order to guarantee weak convergence of empirical quantities, an
+issue which does not arise for finite ground spaces (Bigot et al., 2019; Klatt et al., 2020b).
+In analogy to asymptotic results on finite spaces, for uniformly bounded ground costs
+sup
+(x,y)∈X ×Y
+
+∣c(x, y)∣ < ∞
+
+we find that our convergence results are valid if the Borisov-Dudley-Durst condition
+√
+(1.6)
+∑ rx < ∞
+x∈X
+
+(Durst & Dudley, 1980; Borisov, 1981, 1983) is fulfilled. This condition is known to be
+necessary and sufficient for the function class H ∶= {1K ∶ K ⊆ X } to be r-Donsker1 which
+√
+is equivalent to weak convergence of the empirical process n(r̂n − r) in l1 (X ) towards
+a centered tight Gaussian process. For unbounded ground costs a careful modification
+of the usual l1 -norm to a weighted version is required. Given a strictly positive function
+ΦX ∶ X → [1, ∞) we introduce the weighted l1 -norm
+∥a∥l1
+
+Φ
+
+X
+
+(X )
+
+√
+
+∶= ∑ ΦX (x)∣ax ∣.
+x∈X
+
+A weak limit of the empirical process n(r̂n − r) to a centered Gaussian process in the
+corresponding weighted l1 -space is then achieved by the weighted Borisov-Dudley-Durst
+condition (Yukich, 1986; Tameling et al., 2019)
+√
+(1.7)
+∑ ΦX (x) rx < ∞.
+x∈X
+
+In analogy to (1.6), weak convergence of the empirical process in l1ΦX (X ) is equivalent
+to the (weighted) function class HΦX ∶= {ΦX 1K ∶ K ⊆ X } being r-Donsker. The function
+
+√
+A class of real functions G on X is called r-Donsker if the empirical process n(r̂n −r) converges weakly
+∞
+in the Banach space l (G) of uniformly bounded real functions on G, equipped with supremum norm
+∥a∥l∞ (G) ∶= supg∈G ∣a(g)∣, towards a tight Borel-measurable random element (Van der Vaart & Wellner,
+1996).
+1
+
+4
+
+ΦX is linked to the ground cost and the exponential penalty term of the dual formulation
+(DEROT) in an intricate fashion. More precisely, we assume throughout that there exist
+(possibly unbounded) functions c−X , c+X ∶ X → R, c−Y , c+Y ∶ Y → R with c−X ≤ c+X and c−Y ≤ c+Y
+such that
+c−X (x) + c−Y (y) ≤ c(x, y) ≤ c+X (x) + c+Y (y)
+(1.8)
+
+for all (x, y) ∈ X × Y. Then, the sum of absolute values of the functions c+X and c−X (c+Y
+and c−Y ) multiplied with an exponential term of their respective difference (see Section 2.2)
+yields the function ΦX ∶ X → [1, ∞) (resp. ΦY ∶ Y → [1, ∞)) of the weighted l1 -norm for
+l1ΦX (X ) (resp. l1ΦY (Y)), i.e.,
+c+X (x) − c−X (x)
+)
+λ
+c+ (y) − c−Y (y)
+)
+ΦY (y) ∶= (1 + ∣c+Y (y)∣ + ∣c−Y (y)∣) exp ( Y
+λ
+
+ΦX (x) ∶= (1 + ∣c+X (x)∣ + ∣c−X (x)∣) exp (
+
+for all x ∈ X ,
+
+for all y ∈ Y.
+
+As a consequence, we require for our limit laws on the empirical EROT value (1.3) in
+addition to the weighted Borisov-Dudley-Durst condition (1.7) for r a moment condition
+for s, given by
+∑ ΦY (x)sy < ∞.
+(1.9)
+y∈Y
+
+Note, that the different nature of the conditions (1.7) and (1.9) results from the fact that
+the measure r is randomly perturbed (sampled) while s is assumed to be fixed. For the
+related two-sample results for which both r and s are randomly perturbed we also need
+to consider the square-root of sy in the sum, hence the conditions become symmetric.
+Our results on the empirical EROT plan and Sinkhorn costs additionally require the
+dominating functions c−X , c+X to satisfy
+sup ∣c+X (x) − c−X (x)∣ < ∞.
+x∈X
+
+This condition is met, e.g., for squared Euclidean costs c(x, y) = ∥x − y∥22 when the ground
+space X is bounded whereas Y may be selected to be unbounded (Section 4.1.1), or for
+costs induced by a metric if the ground spaces X and Y fulfill certain geometrical properties
+(Section 4.1.2). The respective summability constraints for our limit laws of the empirical
+EROT plan (1.4) and Sinkhorn costs (1.5) are similar to (1.9). We distinguish between
+three types of cost functions and refer to Table 1 for an overview. Let us emphasize that
+our conditions on the probability measures r and s to ensure weak convergence of the
+empirical EROT plan are sharp under uniformly bounded ground costs or ground costs
+with bounded variation (Remark 4.5).
+Our proof technique is based on a general functional delta method with respect to
+Hadamard differentiable functionals in a (weighted) l1 -space. To verify this notion of differentiability for the EROT value we use the dual formulation (DEROT), exploit strong
+duality and explicitly use the (weighted) l1 -structure. Concerning the EROT plan we
+employ an optimality criterion for primal and dual optimizers of (EROT) and perform a
+sensitivity analysis that is based on an implicit function approach. Additional mathematical challenges come into play as a certain operator is only invertible on a rather small
+domain which avoids an ad-hoc application of a standard implicit function theorem for
+Hadamard differentiable functionals (Römisch, 2004, Proposition 4). We refer to Remark
+3.7 for further details. Instead, we carefully assess the individual error terms that are
+caused by the perturbation and exploit explicit bounds for primal and dual optimizers.
+5
+
+Table 1: Interplay between cost functions and weighted Borisov-Dudley-Durst conditions
+on the probability measure r for weak limits of empirical EROT plan and Sinkhorn costs.
+Type
+Bounded costs
+Costs with
+bounded variation
+Costs with bounded
+variation in X -component
+
+Cost
+
+∥c∥l∞ (X ×Y) < ∞
+
+∥c+X − c−X ∥l∞ (X ) < ∞
+∥c+Y − c−Y ∥l∞ (Y) < ∞
+
+∥c+X − c−X ∥l∞ (X ) < ∞
+
+Weighted Borisov-Dudley-Durst Condition
+√
+∑x∈X rx < ∞
+√
+∑x∈X (1 + ∣c+X (x)∣ + ∣c−X (x)∣) rx < ∞
+∑y∈Y (1 + ∣c+Y (y)∣ + ∣c−Y (y)∣)sy < ∞
+√
+∑x∈X (1 + ∣c+X (x)∣ + ∣c−X (x)∣) rx < ∞
+√
+∑y∈Y (1 + ∣c+Y (y)∣ + ∣c−Y (y)∣) rx < ∞
+c+ (y)−c− (y)
+⋅ exp (4 Y λ Y )sy < ∞
+
+The paper is structured as follows. Section 2 introduces basic notation, states an
+optimality criterion for primal and dual optimizers of (EROT), and shows existence and
+uniqueness of optimizers. Furthermore, we derive explicit bounds for optimal solutions
+and prove continuity of primal and dual optimizers. Section 3 proves that the EROT value
+and plan are Hadamard differentiable in a weighted l1 -space with respect to their marginal
+probability measures (Theorems 3.2 and 3.4). Herein, we also motivate our candidates for
+the respective derivative of EROT value and plan. Section 4 presents the main results
+on limit distributions for the empirical EROT value and plan (Theorems 4.1 and 4.2).
+As particular cases, we investigate the setting of squared Euclidean costs as well as cost
+functions which are induced by a metric. Furthermore, we study the behavior of the
+limit distributions as the regularization parameter tends to zero (Section 4.2) and verify
+that the naı̈ve n-out-of-n bootstrap is consistent for the empirical EROT value and plan
+(Theorem 4.9). Section 5 contains the proofs for our sensitivity analysis of the EROT
+value and plan. In Section 6, we discuss our results and conclude with open questions
+for future research. The Appendix contains proofs for results of Section 2 and technical
+details that are employed in the proof of the sensitivity for the EROT plan.
+We finally stress that our results have immediate statistical applications, which will be
+detailed in subsequent work. We briefly mention here biological colocalization of protein
+networks recorded with super-resolution microscopy which can be defined as a certain
+functional of the regularized OT plan. This has been done by Klatt et al. (2020b) in
+the context of finite ground spaces, i.e., for the setting of a finite number of pixels. Our
+conditions in Table 1 can be viewed as a guarantee for the stability of this method for
+large scale images with many pixels (corresponding to the support of the intensity profile
+of protein structures).
+
+2
+
+Preliminaries
+
+In this section, we state some basic results for (EROT) most of which are well known and
+the purpose here is to generalize them to a broader class of cost functions. For the sake
+of readability the technical details are deferred to Appendix A.
+Throughout this work we denote by l1 (X ) the space of summable sequences indexed
+over X and equipped with total variation norm ∥a∥l1 (X ) = ∑x∈X ∣ax ∣. Note that l1 (X ) can
+be interpreted as the space of finite signed measures on X . Its dual space can be identified
+by l∞ (X ) with norm ∥b∥l∞ (X ) = supx∈X ∣bx ∣. Given a positive function f ∶ X → (0, ∞)
+we introduce the weighted l1 -space l1f (X ) and its corresponding dual space l∞
+f (X ) with
+6
+
+respective norms
+∥a∥l1 (X ) ∶= ∑ f (x)∣ax ∣
+f
+
+and
+
+x∈X
+
+∥b∥l∞ (X ) ∶= sup f (x)−1 ∣bx ∣.
+f
+
+x∈X
+
+For a ∈ l1f (X ) and b ∈ l∞
+f (X ) we denote their dual pairing by ⟨a, b⟩ ∶= ∑x∈X bx ax and
+1
+let P(X ) = {r ∈ l (X )∶ ∑x∈X rx = 1, r ≥ 0} be the set of probability measures on X .
+We emphasize that we equip X with the discrete topology and do not embed it, e.g., in
+Rd . Hence, for any probability measure r ∈ P(X ) its (topological) support is equal to
+supp(r) = {x ∈ X ∶ rx > 0} and r is of full support if and only if rx > 0 for all x ∈ X . For a
+probability measure r ∈ P(X ) we define with slight abuse of notation l1r (X ) as the space
+of functions on X with finite expectation with respect to r. For the weighted l1 - and
+l∞ -spaces on Y and X × Y we adapt the same notation.
+
+2.1
+
+Primal and Dual Optimizers
+
+Without loss of generality, we assume that the cost function c is non-negative. Otherwise,
+according to (1.8) define the non-negative function
+c̃∶ X × Y → [0, ∞),
+
+c̃(x, y) ∶= c(x, y) − c−X ⊕ c−Y (x, y)
+
+with c−X ⊕c−Y (x, y) ∶= c−X (x)+c−Y (y) which is bounded by c̃(x, y) ≤ (c+X −c−X )(x)+(c+Y −c−Y )(y)
+and satisfies for any π ∈ Π(r, s) that ⟨c, π⟩ = ⟨c̃, π⟩ + ⟨c−X , r⟩ + ⟨c−Y , s⟩. Hence, in case
+c−X ∈ l1r (X ) and c−Y ∈ l1s (Y) it follows that the objective functions of (EROT) with cost
+function c and with the shifted non-negative cost function c̃ only differ by a constant which
+does not affect the set of minimizers.
+We start with a general result for existence of optimizers for (EROT) and formulate a
+necessary and sufficient optimality criterion. Recall that the primal problem (EROT) and
+its dual (DEROT) are said to satisfy strong duality if their respective optimal values are
+equal.
+Proposition 2.1. If the primal problem (EROT) is feasible, then there exists a unique
+EROT plan π λ ∈ Π(r, s) and a pair (αλ , β λ ) ∈ l1r (X ) × l1s (Y) of optimal entropic dual
+potentials for (DEROT) unique up to a constant shift, i.e., for any pair of optimal entropic
+dual potentials (α̃λ , β̃ λ ) ∈ l1r (X ) × l1s (Y) there exists a constant η ∈ R with
+αλx − α̃λx = β̃yλ − βyλ = η
+
+for all x ∈ supp(r), y ∈ supp(s). Moreover, strong duality holds and the elements π ∈
+l1 (X × Y) and (α, β) ∈ l1r (X )×l1s (Y) are optimal for (EROT) and (DEROT), respectively,
+if and only if
+πxy = exp (
+
+∑ πxy = rx
+
+y∈Y
+
+αx + βy − c(x, y)
+)rx sy
+λ
+and
+
+∑ πxy = sy
+
+x∈X
+
+for all (x, y) ∈ X × Y,
+
+for all x ∈ X and y ∈ Y.
+
+(2.1)
+(2.2)
+
+The assertion on strong duality follows by (Chizat et al., 2016, Theorem 3.2), which also
+contains an optimality criterion that is however limited to (α, β) ∈ l∞ (X ) × l∞ (Y). For
+an extension to potentials in l1r (X ) × l1s (Y) we follow a technique by Braunsmann (2018).
+Details can be found in Appendix A.
+
+7
+
+Remark 2.2. According to Proposition 2.1 optimal entropic dual potentials (αλ , β λ ) are
+uniquely characterized by the relation
+⎡
+⎤
+βyλ − c(x, y)
+⎢
+⎥
+⎢
+= −λ log ⎢ ∑ exp (
+)sy ⎥
+⎥
+λ
+⎢y∈Y
+⎥
+⎣
+⎦
+λ
+α − c(x, y)
+)rx ]
+βyλ = −λ log [ ∑ exp ( x
+λ
+x∈X
+
+αλx
+
+2.2
+
+for all x ∈ supp(r),
+for all y ∈ supp(s).
+
+(2.3)
+
+Bounds and Continuity for Entropic Optimizers
+
+Bounds for optimal entropic dual potentials turn out to be of crucial importance as they
+will be of particular use for proving Hadamard differentiability of the EROT value and
+plan. For squared Euclidean costs such bounds are readily available by Mena & Niles-Weed
+(2019). It is the purpose of this section to generalize their argument to a broader class of
+functions. To simplify notation, we define for λ > 0 and δ ∈ R the functions
+CX ∶ X → [1, ∞), x ↦ 1 + ∣c+X (x)∣ + ∣c−X (x)∣,
+
+c+X (x) − c−X (x)
+),
+λ
+c+ (x) − c−X (x)
+),
+ΦδX ∶ X → [1, ∞), x ↦ CX (x) exp (δ X
+λ
+φδX ∶ X → [1, ∞), x ↦ exp (δ
+
+(2.4)
+
+where we note by c+X ≥ c−X and CX ≥ 1 for δ ≥ 0 that 1 ≤ φδX ≤ ΦδX . Further, we set φX ∶= φ1X ,
+ΦX ∶= Φ1X and define likewise the functions CY , φδY , ΦδY on Y.
+
+Proposition 2.3. Let r ∈ l1 (X ), s ∈ l1 (Y) be two probability measures and suppose that
+EROT λ (r, s) is feasible. Then there exists an (r, s)-almost surely unique pair of optimal
+entropic dual potentials (αλ , β λ ) ∈ l1r (X ) × l1s (Y) with ⟨αλ , r⟩ = ⟨β λ , s⟩ = 12 EROT λ (r, s) ≥ 0
+and
+c−X (x) − ⟨c+X , r⟩ − λ log⟨φY , s⟩ ≤ αλx ≤ c+X (x) + ⟨c+Y , s⟩,
+c−Y (y) − ⟨c+Y , s⟩ − λ log⟨φX , r⟩ ≤ βyλ ≤ c+Y (y) + ⟨c+X , r⟩
+
+for all x ∈ supp(r), y ∈ supp(s). Further, for the EROT plan π λ in (1.1) it holds for all
+(x, y) ∈ X × Y that
+λ
+≤ πxy
+
+−⟨c+X , r⟩ − ⟨c+Y , s⟩
+)⟨φX , r⟩−1 ⟨φY , s⟩−1
+λ
+⟨c+ , r⟩ + ⟨c+Y , s⟩
+≤ rx sy φX (x) φY (y) exp ( X
+).
+λ
+−1
+rx sy φ−1
+X (x)φY (y) exp (
+
+In particular, we note that the upper bounds for the optimal entropic dual potentials αλ , β λ
+are finite if c+X ∈ l1r (X ) and c+Y ∈ l1s (Y), whereas the lower bounds are finite if additionally
+the condition φX ∈ l1r (X ) and φY ∈ l1s (Y) is fulfilled. These bounds imply a variety of
+convergence results for EROT λ as well as for optimizers of (EROT) and (DEROT). We
+fix an element y1 ∈ Y and assume that sy1 > 0.
+
+8
+
+Proposition 2.4. Let (rk , sk )k∈N ⊆ l1ΦX (X )×l1ΦY (Y) be pairs of probability measures on X
+and Y that converge to (r, s) and consider corresponding dual optimizers ((αλk , βkλ ))k∈N , (αλ , β λ ) ⊂
+λ
+RX × RY of (DEROT) for (rk , sk )k∈N , (r, s), respectively, such that βk,y
+= βyλ1 = 0 for all
+1
+k ∈ N. For each x ∈ supp(r) and y ∈ supp(s) it then follows as k tends to infinity that
+αλk,x → αλx
+
+and
+
+λ
+→ βyλ .
+βk,y
+
+As a consequence, we obtain for k → ∞ that
+EROT λ (rk , sk )
+
+π λ (rk , sk )
+
+→ EROT λ (r, s)
+→
+
+π λ (r, s)
+
+and
+
+in l1CX ⊕CY (X × Y).
+
+Proposition 2.4 states that the EROT value (resp. plan) is a continuous mapping from
+a subset of l1ΦX (X ) × l1ΦY (Y) into R (resp. l1CX ⊕CY (X × Y)). This observation will be
+strengthened by a refined sensitivity analysis which is the focus of the next section.
+
+3
+
+Sensitivity Analysis
+
+In this section, we prove Hadamard differentiability of the EROT value and plan with respect to the marginal probability measures for a suitable weighted l1 -norm.
+Definition 3.1. A mapping Ψ ∶ U → V between normed spaces U, V is said to be Hadamard
+H
+differentiable at u ∈ U if there exists a continuous linear map D∣u
+Ψ ∶ U → V such that for
+any sequence hn ∈ U converging to h and any positive sequence (tn )n∈N with tn ↘ 0 such
+that u + tn hn ∈ U it holds
+∥
+
+Ψ (u + tn hn ) − Ψ (u)
+H
+− D∣u
+Ψ (h)∥ → 0
+tn
+V
+
+(3.1)
+
+for n → ∞. Further, let U0 ⊆ U then Ψ is Hadamard differentiable tangentially to U0 at u
+if the limit (3.1) exists for all sequences hn = t−1
+n (kn − u) converging to h where kn ∈ U0
+and tn ↘ 0. The Hadamard derivative is then defined on the contingent (Bouligand) cone
+to U0 at u
+Tu (U0 ) = {h ∈ U ∶ h = lim t−1
+n (kn − u), (kn )n∈N ⊆ U0 , (tn )n∈N ∈ R≥0 , tn ↘ 0} .
+n→∞
+
+Concerning the derivative of the EROT value (defined in (EROT)) we recall by the relation
+between primal and dual optimizers π λ , αλ , β λ for r, s (Proposition 2.1) that
+λ
+− rx sy ] = ⟨αλ , r⟩ + ⟨β λ , s⟩.
+EROT λ (r, s) = ⟨αλ , r⟩ + ⟨β λ , s⟩ − λ[ ∑ πxy
+x∈X
+y∈Y
+
+This indicates that the Hadamard derivative of EROT λ at (r, s) is characterized by ⟨αλ , ⋅⟩+
+⟨β λ , ⋅⟩, an observation that is in line with findings on finite ground spaces by Bigot et al.
+(2019) and Klatt et al. (2020b). On countable spaces this is also valid under suitable
+conditions on the cost functional and the probability measures r, s.
+
+Theorem 3.2. Assume the cost function satisfies (1.8) and let r ∈ l1Φ (X ), s ∈ l1Φ (Y) be
+X
+
+9
+
+Y
+
+probability measures with full support. Then for λ > 0 the function
+
+EROT λ ∶(P (X ) ∩ l1Φ (X )) × (P (Y) ∩ l1Φ (Y)) → R,
+X
+
+Y
+
+is Hadamard differentiable at (r, s) tangentially to (P (X ) ∩ l1Φ (X )) × (P (Y) ∩ l1Φ (Y))
+X
+Y
+with Hadamard derivative
+H
+D∣(r,s)
+EROT λ ∶ T(r,s) ((P (X ) ∩ l1Φ (X )) × (P (Y) ∩ l1Φ (Y))) → R,
+X
+
+(h , h ) ↦ ⟨α , h ⟩ + ⟨β , h ⟩,
+X
+
+Y
+
+λ
+
+X
+
+λ
+
+Y
+
+Y
+
+where (αλ , β λ ) are optimal entropic dual potentials for (DEROT) with marginals (r, s).
+Herein, the set
+T(r,s) ((P (X ) ∩ l1Φ (X )) × (P (Y) ∩ l1Φ (Y)))
+
+⎧
+⎫
+⎪
+⎪
+⎪ Y 1
+⎪
+X
+1
+X
+Y
+= {h ∈ lΦ (X )∶ ∑ hx = 0} × ⎨h ∈ lΦ (Y)∶ ∑ hy = 0⎬
+X
+Y
+⎪
+⎪
+⎪
+⎪
+x∈X
+y∈Y
+⎩
+⎭
+X
+
+Y
+
+represents the contingent cone at (r, s) with respect to l1Φ (X ) × l1Φ (Y).
+X
+
+Y
+
+The proof is deferred to Section 5.1. At its heart is the strong duality statement (Proposition 2.1) in conjunction with point-wise convergence of optimal entropic dual potentials
+(Proposition 2.4). We explicitly exploit the weighted l1 -convergence for Hadamard differentiability of the EROT value on countable spaces (Remark 5.1).
+Deriving the Hadamard derivative of the EROT plan is more challenging and requires
+sophisticated considerations. Before we state this in a formal way, we give a heuristic
+derivation. For this purpose, we consider the fixed element y1 ∈ Y from previous section
+and adapt the notation that for any element b ∈ RY we set b∗ ∶= (by2 , by3 , . . . ) ∈ RY/{y1 } ,
+i.e., the element where we omit the entry at y1 . In particular, we define
+⎫
+⎧
+⎪
+⎪
+⎪
+⎪
+1
+P (Y)∗ = ⎨s∗ ∈ l (Y/{y1 })∶ ∑ s∗,y ∈ [0, 1], s∗ ≥ 0⎬
+⎪
+⎪
+⎪
+⎪
+y∈Y/{y1 }
+⎭
+⎩
+
+as the set of probability vectors on Y, where we omit the entry for y1 . Note that
+for a given element s∗ ∈ P (Y)∗ we obtain the associated probability measure by s =
+(1 − ∑y∈Y/{y1 } s∗,y , s∗,y2 , s∗,y3 , . . . ). At the core of our approach is the reformulation of
+the optimality criterion (Proposition 2.1) as an operator defined on suitable spaces. We
+introduce the marginalization operator omitting the entry at y1 , i.e.,
+A∗ ∶ l1 (X × Y) → l1 (X ) × l1 (Y/{y1 }),
+
+(∑
+πxy )x∈X
+.
+).
+π ↦ ( y∈Y
+(∑x∈X πxy )y∈Y/{y1 }
+
+Its dual operator, a mapping l∞ (X ) × l∞ (Y/{y1 }) → l∞ (X × Y), will be extended as
+follows
+AT∗ ∶ RX
+
+×R
+
+Y/{y1 }
+
+→R
+
+X ×Y
+
+,
+
+⎛ax1
+(a, b∗ ) ↦ ⎜ax2
+⎝ ⋮
+
+10
+
+ax1 + b∗,y2 ax1 + b∗,y3 ⋯⎞
+ax2 + b∗,y2 ax2 + b∗,y3 ⋯⎟ .
+⋮
+⋮
+⋱⎠
+
+These operators enable us to define
+F∶ (l1 (X × Y) × RX × RY/{y1 } ) × (l1 (X ) × l1 (Y/{y1 })) → RX ×Y × RX × RY/{y1 } ,
+1
+T
+⎛π − exp ( λ [A∗ (α, β∗ ) − c]) ⊙ (r ⊗ s)⎞
+⎟,
+((π, α, β∗ ), (r, s∗ )) ↦ ⎜
+r
+A∗ (π) − ( )
+⎠
+⎝
+s∗
+
+where ⊙ denotes the component-wise product and ⊗ is defined as the tensor product of the
+probability measures (r ⊗ s)xy = rx sy for all (x, y) ∈ X × Y. In terms of F the optimality
+criterion from Proposition 2.1 is restated as follows.
+Corollary 3.3. For given probability measures (r, s) ∈ P (X )×P (Y) and λ > 0 the element
+π ∈ l1 (X × Y) and the potentials (α, (0, β∗ )) ∈ l1r (X ) × l1s (Y) ⊆ RX × RY are optimal for
+(EROT) and (DEROT), respectively, if and only if
+F((π, α, β∗ ), (r, s∗ )) = 0.
+
+(3.2)
+
+Equation (3.2) intuitively contains a proposal for the Hadamard derivative of π λ . Indeed,
+a naı̈ve application of the usual calculus of partial derivatives (denoted by D) from finitedimensional spaces with respect to r, s∗ yields the partial derivative of F at r̃, s̃∗ ∈ P (X ) ×
+P (Y)∗ for fixed elements π̃ ∈ l1 (X × Y), (α̃, β̃∗ ) ∈ RX × RY/{y1 } , given by
+Dr,s
+
+∗ ∣(π̃,α̃,β̃∗ ,r̃,s̃∗ )
+
+(h
+
+X
+
+, hY
+∗)
+
+F∶ l1 (X ) × l1 (Y/{y1 }) → RX ×Y × RX × RY/{y1 } ,
+
+1
+⎛− exp ( λ [AT∗ (α̃, β̃∗ ) − c]) ⊙ (r̃ ⊗ hY + hX ⊗ s̃)⎞
+⎟,
+↦⎜
+hX
+⎜
+⎟
+−
+(
+)
+Y
+⎝
+⎠
+h∗
+
+Y
+Y
+where hY ∶= (− ∑y∈Y/{y1 } hY
+∗,y , h∗,y2 , h∗,y3 , . . . ). Likewise, the naı̈ve partial derivative of F
+with respect to π, α, β∗ for the elements (π̃, α̃, β̃∗ , r̃, s̃∗ ) is equal to
+
+Dπ,α,β
+
+∗ ∣(π̃,α̃,β̃∗ ,r̃,s̃∗ )
+
+F∶ l1 (X × Y) × RX × RY/{y1 } → RX ×Y × RX × RY/{y1 } ,
+
+)
+(hX ×Y , hX ,∞ , hY,∞
+∗
+
+⎛hX ×Y − λ1 exp ( λ1 [AT∗ (α̃, β̃∗ ) − c]) ⊙ (r̃ ⊗ s̃) ⊙ AT∗ (hX ,∞ , hY,∞
+)⎞
+∗
+.
+↦
+X
+×Y
+⎠
+⎝
+)
+A∗ (h
+
+Motivated by an implicit function approach a proposal for the Hadamard derivative of π λ
+at the pair of probability measures (r, s) ∈ P (X ) × P (Y) is
+− [Dπ,α,β∗ ∣(πλ ,αλ ,β λ ,r,s∗) F]
+∗
+
+−1
+π
+
+○ Dr,s∗ ∣(πλ ,αλ ,β λ ,r,s∗) F.
+∗
+
+(3.3)
+
+Let us stress that the operator in (3.3) is neither obtained by rigorous mathematical considerations nor is it clear that such an operator is bounded or even exists. It is the content
+of the next statement to make (3.3) mathematically precise. This requires assumptions on
+the cost function and the probability measures r and s. For their formulations we remind
+the reader of the functions CX and CY from Section 2.2.
+Theorem 3.4. Suppose ∥c+X − c−X ∥l∞ (X ) < ∞, ∥c+Y − c−Y ∥l∞ (Y) < ∞, and let r ∈ l1CX (X ),
+
+s ∈ l1CY (Y) be probability measures with full support. Further, consider the EROT plan
+11
+
+π λ (r, s) for λ > 0 as a mapping
+
+π λ ∶ (P (X ) ∩ l1CX (X )) × (P (Y) ∩ l1CY (Y)) → l1CX ⊕CY (X × Y).
+
+Then π λ is Hadamard differentiable at (r, s) tangentially to (P (X ) ∩ l1CX (X )) × (P (Y) ∩
+l1CY (Y)) with Hadamard derivative given by
+H
+D∣(r,s)
+π λ ∶ T(r,s) ((P (X ) ∩ l1CX (X )) × (P (Y) ∩ l1CY (Y))) → l1CX ⊕CY (X × Y),
+
+(hX , hY ) ↦ (− [Dπ,α,β∗∣(πλ ,αλ ,β λ ,r,s∗) F]
+∗
+
+−1
+π
+
+○ Dr,s∗∣(πλ ,αλ ,β λ ,r,s∗ ) F) (hX , hY
+∗ ).
+∗
+
+The derivative is a well-defined and bounded operator and the contingent cone at (r, s)
+with respect to l1CX (X ) × l1CY (Y) is given by
+T(r,s) ((P (X ) ∩ l1CX (X )) × (P (Y) ∩ l1CY (Y)))
+
+⎧
+⎫
+⎪
+⎪
+⎪ Y 1
+⎪
+Y
+(Y)∶
+h
+∈
+l
+=
+0}
+×
+⎨
+=
+0
+⎬.
+h
+= {hX ∈ l1CX (X )∶ ∑ hX
+∑
+CY
+x
+y
+⎪
+⎪
+⎪
+⎪
+y∈Y
+x∈X
+⎩
+⎭
+The proof is deferred to Section 5.2 but we like to sketch its main arguments here.
+Sketch of Proof. We first verify that the proposed operator for the derivative (3.3) is welldefined and bounded (Proposition 5.2). Herein, we require that ∥c+X − c−X ∥l∞ (X ) < ∞ to
+ensure the validity of the Neumann series-calculus. We then proceed with the proof of
+Hadamard differentiability of the EROT plan. By definition, this requires to consider a
+1
+Y
+sequence (tn )n∈N such that tn ↘ 0 and a converging sequence (hX
+n , hn )n∈N ⊆ lCX (X ) ×
+1
+Y
+1
+l1CY (Y) with limit (hX , hY ) and (r + tn hX
+n , s + tn hn ) ∈ (P (X ) ∩ lCX (X )) × (P (Y) ∩ lCY (Y))
+for each n ∈ N. To this end, we verify that EROT plan is locally Lipschitz continuous
+(Proposition 5.3) and show that the difference quotient for finitely supported perturbations
+can be approximated by the proposed derivative (Proposition 5.4). These results, in
+conjunction with a notion of finite support approximation (Appendix C), allow us to find
+for any ε > 0 an integer N ∈ N such that for all n ≥ N holds
+∥
+
+Y
+π λ (r + tn hX
+H
+n , s + tn hn ) − π(r, s)
+− D∣(r,s)
+π λ (hX , hY )∥
+tn
+l1
+
+CX ⊕CY
+
+(X ×Y)
+
+< ε.
+
+Remark 3.5. For any r, r ′ ∈ P (X ) ∩ l1CX (X ), s, s′ ∈ P (Y) ∩ l1CY (X ) it holds that
+∥π λ (r, s) − π λ (r ′ , s′ )∥l1
+
+CX ⊕CY (X ×Y)
+
+≥ max (∥r − r ′ ∥l1
+
+CX
+
+(X )
+
+, ∥s − s′ ∥l1
+
+CX
+
+(X )
+
+).
+
+This implies under ∥c+X − c−X ∥l∞ (X ) < ∞ and ∥c+Y − c−Y ∥l∞ (Y) < ∞ for a sequence (tn )n∈N ⊆
+
+1
+Y
+1
+(0, ∞) such that tn ↘ 0 and a converging sequence (hX
+n , hn )n∈N ∈ lCX (X ) × lCY (Y) with
+1
+1
+Y
+X
+Y
+X
+limit (h , h ) and (r + tn hn , s + tn hn ) ∈ (P (X ) ∩ lCX (X )) × (P (Y) ∩ lCY (Y)) for all n ∈ N
+
+12
+
+that
+H
+∥D∣(r,s)
+π λ (hX , hY )∥
+
+l1C
+
+X ⊕CY
+
+(X ×Y)
+
+= lim ∥
+n→∞
+
+≥ lim max (∥hX
+n ∥l1
+n→∞
+
+H
+which asserts D∣(r,s)
+π λ ≠ 0.
+
+CX
+
+(X )
+
+Y
+λ
+π λ (r + tn hX
+n , s + tn hn ) − π (r, s)
+∥
+tn
+l1
+
+CX ⊕CY
+
+, ∥hY
+n ∥l1
+
+CY (X )
+
+) = max (∥hX ∥l1
+
+CX
+
+(X )
+
+, ∥hY ∥l1
+
+(X ×Y)
+
+CY (Y)
+
+),
+
+Remark 3.6 (Generalization to unbounded ground costs). Our proof technique
+generalizes to an asymmetric setting where we assume ∥c+X − c−X ∥l∞ (X ) < ∞ and allow for
+∥c+Y − c−Y ∥l∞ (Y) = ∞. For this extension, we employ the space l1Φ4 (Y) which exhibits a
+strictly stronger norm than l1CY (Y) when ∥c+Y − c−Y ∥l∞ (Y) = ∞. In fact, we show in our
+proof in Section 5.2 that
+Y
+
+π λ ∶ (P (X ) ∩ l1CX (X )) × (P (Y) ∩ l1Φ4 (Y)) → l1CX ⊕CY (X × Y)
+Y
+
+is Hadamard-differentiable with an analogous derivative as in Theorem 3.4. In the proof,
+we specifically make use of the fact that at least one component of the cost function has
+bounded variation. It remains an open problem if this can be relaxed to account for general
+unbounded ground costs (Remark 5.5).
+Remark 3.7. Our proof for the sensitivity of the EROT plan does not rely on a standard
+implicit function theorem for Hadamard differentiable functions (Römisch, 2004, Proposition 4). The main issue in employing this result lies in the selection of suitable normed
+spaces for the domain and range of F. To ensure that the mapping F is well-defined the
+range space has to be chosen sufficiently large while at the same time the range space has
+to be sufficiently small such that the operator [Dπ,α,β ∣(πλ ,αλ ,β λ ,r,s ) F]−1 is well-defined on
+∗
+∗
+∗
+a neighborhood around the origin in the range space. As it turns out by Lemma B.1 in
+Appendix B, the operator [Dπ,α,β ∣(πλ ,αλ ,β λ ,r,s ) F]−1 only has a fairly small domain (Re∗
+∗
+∗
+mark B.2). Hence, to prove the claim on Hadamard differentiability we instead perform a
+careful analysis of the individual perturbation errors and show that they tend towards zero.
+
+4
+
+Limit Distributions
+
+We derive in this section the limit distributions of the empirical EROT value and plan.
+More precisely, we estimate the EROT quantities EROT λ (r, s) and π λ (r, s) by plug-in
+estimators EROT λ (r̂n , ŝm ) and π λ (r̂n , ŝm ) based on empirical counterparts r̂n and ŝm
+(1.2) of the probability measures r and s. We then characterize the statistical fluctuation
+EROT λ (r̂n , ŝm ) and π λ (r̂n , ŝm ) around their respective population version EROT λ (r, s)
+and π λ (r, s) by limit distributions. Herein, weak convergence of measures is denoted by
+D
+
+ÐÐ→ and we refer to Van der Vaart & Wellner (1996) for a general introduction. The
+underlying metric space in which weak convergence of the empirical EROT plan occurs is
+a suitable weighted l1 -space.
+Our results are based on an application of the functional delta method for tangentially
+Hadamard differentiable functionals (Van der Vaart & Wellner, 1996). Hence, as our sensitivity analysis (Section 3) is based on a weighted l1 -space l1f (X ) for a suitable choice
+√
+of f ∶ X → (0, ∞) we emphasize that the empirical process n(r̂n − r) has to converge
+13
+
+weakly in this respective space l1f (X ). To guarantee such weak convergence it is necessary
+and sufficient that the probability measure r satisfies the weighted Borisov-Dudley-Durst
+√
+condition ∑x∈X f (x) rx < ∞ (Yukich, 1986, Theorem 6),(Tameling et al., 2019, Lemma
+2.6). We note that weak convergence of the empirical process in l1f (X ) is equivalent to the
+function class Hf ∶= {f 1K ∶ K ⊆ X } being r-Donsker. Overall, this leads to conditions as
+summarized in (1.9) and Table 1. The limit law is characterized by a zero mean Gaussian
+process with covariance Σ(r) ∈ RX ×X , defined by
+⎧
+⎪
+⎪rx (1 − rx ) if x = x′ ,
+Σ(r)xx′ = ⎨
+(4.1)
+′
+⎪
+′
+−r
+r
+if
+x
+≠
+x
+.
+⎪
+x
+x
+⎩
+√
+Analogous assertions hold for the empirical process m(ŝm − s) with covariance Σ(s) ∈
+RY×Y
+
+4.1
+
+Empirical Entropic Optimal Transport
+
+Without loss of generality, we assume that r and s have full support. Else we consider
+X̂ ∶= supp(r) and Ŷ ∶= supp(s) as the respective ground spaces. We first state our main
+results on limit laws of EROT quantities for general cost functions. Implications to more
+popular ground costs such as squared Euclidean costs are derived in further subsections.
+Recall the definition of ΦX in (2.4).
+
+Theorem 4.1. Suppose that the cost functions c satisfies (1.8) and let r ∈ P (X )∩l1Φ (X )
+and s ∈ P (Y) ∩ l1Φ (Y) be two probability measures. For λ > 0 denote by (αλ , β λ ) correY
+sponding optimal entropic dual potentials of (DEROT).
+X
+
+√
+i.i.d.
+(i) (One sample) Suppose X1 , . . . , Xn ∼ r and that ∑x∈X ΦX (x) rx < ∞. Then, as n
+tends to infinity, weak convergence holds
+√
+
+n(EROT λ (r̂n , s) − EROT λ (r, s)) ÐÐ→ ⟨Gr , αλ ⟩ = N (0, σλ2 (r∣s)),
+D
+
+D
+
+where Gr is a tight, centered Gaussian process with covariance Σ(r) defined in (4.1)
+and
+2
+σλ2 (r∣s) = ∑ (αλx )2 rx − ( ∑ αλx rx ) .
+x∈X
+
+x∈X
+
+(ii) (Two samples) Suppose in addition that Y1 , . . . , Ym ∼ s, independently of the Xi 's,
+√
+√
+and that ∑x∈X ΦX (x) rx < ∞ and ∑y∈Y ΦY (y) sy < ∞. Then, for min(m, n) → ∞
+m
+with m+n
+→ δ ∈ (0, 1), it follows that
+√
+
+√
+nm
+D √
+(EROT λ (r̂n , ŝm ) − EROT λ (r, s)) ÐÐ→ δ⟨Gr , αλ ⟩ + 1 − δ⟨Gs , β λ ⟩
+n+m
+D
+2
+(r, s)),
+= N (0, σλ,δ
+
+where Gr , Gs are tight, centered, independent Gaussian processes with associated
+covariances Σ(r) and Σ(s), respectively, and
+2
+(r, s) = δ[ ∑ (αλx )2 rx − ( ∑ αλx rx ) ] + (1 − δ)[ ∑ (βyλ )2 sy − ( ∑ βyλ sy ) ].
+σλ,δ
+2
+
+x∈X
+
+x∈X
+
+2
+
+y∈Y
+
+y∈Y
+
+For our main results on the empirical EROT plan (1.1) we require additional assumptions
+on the cost function.
+14
+
+Theorem 4.2. Assume the cost function satisfies (1.8) such that ∥c+X − c−X ∥l∞ (X ) < ∞
+and ∥c+Y − c−Y ∥l∞ (Y) < ∞. Further, let λ > 0 and consider probability measures r ∈ P (X ) ∩
+
+l1CX (X ) and s ∈ P (Y) ∩ l1CY (Y).
+
+√
+i.i.d.
+(i) (One sample) Suppose X1 , . . . , Xn ∼ r and that ∑x∈X CX (x) rx < ∞. Then as n
+tends to infinity, weak convergence holds
+√
+D
+H
+n(π λ (r̂n , s) − π λ (r, s)) ÐÐ→ D∣(r,s)
+π λ (Gr , 0)
+
+in l1CX ⊕CY (X × Y),
+
+where Gr is a tight, centered Gaussian process with covariance Σ(r) from (4.1) and
+D H the Hadamard derivative in Theorem 3.4.
+(ii) (Two samples) Suppose in addition that Y1 , . . . , Ym ∼ s, independently of the Xi 's,
+√
+√
+and that ∑x∈X CX (x) rx < ∞ and ∑y∈Y CY (y) sy < ∞. Further, let min(m, n) → ∞
+m
+with m+n
+→ δ ∈ (0, 1), then it follows that
+√
+
+√
+√
+nm
+D
+H
+(π λ (r̂n , ŝm ) − π λ (r, s)) ÐÐ→ D∣(r,s)
+π λ ( δGr , 1 − δGs )
+n+m
+
+in l1CX ⊕CY (X × Y), with independent Gaussian processes Gr , Gs as in Theorem 4.1.
+
+H
+Remark 4.3. By linearity of the Hadamard derivative D∣(r,s)
+π λ it follows that the weak
+limits for the one-sample and two-samples case are both centered Gaussian processes.
+
+Proofs of Theorems 4.1 and 4.2. We start with the assertions on the EROT value in Theorem 4.1. By our summability constraints (1.7) and (1.9) for assertion (i) we obtain using
+(Tameling et al., 2019, Lemma 2.6) for n → ∞ the weak convergence
+√
+D
+n(r̂n − r) ÐÐ→ Gr in l1Φ (X ).
+X
+
+Further, by Portmanteau's characterization of weak convergence in terms of closed sets
+(Van der Vaart & Wellner, 1996, Theorem 1.3.4(ii)) it follows that
+√
+1 = lim sup P ( n(r̂n − r) ∈ {hX ∈ l1Φ (X )∶ ∑ hX
+x = 0})
+X
+n→∞
+
+x∈X
+
+≤ P (Gr ∈ {hX ∈ l1Φ (X )∶ ∑ hX
+x = 0}) ,
+X
+x∈X
+
+i.e., the weak limit Gr takes values in {hX ∈ l1Φ (X )∶ ∑x∈X hX
+x = 0}. For assertion (ii)
+X
+we conclude by the weighted Borisov-Dudley-Durst conditions for r and s combined with
+independence of the samples X1 , . . . , Xn and Y1 , . . . , Ym using (Van der Vaart & Wellner,
+m
+1996, Corollary 1.4.5) for min{m, n} → ∞, m+n
+→ δ that
+√
+
+√
+√
+nm
+D
+((r̂n , ŝm ) − (r, s)) ÐÐ→ ( δGr , 1 − δGs )
+n+m
+
+in l1Φ (X ) × l1Φ (Y),
+X
+
+where Gr is independent from Gs and the pair (Gr , Gs ) takes values in
+
+Y
+1
+Y
+{hX ∈ l1Φ (X )∶ ∑ hX
+x = 0} × {h ∈ lΦY (Y)∶ ∑ hy = 0}.
+X
+x∈X
+
+y∈Y
+
+15
+
+Y
+
+Concluding, by Theorem 3.4 the EROT value is Hadamard differentiable tangentially to
+(P (X ) ∩ l1Φ (X )) × (P (Y) ∩ l1Φ (Y)). Note that the underlying topology for Hadamard
+X
+Y
+differentiability and for the weak convergence coincide. Hence, all assertions from Theorem
+4.1 on the limit law follow as an application of the functional delta method for tangentially
+Hadamard differentiable functions (Van der Vaart & Wellner, 1996, Theorem 3.9.4). In
+particular, by linearity of the tangential Hadamard derivative, the asymptotic distribution
+is characterized by a zero mean Gaussian distribution where the limiting variance for the
+one-sample case is given by
+σλ2 (r∣s) = ∑ αλx αλx′ Σ(r)xx′ = ∑ (αλx )2 rx − ( ∑ αλx rx ) .
+2
+
+x,x′ ∈X
+
+x∈X
+
+x∈X
+
+The calculation for two samples is analogous. For the assertions on the EROT plan we
+use the same proof strategy and apply the functional delta method in conjunction with
+Hadamard differentiability (Theorem 3.4).
+As a simple corollary we derive the limit laws of empirical Sinkhorn costs. We only
+present the one sample case, the two-samples case is analogous.
+
+Corollary 4.4. Assume the same setting as for assertion (i) of Theorem 4.2. Then, as
+n tends to infinity, it follows that
+√
+
+H
+n(S λ (r̂n , s) − S λ (r, s)) ÐÐ→ ⟨c, D∣(r,s)
+π λ (Gr , 0)⟩ .
+D
+
+Notably, by continuity and linearity of ⟨c, ⋅ ⟩∶ l1CX ⊕CY (X × Y) → R the weak limit is also
+centered gaussian.
+Remark 4.5 (Sharpness of conditions). For cost functions with bounded variation
+∥c+X − c−X ∥l∞ (X ) < ∞, ∥c+Y − c−Y ∥l∞ (Y) < ∞ and in particular uniformly bounded ground
+costs ∥c∥l∞ (X ×Y) < ∞ our stated assumptions for the validity of our limit laws for the
+empirical EROT plan are sharp. This is a simple consequence of the fact that weak
+√
+convergence of the empirical EROT plan n(π λ (r̂n , ŝn ) − π λ (r, s)) in l1CX ⊕CY (X × Y) re√
+√
+quires that the marginal empirical processes n(r̂n − r) and n(ŝn − s) converge weakly in
+l1CX (X ) and l1CY (Y), respectively. Such weak convergence holds if and only if the respective
+√
+√
+weighted Borivov-Dudley-Durst conditions ∑x∈X CX rx < ∞, ∑y∈Y CY sy < ∞ are fulfilled
+(Tameling et al., 2019).
+Remark 4.6 (Generalizations and degeneracy of limit laws). (i) As discussed in
+Section 2.1, our theory generalizes to cost functions which might attain negative values.
+(ii) Our sensitivity analysis on the EROT plan can be extended to the asymmetric case
+where ∥c+X − c−X ∥l∞ (X ) < ∞ and ∥c+Y − c−Y ∥l∞ (Y) = ∞ (Remark 3.6). This covers
+limit results for the empirical EROT plan and Sinkhorn costs to this setting. For
+these limit laws we require that r ∈ l1CX (X ) and s ∈ l1Φ4 (Y) as well as a weighted
+X
+
+Borisov-Dudley-Durst condition (1.7) for the probability measures from which samples are taken. A summary of the different settings for cost function and associated
+summability constraints for the one-sample case from r is detailed in Table 1.
+
+(iii) For a common countable metric ground space (X , d) i.e., X = Y our results for the
+cost function c(x, y) = dp (x, y), p ≥ 1 show no substantial difference in the limit
+16
+
+law for empirical EROT quantities between the cases r = s and r ≠ s. Additionally,
+our derived limit distributions generally do not degenerate as optimal entropic dual
+potentials are typically non-constant due to their relation with each other (Remark
+H
+2.2) and since the Hadamard derivative D∣(r,s)
+π λ does not vanish for any r, s (Remark 3.5). These observations are in line with previous findings for finite spaces
+(Bigot et al., 2019; Klatt et al., 2020b) and for continuous spaces with squared Euclidean costs (Mena & Niles-Weed, 2019). In fact, for probability measures with
+finite support our required summability constraints are trivial and our findings coincide with results by Bigot et al. (2019) and Klatt et al. (2020b).
+(vi) In contrast, limit results for the empirical (non-regularized) OT value obtained by
+Tameling et al. (2019) show a clear distinction in the limit behavior between the cases
+r = s and r ≠ s. Further, for X = Y and c(x, y) = dp (x, y) with p > 1 the obtained
+limits by Tameling et al. (2019) degenerate for r = s with supp(r) = X if and only
+if X has no isolated point. This illustrates again that limit laws for empirical nonregularized OT differ fundamentally from their entropy regularized counterparts.
+4.1.1
+
+Squared Euclidean Costs
+
+For squared Euclidean costs the theory of non-regularized optimal transport is well developed, e.g., existence of an optimal map to the Monge problem (Brenier, 1987, 1991)
+or for gradient flows in the 2-Wasserstein space on Rd (Santambrogio, 2015). We like
+to contribute to this theory by stating explicit results for the framework of squared Euclidean costs c(x, y) = ∥x − y∥22 with ground spaces X , Y ⊂ Rd for some d ∈ N. By Young's
+inequality it holds for p, q > 1 with p−1 + q −1 = 1 and γ > 0 for all (x, y) ∈ X × Y that
+∥x∥22 −
+
+2γ ∥x∥pp
+p
+
++ ∥y∥22 −
+
+2 ∥y∥qq
+qγ
+
+≤ ∥x − y∥22 ≤ ∥x∥22 +
+
+2γ ∥x∥pp
+p
+
++ ∥y∥22 +
+
+2 ∥y∥qq
+qγ
+
+.
+
+Hence, we see that the dominating functions from (1.8) can be chosen as
+c±X (x)
+
+∶=
+
+∥x∥22
+
+±
+
+2γ ∥x∥pp
+p
+
+c±Y (y)
+
+,
+
+ΦX (x) ≍ (1 + ∥x∥2∨p
+2∨p ) exp (
+
+∶=
+
+∥y∥22
+
+±
+
+2 ∥y∥qq
+γq
+
+,
+
+ΦY (y) ≍ (1 + ∥y∥2∨q
+2∨q ) exp (
+
+4γ
+∥x∥pp ),
+pλ
+
+4
+∥y∥qq ),
+qγλ
+
+where ∨ denotes the maximum between two numbers and f ≍ g states the existence of two
+constants k, K > 0 such that kg ≤ f ≤ Kg.
+Notably, the assertions of Theorem 4.1 for the empirical EROT value hold if r ∈ l1Φ (X ),
+
+s ∈ l1Φ (Y) and an associated weighted Borisov-Dudley-Durst condition (1.7) is satisfied.
+Y
+In case of p = q = 2 these conditions require that the probability measures r, s are subGaussian up to a certain order. These findings complement results by Mena & Niles-Weed
+(2019) on the limit law of the empirical EROT value for sub-Gaussian probability measures
+on Rd of any order. However, in contrast to our findings the centering constant in their
+central limit theorem is given by the expected value of the empirical estimator instead of
+the population version. Moreover, our limit laws remain valid if one probability measure
+is not sub-Gaussian provided that the other one is sufficiently concentrated.
+In case both ground spaces X , Y are bounded subsets in Rd , we note that the cost
+function is uniformly bounded. Hence, our results on the empirical EROT value (Theorem
+4.1) as well as the empirical EROT plan (Theorem 4.2) and empirical Sinkhorn costs
+X
+
+17
+
+(Corollary 4.4) are valid as long as the probability measures satisfy the usual (unweighted)
+Borisov-Dudley-Durst condition. If only the ground space X is contained in a closed ball
+BR (0) = {x ∈ Rd ∶ ∥x∥2 ≤ R} whereas Y is an unbounded set, we obtain by Cauchy-Schwarz
+inequality for all (x, y) ∈ X × Y that
+∥x∥22 − 2R ∥y∥2 + ∥y∥22 ≤ ∥x − y∥22 ≤ ∥x∥22 + 2R ∥y∥2 + ∥y∥22 .
+
+Upon defining the functions c±X (x) ∶= ∥x∥22 and c±Y (y) ∶= ∥y∥22 ± 2R ∥y∥2 we see that
+∥c+X − c−X ∥l∞ (X ) = 0 and ∥c+Y − c−Y ∥l∞ (Y) = ∞. As a consequence, it follows that the weight
+functions for our results on the EROT value (Theorem 4.1) are characterized by
+ΦX (x) ≍ 1,
+
+ΦY (y) ≍ (1 + ∥y∥22 ) exp (
+
+4
+∥y∥2 ).
+γλ
+
+For our limit results on the EROT plan (Theorem 4.2) and Sinkhorn costs (Corollary
+4.4) we require that r ∈ l1CX (X ), s ∈ l1Φ4 (Y) as well as associated Borisov-Dudley-Durst
+
+conditions (1.7) on the measure from which sampling occurs (Remark 4.6 (ii)). The
+underlying weight functions are chosen as
+Y
+
+CX (x) ≍ 1,
+4.1.2
+
+Φ4Y (y) ≍ (1 + ∥y∥22 ) exp (
+
+16
+∥y∥2 ).
+γλ
+
+General Metric Costs
+
+Cost functions in (regularized) optimal transport on general metric spaces are typically
+defined by the underlying metric. Assuming both ground spaces X , Y to be subsets of a
+common metric space (M, d) let the cost function be c(x, y) = d(x, y) for all (x, y) ∈ X × Y.
+Given some fixed element z ∈ M we see by triangle inequality that
+c+X (x) ∶= d(x, z),
+
+c−X (x) ∶= 0,
+
+c+Y (y) ∶= d(y, z),
+
+c−Y (y) ∶= 0
+
+are suitable dominating functions for the cost function satisfying (1.8). Hence, the weight
+functions for our limit laws on the empirical EROT value (Theorem 4.1) are equal to
+ΦX (x) ≍ (1 + d(x, z)) exp (
+
+d(x, z)
+),
+λ
+
+ΦY (y) ≍ (1 + d(y, z)) exp (
+
+d(y, z)
+).
+λ
+
+In order to obtain weight functions without the exponential term, we assume that the
+ground metric d fulfills
+κ ∶=
+
+sup
+(x,y)∈X ×Y
+
+(d(x, z) + d(z, y) − d(x, y)) < ∞.
+
+(4.2)
+
+This condition is satisfied if X is contained in a bounded set, i.e., in case supx∈X d(x, z) < ∞.
+It also holds for (M, d) = (Rd , ∥⋅∥1 ) with X ⊆ (−∞, a], Y ⊆ [b, ∞) for some a, b ∈ Rd . In
+fact, condition (4.2) is a separability constraint, i.e., the larger the distances d(x, z) and
+d(z, y), the better the separation between x and y meaning the larger the distance d(x, y).
+Most notably, both ground spaces X and Y can be unbounded sets. Under condition (4.2)
+we can select the functions c−X , c−Y as
+c−X (x) ∶= d(x, z) − κ/2
+
+and
+
+18
+
+c−Y (y) ∶= d(y, z) − κ/2
+
+which yields that ∥c+X − c−X ∥l∞ (X ) < ∞ and ∥c+Y − c−Y ∥l∞ (Y) < ∞. Hence, it follows that the
+exponential terms in the weight functions ΦX and ΦY disappear
+ΦX (x) ≍ CX ≍ 1 + d(x, z)
+
+and
+
+ΦY (y) ≍ CY ≍ 1 + d(y, z).
+
+In particular, we note that our results on the limit laws of the empirical EROT value
+and plan (Theorems and 4.1 and 4.2) are both valid under identical assumptions, i.e.,
+r ∈ l1CX (X ) and s ∈ l1CY (Y) as well as a weighted Borisov-Dudley-Durst condition (1.7).
+
+4.2
+
+Relation to Non-regularized Optimal Transport
+
+We assess the limit behavior of the empirical EROT value and Sinkhorn costs in the
+regime λ ↘ 0. For this purpose, we introduce the (non-regularized) optimal transport
+value between r and s as
+OT (r, s) ∶= inf ⟨c, π⟩.
+(OT)
+π∈Π(r,s)
+
+Provided that CX ∈ l1r (X ), CY ∈ l1s (Y) it follows by (Villani, 2008, Theorem 5.9) that
+OT (r, s) is finite and that there exists a (possibly non-unique) optimal solution π 0 ∈ Π(r, s)
+such that OT (r, s) = ⟨c, π 0 ⟩. For our analysis we require an upper bound for the quantities
+∣EROT λ (r, s)−OT (r, s)∣ and ∣S λ (r, s)−OT (r, s)∣. Hence, let π 0 be an OT plan for the nonregularized problem (OT) for r, s and denote for λ > 0 its entropy regularized counterpart
+by π λ . By optimality for their respective optimization problem it follows that
+⟨c, π 0 ⟩ ≤ ⟨c, π λ ⟩ ≤ ⟨c, π λ ⟩ + λM (π λ ) ≤ ⟨c, π 0 ⟩ + λM (π 0 ),
+
+where M ( ⋅ ) represents the mutual information. This yields
+
+0 ≤ S λ (r, s) − OT (r, s) ≤ EROT λ (r, s) − OT (r, s) ≤ λM (π 0 ).
+
+Most notably, if one of the probability measures has finite entropy, i.e.,
+H(r, s) ∶= min ( ∑ rx log (
+x∈X
+
+1
+1
+), ∑ sy log ( )) < ∞,
+rx y∈Y
+sy
+
+we obtain by the bound 0 ≤ M (π) ≤ H(r, s) for any π ∈ Π(r, s) (Cover & Thomas, 1991,
+Theorem 2.4.1) that
+∣S λ (r, s) − OT (r, s)∣ ≤ ∣EROT λ (r, s) − OT (r, s)∣ ≤ λH(r, s) = O(λ).
+
+Note that if a probability measure fulfills the Borisov-Dudley-Durst condition, then it
+necessarily has finite entropy.
+Remark 4.7. For finitely supported probability measures it was shown by Cominetti & San Martı́n
+(1994) that ∣S λ (r, s) − OT (r, s)∣ = o(exp(−κ/λ)) for some constant κ > 0 depending on r
+and s as λ tends to zero. However, as noted by Weed (2018) the upper bound o(exp(−κ/λ))
+appears to fail in general for countably supported probability measures where instead the
+rate ∣S λ (r, s) − OT (r, s)∣ = O(λ) seems to be tight.
+i.i.d.
+
+For a sequence of i.i.d. samples X1 , . . . , Xn ∼ r and its associated empirical measure r̂n
+we obtain by (Antos & Kontoyiannis, 2001, Corollary 1) that limn→∞ H(r̂n , s) = H(r, s),
+hence lim supn∈N H(r̂n , s) < ∞. Performing a decomposition gives
+√
+n(EROT λ(n) (r̂n , s) − EROT λ(n) (r, s))
+√
+√
+= n(EROT λ(n) (r̂n , s) − OT (r̂n , s)) + n(OT (r, s) − EROT λ(n) (r, s))
+√
++ n(OT (r̂n , s) − OT (r, s)).
+19
+
+√
+For λ(n) = o(1/ n) the first and second term converge to zero whereas the third term
+converges weakly as described by Tameling et al. (2019). In our notation the weak limit
+of the empirical non-regularized OT value as n tends to infinity is characterized by
+√
+D
+⟨α∗ , Gr ⟩,
+n(OT (r̂n , s) − OT (r, s)) ÐÐ→ max
+∗
+∗
+α ∈S
+
+(4.3)
+
+where S ∗ denotes the set of dual optimizers of (OT) and Gr represents the Gaussian
+process with covariance Σ(r). These considerations are valid if r ∈ l1CX (X ), s ∈ l1CY (Y),
+and r additionally satisfies an associated weighted Borisov-Dudley-Durst condition (1.7).
+Both limit laws, for non-regularized OT value and its entropy regularized counterpart,
+are essentially governed by the respective set of dual optimizers. However, unlike the
+entropic variant where the limit law is always characterized by a Gaussian due to uniqueness of dual optimizers, the set of dual optimizers for the non-regularized OT problem
+may not be unique resulting in a maximum of Gaussian distributions which in general
+√
+fails to be Gaussian. In case of λ(n) = o(1/ n) we also obtain a similar limit law for
+√
+n(S λ(n) (r̂n , s) − S λ(n) (r, s)) as n tends to infinity.
+Remark 4.8 (Degeneracy of limit law). As noted by Tameling et al. (2019) the limit
+distributions provided in (4.3) may degenerate in certain cases, namely when the set of dual
+optimal solutions S ∗ for the non-regularized OT problem only contains constant elements.
+This occurs on a common metric space (X , d), i.e., X = Y under r = s with supp(r) = X for
+a cost function c(x, y) = dp (x, y) with p > 1 if and only if X has no isolated points. Hence,
+√
+for λ(n) = o(1/ n) the limit distribution of the empirical EROT value and Sinkhorn costs
+may degenerate. In contrast, for fixed λ > 0 the limit law generally does not degenerate
+since optimal entropic dual potentials are typically non-constant (Remark 2.2) and as the
+Hadamard derivative of the EROT plan differs from zero (Remark 3.5).
+
+4.3
+
+Bootstrap
+
+Our findings from Theorems 4.1 and 4.2 on the distributions of the empirical EROT
+value and plan are asymptotic results. In order to estimate the respective non-asymptotic
+distribution typically bootstrap methods are applied. On finite and countable spaces
+Sommerfeld & Munk (2018) and Tameling et al. (2019) showed that the non-regularized
+OT value is only directionally Hadamard differentiable, i.e., that the Hadamard derivative
+with respect to r and s is non-linear. As a consequence, the (naı̈ve) n-out-of-n bootstrap
+for the approximation of the distribution of the empirical non-regularized OT value fails.
+However, the EROT plan on countable spaces is Hadamard differentiable with a linear
+derivative. Therefore, it follows that the naı̈ve n-out-of-n bootstrap appears to be a
+consistent estimation method.
+To make this statement precise we follow Van der Vaart & Wellner (1996). Denote the
+P
+
+notion of convergence in outer probability by ÐÐ→ and consider for a given Banach space
+B the set of bounded Lipschitz functions with Lipschitz modulus at most one
+BL1 (B) ∶= {g∶ B → R ∶ sup ∣g(x)∣ ≤ 1, ∣g(x1 ) − g(x2 )∣ ≤ ∥x1 − x2 ∥B ∀x1 , x2 ∈ B} .
+x∈B
+
+With this notation we will prove the consistency of the bootstrap for the EROT value
+and plan as an application of the functional delta method in conjunction with consistency
+of the bootstrap empirical process.
+
+20
+
+i.i.d.
+
+Theorem 4.9. Consider an empirical measure r̂n derived by a sample X1 , . . . , Xn ∼ r
+and denote by r̂n∗ = n1 ∑ni=1 δXi∗ the empirical bootstrap estimator for r̂n based on a sample
+
+X1∗ , . . . , Xn∗ ∼ r̂n . Under the same setting as in assertion (i) of Theorem 4.1 the (naı̈ve)
+bootstrap is consistent for the EROT value, i.e., as n tends to infinity it holds that
+i.i.d.
+
+sup
+h∈BL1 (R)
+
+√
+∣E [h( n(EROT λ (r̂n∗ , s) − EROT λ (r̂n , s))∣X1 , . . . , Xn ]
+√
+P
+−E [h( n(EROT λ (r̂n , s) − EROT λ (r, s))] ∣ ÐÐ→ 0.
+
+Likewise, under the same assumptions as for assertion (i) of Theorem 4.2 the EROT plan
+is also consistent for the (naı̈ve) bootstrap, i.e., as n tends to infinity it holds that
+sup
+h∈BL1 (R)
+
+√
+∣E [h( n(π λ (r̂n∗ , s) − π λ (r̂n , s))∣X1 , . . . , Xn ]
+√
+P
+−E [h( n(π λ (r̂n , s) − π λ (r, s))] ∣ ÐÐ→ 0.
+
+Analogous statements on bootstrap consistency are valid for the two-samples case, i.e.,
+i.i.d.
+i.i.d.
+when Y1∗ , . . . , Ym∗ ∼ s∗m are independent bootstrap realizations from X1∗ , . . . , Xn∗ ∼ rn∗ .
+√
+Proof. For a positive function f ∶ X → (0, ∞) we prove that if ∑x∈X f (x) rx < ∞ then
+sup
+
+h∈BL1 (l1f (X ))
+
+√
+√
+P
+∣E [h( n(r̂n∗ − r̂n ))∣X1 , . . . , Xn ] − E [h( n(r̂n − r))]∣ ÐÐ→ 0
+
+(4.4)
+
+as n tends towards infinity. The assertion then follows by tangential Hadamard differentiability of the EROT value and plan (Theorems 3.2 and 3.4) in conjunction with
+the functional delta method for the bootstrap (Van der Vaart & Wellner, 1996, Theorem
+3.9.11). For the function class Hf ∶= {f 1K ∶ K ⊆ X } we define the Banach space l∞ (Hf )
+as the space of uniformly bounded real functions on Hf equipped with supremum norm
+∥a∥l∞ (Hf ) ∶= supg∈Hf ∣a(g)∣. Then it holds by (Van der Vaart & Wellner, 1996, Theorem
+3.6.1) for n → ∞ that
+sup
+h∈BL1 (l∞ (Hf ))
+
+√
+√
+P
+∣E [h( n(r̂n∗ − r̂n ))∣X1 , . . . , Xn ] − E [h( n(r̂n − r))]∣ ÐÐ→ 0
+
+if Hf is r-Donsker. Indeed, by (Yukich, 1986, Theorem 6) the function class Hf is r√
+Donsker if and only if ∑x∈X f (x) rx < ∞. As l1f (X ) can be continuously embedded into
+l∞ (Hf ) and since any bounded Lipschitz function on l1f (X ) whose modulus is bounded
+by one can be extended to a bounded Lipschitz function on l∞ (Hf ) (McShane, 1934,
+√
+Theorem 1) we conclude that the condition ∑x∈X f (x) rx < ∞ implies (4.4).
+
+5
+
+Proofs for Sensitivity Analysis
+
+We recall that the cost function c is dominated by functions c+X , c−X , c+Y , c−Y as in (1.8).
+Additionally, let us recall the functions CX = 1 + ∣c+X ∣ + ∣c−X ∣, φδX ∶= exp( λδ [c+X − c−X ]), and
+ΦδX ∶= CX φδX for given parameters δ ∈ R and λ > 0. Since c+X ≥ c−X as well as CX ≥ 1 it
+holds for any δ ≥ 0 that 1 ≤ φδX ≤ ΦδX . Further, given another real number δ′ ∈ R it holds
+′
+δ+δ′
+. The functions φY and ΦY are defined analogously and feature similar
+that φδX ΦδX = ΦX
+properties.
+21
+
+5.1
+
+Sensitivity of EROT Value
+
+Proof of Theorem 3.2. The claim on the contingent cone is a simple consequence of (Aubin & Frankowska,
+1990, Proposition 4.2.1) in conjunction with r and s having full support. For given probability measures r̃ ∈ (P (X ) ∩ l1Φ (X )), s̃ ∈ (P (Y) ∩ l1Φ (Y)) denote the objective of
+X
+X
+(DEROT) by
+∞
+Dr̃,s̃ ∶l∞
+CX (X ) × lCY (Y) → [−∞, ∞),
+
+(α, β) ↦ ⟨α, r̃⟩ + ⟨β, s̃⟩ − λ[ ∑ exp (
+x∈X
+y∈Y
+
+αx + βy − c(x, y)
+) r̃x s̃y − r̃x s̃y ].
+λ
+
+By definition of Hadamard differentiability, consider (tn )n∈N with tn ↘ 0 and a converging
+Y
+1
+1
+X
+Y
+X
+Y
+sequence (hX
+n , hn )n∈N ∈ lΦ (X )×lΦ (Y) with limit (h , h ) such that (r+tn hn , s+tn hn ) ∈
+
+(P (X ) × l1Φ (X )) × (P (Y) × l1Φ (Y)) for all n ∈ N. Denote by (αλn , βnλ ) and (αλ , β λ )
+X
+
+Y
+
+Y
+the optimal entropic dual potentials for (r + tn hX
+n , s + tn hn ) and (r, s), respectively, as in
+Proposition 2.4. Notably, we consider those potentials that are equal to zero outside of the
+support of the underlying probability measure. By definition of these optimal potentials
+we see that
+X
+
+Y
+
+Dr+tn hn ,s+tn hn (αλ , β λ ) − Dr,s (αλ , β λ )
+X
+
+Y
+
+≤ Dr+tn hn ,s+tn hn (αλn , βnλ ) − Dr,s (αλ , β λ )
+X
+
+Y
+
+≤ Dr+tn hn ,s+tn hn (αλn , βnλ ) − Dr,s (αλn , βnλ ).
+X
+
+Y
+
+λ
+Y
+The term from the second line is equal to EROT λ (r+tn hX
+n , s+tn hn )−EROT (r, s). Hence,
+it follows that
+
+1
+Y
+λ
+λ X
+λ Y
+(EROT λ (r + tn hX
+n , s + tn hn ) − EROT (r, s)) − ⟨α , h ⟩ − ⟨β , h ⟩∣
+tn
+X
+Y
+1
+≤ ∣ (Dr+tn hn ,s+tn hn (αλ , β λ ) − Dr,s (αλ , β λ )) − ⟨αλ , hX ⟩ − ⟨β λ , hY ⟩∣
+tn
+X
+Y
+1
++ ∣ (Dr+tn hn ,s+tn hn (αλn , βnλ ) − Dr,s (αλn , βnλ )) − ⟨αλ , hX ⟩ − ⟨β λ , hY ⟩∣ .
+tn
+∣
+
+(5.1)
+(5.2)
+
+Once we show that the terms in (5.1) and (5.2) converge to zero as n tends to infinity our
+proof is finished. Denoting the EROT plan for (r, s) by π λ we obtain using the relation
+between primal and dual optimizers (Proposition 2.1) that
+X
+Y
+1
+(Dr+tn hn ,s+tn hn (αλ , β λ ) − Dr,s (αλ , β λ )) − ⟨αλ , hX ⟩ − ⟨β λ , hY ⟩
+tn
+λ
+πxy
+λ
+X
+λ Y
+Y
+Y
+[(rx + tn hX
+=⟨αλ , hX
+∑
+n − h ⟩ + ⟨β , hn − h ⟩ −
+n,x )(sy + tn hn,y ) − rx sy ]
+tn x∈X rx sy
+
+y∈Y
+
+Y
+X
+λ Y
+=⟨αλ , hX
+n − h ⟩ + ⟨β , hn − h ⟩ − λtn ∑ exp (
+
+αλx + βyλ − c(x, y)
+
+x∈X
+y∈Y
+
+λ
+
+Y
+)hX
+n,x hn,y .
+
+(5.3)
+
+Y
+Herein, we exploit the fact that ∑x∈X hX
+n,x = ∑y∈Y hn,y = 0 for all n ∈ N. For the first term
+of (5.3) it follows by Hölder's inequality for n → ∞ that
+X
+λ X
+X
+∣⟨αλ , hX
+n − h ⟩∣ ≤ ∑ ∣αx ∣∣hn,x − hx ∣ = ∑
+x∈X
+
+x∈X
+
+22
+
+∣αλx ∣ X
+∣h − hX
+x ∣CX (x)
+CX (x) n,x
+
+≤ ∥αλ ∥l∞
+
+CX
+
+(X )
+
+X
+∥hX
+n − h ∥l1
+
+CX
+
+→ 0,
+
+(X )
+
+(5.4)
+
+where we explicitly made use of the weighted l1 -convergence of hn towards h and our
+bounds for αλ from Proposition 2.3 to ensure that ∥αλ ∥l∞ (X ) < ∞. Likewise, it follows
+CX
+
+Y
+for n → ∞ that ⟨β λ , hY
+n − h ⟩ → 0. For the third term of (5.3) we note by our bounds from
+1
+1
+Y
+Proposition 2.3 and convergence of (hX
+n , hn ) in lΦ (X ) × lΦ (Y) that
+X
+
+Y
+
+RR
+αλx + βyλ − c(x, y) X Y RRRR
+RRR
+sup RRR ∑ exp (
+)hn,x hn,y RRRR
+λ
+RR
+n∈N RR x∈X
+R y∈Y
+R
+RR
+RRR
+⟨c+ , r⟩ + ⟨c+Y , s⟩
+Y RRR
+h
+) sup RRRR ∑ φY (x)φY (y)hX
+≤ exp ( X
+n,x n,y RRR < ∞,
+λ
+RR
+n∈N RRR x∈X
+R
+R y∈Y
+
+(5.5)
+
+which implies by tn → 0 that all terms of (5.3) tend towards zero. For the terms from
+(5.2) we obtain
+X
+Y
+1
+(Dr+tn hn ,s+tn hn (αλn , βnλ ) − Dr,s (αλn , βnλ )) − ⟨αλ , hX ⟩ − ⟨β λ , hY ⟩
+tn
+Y
+λ Y
+λ Y
+X
+λ
+= ⟨αλn − αλ , hX ⟩ + ⟨αλ , hX
+n − h ⟩ + ⟨βn − β , h ⟩ + ⟨β , hn − h ⟩
+
+λ
+
+λ
+
++
+
+(5.6)
+
+αn,x + βn,y − c(x, y)
+λ
+Y
+) [(rx + tn hX
+∑ exp (
+n,x )(sy + tn hn,y ) − rx sy ] .
+tn x∈X
+λ
+
+(5.7)
+
+y∈Y
+
+Recall that we already showed that the second and the last term in (5.6) converge to zero.
+For the first and third term of (5.6) we use point-wise convergence of the optimal entropic
+dual potentials (Proposition 2.4) in conjunction with our bounds from Proposition 2.3 to
+apply Lebesgue's dominated convergence theorem. At last, it remains to show that the
+series in (5.7) converges to zero. To simplify notation we write X̃n and Ỹn instead of
+Y
+supp(r + tn hX
+n ) and supp(s + tn hn ), respectively. Exploiting the relation between primal
+and dual optimizers (Proposition 2.1) we see by a direct computation as in (5.3) and due
+to our convention of αλn , βnλ vanishing on (X̃n )c , (Ỹn )c for the term in (5.7) that
+λ
+
+λ
+
+αn,x + βn,y − c(x, y)
+λ
+Y
+) [(rx + tn hX
+∑ exp (
+n,x )(sy + tn hn,y ) − rx sy ]
+tn x∈X
+λ
+y∈Y
+
+= λ[ ∑
+
+hY
+n,y
+
+y∈Ỹn
+
++ ∑
+
++ tn ∑ exp (
+
+αλn,x − c(x, y)
+
+x∈X̃n
+y/∈Ỹn
+
+− tn λ ∑ exp (
+
+λ
+− c(x, y)
+αλn,x + βn,y
+
+λ
+
+x∈X̃n
+y∈Ỹn
+
+x∈X̃n
+
++ λ ∑ exp (
+
+x/∈X̃n
+y/∈Ỹn
+
+hX
+n,x
+
+λ
+
+)rx hY
+n,y
+
+−c(x, y) X Y
+)hn,x hn,y .
+λ
+
++ λ ∑ exp (
+x/∈X ̃n
+y∈Ỹn
+
+Y
+)hX
+n,x hn,y ]
+
+λ
+βn,y
+− c(x, y)
+
+λ
+
+)hX
+n,x sy
+
+(5.8)
+
+(5.9)
+
+(5.10)
+
+Herein, we used for the terms in (5.9) and (5.10) that rx + tn hX
+x = 0 holds if and only if
+Y
+=
+0.
+In
+the
+following
+we
+show that all these terms
+and
+likewise
+for
+s
++
+t
+h
+rx = −tn hX
+x
+n
+y
+x
+23
+
+tend to zero. We start with the terms from (5.8). By convergence of hY
+n towards the
+X
+element hY , which satisfies ∑y∈Y hY
+=
+0,
+and
+since
+Ỹ
+=
+supp(r
++
+t
+h
+)
+converges
+in a
+n
+n
+y
+n
+set-theoretical sense to Y = supp(r) it follows that the first sum in (5.8) tends to zero
+for n → ∞. Similarly, the second sum also tends to zero for increasing n. For the third
+term of (5.8) we recall by our bounds on optimal entropic dual potentials and the type of
+Y
+convergence for (hX
+n , hn ) that the sum stays uniformly bounded over all n ∈ N, whereas
+tn ↘ 0. Hence, all terms from (5.8) converge to zero. For the first term in (5.9) the bounds
+for αλn (Proposition 2.3) imply
+λ∣ ∑ exp
+x∈X̃n
+y/∈Ỹn
+
+⎛ αλn,x + c+Y (y) − c(x, y) ⎞
+⎛ αλn,x − c(x, y) ⎞
+∣rx hY
+exp
+∣
+≤
+λ
+rx hY
+∑
+n,y
+n,y ∣
+λ
+λ
+⎝
+⎠
+⎠
+⎝
+x∈X̃
+n
+
+y/∈Ỹn
+
+Y
+≤ λK ∑ φX (x) ∣rx ∣ ⋅ ∑ φY (y) ∣hY
+n,y ∣ ≤ λK ∑ φX (x) ∣rx ∣ ⋅ ∑ φY (y) ∣hn,y ∣
+x∈X̃n
+
+x∈X
+
+y/∈Ỹn
+
+y/∈Ỹn
+
+for some constant K > 0. By the type of convergence of hY
+n and since Ỹn → Y we obtain
+Y
+that the quantity ∑y/∈Ỹn φY (y) ∣hn,y ∣ tends to zero for n → ∞. Likewise, the second term
+from (5.9) also converges to zero. Lastly, by non-negativity of the cost function we obtain
+for the term in (5.10) that
+tn λ∣ ∑ exp (
+x/∈X̃n
+y/∈Ỹn
+
+−c(x, y) X Y
+Y
+) hn,x hn,y ∣ ≤ tn λ ∑ ∣hX
+n,x ∣ ∑ ∣hn,y ∣ ,
+λ
+x/∈X̃
+y/∈Ỹ
+n
+
+n
+
+which also converges to zero for n → ∞ and finishes the proof.
+Remark 5.1. For Hadamard differentiability of EROT λ at (r, s) we need to show for
+n → ∞ that
+∣
+
+1
+λ
+λ X
+λ Y
+Y
+(EROT λ (r + tn hX
+n , s + tn hn ) − EROT (r, s)) − ⟨α , h ⟩ − ⟨β , h ⟩∣ → 0.
+tn
+
+X
+Y
+Y
+Our proof technique relies on the weighted l1 -convergence of (hX
+n , hn ) towards (h , h )
+in combination with Hölder's inequality (Equation (5.4) and (5.5)). In particular, the
+weighted l1 -norm appears to be a necessary condition for Hadamard differentiability of the
+EROT value functional on countable spaces.
+
+5.2
+
+Sensitivity of EROT Plan
+
+The proof of Theorem 3.4 for the Hadamard differentiability of the EROT plan requires
+three key results: well-definedness and boundedness of the proposed derivative, a local
+Lipschitz-continuity property for the mapping π λ , and convergence of the difference quotient of π λ for finitely supported perturbations towards the proposed derivative. For the
+sake of readability these three statements are proven separately in Propositions 5.2, 5.3,
+and 5.4.
+Furthermore, the proof employs various approximation results. For an element hX ∈
+l1 (X ) we define its finite support approximation of order l ≥ 2, denoted by ĥX
+l , for x ∈ X =
+{x1 , x2 , . . . } as
+∞
+X
+X
+⎧
+⎪
+⎪hx1 + ∑i=l+1 hxi if x = x1 ,
+⎪
+⎪
+X
+ĥX
+if x ∈ {x2 , . . . , xl },
+l,x ∶= ⎨hx
+⎪
+⎪
+⎪
+⎪
+else.
+⎩0
+24
+
+Similarly, we define for hY ∈ l1 (Y) its finite support approximation by ĥY
+l . The relevant
+properties of this type of approximation are shown in Appendix C (Lemmas C.1, C.2, and
+C.3) and will play in important role in the following.
+Proof of Theorem 3.4. According to the definition of Hadamard differentiability, consider
+X
+Y
+1
+1
+Y
+a sequence (tn )n∈N such that tn ↘ 0 and (hX
+n , hn ) ⊆ lCX (X )×lΦ4 (Y) converging to (h , h )
+
+such that it holds for each n ∈ N
+
+Y
+
+1
+Y
+1
+(r + tn hX
+n , s + tn hn ) ∈ (P (X ) ∩ lCX (X )) × (P (Y) ∩ lΦ4 (Y)).
+Y
+
+The assertion on the contingent cone follows by (Aubin & Frankowska, 1990, Proposition
+4.2.1) in conjunction with r and s having full support. The quantity of interest is
+∥
+
+Y
+λ
+π λ (r + tn hX
+H
+n , s + tn hn ) − π (r, s)
+− D∣(r,s)
+π λ (hX , hY )∥
+tn
+l1
+
+CX ⊕CY
+
+(X ×Y)
+
+for which we need to prove that it converges to zero as n tends to infinity. Let ε > 0, then
+H
+there exists by Lemma C.1 and by boundedness of D∣(r,s)
+π λ (Proposition 5.2) an integer
+
+Y
+X
+Y
+l ∈ N such that it follows for the finite support approximations ĥX
+l of h and ĥl of h ,
+respectively, that
+
+∥hX − ĥX
+l ∥l1
+
+CX
+
+(X )
+
++ ∥hY − ĥY
+l ∥l1
+
+Φ4
+Y
+
+(Y)
+
+<
+
+−1
+ε
+H
+∥D∣(r,s)
+πλ ∥ .
+OP
+4
+
+Further, denote by ρ0 > 0 the radius from Proposition 5.3 such that π λ is Lipschitz with
+modulus Λ > 0 on the set
+Bρ0 (r, s) ∶= {(r̃, s̃) ∈ (P (X ) ∩ l1CX (X )) × (P (Y) ∩ l1Φ4 (Y))∶
+Y
+
+∥r − r̃∥l1
+
+CX
+
+(X )
+
++ ∥s − s̃∥l1
+
+Φ4
+Y
+
+(Y)
+
+≤ ρ0 }.
+
+Moreover, by Lemma C.3 there exists N1 ∈ N such that it follows for all n ≥ N1 that
+X
+X
+X
+r + tn ĥX
+l , r + tn ĥn,l ∈ P (X ) with supp(r + tn ĥl ) = supp(r + tn ĥn,l ) = X , and likewise
+Y
+Y
+Y
+s + tn ĥY
+l , s + tn ĥn,l ∈ P (Y) with supp(s + tn ĥl ) = supp(s + tn ĥn,l ) = Y. Additionally,
+Lemma C.2 asserts existence of N2 ∈ N such that it holds for all n ≥ N2 that
+Y
+Y
+X
+Y
+X
+(r + tn hX
+n , s + tn hn ), (r + tn ĥn,l , s + tn ĥn,l ), (r + tn ĥl , s + tn ĥl ) ∈ Bρ0 (r, s).
+
+Using Lemma C.1 there also exists N3 ∈ N such that it follows for all n ≥ N3
+X
+∥hX
+n − ĥn,l ∥l1
+
+CX
+
+∥ĥX
+n,l
+
+(X )
+
+− ĥX
+l ∥l1 (X )
+C
+X
+
+Y
++ ∥hY
+n − ĥn,l ∥
+
+l1 4 (Y)
+
++ ∥ĥY
+n,l
+
+Φ
+
+Y
+
+− ĥY
+l ∥l1 (Y)
+4
+Φ
+
+Y
+
+<
+
+ε
+4Λ
+
+<
+
+ε
+.
+4Λ
+
+and
+
+Finally, by Proposition 5.4 there exists N4 ∈ N such that it follows for n ≥ N4
+
+X
+X
+Y
+λ
+X
+X
+π λ (r + tn ĥX
+X
+ε
+X
+X
+l , s + tn ĥl ) − π (r, s)
+H
+λ X
+Y X
+X
+X
+X
+X
+< .
+−
+D
+π
+(
+ĥ
+,
+ĥ
+)
+X
+X
+l
+∣(r,s)
+l
+X
+X
+tn
+4
+X
+X
+X
+X
+X
+Xl1CX ⊕CY (X ×Y)
+25
+
+Summarizing, for all n ≥ max{N1 , N2 , N3 , N4 } we obtain that
+∥
+
+λ
+Y
+π λ (r + tn hX
+H
+n , s + tn hn ) − π (r, s)
+− D∣(r,s)
+π λ (hX , hY )∥
+tn
+l1
+
+(X ×Y)
+
+X
+Y X
+Y
+λ
+X
+X
+X
+π λ (r + tn hX
+X
+n , s + tn hn ) − π (r + tn ĥn,l , s + tn ĥn,l ) X
+X
+X
+X
+X
+X
+X
+≤X
+X
+X
+X
+X
+X
+t
+X
+X
+n
+X
+X
+X
+Xl1CX ⊕CY (X ×Y)
+X
+Y
+Y X
+λ
+X
+X
+X
+π λ (r + tn ĥX
+X
+X
+X
+n,l , s + tn ĥn,l ) − π (r + tn ĥl , s + tn ĥl ) X
+X
+X
+X
+X
++X
+X
+X
+X
+X
+X
+t
+X
+X
+n
+X
+X
+X
+Xl1CX ⊕CY (X ×Y)
+X π λ (r + t ĥX , s + t ĥY ) − π λ (r, s)
+X
+X
+X
+X
+n l
+n l
+X
+X
+H
+λ X
+Y X
+X
+X
++X
+−
+D
+π
+(
+ĥ
+,
+ĥ
+)
+X
+X
+l
+∣(r,s)
+l X
+X
+X
+t
+X
+X
+n
+X
+X
+X
+Xl1CX ⊕CY (X ×Y)
+CX ⊕CY
+
+H
+Y
+H
+λ X
+Y
++ ∥D∣(r,s)
+π λ (ĥX
+l , ĥl ) − D∣(r,s) π (h , h )∥
+
+≤
+
+ε ε ε ε
++ + +
+4 4 4 4
+
+=
+
+l1C
+
+X ⊕CY
+
+(X ×Y)
+
+ε,
+
+which proves the claim.
+We continue with our assertions on the well-definedness and boundedness of the proposed derivative, the local Lipschitz property for the EROT plan as well as our result
+concerning the convergence of the difference quotient for finitely supported perturbations.
+For the sake of readability, we first state these results and prove them afterwards. Notably,
+for all of these results we assume that ∥c+X − c−X ∥l∞ (X ) < ∞.
+
+Proposition 5.2. Let r ∈ l1CX (X ), s ∈ l1Φ2 (Y) be two probability measures with full sup-
+
+port, i.e., supp(r) = X and supp(s) = Y, then the linear mapping given by
+Y
+
+− [Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]
+
+−1
+
+is well-defined and bounded.
+
+○ Dr,s∗∣(θ(r,s∗ ),r,s∗ ) F∶ l1CX (X ) × l1Φ2 (Y/{y1 }) →
+l1CX ⊕CY (X
+
+Y
+
+∞
+× Y) × l∞
+φX (X ) × lφY (Y/{y1 })
+
+Proposition 5.3. Let (r, s) ∈ l1CX (X ) × l1Φ2 (Y) be probability measures with full support.
+Denote for ρ > 0 the set
+
+Y
+
+Bρ (r, s) ∶= {(r̃, s̃) ∈ (P (X ) ∩ l1CX (X )) × (P (Y) ∩ l1Φ2 (Y))∶
+Y
+
+∥r − r̃∥l1
+
+CX
+
+(X )
+
++ ∥s − s̃∥l1
+
+Φ2
+Y
+
+(Y)
+
+≤ ρ}.
+
+Then there exist ρ0 , Λ, Λ′ > 0 such that for any (r̃, s̃), (r̃ ′ , s̃′ ) ∈ Bρ0 (r, s) with supp(r̃ ′ ) ⊆
+supp(r̃) and supp(s̃′ ) ⊆ supp(s̃) it follows that
+∥π λ (r̃, s̃) − π λ (r̃ ′ , s̃′ )∥l1
+
+CX ⊕CY (X ×Y)
+
+≤ Λ ∥(r̃, s̃) − (r̃ ′ , s̃′ )∥l1
+
+CX
+
+∥(αλ (r̃, s̃) − αλ (r̃ ′ , s̃′ ))1supp(r̃′ ) ∥l∞ (X ) ≤ Λ′ ∥(r̃, s̃) − (r̃ ′ , s̃′ )∥l1
+
+(X )×l1 2 (Y)
+
+CX
+
+26
+
+Φ
+
+,
+
+(5.11)
+
+,
+
+(5.12)
+
+Y
+
+(X )×l1 2 (Y)
+Φ
+
+Y
+
+∥(β λ (r̃, s̃) − β λ (r̃ ′ , s̃′ ))1supp(s̃′ ) ∥l∞
+φ
+
+Y
+
+(Y)
+
+≤ Λ′ ∥(r̃, s̃) − (r̃ ′ , s̃′ )∥l1
+
+CX
+
+(X )×l1 2 (Y)
+Φ
+
+,
+
+(5.13)
+
+Y
+
+where (αλ , β λ ) represent optimal entropic dual potentials as in Proposition 2.4, i.e., βyλ1 =
+0.
+Proposition 5.4. Let (r, s) ∈ l1CX (X ) × l1Φ4 (Y) be probability measures with full support.
+Given l ∈ N consider N ∈ N as in Lemma C.3 such that for all n ≥ N holds
+Y
+
+1
+Y
+1
+(r + tn ĥX
+l , s + tn ĥl ) ∈ (P (X ) × lCX (X )) × (P (Y) ∩ lΦ4 (Y))
+Y
+
+Y
+with supp(r + tn ĥX
+l ) = X and supp(s + tn ĥl ) = Y. Then it follows as n tends to infinity
+that
+
+∥
+
+Y
+λ
+π λ (r + tn ĥX
+l , s + tn ĥl ) − π (r, s)
+H λ X
+− D∣r,s
+π (ĥl , ĥY
+l )∥
+tn
+l1
+
+CX ⊕CY
+
+→ 0.
+(X ×Y)
+
+Note that Proposition 5.2 and 5.3 both can be stated for the spaces l1CX (X ) and l1Φ2 (Y)
+
+for the probability measures r, s, whereas Proposition 5.4 uses the spaces l1CX (X ) and
+l1Φ4 (Y), where the latter space has a strictly stronger norm if ∥c+Y − c−Y ∥l∞ (Y) = ∞.
+Y
+
+Y
+
+1
+1
+Proof of Proposition 5.2. Given a pair (hX , hY
+∗ ) ∈ lCX (X ) × lΦ2 (Y/{y1 }) we need to show
+Y
+
+) ∈ l1CX ⊕CY (X × Y)×l∞ (X )×l∞
+that there exists a unique element (hX ×Y , hX ,∞ , hY,∞
+∗
+φY (Y/{y1 })
+such that
+) = Dr,s∗ ∣(θ(r,s∗ ),r,s∗) F(hX , hY
+Dπ,α,β∗ ∣(θ(r,s∗),r,s∗ ) F(hX ×Y , hX ,∞ , hY,∞
+∗
+∗ ).
+
+(5.14)
+
+Denoting the EROT plan for r, s as π λ and by the relation between optimizers of (EROT)
+and (DEROT) (Proposition 2.1) Equation (5.14) can be rewritten as
+⎛h
+⎝
+
+X ×Y
+
+−
+
+)⎞
+⊙ AT∗ (hX ,∞ , hY,∞
+∗
+X ×Y
+⎠
+A∗ (h
+)
+
+πλ
+λ
+
+π
+⎛− r⊗s
+⊙ [r ⊗ hY + hX ⊗ s]⎞
+⎟.
+=⎜
+⎜
+⎟
+−hX
+(
+)
+Y
+⎝
+⎠
+−h∗
+λ
+
+(5.15)
+
+In order to solve this system of countably many equations we set
+hX ×Y ∶=
+which reduces (5.15) to
+A∗ (
+
+πλ
+πλ
+)−
+⊙ AT∗ (hX ,∞ , hY,∞
+⊙ [r ⊗ hY + hX ⊗ s],
+∗
+λ
+r⊗s
+
+πλ
+πλ
+−hX
+)−
+⊙ AT∗ (hX ,∞ , hY,∞
+⊙ [r ⊗ hY + hX ⊗ s]) = ( Y ) .
+∗
+−h∗
+λ
+r⊗s
+
+(5.16)
+
+(5.17)
+
+) for (5.17) exists. For this
+We now have to show that a unique solution (hX ,∞ , hY,∞
+∗
+purpose, we evaluate for x ∈ X the corresponding component-wise equation of (5.17) and
+obtain
+λ
+πxy
+1
+
+λ
+
+,∞
+hX
+x
+
+⎤ ⎡
+⎡
+⎤
+λ
+λ
+⎢
+⎥
+πxy
+⎢
+πxy
+Y,∞ ⎥
+X ,∞
+Y
+X
+⎥
+⎢
+⎢
++⎢ ∑
+(hx + h∗,y )⎥ − ⎢ ∑
+[rx hy + hx sy ]⎥
+= −hX
+x,
+⎥
+⎥ ⎢y∈Y rx sy
+⎢y∈Y/{y1 } λ
+⎥
+⎦ ⎣
+⎣
+⎦
+27
+
+⎤ ⎡
+⎤
+⎡
+λ
+λ
+πxy
+πxy
+⎢
+rx X ,∞ ⎢
+Y,∞ ⎥
+Y⎥
+X
+⎥
+⎢
+⎢
++⎢ ∑
+h
+h∗,y ⎥ − ⎢ ∑
+hy ⎥
+⎥ − hx
+λ x
+⎥ ⎢y∈Y sy
+⎥
+⎢y∈Y/{y1 } λ
+⎦ ⎣
+⎦
+⎣
+
+Note, for all x ∈ X it holds that ∑y∈Y
+
+= 1, this leads to
+
+λ
+πxy
+rx
+
+⎤
+⎡
+πλ ⎥
+⎢
+⎢ ∑ xy ⎥ = −hX .
+⎥
+⎢
+x
+⎢y∈Y rx ⎥
+⎦
+⎣
+
+⎡
+⎤
+⎡
+⎤
+λ
+λ
+πxy
+⎢
+πxy
+Y,∞ ⎥
+Y⎥
+,∞ ⎢
+⎢
+⎥
+⎢ ∑
+⎥
+=
+λ
+h
+h
+hX
++
+∑
+∗,y ⎥
+y ⎥.
+x
+⎢
+⎢
+⎢y∈Y rx sy ⎥
+⎥
+⎢y∈Y/{y1 } rx
+⎣
+⎦
+⎣
+⎦
+
+Similarly, since for any y ∈ Y/{y1 } holds ∑x∈X
+
+λ
+πxy
+sy
+
+= 1 we deduce that
+
+λ
+λ
+⎡
+⎤
+⎤
+⎡
+πxy
+πxy
+⎢
+⎥
+⎢
+Y,∞
+X ,∞ ⎥
+hx ⎥ + h∗,y = λ ⎢ ∑
+hX
+⎢∑
+⎥.
+x
+⎢x∈X rx sy ⎥
+⎢x∈X sy
+⎥
+⎣
+⎣
+⎦
+⎦
+
+Summarizing, we have to solve a system of countably many linear equations. For suitable
+matrices of countable dimension this can be rewritten as
+⎛ 1
+⎜
+⎜
+⎜ 0
+⎜
+⎜
+⎜ ⋮
+⎜
+⎜
+⎜ λ
+⎜ πx y
+⎜ 12
+⎜ sy2
+⎜ λ
+⎜ π x1 y 3
+⎜
+⎜ sy3
+⎝ ⋮
+
+⎛ 0
+⎜
+⎜
+⎜ 0
+⎜
+⎜
+⎜
+=λ ⎜ πλ
+⎜ x1 y 2
+⎜ rx s y
+⎜ 1 2
+⎜ πxλ y
+⎜ 13
+⎜ rx 1 s y 3
+⎝ ⋮
+
+πxλ1 y3
+rx 1
+πxλ2 y3
+rx 2
+
+⋮
+
+⋮
+
+⋯
+
+1
+
+0
+
+⋯
+⋱
+
+0
+⋮
+
+1
+⋮
+
+πxλ1 y1
+rx 1 s y 1
+πxλ2 y1
+rx 2 s y 1
+
+πxλ1 y2
+rx 1 s y 2
+πxλ2 y2
+rx 2 s y 2
+
+⋯
+
+0
+
+0
+
+⋯
+⋱
+
+0
+⋮
+
+0
+⋮
+
+⋯
+
+1
+⋮
+
+⋯
+⋱
+
+πxλ2 y2
+sy2
+πxλ2 y3
+sy3
+
+⋮
+0
+
+⋯
+
+0
+
+⋯
+
+πxλ2 y2
+rx 2 s y 2
+πxλ2 y3
+rx 2 s y 3
+
+⋮
+
+X ,∞
+⋯⎞ ⎛hx1 ⎞
+⎟ ⎜ X ,∞ ⎟
+⎟ ⎜hx ⎟
+2
+⋯⎟
+⎟
+⎟⎜
+⎟
+⎟⎜
+⋮
+⎜
+⎟
+⋱⎟
+⎟
+⎟⎜
+⎜
+⎟
+⎟⎜
+⎟
+⎟⎜
+⎟ ⎜ Y,∞ ⎟
+h∗,y2 ⎟
+⎟
+⋯⎟
+⎟⎜
+⎜
+⎟ ⎜ Y,∞ ⎟
+⎟ ⎜ h∗,y ⎟
+3 ⎟
+⋯⎟
+⎟
+⎟⎜
+⋮
+⎝
+⎠
+⋱⎠
+
+πxλ1 y2
+rx 1
+πxλ2 y2
+rx 2
+
+0
+
+⋯⎞
+⎟
+⎟
+⋯⎟
+⎟ IdX
+⎟⎛
+⎟
+⎟⎜
+⎟⎝
+⋯⎟
+⎟
+⎟
+⋯⎟
+⎟
+⋱⎠
+
+⎞
+⎛
+⎟
+⎜
+⎟
+⎜
+⎟
+⎜
+⎜ ⋮ ⎟
+⎟
+⎜
+⎞⎜
+⎟
+⎟,
+−1Y/{y1 } ⎟ ⎜
+⎟
+⎜
+⎜
+Y
+⎠
+IdY/{y1 } ⎜h∗,y2 ⎟
+⎟
+⎟
+⎜
+⎜ Y ⎟
+⎜h∗,y3 ⎟
+⎟
+⎜
+⎝ ⋮ ⎠
+
+(5.18)
+
+hX
+x1
+hX
+x2
+
+where we denote the operator of the l.h.s. by M = M (r, s, π λ ) and the composition of
+both operators on the r.h.s. with the factor λ by Q = Q(λ, r, s, π λ ). As we will show, these
+operators are defined on the following spaces
+∞
+∞
+M = M (r, s, π λ )∶ l∞ (X ) × l∞
+φ (Y/{y1 }) → l (X ) × lφ (Y/{y1 }),
+
+Q = Q(λ, r, s, π
+
+Y
+
+λ
+
+)∶ l1CX (X ) × l1Φ2
+
+Y
+
+(Y/{y1 }) → l
+
+Y
+
+∞
+
+(X ) × l∞
+φY (Y/{y1 }).
+
+Herein, we equip the product of l1 -spaces with sum of the norms of each subspace and for
+the l∞ -spaces we consider the maximum of the norms of the subspaces. We now derive a
+bound for the operator norm of Q and afterwards show that M is invertible. The operator
+norm of the mapping
+⎛IdX
+⎜
+⎝
+
+⎞
+−1Y/{y1 } ⎟ ∶ l1CX (X ) × l1Φ2 (Y/{y1 }) → l1CX (X ) × l1Φ2 (Y)
+Y
+Y
+IdY/{y1 } ⎠
+28
+
+can be computed as follows. Denote the closed ball of radius 1 by
+1
+X
+1
+B1 ∶= {(hX , hY
+∗ ) ∈ lCX (X ) × lΦ2 (Y)∶ ∥h ∥l1
+Y
+
+CX
+
+(X )
+
+Then, the operator norm is given by
+
++ ∥hY
+∗ ∥l1
+
+Φ2
+Y
+
+(Y/{y1 })
+
+≤ 1}.
+
+RR
+RR
+RRR
+2
+Y RRR
++
+Φ
+(y
+)
+R
+h
+∑
+Y 1 RR
+∗,y RRR
+(Y/{y1 })
+CX
+RRy≠y1
+RR
+Φ2
+(hX ,hY
+Y
+∗ )∈B1
+R
+R
+RRR
+RRR
+2
+Φ
+(y
+)
+1
+RRR = 1 + sup Y
+≤ 1 + Φ2Y (y1 ).
+Φ2Y (y1 ) RRRR ∑ hY
+=1+
+sup
+2 (y)
+RRRy≠y ∗,y RRRR
+Φ
+Y
+y≠y
+X
+1
+(h ,h∗ )∈B1
+Y
+R
+R 1
++ ∥hY
+∗ ∥l1
+(X )
+
+∥hX ∥l1
+
+sup
+
+Moreover, based on our bounds for π λ (Proposition 2.3) it follows for each x ∈ X and
+hY ∈ l1Φ2 (Y) that
+Y
+
+RR
+R
+⟨c+X , r⟩ + ⟨c+Y , s⟩ + ∥c+X − c−X ∥l∞ (X )
+RRR
+πxy Y RRRR
+hy RRR ≤ exp (
+) ∥hY ∥l1 (Y)
+RRR− ∑
+φ
+λ
+RR y∈Y rx sy RR
+Y
+R
+R
++
++
++
+−
+⟨cX , r⟩ + ⟨cY , s⟩ + ∥cX − cX ∥l∞ (X )
+≤ exp (
+) ∥hY ∥l1 (Y) .
+λ
+Φ2
+Y
+
+Likewise, it follows for each y ∈ Y/{y1 } and hX ∈ l1CX (X ) that
+φY (y)
+
+−1
+
+⟨c+X , r⟩ + ⟨c+Y , s⟩ + ∥c+X − c−X ∥l∞ (X )
+πxy X
+∣∑
+hx ∣ ≤ exp (
+) ∥hX ∥l1 (X ) .
+CX
+r
+s
+λ
+x
+y
+x∈X
+
+Hence, we obtain for the operator norm of Q that
+∥Q∥OP ≤ λ(1 + Φ2Y (y1 )) exp (
+
+⟨c+X , r⟩ + ⟨c+Y , s⟩ + ∥c+X − c−X ∥l∞ (X )
+λ
+
+Next, we show that M is invertible. Note, that M can be represented by
+M=
+
+).
+
+P
+⎞
+⎛Idl∞ (X )
+∞
+R
+Id
+lφ (Y/{y1 }) ⎠
+⎝
+Y
+
+(5.19)
+
+(5.20)
+
+∞
+λ
+for some suitable linear operators P = P (r, π λ )∶ l∞
+φY (Y/{y1 }) → l (X ) and R = R(s, π )∶
+l∞ (X ) → l∞
+φY (Y/{y1 }). We prove existence of the inverse of M by applying the Neumannseries calculus for (Id − M ) (Sasane, 2017, Theorem 2.9). In particular, this requires to
+k
+show that the series ∑∞
+k=0 (Id − M ) converges in operator norm. To this end, we perform
+a change to the norm l∞
+φ (Y/{y1 }) which does not change the topology. We first label
+Y
+
+Y = {y1 , y2 , . . . , } and set η ∶= inf x∈X rxyx 1 > 0 which is strictly positive by the lower bounds
+for π λ (Proposition 2.3) and since . Using the upper bound for π λ (Proposition 2.3) we
+obtain that
+πλ
+
+φY (y)
+
+λ
+πxy
+
+rx
+
+which shows that φY (y)
+
+≤ exp (
+
+λ
+πxy
+rx
+
+∥c+X − c−X ∥l∞ (X ) + ⟨c+X , r⟩ + ⟨c+Y , s⟩
+λ
+
+)φ2Y (y)sy ,
+
+is summable over y ∈ Y as s ∈ l1Φ2 (Y) ⊆ l1φ2 (Y). Notably, the
+
+dominating function is independent of x ∈ X . Hence, there exists some N ∈ N such that
+Y
+
+∞
+
+λ
+πxy
+i
+
+i=N +1
+
+rx
+
+∑ (φY (yi ) − 1)
+29
+
+≤
+
+η
+,
+2
+
+Y
+
+For such N ∈ N it follows for all x ∈ X that
+∞
+
+∑
+
+i=2
+
+λ
+πxy
+i
+
+rx
+
+∞
+
++ ∑ (φY (yi ) − 1)
+
+λ
+πxy
+i
+
+rx
+
+i=N +1
+
+≤1−
+
+λ
+πxy
+1
+
+rx
+
++
+
+η
+η
+≤1−
+2
+2
+
+(5.21)
+
+To change the norm of l∞
+φ (Y/{y1 }) we define the weight function
+X
+
+⎧
+⎪
+⎪1
+φ̃Y (y) = ⎨
+⎪
+⎪
+⎩φY (y)
+
+φ̃Y ∶ Y → [1, ∞),
+
+if y ∈ {y1 , . . . , yN },
+else,
+
+where we note that L−1
+Y φY (y) ≤ φ̃Y (y) ≤ φY (y) for LY = maxi=1,...,N φY (y). Consequently,
+it follows that ∥⋅∥l∞ (Y) ≤ ∥⋅∥l∞ (Y) ≤ LY ∥⋅∥l∞ (Y) . Hence, we can consider the operators
+φ
+
+φ̃
+
+Y
+
+P, R as mappings
+
+φ
+
+Y
+
+Y
+
+(Y/{y1 }) → l∞ (X ),
+P̃ ∶ l∞
+φ̃
+
+R̃∶ l∞ (X ) → l∞
+(Y/{y1 }),
+φ̃
+
+Y
+
+Y
+
+respectively, and introduce M̃ likewise. Based on (5.21) we then note that ∥P̃ ∥OP ≤ 1− η/2
+
+and since ∑x∈X
+
+= 1 for all y ∈ Y/{y1 }, it follows that ∥R̃∥OP ≤ 1. Thus, we assert that
+
+λ
+πxy
+sy
+
+η
+∥(Id − M̃ )2 ∥OP ≤ max { ∥R̃P̃ ∥OP , ∥P̃ R̃∥OP } ≤ 1 − ,
+2
+
+k
+which implies that the Neumann-series ∑∞
+k=0 (Id − M̃ ) converges in operator norm with
+∞
+
+∞
+
+k=0
+
+k=0
+
+∥M̃ −1 ∥OP ≤ ∑ ∥(Id − M̃ )k ∥OP ≤ ( ∥Id∥OP + ∥(Id − M̃ )∥OP ) ∑ ∥(Id − M̃ )2 ∥OP
+k
+
+4
+2
+= < ∞.
+≤
+1 − (1 − η/2) η
+
+This also yields that ∥M −1 ∥OP ≤ 4LY /η. Concluding, there exists a unique pair of elements
+−1
+) ∈ l∞ (X ) × l∞
+(hX ,∞ , hY,∞
+∗
+φY (Y/{y1 }) that solves equation (5.18) and M Q is a bounded
+operator.
+Finally, we prove that hX ×Y from (5.16) is contained in l1CX ⊕CY (X × Y). This follows
+by the following calculation
+∥hX ×Y ∥l1
+
+CX ⊕CY
+
++∥
+
+≤ 2∥
+
+≤∥
+(X ×Y)
+
+πλ
+)∥
+⊙ AT∗ (hX ,∞ , hY,∞
+∗
+λ
+l1
+
+CX ⊕CY
+
+πλ
+⊙ [r ⊗ hY + hX ⊗ s]∥
+r⊗s
+l1
+
+CX ⊕CY
+
+λ
+
+π
+∥
+λ l1
+
+CX ⊗Φ
+
+Y
+
+(X ×Y)
+
+π
+∥
++∥
+r ⊗ s l∞
+
+1X ⊗φ
+Y
+
+(X ×Y)
+
+∥
+( ∥hX ,∞ ∥l∞ (X ) + ∥hY,∞
+∗
+
+λ
+
+(X ×Y)
+
+(X ×Y)
+
+l∞
+(Y/{y1 })
+φ
+
+2( ∥r∥l1
+
+CX
+
+Y
+
+Y
+(X ) ∥h ∥l1 (Y)
+Φ
+Y
+
+)
+
++ ∥hX ∥l1
+
+1X
+
+(5.22)
+
+(X )
+
+∥s∥l1
+
+Φ
+
+Y
+
+(Y) ),
+
+where we used in the second inequality for (x, y) ∈ X × Y the following bound
+(CX (x) + CY (x))φY (y) = CX (x)φY (y) + ΦY (y) ≤ 2CX (x)ΦY (y).
+30
+
+In particular, it holds by the upper bound for π λ (Proposition 2.3) that
+∥π λ ∥l1
+
+CX ⊗Φ
+
+≤
+
+Y
+
+(X ×Y)
+
+=
+
+λ
+CX (x)ΦY (y)πxy
+
+∑
+
+(x,y)∈X ×Y
+
+CX (x)ΦY (y)φY (y) exp (
+
+∑
+
+(x,y)∈X ×Y
+⟨c+X , r⟩ + ⟨c+Y , s⟩ + ∥c+X
+
+= exp (
+
+λ
+
+⟨c+X , r⟩ + ⟨c+Y , s⟩ + ∥c+X − c−X ∥l∞ (X )
+
+− c−X ∥l∞ (X )
+
+λ
+
+)
+
+∑
+
+(x,y)∈X ×Y
+
+)rx sy
+
+CX (x)Φ2Y (y)rx sy < ∞,
+
+which is finite by (r, s) ∈ l1CX (X ) × l1Φ2 (Y). By the same upper bound we see that the term
+
+∥π λ / r ⊗ s∥l∞
+
+Y
+
+1X ⊗φ
+Y
+
+(X ×Y)
+
+sup
+(x,y)∈X ×Y
+
+is bounded by
+
+λ
+πxy
+/(rx sy )
+
+φY (y)
+
+≤ exp (
+
+⟨c+X , r⟩ + ⟨c+Y , s⟩ + ∥c+X − c−X ∥l∞ (X )
+λ
+
+) < ∞.
+
+) ∈ l∞ (X ) × l∞
+This also shows that hX ×Y continuously depends on (hX ,∞ , hY,∞
+∗
+φ (Y) and
+
+1
+1
+(hX , hY
+∗ ) ∈ lCX (X ) × lΦY (Y) and thus concludes the proof on well-definedness and boundedness of the operator of the claim.
+Y
+
+Remark 5.5. Crucial for the well-definedness of the proposed derivative for the EROT
+plan (Proposition 5.2) for the setting ∥c+X − c−X ∥l∞ (X ) < ∞ is that the operator M ∶ l∞ (X ) ×
+∞
+∞
+l∞
+φY (Y/{y1 }) → l (X ) × lφY (Y/{y1 }) in (5.20) has a bounded inverse for which we employ
+the Neumann-series calculus. To this end, we verify that there exists ε > 0 and construct
+a function φ̃Y ∶ Y → [1, ∞∣ with φ̃Y ≥ kφY for some k > 0 such that
+∑
+
+y∈Y/{y1 }
+
+1
+
+φ̃Y (y)
+∑
+
+λ
+πxy
+
+rx
+λ
+πxy
+
+φ̃Y (y) x∈X sy
+
+≤1−ε
+
+for all x ∈ X ,
+
+≤1
+
+for all y ∈ Y.
+
+Generalizing this approach to ground costs with unbounded variation in both components
+∥c+X − c−X ∥l∞ (X ) = ∞ and ∥c+Y − c−Y ∥l∞ (Y) = ∞ would require existence of ε > 0 and suitable
+functions ψX ∶ → [1, ∞), ψY ∶ → [1, ∞) with ψX ≥ kφX and ψY ≥ kφY for some k > 0 such
+that
+λ
+πxy
+1
+≤1−ε
+for all x ∈ X ,
+∑ ψY (y)
+ψX (x) y∈Y/{y1 }
+rx
+λ
+
+πxy
+1
+≤1
+∑ ψX (x)
+ψY (y) x∈X
+sy
+
+for all y ∈ Y.
+
+The explicit construction of such functions ψX , ψY remains challenging is and is left for
+future research.
+Proof of Proposition 5.3. The proof consists of two steps. We first show the claims for
+finitely supported probability measures and extend them afterwards to probability measures with countable support.
+The Lipschitz bound will be derived by showing that the operator norm of the derivative
+of primal and dual optimizers for a given pair of probability measures with respect to
+31
+
+perturbations on the same support can be uniformly bounded. For the proof, we first
+define the quantity
+κ ∶= sup exp (
+(r̃,s̃)∈B1
+
+⟨c+X , r̃⟩ + ⟨c+Y , s̃⟩ + ∥c+X − c−X ∥l∞ (X )
+λ
+
+We further introduce the quantity η ∈ (0, 1) by
+η ∶=
+
+inf
+
+(r̃,s̃)∈B1
+
+) ∈ [1, ∞).
+
+−⟨c+X , r̃⟩ − ⟨c+Y , s̃⟩ − 2 ∥c+X − c−X ∥l∞ (X )
+s y1
+−1
+exp (
+) ⟨φY , s̃⟩ ,
+2
+λ
+
+and define ρ0 ∶= η/4κ. Next, we consider (r̂, ŝ) ∈ Bρ0 with finite support. Note that
+the inequality ŝy1 ≥ sy1 /2 > 0 holds. Furthermore, we define X̂ ∶= supp(r̂), Ŷ ∶= supp(ŝ)
+and introduce for given positive function f ∶ X → (0, ∞) the spaces l1f (Xˆ ) ∶= l1f ∣X̂ (X̂ ) and
+l∞ (Xˆ ) ∶= l∞ (X̂ ). With this notation, we define the operator Â∗ as A∗ from Section 3
+f
+
+f ∣X̂
+
+restricted to l1CX (X̂ ) × l1Φ2 (Ŷ/{y1 }) and, similarly, introduce F̂ as F from Section 3 with
+Y
+
+a modified domain and range space
+
+1
+1
+F̂∶ (l1CX ⊕CY (X̂ × Ŷ) × l∞ (X̂ ) × l∞
+φ (Ŷ/{y1 })) × (lCX (X̂ ) × lΦ2 (Ŷ/{y1 }))
+Y
+
+Y
+
+→R
+
+∣X̂ ×Ŷ∣+∣X̂ ∣+∣Ŷ∣−1
+
+.
+
+By Corollary 3.3 the triplet (π̂ λ , α̂λ , β̂ λ ) ∈ (l1CX ⊕CY (X̂ × Ŷ) × l∞ (Xˆ ) × l∞
+φY (Ŷ)) are optimizers of (EROT) and (DEROT) for the probability measures (r̂, ŝ) if and only if
+F̂((π̂ λ , α̂λ , β̂∗λ ), (r̂, ŝ)) = 0. Furthermore, the function F̂ is Fréchet differentiable (Averbukh & Smolyanov,
+1967), the derivative in this notion will be denoted by D F . Following the arguments by
+Klatt et al. (2020b) the partial derivative of F̂ with respect to (π̂, α̂, β̂∗ ) at optimizers
+(π̂ λ , α̂λ , β̂∗λ ) for (r̂, ŝ) in matrix representation is then given by
+F
+[Dπ̂,
+α̂,β̂
+
+∗ ∣(π̂
+
+λ ,α̂λ ,β̂ λ ,r̂,ŝ )
+∗
+∗
+
+⎛Idl1
+(X̂ ×Ŷ)
+CX ⊕CY
+=
+⎝
+Â∗
+
+1
+λ
+
+F̂ ]
+
+exp ( λ1 [ÂT∗ (α̂λ , β̂∗λ ) − c]) ⊙ (r̂ ⊗ ŝ) ⊙ ÂT∗ ⎞
+⎠
+
+0
+
+,
+
+which is an invertible operator since the identity operator is invertible in conjunction with
+A∗ having full rank of order ∣Xˆ ∣+ ∣Ŷ∣− 1, and because λ1 exp ( λ1 [AT∗ (α̂λ , β̂∗λ ) − c])⊙ (r̂ ⊗ ŝ) is
+component-wise strictly positive. By the implicit function theorem this induces a mapping
+on an open set U ⊆ l1CX (X̂ ) × l1Φ2 (Ŷ/{y1 }) with (r̂, ŝ) ∈ U
+Y
+
+∞
+ˆ
+θ̂∶ U → (l1CX ⊕CY (X̂ × Ŷ) × l∞
+φ (X ) × lφ (Ŷ/{y1 }))
+X
+
+Y
+
+such that for any (r, s∗ ) ∈ U the relation F̂ (θ̂(r, s), (r, s)) = 0 holds. In particular, if
+(r, s∗ ) ∈ P (X̂ ) × P (Ŷ)∗ it follows that θ̂(r, s) coincides with the triplet of optimizers of
+(π̂ λ , α̂λ , β̂∗λ ) for these respective probability measures.
+Moreover, the implicit function theorem yields that θ̂ is Fréchet differentiable at (r̂, ŝ)
+with derivative
+F
+F
+D∣(r̂,ŝ
+θ = − [Dπ,α,β
+F̂]
+∗)
+∗ ∣(θ(r̂,ŝ∗ ),r̂,ŝ∗ )
+
+32
+
+−1
+
+F
+○ Dr,s
+F̂ .
+∗ ∣(θ(r̂,ŝ∗ ),r̂,ŝ∗ )
+
+Hence, it remains to bound this operator. Adapting the notation of the proof for Proposition 5.2 we know that there exist suitable operators M̂ , Q̂ such that the derivative for
+the component of θ̂ in l∞ (X̂ ) × l∞
+φ (Ŷ), i.e., the component for optimal entropic dual
+Y
+
+potentials, is given by M̂ −1 Q̂. For the operator Q̂ we know that
+∥Q̂∥OP ≤
+
+(1 + Φ2Y (y1 ))λ exp (
+
+⟨c+X , r̂⟩ + ⟨c+Y , ŝ⟩ + ∥c+X − c−X ∥l∞ (X )
+λ
+
+≤ (1 + Φ2Y (y1 ))λκ =∶ Λ1 < ∞.
+
+)
+
+For a bound on the operator norm of M we obtain by Proposition 2.3 the lower bound
+λ
+minx∈X̂ πxy
+(r̂, ŝ)/r̂x ≥ η. Moreover, we choose N ∈ N such that
+1
+∞
+η
+2
+∑ ΦY (yi )κsyi ≤ .
+4
+i=N +1
+
+By definition of ρ0 we obtain for all (r, s) ∈ Bρ0 that
+∞
+
+∑ ΦY (yi )∣syi − syi ∣ ≤ ρ0 =
+2
+
+i=1
+
+η
+,
+4κ
+
+which yields by our choice on N for each (r, s) ∈ Bρ0 and x ∈ X that
+∞
+
+∑ (φY (yi ) − 1)
+
+i=N +1
+
+λ
+πxy
+(r, s)
+i
+
+rx
+
+∞
+
+≤ ∑ (φY (yi ) − 1) exp (
+i=N +1
+∞
+
+∥c+X − c−X ∥l∞ (X ) + c+Y (yi ) − c−Y (yi ) + ⟨c+X , r⟩ + ⟨c+Y , s⟩
+λ
+
+∞
+η
+≤ ∑ Φ2Y (yi )κsyi ≤ ∑ Φ2Y (yi )κ(∣syi − syi ∣ + syi ) ≤ .
+2
+i=N +1
+i=N +1
+
+)syi
+
+η
+λ
+In particular, it follows that ∑∞
+i=N +1 (φY (yi ) − 1)πxyi (r̂, ŝ)/r̂x ≤ 2 for all x ∈ X and the
+quantity LY = supi=1,...N φY (y) is finite. Hence, by the Neumann-series calculus we obtain
+that the operator norm of M̂ −1 can be bounded by
+
+∥M̂ −1 ∥OP ≤ LY
+
+4
+=∶ Λ2 ,
+η
+
+which yields ∥M̂ −1 Q̂∥OP ≤ Λ1 Λ2 =∶ Λ̃′ . By definition, this bound is independent from
+(r̂, ŝ), i.e., for any two pairs of probability measures (r̃, s̃), (r̃ ′ , s̃′ ) ∈ Bρ0 with finite, coinciding support it follows that (5.13) is valid for the Lipschitz-constant Λ̃′ . Moreover, by
+Proposition 2.4 we note that (5.13) generalizes to the setting of supp(r̃ ′ ) ⊆ supp(r̃) and
+supp(s̃′ ) ⊆ supp(s̃).
+Next, we derive the Lipschitz property for the EROT plan π λ in case of finitely supported probability measures. To this end, we again consider the pair (r̂, ŝ) and note by
+(5.16) from the proof of Proposition 5.2 that the derivative for the component of θ̂ in
+l1CX ⊕CY (X̂ × Ŷ), denoted by θπ̂ , is given by
+F
+θ̂ ∶l1 (X̂ ) × l1Φ2 (Ŷ/{y1 }) → l1CX ⊕CY (X̂ × Ŷ),
+D∣r̂,ŝ
+∗ π̂ CX
+Y
+
+(ĥX , ĥY
+∗)↦
+
+π λ (r̂, ŝ)
+π λ (r̂, ŝ)
+)
++
+⊙ ÂT∗ M̂ −1 Q̂(ĥX , ĥY
+⊙ [r̂ ⊗ ĥY + ĥX ⊗ ŝ].
+∗
+λ
+r̂ ⊗ ŝ
+33
+
+Similar to the upper bound for (5.22) we see that
+F
+θ̂ ∥
+∥D∣r̂,ŝ
+∗ π̂
+
+OP
+
+≤
+
+sup
+(r,s)∈Bρ0
+
++ 2∥
+
+(2λ−1 ∥π λ (r, s)∥l1
+
+CX ⊗Φ
+
+π (r, s)
+∥
+r ⊗ s l∞
+λ
+
+1X ⊗φ
+Y
+
+(X ×Y)
+
+Y
+
+(X ×Y)
+
+Λ′
+
+( ∥r∥l1
+
+CX
+
+(X )
+
++ ∥s∥l1
+
+Φ
+
+Y
+
+(Y) ))
+
+=∶ Λ̃ < ∞
+
+is finite. Since the upper bound is independent from (r̂, ŝ) it follows for any two pairs
+of probability measures (r̃, s̃), (r̃ ′ , s̃′ ) ∈ Bρ0 with coinciding support that the following
+inequality is valid
+∥π λ (r̃, s̃) − π λ (r̃ ′ , s̃′ )∥l1
+
+CX ⊕CY (X ×Y)
+
+≤ Λ̃ ∥(r̃, s̃) − (r̃ ′ , s̃′ )∥l1
+
+CX
+
+(X )×l1 2 (Y)
+Φ
+
+.
+
+Y
+
+By Proposition 2.4 this inequality also holds in case of supp(r̃) ⊆ supp(r) and supp(s̃) ⊆
+supp(s) and thus finishes the first step of the proof.
+For step two of this proof it remains to show that these Lipschitz bounds extend to
+probability measures (r̃, s̃), (r̃ ′ , s̃′ ) ∈ Bρ0 with supp(r̃ ′ ) ⊆ supp(r), supp(s̃′ ) ⊆ supp(s)
+where at least one probability measure has infinite support. Concerning the Lipschitz
+property for the EROT plan we consider finite support approximations of the probability
+measures. By Proposition 2.4 it follows for given ε > 0 that there exists l ∈ N such that
+(r̃ˆl , s̃ˆl ), (r̃ˆl′ , s̃ˆ′l ) ∈ Bρ0 with
+∥π λ (r̃, s̃) − π λ (r̃ˆl , s̃ˆl )∥l1
+
+CX ⊕CY
+
+(X ×Y)
+
+ε
+< ,
+2
+
+∥π λ (r̃ ′ , s̃′ ) − π λ (r̃ˆl′ , s̃ˆ′l )∥l1
+
+CX ⊕CY
+
+(X ×Y)
+
+ε
+< .
+2
+
+By our Lipschitz bounds for finitely supported probability measures it then follows that
+∥π λ (r̃, s̃) − π λ (r̃ ′ , s̃′ )∥C
+
+X ⊕CY
+
+≤ ∥π λ (r̃ˆl , s̃ˆl ) − π λ (r̃ˆl′ , s̃ˆ′l )∥C
+
+≤ Λ̃ ∥(r̃ˆl , s̃ˆl ) − (r̃ˆl′ , s̃ˆ′l )∥l1
+
+CX
+
++ε
+
+X ⊕CY
+
+(X )×l1 2 (Y)
+Φ
+
++ε
+
+Y
+
+≤ Λ̃(CX (x1 ) + Φ2Y (y1 )) ∥(r̃, s̃) − (r̃ ′ , s̃′ )∥l1
+
+CX
+
+(X )×l1 2 (Y)
+Φ
+
++ ε.
+
+Y
+
+As ε > 0 can be chosen arbitrarily small we deduce the local Lipschitz property with
+modulus Λ ∶= Λ̃(CX (x1 ) + Φ2Y (y1 )).
+For the dual solutions, we only prove the claim for αλ , for β λ the proof is analogous.
+Consider x ∈ supp(r̃ ′ ), then it follows by Proposition 2.4 for given ε > 0 that there exists
+l ∈ N such that ∣αλx (r̃, s̃) − αλx (r̃ˆl , s̃ˆl )∣ < ε/2 and ∣αλx (r̃ ′ , s̃′ ) − αλx (r̃ˆl′ , s̃ˆ′l )∣ < ε/2 as well as
+(r̃ˆl , s̃ˆl ), (r̃ˆl′ , s̃ˆ′l ) ∈ Bρ0 . Applying our Lipschitz bound then yields
+∣αλx (r̃, s̃) − αλx (r̃ ′ , s̃′ )∣ ≤ ∣αλx (r̃ˆl , s̃ˆl ) − αλx (r̃ˆl′ , s̃ˆ′l )∣ + ε
+≤ Λ̃′ ∥(r̃ˆl , s̃ˆl ) − (r̃ˆl′ , s̃ˆ′l )∥ 1
+
+lC (X )×l1 2 (Y)
+X
+
+Φ
+
++ε
+
+Y
+
+≤ Λ̃′ (CX (x1 ) + Φ2Y (y1 )) ∥(r̃, s̃) − (r̃ ′ , s̃′ )∥l1
+
+CX
+
+(X )×l1 2 (Y)
+Φ
+
+Choosing ε arbitrarily small and setting Λ′ ∶= Λ̃′ (CX (x1 ) + Φ2Y (y1 )) gives
+∣αλx (r̃, s̃) − αλx (r̃ ′ , s̃′ )∣ ≤ Λ′ ∥(r̃, s̃) − (r̃ ′ , s̃′ )∥l1
+
+CX
+
+(X )×l1 2 (Y)
+
+taking the supremum over all x ∈ supp(r̃ ′ ) then proves the claim.
+34
+
+Φ
+
+Y
+
+,
+
+Y
+
++ ε.
+
+Proof of Proposition 5.4. Define the mapping from probability measures to optimizers of
+(EROT) and (DEROT)
+θ∶ (P (X ) ∩ l1CX (X )) × (P (Y)∗ ∩ l1Φ4 (Y/{y1 })) → P (X × Y) × RX × RY/{y1 } ,
+Y
+
+(r, s∗ ) ↦ (π (r, s), αλ (r, s), β∗λ (r, s)),
+λ
+
+where we select (αλ , β∗λ ) according to Proposition 2.4, i.e., such that the element (0, β∗λ ) ∈
+RY represents a dual optimizer. Recalling the function F from Section 3, it holds by
+Corollary 3.3 for each n ≥ N that
+Y
+Y
+X
+0 = F(θ(r, s∗ ), r, s∗ ) = F(θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ), r + tn ĥl , s∗ + tn ĥ∗,l ).
+
+which yields
+
+Y
+0 = (F(θ(r, s∗ ), r, s∗ ) − F(θ(r, s∗ ), r + tn ĥX
+l , s∗ + tn ĥ∗,l ))
+Y
+X
+Y
+− (F(θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ), r + tn ĥl , s∗ + tn ĥ∗,l )
+Y
+− F(θ(r, s∗ ), r + tn ĥX
+l , s∗ + tn ĥ∗,l )).
+
+Adding another three terms of non-trivial zeros leads to the following equation
+Y
+[Dπ,α,β∗∣(θ(r,s∗ ),r,s∗ ) F] (θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ) − θ(r, s∗ ))
+Y
+= −tn [Dr,s∗∣(θ(r,s∗ ),r,s∗ ) F] (ĥX
+l , ĥ∗,l )
+
+Y
++ (F(θ(r, s∗ ), r, s∗ ) − F(θ(r, s∗ ), r + tn ĥX
+l , s∗ + tn ĥ∗,l )
+
+(5.23)
+(5.24)
+
+Y
++ tn [Dr,s∗ ∣(θ(r,s∗ ),r,s∗) F] (ĥX
+l , ĥ∗,l ))
+
+Y
++ (F(θ(r, s∗ ), r + tn ĥX
+l , s∗ + tn ĥ∗,l )
+
+(5.25)
+
+Y
+X
+Y
+− F(θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ), r + tn ĥl , s∗ + tn ĥ∗,l )
+
++ [Dπ,α,β
+
+Y
+X
+∗ ∣(θ(r,s∗ ),r+tn ĥl ,s∗ +tn ĥ∗,l )
+
+Y
+F] (θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ) − θ(r, s∗ )) )
+
+Y
++ ( [Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F] (θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ) − θ(r, s∗ ))
+
+− [Dπ,α,β
+
+Y
+X
+∗ ∣(θ(r,s∗ ),r+tn ĥl ,s∗ +tn ĥ∗,l )
+
+(5.26)
+
+Y
+F] (θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ) − θ(r, s∗ )) ),
+
+where Dr,s∗ F, Dπ,α,β∗ F represent the naı̈ve component-wise derivatives as employed in
+Section 3. For the term in (5.23) we already know by Proposition 5.2 that applying
+−1
+[Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F] is well-defined.
+
+We need to show that applying [Dπ,α,β∗ ∣(θ(r,s∗),r,s∗ ) F] on each of the summands
+(5.24), (5.25), and (5.26) is also well-defined and that the l1CX ⊕CY (X × Y)-norm of the
+resulting component in l1CX ⊕CY (X × Y), i.e., the π-component decreases with order o(tn )
+for n → ∞. This part of the proof is technical and deferred to Lemma B.3 in Appendix
+−1
+
+35
+
+B. Most notably, for this purpose we require s ∈ l1Φ4 (X ). As a consequence, we obtain for
+X
+n → ∞ that
+∥
+
+Y
+λ
+π λ (r + tn ĥX
+l , s + tn ĥl ) − π (r, s)
+H λ X
+− D∣r,s
+π (ĥl , ĥY
+l )∥
+tn
+l1
+
+Y
+X
+X
+X
+X
+X θπ (r + tn ĥl , s∗ + tn ĥ∗,l ) − θπ (r, s∗ )
+=X
+X
+X
+X
+tn
+X
+X
+X
+
++ ( [Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]
+
+= o(1),
+
+−1
+π
+
+CX ⊕CY
+
+(X ×Y)
+
+X
+X
+X
+Y X
+X
+○ Dr,s∗ ∣(θ(r,s∗ ),r,s∗ ) F)(ĥX
+,
+ĥ
+)
+X
+l
+∗,l X
+X
+X
+X
+Xl1CX ⊕CY (X ×Y)
+
+which proves the assertion.
+
+6
+
+Discussion
+
+It remains an open question if the conditions on limit laws for empirical EROT plan and
+value for partially bounded ground costs or generally unbounded ground costs can be
+weakened omitting the exponential term in (1.7), (1.9), and Table 1 by a refined sensitivity analysis. In particular, it would be interesting to investigate the sensitivity of the
+EROT plan in case of generally unbounded ground costs. Notably, in our results the condition ∥c+X − c−X ∥l∞ (X ) < ∞ is of particular use for the Neumann series-calculus of bounded
+operators. In case of ground costs that are generally unbounded this proof technique does
+not generalize well. Therefore, limit distributions for the empirical EROT plan remain
+unknown (Remark 5.5) although a similar structure is reasonable to conjecture.
+In addition to our limit results for fixed regularization parameter λ > 0, we characterize in Section 4.2 the asymptotic behavior of the empirical EROT value and Sinkhorn
+√
+costs for the regime of a decreasing regularization parameter λ(n) = o(1/ n). We see
+that the resulting limit law is given by the respective limit law of the empirical nonregularized OT value which is fundamentally different Tameling et al. (2019). Naturally,
+√
+for λ(n) of slower order than O(1/ n) the question arises whether the empirical EROT
+value still converges weakly towards a suitable limit distribution and when a phase transition to the obtained Gaussian limit occurs. Recent results demonstrate that the sample complexity of the EROT value E [∣EROT λ (r̂n , ŝn ) − EROT λ (r, s)∣] decreases of order O(exp(κ/λ)λ−d/2 n−1/2 ) for some κ > 0 in certain settings in Rd as n tends to infinity (Genevay et al., 2019). Extensions are provided by Mena & Niles-Weed (2019) and
+Chizat et al. (2020) who refine this to O((1 + λ−⌊d/2⌋ )n−1/2 ). Consequently, when λ(n)
+decreases sufficiently slow such that the sample complexity rate stays bounded from above
+√
+it follows by Markov's inequality that n(EROT λ(n) (r̂n , ŝn ) − EROT λ(n) (r, s)) is a tight
+sequence of random variables. By Prokhorov's Theorem there exists a subsequence which
+converges weakly towards a tight limit.
+The analysis of the limit behavior of the empirical EROT plan on countable spaces
+for the regime λ ↘ 0 is even more involved. Mimicking Section 4.2 two aspects appear to
+us as crucial. First, it is necessary to obtain suitable bounds between EROT plans and
+non-regularized OT plans. These bounds are available on finite spaces (Weed, 2018) but
+unknown for countable ground spaces. Second, the limit distribution of the empirical nonregularized OT plan on countable spaces has to be characterized. For finitely supported
+probability measures with a unique non-regularized OT plan Klatt et al. (2020a) recently
+36
+
+obtained such a limit law explicitly relying on finite-dimensional linear programming. This
+approach does not generalize well to infinite-dimensional linear programming and hence
+similar statements for countable spaces remain to be investigated in further studies.
+
+Acknowledgements
+S. Hundrieser and A. Munk acknowledge funding by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's Excellence Strategy - EXC
+2067/1- 390729940. Further, M. Klatt acknowledges support from the DFG Research
+Training Group 2088 Discovering structure in complex data: Statistics meets Optimization and Inverse Problems.
+
+References
+Altschuler, J., Niles-Weed, J., & Rigollet, P. (2017). Near-linear time approximation
+algorithms for optimal transport via sinkhorn iteration. In I. Guyon, U. V. Luxburg,
+& others (Eds.), Advances in Neural Information Processing Systems, volume 30:
+Curran Associates, Inc.
+Amari, S.-i., Karakida, R., Oizumi, M., & Cuturi, M. (2019). Information geometry
+for regularized optimal transport and barycenters of patterns. Neural Computation,
+31(5), 827–848.
+Antos, A. & Kontoyiannis, I. (2001). Convergence properties of functional estimates for
+discrete distributions. Random Structures & Algorithms, 19(3-4), 163–193.
+Aubin, J. & Frankowska, H. (1990). Set-valued analysis. Modern Birkhäuser Classics.
+Springer.
+Averbukh, V. I. & Smolyanov, O. G. (1967). The theory of differentiation in linear topological spaces. Russian Mathematical Surveys, 22(6), 201–258.
+Bertsekas, D. P. (1981). A new algorithm for the assignment problem. Mathematical
+Programming, 21(1), 152–171.
+Bertsekas, D. P. & Castanon, D. A. (1989). The auction algorithm for the transportation
+problem. Annals of Operations Research, 20(1), 67–96.
+Bigot, J., Cazelles, E., & Papadakis, N. (2019). Central limit theorems for entropyregularized optimal transport on finite spaces and statistical applications. Electronic
+Journal of Statistics, 13(2), 5120–5150.
+Billingsley, P. (1999). Convergence of probability measures. Wiley Series in Probability
+and Statistics. Wiley.
+Borisov, I. S. (1981). Some limit theorems for empirical distributions. In Abstracts of
+Reports. Third Vilnius Conference on Probability Theory and Mathematical Statistics,
+volume 1, pages 71–72.
+Borisov, I. S. (1983). Problem of accuracy of approximation in the central limit theorem
+for empirical measures. Siberian Mathematical Journal, 24(6), 833–843.
+
+37
+
+Braunsmann, J. (2018). The entropy-regularized Wasserstein distance as a metric for
+machine learning based post-processing of structural MR images of the brain. Master's
+thesis, University Münster.
+Brenier, Y. (1987). Decomposition polaire et rearrangement monotone des champs de
+vecteurs. Comptes Rendus de l'Acadéémie des Sciences - Séries I - Mathematics, 305,
+805–808.
+Brenier, Y. (1991). Polar factorization and monotone rearrangement of vector-valued
+functions. Communications on Pure and Applied Mathematics, 44(4), 375–417.
+Chen, C. (2020). Spatiotemporal Imaging with Diffeomorphic Optimal Transportation.
+arXiv e-prints,, page 2011.11906.
+Chizat, L., Peyré, G., Schmitzer, B., & Vialard, F.-X. (2016). Scaling algorithms for
+unbalanced transport problems. Mathematics of Computation, 87(314), 2563–2609.
+Chizat, L., Roussillon, P., Léger, F., Vialard, F.-X., & Peyré, G. (2020). Faster wasserstein
+distance estimation with the sinkhorn divergence. In H. Larochelle, M. Ranzato, &
+others (Eds.), Advances in Neural Information Processing Systems, volume 33, pages
+2257–2269.: Curran Associates, Inc.
+Clason, C., Lorenz, D. A., Mahler, H., & Wirth, B. (2021). Entropic regularization
+of continuous optimal transport problems. Journal of Mathematical Analysis and
+Applications, 494(1), 124432.
+Cominetti, R. & San Martı́n, J. (1994). Asymptotic analysis of the exponential penalty
+trajectory in linear programming. Mathematical Programming, 67(1-3), 169–187.
+Cover, T. & Thomas, J. (1991). Elements of information theory. Wiley series in telecommunications. Wiley.
+Csiszár, I. (1975). I-divergence geometry of probability distributions and minimization
+problems. The Annals of Probability, 3(1), 146–158.
+Cuturi, M. (2013). Sinkhorn distances: Lightspeed computation of optimal transport.
+In C. J. C. Burges, L. Bottou, & others (Eds.), Advances in Neural Information
+Processing Systems, volume 26: Curran Associates, Inc.
+Dessein, A., Papadakis, N., & Rouas, J.-L. (2018). Regularized optimal transport and the
+ROT mover's distance. Journal of Machine Learning Research, 19(1), 590–642.
+Durst, M. & Dudley, R. M. (1980). Empirical processes, Vapnik-Chervonenkis classes and
+Poisson processes. Probability and Mathematical Statistics, 1(2), 109–115.
+Dvurechensky, P., Gasnikov, A., & Kroshnin, A. (2018). Computational optimal transport:
+Complexity by accelerated gradient descent is better than by Sinkhorn's algorithm.
+In J. Dy & A. Krause (Eds.), Proceedings of the 35th International Conference on
+Machine Learning, volume 80 of Proceedings of Machine Learning Research, pages
+1367–1376.: PMLR.
+Evans, S. N. & Matsen, F. A. (2012). The phylogenetic Kantorovich–Rubinstein metric
+for environmental sequence samples. Journal of the Royal Statistical Society: Series
+B (Statistical Methodology), 74(3), 569–592.
+38
+
+Feydy, J., Séjourné, T., Vialard, F.-X., Amari, S.-i., Trouve, A., & Peyré, G. (2019).
+Interpolating between optimal transport and MMD using Sinkhorn divergences. In
+K. Chaudhuri & M. Sugiyama (Eds.), Proceedings of Machine Learning Research,
+volume 89 of Proceedings of Machine Learning Research, pages 2681–2690.: PMLR.
+Galichon, A. (2016). Optimal transport methods in economics. Princeton University Press.
+Genevay, A., Chizat, L., Bach, F., Cuturi, M., & Peyré, G. (2019). Sample complexity
+of sinkhorn divergences. In K. Chaudhuri & M. Sugiyama (Eds.), Proceedings of
+Machine Learning Research, volume 89 of Proceedings of Machine Learning Research
+, pages 1574–1583.: PMLR.
+Kantorovich, L. (1958). On the translocation of masses. Management Science, 5(1), 1–4.
+Klatt, M., Munk, A., & Zemel, Y. (2020a). Limit laws for empirical optimal solutions in
+stochastic linear programs. arXiv preprint 2007.13473.
+Klatt, M., Tameling, C., & Munk, A. (2020b). Empirical regularized optimal transport:
+Statistical theory and applications. SIAM Journal on Mathematics of Data Science,
+2(2), 419–443.
+Lee, Y. T. & Sidford, A. (2014).
+Path finding methods for linear programming: Solving
+√
+linear programs in O( rank)−iterations and faster algorithms for maximum flow.
+In 2014 IEEE 55th Annual Symposium on Foundations of Computer Science, pages
+424–433.
+McShane, E. J. (1934). Extension of range of functions. Bulletin of the American Mathematical Society, 40(12), 837 – 842.
+Mena, G. & Niles-Weed, J. (2019). Statistical bounds for entropic optimal transport:
+Sample complexity and the central limit theorem. In H. Wallach, H. Larochelle, &
+others (Eds.), Advances in Neural Information Processing Systems, volume 32, pages
+4541–4551.
+Monge, G. (1781). Mémoire sur la théorie des déblais et des remblais. In Histoire de
+l'Académie Royale des Sciences de Paris, pages 666–704.
+Orlin, J. (1988). A faster strongly polynomial minimum cost flow algorithm. In Proceedings
+of the Twentieth Annual ACM Symposium on Theory of Computing, STOC '88, pages
+377–387.: Association for Computing Machinery.
+Peyré, G. & Cuturi, M. (2019). Computational optimal transport: With applications to
+data science. Foundations and Trends in Machine Learning, 11(5-6), 355–607.
+Rachev, S. & Rüschendorf, L. (1998a). Mass transportation problems: Volume I: Theory.
+Probability and Its Applications. Springer.
+Rachev, S. & Rüschendorf, L. (1998b). Mass transportation problems: Volume II: Applications. Probability and Its Applications. Springer.
+Römisch, W. (2004). Delta method, infinite dimensional. In S. Kotz, N. Balakrishnan, &
+others (Eds.), Encyclopedia of Statistical Sciences. Wiley.
+Santambrogio, F. (2015). Optimal transport for applied mathematicians: Calculus of variations, PDEs, and modeling. Progress in Nonlinear Differential Equations and Their
+Applications. Springer.
+39
+
+Sasane, A. (2017). A friendly approach to functional analysis. Essential Textbooks In
+Mathematics. World Scientific Publishing Company.
+Schiebinger, G., Shu, J., Tabaka, M., Cleary, B., Subramanian, V., Solomon, A., Gould,
+J., Liu, S., Lin, S., Berube, P., Lee, L., Chen, J., Brumbaugh, J., Rigollet, P.,
+Hochedlinger, K., Jaenisch, R., Regev, A., & Lander, E. S. (2019). Optimal-transport
+analysis of single-cell gene expression identifies developmental trajectories in reprogramming. Cell, 176(4), 928 – 943.e22.
+Sinkhorn, R. (1964). A relationship between arbitrary positive matrices and doubly
+stochastic matrices. The Annals of Mathematical Statistics, 35(2), 876–879.
+Sinkhorn, R. (1967). Diagonal equivalence to matrices with prescribed row and column
+sums. The American Mathematical Monthly, 74(4), 402–405.
+Sommerfeld, M. & Munk, A. (2018). Inference for empirical Wasserstein distances on finite
+spaces. Journal of the Royal Statistical Society: Series B (Statistical Methodology),
+80(1), 219–238.
+Sommerfeld, M., Schrieber, J., Zemel, Y., & Munk, A. (2019). Optimal transport: Fast
+probabilistic approximation with exact solvers. Journal of Machine Learning Research, 20, 1–23.
+Tameling, C., Sommerfeld, M., & Munk, A. (2019). Empirical optimal transport on
+countable metric spaces: Distributional limits and statistical applications. The Annals
+of Applied Probability, 29(5), 2744–2781.
+Tameling, C., Stoldt, S., Stephan, T., Naas, J., Jakobs, S., & Munk, A. (2021). Colocalization for super-resolution microscopy via optimal transport. Nature Computational
+Science, 1, 199–211.
+Tong, Q. & Kobayashi, K. (2021). Entropy-regularized optimal transport on multivariate
+normal and q-normal distributions. Entropy, 23(3), 302.
+Van der Vaart, A. & Wellner, J. (1996). Weak convergence and empirical processes: With
+applications to statistics. Springer Series in Statistics. Springer.
+Villani, C. (2008). Optimal transport: old and new. A Series of Comprehensive Studies in
+Mathematics. Springer.
+Weed, J. (2018). An explicit analysis of the entropic penalty in linear programming.
+In S. Bubeck, V. Perchet, & P. Rigollet (Eds.), Conference On Learning Theory,
+COLT 2018, Stockholm, Sweden, 6-9 July 2018, volume 75 of Proceedings of Machine
+Learning Research, pages 1841–1855.: PMLR.
+Yukich, J. E. (1986). Metric entropy and the central limit theorem in banach spaces.
+In X. Fernique, B. Heinkel, & others (Eds.), Geometrical and Statistical Aspects of
+Probability in Banach Spaces, pages 113–128.: Springer.
+Zemel, Y. & Panaretos, V. M. (2019). Fréchet means and procrustes analysis in Wasserstein space. Bernoulli, 25(2), 932–976.
+
+40
+
+A
+
+Proofs for Preliminary Results
+
+Proof of Proposition 2.1. Existence of a unique EROT plan π λ and strong duality follow
+by (Chizat et al., 2016, Theorem 3.2). For the existence of dual optimizers we first prove
+the optimality criterion with an approach that is inspired by (Braunsmann, 2018, Proposition 3.3.18 and Theorem 3.3.19). Assume that π λ , αλ , β λ are optimal and define π ∈ RX ×Y
+as
+⎛ αλx + βyλ − c(x, y) ⎞
+πxy ∶= exp
+rx sy ≥ 0
+λ
+⎝
+⎠
+
+for all (x, y) ∈ X × Y. Note that π ∈ l1 (X × Y) because otherwise (αλ , β λ ) could not be
+optimizers. Further, denote the objective of (DEROT) by
+Dr,s (α, β) ∶= ⟨α, r⟩ + ⟨β, s⟩ − λ[ ∑ exp (
+x∈X
+y∈Y
+
+αx + βy − c(x, y)
+)rx sy − rx sy ].
+λ
+
+Then it follows by optimality of αλ for any φX ∈ l∞ (X ) that D(αλ + tφX , β λ ) is finite for
+each t ∈ R and differentiable at t = 0 with
+0=
+
+d
+αλ + β λ − c(x, y)
+X
+Dr,s (αλ + tφX , β λ ) = ∑ φX
+) rx sy
+exp
+(
+φ
+r
+−
+∑
+x
+x x
+dt ∣t=0
+λ
+x∈X
+x∈X
+y∈Y
+
+= ∑ φX
+x (rx − ∑ exp (
+x∈X
+
+y∈Y
+
+λ
+
+λ
+
+α + β − c(x, y)
+) rx sy ) = ∑ φX
+x (rx − ∑ πxy ).
+λ
+x∈X
+y∈Y
+
+Likewise, it follows for any φY ∈ l∞ (Y) that
+0=
+
+d
+Dr,s (αλ , β λ + tφY ) = ∑ φY
+y (sy − ∑ πxy ) .
+dt ∣t=0
+y∈Y
+x∈X
+
+Since φX and φY were arbitrary we see that π is contained in Π(r, s). Next, we show that
+π optimizes (EROT) and thus coincides with π λ . To this end, we note that t ↦ t log(t/a)−t
+with a > 0 is strictly convex and differentiable on (0, ∞) with derivative log(t/a). Since
+supp(π) = supp(r ⊗ s) we obtain for any other feasible transport plan π̃ ∈ Π(r, s) and
+(x, y) ∈ supp(r ⊗ s) that
+πxy
+π̃xy
+) − π̃xy ) − c(x, y)πxy − λ(πxy log (
+) − πxy )
+rx sy
+rx sy
+πxy
+≥ (c(x, y) + λ log (
+))(π̃xy − πxy ) = (αλx + βyλ )(π̃xy − πxy ).
+rx sy
+
+c(x, y)π̃xy + λ(π̃xy log (
+
+(A.1)
+
+(A.2)
+
+Note that the terms from (A.1) for (x, y) ∈/ supp(r ⊗ s) sum up to zero. Due to αλ ∈ l1r (X )
+and β λ ∈ l1s (Y), the terms on the r.h.s. of (A.2) are absolutely summable over X × Y and
+also sum up to zero. Consequently, summing up both sides of (A.1) and (A.2) over X × Y
+yields
+⟨c, π̃⟩ + λM (π̃) − ⟨c, π⟩ − λM (π) ≥ 0,
+(A.3)
+which proves optimality of π. For the converse, suppose that π, α, β satisfy conditions
+(2.1) and (2.2). Condition (2.1) implies πxy ≥ 0 for each (x, y) ∈ X × Y, by (2.2) we then
+41
+
+obtain that π ∈ Π(r, s). An analogous argument as in (A.1), (A.2), yields that π is an
+EROT plan. For the optimality of α we note for arbitrary φX ∈ l∞ (X ) that
+d
+Dr,s (α + tφX , β) = ∑ φX
+x (rx − ∑ πxy ) = 0,
+dt ∣t=0
+x∈X
+y∈Y
+
+where the last equality holds due to π ∈ Π(r, s). Likewise, it follows for any φY ∈ l∞ (Y)
+d
+that dt
+Dr,s (α, β + tφY ) = 0, which yields by strict concavity of Dr,s (⋅, ⋅) that (α, β) are
+∣t=0
+optimal for (DEROT). For our assertions on existence and uniqueness up to a constant
+of optimal entropic dual potentials we perform a similar calculation as in (Dessein et al.,
+2018, Proposition 8) and obtain
+⟨c, π⟩ + λM (π) − ⟨1X ×Y , (r ⊗ s) − K λ ⟩ = KL(π∣∣K λ ),
+
+λ
+∶= exp (−c(x, y)/λ) rx sy for all (x, y) ∈ X × Y and 1X ×Y represents the constant
+where Kxy
+function on X × Y with value 1. By non-negativity of the cost function we note that
+K λ ∈ l1 (X × Y) and thus ⟨1X ×Y , K λ ⟩ < ∞. Hence, since (EROT) is feasible it follows that
+minπ∈Π(r,s) KL(π∣∣K λ ) is also feasible. Most notably, the sets of optimizers coincide and existence of a unique EROT plan π λ yields {π λ } = argminπ∈Π(r,s) KL(π∣∣K λ ). Moreover, since
+the derivative of log(⋅) diverges to +∞ near 0 and by lower semi-continuity of KL( ⋅ ∣∣K λ )
+there exists an element π̃ ∈ Π(r, s) with supp(π̃) = supp(r⊗s) and KL(π̃∣∣K λ ) < ∞. Consequently, by (Csiszár, 1975, Corollary 3.2) there exist functions a∶ X → [0, ∞), b∶ Y → [0, ∞)
+with log(a) ∈ l1r (X ) and log(b) ∈ l1s (Y) such that
+λ
+λ
+πxy
+= ax by Kxy
+= exp (
+
+λ log(ax ) + λ log(by ) − c(x, y)
+)rx sy for all (x, y) ∈ X × Y.
+λ
+
+By optimality criterion (2.1) we deduce that αλ ∶= λ log(a) and β λ ∶= λ log(b) are optimal
+entropic dual potentials. Additionally, given another pair of optimal entropic dual potentials (α̃λ , β λ ) ∈ l1r (X ) × l1s (Y) we see by uniqueness of the EROT plan for all (x, y) ∈ X × Y
+that
+α̃λx + β̃yλ − c(x, y)
+αλx + βyλ − c(x, y)
+λ
+)rx sy = πxy
+= exp (
+)rx sy .
+exp (
+λ
+λ
+
+This can be rewritten to the following system of equations
+αλx − α̃λx = β̃yλ − βyλ
+
+for all x ∈ supp(r), y ∈ supp(s).
+
+Setting η ∶= αλx − α̃λx for some x ∈ supp(r) then yields the claim.
+
+Proof of Proposition 2.3. The proof is based on recent findings by Mena & Niles-Weed
+(2019). By relation (2.1) between primal and dual optimizers for (EROT) any pair of
+optimal entropic dual potentials (αλ , β λ ) ∈ l1r (X ) × l1s (Y) satisfies EROT λ (r, s) = ⟨αλ , r⟩ +
+⟨β λ , s⟩. Almost sure uniqueness of dual optimizers up to a constant (Proposition 2.1)
+then allows us to select potentials such that ⟨αλ , r⟩ = ⟨β λ , s⟩ = EROT λ (r, s)/2 ≥ 0 (recall
+by Section 2.1 that c ≥ 0). Optimality of (αλ , β λ ) implies by Proposition 2.1 for all
+x ∈ supp(r) and y ∈ supp(s) that
+⎤
+⎡
+βyλ − c(x, y)
+⎥
+⎢
+⎥
+exp
+(
+αλx = −λ log ⎢
+)s
+∑
+y⎥ ,
+⎢
+λ
+⎥
+⎢y∈Y
+⎦
+⎣
+λ
+α
+−
+c(x,
+y)
+βyλ = −λ log [ ∑ exp ( x
+)rx ] .
+λ
+x∈X
+42
+
+(A.4)
+
+As noted in Remark 2.2 this condition is not only necessary but also sufficient for optimality
+of potentials. Applying Jensen's inequality for the convex function − log( ⋅ ) and by our
+choice of (αλ , β λ ) it then follows for each x ∈ X that
+αλx = −λ log [ ∑ exp (
+
+βyλ − c(x, y)
+
+y∈Y
+
+λ
+
+)sy ] ≤ −⟨β λ , s⟩ + ∑ c(x, y)sy ≤ c+X (x) + ⟨c+Y , s⟩.
+y∈Y
+
+Note, that the bound holds trivially if ⟨c+Y , s⟩ = ∞. Likewise, it follows for all y ∈ Y that
+βyλ ≤ c+Y (y) + ⟨c+X , r⟩. For the lower bound of αλx consider the upper bound of βyλ as well as
+the lower bound on c and see
+αλx = −λ log ( ∑ exp (
+y∈Y
+
+≥ −λ log ( ∑ exp (
+≥
+
+βyλ − c(x, y)
+λ
+
+)sy )
+
+c+Y (y) + ⟨c+X , r⟩ − c−X (x) − c−Y (y)
+)sy )
+λ
+
+y∈Y
+−
+cX (x) − ⟨c+X , r⟩ − λ log⟨φX , s⟩.
+
+Indeed, the lower bound for αλx is valid if ⟨c+X , r⟩ = ∞ or ⟨φX , s⟩ = ∞. The lower bound for
+β λ follows analogously. Lastly, the bounds for the EROT plan follow from the correspondence to the optimal entropic dual potentials (Proposition 2.1) and their bounds.
+Proof of Proposition 2.4. For the pointwise convergence of optimal entropic dual potentials we follow the approach by Mena & Niles-Weed (2019), who were inspired by Feydy et al.
+(2019), and afterwards exploit for the convergence of the EROT plan the relation between
+primal and dual optimizers (Proposition 2.1).
+As a first step we state a bound for (αλk , βkλ ) that is uniform over all k ∈ N. Recall
+λ
+that we consider optimal entropic dual potentials such that βk,y
+= 0. By convergence of
+1
+1
+(rk )k∈N to r with respect to lΦX (X ) and similar for (sk )k∈N to s in l1ΦY (Y) it follows that
+KX ∶= sup⟨ΦX , rk ⟩ < ∞
+
+and
+
+k∈N
+
+KY ∶= sup⟨ΦY , sk ⟩ < ∞
+k∈N
+
+Let us denote by (α̃λk , β̃kλ )k∈N the optimal entropic dual potentials for probability measures
+(rk , sk )k∈N which satisfy ⟨α̃λk , rk ⟩ = ⟨β̃kλ , sk ⟩. By Proposition 2.3 we then infer for all k ∈ N
+and x ∈ supp(rk ), y ∈ supp(sk ) that
+c−X (x) − KX − KY ≤ α̃λk,x ≤ c+X (x) + KY ,
+λ
+≤ c+Y (y) + KX .
+c−Y (y) − KX − KY ≤ β̃k,y
+
+λ
+λ
+Note for all k ∈ N that (α̃λk + β̃k,y
+, β̃kλ − β̃k,y
+) is (rk , sk )-almost surely equal to (αλk , βkλ ).
+1
+1
+λ
+Moreover, since Kβ ∶= supk∈N ∣β̃n,y
+∣ < ∞, this leads for all k ∈ N, x ∈ supp(rk ), y ∈ supp(sk )
+1
+to the following bounds
+
+c−X (x) − KX − KY − Kβ ≤ αλk,x ≤ c+X (x) + KY + Kβ ,
+
+λ
+≤ c+Y (y) + KX + Kβ .
+c−Y (y) − KX − KY − Kβ ≤ βk,y
+
+(A.5)
+
+A diagonalization argument proves existence of a subsequence (αλkm , βkλm )m∈N converging
+λ
+pointwise for each x ∈ supp(r) and y ∈ supp(s) to a limit (αλ∞ , β∞
+) ∈ RX × RY . It
+λ
+λ
+remains to show that (α∞ , β∞ ) is an optimizer for (DEROT) for probability measures
+λ
+r and s. Uniqueness up to constant for each (x, y) ∈ supp(r ⊗ s) and β∞,y
+= 0 then implies
+1
+43
+
+λ
+(αλ∞ , β∞
+) = (αλ , β λ ). Relabelling, we may assume that the sequence (αλk , βkλ ) already
+converges pointwise. This leads for each x ∈ supp(r), y ∈ supp(s) to
+
+exp (
+
+−αλ∞,x
+λ
+
+exp (
+
+) = lim exp (
+k→∞
+
+λ
+−β∞,y
+
+λ
+
+) = lim exp (
+k→∞
+
+−αλk,x
+λ
+
+λ
+
+k→∞ y∈Y
+
+λ
+−βk,y
+
+λ
+
+) = lim ∑ exp (
+
+λ
+βk,y
+− c(x, y)
+
+) = lim ∑ exp (
+
+αλk,y − c(x, y)
+
+)sk,y ,
+
+λ
+
+k→∞ x∈X
+
+)rk,x .
+
+Once we show that the limit expression and the sum on the r.h.s. can be interchanged
+λ
+optimality of (αλ∞ , β∞
+) follows by condition (A.4). Based on bound (A.5) it follows for all
+y ∈ supp(s) and k ∈ N that
+exp (
+
+λ
+βk,y
+− c(x, y)
+
+λ
+
+c+Y (y) − c−Y (y) KX + Kβ
+) ≤ exp (
++
+).
+λ
+λ
+
+(A.6)
+
+Convergence of (sk )k∈N in l1Φ (X ) implies that there exists for all ε > 0 a finite set Sε ⊂ Y
+X
+such that for all k ∈ N holds
+∑ exp (
+
+y/∈Sε
+
+λ
+βk,y
+− c(x, y)
+
+λ
+
+ε
+)sk,y ≤ ,
+4
+
+∑ exp (
+
+λ
+β∞,y
+− c(x, y)
+
+λ
+
+y/∈Sε
+
+ε
+)sk,y ≤ .
+4
+
+Further, by pointwise convergence of βkλ there exists N1 ∈ N such that it holds for all
+k ≥ N1 and y ∈ Sε that
+RR
+RRR
+λ
+λ
+RRRexp ( βk,y − c(x, y) ) − exp ( β∞,y − c(x, y) )RRRR ≤ ε .
+RRR 4
+RRR
+λ
+λ
+RR
+RR
+Moreover, by (A.6) there exists N2 ∈ N such that for all k ≥ N2 follows
+RRR
+RR
+λ
+RRR exp ( β∞,y − c(x, y) )(s − s )RRRR ≤ ε .
+y RR
+k,y
+RRR ∑
+λ
+RR 4
+RRy∈Y
+R
+
+These previous four inequalities yield for k ≥ max{N1 , N2 } that
+
+RRR
+λ
+λ
+RRRR
+β∞,y
+− c(x, y)
+RRR exp ( βk,y − c(x, y) )s −
+RRR ≤ ε.
+)s
+exp
+(
+∑
+∑
+y
+k,y
+RRR
+RRRRy∈Y
+λ
+λ
+y∈Y
+R
+R
+
+As ε > 0 can be chosen arbitrarily small, it holds for all x ∈ supp(r) that
+exp (
+
+−αλ∞,x
+λ
+
+) = lim ∑ exp (
+k→∞ y∈Y
+
+λ
+βk,y
+− c(x, y)
+
+λ
+
+)sk,y = ∑ exp (
+
+λ
+β∞,y
+− c(x, y)
+
+)rk,x = ∑ exp (
+
+αλ∞,x − c(x, y)
+
+λ
+
+y∈Y
+
+Likewise, it follows by an analogous argument for all y ∈ supp(s) that
+exp (
+
+λ
+−β∞,y
+
+λ
+
+) = lim ∑ exp (
+k→∞ x∈X
+
+αλk,x − c(x, y)
+λ
+
+x∈X
+
+λ
+
+)sy .
+)rx ,
+
+which finishes the proof for pointwise convergence of dual optimizers. Hence, we obtain
+in conjunction with our optimality criterion (2.1) the asserted convergence result for the
+EROT value as k tends to infinity, i.e.,
+∣EROT λ (rk , sk ) − EROT λ (r, s)∣ = ∣⟨αλk , rk ⟩ + ⟨βkλ , sk ⟩ − ⟨αλ , r⟩ − ⟨β λ , r⟩∣
+
+≤ ∣⟨αλk , rk − r⟩ + ⟨βkλ , sk − s⟩∣ + ∣⟨αλk − αλ , r⟩ + ⟨βkλ − β λ , r⟩∣ → 0.
+44
+
+Herein, the first term of the second line tends to zero by our bounds on (αλk , βkλ )k∈N from
+(A.5) in conjunction with the type of convergence of (rk , sk ) towards (r, s), whereas the
+second term converges to zero by dominated convergence. The assertion on the convergence
+for the EROT plan follows by an analogous argument and explicitly uses that ΦX = CX φX
+as well as ΦY = CY φY .
+
+B
+
+Lemmas for Sensitivity Analysis
+
+For the proof of Lemma B.3 we employ the following result on invertibility of the operator
+−1
+[Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]π and the norm of the resulting element.
+Lemma B.1. Let r ∈ l1CX (X ) and s ∈ l1Φ4 (Y) be two probability measures on X and
+Y
+
+Y, respectively, with full support and consider a monotone, possibly unbounded, function
+4
+ψ∶ N → [1, ∞) such that ∑∞
+i=1 ψ(i)ΦY (yi )syi < ∞. Further, define the function
+⎧
+⎫
+⎪
+⎪
+∣ξxyi ∣
+∣ξxy ∣
+⎪
+⎪
+ξ ↦ max ⎨sup ∑
+, sup ∑
+⎬
+3
+⎪
+r
+s
+ψ(i)φ
+(y
+)
+x∈X y∈Y
+x yi ∈Y x∈X yi
+i ⎪
+⎪
+⎪
+Y
+⎩
+⎭
+
+Γ ∶ RX ×Y → [0, ∞],
+
+and consider an element ξ ∈ l1CX ⊕CY (X × Y) with Γ (ξ) < ∞. Then applying the operator
+
+[Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]π onto (ξ, 0, 0) ∈ RX ×Y × RX × RY/{y1 } is well-defined and gives an
+element in l1CX ⊕CY (X × Y). In particular, there exists κ > 0 which is independent from ξ
+such that
+−1
+
+∥[Dπ,α,β∗∣(θ(r,s∗ ),r,s∗ ) F]
+
+−1
+π
+
+(ξ, 0, 0)∥
+
+l1C
+
+X ⊕CY
+
+(X ×Y)
+
+≤ κΓ (ξ).
+
+Proof. We will show that there exists a unique triplet (ζ X ×Y , ζ X ,∞ , ζ∗Y,∞ ) ∈ l1CX ⊕CY (X × Y)×
+l∞ (X ) × l∞
+(Y/{y1 }) such that
+ψφ3
+Y
+
+⎛ζ X ×Y −
+⎝
+
+ξ ⎞
+⊙ AT∗ (ζ X ,∞ , ζ∗Y,∞ )⎞ ⎛
+= ⎜ 0 ⎟,
+⎠ ⎝(0)⎠
+A∗ (ζ X ×Y )
+
+πλ
+λ
+
+where we exploited on the l.h.s. the relation between primal and dual optimizers of
+(EROT) (Proposition 2.1). By setting
+ζ X ×Y ∶= ξ +
+
+πλ
+⊙ AT∗ (ζ X ,∞ , ζ∗Y,∞ )
+λ
+
+(B.1)
+
+we reduce the system of countably many equalities. Then it remains to find (ζ X ,∞ , ζ∗Y,∞ ) ∈
+l∞ (X ) × l∞
+(Y/{y1 }) such that
+ψφ3
+Y
+
+A∗ (
+
+πλ
+⊙ AT∗ (ζ X ,∞, ζ∗Y,∞ )) = −A∗ (ξ).
+λ
+
+This relation means that for all x ∈ X the following equation is valid
+λ
+πxy
+1
+
+λ
+
+ζxX ,∞ +
+
+∑
+
+y∈Y/{y1 }
+
+λ
+πxy
+
+λ
+
+Y,∞
+) = − ∑ ξxy
+(ζxX ,∞ + ζ∗,y
+y∈Y
+
+45
+
+λ
+
+πxy Y,∞
+rx X ,∞
+ζx + ∑
+ζ∗,y = − ∑ ξxy ,
+λ
+y∈Y
+y∈Y/{y1 } λ
+which is equivalent to
+∑
+
+ζxX ,∞ +
+
+λ
+πxy
+
+y∈Y/{y1 }
+
+rx
+
+Y,∞
+=−
+ζ∗,y
+
+λ
+∑ ξxy .
+rx y∈Y
+
+(B.2)
+
+Similarly, we obtain for each y ∈ Y/{y1 } that
+∑
+
+λ
+πxy
+
+λ
+
+x∈X
+
+Y,∞
+) = − ∑ ξxy
+(ζxX ,∞ + ζ∗,y
+x∈X
+
+⎞ sy Y,∞
+⎛
+= − ∑ ξxy ,
+ζxX ,∞ + ζ∗,y
+∑
+⎠ λ
+⎝x∈X λ
+x∈X
+λ
+πxy
+
+which implies that
+
+(∑
+
+x∈X
+
+π λ X ,∞
+λ
+Y,∞
+= − ∑ ξxy .
+ζx ) + ζ∗,y
+sy
+sy x∈X
+
+(B.3)
+
+The equalities (B.2) and (B.3) can therefore be represented by
+M (ζ X ,∞ , ζ∗Y,∞ ) = −λξ̃,
+
+(B.4)
+
+where M ∶ l∞ (X ) × l∞
+(Y/{y1 }) → l∞ (X ) × l∞
+(Y/{y1 }) denotes the operator from the
+ψφ3
+ψφ3
+Y
+
+Y
+
+proof of Proposition 5.2 with different domain and range. Notably, by our assumption
+Γ (ξ) < ∞ it follows that
+⎛
+⎞
+ξx1 y
+ξx y
+ξxy2
+ξxy3
+, ∑ 2 ,..., ∑
+,∑
+, . . . ∈ l∞ (X ) × l∞
+∑
+ψφ3Y (Y/{y1 }).
+⎝y∈Y rx1 y∈Y rx2
+⎠
+x∈X sy2 x∈X sy3
+
+3
+Moreover, since ∑∞
+i=1 ψ(i)φY (yi )syi < ∞, it follows by a similar argument as in the proof
+of Proposition 5.2 that M has a bounded inverse operator and thus there exists a unique
+(Y/{y1 }) for equation (B.4). Hence, we obtain that
+solution (ζ X ,∞ , ζ∗Y,∞ ) ∈ l∞ (X ) × l∞
+ψφ3
+Y
+
+∥(ζ X ,∞ , ζ∗Y,∞ )∥
+
+l∞ (X )×l∞
+
+(Y/{y1 })
+ψφ3
+Y
+
+≤ ∥M −1 ∥OP λΓ (ξ).
+
+Finally, it remains to show that ζ X ×Y , as defined in (B.1), is contained in l1CX ⊕CY (X × Y).
+Exploiting the upper bound for π λ (Proposition 2.3) yields that
+∥ζ X ×Y ∥l1
+≤
+
+∑
+
+CX ⊕CY
+
+(x,y)∈X ×Y
+
++ ∥π λ ∥l1
+
+(X ×Y)
+
+X ×Y
+∣+
+CX (x)∣ξxy
+
+CX ⊗ψΦ3
+Y
+
+≤
+
+∑
+
+(x,y)∈X ×Y
+
+≤ ∥ξ X ×Y ∥l1
+
+(X ×Y)
+
+CX (x)rx
+
+CX ⊕CY
+
+∑
+
+(x,y)∈X ×Y
+
+(X ×Y)
+
+X ×Y
+∣
+CY (y)∣ξxy
+
+⋅ 2 ∥(ζ X ,∞ , ζ∗Y,∞ )∥
+
+X ×Y
+∣ξxy
+∣
+
+rx
+
++
+
+∑
+
++ ∥π λ ⊙ AT∗ (ζ X ,∞ , ζ∗Y,∞ )∥
+
+(x,yi )∈X ×Y
+
+l∞ (X )×l∞
+
+ψφ3
+Y
+
+X ⊕CY
+
+(X ×Y)
+
+(Y/{y1 })
+
+ψ(i)CY (yi )φ3Y (yi )syi
+46
+
+l1C
+
+X ×Y
+∣ξxy
+∣
+i
+
+ψ(i)φ3Y (yi )syi
+
++ ∥r∥l1
+
+CX
+
+(X ) ⋅ ∥s∥l1
+
+ψΦ4
+Y
+
+≤ Γ (ξ)( ∥r∥l1
+
+CX
+
+⋅ exp (
+
+(X )
+
+(Y) exp (
+
++ ∥s∥l1
+
+ψΦ3
+Y
+
+⟨c+X , r⟩ + ⟨c+Y , s⟩ + ∥c+X − c−X ∥l∞ (X )
+λ
+
+(Y)
+
++ ∥r∥l1
+
+CX
+
+(X )
+
+⋅ ∥s∥l1
+
+ψΦ4
+Y
+
+⟨c+X , r⟩ + ⟨c+Y , s⟩ + ∥c+X − c−X ∥l∞ (X )
+
+)2 ∥M −1 ∥OP λΓ (ξ)
+
+(Y)
+
+)2 ∥M −1 ∥OP λ) =∶ κΓ (ξ) < ∞,
+
+λ
+
+which proves that the claim.
+Remark B.2. We like to discuss the domain of the operator [Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F] .
+For an element ξ ∈ l1CX ⊕CY (X × Y) the previous proof shows that the element (ξ, 0, 0)T ∈
+−1
+
+(Y/{y1 }) has a well-defined image under the mapping [Dπ,α,β∗∣(θ(r,s∗ ),r,s∗ ) F]
+l1CX ⊕CY (X × Y)×l∞ (X )×l∞
+ψφ3
+
+(Y/{y1 }) if and only if
+in l1CX ⊕CY (X × Y) × l∞ (X ) × l∞
+ψφ3
+Y
+
+Y
+
+⎛
+⎞
+ξx1 y
+ξx y
+ξxy2
+ξxy3
+, ∑ 2 ,..., ∑
+,∑
+, . . . ∈ l∞ (X ) × l∞
+∑
+ψφ3Y (Y/{y1 }).
+⎝y∈Y rx1 y∈Y rx2
+⎠
+x∈X sy2 x∈X sy3
+
+(B.5)
+
+In particular, by Lemma B.4 one can construct for any ε > 0 and ξ satisfying (B.5) an
+′
+element ξ ′ ∈ l1CX ⊕CY (X × Y) such that ∥ξ − ξ ′ ∥l1
+(X ×Y) < ε but where ξ does not fulfill
+CX ⊕CY
+
+(B.5). Hence, the domain of [Dπ,α,β∗∣(θ(r,s∗ ),r,s∗ ) F]
+in l1CX ⊕CY (X × Y).
+
+−1
+
+does not even contain an open ball
+
+We now proceed with the proof of the error bounds from Proposition 5.4.
+
+Lemma B.3. Assume the same setting as in Proposition 5.4 and denote by θ the mapping
+as defined in its proof. Then it follows for n → ∞ that
+∥ [Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]
+
+−1
+π
+
+(F(θ(r, s∗ ), r, s∗ )
+
+(B.6)
+
+Y
+− F(θ(r, s∗ ), r + tn ĥX
+l , s∗ + tn ĥ∗,l )
+
+Y
++ tn [Dr,s∗ ∣(θ(r,s∗ ),r,s∗) F] (ĥX
+l , ĥ∗,l ))∥
+
+l1C
+
++∥ [Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]
+
+−1
+π
+
+X ⊕CY
+
+(X ×Y)
+
+Y
+(F(θ(r, s∗ ), r + tn ĥX
+l , s∗ + tn ĥ∗,l )
+
+(B.7)
+
+Y
+Y
+X
+− F(θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ), r + tn ĥl , s∗ + tn ĥ∗,l )
+
++ [Dπ,α,β
+
+Y
+X
+∗ ∣(θ(r,s∗ ),r+tn ĥl ,s∗ +tn ĥ∗,l )
+
+− θ(r, s∗ )))∥
+
+l1C
+
+X ⊕CY
+
+(X ×Y)
+
++∥ [Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]
+− [Dπ,α,β
+
+Y
+F] (θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l )
+
+−1
+π
+
+([ [Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]
+
+Y
+X
+∗ ∣(θ(r,s∗ ),r+tn ĥl ,s∗ +tn ĥ∗,l )
+
+47
+
+F] ]
+
+(B.8)
+
+−1
+
+Y
+(θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ) − θ(r, s∗ )))∥
+
+= o(tn ).
+
+l1C
+
+X ⊕CY
+
+(X ×Y)
+
+Proof. We prove this assertion using Lemma B.1 by showing for each term on which we
+−1
+apply [Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]π that the corresponding quantity Γ (⋅), given some function
+ψ, decreases with order o(tn ). The resulting image element then tends to zero with respect
+to l1CX ⊕CY (X × Y) with order o(tn ).
+Let us start with the term in (B.6). A straightforward calculation gives
+Y
+(F(θ(r, s∗ ), r, s∗ ) − F(θ(r, s∗ ), r + tn ĥX
+l , s∗ + tn ĥ∗,l )
+
+⎛π
+Y
+2⎜
++ tn [Dr,s∗ ∣(θ(r,s∗ ),r,s∗) F] (ĥX
+l , ĥ∗,l )) = tn ⎜
+⎝
+
+λ
+
+(r,s∗ )
+r⊗s
+
+Y ⎞
+⊙ (ĥX
+⎛ξ1 (n)⎞
+l ⊗ ĥl )
+⎟
+0
+⎟ =∶ ⎜ 0 ⎟ .
+⎠ ⎝ 0 ⎠
+0
+
+Since ξ1 (n) is only finitely supported, it is contained in l1CX ⊕CY (X × Y) and, given ψ ≡ 1,
+we note that Γ (ξ1 (n)) = O(t2n ) ⊆ o(tn ) which yields by Lemma B.1
+∥[Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]
+
+−1
+π
+
+(ξ1 (n), 0, 0)∥
+
+l1C
+
+X ⊕CY
+
+(X ×Y)
+
+= o(tn ).
+
+For the second term, i.e., the one term in (B.7) denote by (αλ , β λ ) and (αλn , βnλ ) the
+Y
+λ
+optimal entropic dual potentials for (r, s) and (r+tn ĥX
+l , s+tn ĥl ) with βy1 = 0, respectively.
+Further, consider the closed ball Bρ0 (r, s) from Proposition 5.3 and let n be sufficiently
+Y
+large such that (r + tn ĥX
+l , s∗ + tn ĥ∗,l ) ∈ Bρ0 (r, s) (Lemma C.2). This guarantees that dual
+optimizers are Lipschitz (Proposition 5.3). A straightforward calculation yields
+Y
+[ F(θ(r, s∗ ), r + tn ĥX
+l , s∗ + tn ĥ∗,l )
+
+Y
+Y
+X
+− F(θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ), r + tn ĥl , s∗ + tn ĥ∗,l )
+
+Y
++ [Dπ,α,β∗∣(θ(r,s∗ ),r+tn ĥX ,s∗ +tn ĥY ) F] (θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ) − θ(r, s∗ )) ]
+l
+
+∗,l
+
+A∗ (α , β∗ )−c
+Y
+⎛−((r + tn ĥX
+) ⊙ ∆(
+l ) ⊗ (s + tn ĥl )) ⊙ exp (
+λ
+=⎜
+⎜
+0
+⎝
+0
+T
+
+λ
+
+λ
+
+λ
+λ
+λ
+λ
+AT
+∗ (αn −α , β∗,n −β∗ )
+)⎞
+λ
+
+⎛ξ2 (n)⎞
+=∶ ⎜ 0 ⎟ ,
+⎝ 0 ⎠
+
+⎟
+⎟
+⎠
+
+where ∆ is given by ∆∶ R → R≥0 , x ↦ exp(x) − 1 − x and is evaluated component-wise
+λ
+for each entry of AT∗ (αλn − αλ , β∗,n
+− β∗λ ). The function ∆ is smooth, non-negative and
+its derivative vanishes at zero, hence, for a positive null-sequence xn → 0 it follows that
+∆(xn ) = o(xn ). In addition, for each x ≥ 0 the inequality ∆(−x) ≤ ∆(x) is satisfied. Before
+we apply Lemma B.1 let us state a component-wise bound for ξ2 (n). For this purpose, let
+Y
+−1
++
+κ ∶= exp (λ−1 sup⟨c+X , r + tn ĥX
+l ⟩ + λ sup⟨cY , s + tn ĥl ⟩) < ∞
+n∈N
+
+n∈N
+
+48
+
+and recall by our bounds from Proposition 2.3 that exp (λ−1 [AT∗ (αλ , β∗λ ) − c]) ≤ κ(φX ⊗
+φY ). Hence, for all n ∈ N it holds that
+AT∗ (αλ , β∗λ ) − c
+)
+λ
+RR
+λ
+AT∗ (αλn − αλ , β∗,n
+− β∗λ ) RRRR
+R
+⊙ RRRRR∆(
+)RRRR
+λ
+RR
+RR
+R
+R
+Y
+)
+⊗
+(s
++
+t
+ĥ
+)∣
+⊙
+κ(φ
+⊗
+φ
+≤ ∣(r + tn ĥX
+n
+l
+X
+Y)
+l
+
+Y
+∣ξ2 (n)∣ = ∣(r + tn ĥX
+l ) ⊗ (s + tn ĥl )∣ ⊙ exp (
+
+⊙ ∆(
+
+AT∗ (∣αλn
+
+λ
+
+−α
+
+λ
+∣, ∣β∗,n
+
+λ
+
+− β∗λ ∣)
+
+)
+
+Y
+≤ ∣(r + tn ĥX
+l ) ⊗ (s + tn ĥl )∣ ⊙ κ(φX ⊗ φY )
+
+⊙ AT∗ (∆(
+
+∣αλn − αλ ∣
+), κ′ φY
+λ
+
+(B.9)
+
+λ
+∣β∗,n
+
+− β∗λ ∣
+
+λ
+
+(B.10)
+)
+
+for some constant κ′ > 0. Herein, we use for the second inequality that ∆ is Lipschitz with
+modulus exp(t) on the bounded domain [−t, t] for t ≥ 0 in conjunction with our bounds
+λ
+for ∣αλn − αλ ∣, ∣β∗,n
+− β∗λ ∣ (Proposition 2.3), which assert for (x, y) ∈ X × (Y/{y1 }) that
+RR
+λ
+λ
+∣αλn,x − αλx ∣ RRRR
+∣αλn,x − αλx ∣ + ∣β∗,n,y
+− β∗,y
+∣
+RRR
+λ
+λ
+) − ∆(
+)RRRR ≤ κ′ φY ∣β∗,n,y
+RRR∆(
+− β∗,y
+∣.
+λ
+λ
+RR
+RR
+R
+R
+
+(B.11)
+
+Notably, based on (B.10) we infer by (r, s) ∈ l1CX (X ) ⊗ l1Φ4 (Y) that ξ2 (n) ∈ l1CX ⊕CY (X × Y).
+Y
+
+In order to apply Lemma B.1 let us consider a monotonous unbounded function ψ∶ N →
+4
+[1, ∞) such that ∑∞
+i=1 ψ(i)ΦY (yi )syi < ∞ (Lemma B.4). For this function ψ we now show
+that Γ (ξ2 (n)) = o(tn ), so let I ∈ N and consider x ∈ X . Then it holds that
+∑
+
+y∈Y
+I
+
+≤∑
+
+i=1
+
+Y
+∣rx + tn ĥX
+l,x ∣ ⋅ ∣sy + tn ĥl,y ∣
+
+rx
+
+R
+λ
+− βyλ ⎞RRRR
+⎛ αλx + βyλ − c(x, y) ⎞ RRRR ⎛ αλn,x − αλx + βn,y
+RRR
+RR∆
+exp
+λ
+λ
+⎠ RRRR ⎝
+⎠RRRR
+⎝
+
+Y
+∣rx + tn ĥX
+l,x ∣ ⋅ ∣syi + tn ĥl,yi ∣
+
+∞
+
++ ∑
+
+rx
+
+κφX (x)φY (yi )∆
+
+Y
+∣rx + tn ĥX
+l,x ∣ ⋅ ∣syi + tn ĥl,yi ∣
+
+rx
+
+λ
+− βyλi ∣ ⎞
+⎛ ∣αλn,x − αλx ∣ + ∣βn,y
+i
+λ
+⎠
+⎝
+
+κκ′ φX (x)ψ(yi )φ3Y (yi )
+
+RRR ⎛ αλ − αλ ⎞RRR RRR β λ − β λ RRR
+yi RR
+n,yi
+x RR RR
+n,x
+R+R
+R)
+⋅ ( RRRR∆
+RRR ⎝
+λ
+⎠RRRR RRRR ψ(yi )φY (yi )λ RRRR
+R
+R R
+R
+X
+∣
+∣
+ĥ
+⎛
+l,x ⎞
+≤ 1 + tn max
+κ ∥φX ∥l∞ (X ) ∥s + tn ĥY
+l ∥l1 (Y)
+φ
+x∈{x1 ,...xl } rx ⎠
+⎝
+Y
+i=I+1
+
+λ
+λ
+I
+λ
+λ
+⎛ ∥αn − α ∥l∞ (X ) + maxi=1 ∣βn,yi − βyi ∣ ⎞
+×∆
+λ
+⎝
+⎠
+
+∣ĥX
+⎛
+⎛ ∥αn − α ∥l∞ (X ) ⎞
+l,x ∣ ⎞
+∥
++ 1 + tn max
+∆
+κκ′ ∥φX ∥l∞ (X ) ∥s + tn ĥY
+1
+l l 2 (Y)
+x∈{x1 ,...xl } rx ⎠
+λ
+⎝
+⎠
+⎝
+ψφ
+Y
+∣ĥX
+⎛
+l,x ∣ ⎞
+κκ′ ∥φX ∥l∞ (X ) ∥s + tn ĥY
++ 1 + tn max
+l ∥l1 3 (Y)
+x∈{x1 ,...xl } rx ⎠
+⎝
+ψφ
+Y
+49
+
+λ
+
+λ
+
+∥βnλ − β λ ∥l∞
+φ
+
+ψ(I)λ
+
+Y
+
+(Y)
+
+λ
+= κ′′ [∆ (λ−1 (∥αλn − αλ ∥l∞ (X ) + maxIi=1 ∣βn,y
+− βyλi ∣)) + ψ(I)−1 ∥βnλ − β λ ∥l∞
+i
+φ
+
+Y
+
+(Y)
+
+]
+
+for some κ′′ > 0 that is independent of I and x ∈ X . By the local Lipschitz property
+(Proposition 5.3) we know that
+Y
+∥αλn − αλ ∥l∞ (X ) ≤ tn Λ′ ∥(ĥX
+l , ĥl )∥l1
+
+∥βnλ − β λ ∥l∞
+φ
+
+CX
+
+(Y)
+
+Y
+
+Y
+≤ tn Λ′ ∥(ĥX
+l , ĥl )∥l1
+
+CX
+
+(X )×l1 2 (Y)
+Φ
+
+(X )×l1 2 (Y)
+Φ
+
+Hence, for ε > 0 select I ∈ N large enough such that
+κ′′
+
+∥βnλ − β λ ∥l∞
+φ
+
+(Y)
+
+Y
+
+ψ(I)
+
+Y
+≤ ψ(I)−1 tn κ′′ Λ′ ∥(ĥX
+l , ĥl )∥l1
+
+CX
+
+,
+
+Y
+
+.
+
+Y
+
+(X )×l1 2 (Y)
+Φ
+
+and choose N ∈ N sufficiently large such that for all n ≥ N holds
+
+Y
+
+<
+
+εtn
+,
+2
+
+λ
+− βyλi ∣))
+κ′′ ∆ (λ−1 (∥αλn − αλ ∥l∞ (X ) + maxIi=1 ∣βn,y
+i
+
+⎛
+⎞ εtn
+Y
+.
+≤ κ′′ ∆ tn λ−1 (1 + maxIi=1 φX (i))Λ′ ∥(ĥX
+l , ĥl )∥l1 (X )×l1 (Y) <
+CX
+2
+⎝
+⎠
+Φ2
+Y
+
+Consequently, we obtain that supx∈X ∑y∈Y ∣ξ2 (n)xy ∣/rx < εtn and thus it holds that supx∈X ∑y∈Y ∣ξ2 (n)xy ∣/rx =
+o(tn ). To show that Γ (ξ2 (n)) = o(tn ) let us again consider some integer I ∈ N. For
+yi /∈ {y1 , . . . , yI } we employ the upper bound (B.10) and see for some κ′′′ > 0 independent
+from yi and I that
+∑
+
+x∈X
+
+Y
+∣rx + tn ĥX
+l,x ∣ ⋅ ∣syi + tn ĥl,yi ∣
+
+exp
+
+syi ψ(i)φ3Y (yi )
+
+λ
+− βyλi ∣ ⎞
+⎛ αλx + βyλi − c(x, yi ) ⎞ ⎛ ∣αλn,x − αλx ∣ + ∣βn,y
+i
+∆
+λ
+λ
+⎝
+⎠ ⎝
+⎠
+
+λ
+∣ĥl,y ∣ ⎞
+∣βn,y
+− βyλi ∣
+⎛
+i
+′′′
+2
+∥
+∥r + tn ĥX
+∥
+∥φ
+≤ 1 + tn max
+.
+κ
+X l∞ (X )
+l l1 (X )
+ψ(i)φY (yi )
+y∈{y1 ,...yl } sy ⎠
+⎝
+Y
+
+(B.12)
+
+Note that the first four factors can be bounded by a constant independent of I and y ∈ Y.
+For the last factor in (B.12) we employ the local Lipschitz property of dual optimizers
+with modulus Λ′ (Proposition 5.3) and obtain
+λ
+∣βn,y
+− βyλi ∣
+i
+
+ψ(i)φY (yi )
+
+Y
+≤ ψ(i)−1 tn Λ′ ∥(ĥX
+l , ĥl )∥l1
+
+CX
+
+(X )×l1 2 (Y)
+
+Hence, for ε > 0 we may choose I sufficiently large such that
+Y
+ψ(i)−1 tn Λ′ ∥(ĥX
+l , ĥl )∥l1
+
+CX
+
+(X )×l1 2 (Y)
+Φ
+
+Y
+
+< εtn
+
+Φ
+
+.
+
+Y
+
+for all i > I.
+
+(B.13)
+
+For each yi ∈ {y1 , . . . , yI } we then use the upper bound from (B.9) in conjunction with a
+similar bound as in (B.11) and obtain for some κ′′′′ > 0 independent from yi and I that
+∑
+
+x∈X
+
+Y
+∣rx + tn ĥX
+l,x ∣ ⋅ ∣syi + tn ĥl,yi ∣
+
+syi ψ(i)φ3Y (yi )
+
+λ
+− βyλi ⎞
+⎛ αλx + βyλi − c(x, yi ) ⎞ ⎛ αλn,x − αλx + βn,y
+i
+∆
+exp
+λ
+λ
+⎠ ⎝
+⎠
+⎝
+
+50
+
+λ
+∥r + tn ĥX
+∣ĥY
+− βyλi ∣ ⎞
+⎛ ∣βn,y
+⎛
+l ∥l1 (X ) ′′′′
+l,y ∣ ⎞
+i
+2
+∥
+∥φ
+φ
+(y
+)∆
+≤ 1 + tn max
+κ
+X l∞ (X ) Y i
+y∈{y1 ,...yl } sy ⎠
+ψ(i)φ3Y (yi )
+λ
+⎠
+⎝
+⎝
+λ
+λ
+− βyλi ∣) ⊆ o(tn ).
+− βyλi ∣)) ⊆ o(∣βn,y
+= O(∆(∣βn,y
+i
+i
+
+(B.14)
+
+Here we exploited the local Lipschitz property of β λ for the components yi ∈ {y1 , . . . , yI }.
+As a result we obtain by (B.13) and (B.14) that Γ (ξ2 (n)) = o(tn ). Hence, Lemma B.1
+implies that
+∥[Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]
+
+−1
+π
+
+(ξ2 (n), 0, 0)∥
+
+CX ⊕CY
+
+For the last term, i.e., for (B.8) we obtain
+
+= o(tn ).
+
+Y
+[ [Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F] (θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ) − θ(r, s∗ ))
+
+− [Dπ,α,β∣(θ(r,s
+
+Y
+X
+∗ ),r+tn ĥl ,s∗ +tn ĥ∗,l )
+
+Y
+F] (θ(r + tn ĥX
+l , s∗ + tn ĥ∗,l ) − θ(r, s∗ )) ]
+
+A∗ (α , β∗ )−c
+Y
+Y
+2 X
+⎛−(tn ĥX
+)⊙
+l ⊗ s + tn r ⊗ ĥl + tn ĥl ⊗ ĥl ) ⊙ exp (
+λ
+⎜
+=⎜
+0
+⎝
+0
+T
+
+λ
+
+λ
+
+λ
+λ
+λ
+λ
+AT
+∗ (αn −α , β∗,n −β∗ )
+⎞
+λ
+
+⎛ξ3 (n)⎞
+=∶ ⎜ 0 ⎟ .
+⎝ 0 ⎠
+
+⎟
+⎟
+⎠
+
+Y
+Since (r, s) ∈ l1CX (X ) ⊗ l1Φ4 (Y) and as ĥX
+l , ĥl both have finite support, we obtain that
+
+ξ3 (n) ∈ l1CX ⊕CY (X × Y). To finish the proof, we show that Γ (ξ3 (n)) = o(tn ), where we
+select ψ ≡ 1. For any x ∈ X it then follows using the Lipschitz property for dual optimizers
+(Proposition 5.3) that
+Y
+
+1
+Y
+X Y
+tn [ ∑ ∣ĥX
+l,x sy + rx ĥl,y + tn ĥl,x ĥl,y ∣
+rx
+y∈Y
+
+≤
+
+tn (∥αλn
+
+⋅ exp (
+
+λ
+
+−α
+
+αλx + βyλ − c(x, y)
+
+∥l∞ (X ) + ∥βnλ
+
+λ
+− β ∥l∞
+
+λ
+− βyλ ∣)]
+)(∣αλn,x − αλx ∣ + ∣βn,y
+
+λ
+
+φ
+
+(Y)
+
+) exp (
+
+∥c+X − c−X ∥l∞ (X )
+λ
+
+⎡
+⎤
+∣ĥX
+⎥
+l,x ∣ ⎞ ⎢
+Y
+2
+⎢
+⋅ κ 1 + max
+∑ (sy + (1 + tn )∣ĥl,y ∣)φY (y)⎥
+⎢
+⎥
+x∈{x1 ,...,xl } rx ⎠ ⎢y∈Y
+⎝
+⎥
+⎣
+⎦
+⎛
+
+Y
+
+= O (tn ∥αλn − αλ ∥l∞ (X ) + tn ∥βnλ − β λ ∥l∞
+φ
+
+Y
+
+(Y)
+
+Likewise, we see for all y ∈ Y that
+tn [ ∑
+sy φ3Y (y)
+x∈X
+1
+
+⋅ exp
+
+Y
+X Y
+∣ĥX
+l,x sy + rx ĥl,y + tn ĥl,x ĥl,y ∣
+
+) ⊆ O(t2n ) ⊆ o(tn ).
+
+⎛ αλx + βyλ − c(x, y) ⎞ λ
+λ
+(∣αn,x − αλx ∣ + ∣βn,y
+− βyλ ∣) ]
+λ
+⎝
+⎠
+51
+
+)
+
+⎛
+⎞
+∥c+ − c−X ∥
+≤ tn φ2Y (y)−1 ∥αλn − αλ ∥l∞ (X ) + ∥βnλ − β λ ∥l∞ (Y) exp ( X
+)
+λ
+⎝
+⎠
+φ2
+Y
+∣ĥl,y ∣ ⎞
+⎛
+⋅ κ 1 + max
+[ ∑ (rx + (1 + tn )∣ĥX
+l,x ∣)]
+y∈{y1 ,...,yl } sy ⎠ x∈X
+⎝
+Y
+
+⎛
+⎞
+= O tn ∥αλn − αλ ∥l∞ (X ) + tn ∥βnλ − β λ ∥l∞ (Y) ⊆ O(t2n ) ⊆ o(tn ).
+⎝
+⎠
+φ2
+Y
+
+This yields Γ (ξ3 (n)) = o(tn ) which concludes by Lemma B.1 the proof since
+∥[Dπ,α,β∗ ∣(θ(r,s∗ ),r,s∗) F]
+
+−1
+π
+
+(ξ3 (n), 0, 0)∥
+
+l1C
+
+X ⊕CY
+
+(X ×Y)
+
+= o(tn ).
+
+Lemma B.4. Let (an )n∈N be a non-negative sequence such that ∑∞
+i=1 ai < ∞. Then
+there exists an unbounded and monotonously increasing function ψ∶ N → [1, ∞) such that
+∑∞
+i=1 ψ(i)ai < ∞.
+Proof. We define the function ψ by an iterative scheme. We start with ψ0 ≡ 1 and select
+for any k ∈ N the integer N(k) ≥ max(k, N(k−1) ) as small as possible such that
+N (k)
+
+∑ ψk−1 (i)ai +
+
+i=1
+
+1 ∞
+2ψk−1 (i)ai ≤ (2 − ) ∑ ai .
+k i=1
+i=N (k)+1
+∞
+
+∑
+
+We then define the monotone function
+⎧
+⎪
+⎪ψk−1 (i)
+ψk (i) ∶= ⎨
+⎪
+⎪
+⎩2ψk−1 (i)
+
+if i ≤ N (k),
+if i > N (k).
+
+Note that ψk−1 ≤ ψk for each k ∈ N and since N (k) < ∞ it holds for all i > N (k) that
+ψk−1 (i) < ψk (i). Further, as N (k) ≥ k for all k ∈ N the sequence ψk converges point-wise
+to a monotone function ψ which is unbounded and satisfies by monotone convergence
+∞
+∑∞
+i=1 ψ(i)ai ≤ 2 ∑i=1 ai .
+
+C
+
+Properties of Finite Support Approximation
+
+In this section we show a variety of useful characteristics of finite support approximations.
+Based on the notation in the proof of Theorem 3.4, we consider a probability measure
+r ∈ l1CX (X ) on X with full support. Further, let (tn )n∈N be a sequence such that tn ↘ 0
+X
+X
+1
+1
+and (hX
+n )n∈N ⊆ lCX (X ) with limit h and that r + tn hn ∈ P (X ) ∩ lCX (X ) for each n ∈ N.
+Additionally, for an integer l ≥ 2 we denote the finite support approximations for hX by
+ĥX
+l , i.e., labelling
+∞
+X
+⎧
+hX
+if x = x1 ,
+⎪
+x1 + ∑i=l+1 hxi
+⎪
+⎪
+⎪ X
+X
+ĥl,x ∶= ⎨hx
+if x ∈ {x2 , . . . , xl },
+⎪
+⎪
+⎪
+⎪
+else.
+⎩0
+Lemma C.1. For δ > 0 there exist l ∈ N such that
+∥hX − ĥX
+l ∥l1
+
+CX
+
+52
+
+(X )
+
+≤ δ.
+
+Additionally, there is N ∈ N such that for all n ≥ N holds
+X
+∥ĥX
+l − ĥn,l ∥l1
+
+(X )
+
+CX
+
+X
+∥hX
+n − ĥn,l ∥l1
+
+≤ δ,
+
+CX
+
+(X )
+
+≤ δ.
+
+X
+Proof. Choose l large enough such that CX (x1 ) ∑∞
+i=l+1 CX (xi )∣hxi ∣ ≤ δ/6. Then we see
+∞
+∞
+δ
+X
+∣
++
+CX (xi )∣hX
+≤
+C
+(x
+)
+∣h
+∑
+∑
+X
+1
+xi ∣ ≤ .
+x
+i
+(X )
+CX
+3
+i=l+1
+i=l+1
+
+∥hX − ĥX
+l ∥l1
+
+Let N be large enough such that CX (x1 ) ∥hX − hX
+n ∥l1
+
+CX
+
+X
+∥ĥX
+l − ĥn,l ∥l1
+
+CX
+
+(X )
+
+≤ δ/3 for all n ≥ N . This yields
+
+∞
+
+l
+
+i=l+1
+
+i=2
+
+X
+X
+X
+X
+X
+= CX (x1 ) ∣hX
+x1 − hn,x1 + ∑ (hxi − hn,xi )∣ + ∑ CX (xi ) ∣hxi − hn,xi ∣
+(X )
+
+≤ CX (x1 ) ∑
+
+x∈X
+
+CX (x) ∣hX
+x
+
+− hX
+n,x ∣
+
+= CX (x1 ) ∥hX − hX
+n ∥l1
+
+CX
+
+(X )
+
+δ
+≤ ,
+3
+
+which implies by triangle inequality
+X
+∥hX
+n − ĥn,l ∥l1
+
+CX
+
+(X )
+
+X
+≤ ∥hX
+n − h ∥l1
+
+CX
+
+(X )
+
+and thus finishes the proof.
+
++ ∥hX − ĥX
+l ∥l1
+
+CX
+
+(X )
+
+X
++ ∥ĥX
+l − ĥn,l ∥l1
+
+CX
+
+(X )
+
+≤ δ,
+
+Lemma C.2. It holds that
+K ∶= ∥hX ∥l1
+
+CX
+
+(X )
+
++ sup ∥hX
+n ∥l1
+n∈N
+
+CX
+
+(X )
+
++ sup ∥ĥX
+n,l ∥l1
+
+CX
+
+n,l∈N
+
+(X )
+
+< ∞.
+
+Further, for ρ > 0 there is N ∈ N such that it follows for all n ≥ N and l ∈ N that
+X
+X
+1
+r + tn hX
+n , r + tn ĥn,l , r + tn ĥl ∈ {r̃ ∈ lCX (X )∶ ∥r̃ − r∥l1
+
+CX
+
+(X )
+
+≤ ρ} .
+
+X
+1
+Proof. By convergence of hX
+n towards h with respect to lCX (X ) we see that
+
+∥hX ∥l1
+
+CX
+
+(X )
+
++ sup ∥hX
+n ∥l1
+n∈N
+
+CX
+
+(X )
+
+Further, for given l, n ∈ N and it follows that ∥ĥX
+n,l ∥l1
+
+CX
+
+< ∞.
+
+(X )
+
+≤ CX (x1 ) ∥hX
+n ∥l1
+
+CX
+
+(X )
+
+, which
+
+yields that K < ∞. For N ∈ N large enough such that tn < ρK −1 we conclude the second
+claim.
+Lemma C.3. For given l ∈ N and a probability measure r with supp(r) = X there exists
+X
+an integer N ∈ N such that for all n ≥ N it holds r + tn ĥX
+l ∈ P (X ) and r + tn ĥn,l ∈ P (X )
+X
+with supp(r + tn ĥX
+l ) = supp(r + tn ĥn,l ) = X .
+
+X
+Proof. First, we note that ∑x∈X hX
+n,x = 0 for all n ∈ N implies ∑x∈X hx = 0. By construction
+of the finite support approximation, it also follows for any l, n ∈ N that ∑x∈X ĥX
+n,l,x =
+X
+∑x∈X ĥl,x = 0. Hence, it remains to show for given l ∈ N that there exists N ∈ N such that
+X
+the elements r + tn ĥX
+l , r + tn ĥn,l are strictly positive in each entry. To this end, consider
+
+53
+
+K > 0 as in Lemma C.2 and choose N ∈ N large enough such that it holds for all n ≥ N
+that tn < (2K)−1 mini=1,...,l min(rxi , 1 − rxi ). This yields for any i ∈ {1, . . . , l} that
+rxi + tn ĥX
+l,xi
+
+⎧
+ĥX
+⎪≤ rxi + 12 min(rxi , 1 − rxi ) ≤ 21 rxi +
+l,xi ⎪
+= rx i + t n K ⋅
+⎨
+1
+1
+K ⎪
+⎪
+⎩≥ rxi − 2 min(rxi , 1 − rxi ) ≥ 2 rxi
+
+1
+2
+
+< 1,
+> 0.
+
+Further, since ĥX
+/ {x1 , . . . , xl } it follows for all n ≥ N that rx + tn ĥX
+x = 0 for all x ∈
+l,x = rx ∈
+X
+X
+(0, 1), which shows that r + tn ĥl ∈ P (X ) and supp(r + tn ĥl ) = X . The same argument
+X
+implies for all n ≥ N that r + tn ĥX
+n,l ∈ P (X ) and supp(r + tn ĥn,l ) = X .
+
+54
+
+

@@ -1,0 +1,1585 @@
+Nonadiabatic evolution and thermodynamics of a time-dependent open quantum
+system
+Dan Wang1 and Dazhi Xu1, ∗
+1
+
+arXiv:2105.00040v2 [quant-ph] 12 May 2021
+
+Center for Quantum Technology Research and Key Laboratory of
+Advanced Optoelectronic Quantum Architecture and Measurements (MOE),
+School of Physics, Beijing Institute of Technology, Beijing 100081, China
+We investigate the dynamic evolution and thermodynamic process of a driven quantum system
+immersed in a finite-temperature heat bath. A Born–Markovian quantum master equation is formally derived for the time-dependent system with discrete energy levels. This quantum master
+equation can be applied to situations with a broad range of driving speeds and bath temperatures
+and thus be used to study the finite-time quantum thermodynamics even when nonadiabatic transition and dissipation coexist. The dissipative Landau–Zener model is analyzed as an example. The
+population evolution and transition probability of the model reveal the importance of the competition between driving and dissipation beyond the adiabatic regime. Moreover, local maximums of
+irreversible entropy production occur at intermediate sweep velocity and finite temperature, which
+the low-dissipation model cannot describe.
+
+I.
+
+INTRODUCTION
+
+The open quantum system with a time-dependent
+Hamiltonian simultaneously incorporates coherent driving and unavoidable environment noise, and can therefore describe a broad range of physical systems controlled
+by outside agents. Related problems include quantum
+transport [1], adiabatic quantum computation [2–5], optimal quantum control [6], and dissipative many-body
+systems [7–10]. In particular, the recent development
+of quantum thermodynamics has advanced research on
+time-dependent open systems [11–13].
+Although efforts have long been made to develop an
+appropriate description of dissipative quantum dynamics
+with driving [14], no method is suitable for all the situations. Slowly driven and periodically driven systems
+are the two cases studied most, and formalisms based on
+the adiabatic master equation [15, 16] and Floquet's theory [17–20] have been widely employed. Moreover, various numerical methods have been proposed for this issue,
+such as quasiadiabatic propagator path integral (QUAPI)
+[21], influence functional formalism [22], short-iterative
+Lanczos method [23], hierarchical equations of motion
+[24], quantum trajectories [25], and variational method
+[26, 27].
+However, a general master equation is still needed.
+This is especially so when the dissipation and nonadiabatic transition are comparable, a case that usually
+occurs for dissipative systems with energy-level avoided
+crossings. Assuming that the driving changes slowly relative to the bath correlation time, a Markovian master
+equation has been proposed and applied to the dissipative Landau–Zener (LZ) model [28]. However, this assumption is unnecessary, and the validity of the master
+equation is not constrained by the adiabatic condition, as
+was pointed out in Ref. [29] with an elaborate discussion
+
+∗
+
+dzxu@bit.edu.cn
+
+of the definitions and relations of different dynamic time
+scales.
+In this article, we derive a time-dependent quantum
+master equation (TDQME) for systems with discrete
+energy levels. Adopting Nakajima–Zwanzig projective
+method [30] in the adiabatic frame of reference, this master equation is justified beyond the adiabatic approximation. The advantage of this approach is that the nonadiabatic transition and the dissipation are completely decoupled in the equation; thus, the magnitudes and time
+scales of these two crucial factors can be separately considered, which offers great convenience in understanding and even controlling driven dissipative quantum systems. The time evolution and transition probability of
+the dissipative LZ model are calculated for demonstration. These results indicate our method can be used beyond the adiabatic condition and verify the conclusions
+drawn in Ref. [29].
+Furthermore, we can straightforwardly evaluate the average values of thermodynamic quantities, such as heat,
+work, and entropy, in nonequilibrium processes. The dependence of the irreversible entropy production on the
+total evolution time determines the trade-off relation between the efficiency and output power of a heat engine
+[31–33], which is generally linear in the low-dissipation
+regime [34–36]. Beyond the low-dissipation regime, we
+reveal that the irreversible entropy production changes
+nonmonotonically with the sweep velocity and temperature in the context of the dissipative LZ model. Therefore, equipped with the TDQME, one can extend the optimal control of the finite-time quantum thermodynamic
+processes [37] to the wider parameter regime with profound physical phenomena.
+The remainder of the paper is arranged as follows. Section II formally derives the TDQME. Section III presents
+the example of the dissipative LZ system and the calculation of the dynamics and LZ probability of the system.
+Section IV investigates the finite-time thermodynamics
+of the dissipative LZ problem. Section V briefly summa-
+
+2
+rizes our results and discusses possible future work.
+
+II.
+
+TDQME IN THE ADIABATIC FRAME OF
+REFERENCE
+
+d
+Here, we denote |ṅ(τ )i ≡ dτ
+|n(τ )i and set ~ = kB = 1.
+The adiabatic frame of reference is defined by the operator
+X
+U (t) =
+|ψn (t)ihn(t0 )| ⊗ e−iHB t .
+(6)
+n
+
+In deriving the master equation for a time-independent
+system, we usually carry out a secular approximation according to the system eigenvalues by dropping the fast
+oscillatory terms. The resulting dissipation rate γ(Eij )
+is then a function of the energy level difference Eij between the two related eigenstates |ii and |ji [30]. This
+approach is often generalized to the time-dependent open
+quantum system by substituting the time-independent
+Eij in γ(Eij ) with the instantaneous eigenvalue difference Eij (t). This naive approach requires that the system
+Hamiltonian changes slowly. The meaning of the word
+"slowly" here is twofolds: 1) the adiabatic theorem [38]
+is satisfied such that all the nonadiabatic transitions can
+be neglected and 2) the system changes slowly relative to
+the bath correlation time such that the dissipative rate
+changes following the instantaneous eigenvalues. Working in the adiabatic frame of reference is a convenient
+way of deriving a quantum master equation that is justified for an arbitrary driving protocol and a wide range
+of driving speeds.
+
+A.
+
+Adiabatic frame of reference
+
+Generally, a time-dependent open system is described
+by the Hamiltonian
+H(t) = HS (t) + HB + V,
+
+(1)
+
+where HS (t) is the system Hamiltonian, HB is the heat
+bath Hamiltonian, and V describes the system–bath interaction. We assume that the interaction V is weak and
+all the time-dependent terms are taken into account by
+HS (t). The system Hamiltonian can be diagonalized as
+HS (t) =
+
+X
+
+En (t)|n(t)ihn(t)|,
+
+(2)
+
+n
+
+where |n(t)i is the instantaneous eigenvector, and En (t)
+is the corresponding eigenvalue. Under the adiabatic approximation, the unitary evolution of a time-dependent
+system with Hamiltonian HS (t) and initial state |n(t0 )i
+is described as
+|ψn (t)i = eiηn (t)+iξn (t) |n(t)i,
+
+(3)
+
+where we define the dynamic and adiabatic phase factors
+Z t
+En (τ )dτ,
+(4)
+ηn (t) = −
+Z
+
+t0
+t
+
+hn(τ )|ṅ(τ )idτ.
+
+ξn (t) = i
+t0
+
+(5)
+
+The unitarity of U (t) can be easily proved from the orthogonal completeness of |ψn (t)i. U (t) maps the timedependent state |ψn (t)i to the instantaneous eigenstate
+|n(t0 )i of time t0 , which can be arbitrarily chosen for convenience. We also incorporate the transformation of the
+heat bath in U (t); the transformed total Hamiltonian is
+then given by
+H̃(t) = U † (t)H(t)U (t) − iU † (t)
+
+d
+U (t)
+dt
+
+≡ H̃S (t) + Ṽ (t).
+Here, the transformed system Hamiltonian reads
+X
+H̃S (t) =
+αnm (t)|n(t0 )ihm(t0 )|,
+
+(7)
+
+(8)
+
+n6=m
+
+where
+αnm (t) = −ie−iφnm (t) hn(t)|ṁ(t)i,
+
+(9)
+
+and φnm (t) ≡ φn (t) − φm (t), φn (t) ≡ ηn (t) + ξn (t). It
+is seen from Eq. (8) that H̃S (t) only includes the nonadiabatic transitions; i.e., the transitions between the different instantaneous eigenstates. Moreover, the nonadiabatic transition coefficient αnm (t) is proportional to
+hn(t)|ṁ(t)i, whose magnitude usually increases with the
+driving speed. Therefore, H̃S (t) can be neglected when
+the adiabatic theorem is satisfied. Otherwise, we should
+consider its contribution to the dissipative dynamics of
+the driven open quantum system.
+The transformed system–bath interaction is written as
+Ṽ (t) = U † (t)V U (t),
+
+(10)
+
+which is now time dependent. We should keep all the
+rotating wave and counter-rotating wave terms in the
+system–bath coupling V to ensure the secular approximation is carried out correctly in the adiabatic frame of
+reference.
+
+B.
+
+Nakajima–Zwanzig projective approach
+
+We follow the standard Nakajima–Zwanzig projective
+operator method [30] to derive the TDQME, such that
+the nonadiabatic transition and dissipation can be considered in the same framework. In the adiabatic frame of
+reference defined above, the quantum Liouville equation
+reads
+d
+ρ̃(t) = −i[H̃(t), ρ̃(t)] ≡ L(t)[ρ̃(t)].
+dt
+
+(11)
+
+3
+Here, ρ̃(t) is the density operator of the total system
+in the adiabatic frame and relates to the operator ρ(t)
+in the original frame according to ρ̃(t) = U † (t)ρ(t)U (t).
+The Liouville superoperator L(t) can be decomposed into
+two parts L = L0 + LI , where
+L0 [ρ̃(t)] = −i[H̃S (t), ρ̃(t)],
+
+(12)
+
+LI [ρ̃(t)] = −i[Ṽ (t), ρ̃(t)].
+
+(13)
+
+Then, L0 describes the nonadiabatic evolution while LI
+describes the system–bath interaction that should be
+treated perturbatively.
+The projective operator P is defined as
+P ρ̃(t) = TrB [ρ̃(t)] ⊗ ρB ≡ ρ̃S (t) ⊗ ρB .
+
+(14)
+
+We see that P maps ρ̃(t) to a direct product of
+the reduced-density operator of the system ρ̃S (t) and
+that of the heat bath ρB . As the system–bath coupling is weak, it is reasonable to assume that the
+heat bath is always in thermal equilibrium; i.e., ρB =
+exp(−βHB )/Tr[exp(−βHB )]. The orthogonal projective
+operator Q is defined by
+Qρ̃(t) = ρ̃(t) − P ρ̃(t).
+2
+
+(15)
+2
+
+P and Q satisfy the relations P = P, Q = Q and PQ =
+QP = 0. We also assume that the expectation value of
+odd orders of Ṽ (t) is zero, which can be written with
+superoperators as PLI (t1 )LI (t2 ) * * * LI (t2n+1 )P = 0.
+The quantum Liouville equation can be decomposed
+into two coupled equations by applying P and Q to
+Eq. (11):
+d
+P ρ̃(t) = PL(t)P ρ̃(t) + PL(t)Qρ̃(t),
+dt
+d
+Qρ̃(t) = QL(t)P ρ̃(t) + QL(t)Qρ̃(t).
+dt
+
+Rt
+s
+
+dτ L0 (τ )
+
+LI (s)P.
+
+(22)
+
+Furthermore, we adopt the Markovian approximation
+by substituting the integral variable s → t − s in Eq. (20)
+and Eq. (22), and assume ρ̃(t−s) ≈ ρ̃(t) considering that
+the system density operator changes slightly within the
+time scale of the bath correlation time τB . We thus have
+Z t
+dsK(t, s)ρ̃(s)
+t0
+t−t0
+
+Z
+≈
+
+dsPLI (t)T→ e
+
+Rs
+0
+
+dτ L0 (t−τ )
+
+LI (t − s)P ρ̃(t). (23)
+
+0
+
+The exponential superoperator on the right side of the
+above equation can be written explicitly as
+T→ e
+
+Rs
+0
+
+dτ L0 (t−τ )
+
+Ô = R̃(s)ÔR̃† (s),
+
+where Ô is an arbitrary operator and
+Z s
+R̃(s) = T→ exp[−i
+dτ H̃S (t − τ )].
+
+(24)
+
+(25)
+
+0
+
+(16)
+(17)
+
+|hn(t)|ṁ(t)i|  τB−1 .
+
+t0
+
+(19)
+
+s
+
+and T← is the chronological time operator indicating that
+the time argument increases from right to left. Substituting Eq. (18) into Eq. (16) gives
+Z t
+d
+P ρ̃(t) = PL(t)P ρ̃(t) +
+dsK(t, s)ρ̃(s),
+(20)
+dt
+t0
+where we define the convolution kernel operator as
+K(t, s) = PL(t)G(t, s)QL(s)P.
+
+K(t, s) ≈ PLI (t)T← e
+
+As seen from the dissipative LZ model below, Eq. (23)
+is proportional to the bath correlation function, which
+quickly decays within the short time scale τB . Therefore,
+R̃(s) contributes to Eq. (23) mainly during 0 . s . τB ,
+such that we can safely approximate R̃(s) ≈ 1, which is
+equivalent to assuming that
+
+Formally integrating Eq. (17), we obtain
+Z t
+Qρ̃(t) = G(t, t0 )Qρ̃(t0 ) +
+dsG(t, s)QL(s)P ρ̃(s), (18)
+where Green's function G (t, s) is defined as
+Z t
+tG(t, s) = T← exp[
+dτ QL(τ )],
+
+state ρ̃(t0 ) = ρ̃S (t0 ) ⊗ ρB , such that Qρ̃(t0 ) = 0. Using
+PLI (t)P = 0 and L0 (t)Q = QL0 (t), we only keep the
+master equation to the second order of LI and approximately write
+
+(21)
+
+In deriving Eq. (20), we also adopt the Born approximation by assuming the initial state is a direct product
+
+(26)
+
+This condition is generally easy to be satisfied, even if
+the adiabatic condition [38] is no longer justified.
+Combining Eqs. (20,23,26) and tracing over the bath
+degrees of freedom, we finally obtain the general form of
+the TDQME:
+d
+ρ̃S (t) = L0 [ρ̃S (t)] + LB [ρ̃S (t)],
+dt
+
+(27)
+
+where L0 is defined by Eq. (12) and LB is expressed as
+Z
+LB [ρ̃S (t)] = −
+
+t−t0
+
+dsTrB [Ṽ (t), [Ṽ (t − s), ρ̃S (t) ⊗ ρB ]].
+0
+
+(28)
+The reduced density operator of the system can be
+obtained by solving Eq. (27) and then transforming back into the original frame using ρS (t) =
+TrB [U (t)ρ̃S (t)U † (t)]. The transformation U (t) takes the
+responsibility of the adiabatic evolution. If there is no
+nonadiabatic transition or dissipation, U (t) adiabatically
+rotates the system following the instantaneous eigenstates.
+
+4
+It is noted that, as indicated in Ref. [29], the TDQME
+in the weak system–bath coupling case is actually not
+constrained by the condition (26) and can be applied to
+a situation with larger nonadiabatic transitions. Putting
+it briefly, the violation of (26) implies that the nonadiabatic transition is strong, such that the LB is negligible
+regardless of how it is derived. We will illustrate this
+point in the following section taking the example of the
+dissipative LZ problem.
+
+III.
+A.
+
+| ↓i
+
+2
+
+Energy Level
+
+(t
+Ee
+
+HS (t) = vtσz + σx ,
+
+(29)
+
+where v is the sweep velocity and  is the tunneling amplitude. The Pauli operators σx,z are defined in the diabatic
+basis representation | ↑i and | ↓i as σx = | ↑ih↓ | + | ↑ih↓ |
+and σz = | ↑ih↑ |−| ↓ih↓ |. The instantaneous eigenstates
+are
+
+| ↑i
+
+E
+
+g (t
+
+)=
+− p
+(v
+t
+
+)2
+
++
+
+ǫ 2 | ↓i
+
+0
+
+TDQME for a linearly driven two-level system
+
+The linearly driven two-level system interacting with a
+bosonic bath is an ideal model with which to demonstrate
+how to apply the TDQME, as it is both simple enough yet
+contains almost all the essential ingredients of dissipative
+open systems. This model is also a good playground
+in which to study finite-time quantum thermodynamics.
+If we focus on the physics with avoided crossing point,
+this model becomes the well-known LZ model with the
+Hamiltonian
+
+ǫ2
+
+2ǫ
+
+| ↑i
+
+DISSIPATIVE LZ SYSTEM
+
+)
+p (v t
+)=
+
++
+
+t
+
+Figure 1. Schematic illustration of the LZ model. The minimal energy gap at t = 0 is 2. The time-dependent eigenvalues
+Ee,g (t) are plotted with solid lines. In the adiabatic regime,
+the basis of the system transform from | ↑i(| ↓i) at t = −∞
+to | ↓i(| ↑i) at t = ∞ following the instantaneous eigenstates.
+
+transition appears like a pulse with large amplitude and
+width 2τLZ .
+The bath Hamiltonian HB and the system–bath coupling V are expressed as
+X
+HB =
+ωk a†k ak ,
+(35)
+k
+
+and
+V = σx ⊗
+
+X
+
+gk (a†k + ak ),
+
+(36)
+
+k
+
+θt
+θt
+| ↑i + sin | ↓i,
+2
+2
+θt
+θt
+|g(t)i = − sin | ↑i + cos | ↓i,
+2
+2
+|e(t)i = cos
+
+(30)
+(31)
+
+where tan θt = /(vt), and the corresponding eigenvalues
+are
+p
+(32)
+Ee (t) = −Eg (t) = v 2 t2 + 2 .
+The instantaneous energy levels are illustrated in Fig. (1).
+It is easy to show that Berry's phases ξe,g (t) are all zero:
+he(t)|ė(t)i = hg(t)|ġ(t)i = 0.
+
+where ak is the bosonic annihilation operator of the bath
+harmonic mode with frequency ωk while gk is the coupling strength. For simplicity, we consider only the case
+that the bath is transversely coupled with the two-level
+system via operator σx in the main text. The longitudinal σz -coupling case is briefly discussed in Appendix A.
+The linear combination of these two kinds of coupling
+was discussed in Ref. [41].
+Applying the unitary transformation defined in (6), we
+obtain
+
+(33)
+
+H̃S (t) = αeg (t)σ̂+ + h.c.,
+
+(37)
+
+Ṽ (t) = σ̃x (t) ⊗ B(t),
+
+(38)
+
+and
+The effect of a finite Berry's phase on the dissipative dynamics is another interesting problem [39, 40] but is not
+discussed in the current paper. The strength of the nonadiabatic transition (or the LZ transition) is expressed as
+he(t)|ġ(t)i = −hg(t)|ė(t)i =
+
+v/2
+.
+v 2 t 2 + 2
+
+(34)
+
+Equation (34) is a Lorentzian function of t with maximum v/(2) and width 2τLZ , where τLZ = /v is the
+time scale on which the LZ transition dominates the dynamics. If the sweep velocity is high, the nonadiabatic
+
+where B(t) =
+
+P
+
+k
+
+gk (a†k eiωk t + ak e−iωk t ) and
+
+σ̃x (t) = sin θt σ̂z + cos θt [e−iφeg (t) σ̂+ + h.c.].
+
+(39)
+
+Here, the Pauli operators σ̂x,y,z,± are defined in the presentation with the basis {|e(t0 )i, |g(t0 )i}; e.g., σ̂+ =
+|e(t0 )ihg(t0 )|.
+After substituting Eqs. (38,39) into Eq. (28), we can
+further use the secular approximation to neglect the fast
+
+5
+
+where the energy-level shift S± (t), relaxation rate Γ± (t),
+and dephasing rate Γz (t) are given by
+Z t−t0
+S± (t) = cos θt
+ds cos θt−s Im[C(s)e±i∆(t,s) ],(41)
+0
+Z t−t0
+Γ± (t) = cos θt
+ds cos θt−s Re[C(s)e±i∆(t,s) ],(42)
+0
+Z t−t0
+Γz (t) = sin θt
+ds sin θt−s Re[C(s)].
+(43)
+0
+
+Rs
+
+p
+
+Here ∆(t, s) = 2 0 dτ v 2 (t − τ )2 + 2 and C(s) is the
+bath correlation function
+C(s) ≡ TrB [B(t)B(t − s)ρB ]
+
+
+
+
+Z
+1 ∞
+βω
+=
+cos(ωs) − i sin(ωs) ,
+dωJ(ω) coth
+π 0
+2
+(44)
+where the system-bath
+coupling spectral density is deP
+fined as J(ω) = π gk2 δ(ω−ωk ). In this work, we assume
+that J(ω) is an Ohmic spectrum with an exponential cutoff J(ω) = πγωe−ω/ωc , where γ is a constant characterizing the system–bath coupling strength, and ωc is the
+cutoff frequency. With such settings, the bath correlation function can be calculated as
+"
+#
+1
+2Re[ψ (1) ( βω
++ is
+1
+β )]
+c
+2
+C(s) = γωc
++
+(45)
+(βωc )2
+(sωc + i)2
+with ψ (1) (z) the trigamma function. We can also choose
+J(ω) to be an Ohmic spectrum with a Lorentz–Drude
+cutoff and obtain the analytical form of C(s) with the
+help of the Matsubara expansion, which does not introduce any qualitative difference from the current work.
+However, the convergence of the Matsubara expansion is
+much slower at low temperature.
+
+B.
+
+Time evolution
+
+The two most important and competitive ingredients of
+the dissipative LZ system, namely the LZ transition and
+dissipation, are now separately described in Eq. (27) by
+the unitary evolution L0 [ρ̃S (t)] and non-unitary evolution
+LB [ρ̃S (t)], respectively. The unraveling of the dynamic
+processes allows us to clarify how the LZ transition and
+dissipation contribute on different time scales.
+
+80
+
+2
+(a) v/ǫ = 0.1
+
+|αeg |
+Γ+ , T /ǫ = 25
+Γz , T /ǫ = 25
+Γ+ , T /ǫ = 1
+Γz , T /ǫ = 1
+
+37.5
+25
+12.5
+0
+500
+
+60
+40
+20
+0
+80
+
+2
+
+(b) v/ǫ = 1
+
+375
+
+60
+
+250
+
+40
+
+125
+
+20
+
+0
+5000
+
+0
+80
+
+2
+(c) v/ǫ = 10
+
+3750
+
+60
+
+2500
+
+40
+
+1250
+
+20
+
+0
+-40
+
+Γ+,z /γ
+
+LB [ρ̃S (t)] = −i [S+ (t)σ̂+ σ̂− + S− (t)σ̂− σ̂+ , ρ̃S (t)]
+−Γ+ (t) ({σ̂+ σ̂− , ρ̃S (t)} − 2σ̂− ρ̃S (t)σ̂+ )
+−Γ− (t) ({σ̂− σ̂+ , ρ̃S (t)} − 2σ̂+ ρ̃S (t)σ̂− )
+−2Γz (t) [ρ̃S (t) − σ̂z ρ̃S (t)σ̂z ] ,
+(40)
+
+50
+
+|αeg |/γ
+
+oscillating terms, such as those containing the factor
+e±iφeg (t) or e±iφeg (t−s) . The dissipation superoperator
+can then be expressed as
+
+0
+-30
+
+-20
+
+-10
+
+0
+
+10
+
+20
+
+30
+
+40
+
+t/τLZ
+
+Figure 2. Strength of the nonadiabatic transition |αeg (t)|,
+relaxation rate Γ+ (t), and dephasing rate Γz (t) as functions
+of the evolution time t. Different sweep velocities are chosen in
+the (a) slow (v/2 = 0.1), (b) intermediate (v/2 = 1), and (c)
+fast (v/2 = 10) regimes. The nonadiabatic transition |αeg (t)|
+(black dashed line) is a Lorentzian peak with width 2τLZ and
+maximum v/(2). The relaxation rate Γ+ (t) has a dip around
+t = 0, and its magnitude decreases with temperature (T / =
+25 for the orange solid line and T / = 1 for the blue solid
+line). The dephasing rate Γz (t) (dot-dashed lines) appears
+on the same time scale as |αeg (t)|, but its magnitude is much
+smaller. Here, we set γ = 0.001 and ωc = 10.
+
+We plot |αeg (t)|, Γ+ (t) and Γz (t) as functions of the
+rescaled time t/τLZ in Fig. 2 for different sweep velocities v/2 = 0.1, 1 and 10, at both high temperature
+T = 25 and low temperature T = . Both Γ+ (t) and
+Γz (t) decrease with temperature, while |αeg (t)| is independent of temperature. Consistent with our discussion
+in Sec. IIIA, the Lorentzian line shape of |αeg (t)| lies
+at the avoided crossing point t = 0, where there is a
+sharp decline of Γ+ (t). The height of |αeg (t)| linearly
+increases with the sweep velocity. Entering the nonadiabatic regime v/2 > 1, the LZ transition overwhelms
+the dissipation. The relaxation rate Γ+ (t) has two maximums located around t ≈ ±2τLZ , beyond which Γ+ (t)
+exponentially decreases to zero on a time scale of about
+
+6
+2ωc /v. The curves of Γ− (t) are similar to but lower than
+those of Γ+ (t) and are not presented here.
+In the adiabatic regime (v/2 . 1), Γ+ (t) is almost a
+symmetric function of t as shown in Fig. 2(a). This is
+because when τLZ  τB , we can approximately rewrite
+Eq. (42) as
+Γ+ (t) ≈ cos2 θt J [2Ee (t)] {n [2Ee (t)] + 1} ,
+2
+
+Γ− (t) ≈ cos θt J [2Ee (t)] n [2Ee (t)] ,
+
+(46)
+(47)
+
+where n(ω) = 1/[exp(βω) − 1] and the expressions on
+the right are obvious even functions of time. Equations (46,47) are usually directly employed in the adiabatic master equation [33, 42], but they are no longer
+justified if v rises into the nonadiabatic regime and should
+be derived on the basis of Eq. (42). As shown in Fig. 2(c)
+with v/2 = 10, two peaks of Γ+ (t) becomes asymmetric
+and Γ+ (t) slightly oscillates on top of an exponential decay when t ? 2τLZ at T = 25. In this nonadiabatic case,
+Γ+ (t) becomes negative for a short time as soon as t > 0.
+The appearance of negative Γ+ (t) means the relaxation
+turns into pumping. However, this anomaly does not
+have a notable effect as it only lasts for an instant, and
+the LZ transition is overwhelming simultaneously.
+The dephasing rate Γz (t) is approximately proportional to sin2 θt and contributes along with |αeg (t)| in
+the time domain. The effect of this term is to reduce
+the coherence between the states |e(t0 )i and |g(t0 )i, or
+equivalently that between the diabatic basis | ↑i and | ↓i
+as we set the initial evolution time t0  0 in the following calculation. The energy-level shift S± (t) is not shown
+here, considering its effect on the dynamics is negligible
+if the system–bath coupling is weak.
+The time evolution of the populations Pζ (t) =
+hζ|ρS (t)|ζi (ζ =↑, ↓) are shown in Fig. 3. The sweep velocities of the subplots in each row are v/2 = 0.1, 1, and
+10 from top to bottom. The left (right) panel shows the
+high (low) temperature cases with T / = 25 (T / = 1).
+The time evolution starts at t0 = −40τLZ with the initial
+state |ψ(t0 )i = | ↑i and ends at tf = 40τLZ . Outside this
+period, the dynamics becomes trivial because everything
+decays to zero as shown in Fig. 2. We also plot two sets of
+curves for comparison; i.e., P↑(↓),L0 =0 represents the population calculated by manually closing the nonadiabatic
+transitions L0 [ρ̃S (t)] = 0 while P↑(↓),LB =0 represents the
+population in the original LZ problem without dissipation (LB [ρ̃S (t)] = 0).
+As shown in Fig. 3(a)(d) with v/2 = 0.1 in the
+adiabatic regime, P↑(↓) (t) coincides well with the curve
+P↑(↓),L0 =0 (t), because the dissipation LB [ρ̃S (t)] dominates the time evolution and the LZ transition can be neglected. When the bath temperature is high [as T / = 25
+in Fig. 3(a)], the thermal excitation prevents | ↑i from
+completely transferring into | ↓i, and P↓ (tf ) is thus
+smaller than 1, which is different from the original unitary LZ problem. However, if the temperature is low as
+T / = 1, the heat bath cools the system to a new ground
+state after passing the avoided crossing point, whose ef-
+
+fect coincides with the adiabatic evolution. Thus, all the
+three sets of curves overlap in Fig. 3(d).
+The effects of nonadiabatic LZ transition emerge when
+the sweep velocity gradually increases to v/2 = 1. As
+shown in Fig. 3(b)(e), P↑(↓) (t > 0) is slightly higher
+(lower) than P↑(↓),L0 =0 (t > 0) because the LZ transition prefers to reserve more population in the initial state
+| ↑i. A fast oscillation with small amplitude appears
+on P↑(↓) (t > 0); this is the typical signature of the LZ
+dynamics. If we further increase the sweep velocity to
+v/2 = 10, the dynamics of the dissipative LZ model
+are similar to those of the original LZ model because
+of the relatively weak dissipation. The small disparity
+between P↑(↓) (t > 0) and P↑(↓),LB =0 (t > 0) in Fig. 3(d)
+when T / = 25 is evidence of thermal excitation, which is
+barely noticeable in the low-temperature case [Fig. 3(f)].
+We emphasize that the dissipative LZ system generally cannot finally relax to the instantaneous thermal
+−HS (t)/T
+equilibrium state ρeq
+/Tr[e−HS (t)/T ], beS (t) ≡ e
+cause the dissipation vanishes when the time-dependent
+energy gap is much larger than the bath cut-off frequency
+ωc . As a result, the system will evolve into a steady
+state with an effective temperature higher than that of
+the heat bath. If we ignore the coherence, we can define a time-dependent effective temperature of the system as Teff (t) = 2Ee (t)/ ln[P↓ (t)/P↑ (t)], which increases
+with the growing v. Teff (tf ) even becomes negative when
+v/2 = 10, implying the populations are inverted; i.e.,
+P↓ (tf ) < P↑ (tf ).
+
+C.
+
+LZ probability
+
+The LZ probability PLZ (v) lies at the heart of the LZ
+problem and is defined by
+PLZ (v) = |h↓ |T← e−i
+
+R∞
+−∞
+
+dtHS (t)
+
+| ↑i|2 .
+
+(48)
+
+If we initially prepare the two-level system in the state
+| ↑i at t0 → −∞ and then let the system unitarily evolve
+to tf → ∞ governed by linear driving HS (t), PLZ (v) is
+the probability of finally finding the system in state | ↓i;
+PLZ (v) has the well-known expression [43, 44] as
+
+
+π2
+PLZ (v) = 1 − exp −
+.
+v
+
+(49)
+
+It is not only interesting but also of practical importance to study how the dissipation interferes with the
+LZ transition; indeed, the open-system version of LZ
+probability has received broad and long-lasting interest
+[21, 41, 45–50]. In the case of the open system, we can
+analogously define the LZ probability P (v) by replacing the unitary evolution in Eq. (48) by the dissipative
+dynamics described by the TDQME with initial state
+ρS (t0 ) = | ↑ih↑ |; i.e.,
+P (v) = h↓ |ρS (tf )| ↓i.
+
+(50)
+
+7
+
+T /ǫ = 25
+1
+
+(a) v/ǫ2 = 0.1
+
+0.5
+
+0
+1
+
+T /ǫ = 1
+1
+
+(d) v/ǫ2 = 0.1
+
+0.5
+
+2
+
+(b) v/ǫ = 1
+
+0
+1
+
+0.5
+
+0.5
+
+0
+1
+
+0
+1
+
+(c) v/ǫ2 = 10
+
+0.5
+
+0
+-40 -30 -20 -10 0 10 20 30 40
+t/τLZ
+
+P↑
+P↓
+P↑,L0 =0
+P↓,L0 =0
+P↑,LB =0
+P↓,LB =0
+
+(e) v/ǫ2 = 1
+
+(f) v/ǫ2 = 10
+
+0.5
+
+0
+-40 -30 -20 -10 0 10 20 30 40
+t/τLZ
+
+Figure 3. Time evolution of diabatic-state populations of the dissipative LZ model. The initial state is chosen as | ↑i. The
+evolution starts at t0 = −40τLZ and ends at tf = 40τLZ . From top to bottom, the two subplots in each row correspond to
+v/2 = 0.1, 1, and 10; the left (right) panel is the high (low) temperature case with T / = 25 (T / = 1). The populations
+P↑,↓ (t) calculated using the TDQME are plotted with solid lines. For comparison, we also plot the populations evolutions in
+the cases without the nonadiabatic transition (L0 = 0) and without the dissipation (LB = 0). Other parameters are the same
+as those in Fig. 2.
+
+We calculate P (v) with tf = −t0 ≈ 100τLZ , such that
+the time evolution is long enough to cover all the nonadiabatic and dissipative processes. In Fig. 4, we plot
+both P (v) at various temperatures and PLZ (v) with respect to the logarithmic value of v. Except for the lowtemperature cases of T / < 1, in the adiabatic regime,
+P (v) decreases with increasing v. As we mentioned in the
+last subsection, the relaxation is active only on a time
+scale inverse to v; thus, the system decouples with the
+heat bath at an earlier time as v increases before it is in
+equilibrium, and greater populations remain in | ↑i. As
+the sweep velocity further increases entering the region
+v/2 ∼ 1, the gradually enhanced LZ transition starts to
+compete with dissipation and eventually dominates the
+evolution. Therefore, a local minimum of P (v) appears
+around v/2 ∼ 1 and then P (v) quickly decreases with v
+increasing into the LZ regime (v/2  1). The residual
+effect of the heat bath in the regime 1 . v/2 . 10 is
+reflected by the small disparities of P (v) above PLZ (v).
+We note that the nonmonotonicity of the LZ probabil-
+
+ity is more apparent in the case of longitudinal system–
+bath coupling than in the case of transverse coupling discussed here, where the relaxation plays a more important
+role (see Appendix A). Our results obtained using the
+TDQME method are well consistent with those calculated using the QUAPI [41].
+
+IV.
+
+FINITE-TIME THERMODYNAMICS
+
+The above calculation suggests that the TDQME is
+a useful tool with which to explore the finite-time thermodynamics of quantum systems with discrete energy
+levels. In the framework of quantum thermodynamics,
+the internal energy U (t) = Tr [ρS (t)HS (t)] and von Neumann entropy S(t) = −Tr[ρS (t) ln ρS (t)] are functions of
+the system state at the present time. However, the input
+work W (t) and the absorbed heat Q(t) depend on the
+
+8
+1
+
+P (v)
+
+0.8
+
+0.6
+T /ǫ = 0.1
+T /ǫ = 1
+T /ǫ = 5
+T /ǫ = 10
+T /ǫ = 15
+T /ǫ = 25
+PLZ
+
+0.4
+
+0.2
+
+0
+10 -2
+
+10 -1
+
+10 0
+v/ǫ2
+
+10 1
+
+10 2
+
+Figure 4. LZ probability P (v) for different temperatures. The
+TDQME results are presented by color markers for T / = 0.1,
+1, 5, 10, 15, and 25 while the black solid line is the LZ probability PLZ (v). P (v) and PLZ (v) coincide well when v/2 < 1
+and the temperature is low (T / = 0.1 and 1). When the
+sweep velocity is high (v/2 ? 10), the nonadiabatic transition dominates the evolution; hence, P (v) at different temperatures approaches but is a little higher than PLZ (v). Such
+small disparities are the results of dissipation and finally vanish at extremely high v. The nonmonotonic behavior of P (v)
+appears around v/2 = 1 and T / ? 1, when the nonadiabatic
+transition and dissipation are comparable in strength. Other
+parameters are the same as those in Fig. 2.
+
+driving protocol. The work is defined as
+
+
+Z t
+∂HS (τ )
+W (t) =
+dτ Tr ρS (τ )
+,
+∂τ
+t0
+
+(51)
+
+and the heat can be obtained using the first law of thermodynamics as Q(t) = ∆U (t) − W (t), where ∆U (t) =
+U (t) − U (t0 ) is the internal energy increase.
+The second law of thermodynamics tells us that the
+entropy does not decrease in a closed system. Accordingly, the total entropy production, usually termed as
+irreversible entropy production ∆Sirr (t), is always nonnegative and can be decomposed as
+∆Sirr (t) = ∆S(t) − ∆Se (t) ≥ 0.
+
+(52)
+
+Here, ∆S(t) = S(t) − S(t0 ) and ∆Se (t) ≡ Q(t)/T is the
+entropy decrease of the heat bath due to the output heat
+current. In finite-time processes, the system is generally
+in a nonequilibrium state, and the irreversible entropy
+production ∆Sirr (t) serves to characterize the deviation
+of the system away from equilibrium [51, 52].
+It is usually believed that the leading order of ∆Sirr (t)
+is inversely proportional to the total evolution time under the low-dissipation assumption ( i.e., ∆Sirr (tf ) ∝
+1/(tf − t0 ) [31]), which has been confirmed both theoretically [33, 35] and experimentally [36] in systems
+without energy level avoided crossing. The validity of
+the low-dissipation assumption requires there should be
+
+no retard of equilibrium, which readily occurs in fastdriving processes. To explore the behavior of ∆Sirr (t) in
+a broader region, we start with the calculation of ∆S(t)
+and ∆Se (t) in the dissipative LZ model. We initialize the system in a thermal equilibrium state ρS (t0 ) =
+e−βHS (t0 ) /Tr[e−βHS (t0 ) ], and then let the system evolve
+from t0 = −40τLZ to tf = 40τLZ , when the system finally
+approaches a nonequilibrium steady state.
+In the high-sweep-velocity region (v/2 ? 10), the LZ
+system evolves in an almost unitary way under the slight
+effect of the heat bath. As a result, ∆S(tf ) and ∆Se (tf )
+quickly approach zero with increasing v, as shown in
+Fig. 5(a) and (c). Even when the temperature is much
+higher than  (e.g., T / = 100), the LZ transition is still
+hundreds of times larger in magnitude than the dissipation during t ∈ [−τLZ , τLZ ]; hence, the dissipation can be
+safely neglected. Meanwhile, when the sweep velocity is
+low (e.g., v/2 > 1), the LZ transition becomes negligible, such that the system tends to adiabatically follow its
+instantaneous eigenstates while exchanging heat with the
+bath. A lower sweep velocity means that more population remains in the initial adiabatic basis, and the change
+in system entropy ∆S(tf ) decreases accordingly. In the
+intermediate region 1 > v/2 > 10, the LZ transition and
+the adiabatic following compete with each other, which
+largely disturbs the population distribution and results
+in local maximums of ∆S(tf ).
+Local maximums of ∆S(tf ) also appear when we
+change temperature and fix the sweep velocity [Fig. 5(b)].
+In the low-temperature limit as T / approaching 1, the
+dissipation is too weak to substantially affect the unitary
+evolution, and ∆S(tf ) thus decreases to a small value.
+At high-temperature limit as T / → 100, the critical issue of small ∆S(tf ) rises from the fact that the entropy
+of a binary distribution changes less when the entropy is
+greater. Consequently, no matter how much the initial
+state populations are changed by the subsequent dynamics, ∆S(tf ) is bounded by ln 2 − S(t0 ), which is small for
+a high-temperature initial equilibrium state.
+The entropy flow ∆Se (tf ) as functions of the sweep velocity and temperature is presented in Fig. 5(c) and (d),
+respectively. At the high sweep velocity limit or high
+temperature limit, ∆Se (tf ) is extremely small for a reason similar to that for ∆S(tf ). We note that ∆Se (tf )
+is small at the high T limit also because ∆Se (tf ) equals
+the heat absorption rescaled by 1/T . Furthermore, the
+heat absorption is positively relates to the variation rate
+of the population difference between two instantaneous
+eigenstates, which is greatly suppressed at high T . More
+sophisticated behavior of ∆Se (tf ) appears at low temperature (T / > 10) in the intermediate sweep velocity
+region, which is consistent with the nonmonotonic region
+of P (v) in Fig. 4, where the LZ transition is maximally
+affected by dissipation.
+The irreversible entropy production ∆Sirr (tf ) is plotted as functions of v and T in Fig. 6(a) and (b), respectively. Its behavior can be understood by combining the
+above results, which are not repeated here. As shown
+
+9
+0.6
+
+(a)
+
+T /ǫ = 1
+T /ǫ = 5
+T /ǫ = 15
+T /ǫ = 25
+T /ǫ = 50
+T /ǫ = 75
+T /ǫ = 100
+
+0.5
+∆S(tf )
+
+0.4
+0.3
+
+0.3
+0.2
+
+0.1
+
+0.1
+10
+
+0
+
+v/ǫ
+
+2
+
+10
+
+1
+
+10
+
+0
+0
+10
+
+2
+
+10
+
+1
+
+10
+
+2
+
+T /ǫ
+
+0.2 (c)
+
+0.2 (d)
+0
+
+∆Se (tf )
+
+0
+
+∆Se (tf )
+
+0.4
+
+0.2
+
+0
+-1
+10
+
+(b)
+
+0.5
+
+∆S(tf )
+
+0.6
+
+-0.2
+-0.4
+-0.6
+
+v/ǫ2
+v/ǫ2
+v/ǫ2
+v/ǫ2
+v/ǫ2
+v/ǫ2
+v/ǫ2
+
+-0.2
+-0.4
+-0.6
+
+-0.8
+10 -1
+
+10 0
+
+2
+
+10 1
+
+10 2
+
+-0.8
+10 0
+
+= 0.1
+= 0.2
+= 0.6
+=1
+=6
+= 20
+= 100
+
+10 1
+
+v/ǫ
+
+10 2
+
+T /ǫ
+
+Figure 5. Changes in entropy ∆S(tf ) and entropy flow ∆Se (tf ) as functions of v in subplots (a)(c) and T in subplots (b)(d).
+The initial state is the instantaneous equilibrium state at t0 = −40τLZ . Other parameters are the same as those in Fig. 2.
+0.8
+
+(a)
+
+T /ǫ = 1
+T /ǫ = 5
+T /ǫ = 15
+T /ǫ = 25
+T /ǫ = 50
+T /ǫ = 75
+T /ǫ = 100
+
+∆Sirr (tf )
+
+0.6
+0.4
+0.2
+0
+-1
+10
+
+(b)
+
+v/ǫ2
+v/ǫ2
+v/ǫ2
+v/ǫ2
+v/ǫ2
+v/ǫ2
+v/ǫ2
+
+0.6
+
+∆Sirr (tf )
+
+0.8
+
+0.4
+
+= 0.1
+= 0.2
+= 0.6
+=1
+=6
+= 20
+= 100
+
+0.2
+
+10
+
+0
+
+v/ǫ2
+
+10
+
+1
+
+10
+
+2
+
+0
+0
+10
+
+10
+
+1
+
+10
+
+2
+
+T /ǫ
+
+Figure 6. Irreversible entropy production ∆Sirr (tf ) as functions of (a) v and (b) T . The low-dissipation regime has low sweep
+velocities and high temperatures, where ∆Sirr (tf ) changes linearly with v. Other parameters are the same as those in Fig. 5.
+
+in Fig. 6(a), ∆Sirr (tf ) linearly increases with v only in
+the region of low v (v/2 < 1) and high T (T / > 50),
+beyond which ∆Sirr (tf ) has a nonmonotonic dependence
+on v. Being linearly proportional to v is equivalent to
+being inversely proportional to tf − t0 in the current situation, which indicates the low-dissipation regime. An
+important aspect of the TDQME is that regardless of
+the low-dissipation assumption, we can now quantitatively determine under what conditions ∆Sirr (tf ) reaches
+a maximum or minimum, which lies at the heart of designing highly efficient thermodynamic cycles. It is worth
+noticing that the energy-level avoided crossing can induce
+more profound dynamic and thermal phenomena, which
+should be considered for optimization problems in finitetime thermodynamics.
+
+V.
+
+CONCLUSIONS AND OUTLOOK
+
+We formally derived a Born–Markovian quantum master equation for the time-dependent open system in the
+adiabatic basis representation based on the Nakajima–
+Zwanzig projective operator method. Our formalism can
+be applied to an arbitrary driving protocol with a broad
+range of driving speeds and is justified even beyond the
+adiabatic regime. Several authors have pointed out that
+the nonadiabatic transition and dissipation hardly dominate the system dynamics simultaneously; thus, the adiabatic condition is not a necessary requirement in our
+approach. This idea is explicitly implemented in our
+formalism by separating the Liouville operator into the
+nonadiabatic transition and the dissipation terms. Tak-
+
+10
+ing the dissipative LZ system as an example, we show
+that when the system is driven quickly, the nonadiabatic transition overwhelms the dissipation. When the
+sweep velocity is decreasing, the nonadiabatic transition
+decreases in magnitude; meanwhile, it separates from the
+dissipation in the time domain. The validity of our approach was checked by calculating the LZ probabilities
+with finite-temperature heat bathes and comparing with
+previously obtained numerical results.
+The competition between the time-dependent dissipation and nonadiabatic transition plays an essential role
+in determining the thermodynamic properties of finitetime processes, which is clearly revealed by the dissipative LZ system. Our calculation shows that in the case
+of a system linearly passing through the avoided crossing
+point, the entropy, heat, and irreversible entropy change
+nonmonotonically with the sweep velocity and bath temperature. The low-dissipation regime only appears at
+high temperature and for slow driving, which is consistent with the usual understanding. However, our TDMQE is applicable in situations with parameters beyond
+the low-dissipation regime and can be used for the problems such as the optimization of the performance of the
+quantum Carnot cycle [53], and the distributions of the
+work and heat in stochastic quantum thermodynamics
+[42, 54–58].
+
+Equation (A2) is the same as Equation (39) for σ̃x (t)
+except that cos θt and sin θt are interchanged. As a result, the relaxation only occurs within the time window
+t ≤ |τLZ | in the longitudinal coupling case, while pure
+dephasing occurs outside the time window. Comparing
+with the dissipative rates in Fig. 2, the relaxation in the
+transverse coupling case effectively exists for longer time
+than that in the longitudinal coupling case, resulting in
+more apparent dissipative effects.
+We plot the LZ probability of the longitudinal system–
+bath coupling case in Fig. 7. There are two main differences from the transverse coupling case: the local minimums of P (v) have smaller values and are at lower v in
+the low-sweep-velocity regime and P (v) converges more
+quickly to PLZ (v) when v/2 & 1. The simple explanation is that in the longitudinal coupling case, there
+is relaxation when the energy gap is small at about 2.
+Thus, in the regime of low sweep velocity, the bath intends to relax the two-level system with more evenly distributed populations on the instantaneous eigenstates at
+finite temperature, and P (v) is therefore smaller than
+that in the transverse coupling case. In the high-sweepvelocity regime, as the nonadiabatic transition and relaxation occur in the same time window and the former
+overwhelms the later, the effect of the heat bath is totally washed out regardless of temperature. Our results
+are consistent with the QUAPI results in Ref. [21, 41].
+1
+
+ACKNOWLEDGMENTS
+
+P (v)
+
+0.8
+
+D. X. thanks Hui Dong and Jinfu Chen for helpful
+discussion. This study is supported by the NSF of China
+(Grants No. 11705008 and Grants No. 12075025).
+
+0.6
+T /ǫ = 0.1
+T /ǫ = 1
+T /ǫ = 5
+T /ǫ = 10
+T /ǫ = 15
+T /ǫ = 25
+PLZ
+
+0.4
+
+Appendix A: LZ probability with longitudinal
+system-bath coupling
+
+This appendix presents the results of the dissipative
+LZ model with pure longitudinal system–bath coupling
+V = σz ⊗
+
+X
+
+gk (a†k + ak ),
+
+(A1)
+
+k
+
+which after transformation into the adiabatic frame of
+reference reads Ṽ (t) = σ̃z (t) ⊗ B(t) with
+σ̃z (t) = cos θt σ̂z − sin θt [e−iφeg (t) σ̂+ + h.c.].
+
+0.2
+
+0
+10
+
+-2
+
+10
+
+-1
+
+10
+v/ǫ2
+
+0
+
+10
+
+1
+
+10
+
+2
+
+Figure 7. LZ probability P (v) of the longitudinal system–
+bath coupling case for various temperatures. The TDQME
+results are presented with color markers for T / = 0.1, 1, 5,
+10, 15, and 25, while the black solid line is the LZ probability
+PLZ (v). P (v) and PLZ (v) coincide well when v/2 & 2 for all
+the temperatures. Other parameters are the same as those in
+Fig.4.
+
+(A2)
+
+[1] S. Kohler, J. Lehmann, and P. Hänggi, Phys. Rep. 406,
+379 (2005).
+
+[2] A. M. Childs, E. Farhi, and J. Preskill, Phys. Rev. A
+65, 012322 (2002).
+
+11
+[3] M. H. S. Amin, P. J. Love, and C. J. S. Truncik, Phys.
+Rev. Lett. 100, 060503 (2008).
+[4] I. d. Vega, M. C. Bañuls, and A. Pérez, New J. Phys.
+12, 123010 (2010).
+[5] N. G. Dickson, M. W. Johnson, M. H. Amin, R. Harris,
+F. Altomare, A. J. Berkley, P. Bunyk, J. Cai, E. M. Chapple, P. Chavez, F. Cioata, T. Cirip, P. deBuen, M. DrewBrook, C. Enderud, S. Gildert, F. Hamze, J. P. Hilton,
+E. Hoskinson, K. Karimi, E. Ladizinsky, N. Ladizinsky,
+T. Lanting, T. Mahon, R. Neufeld, T. Oh, I. Perminov,
+C. Petroff, A. Przybysz, C. Rich, P. Spear, A. Tcaciuc,
+M. C. Thom, E. Tolkacheva, S. Uchaikin, J. Wang, A. B.
+Wilson, Z. Merali, and G. Rose, Nat. Commun. 4, 1903
+(2013).
+[6] P. R. Zulkowski and M. R. DeWeese, Phys. Rev. E 92,
+032113 (2015).
+[7] Y.-A. Chen, S. D. Huber, S. Trotzky, I. Bloch, and
+E. Altman, Nat. Phys. 7, 61 (2011).
+[8] P. Nalbach, S. Vishveshwara, and A. A. Clerk, Phys.
+Rev. B 92, 014306 (2015).
+[9] L. Arceci, S. Barbarino, D. Rossini, and G. E. Santoro,
+Phys. Rev. B 98, 064307 (2018).
+[10] L. Pan, X. Chen, Y. Chen, and H. Zhai, Nat. Phys. 16,
+767 (2020).
+[11] M. Esposito, U. Harbola, and S. Mukamel, Rev. Mod.
+Phys. 81, 1665 (2009).
+[12] M. Campisi, P. Hänggi, and P. Talkner, Rev. Mod. Phys.
+83, 771 (2011).
+[13] J. P. Pekola, Nat. Phys. 11, 118 (2015).
+[14] E. B. Davies and H. Spohn, J. Stat. Phys. 19, 511 (1978).
+[15] J. Vidal and J. Wudka, Phys. Rev. A 44, 5383 (1991).
+[16] P. Solinas, M. Möttönen, J. Salmilehto, and J. P. Pekola,
+Phys. Rev. B 82, 134517 (2010).
+[17] S. Kohler, T. Dittrich, and P. Hänggi, Phys. Rev. E 55,
+300 (1997).
+[18] D. W. Hone, R. Ketzmerick, and W. Kohn, Phys. Rev.
+E 79, 051129 (2009).
+[19] G. B. Cuetara, A. Engel, and M. Esposito, New J. Phys.
+17, 055002 (2015).
+[20] S. Restrepo, J. Cerrillo, V. M. Bastidas, D. G. Angelakis,
+and T. Brandes, Phys. Rev. Lett. 117, 250401 (2016).
+[21] P. Nalbach and M. Thorwart, Phys. Rev. Lett. 103,
+220401 (2009).
+[22] G. M. G. McCaul, C. D. Lorenz, and L. Kantorovich,
+Phys. Rev. B 95, 125124 (2017).
+[23] L. M. Cangemi, V. Cataudella, M. Sassetti, and G. D.
+Filippis, Phys. Rev. B 100, 014301 (2019).
+[24] Z. Sun, L. Zhou, G. Xiao, D. Poletti, and J. Gong, Phys.
+Rev. A 93, 012121 (2016).
+[25] K. W. Yip, T. Albash, and D. A. Lidar, Phys. Rev. A
+97, 022116 (2018).
+[26] Z. Huang and Y. Zhao, Phys. Rev. A 97, 013803 (2018).
+[27] V. Cavina, A. Mari, A. Carlini, and V. Giovannetti,
+
+Phys. Rev. A 98, 052125 (2018).
+[28] P. Nalbach, Phys. Rev. A 90, 042112 (2014).
+[29] M. Yamaguchi, T. Yuge, and T. Ogawa, Phys. Rev. E
+95, 012136 (2017).
+[30] H.-P. Breuer and F. Petruccione, The Theory of Open
+Quantum Systems (Oxford University Press, Great
+Clarendon Street, 2007).
+[31] M. Esposito, R. Kawai, K. Lindenberg, and C. V. d.
+Broeck, Phys. Rev. Lett. 105, 150603 (2010).
+[32] V. Holubec and A. Ryabov, J. Stat. Mech. 2016, 073204
+(2016).
+[33] Y.-H. Ma, D. Xu, H. Dong, and C.-P. Sun, Phys. Rev.
+E 98, 042112 (2018).
+[34] Z.-C. Tu, Chinese Phys. B 21, 020513 (2012).
+[35] V. Cavina, A. Mari, and V. Giovannetti, Phys. Rev.
+Lett. 119, 050601 (2017).
+[36] Y.-H. Ma, R.-X. Zhai, J. Chen, C. P. Sun, and H. Dong,
+Phys. Rev. Lett. 125, 210601 (2020).
+[37] P. Abiuso and M. Perarnau-Llobet, Phys. Rev. Lett. 124,
+110606 (2020).
+[38] A. Messiah, Quantum Mechanics (Dunod, Paris, 1973).
+[39] R. S. Whitney, Y. Makhlin, A. Shnirman, and Y. Gefen,
+Phys. Rev. Lett. 94, 070407 (2005).
+[40] G. D. Chiara, A. Łoziński, and G. M. Palma, Eur. Phys.
+J. D 41, 179 (2007).
+[41] S. Javanbakht, P. Nalbach, and M. Thorwart, Phys. Rev.
+A 91, 052103 (2015).
+[42] F. Liu, Phys. Rev. E 90, 032121 (2014).
+[43] C. Zener, Proc. R. Soc. A 137, 696 (1932).
+[44] L. D. Landau, Phys. Z. Sowjetunion 2, 46 (1932).
+[45] M. Wilkinson, J. Phys. Math. Gen. 21, 4021 (1988).
+[46] P. Ao and J. Rammer, Phys. Rev. B 43, 5397 (1991).
+[47] Y. Kayanuma and H. Nakayama, Phys. Rev. B 57, 13099
+(1998).
+[48] K. Saito, M. Wubs, S. Kohler, Y. Kayanuma, and
+P. Hänggi, Phys. Rev. B 75, 214308 (2007).
+[49] A. Dodin, S. Garmon, L. Simine, and D. Segal, J. Chem.
+Phys. 140, 124709 (2014).
+[50] R. Chen, Phys. Rev. B 101, 125426 (2020).
+[51] S. Vaikuntanathan and C. Jarzynski, EPL 87, 60005
+(2009).
+[52] M. Esposito and C. V. d. Broeck, EPL 95, 40004 (2011).
+[53] Y.-H. Ma, D. Xu, H. Dong, and C.-P. Sun, Phys. Rev.
+E 98, 022133 (2018).
+[54] P. Solinas, D. V. Averin, and J. P. Pekola, Phys. Rev. B
+87, 060508 (2013).
+[55] S. Suomela, P. Solinas, J. P. Pekola, J. Ankerhold, and
+T. Ala-Nissila, Phys. Rev. B 90, 094304 (2014).
+[56] S. Gasparinetti, P. Solinas, A. Braggio, and M. Sassetti,
+New J. Phys. 16, 115001 (2014).
+[57] K. Funo and H. T. Quan, Phys. Rev. Lett. 121, 040602
+(2018).
+[58] S. Suomela, J. Salmilehto, I. G. Savenko, T. Ala-Nissila,
+and M. Möttönen, Phys. Rev. E 91, 022126 (2015).
+
+

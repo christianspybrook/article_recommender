@@ -1,0 +1,2096 @@
+1
+
+NuSPAN: A Proximal Average Network for
+Nonuniform Sparse Model - Application to
+Seismic Reflectivity Inversion
+arXiv:2105.00003v1 [physics.geo-ph] 1 May 2021
+
+Swapnil Mache† , Praveen Kumar Pokala† , Kusala Rajendran, and Chandra Sekhar Seelamantula, Senior
+Member, IEEE
+
+Abstract-We solve the problem of sparse signal deconvolution
+in the context of seismic reflectivity inversion, which pertains to
+high-resolution recovery of the subsurface reflection coefficients.
+Our formulation employs a nonuniform, non-convex synthesis
+sparse model comprising a combination of convex and non-convex
+regularizers, which results in accurate approximations of the
+`0 pseudo-norm. The resulting iterative algorithm requires the
+proximal average strategy. When unfolded, the iterations give rise
+to a learnable proximal average network architecture that can be
+optimized in a data-driven fashion. We demonstrate the efficacy
+of the proposed approach through numerical experiments on
+synthetic 1-D seismic traces and 2-D wedge models in comparison
+with the benchmark techniques. We also present validations
+considering the simulated Marmousi2 model as well as real 3-D
+seismic volume data acquired from the Penobscot 3D survey off
+the coast of Nova Scotia, Canada.
+
+is defined as the product of density (ρ) and P-wave velocity
+(V ) [2], given by
+ri =
+
+ρi+1 Vi+1 − ρi Vi
+.
+ρi+1 Vi+1 + ρi Vi
+
+(1)
+
+Solving the ill-posed linear inverse problem of estimating
+the subsurface reflectivity through the classical least-squares
+formulation [5] leads to nonuniqueness issues arising out of a
+convolution with a bandlimited wavelet and loss of low and
+high-frequency information [2], [6], [7]. The nonuniqueness
+aspect can be tackled through regularization [8], for example,
+by imposing a sparsity prior on the solution through the `1 norm [2], [5].
+Zhang and Castagna [9] solved the `1 -norm constrained
+Index Terms-Geophysics, inverse problems, seismology, seis- reflectivity inversion problem through basis-pursuit inversion
+mic reflectivity inversion, geophysical signal processing, deep (BPI) [10], using a wavelet dictionary of odd and even
+learning, neural networks, algorithm unrolling, nonconvex opreflectivity pairs. The fast iterative shrinkage-thresholding
+timization, sparse recovery.
+algorithm (FISTA) [11] has been employed for reflectivity
+inversion [12] along with an amplitude recovery boost through
+I. I NTRODUCTION
+debiasing steps of least-squares inversion [13] and "adding back
+EFLECTIVITY inversion, which is a seismic deconvo- the residual" [14]. The `1 -norm, although convex, is not the best
+lution problem in reflection seismology, is the means by sparsity constraint for reflectivity inversion, and the accurate
+which one can characterize and image the layered subsurface estimation of the sparsity of seismic reflections is challenging
+structure. A recorded seismic trace y ∈ Rn is modeled as [15], [16]. Further, `1 -norm regularization underestimates the
+the convolution of the source pulse h, assumed to be a high-amplitude components and introduces a bias in the
+Ricker wavelet [1], and the subsurface reflectivity x ∈ Rn , estimate of the sparse code x [17], [18], [19]. Both [13] and
+given by y = h ∗ x + n, where n is the noise and ∗ [14] observed the attenuation of reflectivity magnitudes due to
+denotes convolution. Reflectivity is modeled as a sparse vector the `1 -norm regularization term and adopted a post-processing
+comprising subsurface layers, each with a constant impedance, debiasing step [20].
+giving rise to a piecewise-constant impedance model [2], [3].
+Non-convex regularization strategies have been adopted to
+Figure 1 illustrates the model with two shale layers sandwiching overcome the shortcomings of `1 regularization in sparse
+a wet sand layer (Figure 1(a)) [4]. The reflectivity (Figure 1(c)) recovery problems [19], [21], [22]. Non-convex penalties
+convolved with the source (Figure 1(d)) is recorded at the such as the smoothly clipped absolute deviation (SCAD)
+receiver as a seismic trace (Figure 1(e)).
+[23] and minimax concave penalty (MCP) [21] have been
+The subsurface geology (Figure 1(a)) is related to reflectivity shown to be superior to `1 and non-convex regularization
+(Figure 1(c)) through acoustic impedance (Figure 1(b)), which approaches in the context of inverse problems. In the context
+of reflectivity inversion, [15] introduced a data-driven `p -loss† Equal contribution.
+`q -regularization (p = 2, 0 < q < 1), with an adaptive
+Swapnil Mache is with the Centre of Excellence in Advanced Mechanics
+of Materials, Indian Institute of Science (IISc), Bangalore, India, and with the approach for choosing the optimal q. Recently, [24] and [25]
+Department of Electrical Engineering, IISc, Bangalore. He was formerly with developed proximal gradient-descent methods based on the
+the Centre for Earth Sciences, IISc, Bangalore. Email: machesanjay@iisc.ac.in.
+proximal average strategy [26], [27], by considering composite
+Praveen Kumar Pokala and Chandra Sekhar Seelamantula are with the
+Department of Electrical Engineering, IISc, Bangalore. E-mail: praveenku- regularization, which is a convex combination of several
+mar.pokala@gmail.com, chandra.sekhar@ieee.org.
+sparsity-inducing regularizers.
+Kusala Rajendran is with the Centre of Excellence in Advanced Mechanics
+A new class of deep neural network (DNN) architectures was
+of Materials, IISc, Bangalore. She was formerly with the Centre for Earth
+Sciences, IISc, Bangalore. Email: kusalaraj@gmail.com.
+introduced by [28], which are inspired by unrolling iterative
+
+R
+
+2
+
+Fig. 1.
+
+An ideal three-layer subsurface model. The operator ∗ denotes convolution.
+
+algorithms into learnable networks [29]. Gregor and LeCun of weighted counterparts of three sparsity-promoting penalties
+[28] proposed the learned iterative shrinkage and thresholding (the `1 norm, MCP [21], and SCAD [23] penalties).
+algorithm (LISTA), based on unfolding the update steps of
+The contributions of this paper are stated below.
+ISTA [30] into the layers of a neural network. This class of
+1) We consider the problem of seismic reflectivity inversion
+model-based architectures [31] has been demonstrated to be
+based on a data-driven prior, as opposed to a preeffective in solving sparse linear inverse problems [29], [32],
+designated prior, within the framework of deep-unfolding.
+[33], [34], [35], [36], [37], [38], [39], [40], [41].
+To the best of our knowledge, data-driven priors have
+Recently, learning-based approaches have also been emnot been explored for solving the problem of seismic
+ployed for solving inversion problems in geophysics, including
+reflectivity inversion.
+seismic reflectivity inversion [42], [43], [4], [16], [44], [45].
+2) We propose an optimization framework for seismic reflec[43] employed an elementary feedforward neural network and
+tivity inversion based on a composite sparse-prior, which
+observed superior support recovery compared to a least-squares
+comprises multiple weighted regularizers. The weights
+approach but poor amplitude recovery. Yuan and Su [16],
+are allowed to be different for each component. Such a
+and earlier, [42], employed sparse Bayesian learning (SBL)
+model is commonly referred to as a nonuniform sparse
+for recovering the sparse reflection coefficients by maximizmodel.
+ing the marginal likelihood either by using the expectation3) We develop the nonuniform proximal-averaged thresholdmaximization algorithm (SBL-EM) [46], [16], or by sequening algorithm (NuPATA) and its deep-unfolded version, the
+tially updating the sparsity-controlling hyperparameters through
+nonuniform sparse proximal average network (NuSPAN)
+a sequential algorithm-based approach [42]. The former [46],
+to solve the problem under consideration.
+[16] was demonstrated as being more robust to noise, having
+4) We demonstrate the efficacy of the proposed network,
+higher accuracy, and preserving lateral continuity in the seismic
+NuSPAN, over synthetic 1-D and 2-D datasets, and
+profile.
+simulated and real datasets.
+II. M OTIVATION AND C ONTRIBUTION
+
+III. O RGANIZATION OF THE PAPER AND N OTATIONS
+Estimating the sparsity of the reflection data is difficult
+This paper is structured as follows. In Section IV, we
+[15], [16] and the recovery of support is prioritized [1]. introduce the nonuniform sparse model for sparse seismic
+One can resort to data-driven approaches, which outperform reflectivity inversion. We develop an optimization algorithm
+conventional techniques, especially in support recovery [43], and the corresponding unrolled network for solving the problem
+when the knowledge about the underlying geology is limited, under consideration. Section V explains a generalized variant
+with an added computational benefit [4]. Further, as opposed of the problem formulation discussed in Section IV. In
+to an elementary feedforward neural network approach for Section VI, we present experimental results and demonstrate the
+seismic reflectivity inversion [43], one can employ model-based efficacy of the proposed proximal average network (NuSPAN)
+learning frameworks [31] such as deep-unrolled architectures in comparison with baselines. Conclusions are provided in
+[29]. Such deep neural networks, where the architecture is Section VII.
+informed by the inverse problem itself, can provide insights
+The notational conventions used in this paper are listed in
+into the problem as well as model interpretability that is Table I.
+critical to gaining physical insights into the system under
+consideration [44]. In our previous work [47], we demonstrated
+IV. P ROXIMAL AVERAGE N ETWORK FOR R EFLECTIVITY
+the efficacy of FirmNet [48] and LISTA-like [28] formulations
+I NVERSION - N ONUNIFORM S PARSE M ODEL (T YPE -1)
+in solving the seismic reflectivity inversion problem, comparing
+the approaches with baselines such as BPI [10], [9], FISTA
+The penalties used in this study are shown in Table II. Of
+[11], [12], and SBL-EM [46], [16]. Here, we expand the these, the `1 penalty is convex, whereas MCP and SCAD are
+work by constructing and learning from the data [44], a not. We propose weighted counterparts of regularizers given
+composite nonuniform sparse prior from a convex combination in Table II, which are proven to be good in approximating
+
+3
+
+TABLE I
+N OTATIONS
+
+Notation
+x
+x
+kxkp
+x(k)
+xi
+x0
+1
+H
+H†
+I
+sgn
+∇
+∗
+h*, *i
+⊕
+Rn>t
+
+Description
+Scalar (lower-case letter)
+Vector (lower-case bold letter)
+`p − norm of x
+x at the k th iteration of an algorithm
+ith element of x
+Flipped version of x
+Vector of all ones
+Matrix (upper-case bold letter)
+Pseudo-inverse of H
+Identity matrix
+Signum function
+Gradient operator
+Convolution operator
+Inner-product
+Element-wise sum
+Element-wise product
+Set of vectors in Rn with entries greater than t
+
+the `0 pseudonorm, as atoms to construct a learnable sparsityprior. Further, the chosen penalty functions have closed-form
+proximal operators. The weighted counterparts of the penalty
+functions and their proximal operators are given in Figure 2.
+denotes
+1) g1 (x) = kλ xk1 , where λ ∈ Rn>0 , and
+element-wise product. Rn>0 denotes the set of vectors in
+Rn containing positive entries.
+Pn
+2) g2 (x) is weighted MCP defined as g2 (x) = j=1 g2 (xj ).
+3) gP
+3 (x) is weighted SCAD, which is defined as g3 (x) =
+n
+j=1 g3 (xj ).
+The parameters of g are learned in a data-driven setting, with
+the trainable parameters of the proposed sparsity-prior being
+{λ, μ, ν} ∈ Rn>0 and {γ ∈ Rn>1 , a ∈ Rn>2 }. Rn>1 denotes the
+set of vectors in Rn with entries greater than 1.
+A. Problem Formulation – Type-1
+The sparse reflection coefficients x ∈ Rn are recovered from
+the observed noisy seismic trace y ∈ Rn via optimization of
+the following composite-regularized cost:
+m
+n
+o
+X
+1
+2
+arg min J (x) = kh ∗ x − yk2 +
+ωi gi (x)
+x, {ωi }
+|2
+{z
+} i=1
+|
+{z
+}
+f (x)
+(2)
+g(x)
+m
+X
+subject to
+ωi = 1, 0 < ωi < 1 ∀i,
+
+P3. J is bounded from below, i.e., inf J > −∞.
+
+Given a set of training samples {y p , xp }, ∀p ∈
+{1, 2, 3, . . . , N }, our objective is to design a deep-unrolled
+network that solves the optimization problem stated in Eq. (2).
+Our algorithm is referred to as the nonuniform proximalaveraged thresholding algorithm (NuPATA-1), which relies
+on Majorization-Minimization (MM) [49] and the proximal
+average strategy [26], [27], [40]. Further, we unfold the
+NuPATA-1 iterations into a learnable network called nonuniform
+sparse proximal average network (NuSPAN-1).
+
+B. Optimization Algorithm – Type-1
+Due to P1, there exists η < 1/L such that f (x) is upper
+bounded locally by a quadratic expansion about x = x(k) as
+follows:
+
+
+f (x) ≤ Q x, x(k) ,
+(3)
+1
+kx −
+where Q(x, x(k) ) = f (x(k) ) + h∇f (x(k) ), x − xk i + 2η
+(k) 2
+(k)
+x k2 . The majorizer to J at x is
+
+J (x) ≤ Q(x, x(k) ) + g(x) .
+|
+{z
+}
+
+(4)
+
+H(x,x(k) )
+
+The update for x at the (k + 1)th iteration is given by
+x(k+1) = arg min H(x, x(k) ),
+x
+
+
+1
+x − x(k) − η∇x f (x(k) )
+= arg min
+x 2η
++ g(x).
+
+2
+2
+
+(5)
+
+The above problem does not have a closed-form solution.
+Hence, we consider an approximate variant of the problem
+corresponding to Eq. (5) based on the proximal average
+strategy:
+m
+
+ 2
+X
+ωi
+x(k+1) = arg min
+x − x(k) − η∇x f (x(k) )
+x
+2η
+2
+i=1
++
+
+m
+X
+
+ωi gi (x),
+
+i=1
+
+=
+
+m
+X
+i=1
+
+ωi Pgi (u(k) ),
+
+(6)
+
+where u(k) = x(k) − η∇x f (x(k) ), ∇x f (x(k) ) = −h0 ∗
+y − h ∗ x(k) , where h0 is the flipped version of h, and
+Pgi represent the proximal operators corresponding to gi (cf.
+Table II). The optimization procedure is listed in Algorithm 1.
+
+i=1
+
+where m is the number of regularizers, and {ωi } are the weights
+assigned to the regularizers.
+The composite objective function J in (2), regularizer g
+and data-fidelity term f satisfy the following properties, which
+are essential for minimizing J ,
+P1. f : Rn → (−∞, ∞] is proper, closed, and L-smooth, i.e.,
+k∇f (x) − ∇f (y)k2 ≤ Lkx − yk2 .
+P2. g is lower semi-continuous.
+
+C. Nonuniform Sparse Proximal Average Network – Type-1
+(NuSPAN-1)
+The update in (6) involves convolutions followed by nonlinear activation, and can therefore be represented as a layer
+in a neural network. We unfold the iterations of Algorithm 1
+to obtain the deep-unrolled architecture, namely, nonuniform
+sparse proximal average network (NuSPAN-1) for solving the
+
+4
+
+TABLE II
+S PARSITY- PROMOTING REGULARIZERS USED IN THIS STUDY AND CORRESPONDING PROXIMAL OPERATORS .
+
+Name
+
+Penalty Function
+
+`1 − norm (λ > 0)
+MCP [21] (μ > 0, γ > 1)
+
+SCAD [23] (ν > 0, a > 2)
+
+Fig. 2.
+
+Proximal Operator
+
+g1 (x) = λ |x|
+!
+
+2
+|x|
+
+
+μ |x| −
+, for |x| ≤ γμ,
+2μγ
+g2 (x) =
+
+ μ2 γ
+
+,
+for |x| ≥ γμ.
+2
+
+ν |x| ,
+for |x| ≤ ν,
+
+
+
+
+ |x|2 − 2aν |x| + ν 2
+, forν < |x| ≤ aν,
+g3 (x) =
+2(1 − a)
+
+
+2
+
+(a
++
+1)ν
+
+
+,
+for |x| > aν.
+2
+
+Pg1 (x) = sgn(x) max (|x| − λ, 0)
+
+
+0,
+for |x| ≤ μ,
+
+
+
+γ
+Pg2 (x) = sgn (x)
+(|x| − μ) , for μ < |x| ≤ γμ,
+
+γ−1
+
+
+x,
+for |x| > γμ.
+
+sgn (x) max (|x| − ν, 0) , for |x| ≤ 2ν,
+
+
+
+(a − 1) x − sgn (x) aν
+Pg3 (x) =
+, for 2ν < |x| ≤ aν,
+
+a−2
+
+
+x,
+for |x| > aν.
+
+The penalty functions and proximal operators corresponding to Table II.
+
+reflectivity inversion problem in Eq. (2). The structure for each
+layer in NuSPAN-1 is given by
+x(k+1) =
+
+m
+X
+i=1
+
+ωi Pgi (Wy + Sx(k) ),
+
+(7)
+
+where W = (1/L) h0 and S = I − (1/L) h0 ∗ h [28] are
+initialized as Toeplitz matrices. In the learning stage, they
+are dense and unstructured. Given training data that consists
+of a large number of independent and identically distributed
+examples {xp , y p }N
+p=1 and NuSPAN-1 with a fixed number of
+layers, we optimize the smooth `1 cost computed between the
+true reflectivity x and the prediction x̂(θ):
+
+W and S, the parameters of gi : {λ, μ, ν} ∈ Rn>0Pand {γ ∈
+m
+Rn>1 , a ∈ Rn>2 }, and the weights {ωi : 0 < ωi < 1, i=1 ωi =
+1}. The NuSPAN-1 algorithm for kmax layers is listed in
+Algorithm 2.
+
+We enhance the amplitude recovery of NuSPAN-1 (and
+NuSPAN-2
+in Section V) during the inference phase by reN
+
+1 X
+2
+estimating
+the
+amplitudes over the supports given by NuSPAN-1
+min
+β kx − x̂(θ)k1 + (1 − β) kx − x̂(θ)k2 ,
+†
+θ N
+as:
+x̂
+=
+H
+S(x̂)
+S(x̂) y, where x̂ is the sparse vector estimated
+i=1
+by NuSPAN-1, S(x̂) is the support, i.e., non zero locations of
+where 0 < β < 1. We set β = 1; it is not a trainable parameter.
+x̂ , and H†S(x̂) is the pseudo-inverse of the Toeplitz matrix H
+The parameters θ that need to be learned are the matrices
+of the kernel h over S(x̂).
+
+5
+
+Algorithm 1: Nonuniform Sparse Proximal-Averaged
+Thresholding Algorithm – Type-1 (NuPATA-1)
+
+Algorithm 2: Nonuniform Sparse Proximal Average
+Network – Type-1 (NuSPAN-1)
+
+2
+
+2
+
+Input: y, h, L = khk2 , kP
+max ,
+m
+{ωi : 0 < ωi < 1, i=1 ωi = 1},
+n
+{λ, μ, ν} ∈ R>0 , {γ ∈ Rn>1 , a ∈ Rn>2 }
+Initialize: x(0) = 0
+while k < kmax do
+
+z (k+1) = x(k) + (1/2L) h0 ∗ (y − h ∗ x(k) )
+m
+
+P
+x(k+1) =
+ωi Pgi z (k+1)
+
+Input: y, L = kHk2 , kmax
+P,m
+{ωi : 0 < ωi < 1, i=1 ωi = 1},
+{λ, μ, ν} ∈ Rn>0 , {γ ∈ Rn>1 , a ∈ Rn>2 }
+m
+P
+ωi Pgi (Wy)
+Initialize: W, S, x(0) =
+i=1
+
+while k < kmax do
+c(k+1) = Wy + Sx(k)
+m
+P
+ωi Pgi (c(k+1) )
+x(k+1) =
+
+i=1
+
+k =k+1
+
+i=1
+
+Output: x̂ ← x
+
+k =k+1
+
+(kmax )
+
+V. P ROXIMAL AVERAGE N ETWORK FOR R EFLECTIVITY
+I NVERSION - N ONUNIFORM S PARSE M ODEL (T YPE -2)
+The generalized variant of the composite-regularization
+problem given in Eq. (2) is given as follows:
+m
+X
+1
+2
+kh ∗ x − yk2 +
+hω i , qi (x)i
+x, {ω i } 2
+i=1
+
+arg min
+
+s.t.
+
+m
+X
+i=1
+
+ω i = 1, 0 < ω i < 1, ∀i,
+
+(8)
+
+T
+
+where qi (x) = [gi (x1 ), gi (x2 ), . . . , gi (xn )] , gi is the scalar
+penalty provided in Table II, h*, *i denotes inner-product, 0
+is the null vector, 1 is the vector of all ones, and ω i =
+[ωi1 , ωi2 , . . . , ωin ]T .
+A. Optimization algorithm – Type-2
+We can follow the strategy mentioned in Section IV-B for
+optimizing the cost given in Eq. (8). The update for x at
+(k + 1)th iteration is given by
+
+
+x(k+1) = arg min H x, x(k) ,
+x
+
+ 2
+1
+x − x(k) − η∇x f (x(k) )
+= arg min
+x 2η
+2
+m
+X
++
+hω i , qi (x)i.
+(9)
+i=1
+
+Since the above problem is complex and non-convex, we solve
+the approximate variant of the problem corresponding to Eq. (9)
+based on the proximal average strategy [27].
+m
+
+ 2
+X
+ωi
+x(k+1) = arg min
+x − x(k) − η∇x f (x(k) )
+x
+2η
+2
+i=1
++
+
+m
+X
+hω i , qi (x)i,
+
+=
+
+i=1
+
+ωi
+
+Pgi (u(k) ).
+
+B. Nonuniform Sparse Proximal Average Network – Type-2
+(NuSPAN-2)
+Representing the NuPATA-2 update in (10) as a layer in
+a neural network, we obtain the nonuniform sparse proximal
+average network (NuSPAN-2). The structure for each layer in
+NuSPAN-2 is given by
+x(k+1) =
+
+m
+X
+i=1
+
+ωi
+
+Pgi (Wy + Sx(k) ),
+
+(11)
+
+where W and S definitions are provided in Section IV-C.
+Similar to NuSPAN-1, we optimize the learnable parameters
+of NuSPAN-2 subject to the constraints given in Eq. (8), by
+minimizing the smooth `1 cost defined between the true reflectivity x and prediction x̂(θ), where θ denotes the learnable
+parameters such as the matrices W and S, the parameters of
+gi (*) ∀i: {λ, μ, ν} ∈ Rn>0 P
+and {γ ∈ Rn>1 , a ∈ Rn>2 }, and the
+m
+weights {ω i : 0 < ωi < 1, i=1 ω i = 1}. Algorithm 4 gives
+the NuSPAN-2 algorithm for kmax layers, and Figure 3 gives
+the structure of layers in NuSPAN-2.
+VI. E XPERIMENTAL R ESULTS
+We demonstrate the efficacy of the proposed networks,
+namely, NuSPAN-1 and NuSPAN-2 on both synthetic and
+simulated datasets as well as on real data in comparison with
+the benchmark techniques such as BPI [10], [9], FISTA [11],
+[12], and SBL-EM [46], [16]. The performance of the proposed
+approaches is quantified based on objective metrics computed
+between ground-truth sparse vector x and the predicted sparse
+vector x̂ listed in the following section.
+A. Objective Metrics
+
+i=1
+
+m
+X
+
+x̂S(x̂) = H†S(x̂) y
+Output: x̂ ← x(kmax )
+
+(10)
+
+Algorithm (3) illustrates the NuPATA-2 formulation for solving
+the optimization problem (8) using the proximal average
+strategy. As in the previous section, we unfold the update
+in (10) into a layer of a neural network.
+
+We evaluate the performance in terms of amplitude and
+support recovery metrics, which are crucial to estimate the
+amplitudes and locations of reflection coefficients.
+• Correlation Coefficient (CC) [51]:
+CC = r
+
+hx, x̂i − hx, 1ihx̂, 1i
+
+,
+2
+2
+2
+2
+kxk2 − hx, 1i
+kx̂k2 − hx̂, 1i
+
+6
+
+ ̃3
+
+1
+<latexit sha1_base64="6ZSNmC7P8lWSdXBG1QtPl5dRkZE=">AAAB+nicbVDLSsNAFL2pr1pfqS7dDBbBVUmKqCspuHFZwT6gCWEynbRDJw9mJkqJ+RQ3LhRx65e482+ctFlo64GBwzn3cs8cP+FMKsv6Nipr6xubW9Xt2s7u3v6BWT/syTgVhHZJzGMx8LGknEW0q5jidJAIikOf074/vSn8/gMVksXRvZol1A3xOGIBI1hpyTPrmRNiNfGDzOlMWJ57Lc9sWE1rDrRK7JI0oETHM7+cUUzSkEaKcCzl0LYS5WZYKEY4zWtOKmmCyRSP6VDTCIdUutk8eo5OtTJCQSz0ixSaq783MhxKOQt9PVnklMteIf7nDVMVXLkZi5JU0YgsDgUpRypGRQ9oxAQlis80wUQwnRWRCRaYKN1WTZdgL395lfRaTfui2bo7b7SvyzqqcAwncAY2XEIbbqEDXSDwCM/wCm/Gk/FivBsfi9GKUe4cwR8Ynz9+hpQk</latexit>
+
+2
+
+<latexit sha1_base64="AmrT3/KeFTS0HRxOk15usl3HkRE=">AAACBHicbVDLSsNAFJ34rPUVddnNYBEqQklEfOwKblxWsA9oY5hMJ+3QySTMTIQyZOHGX3HjQhG3foQ7/8ZJm4W2HrhwOOde7r0nSBiVynG+raXlldW19dJGeXNre2fX3ttvyzgVmLRwzGLRDZAkjHLSUlQx0k0EQVHASCcYX+d+54EISWN+pyYJ8SI05DSkGCkj+XalHyE1wojpZubroa/dLLvXtfGJe5z5dtWpO1PAReIWpAoKNH37qz+IcRoRrjBDUvZcJ1GeRkJRzEhW7qeSJAiP0ZD0DOUoItLT0ycyeGSUAQxjYYorOFV/T2gUSTmJAtOZnyznvVz8z+ulKrz0NOVJqgjHs0VhyqCKYZ4IHFBBsGITQxAW1NwK8QgJhJXJrWxCcOdfXiTt07p7Xnduz6qNqyKOEqiAQ1ADLrgADXADmqAFMHgEz+AVvFlP1ov1bn3MWpesYuYA/IH1+QNrdZfn</latexit>
+
+Pg(k+1)
+1
+
+<latexit sha1_base64="Aj3ueQ1VBwWNllDqapDlzQSq4Mw=">AAAB+nicbVDLSsNAFL3xWesr1aWbYBFclaSKupKCG5cV7AOaECbTSTt0MgkzE6XEfIobF4q49Uvc+TdO2iy09cDA4Zx7uWdOkDAqlW1/Gyura+sbm5Wt6vbO7t6+WTvoyjgVmHRwzGLRD5AkjHLSUVQx0k8EQVHASC+Y3BR+74EISWN+r6YJ8SI04jSkGCkt+WYtcyOkxkGYue0xzXP/zDfrdsOewVomTknqUKLtm1/uMMZpRLjCDEk5cOxEeRkSimJG8qqbSpIgPEEjMtCUo4hIL5tFz60TrQytMBb6cWXN1N8bGYqknEaBnixyykWvEP/zBqkKr7yM8iRVhOP5oTBlloqtogdrSAXBik01QVhQndXCYyQQVrqtqi7BWfzyMuk2G85Fo3l3Xm9dl3VU4AiO4RQcuIQW3EIbOoDhEZ7hFd6MJ+PFeDc+5qMrRrlzCH9gfP4AgAqUJQ==</latexit>
+
+3
+
+<latexit sha1_base64="/1txyw2Wl3IKhpmP27wVpBrP8c4=">AAAB+HicbVBNS8NAEN34WetHox69LBbBU0lKUY8VEby1ln5BG8pmu22XbjZhdyLW0F/ixYMiXv0p3vw3btsctPXBwOO9GWbm+ZHgGhzn21pb39jc2s7sZHf39g9y9uFRU4exoqxBQxGqtk80E1yyBnAQrB0pRgJfsJY/vpn5rQemNA9lHSYR8wIylHzAKQEj9excF9gjJJXqbe26XqlNe3beKThz4FXipiSPUlR79le3H9I4YBKoIFp3XCcCLyEKOBVsmu3GmkWEjsmQdQyVJGDaS+aHT/GZUfp4ECpTEvBc/T2RkEDrSeCbzoDASC97M/E/rxPD4MpLuIxiYJIuFg1igSHEsxRwnytGQUwMIVRxcyumI6IIBZNV1oTgLr+8SprFgntRKN6X8uVSGkcGnaBTdI5cdInK6A5VUQNRFKNn9IrerCfrxXq3Phata1Y6c4z+wPr8ATIEkr8=</latexit>
+
+<latexit sha1_base64="ssbGw4qTP9vMaColDm8BfPr17Sk=">AAACAHicbVBNS8NAEN3Ur1q/oh48eAkWwVNJqqgnKXjxWMF+QBPCZrtpl242YXcilJCLf8WLB0W8+jO8+W/ctDlo64OBx3szzMwLEs4U2Pa3UVlZXVvfqG7WtrZ3dvfM/YOuilNJaIfEPJb9ACvKmaAdYMBpP5EURwGnvWByW/i9RyoVi8UDTBPqRXgkWMgIBi355pELjA9p5kYYxkGYue0xy3P/3DfrdsOewVomTknqqETbN7/cYUzSiAogHCs1cOwEvAxLYITTvOamiiaYTPCIDjQVOKLKy2YP5NapVoZWGEtdAqyZ+nsiw5FS0yjQncWdatErxP+8QQrhtZcxkaRABZkvClNuQWwVaVhDJikBPtUEE8n0rRYZY4kJ6MxqOgRn8eVl0m02nMtG8/6i3rop46iiY3SCzpCDrlAL3aE26iCCcvSMXtGb8WS8GO/Gx7y1YpQzh+gPjM8fPV6Wzw==</latexit>
+
+ ̃2
+
+<latexit sha1_base64="2hqwVv0IqWipuJrtCapyAc85g4c=">AAAB+nicbVDLSsNAFL2pr1pfqS7dBIvgqiRF1JUU3LisYB/QhDCZTtqhk0mYmSgl5lPcuFDErV/izr9x0mahrQcGDufcyz1zgoRRqWz726isrW9sblW3azu7e/sHZv2wJ+NUYNLFMYvFIECSMMpJV1HFyCARBEUBI/1gelP4/QciJI35vZolxIvQmNOQYqS05Jv1zI2QmgRh5nYmNM99xzcbdtOew1olTkkaUKLjm1/uKMZpRLjCDEk5dOxEeRkSimJG8pqbSpIgPEVjMtSUo4hIL5tHz61TrYysMBb6cWXN1d8bGYqknEWBnixyymWvEP/zhqkKr7yM8iRVhOPFoTBlloqtogdrRAXBis00QVhQndXCEyQQVrqtmi7BWf7yKum1ms5Fs3V33mhfl3VU4RhO4AwcuIQ23EIHuoDhEZ7hFd6MJ+PFeDc+FqMVo9w5gj8wPn8AfQKUIw==</latexit>
+
+<latexit sha1_base64="FhV2T2sBof/OygAgC2CVgKO4za4=">AAAB+nicbVBNS8NAEN3Ur1q/Uj16CRbBU0lKUY+FIqgHW6Vf0Iay2W7bpZtN2J2oJfanePGgiFd/iTf/jds2B219MPB4b4aZeV7ImQLb/jZSK6tr6xvpzczW9s7unpndb6ggkoTWScAD2fKwopwJWgcGnLZCSbHvcdr0RuWp37ynUrFA1GAcUtfHA8H6jGDQUtfMdoA+Qly9q1xflGtXlZtJ18zZeXsGa5k4CcmhBNWu+dXpBSTyqQDCsVJtxw7BjbEERjidZDqRoiEmIzygbU0F9qly49npE+tYKz2rH0hdAqyZ+nsixr5SY9/TnT6GoVr0puJ/XjuC/rkbMxFGQAWZL+pH3ILAmuZg9ZikBPhYE0wk07daZIglJqDTyugQnMWXl0mjkHdO84XbYq5UTOJIo0N0hE6Qg85QCV2iKqojgh7QM3pFb8aT8WK8Gx/z1pSRzBygPzA+fwBjA5Nk</latexit>
+
+<latexit sha1_base64="oIblpybAgIWTcECoUp4KWcWmv+Y=">AAACAHicbVDLSsNAFJ34rPUVdeHCzWARXJWkiLqSghuXFewDmhAmk5t26OTBzEQoIRt/xY0LRdz6Ge78GydtFtp64MLhnHu59x4/5Uwqy/o2VlbX1jc2a1v17Z3dvX3z4LAnk0xQ6NKEJ2LgEwmcxdBVTHEYpAJI5HPo+5Pb0u8/gpAsiR/UNAU3IqOYhYwSpSXPPHYU4wHkTkTU2A9zpzNmReG1PLNhNa0Z8DKxK9JAFTqe+eUECc0iiBXlRMqhbaXKzYlQjHIo6k4mISV0QkYw1DQmEUg3nz1Q4DOtBDhMhK5Y4Zn6eyInkZTTyNed5Z1y0SvF/7xhpsJrN2dxmimI6XxRmHGsElymgQMmgCo+1YRQwfStmI6JIFTpzOo6BHvx5WXSazXty2br/qLRvqniqKETdIrOkY2uUBvdoQ7qIooK9Ixe0ZvxZLwY78bHvHXFqGaO0B8Ynz872pbO</latexit>
+
+ ̃1
+
+PROJECTION
+OPERATOR
+
+<latexit sha1_base64="zA2YE0eDQv0nKE2OyrnaXmmVfhU=">AAACAHicbVDLSsNAFJ34rPUVdeHCzWARXJWkiLqSghuXFewDmhAmk0k7dPJg5kYoIRt/xY0LRdz6Ge78GydtFtp64MLhnHu59x4/FVyBZX0bK6tr6xubta369s7u3r55cNhTSSYp69JEJHLgE8UEj1kXOAg2SCUjkS9Y35/cln7/kUnFk/gBpilzIzKKecgpAS155rEDXAQsdyICYz/Mnc6YF4Vne2bDaloz4GViV6SBKnQ888sJEppFLAYqiFJD20rBzYkETgUr6k6mWErohIzYUNOYREy5+eyBAp9pJcBhInXFgGfq74mcREpNI193lneqRa8U//OGGYTXbs7jNAMW0/miMBMYElymgQMuGQUx1YRQyfWtmI6JJBR0ZnUdgr348jLptZr2ZbN1f9Fo31Rx1NAJOkXnyEZXqI3uUAd1EUUFekav6M14Ml6Md+Nj3rpiVDNH6A+Mzx86VpbN</latexit>
+
+<latexit sha1_base64="jTC63m6DMCuBMl1afDxXbPFS5PU=">AAAB/3icbVBLSwMxGMzWV62vVcGLl2ARKkLZLaIeCx70WME+oF1LNpu2odlkSbJiWffgX/HiQRGv/g1v/huz7R60OhAyzHwfmYwfMaq043xZhYXFpeWV4mppbX1jc8ve3mkpEUtMmlgwITs+UoRRTpqaakY6kSQo9Blp++OLzG/fEamo4Dd6EhEvRENOBxQjbaS+vdfzBQvUJDRXcp/eJpXxce0o7dtlp+pMAf8SNydlkKPRtz97gcBxSLjGDCnVdZ1IewmSmmJG0lIvViRCeIyGpGsoRyFRXjLNn8JDowRwIKQ5XMOp+nMjQaHKIprJEOmRmvcy8T+vG+vBuZdQHsWacDx7aBAzqAXMyoABlQRrNjEEYUlNVohHSCKsTWUlU4I7/+W/pFWruqdV5/qkXL/M6yiCfXAAKsAFZ6AOrkADNAEGD+AJvIBX69F6tt6s99lowcp3dsEvWB/f4L6WAw==</latexit>
+
+<latexit sha1_base64="LCjlt3skB1IMu5U7KK+n2d//BjY=">AAACAnicbVDLSsNAFJ3UV62vqCtxM1iEuimJiLosuNBlBfuANobJdNIOnUzCzEQoQ3Djr7hxoYhbv8Kdf+OkzUJbD1w4nHMv994TJIxK5TjfVmlpeWV1rbxe2djc2t6xd/faMk4FJi0cs1h0AyQJo5y0FFWMdBNBUBQw0gnGV7nfeSBC0pjfqUlCvAgNOQ0pRspIvn3Qj5AaYcR0M/P10Ndult3r2vgk8+2qU3emgIvELUgVFGj69ld/EOM0IlxhhqTsuU6iPI2EopiRrNJPJUkQHqMh6RnKUUSkp6cvZPDYKAMYxsIUV3Cq/p7QKJJyEgWmMz9Yznu5+J/XS1V46WnKk1QRjmeLwpRBFcM8DziggmDFJoYgLKi5FeIREggrk1rFhODOv7xI2qd197zu3J5VG9dFHGVwCI5ADbjgAjTADWiCFsDgETyDV/BmPVkv1rv1MWstWcXMPvgD6/MHhoGXhQ==</latexit>
+
+Pg(k)
+1
+
+y
+
+<latexit sha1_base64="ZyaNDonfv0UthhcSwR2vWDM/h6g=">AAACBHicbVDLSsNAFJ3UV62vqMtuBotQEUpSxMeu4MZlBfuANobJdNoOnUzCzEQoQxZu/BU3LhRx60e482+ctFlo64ELh3Pu5d57gphRqRzn2yqsrK6tbxQ3S1vbO7t79v5BW0aJwKSFIxaJboAkYZSTlqKKkW4sCAoDRjrB5DrzOw9ESBrxOzWNiReiEadDipEykm+X+yFSY4yYbqa+Hvm6nqb3ujo5dU9S3644NWcGuEzcnFRAjqZvf/UHEU5CwhVmSMqe68TK00goihlJS/1EkhjhCRqRnqEchUR6evZECo+NMoDDSJjiCs7U3xMahVJOw8B0ZifLRS8T//N6iRpeepryOFGE4/miYcKgimCWCBxQQbBiU0MQFtTcCvEYCYSVya1kQnAXX14m7XrNPa85t2eVxlUeRxGUwRGoAhdcgAa4AU3QAhg8gmfwCt6sJ+vFerc+5q0FK585BH9gff4AbQOX6A==</latexit>
+
+Pg(k+1)
+2
+
+W
+<latexit sha1_base64="kBfcbj1EBJOXJGFndkpOiaUtWio=">AAAB8XicbVDLSsNAFL3xWeur6tLNYBFclUREXRbduKxgH9iGMpnetEMnkzAzEUroX7hxoYhb/8adf+OkzUJbDwwczrmXOfcEieDauO63s7K6tr6xWdoqb+/s7u1XDg5bOk4VwyaLRaw6AdUouMSm4UZgJ1FIo0BgOxjf5n77CZXmsXwwkwT9iA4lDzmjxkqPvYiaURBm7Wm/UnVr7gxkmXgFqUKBRr/y1RvELI1QGiao1l3PTYyfUWU4Ezgt91KNCWVjOsSupZJGqP1slnhKTq0yIGGs7JOGzNTfGxmNtJ5EgZ3ME+pFLxf/87qpCa/9jMskNSjZ/KMwFcTEJD+fDLhCZsTEEsoUt1kJG1FFmbEllW0J3uLJy6R1XvMua+79RbV+U9RRgmM4gTPw4ArqcAcNaAIDCc/wCm+Odl6cd+djPrriFDtH8AfO5w/MupEA</latexit>
+
+<latexit sha1_base64="V+N/0zKAREO15SLtgKyHxqnLYbg=">AAAB9XicbVDLSgMxFL1TX7W+qi7dBIvgqsyIqMuiG5cV7APasWQymTY0kwxJRilD/8ONC0Xc+i/u/Bsz7Sy09UDI4Zx7yckJEs60cd1vp7Syura+Ud6sbG3v7O5V9w/aWqaK0BaRXKpugDXlTNCWYYbTbqIojgNOO8H4Jvc7j1RpJsW9mSTUj/FQsIgRbKz00A8kD/Uktlc2mQ6qNbfuzoCWiVeQGhRoDqpf/VCSNKbCEI617nluYvwMK8MIp9NKP9U0wWSMh7RnqcAx1X42Sz1FJ1YJUSSVPcKgmfp7I8OxzqPZyRibkV70cvE/r5ea6MrPmEhSQwWZPxSlHBmJ8gpQyBQlhk8swUQxmxWREVaYGFtUxZbgLX55mbTP6t5F3b07rzWuizrKcATHcAoeXEIDbqEJLSCg4Ble4c15cl6cd+djPlpyip1D+APn8wdWd5MP</latexit>
+
+x(k+2)
+
+<latexit sha1_base64="852Kzogv7nSvczxAHxJInsbaj0Q=">AAAB/3icbVBLSwMxGMzWV62vVcGLl2ARKkLZFVGPRS8eK9gHtGvJZtM2NJssSVYs6x78K148KOLVv+HNf2O23YO2DoQMM99HJuNHjCrtON9WYWFxaXmluFpaW9/Y3LK3d5pKxBKTBhZMyLaPFGGUk4ammpF2JAkKfUZa/ugq81v3RCoq+K0eR8QL0YDTPsVIG6ln73V9wQI1Ds2VPKR3SWV07B6lPbvsVJ0J4Dxxc1IGOeo9+6sbCByHhGvMkFId14m0lyCpKWYkLXVjRSKER2hAOoZyFBLlJZP8KTw0SgD7QprDNZyovzcSFKosopkMkR6qWS8T//M6se5feAnlUawJx9OH+jGDWsCsDBhQSbBmY0MQltRkhXiIJMLaVFYyJbizX54nzZOqe1Z1bk7Ltcu8jiLYBwegAlxwDmrgGtRBA2DwCJ7BK3iznqwX6936mI4WrHxnF/yB9fkD3beV/Q==</latexit>
+
+x(k+1)
+
+<latexit sha1_base64="4sYEgT8AryqWrC5NcNoORWV/b8w=">AAACAnicbVDLSsNAFJ34rPUVdSVuBotQNyUpoi4LLnRZwT6gjWEynbRDJ5MwMxHKENz4K25cKOLWr3Dn3zhps9DWAxcO59zLvfcECaNSOc63tbS8srq2Xtoob25t7+zae/ttGacCkxaOWSy6AZKEUU5aiipGuokgKAoY6QTjq9zvPBAhaczv1CQhXoSGnIYUI2Uk3z7sR0iNMGK6mfl66Ot6lt3r6vg08+2KU3OmgIvELUgFFGj69ld/EOM0IlxhhqTsuU6iPI2EopiRrNxPJUkQHqMh6RnKUUSkp6cvZPDEKAMYxsIUV3Cq/p7QKJJyEgWmMz9Yznu5+J/XS1V46WnKk1QRjmeLwpRBFcM8DziggmDFJoYgLKi5FeIREggrk1rZhODOv7xI2vWae15zbs8qjesijhI4AsegClxwARrgBjRBC2DwCJ7BK3iznqwX6936mLUuWcXMAfgD6/MHiA2Xhg==</latexit>
+
+y
+
+W
+
+Pg(k)
+2
+
+x(k)
+
+S
+
+Pg(k)
+3
+
+<latexit sha1_base64="V+N/0zKAREO15SLtgKyHxqnLYbg=">AAAB9XicbVDLSgMxFL1TX7W+qi7dBIvgqsyIqMuiG5cV7APasWQymTY0kwxJRilD/8ONC0Xc+i/u/Bsz7Sy09UDI4Zx7yckJEs60cd1vp7Syura+Ud6sbG3v7O5V9w/aWqaK0BaRXKpugDXlTNCWYYbTbqIojgNOO8H4Jvc7j1RpJsW9mSTUj/FQsIgRbKz00A8kD/Uktlc2mQ6qNbfuzoCWiVeQGhRoDqpf/VCSNKbCEI617nluYvwMK8MIp9NKP9U0wWSMh7RnqcAx1X42Sz1FJ1YJUSSVPcKgmfp7I8OxzqPZyRibkV70cvE/r5ea6MrPmEhSQwWZPxSlHBmJ8gpQyBQlhk8swUQxmxWREVaYGFtUxZbgLX55mbTP6t5F3b07rzWuizrKcATHcAoeXEIDbqEJLSCg4Ble4c15cl6cd+djPlpyip1D+APn8wdWd5MP</latexit>
+
+<latexit sha1_base64="kBfcbj1EBJOXJGFndkpOiaUtWio=">AAAB8XicbVDLSsNAFL3xWeur6tLNYBFclUREXRbduKxgH9iGMpnetEMnkzAzEUroX7hxoYhb/8adf+OkzUJbDwwczrmXOfcEieDauO63s7K6tr6xWdoqb+/s7u1XDg5bOk4VwyaLRaw6AdUouMSm4UZgJ1FIo0BgOxjf5n77CZXmsXwwkwT9iA4lDzmjxkqPvYiaURBm7Wm/UnVr7gxkmXgFqUKBRr/y1RvELI1QGiao1l3PTYyfUWU4Ezgt91KNCWVjOsSupZJGqP1slnhKTq0yIGGs7JOGzNTfGxmNtJ5EgZ3ME+pFLxf/87qpCa/9jMskNSjZ/KMwFcTEJD+fDLhCZsTEEsoUt1kJG1FFmbEllW0J3uLJy6R1XvMua+79RbV+U9RRgmM4gTPw4ArqcAcNaAIDCc/wCm+Odl6cd+djPrriFDtH8AfO5w/MupEA</latexit>
+
+<latexit sha1_base64="rzMovh86kWOISm+P0tjI4HbmPsw=">AAACBHicbVDLSsNAFJ3UV62vqMtuBotQEUqi4mNXcOOygn1AW8NkOmmHTiZhZiKUIQs3/oobF4q49SPc+TdO2iy09cCFwzn3cu89fsyoVI7zbRWWlldW14rrpY3Nre0de3evJaNEYNLEEYtEx0eSMMpJU1HFSCcWBIU+I21/fJ357QciJI34nZrEpB+iIacBxUgZybPLvRCpEUZMN1JPDz19mqb3ujo+do9Sz644NWcKuEjcnFRAjoZnf/UGEU5CwhVmSMqu68Sqr5FQFDOSlnqJJDHCYzQkXUM5Cons6+kTKTw0ygAGkTDFFZyqvyc0CqWchL7pzE6W814m/ud1ExVc9jXlcaIIx7NFQcKgimCWCBxQQbBiE0MQFtTcCvEICYSVya1kQnDnX14krZOae15zbs8q9as8jiIogwNQBS64AHVwAxqgCTB4BM/gFbxZT9aL9W59zFoLVj6zD/7A+vwBbpGX6Q==</latexit>
+
+Pg(k+1)
+3
+
+S
+<latexit sha1_base64="fAAZXDDd5quI0cbV4F7p9kw1FsQ=">AAAB8XicbVDLSgMxFL1TX7W+qi7dBIvgqsyIqMuiG5cV7QPbUjJppg3NZIbkjlCG/oUbF4q49W/c+Tdm2llo64HA4Zx7ybnHj6Uw6LrfTmFldW19o7hZ2tre2d0r7x80TZRoxhsskpFu+9RwKRRvoEDJ27HmNPQlb/njm8xvPXFtRKQecBLzXkiHSgSCUbTSYzekOPKD9H7aL1fcqjsDWSZeTiqQo94vf3UHEUtCrpBJakzHc2PspVSjYJJPS93E8JiyMR3yjqWKhtz00lniKTmxyoAEkbZPIZmpvzdSGhozCX07mSU0i14m/ud1EgyueqlQcYJcsflHQSIJRiQ7nwyE5gzlxBLKtLBZCRtRTRnakkq2BG/x5GXSPKt6F1X37rxSu87rKMIRHMMpeHAJNbiFOjSAgYJneIU3xzgvzrvzMR8tOPnOIfyB8/kDxqaQ/A==</latexit>
+
+<latexit sha1_base64="N9BPncCgYX78CGPvixPuJmg9+1Y=">AAAB/XicbVA7T8MwGHR4lvIKj43FokIqS5UgBIwVLIxFog+pDZXjOK1Vx45sB1GiiL/CwgBCrPwPNv4NTpsBWk6yfLr7Pvl8fsyo0o7zbS0sLi2vrJbWyusbm1vb9s5uS4lEYtLEggnZ8ZEijHLS1FQz0oklQZHPSNsfXeV++55IRQW/1eOYeBEacBpSjLSR+vZ+zxcsUOPIXOlDdpdWR8dZ3644NWcCOE/cglRAgUbf/uoFAicR4RozpFTXdWLtpUhqihnJyr1EkRjhERqQrqEcRUR56SR9Bo+MEsBQSHO4hhP190aKIpUHNJMR0kM16+Xif1430eGFl1IeJ5pwPH0oTBjUAuZVwIBKgjUbG4KwpCYrxEMkEdamsLIpwZ398jxpndTcs5pzc1qpXxZ1lMABOARV4IJzUAfXoAGaAINH8AxewZv1ZL1Y79bHdHTBKnb2wB9Ynz/4I5WN</latexit>
+
+<latexit sha1_base64="iNSKy93sPCKen2m5o1MBR9DBnYU=">AAACAnicbVDLSsNAFJ34rPUVdSVuBotQNyVRUZcFF7qsYB/QxjCZTtqhk0mYmQhlCG78FTcuFHHrV7jzb5y0WWjrgQuHc+7l3nuChFGpHOfbWlhcWl5ZLa2V1zc2t7btnd2WjFOBSRPHLBadAEnCKCdNRRUjnUQQFAWMtIPRVe63H4iQNOZ3apwQL0IDTkOKkTKSb+/3IqSGGDHdyHw98PVplt3r6ug48+2KU3MmgPPELUgFFGj49levH+M0IlxhhqTsuk6iPI2EopiRrNxLJUkQHqEB6RrKUUSkpycvZPDIKH0YxsIUV3Ci/p7QKJJyHAWmMz9Yznq5+J/XTVV46WnKk1QRjqeLwpRBFcM8D9ingmDFxoYgLKi5FeIhEggrk1rZhODOvjxPWic197zm3J5V6tdFHCVwAA5BFbjgAtTBDWiAJsDgETyDV/BmPVkv1rv1MW1dsIqZPfAH1ucPiZmXhw==</latexit>
+
+<latexit sha1_base64="fAAZXDDd5quI0cbV4F7p9kw1FsQ=">AAAB8XicbVDLSgMxFL1TX7W+qi7dBIvgqsyIqMuiG5cV7QPbUjJppg3NZIbkjlCG/oUbF4q49W/c+Tdm2llo64HA4Zx7ybnHj6Uw6LrfTmFldW19o7hZ2tre2d0r7x80TZRoxhsskpFu+9RwKRRvoEDJ27HmNPQlb/njm8xvPXFtRKQecBLzXkiHSgSCUbTSYzekOPKD9H7aL1fcqjsDWSZeTiqQo94vf3UHEUtCrpBJakzHc2PspVSjYJJPS93E8JiyMR3yjqWKhtz00lniKTmxyoAEkbZPIZmpvzdSGhozCX07mSU0i14m/ud1EgyueqlQcYJcsflHQSIJRiQ7nwyE5gzlxBLKtLBZCRtRTRnakkq2BG/x5GXSPKt6F1X37rxSu87rKMIRHMMpeHAJNbiFOjSAgYJneIU3xzgvzrvzMR8tOPnOIfyB8/kDxqaQ/A==</latexit>
+
+SOFTMAX
+SOFTMAX
+(Axis=1)
+(Axis=1)
+<latexit sha1_base64="ujhl03VS2XBVmHEvwbcaW5PAQ4Y=">AAAB+3icbVDLSsNAFJ3UV42vWJduBotQNyXpQt0ILYK4ESv2BU0ok+mkHTqZhJmJtIT+ihsXirj1R9z5N07bLLT1wIXDOfdy7z1+zKhUtv1t5NbWNza38tvmzu7e/oF1WGjJKBGYNHHEItHxkSSMctJUVDHSiQVBoc9I2x9dz/z2ExGSRryhJjHxQjTgNKAYKS31rMLj/U3jrtZxXbNUG1N55Zz1rKJdtueAq8TJSBFkqPesL7cf4SQkXGGGpOw6dqy8FAlFMSNT000kiREeoQHpaspRSKSXzm+fwlOt9GEQCV1cwbn6eyJFoZST0NedIVJDuezNxP+8bqKCSy+lPE4U4XixKEgYVBGcBQH7VBCs2EQThAXVt0I8RAJhpeMydQjO8surpFUpO+dl+6FSrFayOPLgGJyAEnDABaiCW1AHTYDBGDyDV/BmTI0X4934WLTmjGzmCPyB8fkDL/6Sig==</latexit>
+
+ ̃2 !
+ ̃1 !
+ ̃3
+!
+<latexit sha1_base64="JmAIY1wWX5DYCf+fAuSc/g1jS8c=">AAACCHicbVDLSsNAFJ3UV62vqEsXBovgqiRF1GXRjcsK9gFNCJPJbTt0kgkzE6GELN34K25cKOLWT3Dn3zhps9DWA8MczrmXe+8JEkalsu1vo7Kyura+Ud2sbW3v7O6Z+wddyVNBoEM446IfYAmMxtBRVDHoJwJwFDDoBZObwu89gJCUx/dqmoAX4VFMh5RgpSXfPHYVZSFkbsBZKKeR/jKXRzDCee5nzdw363bDnsFaJk5J6qhE2ze/3JCTNIJYEYalHDh2orwMC0UJg7zmphISTCZ4BANNYxyB9LLZIbl1qpXQGnKhX6ysmfq7I8ORLJbUlRFWY7noFeJ/3iBVwysvo3GSKojJfNAwZZbiVpGKFVIBRLGpJpgIqne1yBgLTJTOrqZDcBZPXibdZsO5aNh35/XWdRlHFR2hE3SGHHSJWugWtVEHEfSIntErejOejBfj3fiYl1aMsucQ/YHx+QNGPJrF</latexit>
+
+<latexit sha1_base64="Al2gzsMjqSFUyoAb0T7KAotV2zQ=">AAACCHicbVBNS8NAEN3Ur1q/oh49GCyCp5KIqMeiF48VbC00IWw2k3bpJht2N0IJOXrxr3jxoIhXf4I3/42bNgdtfbDs470ZZuYFKaNS2fa3UVtaXlldq683Nja3tnfM3b2e5Jkg0CWccdEPsARGE+gqqhj0UwE4DhjcB+Pr0r9/ACEpT+7UJAUvxsOERpRgpSXfPHQVZSHkbsBZKCex/nKXxzDEReHnTuGbTbtlT2EtEqciTVSh45tfbshJFkOiCMNSDhw7VV6OhaKEQdFwMwkpJmM8hIGmCY5Bevn0kMI61kpoRVzolyhrqv7uyHEsyyV1ZYzVSM57pfifN8hUdOnlNEkzBQmZDYoyZilulalYIRVAFJtogomgeleLjLDAROnsGjoEZ/7kRdI7bTnnLfv2rNm+quKoowN0hE6Qgy5QG92gDuoigh7RM3pFb8aT8WK8Gx+z0ppR9eyjPzA+fwBEt5rE</latexit>
+
+<latexit sha1_base64="diyrUmVphRG2VK/jYOHKgb5GLmI=">AAACCHicbVDLSsNAFJ3UV62vqEsXBovgqiQq6rLoxmUF+4AmlMnkph06yYSZiVBClm78FTcuFHHrJ7jzb5y0WWjrgWEO59zLvff4CaNS2fa3UVlaXlldq67XNja3tnfM3b2O5Kkg0CaccdHzsQRGY2grqhj0EgE48hl0/fFN4XcfQEjK43s1ScCL8DCmISVYaWlgHrqKsgAy1+cskJNIf5nLIxjiPB9kZ/nArNsNewprkTglqaMSrYH55QacpBHEijAsZd+xE+VlWChKGOQ1N5WQYDLGQ+hrGuMIpJdND8mtY60EVsiFfrGypurvjgxHslhSV0ZYjeS8V4j/ef1UhVdeRuMkVRCT2aAwZZbiVpGKFVABRLGJJpgIqne1yAgLTJTOrqZDcOZPXiSd04Zz0bDvzuvN6zKOKjpAR+gEOegSNdEtaqE2IugRPaNX9GY8GS/Gu/ExK60YZc8++gPj8wdHwZrG</latexit>
+
+<latexit sha1_base64="ujhl03VS2XBVmHEvwbcaW5PAQ4Y=">AAAB+3icbVDLSsNAFJ3UV42vWJduBotQNyXpQt0ILYK4ESv2BU0ok+mkHTqZhJmJtIT+ihsXirj1R9z5N07bLLT1wIXDOfdy7z1+zKhUtv1t5NbWNza38tvmzu7e/oF1WGjJKBGYNHHEItHxkSSMctJUVDHSiQVBoc9I2x9dz/z2ExGSRryhJjHxQjTgNKAYKS31rMLj/U3jrtZxXbNUG1N55Zz1rKJdtueAq8TJSBFkqPesL7cf4SQkXGGGpOw6dqy8FAlFMSNT000kiREeoQHpaspRSKSXzm+fwlOt9GEQCV1cwbn6eyJFoZST0NedIVJDuezNxP+8bqKCSy+lPE4U4XixKEgYVBGcBQH7VBCs2EQThAXVt0I8RAJhpeMydQjO8surpFUpO+dl+6FSrFayOPLgGJyAEnDABaiCW1AHTYDBGDyDV/BmTI0X4934WLTmjGzmCPyB8fkDL/6Sig==</latexit>
+
+<latexit sha1_base64="l9Wx7XHXk7kZizaQ9A/OX1muiyM=">AAACAHicbVC7TsMwFHXKq5RXgIGBxaJCYqoShICxgoWxSPQhNVHkOE5r1Y4j20Gqoiz8CgsDCLHyGWz8DU6bAVqOZPnonHt17z1hyqjSjvNt1VZW19Y36puNre2d3T17/6CnRCYx6WLBhByESBFGE9LVVDMySCVBPGSkH05uS7//SKSiInnQ05T4HI0SGlOMtJEC+8gLBYvUlJsv9wQnI1QEuVsEdtNpOTPAZeJWpAkqdAL7y4sEzjhJNGZIqaHrpNrPkdQUM1I0vEyRFOEJGpGhoQniRPn57IACnholgrGQ5iUaztTfHTniqtzRVHKkx2rRK8X/vGGm42s/p0maaZLg+aA4Y1ALWKYBIyoJ1mxqCMKSml0hHiOJsDaZNUwI7uLJy6R33nIvW879RbN9U8VRB8fgBJwBF1yBNrgDHdAFGBTgGbyCN+vJerHerY95ac2qeg7BH1ifP5vJlw4=</latexit>
+
+!1 !2 !3
+<latexit sha1_base64="Ku/iO5lOdP4o+ygOPbZMSmzy6Ks=">AAACAHicbVDLSsNAFJ34rPUVdeHCTbAIrkpSRF0W3bisYB/QhDCZTNqh8wgzE6GEbPwVNy4UcetnuPNvnLRZaOuBYQ7n3Mu990QpJUq77re1srq2vrFZ26pv7+zu7dsHhz0lMolwFwkq5CCCClPCcVcTTfEglRiyiOJ+NLkt/f4jlooI/qCnKQ4YHHGSEAS1kUL72I8EjdWUmS/3BcMjWIR5qwjthtt0Z3CWiVeRBqjQCe0vPxYoY5hrRKFSQ89NdZBDqQmiuKj7mcIpRBM4wkNDOWRYBfnsgMI5M0rsJEKax7UzU3935JCpckdTyaAeq0WvFP/zhplOroOc8DTTmKP5oCSjjhZOmYYTE4mRplNDIJLE7OqgMZQQaZNZ3YTgLZ68THqtpnfZdO8vGu2bKo4aOAGn4Bx44Aq0wR3ogC5AoADP4BW8WU/Wi/VufcxLV6yq5wj8gfX5A51Olw8=</latexit>
+
+<latexit sha1_base64="Sy2rfHkVNuIxszIhmyN2I9eILa0=">AAACAHicbVC7TsMwFHXKq5RXgIGBxaJCYqoSQMBYwcJYJEorNVHkOE5r1bEj20Gqoiz8CgsDCLHyGWz8DU6bAVqOZPnonHt17z1hyqjSjvNt1ZaWV1bX6uuNjc2t7R17d+9BiUxi0sWCCdkPkSKMctLVVDPSTyVBSchILxzflH7vkUhFBb/Xk5T4CRpyGlOMtJEC+8ALBYvUJDFf7omEDFER5GdFYDedljMFXCRuRZqgQiewv7xI4CwhXGOGlBq4Tqr9HElNMSNFw8sUSREeoyEZGMpRQpSfTw8o4LFRIhgLaR7XcKr+7shRosodTWWC9EjNe6X4nzfIdHzl55SnmSYczwbFGYNawDINGFFJsGYTQxCW1OwK8QhJhLXJrGFCcOdPXiQPpy33ouXcnTfb11UcdXAIjsAJcMElaINb0AFdgEEBnsEreLOerBfr3fqYldasqmcf/IH1+QOe05cQ</latexit>
+
+Fig. 3.
+Structure of layers in NuSPAN-2. The matrices W, S, and [ω 1 ω 2 ω 3 ], and Φi , which are the parameters of gi : {λ, μ, ν} ∈ Rn
+>0 and
+n
+{γ ∈ Rn
+,
+>1 a ∈ R>2 } (corresponding to the penalties in Table II), are shared across layers of NuSPAN-2. The projection operator refers to the constraints
+imposed according to Table II through the Pytorch [50] clamp function. The operators ⊕ and
+represent sum and product, all considered element-wise.
+
+Algorithm 3: Nonuniform Sparse Proximal-Averaged
+Thresholding Algorithm – Type-2 (NuPATA-2)
+2
+
+Input: y, h, L = khk2 , kmax
+Pm,
+{ω i : 0 < ωi < 1, i=1 ω i = 1},
+{λ, μ, ν} ∈ Rn>0 , {γ ∈ Rn>1 , a ∈ Rn>2 }
+Initialize: x(0) = 0
+while k < kmax do
+
+z (k+1) = x(k) + (1/2L) h0 ∗ (y − h ∗ x(k) )
+m
+
+P
+x(k+1) =
+ω i Pgi z (k+1)
+i=1
+
+k =k+1
+Output: x̂ ← x
+
+2
+
+Input: y, L = kHk2 , kmax
+P, m
+{ω i : 0 < ωi < 1, i=1 ω i = 1},
+{λ, μ, ν} ∈ Rn>0 , {γ ∈ Rn>1 , a ∈ Rn>2 }
+m
+P
+Initialize: W, S, x(0) =
+ω i Pgi (Wy)
+i=1
+
+while k ≤ kmax do
+c(k+1) = Wy + Sx(k)
+m
+P
+x(k+1) =
+ω i Pgi (c(k+1) )
+i=1
+
+(kmax )
+
+Relative Reconstruction Error (RRE) and Signal-toReconstruction Error Ratio (SRER) (in dB)
+!
+2
+2
+kx̂ − xk2
+kxk2
+RRE =
+, SRER = 10 log10
+.
+2
+2
+kxk2
+kx̂ − xk2
+•
+
+Algorithm 4: Nonuniform Sparse Proximal Average
+Network – Type-2 (NuSPAN-2)
+
+k =k+1
+x̂S(x̂) = H†S(x̂) y
+Output: x̂ ← x(kmax )
+
+profile contains 200 samples with amplitudes ranging from
+−1.0 to 1.0, padded with zeros before convolution with the
+wavelet
+to have the same length as the seismic trace [4]. The
+• Probability of Error in Support (PES) is given by
+sparsity
+factor, which is the ratio of the number of non-zero
+
+t 
+1 X max(|S(x̂i )| , |S(xi )|) − |S(x̂i ) ∩ S(xi )|
+elements to the total number of elements, is set to 0.05. We
+,
+PES =
+t i=1
+max(|S(x̂i )| , |S(xi )|)
+also report results for sparsity factors 0.10, 0.15, and 0.20 in
+the supplementary document. The reflector/spike locations are
+where | * | denotes the cardinality, and S(*) denotes the support chosen uniformly at random, without any minimum spacing
+of the argument.
+constraint between any two spikes. Reflectivity values are then
+assigned to these locations, picked randomly from the amplitude
+B. Training Phase
+range of −1.0 to 1.0. The amplitude increment, sampling
+The synthetic training data that appropriately represents interval, wavelet frequency, and the initial hyperparameters
+observed seismic data is generated as recommended by [43]. vary depending on the dataset. The optimum number of layers
+We generate synthetic training data of size 5 × 105 seismic also varies with the dataset, and we consider 10, 15, or 20
+traces, each consisting of 300 samples, obtained by convolving layer-models in our experiments. Our models are trained with
+1-D reflectivity profiles with a Ricker wavelet. Each reflectivity a batch size of 200, use the ADAM optimizer [52], and with
+
+AMPLITUDE
+
+7
+
+1.5
+1.0
+0.5
+0.0
+0.5
+1.0
+
+TRUE(SEIS)
+
+NOISY(SEIS)
+
+AMPLITUDE
+
+(a)
+
+1.5
+1.0
+0.5
+0.0
+0.5
+
+(b)
+
+TRUE(REF)
+
+BPI
+
+AMPLITUDE
+
+(c)
+
+1.5
+1.0
+0.5
+0.0
+0.5
+
+(d)
+
+FISTA
+
+SBL-EM
+
+AMPLITUDE
+
+(e)
+
+1.5
+1.0
+0.5
+0.0
+0.5
+
+(f)
+
+NuSPAN-1
+
+0
+
+50
+
+100
+
+NuSPAN-2
+
+150 200
+TIME (ms)
+
+250
+
+(g)
+
+300
+
+0
+
+50
+
+100
+
+150 200
+TIME (ms)
+
+250
+
+300
+
+(h)
+
+Fig. 4.
+Sample results for a synthetic 1-D seismic trace. (a) True seismic trace; (b) noisy seismic trace; (c) true reflectivity; (d)-(h) Recovered reflectivity
+(blue circles) compared with true reflectivity (red crosses). The proposed techniques, NuSPAN-1 (g) and NuSPAN-2 (h), distinguish between closely-spaced
+spikes around 150 ms; the benchmark techniques BPI, FISTA, and SBL-EM (d)-(f) predict a single reflector instead.
+
+the learning rate set to 1 × 10−3 , and input measurement SNR
+set to 10 dB - to ensure robustness against noisy testing
+data [43]. We consider models trained on 1-D data to operate
+trace-by-trace on all the datasets: synthetic 1-D data, synthetic
+2-D wedge models [53], simulated Marmousi2 data [54], and
+real data.
+
+NuSPAN-1 and NuSPAN-2 resolve closely-spaced reflection
+coefficients, whereas the benchmark techniques (BPI, FISTA,
+and SBL-EM) predict a single reflector. From Table III, observe
+that NuSPAN-1 and NuSPAN-2 (Nonuniform Sparse Proximal
+Average Network, Type 1 and 2) recover amplitudes with higher
+accuracy than the benchmark methods, and NuSPAN-1 exhibits
+superior support recovery. The low computation time of the
+proposed models is crucial for processing the large volume of
+C. Testing Phase – Synthetic 1-D & 2-D Data
+data in reflection seismic processing.
+1) Synthetic 1-D Traces: We validate the performance of
+2) Synthetic 2-D Wedge Models: Synthetic 2-D wedge
+the proposed models over 1000 realizations of synthetic 1-D models are considered to evaluate resolving capability on
+traces, with a 30 Hz Ricker wavelet, 1 ms sampling interval, thin beds [53]. A wedge model typically consists of two
+0.2 amplitude increments, and the minimum spacing between interfaces, one horizontal and another inclined, with the polarity
+reflection coefficients (spikes) 1 ms. Comparisons across several (N: Negative, P: Positive) of reflection coefficients same or
+methods are reported in Figure 4 and Table III. Figure 4 shows opposite, giving four possible types of wedge models. Here,
+the results for a sample synthetic 1-D trace out of the 1000 we report results from an odd wedge model (NP) with negative
+test realizations for which the results are reported in Table III. polarity on the upper horizontal interface (N) and positive
+
+8
+
+TABLE III
+P ERFORMANCE EVALUATION IN TERMS OF OBJECTIVE METRICS AVERAGED
+OVER 1000 TEST REALIZATIONS OF SYNTHETIC 1-D TRACES . T HE
+PROPOSED NuSPAN-1 AND NuSPAN-2 SHOW SUPERIOR AMPLITUDE
+RECOVERY IN TERMS OF CC, RRE, AND SRER AND SIGNIFICANTLY
+LOWER COMPUTATION TIME , WHILE NuSPAN-1 OUTPERFORMS IN SUPPORT
+RECOVERY IN TERMS OF PES. T HE BEST PERFORMANCE IS HIGHLIGHTED
+IN BOLDFACE . T HE SECOND BEST IS UNDERLINED .
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+CC
+
+RRE
+
+SRER
+
+PES
+
+Time (s)
+
+0.5499
+0.5473
+0.5501
+0.5979
+0.6050
+
+0.7290
+0.7203
+0.7682
+0.6354
+0.6274
+
+1.8687
+1.8391
+1.8276
+2.2038
+2.2508
+
+0.9704
+0.8112
+0.9704
+0.7104
+0.9563
+
+503.8519
+33.2539
+1076.1833
+0.1778
+0.1870
+
+on the lower inclined interface (P), and an even (NN) wedge
+model, while those for the remaining two variants are given
+in the supplementary. In our experimental setup, each model
+consists of 26 traces, with separation between reflectors of
+the two interfaces increasing from 0 ms to 50 ms in 2 ms
+increments. The amplitudes of the reflectors are fixed as ± 0.5
+based on the polarity.
+Results for the NP odd wedge model are given in Table IV
+and Figure 5. NuSPAN-1 outperforms other benchmark techniques in terms of the objective metrics, namely, CC and RRE,
+and shows superior support recovery, measured in terms of
+PES. Figure 5 highlights the fact that BPI, FISTA, and SBLEM fail to resolve the locations of closely-spaced reflectors,
+which is evident from the divergence observed below the tuning
+thickness of 13 ms (wedge thickness between 5-6 m) [55].
+Table V and Figure 6 give the results for the NN even
+wedge model. For the even wedge model, the baselines perform
+marginally better than NuSPAN-1 in terms of amplitude
+recovery, measured through CC, RRE and SRER, but NuSPAN1 outperforms in terms of support recovery (Table V). Figure 6
+shows that the baselines and the proposed networks recover
+the reflectivity profile well for the even wedge model.
+Although NuSPAN-1 outperforms the baselines in all the
+objective metrics except SRER, we observe a drop in the
+performance of NuSPAN-1 and NuSPAN-2 in the synthetic
+2-D case over the 1-D case in Section VI-C1, especially in
+terms of SRER. We hypothesize that this could be attributed
+to the mismatch between the training and testing conditions.
+Further, we observe a disparity between the performance of
+the proposed networks in the case of the odd (NP) vs. even
+(NN) wedge model. This discrepancy could be attributed to
+the suboptimal amplitude recovery of reflection coefficients in
+the region where destructive interference is observed between
+the two interfaces of the wedge models (as highilghted in
+Figure 6). Nonetheless, the support recovery evaluated in terms
+of PES remains comparable in the case of both wedge models
+(compare Tables IV and V). However, these aspects need further
+investigation.
+D. Testing Phase – Marmousi2 Model
+The Marmousi2 model [54] is widely used in reflection
+seismology to calibrate algorithms in structurally complex
+
+TABLE IV
+M ETRICS FOR A SYNTHETIC 2-D ODD (NP) WEDGE MODEL . NuSPAN-1
+OUTPERFORMS IN AMPLITUDE RECOVERY IN TERMS OF CC AND RRE AND
+SUPPORT RECOVERY IN TERMS OF PES. T HE BEST PERFORMANCE IS
+HIGHLIGHTED IN BOLDFACE . T HE SECOND BEST IS UNDERLINED .
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+CC
+
+RRE
+
+SRER
+
+PES
+
+0.7865
+0.7786
+0.8064
+0.8736
+0.7858
+
+0.2919
+0.3008
+0.2693
+0.2553
+0.3441
+
+12.3197
+12.0683
+10.1708
+8.4383
+5.3164
+
+0.9933
+0.7090
+0.9933
+0.5994
+0.9896
+
+TABLE V
+R ESULTS FOR A SYNTHETIC 2-D ODD (NN) WEDGE MODEL . NuSPAN-1
+OFFERS SUPERIOR SUPPORT RECOVERY IN TERMS OF PES. T HE
+BENCHMARK TECHNIQUES (BPI, FISTA, AND SBL-EM) SHOW HIGHER
+AMPLITUDE RECOVERY ACCURACY QUANTIFIED IN TERMS OF CC, RRE,
+AND SRER.
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+CC
+
+RRE
+
+SRER
+
+PES
+
+0.8504
+0.8791
+0.8519
+0.8208
+0.7591
+
+0.2831
+0.2524
+0.3280
+0.3963
+0.4605
+
+12.4768
+11.7202
+10.7475
+9.0663
+5.5752
+
+0.9933
+0.6681
+0.9933
+0.5885
+0.9896
+
+settings. The model (width × depth: 17 km × 3.5 km), an
+expanded version of the original Marmousi model (width ×
+depth: 9.2 km × 3 km) [56], has a 2 ms sampling interval, with
+traces at an interval of 12.5 m. We obtained the reflectivity
+profile from the P-wave velocity and density models (1) and
+convolved them with a 30 Hz Ricker wavelet to generate the
+measurement.
+Figure 7 shows the result for a region of the model with a gascharged sand channel [54]. NuSPAN-1 and NuSPAN-2 preserve
+the lateral continuity better, evident from an observation of the
+insets in Figure 7. BPI and FISTA introduce false interfaces due
+to the interference of multiple events at the ends of the channel.
+The testing times mentioned in Table III for synthetic data,
+when computed for the Marmousi2 model, further highlight
+the advantage of the proposed approach for seismic processing
+(Table VI).
+E. Testing Phase – Real Data
+We validate on real data from the field, a 3-D volume from
+the Penobscot 3-D survey off the coast of Nova Scotia, Canada
+[57]. We pick a portion of the 3-D volume, with 201 Inlines
+(from inline 1150-1350) and 121 Xlines (between 1040-1160),
+chosen such that the region includes two wells (wells L-30
+and B-41) [58]. The sampling interval for the dataset is 4 ms,
+and the region chosen includes 800 samples between 0-3196
+ms along the time/depth axis. A 25 Hz Ricker wavelet fits the
+data well, also observed by [58].
+The recovered reflectivity profiles are shown in Figure 8,
+along with the reflectivity profiles calculated from the sonic
+logs of well L-30 overlaid in black. Figure 8 shows that inverted
+reflectivity for BPI and FISTA is smooth and missing details,
+with relatively poor amplitude recovery (following convention,
+
+9
+
+Fig. 5.
+Results for a synthetic 2-D odd (NP) wedge model. True (a) seismic traces and (c) reflectivity. (b) Noisy seismic traces with input SNR 10 dB.
+(d)-(h) Recovered reflectivity profiles show that NuSPAN-1 (g) and NuSPAN-2 (h) resolve reflectors < 5 m thickness, whereas the baselines (d)-(f) fail to do
+so, evident from the diverging interfaces highlighted by the rectangle in black.
+
+TABLE VI
+M ETRICS FOR A PORTION OF THE M ARMOUSI2 MODEL . NuSPAN-2
+OUTPERFORMS IN TERMS OF CC, WHILE NuSPAN-1 SHOWS SUPERIOR
+SUPPORT RECOVERY IN TERMS OF PES. T HE REPORTED TIME IS FOR THE
+COMPLETE MODEL , SHOWING SIGNIFICANTLY LOWER COMPUTATION TIME
+FOR NuSPAN-1 AND NuSPAN-2. T HE BEST PERFORMANCE IS
+HIGHLIGHTED IN BOLDFACE . T HE SECOND BEST IS UNDERLINED .
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+CC
+
+RRE
+
+SRER
+
+PES
+
+Time (h)
+
+0.9473
+0.9407
+0.9549
+0.9376
+0.9591
+
+0.0875
+0.1017
+0.0684
+0.1032
+0.0715
+
+14.8024
+13.8579
+18.1890
+14.2592
+15.0973
+
+0.9724
+0.7146
+0.9724
+0.3693
+0.9662
+
+16.2671
+5.5636
+101.2659
+0.0737
+0.1024
+
+red indicates positive reflectivity, and blue, negative). SBLEM results provide a more detailed image for characterization
+by recovering the sparse reflectivity profiles, but the method
+fails to remove the noise. The NuSPAN-1 and NuSPAN-2
+recovered reflectivity profiles show better amplitude recovery
+while removing the noise from the observations. Further, the
+NuSPAN variants also preserve lateral continuity, especially
+for closely spaced interfaces, as seen around 1.1 s on the time
+
+axis in Figure 8.
+VII. C ONCLUSIONS
+We considered the problem of seismic reflectivity inversion
+based on systematically learned non-convex sparse-prior. We
+proposed a nonuniform sparse model based on composite
+regularization and solved it based on a deep-unrolled architecture for prior learning given training data. Using the
+proposed framework, we solved the problem of seismic
+reflectivity inversion, where the challenge lies in improving
+the resolution to characterize the subsurface. The proposed
+techniques outperform benchmark reconstructions given by
+state-of-the-art techniques on synthetic, simulated, and real
+datasets in terms of objective metrics.
+ACKNOWLEDGMENTS
+This work is supported by Ministry of Earth Sciences,
+Government of India; Centre of Excellence in Advanced
+Mechanics of Materials, Indian Institute of Science (IISc),
+Bangalore; and Science and Engineering Research Board
+(SERB), India.
+
+10
+
+Fig. 6.
+Results for a synthetic 2-D even (NN) wedge model. True (a) seismic traces and (c) reflectivity; (b) Noisy seismic traces with input SNR 10 dB;
+(d)-(h) Recovered reflectivity. The underperformance of NuSPAN-1 and NuSPAN-2 reported in Table V could be due to the poor amplitude recovery, as a
+result of the destructive interference between the two interfaces, in the region highlighted in black.
+
+R EFERENCES
+[1] P. M. Shearer, Introduction to Seismology. Cambridge University Press,
+2009.
+[2] D. W. Oldenburg, T. Scheuer, and S. Levy, "Recovery of the acoustic
+impedance from reflection seismograms," Geophysics, vol. 48, no. 10,
+pp. 1318–1337, 1983.
+[3] Ö. Yilmaz, Seismic Data Analysis: Processing, Inversion, and Interpretation of Seismic Data. Society of Exploration Geophysicists, 2001.
+[4] B. Russell, "Machine learning and geophysical inversion - A numerical
+study," The Leading Edge, vol. 38, no. 7, pp. 512–519, 2019.
+[5] H. L. Taylor, S. C. Banks, and J. F. McCoy, "Deconvolution with the `1
+norm," Geophysics, vol. 44, no. 1, pp. 39–52, 1979.
+[6] A. J. Berkhout, "Least-squares inverse filtering and wavelet deconvolution," Geophysics, vol. 42, no. 7, pp. 1369–1383, 1977.
+[7] H. W. J. Debeye and P. Van Riel, "`p -norm deconvolution," Geophysical
+Prospecting, vol. 38, no. 4, pp. 381–403, 1990.
+[8] A. Tarantola, Inverse Problem Theory and Methods for Model Parameter
+Estimation. Society for Industrial and Applied Mathematics, 2005.
+[9] R. Zhang and J. Castagna, "Seismic sparse-layer reflectivity inversion
+using basis pursuit decomposition," Geophysics, vol. 76, no. 6, pp. R147–
+R158, 2011.
+[10] S. S. Chen, D. L. Donoho, and M. A. Saunders, "Atomic decomposition
+by basis pursuit," SIAM Review, vol. 43, no. 1, pp. 129–159, 2001.
+[11] A. Beck and M. Teboulle, "A fast iterative shrinkage-thresholding
+algorithm for linear inverse problems," SIAM Journal on Imaging
+Sciences, vol. 2, no. 1, pp. 183–202, 2009.
+[12] D. O. Pérez, D. R. Velis, and M. D. Sacchi, "Inversion of prestack
+seismic data using FISTA," Mecánica Computacional, vol. 31, no. 20,
+pp. 3255–3263, 2012.
+
+[13] D. O. Pérez, D. R. Velis, and M. D. Sacchi, "High-resolution prestack
+seismic inversion using a hybrid FISTA least-squares strategy," Geophysics, vol. 78, no. 5, pp. R185–R195, 2013.
+[14] C. Li, X. Liu, K. Yu, X. Wang, and F. Zhang, "Debiasing of seismic
+reflectivity inversion using basis pursuit de-noising algorithm," Journal
+of Applied Geophysics, vol. 177, p. 104028, 2020.
+[15] F. Li, R. Xie, W.-Z. Song, and H. Chen, "Optimal seismic reflectivity
+inversion: Data-driven `p -loss-`q -regularization sparse regression," IEEE
+Geoscience and Remote Sensing Letters, vol. 16, no. 5, pp. 806–810,
+2019.
+[16] C. Yuan and M. Su, "Seismic spectral sparse reflectivity inversion
+based on SBL-EM: experimental analysis and application," Journal
+of Geophysics and Engineering, vol. 16, no. 6, pp. 1124–1138, 2019.
+[17] E. J. Candès, M. B. Wakin, and S. P. Boyd, "Enhancing sparsity
+by reweighted `1 minimization," Journal of Fourier Analysis and
+Applications, vol. 14, no. 5-6, pp. 877–905, 2008.
+[18] T. Zhang, "Analysis of multi-stage convex relaxation for sparse regularization," Journal of Machine Learning Research, vol. 11, no. 3, 2010.
+[19] I. Selesnick, "Sparse regularization via convex analysis," IEEE Transactions on Signal Processing, vol. 65, no. 17, pp. 4481–4494, 2017.
+[20] S. J. Wright, R. D. Nowak, and M. A. Figueiredo, "Sparse reconstruction
+by separable approximation," IEEE Transactions on Signal Processing,
+vol. 57, no. 7, pp. 2479–2493, 2009.
+[21] C.-H. Zhang, "Nearly unbiased variable selection under minimax concave
+penalty," The Annals of Statistics, vol. 38, no. 2, pp. 894–942, 2010.
+[22] J. Woodworth and R. Chartrand, "Compressed sensing recovery via
+nonconvex shrinkage penalties," Inverse Problems, vol. 32, no. 7, p.
+075004, 2016.
+[23] J. Fan and R. Li, "Variable selection via nonconcave penalized likelihood
+
+11
+
+Fig. 7.
+P-wave velocity profile for the (a) Marmousi2 model and (b) the portion corresponding to Table VI. (c) True reflectivity (ground truth), and (d)-(h)
+predicted reflectivity. The inset plots are zoomed-in portions of the selected area. NuSPAN-1 and NuSPAN-2 preserve lateral continuity better.
+
+Fig. 8.
+(a) Observed seismic data, and (b)-(f) predicted reflectivity profiles for the inset marked in (a) for Xline 1155 of the Penobscot 3-D survey [57].
+The overlaid waveforms in black show the recorded (a) well seismic and (b)-(f) reflectivity profiles, respectively, at well L-30 [58]. NuSPAN-1 and NuSPAN-2
+show superior amplitude recovery while also removing noise from the observations.
+
+12
+
+[24]
+[25]
+[26]
+[27]
+[28]
+[29]
+[30]
+
+[31]
+[32]
+
+[33]
+[34]
+[35]
+[36]
+[37]
+
+[38]
+
+[39]
+[40]
+
+[41]
+
+[42]
+[43]
+[44]
+[45]
+
+[46]
+
+and its oracle properties," Journal of the American Statistical Association,
+vol. 96, no. 456, pp. 1348–1360, 2001.
+W. Zhong and J. Kwok, "Gradient descent with proximal average for
+nonconvex and composite regularization," Proceedings of the AAAI
+Conference on Artificial Intelligence, vol. 28, no. 1, 2014.
+U. S. Kamilov, "A parallel proximal algorithm for anisotropic total
+variation minimization," IEEE Transactions on Image Processing, vol. 26,
+no. 2, pp. 539–548, 2016.
+H. H. Bauschke, R. Goebel, Y. Lucet, and X. Wang, "The proximal
+average: basic theory," SIAM Journal on Optimization, vol. 19, no. 2,
+pp. 766–785, 2008.
+Y. Yu, "Better approximation and faster algorithm using the proximal
+average," Advances in Neural Information Processing Systems, vol. 26,
+pp. 458–466, 2013.
+K. Gregor and Y. LeCun, "Learning fast approximations of sparse coding,"
+Proceedings of the 27th International Conference on Machine Learning,
+pp. 399–406, 2010.
+V. Monga, Y. Li, and Y. C. Eldar, "Algorithm unrolling: Interpretable,
+efficient deep learning for signal and image processing," IEEE Signal
+Processing Magazine, vol. 38, no. 2, pp. 18–44, 2021.
+I. Daubechies, M. Defrise, and C. De Mol, "An iterative thresholding
+algorithm for linear inverse problems with a sparsity constraint," Communications on Pure and Applied Mathematics, vol. 57, no. 11, pp.
+1413–1457, 2004.
+N. Shlezinger, J. Whang, Y. C. Eldar, and A. G. Dimakis, "Modelbased deep learning," 2020, arXiv:2012.08405 [Online]. Available:
+https://arxiv.org/pdf/2012.08405.pdf.
+J. Zhang and B. Ghanem, "ISTA-Net: Interpretable optimization-inspired
+deep network for image compressive sensing," Proceedings of the IEEE
+Conference on Computer Vision and Pattern Recognition, pp. 1828–1837,
+2018.
+M. Borgerding, P. Schniter, and S. Rangan, "AMP-inspired deep networks
+for sparse linear inverse problems," IEEE Transactions on Signal
+Processing, vol. 65, no. 16, pp. 4293–4308, 2017.
+H. Sreter and R. Giryes, "Learned convolutional sparse coding," Proceedings of the IEEE International Conference on Acoustics, Speech and
+Signal Processing, pp. 2191–2195, 2018.
+R. Liu, S. Cheng, L. Ma, X. Fan, and Z. Luo, "Deep proximal unrolling:
+Algorithmic framework, convergence analysis and applications," IEEE
+Transactions on Image Processing, vol. 28, no. 10, pp. 5013–5026, 2019.
+Y. Li, M. Tofighi, J. Geng, V. Monga, and Y. C. Eldar, "Efficient and
+interpretable deep blind image deblurring via algorithm unrolling," IEEE
+Transactions on Computational Imaging, vol. 6, pp. 666–681, 2020.
+P. K. Pokala, P. K. Uttam, and C. S. Seelamantula, "ConFirmNet:
+Convolutional FirmNet and application to image denoising and inpainting,"
+Proceedings of IEEE International Conference on Acoustics, Speech and
+Signal Processing, pp. 8663–8667, 2020.
+L. Wang, C. Sun, M. Zhang, Y. Fu, and H. Huang, "DNU: deep nonlocal unrolling for computational spectral imaging," Proceedings of the
+IEEE/CVF Conference on Computer Vision and Pattern Recognition, pp.
+1658–1668, 2020.
+B. Tolooshams, S. Dey, and D. Ba, "Deep residual autoencoders for expectation maximization-inspired dictionary learning," IEEE Transactions
+on Neural Networks and Learning Systems, 2020.
+D. Jawali, P. K. Pokala, and C. S. Seelamantula, "Cornet: Compositeregularized neural network for convolutional sparse coding," Proceedings
+of the IEEE International Conference on Image Processing, pp. 818–822,
+2020.
+B. Tolooshams, S. Mulleti, D. Ba, and Y. C. Eldar,
+"Unfolding neural networks for compressive multichannel blind
+deconvolution," 2021, arXiv:2010.11391 [Online]. Available:
+https://arxiv.org/pdf/2010.11391.pdf.
+S. Yuan and S. Wang, "Spectral sparse Bayesian learning reflectivity
+inversion," Geophysical Prospecting, vol. 61, no. 4, pp. 735–746, 2013.
+Y. Kim and N. Nakata, "Geophysical inversion versus machine learning
+in inverse problems," The Leading Edge, vol. 37, no. 12, pp. 894–901,
+2018.
+K. J. Bergen, P. A. Johnson, M. V. de Hoop, and G. C. Beroza, "Machine
+learning for data-driven discovery in solid earth geoscience," Science,
+vol. 363, no. 6433, 2019.
+A. Adler, M. Araya-Polo, and T. Poggio, "Deep learning for seismic
+inverse problems: Toward the acceleration of geophysical analysis
+workflows," IEEE Signal Processing Magazine, vol. 38, no. 2, pp. 89–119,
+2021.
+D. P. Wipf and B. D. Rao, "Sparse Bayesian learning for basis selection,"
+IEEE Transactions on Signal Processing, vol. 52, no. 8, pp. 2153–2164,
+2004.
+
+[47] S. Mache, P. K. Pokala, K. Rajendran, and C. S. Seelamantula, "DuRIN: A deep-unfolded sparse seismic reflectivity inversion network," 2021, arXiv:2104.04704 [Online]. Available:
+https://arxiv.org/pdf/2104.04704.pdf.
+[48] P. K. Pokala, A. G. Mahurkar, and C. S. Seelamantula, "FirmNet: A
+sparsity amplified deep network for solving linear inverse problems,"
+Proceedings of the IEEE International Conference on Acoustics, Speech
+and Signal Processing, pp. 2982–2986, 2019.
+[49] M. A. T. Figueiredo, J. M. Bioucas-Dias, and R. D. Nowak, "Majorization–
+minimization algorithms for wavelet-based image restoration," IEEE
+Transactions on Image Processing, vol. 16, no. 12, pp. 2980–2991, 2007.
+[50] A. Paszke, S. Gross, F. Massa, A. Lerer, J. Bradbury, G. Chanan,
+T. Killeen, Z. Lin, N. Gimelshein, L. Antiga, A. Desmaison, A. Kopf,
+E. Yang, Z. DeVito, M. Raison, A. Tejani, S. Chilamkurthy, B. Steiner,
+L. Fang, J. Bai, and S. Chintala, "Pytorch: An imperative style, highperformance deep learning library," Advances in Neural Information
+Processing Systems, vol. 32, pp. 8024–8035, 2019.
+[51] D. Freedman, R. Pisani, and R. Purves, Statistics (international student
+edition). WW Norton & Company, New York, 2007.
+[52] D. P. Kingma and J. Ba, "Adam: A method for stochastic
+optimization,"
+2014,
+arXiv:1412.6980
+[Online].
+Available:
+https://arxiv.org/pdf/1412.6980.pdf.
+[53] W. Hamlyn, "Thin beds, tuning, and AVO," The Leading Edge, vol. 33,
+no. 12, pp. 1394–1396, 2014.
+[54] G. S. Martin, R. Wiley, and K. J. Marfurt, "Marmousi2: An elastic
+upgrade for Marmousi," The Leading Edge, vol. 25, no. 2, pp. 156–166,
+2006.
+[55] H. Chung and D. C. Lawton, "Frequency characteristics of seismic
+reflections from thin beds," Canadian Journal of Exploration Geophysics,
+vol. 31, no. 1, pp. 32–37, 1995.
+[56] R. Versteeg, "The Marmousi experience: velocity model determination
+on a synthetic complex data set," The Leading Edge, vol. 13, no. 9, pp.
+927–936, 1994.
+[57] O. S. R., dGB Earth Sciences, "Penobscot 3D - Survey," 2017, data
+retrieved from https://terranubis.com/datainfo/Penobscot.
+[58] E. Bianco, "Geophysical tutorial: Well-tie calculus," The Leading Edge,
+vol. 33, no. 6, pp. 674–677, 2014.
+
+13
+
+S UPPLEMENTARY M ATERIAL
+In this document, we provide additional experimental validation, with results on synthetic and simulated data for the
+proposed NuSPAN-1 and NuSPAN-2, in comparison with
+the benchmark techniques, namely, basis-pursuit inversion
+(BPI) [10], [9], fast iterative shrinkage-thresholding algorithm
+(FISTA) [11], [12] and expectation-maximization-based sparse
+Bayesian learning (SBL-EM) [46], [16].
+
+TABLE VII
+C OMPUTATIONAL TIME ( IN SECONDS ) DURING TESTING COMPUTED OVER
+100, 200 500, AND 1000 REALIZATIONS OF SYNTHETIC 1-D TRACES . T HIS
+COMPARISON SHOWS THAT THE PROPOSED TECHNIQUES REQUIRE
+SIGNIFICANTLY LOWER COMPUTE TIME AS COMPARED WITH THE
+BENCHMARK METHODS DURING INFERENCE . T HE BEST PERFORMANCE IS
+HIGHLIGHTED IN BOLDFACE . T HE SECOND BEST PERFORMANCE SCORES
+ARE UNDERLINED . BPI: BASIS -P URSUIT I NVERSION ; FISTA: FAST
+I TERATIVE S HRINKAGE -T HRESHOLDING A LGORITHM ; SBL-EM:
+E XPECTATION -M AXIMIZATION - BASED S PARSE BAYESIAN L EARNING ;
+NuSPAN-1 AND NuSPAN-2: N ONUNIFORM S PARSE P ROXIMAL AVERAGE
+N ETWORK – T YPE 1 AND T YPE 2.
+
+A. Experimental Results and Discussion
+In this section, we provide additional results to demonstrate
+the efficacy of the proposed networks, NuSPAN-1 and NuSPAN2, in comparison with the benchmark techniques, BPI, FISTA,
+and SBL-EM, on synthetic 1-D seismic traces and 2-D wedge
+models [53], and the simulated 2-D Marmousi2 model [54]. We
+quantify the performance based on objective metrics defined
+in Section VI-A of the main document, namely, Correlation
+Coefficient (CC), Relative Reconstruction Error (RRE), Signalto-Reconstruction Error Ratio (SRER), and Probability of Error
+in Support (PES).
+1) Testing Phase – Synthetic 1-D Traces: Table VII shows
+the computational time during testing for NuSPAN-1 and
+NuSPAN-2 in comparison with the benchmark techniques,
+which is computed over 100, 200, 500, and 1000 test realizations of synthetic 1-D traces. The proposed networks, namely,
+NuSPAN-1 and NuSPAN-2, require lower computational time
+in comparison to other techniques. FISTA, the next best to our
+techniques, requires two orders of magnitude more computation
+time than ours. Low computation times are significant in the
+context of reflection seismic processing, where the amount
+of data to be handled is large. We note that NuSPAN-1 and
+NuSPAN-2 are trained on a large number of synthetic seismic
+traces before testing and have longer training times, but a much
+shorter testing time.
+Tables VIII, IX, and X compare the performance of the
+proposed NuSPAN-1 and NuSPAN-2 with that of the benchmark
+techniques for sparsity factor 0.10, 0.15, and 0.20. The results
+for NuSPAN-1 and NuSPAN-2 for all the tested sparsity factors
+are obtained by considering the model trained with sparsity
+factor of 0.20, whereas the parameters of the benchmark
+techniques are tuned for each sparsity factor. This demonstrates
+the robustness of the proposed NuSPAN to mismatch in sparsity
+factor, which is a significant advantage in the context of seismic
+reflectivity inversion, as the accurate estimation of the sparsity
+of the seismic reflections is challenging [15], [16].
+2) Testing Phase – Synthetic 2-D Wedge Models: In Section VI-C2 of the main document, we have shown the results
+for one odd (NP) and one even (NN) wedge model, where N
+and P denote the polarity, negative and positive, respectively,
+of the two interfaces of the wedge models. Here, we present
+results for two wedge model variants, one odd (PN – Table XI
+and Figure 9) and one even (PP – Table XII and Figure 10).
+3) Testing Phase – Simulated Marmousi2 model: Initial
+evaluations on the Marmousi2 model [54] showed very low PES
+for BPI and SBL-EM (Table XIII), possibly due to the spurious
+support estimates introduced by these methods complementing
+the low-amplitude spikes (< 1% of the absolute of the
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+Time (s) for # of test realizations
+100
+
+200
+
+500
+
+1000
+
+45.0384
+3.4676
+155.0183
+0.0420
+0.0493
+
+93.0857
+6.8286
+313.2058
+0.0627
+0.0707
+
+238.8020
+17.5604
+781.2321
+0.1505
+0.1536
+
+503.8519
+33.2539
+1076.1833
+0.1778
+0.1870
+
+TABLE VIII
+M ETRICS AVERAGED OVER 1000 TEST REALIZATIONS OF SYNTHETIC 1-D
+TRACES , FOR SPARSITY FACTOR 0.10. NuSPAN-2 SHOWS SUPERIOR
+AMPLITUDE RECOVERY ACCURACY MENTIONED IN TERMS OF CC, RRE,
+AND SRER. NuSPAN-1 AND NuSPAN-2 ARE TRAINED WITH SPARSITY
+FACTOR 0.20 AND TESTED FOR SPARSITY FACTOR 0.10, WHEREAS THE
+BENCHMARK TECHNIQUES (BPI, FISTA, AND SBL-EM) ARE TUNED AND
+TESTED FOR THE SAME SPARSITY FACTOR OF 0.10.
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+CC
+
+RRE
+
+SRER
+
+PES
+
+0.3764
+0.3988
+0.3827
+0.3874
+0.4042
+
+0.8590
+0.8383
+0.8520
+0.8472
+0.8340
+
+0.6749
+0.7770
+0.7036
+0.7258
+0.7950
+
+0.9424
+0.8880
+0.9424
+0.9130
+0.9131
+
+maximum amplitude) in the Marmousi2 model. When these
+spikes were muted, the CC, RRE, and SRER for all the methods
+improved, but the PES, now evaluated only on significant
+interfaces, was much higher for BPI and SBL-EM, and lower
+for NuSPAN-1 (Table VI in the main document).
+In Table XIII, we also provide the training and testing times
+of the benchmark methods, namely, BPI, FISTA and SBLEM, and the proposed NuSPAN-1 and NuSPAN-2, on the
+complete Marmousi2 model. Comparing the three learningbased methods, i.e., SBL-EM, NuSPAN-1, and NuSPAN-2,
+shows that the proposed approaches have lower combined
+training and testing time than SBL-EM. Although the combined
+time for FISTA is low, NuSPAN-2 achieves higher accuracy
+in terms of both amplitude and support recovery after training
+on a larger synthetic dataset.
+
+14
+
+Fig. 9.
+Results for a synthetic 2-D odd (PN) wedge model. True (a) seismic traces and (c) reflectivity; (b) Noisy seismic traces with input SNR 10 dB.
+(d)-(f) Recovered reflectivity signatures for BPI, FISTA, and SBL-EM show that these methods fail to resolve reflectors with wedge thickness < 5 m, evident
+from the diverging interfaces highlighted by the rectangle in black. (g)-(h) The recovered reflectivity profiles for NuSPAN-1 and NuSPAN-2 show better
+resolution of reflector locations at wedge thickness < 5 m.
+
+TABLE IX
+M ETRICS AVERAGED OVER 1000 TEST REALIZATIONS OF SYNTHETIC 1-D
+TRACES FOR SPARSITY FACTOR 0.15. T HE PROPOSED NuSPAN-1 AND
+NuSPAN-2 SHOW SUPERIOR AMPLITUDE AND SUPPORT RECOVERY,
+ALTHOUGH THEY ARE TRAINED WITH SPARSITY FACTOR 0.20 BUT TESTED
+ON A DIFFERENT SPARSITY FACTOR . T HE BEST PERFORMANCE IS
+HIGHLIGHTED IN BOLDFACE . T HE SECOND BEST PERFORMANCE SCORES
+ARE UNDERLINED .
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+CC
+
+RRE
+
+SRER
+
+PES
+
+0.3602
+0.3727
+0.3646
+0.3804
+0.3904
+
+0.8693
+0.8585
+0.8658
+0.8528
+0.8448
+
+0.6126
+0.6679
+0.6299
+0.6965
+0.7377
+
+0.9155
+0.8759
+0.9155
+0.8725
+0.8726
+
+TABLE X
+M ETRICS AVERAGED OVER 1000 TEST REALIZATIONS OF SYNTHETIC 1-D
+TRACES FOR SPARSITY FACTOR 0.20. NuSPAN-1 AND NuSPAN-2
+OUTPERFORM THE BENCHMARK TECHNIQUES IN BOTH AMPLITUDE AND
+SUPPORT RECOVERY. H ERE , ALL THE METHODS ARE TUNED / TRAINED WITH
+THE SAME SPARSITY FACTOR AS THEY ARE TESTED FOR .
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+CC
+
+RRE
+
+SRER
+
+PES
+
+0.3550
+0.3619
+0.3240
+0.3750
+0.3812
+
+0.8735
+0.8687
+0.8999
+0.8574
+0.8523
+
+0.5910
+0.6144
+0.4602
+0.6724
+0.6984
+
+0.8895
+0.8781
+0.8899
+0.8339
+0.8340
+
+TABLE XI
+R ESULTS FOR A SYNTHETIC 2-D ODD (PN) WEDGE MODEL . NuSPAN-1
+SHOWS SUPERIOR AMPLITUDE RECOVERY IN TERMS OF CC, AND
+OUTPERFORMS THE BENCHMARK TECHNIQUES IN SUPPORT RECOVERY
+QUANTIFIED IN TERMS OF PES.
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+CC
+
+RRE
+
+SRER
+
+PES
+
+0.8002
+0.7984
+0.8096
+0.8650
+0.7877
+
+0.2711
+0.2684
+0.2622
+0.2695
+0.3440
+
+13.0565
+12.8473
+10.3299
+8.1181
+5.3725
+
+0.9933
+0.7058
+0.9933
+0.6019
+0.9896
+
+TABLE XII
+R ESULTS FOR A SYNTHETIC 2-D EVEN (PP) WEDGE MODEL . NuSPAN-1
+OUTPERFORMS THE BENCHMARK TECHNIQUES IN SUPPORT RECOVERY IN
+TERMS OF PES, WHEREAS BPI, FISTA, AND SBL-EM SHOW BETTER
+AMPLITUDE RECOVERY ACCURACY MENTIONED IN TERMS OF CC, RRE,
+AND SRER.
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+CC
+
+RRE
+
+SRER
+
+PES
+
+0.8586
+0.8791
+0.8491
+0.8037
+0.7516
+
+0.2608
+0.2274
+0.3205
+0.3689
+0.4540
+
+12.9680
+12.3515
+10.559
+8.6339
+5.45024
+
+0.9933
+0.6673
+0.9933
+0.5680
+0.9896
+
+15
+
+TIME (ms)
+
+0
+
+5
+
+WEDGE THICKNESS (m)
+10
+15
+20
+
+25
+
+40
+60
+80
+100
+TRUE(SEIS)
+120
+
+0
+
+5
+
+WEDGE THICKNESS (m)
+10
+15
+20
+
+NOISY(SEIS)
+(a)
+
+40
+
+25
+
+(b)
+
+TIME (ms)
+
+60
+80
+100 TRUE(REF)
+
+BPI
+(c)
+
+40
+
+(d)
+
+TIME (ms)
+
+60
+80
+100 FISTA
+
+SBL-EM
+(e)
+
+40
+
+(f)
+
+TIME (ms)
+
+60
+80
+100 NuSPAN-1
+
+NuSPAN-2
+(g)
+
+(h)
+
+Fig. 10.
+Results for a synthetic 2-D even (PP) wedge model. True (a) seismic traces and (c) reflectivity; (b) Noisy seismic traces with input SNR 10 dB;
+(d)-(h) Recovered reflectivity. All methods resolve the even wedge model well. NuSPAN-1 does not introduce spurious supports as the other methods, seen as
+low-amplitude spikes in regions away from the two interfaces in the results of the other methods.
+
+TABLE XIII
+R ESULTS FOR A PORTION OF THE M ARMOUSI2 MODEL CORRESPONDING TO TABLE VI AND F IGURE 7 IN S ECTION VI-D OF THE MAIN DOCUMENT,
+WITHOUT MUTING LOW- AMPLITUDE SPIKES . NuSPAN-2 PROVIDES THE BEST AMPLITUDE RECOVERY. T HE SPURIOUS SUPPORTS INTRODUCED BY BPI AND
+SBL-EM COINCIDE WITH SOME OF THE LOW- AMPLITUDE SPIKES , LEADING TO VERY LOW PES VALUES . T HE REPORTED TIMES ARE FOR THE COMPLETE
+MODEL ( TRAINING TIMES ON ONE RTX 2080 T I GPU). T RAINING TIMES ARE APPLICABLE ONLY TO NuSPAN-1 AND NuSPAN-2. T HE BEST
+PERFORMANCE IS HIGHLIGHTED IN BOLDFACE . T HE SECOND BEST PERFORMANCE SCORES ARE UNDERLINED .
+
+Method
+BPI
+FISTA
+SBL-EM
+NuSPAN-1
+NuSPAN-2
+
+CC
+0.9472
+0.9406
+0.9548
+0.9375
+0.9590
+
+RRE
+0.0878
+0.1021
+0.0686
+0.1035
+0.0718
+
+SRER
+14.7626
+13.8227
+18.1117
+14.2261
+15.0579
+
+Time (h)
+
+PES
+0.0181
+0.912
+0.0181
+0.9650
+0.2021
+
+Training
+
+Testing
+
+Training + Testing
+
+9.8069
+8.6007
+
+16.2671
+5.5636
+101.2659
+0.0737
+0.1024
+
+16.2671
+5.5636
+101.2659
+9.8806
+8.7031
+
+

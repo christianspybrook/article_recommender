@@ -1,0 +1,5462 @@
+arXiv:2105.00092v1 [physics.plasm-ph] 30 Apr 2021
+
+Code O-SUKI-N 3D: Upgraded Direct-Drive Fuel
+Target 3D Implosion Code in Heavy Ion Inertial Fusion
+H. Nakamuraa , K. Uchiboria , S. Kawataa,∗, T. Karinob , R. Satoa , A. I.
+Ogoyskic
+a
+
+Graduate School of Engineering, Utsunomiya University, Utsunomiya 321-8585, Japan
+b
+Collaborative Laboratories for Advanced Decommissioning Science, Japan Atomic
+Energy Agency, Fukushima 970-8026, Japan
+c
+Department of Physics, Varna Technical University, Varna 9010, Bulgaria
+
+Abstract
+The Code O-SUKI-N 3D is an upgraded version of the 2D Code O-SUKI
+(Comput. Phys. Commun. 240, 83 (2019)). Code O-SUKI-N 3D is an integrated 3-dimensional (3D) simulation program system for fuel implosion,
+ignition and burning of a direct-drive nuclear-fusion pellet in heavy ion beam
+(HIB) inertial confinement fusion (HIF).The Code O-SUKI-N 3D consists of
+the three programs of Lagrangian fluid implosion program, data conversion
+program, and Euler fluid implosion, ignition and burning program. The Code
+O-SUKI-N 3D can also couple with the HIB illumination and energy deposition program of OK3 (Comput. Phys. Commun. 181, 1332 (2010)). The
+spherical target implosion 3D behavior is computed by the 3D Lagrangian
+fluid code until the time just before the void closure of the fuel implosion.
+After that, all the data by the Lagrangian implosion code are converted to
+the data for the 3D Eulerian code. In the 3D Euler code, the DT fuel compression at the stagnation, ignition and burning are computed. The Code
+O-SUKI-N 3D simulation system provides a capability to compute and to
+study the HIF target implosion dynamics.
+Keywords: Implosion; Heavy ion beam; Inertial confinement fusion;
+Direct-drive fuel pellet implosion; Ignition; Burning.
+Program summary
+Corresponding author.
+E-mail address: kwt@cc.utsunomiya-u.ac.jp, s.kwta.g@gmail.com
+∗
+
+Preprint submitted to Elsevier
+
+May 4, 2021
+
+Program Title: O-SUKI-N 3D
+Licensing provisions: CC BY NC 3.0
+Programming language: C++
+Computer: Workstation (Xeon, 2 GHz or higher recommended)
+RAM: 120GBytes minimum
+Operating system: UNIX, Linux (For example: CentOS 6.4, Ubuntu 18.04.1 LTS)
+Journal reference of previous version: Code O-SUKI: 2D version
+Nature of problem: Nuclear fusion energy would be energy source for society. In
+this paper we focus on heavy ion beam (HIB) inertial confinement fusion (HIF). A
+spherical mm-radius deuterium (D) - tritium (T) fuel pellet is irradiated by HIBs
+to be compressed to about a thousand times of the solid density. The DT fuel
+temperature reaches ∼5-10KeV for the ignition to release the fusion energy. The
+typical HIBs total input energy is several MJ, and the HIBs pulse length is about
+a few tens of ns. The O-SUKI-N 3D code system provides an integrated tool to
+simulate the HIF DT fuel pellet implosion, ignition and burning in 3 dimensions
+(3D). The O-SUKI-N 3D code system is an upgraded version of the Code O-SUKI
+(Comput. Phys. Commun. 240, 83 (2019)) which is a 2D implosion simulation
+system in HIF. The DT fuel is compressed to the high density, and so the DT
+fuel spatial deformation may be serious at the DT fuel stagnation. Therefore,
+the O-SUKI and O-SUKI-N 3D systems employ a Lagrangian fluid code first to
+simulate the DT fuel implosion phase until just before the stagnation. Then all
+the simulation data from the Lagrangian code are converted to them for the Euler
+fluid code, in which the DT fuel ignition and burning are simulated.
+Solution method: In the two fluid codes (Lagrangian and Euler fluid codes) in the
+O-SUKI-N 3D system the three-temperature fluid model (J. Appl. Phys. 60, 898
+(1986)) is employed to simulate the pellet dynamics in HIF.
+Additional comments including Restrictions and Unusual features: The Lagrange
+code is weak against the spatial mesh deformation from nature of its numerical
+algorithm. When short-wavelength perturbations are imposed near the poles of
+the spherical target, the spatial meshes might crash and the computation run may
+stop.
+
+1. Introduction
+Code O-SUKI-N 3D (3 dimension) is an upgraded 3D version of our Code
+O-SUKI [1], and it provides a capability to simulate a deuterium (D) - tritium
+(T) fuel target implosion, ignition and burning in 3D in heavy ion beam (HIB)
+inertial confinement fusion (ICF).
+2
+
+In ICF, DT fuel target implosion, ignition and burning are essentially
+important to release a sufficient fusion energy output. In ICF a few mg DT
+in a fuel pellet is compressed to about a thousand times the solid density
+by an input driver energy, for example, lasers or heavy ion beams (HIBs) or
+pulse power. In addition, the ion temperature of the compressed DT must
+reach ∼5-10 KeV [2]. In order to compress the DT fuel stably to the high
+density, the implosion non-uniformity should be less than a few percent[3]
+The key issues of the fuel implosion in ICF include how to realize the uniform
+implosion. The O-SUKI-N 3D code system provides an integrated computer
+simulation tool to study the DT fuel implosion, ignition and burning in heavy
+ion inertial confinement fusion (HIF) [4, 5].
+The DT fuel implosion is simulated until just before the void closure time
+by the Lagrangian code, which can couple with the OK3 code to include the
+time-dependent HIBs energy deposition profile in the target energy absorber
+layer. For example, the detail HIBs illumination on a HIF DT target can be
+computed by a computer code of OK3 [6, 7, 8]. The Lagrange code data are
+converted to the data imported to the Euler code. The Euler code is robust
+against the target fuel deformation. The DT fuel ignition and burning are
+simulated further by the 3D Euler fluid code. The O-SUKI-N 3D code system
+simulates the 3D HIF target implosion dynamics, and would contribute to
+release the fusion energy stably for society.
+2. O-SUKI-N 3D code algorithm description
+2.1. O-SUKI-N 3D code structure
+The O-SUKI-N 3D code system consists of three parts: The Lagrangian
+fluid code [9], the data conversion code from the Lagrangian code to the
+Euler code, and Euler code. The fluid model is the three-temperature model
+in Ref. [10]. The Lagrangian fluid code, the data conversion code and the
+Euler code are described below in detail.
+In the Lagrangian fluid code the spatial meshes move together with the
+fluid motion [9]. However, the Lagrange meshes can not follow the fluid
+large deformation. On the other hand, the Euler meshes are fixed to the
+space, and the fluid moves through the meshes. Therefore, just before the
+void closure time, that is, the stagnation phase, the Lagrangian code is used
+to simulate the DT fuel implosion. After the void closure time, the Euler
+code is employed to simulate the DT fuel further compression, ignition and
+
+3
+
+burning. Between the Lagrangian code and the Euler code the data should
+be converted by the data conversion code.
+All the simulation process is performed in its integrated way by using the
+script of "CodeO-SUKI-N-fusion-start.sh". The processes executed by this
+shell script are as follows:
+1. Make the stack size infinite.
+2. Remove all output data file and make the new output files.
+3. Change the permission of shell scripts to executable.
+4. Compile the main function of the Lagrangian code and execute it.
+5. If any problems do not appear during the calculation of the Lagrangian
+code, compile the main function of the data conversion code and execute it.
+6. If there is no problem during the data conversion, compile the main function of the Euler code and execute it.
+2.2. Steps in Lagrangian code
+The Lagrangian code has the following steps:
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+11.
+12.
+13.
+14.
+15.
+
+Initialize the variables and calculation of total input energy.
+Calculation of time step size.
+Calculation of coordinates.
+Solve equation of motion.
+Solve density by equation of continuity.
+Calculation of artificial viscosity.
+Transfer the data to the OK3.
+Calculation of energy deposition distribution in code OK3. For details
+of the OK3, see the refs.[6, 7, 8].
+Solve energy equations
+Calculation of heat conduction
+Calculation of temperature relaxation among three temperatures.
+Solve equation of state
+Save the results.
+End the Lagrangian calculation right before the void closure.
+Transfer the data to converting code.
+
+4
+
+2.3. Data Conversion code from Lagrangian fluid code to Euler fluid code
+1. Read variables saved in Lagrangian code.
+2. Generate the Eulerian mesh.
+3. Calculate the interpolation of the physical quantity to them on the
+Eulerian mesh.
+4. Write the converted data to the Eulerian code.
+2.4. Steps in Eulerian code
+1. Read the mesh number from the converted data and define the each
+matrices.
+2. Initialize the variables.
+3. Calculation of time step size.
+4. Solve equation of motion.
+5. Track the material boundaries of DT, Al and Pb.
+6. Linearly interpolate the boundary lines and transcribe them on the
+Eulerian code.
+7. Discriminate the materials by using the transferred boundary line.
+8. Solve density by equation of continuity.
+9. Calculate artificial viscosity.
+10. Solve energy equations
+11. Calculation of fusion reaction.
+12. Calculation of heat conduction
+13. Calculation of temperature relaxation among three temperatures.
+14. Solve equation of state.
+15. Save the results.
+16. End.
+3. Files included
+The logical coordinates in the Lagrangian code are identified by the mesh
+number of (i, j, k). One Lagrange mesh is shown in Fig. 1. The discretization
+method in Ref. [9] is employed in the Lagrangian fluid code. We use the
+spatial coordinate of R = (x(i, j, k), y(i, j, k), z(i, j, k)). The vector R̄ is
+nomal to R.
+
+5
+
+Figure 1: Lagrangian Mesh.
+
+The definition points of the discretized physical quantities in the Lagrange
+and Euler codes are presented in Figs. 2 and 3, respectively. The subscripts i,
+j and k correspond to the positions in space, and the subscript n corresponds
+to time n × dt. The displacements in the i, j and l directions are defined as
+follows:
+
+
+dxn
+≡ dxii+ 1 ,j,k = xni+1,j,k − xni,j,k
+
+2
+ i+ 21 ,j,k
+n
+n
+n
+dyi+ 1 ,j,k ≡ dyii+ 1 ,j,k = yi+1,j,k
+− yi,j,k
+2
+2
+
+
+n
+dz n 1 ≡ dzi 1 = z n
+i+ 2 ,j,k
+i+1,j,k − zi,j,k
+i+ 2 ,j,k
+
+
+≡ dxji,j+ 1 ,k = xni,j+1,k − xni,j,k
+dxn
+
+2
+ i,j+ 21 ,k
+n
+n
+n
+dyi,j+ 1 ,k ≡ dyji,j+ 1 ,k = yi,j+1,k
+− yi,j,k
+2
+2
+
+
+n
+dz n 1 ≡ dzj 1 = z n
+i,j+ 2 ,k
+i,j+1,k − zi,j,k
+i,j+ 2 ,k
+
+
+≡ dxki,j,k+ 1 = xni,j,k+1 − xni,j,k
+dxn
+
+2
+ i,j,k+ 21
+n
+n
+n
+− yi,j,k
+dyi,j,k+ 1 ≡ dyki,j,k+ 1 = yi,j,k+1
+2
+2
+
+
+n
+dz n
+1 = z
+− zn
+1 ≡ dzk
+i,j,k+ 2
+
+i,j,k+ 2
+
+6
+
+i,j,k+1
+
+i,j,k
+
+Figure 2: Definition points of discretized physical quantities in the Lagrangian code.
+
+Figure 3: Definition points of discretized physical quantities in the Eulerian code.
+
+7
+
+In the Lagrange code, the derivatives in x, y and z are as follows:
+∂
+∂ ∂i
+∂ ∂j
+∂ ∂k
+=
++
++
+∂x
+∂i ∂x ∂j ∂x ∂k ∂x
+
+
+1 ∂y ∂z
+∂y ∂z ∂
+∂y ∂z ∂y ∂z ∂
+∂y ∂z ∂y ∂z ∂
+=
+(
+−
+) +(
+−
+) +(
+−
+)
+J ∂j ∂k ∂k ∂j ∂i
+∂k ∂i
+∂i ∂k ∂j
+∂i ∂j
+∂j ∂i ∂k
+
+
+1
+∂
+∂
+∂
+≡
+Dix + Djx + Dkx
+J
+∂i
+∂j
+∂k
+(1)
+∂ ∂i
+∂ ∂j
+∂ ∂k
+∂
+=
++
++
+∂y
+∂i ∂y ∂j ∂y ∂k ∂y
+
+
+1 ∂z ∂x ∂z ∂x ∂
+∂z ∂x ∂z ∂x ∂
+∂z ∂x ∂z ∂x ∂
+=
+(
+−
+) +(
+−
+) +(
+−
+)
+J ∂j ∂k ∂k ∂j ∂i
+∂k ∂i
+∂i ∂k ∂j
+∂i ∂j
+∂j ∂i ∂k
+
+
+1
+∂
+∂
+∂
+≡
+Diy + Djy + Dky
+J
+∂i
+∂j
+∂k
+(2)
+∂ ∂i
+∂ ∂j
+∂ ∂k
+∂
+=
++
++
+∂z
+∂i ∂z ∂j ∂z ∂k ∂z
+
+
+1 ∂x ∂y ∂x ∂y ∂
+∂x ∂y ∂x ∂y ∂
+∂x ∂y ∂x ∂y ∂
+(
+=
+−
+) +(
+−
+) +(
+−
+)
+J ∂j ∂k ∂k ∂j ∂i
+∂k ∂i
+∂i ∂k ∂j
+∂i ∂j
+∂j ∂i ∂k
+
+
+∂
+∂
+∂
+1
+Diz + Djz + Dkz
+≡
+J
+∂i
+∂j
+∂k
+(3)
+The generalized formula is as follows:
+
+
+∂
+∂
+1
+∂
+∂
+Dir + Djr + Dkr
+=
+∂r
+J
+∂i
+∂j
+∂k
+
+
+
+
+
+
+Dix
+Djx
+Dkx
+Dir ≡  Diy  , Djr ≡  Djy  , Dkr ≡  Dky 
+Diz
+Djz
+Dkz
+
+3.1. Lagrangian code and OK3
+1. BC LC.cpp
+The boundary conditions are included in the procedure.
+8
+
+(4)
+
+(5)
+
+2. BeamMaking.cpp
+The function calculates the total input energy.
+3. CONSTANT.h
+The file contains the definition of constant values and normalization
+factors.
+4. Derf.c
+The file contains the error function in the double precision.
+5. HIFScheme.h
+The file contains 1, 2, 3, 6, 12, 20, 32, 60 and 120-beam irradiation
+schemes. (see also Refs. [6, 7, 8].)
+6. IMOK.cpp
+The file contains a procedure to transfer the Lagrange mesh date. The
+file sets the initial target surface numerically.
+7. InitMesh LC.cpp
+The file initializes the Lagrangian coordinates and determines the number of the target layer. The number of the layers can be selected from
+1 to 5 layers. The user must set the mesh number of each layer in this
+file.
+8. InputOK3.h
+The input data file contains the target parameters, the HIB parameters.
+9. Insulation.cpp
+The file contains a procedure to calculate the adiabat α to evaluate the
+fuel preheating [1, 2].
+10. Lagrange set.cpp This function performs auxiliary calculations for
+spatial differentiation and thermal conductivity calculations in the Lagrange code.
+11. Legendre.cpp
+The procedure performs the mode analyses based on the spherical harmonics in order to find the implosion non-uniformity. The analysis
+results are also output in this procedure.
+12. Lr LC.cpp
+A procedure to calculate the Rosseland mean free path (see Ref. [11]).
+13. MS.cpp
+A function to solve matrix by the Gauss elimination method. This
+function is optimized specifically for Langnge calculations.
+14. MS TDMA.cpp
+A function to solve matrix by TDMA (TriDiagonal-Matrix Algorithm).
+9
+
+15. OK3code.cpp
+The file is the main routine of the HIBs illumination code of OK3
+and contains the following procedures[6, 7, 8]. The details for each
+procedure relating to the HIBs illumination code OK3 are found in
+Ref. [1, 6, 7, 8]. The relating procedures are listed here: Irradiation(), InitEdp1(), Focus(), fDis(), Divider(), kBunch(), PointC(),
+PointF(), PointAlpha(), BeamCenterRot(), BeamletRot( ), Rotation()
+and StoppingPower1.cpp. The procedure of StoppingPower1.cpp contains a function Stop1. This function serves a heart of the OK1 code
+[6] and describes the energy deposition model. It calculates the stopping power from the projectile ions into the solid target. The one-ion
+stopping power is considered to be a sum of the deposition energy in
+the target nuclei, the target bound and free electrons and the target
+ions[12].
+16. PelletSurface.h
+The file sets the initial target surface numerically.
+17. RMS.cpp
+The procedure in this file calculates the root-mean-square (RMS) deviation in target non uniformity.
+18. ResultIMP.cpp
+This file contains a procedure to calculate the implosion velocity.
+19. SLC.cpp
+This file contains the procedure to output the time history of each
+physical quantity obtained by cutting one each in θ and φ directions.
+The positions of θ and φ are changed in "input LC.h".
+20. Acceleration.cpp
+A procedure for calculating the target acceleration.
+21. artv LC.cpp
+This file contains a procedure calculate the artificial viscosity. When
+dealing with shock waves propagating in a compressive fluid at a supersonic speed in fluid dynamics simulations, it is impossible to employ
+sufficient number of multiple meshes to describe the real shock front
+structure, because its thickness is very thin. As a method, we introduce the following artificial viscosity devised by Von Neumann and
+Richtmyer[13].
+The three-dimensional artificial viscosity is written:
+10
+
+qA =
+
+ρc21
+
+∂
+∂i
+
+
+
+∂u
+∂i
+
+A 
+
+∂u
+∂i
+
+A
+
+(6)
+
+qB =
+
+ρc21
+
+∂
+∂j
+
+
+
+∂u
+∂j
+
+B 
+
+∂u
+∂j
+
+B
+
+(7)
+
+qC =
+
+ρc21
+
+∂
+∂k
+
+
+
+C
+
+(8)
+
+
+
+∂u
+∂i
+
+A
+
+
+
+∂u
+∂j
+
+B
+
+
+
+∂u
+∂k
+
+C
+
+
+
+∂u
+∂i
+
+
+
+∂u
+∂j
+
+
+
+∂u
+∂k
+
+A
+
+B
+
+C
+
+C 
+
+∂u
+∂k
+
+= min
+
+"
+
+∂u
+∂i
+
+A
+
+= min
+
+"
+
+∂u
+∂j
+
+B
+
+= min
+
+"
+
+∂u
+∂k
+
+C
+
+∂u
+∂k
+
+=
+
+R̄i * ui
+R̄i
+
+=
+
+R̄j * uj
+R̄j
+
+=
+
+R̄k * uk
+R̄k
+
+,0
+
+#
+
+,0
+,0
+
+#
+
+#
+
+Here R̄i , R̄j and R̄k are the normal vectors to the i, j, k directions, respectively. qA , qB and qC are the artificial viscosities in the directions of
+R̄i , R̄j and R̄k , respectively. Equations (6), (7) and (8) are discretized
+
+11
+
+as follows:
+qA ni+ 1 ,j+ 1 ,k+ 1 =
+ (9)
+ 2 2 2
+qA1 ni+ 1 ,j+ 1 ,k+ 1 + qA2 ni+ 1 ,j+ 1 ,k+ 1 + qA3 ni+ 1 ,j+ 1 ,k+ 1 + qA4 ni+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+qB ni+ 1 ,j+ 1 ,k+ 1 =
+ 2 2 2
+(10)
+n
+n
+n
+n
+qB1 i+ 1 ,j+ 1 ,k+ 1 + qB2 i+ 1 ,j+ 1 ,k+ 1 + qB3 i+ 1 ,j+ 1 ,k+ 1 + qA4 i+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+qC ni+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+
+=
+
+(11)
+qC1 ni+ 1 ,j+ 1 ,k+ 1 + qC2 ni+ 1 ,j+ 1 ,k+ 1 + qC3 ni+ 1 ,j+ 1 ,k+ 1 + qA4 ni+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+Here, the expression appeared are summarized below:
+
+A1
+A1
+diVi+
+qA1 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddiVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(12)
+
+A2
+A2
+qA2 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddiVi+
+diVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(13)
+
+A3
+A3
+qA3 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddiVi+
+diVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(14)
+
+A4
+A4
+qA4 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddiVi+
+diVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(15)
+
+B1
+B1
+djVi+
+qB1 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddjVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(16)
+
+B2
+B2
+djVi+
+qB2 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddjVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(17)
+
+B3
+B3
+qB3 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddjVi+
+djVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(18)
+
+B4
+B4
+qB4 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddjVi+
+djVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(19)
+
+C1
+C1
+qC1 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddkVi+
+dkVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(20)
+
+C2
+C2
+qC2 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddkVi+
+dkVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(21)
+
+C3
+C3
+qC3 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddkVi+
+dkVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(22)
+
+C4
+C4
+qC4 ni+ 1 ,j+ 1 ,k+ 1 = ρni+ 1 ,j+ 1 ,k+ 1 c21 ddkVi+
+dkVi+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+
+(23)
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+12
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+R̄ii+ 12,j+ 1 ,k+ 1 *
+
+
+
+R̄ii+ 12,j+ 1 ,k+ 1 *
+
+
+
+R̄ii+ 12,j+ 1 ,k+ 1 *
+
+
+
+R̄ii+ 12,j+ 1 ,k+ 1 *
+
+
+
+R̄j i+ 12,j+ 1 ,k+ 1 *
+
+
+
+R̄j i+ 12,j+ 1 ,k+ 1 *
+
+
+
+R̄j i+ 12,j+ 1 ,k+ 1 *
+
+
+
+R̄j i+ 12,j+ 1 ,k+ 1 *
+
+
+A1
+diVi+
+= min 
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+
+A2
+= min 
+diVi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+
+A3
+= min 
+diVi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+
+A4
+diVi+
+= min 
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+
+B1
+= min 
+djVi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+
+B2
+= min 
+djVi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+
+B3
+= min 
+djVi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+
+B4
+= min 
+djVi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+1
+
+n+ 1
+2
+
+2
+
+2
+
+
+
+
+, 0
+
+∂u n+ 2
+∂i i+ 1 ,j+1,k
+2
+
+1
+
+n+ 1
+2
+
+2
+
+2
+
+
+
+
+, 0
+
+n
+R̄ii+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+
+∂u n+ 2
+∂i i+ 1 ,j+1,k+1
+2
+
+n
+R̄ii+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+1
+
+n+ 1
+2
+
+2
+
+2
+
+∂u n+ 2
+∂i i+ 1 ,j,k+1
+2
+
+n
+R̄ii+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+n+ 1
+
+1
+
+2
+
+2
+
+∂u n+ 2
+∂j i,j+ 1 ,k
+
+2
+
+2
+
+n
+R̄j i+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+n+ 1
+
+1
+
+2
+
+2
+
+
+
+
+, 0
+
+2
+
+n+ 1
+
+1
+
+2
+
+2
+
+∂u n+ 2
+∂j i+1,j+ 1 ,k+1
+
+2
+
+2
+
+n+ 1
+
+1
+
+2
+
+∂u n+ 2
+∂j i,j+ 1 ,k+1
+
+2
+
+2
+
+n
+R̄j i+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+1
+
+
+
+ ̄ n+12 1 1 *
+Rk
+i+ ,j+ ,k+
+
+
+
+ ̄ n+12 1 1 *
+Rk
+i+ ,j+ ,k+
+
+2
+
+2
+
+2
+
+1
+
+∂u n+ 2
+∂k i,j,k+ 1
+2
+
+ ̄ n 1 1 1
+Rk
+i+ 2 ,j+ 2 ,k+ 2
+
+13
+
+1
+
+2
+
+2
+
+2
+
+1
+
+2
+
+2
+
+2
+
+2
+
+
+
+
+, 0
+
+
+, 0
+
+
+
+
+, 0
+
+
+
+∂u n+ 2
+∂k i+1,j,k+ 1
+
+ ̄ n 1 1 1
+Rk
+i+ ,j+ ,k+
+
+
+
+
+, 0
+
+n
+R̄j i+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+
+2
+
+
+, 0
+
+
+, 0
+
+∂u n+ 2
+∂j i+1,j+ 1 ,k
+
+2
+
+
+
+
+
+n
+R̄j i+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+
+
+C2
+dkVi+
+= min 
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+∂u n+ 2
+∂i i+ 1 ,j,k
+
+n
+R̄ii+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+
+
+C1
+= min 
+dkVi+
+1
+,j+ 1 ,k+ 1
+2
+
+1
+
+n+ 1
+
+
+
+
+
+
+, 0
+
+ ̄ n+12 1 1 *
+Rk
+i+ ,j+ ,k+
+
+
+
+ ̄ n+12 1 1 *
+Rk
+i+ ,j+ ,k+
+
+
+C3
+dkVi+
+= min 
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+
+C4
+= min 
+dkVi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+A∗
+ddiVi,j+
+1
+,k+ 21
+2
+
+2
+
+2
+
+2
+
+2
+
+=
+2
+
+B∗
+ddjVi+
+1
+,j,k+ 21
+2
+
+2
+
+1
+
+∂u n+ 2
+∂k i+1,j+1,k+ 1
+2
+
+ ̄ n 1 1 1
+Rk
+i+ 2 ,j+ 2 ,k+ 2
+1
+
+2
+
+2
+
+2
+
+1
+
+∂u n+ 2
+∂k i,j+1,k+ 1
+2
+
+ ̄ n 1 1 1
+Rk
+i+ ,j+ ,k+
+2
+
+2
+
+2
+
+A∗
+− diVi−
+1
+,j+ 21 ,k+ 21
+2
+
+A∗
+diVi+
+1
+,j+ 21 ,k+ 21
+2
+
+A∗
+ddiVi+
+=
+1
+,j+ 1 ,k+ 1
+2
+
+1
+
+
+
+
+
+
+, 0
+
+
+
+
+, 0
+
+
+1
+A∗
+A∗
+ddiVi,j+
+1
+1 + ddiV
+1
+1
+,k+ 2
+i+1,j+ 2 ,k+ 2
+2
+2
+
+B∗
+B∗
+= djVi+
+− djVi+
+1
+1
+,j+ 21 ,k+ 21
+,j− 21 ,k+ 21
+2
+2
+
+
+1
+B∗
+B∗
+B∗
+=
++
+ddjV
+ddjVi+
+ddjV
+1
+,j+ 21 ,k+ 21
+i+ 12 ,j+1,k+ 21
+i+ 12 ,j,k+ 21
+2
+2
+
+C∗
+C∗
+C∗
+ddkVi+
+− dkVi+
+= dkVi+
+1
+1
+1
+,j+ 21 ,k
+,j+ 21 ,k+ 21
+,j+ 21 ,k− 21
+2
+2
+2
+
+
+1
+C∗
+C∗
+C∗
+ddkV
++
+ddkV
+ddkVi+
+1
+1
+1 =
+1
+1
+1
+1
+i+ 2 ,j+ 2 ,k
+,j+ 2 ,k+ 2
+i+ 2 ,+ 2 j,k+1
+2
+2
+
+For the normal vectors to the i, j and k directions, the outer products
+are used at each side as shown in Fig. 4, and the averaged values are
+obtained:
+n
+R̄ii,j+ 1 ,k+ 1
+2
+2
+n
+R̄j i+ 1 ,j,k+ 1
+2
+2
+
+=
+=
+
+ ̄ n 1 1 =
+Rk
+i+ ,j+ ,k
+2
+
+n
+n
+n
+n
+R ̄A1 i,j+ 1 ,k+ 1 + R ̄A2 i,j+ 1 ,k+ 1 + R ̄A3 i,j+ 1 ,k+ 1 + R ̄A4 i,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+n
+n
+R ̄B1 i+ 1 ,j,k+ 1 + R ̄B2 i+ 1 ,j,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+4
+n
+n
++ R ̄B3 i+ 1 ,j,k+ 1 + R ̄B4 i+ 1 ,j,k+ 1
+2
+
+2
+
+2
+
+2
+
+4
+n
+n
+n
+n
+ ̄
+ ̄
+RC1 i+ 1 ,j+ 1 ,k + RC2 i+ 1 ,j+ 1 ,k + R ̄C3 i+ 1 ,j+ 1 ,k + R ̄C4 i+ 1 ,j+ 1 ,k
+2
+
+2
+
+2
+
+2
+
+2
+
+4
+
+2
+
+14
+
+2
+
+2
+
+2
+
+Figure 4: The nomal vector to the i direction
+
+22. coc LC.cpp
+The file calculates the Lagrangian mesh dynamics. The Lagrangian
+meshes move together with the fluid motion. The new position coordinates for each mesh point are renewed at n + 1.
+23. cotc3D e.cpp, cotc3D r.cpp
+For calculation of the heat conduction, the following basic equation is
+used[14].
+DT
+1
+= ∇ * (κk ∇Tk )
+(k = e, r)
+Dt
+ρ
+κe = 1.83 × 10−10 Te5/2 (log Λ)−1 Z −1 [W/mK]
+16
+κr = σLR Tr3 [W/mK]
+3
+
+CVk
+
+κ : Heatconductivity
+Tk : Ion, electron, radiation temperature[K]
+log Λ : Coulomb logarithm
+m : Mass
+Z : Ionization degree
+σ : Stef an − Boltzmann constant
+LR : Rosseland mean free path
+
+15
+
+(24)
+
+Here, If S is the area vector of each surface of the mesh, the basic
+equation is transformed as follows:
+DT
+Dt
+ZZZ
+DT
+ρCv
+dV
+Dt
+DT
+MCv
+Dt
+Cv
+
+DT
+Dt
+
+1
+∇ * (κ∇T )
+ρ
+ZZZ
+=
+∇ * (κ∇T )dV
+=
+
+=
+
+X
+
+(κ∇T ) * Si
+
+i
+
+
+
+κ
+1 X
+∂T
+κ
+∂T
+κ
+∂T
+Si *
+=
+Dir
++ Djr
++ Dkr
+MCv i
+J
+∂i
+J
+∂j
+J
+∂k
+
+(25)
+
+Equation (25) is discretized as follows:
+n+1
+n
+− Ti+
+Ti+
+1
+1
+,j+ 1 ,k+ 1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+Dt
+
+n+ 21
+
+2
+
+2
+
+=
+×
+−
++
+−
++
+−
+
+1
+M Cv
+ 
+
+n+1
+n+1
+A2 Ti+
+1
+1
+1 −T
+1
+1
+3
+i+ 2 ,j+ 2 ,k+ 2
+,j+ 2 ,k+ 2
+2
+
+
+n+1
+n+1
+A1 Ti+
+1
+1
+1 − T
+1
+1
+1
+i− 2 ,j+ 2 ,k+ 2
+,j+ 2 ,k+ 2
+2
+
+
+n+1
+n+1
+B2 Ti+
+1
+1
+3
+1 − T
+1
+1
+i+ 2 ,j+ 2 ,k+ 2
+,j+ 2 ,k+ 2
+2
+
+
+n+1
+n+1
+B1 Ti+
+−
+T
+1
+i+ 12 ,j− 21 ,k+ 21
+,j+ 21 ,k+ 21
+2
+
+
+n+1
+n+1
+C2 Ti+
+−
+T
+1
+i+ 12 ,j+ 21 ,k+ 21
+,j+ 21 ,k+ 23
+2
+
+
+n+1
+n+1
+C1 Ti+ 1 ,j+ 1 ,k+ 1 − Ti+ 1 ,j− 1 ,k− 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+(26)
+
+16
+
+Here, the coefficients in Eq. (26) are listed:
+A2 =
+
+Dir ni+1,j+ 1 ,k+ 1
+2
+2
+
+κni+1,j+ 1 ,k+ 1
+
+Sini+1,j+ 1 ,k+ 1
+2
+2
+
+2
+
+2
+
+n
+Ji+1,j+
+1
+,k+ 1
+2
+
+A1 = Dir ni,j+ 1 ,k+ 1 Sini,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+n
+Ji+1,j+
+1
+,k+ 1
+
+2
+
+2
+
+2
+
+2
+
+2
+
+κni+ 1 ,j+1,k+ 1
+
+n
+B2 = Djr ni+ 1 ,j+1,k+ 1 Sji+
+1
+,j+1,k+ 1
+2
+
+2
+
+κni,j+ 1 ,k+ 1
+
+2
+
+2
+
+n
+Ji+
+1
+,j+1,k+ 1
+
+2
+
+2
+
+n
+B1 = Djr ni+ 1 ,j,k+ 1 Sji+
+1
+,j,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+n
+Ji+
+1
+,j,k+ 1
+
+2
+
+2
+
+2
+
+2
+
+2
+
+κni+ 1 ,j+ 1 ,k+1
+
+n
+C2 = Dkr ni+ 1 ,j+ 1 ,k+1 Ski+
+1
+,j+ 1 ,k+1
+2
+
+2
+
+n
+C1 = Dkr ni+ 1 ,j+ 1 ,k Ski+
+1
+,j+ 1 ,k
+2
+
+2
+
+2
+
+2
+
+n
+Ji+
+1
+,j+ 1 ,k+1
+
+2
+
+2
+
+2
+
+2
+
+κni+ 1 ,j,k+ 1
+
+2
+
+κni+ 1 ,j+ 1 ,k
+2
+
+2
+
+n
+Ji+
+1
+,j+ 1 ,k
+2
+
+2
+
+24. define LC.h
+It contains the procedure declarations for the Lagrangian code and
+Ok3.
+25. dif LC.cpp
+The following Lagrangian equation of motion is used.
+ρ
+
+Du
+= −∇(P + q)
+Dt
+
+(27)
+
+Equation (27) is expressed as follows:
+Du
+Dt
+
+n
+
+1 ∂
+(P + q)
+ρ ∂r
+n
+
+∂
+∂
+∂
+1
+Dir (P + qA ) + Dir (P + qB ) + Dir (P + qC )
+=− n
+Mi,j,k
+∂i
+∂j
+∂k
+i,j,k
+
+=−
+i,j,k
+
+(28)
+Equation (28) is discretized as follows:
+17
+
+n+ 1
+ui,j,k2
+
+=
+
+n− 1
+ui,j,k2
+
+n
+
+Dtn
+∂
+∂
+∂
+− n
+(29)
+Dir (P + qA ) + Dir (P + qB ) + Dir (P + qC )
+Mi,j,k
+∂i
+∂j
+∂k
+i,j,k
+
+Here, each term is shown:
+∂
+Dir (P + qA )
+∂i
+
+n
+
+
+
+1
+∂
+=
+Dir (P + qA1 )
+4
+∂i
+i,j,k
+i,j+ 21 ,k+ 21
+
+
+1
+∂
++
+Dir (P + qA2 )
+4
+∂i
+i,j− 1 ,k+ 1
+
+ 2 2
+1
+∂
++
+Dir (P + qA3 )
+4
+∂i
+i,j− 1 ,k− 1
+
+ 2 2
+∂
+1
++
+Dir (P + qA4 )
+4
+∂i
+i,j+ 1 ,k− 1
+2
+
+∂
+Djr (P + qB )
+∂j
+
+2
+
+n
+
+
+
+1
+∂
+=
+Djr (P + qB1 )
+4
+∂j
+i,j,k
+i+ 1 ,j,k+ 21
+
+ 2
+1
+∂
++
+Djr (P + qB2 )
+4
+∂j
+i− 1 ,j,k+ 21
+
+ 2
+∂
+1
+Djr (P + qB3 )
++
+4
+∂j
+i− 1 ,j,k− 21
+
+ 2
+1
+∂
++
+Djr (P + qB4 )
+4
+∂j
+i+ 1 ,j,k− 1
+2
+
+∂
+Dkr (P + qC )
+∂k
+
+(30)
+
+(31)
+
+2
+
+n
+
+
+
+1
+∂
+=
+Dkr (P + qC1 )
+4
+∂k
+i,j,k
+i+ 1 ,j+ 1 ,k
+
+ 2 2
+1
+∂
++
+Dkr (P + qC2 )
+4
+∂k
+i− 1 ,j+ 1 ,k
+
+ 2 2
+1
+∂
++
+Dkr (P + qC3 )
+4
+∂k
+i− 1 ,j− 1 ,k
+
+ 2 2
+1
+∂
++
+Dkr (P + qC4 )
+4
+∂k
+i+ 1 ,j− 1 ,k
+2
+
+18
+
+2
+
+(32)
+
+26. dt LC.cpp
+This procedure calculates and controls the time step to satisfy the
+numerical stability condition. The time step ∆t in the calculation must
+satisfy the following conditions.
+∆r
+CS + Vmax
+
+∆t =
+
+(33)
+1
+
+The time step for the Lagrangian method Dtn+ 2 is represented by the
+following expression.
+1
+
+Dtn+ 2 = α
+
+drmin
+CS + Vmax
+
+α
+:
+drmin :
+CS :
+Vmax :
+
+(34)
+
+Numerical coefficient constant (α ≤ 1)
+the minimum grid spacing
+Sound speed
+the maximum flow speed
+
+27. eoenergy LC.cpp
+The file contains a procedure for calculation of the energy equation.
+The following Lagrangian energy equation is used except for the heat
+conductions terms.
+
+
+
+Dρ
+pi +q DJ
+kB
+DTi
+
+B
+=
+−
++
+T
+
+i
+CVi
+M Dt
+ Dt
+ Dt
+
+Dρ
+pe DJ
+kB
+DTe
+(35)
+B
+=
+−
++
+T
+e
+Dt
+C
+Dt
+M
+Dt
+Ve
+
+
+
+
+ DTr = − kB BT Dρ + pr DJ
+Dt
+
+CVr
+
+r
+
+Dt
+
+M Dt
+
+Equation (35) is discretized as follows:
+n+1
+Ti+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+n
+= Ti+
+1
+,j+ 1 ,k+ 1
+2
+
+−
+
+2
+
+2
+
+1
+n+ 21
+
+CV i+ 1 ,j+ 1 k+ 1
+2
+
+2
+
+"
+
+(ρn+1
+− ρni+ 1 ,j+ 1 ,k+ 1 )
+BT n+1
+i+ 1 ,j+ 1 ,k+ 1 i+ 1 ,j+ 1 k+ 1
+
+n+ 1
+
++
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+n+ 1
+
+Pi+ 12,j+ 1 ,k+ 1 + qi+ 12,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+Mi+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+19
+
+2
+
+2
+
+#
+
+n
+n+1
+)
+− Ji+
+(Ji+
+1
+1
+,j+ 1 k+ 1
+,j+ 1 k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+28. eos.cpp
+The file contains the procedures to calculate the equation of state. The
+equation of state for ions is the ideal one. For the equation of state
+for electrons and the ionization, we use the equation of state based
+on the Thomas-Fermi model shown in Ref. [15]. Users can select the
+Thomas-Fermi model or the ideal equation of state in the header file of
+"input LC.h". For the equation of state for the radiation, we use the
+equilibrium blackbody equations [11].
+29. init LC.h
+It contains the initial conditions such as the initial target temperature
+and so on.
+30. init matrix LC.cpp The file get the matrix.
+31. input LC.h
+The input data for Lagrangian code contains radius, θ and φ direction mush number, each layers mesh number,HIB number, beam pulse
+parameters, fuel target structure, output date step, etc.
+32. jacobian LC.cpp
+The volume of each mesh is calculated. The Jacobian J is expressed
+by the following formula.
+J=
+
+∂(x, y, z)
+∂(i, j, k)
+
+
+
+=
+
+=
+
+∂x
+∂i
+∂y
+∂i
+∂z
+∂i
+
+∂x
+∂j
+∂y
+∂j
+∂z
+∂j
+
+∂x
+∂k
+∂y
+∂k
+∂z
+∂k
+
+
+
+(36)
+
+
+
+
+∂x ∂y ∂z ∂x ∂y ∂z ∂x ∂y ∂z ∂x ∂y ∂z ∂x ∂y ∂z ∂x ∂y ∂z
++
++
+−
+−
+−
+∂i ∂j ∂k ∂j ∂k ∂i
+∂k ∂i ∂j
+∂k ∂j ∂i
+∂j ∂i ∂k
+∂i ∂k ∂j
+
+20
+
+From Eq. (36), the Jacobian is expressed as follows:
+ n
+ n
+ n
+∂y
+∂z
+∂x
+n
+Jk+ 1 ,l+ 1 ,m+ 1 =
+2
+2
+2
+∂i i+ 1 ,j+ 1 ,k+ 1 ∂j i+ 1 ,j+ 1 ,k+ 1 ∂k i+ 1 ,j+ 1 ,k+ 1
+ n 2 2 2  n 2 2 2  n 2 2 2
+∂x
+∂y
+∂z
++
+∂j i+ 1 ,j+ 1 ,k+ 1 ∂k i+ 1 ,j+ 1 ,k+ 1 ∂i i+ 1 ,j+ 1 ,k+ 1
+ n 2 2 2  n 2 2 2  n 2 2 2
+∂x
+∂y
+∂z
++
+∂k i+ 1 ,j+ 1 ,k+ 1 ∂i i+ 1 ,j+ 1 ,k+ 1 ∂j i+ 1 ,j+ 1 ,k+ 1
+ n 2 2 2  n 2 2 2  n 2 2 2
+∂x
+∂y
+∂z
+−
+∂k i+ 1 ,j+ 1 ,k+ 1 ∂j i+ 1 ,j+ 1 ,k+ 1 ∂i i+ 1 ,j+ 1 ,k+ 1
+ n 2 2 2  n 2 2 2  n 2 2 2
+∂x
+∂y
+∂z
+−
+∂j i+ 1 ,j+ 1 ,k+ 1 ∂i i+ 1 ,j+ 1 ,k+ 1 ∂k i+ 1 ,j+ 1 ,k+ 1
+ n 2 2 2  n 2 2 2  n 2 2 2
+∂y
+∂z
+∂x
+−
+∂i i+ 1 ,j+ 1 ,k+ 1 ∂k i+ 1 ,j+ 1 ,k+ 1 ∂j i+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+Here, each term is obtained:
+
++∆i xn 1
++∆i xn 1
++∆i xn 1
+∆i xn 1
+
+i+ 2 ,j,k+1
+i+ 2 ,j+1,k+1
+i+ 2 ,j,k
+i+ 2 ,j+1,k
+∂xi,j,k n
+
+( ∂i )i+ 1 ,j+ 1 ,k+ 1 =
+
+
+4
+
+2
+2
+2
+n
+n
+n
+
+∆j xn
+
+1 ,k +∆j xi,j+ 1 ,k+1 +∆j xi+1,j+ 1 ,k+1 +∆j xi,j+ 1 ,k
+i+1,j+ 2
+∂xi,j,k n
+
+2
+2
+2
+
+( ∂j )i+ 1 ,j+ 1 ,k+ 1 =
+
+4
+
+2
+2
+2
+
+n
+n
+n
+n
+
++∆k x
++∆k x
+∆k x
+
+1 +∆k xi,j,k+ 1
+i,j+1,k+ 1
+i+1,j+1,k+ 2
+i+1,j,k+ 1
+∂xi,j,k n
+
+2
+2
+2
+
+(
+)
+=
+1
+1
+1
+
+∂k
+4
+i+ 2 ,j+ 2 ,k+ 2
+
+
+n
+n
+n
+n
+
++∆i y 1
++∆i y 1
++∆i y 1
+∆i y 1
+
+i+ 2 ,j,k+1
+i+ 2 ,j+1,k+1
+i+ 2 ,j,k
+i+ 2 ,j+1,k
+∂yi,j,k n
+
+
+(
+)
+=
+1
+1
+1
+
+∂i
+4
+i+ 2 ,j+ 2 ,k+ 2
+
+
+n
+n
+n
+n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+∆j y
+
+∂yi,j,k n
+)i+ 1 ,j+ 1 ,k+ 1
+∂j
+2
+2
+2
+
+=
+
+(
+
+∂yi,j,k n
+)i+ 1 ,j+ 1 ,k+ 1
+∂k
+2
+2
+2
+
+=
+
+(
+
+∂zi,j,k n
+)i+ 1 ,j+ 1 ,k+ 1
+∂i
+2
+2
+2
+
+=
+
+(
+
+∂zi,j,k n
+( ∂j
+)i+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+∂zi,j,k n
+( ∂k
+)i+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+
+=
+=
+
+1 ,k
+i+1,j+ 2
+
++∆j y
+
+1 ,k+1
+i,j+ 2
+
++∆j y
+
+i+1,j+ 1
+2 ,k+1
+
++∆j y
+
+1 ,k
+i,j+ 2
+
+n
+1 +∆k y
+
+4
+n
+1 +∆k y
+
++∆i z n
+
+4
++∆i z n
+
++∆k z n
+
+∆j z n
+
++∆j z n
+
+4
++∆j z n
+
++∆j z n
+
+∆k z n
+
++∆k z n
+
+4
++∆k z n
+
+∆k y n
+
+i+1,j,k+ 2
+
+∆i z n
+
+1 ,j+1,k
+i+ 2
+i+1,l+ 1
+2 ,k
+1
+i+1,j,k+ 2
+
+i,j+1,k+ 2
+
+i+ 1
+2 ,j,k+1
+
+1 ,k+1
+i,j+ 2
+
+i,j,k+ 1
+2
+
+i+1,j+1,k+ 2
+
+i+ 1
+2 ,j+1,k+1
+
+1
+i,j+1,k+ 2
+
+n
+1 +∆k y
+
+i+1,j+ 1
+2 ,k+1
+
+1 ,l,m
+k+ 2
+
+i+1,j+1,k+ 1
+2+
+
+1 ,k
+i,j+ 2
+
+∆k z n
+
+1
+i,j,k+ 2
+
+4
+
+33. main LC.cpp
+The main procedure of the Lagrangian fluid code. If you want to artificially add non-uniformity in the θ and φ directions without using the
+OK3 code, change it here.
+21
+
+(37)
+
+34. outputRMS.cpp
+It contains a procedure to output the results for the RMS non-uniformity.
+35. output LC.cpp
+The result data are stored by this procedure. The time interval of
+data output is 0.1 ns in the Lagrangian code. The user can adjust
+the output step in "input LC.h". The physical quantity (for example,
+velocity) defined at the grid points of the mesh is output to outputS1.
+The physical quantity defined at the center of the mesh (for example,
+temperature, density) is output to outputS2.
+36. output to EulerCode.cpp
+This file contains a procedure for outputting the data used in Euler
+code. After the beam irradiation is completed, the file is output every
+0.1ns.
+37. relax.cpp
+The following equation is used as the basic equation for the temperature
+relaxation[10].
+
+dTi
+
+CVi dt = −Kie
+e
+(38)
+= Kie − Kre
+CVe dT
+dt
+
+
+dTr
+CVr dt = Kre
+Here, Kie is the energy exchange rate between the ions and the electrons, and Kre the energy exchange rate between the radiation and the
+electrons.
+(
+Kie = CVi ωie (Ti − Te )
+(39)
+Kre = CVr ωre (Te − Tr )
+ωie and ωre are the collision frequencies between the ions and the electrons and between the radiation and the electrons, respectively. They
+are obtained by the following formulae: The Compton effect between
+the radiation and the electrons is included. Each expression and the
+solution method are found in Refs. [10, 1].
+I
+3.2. Conversion code
+The Euler meshes are constructed based on the size of the small Lagrange
+mesh in the conversion code. The 3D conversion process is performed after
+22
+
+setting the upper limit of the Euler total mesh number. In order to meet the
+computer resource limitation, this prescription is employed in the O-SUKI-N
+3D code.
+1. boundary set.cpp The function makes the boundary point data between DT and Al layer.
+2. check quantities.cpp The function outputs the data of the transformed Euler mesh as a text (csv) file.
+3. define convert.h Define the variables necessary for the conversion
+code.
+4. GenerateEulerMesh.cpp The procedure determines the number of
+the Euler meshes and to secure the necessary memory, just before the
+data conversion.
+5. Interpolation.cpp The function interpolates the data on the Lagrangian
+mesh to those on the Euler meshes. Figure 5 shows the interpolation method from the Lagrange data to the Euler data. The "MeshSearch.cpp" provides the relation between the Lagrangian mesh location and the Euler mesh location. The following interpolation equation
+is used to obtain each physical quantity on the Euler meshes. For
+example, here u shows a velocity.
+1
+sumR
+ 1 2
+2
+ 1 2
+
+1
+×
+ui,j,k +
+ui+1,j,k +
+ui+1,j+1,k
+ri,j,k
+ri+1,j,k
+ri+1,j+1,k
+ 1 2
+2
+ 1 2
+
+1
++
+ui,j+1,k +
+ui,j,k+1 +
+ui+1,j,k
+ri,j+1,k
+ri,j,k+1
+ri+1,j,k+1
+
+2
+2
+
+
+1
+1
+ui+1,j+1,k +
+ui,j+1,k+1
+(40)
++
+ri+1,j+1,k
+ri,j+1,k+1
+
+u(P ) =
+
+
+
+1
+
+2
+
+1
+
+2
+
+
+
+1
+
+2
+
+
+
+1
+
+2
+
++
++
+ri+1,j,k
+ri+1,j+1,k
+ri,j+1,k
+2 
+2 
+2 
+2
+
+1
+1
+1
+1
++
++
++
++
+ri,j,k+1
+ri+1,j,k+1
+ri+1,j+1,k+1
+ri,j+1,k+1
+
+sumR =
+
+ri,j,k
+
++
+
+
+
+23
+
+Figure 5: Interpolation of velocity
+
+Usually the Euler mesh size is small compared with the size of the Lagrange mesh. For the interpolation of physical quantities other than
+velocity, the physical quantity of the corresponding Lagrange mesh
+acquired by the "MeshSearch.cpp" is interpolated by the 0th order
+method. On the other hand, if the corresponding Lagrange mesh is
+smaller than the Euler mesh, it is done in the same way shown in Fig.
+5 and Eq. (40) for the example velocity interpolation. This is the
+special treatment in 3D to optimize the required memory size.
+6. main convert.cpp This is the main procedure of the conversion code.
+The procedure selects the output Lagrangian data transferred to the
+Euler code among the Lagrangian data sets obtained in the Lagrangian
+code. The Lagrangian meshes are deformed along with the fluid motion.
+The Lagrangian code stops, before no mesh is crushed. The conversion
+range is the all DT layer and a part of the Aluminum region. The
+volume of the Al region is 2.5 times larger than the thickness of the
+DT layer. The required number of the Euler meshes is calculated. The
+Lagrange data sets are examined from the data set from the time of
+2ns earlier than the last output data set. The function selects the
+conversion date, which has the smallest number of the Euler mesh
+required. If the number of Euler meshes exceeds the number of Euler
+meshes set in the "input LC.h", the Euler mesh total number is forced
+24
+
+to set to the upper limit defined beforehand.
+7. MeshSearch.cpp This procedure examines the location of each Euler
+mesh among the Lagrangian meshes. The MeshSearch function divides
+a Lagrange mesh into 12 triangular tetrahedra as shown in Fig. 6, and
+examines if the definition point of an Euler mesh is contained in the
+specific Lagrange mesh.
+
+Figure 6: One Lagrange mesh and 12 triangular tetrahedra
+
+In Fig. 7, P~ represents a coordinate vector of a specific Euler mesh and
+~ represents a coordinate vector of the Lagrangian mesh. The point1,
+R
+point2, point3, point4 and V~P are the positions specified in Fig. 7, and
+vectors composed of the position vectors are as follows:
+
+
+~
+~
+~
+~
+~
+~
+
+V11 = Rpoint2 − Rpoint1 
+V21 = Rpoint3 − Rpoint1
+~ point3 − R
+~ point1
+~ point4 − R
+~ point1
+V~12 = R
+V~22 = R
+
+
+~
+~
+~ point1
+~ point1
+VP 1 = P~ − R
+VP 2 = P~ − R
+
+
+~
+~
+~
+~
+~
+~
+
+V31 = Rpoint4 − Rpoint1 
+V41 = Rpoint4 − Rpoint2
+~ point1 − R
+~ point1
+~ point3 − R
+~ point2
+V~32 = R
+V~42 = R
+
+
+~
+~
+~ point1
+~ point2
+VP 3 = P~ − R
+VP 4 = P~ − R
+25
+
+Figure 7: An Euler mesh point P in a tetrahedron of the Lagrange mesh.
+
+If the point P is in the triangular pyramid, the following conditions are
+met.
+
+
+~
+~
+~
+
+V
+×
+V
+
+11
+12 * VP 1
+
+
+
+
+
+
+ V~21 × V~22 * V~P 2
+
+
+~31 × V~32 * V~P 3
+
+V
+
+
+
+
+
+
+
+ V~41 × V~42 * V~P 4
+
+>0
+>0
+>0
+
+(41)
+
+>0
+
+8. output.cpp In this procedure the converted data is output.
+9. read variable.cpp This procedure reads the file data output by the
+Lagrange code, after the Lagrangian data set selection.
+3.3. Eulerian code
+1. BoundaryTracking.cpp
+It is a function to track the material boundary surfaces. Each boundary
+point is specified by the coordinates of the three variables: (BoundaryMesh i,
+BoundaryMesh j, BoundaryMesh k). The function interpolates the
+velocities u, v and w at the coordinates by the volume interpolation,
+and tracks the position of each boundary point. In Fig. 8 dotted lines
+represent the material boundaries. When the boundary point exists at
+the position shown in Fig. 9, the boundary point velocity (ub , vb , wb )
+is calculated by the volume interpolation method and is obtained by
+
+26
+
+the following equations:
+ub =
++
+vb =
++
+wb =
++
++
+
+Vu1 ui+1,j+1,k+1 + Vu2 ui,j+1,k+1 + Vu3 ui,j,k+1 + Vu4 ui+1,j,k+1(42)
+Vu5 ui+1,j+1,k + Vu6 ui,j+1,k + Vu7 ui,j,k + Vu8 ui+1,j,k
+Vv1 vi+1,j+1,k+1 + Vv2 vi,j+1,k+1 + Vv3 vi,j,k+1 + Vv4 vi+1,j,k+1 (43)
+Vv5 vi+1,j+1,k + Vv6 vi,j+1,k + Vv7 vi,j,k + Vv8 vi+1,j,k
+Vw1wi+1,j+1,k+1 + Vw2 wi,j+1,k+1 + Vw3 wi,j,k+1
+(44)
+Vw4wi+1,j,k+1 + Vw5 wi+1,j+1,k + Vw6 wi,j+1,k + Vw7 wi,j,k
+Vw8wi+1,j,k
+
+Figure 8: Material boundary points.
+
+27
+
+Figure 9: Velocity interpolation by the volume interpolation.
+
+2. GenerateMatrix.cpp
+The mesh total numbers of (im, jm, km) are loaded from the converted
+data in GenerateMatrix(). all the variables required in the Euler code
+are defined based on the number (im, jm, km).
+3. MS TDMA.cpp
+A function to solve matrixes by TDMA (TriDiagonal-Matrix Algorithm).
+4. MaterialRecognation.cpp
+A function to discriminate each material by the material boundary
+lines.
+5. PaintMaterial.cpp
+The material is specified between the two material boundary lines in
+the procedure.
+6. RMFP ECSH.cpp
+A procedure to calculate the Rosseland mean free path (see Ref. [11]).
+7. ScanLine.cpp
+A procedure that specifies the material on each Euler mesh.
+8. artv ECSH.cpp
+This file contains a procedure to calculate the artificial viscosity. The
+
+28
+
+three-dimensional artificial viscosity is written as follows:
+ 2
+∂u
+∂u
+2
+qx = ρCQ
++ ρCL Cs | |
+∂i
+∂i
+ 2
+∂v
+∂v
++ ρCL Cs | |
+qy = ρCQ2
+∂j
+∂j
+
+2
+∂w
+∂w
+qz = ρCQ2
++ ρCL Cs | |
+∂k
+∂k
+
+(45)
+(46)
+(47)
+
+Here, the discretized artificial viscosities are shown below:
+qx ni+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+= ρni+ 1 ,j+ 1 ,k+ 1 CQ
+(uni+1,j+ 1 ,k+ 1 − uni,j+ 1 ,k+ 1 )2
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+(48)
+
+2
+
++ρni+ 1 ,j+ 1 ,k+ 1 CL Cs uni+1,j+ 1 ,k+ 1 − uni,j+ 1 ,k+ 1
+2
+
+qy ni+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+= ρni+ 1 ,j+ 1 ,k+ 1 CQ
+(uni+ 1 ,j+1,k+ 1 − uni+ 1 ,j,k+ 1 )2
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+(49)
+
+2
+
++ρni+ 1 ,j+ 1 ,k+ 1 CL Cs uni+ 1 ,j+1,k+ 1 − uni+ 1 ,j,k+ 1
+2
+
+qz ni+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+
+=
+
+2
+
+2
+
+2
+
+2
+
+2
+ρni+ 1 ,j+ 1 ,k+ 1 CQ
+(uni+ 1 ,j+ 1 ,k+1
+2
+2
+2
+2
+2
+
+−
+
+2
+
+2
+
+uni+ 1 ,j+ 1 ,k )2
+2
+2
+
+(50)
+
++ρni+ 1 ,j+ 1 ,k+ 1 CL Cs uni+ 1 ,j+ 1 ,k+1 − uni+ 1 ,j+ 1 ,k
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+(51)
+
+9. define ECSH.h
+It contains the constant values, the normalization factors and the procedure declarations required.
+10. dif ECSH.cpp
+The following equations of motion are used.
+
+
+∂ ũ
+1 ∂ (p̃ + q̃)
+∂ ũ
+∂ ũ
+∂ ũ
+−
+= − ũ
++ ṽ
++ w̃
+(52)
+∂ x̃
+∂ ỹ
+∂ z̃
+ρ̃ ∂ x̃
+∂ t̃
+
+
+∂ṽ
+1 ∂ (p̃ + q̃)
+∂ṽ
+∂ṽ
+∂ṽ
+−
+= − ũ
++ ṽ
++ w̃
+(53)
+∂ x̃
+∂ ỹ
+∂ z̃
+ρ̃ ∂ ỹ
+∂ t̃
+
+
+1 ∂ (p̃ + q̃)
+∂ w̃
+∂ w̃
+∂ w̃
+∂ w̃
+−
++ ṽ
++ w̃
+(54)
+= − ũ
+∂ x̃
+∂ ỹ
+∂ z̃
+ρ̃
+∂ z̃
+∂ t̃
+Equations (52) are discretized as follows:
+
+29
+
+n+ 21
+
+ui,j+ 1 ,k+ 1
+2
+
+2
+
+
+n− 12
+n− 12
+∂u
+∂u
++ v
+(55)
+u
+= ui,j+ 1 ,k+ 1 − Dt
+2
+2
+∂x i,j+ 1 ,k+ 1
+∂y i,j+ 1 ,k+ 1
+2
+2
+) 
+# 2 2
+
+n− 21
+n− 21
+∂u
+1 ∂(p + q)
++ w
++
+∂z i,j+ 1 ,k+ 1
+ρ ∂x
+i,j+ 1 ,k+ 1
+n− 21
+
+n
+
+2
+
+"(
+
+2
+
+2
+
+2
+
+Here,
+∂u
+u
+∂x
+
+n− 21
+i,j+ 21 ,k+ 21
+
+=
+
+∂u
+v
+∂y
+
+
+
+
+
+
+ u
+
+
+
+n− 1
+ui,j+2 1 ,k+ 1 ≥ 0
+2
+
+i− 2 ,j+ 2 ,k+ 2
+1
+n− 1
+n− 2
+2
+u
+1 −ui+1,j+ 1 ,k+ 1
+n− 21
+i+1,j+ 1
+2 ,k+ 2
+2
+2
+1
+n− 2
+i,j+ 21 ,k+ 21
+Dx 1
+1 ,k+ 1
+i− 2 ,j+ 2
+2
+
+n− 21
+
+2
+
+
+
+n− 1
+ui,j+2 1 ,k+ 1 < 0
+2
+
+2
+
+i,j+ 21 ,k+ 21
+
+=
+
+∂u
+w
+∂z
+
+
+n− 1
+n− 1
+
+−u 2 1
+u 21
+1
+1
+
+n−
+i,j+ 2 ,k+ 2
+i−1,j+ 2 ,k+ 1
+
+2
+
+ui,j+2 1 ,k+ 1
+1
+
+n−
+
+2
+2
+2
+Dx 1
+1
+1
+
+
+n− 1
+n− 1
+
+−u 21
+u 21
+1
+
+n− 12
+i,j+ 2 ,k+ 1
+i,j− 2 ,k+ 2
+
+2
+
+vi,j+ 1 ,k+ 1
+1
+
+n−
+
+2
+2
+Dy 12 1
+1
+i− 2 ,j+ 2 ,k+ 2
+n− 1
+n− 1
+2
+2
+u
+3 ,k+ 1 +ui,j+ 1 ,k+ 1
+n− 12
+i,j+ 2
+2
+2
+2
+n− 1
+i,j+ 21 ,k+ 21
+Dy 12 1
+i− 2 ,j+ 2 ,k+ 1
+2
+
+
+
+
+
+
+ v
+
+n− 21
+
+
+
+n− 1
+vi,j+21 ,k+ 1 ≥ 0
+2
+
+2
+
+
+
+n− 12
+vi,j+ 1 ,k+ 1 < 0
+2
+
+2
+
+i,j+ 21 ,k+ 21
+
+=
+
+
+1
+n− 2
+n− 1
+u 21
+
+1
+1 −ui,j+ 1 ,k− 1
+
+n−
+,k+
+i,j+
+
+2
+2
+2
+2
+
+w 2
+
+n− 1
+ i,j+ 21 ,k+ 21
+Dz 12 1
+1
+
+
+
+
+
+ w
+
+i− 2 ,j+ 2 ,k+ 2
+1
+n− 2
+n− 1
+2
+u
+1 ,k+ 3 −ui,j+ 1 ,k+ 1
+n− 21
+i,j+ 2
+2
+2
+2
+1
+i,j+ 21 ,k+ 21
+Dz n 21
+1
+i− 2 ,j+ 1
+2 ,k+ 2
+
+30
+
+
+
+
+n− 21
+
+wi,j+ 1 ,k+ 1 ≥ 0
+2
+
+2
+
+n− 21
+
+wi,j+ 1 ,k+ 1 < 0
+2
+
+2
+
+
+
+
+
+n− 1
+
+2
+2
+1 ∂(p + q)
+= n− 1
+n− 1
+ρ ∂x
+i,j+ 21 ,k+ 21
+ρi+ 12,j+ 1 ,k+ 1 + ρi− 12,j+ 1 ,k+ 1
+2
+2
+2
+2
+2
+2
+
+
+
+n− 12
+n− 21
+n− 21
+n− 1
+
+ pi+ 1 ,j+ 1 ,k+ 1 + qi+ 1 ,j+ 1 ,k+ 1 − pi− 1 ,j+ 1 ,k+ 1 + qi− 12,j+ 1 ,k+ 1 
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+n− 12
+
+Dxi,j+ 1 ,k+ 1
+
+
+
+
+2
+
+2
+
+11. eod ECSH.cpp
+The following continuity equation is used.
+ 
+
+
+∂ρ
+∂ρ
+∂ρ
+∂u ∂v ∂w
+∂ρ
+− u
+= −ρ
++
++
++v
++w
+∂t
+∂x ∂y
+∂z
+∂x
+∂y
+∂z
+Equation (56) is discretized as follows:
+"
+ρn+1
+i+ 12 ,j+ 21 ,k+ 21
+
+(
+
+n
+
+2
+
+
+
+
+(56)
+
+∂u
+− Dt
+(57)
+=
+∂x i+ 1 ,j+ 1 ,k+ 1
+) (2 2 2
+n
+n
+n
+∂v
+∂w
+∂ρ
++
++
++ u
+∂y i+ 1 ,j+ 1 ,k+ 1
+∂z i+ 1 ,j+ 1 ,k+ 1
+∂x i+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+2
+2
+2
+2
+2
+2
+)#
+n
+n
+∂ρ
+∂ρ
++w
++v
+∂y i+ 1 ,j+ 1 ,k+ 1
+∂z i+ 1 ,j+ 1 ,k+ 1
+n
+
+ρni+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+
+2
+
+2
+
+2
+
+31
+
+ρni+ 1 ,j+ 1 .k+ 1
+2
+2
+2
+
+2
+
+2
+
+2
+
+∂u
+∂x
+
+n
+
+∂v
+∂y
+
+n
+
+=
+
+2
+
+=
+
+=
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+n
+n
+wi+
+− wi+
+1
+1
+,j+ 1 ,k+1
+,j+ 1 ,k
+2
+
+2
+
+2
+
+2
+
+n
+Dzi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+n
+i+ 21 ,j+ 21 ,k+ 21
+
+
+n
+ρn 1
+1 ,k+ 1 −ρi− 1 ,j+ 1 ,k+ 1
+i+ 2 ,j+ 2
+
+n
+2
+2
+2
+2
+
+ ui+ 1 ,j+ 1 ,k+ 1
+Dxn 1
+1
+2
+
+
+
+ u
+
+2
+
+2
+
+i,j+ 2 ,k+ 2
+n
+ρn 3
+1 ,k+ 1 −ρi+ 1 ,j+ 1 ,k+ 1
+,j+
+i+
+n
+2
+2
+2
+2
+2
+2
+Dxn
+i+ 12 ,j+ 21 ,k+ 21
+1
+,k+
+i+1,j+ 1
+2
+2
+
+n
+
+
+
+
+
+uni+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+uni+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+
+
+≥0
+
+<0
+
+i+ 12 ,j+ 21 ,k+ 21
+
+
+n
+ρn 1
+1 −ρi+ 1 ,j− 1 ,k+ 1
+i+ 2 ,j+ 1
+
+n
+2 ,k+ 2
+2
+2
+2
+
+ vi+
+n
+1
+Dy 1
+,j+ 1 ,k+ 1
+1
+2
+
+2
+
+2
+
+
+n
+
+ vi+
+1
+,j+ 1 ,k+ 1
+2
+
+∂ρ
+∂z
+
+2
+
+2
+
+i+ 21 ,j+ 21 ,k+ 21
+
+=
+
+2
+
+n
+Dyi+
+1
+,j+ 1 ,k+ 1
+2
+
+n
+
+∂ρ
+∂y
+
+w
+
+2
+
+=
+
+∂ρ
+∂x
+
+2
+
+n
+n
+vi+
+− vi+
+1
+1
+,j+1,k+ 1
+,j,k+ 1
+
+i+ 21 ,j+ 21 ,k+ 21
+
+=
+
+v
+
+2
+
+Dxni+ 1 ,j+ 1 ,k+ 1
+
+i+ 21 ,j+ 21 ,k+ 21
+
+∂w
+∂z
+u
+
+uni+1,j+ 1 ,k+ 1 − uni,j+ 1 ,k+ 1
+
+2
+
+2
+
+i+ 2 ,j,k+ 2
+−ρn 1
+1
+1 ,k+ 1
+3
+i+ 2 ,j+ 2
+i+ 2 ,j+ 2 ,k+ 1
+2
+2
+Dy n 1
+1
+i+ 2 ,j+1,k+ 2
+
+ρn
+
+n
+
+
+
+n
+vi+
+≥
+0
+1
+,j+ 21 ,k+ 21
+2
+
+
+n
+vi+
+<
+0
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+i+ 21 ,j+ 21 ,k+ 21
+
+
+n
+ρn 1
+1 ,k+ 1 −ρi+ 1 ,j+ 1 ,k− 1
+i+ 2 ,j+ 2
+
+n
+2
+2
+2
+2
+
+ wi+ 1 ,j+ 1 ,k+ 1
+Dz n
+1 ,j+ 1 ,k
+i+ 2
+n2
+ρn 1
+1 ,k+ 3 −ρi+ 1 ,j+ 1 ,k+ 1
+i+ 2 ,j+ 2
+n
+2
+2
+2
+2
+Dz n 1
+i+ 21 ,j+ 21 ,k+ 21
+,k+1
+i+ 2 ,j+ 1
+2
+2
+
+
+
+ w
+
+2
+
+2
+
+12. eoenergy ECSH
+
+32
+
+
+
+
+
+n
+wi+
+1
+,j+ 21 ,k+ 21
+2
+n
+wi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+
+
+≥0
+
+<0
+
+The following basic energy equations are used.
+"
+#
+
+pi + q
+kB
+∂Ti
+ρBTi +
+(∇ * u)
+= − (u * ∇) Ti −
+∂t
+CVi
+ρ
+#
+"
+
+∂Te
+kB
+pe
+(∇ * u)
+= − (u * ∇) Te −
+ρBTe +
+∂t
+CVe
+ρ
+#
+"
+
+∂Tr
+kB
+pr
+(∇ * u)
+= − (u * ∇) Tr −
+ρBTr +
+∂t
+CVr
+ρ
+
+(58)
+(59)
+(60)
+
+Here, BTi = 0 in HIF. The discretized energy equation for the ion
+temperature, for example, becomes as follows:
+"(
+n
+∂Ti
+n
+n+1
+n
+Ti i+ 1 ,j+ 1 ,k+ 1 = Ti i+ 1 ,j+ 1 ,k+ 1 − Dt
+u
+(61)
+2
+2
+2
+2
+2
+2
+∂x i+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+)
+n
+n
+∂Ti
+∂Ti
++w
++v
+∂y i+ 1 ,j+ 1 ,k+ 1
+∂z i+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+2
+2
+"2 n
+n
++
+q
+p
+i i+ 1 ,j+ 1 ,k+ 1
+1
+i+ 12 ,j+ 21 ,k+ 21
+2
+2
+2
++
+n
+CVi i+ 1 ,j+ 1 ,k+ 1
+ρni+ 1 ,j+ 1 +k 1
+2
+2
+2
+2
+2
+2
+(
+)##
+n
+n
+n
+∂u
+∂v
+∂w
++
++
+∂x i+ 1 ,j+ 1 ,k+ 1 ∂y i+ 1 ,j+ 1 ,k+ 1
+∂z i+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+33
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+u
+
+∂Ti
+∂x
+
+=
+
+v
+
+∂Ti
+∂y
+
+=
+
+w
+
+∂Ti
+∂z
+
+=
+
+n
+i+ 1 ,j+ 21 ,k+ 21
+
+2
+
+
+ un
+
+i+ 12 ,j+ 21 ,k+ 21
+
+
+
+ uni+ 1 ,j+ 1 ,k+ 1
+2
+
+∂v
+∂y
+∂w
+∂z
+
+2
+
+2
+
+n
+
+
+
+uni+ 1 ,j+ 1 ,k+ 1 ≥ 0
+2
+2
+2
+
+
+uni+ 1 ,j+ 1 ,k+ 1 < 0
+2
+
+2
+
+2
+
+i+ 1 ,j+ 21 ,k+ 21
+
+2
+
+
+ vn
+
+n
+1
+1 −Ti i+ 1 ,j− 1 ,k+ 1
+i+ 1
+2 ,j+ 2 ,k+ 2
+2
+2
+2
+Dy n1
+1
+i 2 ,j,k+ 2
+n
+Ti n 1
+3 ,k+ 1 −Ti i+ 1 ,j+ 1 ,k+ 1
+i+ 2 ,j+ 2
+2
+2
+2
+2
+Dy n 1
+i+ 2 ,j+1,k+ 1
+2
+
+Ti n
+
+i+ 21 ,j+ 21 ,k+ 21
+
+
+n
+
+ vi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+n
+
+
+n
+vi+
+1
+1 ≥ 0
+1
+,j+ 2 ,k+ 2
+2
+
+
+n
+vi+
+1
+1
+1 < 0
+,j+ ,k+
+
+
+
+2
+
+2
+
+2
+
+i+ 1 ,j+ 1 ,k+ 1
+
+2 2 2
+n
+Ti n 1
+1 −Ti i+ 1 ,j+ 1 ,k− 1
+i+ 2 ,j+ 1
+
+n
+2 ,k+ 2
+2
+2
+2
+
+w
+ i+ 1 ,j+ 1 ,k+ 1
+Dz n1
+1
+2
+
+2
+
+2
+
+i 2 ,j+ 2 ,k
+n
+
+n
+
+Ti 1
+3 −Ti i+ 1 ,j+ 1 ,k+ 1
+i+ 2 ,j+ 1
+
+n
+2 ,k+ 2
+2
+2
+2
+
+ wi+
+n
+1
+1
+1
+Dz
+,j+ ,k+
+1
+1
+2
+
+∂u
+∂x
+
+n
+1 ,j+ 1 ,k+ 1 −Ti i− 1 ,j+ 1 ,k+ 1
+i+ 2
+2
+2
+2
+2
+2
+Dxn 1
+1
+i,j+ 2 ,k+ 2
+n
+Ti n 3
+1 −Ti i+ 1 ,j+ 1 ,k+ 1
+,k+
+i+ 2 ,j+ 1
+2
+2
+2
+2
+2
+Dxn
+1 ,k+ 1
+i+1,j+ 2
+2
+
+Ti n
+
+2
+
+2
+
+i+ 2 ,j+ 2 ,k+1
+
+n
+uni+1,j+ 1 ,k+ 1 − uni,j+ 1 ,k+ 1
+2
+2
+2
+2
+=
+n
+Dxi,j+ 1 ,k+ 1
+i+ 21 ,j+ 21 ,k+ 21
+2
+2
+n
+n
+n
+vi+ 1 ,j+1,k+ 1 − vi+
+1
+,j,k+ 21
+2
+2
+2
+=
+n
+Dyi+
+1
+i+ 21 ,j+ 21 ,k+ 21
+,j,k+ 21
+2
+n
+n
+n
+wi+ 1 ,j+ 1 ,k+1 − wi+
+1
+,j+ 21 ,k
+2
+2
+2
+=
+n
+Dzi+
+1
+i+ 21 ,j+ 21 ,k+ 21
+,j+ 21 ,k
+2
+
+
+
+n
+wi+
+≥
+0
+1
+,j+ 21 ,k+ 21
+2
+
+
+n
+<
+0
+wi+
+1
+,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+13. eos ECSH.cpp
+The same equation is used as the equation of state in the Lagrangian
+code.
+14. fusion.cpp
+The fusion reactions are calculated in this procedure. The details are
+shown in Ref. [1]. The fusion reaction formulae for deuterium and
+
+34
+
+tritium are shown below.
+D + D −−→ T(1.01MeV) + p(3.02MeV)
+50%
+
+−−→ He3 (0.82MeV) + n(2.45MeV)
+
+(62)
+
+50%
+
+D + T → He4 (3.5MeV) + n(14.1MeV)
+D decreases due to the DD and DT reactions from the expression (62).
+The number density nD change is given bellow:
+∂nD
+= −NDD − NDT
+∂t
+1
+= − hσviDD nD nD − hσviDT nD nT
+2
+
+(63)
+
+Considering the diffusion term of α particles and the term of α particle
+absorption, nα is described as follows:
+∂nα
+= +hσviDT nD nT − ∇ * F − ωα nα
+∂t
+
+(64)
+
+The discretized α particle reaction is written as:
+= nα ni+ 1 ,j+ 1 ,k+ 1 + ∆tnD ni+ 1 ,j+ 1 ,k+ 1 nT ni+ 1 ,j+ 1 ,k+ 1 hσviDT ni+ 1 ,j+ 1 ,k+ 1 .
+nα n+1
+i+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+(65)
+The D-D and the D-T reaction rates are shown in Refs. ([1, 16]). The
+flux of the α particle is shown below F .
+F = −Dα ∇nα
+
+(66)
+
+Here Dα is the diffusion coefficient and is expressed by the following
+equation.
+Dα =
+
+1
+
+1
+v λ
+3 α α
+α|
++ 34 λα |∇n
+nα
+
+(67)
+
+Here vα is the speed of α particle and λα the mean free path of α.
+The second term of the denominator in Eq. (67) expresses the flux
+limiting effect, which limits the excess flux by the steep gradient of the
+
+35
+
+2
+
+2
+
+α density. The flux F of the α particles in the x, y and z directions
+are expressed by the following equations:
+Fx =
+
+1
+n v λ
+3 α α α
+−
+α
+nα + 34 λα ∂n
+∂x
+1
+n v λ
+3 α α α
+
+Fy = −
+
+Fz = −
+
+nα +
+
+4
+λ ∂nα
+3 α ∂y
+
+1
+n v λ
+3 α α α
+α
+nα + 34 λα ∂n
+∂z
+
+∂nα
+∂x
+
+(68)
+
+∂nα
+∂y
+
+(69)
+
+∂nα
+∂z
+
+(70)
+
+The energy increases by the α particle energy deposition are shown
+below:
+Eα nα fi
+ρCvi
+Eα nα fe
+∆Te =
+ρCve
+∆Ti =
+
+(71)
+(72)
+
+Here f represents the distribution factor of the α particle energy among
+ions and electrons [17].
+fi =
+
+1
+
+1+
+
+,
+32
+Te (KeV )
+
+fe = 1 − fi
+
+(73)
+
+The discretized energy increases for ions and electrons are described as
+follows.
+
+Ti n+1
+i+ 21 ,j+ 21 ,k+ 21
+
+=
+
+Ti ni+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+
++ ∆t
+
+Eα nα ni+ 1 ,j+ 1 ,k+ 1 fi ni+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+Te n+1
+= Te ni+ 1 ,j+ 1 ,k+ 1 + ∆t
+i+ 1 ,j+ 1 ,k+ 1
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+2
+
+(74)
+
+2
+
+Eα nα ni+ 1 ,j+ 1 ,k+ 1 fe ni+ 1 ,j+ 1 ,k+ 1
+2
+
+ρni+ 1 ,j+ 1 ,k+ 1 Cve ni+ 1 ,j+ 1 ,k+ 1
+2
+2
+2
+2
+2
+2
+
+15. init ECSH.cpp
+The file initializes the Eulerian code.
+16. load convert.cpp
+A procedure to read the converted data.
+36
+
+2
+
+ρni+ 1 ,j+ 1 ,k+ 1 Cvi ni+ 1 ,j+ 1 ,k+ 1
+2
+
+(75)
+
+17. main ECSH.cpp
+The main function of the Eulerian code.
+18. output ECSH.cpp
+The results are stored in this procedure.
+4. Shell script files for setup and postprocessing
+A Shell file is prepared for the integrated run throughout from the Lagrange, conversion and Euler codes. However, each code can be also run
+manually one by one. After finishing all the simulation process, users may
+need to visualize the simulation data. Some of the data computed are visualized by the following shell scripts. All shell files require gnuplot 4.6 or
+later.
+4.1. Calculation set up shell
+1. setup fusion.h The shell file remove the calculation output date and
+makes the output file.
+4.2. Visualization for the Lagrange code data
+All the visualized data images are stored in the "pic La" directory.
+1. adiabat.sh
+The visualized graph for the time history of the adiabat α calculated
+in "Insulation.cpp" in the Lagrangian code.
+2. Animation Ti MODE.sh
+The shell file visualizes the mode analysis results of the ion temperature
+calculated by "Legendre.cpp" in the Lagrangian code.
+3. ImplosionVelocity.sh
+The shell plots the time histories of the implosion speed averaged over
+the azimuthal direction for the DT inner surface, the DT outer surface
+and the averaged DT speed.
+4. RMSoutput.sh
+The shell file plots the time histories of the root-mean-square (RMS)
+for the ion temperature and the mass density in the DT layer and Al
+layer. The RMS data is calculated by "RMS.cpp" in the Lagrangian
+code.
+
+37
+
+5. SLC t r.sh
+The shell file outputs the images of the r − t diagrams representing
+the time history of the Lagrangian meshes at θ =30, 60, 120 and 150
+degrees and at φ =10, 100, 190 and 280 degrees. To execute the shell
+file, users need to specify the boundary mesh number of each material
+in the Lagrangian code.
+4.3. Visualization for the Euler code data
+All visualized data files are stored in the "pic Eu" directory.
+1. Animation atomic XY.sh
+The shell file visualizes the distributions of the atomic number on the
+XY plane for each output data in the Euler code.
+2. Animation atomic YZ.sh
+The shell file visualizes the distributions of the atomic number on the
+YZ plane for each output data in the Euler code.
+3. Animation rho XY.sh
+The shell file visualizes the distributions of the mass density on the XY
+plane for each output data in the Euler code.
+4. Animation rho YZ.sh
+The shell file visualizes the distributions of the mass density on the YZ
+plane for each output data in the Euler code.
+5. Animation Ti XY.sh
+The shell file visualizes the distributions of the ion temperature on the
+XY plane for each output data in the Euler code.
+6. Animation Ti YZ.sh
+The shell file visualizes the distributions of the ion temperature on the
+YZ plane for each output data in the Euler code.
+7. Fusiongain.sh
+The shell file plots the history of the fusion energy gain.
+8. rhoR.sh
+The shell file plots the history of the ρR.
+5. Instructions for the user
+Before running the O-SUKI code, the user must set the target pellet and
+HIB parameters accordingly as follows:
+
+38
+
+(a)OK3 code calculation type: In 3D O-SUKI-N code, one can select the OK3 illumination code calculation type. The OK Swich = 1 is the full calculation with
+OK3. The OK Swich = 5 is the 1D uniform energy distribution type, and the
+HIB's energy distribution changes only in the radius direction. The OK Swich =
+10 is the 1D energy distribution with the illumination non-uniformity in the θ and
+φ directions. One can add artificially non-uniformity in the θ and φ directions in
+"main LC.cpp"
+(b)Projectile ion type: Five projectile ion types are included in OK3-Pb, U, Cs,
+C and p. Users can choose one of them or add other species expanding the arrays
+aZb and aAb in "Input LC.h".
+(c)Ion beam parameters: The user can specify the HIB radii on the target surface
+changing the parameter tdbrc in "input LC.h". The design of the beam input
+pulse is also done in the same file. The pulse rise start time, rise time, and beam
+power are set by variables t beamj, del t beamj, and P owerj(j = 1 ∼ 5), respectively. Users should also input the total input beam energy into input energy in
+the "define ECSH.h" manually, when the users want to run the Euler code independetly. As the parameter value of the wobbling beam, the maximum radius of
+the beam axis trajectory in the rotation and the oscillating frequency should be
+specified. Users can set the desirable values for the maximum beam trajectory
+radius rRot in the "InputOK3.h" and the rotational number rotationnumber in
+the "input LC.h".
+(d)The beam irradiation position: The file HIFScheme.h contains 1, 2, 3, 6, 12, 20,
+32, 60 and 120-beam irradiation schemes. Users can choose one of them or add
+other HIB irradiation schemes supplementing the file.
+(e)The reactor chamber: Users can specify the chamber radius by changing the parameter of Rch. The parameter dz fixes the pellet displacement from the reactor
+chamber center in the Cartesian PS coordinates (see Fig. 10). In OK3 the target
+alignment errors of dx, dy and dz can be specified. One can change this setting in
+the "input LC.h".
+(f)The target pellet structure and mesh number: The parameter values of target are set in "input LC.h" and "init LC.h". In "input LC.h", users can change
+the boundary radius of each layer, the total mesh number and the mesh number for each layer. The present O-SUKI-N 3D includes an example DT-Al-Pb
+structure target defined by target layer-thickness parameters: Rin, Rbc1, Rbc2
+and Rout. Users can add other target materials by expanding the arrays of
+aZt0, aZtm, aAt, aU i, aro and SC in "InputOK3.h".
+(g)The maximal Euler mesh number: The maximal Euler mesh number is set in
+"input LC.h". The upper limit of the mesh number should be defined depending
+on the resource limitation of the workstation used.
+
+39
+
+Figure 10: Schematic diagram for the target misalignment
+
+If users want to employ a new substance for target structure, usera also need to
+add the solid density and the atomic mass in "CONSTANT.h". Users can control
+the Lagrangian radial mesh number for each layer by changing the value M W C
+in "Input LC.h". When M W C = 0, the radial mesh width (dR1 = dR2 = * * * )
+in all layers becomes equal. When the MWC is large, the radial mesh number for
+each layer (num k1 = num k2 = * * * ) becomes close to the same number.
+
+Users can run "CodeO-SUKI-N-fusion-start.sh" to start running the OSUKI-N 3D code simulations. When the shell script is executed, the Lagrange fluid code, the data conversion code and the Euler fluid code are
+sequentially activated. The results of the Lagrangian simulation are saved in
+the "output" directory, and the results of the Eulerian simulation are saved
+in "output euler".
+6. Testing the program O-SUKI-N 3D
+The several tests are shown below to present the target fuel implosion
+dynamics. In the example cases, the HIBs and the target fuel have the
+following common parameters, which are the same values employed in Ref.
+[1]: the beam radius at the entrance of a reactor chamber Ren = 35 mm, the
+beam particle density distribution is in the Gaussian profile and all projectile
+Pb ions have 8 GeV. The target is a multilayered pellet, in which the pellet
+outer radius is 4 mm, a Pb layer thickness is 0.029 mm, the Al thickness is
+0.460 mm, and the DT thickness is 0.083 mm; the Pb, Al and DT layers have
+the radial mesh numbers of 4, 46 and 30 in these example cases, respectively,
+40
+
+and the total mesh number in the theta direction is 90. The input beam pulse
+is shown in Fig. 12 in Ref. [1]. The beam radius is 3.8mm on the target
+surface. However, Rb = 3.8mm changes at τwb to 3.7mm for the wobbling
+beam irradiation. Here τwb is the rotational period of the beam axis. The
+rotational frequency is 424MHz (rotaionnumber = 11).
+First the 3D Langrange code was run without the OK3 illumination code.
+This is the case for OK Switch = 10, and we added the artificial nonuniformity Y32 (the spherical harmonics) with the amplitude of 30.0%. In
+Fig. 11 the ion temperature distribution is shown at t=35ns, and in Fig.
+12 the mass density distribution is presented at t=35ns. The target shape
+is largely distorted due to the non-uniformity of the HIBs deposition energy
+distribution.
+
+Figure 11: Ion temperature in the 3D Lagrange code without OK3 code at t=35ns. The
+non-uniformity distiribution is Y32 with the amplitude of 30%.
+
+41
+
+Figure 12: Mass density in the 3D Lagrange code without OK3 code at t=35ns. The
+non-uniformity distriution is Y32 with the amplitude of 30%.
+
+We also performed run-through simulation tests. In the example cases,
+the OK3 code was coupled with the run-through simulations. The implosion
+data were obtained by the Lagrange code, and the data just before the void
+closure time were transferred to the Euler code through the data Conversion
+code. Two cases are computed for the target fuel implosion dynamics with
+the spiral wobbling or without the oscillating HIBs. These examples are the
+run-through simulations with the OK3 illumination code (OK Switch = 1).
+The input beam pulse, employed in the run-through tests, is shown in Fig.
+13. This beam input energy is 5.4MJ. We show the r − t diagram for the
+case without the HIBs wobbling in Fig. 14. The Lagrange-code test results
+stored in the output directory are visualized in Figs. 15 for the target ion
+temperature (Ti ) distributions at t = 0.0, 15.0, 20.0 and 22.5 ns for the
+case with the HIBs wobbling behavior. The RMS non-uniformity results
+are shown in Figs. 16 (a) for DT layer's Ion temperature(Ti ), (b) for DT
+layer's Mass density(ρ), (c) for Al layer's Ion temperature(Ti ) and (d) for Al
+layer's Mass density(ρ). When the HIBs have the wobbling motion during the
+implosion with the wobbling frequency of 424MHz, the radius acceleration
+distributions are shown in Figs. 17 (a) in the θ direction and (b) in the φ
+42
+
+direction at t = 6.25tw = 11.2ns (solid lines) and at t = 6.75tw = 12.2ns
+(dotted lines). Here tw shows the one rotation time. Figures 17 present
+that the non-uniformity phase of the implosion acceleration is controlled
+externally by the HIBs wobbling behavior [1, 18].
+
+Figure 13: Input beam pulse shape used in the example run-through tests.
+
+Figure 14: The r − t diagram for the implosion with the HIBs wobbling illumination. The
+black line area shows the Pb layer, the blue line area Al and the red line area is DT.
+
+43
+
+Figure 15: Ion temperature distributions in the example run-through test with the HIBs
+wobbling illumination at (a) t=0.0ns, (b) 15.0ns, (c) 20.0ns and (d) 22.5ns.
+
+44
+
+Figure 16: RMS non-uniformity histories of (a) the DT ion temperature, (b) the DT mass
+density, (c) the Al ion temperature and (d) the Al mass density for the cases with the
+wobbling HIBs (solid lines) and without the wobbling HIBs (dotted lines).
+
+45
+
+Figure 17: Radial acceleration distributions in (a) θ and (b) φ. The solid lines show the
+acceleration ditributions at t = 6.25tw = 11.3ns, and the dotted lines at t = 6.75tw =
+12.2ns.
+
+After the Lagrange code computation, the implosion data are converted
+and transferred to the Euler code. Figures 18 show the ion temperature
+distributions by the Euler code. Figures 18 show that the DT fuel is ignited
+and the gain obtained is about 17.5 in this example case. For a realistic
+HIF reactor design, the implosion parameters should be further optimized to
+obtain a sufficient gain, which should be larger than 30∼40 in HIF [1, 4, 5, 18].
+
+Figure 18: Ion temperature distributions (a) at t =24.88ns, (b) at 28.44ns and at 29.21ns.
+
+In order to check the accuracy of the 3D Euler code, we also performed the
+Euler code tests, using the initial conditions of the 2D Euler code. The initial
+conditions in the Euler code are the output of the Lagrangian code. To this
+end, the 2D Euler initial conditions were converted into 3D. Therefore, the
+physical values are uniform in the φ direction. The Lagrangian test 2D results
+for the target ion temperature (Ti ) and the mass density (ρ) distribution at
+t = 29 ns are shown in Figs. 14 and 15 in Ref. [1] for the cases with and
+46
+
+without the wobbling HIBs. The 2D Eulerian test results for the fusion
+energy gain is shown in Fig. 16 in Ref. [1]. In Fig. 19 we show the ion
+temperature distributions by the 3D Euler code. The wobbling HIBs are not
+used in this simulation. In this case the fuel is ignited at t ∼30.1ns. The
+histories of the fusion gain G of the 2D code and the 3D code are shown in
+Fig. 20. The fusion gain was 52.5 by the 2D code and 57.6 by the 3D code.
+In addition, we also did another test for the wobbling HIBs (see Figs. 15
+and 16 in Ref. [1]), and the fusion gain was 76.1 in 2D [1] and 67.4 in 3D.
+The results would confirm that the 3D Euler code reproduces the 2D results
+successfully for the ignition time and the fusion gain obtained.
+
+Figure 19: Ion temperature distributions by the 3D Euler code without the HIBs wobbling
+at (a) t=30.42ns, (b) 30.53ns, (c) 32.35ns and (d) 32.58ns
+
+47
+
+Figure 20: Fusion energy gain curves for the cases with 3D code (a solid line) and with
+2D code (a dotted line).
+
+We also simulated the double-cone ignition scheme[19] using a 3D Euler
+code. The double-cone ignition scheme was proposed by Prof. Jie Zhang
+[19], and the two compressed DT clouds are created by the gold cones. The
+two DT spherical clouds collide each other like the impact fusion [20]. In
+this example case, the compressed DT maximum density of the DT fuel is
+set to be 1.0 × 105 [kg/m3 ] with the Gaussian spatial distribution. The DT
+ignition will be attained by an additional heating, which is not taken into
+consideration in this example. The ion, electron and radiation temperatures
+are 10[eV] initially in the Euler code. The radius of the fuel is 92[μm] and
+the mass was 0.1[mg]. We set the colliding speed w of the two DT fuel clouds
+to 3.0 × 105 [m/s]. The ion temperature distributions are shown in Fig. 21.
+
+48
+
+Figure 21: Ion temperature distributions for the Double-cone ignition scheme [19] at (a)
+t=0.0ns, (b) 15.06ns, (c) 29.80ns and (d) 46.78ns.
+
+7. Conclusions
+We have developed and presented the O-SUKI-N 3D code, which is useful
+to simulate 3D spherical DT fuel target implosion in HIF. The O-SUKIN code is an upgraded implosion simulation system from the 2D O-SUKI
+code, and consists of the Lagrangian fluid code, the data conversion from the
+Lagrangian code data to the Euler code data, and the Euler code. Near the
+void closure phase of the DT fuel implosion, the DT fuel spatial deformation
+is serious. At the stagnation phase the DT fuel is compressed to about a
+thousand times of the solid density. The O-SUKI-N 3D code would provide
+a useful tool for the integrated DT fuel target implosion simulation in HIF.
+
+49
+
+Declaration of Competing Interest
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work
+reported in this paper.
+CRediT author statement
+Hiroki Nakamura: Software for Euler code and Conversion code, Validation, Visualization; Ken Uchibori: Software for Lagrange code and Conversion code, Validation, Visualization, Writing draft; Shigeo Kawata: Basic idea, Conceptualization, Methodology, Investigation, Supervision, writing
+paper; Takahiro Karino: Methodology, Supervision; Ryo Sato: Methodology,
+Validation; Alexander I. Ogoyski: Software for OK3 code, Validation.
+Acknowledgments
+The work was partly supported by JSPS, Japan-U. S. Exchange Program,
+MEXT, CORE (Center for Optical Research and Education, Utsunomiya
+University), Shanghai Jiao Tong University and ILE/Osaka University. The
+work was also partly done under the collaborations with Xi'an Jia Tong
+University, Inst. of Modern Physics, Lanzhou, Inst. of Physics, Beijing,
+Fudan university, Shanghai, Renmin University of China, Beijing, and ELIBeamlines, Prague.
+References
+[1] R. Sato, S. Kawata, T. Karino, K. Uchibori, T. Iinuma, H. Katoh and
+A.I. Ogoyski, Comput. Phys. Commun. 240 (2019) 83-100.
+[2] S. Atzeni and J. Meyer-ter-Vehn, The Physics of Inertial Fusion, Oxford
+University Press, 2009.
+[3] S. Kawata and K. Niu, J. Phys. Soc. Jpn. 53 (1984) 3416-3426.
+[4] S. Kawata, T. Karino and A. I. Ogoyski, Matter and Radiation at Extremes 1(2) (2016) 89-113.
+[5] S. Kawata, Advances in Physics x 6(1) (2021) 1873860.
+
+50
+
+[6] A. I. Ogoyski, T. Someya and S. Kawata, Comput. Phys. Commun. 157
+(2004) 160-172.
+[7] A. I. Ogoyski, S. Kawata and T. Someya, Compt. Phys. Commun. 161
+(2004) 143-150.
+[8] A. I. Ogoyski, S. Kawata, P. H. Popov, Compt. Phys. Commun. 181
+(2010) 1332-1333.
+[9] W. D. Schulz, "Two-Dimensional Lagrangian Hydrodynamic Difference
+Equations", University of California Lawrence Radiation Laboratory
+Livermore, California, UCRL-6776, 1963.
+[10] N. A. Tahir, K. A. Long, E. W. Laing, J. Appl. Phys. 60 (1986) 898.
+[11] Ya. B. Zel'dovich, Yu. P. Raizer, Physics of Shock Waves and HighTemperature Hydrodynamic Phenomena, Dover Books on Physics, New
+York, 2002.
+[12] T.A. Mehlhorn, J. Appl. Phys. 52 (1981) 6522-6532.
+[13] J. Von Neumann and R. D. Richtmyer, J. Appl. Phys. 21 (1950) 232-237.
+[14] J. P. Christianen, D. E. T. F. Ashby, and K. V. Roberts, Computer
+Physics Communications 7 (1974) 271-287.
+[15] A. R. Bell, Rutherford Laboratory Report, RL-80-091, 1981.
+[16] A. S. Richardson, 2019 NRL Plasma Formulary, (2019).
+[17] G. S. Fraley, E. J. Linnebur, R. J. Mason, R. L. Morse, Phys. Fluids, 17
+(1974) 474-489.
+[18] R. Sato, S. Kawata, T. Karino, K. Uchibori and A. I. Ogoysk, Scientific
+Reports, 6659 (2019) https://doi.org/10.1038/s41598-019-43221-7.
+[19] J. Zhang, W. M. Wang, X. H. Yang, D. Wu, Y. Y. Ma, J. L. Jiao, Z.
+Zhang, F. Y. Wu, X. H. Yuan, Y. T. Li and J. Q. Zhu, Rhilosophical
+Tran. Royal Soc. A (2020) https://doi.org/10.1098/rsta.2020.0015.
+[20] F. Winterberg, Z. Naturforschg. 19a (1964) 231-239.
+
+51
+
+

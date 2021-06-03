@@ -1,0 +1,3032 @@
+VISCO-ENERGETIC SOLUTIONS FOR A MODEL OF CRACK GROWTH
+IN BRITTLE MATERIALS
+
+arXiv:2105.00046v1 [math.AP] 30 Apr 2021
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+Abstract. Visco-energetic solutions have been recently advanced as a new solution concept for rate-independent systems, alternative to energetic solutions/quasistatic evolutions and balanced viscosity solutions. In the
+spirit of this novel concept, we revisit the analysis of the variational model proposed by Francfort and Marigo
+for the quasi-static crack growth in brittle materials, in the case of antiplane shear. In this context, viscoenergetic solutions can be constructed by perturbing the time incremental scheme for quasistatic evolutions by
+means of a viscous correction inspired by the term introduced by Almgren, Taylor, and Wang in the study of
+mean curvature flows. With our main result we prove the existence of a visco-energetic solution with a given
+initial crack. We also show that, if the cracks have a finite number of tips evolving smoothly on a given time
+interval, visco-energetic solutions comply with Griffith's criterion.
+
+Keywords: variational models, energy minimization, visco-energetic solutions, crack propagation, Griffith's criterion.
+2020 Mathematics Subject Classification: 74R10, 74G65, 49Q20, 35Q74.
+
+May 4, 2021
+1. Introduction
+The variational approach to brittle fracture, based on the classical theory by Griffith [Gri20], was initiated
+more than twenty years ago by Francfort and Marigo [FM98] (cf. also [BFM08]). In these models crack
+growth results from a trade-off between the competing mechanisms of
+- energy conservation, with the driving energy given by the stored elastic energy;
+- energy dissipation, which takes into account the dissipated energy spent to open the crack.
+In the case of antiplane shear the reference configuration is represented by a bounded, connected, Lipschitz
+domain Ω ⊂ R2 , the displacement u : Ω → R is scalar and the cracks are represented by compact subsets K
+of Ω. The evolution is triggered by a prescribed time dependent boundary condition u = g(t) on a subset
+∂D Ω of ∂Ω. According to the model by Francfort and Marigo, for a linearly elastic homogeneous isotropic
+material the competing energy terms are
+nZ
+o
+2
+1
+driving energy: E(t, K) := min
+(1.1)
+2 |∇u| dx : u = g(t) on ∂D Ω \ K ,
+Ω\K
+
+dissipated energy:
+
+H1 (K(t)\K(s)), where H1 denotes the 1-dimensional Hausdorff measure.
+
+For simplicity the elastic constant and the toughness of the material are normalized to 1 .
+If K(Ω) denotes the collection of all compact subsets of Ω , a quasistatic evolution for the brittle fracture
+model proposed in [FM98] is a function K : [0, T ] → K(Ω) fulfilling the following conditions:
+(I) irreversibility: K(s) ⊂ K(t) for all 0 ≤ s ≤ t ≤ T ;
+(S) stability: at every t ∈ [0, T ] we have
+E(t, K(t)) ≤ E(t, K ′ ) + H1 (K ′ \K(t))
+
+for all K ′ ∈ K(Ω) with K ′ ⊃ K(t),
+1
+
+(1.2)
+
+2
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+namely the release of potential energy when passing from the current state K(t) to any other state
+K ′ ∈ K(Ω) is smaller than the energy dissipated, that is why (1.2) can also be understood as a stability
+condition;
+(E) energy-dissipation balance:
+Z t
+E(t, K(t)) + H1 (K(t)\K(s)) = E(s, K(s)) +
+∂t E(r, K(r)) dr
+for all 0 ≤ s ≤ t ≤ T ,
+(1.3)
+s
+
+involving the stored energy at the process times s and t, the energy dissipated in the time interval
+[s, t], and the work of the external forces represented by the integral term.
+In [DMT02b] this crack model in the antiplane case was analyzed imposing a bound on the number of
+connected components of the crack, thus replacing the space K(Ω) by the space Km (Ω) of all compact subsets
+of Ω with at most m connected components and finite 1 -dimensional Hausdorff measure. The existence
+of quasistatic evolutions satisfying (I), (S), and (E) was proved by constructing discrete-time approximate
+τ
+solutions: given a partition 0 = t0τ < t1τ < . . . < tN
+τ = T of [0, T ], the time incremental minimization scheme
+
+Kτi ∈ Argmin E(tiτ , K) + H1 (K\Kτi−1 ) : K ∈ Km (Ω), K ⊃ Kτi−1
+for i = 1, . . . , Nτ
+(1.4)
+
+provides an approximate solution which converges to a continuous-time solution as the time step tends to 0 .
+Ever since, the analysis of quasistatic evolutions for crack propagation models has been extended in several
+directions, cf., e.g., [Cha03, FL03, DMFT05, DML10, FS18]. Furthermore, thanks to their flexibility and
+robustness, the notion of quasistatic evolution and the parallel concept of energetic solution [MT99, MT04]
+have been extensively applied to a broad class of rate-independent systems (cf. [MR15] for a survey).
+Nonetheless, it has been known for some time that quasistatic evolutions/energetic solutions have a drawback. Namely, when the energy functional driving the system is nonconvex, such evolutions, as functions of
+time, may have 'too early' and 'too long' jumps between energy wells, cf., e.g., [KMZ08, Ex. 6.3], and the full
+characterization of energetic solutions to 1 -dimensional rate-independent systems proved in [RS13]. Essentially,
+this is due to the global character of the stability condition (S), which involves the overall energy landscape.
+These considerations have motivated the quest of alternative weak solvability notions based on local, rather
+than global, minimality.
+To our knowledge, the first attempt in this direction dates back to [DMT02a], where, as an alternative to
+(1.4), the following time incremental minimization scheme was proposed for brittle fracture growth (still in the
+two-dimensional antiplane case):
+
+i−1
+2
+, u ∈ H 1 (Ω\K)
+(uiτ , Kτi ) ∈ Argmin E(tiτ , K) + H1 (K\Kτi−1 ) + λku − ui−1
+τ kL2 (Ω) : K ∈ Km (Ω), K ⊃ Kτ
+
+for i = 1, . . . , Nτ , with λ > 0 a fixed constant. The additional L2 -contribution penalizes the L2 -distance of
+the updated discrete displacement uiτ from the previous ui−1
+, and thus enforces locality on the time discrete
+τ
+level. We also record the notion of fracture evolution by local minimality advanced in [Lar10].
+A more general approach to a reformulation of rate-independent evolution devoid of unnatural jumps was
+pioneered in [EM06]. It stemmed from the idea that rate-independent evolution originates in the limit of
+systems governed by two time scales: the 'fast' inner scale of the system and the 'slow', but dominant, time
+scale of the external forces. In this perspective, viscous dissipation is negligible during a time interval in which
+the system evolves continuously, but it is expected to enter into the system behavior at jumps. Thus, one
+selects those solutions to the original rate-independent system that arise as limits of solutions to the viscously
+regularized system. This procedure leads to an alternative solution concept featuring a local, in place of a global,
+stability/minimality condition, and an energy-dissipation balance that provides a description of the system
+behavior at jumps, with the possible onset of 'viscous behavior'. On the one hand, the vanishing-viscosity
+technique has been formalized in an abstract setting in [MRS12, MRS16] (cf. also [Neg14]), that codified the
+properties of these 'vanishing-viscosity solutions' in the notion of balanced viscosity solution. On the other hand,
+it has been developed and refined in various concrete applications, cf., e.g., [DDS11, BFM12, KRZ13, CL16]).
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+3
+
+As far as brittle fracture models are concerned, however, the vanishing-viscosity approach has been carried
+out either assuming that the crack path is a priori known, or in specific geometric settings, cf., e.g., [TZ09,
+Cag08, KMZ08, KZM10, LT11, LT13, Alm17, CL17, ALL20]). These restrictions are related to the fact that
+the construction of balanced viscosity solutions ultimately relies on the validity of a suitable chain rule for the
+energy functional driving the system, which seems to be hard to obtain for more general fracture models.
+That is why, finding an appropriate mathematical formulation for the evolution of brittle fracture as an
+alternative to the notion of quasistatic evolution, without specific assumptions on the cracks, is still an upto-date and challenging issue. In this paper we aim to contribute to it by showing how the concept of viscoenergetic solution to a rate-independent system, recently introduced in [MS18], can be successfully applied to
+the two-dimensional antiplane model first addressed in [DMT02b].
+As we will see, visco-energetic solutions have a structure in between that of energetic and balanced viscosity
+solutions. This intermediate character is also apparent in their characterization, obtained for one-dimensional
+systems in [Min17], in the results of [RS17], and in their applicability to rate-independent systems in damage,
+plasticity, and delamination, cf. [Ros19]. Here we are going to demonstrate that the model by Francfort
+and Marigo, at least in the versions considered in [DMT02b] and [Cha03], provides yet another example of
+rate-independent process for which visco-energetic solutions are an adequate tool, while the balanced viscosity
+concept fails to apply.
+Visco-energetic evolution of brittle fracture. Visco-energetic (hereafter often abbreviated as VE ) solutions were introduced in [MS18] in the context of an abstract rate-independent system whose state space is a
+Hausdorff topological space (X, σ), endowed with
+(1) a driving energy functional E : [0, T ] × X → (−∞ + ∞];
+(2) a (possibly asymmetric, quasi-)distance d : X × X → [0, +∞] that encodes the energy dissipation of
+the system.
+In the spirit of [DMT02a], the key idea at the core of VE concept is to enforce locality by suitably perturbing
+the time incremental minimization scheme. In the general context addressed in [MS18], this perturbation is
+obtained by means of
+(3) a viscous correction, namely a lower semicontinuous functional δ : X × X → [0, +∞], compatible with
+d in a suitable sense.
+The above elements constitute a viscously corrected rate-independent system (X, E, σ, d, δ).
+Revisiting the brittle fracture model analyzed in [DMT02b] within the approach of [MS18], we work in the
+ambient space
+X = K(Ω), endowed with the topology of the Hausdorff distance h .
+
+(1.5)
+
+The evolution is driven by the energy functional E : [0, T ] × K(Ω) → [0, +∞) defined in (1.1).
+Instead of imposing a bound on the number of connected components of the crack, we penalize the nucleation
+of new connected components by means of the quasi-distance α(K, K ′ ) defined as the number of connected
+components of K ′ disjoint from K . Indeed, we fix a constant λ > 0 and we consider the dissipation distance
+d : K(Ω) × K(Ω) → [0, +∞] defined by
+d(K, K ′ ) := H1 (K ′ \K) + λ α(K, K ′ )
+
+(1.6)
+
+if K ⊂ K ′ , and set equal to +∞ otherwise. The additional term λ α(K, K ′ ) controls the number of connected
+components and is important in order to obtain the lower semicontinuity of d with respect to the Hausdorff
+distance, cf. Proposition 3.6 ahead. The constant λ plays the role of the energetic cost of the nucleation of a
+new connected component of the crack.
+We have chosen as viscous correction the functional δ : K(Ω) × K(Ω) → [0, +∞] given by
+Z
+δ(K, K ′ ) :=
+dist(x, K) dH1 (x) + μ α(K, K ′ )
+if K ⊂ K ′ ,
+(1.7)
+K ′ \K
+
+4
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+for some μ > 0 . In the regular case considered in Section 6, when K ′ is close to K the integral contribution
+to δ is approximately the sum of the squares of the length increments of the branches of the crack. A similar
+term has already been used in [LT11, LT13] to study a viscosity-driven model of crack growth. The integral
+in (1.7) is well defined for arbitrary compact sets K and K ′ , with no structural assumptions. This term was
+introduced by Almgren, Taylor and Wang in [ATW93], cf. also [DG93, LS95], where it plays the role of
+a sort of L2 -distance between K and K ′ in the Minimizing Movement scheme for the mean curvature flow.
+The term μ α(K, K ′ ) has a technical role related to the lower semicontinuity properties of δ . The constant μ
+can be interpreted as an additional energetic cost due to the nucleation of a new connected component.
+Hereafter, we shall refer to the quintuple
+(K(Ω), E, h, d, δ) as a viscously corrected rate-independent system for brittle fracture.
+Along the footsteps of [MS18] we construct discrete solutions by solving time incremental minimization
+scheme
+
+Kτi ∈ ArgminK∈K(Ω) E(tiτ , K) + d(Kτi−1 , K) + δ(Kτi−1 , K)
+for i = 1, . . . , Nτ ,
+(1.8)
+
+with Kτ0 := K0 the initial crack. It turns out that for every i = 1, . . . , Nτ (1.8) admits a solution thanks to the
+aforementioned lower semicontinuity properties of d and δ , and of the energy E. Our main result, Theorem
+4.5 ahead, states that there exists a vanishing sequence (τj )j of time steps along which the discrete solutions
+τ
+(Kτj )j , defined by piecewise constant interpolation of the minimizers (Kτi )N
+i=1 , converge to a visco-energetic
+solution of the viscously corrected system (K(Ω), E, h, d, δ). The latter is a curve K : [0, T ] → K(Ω), with
+jump set JK , complying with the following conditions:
+(I) irreversibility: K(s) ⊂ K(t) for all 0 ≤ s ≤ t ≤ T ;
+(SVE ) (d+δ)-stability: at every t ∈ [0, T ] \ JK there holds
+E(t, K(t)) ≤ E(t, K ′ ) + d(K(t), K ′ ) + δ(K(t), K ′ )
+(EVE ) the energy-dissipation balance
+E(t, K(t)) + Vard (K, [s, t]) + Jmpc (K; [s, t]) = E(s, K(s)) +
+
+for all K ′ ∈ K(Ω) with K ′ ⊃ K(t);
+Z
+
+t
+
+∂t E(r, K(r)) dr
+
+for all 0 ≤ s ≤ t ≤ T .
+
+s
+
+In (EVE ), the contribution Jmpc keeps track of the energy dissipated at jumps and is defined in terms of the
+'visco-energetic' cost c introduced in (1.9) below.
+As we have mentioned before, the structure of this solution concept is in between those of quasistatic
+evolutions (cf. (1.2) & (1.3)) and of balanced viscosity solutions. On the one hand, the stability condition
+(SVE ), though featuring the viscous correction δ and holding only outside the jump set JK , still retains a
+global character. On the other hand, in the energy balance (EVE ) the dissipation of energy is not only recorded
+by the d-induced total variation functional Vard , but, like in the case of balanced viscosity solutions, also by
+an additional term that measures the energy dissipated at the jump points of K in the interval [s, t], i.e.
+Jmpc (K; [s, t]). The jump cost Jmpc is, in turn, defined in terms of a functional c obtained by minimizing a
+suitable transition cost along curves θ connecting the two end-points K(t−) and K(t+) of the curve K at
+t ∈ JK , namely
+o
+n
+(1.9)
+c(t, K(t−), K(t+)) := inf TrcVE (t; θ, E) : E ⋐ R, θ ∈ C(E; K(Ω)), θ(E ± ) = K(t±) ,
+where E − := inf E and E + := sup E . The transition cost
+
+
+TrcVE (t; θ, E) := λ Varα (θ, E) − α(θ(E − ), θ(E + )) + GapVarδ (θ, E) +
+
+X
+
+R(t, θ(s))
+
+s∈E\{sup E}
+
+features
+(1) the α -total variation of the curve θ;
+(2) a quantity related to the 'gaps', or 'holes', of the set E (which is just an arbitrary compact subset of
+R and may have a more complicated structure than an interval);
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+5
+
+(3) a functional R : [0, T ] × K(Ω) → [0, ∞) that keeps track of the violation of the VE -stability condition
+along the curve θ, as it fulfills R(t, θ(s)) > 0 if and only if θ(s) does not comply with (SVE ) at the
+process time t.
+It is in terms of the cost c that the VE concept offers an alternative description of the system behavior at
+jumps, in comparison with quasistatic evolutions. Indeed, VE solutions satisfy the jump conditions
+E(t, K(t−)) − E(t, K(t+)) = H1 (K(t+))\K(t−) + c(t, K(t−), K(t+))
+
+for all t ∈ JK ,
+
+cf. Proposition 4.6 ahead. Thus, the release of elastic energy at a jump point is not only balanced by the length
+of the crack opening (like it would be for quasistatic evolutions), but also by the 'visco-energetic' cost between
+the two end-points K(t−) and K(t+).
+Nonetheless, if, along the footsteps of [DMT02b], we assume that, on some interval (τ0 , τ1 ) ⊂ [0, T ] the VE
+solution constructed in Theorem 4.5 has the additional property that the cracks K(t) have a fixed number of
+tips, which evolve smoothly on the interval (τ0 , τ1 ) along simple and disjoint paths, then we can prove that
+Griffith's criterion for crack growth is satisfied, cf. Theorem 6.5 ahead. This result is completely analogous to
+[DMT02b, Thm. 8.4] for quasistatic evolutions. It reflects the fact that VE solutions essentially differ from
+quasistatic evolutions in the description of the energetic behavior of the system at jumps, cf. the characterization
+provided by Proposition 4.6 ahead.
+Plan of the paper. In Section 2 we recall some preliminary results on Hausdorff convergence, and on the
+properties of the elastic energy, proved in [DMT02b]. Then, in Section 3 we introduce the dissipation distance
+d and the viscous correction δ , and settle their basic properties. Section 4 is devoted to the precise definition
+of visco-energetic solutions and to the statement of our main existence result, Theorem 4.5. In Section 5,
+the proof of Theorem 4.5 is carried out by showing that the viscously corrected system for brittle fracture
+(K(Ω), E, h, d, δ) satisfies the conditions of the general existence result [MS18, Thm. 3.9], which thus applies
+yielding the existence of VE solutions. The main result of Section 6, Theorem 6.5, provides a characterization
+of the behavior at the crack tips of a VE solution K[0, T ] → K(Ω) in an interval (τ0 , τ1 ) during which K
+evolves continuously as a function of time and the crack set K(t) fulfills suitable geometric conditions. Finally,
+in Section 7 we show how, relying on the results from [Cha03], our existence result for VE solutions can be
+extended to the planar case of linearized elasticity.
+2. Notation and preliminaries
+Throughout the paper, Ω is a fixed bounded connected open subset of R2 with Lipschitz boundary. As in
+[DMT02b], we shall additionally suppose that the boundary of Ω decomposes into
+- a Neumann part ∂N Ω, which is a (possibly empty) relatively open subset of ∂Ω with a finite number
+of connected components;
+- the Dirichlet part ∂D Ω := ∂Ω \ ∂N Ω ; it turns out that ∂D Ω is also a relatively open subset of ∂Ω with
+a finite number of connected components.
+The one-dimensional Hausdorff measure is denoted by H1 . The set of all compact subsets of Ω is denoted
+by K(Ω), whereas Km (Ω) is the set of all compact subsets K of Ω with at most m connected components
+and H1 (K) < +∞.
+The space K(Ω) is endowed with the Hausdorff distance h, defined by
+
+h(H, K) := max sup dist(x, K), sup dist(y, H)
+for all H, K ∈ K(Ω),
+(2.1)
+x∈H
+
+y∈K
+
+where, as usual, dist(x, K) := miny∈K |x−y|, with the convention that dist(x, Ø) = diam(Ω) and sup Ø = 0 ,
+so that h(Ø, K) = 0 if K = Ø and h(Ø, K) = diam(Ω) if K 6= Ø . Given (Kn )n , K ⊂ K(Ω), we will
+h
+
+often write Kn → K whenever h(Kn , K) → 0 . With a slight abuse of notation, the topology induced by the
+Hausdorff distance is still denoted by h, and the corresponding product topology on [0, T ] × K(Ω) by hR . The
+following compactness theorem is well known (see, e.g., [Rog70, Blaschke's Selection Theorem]).
+
+6
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+Theorem 2.1. The metric space (K(Ω), h) is compact.
+We will also make use of the following result (cf. [DMT02b, Cor. 3.3, 3.4]), derived from the Goła̧b theorem
+(cf., e.g., [MS95, Thm. 10.19]). It shows that the class Km (Ω) is closed w.r.t. Hausdorff convergence, and
+that, with respect to this notion of convergence the Hausdorff measure H1 is lower semicontinuous on Km (Ω)
+(while it is not lower semicontinuous on K(Ω)).
+Theorem 2.2. Let m ≥ 1 and (Kn )n ⊂ Km (Ω).
+(i) If h(Kn , K) → 0 as n → ∞ for some K ∈ K(Ω), then K ∈ Km (Ω) and
+H1 (K ∩ U ) ≤ lim inf H1 (Kn ∩ U )
+n→∞
+
+for every open set U ⊂ R2 .
+(ii) In addition, suppose that (Hn )n , H ∈ K(Ω), with h(Hn , H) → 0 as n → ∞. Then,
+H1 (K\H) ≤ lim inf H1 (Kn \Hn ) .
+n→∞
+
+Deny-Lions spaces and elastic energy. Along the footsteps of [DMT02b], we will work with the Deny-Lions
+space [DL54]
+L1,2 (A) := {u ∈ L2loc (A) : ∇u ∈ L2 (A; R2 )} ,
+2
+
+1,2
+
+(2.2)
+1
+
+for a given A ⊂ R . If A is bounded with Lipschitz boundary, then L (A) = H (A), see [DMT02b, Prop. 2.2].
+For a given g ∈ H 1 (Ω) and a given K ∈ Km (Ω), let us now introduce the space of admissible displacements
+V(g, K) := {v ∈ L1,2 (Ω\K) : v = g on ∂D Ω \ K} .
+
+(2.3)
+
+In (2.3) the equality v = g is to be interpreted in the sense of traces. Note that the trace of v on ∂D Ω \ K is
+well defined, since ∂Ω is Lipschitz (see e.g. [DMT02b, Prop. 2.2]).
+As discussed in [DMT02b, Sec. 4], the minimum problem
+Z
+2
+1
+min
+has a solution.
+(2.4)
+2 |∇v| dx
+v∈V(g,K)
+
+Ω\K
+
+We mention in advance that this minimization problem will be involved in the definition of the energy functional
+E driving our system. It may happen that the minimizer is not unique, but, by strict convexity, any two
+minimizers have the same gradient on Ω\K . The following result, proved in [DMT02b, Thm. 5.1], shows the
+continuous dependence of these gradients on the set K and on the boundary datum g , and will ensure the
+continuity properties of the energy functional E
+Proposition 2.3. Let m ≥ 1 and let (Kn )n , K ∈ K(Ω) fulfill supn∈N H1 (Kn ) < +∞ and h(Kn , K) → 0 as
+n → ∞. Let (gn )n , g ∈ H 1 (Ω) with gn → g strongly in H 1 (Ω). Let (un )n , u fulfill
+Z
+Z
+2
+2
+1
+1
+|∇v|
+dx
+for
+all
+n
+∈
+N,
+u
+∈
+Argmin
+un ∈ Argminv∈V(gn ,Kn )
+v∈V(g,K)
+2
+2 |∇v| dx .
+Ω\K
+
+Ω\Kn
+
+Then,
+∇un → ∇u
+
+as n → ∞ in L2 (Ω; R2 ) ,
+
+where ∇un and ∇u are regarded as functions defined a.e. in Ω.
+3. Setup for visco-energetic solutions for brittle fracture
+In this section we precisely define the
+(1) driving energy functional E (cf. (3.1)),
+(2) dissipation quasi-distance d (cf. (3.7)),
+(3) viscous correction δ (cf. (3.31)).
+
+(2.5)
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+7
+
+intervening in our notion of visco-energetic evolution of brittle fracture. Upon introducing E, d, and δ , we
+will also settle some of their basic properties; in particular, those underlying the definition of VE solution.
+Further properties will be investigated in Section 5 ahead, when carrying out the proof of our existence result
+Theorem 4.5.
+The energy functional. Throughout the paper g ∈ C1 ([0, T ]; H 1 (Ω)) is a fixed function, whose trace on ∂D Ω
+plays the role of a time-dependent Dirichlet loading acting on ∂D Ω. The energy functional E : [0, T ] × K(Ω) →
+[0, +∞) is defined by
+Z
+2
+1
+E(t, K) :=
+min
+(3.1)
+2 |∇u| dx,
+u∈V(g(t),K)
+
+Ω\K
+
+where the space of admissible displacements is given by (2.3). As we will see in Proposition 5.1 ahead, E is
+lower semicontinuous on [0, T ] × K(Ω), w.r.t. to the product topology hR on [0, T ] × K(Ω), along sequences
+with bounded d-distance from some reference set Ko ∈ Km (Ω). A straightforward calculation shows that the
+power functional ∂t E(t, K) exists for every t ∈ (0, T ) and all K ∈ K(Ω) and that
+Z
+∂t E(t, K) :=
+∇ġ(t) * ∇u(t) dx,
+(3.2)
+Ω\K
+
+1
+
+where ġ(t) ∈ H (Ω) is the time derivative of the function g and u(t) ∈ V(g(t), K) is a solution of the
+minimum problem (3.1); the formula for ∂t E(t, K) is well given since ∇u(t) does not depend on the choice of
+the minimizer, cf. Section 2. The upcoming Proposition 5.1 will collect all properties of E and ∂t E that are
+relevant for our analysis.
+The dissipation quasi-distance. Preliminarily, let us introduce a quasi-distance between two sets H and K
+that keeps track of the (number of) connected components of K disjoint from H . More precisely, α : K(Ω) ×
+K(Ω) → [0, +∞] is defined in this way:
+α(H, K) is the number of the connected components of K that do not intersect H
+
+(3.3)
+
+if H ⊂ K , while α(H, K) := +∞ otherwise.
+Our first result shows that α satisfies the triangle inequality.
+Lemma 3.1. The function α : K(Ω) × K(Ω) → [0, +∞] fulfills
+α(H, L) ≤ α(H, K) + α(K, L)
+
+for all H, K, L ∈ K(Ω).
+
+(3.4)
+
+Proof. It is enough to show (3.4) in the case in which α(H, K) < +∞ and α(K, L) < +∞ so that, in particular,
+H ⊂ K ⊂ L . Hence, a subfamily of the connected components of L which are disjoint from H consists of
+connected components of L which are disjoint from K . Let n = α(K, L) and suppose that L has at least j
+connected components, L1 , . . . , Lj , disjoint from H and that the connected components of L disjoint from K
+coincide with the sets Lj−n+1 , . . . , Lj . We now have to prove that α(H, K) ≥ j − n. For this, it suffices to
+consider the connected components {L1 , . . . , Lj−n } intersecting K . For every l ∈ {1, . . . , j − n} we have that
+Ll intersects at least a connected component Kl of K ; since K ⊂ L , we ultimately have that Kl ⊂ Ll . Since
+Ll ∩ H = Ø , also Kl ∩ H = Ø . Therefore, each connected component Kl , l ∈ {1, . . . , j − n} , contributes to
+the number of connected components of K disjoint from H , which yields that α(H, K) ≥ j − n. Since this
+holds for every j ≤ α(H, L), we obtain (3.4).
+
+Secondly, we prove that α is lower semicontinuous w.r.t. Hausdorff convergence.
+Lemma 3.2. For all sequences (Kn )n , (Hn )n ⊂ K(Ω) we have that
+
+
+h
+h
+Kn → K, Hn → H ⇒ α(H, K) ≤ lim inf α(Hn , Kn ) .
+n→∞
+
+(3.5)
+
+8
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+Proof. Preliminarily, we prove the following
+Claim: for every connected component K l of K and every x ∈ K l there exists a sequence (Knl )n such that
+h bl
+as n → ∞ for some connected set
+Knl is a connected component of Kn for every n ∈ N and Knl → K
+b l ⊂ Kl .
+b l ∈ K(Ω) such that x ∈ K
+K
+h
+
+Indeed, since Kn → K , there exists a sequence (xn )n such that xn → x and xn ∈ Kn for every n ∈ N. Let
+b nl be the connected component of Kn containing xn . By the Blaschke Selection and the Goła̧b Theorems,
+K
+b l )n converge to a connected set K
+b l , which clearly contains
+up to a (not relabeled) subsequence, the sets (K
+n
+b l ⊂ Kl .
+x. Thus, K
+We are now in a position to prove (3.5). Indeed, suppose that there are h connected components K 1 , . . . , K h
+of K disjoint from H . For each l ∈ {1, . . . , h} , select a point xl ∈ K l and consider the connected sets (Knl )n
+b l whose existence is ensured by the previously proved claim. Then,
+and K
+∀ l ∈ {1, . . . , h}
+
+∃ n̄l ∈ N ∀ n ≥ n̄l :
+
+Knl ∩ Hn = Ø
+
+b l ∩ H 6= Ø , hence K l ∩ H 6= Ø ). Thus, setting n̄ := maxl∈{1,...,h} n̄l , we have
+(otherwise, we would have K
+α(Hn , Kn ) ≥ h
+
+for all n ≥ n̄,
+
+and (3.5) follows.
+
+
+
+Our next key result shows that, if H has a finite number of connected components and K ∈ K(Ω) contains
+H and fulfills α(H, K) < +∞, then K also has a finite number of connected components.
+Lemma 3.3. Let H ∈ Kh (Ω) for some h ≥ 1 , and let K ∈ K(Ω) contain H and fulfill α(H, K) = i < +∞.
+Then,
+K ∈ Km (Ω)
+with m = h + i .
+(3.6)
+Proof. It suffices to observe that there are i connected components of K disjoint from H ; each of the remaining
+connected components of K intersects H and in fact contains at least one connected component of H , since
+K ⊃ H . Hence, K has at most h connected components intersecting H .
+
+For a given λ > 0 , we are now in a position to define the (asymmetric) dissipation quasi-distance d by
+d : K(Ω) × K(Ω) → [0, +∞],
+
+d(H, K) := H1 (K\H) + λ α(H, K) .
+
+(3.7)
+
+Remark 3.4. The contribution λ α to d will have the role of controlling the growth of the number of
+connected components of the visco-energetic fracture evolution [0, T ] ∋ t 7→ K(t). It is exploiting this term
+that we may prove the lower semicontinuity of d w.r.t. to Hausdorff convergence, in fact extending the Goła̧b
+Theorem, cf. Proposition 3.6 ahead. The constant λ can be interpreted as the nucleation cost of each new
+connected component of the crack set.
+Obviously,
+d(K, K) = 0
+
+for every K ∈ K(Ω).
+
+(3.8a)
+
+On the other hand, d separates the points of K(Ω), namely for every H, K ∈ K(Ω)
+d(H, K) = 0 implies H = K .
+
+(3.8b)
+
+Indeed, d(H, K) = 0 implies that all the connected components of K have non-empty intersection with H .
+Then, from H ⊂ K and H1 (K\H) = 0 we conclude that H = K . As an immediate consequence of Lemma 3.1
+we have that d satisfies the triangle inequality.
+Proposition 3.5. The function d : K(Ω) × K(Ω) → [0, +∞] fulfills
+d(H, L) ≤ d(H, K) + d(K, L)
+
+for all H, K, L ∈ K(Ω).
+
+(3.9)
+
+The lower semicontinuity of d w.r.t. Hausdorff convergence will be a consequence of the following result,
+which in fact generalizes the Goła̧b Theorem.
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+h
+
+9
+h
+
+Proposition 3.6. Let (Hn , Kn )n ⊂ K(Ω) × K(Ω) be a sequence such that Hn → H and Kn → K . Suppose
+that the number of connected components of Kn disjoint from Hn is uniformly bounded w.r.t. n ∈ N. Then,
+H1 ((K\H) ∩ U ) ≤ lim inf H1 ((Kn \Hn ) ∩ U ).
+
+(3.10)
+
+n→∞
+
+for every open set U ⊂ Ω.
+Proof. Clearly, passing to a subsequence it is not restrictive to assume that there exists k̃ ∈ N such that
+Kn has k̃ connected components disjoint from Hn for all n ∈ N.
+
+(3.11)
+
+For clarity, first of all we will show that (3.10) holds with U = Ω, and then we shall point out how the proof
+can be adapted to yield the localized inequality (3.10).
+Claim 1 : we have
+H1 (K\H) ≤ lim inf H1 (Kn \Hn ).
+
+(3.12)
+
+n→∞
+
+Clearly, we may suppose that the right-hand side is finite and, up to a further extraction, that
+lim H1 (Kn \Hn ) < +∞ .
+
+(3.13)
+
+n→∞
+
+en denote the collection of the connected components of Kn that do not intersect Hn .
+For every n ∈ N, let C
+en has k̃ elements, denoted as C
+e1 , . . . , C
+ek̃ . Up to a subsequence we may suppose that
+Due to (3.11), C
+n
+n
+eni → C
+ei
+C
+
+for i = 1, . . . , k̃,
+
+(3.14)
+
+ei ∈ K(Ω). Let us now fix two open sets V and V ′ such that H ⊂ V ′ ⋐ V and let
+for some C
+η := inf ′ dist(x, Ω\V ) > 0.
+x∈V
+
+h
+
+Since Hn → H and H ⊂ V ′ , for n sufficiently large we have Hn ⊂ V ′ ; for simplicity and without loss of
+generality, hereafter we shall suppose that Hn ⊂ V ′ for every n ∈ N.
+bn of the connected components C of Kn such that
+Let us now consider the family C
+C \ V 6= Ø,
+
+(3.15)
+
+C ∩ Hn 6= Ø.
+
+We will now show that
+H1 (C\V ′ ) ≥ η
+
+bn .
+for all C ∈ C
+
+(3.16)
+′
+
+Indeed, let us consider the 1 -Lipschitz function f : Ω → [0, +∞) defined by f (x) := dist(x, V ). Since C is
+a connected set, f (C) is an interval. It follows from the second of (3.15) and the fact that Hn ⊂ V ′ that
+0 ∈ f (C). Furthermore, by the first of (3.15) and since η = dist(V ′ , Ω\V ), we also have that η ∈ f (C), so
+that [0, η] ⊂ f (C). In particular, for every t ∈ (0, η] there exists x ∈ C such that f (x) = d(x, V ′ ) = t, so that
+x ∈ C \V ′ . Therefore, (0, η] ⊂ f (C\V ′ ). Since f is 1 -Lipschitz, we then have η ≤ H1 (f (C\V ′ )) ≤ H1 (C\V ′ ),
+i.e., (3.16).
+bn there holds C \ V ′ ⊂ Kn \ Hn and therefore
+Since Hn ⊂ V ′ , for every C ∈ C
+X
+H1 (C\V ′ ) ≤ H1 (Kn \Hn ) ≤ M ,
+(3.17)
+bn
+C∈C
+
+bn has at
+with M = supn H1 (Kn \Hn ) < +∞ by (3.13). Combining (3.16) and (3.17) we then infer that C
+M
+b
+most η elements. We may then suppose, up to a subsequence, that Cn consists of exactly k̂ ∈ N elements
+b1 , . . . , C
+b k̂ for every n. There exist compact and connected subsets C
+bj ∈ K(Ω), j = 1, . . . , k̂ , such that
+C
+n
+
+n
+
+h bj
+bj →
+C as n → ∞; moreover, it follows from (3.15) that
+C
+n
+
+b j \ V 6= Ø,
+C
+
+b j ∩ H 6= Ø.
+C
+
+(3.18)
+
+10
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+We will now prove that
+K \V ⊂
+
+k̃
+[
+
+ei \V ) ∪
+(C
+
+i=1
+
+k̂
+[
+
+bj \V ) .
+(C
+
+(3.19)
+
+j=1
+
+Indeed, for every x ∈ K \ V there exists a sequence (xn )n such that xn → x as n → ∞ and xn ∈ Kn \ V for
+sufficiently big n. Let Cn be the connected component of Kn containing xn . There exists C ∗ ∈ K1 (Ω) such
+h
+
+that, up to a subsequence, Cn → C ∗ , so that x ∈ C ∗ . Now, for every n ∈ N we either have Cn ∩ Hn = Ø or
+en . In the latter case, since xn ∈ Cn \ V 6= Ø , we have Cn ∈ C
+bn .
+Cn ∩ Hn 6= Ø . In the former case, Cn ∈ C
+1
+k̃
+e n = {C
+e ,...,C
+e } for infinitely many indexes n, there exists i0 ∈ {1, . . . , k̃} such that Cn = C
+e i0
+If Cn ∈ C
+n
+n
+n
+b n = {C
+ei . If Cn ∈ C
+b1 , . . . , C
+b k̂ } for
+e i0 ⊂ ∪k̃ C
+e i0 and, ultimately, x ∈ C
+for infinitely many n so that C ∗ = C
+n
+n
+i=1
+b j0 for infinitely many n, so that
+infinitely many indexes, then there exists j0 ∈ {1, . . . , k̂} such that Cn = C
+n
+b j . We have thus proved (3.19).
+bj0 ⊂ ∪k̂ C
+b j0 and thus x ∈ C
+C∗ = C
+j=1
+By the local version of the Goła̧b Theorem (cf. Theorem 2.2i), we have
+ei \V ) ≤ lim inf H1 (C
+ei \V ) for all i = 1, . . . , k̃
+H1 (C
+n
+
+and
+
+n→∞
+
+bj \V ) ≤ lim inf H1 (C
+bj \V )
+H1 (C
+n
+
+(3.20)
+
+for all j = 1, . . . , k̂.
+
+n→∞
+
+Hence, from (3.19) and (3.20) we deduce that
+H1 (K\V ) ≤
+
+k̃
+X
+i=1
+
+ei \V ) +
+H1 (C
+
+k̂
+X
+j=1
+
+bj \V ) ≤
+H1 (C
+
+k̃
+X
+i=1
+
+eni \V ) +
+lim inf H1 (C
+n→∞
+
+
+
+≤ lim inf 
+n→∞
+
+k̃
+X
+i=1
+
+k̂
+X
+j=1
+
+ei \V )+
+H1 (C
+n
+
+bnj \V )
+lim inf H1 (C
+n→∞
+
+k̂
+X
+j=1
+
+
+
+(3.21)
+
+bj \V ) .
+H1 (C
+n
+
+en1 , . . . , C
+enk̃ are pairwise disjoint, and so are the sets C
+bn1 , . . . , C
+bnk̂ .
+Now, for every n the connected components C
+en and C
+bn we also have that C
+ei ∩ C
+b j = Ø for every i = 1, . . . , k̃ and
+Furthermore, by the very definition of C
+n
+n
+j = 1, . . . , k̂ . Therefore, (3.21) leads to
+H1 (K\V ) ≤ lim inf H1 (Kn \V ) ≤ lim inf H1 (Kn \Hn ),
+n→∞
+
+n→∞
+
+(3.22)
+
+where the latter inequality holds due to the fact that Hn ⊂ V (at least for sufficiently large n).
+Finally, let (Vm )m be a sequence of open sets containing H such that H = ∩∞
+m=1 V m . It follows from
+(3.22) that H1 (K\V m ) ≤ lim inf n→∞ H1 (Kn \Hn ) for every m ∈ N so that, taking the limit as m → ∞ we
+ultimately have H1 (K\H) ≤ lim inf n→∞ H1 (Kn \Hn ), i.e., (3.12).
+Claim 2 : the localized inequality (3.10) holds. It is sufficient to repeat the arguments up to (3.19), which can
+be localized, yielding for every open set U ⊂ Ω
+(K\V ) ∩ U ⊂
+
+k̃
+[
+
+i=1
+
+ei \V )∩U ) ∪
+((C
+
+k̃
+[
+
+j=1
+
+bj \V )∩U ) .
+((C
+
+bj \V )∩U ), yielding
+ei \V )∩U ) and H1 ((C
+Then, by the Goła̧b Theorem 2.2 the analogues of (3.20) hold for H1 ((C
+1
+the corresponding estimate for H ((K\V )∩U ) (cf. (3.21)). Hence, the analogue of (3.22) holds, i.e.
+H1 ((K\V )∩U ) ≤ lim inf H1 ((Kn \Hn )∩U ).
+n→∞
+
+From the above inequality it is then possible to infer (3.10) by the very same arguments as in Claim 1 .
+
+
+
+Recalling that the quasi-distance α is lower semicontinuous w.r.t. Hausdorff convergence by Lemma 3.2, we
+immediately deduce the following result from Proposition 3.6.
+Corollary 3.7. The function d : K(Ω)×K(Ω) → [0, +∞] is lower semicontinuous w.r.t. the Hausdorff distance.
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+11
+
+It follows from (3.8), Proposition 3.5, and Corollary 3.7, that the quasi-distance d on K(Ω) × K(Ω) satisfies
+the basic conditions required in [MS18, Sec. 2.1].
+Curves with bounded d-variation. As we shall see in the next section, VE solutions to the viscously
+corrected system for brittle fracture are curves
+K : [0, T ] → K(Ω)
+
+such that
+
+Vard (K, [0, T ]) < +∞
+
+(3.23)
+
+where, for a subset E ⊂ [0, T ], we define
+Vard (K, E) := sup
+
+N
+nX
+j=1
+
+o
+d(K(tj−1 ), K(tj )) : t0 ≤ t1 ≤ . . . ≤ tN , tj ∈ E for j = 0, . . . , N ,
+
+(3.24)
+
+with the convention that Vard (K, Ø) = 0 . Let us now gain further insight into the properties of curves
+satisfying (3.23).
+First of all, from (3.23) it clearly follows that d(K(s), K(t)) < +∞ for every 0 ≤ s ≤ t ≤ T , so that
+K(s) ⊂ K(t)
+
+for all 0 ≤ s ≤ t ≤ T ,
+
+(3.25)
+
+i.e., the function K is increasing w.r.t. set inclusion.
+The next result shows that crack evolutions with finite d-variation are (h, d)-regulated in the sense of
+[MS18, Definition 2.3], namely at every t ∈ (0, T ) the left and the right limits of K w.r.t. h exist and satisfy
+a 'compatibility' condition w.r.t. the dissipation distance d.
+Lemma 3.8. Let K : [0, T ] → K(Ω) satisfy (3.23). For t ∈ [0, T ], set
+K(t−) := cl (∪s<t K(s)) ,
+
+(3.26)
+
+K(t+) := ∩s>t K(s),
+
+with the conventions K(0−) := K(0) and K(T +) := K(T ). Then,
+h
+
+as s → t−
+
+for all t ∈ (0, T ],
+
+h
+
+as s → t+
+
+for all t ∈ [0, T )
+
+K(s) → K(t−)
+K(s) → K(t+)
+
+(3.27)
+
+and, in addition,
+lim d(K(s), K(t−)) = lim H1 (K(t−)\K(s)) = lim α(K(s), K(t−)) = 0
+
+s→t−
+
+s→t−
+
+s→t−
+
+for all t ∈ (0, T ],
+
+lim d(K(s), K(t+)) = lim H1 (K(s)\K(t+)) = lim α(K(t+)), K(s)) = 0 for all t ∈ [0, T ).
+
+s→t+
+
+s→t+
+
+(3.28)
+
+s→t+
+
+Furthermore, there holds K(t−) ⊂ K(t) ⊂ K(t+) for all t ∈ [0, T ]. Let Θ := {t ∈ (0, T ) : K(t−) =
+K(t) = K(t+)} . Then,
+h
+
+the set JK := [0, T ] \ Θ is at most countable, and K(tn ) → K(t) for every t ∈ Θ and every tn → t.
+
+(3.29)
+
+Proof. Properties (3.27) are an immediate consequence of definitions (3.26) and of the definition of Hausdorff
+distance, while (3.29) has been proved in [DMT02b, Prop. 6.1], only relying on the monotonicity property
+(3.25).
+Let us now exploit (3.23) in order to check (3.28) for K(t−) (the proof of the assertion for K(t+) follows
+the same lines). For every s ∈ [0, T ], let V (s) := Vard (K, [0, s]). Since V is monotone increasing and (3.23)
+holds, we have that V (t−) := lims→t− V (s) < +∞. For every 0 < s < s1 < t we have that d(K(s), K(s1 )) ≤
+V (s1 ) − V (s). Passing to the limit as s1 → t− and using the semicontinuity of d (cf. Corollary 3.7), we
+conclude that
+d(K(s), K(t−)) ≤ V (t−) − V (s) .
+Hence, taking the limit as s → t− we conclude that lims→t− d(K(s), K(t−)) = 0 . This concludes the proof.
+
+
+
+Our final result shows that curves with bounded d-total variation starting from a crack with finitely many
+connected components evolve with a uniform-in-time bound on the number of their connected components.
+
+12
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+Lemma 3.9. Let K : [0, T ] → K(Ω) fulfill (3.23), and suppose that K(0) ∈ Kh (Ω) for some h ≥ 1 . Then,
+for all t ∈ [0, T ], with m ≤ h + λ1 Vard (K, [0, T ]).
+
+K(t) ∈ Km (Ω)
+
+(3.30)
+
+Proof. Since λ α(K(0), K(t)) ≤ Vard (K, [0, t]), we can apply Lemma 3.3.
+
+
+
+The viscous corrrection. We consider the viscous correction δ : K(Ω) × K(Ω) → [0, +∞] defined by
+Z
+δ(H, K) :=
+dist(x, H) dH1 (x) + μ α(H, K) ,
+(3.31)
+K\H
+
+where μ > 0 is a prescribed constant, which plays the role of a nucleation cost for each new connected
+component of the crack set. As before, we adopt the convention that dist(x, Ø) = diam(Ω). The first property
+to be satisfied for δ to be an admissible viscous correction is lower semicontinuity w.r.t. Hausdorff convergence.
+As we will see in the proof of Proposition 3.10, the contribution of the quasi-distance α , modulated by whatever
+positive coefficient μ, has again a key role in ensuring lower semicontinuity, as it controls the growth of the
+number of connected components of K disjoint from H .
+Proposition 3.10.
+(1) Let H ∈ K(Ω) be fixed. Then for all (Kn )n ⊂ K(Ω) such that the number of
+connected components of Kn disjoint from H is uniformly bounded w.r.t. n, we have that
+Z
+Z
+h
+dist(x, H) dH1 (x) .
+(3.32)
+dist(x, H) dH1 (x) ≤ lim inf
+Kn → K ⇒
+n→∞
+
+K\H
+
+Kn \H
+
+Moreover,
+(3.33)
+
+δ(H, K) ≤ lim inf δ(H, Kn ).
+n→∞
+
+(2) For all (Hn )n , H ∈ K(Ω), and (Kn )n , K ∈ K(Ω) we have
+
+
+h
+h
+Hn → H, Kn → K ⇒ δ(H, K) ≤ lim inf δ(Hn , Kn ).
+
+(3.34)
+
+n→∞
+
+Proof. ⊲ (1): Let us observe that for every lower semicontinuous nonnegative function f : Ω → [0, +∞) we
+have
+Z
+Z
+f dH1 (x) ≤ lim inf
+f dH1 (x).
+n→∞
+
+K\H
+
+Kn \H
+
+Indeed, by the lower semicontinuity of f the set Ut = {x ∈ Ω : f (x) > t} is open and by Proposition 3.6, since
+the number of connected components of Kn disjoint from H is uniformly bounded, we have H1 ((K\H)∩Ut ) ≤
+lim inf n→∞ H1 ((Kn \H)∩Ut ) . Therefore, by the Fatou Lemma we have
+Z +∞
+Z
+1
+f (x) dH (x) =
+H1 ({x : f (x) > t}∩(K\H)) dt
+K\H
+
+0
+
+≤ lim inf
+n→∞
+
+Z
+
++∞
+
+1
+
+H ({x : f (x) > t}∩(Kn \H)) dt = lim inf
+n→∞
+
+0
+
+Z
+
+f (x) dH1 (x) .
+
+Kn \H
+
+Choosing f (x) = dist(x, H) we obtain (3.32).
+Clearly, (3.33) immediately follows: as we may suppose that lim inf n→∞ δ(H, Kn ) < ∞, up to the extraction
+of a further subsequence, we have that supn μ α(H, Kn ) ≤ supn δ(H, Kn ) < ∞; then, it suffices to recall that,
+by Lemma 3.2, lim inf n→∞ α(H, Kn ) ≥ α(H, K).
+⊲ (2): We may of course suppose supn δ(Hn , Kn ) < ∞. By Lemma 3.2, lim inf n→∞ α(Hn , Kn ) ≥ α(H, K).
+In order to show the lower semicontinuity of the first contribution to δ , let us introduce the set H ε = {x ∈
+Ω : dist(x, H) ≤ ε} for every fixed ε > 0 . We have that Hn ⊂ H ε for n large enough; in what follows, for
+simplicity we will suppose that Hn ⊂ H ε for all n. Thus dist(x, H ε ) ≤ dist(x, Hn ) for all x ∈ Ω. Then,
+Z
+Z
+dist(x, Hn ) dH1 (x) .
+dist(x, H ε ) dH1 (x) ≤
+Kn \Hn
+
+Kn \Hn
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+Therefore,
+lim inf
+n→∞
+
+Z
+
+dist(x, Hn ) dH1 (x) ≥ lim inf
+n→∞
+
+Kn \Hn
+
+n→∞
+
+≥
+
+dist(x, H ε ) dH1 (x)
+
+Kn \Hn
+
+≥ lim inf
+Z
+
+Z
+
+13
+
+Z
+
+Kn
+
+dist(x, H ε ) dH1 (x)
+\H ε
+
+dist(x, H ε ) dH1 (x) ≥
+
+K\H ε
+
+Z
+
+dist(x, H ε ) dH1 (x) ,
+
+K\H
+
+where for the last-but-one inequality we have applied (3.32) . This is possible since the boundedness of
+α(Hn , Kn ) and the inclusions Hn ⊂ H ε for all n ∈ N imply that the number of connected components
+of Kn disjoint from H ε is uniformly bounded w.r.t. n ∈ N. Since ε > 0 is arbitrary, we may pass to the limit
+as ε ↓ 0 via the Fatou Lemma to obtain (3.34).
+
+In Section 5 we will gain further insight into the properties of δ , cf. Proposition 5.2 ahead.
+4. VE solutions: definition and main results
+In this Section we give the Definition of visco-energetic solution to the system (K(Ω), E, h, d, δ) for brittle
+fracture and state our main existence result.
+4.1. Definition of VE solution. The definition of the VE concept (cf. Def. 4.3 ahead) hinges on a notion
+of stability, introduced in Def. 4.1 below, that involves both the dissipation quasi-distance d and its viscous
+correction δ , and on an energy-dissipation distance featuring a cost that suitably measures the energy dissipated
+at jumps.
+Stable sets in the visco-energetic sense. With the viscous correction δ defined in (3.31) at hand, we
+introduce the 'corrected' dissipation D : K(Ω) × K(Ω) → [0, +∞]
+(
+R
+H1 (K\H) + K\H dist(x, H) dH1 (x) + (λ + μ)α(H, K) if H ⊂ K,
+D(H, K) := d(H, K) + δ(H, K) =
++∞
+otherwise.
+We are now in a position to introduce the notion of stability in the visco-energetic sense.
+Definition 4.1. Let Q ≥ 0 . We say that (t, K) ∈ [0, T ] × K(Ω) is (D, Q)-stable if it satisfies
+E(t, K) ≤ E(t, K ′ ) + D(K, K ′ ) + Q
+
+for all K ′ ∈ K(Ω).
+
+(4.1)
+
+If Q = 0 , we will simply say that (t, K) is D-stable. We denote by SD the collection of all the D-stable points,
+and by SD (t) := {K ∈ K(Ω) : (t, K) ∈ SD } its section at the process time t ∈ [0, T ]. Analogously, with the
+symbols SDQ and SDQ (t) we will denote the (D, Q)-stable sets and their sections.
+We introduce the residual stability function R : [0, T ] × K(Ω) → [0, +∞] via
+R(t, K) :=
+
+{E(t, K)−E(t, K ′ )−D(K, K ′ )} = E(t, K) − Y (t, K) with
+
+sup
+K ′ ∈K(Ω)
+
+Y (t, K) =
+
+inf
+
+(E(t, K ′ )+D(K, K ′ )) .
+
+(4.2)
+
+K ′ ∈K(Ω)
+
+By the properties of E (cf. Section 5.1) and the lower semicontinuity of d and δ ,
+M (t, K) := ArgminK ′ ∈K(Ω) (E(t, K ′ )+D(K, K ′ )) 6= Ø.
+
+(4.3)
+
+Observe that R in fact records the failure of the stability condition at a given point (t, K) ∈ [0, T ] × K(Ω),
+since
+R(t, K) ≥ 0 for all (t, K) ∈ [0, T ] × K(Ω), with R(t, K) = 0 if and only if (t, K) ∈ SD .
+(4.4)
+Furthermore, R is lower semicontinuous w.r.t. the product topology hR on [0, T ] × K(Ω) if and only if for
+every Q ≥ 0 the (D, Q)-stable sets are hR -closed.
+
+14
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+The visco-energetic cost c. It is defined by minimizing a suitable transition cost functional over a class
+of curves, connecting the left- and right-limits K(t−) and K(t+) at a jump point t ∈ JK . Such curves are
+in general defined on a compact subset E ⊂ R with a possibly more complicated structure than that of an
+interval. They are continuous w.r.t. the Hausdorff topology h, increasing in the sense of (3.25), and satisfying
+the following additional continuity condition w.r.t. the dissipation distance d
+∀ ε > 0 ∃ η > 0 : d(θ(s0 ), θ(s1 )) ≤ ε
+
+for all s0 , s1 ∈ E with s0 ≤ s1 ≤ s0 + η .
+
+(4.5)
+
+Such conditions define the space
+Ch,d (E; K(Ω)) := {θ ∈ C(E; (K(Ω), h)) : θ fulfills (4.5) and θ(s) ⊂ θ(t) for all s, t ∈ E with s ≤ t} .
+
+(4.6)
+
+Definition 4.2. Let E be a compact subset of R, let E − := inf E , E + := sup E , and let θ ∈ Ch,d (E; K(Ω)).
+For every t ∈ [0, T ] we define the transition cost function
+
+
+X
+TrcVE (t, θ, E) := λ Varα (θ, E) − α(θ(E − ), θ(E + )) + GapVarδ (θ, E) +
+R(t, θ(s)) with
+(4.7)
+s∈E\{E + }
+
+(1) Varα (θ, E) the α -total variation of the curve θ, which is defined, in analogy with (3.24), as
+
+
+N
+
+X
+α(θ(tj−1 ), θ(tj )) : t0 ≤ t1 ≤ . . . ≤ tN , tj ∈ E for j = 0, . . . , N
+Varα (θ, E) := sup
+
+
+
+(4.8)
+
+j=1
+
+with the convention that Varα (K, Ø) = 0 ;
+P
+−
++
+−
+(2) GapVarδ (θ, E) : =
+:= inf I , I + := sup I , and H (E) is the
+I∈H (E) δ(θ(I ), θ(I )), where I
+−
++
+collection of the connected components of [E , E ] \ E ;
+(3) the (possibly infinite) sum
+(
+P
+X
+sup{ s∈P R(t, θ(s)) : P finite, P ⊂ E \ {E + }} if E 6= Ø,
+R(t, θ(s)) :=
+0
+otherwise.
+s∈E\{E + }
+We can now introduce the visco-energetic jump dissipation cost c : [0, T ] × K(Ω) × K(Ω) → [0, +∞] between
+the two end-points of a jump of an increasing curve K : [0, T ] → K(Ω). Namely, for all K− , K+ ∈ K(Ω), we
+set
+c(t, K− , K+ ) := inf{TrcVE (t, θ, E) : E ⋐ R, θ ∈ Ch,d (E; K(Ω)), θ(E − ) = K− , θ(E + ) = K+ },
+
+(4.9)
+
+with the convention inf Ø = +∞. Along the footsteps of [MS18], we define the jump variation functional,
+defined along a curve K : [0, T ] → K(Ω) via
+X
+(c(t, K(t−), K(t))+c(t, K(t), K(t+)))
+Jmpc (K; [t0 , t1 ]) := c(t0 , K(t0 ), K(t0 +)) +
+t∈JK ∩(t0 ,t1 )
+(4.10)
++ c(t1 , K(t1 −), K(t1 )) for all [t0 , t1 ] ⊂ [0, T ].
+We are now in a position to define the concept of visco-energetic solution of the system (K(Ω), E, h, d, δ),
+featuring the D-stability condition (4.11) below, required outside the jump set JK of the curve K , and the
+energy balance (4.12), where the energy dissipated at jumps is recorded by the jump dissipation cost introduced
+in (4.10).
+Definition 4.3 (Visco-energetic solution). A curve K : [0, T ] → K(Ω) is a visco-energetic (VE ) solution of
+the system (K(Ω), E, h, d, δ) for brittle fracture if it satisfies
+- the monotonicity condition (3.25);
+- the D-stability condition
+E(t, K(t)) ≤ E(t, K ′ ) + D(K(t), K ′ )
+
+for all K ′ ∈ K(Ω) and all t ∈ [0, T ] \ JK ,
+
+(4.11)
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+15
+
+- the (d, c)-energy-dissipation balance
+E(t, K(t)) + Vard (K, [0, t]) + Jmpc (K; [0, t]) = E(0, K(0)) +
+
+Z
+
+t
+
+∂t E(s, K(s)) ds
+
+for all t ∈ [0, T ] .
+
+(4.12)
+
+0
+
+Remark 4.4. Taking into account the definitions of the corrected dissipation distance D and of the dissipationquasidistance d in (3.7), the D-stability condition (4.11) rephrases as
+E(t, K(t)) ≤ E(t, K ′ ) + d(K(t), K ′ ) + δ(K(t), K ′ ) for all K ′ ∈ K(Ω) and all t ∈ [0, T ] \ JK ,
+while, taking also into account Definition 4.2 and the monotonicity of t 7→ K(t), see (3.25), the energydissipation balance (4.12) can be written as
+Z t
+E(t, K(t)) + H1 (K(t)\K(0)) + λVarα (K, [0, t]) + Jmpc (K; [0, t]) = E(0, K(0)) +
+∂t E(s, K(s)) ds (4.13)
+0
+
+for all t ∈ [0, T ].
+4.2. Existence and properties of VE solutions. This section collects all of our results on VE solutions
+for the system (K(Ω), E, h, d, δ), with E, h, d and δ defined in (3.1), (2.1), (3.7), (3.31), respectively: first
+and foremost, the existence Theorem 4.5.
+As mentioned in the Introduction, VE solutions are constructed as follows: for a given partition Pτ = {0 =
+0
+τ
+= T } of the interval [0, T ] with time step τ := maxi=1,...Nτ (tiτ −ti−1
+tτ < t1τ < . . . < tN
+τ ), and an assigned
+τ
+datum K0 ∈ K(Ω), we consider the minimum problem
+
+Kτi ∈ ArgminK∈K(Ω) E(tiτ , K) + d(Kτi−1 , K) + δ(Kτi−1 , K)
+for i = 1, . . . , Nτ ,
+(4.14)
+which admits a solution thanks to the previously proved lower semicontinuity properties of d and δ , and the
+lower semicontinuity/coercivity properties of E that will be precisely stated in Section 5.1. We introduce the
+τ
+(left-continuous) piecewise constant interpolant of the elements (Kτi )N
+i=1
+Kτ : [0, T ] → K(Ω)
+
+Kτ (0) := K0 ,
+
+Kτ (t) := Kτi
+
+i
+if t ∈ (ti−1
+τ , tτ ] .
+
+(4.15)
+
+We are now in a position to give our existence result, stating the convergence of the above interpolants to a
+VE solution. Let us mention in advance that, starting from an initial datum K0 ∈ Kh (Ω) for some h ≥ 1 , we
+construct a fracture evolution with values in some Km (Ω), also providing an explicit bound on the index m,
+cf. (4.17) below.
+Theorem 4.5 (Existence of VE solutions). Assume that the time-dependent Dirichlet loading fulfills
+g ∈ C1 ([0, T ]; H 1 (Ω)).
+
+(4.16)
+
+Let K0 ∈ Kh (Ω) for some h ≥ 1 . Then, there exists a visco-energetic solution K of the system (K(Ω), E, h, d, δ)
+for brittle fracture with such that K(0) = K0 . Moreover, every VE solution K with K(0) = K0 satisfies for
+every t ∈ [0, T ]
+(4.17)
+K(t) ∈ Km (Ω), with m ≤ h + λ1 exp(CP T )(E(0, K0 ) + 1),
+where CP is the constant defined in (5.6) ahead. Finally, for every sequence (τk )k of time steps with τk ↓ 0
+as k → ∞ there exist a (not relabeled) subsequence of Kτk and a VE solution K such that
+h
+
+Kτk (t) → K(t)
+
+for all t ∈ [0, T ].
+
+(4.18)
+
+The proof of Theorem 4.5 will be carried out in Section 5 based on some preliminary results in which we are
+going to show that the dissipation distance d defined (3.7), the viscous correction δ in (3.31), and the driving
+energy functional E in (3.1) satisfy a series of conditions that are at the heart of the general existence result
+[MS18, Thm. 3.9], see conditions < A > , < B > , and < C > stated at the beginning of Section 5. Relying
+on these properties, we will deduce the proof of Theorem 4.5 from [MS18, Thm. 3.9].
+
+16
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+In [MS18] several results on the characterization of the VE concept, and on optimal jump transitions, were
+proved. As we will see in Section 5.3, such results also hold for our specific rate-independent system for brittle
+fracture, cf. Propositions 4.6 and 4.7 below.
+Proposition 4.6 provides a twofold characterization of visco-energetic solutions. First of all, in analogy to
+the properties of energetic and balanced viscosity solutions, for a curve K : [0, T ] → K(Ω) that is stable in
+the visco-energetic sense, the validity of the energy balance (4.12) is equivalent to the corresponding energy
+inequality ≤ (cf. (4.19)). It is also equivalent to the validity of an energy-dissipation inequality that solely
+involves the dissipation distance d, cf. (4.20) below, joint with jump conditions that also feature the VE cost c.
+As we have recalled in the Introduction, the notion of quasistatic evolution in brittle fracture features (4.20),
+joint with a d-stability condition. Therefore, the characterization provided by Proposition 4.6(2) highlights
+that VE solutions essentially differ from quasistatic evolutions in the description of the energetic behavior of
+the system at jumps.
+Proposition 4.6. [MS18, Prop. 3.8] Let the assumptions of Thm. 4.5 hold. A curve K : [0, T ] → K(Ω)
+satisfying the D-stability condition (4.11) is a VE solution of the system (K(Ω), E, h, d, δ) for brittle fracture
+if and only if K satisfies, in addition,
+(1) either the (d, c)-energy-dissipation upper estimate
+1
+
+E(T , K(T )) + H (K(T )\K(0)) + λVarα (K, [0, T ]) + Jmpc (K; [0, T ]) ≤ E(0, K(0)) +
+
+Z
+
+T
+
+∂t E(s, K(s)) ds; (4.19)
+
+0
+
+(2) or the d-energy-dissipation upper estimate for every [s, t] ⊂ [0, T ]
+E(T , K(t)) + H1 (K(t)\K(s)) + λVarα (K, [s, t]) ≤ E(s, K(s)) +
+
+Z
+
+t
+
+∂t E(r, K(r)) dr,
+
+(4.20)
+
+s
+
+joint with the following jump conditions at every jump point t ∈ JK :
+E(t, K(t−)) − E(t, K(t))
+
+=
+
+H1 (K(t)\K(t−)) + λα(K(t−), K(t)) + c(t, K(t−), K(t))
+
+E(t, K(t)) − E(t, K(t+))
+
+=
+
+H1 (K(t+)\K(t)) + λα(K(t), K(t+)) + c(t, K(t), K(t+)) .
+
+(4.21)
+
+Finally, let us gain further insight into the description of the system behavior at jumps provided by the VE
+concept, via the properties of optimal jump transitions. Given t ∈ [0, T ] and K− , K+ ∈ K(Ω), an admissible
+transition curve θ ∈ Ch,d (E; K(Ω)), with E ⋐ R, is an optimal transition between K− and K+ at time
+t ∈ [0, T ] if it is a minimizer for c(t, K− , K+ ), namely
+θ(E − ) = K− ,
+
+θ(E + ) = K+ ,
+
+TrcVE (t, θ, E) = c(t, K− , K+ ) .
+
+(4.22)
+
+Furthermore, we say that θ is a
+(1) sliding transition, if R(t, θ(s)) = 0 for all s ∈ E ;
+(2) viscous transition, if R(t, θ(s)) > 0 for all s ∈ E \ {E − , E + } .
+We have the following result, cf. [MS18, Thm. 3.14, Rmk. 3.15, Cor. 3.17, Prop. 3.18].
+Proposition 4.7. Let K : [0, T ] → K(Ω) be a VE solution of the system (K(Ω), E, h, d, δ) for brittle fracture.
+Then,
+(1) at every jump point t ∈ JK there exists an optimal jump transition θ between K(t−) and K(t+) such
+that θ(s) = K(t) for some s ∈ E ;
+(2) for a viscous transition θ between K(t−) and K(t+) the set E \ {E − , E + } is discrete, i.e., all of its
+points are isolated: namely, θ is a pure jump transition. In fact, θ may be represented as a finite, or
+countable, sequence (θn )n∈O , with O a compact interval of Z ∪ {±∞} , satisfying
+θn ∈ M (t, θn−1 ) = ArgminK ′ ∈K(Ω) (E(t, K ′ )+D(θn−1 , K ′ ))
+
+for all n ∈ O \ {O− };
+
+(4.23)
+
+(3) any optimal jump transition can be canonically decomposed into an (at most) countable collection of
+sliding and viscous transitions.
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+17
+
+5. Proofs of the main results
+As previously mentioned, prior to carrying out the proof of Thm. 4.5, in Sections 5.1 and 5.2 ahead we shall
+check that the system (K(Ω), E, h, d, δ) given by (3.7), (3.31), and (3.1) complies with a series of conditions
+that were proposed in [MS18, Sec. 2.2, Sec. 3.1, Sec. 3.3] as a basis for the existence of VE solutions. Such
+conditions will also involve the perturbed functional F : [0, T ] × K(Ω) → [0, +∞]
+F(t, K) := E(t, K) + d(Ko , K)
+
+(5.1)
+
+with Ko ∈ Kh (Ω) for some h ≥ 1 , an arbitrary reference point. By a sublevel of F we mean a set of the form
+{(t, K) ∈ [0, T ] × K(Ω) : F(t, K) ≤ r}
+for some r > 0 . The abstract conditions from [MS18] read as follows:
+< A > : the energy functional E : [0, T ] × K(Ω) → [0, +∞) is lower semicontinuous w.r.t. the product topology
+hR on the sublevels of F , which are hR -compact; at all (t, K) ∈ [0, T ] × K(Ω) there exists ∂t E(t, K);
+∂t E : [0, T ] × K(Ω) → R is upper semicontinuous w.r.t. hR on the sublevels of F , and
+∃ CP > 0 ∀ (t, K) ∈ [0, T ] × K(Ω) :
+
+|∂t E(t, K)| ≤ CP (E(t, K)+1) .
+
+< B > : the viscous correction δ is left- d-continuous, namely for all sequences (Kn )n , K ∈ K(Ω)
+
+
+h
+⇒ lim δ(Kn , K) = 0
+Kn → K and d(Kn , K) → 0 as n → ∞
+n→∞
+
+(5.2)
+
+(5.3)
+
+and for every (t, K) ∈ SD there holds
+
+E(s, H) − E(s, K)
+≤ 1,
+d(H, K)
+(s,H)f
+⇀(t,K)
+lim sup
+
+(5.4)
+
+where we have used the place-holder
+h
+
+(s, H)f
+⇀(t, K) for (s → t, H → K, d(H, K) → 0, (s, H) ∈ SD , s ≤ t).
+< C > For every Q ≥ 0 the (D, Q)-quasistable sets SDQ have hR -closed intersections with the sublevels of
+the functional F .
+As observed in [MS18], (5.4) in particular guarantees that D-stability yields local d-stability.
+Relying on the validity of properties < A > , < B > , and < C > , in Section 5.3 ahead we shall conclude
+the proofs of Theorem 4.5 and Propositions 4.6 and 4.7.
+5.1. Verification of properties < A >, < B > , and < C > . Propositions 5.1, 5.2, and 5.3 ahead state
+the validity of properties < A > , < B > , and < C > , respectively, for our system (K(Ω), E, h, d, δ) for brittle
+fracture. Throughout the proof of Propositions 5.1 and 5.3, we will repeatedly use that, for sequences (tn , Kn )n
+in the sublevels of the functional F defined in (5.1), there holds
+sup H1 (Kn ) < +∞
+
+and
+
+∃ m ≥ 1 : (Kn )n ⊂ Km (Ω)
+
+(5.5)
+
+n
+
+as a consequence of Lemma 3.3.
+Proposition 5.1. Under the assumptions of Thm. 4.5, the functional E : [0, T ] × K(Ω) → [0, +∞) defined in
+(3.1) and ∂t E are continuous w.r.t. the hR -topology on the sublevels of F and ∂t E fulfills (5.2).
+Proof. Let (tn , Kn )n ⊂ [0, T ] × K(Ω) with supn F(tn , Kn ) < +∞ converge to some (t, K) w.r.t. the hR topology. It follows from (5.5) and Theorem 2.2 that K ∈ Km (Ω), too. Since g ∈ C1 ([0, T ]; H 1(Ω)), we have
+that g(tn ) → g(t) in H 1 (Ω). Therefore, thanks to (5.5) we may apply Proposition 2.3 and conclude that any
+R
+sequence (un )n with un ∈ Argminv∈V(g(tn ),Kn ) Ω\Kn 21 |∇v|2 dx fulfills ∇un → ∇u as n → ∞ in L2 (Ω; R2 ),
+R
+with u ∈ Argminv∈V(g(t),K) Ω\K 12 |∇v|2 dx. Then,
+Z
+Z
+2
+2
+1
+1
+E(tn , Kn ) =
+|∇u
+|
+dx
+→
+as n → ∞.
+n
+2
+2 |∇u| dx = E(t, K)
+Ω\Kn
+
+Ω\K
+
+18
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+Since g ∈ C1 ([0, T ]; H 1(Ω)), formula (3.2) gives ∂t E(t, K) at all (t, K) ∈ [0, T ] × K(Ω). We have
+!
+Z
+Z
+2
+1 2
+1
+|∂t E(t, K)| ≤
+|∇ġ(t)||∇u| dx ≤ k∇ġkL∞ (0,T ;L2 (Ω;R2 ))
+2 |∇u| dx + 2 L (Ω\K) .
+Ω\K
+
+Ω\K
+
+Then, estimate (5.2) follows with
+CP = k∇ġkL∞ (0,T ;L2 (Ω;R2 ))
+
+1 2
+2 L (Ω)∨1
+
+
+
+(5.6)
+
+The very same arguments used for the continuity of E, combined with the fact that ġ ∈ C0 ([0, T ]; H 1 (Ω)), in
+fact yield the hR -continuity of ∂t E. This concludes the proof.
+
+With the following result we check the validity of condition < B > ; we shall in fact prove the stronger
+condition (5.7) below.
+Proposition 5.2. The dissipation distance d defined in (3.7) and the viscous correction δ in (3.31) fulfill
+lim
+
+n→∞
+
+δ(Kn , K)
+=0
+d(Kn , K)
+
+h
+
+for all (Kn )n , K ∈ Km (Ω) such that Kn → K and lim d(Kn , K) = 0.
+n→∞
+
+(5.7)
+
+In particular, conditions (5.3) and (5.4) are satisfied.
+Proof. Since d(Kn , K) → 0 as n → ∞, we have that, for n sufficiently large, Kn ⊂ K and the integers
+α(Kn , K) are 0 . Therefore, it is sufficient to observe that
+Z
+δ(Kn , K)
+1
+dist(x, Kn ) dH1 (x) ≤ h(Kn , K) −→ 0 as n → ∞,
+≤ 1
+(5.8)
+d(Kn , K)
+H (K\Kn ) K\Kn
+where the last inequality follows by the definition of Hausdorff distance.
+
+
+
+We conclude this section with a discussion on the closedness of the intersection of the Q -stable sets with
+the sublevels of the functional F introduced in (5.1). It is immediate to see that this property is guaranteed
+h
+
+R
+by the following condition: given a sequence (tn , Kn )n ⊂ SDQ , for some Q ≥ 0 , such that (tn , Kn ) →
+(t, K) as
+′
+′
+′
+n → ∞ and supn F(tn , Kn ) < +∞, for every K ∈ K(Ω), with K ⊃ K and d(K, K ) < +∞, we can exhibit
+a recovery sequence (Kn′ )n such that Kn′ ⊃ Kn and
+
+lim sup (E(tn , Kn′ )−E(tn , Kn )+d(Kn , Kn′ )+δ(Kn , Kn′ )+Q)
+n→∞
+
+≤ E(t, K ′ ) − E(t, K) + d(K, K ′ ) + δ(K, K ′ ) + Q .
+
+(5.9)
+
+In this way, we obtain E(t, K ′ )−E(t, K)+d(K, K ′ )+δ(K, K ′ )+Q ≥ 0 for all K ′ ∈ K(Ω), whence (t, K) ∈ SDQ .
+Indeed, in Proposition 5.3 below we shall obtain (5.9) in a stronger form.
+Proposition 5.3. Let (tn , Kn )n ⊂ SDQ be a sequence of Q -stable points fulfilling supn F(tn , Kn ) < +∞.
+h
+
+R
+Suppose that (tn , Kn ) →
+(t, K). Then, for every K ′ ∈ K(Ω) with K ′ ⊃ K and d(K, K ′ ) < +∞ there exists
+′
+a sequence (Kn )n such that Kn′ ⊃ Kn and the following convergences hold as n → ∞:
+
+h
+
+Kn′ → K ′ ,
+
+(5.10a)
+
+E(tn , Kn′ ) → E(t, K ′ ),
+d(Kn , Kn′ ) → d(K, K ′ ),
+δ(Kn , Kn′ ) → δ(K, K ′ ).
+
+(5.10b)
+
+In particular, condition < C > is valid.
+The proof shall be carried out in the upcoming Section 5.2.
+
+(5.10c)
+(5.10d)
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+19
+
+5.2. Proof of Proposition 5.3. Since supn F(tn , Kn ) < +∞, we have that (Kn ) ⊂ Km (Ω) for some m ≥ 1 .
+Along the footsteps of [DMT02b], first of all we shall exhibit a recovery sequence for a fixed competitor set
+K ′ = J that is, additionally, connected, i.e. J ∈ K1 (Ω), cf. the upcoming Lemma 5.4. Then, in Lemma 5.5 we
+will address the general case in which the competitor set is in Kp (Ω) for some p ≥ 1 . The proof of Proposition
+5.3 will be then carried out at the end of this section. The proofs of Lemmas 5.4 and 5.5 strongly rely on the
+arguments for [DMT02b, Lemmas 3.8 & 3.5].
+Lemma 5.4. Let m ∈ N, let (Kn )n , K ∈ Km (Ω) fulfill h(Kn , K) → 0 as n → ∞, and let J ∈ K1 (Ω) with
+J ⊃ K . Then, there exists a sequence (Jn )n ⊂ K1 (Ω) such that Jn ⊃ Kn and
+h(Jn , J) → 0
+1
+
+1
+
+H (Jn \Kn ) → H (J\K),
+Z
+Z
+dist(x, Kn ) dH1 (x) →
+Jn \Kn
+
+dist(x, K) dH1 (x)
+
+as n → ∞,
+
+(5.11a)
+
+as n → ∞,
+
+(5.11b)
+
+as n → ∞ .
+
+(5.11c)
+
+J\K
+
+Proof. If K = Ø , it is sufficient to define Jn := J . Indeed, from h(Kn , Ø) → 0 we deduce that Kn = Ø for n
+sufficiently large, and then the convergences properties (5.11) are trivially satisfied.
+Let us now assume K 6= Ø , and let K 1 , . . . , K i , 1 ≤ i ≤ m, be its connected components. First of all, in
+Step 1 we will provide the construction of a recovery sequence with the desired properties (5.11) for a carefully
+chosen set Jb, such that Jb coincides with K , if K is connected, and Jb is a suitable subset of J containing K
+(cf. (5.12b)) in the general case.
+Step 1 . If i = 1 , let us set
+Jb := K = K 1 .
+(5.12a)
+
+If i ≥ 2 , we apply [DMT02b, Lemma 3.7] to conclude that there exists a finite family of indices (σj )lj=0 , with
+{σ0 , . . . , σl } = {1, . . . , i} , and a family (Γj )lj=1 of connected components of J \ K , such that K σj−1 ∩ Γj 6=
+Ø 6= K σj ∩ Γj for j = 1, . . . , l , namely Γj connects K σj−1 to K σj . In this case, we set
+Jb := K ∪
+
+l
+[
+
+(5.12b)
+
+Γj
+
+j=1
+
+and prove the following
+Claim: there exists a sequence (Jbn )n ⊂ K1 (Ω) such that Jbn ⊃ Kn and
+b →0
+h(Jbn , J)
+
+b
+H1 (Jbn \Kn ) → H1 (J\K)
+Z
+Z
+1
+dist(x, Kn ) dH (x) →
+Jbn \Kn
+
+b
+J\K
+
+dist(x, K) dH1 (x)
+
+as n → ∞,
+
+(5.13a)
+
+as n → ∞,
+
+(5.13b)
+
+as n → ∞ .
+
+(5.13c)
+
+To carry out the construction of the sets Jbn , we proceed in the following way. Given the connected
+components (K l )il=1 of K , we choose ε > 0 such that the sets {x ∈ Ω : dist(x, K l ) ≤ ε} are pairwise
+disjoint, and we set
+e l := {x ∈ Kn : dist(x, K l ) ≤ ε}.
+K
+n
+
+e n1 ∪. . .∪ K
+e ni , K
+e nl ∈ Km (Ω),
+Following [DMT02b], we observe that, for sufficiently large n, we have that Kn = K
+e nl , K l ) → 0 as n → ∞ for all l ∈ {1, . . . , i} . We now apply [DMT02b, Lemma 3.6] and for all
+and h(K
+b nl )n ⊂ K1 (Ω) such that K
+b nl ⊃ K
+e nl ,
+l ∈ {1, . . . , i} we find a sequence (K
+Therefore,
+
+bl ,K
+el )
+h(K
+n
+n
+
+≤
+
+b l , K l ) → 0,
+h(K
+n
+
+b l , K l)
+h(K
+n
+Z
+
++
+
+and
+
+e l , K l)
+h(K
+n
+
+b l \K
+el
+K
+n
+n
+
+b l \K
+el ) → 0
+H1 (K
+n
+n
+
+as n → ∞.
+
+(5.14a)
+
+→ 0 , as n → ∞. This implies that
+
+e nl ) dH1 (x) → 0
+dist(x, K
+
+as n → ∞.
+
+(5.14b)
+
+20
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+b n1 ∈ K1 (Ω). Then, properties (5.13)
+In the case i = 1 (namely, K = K 1 ∈ K1 (Ω)), we define Jbn := K
+b
+e n1 :=
+are satisfied: indeed, in this case J = K , so that the first of (5.14a) yields (5.13a). Furthermore, K
+1
+{x ∈ Kn : dist(x, K ) = dist(x, K) ≤ ε} coincides with Kn for n large enough. Therefore, Jbn ⊃ Kn and
+b n1 \K
+e n1 ) → 0 by the second of (5.14a). Property (5.13c) then follows from (5.14b), as
+H1 (Jbn \Kn ) = H1 (K
+b
+J \ K = Ø.
+Suppose now that K is not connected, namely i ≥ 2 . Then, the set Jb is given by (5.12b). For every
+b nl , K l ) → 0 as n → ∞ for all l ∈ {1, . . . , i} ,
+j = 1, . . . , l , we fix xj ∈ K σj−1 ∩ Γj and y j ∈ K σj ∩ Γj . Since h(K
+σj−1
+j
+j
+j
+b nσj for all n ∈ N, such that
+b
+and ynj ∈ K
+we have that there exist sequences (xn )n , (yn )n with xn ∈ Kn
+xjn → xj and ynj → y j as n → ∞. Since Ω has a Lipschitz boundary, there exist arcs Xnj and Ynj in Ω,
+connecting xjn to xj and ynj to y j , respectively, such that H1 (Xnj ) → 0 and H1 (Ynj ) → 0 as n → ∞. We set
+for every n ∈ N
+l
+l
+i
+l
+[
+[
+[
+[
+j
+bl ∪
+Ynj .
+(5.15)
+Γ
+∪
+X
+∪
+Jbn :=
+K
+j
+n
+n
+j=1
+
+j=1
+
+l=1
+
+j=1
+
+It has been shown in the proof of [DMT02b, Lemma 3.8] that Jbn ∈ K1 (Ω) for sufficiently large n, and that
+(5.13a) and (5.13b) hold. It remains to check (5.13c). With this aim, we observe that by (5.15) we have
+Z
+Z
+1
+dist(x, Kn ) dH1 (x)
+dist(x, Kn ) dH (x) =
+Jbn
+
+Jbn \Kn
+
+=
+
+i Z
+X
+l=1
+
++
+
+bl
+K
+n
+
+l Z
+X
+j=1
+
+dist(x, Kn ) dH1 (x) +
+
+l Z
+X
+j=1
+
+dist(x, Kn ) dH1 (x) +
+
+Γj
+
+l Z
+X
+j=1
+
+.
+= Sn1 + Sn2 + Sn3 + Sn4
+
+j
+Xn
+
+dist(x, Kn ) dH1 (x)
+
+Ynj
+
+dist(x, Kn ) dH1 (x)
+
+(where the integrals are taken over Γj since H1 (Γj ) = H1 (Γj ) by [DMT02b, Prop. 2.5]). As for the first
+summand, observe that
+Z
+Z
+e l ) dH1 (x) −→ 0 as n → ∞ for every l = 1, . . . , i ,
+dist(x, Kn ) dH1 (x) ≤
+dist(x, K
+n
+bl
+K
+n
+
+bl
+K
+n
+
+e n1 ∪ . . . ∪ K
+e ni ⊃ K
+e nl , while the convergence to 0 is proved
+where the inequality is due to the fact that Kn = K
+in (5.14b). Therefore, Sn1 → 0 as n → ∞. We trivially estimate
+Z
+dist(x, Kn ) dH1 (x) ≤ diam(Ω) * H1 (Xnj ) → 0 as n → ∞ for all j = 1, . . . , l,
+j
+Xn
+
+R
+and we handle the terms Ynj dist(x, Kn ) dH1 (x) in the same way. We thus conclude that Sn2 → 0 and Sn4 → 0
+as n → ∞. Finally, we observe that
+Z
+Z
+Z
+1
+1
+dist(x, K) dH1 (x) for all j = 1, . . . , l,
+lim sup dist(x, Kn ) dH (x) ≤
+dist(x, Kn ) dH (x) ≤
+lim sup
+n→∞
+
+Γj
+
+Γj
+
+n→∞
+
+Γj
+
+where the first inequality follows from the Fatou Lemma, and the second one is a straightforward consequence
+of the fact that Kn → K w.r.t. the Hausdorff distance. All in all, we conclude that
+Z
+l Z
+l Z
+X
+X
+dist(x, K) dH1 (x)
+dist(x, Kn ) dH1 (x) =
+dist(x, Kn ) dH1 (x) ≤ lim sup
+lim sup
+n→∞
+
+Jbn \Kn
+
+n→∞
+
+j=1
+
+Γj
+
+Γj
+
+j=1
+
+=
+
+Z
+
+Jb\K
+
+where the last equality is due to (5.12b). Then, (5.13c) ensues, since lim inf n→∞
+R
+dist(x, K) dH1 (x) thanks to Proposition 3.10.
+estimated from below by J\K
+b
+
+R
+
+dist(x, K) dH1 (x),
+
+Jbn \Kn
+
+dist(x, Kn ) dH1 (x) is
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+21
+
+Step 2 . Let us now carry out the construction of the recovery sequence (Jn )n for a given J ∈ K1 (Ω) with
+J ⊃ K . Let Jb be the set introduced in (5.12). Observe that J is locally connected (see [CD97, Lemma
+1]), hence the connected components of J \ Jb are open in the relative topology of J . Therefore, since J is
+separable, J \ Jb has at most countably many connected components (Cl )l∈L , with L a finite or an infinite
+subset of N. It follows from the proof of [DMT02b, Lemma 3.7] that each component Cl is open in J and
+satisfies C l ∩ K 6= Ø . Let us fix a point z l ∈ C l ∩ K for every l ∈ L . From h(Kn , K) → 0 as n → ∞ we
+deduce that there exists a sequence (znl )n such that znl ∈ Kn for all n ∈ N and znl → z l as n → ∞. Since
+Ω is Lipschitz, for every l ∈ L there exists an arc Znl ⊂ Ω connecting znl to zl , and such that H1 (Znl ) → 0
+as n → ∞. Finally, along the footsteps of [DMT02b] we observe that there exists a sequence (Λn )n ⊂ N such
+that
+Λn
+X
+lim
+H1 (Znl ) = 0
+n→∞
+
+l=1
+
+(in fact, if the set L consists of 1 ≤ Λ < +∞ elements, then we take Λn = Λ ).
+We claim that the recovery sequence
+Jn := Jbn ∪
+
+Λn
+[
+
+Λn
+[
+
+Znl ∪
+
+l=1
+
+(5.16)
+
+Cl
+
+l=1
+
+complies with (5.11). In fact, it is sufficient to check (5.11c), as (5.11a) and (5.11b) have been proved in
+[DMT02b, Lemma 3.8]. With this aim, we observe that
+Z
+dist(x, Kn ) dH1 (x)
+Jn \Kn
+
+=
+
+Z
+
+Jbn
+
+dist(x, Kn ) dH1 (x) +
+
+Λn Z
+X
+
+dist(x, Kn ) dH1 (x) +
+
+l
+Zn
+
+l=1
+
+Λn Z
+X
+
+Cl
+
+l=1
+
+It follows from (5.13c) that
+lim sup S5n ≤
+n→∞
+
+We estimate
+S6n ≤ diam(Ω)
+
+Z
+
+Λn
+X
+
+b
+J\K
+
+dist(x, Kn ) dH1 (x) =: S5n + S6n + S7n .
+
+dist(x, K) dH1 (x) .
+
+H1 (Znl ) → 0
+
+as n → ∞.
+
+l=1
+
+Finally, we observe that
+lim sup S7n = lim sup
+n→∞
+
+n→∞
+
+Λn Z
+X
+l=1
+
+dist(x, Kn ) dH1 (x) ≤ lim sup
+n→∞
+
+Cl
+
+≤
+≤
+
+Z
+
+S
+
+Z
+
+l∈L
+
+S
+
+Z
+
+dist(x, Kn ) dH1 (x)
+
+S
+
+l∈L Cl
+
+lim sup dist(x, Kn ) dH1 (x)
+n→∞
+
+Cl
+
+dist(x, K) dH1 (x),
+
+l∈L Cl
+
+again by the Fatou Lemma and the fact that h(Kn , K) → 0 as n → ∞. All in all, we conclude that
+Z
+Z
+Z
+1
+1
+dist(x, K) dH1 (x)
+dist(x, K) dH (x) + S
+dist(x, Kn ) dH (x) ≤
+lim sup
+n→∞
+
+b
+J\K
+
+Jn \Kn
+
+=
+
+Z
+
+l∈L
+
+Cl
+
+dist(x, K) dH1 (x) ,
+
+J\K
+
+namely, an inequality in (5.11c). The converse inequality follows from Proposition 3.10. This concludes the
+proof.
+
+
+22
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+As in [DMT02b, Lemma 3.5], we now extend the construction of the recovery sequence to the case the
+'competitor set' J has at most p connected components, with p ≥ 1 .
+Lemma 5.5. Let m, p ∈ N, m, p ≥ 1 , let (Kn )n , K ∈ Km (Ω) fulfill h(Kn , K) → 0 as n → ∞, and let
+K ′ ∈ Kp (Ω) with K ′ ⊃ K . Then, there exists a sequence (Kn′ )n ⊂ Kp (Ω) such that Kn′ ⊃ Kn and properties
+(5.10) hold.
+Proof. As in the proof of [DMT02b, Lemma 3.5], we consider the connected components J 1 , . . . , J i , 1 ≤ i ≤ p,
+of the set K ′ , we fix ε > 0 such that the sets {x ∈ Ω : dist(x, J l ) ≤ ε} , l ∈ {1, . . . , i} , are pairwise disjoint,
+and we define
+b l := {x ∈ Kn : dist(x, J l ) ≤ ε},
+K
+l ∈ {1, . . . , i} .
+n
+S
+b nl are in Km (Ω), Kn = i K
+b nl , and
+Following [DMT02b], we observe that, for n large enough, the sets K
+l=1
+b nl , K l ) → 0 as n → ∞, with K l := K ∩ J l . If K l = Ø , we set Jnl ≡ J j for all n ∈ N. If K l 6= Ø , we apply
+h(K
+b nl )n , l ∈ {1, . . . , i} , and for each l ∈ {1, . . . , i}
+Lemma 5.4 to the connected sets J l and to the sequences (K
+we find a sequence (Jnl )n ⊂ K1 (Ω) such that
+bl ,
+Jnl ⊃ K
+n
+Z
+lim sup
+n→∞
+
+b l ) → H1 (J l \K l ),
+H1 (Jnl \K
+n
+Z
+b nl ) dH1 (x) ≤
+dist(x, K
+dist(x, K l ) dH1 (x) .
+
+h(Jnl , J l ) → 0,
+
+l \K
+bl
+Jn
+n
+
+(5.17)
+
+J l \K l
+
+Note that, for n large enough, the sets (Jnl )il=1 are pairwise disjoint.
+Then, we define the recovery sequence (Kn′ )n for the set K ′ in this way:
+Kn′ := Jn1 ∪ . . . ∪ Jni .
+
+Si
+b nl = Kn and h(Kn′ , K ′ ) → 0 as n → ∞, namely (5.10a) holds. Then, (5.10b)
+By construction Kn′ ⊃ l=1 K
+follows from (5.10a) and Proposition 5.1. Furthermore,
+H1 (Kn′ \Kn ) = H1 (
+
+i
+[
+
+Jnl \
+
+j=1
+
+l=1
+
+≤
+
+i
+X
+
+H
+
+l=1
+
+1
+
+i
+[
+
+b j ) = H1 (
+K
+n
+
+i
+[
+
+l=1
+
+bl )
+(Jnl \K
+n
+
+−→
+
+i
+X
+
+1
+
+b l ))
+(Jnl \K
+n
+l
+
+l
+
+(5.18)
+1
+
+′
+
+H (J \K ) = H (K \ K) .
+
+l=1
+
+b j = J l for l 6= j , analogously, we have J l \K j = J l
+where the second equality follows from the fact that Jnl \ K
+n
+n
+for l 6= j , which gives the very last equality.
+S
+S
+b nl , i Jnl ), namely the number of connected components Λ of
+Now, we calculate α(Kn , Kn′ ) = α( il=1 K
+l=1
+Si
+Si
+l
+b nl = Ø . Since for n large enough the sets Jnl , l = 1, . . . , i , are connected and
+K
+J
+such
+that
+Λ
+∩
+n
+l=1
+l=1
+b nl = Ø
+pairwise disjoint, each Λ must coincide with a set Jnl̄ , for some  ̄l ∈ {1, . . . , i} , that fulfills Jnl̄ ∩ K
+b nl = J l̄ ∩ K l = Ø for l 6=  ̄l , and that,
+for every l ∈ {1, . . . , i} . Recall that, for n sufficiently large, Jnl̄ ∩ K
+l̄
+l̄
+l̄
+l̄
+b
+Jn ∩ Kn = Ø if and only if J ∩ K = Ø . Then, we easily conclude that
+α(Kn , Kn′ ) = α(
+
+i
+[
+
+l=1
+
+K l,
+
+i
+[
+
+J l ) = α(K, K ′ )
+
+for n large enough.
+
+l=1
+
+Thus, we infer the validity of property (5.10c).
+With the same arguments we find that
+Z
+i Z
+X
+l
+1
+b
+dist(x, Kn ) dH (x) = lim sup
+lim sup
+′ \K
+bn
+Kn
+
+n→∞
+
+≤
+
+i Z
+X
+l=1
+
+J l \K l
+
+dist(x, K l ) dH1 (x) =
+
+n→∞
+
+Z
+
+K ′ \K
+
+l=1
+
+l \K
+bl
+Jn
+n
+
+b l ) dH1 (x)
+dist(x, K
+n
+
+dist(x, K) dH1 (x),
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+23
+
+where the last inequality follows from (5.17). This gives an inequality in (5.10d); the converse one is again due
+to Proposition 3.10. This concludes the proof.
+
+Proof of Proposition 5.3. By (5.5) and by Theorem 2.2(i), the set K belongs to Km (Ω) for some m. Since
+λα(K, K ′ ) ≤ d(K, K ′ ) < +∞, we have that K ′ ∈ Kp (Ω) with p = m+ α(K, K ′ ). Then, the conclusion follows
+from Lemma 5.5.
+
+5.3. Proofs. In this section we prove Theorem 4.5.
+Proof of Theorem 4.5. The first and the last statement follow from the general existence result [MS18, Thm.
+3.9], which applies to the system (K(Ω), E, h, d, δ) for brittle fracture thanks to the validity of conditions
+< A > , < B > , and < C > , proved in Propositions 5.1, 5.2, and 5.3.
+We now prove the explicit bound (4.17) on the number m of connected components. Indeed, from the
+energy-dissipation balance (4.12) we infer that
+Z t
+Vard (K, [0, t]) ≤ E(t, K(t)) + Vard (K, [0, t]) + Jmpc (K; [0, t]) ≤ E(0, K0 ) +
+CP (E(s, K(s))+1) ds (5.19)
+0
+
+where the last inequality follows from (3.2). Then, by the Gronwall Lemma we infer that
+for all t ∈ [0, T ],
+
+E(t, K(t)) ≤ (E(0, K0 )+1) exp(CP t) − 1
+which, inserted in (5.19), yields
+
+Vard (K, [0, T ]) ≤ (E(0, K0 )+1) exp(CP T ) − 1.
+Therefore, taking into account Lemma 3.9, we infer that
+K(t) ∈ Km (Ω)
+
+for all t ∈ [0, T ] with m ≤ h +
+
+1
+λ
+
+exp(CP T )(E(0, K0 ) + 1),
+
+(with CP the positive constant in (5.6)), i.e., (3.6). This concludes the proof of Theorem 4.5.
+
+(5.20)
+
+
+6. Behavior near the crack tips
+In the same spirit of [DMT02b, Sec. 8], in this section we describe the singularity at the crack tips of the
+displacement u(t) associated with a VE solution K(t) to the system (K(Ω), E, h, d, δ). This will be examined
+in an interval (τ0 , τ1 ) during which K evolves continuously as a function of time. Furthermore, along the
+footsteps of [DMT02b], we confine the discussion to the case in which the (moving part of the) crack set
+consists of a finite family of simple arcs, whose endpoints are the moving tips of the crack, as specified in
+Hypothesis 6.1 below. In Theorem 6.5 below we will show that the VE solution K complies with Griffith's
+criterion for crack growth.
+Let us specify the structural condition on the crack K : [0, T ] → K(Ω).
+Hypothesis 6.1. We suppose that K : [0, T ] → K(Ω) fulfills the following condition on some (τ0 , τ1 ) ⊂ [0, T ]:
+there exists a finite family (Γi )pi=1 of arcs contained in Ω and parameterized by arc length by C2 bijective
+functions γi : [σi0 , σi1 ] → Γi such that
+K(t) = K(τ0 ) ∪
+
+p
+[
+
+Γi (σi (t))
+
+for all t ∈ (τ0 , τ1 ),
+
+(6.1)
+
+i=1
+
+where, for i = 1, . . . , p, σi : [τ0 , τ1 ] → [σi0 , σi1 ] are non-decreasing continuous functions such that σi (τ0 ) = σi0
+and σi0 < σi (t) < σi1 , while Γi (σ) = {γi (s) : σi0 ≤ s ≤ σ} . We also assume that the arcs (Γi )pi=1 are pairwise
+disjoint, and that Γi ∩ K(t0 ) = {γi (σi0 )} for every i = 1, . . . , p.
+Hence, for t ∈ (τ0 , τ1 ) the fracture grows along the branches Γi , i = 1, . . . , p, and the points γi (σi (t)) are the
+moving crack tips. The compliance with Griffith's criterion stated in Theorem 6.5 ahead will be expressed in
+terms of conditions involving the stress intensity factors of the displacements u(t) at the crack tips. We briefly
+recall some preliminary facts about this notion.
+
+24
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+Basics on the stress intensity factor. The notion of stress intensity factor is based on the following result.
+Proposition 6.2. Let B ⊂ R2 be an open ball, and let γ : [σ0 , σ1 ] → R2 be a simple path of class C2
+parameterized by arc length, such that γ(σ0 ) ∈ ∂B , γ(σ1 ) ∈ ∂B , and γ(σ) ∈ B for all σ ∈ (σ0 , σ1 ). In
+addition, assume that γ is not tangent to ∂B at σ0 and σ1 .
+Given σ ∈ (σ0 , σ1 ), let Γ(σ) := {γ(s) : σ0 ≤ s ≤ σ} and let u ∈ L1,2 (B\Γ(σ)) satisfy
+Z
+∇u * ∇z dx = 0
+for all z ∈ L1,2 (B\Γ(σ)) with z = 0 on ∂B\Γ(σ) .
+B\Γ(σ)
+
+Then, there exists a unique constant κ = κ(u, σ) ∈ R such that
+p
+u − 2κ ρ/π sin(θ/2) ∈ H 2 (B\Γ(σ)) ∩ H 1,∞ (B\Γ(σ)) ,
+
+(6.2)
+
+where ρ(x) = |x − γ(σ)| and θ(x) is the continuous function on B\Γ(σ) that coincides with the oriented angle
+between γ̇(σ) and x − γ(σ), and vanishes on the points of the form x = γ(σ) + εγ̇(σ) for ε > 0 small enough.
+Proof. Since the connected components of B\Γ(σ) have Lipschitz boundary, the space L1,2 (B\Γ(σ)) coincides
+with H 1 (B\Γ(σ)). Then the proof of (6.2) can be found in [Gri85, Theorem 4.4.3.7 and Section 5.2] and
+[MS89, Appendix 1].
+
+The constant κ is proportional to the stress intensity factor considered in the engineering literature. It is
+related to the derivative of the energy with respect to the crack length, as we shall see in Proposition 6.3 below.
+Given an open subset A ⊂ Ω with Lipschitz boundary, a compact set K ⊂ Ω, and a function g : ∂A\K → R,
+we define
+Z
+2
+1
+e
+E(A;
+g, K) :=
+min
+(6.3)
+2 |∇v| dx ,
+e
+v∈V(A;g,K)
+
+A\K
+
+where
+
+e
+V(A;
+g, K) := {v ∈ L1,2 (A\K) : v = g on ∂A \ K} .
+
+(6.4)
+
+The following result can be obtained by adapting the proof of [Gri92, Thm. 6.4.1].
+Proposition 6.3. Let B and γ be as in Proposition 6.2 and let g : ∂B\{γ(σ0 )} → R be a function. For every
+R
+1
+e
+σ ∈ (σ0 , σ1 ) suppose that V(B;
+g, Γ(σ)) 6= Ø and let u(σ) ∈ Argminv∈V(B;g,Γ(σ))
+|∇v|2 dx . Then,
+e
+B\Γ(σ) 2
+with κ defined by (6.2).
+
+d e
+E(B; g, Γ(σ)) = −κ(u(σ), σ)2
+dσ
+
+for every σ ∈ (σ0 , σ1 ) ,
+
+(6.5)
+
+Localization of the stability condition. We now prove that the VE -stability inequality can be localized,
+in the spirit of [DMT02b, Lemma 8.5].
+R
+Lemma 6.4. Assume that (t, K) ∈ [0, T ] × K(Ω) is D-stable and let u ∈ Argminv∈V(g(t),K) Ω\K 12 |∇v|2 dx .
+Then, for every open subset A ⊂ Ω with Lipschitz boundary we have
+Z
+′
+1
+′
+e
+e
+E(A; u, K) ≤ E(A; u, K ) + H (K \K) + dist(x, K∩A) dx + (λ + μ)α(K∩A, (K ′ ∪K)∩A)
+(6.6)
+K ′ \K
+
+for all K ′ ∈ K(A) with K ′ ⊃ K ∩ A.
+
+Proof. Let K ′ ∈ K(A). It follows from (4.1), with K ′ replaced by K ′ ∪K , that
+Z
+′
+1
+′
+dist(x, K) dx + (λ + μ)α(K, K ′ ∪K) .
+E(t, K) ≤ E(t, K ∪K) + H (K \K) +
+
+(6.7)
+
+K ′ \K
+
+We repeat the very same calculations as in the proof of [DMT02b, Lemma 8.5], obtaining that
+e
+e
+E(t, K ′ ∪K) − E(t, K) ≤ E(A;
+u, K ′ ) − E(A;
+u, K) .
+
+(6.8)
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+As for the third term on the right-hand side of (6.7), we observe that
+Z
+Z
+dist(x, K∩A) dx.
+dist(x, K) dx ≤
+K ′ \K
+
+25
+
+(6.9)
+
+K ′ \K
+
+Finally, let us prove that
+α(K, K ′ ∪K) ≤ α(K∩A, (K ′ ∪K)∩A) .
+
+(6.10)
+
+′
+
+It is enough to show that every connected component of K ∪K disjoint from K is a connected component of
+(K ′ ∪K)∩A . If C is a connected component of K ′ ∪K and does not intersect K , then C ⊂ K ′ ⊂ A , hence
+C ⊂ (K ′ ∪K)∩A . If C ′ is a connected set such that C ⊂ C ′ ⊂ (K ′ ∪K)∩A , then C ′ ⊂ K ′ ∪K and hence
+C ′ = C . This shows that C is a connected component of (K ′ ∪K)∩A and concludes the proof of (6.10), which,
+together with (6.7)–(6.8), yields (6.6).
+
+Griffith's condition at the crack tips. Our result for a VE solution K : [0, T ] → K(Ω) satisfying, in
+addition, the structural condition stated in Hypothesis 6.1, involves the constants the κi = κi (u(t), σi (t))
+satisfying (6.2) at the tips γi (σi (t)) of the branches of the crack, where u(t) is the corresponding minimal
+displacement (cf. (6.11) below).
+Theorem 6.5. Let K : [0, T ] → K(Ω) be a VE solution of the system for brittle fracture (K(Ω), E, h, d, δ),
+with time-dependent boundary datum g ∈ C1 ([0, T ]; H 1(Ω)), and for every t ∈ [0, T ] let
+Z
+2
+1
+(6.11)
+u(t) ∈ Argminv∈V(g(t),K(t))
+2 |∇v| dx .
+Ω\K(t)
+
+Assume that K satisfies Hypothesis 6.1 on some (τ0 , τ1 ) ⊂ [0, T ], with arcs Γi and functions σi , i = 1, . . . , p.
+Then,
+σ̇i (t) ≥ 0
+2
+
+1 − κi (u(t), σi (t)) ≥ 0
+
+1 − κi (u(t), σi (t))2 σ̇i (t) = 0
+
+for a.a. t ∈ (τ0 , τ1 ),
+
+(6.12a)
+
+for all t ∈ (τ0 , τ1 ),
+
+(6.12b)
+
+for a.a. t ∈ (τ0 , τ1 )
+
+(6.12c)
+
+for every i = 1, . . . , p.
+
+Remark 6.6. Following [DMT02b], we observe that (6.12a) states that the length of every branch of the crack
+is non-decreasing, in accordance with the irreversibility of the crack growth process; (6.12b) imposes that the
+absolute value of the stress intensity factor, at each tip, be less or equal than 1 ; by (6.12c), the stress intensity
+factor reaches the threshold values ±1 as soon as the tip moves with positive velocity. In fact, conditions
+(6.12) rephrase Griffith's criterion in our context.
+Therefore, Theorem 6.5 ensures that a VE solution complying with Hyp. 6.1 satisfies Griffith's criterion in
+the interval (τ0 , τ1 ) during which it evolves continuously as a function of time, like it happens for the quasistatic
+evolutions considered in [DMT02b, Thm. 8.4]. This is consistent with the fact that the most relevant difference
+between VE solutions and quasistatic evolutions resides in the jump behavior, as highlighted by Proposition 4.6.
+Proof of Theorem 6.5. As in the proof of [DMT02b, Thm. 8.4], we fix an arbitrary t ∈ (τ0 , τ1 ) and consider a
+family of open balls B1 , . . . , Bp centered at the points γi (σi (t)). Up to choosing their radii sufficiently small,
+we have that B i ⊂ Ω and B i ∩ K(τ0 ) = B i ∩ B j = B i ∩ Γj = Ø for j 6= i . Furthermore, we may assume that,
+for every i = 1, . . . , p,
+Bi ∩ Γi = {γi (σ) : ρ0i < σ < ρ1i }
+for suitable ρ0i and ρ1i such that σi0 < ρ0i < σi (t) < ρ1i < σi1 , and that the arcs Γi intersect ∂Bi only at
+the points γi (ρ0i ) and γi (ρ1i ) with a transversal intersection. Then, taking into account Hypothesis 6.1, we
+conclude that
+B i ∩ K(s) = B i ∩ Γi (σi (s)) = {γi (σ) : ρ0i ≤ σ ≤ σi (s)}
+(6.13)
+
+26
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+whenever σi (s) ∈ (ρ0i , ρ1i ). In particular, (6.13) holds at s = t and for s sufficiently close to t, since σi is
+continuous at t.
+It follows from Lemma 6.4 that, for every i = 1, . . . , p,
+Z
+′
+1
+′
+e
+e
+dist(x, K(t)∩Bi ) dx+(λ+μ)α(K(t)∩B i , (K ′ ∪K(t))∩B i )
+E(Bi ; u(t), K(t)) ≤ E(Bi ; u(t), K )+H (K \K(t))+
+K ′ \K(t)
+
+e is the localized energy functional defined in (6.3). Choosing
+for all K ′ ∈ K(B i ) with K ′ ⊃ K(t)∩B i , where E
+′
+0
+K = Γi (σ)∩B i = {γi (ρ) : ρi ≤ ρ ≤ σ} with σ ∈ [σi (t), ρ1i ], and recalling that H1 (Γi (σ)\Γi (σi (t))) = σ−σi (t)
+and α(Γi (σi (t))∩B i , Γi (σ)∩B i ) = 0 , we deduce that
+Z
+e i ; u(t), Γi (σi (t)) ≤ E(B
+e i ; u(t), Γi (σ)) + σ − σi (t) +
+E(B
+dist(x, Γi (σi (t))∩Bi ) dx.
+(6.14)
+Γi (σ)\Γi (σi (t))
+
+for all σ ∈
+
+[σi (t), ρ1i ].
+
+Taking into account that
+Z
+1
+dist(x, Γi (σi (t))∩Bi ) dx = 0,
+lim
+σ→σi (t) σ−σi (t) Γi (σ)\Γi (σi (t))
+
+from (6.14) we obtain that
+d e
+E(Bi ; u(t), Γi (σ)) σ=σi (t) + 1 ≥ 0
+for all i = 1, . . . , p.
+dσ
+Then, (6.12b) follows from Proposition 6.3 applied with g = u(t).
+For every [s, t] ⊂ (τ0 , τ1 ) we have that α(K(s), K(t)) = 0 by Hypothesis 6.1. Hence Varα (K, [s, t]) = 0 ,
+so that Vard (K, [s, t]) = H1 (K(t)\K(s)). Since K evolves continuously in time on the interval (τ0 , τ1 ), the
+energy-dissipation balance (4.12) reduces to
+Z t
+E(t, K(t)) + H1 (K(t)\K(s)) = E(s, K(s)) +
+∂t E(r, K(r)) dr for all [s, t] ⊂ (τ0 , τ1 ) .
+(6.15)
+s
+
+From (6.15), with the very same arguments as in the proof of [DMT02b, Thm. 8.4] we deduce (6.12c).
+
+
+
+7. Extension to 2 D linearized elasticity
+In [Cha03] the existence of quasistatic evolutions for fracture, proved in the scalar setting in [DMT02b],
+was extended to the vectorial, still two-dimensional, setting of linearized elasticity. The argument relied on a
+density result of H 1 (A; R2 )-fields in the space of fields whose symmetrized gradient is in L2 (A; R2×2
+sym ), proved
+2
+by the author in the case A ⊂ R is a bounded open set whose complement has a finite number of connected
+components.
+We will now briefly explain how the arguments in [Cha03] also allow us to prove the existence of viscoenergetic solutions for the vectorial (2 D, linearized elasticity) version of the system for brittle fracture, that
+we address in a domain Ω ⊂ R2 still complying with the conditions expounded at the beginning of Section 2.
+The viscously corrected system for brittle fracture is now given by the quadruple (K(Ω), ELE , h, d, δ) in which
+- the dissipation quasi-distance d, and the viscous correction δ are still given by (3.7), and (3.31),
+respectively;
+- the driving energy functional ELE [0, T ] × K(Ω) → [0, +∞) is defined by
+Z
+1
+ELE (t, K) :=
+min
+(7.1)
+2 Ce(u) : e(u) dx,
+u∈VLE (g(t),K)
+
+Ω\K
+
+where C is the elasticity tensor and e(u) denotes the symmetric part of ∇u ,
+g ∈ C1 ([0, T ]; H 1 (Ω; R2 )),
+and the space for admissible displacements is now given by
+VLE (g(t), K) := {v ∈ LD(Ω\K) : v = g(t) on ∂D Ω \ K} .
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+27
+
+Here, following [Cha03], for a given A ⊂ R2 we denote by LD(A) the space
+LD(A) := {v ∈ L2loc (A; R2 ) : e(v) ∈ L2 (A; R2×2
+sym )} .
+We will denote by FLE the functional associated with ELE and a reference point Ko as in (5.1).
+As we have seen in Section 5.3, in order to prove the existence of VE solutions it is sufficient to show that
+the system for brittle fracture (K(Ω), ELE , h, d, δ) complies with conditions < A > , < B > , and < C > listed
+at the beginning of Section 5. Now, the viscous correction δ obviously still enjoys property < B >. As for
+< A > , it follows from the following analogue of Proposition 5.1.
+Proposition 7.1. The functional ELE : [0, T ] × K(Ω) → [0, +∞) defined in (7.1) is continuous w.r.t. the
+hR -topology on sublevels of the functional FLE Moreover, ∂t ELE : [0, T ] × K(Ω) → R is given by
+Z
+∂t ELE (t, K) =
+Ce(u) : e(ġ(t)) dx
+for all u ∈ VLE (g(t), K),
+Ω\K
+
+is also continuous w.r.t. the hR -topology on sublevels of FLE , and fulfills estimate (5.2).
+The proof of Proposition 7.1 follows from the arguments in [Cha03, Thm. 3]. Finally, Proposition 5.3,
+guaranteeing the validity of property < C > , carries over to the present setting: in particular, the construction
+of the recovery sequence (Kn )n fulfilling (5.9) developed throughout Section 5.2 is still appropriate for this
+vectorial setting thanks to the aforementioned continuity properties of ELE .
+That is why the analogue of our existence Theorem 4.5 holds for the system (K(Ω), ELE , h, d, δ).
+Acknowledgments
+This paper is based on work supported by the National Research Projects (PRIN 2017) "Variational Methods
+for Stationary and Evolution Problems with Singularities and Interfaces" (G.D.M. and R.T.) and "Gradient
+flows, Optimal Transport and Metric Measure Structures" (R.R. and G.S.).
+G.S. acknowledges the support of the Institute of Advanced Study of the Technical University of Munich.
+G.S. and R.R. acknowledge also the support of the IMATI-CNR, Pavia.
+The authors are members of the Gruppo Nazionale per l'Analisi Matematica, la Probabilità e loro Applicazioni (GNAMPA) of the Istituto Nazionale di Alta Matematica (INdAM).
+References
+[ALL20]
+[Alm17]
+[ATW93]
+[BFM08]
+[BFM12]
+[Cag08]
+[CD97]
+[Cha03]
+[CL16]
+[CL17]
+
+S. Almi, G. Lazzaroni, and I. Lucardesi. Crack growth by vanishing viscosity in planar elasticity. Math. Eng., 2(1):141–
+173, 2020.
+S. Almi. Energy release rate and quasi-static evolution via vanishing viscosity in a fracture model depending on the
+crack opening. ESAIM Control Optim. Calc. Var., 23(3):791–826, 2017.
+F. Almgren, J. E. Taylor, and L. Wang. Curvature-Driven Flows: A Variational Approach. SIAM Journal on Control
+and Optimization, 31:387–437, 1993.
+B. Bourdin, G. A. Francfort, and J.-J. Marigo. The variational approach to fracture. Springer, New York, 2008.
+Reprinted from J. Elasticity 91 (2008), no. 1-3 [MR2390547], With a foreword by Roger Fosdick.
+J.-F. Babadjian, G. Francfort, and M.G. Mora. Quasistatic evolution in non-associative plasticity - the cap model.
+SIAM J. Math. Anal., 44:245–292, 2012.
+F. Cagnetti. A vanishing viscosity approach to fracture growth in a cohesive zone model with prescribed crack path.
+Math. Models Methods Appl. Sci., 18(7):1027–1071, 2008.
+A. Chambolle and F. Doveri. Continuity of Neumann linear elliptic problems on varying two-dimensional bounded
+open sets. Comm. Partial Differential Equations, 22(5-6):811–840, 1997.
+A. Chambolle. A density result in two-dimensional linearized elasticity, and applications. Arch. Ration. Mech. Anal.,
+167(3):211–233, 2003.
+V. Crismale and G. Lazzaroni. Viscous approximation of quasistatic evolutions for a coupled elastoplastic-damage
+model. Calc. Var. Partial Differential Equations, 55(1):Art. 17, 54, 2016.
+V. Crismale and G. Lazzaroni. Quasistatic crack growth based on viscous approximation: a model with branching and
+kinking. NoDEA Nonlinear Differential Equations Appl., 24(1):Paper No. 7, 33, 2017.
+
+28
+
+[DDS11]
+
+GIANNI DAL MASO, RICCARDA ROSSI, GIUSEPPE SAVARÉ, AND RODICA TOADER
+
+G. Dal Maso, A. DeSimone, and F. Solombrino. Quasistatic evolution for cam-clay plasticity: a weak formulation via
+viscoplastic regularization and time rescaling. Calc. Var. Partial Differential Equations, 40:125–181, 2011.
+[DG93]
+E. De Giorgi. New problems on minimizing movements. In Boundary value problems for partial differential equations
+and applications, volume 29 of RMA Res. Notes Appl. Math., pages 81–98. Masson, Paris, 1993.
+[DL54]
+J. Deny and J. L. Lions. Les espaces du type de Beppo Levi. Ann. Inst. Fourier, Grenoble, 5:305–370 (1955), 1953–54.
+[DMFT05] G. Dal Maso, G. A. Francfort, and R. Toader. Quasistatic crack growth in nonlinear elasticity. Arch. Ration. Mech.
+Anal., 176(2):165–225, 2005.
+[DML10] G. Dal Maso and G. Lazzaroni. Quasistatic crack growth in finite elasticity with non-interpenetration. Ann. Inst. H.
+Poincaré Anal. Non Linéaire, 27(1):257–290, 2010.
+[DMT02a] G. Dal Maso and R. Toader. A model for the quasi-static growth of brittle fractures based on local minimization.
+Math. Models Methods Appl. Sci., 12(12):1773–1799, 2002.
+[DMT02b] G. Dal Maso and R. Toader. A model for the quasi-static growth of brittle fractures: existence and approximation
+results. Arch. Ration. Mech. Anal., 162(2):101–135, 2002.
+[EM06]
+M. Efendiev and A. Mielke. On the rate–independent limit of systems with dry friction and small viscosity. J. Convex
+Analysis, 13(1):151–167, 2006.
+[FL03]
+G. A. Francfort and C. J. Larsen. Existence and convergence for quasi-static evolution in brittle fracture. Comm. Pure
+Appl. Math., 56(10):1465–1500, 2003.
+[FM98]
+G. A. Francfort and J.-J. Marigo. Revisiting brittle fracture as an energy minimization problem. J. Mech. Phys. Solids,
+46(8):1319–1342, 1998.
+[FS18]
+M. Friedrich and F. Solombrino. Quasistatic crack growth in 2d-linearized elasticity. Ann. Inst. H. Poincaré Anal. Non
+Linéaire, 35(1):27–64, 2018.
+[Gri20]
+A.A. Griffith. The phenomena of rupture and flow in solids. Phil. Trans. R. Soc. Lond. A, 221:163–198, Jan. 1920.
+[Gri85]
+P. Grisvard. Elliptic problems in nonsmooth domains, volume 24 of Monographs and Studies in Mathematics. Pitman
+(Advanced Publishing Program), Boston, MA, 1985.
+[Gri92]
+P. Grisvard. Singularities in boundary value problems, volume 22 of Recherches en Mathématiques Appliquées [Research
+in Applied Mathematics]. Masson, Paris; Springer-Verlag, Berlin, 1992.
+[KMZ08] D. Knees, A. Mielke, and C. Zanini. On the inviscid limit of a model for crack propagation. Math. Models Methods
+Appl. Sci., 18(9):1529–1569, 2008.
+[KRZ13]
+D. Knees, R. Rossi, and C. Zanini. A vanishing viscosity approach to a rate-independent damage model. Math. Models
+Methods Appl. Sci., 23(4):565–616, 2013.
+[KZM10] D. Knees, C. Zanini, and A. Mielke. Crack growth in polyconvex materials. Phys. D, 239(15):1470–1484, 2010.
+[Lar10]
+C. J. Larsen. Epsilon-stable quasi-static brittle fracture evolution. Comm. Pure Appl. Math., 63(5):630–654, 2010.
+[LS95]
+S. Luckhaus and T. Sturzenhecker. Implicit time discretization for the mean curvature flow equation. Calculus of
+Variations and Partial Differential Equations, 3(2):253–271, 1995.
+[LT11]
+G. Lazzaroni and R. Toader. A model for crack propagation based on viscous approximation. Math. Models Methods
+Appl. Sci., 21(10):2019–2047, 2011.
+[LT13]
+G. Lazzaroni and R. Toader. Some remarks on the viscous approximation of crack growth. Discrete Contin. Dyn. Syst.
+Ser. S, 6(1):131–146, 2013.
+[Min17]
+L. Minotti. Visco-energetic solutions to one-dimensional rate-independent problems. Discrete Contin. Dyn. Syst.,
+37(11):5883–5912, 2017.
+[MR15]
+A. Mielke and T. Roubíček. Rate-independent systems. Theory and application, volume 193 of Applied Mathematical
+Sciences. Springer, New York, 2015.
+[MRS12] A. Mielke, R. Rossi, and G. Savaré. BV solutions and viscosity approximations of rate-independent systems. ESAIM
+Control Optim. Calc. Var., 18(1):36–80, 2012.
+[MRS16] A. Mielke, R. Rossi, and G. Savaré. Balanced viscosity (BV) solutions to infinite-dimensional rate-independent systems.
+J. Eur. Math. Soc. (JEMS), 18(9):2107–2165, 2016.
+[MS89]
+D. Mumford and J. Shah. Optimal approximations by piecewise smooth functions and associated variational problems.
+Comm. Pure Appl. Math., 42(5):577–685, 1989.
+[MS95]
+J.-M. Morel and S. Solimini. Variational methods in image segmentation, volume 14 of Progress in Nonlinear Differential Equations and their Applications. Birkhäuser Boston, Inc., Boston, MA, 1995. With seven image processing
+experiments.
+[MS18]
+L. Minotti and G. Savaré. Viscous Corrections of the Time Incremental Minimization Scheme and Visco-Energetic
+Solutions to Rate-Independent Evolution Problems. Arch. Ration. Mech. Anal., 227(2):477–543, 2018.
+[MT99]
+A. Mielke and F. Theil. A mathematical model for rate-independent phase transformations with hysteresis. In H.-D.
+Alber, R.M. Balean, and R. Farwig, editors, Proceedings of the Workshop on "Models of Continuum Mechanics in
+Analysis and Engineering", pages 117–129, Aachen, 1999. Shaker-Verlag.
+
+VISCO-ENERGETIC SOLUTIONS FOR BRITTLE FRACTURE
+
+[MT04]
+[Neg14]
+[Rog70]
+[Ros19]
+[RS13]
+[RS17]
+
+[TZ09]
+
+29
+
+A. Mielke and F. Theil. On rate-independent hysteresis models. NoDEA Nonlinear Differential Equations Appl.,
+11(2):151–189, 2004.
+M. Negri. Quasi-static rate-independent evolutions: characterization, existence, approximation and application to
+fracture mechanics. ESAIM Control Optim. Calc. Var., 20(4):983–1008, 2014.
+C. A. Rogers. Hausdorff measures. Cambridge University Press, London-New York, 1970.
+R. Rossi. Visco-energetic solutions to some rate-independent systems in damage, delamination, and plasticity. Math.
+Models Methods Appl. Sci., 29(6):1079–1138, 2019.
+R. Rossi and G. Savaré. A characterization of energetic and BV solutions to one-dimensional rate-independent systems.
+Discrete Contin. Dyn. Syst. Ser. S, 6(1):167–191, 2013.
+R. Rossi and G. Savaré. From Visco-Energetic to Energetic and Balanced Viscosity solutions of rate-independent
+systems. In Solvability, Regularity, and Optimal Control of Boundary Value Problems for PDEs., pages 489–531.
+Springer INdAM Series, vol 22. Springer, Cham, 2017. Colli P., Favini A., Rocca E., Schimperna G., Sprekels J. (eds).
+R. Toader and C. Zanini. An artificial viscosity approach to quasistatic crack growth. Boll. Unione Mat. Ital. (9),
+2:1–35, 2009.
+
+(Gianni Dal Maso) SISSA, Via Bonomea 265, 34136 Trieste, Italy
+Email address, Gianni Dal Maso: dalmaso@sissa.it
+(Riccarda Rossi) DIMI, Università degli studi di Brescia, Via Branze 38, 25133, Brescia, Italy
+Email address, Riccarda Rossi: riccarda.rossi@unibs.it
+(Giuseppe Savaré) Department of Decision Sciences, Università Bocconi, Via Roentgen 1, 20136, Milano, Italy
+Email address, Giuseppe Savaré: giuseppe.savare@unibocconi.it
+(Rodica Toader) DMIF, Università degli studi di Udine, Via delle Scienze 206, 33100, Udine, Italy
+Email address, Rodica Toader: rodica.toader@uniud.it
+
+

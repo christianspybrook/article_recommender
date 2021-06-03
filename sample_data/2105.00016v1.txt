@@ -1,0 +1,1296 @@
+UNIVERSALITY OF HIGH-STRENGTH TENSORS
+
+arXiv:2105.00016v1 [math.AG] 30 Apr 2021
+
+ARTHUR BIK, ALESSANDRO DANELON, JAN DRAISMA, AND ROB EGGERMONT
+
+Abstract. A theorem due to Kazhdan and Ziegler implies that, by substituting linear forms for its
+variables, a homogeneous polynomial of sufficiently high strength specialises to any given polynomial
+of the same degree in a bounded number of variables. Using entirely different techniques, we extend
+this theorem to arbitrary polynomial functors. As a corollary of our work, we show that specialisation
+induces a quasi-order on elements in polynomial functors, and that among the infinite-strength
+elements there is a unique smallest equivalence class in this quasi-order.
+
+1. Introduction and main results
+Fix a field K. In our main results we will assume that K is algebraically closed and of characteristic
+zero, but for now we make no such assumption.
+1.1. Strength.
+Definition 1.1.1. Let n ≥ 1 be an integer and let f ∈ K[x1 , . . . , xn ]d be a homogeneous polynomial
+of degree d ≥ 2. Then the strength of f , denoted str(f ), is the minimal integer k ≥ 0 such that there
+exists an expression
+f = g 1 * h1 + . . . + g k * hk
+where gi ∈ K[x1 , . . . , xn ]di and hi ∈ K[x1 , . . . , xn ]d−di for some integer 0 < di < d for each i ∈ [k]. ♦
+The strength of polynomials plays a key role in the resolution of Stillman's conjecture by AnanyanHochster [1, 2], the subsequent work by Erman-Sam-Snowden [12, 13, 14] and in Kazhdan-Ziegler's
+work [17, 18]. Also see [3, 4, 5, 7, 9, 10] for other recent papers studying strength.
+1.2. Polynomial functors and their maps. Assume that K is infinite. Let Vec be the category
+of finite-dimensional vector spaces over K with K-linear maps.
+Definition 1.2.1. A polynomial functor of degree ≤ d over K is a functor P : Vec → Vec with the
+property that for all U, V ∈ Vec the map P : Hom(U, V ) → Hom(P (U ), P (V )) is a polynomial map of
+degree ≤ d. A polynomial functor is a polynomial functor of degree ≤ d for some integer d < ∞. ♦
+Remark 1.2.2. For finite fields K, the correct analogue is that of a strict polynomial functor [15]. ♦
+Any polynomial functor P is a finite direct sum of its homogeneous parts Pd , which are the polynomial subfunctors defined by Pd (V ) := {p ∈ P (V ) | ∀t ∈ K : P (t idV )p = td p} for each integer d ≥ 0.
+A polynomial functor is called homogeneous of degree d when it equals its degree-d part.
+Example 1.2.3. The functor U 7→ S d (U ) is a homogeneous polynomial functor of degree d. If U has
+basis x1 , . . . , xn , then S d (U ) is canonically isomorphic to K[x1 , . . . , xn ]d . In this incarnation, linear
+maps S d (φ) for φ : U → V correspond to substitutions of the variables x1 , . . . , xn by linear forms in
+variables y1 , . . . , ym representing a basis of V .
+♦
+AD is supported by JD's Vici grant 639.033.514 from the Netherlands Organisation for scientific research (NWO).
+JD is partially supported by Vici grant 639.033.514 from the NWO and by project grant 200021 191981 from the
+Swiss National Science Foundation (SNSF). RE was supported by Veni grant 016.Veni.192.113 from the NWO.
+1
+
+2
+
+ARTHUR BIK, ALESSANDRO DANELON, JAN DRAISMA, AND ROB EGGERMONT
+
+Polynomial functors are the ambient spaces in current research on infinite-dimensional algebraic
+geometry [6, 7, 8, 11]. Polynomial functors form an Abelian category in which a morphism α : P → Q
+consists of a linear map αU : P (U ) → Q(U ) for each U ∈ Vec such that for all U, V ∈ Vec and all
+φ ∈ Hom(U, V ) the following diagram commutes:
+P (U )
+
+αU
+
+P (φ)
+
+
+P (V )
+
+// Q(U )
+Q(φ)
+
+αV
+
+
+// Q(V ).
+
+In characteristic zero, each polynomial functor P is isomorphic, in this Abelian category, to a direct
+sum of Schur functors, which can be thought of as subobjects (or quotients) of the polynomial functors
+V 7→ V ⊗d . For that reason, we will informally refer to elements of P (V ) as tensors.
+In addition to the linear morphisms between polynomial functors above, we may also allow each αU
+to be a polynomial map P (U ) → Q(U ) such that the diagram commutes. Such an α will be called
+a polynomial transformation from P to Q. If U is irrelevant or clear from the context, we write α
+instead of αU .
+Lk
+di
+⊕ S d−di ) and Q := S d
+Example 1.2.4. In the context of Definition 1.1.1, we set P :=
+i=1 (S
+and define α by
+α(g1 , h1 , . . . , gk , hk ) := g1 * h1 + . . . + gk * hk .
+This is a polynomial transformation P → Q.
+
+♦
+
+Example 1.2.5. Let Q, R be polynomial functors and α : Q ⊗ R → P a linear morphism. Then
+(q, r) 7→ α(q ⊗ r) defines a bilinear polynomial transformation Q ⊕ R → P .
+♦
+Inspired by these examples, we propose the following definition of strength for elements of homogeneous polynomial functors. We are not sure that this is the best definition in arbitrary characteristic,
+so we restrict ourselves to characteristic zero.
+Definition 1.2.6. Assume that char K = 0. Let P be a homogeneous polynomial functor of degree
+d ≥ 2 and let V ∈ Vec. The strength of p ∈ P (V ) is the minimal integer k ≥ 0 such that
+p = α1 (q1 , r1 ) + . . . + αk (qk , rk )
+where, for each i ∈ [k], Qi , Ri are irreducible polynomial functors with positive degrees adding up
+to d, αi : Qi ⊕ Ri → P is a bilinear polynomial transformation and qi ∈ Qi (V ) and ri ∈ Ri (V ) are
+tensors.
+♦
+Remark 1.2.7. Positive degrees of two polynomial functors cannot add up to 1. So nonzero tensors
+p ∈ P (V ) of homogeneous polynomial functors P of degree 1 cannot have finite strength. We say that
+such tensors p have infinite strength. Note that the strength of 0 ∈ P (V ) always equals 0.
+♦
+Proposition 1.2.8. Assume that char K = 0. For each integer d ≥ 2, the strength of a polynomial
+f ∈ S d (V ) according to Definition 1.1.1 equals that according to Definition 1.2.6.
+Proof. The inequality ≥ follows from the fact that αi : S di ⊕ S d−di → S d , (g, h) 7→ g * h is a bilinear
+polynomial transformation. For the inequality ≤, suppose that α : Q ⊕ R → S d is a nonzero bilinear
+polynomial transformation, where Q and R are irreducible of degrees e < d and d − e < d. So Q
+and R are Schur functors corresponding to Young diagrams with e and d − e boxes, respectively, and
+Q ⊗ R admits a nonzero linear morphism to S d , whose Young diagram is a row of d boxes. The
+Littlewood-Richardson rule then implies that the Young diagrams of Q and R must be a single row as
+well, so that Q = S e and R = S d−e , and also that there is (up to scaling) a unique morphism Q ⊗ R =
+S e ⊗ S d−e → S d , namely, the one corresponding to the polynomial transformation (g, h) 7→ g * h. 
+The strength of a tensor in P quickly becomes very difficult when P is not irreducible.
+
+UNIVERSALITY OF HIGH-STRENGTH TENSORS
+
+3
+
+Example 1.2.9. Take P = (S d )⊕e for some integer e ≥ 1. Then the strength of a tuple (f1 , . . . , fe ) ∈
+P (V ) is the minimum number k ≥ 0 such that
+f1 , . . . , fe ∈ span{g1 , . . . , gk }
+where g1 , . . . , gk ∈ S d (V ) are reducible polynomials.
+♦
+V
+Example 1.2.10. Consider P = S 2 ⊕ 2 , so that P (V ) = V ⊗ V , and assume that K is algebraically closed. The only possibilities for Q and R are Q(V ) = R(V ) = V . The bilinear polynomial
+transformations α : Q ⊕ R → P are of the form
+α(u, v) = au ⊗ v + bv ⊗ u = c(u ⊗ v + v ⊗ u) + d(u ⊗ v − v ⊗ u)
+for certain a, b, c, d ∈ K. We note that str(A) = ⌈rk(A)/2⌉ when A ∈ S 2 (V ) and str(A) = rk(A)/2
+V
+when A ∈ 2 (V ). In general, we have
+rk(A)/2, rk(A + A⊤ )/2, rk(A − A⊤ )/2 ≤ str(A) ≤ rk(A), rk(A + A⊤ )/2 + rk(A − A⊤ )/2
+
+for all A ∈ V ⊗ V , where each bound can hold with equality. For example, for the matrix
+
+
+0 1
+
+0 0
+
+
+
+
+.
+..
+A=
+
+
+
+
+0 1
+0 0
+we have rk(A + A⊤ )/2 = rk(A − A⊤ )/2 = str(A) = rk(A).
+♦
+V
+2
+Example 1.2.11. Again take P = S 2 ⊕
+and consider P (K 2 ) = K 2×2 . Assume K is algebraically
+closed. The matrix
+
+
+1 x
+A=
+0 1
+clearly has strength ≤ 2. We will show that A has strength 2 whenever x = ±2 and strength 1
+otherwise. In particular, this shows that the subset of P (K 2 ) of matrices of strength ≤ 1 is not closed.
+Suppose A has strength 1. Then we can write A as au ⊗ v + bv ⊗ u with a, b ∈ K and v, u ∈ K 2 .
+Let e1 , e2 be the standard basis of K 2 . Without loss of generality, we may assume that u = e1 + λe2
+and v = e1 + μe2 for some λ, μ ∈ K. We get
+a + b = 1,
+
+aμ + bλ = x,
+
+aλ + bμ = 0,
+
+λμ = 1.
+
+Using λ = μ−1 and b = 1 − a, we are left with aμ2 + (1 − a) = xμ and a + (1 − a)μ2 = 0. The latter
+gives us μ 6= ±1 and a = μ2 /(μ2 − 1). We get μ2 + 1 = xμ. Now, if x 6= ±2, then such a μ 6= ±1
+exists. So in this case A indeed has strength 1. If x = ±2, the only solution is μ = ±1. Hence A has
+strength 2 in this case.
+♦
+1.3. Subsets of polynomial functors.
+Definition 1.3.1. Let P be a polynomial functor. A subset of P consists of a subset X(U ) ⊆ P (U )
+for each U ∈ Vec such that for all φ ∈ Hom(U, V ) we have P (φ)(X(U )) ⊆ X(V ). It is closed if each
+X(U ) is Zariski-closed in P (U ).
+♦
+Example 1.3.2. Fix integers d ≥ 2 and k ≥ 0. The elements in S d (V ) of strength ≤ k form a subset
+of S d . This set is closed for d = 2, 3 but not for d = 4; see [3].
+♦
+Example 1.3.3. Take K = R and let X(V ) be the set of positive semidefinite elements in S 2 (V ),
+i.e., those that are sums of squares of elements of V . Then X(V ) is a subset of S 2 .
+♦
+
+4
+
+ARTHUR BIK, ALESSANDRO DANELON, JAN DRAISMA, AND ROB EGGERMONT
+
+1.4. Kazhdan-Ziegler's theorem: universality of strength.
+Theorem 1.4.1 (Kazhdan-Ziegler [18, Theorem 1.9]). Let d ≥ 2 be an integer. Assume that K is
+algebraically closed and of characteristic 0 or > d. Let X be a subset of S d . Then either X = S d or
+else there exists an integer k ≥ 0 such that each polynomial in each X(U ) has strength ≤ k.
+This theorem is a strengthening of [7, Theorem 4], where the additional assumption is that X is
+closed. The condition that K be algebraically closed cannot be dropped, e.g. by Example 1.3.3: there
+is no uniform upper bound on the strength of positive definite quadratic forms. The condition on the
+characteristic can also not be dropped, but see Remark 1.9.2.
+Corollary 1.4.2 (Kazhdan-Ziegler, universality of strength). With the same assumptions on K, for
+every fixed number of variables m ≥ 1 and degree d ≥ 2 there exists an r ≥ 0 such that for any
+number of variables n ≥ 1, any polynomial f ∈ K[x1 , . . . , xn ]d of P
+strength ≥ r and any polynomial
+g ∈ K[y1 , . . . , ym ]d there exists a linear variable substitution xj 7→ i cij yi under which f specialises
+to g.
+Proof. For each U ∈ Vec, define X(U ) ⊆ S d (U ) as the set of all f such that the map
+Hom(U, K m ) → S d (K m )
+φ 7→ S d (φ)f
+is not surjective. A straightfoward computation shows that this is a subset of S d . It is not all of S d ,
+because if we take U to be of dimension d * dim S d (K m ), then in S d (U ) we can construct a sum f of
+dim S d (K m ) squarefree monomials in distinct variables and specialise each of these monomials to a
+prescribed multiple of a basis monomial in S d (K m ). Hence f 6∈ X(U ). By Theorem 1.4.1, it follows
+that the strength of elements of X(U ) is uniformly bounded.
+
+1.5. Our generalisation: universality for polynomial functors. Let P, Q be polynomial functors. We say that Q is smaller than P , denoted Q ⋖ P , when P and Q are not (linearly) isomorphic
+and Qd is a quotient of Pd for the highest degree d where Pd and Qd are not isomorphic. We say that
+a polynomial functor P is pure when P ({0}) = {0}.
+Remark 1.5.1. Let Q ⋖ P be polynomial functors and suppose that P is homogeneous of degree
+d > 0. Then Qd must be a quotient of Pd . So we see that Q ⊕ R ⋖ P for any polynomial functor R
+of degree < d.
+♦
+The following is our first main result.
+Theorem 1.5.2 (Main Theorem I). Assume that K is algebraically closed of characteristic zero.
+Let X be a subset of a pure polynomial functor P over K. Then either X(U ) = P (U ) for all U ∈ Vec
+or else there exist finitely many polynomial functors Q1 , . . . , Qk ⋖ P and polynomial transformations
+Sk
+αi : Qi → P with X(U ) ⊆ i=1 im(αi,U ) for all U ∈ Vec. In the latter case, X is contained in a
+proper closed subset of P .
+If we assume furthermore that P is irreducible, then in the second case there exists a integer k ≥ 0
+such that for all U ∈ Vec and all p ∈ X(U ) the strength of p is at most k.
+This is a strengthening of a theorem from the upcoming paper [8] (also appearing in the first
+author's thesis [6, Theorem 4.2.5]), where the additional assumption is that X be closed.
+Remark 1.5.3. When P is irreducible of degree 1, then P (U ) = U . In this case, the subsets of P are
+P and {0}. So indeed, the elements of a proper subset of P have bounded strength, namely 0.
+♦
+Again, the condition that K be algebraically closed cannot be dropped, and neither can the condition on the characteristic; however, see Remark 1.9.2. Main Theorem I has the same corollary as
+Theorem 1.4.1.
+
+UNIVERSALITY OF HIGH-STRENGTH TENSORS
+
+5
+
+Corollary 1.5.4. With the same assumptions as in Main Theorem I, let U ∈ Vec be a fixed vector
+space. Then there exist finitely many polynomial functors Q1 , . . . , Qk ⋖ P and polynomial transforSk
+mations αi : Qi → P such that for every V ∈ Vec and every f ∈ P (V ) that is not in i=1 im(αi,V )
+the map Hom(V, U ) → P (U ), φ 7→ P (φ)f is surjective.
+Sk
+If P is irreducible, then the condition that f 6∈ i=1 im(αi,V ) can be replaced by the condition that
+f has strength greater than some function of dim U only.
+1.6. Limits and dense orbits. Let P be a pure polynomial functor over K. There is another point
+of view on closed subsets of P , which involves limits that we define now.
+Definition 1.6.1. We define P∞ := limn P (K n ), where the map P (K n+1 ) → P (K n ) is P (πn ) with
+←−
+πn : K n+1 → K n the projection map forgetting the last coordinate. We equip P∞ with the inverse
+limit of the Zariski
+topologies on the P (K n ), which is itself a Zariski topology coming from the fact
+S
+that P∞ = ( n P (K n )∗ )∗ . We also write P (πn ) for the projection map P∞ → P (K n ); this will
+not lead to confusion. A polynomial transformation α : P → Q naturally yields a continuous map
+P∞ → Q∞ also denoted by α.
+♦
+If P = S d , then the elements of P∞ can be thought of as homogeneous series of degree d in
+infinitely many variables x1 , x2 , . . .. Here, closed subsets of P∞ are defined by polynomial equations
+in the coefficients of these series. S
+On P∞ acts the group GL∞ = n GLn , where GLn is embedded into GLn+1 via the map
+
+
+g 0
+g 7→
+.
+0 1
+Indeed, with this embedding the map P (K n+1 ) → P (K n ) in the definition of P∞ is GLn -equivariant,
+and this yields the action of GL∞ on the projective limit. In the case of degree-d series, an element
+g ∈ GLn ⊂ GL∞ maps each of the first n variables xi to a linear combination of x1 , . . . , xn and the
+remaining variables to themselves.
+The map that sends a closed subset X of P to the closed subset X∞ := limn X(K n ) of P∞ is a
+←−
+bijection with the collection of closed GL∞ -stable subsets of P∞ [6, Proposition 1.3.28]. Hence closed
+subsets of polynomial functors can also be studied in this infinite-dimensional setting.
+Example 1.6.2. On degree-d forms, GL∞ clearly has dense orbits, such as that of
+f = x1 x2 * * * xd + xd+1 xd+2 * * * x2d + . . .
+The reason is that this series can be specialised to any degree-d form in finitely many variables by
+linear variable substitutions. This implies that the image of GL∞ *f in each S d (K n ) is dense. Hence
+d
+.
+♦
+GL∞ *f is dense in S∞
+For every pure polynomial functor P , the group GL∞ has dense orbits on P∞ -in fact, uncountably
+many of them! See [6, §4.5.1]. They have the following interesting property.
+Corollary 1.6.3. Suppose that GL∞ *p is dense in P∞ . Then for each integer n ≥ 1, the image of
+GL∞ *p in P (K n ) is all of P (K n ).
+Proof. For V ∈ Vec, define
+X(V ) := {P (φ)P (πn )p | n ≥ 1, φ ∈ Hom(K n , V )} ⊆ P (V ),
+which is exactly the image of GL∞ *p under the projection P∞ → P (K m ) followed by an isomorphism
+P (φ), where φ : K m → V is a linear isomorphism. We see that X is a subset of P . For each V ∈ Vec,
+the subset X(V ) is dense in P (V ) since GL∞ *p is dense in P∞ . So X = P by Main Theorem I.
+
+The notion of strength has an obvious generalisation.
+Definition 1.6.4. Assume that char K = 0. Let P be a homogeneous polynomial functor. The
+strength of a tensor p ∈ P∞ is the minimal integer k ≥ 0 such that
+p = α1 (q1 , r1 ) + . . . + αk (qk , rk )
+
+6
+
+ARTHUR BIK, ALESSANDRO DANELON, JAN DRAISMA, AND ROB EGGERMONT
+
+for some irreducible polynomial functors Qi , Ri whose positive degrees sum up to d, bilinear polynomial
+transformations αi : Qi ⊕ Ri → P and elements qi ∈ Qi,∞ and ri ∈ Ri,∞ . If no such k exists, we say
+that p has infinite strength.
+♦
+Corollary 1.6.5. Assume that char K = 0 and that P is irreducible of degree ≥ 2. Then an element
+of P∞ has infinite strength if and only if its GL∞ -orbit is dense.
+Proof. If p ∈ P∞ has finite strength, then let αi : Qi × Ri → P be as in the definition above and let
+α := α1 + . . . + αk : Q :=
+
+k
+M
+(Qi ⊗ Ri ) → P
+i=1
+
+be their sum, so that p ∈ im(α). Consider the closed subset X = im(α), i.e., the closed subset
+defined by X(V ) = im(αV ) for all V ∈ Vec. As dim Q(K n ) is a polynomial in n of degree < d, while
+dim P (K n ) is a polynomial in n of degree d, we see that X(K n ) is a proper subset of P (K n ) for all
+n ≫ 0. Since p ∈ X∞ , it follows that GL∞ *p is not dense.
+Suppose, conversely, that GL∞ *p is not dense. Then it is contained in X∞ for some proper closed
+subset X of P . Hence p has finite strength by Main Theorem I.
+
+Example 1.6.6. Let P, Q be homogeneous functors of the same degree d ≥ 2 and let p ∈ P∞ be
+an element of infinite strength. Then (p, 0) ∈ P∞ ⊕ Q∞ also has infinite strength, but the orbit
+GL∞ *(p, 0) is not dense.
+♦
+Remark 1.6.7. In Section 3 we will use a generalisation of notation introduced here: for an integer
+m ≥ 0 we will write P∞−m for the limit limn P (K [n]−[m]) over all integers n ≥ m. This space is
+←−
+isomorphic to P∞ , but the indices have been shifted by m. On P∞−m acts the group GL∞−m ∼
+= GL∞ ,
+which is the union of GL(K [n]−[m] ) over all n ≥ m. We denote the image of an element p ∈ P∞−m
+in P (K [n]−[m] ) by p[n]−[m] . The inclusions ιn : K [n]−[m] → K n sending v 7→ (0, v) allow us to view
+P∞−m as a subset of P∞ .
+♦
+Corollary 1.6.8. Let P be a homogeneous polynomial functor of degree d ≥ 2 and m ≥ 0 an integer.
+Let p ∈ P∞−m be a tensor whose GL∞−m -orbit is not dense and let q ∈ P∞ be an element with finite
+strength. Then the GL∞ -orbit of p + q ∈ P∞ is also not dense.
+Proof. Note that p is contained in the image of α : Q∞−m → P∞−m for some polynomial transformation α : Q → P with Q ⋖ P [6, Theorem 4.2.5] and q is contained in the image of β : R∞ → P∞ for
+some polynomial transformation β : R → P with deg(R) < d. So since Q ⊕ R ⋖ P by Remark 1.5.1,
+we see that p + q is contained in a proper closed subset of P . Hence its GL∞ -orbit is not dense. 
+1.7. Linear endomorphisms. Our second goal in this paper is to show that there always exist
+minimal f with dense orbits. This minimality relates to a monoid of linear endomorphisms extending
+GL∞ , as follows. Elements of GL∞ are N × N matrices of the block form
+
+
+g 0
+0 I∞
+where g ∈ GLn for some n and I∞ is the infinite identity matrix.
+Definition 1.7.1. Let E ⊃ GL∞ be the monoid of N × N matrices with the property that each row
+contains only finitely many nonzero entries.
+♦
+Example 1.7.2. For every integer i ≥ 1, let φi ∈ K ni ×mi be a matrix. Then the block matrix
+
+
+φ1
+
+
+φ2
+
+
+..
+.
+is an element of E.
+
+♦
+
+UNIVERSALITY OF HIGH-STRENGTH TENSORS
+
+7
+
+We define an action of E on P∞ as follows. Let p = (p0 , p1 , . . .) ∈ P∞ and φ ∈ E. For each integer
+i ≥ 0, to compute qi in
+q = (q0 , q1 , . . .) = P (φ)p
+we choose ni ≥ 0 such that all the nonzero entries of the first i rows of φ are in the first ni columns.
+Now, we let ψi ∈ K i×ni be the i × ni block in the upperleft corner of φ, so that
+
+
+ψi 0
+φ=
+,
+∗ ∗
+and we set qi := P (ψi )pni . Note that if we replace ni by a larger number ñi , then the resulting matrix
+ψ̃i satisfies ψ̃i = ψi ◦ π, where π : K ñi → K ni is the projection. Consequently, we then have
+P (ψ̃i )pñi = P (ψi )P (π)pñi = P (ψi )pni ,
+so that qi is, indeed, well-defined. A straightforward computation shows that, for φ, ψ ∈ E, we have
+P (ψ) ◦ P (φ) = P (ψ ◦ φ), so that E does indeed act on P∞ .
+P∞
+For infinite degree-d forms, the action of φ ∈ E is by linear variable substitutions xj 7→ i=1 φij xi .
+Note that, since each xi appears in the image of only finitely many xj , this substitution does indeed
+make sense on infinite degree-d series.
+Since GL∞ ⊆ E, an E-stable subset of P∞ is also GL∞ -stable. The converse does not hold, since
+for instance E also contains the zero matrix, and P (0)f = 0 6= P (g)f for all nonzero f ∈ P∞ and
+g ∈ GL∞ when the polynomial functor P is pure. However, it is easy to see that GL∞ -stable closed
+subsets of P∞ are also E-stable. In particular, we have GL∞ *f = P (E)f .
+1.8. A quasi-order on infinite tensors.
+Definition 1.8.1. For infinite tensors p, q ∈ P∞ we write p  q if p ∈ P (E)q. In this case, we say
+that q specialises to p.
+♦
+From the fact that E is a unital monoid that acts on P∞ , we find that  is transitive and reflexive.
+Hence it induces an equivalence relation ≃ on P∞ by
+p ≃ q :⇔ p  q and q  p,
+as well as a partial order on the equivalence classes of ≃.
+Example 1.8.2. Fix an integer k ≥ 1 and consider the polynomial functor P = (S 1 )⊕k . A tuple
+1
+q = (q1 , . . . , qk ) ∈ P∞ has a dense GL∞ -orbit if and only if q1 , . . . , qk ∈ S∞
+are linearly independent.
+Suppose that q has a dense GL∞ -orbit and let A be the N × k matrix corresponding to q. Then A
+has full rank. By acting with an element of GL∞ ⊆ E, we may assume that
+ 
+Ik
+A=
+B
+where B is again an N × k matrix. Now, take
+φC :=
+
+
+
+Ik
+C
+
+I∞
+
+
+
+∈E
+
+and note that φ−B A = (Ik 0)⊤ , so that P (φ−B )q = (x1 , . . . , xk ). So any two tuples in P∞ with a
+dense GL∞ -orbit are in the same equivalence class. Moreover, the element of E specializing one tuple
+to the other can be chosen to be invertible in E as φC φ−C = I∞ .
+♦
+There is an obvious relation between  and orbit closures, namely: if p  q, then p ∈ GL∞ *q. The
+converse, however, is not true.
+3
+Example 1.8.3. Let p = x1 (x21 + x22 + . . .), q = x31 + x32 + . . . ∈ S∞
+. Then q has infinite strength and
+3
+so p ∈ S∞ = GL∞ *q. However, we have p 6 q: suppose that
+
+f := x1 g(x1 , x2 , . . .) + h(x2 , x3 , . . .) ∈ S 3 (E)q
+
+8
+
+ARTHUR BIK, ALESSANDRO DANELON, JAN DRAISMA, AND ROB EGGERMONT
+
+2
+3
+for some g ∈ S∞
+and h ∈ S∞
+. As only finitely many variables xi are substituted by linear forms
+containing x1 when specialising q to f , we see that
+
+x1 g(x1 , x2 , . . .) + h̃(x2 , x3 , . . .) ∈ S 3 (E)(x31 + x32 + . . . + x3n )
+3
+for some integer n ≥ 1 and h̃ ∈ S∞
+. From this, it is easy to see that g has finite strength. Hence
+2
+2
+f 6= p as x1 + x2 + . . . has infinite strength. So indeed p 6 q.
+♦
+
+In order to have a tensor p ∈ P∞ with a dense GL∞ -orbit, the polynomial functor P must be pure.
+For some time, we believed that when this is the case all elements p ∈ P∞ with a dense GL∞ -orbit
+might form a single ≃-equivalence class. When P has degree ≤ 2, this is in fact true; see Example 4.1.4.
+However, it doesn't hold for cubics.
+3
+Example 1.8.4. Let p, q ∈ S∞
+be as before. Now also consider r = p(x1 , x3 , . . .) + q(x2 , x4 , . . .).
+3
+We have q = r(0, x1 , 0, x2 , . . .)  r and so S∞
+= GL∞ *q ⊆ GL∞ *r. Hence both q and r have dense
+GL∞ -orbits. And, we have r 6 q: indeed, otherwise p = r(x1 , 0, x2 , 0, . . .)  r  q, but p 6 q.
+♦
+
+1.9. Minimal classes of elements with dense orbits. Our second main result is the following.
+Theorem 1.9.1 (Main Theorem II). Suppose that K is algebraically closed of characteristic zero.
+Let P be a pure homogeneous polynomial functor over K. Then there exist tensors p, r ∈ P∞ whose
+GL∞ -orbits are dense such that p  q  r for all q ∈ P∞ whose GL∞ -orbit is dense.
+The elements p that have this property form a single ≃-class which lies below the ≃-classes of all
+other q ∈ P∞ whose GL∞ -orbit is dense. For the construction of such a tensor p ∈ P∞ , see §3.1. For
+the construction of the tensor r ∈ P∞ , see §3.4.
+Remark 1.9.2. In both our Main Theorems, we require that the characteristic be zero. This is
+because the results in [6] and [8] require this. However, the proof of topological Noetherianity for
+polynomial functors in [11] does not require characteristic zero, and shows that after a shift and a
+localisation, a closed subset of a polynomial functor admits a homeomorphism into an open subset of
+a smaller polynomial functor. In characteristic zero, this is in fact a closed embedding, so that it can
+be inverted and yields a parameterisation of (part of) the closed subset. In positive characteristic, it
+is not a closed embedding, but the map still becomes invertible if one formally inverts the Frobenius
+morphism; this is touched upon in [8]. This might imply variants of our Main Theorems in arbitrary
+characteristic, but we have not yet pursued this direction in detail.
+♦
+Acknowledgments. We thank Andrew Snowden, who first pointed out to us the action of the
+monoid E on P∞ and asked about its orbit structure there.
+2. Proof of Main Theorem I
+2.1. The linear approximation of a polynomial functor.
+Let P be a polynomial functor over
+L∞
+an infinite field and let U, V ∈ Vec. Then P (U ⊕ V ) = d,e=0 Qd,e (U, V ) where
+Qd,e (U, V ) := {v ∈ P (U ⊕ V ) | ∀s, t ∈ K : P (s idU ⊕ t idV )v = sd te v} ⊆ Pd+e (U ⊕ V ).
+
+The terms with e = 0 add up to P (U ), and the terms with e = 1 add up to a polynomial bifunctor
+evaluated at (U, V ) that is linear in V . This is necessarily of the form P ′ (U ) ⊗ V , where P ′ is a
+polynomial functor. In other words, we have
+P (U ⊕ V ) = P (U ) ⊕ (P ′ (U ) ⊗ V ) ⊕ higher-degree terms in V.
+We informally think of the first two terms as the linear approximation of P around U . Now suppose
+that we have a short exact sequence
+0→P →Q→R→0
+of polynomial functors. This implies that for all U, V we have a short exact sequence
+{0} → P (U ⊕ V ) → Q(U ⊕ V ) → R(U ⊕ V ) → {0}
+
+UNIVERSALITY OF HIGH-STRENGTH TENSORS
+
+9
+
+and inspecting the degree-1 parts in V we find a short exact sequence
+0 → P ′ → Q′ → R′ → 0.
+This, and further straightforward computations, shows that P 7→ P ′ is an exact functor from the
+category of polynomial functors to itself.
+Remark 2.1.1. For U ∈ Vec fixed, denote the polynomial functor sending V 7→ P (U ⊕ V ) and
+φ 7→ P (idU ⊕φ) by ShU (P ). Then we have
+ShU (P )e (V ) = {v ∈ P (U ⊕ V ) | ∀t ∈ K : P (idU ⊕ t idV )v = te v}
+and from this we see that Qd,e (U, V ) = ShU (P )e (V ) ∩ Pd+e (U ⊕ V ). In particular, when P is homoLd
+geneous of degree d, we see that P (U ⊕ V ) = e=0 Qd−e,e (U, V ) where Qd−e,e (U, V ) = ShU (P )e (V ).
+Also note that, in this case, ShU (P )0 (V ) = P (U ) and ShU (P )d (V ) = P (V ) via the inclusions of U, V
+into U ⊕ V .
+♦
+Example 2.1.2. If P = S d , then the formula
+S d (U ⊕ V ) ∼
+=
+
+d
+M
+
+S d−e (U ) ⊗ S e (V ) = S d (U ) ⊕ (S d−1 (U ) ⊗ V ) ⊕ * * *
+
+e=0
+
+′
+
+identifies P with S
+
+d−1
+
+.
+
+♦
+
+Example 2.1.3. Let K be an algebraically closed field of characteristic p. Then S p contains the
+subfunctor P (V ) := {v p | v ∈ V }. We have P (U ⊕ V ) = P (U ) ⊕ P (V ), and hence P ′ = 0.
+♦
+2.2. Proof of Main Theorem I. In this subsection we prove Theorem 1.5.2. We start with a result
+of independent interest.
+Theorem 2.2.1. Let P be a pure polynomial functor over an algebraically closed field Kof characteristic 0 or > deg(P ) and let X be a subset of P such that X(V ) is dense in P (V ) for all V ∈ Vec.
+Then, in fact, X(V ) is equal to P (V ) for all V ∈ Vec.
+Example 1.3.3 shows that the condition that K be algebraically closed cannot be dropped. We do
+not know if the condition on the characteristic of K can be dropped, but the proof will use that the
+polynomial functor P ′ introduced in §2.1 is sufficiently large, which, by Example 2.1.3, need not be
+the case when char K is too small.
+Proof. Let q ∈ P (K n ). For each k ≥ n, we consider the incidence variety
+Zk := {(φ, r) ∈ Hom(K k , K n ) × P (K k ) | rk(φ) = n and P (φ)r = q}.
+We write ek := dimK P (K k ). Since for every φ ∈ Hom(K k , K n ) of rank n the linear map P (φ) is
+surjective, Zk is a vector bundle of rank ek − en over the rank-n locus in Hom(K k , K n ). Hence Zk is
+an irreducible variety with dim Zk = kn+ek −en . We therefore expect the projection Π : Zk → P (K k )
+to be dominant for k ≫ n. To prove that this is indeed the case, we need to show that for z ∈ Zk
+sufficiently general, the local dimension at z of the fibre Π−1 (Π(z)) is (at most) dim(Zk )−ek = kn−en .
+By the upper semicontinuity of the fibre dimension, it suffices to exhibit a single point z with this
+property, and indeed, it suffices to show that the tangent space to the fibre at z has dimension (at
+most) kn − en .
+To find such a point z, set U := K n and V := K k−n and consider
+z := (πU , P (ιU )q + r) ∈ Zk ,
+where πU : U ⊕ V → U is the projection and ιU : U → U ⊕ V is the inclusion and where we will choose
+r ∈ P ′ (U ) ⊗ V ⊆ P (U ⊕ V ). Note that then
+P (ιU )q + r ∈ P (U ) ⊕ (P ′ (U ) ⊗ V ) ⊆ P (U ⊕ V )
+and that P (πU )r = 0 so that z does, indeed, lie in Zk .
+
+10
+
+ARTHUR BIK, ALESSANDRO DANELON, JAN DRAISMA, AND ROB EGGERMONT
+
+The tangent space Tz Π−1 (Π(z)) (projected into Hom(K k , K n )) is contained in the solution space
+of the linear system of equations
+P (πU + ǫψ)(P (ιU )q + r) = q
+
+mod ǫ2
+
+for ψ. By the rank theorem, the dimension of this solution space equals kn = dim(Hom(K k , K n ))
+minus the rank of the linear map
+Hom(U ⊕ V, U ) → P (U ), ψ 7→ the coefficient of ǫ in P (πU + ǫψ)(P (ιU )q + r).
+So it suffices to prove that for all k ≫ n there is a suitable r such that this linear map is surjective. In
+fact, we will restrict the domain to those ψ ∈ Hom(U ⊕ V, U ) of the form ω ◦ πV where πV : U ⊕ V → V
+is the projection and ω ∈ Hom(V, U ). Then
+P (πU + ǫψ)(P (ιU )q) = P ((πU + ǫω ◦ πV ) ◦ ιU )q = P (idU )q = q
+So P (ιU )q does not contribute to the coefficient of ǫ and this coefficient equals
+P (idU + idU )(idP ′ (U) ⊗ ω)r
+where idU + idU : U ⊕ U → U is the map sending (u1 , u2 ) to u1 + u2 . Note that the codomain of
+idP ′ (U) ⊗ ω equals P ′ (U ) ⊗ U ⊆ P (U ⊕ U ), so that the composition above makes sense. Below we will
+show that for k − n = dim V ≫ n and suitable r ∈ P ′ (U ) ⊗ V the linear map
+ΩP,V,r : Hom(V, U ) → P (U )
+ω 7→ P (idU + idU )(idP ′ (U) ⊗ ω)r
+is surjective.
+Hence there exists a k such that Zk → P (K k ) is dominant. By Chevalley's theorem, the image
+contains a dense open subset of P (K k ), and this dense open subset intersects the dense set X(K k ).
+Hence there exists an element p ∈ X(K k ) and a φ ∈ Hom(K k , K n ) such that P (φ)p = q. Finally,
+since X is a subset of P , also q is a point in X(K n ). Hence X(K n ) = P (K n ) for each n, as desired. 
+Lemma 2.2.2. Let P be a polynomial functor over an infinite field K with char(K) = 0 or char(K) >
+deg(P ) and let U ∈ Vec. Then for V ∈ Vec with dim V ≫ dim U , there exists an r ∈ P ′ (U ) ⊗ V
+such that
+ΩP,V,r : Hom(V, U ) → P (U )
+ω 7→ P (idU + idU )(idP ′ (U) ⊗ ω)r
+is surjective.
+Proof. When char(K) = 0, the Abelian category of polynomial functors is semisimple, with the
+Schur functors as a basis. When char(K) = p > 0, the situation is more complicated. The irreducible
+polynomial functors still correspond to partitions [16, Theorem 3.5]. A degree-d irreducible polynomial
+functor is a submodule of the functor T (V ) = V ⊗d if and only if the corresponding partition is column
+p-regular [19, Theorem 3.2]. Luckily, this is always the case when d < p. And, the Abelian category of
+polynomial functors of degree < p is semisimple [16, Corollary 2.6e]. Now, if P, Q are such polynomial
+functors and r1 ∈ P ′ (U ) ⊗ V and r2 ∈ Q′ (U ) ⊗ W have the required property for P, Q, respectively,
+then
+r := (r1 , r2 ) ∈ (P ′ (U ) ⊗ V ) ⊕ (Q′ (U ) ⊗ W ) ⊆ (P ′ (U ) ⊕ Q′ (U )) ⊗ (V ⊕ W )
+= (P ⊕ Q)′ (U ) ⊗ (V ⊕ W )
+has the required property for P ⊕ Q. Hence it suffices to prove the lemma in the case where P is an
+irreducible polynomial functor of degree d. We then have T = P ⊕ Q, where T (V ) = V ⊗d and Q
+is another polynomial functor. By a similar argument as above, if r ∈ T ′ (U ) ⊗ V has the required
+property for T , then its image in P ′ (U ) ⊗ V has the required property for P . Hence it suffices to prove
+the lemma for T .
+
+UNIVERSALITY OF HIGH-STRENGTH TENSORS
+
+11
+
+Now we have
+T (U ⊕ V ) = T (U ) ⊕ (V ⊗ U ⊗ U ⊗ * * * ⊗ U ) ⊕ (U ⊗ V ⊗ U ⊗ * * * ⊗ U )
+⊕ * * * ⊕ (U ⊗ U ⊗ U ⊗ * * * ⊗ V ) ⊕ terms of higher degree in V ,
+′
+
+so that T is a direct sum of d copies of U 7→ U ⊗d−1 . We take r in the first of these copies, as follows.
+Let e1 , . . . , en be a basis of U and set
+X
+vα ⊗ eα1 ⊗ * * * ⊗ eαd−1
+r :=
+α∈[n]d−1
+
+where the vα are a basis of a space V of dimension nd−1 . For every β ∈ [n]d−1 and i ∈ [n], the linear
+map ω that maps vβ to ei and all other vα to zero is a witness to the fact that ei ⊗ eβ1 ⊗ * * * ⊗ eβd−1
+is in the image of ΩT,V,r . Hence this linear map is surjective.
+
+Lemma 2.2.3. Assume that K is algebraically closed of characteristic zero. Let P, Q be polynomial
+functors. Assume that P is irreducible of degree d, Q has degree < d and let α : Q → P be a
+polynomial transformation, then there is a uniform bound on the strength of elements of im(αV ) that
+is independent of V .
+Proof. Let R be the sum of the components of Q of strictly positive degree. Any element in im(αV )
+is also in im(βV ) for a polynomial transformation βV : R → P obtained from α by a suitable specialisation. Write R = R(1) ⊕ * * * ⊕ R(k) , where the R(i) are Schur functors of degrees 0 < di < d. The
+polynomial transformation β factors uniquely as the polynomial transformation
+δ : R(1) ⊕ * * * ⊕ R(k) → F :=
+
+M
+
+k
+O
+
+S ei R(i)
+
+e
+1 ,...,ek ≥0 i=1
+P
+i ei di =d
+
+(r1 , . . . , rk ) 7→ (r1⊗e1 ⊗ * * * ⊗ rk⊗ek )e1 ,...,ek
+and a linear polynomial transformation γ : F → P . As γ is linear, we see that str(γV (v)) ≤ str(v)
+for all V ∈ Vec and v ∈ F (V ). So it suffices to prove that the elements of the subset im(δ), which
+depends only on Q and d, have bounded strength. We have
+X
+X
+1
+str(r1⊗e1 ⊗ * * * ⊗ rk⊗ek ) ≤
+str(r1⊗e1 ⊗ * * * ⊗ rk⊗ek )e1 ,...,ek ≤
+e
+1 ,...,ek ≥0
+P
+i ei di =d
+
+as
+
+P
+
+i ei
+
+≥ 2 whenever
+
+P
+
+i ei di
+
+e
+1 ,...,ek ≥0
+P
+i ei di =d
+
+= d. So this is indeed the case.
+
+
+
+Proof of Theorem 1.5.2 (Main Theorem I). Let X be a subset of a pure polynomial functor P over
+an algebraically closed field K of characteristic zero. For each V ∈ Vec define Y (V ) := X(V ). If
+Y is a proper closed subset of P , then by [6, Theorem
+S 4.2.5] there exist finitely many polynomial
+transformations αi : Qi → P with Qi ⋖ P and Y (V ) ⊆ i im(αi,V ) for all V ∈ Vec. Since X ⊆ Y , we
+are done. Otherwise, if Y (V ) = P (V ) for all V , then Theorem 2.2.1 implies that also X(V ) = P (V )
+for all V . The last statement follows from the previous lemma.
+
+Proof of Corollary 1.5.4. Let X be the subset of P constisting of all elements f ∈ P (V ) such that
+Hom(V, U ) → P (U )
+φ 7→ P (φ)f
+is not surjective. By Main Theorem I, it suffices to prove that X 6= P . As before, we claim that in
+fact X(V ) 6= P (V ) already when dim V ≥ deg(P ) * dim P (U ).
+First suppose that P is irreducible. Then P is a Schur functor. Take V0 = K d and l = dim P (U ).
+Then it is known that Hom(V0 , U ) * P (V0 ) spans P (U ). Let P (φ1 )p1 , . . . , P (φl )pl be a basis of P (U ),
+let ιi : V0 → V0⊕l and πi : V0l → V0 be the inclusion and projection maps and take
+p = P (ιi )p1 + . . . + P (ιl )pl ∈ P (V0⊕l ).
+
+12
+
+ARTHUR BIK, ALESSANDRO DANELON, JAN DRAISMA, AND ROB EGGERMONT
+
+Then P (φi ◦ πi )(p) = P (φi )pi . Hence
+Hom(V0⊕l , U ) → P (U )
+φ 7→ P (φ)p
+is surjective.
+Next, suppose that P = Q ⊕ R and that there exist f ∈ Q(V ) and g ∈ R(W ) such that
+Hom(V, U ) → Q(U )
+
+and
+
+Hom(W, U ) → R(U )
+
+φ 7→ Q(φ)f
+
+φ 7→ R(φ)g
+
+are surjective. By induction, we can assume such f, g exist when dim V ≥ deg(P ) * dim Q(U ) and
+dim W ≥ deg(P ) * dim R(U ). Now, we see that
+Hom(V ⊕ W, U ) → P (U )
+φ 7→ P (φ)(P (ι1 )(f ) + P (ι2 )(g))
+is surjective. This proves the first part of the corollary. For the second statement, we note that when
+P is irreducible the elements of im(αi ) have bounded strength. As the bound depends only on X and
+S
+X only depends on dim U , we see that f 6∈ ki=1 im(αi ) for all f with strength greater than some
+function of dim U only.
+
+3. Proof of Main Theorem II
+3.1. Construction of the minimal class. Let P be a homogeneous polynomial functor of degree
+d > 0 over an algebraically closed field K of characteristic zero. Decompose
+P = P (1) ⊕ * * * ⊕ P (l)
+into Schur functors. For each U ∈ Vec of dimension ≥ d the GL(U )-module P (i) (U ) is irreducible
+(and in particular nonzero). Let V ∈ Vec be a vector space of dimension d. Let V (1,i) be a copy of V
+for each i = 1, . . . , l and choose any nonzero q (1,i) ∈ P (i) (V (1,i) ). We write
+q (1) := q (1,1) + . . . + q (1,l) ∈ P (1) (V (1,1) ) ⊕ * * * ⊕ P (l) (V (1,l) ) ⊆ P (W (1) )
+where W (1) = V (1,1) ⊕ * * * ⊕ V (1,l) . We take independent copies W (j) = V (j,1) ⊕ * * * ⊕ V (j,l) of W (1)
+and copies q (j) = q (j,1) + . . . + q (j,l) ∈ P (W (j) ) of q1 and set
+q := q (1) + q (2) + . . . ∈ P∞
+where we concatenate copies of a basis in the ld-dimensional space W (1) to identify W (1) ⊕ * * * ⊕ W (k)
+with K kld .
+Vd
+, so that we may take V = K d . We may take q (1,1) := xd1 ∈
+Example 3.1.1. Let P = S d ⊕
+Vd (1,2)
+(V
+), where x1 , . . . , xd and xd+1 , . . . , x2d are bases of
+S d (V (1,1) ) and q (1,2) := xd+1 ∧ * * * ∧ x2d ∈
+V (1,1) and V (1,2) , respectively. We then have
+q = (xd1 + xd+1 ∧ * * * ∧ x2d ) + (xd2d+1 + x3d+1 ∧ * * * ∧ x4d ) + . . .
+
+♦
+
+We will prove, first, that any q constructed in this manner has a dense GL∞ -orbit in P∞ , and
+second, that q  p for all p ∈ P∞ with a dense GL∞ -orbit.
+3.2. Density of the orbit of q.
+Proposition 3.2.1. The GL∞ -orbit of q is dense in P∞ .
+Proof. It suffices to prove that for each U ∈ Vec and each p ∈ P (U ) there exists a k ≥ 1 and a linear
+map φ : W (1) ⊕ * * * ⊕ W (k) → U such that P (φ)(q (1) + . . . + q (k) ) = p. Furthermore, we may assume
+that U has dimension at least d. Fix a linear injection ι : V → U . Now q̃ (i) := P (ι)(q (j,i) ) is a nonzero
+vector in the GL(U )-module P (i) (U ), which is is irreducible. Hence the component p(i) of p in P (i) (U )
+can be written as
+p(i) = P (g (1,i) )q̃ (i) + . . . + P (g (ki ,i) )q̃ (i)
+
+UNIVERSALITY OF HIGH-STRENGTH TENSORS
+
+13
+
+for suitable elements g (1,i) , . . . , g (ki ,i) ∈ End(U ). Do this for all i = 1, . . . , l. By taking the maximum
+of the numbers ki (and setting the irrelevant g (j,i) equal to zero) we may assume that the ki are
+all equal to a fixed number k; this is the k that we needed. Now we may define φ by declaring its
+restriction on V (j,i) to be equal to g (j,i) ◦ ι. We then have
+P (φ)(q1 + . . . + qk ) =
+
+k X
+l
+X
+
+P (g (j,i) )q̃ (i) =
+
+j=1 i=1
+
+l
+X
+
+p(i) = p,
+
+i=1
+
+as desired.
+
+
+
+3.3. Minimality of the class of q.
+Proposition 3.3.1. We have q  p for every p ∈ P∞ with a dense GL∞ -orbit.
+Proof. Let p ∈ P∞ be a tensor with a dense GL∞ -orbit and write p = (p0 , p1 , p2 , . . .) with pi ∈ P (K i ).
+Take m0 = n0 = 0. There exists a linear map φ0 : K m0 → K n0 such that P (φ0 )pm0 = qn0 = 0,
+namely the zero map. Write ni = n0 + ild. Our goal is to contruct, for each integer i ≥ 1, an integer
+mi ≥ mi−1 and a linear map ψi : K [mi ]−[mi−1 ] → W (i) such that the linear map φi : K mi → K ni
+making the diagram
+φi
+i ]−[mi−1 ]
+// K ni−1 ⊕ W (i) = K ni
+K mi = K mi−1 ⊕ K [m
+❯❯❯❯
+❦❦55
+❯❯❯❯
+❦❦❦
+❦
+❦
+❯❯❯❯
+❦
+❯❯❯❯
+❦❦❦
+idmi−1 ⊕ ψi
+❦❦❦ φi−1 ⊕ idW (i)
+**
+K mi−1 ⊕ W (i)
+
+commute satisfies P (φi )pmi = qni = q (1) + . . . + q (i) .
+Let i ≥ 1 be an integer. As observed in §2.1, we can write
+P (K mi−1 ⊕ V ) = P (K mi−1 ) ⊕ R1 (V ) ⊕ * * * ⊕ Rd−1 (V ) ⊕ P (V )
+where Rj = ShK mi−1 (P )j is a homogeneous polynomial functor of degree j. Writing K N as K mi−1 ⊕
+K N−[mi−1 ] , we obtain a corresponding decomposition
+p = pmi−1 + r1 + . . . + rd−1 + p′
+where rj ∈ Rj,∞−mi−1 and p′ ∈ P∞−mi−1 and we claim that p′ has a dense GL∞−mi−1 -orbit; here we
+use the notation from Remark 1.6.7.
+The polynomial bifunctor (U, V ) 7→ P (U ⊕ V ) is a direct sum of bifunctors of the form (U, V ) 7→
+Q(U ) ⊗ R(V ) where Q, R are Schur functors. It follows that Rj (V ) is the direct sum of spaces
+Q(K mi−1 ) ⊗ R(V ) where Q, R are Schur functors of degrees d − j, j, respectively. Hence the elements r1 , . . . , rd−1 have finite strength. Also note that pmi−1 ∈ P (K mi−1 ) has finite strength. So by
+Corollary 1.6.8, we see that the GL∞−mi−1 -orbit of p′ must be dense.
+Ld−1
+The tuple (r1 , . . . , rd−1 ) ∈
+j=1 Rj,∞−mi−1 may not have a dense GL∞−mi−1 -orbit. However,
+there exists a polynomial functor R less than or equal to R1 ⊕ * * * ⊕ Rd−1 with R({0}) = {0}, an
+r ∈ R∞−mi−1 and a polynomial transformation
+α = (α1 , . . . , αd−1 ) : R → R1 ⊕ * * * ⊕ Rd−1
+such that r has a dense GL∞−mi−1 -orbit and α(r) = (r1 , . . . , rd−1 ). Since P is homogeneous of degree
+d > deg(R), the pair (r, p′ ) has a dense orbit in R∞−mi−1 ⊕ P∞−mi−1 by [6, Lemma 4.5.3]. Hence, by
+Corollary 1.6.3, there exists an mi ≥ mi−1 + ld and a linear map ψi : K [mi ]−[mi−1 ] → W (i) such that
+R(ψi )r[mi ]−[mi−1 ] = 0 and P (ψi )p′[mi ]−[mi−1 ] = q (i) .
+Since polynomial transformations between polynomial functors with zero constant term map zero
+to zero, the first equality implies that, for all j = 1, . . . , d − 1,
+Rj (ψi )rj,[mi ]−[mi−1 ] = Rj (ψi )αj (r[mi ]−[mi−1 ] ) = αj (R(ψi )r[mi ]−[mi−1 ] ) = αj (0) = 0.
+Thus, informally, applying the map ψi makes p′ specialise to the required q (i) , while the terms
+r1 , . . . , rd−1 are specialised to zero.
+
+14
+
+ARTHUR BIK, ALESSANDRO DANELON, JAN DRAISMA, AND ROB EGGERMONT
+
+We define φi as above and we have
+
+
+P (φi )pmi = P (φi−1 ⊕ idW (i) )P (idmi−1 ⊕ ψi ) pmi−1 +
+
+
+= P (φi−1 ⊕ idW (i) ) pmi−1 +
+
+d−1
+X
+j=1
+
+d−1
+X
+
+rj,[mi ]−[mi−1 ] +
+
+j=1
+
+
+
+p′[mi ]−[mi−1 ] 
+
+
+Rj (ψi )rj,[mi ]−[mi−1 ] + P (φi )p′[mi ]−[mi−1 ] 
+
+= P (φi−1 ⊕ idW (i) )(pmi−1 + q (i) ) = qni−1 + q (i) = q (1) + . . . + q (i) .
+Iterating this argument, we find that the infinite matrix
+
+φ0
+
+ψ1
+
+
+ψ2
+
+
+ψ3
+
+
+
+..
+
+.
+
+
+
+
+ =: e
+
+
+
+has the property that P (e)p = q (1) + q (2) + . . . = q, as desired.
+
+
+
+Remark 3.3.2. Note that the element e ∈ E constructed above has only finitely many nonzero entries
+in each row and in each column!
+♦
+Remark 3.3.3. Fix an integer k ≥ 0. Then we have the following strengthening of the previous
+1 ⊕k
+theorem: we have (x1 , . . . , xk , q)  (l1 , . . . , lk , p) for every (l1 , . . . , lk , p) ∈ (S∞
+) ⊕ P∞ with a dense
+GL∞ -orbit. Here q is defined as before in variables distinct from x1 , . . . , xk . To see this, note that a
+1 ⊕k
+1
+tensor in (S∞
+) ⊕ P∞ with a dense GL∞ -orbit is of the form (l1 , . . . , lk , p) where l1 , . . . , lk ∈ S∞
+are linearly independent and p ∈ P∞ has a dense GL∞ -orbit. By acting with an invertible element of
+E as in Example 1.8.2, we may assume that li = xi . Take n0 = k. Similar to induction step in the
+proof of the previous theorem, there exists an integer m0 ≥ k and a linear map ψ : K [m0 ]−[k] → K n0
+such that the linear map φ0 = idk + ψ : K k ⊕ K [m0 ]−[k] → K n0 satisfies P (φ0 )pm0 = qn0 = 0. We now
+proceed as in the proof of the theorem with these m0 , n0 , φ0 to find the result.
+♦
+Proof of Theorem 1.9.1, existence of p. The existence of a minimal p among all elements with a dense
+GL∞ -orbit follows directly from Propositions 3.2.1 and 3.3.1.
+
+3.4. Maximal tensors. Next, we construct maximal elements with respect to  of P∞ for any
+pure polynomial functor P . We start with n-way tensors, then do Schur functors and finally general
+polynomial functors. Let d ≥ 1 be an integer and let T d be the polynomial functor sending V 7→ V ⊗d .
+d
+d
+Lemma 3.4.1. There exists a tensor rd ∈ T∞
+such that p  rd for all p ∈ T∞
+.
+1
+1
+Proof. For d = 1, we know that the element r1 := x1 ∈ T∞
+satisfies p  r1 for all p ∈ T∞
+. Now
+d−1
+d−1
+suppose that d ≥ 2 and that rd−1 = rd−1 (x1 , x2 , . . .) ∈ T∞ satisfies p  rd−1 for all p ∈ T∞ . We
+d
+d
+define a rd ∈ T∞
+satisfying p  rd for all p ∈ T∞
+.
+1
+d−1
+d
+For j ∈ {1, . . . , d}, we define the map − ⊗j − : T∞
+× T∞
+→ T∞
+as the inverse limit of the bilinear
+⊗d−1
+⊗d
+maps − ⊗j − : V × V
+→V
+such that vj ⊗j (v1 ⊗ * * * ⊗ vj−1 ⊗ vj+1 ⊗ * * * ⊗ vd ) = v1 ⊗ * * * ⊗ vd
+for all finite-dimensional vector space V and all vectors v1 , . . . , vd ∈ V . Now, we take
+
+rd :=
+
+∞ X
+d
+X
+
+xι(i,j,1) ⊗j rd−1 (xι(i,j,2) , xι(i,j,3) , . . .)
+
+i=1 j=1
+
+d
+where ι : N × {1, . . . , d} × N → N is any injective map. We claim that p  rd for all p ∈ T∞
+. Indeed,
+any such p can we written as
+∞ X
+d
+X
+xi ⊗j pi (xi , xi+1 , . . .)
+p=
+i=1 j=1
+
+UNIVERSALITY OF HIGH-STRENGTH TENSORS
+
+15
+
+d−1
+with p1 , p2 , . . . ∈ T∞
+and by assumption we can specialize rd−1 to pi using an element of E for all i.
+Combined, this yields a specialization of rd to p. Note here that xι(i,j,1) 7→ xi and xι(i,j,k) 7→ li,j,k for
+k > 1 in such a way that xl occurs, when ranging over k, in only finitely many li,j,k when i ≤ l and
+xl does not occur in li,j,k when i > l. This means that the specialization of rd to p indeed goes via
+d
+an element of E. So for all d ≥ 1, the space T∞
+has a maximal element with respect to .
+
+
+Lemma 3.4.2. Let P be a Schur functor of degree d ≥ 1. Then there exists a tensor r ∈ P∞ such
+that p  r for all p ∈ P∞ .
+d
+Proof. The space P∞ is a direct summand of T∞
+. Let r be the component in P∞ of rd from the
+previous lemma. Then p  r for all p ∈ P∞ .
+
+
+Proof of Theorem 1.9.1, the existence of r. Let P be a polynomial functor and write
+P = P (1) ⊕ * * * ⊕ P (k)
+(i)
+
+as a direct sum of Schur functors. For each i ∈ {1, . . . , k}, let ri = ri (x1 , x2 , . . .) ∈ P∞ be a tensor
+(i)
+such that pi  ri for all pi ∈ P∞ and take r = (r1 (x1 , xk+1 , . . .), . . . , rk (xk , x2k , . . .)) ∈ P∞ . Then
+p  r for all p ∈ P∞ .
+
+4. Further examples
+In this section we give more examples: we prove that tensors in P∞ with a dense GL∞ -orbit for a
+single equivalence class when P has degree ≤ 2, we compare candidates for minimal tensors in a direct
+sum of S d 's of distinct degrees and we construct maximal elements in P∞ for all P with P ({0}) = {0}.
+4.1. Polynomial functors of degree ≤ 2.
+1
+1
+Example 4.1.1. Take P = S 1 ⊕ S 1 . Then a pair (v, w) ∈ S∞
+⊕ S∞
+has one of the following forms:
+1
+(1) the pair (v, w) with v, w ∈ S∞
+linearly independent vectors;
+1
+(2) the pair (λu, μu) with u ∈ S∞ nonzero and [λ : μ] ∈ P1 ; or
+(3) the pair (0, 0).
+
+In the first case, the pair (v, w) has a dense GL∞ -orbit and is equivalent to (x1 , x2 ). When μv−λw = 0
+for some λ, μ ∈ K, then this also holds for all specialisations of (v, w). So the poset of equivalence
+classes is given by:
+(x1 , x2 )
+P1
+(0, 0)
+1
+where a point [λ : μ] ∈ P1 corresponds to the class of (λu, μu) with u ∈ S∞
+nonzero and all points in
+1
+P are incomparable.
+♦
+
+Example 4.1.2. Take P = S 2 . By Proposition 3.3.1 each infinite quadric
+X
+p=
+aij xi xj
+1≤i≤j
+
+of infinite rank specialises to the quadric q = x1 x2 + x3 x4 + . . . via a suitable linear change of
+coordinates. Here each variable is only allowed to occur in only finitely many of the linear forms that
+x1 , x2 , . . . are substituted by. Conversely, it is not difficult to see that q specialises to p as well by
+
+16
+
+ARTHUR BIK, ALESSANDRO DANELON, JAN DRAISMA, AND ROB EGGERMONT
+
+applying the following element of E:
+
+1
+0
+
+0
+
+0
+
+..
+.
+
+a11
+a12
+a13
+a14
+..
+.
+
+0
+1
+0
+0
+..
+.
+
+0
+a22
+a23
+a24
+..
+.
+
+0
+0
+1
+0
+..
+.
+
+0
+0
+a33
+a34
+..
+.
+
+
+***
+* * *
+
+* * *
+.
+* * *
+
+
+We conclude that the infinite-rank quadrics form a single equivalence class under ≃ and that the rank
+function is an isomorphism from the poset of equivalence classes to the well-ordered set {0, 1, 2, . . . , ∞}.
+♦
+V
+Example 4.1.3. Take P = 2 . By Proposition 3.3.1 each infinite alternating tensor
+X
+p=
+aij xi ∧ xj
+1≤i<j
+
+of infinite rank specialises to q = x1 ∧ x2 + x3 ∧ x4 + . . .. And, q specialises to p as well by applying
+the following element of E:
+
+
+1 0 0 0 0 0 ***
+0 a12 1 0 0 0 * * *
+
+
+0 a13 0 a23 1 0 * * *
+
+.
+0 a14 0 a24 0 a34 * * *
+
+
+..
+..
+..
+..
+..
+..
+.
+.
+.
+.
+.
+.
+
+As before, we conclude that the infinite-rank alternating tensors form a single ≃-equivalence class and
+that the rank function is an isomorphism from the poset of equivalence classes to the well-ordered set
+{0, 1, 2, . . . , ∞}.
+♦
+V
+Example 4.1.4. Take P = (S 1 )⊕a ⊕ (S 2 )⊕b ⊕ ( 2 )⊕c for integers a, b, c ≥ 0. By Remark 3.3.3, any
+tuple in P∞ with a dense GL∞ -orbit specialises to the tuple
+(x1 , . . . , xa , y1 y2 + y2b+1 y2b+2 + . . . , . . . , y2b−1 y2b + y4b−1 y4b + . . . ,
+z1 ∧ z2 + z2c+1 ∧ z2c+2 + . . . , . . . , z2c−1 ∧ z2c + z4c−1 ∧ z4c + . . .)
+where y2ib+j = xa+2ib+2ic+j for i ≥ 0 and 1 ≤ j < 2b and z2ic+j = xa+2(i+1)b+2ic+j for i ≥ 0 and
+1 ≤ j < 2c. By the previous examples, each of the entries in this latter tuple independently specialises
+to any tensor in the same space. So the entire tuple also specialises to any other tuple in P∞ . So the
+tuple with a dense GL∞ -orbit again form a single ≃-equivalence class.
+♦
+4.2. Non-homogeneous polynomial functors. The proof of Proposition 3.3.1 relies on the fact
+that P is homogeneous. Apart from the slight generalisation from Remark 3.3.3, we don't know if
+such a result holds in a more general setting.
+Question 4.2.1. Take P = S 2 ⊕ S 3 . Does there exist a tensor q ∈ P∞ with a dense GL∞ -orbit such
+that q  p for all p ∈ P∞ with a dense GL∞ -orbit?
+The next example compares different candidates for such a minimal element.
+Example 4.2.2. Take P = S d1 ⊕ S d2 ⊕ * * * ⊕ S dk with 1 < d1 < d2 < * * * < dk . By [6, Lemma 4.5.3],
+di
+an element (f1 , * * * , fk ) ∈ P∞ has dense GL∞ -orbit if and only if fi ∈ S∞
+has dense GL∞ -orbit for
+all i = 1, . . . , k. In particular, the elements
+q = (q (1) , . . . , q (k) ) = (xd11 + xd21 + . . . , . . . , xd1k + xd2k + . . .)
+and
+
+1
+p = (p(1) , . . . , p(k) ) = (xd11 + xdk+1
++ . . . , * * * , xdkk + xd2kk + . . .)
+have dense GL∞ -orbits. Clearly q  p. By Corollary 1.6.3, there exists an n ≥ 1 and linear forms
+d
+(j)
+l1 , . . . , ln in x1 , . . . , xk such that qn (l1 , . . . , ln ) = xj j for j = 1, . . . , k. Take
+
+lhn+i = li (xhn+1 , . . . , xhn+n )
+
+UNIVERSALITY OF HIGH-STRENGTH TENSORS
+(j)
+
+17
+d
+
+j
+for j = 1, . . . , k. So
+for h ≥ 1 and i ∈ {1, . . . , k}. Then we see that qn (lhn+1 , . . . , lhn+n ) = xhn+j
+since
+q (j) = qn(j) + qn(j) (xn+1 , . . . , x2n ) + . . .
+(j)
+(j)
+we see that q (l1 , l2 , . . .) = p . Let A be the k × n matrix corresponding to l1 , . . . , ln and take
+
+
+A
+
+
+A
+e := 
+∈E
+..
+.
+
+Then P (e)q (j) = q (j) (l1 , l2 , . . .). So p  q. Hence p ≃ q.
+
+♦
+
+References
+[1] Tigran Ananyan, Melvin Hochster, Small subalgebras of polynomial rings and Stillman's conjecture, Journal of the
+American Mathematical Society 33 (2020), no. 1, pp. 291–309.
+[2] Tigran Ananyan, Melvin Hochster, Strength conditions, small subalgebras, and Stillman bounds in degree ≤ 4,
+Transactions of the American Mathematical Society 373 (2020), pp. 4757–4806.
+[3] Edoardo Ballico, Arthur Bik, Alessandro Oneto, Emanuele Ventura, The set of forms with bounded strength is not
+closed, preprint. arXiv:2012.01237
+[4] Edoardo Ballico, Arthur Bik, Alessandro Oneto, Emanuele Ventura, Strength and slice rank of forms are generically
+equal, preprint. arXiv:2102.11549
+[5] Edoardo Ballico, Emanuele Ventura, The strength for line bundles, Mathematica Scandinavica, to appear, 2020.
+[6] Arthur Bik, Strength and noetherianity for infinite tensors, PhD Thesis, Universität Bern, 2020. https://biblio.
+unibe.ch/download/eldiss/20bik_ma.pdf
+[7] Arthur Bik, Jan Draisma, Rob H. Eggermont, Polynomials and tensors of bounded strength, Communications in
+Contemporary Mathematics 21 (2019), no. 7, 1850062 (24 pages).
+[8] Arthur Bik, Jan Draisma, Rob H. Eggermont, Andrew Snowden, The geometry of polynomial representations,
+in preparation.
+[9] Arthur Bik, Alessandro Oneto, On the strength of general polynomials, preprint. arXiv:2005.08617
+[10] Harm Derksen, Rob H. Eggermont, Andrew Snowden, Topological noetherianity for cubic polynomials, Algebra &
+Number Theory 11 (2017), no. 9, pp. 2197–2212.
+[11] Jan Draisma, Topological noetherianity of polynomial functors, Journal of the American Mathematical Society 32
+(2019), no. 3, pp. 691–707.
+[12] Daniel Erman, Steven V. Sam, Andrew Snowden, Big polynomial rings and Stillman's conjecture, Inventiones
+mathematicae 218 (2019), no. 2, pp. 413–439.
+[13] Daniel Erman, Steven V. Sam, Andrew Snowden, Strength and Hartshorne's conjecture in high degree, Mathematische Zeitschrift 297 (2021), pp. 1467–1471.
+[14] Daniel Erman, Steven V. Sam, Andrew Snowden, Big polynomial rings with imperfect coefficient fields, Michigan
+Mathematical Journal, to appear, 2020.
+[15] Eric M. Friedlander, Andrei Suslin, Cohomology of finite group schemes over a field, Inventiones mathematicae
+127 (1997), pp. 209–270.
+[16] James A. Green, Polynomial representations of GLn , Lecture Notes in Mathematics 830, Springer Berlin, 2007.
+[17] David Kazhdan, Tamar Ziegler, On ranks of polynomials, Algebras and Representation Theory 21 (2018), no. 5,
+pp. 1017–1021.
+[18] David Kazhdan, Tamar Ziegler, Properties of High Rank Subvarieties of Affine Spaces, Geometric and Functional
+Analysis 30 (2020), pp. 1063–1096.
+[19] Gordon D. James, The decomposition of tensors over fields of prime characteristics, Mathematische Zeitschrift
+172 (1980), pp. 161–178.
+MPI for Mathematics in the Sciences, Leipzig, Germany
+Email address: arthur.bik@mis.mpg.de
+Eindhoven University of Technology, The Netherlands
+Email address: a.danelon@tue.nl
+University of Bern, Switzerland, and Eindhoven University of Technology, The Netherlands
+Email address: jan.draisma@math.unibe.ch
+Eindhoven University of Technology, The Netherlands
+Email address: r.h.eggermont@tue.nl
+
+

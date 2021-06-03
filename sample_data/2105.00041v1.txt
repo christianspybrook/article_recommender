@@ -1,0 +1,787 @@
+Towards Certified Analysis of Software Product
+Line Safety Cases
+Ramy Shahin1 , Sahar Kokaly2 , and Marsha Chechik1
+
+arXiv:2105.00041v1 [cs.SE] 30 Apr 2021
+
+1
+
+University of Toronto, Toronto, Canada
+{rshahin,chechik}@cs.toronto.edu
+2
+General Motors, Canada
+sahar.kokaly@gm.com
+
+Abstract. Safety-critical software systems are in many cases designed
+and implemented as families of products, usually referred to as Software
+Product Lines (SPLs). Products within an SPL vary from each other
+in terms of which features they include. Applying existing analysis techniques to SPLs and their safety cases is usually challenging because of the
+potentially exponential number of products with respect to the number
+of supported features. In this paper, we present a methodology and infrastructure for certified lifting of existing single-product safety analyses
+to product lines. To ensure certified safety of our infrastructure, we implement it in an interactive theorem prover, including formal definitions,
+lemmas, correctness criteria theorems, and proofs.
+We apply this infrastructure to formalize and lift a Change Impact Assessment (CIA) algorithm. We present a formal definition of the lifted
+algorithm, outline its correctness proof (with the full machine-checked
+proof available online), and discuss its implementation within a model
+management framework.
+Keywords: Safety cases, Product lines, Lean, Certified analysis.
+
+1
+
+Introduction
+
+The development of safety-critical systems usually involves a rigorous safety engineering process. A primary artifact resulting from that is a safety case, identifying potential safety hazards, their mitigation goals, and pieces of evidence
+required to show that goals have been achieved. Safety cases, together with other
+system artifacts, are usually inspected and analyzed by tools as a part of the
+safety engineering process. In safety-critical domains, correctness of those tools
+is essential to the integrity of the whole process. Correctness certification of tools
+w.r.t. their specifications becomes of extremely high value in this context.
+In many cases, families of safety-critical software products are developed
+together in the form of Software Product Lines (SPLs). Different product variants
+of an SPL have different features, i.e., externally visible attributes such as a piece
+of functionality, support for a particular peripheral device, or a performance
+optimization. Each feature can be either present or absent in each of the product
+variants of an SPL. Given this combinatorial nature of feature composition,
+analyzing the safety of each product instance individually in a brute-force fashion
+is usually intractable.
+
+2
+
+Ramy Shahin, Sahar Kokaly, and Marsha Chechik
+
+Fig. 1: Lifted change impact assessment when the "Visual" class is modified. A
+dashed ellipse around the Visual class denotes a modification, and dashed ellipses
+around safety case elements indicate that they need to be rechecked as a result.
+Several source-code and model-based analysis tools have been lifted to product lines [24,12,9,20,2,5,23,22] in the sense that they can be applied efficiently
+to the whole product line at once, leveraging the commonalities between individual products, and thus generating aggregated results for the complete set of
+products. Those results have to be correct with respect to applying the analysis
+to each product individually. However, to the best of our knowledge, lifting of
+safety analyses has not been attempted before.
+In this paper, we present a systematic methodology to correct-by-construction
+lifting of safety case analysis algorithms to software product lines. This includes
+infrastructure building blocks for implementing lifted algorithms, and proving
+their correctness with respect to their single-product counterparts. We use the
+Lean interactive theorem prover [18] to formalize the correctness criteria of lifting, implement our lifting infrastructure, and prove the correctness of lifted algorithms. A Lean proof is machine-checked, so it can be used as a correctness
+certificate of the property being proven.
+We demonstrate our approach on a Change Impact Assessment (CIA) algorithm [15] that takes a system model, an assurance case, traceability links in
+between, and a modification to the system model as inputs, and determines the
+set of safety case elements that need to be revised or rechecked.
+Motivating Example. Consider the Lane Management System (LMS) system
+outlined in [4]. LMS can be thought of as a product line with several features,
+including: Lane Departure Warning System (LDWS), Audio warning (Audio),
+and Visual warning (Visual). For simplicity of presentation, we assume that all
+feature combinations are allowed. Fig. 1 shows a snippet of the class diagram of
+the LMS product line, and the corresponding snippet of its GSN [13] assurance
+case, with traceability links in between the two.
+We use colored annotations to map class diagram and GSN elements to features. For example, elements colored in green belong to the Audio feature, and
+
+Towards Certified Analysis of Software Product Line Safety Cases
+
+those in orange belong to the LDWS feature. Base system elements (existing in all
+products) are in yellow. In general each element can be annotated by a propositional formula over features (usually referred to as a presence condition).
+Consider a modification to the Visual class. The problem CIA algorithms
+try to solve is figuring out how that modification of a system element would
+impact the safety case. We distinguish between two ways in which a change to
+the system can impact safety case elements [15]: (1) revise – the content of
+the element (e.g., definition of a goal, or description of a solution) may have
+to be revised because it referred to a system element that has changed and the
+semantics of the content may have changed, and (2) recheck – the state of the
+element (e.g., whether a goal is satisfied, or a solution is available) must be
+rechecked because it may have changed.
+In a product line setting, in addition to figuring out which elements are
+impacted, we also need to identify the product variants in which they are. In
+Fig. 1, goals G19 and G20 are directly impacted by modifications to class Visual
+because of the direct traceability links. Both classes need to be rechecked as a
+result, but only in products where the Visual feature is included. In the same set
+of products, pieces of evidence linked to those goals (Sn4, Sn11, Sn18) need to be
+rechecked as well. Note that although G20, Sn4, and Sn18 belong to all product
+variants, we do not need to recheck them in product variants not including the
+Visual feature.
+A CIA tool lifted to product lines has to preserve the exact semantics of its
+single-product counterpart. In other words, using the lifted tool should output
+exactly the union of outputs of the single-product tool applied to each product
+variant. A software bug in the lifted tool might result in false positives (elements
+marked as impacted while they should not). Even worse, a bug might result in
+overlooking an impacted element, potentially resulting in safety incidents.
+Contributions. In this paper we (1) outline a methodology for lifting safety
+analyses to safety cases of software product lines, and present a generic infrastructure for certified lifting (data structures and correctness criteria) using the
+Lean interactive theorem prover; and (2) demonstrate our methodology on a CIA
+algorithm lifted to software product lines, i.e., supporting the input of featurespecific modifications, and outputting feature-specific annotations of safety case
+elements. In addition, (3) we formalize the single-configuration CIA algorithm
+from [15] using Lean; (4) we outline a sketch of the correctness proof of the lifted
+CIA algorithm with respect to the single-configuration one (full Lean proof available online); and (5) we discuss extending MMINT-A [7] model management
+framework with lifted safety algorithms, including lifted CIA.
+Organization. The rest of this paper is organized as follows: In Sec. 2, we
+provide background on safety cases and SPLs. We outline the correctness criteria,
+methodology, and infrastructure needed to formally lift safety case algorithms
+in Sec. 3. In Sec. 4 we formalize the original single-configuration CIA algorithm,
+its lifted counterpart, and outline the lifting correctness proof. Sec. 5 explains
+how lifted algorithms can be integrated into existing model management tools.
+Sec. 6 compares our approach to related work, and Sec. 7 concludes.
+
+3
+
+4
+
+2
+
+Ramy Shahin, Sahar Kokaly, and Marsha Chechik
+
+Background
+
+2.1 Safety Cases, GSN, and Change Impact Assessment
+A safety case is a structured argument, decomposing safety goals into sub-goals,
+and linking pieces of safety evidence to the goals. Safety goals are usually identified using hazard assessment techniques. Each of the hazards needs to be mitigated by fulfilling one or more safety goal(s).
+Goal Structured Notation (GSN) [13] is a graphical notation for defining
+safety cases. The safety case portion of Fig. 1 is an example of a GSN safety
+case model. A GSN model has elements of four different types. A goal is either
+satisfied or not based on the states of its sub-goals, connected solution nodes,
+and the semantics of decomposition strategy nodes involved. A solution is a piece
+of evidence that needs to be validated for its connected goal(s) to be satisfied.
+A strategy is a decomposition of a goal into sub-goals. A context connected to a
+goal node adds contextual assumptions that are assumed to hold when evaluating
+whether a goal is satisfied or not.
+GSN-IA [15] is an algorithm for reflecting changes made in system models
+onto the relevant GSN safety cases. The inputs to GSN-IA are the initial system
+model S and a safety case A connected by a traceability mapping R, the changed
+system S 0 and the delta D recording the changes between S and S 0 . Specifically,
+D is the triple hC 0a, C 0d , C 0mi where C 0a, C 0d , and C 0m are the set of
+elements added, deleted, and modified respectively. The output of GSN-IA is
+the annotated model K of the safety case A, indicating which elements are
+marked for revise, recheck, or reuse.
+GSN-IA is parameterized by three slicers [21]: a system model slicer SliceSys ,
+and two safety case slicers SliceGSNV and SliceGSNR . SliceSys is used to determine how the impact of modifications propagates within the system model.
+Similarly, the safety case slicers trace through dependencies within the safety
+case, with SliceGSNV only tracing direct dependencies, while SliceGSNR recursively generates the transitive closure of dependencies.
+2.2 Software Product Lines
+We introduce Software Product Line (SPL) concepts following definitions from [20].
+An SPL L is a tuple (F , Φ, D, φ) where: (1) F is the set of features s.t. an individual product can be derived from L via a feature configuration ρ ⊆ F . (2)
+Φ ∈ Prop(F ) is a propositional formula over F defining the valid set of feature
+configurations. Φ is called a Feature Model (FM). The set of valid configurations
+defined by Φ is called Conf(L). (3) D is a set of program elements, called the
+domain model. The whole set of program elements is usually referred to as the
+150% representation. (4) φ : D → Prop(F ) is a total function mapping each
+program element to a proposition (feature expression) defined over the set of
+features F . φ(e) is called the Presence Condition (PC) of element e, i.e. the set
+of product configurations in which e is present.
+Given a product line L and a feature configuration ρ, we define L |ρ to be
+the subset of elements of L that belong to at least one of the features in ρ. We
+loosely use the same indexing operator when referring to subsets of values in a
+data structure subject to a feature configuration. For example, given a feature
+
+Towards Certified Analysis of Software Product Line Safety Cases
+1
+2
+3
+4
+5
+6
+7
+8
+
+def PC := Prop
+structure Var (α : Type) := (v : α) (pc : PC)
+def set0 (α : Type) : Type := α → PC
+def index (s : set0 α) (pc : PC) : set α := (and pc) ◦ s
+def mem (x : Var α) (s : set0 α) : Prop := x.pc → (s x.v)
+def subset (s1 s2 : set0 α) : Prop := ∀ a, mem a s1 → mem a s2
+def union (s1 s2 : set0 α) : set0 α := λ x, (s1 x) ∨ (s2 x)
+def image (f : α → β) (s : set0 α) : set0 β := λ x, (∀ y, f y = x ∧ s y)
+
+Listing 1: Variability-aware building blocks.
+configuration {LDWS, Visual}, a product with all the elements, except for the
+ones annotated in green, is instantiated from the product line (Fig. 1).
+
+3
+
+Methodology and Infrastructure
+
+In this section, we present a set of generic infrastructure building blocks that can
+be used in designing and certifying the correctness of variability-aware algorithms
+applied to safety cases. We then present the correctness criteria of variabilityaware algorithms with respect to their single-product counterparts. Finally, we
+put the infrastructure together with the correctness criteria into a correct-byconstruction methodology for systematic lifting of safety case algorithms.
+We formalize algorithms, theorems, and proofs using the Lean [18] interactive theorem prover. We had two requirements for the proof assistant to be used
+in this project: (1) to be based on constructive rather than classical logic, to allow for explicit tracing of which sub-goals (and their proof evidence) contribute
+to the overall proof; and (2) to allow for sound user-defined proof automation
+procedures, which can reduce the human effort involved in the proof development process. Lean meets those two requirements. It is based on the Calculus of
+Inductive Constructions [1], so it supports constructive logic by default. It also
+supports tactic-based meta-programming of theorems and proof objects.
+Lifted Data Structures. The types of all input, output, and intermediate
+data structures of an algorithm need to be lifted, i.e., elements of each of those
+data structures need to be paired with presence conditions, indicating the set
+of products this element belongs to. Listing 1 has definitions of some of the
+data types used for lifted data structures. PC (line 1) is the type for presence
+conditions, which is defined as native Lean propositions. Var (line 2) is a higherorder lifted type, taking a type α as a parameter, and pairing values of type α
+with presence conditions.
+The lifted set data type set0 (line 3) is a higher-order type parameterized by
+type α, and implemented as a function α → PC. This implementation happens to
+be the same as the implementation of Lean sets. However, the semantics of Lean
+sets assume that a value of type α is either present or absent in a set over α. Lifted
+sets on the other hand map an element of type α to an arbitrary propositional
+formula which might evaluate to True (i.e., the element exists in the set in all
+configurations), False (i.e., the element does not exist in any configuration of the
+set), or a contingent formula indicating the set of configurations in which the
+element exists in the set.
+
+5
+
+6
+
+Ramy Shahin, Sahar Kokaly, and Marsha Chechik
+L
+
+f0
+
+|ρ
+
+P
+
+R0
+|ρ
+
+f
+
+R
+
+L
+
+f0
+
+R0
+
+g0
+
+S0
+
+|ρ
+
+P
+
+|ρ
+f
+
+R
+
+g
+
+S
+
+(a) Correctness of a lifted function [22]. (b) Correctness of lifted function composition.
+
+Fig. 2: Lifting correctness criteria.
+1
+2
+3
+4
+5
+
+variables (f : set α → set β) (g : set β → set γ)
+variables (f0 : set0 α → set0 β) (g0 : set0 β → set0 γ)
+theorem fun_comp_correct :
+(∀ a ρ, (f (a | ρ) = (f0 a) | ρ)) → (∀ b ρ, (g (b | ρ) = (g0 b) | ρ)) →
+(∀ a ρ, (g ◦ f) (a | ρ) = ((g0 ◦ f0 ) a) | ρ)
+
+Listing 2: Lifted function composition theorem.
+The primary operation on lifted data types in general is indexing. Given a
+lifted set s and a presence condition pc, index s pc evaluates to a Lean set
+(not lifted) of elements existing in the configurations satisfied by pc in s. This
+is exactly how the index operator is defined on set0 , conjoining pc with the
+presence condition of each element in s (line 4).
+Standard set operations also need to be overloaded for lifted sets. Lifted
+set membership semantically checks if a lifted value (v,pc) exists in all configurations of a lifted set s. It is defined (line 5) as a propositional implication
+between pc (the set of configurations where the lifted value exists), and the set
+of configurations where v exists in s.
+Lifted subset is defined exactly the same as standard subset, using the lifted
+definition of set membership (line 6). Similarly, lifted set union is implemented
+as a disjunction of the propositional definitions of its two arguments (line 7).
+The last lifted set operation is image (line 8), taking a function f : α → β and
+a lifted set s of α, and applies f to each element s, returning a lifted set of β.
+Correctness Criteria. Given a product line L, an analysis algorithm f , and
+a product configuration ρ, we construct a lifted version of f (referred to as f 0 ),
+such that instantiating a product P from L using configuration ρ, and then
+applying f to P has the same result as applying f 0 to L and then instantiating a
+product-specific result using ρ. This is summarized by the commuting diagram
+in Fig. 2a [22].
+Lifting Methodology. We follow a divide-and-conquer methodology to design
+lifted analyses from their single-product counterparts. If an analysis algorithm is
+broken-down into smaller functions, and each of those functions is individually
+lifted, composing the lifted functions together has to preserve the correctness
+criteria. This is summarized in Fig. 2b.
+We formulate the correctness criteria of lifted function composition as a
+theorem (Listing 2). Assume we have two functions (f:set α → set β) and
+(g:set β → set γ), and two lifted functions (f0 :set0 α → set0 β) and (g0 :set0
+β → set0 γ) (Line 2). The theorem states that if f0 is a correct lifting of f, and
+g0 is a correct lifting of g, then g0 ◦ f0 is a correct lifting of g ◦ f (Lines 3-5).
+
+Towards Certified Analysis of Software Product Line Safety Cases
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+inductive Annotation : Type
+| Reuse | Recheck | Revise
+constants SysEl GSNEl : Type
+def Sys
+: Type := set SysEl
+def GSN
+: Type := set GSNEl
+def TraceRel : Type := set (SysEl × GSNEl)
+variable sliceSys (s : Sys) (es : set SysEl) : Sys
+variable sliceGSN_V (ac : GSN) (es : set GSNEl) : GSN
+variable sliceGSN_R (ac : GSN) (es : set GSNEl) : GSN
+structure Delta := (add : set SysEl) (delete : set SysEl) (modify : set SysEl)
+
+Listing 3: Type definitions of the formalized GSN IA algorithm.
+The theorem is proven by term rewriting. Definitions of all theorems, lemmas,
+and their full Lean proofs are available online3 .
+Correctness of the lifted function composition theorem is the foundation of
+compositional lifting correctness proofs. Small helper functions can be manually
+lifted and proven correct relatively easily, and their correctness proofs can be
+composed together with composing the functions themselves using the theorem.
+This way, lifted analyses can be compositionally implemented following the same
+structure of their single-product counterparts, composing correctness proofs together with function composition. We demonstrate this methodology on lifting
+a Change Impact Assessment (CIA) algorithm in Sec. 4.
+
+4
+
+Changed Impact Assessment
+
+In this section, we formalize the GSN-IA [15] impact assessment algorithm, systematically design a lifted version of it, and prove its correctness based on the
+methodology in Sec. 3.
+4.1 Single-Product Algorithm
+The data types and external dependencies of the GSN IA algorithm are defined
+in Listing 3. Annotation is the data type of annotations assigned to GSN model
+elements, with the values Reuse, Recheck, and Revise (lines 1-2). SysEl and
+GSNEl are opaque types of system model elements and GSN model elements
+respectively, where a system model Sys and a GSN model GSN are sets of
+each of those elements types (lines 4-6). TraceRel is a traceability relation between system model elements and GSN model elements, so it is a defined as a
+set of ordered pairs of SysEl and GSNEl (line 7). GSN IA is parameterized by
+three model slicers: sliceSys is a system model slicer, while sliceGSN V and
+sliceGSN R are GSN model slicers. Each of the slicers takes a model and a set of
+elements used as the slicing criterion, returning a subset slice of the input model
+(lines 9-11). Delta is composed of three sets of system elements, representing
+the elements added, modified and deleted (lines 12).
+Listing 4 has the definitions of the GSN IA algorithm, together with three
+helper functions. restrict is a function taking a traceability relation t and a
+3
+
+https://github.com/ramyshahin/variability
+
+7
+
+8
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+
+Ramy Shahin, Sahar Kokaly, and Marsha Chechik
+
+def restrict (t : TraceRel) (d : Delta) : TraceRel :=
+λ x, x.1 ∈ d.add ∪ d.delete ∪ d.modify
+def trace (t : TraceRel) (es : set SysEl) : set GSNEl :=
+image prod.snd {p | p ∈ t ∧ p.1 ∈ es}
+def createAnnotation (g : GSN) (recheck : set GSNEl) (revise : set GSNEl)
+: set (GSNEl × Annotation) :=
+let ch := image (λ e, (e, Annotation.Recheck)) recheck,
+rv := image (λ e, (e, Annotation.Revise)) revise,
+ru := image (λ e, (e, Annotation.Reuse)) (g − (recheck ∪ revise))
+in ch ∪ rv ∪ ru
+def GSN_IA (S : Sys) (S0 : Sys) (A : GSN) (R : TraceRel) (D : Delta)
+: set (GSNEl × Annotation) :=
+let R0
+:= restrict R D,
+C1dm
+:= sliceSys S ((delete D) ∪ (modify D)),
+C1am
+:= sliceSys S0 ((add D) ∪ (modify D)),
+C2Recheck := (trace R C1dm) ∪ (trace R0 C1am),
+C2Revise
+:= trace R (delete D),
+C3Recheck1 := sliceGSN_V A C2Revise,
+C3Recheck2 := sliceGSN_R A (C2Recheck ∪ C3Recheck1)
+in createAnnotation A C3Recheck2 C2Revise
+
+Listing 4: Helper functions and the formalized GSN IA algorithm.
+delta es as inputs, and returns a restricted subset of t only covering elements
+in es (lines 1-2). trace takes a traceability relation t and a set of system elements es as inputs, and returns the set of GSN elements mapped from es by t
+(lines 4-5). createAnnotation assigns an Annotation value to each element in
+a GSN model, given sets of elements to be rechecked and revised (lines 7-12).
+The change impact assessment algorithm GSN IA takes two system models
+S and S0 and the delta D between them. It also takes a GSN model A and a traceability relation R between system model elements and GSN model elements. It
+returns a set of ordered pairs of GSN model elements and annotations. The algorithm starts by restricting the traceability relation based on D, slices the original
+system model S using the elements deleted and modified as a slicing criterion,
+and slices the modified system model S0 using the added and modified elements
+as the slicing criterion (lines 16-18). Using those two slices, the corresponding
+GSN model elements are traced using the traceability relation (line 19). The
+GSN elements traced from elements deleted from the original system model are
+to be revised (line 20). The slice of the GSN model based on the traced elements
+are to be rechecked (lines 21-22), and both revise and recheck sets are used to
+annotate the GSN model elements (line 23).
+4.2
+
+Lifted Algorithm
+
+Listing 5 is the variability-aware version of the algorithm in Listing 4. Both
+algorithms are compositions of function/operator calls, so each of those functions/operators is replaced with its lifted counterpart. We assume that lifted
+
+Towards Certified Analysis of Software Product Line Safety Cases
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+def Sys0 : Type := set0 SysEl
+def GSN0 : Type := set0 GSNEl
+def TraceRel0 : Type := set0 (SysEl × GSNEl)
+structure Delta0 := (add : set0 SysEl) (delete : set0 SysEl) (modify : set0 SysEl)
+def GSN_IA0 (S S0 : Sys0 ) (A : GSN0 ) (R : TraceRel0 ) (D : Delta0 )
+: set0 (GSNEl × Annotation) :=
+let R0
+:= restrict0 R D,
+C1dm
+:= sliceSys0 S (D.delete ∪ D.modify),
+C1am
+:= sliceSys0 S0 (D.add ∪ D.modify),
+C2Recheck := (trace0 R C1dm) ∪ (trace0 R0 C1am),
+C2Revise
+:= trace0 R D.delete,
+C3Recheck1 := sliceGSN_V0 A C2Revise,
+C3Recheck2 := sliceGSN_R0 A (C2Recheck ∪ C3Recheck1)
+in createAnnotation0 A C3Recheck2 C2Revise
+
+Listing 5: Lifted Change Impact Assessment algorithm.
+versions of the three slicers are provided, and that they meet the correctness
+criteria of Fig. 2a.
+All the set types used in GSN IA need to be lifted. Definitions in lines 1-4
+are lifted sets of system model elements, GSN model elements, and traceability
+mappings. A lifted delta (line 4) is composed of three lifted sets (additions,
+deletions and modifications).
+The proof of the correctness theorem used auxiliary correctness lemmas for
+each of the helper algorithms. Each of the proofs expands definitions and repeatedly applies the correctness of lifted function composition (Fig. 2b).
+Lifted Helper Algorithms. Since the lifted CIA algorithm operates on lifted
+data structures, all helper algorithms need to be modified to correctly operate on lifted data structures as well. In particular, we outline lifted versions of
+restrict and trace (Listing 6).
+The original implementation of restrict takes a traceability map and a delta
+as inputs, and returns the minimal subset of the traceability map that covers
+all the elements in the delta. We now have presence conditions associated to
+system model elements, assurance case elements, and also the traceability links
+in between. The lifted version of restrict (referred to as restrict0 ) needs to
+correctly process all those presence conditions.
+The lifted algorithm starts by calculating the set of relevant elements in the
+system model, which is the union of added, deleted and modified elements in the
+delta (line 2). The algorithm returns a lifted traceability mapping as a function
+taking ((s,g),pc), where (s,g) is a system model element-GSN model element
+pair, and pc is a presence condition. This function evaluates to the conjunction
+of applying the input traceability map t to ((s,g),pc), and applying relevant
+to (s,g). Recall that variability-aware sets (as well as Lean sets) are functions
+mapping values of a given type to propositions.
+Similarly, trace0 is the lifted version of trace. The returned lifted set is
+a function mapping a GSN model element g to the set of configurations from
+
+9
+
+10
+
+Ramy Shahin, Sahar Kokaly, and Marsha Chechik
+
+1
+2
+3
+4
+5
+6
+
+def restrict0 (t : TraceRel0 ) (d : Delta0 ) : TraceRel0 :=
+let relevant := d.add ∪ d.delete ∪ d.modify
+in λ x, t x ∧ relevant x.1
+
+1
+2
+3
+
+theorem GSN_IA0 _correct :
+∀ (S S0 : Sys0 ) (A : GSN0 ) (R : TraceRel0 ) (D : Delta0 ) (pc : PC),
+(GSN_IA0 S S0 A R D) | pc = GSN_IA (S | pc) (S0 | pc) (A | pc) (R | pc) (D | pc)
+
+def trace0 (t : TraceRel0 ) (es : set0 SysEl) : set0 GSNEl :=
+λ (g:GSNEl), ∃ (s : SysEl) , es s ∧ t hs , gi
+
+Listing 6: Lifted implementation of restrict and trace.
+
+Listing 7: Correctness theorem of GSN IA0 .
+which there exists a system model element s in the input lifted set of system
+elements, where (s,g) belongs to the input traceability map.
+The lifted version of createAnnotation (named createAnnotation0 ) is of
+exactly the same structure as the original because it strictly uses set operations
+(union, set difference and image), which have been all lifted as a part of the
+underlying variability-aware set implementation (Listing 1).
+The correctness theorem of GSN IA0 with respect to GSN IA is in Listing 7.
+It is a direct instantiation of the general correctness criteria in Fig. 2a, applied
+to inputs of the GSN IA algorithm.
+4.3 Examples
+In this section, we apply our lifted CIA algorithm to two examples of modifications to the fragment of the LMS product line presented in Sec. 1 (Fig. 1).
+Ex1: Feature-Specific Modification. Suppose that the Visual class is modified. This class is local to the Visual feature. If we only analyze the fragment
+in Fig. 1, the inputs to GSN-IA0 are shown in Fig. 3a and Fig. 3b.
+Tracing through the algorithm, the first step is using restrict0 to calculate
+R'= {(Visual, G19, Visual), (Visual, G20, Visual)} (line 8). Because C0a and
+C0d are both empty, and assuming a backward slicer (returning the transitive closure of the elements that might affect the slicing criteria), C1dm and
+C1am both become {(Alarm, True), (Visual, Visual), (LaneDepartureWarningSystem, LDWS)} (lines 9-10). Now tracing from C1dm and C1am, C2recheck becomes {(G19, Visual), (G20, Visual)} (line 11). Since C0d is empty, C2revise and
+C3recheck1 are both empty as well (lines 12-13). Using a backward GSN slicer,
+C3recheck2 becomes {(G19, Visual), (G20, Visual), (Sn11, Visual), (Sn4,
+Visual), (Sn18, Visual)} (line 14). The algorithm returns an empty set of GSN
+elements to be revised, and the set C3recheck2 to be rechecked. Note that G20,
+Sn4, and Sn18 are all base model elements (having True as a presence condition),
+so the algorithm output states that we need to recheck those elements only in
+products where the feature Visual is present.
+Ex2: Base System Modification. Suppose that the Alarm class is modified.
+This is a base system class, i.e., it is present in all products. The inputs to
+GSN-IA0 (restricted to the fragment in Fig. 1) are shown in Fig. 3a and Fig. 3c.
+
+Towards Certified Analysis of Software Product Line Safety Cases
+A = {(G5, TT), (Sn3, TT), (S 8, TT), (G18, Audio), (G19, Visual), (G20, True),
+(Sn4, TT), (Sn18, TT), (Sn12, Audio), (Sn11, Visual)}
+R = {(Visual , G19, Visual), (Visual , G20, Visual), (Audio, G18, Audio),
+(Audio, G20, Audio)}
+(a) Assurance case elements (A) and traceability links (R) used in Ex1 and Ex2.
+S = {(Alarm, True), (UserInterface, True), (Audio, Audio), (Visual , Visual),
+(LaneDepartureWarningSystem, LDWS)}
+S 0 = {(Alarm, True), (UserInterface, True), (Audio, Audio), (Visual 0 , Visual),
+(LaneDepartureWarningSystem, LDWS)}
+D = h{}, {}, {(Visual , Visual)}i
+(b) System model (S), modified system model (S'), and delta (D) used in Ex1.
+S = {(Alarm, True), (UserInterface, True), (Audio, Audio), (Visual , Visual),
+(LaneDepartureWarningSystem, LDWS)}
+S 0 = {(Alarm 0 , True), (UserInterface, True), (Audio, Audio), (Visual , Visual),
+(LaneDepartureWarningSystem, LDWS)}
+D = h{}, {}, {(Alarm, True)}i
+(c) System model (S), modified system model (S'), and delta (D) used in Ex2.
+
+Fig. 3: Inputs to the GSN-IA0 algorithm used in Ex1 and Ex2.
+Since the Alarm class does not have any direct traceability links, R 0 is empty
+(line 8). Using a backward slicer (like in Ex1), C1dm and C1am both become
+{(Alarm, True), (Visual, Visual), (Audio, Audio), (LaneDepartureWarningSystem, LDWS)} (lines 9-10). From C1dm and C1am using the traceability links,
+C2recheck becomes {(G18, Audio), (G19, Visual), (G20, Visual)} (line 11).
+Again, since C0d is empty, C2revise and C3recheck1 are both empty as well
+(lines 12-13). With a backward GSN slicer, C3recheck2 becomes {(G18, Audio),
+(G19, Visual), (G20, Visual ∨ Audio), (Sn11, Visual), (Sn12, Audio), (Sn4,
+Visual ∨ Audio), (Sn18, Visual ∨ Audio)} (line 14). The algorithm returns
+an empty set of GSN elements to be revised, and the set C3recheck2 to be
+rechecked. Note that in this example, G20, Sn4, and Sn18 are annotated with
+recheck with presence condition Visual ∨ Audio, which means that they need
+to be rechecked only if either Audio or Visual are present.
+
+5
+
+Towards Implementation
+
+The GSN-IA algorithm is implemented, together with slicers and model operators, as an extension of the MMINT [6] model management framework (Fig. 4),
+called MMINT-A [7]. In order to extend MMINT-A to support annotative product line models, and subsequently the lifted change impact assessment algorithm,
+the following modifications are required: (1) Model elements need to be extended
+with presence conditions, with True as a default value. This way single product models (where all elements have the default True presence condition) are
+directly supported as well. (2) Operators on models need to be modified to take
+presence conditions into consideration, and compute the presence conditions of
+their outputs. Those modifications are mostly systematic along the lines of those
+of restrict0 and trace0 (Listing 6). (3) Higher-level algorithms (e.g., GSN-IA)
+
+11
+
+12
+
+Ramy Shahin, Sahar Kokaly, and Marsha Chechik
+ModelRel
+Editor
+
+MID
+Editor
+MMINT
+
+Workflow
+Editor
+
+Type MID
+
+Model
+Operators
+
+Metamodels
+
+Type Support Runtime
+
+Eclipse
+Platform
+
+EMF
+
+Model
+Editors
+
+GMF
+
+OCL
+
+MMINT
+Plug-Ins
+
+Sirius
+
+Eclipse
+
+Fig. 4: Architecture of the MMINT model management framework [7].
+need to be modified accordingly to use the lifted versions of the operators. (4)
+The user interface of MMINT-A needs to support annotating different model
+elements with presence conditions. (5) Optionally, MMINT-A can check the
+well-formedness of presence condition annotations. For example, the presence
+condition of an association between two UML classes has to be subsumed by the
+presence conditions of its two end points.
+
+6
+
+Related Work
+
+Model-based approaches to safety case management. Many methods for
+modeling safety cases have been proposed, including goal models and requirements models [10,3] and GSN [13]. The latter is arguably the most widely used
+model-based approach to improving the structure of safety arguments. Building
+on GSN, Habli et. al. [11] examine how model-driven development can provide a
+basis for the systematic generation of functional safety requirements and demonstrates how an automotive safety case can be developed. Gallina [8] proposes a
+model-driven safety certification method to derive arguments as goal structures
+given in GSN from process models. The process is illustrated by generating arguments in the context of ISO 26262. We consider this category of work complimentary to ours; we do not focus on safety case construction but instead assume
+presence of a safety case and focus on assessing the impact of system changes.
+Lifting to Software Product Lines. Different kinds of software analyses have
+been re-implemented to support product lines [24]. For example, the TypeChef
+project implements variability aware parsers and type checkers for Java and
+C [12]. The SuperC project [9] is another C language variability-aware parser. A
+graph transformation engine was lifted to product lines of graphs [20]. Datalogbased analyses (e.g., pointer analysis) have been lifted by modifying the Datalog
+engine being used [23]. SPLLift [2] lifts data flow analyses to annotative product
+lines. Model checkers based on Featured Transition Systems [5] check temporal
+properties of transition systems where transitions can be labeled by presence
+conditions. Syntactic transformation techniques have been suggested for lifting
+abstract interpretation analyses [17] and functional analyses [22] to SPLs.
+In this paper, our methodology tailors the lifting approach from related work
+to safety cases of product lines, and we demonstrate it on change impact assessment. We tackle a new class of product line artifacts, particularly safety cases.
+
+Towards Certified Analysis of Software Product Line Safety Cases
+
+To the best of our knowledge, this is the first attempt to lift a safety case analysis
+to product lines.
+Formalized Systems and Interactive Theorem Proving. Correctness and
+behavioral properties of several software systems have been formalized and verified using interactive theorem provers. The CompCert compiler [16] is an example of a C-language compiler fully certified using the Coq theorem prover.
+The seL4 microkernel [14] was verified using the Isabelle\HOL theorem prover.
+Isabelle was also used to formalize the Structured Assurance Case Metamodel
+(SACM) notation for certified definition of assurance cases [19].
+
+7
+
+Conclusion and Future Work
+
+In this paper, we presented a methodology for lifting safety case analysis algorithms to software product lines. We also outlined a certification infrastructure
+(data structures and correctness criteria) for our lifting approach using the Lean
+interactive theorem prover. We demonstrated both the approach and correctness certification on formalizing and lifting a Change Impact Assessment (CIA)
+algorithm [15]. We discussed the implementation of the lifted CIA algorithm
+as part of the safety model management system MMINT-A [7]. A lifted CIA
+algorithm allows for reusing impact assessment conclusions across a potentially
+exponential (in number of features) different product variants, as opposed to
+using a product-level CIA algorithm in individual product instances, which is
+intractable in most cases.
+For future work, we are working together with an industrial partner on applying our lifted algorithm to their assurance case models. We also plan to lift
+other safety case algorithms (including slicers), and add their implementations
+to MMINT-A. Visualization of the analysis results and improved user interaction
+is another area of future improvements.
+
+References
+1. Bertot, Y., Castran, P.: Interactive Theorem Proving and Program Development:
+Coq'Art The Calculus of Inductive Constructions. Springer Publishing Company,
+Incorporated, 1st edn. (2010)
+2. Bodden, E., Tolêdo, T., Ribeiro, M., Brabrand, C., Borba, P., Mezini, M.:
+SPLLIFT: Statically Analyzing Software Product Lines in Minutes Instead of
+Years. In: Proc. of PLDI'13. pp. 355–364. ACM (2013)
+3. Brunel, J., Cazin, J.: Formal Verification of a Safety Argumentation and Application to a Complex UAV System. In: Proc. of SafeComp'12 Wkshp. (2012)
+4. Chechik, M., Kokaly, S., Rahimi, M., Salay, R., Viger, T.: Uncertainty, modeling
+and safety assurance: Towards a unified framework
+5. Classen, A., Cordy, M., Schobbens, P.Y., Heymans, P., Legay, A., Raskin, J.F.:
+Featured Transition Systems: Foundations for Verifying Variability-Intensive Systems and Their Application to LTL Model Checking. IEEE Trans. Softw. Eng.
+39(8), 1069–1089 (Aug 2013)
+6. Di Sandro, A., Salay, R., Famelis, M., Kokaly, S., Chechik, M.: MMINT: A Graphical Tool for Interactive Model Management. In: Proc. of MODELS (Demo) (2015)
+
+13
+
+14
+
+Ramy Shahin, Sahar Kokaly, and Marsha Chechik
+
+7. Fung, N.L.S., Kokaly, S., Di Sandro, A., Salay, R., Chechik, M.: MMINT-A: A
+Tool for Automated Change Impact Assessment on Assurance Cases. In: Proc. of
+SafeComp'18 Wkshp. pp. 60–70 (2018)
+8. Gallina, B.: A Model-Driven Safety Certification Method for Process Compliance.
+In: Proc. of ISSRE'14 Workshops. pp. 204–209. IEEE (2014)
+9. Gazzillo, P., Grimm, R.: SuperC: Parsing All of C by Taming the Preprocessor.
+In: Proc. of PLDI'12. pp. 323–334. ACM (2012)
+10. Ghanavati, S., Amyot, D., Peyton, L.: A Systematic Review of Goal-Oriented Requirements Management Frameworks for Business Process Compliance. In: Proc.
+of RELAW'11. pp. 25–34. IEEE (2011)
+11. Habli, I., Ibarra, I., Rivett, R.S., Kelly, T.: Model-Based Assurance for Justifying
+Automotive Functional Safety. Tech. rep., SAE (2010)
+12. Kästner, C., Apel, S., Thüm, T., Saake, G.: Type Checking Annotation-based
+Product Lines. ACM Trans. Softw. Eng. Methodol. 21(3), 14:1–14:39 (Jul 2012)
+13. Kelly, T., Weaver, R.: The Goal Structuring Notation – A Safety Argument Notation. In: Proc. of DSN'04 (2004)
+14. Klein, G., Elphinstone, K., Heiser, G., Andronick, J., Cock, D., Derrin, P., Elkaduwe, D., Engelhardt, K., Kolanski, R., Norrish, M., et al.: seL4: Formal verification of an OS kernel. In: Proceedings of the ACM SIGOPS 22nd Symposium on
+Operating Systems Principles. pp. 207–220 (2009)
+15. Kokaly, S., Salay, R., Chechik, M., Lawford, M., Maibaum, T.: Safety Case Impact Assessment in Automotive Software Systems: An Improved Model-Based Approach. In: Proc. of SafeComp'17. pp. 69–85. Springer (2017)
+16. Leroy, X.: A Formally Verified Compiler Back-end. Journal of Automated Reasoning 43(4), 363–446 (2009), http://xavierleroy.org/publi/compcert-backend.
+pdf
+17. Midtgaard, J., Dimovski, A.S., Brabrand, C., Wąsowski, A.: Systematic Derivation
+of Correct Variability-aware Program Analyses. Sci. Comput. Program. 105(C),
+145–170 (Jul 2015)
+18. de Moura, L., Kong, S., Avigad, J., van Doorn, F., von Raumer, J.: "The Lean
+Theorem Prover (System Description)". In: Felty, A.P., Middeldorp, A. (eds.) Automated Deduction - CADE-25. Springer International Publishing (2015)
+19. Nemouchi, Y., Foster, S., Gleirscher, M., Kelly, T.: "Isabelle/SACM: ComputerAssisted Assurance Cases with Integrated Formal Methods". In: Ahrendt, W.,
+Tapia Tarifa, S.L. (eds.) Proc. of iFM'19. pp. 379–398 (2019)
+20. Salay, R., Famelis, M., Rubin, J., Di Sandro, A., Chechik, M.: Lifting Model Transformations to Product Lines. In: Proc. of ICSE'14. ACM, NY, USA (2014)
+21. Salay, R., Kokaly, S., Chechik, M., Maibaum, T.: Heterogeneous Megamodel Slicing
+for Model Evolution. In: Proc. of ME@MoDELS'16. pp. 50–59 (2016)
+22. Shahin, R., Chechik, M.: Automatic and efficient variability-aware lifting of functional programs. Proc. ACM Program. Lang. 4(OOPSLA) (Nov 2020)
+23. Shahin, R., Chechik, M., Salay, R.: Lifting Datalog-based Analyses to Software
+Product Lines. In: Proc. of ESEC/FSE'19. ACM, New York, NY, USA (2019)
+24. Thüm, T., Apel, S., Kästner, C., Schaefer, I., Saake, G.: A Classification and
+Survey of Analysis Strategies for Software Product Lines. ACM Comput. Surv.
+47(1), 6:1–6:45 (Jun 2014)
+
+

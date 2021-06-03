@@ -1,0 +1,679 @@
+On (k, l, H)-kernels by walks and the H-class digraph
+Hortensia Galeana-Sánchez and Miguel Tecpa-Galván
+
+arXiv:2105.00044v1 [math.CO] 30 Apr 2021
+
+Abstract
+Let H be a digraph possibly with loops and D a digraph without loops whose arcs are colored with
+the vertices of H (D is said to be an H−colored digraph). If W = (x0 , . . . , xn ) is an open walk in D and
+i ∈ {1, . . . , n−1}, we say that there is an obstruction on xi whenever (color(xi−1 , xi ), color(xi , xi+1 )) ∈
+/ A(H).
+A (k, l, H)-kernel by walks in an H-colored digraph D (k ≥ 2, l ≥ 1), is a subset S of vertices of D, such
+that, for every pair of different vertices in S, every walk between them has at least k − 1 obstructions, and
+for every x ∈ V (D) \ S there exists an xS-walk with at most l − 1 obstructions. This concept generalize
+the concepts of kernel, (k, l)-kernel, kernel by monochromatic paths, and kernel by H-walks. If D is an Hcolored digraph, an H-class partition is a partition F of A(D) such that, for every {(u, v), (v, w)} ⊆ A(D),
+(color(u, v), color(v, w)) ∈ A(H) iff there exists F in F such that {(u, v), (v, w)} ⊆ F . The H-class digraph
+relative to F , denoted by CF (D), is the digraph such that V (CF (D)) = F , and (F, G) ∈ A(CF (D)) iff
+there exist (u, v) ∈ F and (v, w) ∈ G with {u, v, w} ⊆ V (D).
+We will show sufficient conditions on F and CF (D) to guarantee the existence of (k, l, H)-kernels by
+walks in H-colored digraphs, and we will show that some conditions are tight. For instance, we will show
+that if an H-colored digraph D has an H-class partition in which every class induces a strongly connected
+digraph, and has a obstruction-free vertex, then for every k ≥ 2, D has a (k, k − 1, H)-kernel by walks.
+Despite finding (k, l)-kernels is a N P -complete problem, some hypothesis presented in this paper can be
+verified in polynomial time.
+
+(k, l)-kernel, H-colored digraph, H-kernel, (k, l, H)−kernel by walks.
+MSC class: 05C15, 05C20, 05C69.
+
+1
+
+Introduction.
+
+For terminology and notation not defined here, we refer the reader to [3]. If D is a digraph and x ∈ V (D),
+we denote by A+ (x) the set {(x, v) ∈ A(D) : v ∈ V (D)}, A− (x) the set {(u, x) ∈ A(D) : u ∈ V (D)}, and
+A(x) = A− (x) ∪ A+ (x). If D is a digraph without loops, a sink is a vertex x such that A+ (x) = ∅. If H is a
+digraph possibly with loops, a sink is a vertex x such that A+ (x) ⊆ {(x, x)}. If S1 and S2 is a subsets of V (D),
+we denote by N + (S1 ) the proper out-neighbor of S1 . In this paper we write walk, path and cycle, instead of
+directed walk, directed path, and directed cycle, respectively. If W = (x0 , . . . , xn ) is a walk (path), we say that
+W is an x0 xn -walk (x0 xn -path). The length of W is the number n and it is denoted by l(W ). If T1 = (z0 , . . . , zn )
+and T2 = (w0 , . . . , wm ) are walks and zn = w0 , we denote by T1 ∪ T2 the walk (z0 , . . . , zn = w0 , . . . , wm ). If x
+belongs to a walk W , we denote by x+ (respectively x− ) the successor (respectively predecessor) of x in W .
+If S1 and S2 are two disjoint subsets of V (D), a uv-walk in D is called an S1 S2 -walk whenever u ∈ S1 and
+v ∈ S2 . If S1 = {x} or S2 = {x}, then we write xS2 -walk or S1 x-walk, respectively. For a nonempty subset
+F ⊆ A(D) the subdigraph arc-induced by F is denoted by DhF i.
+The concept of kernel was introduced by von Neumann and Morgenstern in [23] as a subset S of vertices
+of a digraph D, such that for every pair of different vertices in S, there is no arc between them, and every
+vertex not in S has at least one out-neighbor in S. This concept has been deeply and widely studied by several
+authors due to a large amount of theoretical and practical applications, by example [7], [9], [10] and [11]. In
+[6] Chvátal showed that deciding if a digraph has a kernel is an NP-complete problem, and a classical result
+proved by König [19] shows that every transitive digraph has a kernel.
+The concept of kernel has been generalized over the years. A subset S of vertices of D is said to be a
+kernel by paths, if for every x ∈ V (D) \ S, there exists an xS-path (that is, S is absorbent by paths) and, for
+every pair of different vertices {u, v} ⊆ S, there is no uv-path in D (that is, S is independent by paths). This
+concept was introduced by Berge in [5], and it is a well known result that every digraph has a kernel by paths
+[5] (see Corollary 2 on p. 311). The concept of (k, l)-kernel was introduced by Borowiecki and Kwaśnik in [21]
+as follows: If k ≥ 2, a subset S of vertices of a digraph D is a k-independent set, if for every pair of different
+vertices in S, every walk between them has length at least k. If l ≥ 1, we say that S is an l-absorbent set if
+for every x ∈ V (D) \ S there exists an xS-walk with length at most l. If k ≥ 2 and l ≥ 1, a (k, l)-kernel is a
+subset of V (D) which is k-independent and l-absorbent. If l = k − 1, the (k, l)-kernel is called a k-kernel. Notice
+that every 2-kernel is a kernel. Several sufficient conditions for the existence of k-kernels have been proved, as
+example see [14], [15] and [20]. In [14] the authors proved the following theorem:
+Theorem 1.1. [14] If D is a symmetric digraph, then D has a k-kernel for every k ≥ 2. Moreover, every
+maximal k-independent set in D is a k-kernel.
+1
+
+A digraph is m-colored if its arcs are colored with m colors. If D is an m-colored digraph, a path in D is
+called monochromatic (respectively, alternating) if all of its arcs are colored alike (respectively, consecutive arcs
+have different color). A subset S of vertices of D is a kernel by monochromatic paths (respectively, kernel by
+alternating walks) if for every x ∈ V (D) \ S there exists a monochromatic xS-path (respectively an alternating
+xS-walk), and no two different vertices in S are connected by a monochromatic path (respectively, by an
+alternating walk). Notice that a digraph D has a kernel if an only if the m-colored digraph D, in which every
+two different arcs have different colors, has a kernel by monochromatic paths. The existence of kernels by
+monochromatic paths in m-colored digraphs was studied primarily by Sands, Sauer and Woodrow in [25]. It
+is worth mentioning that Galeana-Sánchez introduced the concept of kernel by monochromatic paths in [13].
+Due to the difficulty of finding kernels by monochromatic paths in m-colored digraphs, in [12] Galeana-Sánchez
+studied the color changes in an m-colored digraph, in order to obtain conditions for the existence of kernels by
+monochromatic paths. As a consequence, she defined the color-class digraph of an m-colored digraph, denoted
+by C (D), as the digraph whose set of vertices are the colors represented in the arcs of D, and (c1 , c2 ) is an
+arc in C (D) if and only if there exist two arcs of D, namely (u, v) and (v, w), such that (u, v) has color c1 and
+(v, w) has color c2 .
+Let H be a digraph possibly with loops, and D a digraph without loops whose arcs are colored with the
+vertices of H (D is said to be an H−colored digraph). For an arc (x, z) of D, we denote by ρ(x, z) its color.
+A vertex x ∈ V (D) is obstruction-free in D if (ρ(a), ρ(b)) ∈ A(H) whenever a ∈ A− (x) and b ∈ A+ (x). We
+say that a subdigraph D0 of D is an H-digraph, if for every two arcs (u, v) and (v, w) in D0 we have that
+(ρ(u, v), ρ(v, w)) ∈ A(H). A directed walk (path) in D, say W = (x0 , . . . , xn ), is an H-walk (H-path), whenever
+the consecutive colors encountered on W form a directed walk in H. In [22] Linek and Sands introduced the
+concept of H-walk and their work was later considered by several authors, as example, [2], [8], [16] and [24]. A
+subset S of vertices of D is absorbent by H-paths (absorbent by H-walks), if for every x ∈ V (D) \ S there exists
+an xS-H-path (xS-H-walk); and S is said to be independent by H-paths (independent by H-walks), if for every
+pair of different vertices {u, v} ⊆ S, there is no uv-H-path (uv-H-walk) between them. A kernel by H−paths,
+or simply H-kernel (respectively kernel by H-walks), is a subset of vertices of D that is both absorbent by
+H-paths and independent by H-paths (respectively, absorbent by H-walks and independent by H-walks).
+If D is an H-colored digraph, an H-class partition of A(D) is a partition of A(D), say F , such that for every
+{(u, v), (v, w)} ⊆ A(D), (ρ(u, v), ρ(v, w)) ∈ A(H) if and only if there exists F in F such that {(u, v), (v, w)} ⊆ F .
+−
++
+If x ∈ V (D), we define NF
+(x) = {F ∈ F : (u, x) ∈ F for some u ∈ V (D)}, NF
+(x) = {F ∈ F : (x, v) ∈ F for
++
+−
+some v ∈ V (D)}, and NF (x) = NF (x) ∪ NF (x). If F is an H-class partition of A(D), the H-class digraph
+relative to F , denoted by CF (D), is the digraph such that V (CF (D)) = F , and (Fi , Fj ) is an arc in CF (D),
+if and only if there exist (u, v) ∈ Fi and (v, w) ∈ Fj for some {u, v, w} ⊆ V (D). Notice that CF (D) can allow
+loops. Moreover, C (D) is a particular case of CF (D) when H has only loops, every vertex in H has a loop and
+every class in F consist in those arcs colored alike. An H-class partition F is walk-preservative if for every
+(F, G) ∈ A(CF (D)) and z ∈ V (DhF i), there exists a zw-path in DhF i for some w ∈ V (DhGi). Notice that
+w ∈ V (DhF i) ∩ V (DhGi).
+If W = (x0 , . . . , xn ) is a walk in an H-colored digraph D and i ∈ {0, . . . , n − 1}, we say that there is an
+obstruction on xi iff (ρ(xi−1 , xi ), ρ(xi , xi+1 )) ∈
+/ A(H) (indices are taken modulo n if x0 = xn ). We denote by
+OH (W ) the set {i ∈ {0, . . . , n − 1} : there is an obstruction on xi }. The H-length of W , denoted by lH (W ), is
+defined as lH (W ) = |OH (W )| + 1 if W is open, or lH (W ) = |OH (W )| otherwise. The H-length was primarily
+studied by Galeana-Sánchez and Sánchez-López in [16] for closed walks, and by Andenmatten, Galeana-Sáchez
+and Pach in [1] for open paths. Clearly, the usual length l(W ) coincides with the H-length lH (W ), in the very
+particular case when A(H) = ∅. An open walk in an H-colored digraph is an H-walk if and only if it has
+H-length 1.
+It is worth mentioning that in [1], the authors defined the H-length for H-colored graphs and H-colored
+digraphs. A particular kind of H-coloring in graphs was studied by Szeider in [26] and, as a consequence, in [1]
+was proved that under the assumption P 6= N P , finding uv-paths of minimum H-length in H-colored graphs
+(H-colored digraphs) has no polynomial solution (although there is a polynomial algorithm to find uv-paths of
+minimum H-length for some H [1]).
+Let D be an H-colored digraph and S a subset of vertices of D. If l ≥ 1, we say that S is an (l, H)-absorbent
+set by paths (respectively, (l, H)-absorbent set by walks), if for every vertex v ∈ V (D) \ S there exists a vS-path
+(respectively, vS-walk) whose H-length is at most l. If k ≥ 2, we say that S is a (k, H)-independent set by
+paths (respectively, (k, H)-independent set by walks), if for every pair of different vertices in S, every path
+(respectively, walk) between them has H-length at least k. If k ≥ 2 and l ≥ l, we say that S is a (k, l, H)-kernel
+by paths (respectively, (k, l, H)-kernel by walks) if it is both (k, H)-independent by paths and (l, H)-absorbent
+by paths (respectively, (k, H)-independent by walks and (l, H)-absorbent by walks). If l = k − 1, a (k, l, H)kernel by paths is called a (k, H)-kernel by paths (respectively, (k, H)−kernel by walks). It is straightforward
+to see that every kernel by H-paths (respectively, kernel by H-walks) is a (2, H)-kernel by paths (respectively,
+(2, H)−kernel by walks), and every (k, l)-kernel is a (k, l, H)-kernel by paths and a (k, l, H)-kernel by walks
+in D, if H has no arcs nor loops. Since finding (k, l)-kernels in digraphs is a N P -complete problem, finding
+2
+
+(k, l, H)-kernels in H-colored digraphs is a N P -complete problem.
+On the other hand, the concepts of (k, l, H)-kernel by paths and (k, l, H)-kernel by walks are not equivalent.
+In [4], the authors showed an infinite family of digraphs with (2, H)-kernel by walks and no (2, H)-kernel by
+paths, and an infinite family of digraphs with (2, H)-kernel by paths and no (2, H)-kernel by walks.
+In [18] the authors showed that, by applying conditions on CF (D), it is possible to guarantee the existence
+of (k, H)-kernels by walks and (k, H)-kernels by paths in D. In the same spirit, in this paper we will show
+sufficient conditions on F and CF (D) in order to guarantee the existence of (k, l, H)-kernels by walks in Hcolored digraphs, and we will show that some conditions are tight. Moreover, some hypothesis presented in this
+paper can be verified in polynomial time.
+
+2
+
+Preliminary results.
+
+Lemma 2.1. Let D be a symmetric digraph and {k, l} ⊆ N. If 2 ≤ k and k − 1 ≤ l, then D has a (k, l)-kernel.
+Proof. It follows from Theorem 2.1 and the definition of (k, l)-kernel.
+Lemma 2.2. Let D be an H-colored digraph, F an H-class partition of A(D) and x ∈ V (D). The following
+assertions holds:
+−
++
+a) If d− (x) 6= 0 and d+ (x) 6= 0, then for every F1 ∈ NF
+(x) and F2 ∈ NF
+(x), we have that (F1 , F2 ) ∈ A(CF (D)).
+
+b) If x is obstruction-free in D and d(x) 6= 0, then there is a unique F ∈ F such that x ∈ V (DhF i).
+c) If T is a walk in D such that OH (T ) = ∅, then there is a unique F ∈ F such that A(T ) ⊆ F .
+d) If u, v and w are three different vertices in D, T is a uv−walk, and T 0 is a vw-H-walk, then either lH (T ∪
+T 0 ) = lH (T ) or lH (T ∪ T 0 ) = lH (T ) + 1.
+−
++
+Proof. a) If F1 ∈ NF
+(x) and F2 ∈ NF
+(x), then there exists {u, v} ⊆ V (D) such that (u, x) ∈ F1 and (x, v) ∈ F2 .
+It follows from definition of CF (D) that (F1 , F2 ) ∈ A(CF (D)).
+
+b) Since d(x) 6= 0, then there exists F ∈ F such that x ∈ V (DhF i). On the other hand, since x is obstructionfree, we have that A(x) ⊆ F , concluding that F is unique.
+c) If T = (x0 , . . . , xn ), then (ρ(xi−1 , xi ), ρ(xi , xi+1 )) ∈ A(H) for every i ∈ {0, . . . , n − 1} (indices modulo n if
+x0 = xn ). Hence, it follows from definition of H-class partition that there is a unique F ∈ F such that
+A(T ) ⊆ F .
+d) Suppose that T = (z0 = u, z1 , . . . , zn = v) and T 0 = (zn = v, zn+1 , . . . , zm = w). It is straightforward to see
+that OH (T ∪ T 0 ) ⊆ OH (T ) ∪ {n} and OH (T ) ⊆ OH (T ∪ T 0 ), which implies that either lH (T ∪ T 0 ) = lH (T )
+or lH (T ∪ T 0 ) = lH (T ) + 1.
+Lemma 2.3. If D is a digraph with no isolated vertices and K is a kernel by paths in D, then for every x ∈ K,
+d−
+D (x) 6= 0.
+Proof. Proceeding by contradiction, suppose that there exists x ∈ K such that d−
+D (x) = 0. Since D has no
+isolated vertices, then there exists y ∈ V (D) such that (x, y) ∈ A(D), which implies that y ∈
+/ K. Hence, there
+exits a yz-path in D, say P , such that z ∈ K. Since d−
+(x)
+=
+0,
+we
+have
+that
+z
+=
+6
+x,
+which
+implies
+that (x, y)∪P
+D
+is an xz-path in D with {x, z} ⊆ K, contradicting the independence by paths of K. Therefore, d−
+D (x) 6= 0.
+Lemma 2.4. Let D be an H-colored digraph and F an H-class partition of A(D). If S is a nonempty subset
+−
+of F and K is a kernel by paths in Dh∪F ∈S F i, then for every x ∈ K, NF
+(x) ∩ S =
+6 ∅.
+Proof. Let K be a kernel by paths in D0 = Dh∪F ∈S F i and x ∈ K. By Lemma 2.3 we have that d−
+D 0 (x) 6= 0.
+Hence, there exists z ∈ V (D0 ) such that (z, x) ∈ A(D0 ). It follows from definition of D0 that (z, x) ∈ F for some
+−
+−
+F ∈ S, which implies that F ∈ NF
+(x) ∩ S. Hence, NF
+(x) ∩ S =
+6 ∅.
+Lemma 2.5. Let D be an H-colored digraph and F an H-class partition of A(D). If S is an independent set
+in CF (D), then Dh∪F ∈S F i is an H-subdigraph of D.
+Proof. Let D0 = Dh∪F ∈S F i and {(u, v), (v, x)} ⊆ A(D0 ). We will prove that (ρ(u, v), ρ(v, x)) ∈ A(H). By
+definition of D0 , there exists {F, G} ⊆ S such that (u, v) ∈ F and (v, x) ∈ G. Hence, we have that (F, G) ∈
+A(CF (D)). Since S is an independent set in CF (D), then F = G, which implies that {(u, v), (v, x)} ⊆ F . It
+follows from the fact that F is an H-class partition of A(D) that (ρ(u, v), ρ(v, x)) ∈ A(H). Therefore, D0 is an
+H-subdigraph of D.
+3
+
+Lemma 2.6. Let D be an H-colored digraph and F an H-class partition of A(D). If D is strongly connected,
+then CF (D) is strongly connected.
+Proof. Let F and F 0 be different vertices in CF (D), and {(x0 , x1 ), (z0 , z1 )} ⊆ A(D) such that (x0 , x1 ) ∈ F and
+(z0 , z1 ) ∈ F 0 . It follows from the fact that D is strongly connected, that there exists an x0 z1 -walk in D, say
+C = (w0 , . . . , wn ), whose initial arc is (x0 , x1 ) and ending arc is (z0 , z1 )..
+Since (w0 , w1 ) ∈ F , (wn−1 , wn ) ∈ F 0 , and F 6= F 0 , we can conclude that OH (C) 6= ∅ (Lemma 2.2) (c)). Let
+OH (C) = {α1 , . . . , αr } for some r ≥ 1, and we can assume that αi ≤ αi+1 whenever i ∈ {1, . . . , r − 1}. For
+every i ∈ {1, . . . , r}, let Gi ∈ F such that (wαi , wα+i ) ∈ Gi . Notice that P = (G1 , . . . , Gr ) is a walk in CF (D),
+and Gr = F 0 .
+If α1 = 0, then F = G1 , which implies that P is an F F 0 -walk in CF (D). If α1 6= 0, then (F, G1 ) ∈
+A(CF (D)), which implies that (F, G1 ) ∪ P is an F F 0 -walk in CF (D). Hence, we conclude that CF (D) is
+strongly connected.
+Corollary 2.7. Let D be a strongly connected H-colored digraph and F a non-trivial H-class partition of
+A(D). If S is an independent set in CF (D), then NC+F (D) (S) 6= ∅.
+Proof. Since CF (D) is non-trivial and strongly connected (Lemma 2.6), then S =
+6 V (CF (D)). As CF (D) is
+strongly connected, there exists an arc from S to V (CF (D)) \ S, which implies that NC+F (D) (S) 6= ∅.
+Lemma 2.8. Let D be an H-colored digraph, F an H-class partition of A(D), S a non-empty subset of
+V (CF (D)) such that DhF i is unilateral for every F ∈ S, K a kernel by walks in Dh∪F ∈S F i, and {x, z} ⊆ K.
+If x ∈ V (DhF1 i) and z ∈ V (DhF2 i) for some {F1 , F2 } ⊆ S, then F1 6= F2 .
+Proof. Proceeding by contradiction, suppose that F1 = F2 . Since DhF1 i is unilateral, then either there exists
+an xz-path in DhF1 i or there exists a zx-path in DhF1 i, say P . It follows that P is a path in Dh∪F ∈S F i such
+that {x, z} ⊆ K, which contradicts the independence by paths of K. Therefore, F1 6= F2 .
+Lemma 2.9. Let D be an H-colored digraph and F an H-class partition of A(D) such that for every F ∈ F ,
+DhF i is strongly connected. The following assertions holds:
+a) F is walk-preservative.
+b) CF (D) is a symmetric digraph.
+c) If S ⊆ V (CF (D)) is an independent set in CF (D) and {F1 , F2 } ⊆ S, then V (DhF1 i) ∩ V (DhF2 i) = ∅.
+Proof. a) Let (F, G) ∈ A(CF (D)) and x ∈ V (DhF i). It follows from definition of CF (D) that there exists
+{u, v, z} ⊆ V (D) such that (u, v) ∈ F and (v, z) ∈ G. Notice that v ∈ V (DhF i) ∩ V (DhGi). Since DhF i is
+strongly connected, then there exists an xv-walk in DhF i, which implies that F is walk-preservative.
+b) Let (F1 , F2 ) ∈ A(CF (D)). It follows from definition of CF (D) that there exists {u, v, z} ⊆ V (D) such
+that (u, v) ∈ F1 and (v, z) ∈ F2 . Since (u, v) ∈ A(DhF1 i), then DhF1 i is a nontrivial strongly connected
+digraph, which implies that there exists u0 ∈ V (DhF1 i) such that (v, u0 ) ∈ F1 . In the same way, there exists
+z 0 ∈ V (DhF2 i) such that (z 0 , v) ∈ F2 . It follows from definition of CF (D) that (F2 , F1 ) ∈ A(CF (D)), concluding
+that CF (D) is a symmetric digraph.
+c) Proceeding by contradiction, suppose that V (DhF1 i) ∩ V (DhF2 i) 6= ∅, and consider x ∈ V (DhF1 i) ∩
+V (DhF2 i). Since DhF1 i and DhF2 i are non-trivial strongly connected digraphs, then there exist u ∈ V (DhF1 i)
+and z ∈ V (DhF2 i) such that (u, x) ∈ A(DhF1 i) and (x, z) ∈ A(DhF2 i). It follows from definition of CF (D) that
+(F1 , F2 ) ∈ A(CF (D)), which is no possible since S is an independent set in CF (D). Therefore, V (DhF1 i) ∩
+V (DhF2 i) = ∅.
+Proposition 2.10. Let D be an H-colored digraph and F a non-trivial walk-preservative H-class partition of
+A(D) such that CF (D) has no sinks. If S is an independent set in CF (D), then there exists a kernel by paths
+in Dh∪F ∈S F i, say N , such that N ⊆ V (Dh∪G∈N + (S) Gi).
+Proof. We will denote by D1 the digraph Dh∪F ∈S F i. Since CF (D) has no sinks, then N + (S) 6= ∅. Hence,
+denote by D2 the digraph Dh∪G∈N + (S) Gi. Let N be a kernel by paths in D1 intersecting V (D2 ) the most
+possible, that is, for every kernel by paths in D1 , say N 0 , we have that
+|N \ V (D2 )| ≤ |N 0 \ V (D2 )|
+
+(1)
+
+Notice that possibly N ∩ V (D2 ) = ∅. We claim that N \ V (D2 ) = ∅. Proceeding by contradiction, suppose
+that there exists x0 ∈ N \ V (D2 ). Since x0 ∈ V (D1 ), it follows from definition of D1 that there exists F ∈ S
+such that x0 ∈ V (DhF i). By hypothesis, CF (D) has no sinks, which implies that there exists G ∈ V (CF (D))
+such that F 6= G and (F, G) ∈ A(CF (D)). It follows from the fact that F is a walk-preservative H-class
+4
+
+partition that there exists an x0 z-path in DhF i, say C, for some z ∈ V (DhGi). Notice that C is a path in D1 ,
+z ∈ V (D1 ) ∩ V (D2 ), and z 6= x0 . Moreover, since N is independent by paths in D1 , then z ∈
+/ N . We will prove
+the following claims in order to get a contradiction.
+Claim 1. There exists a zx0 -path in D1 .
+Since z ∈
+/ N , there exists a zy-path in D1 for some y ∈ N , say P 0 . It follows that C ∪ P 0 is an x0 y-walk
+in D1 such that x0 ∈ N and y ∈ N , which implies that x0 = y, concluding that P 0 is a zx0 -path in D1 .
+Claim 2. (N \ {x0 }) ∪ {z} is a kernel by paths in D1 .
+In order to show that N 0 = (N \ {x0 }) ∪ {z} is an absorbent set by paths in D1 , consider u ∈ V (D1 ) \ N 0 .
+If u = x0 , then C is an x0 N 0 -path in D1 . If u 6= x0 , then u ∈ V (D1 ) \ N . It follows from the fact that N is
+an absorbent set by paths in D1 that there exists a uv-path in D1 , say P , for some v ∈ N . If v 6= x0 , then
+P is a uN 0 -path in D1 . If v = x0 , then P ∪ C is a uN 0 -walk in D1 , concluding that N 0 is an absorbent
+set by paths in D1 .
+Now we will show that N 0 is an independent set by paths in D1 . Proceeding by contradiction, suppose
+that there exists a uv-path in D1 , say T , where {u, v} ⊆ N 0 . Since N is an independent set by paths in D1 ,
+then z ∈ {u, v}. If z = u, it follows that C ∪ T is an x0 v-walk in D1 , which contradicts the independence
+by paths of N . If v = z, by Claim 1 there exists a zx0 -path in D1 , say P , which implies that T ∪ P is a
+ux0 -walk in D1 , contradicting the independence by paths of N . Therefore, N 0 is an independent set by
+paths in D1 , and the claim holds.
+Notice that |N 0 \V (D2 )| = |N \V (D2 )|−1, which is no possible by (1). Therefore, N \V (D2 ) = ∅, concluding
+that N ⊆ V (D2 ).
+Proposition 2.11. Let D be an H-colored digraph with no isolated vertices, F a walk-preservative H-class
+partition of A(D), and S an independent and l-absorbent set in CF (D) for some l ≥ 1. If K is a kernel by
+paths in Dh∪F ∈S F i, then K is an (l + 1, H)-absorbent set by walks in D.
+Proof. Let D0 = Dh∪F ∈S F i and x0 ∈ V (D) \ K. If x0 ∈ V (D0 ), since K is a kernel by paths in D0 , there exists
+an x0 K-path in D0 , say T . It follows from Lemma 2.5 that T is an H-path. Hence, lH (T ) = 1, which implies
+that lH (T ) ≤ l + 1.
+Now we will assume that x0 ∈
+/ V (D0 ). By hypothesis, x0 is no isolated, which implies that x0 ∈ V (DhF0 i)
+for some F0 ∈ F . Notice that F0 ∈
+/ S because x0 ∈
+/ V (D0 ). Since S is an l-absorbent set in CF (D), we can
+consider an F0 Ft -path with minimum length in CF (D), say T = (F0 , . . . , Fr ), where Fr ∈ S. Notice that r ≤ l.
+Since F is walk-preservative, there exists xα1 ∈ V (DhF0 i) ∩ V (DhF1 i) such that there exists an x0 xα1 path in DhF0 i, say T0 , and, for every i ∈ {2, . . . , r − 1}, there exist xαi ∈ V (DhFi−1 i) ∩ V (DhFi i) and
+xαi+1 ∈ V (DhFi i) ∩ V (DhFi+1 i), such that there exists an xαi xαi+1 -path in DhFi i, say Ti . Notice that Ti
+is an H-path for every i ∈ {0, . . . , r − 1}, and xαr ∈ V (D0 ). Moreover, since C is a path in CF (D), then
+A(Ti ) ∩ A(Tj ) = ∅ whenever i 6= j.
+0
+Now we consider C = ∪r−1
+i=0 Ti , and suppose that C = (z1 , . . . , zn ). Notice that zn ∈ V (D ) (because
+zn = xαr ).
+Claim 1. lH (C) ≤ l + 1.
+For every i ∈ {0, . . . , r − 2}, let Ui = {l ∈ {1, . . . , n − 1} : (zl−1 , zl ) ∈ Fi } be, and L = {i ∈ {0, . . . , r − 2} :
+Ui 6= ∅}. For every i ∈ L, define βi = maxUi .
+We will show that OH (C) ⊆ {βi : i ∈ L}. If m ∈ OH (C), then it follows that (ρ(zm−1 , zm ), ρ(zm , zm+1 )) ∈
+/
+A(H). On the other hand, we have that (zm−1 , zm ) ∈ A(Tj ) for some j ∈ {0, . . . , r − 1}. Since Tj is an
+H-path, then (zm , zm+1 ) ∈
+/ A(Tj ), which implies that m = maxUj and j ≤ r − 2. Hence, m ∈ {βi : i ∈ L}.
+It follows that OH (C) ⊆ L. Hence, |OH (C)| ≤ |L|, that is |OH (C)| ≤ r − 1, and we can conclude that
+lH (C) ≤ l.
+If zn ∈ K, then by Claim 1 we have that C is a x0 K-path with lH (C) ≤ l + 1. If zt ∈
+/ K, since zn ∈ V (D0 ),
+0
+0
+and K is an absorbent set by paths in D , then there exists a zn K-path in D , say Tr . Hence, C 0 = C ∪ Tr is
+an x0 K−walk in D, and by Lemma 2.2, lH (C 0 ) ≤ lH (C) + 1, which implies that lH (C 0 ) ≤ l + 1.
+Therefore, K is an (l + 1, H)-absorbent set by walks in D.
+Notice that the conclusions in Proposition 2.11 are tight. We will show an example where K is not necessarily
+an (r, H)-absorbent set by walks in D for some r ≤ l + 1. Consider the H-colored digraph showed in Figure
+1, and for every i ∈ {1, . . . , 6} let Fi = {e ∈ A(D) : ρ(e) = ci }. Clearly, F = {Fi : i ∈ {1, . . . , 6}} is a walkpreservative H-class partition of A(D). Notice that S = {F6 } is a 3-absorbent set in CF (D). On the other
+hand, it is straightforward to see that K = {x4 } is a kernel by paths in DhF6 i which is not an (r, H)-absorbent
+by walks in D for every r ∈ {1, 2, 3}.
+5
+
+Figure 1:
+On the other hand, if D is an H-colored digraph and F is an H-class partition which is no walk-preservative,
+then Proposition 2.11 is not necessarily true. Consider the H-colored digraph showed in Figure 2. For every
+i ∈ {1, . . . , 5} let Fi = {e ∈ A(D) : ρ(e) = ci }. It is straightforward to see that F = {Fi : i ∈ {1, . . . , 5}} is an
+H-class partition of A(D). Notice that (F2 , F3 ) is an arc of CF (D) such that x3 ∈ V (DhF2 i), and there is no
+x3 w-walk in DhF2 i with w ∈ V (DhF3 i), that is, F is not a walk-preservative H-class partition of A(D). On
+the other hand, S = {F5 } is a 4-absorbent set in CF (D) but no kernel by paths in DhF5 i is a (5, H)-absorbent
+set by walks in D.
+
+Figure 2:
+
+3
+
+Main results.
+
+The following lemmas will be useful.
+Lemma 3.1. Let D be a digraph with at least one arc, W = {x ∈ V (D) : d(x) = 0}, and {k, l} ⊆ N such that
+2 ≤ k and 1 ≤ l. If K is a (k, l, H)-kernel by walks in D − W , then K ∪ W is a (k, l, H)-kernel by walks in D.
+Lemma 3.2. If D is an H−digraph, then every kernel by paths in D is a (k, l, H)-kernel by walks in D for
+every k ≥ 2 and l ≥ 1.
+Proposition 3.3. Let D be an H-colored digraph with no isolated vertices, F a walk-preservative H-class
+partition of A(D), and S ⊆ V (CF (D)) an independent and l-absorbent set in CF (D) for some l ≥ 1. If
+N + (S) = ∅ and k ≥ 2, then every kernel by paths in Dh∪F ∈S F i is a (k, l + 1, H)-kernel by walks in D.
+Proof. Let K be a kernel by paths in D0 = Dh∪F ∈S F i. Since F is walk preservative, it follows from Proposition
+2.11 that K is an (l + 1, H)-absorbent set by walks in D. Now, in order to prove that K is a (k, H)-independent
+set by walks in D for every k ≥ 2, we will show that K is a path-independent set in D. Proceeding by
+contradiction, suppose that there exists an x1 xn -path in D, say T 0 = (x1 , . . . , xn ), such that {x1 , xn } ⊆ K.
+−
+Consider F0 ∈ NF
+(x1 ) ∩ S (Lemma 2.4). Hence, there exists x0 ∈ V (D) such that (x0 , x1 ) ∈ F0 ∩ A− (x1 ), and
+let T = (x0 , x1 ) ∪ T 0 be.
+If A(T ) ⊆ F0 , then A(T 0 ) ⊆ F0 , which implies that T 0 is an x1 xn -path in D0 , contradicting the fact that K
+is an independent set by paths in D0 . Hence, A(T ) 6⊆ F0 . Let t = min{i ∈ {1, . . . , n − 1} : (xi , xi+1 ) ∈
+/ F0 }. It
+6
+
+follows that (xt−1 , xt ) ∈ F0 , and (xt , xt+1 ) ∈ G for some G ∈ F with F 6= G. Notice that (F, G) ∈ A(CF (D))
+and, since S is and independent set in CF (D), then G ∈
+/ S. Therefore, G ∈ N + (S) which contradicts the
++
+assumption that N (S) = ∅. Hence, K is path-independent in D, which implies that K is a (k, H)-independent
+set by walks in D for every k ≥ 2.
+Therefore K is a (k, l + 1, H)-kernel by walks in D for every k ≥ 2.
+Corollary 3.4. Let D be an H-colored digraph, F a walk-preservative H-class partition of A(D), and {k, l} ⊆ N
+such that k ≥ 2 and l ≥ 1. If S is a (k, l)-kernel in CF (D) such that N + (S) = ∅, then D has a (k, l+1, H)-kernel
+by walks.
+Proof. Let W = {x ∈ V (D) : d(x) = 0} and K 0 a (k, l)-kernel in CF (D) such that N + (S) = ∅. Since K 0 is an
+independent and l-absorbent set in CF (D), it follows from Proposition 3.3 that D − W has a (k, l, H)-kernel
+by walks, say K. By Lemma 3.1, we can conclude that K ∪ W is a (k, l, H)-kernel by walks in D.
+Proposition 3.5. Let D be an H-colored digraph, and F a walk-preservative H-class partition of A(D) such
+that CF (D) has a (k, l)-kernel, say S. If the following conditions holds:
+a) CF (D) has no sinks, and every cycle in CF (D) is either a loop or has length at least k.
+−
+b) For every x ∈ V (D) such that NF (x) ∩ S 6= ∅ and NF (x) ∩ N + (S) 6= ∅, we have that NF
+(x) ⊆ S.
+
+Then D has a (k, l + 1, H)-kernel by walks.
+Proof. First, suppose that D has no isolated vertices. Let D1 = Dh∪F ∈S F i. Since CF (D) has no sinks and S
+is an independent set in CF (D), then N + (S) 6= ∅. Now, let D2 = Dh∪G∈N + (S) Gi. By Proposition 2.10, we can
+consider a kernel by paths in D1 , say K, such that K ⊆ V (D2 ). We will show that K is a (k, l + 1, H)-kernel
+by walks in D.
+Since F is walk-preservative, it follows from Proposition 2.11 that K is an (l + 1, H)-absorbent set by walks
+in D. It only remains to show that K is a (k, H)-independent set by walks in D. First, we will prove the
+following useful claim.
+−
+Claim 1. For every x ∈ K, NF
+(x) ⊆ A(D1 ).
+
+If x ∈ K, then x ∈ V (D1 ) ∩ V (D2 ). Since x ∈ V (D1 ), it follows from definition of D1 that there exists
+F ∈ S such that A(x) ∩ F 6= ∅. Hence, NF (x) ∩ S 6= ∅. On the other hand, since x ∈ V (D2 ), an analogous
+−
+proof will show that NF (x) ∩ N + (S) 6= ∅. By hypothesis (b), we can conclude that NF
+(x) ⊆ S.
+In order to show that K is a (k, H)−independent set by walks in D, consider an x0 xn -walk in D, say
+T = (x0 , . . . , xn ), such that {x0 , xn } ⊆ K.
+Claim 2. OH (T ) 6= ∅.
+Proceeding by contradiction, suppose that OH (T ) = ∅. Hence, there exists F 0 ∈ F such that A(T ) ⊆ F 0 ,
+which implies that (xn−1 , xn ) ∈ F 0 . It follows from Claim 1 that F 0 ∈ S. Hence, T is an x0 xn -walk in
+D1 , which contradicts the fact that K is an independent set by paths in D1 . Therefore, OH (T ) 6= ∅ and
+the claim holds.
+By Claim 2, suppose that OH (T ) = {αi : i ∈ {1, . . . , t}} where t ≥ 1, and αi ≤ αi+1 for every i ∈
+{1, . . . , t − 1}. On the other hand, for every i ∈ {1, . . . , t} consider Fi ∈ F such that (xαi , x+
+αi ) ∈ Fi , and
+F0 ∈ F such that (x0 , x1 ) ∈ F0 . It follows from definition of CF (D) that T 0 = (F0 , F1 , . . . , Ft ) is a walk in
+CF (D). Notice that lH (T ) = l(T 0 ) + 1 and, by Claim 1, Ft ∈ S. Consider the following cases:
+Case 1. F0 ∈ S.
+If F0 6= Ft , as S is a k-independent set in CF (D), then l(T 0 ) ≥ k, which implies that lH (T ) ≥ k. If
+F0 = Ft , then T 0 is a closed walk in CF (D) which is not a loop and, by hypothesis, l(T 0 ) ≥ k. Hence,
+lH (T ) ≥ k.
+Case 2. F0 ∈ V (CF (D)) \ S.
+−
+By Lemma 2.4, consider F ∈ NF
+(x0 ) ∩ S. Since F0 ∈
+/ S, then F 6= F0 . It follows from definition of CF (D)
+00
+0
+that T = (F, F0 ) ∪ T is a walk in CF (D). Notice that lH (T ) = l(T 00 ). If F 6= Ft , as S is a k-independent
+set in CF (D), we have that l(T 00 ) ≥ k, which implies that lH (T ) ≥ k. If F = Ft , then T 00 is a closed walk
+in CF (D) which is not a loop and, by hypothesis, l(T 00 ) ≥ k. Hence, lH (T ) ≥ k.
+
+It follows from Case 1 and Case 2 that K is a (k, H)-independent set by walks in D. Therefore, K is a
+(k, l + 1)-kernel by walks in D.
+Now, suppose that W = {x ∈ V (D) : d(x) = 0} is nonempty. By the the previous proof, we have that D −W
+has a (k, l + 1, H)-kernel by walks, say K. By Lemma 3.1, we can conclude that K ∪ W is a (k, l + 1, H)-kernel
+by walks in D.
+7
+
+As a consequence of Proposition 3.5, we have the following result for strongly connected digraphs.
+Corollary 3.6. Let D be a strongly connected H-colored digraph and F a walk-preservative H-class partition
+of A(D) such that CF (D) has a (k, l)-kernel, say S. If the following conditions holds:
+a) Every cycle in CF (D) is either a loop or has length at least k.
+−
+b) For every x ∈ V (D) such that NF (x) ∩ S 6= ∅ and NF (x) ∩ N + (S) 6= ∅, we have that NF
+(x) ⊆ S.
+
+Then D has a (k, l + 1, H)-kernel by walks.
+Proof. If D is an H-digraph, it follows from Lemma 3.2 that for every k ≥ 2 and l ≥ 1, D has a (k, l, H)−kernel
+by walks. Hence, we may assume that D is not an H-digraph. It follows that CF (D) is a non-trivial strongly
+connected digraph (Lemma 2.6), which implies that CF (D) has no sinks. By Proposition 3.5 we have that D
+has a (k, l + 1, H)-kernel by walks.
+Proposition 3.7. Let D be an H-colored digraph with no isolated vertices, F a walk-preservative H-class
+partition of A(D), and S a (k, l)-kernel in CF (D) such that k ≥ 3 and l ≥ 1. If for every F ∈ S, DhF i is
+unilateral and has no sinks, then every kernel by paths in Dh∪F ∈S F i is a (k − 1, l + 1, H)-kernel by walks in D.
+Proof. Let K be a kernel by paths in D1 = Dh∪F ∈S F i. Since F is a walk-preservative H-class partition, it
+follows from Proposition 2.11 that K is an (l + 1, H)-absorbent set by walks in D. It only remains to show
+that K is a (k − 1, H)-independent set by walks in D. Consider a walk in D, say C = (x0 , . . . , xn ), such that
+{x0 , xn } ⊆ K.
+−
++
+Claim 1. NF
+(x0 ) ∩ S =
+6 ∅ and NF
+(xn ) ∩ S =
+6 ∅.
+−
+Since x0 ∈ K, it follows from Lemma 2.4 that NF
+(x0 )∩S 6= ∅. On the other hand, since xn ∈ V (D1 ), then
+xn ∈ V (DhF i) for some F ∈ S. By hypothesis, DhF i has no sinks, which implies that A+ (xn ) ∩ F 6= ∅.
++
++
+Hence F ∈ NF
+(xn ), concluding that F ∈ NF
+(xn ) ∩ S, and the claim holds.
+−
++
+By Claim 1, consider F 0 ∈ NF
+(x0 ) ∩ S and F 00 ∈ NF
+(xn ) ∩ S. It follows from Lemma 2.8 that F 0 6= F 00 (*).
+
+Claim 2. OH (C) 6= ∅.
+Proceeding by contradiction, suppose that OH (C) = ∅. Hence, there exists F ∈ F such that A(C) ⊆ F .
+By definition of CF (D), we have that {(F 0 , F ), (F, F 00 )} ⊆ A(CF (D)). Since {F 0 , F 00 } ⊆ S and S is an
+independent set in CF (D), then F 6= F 0 and F 6= F 00 . Hence, (F 0 , F, F 00 ) is an F 0 F 00 -path in CF (D),
+which is no possible since S is a k-independent set with k ≥ 3. Therefore, OH (C) 6= ∅, and the claim
+holds.
+By Claim 2, suppose that OH (C) = {αi : i ∈ {1, . . . , t}} where t ≥ 1, and αi ≤ αi+1 for every i ∈
+{1, . . . , t−1}. For every i ∈ {1, . . . , t}, let Fi ∈ F such that (xαi , x+
+αi ) ∈ Fi , and F0 ∈ F such that (x0 , x1 ) ∈ F0 .
+Notice that x0 ∈ V (DhF0 i) and xn ∈ V (DhFt i). On the other hand, it follows from definition of CF (D) that
+C0 = (F0 , F1 , . . . , Ft ) is a walk in CF (D). Consider the following cases:
+Case 1. F0 ∈ S.
+First, suppose that Ft ∈ S. Notice that C0 is a walk in CF (D) such that lH (C) − 1 = l(C0 ). On the
+other hand, we have that {F0 , Ft } ⊆ S, x0 ∈ V (DhF0 i) and xn ∈ V (DhFt i), which implies that F0 6= Ft
+(Lemma 2.8). Since S is a k-independent set in CF (D), we have that l(C0 ) ≥ k. We can conclude that
+lH (C) ≥ k − 1.
+Now suppose that Ft ∈
+/ S, and consider C1 = C0 ∪ (Ft , F 00 ). Notice that C1 is a walk in CF (D) such that
+lH (C) = l(C1 ). On the other hand, we have that {F0 , F 00 } ⊆ S, x0 ∈ V (DhF0 i) and xn ∈ V (DhF 00 i),
+which implies that F0 6= F 00 (Lemma 2.8). Since S is a k-independent set in CF (D), then l(C1 ) ≥ k. We
+can conclude that lH (C) ≥ k − 1.
+Case 2. F0 ∈ V (CF (D)) \ S.
+First, suppose that Ft ∈ S, and consider C2 = (F 0 , F0 ) ∪ C0 . Notice that C2 is a walk in CF (D) such
+that lH (C) = l(C2 ). On the other hand, we have that {F 0 , Ft } ⊆ S, x0 ∈ V (DhF 0 i) and xn ∈ V (DhFt i),
+which implies that F 0 6= Ft (Lemma 2.8). Since S is a k-independent set in CF (D), then l(C2 ) ≥ k. We
+can conclude that lH (C) ≥ k − 1.
+Now suppose that Ft ∈
+/ S, and consider C3 = (F 0 , F0 ) ∪ C0 ∪ (Ft , F 00 ). Notice that C3 is a walk in
+CF (D) such that lH (C) + 1 = l(C3 ). On the other hand, by (*) we have that F 0 6= F 00 and, since S is a
+k-independent set in CF (D), then l(C3 ) ≥ k. We can conclude that lH (C) ≥ k − 1.
+
+8
+
+It follows from the previous cases that K is a (k − 1, H)-independent set by walks in D. Therefore, K is a
+(k − 1, l + 1)-kernel by walks in D.
+Corollary 3.8. Let D be an H-colored digraph, F a walk-preservative H-class partition of A(D) such that for
+every F ∈ F , DhF i is unilateral and has no sinks. If CF (D) has a (k, l)-kernel for some k ≥ 3 and l ≥ 1, then
+D has a (k − 1, l + 1, H)-kernel by walks.
+Proof. First, suppose that D has no isolated vertices. If S is a (k, l)-kernel in CF (D) with k ≥ 3 and l ≥ 1,
+then by Proposition 3.7, every kernel by paths in Dh∪F ∈S F i is a (k − 1, l + 1, H)-kernel by walks in D.
+On the other hand, if W = {x ∈ V (D) : d(x) = 0} is nonempty, then by the previous proof, we have
+that D − W has a (k − 1, l + 1, H)-kernel by walks, say K. By Lemma 3.1, we can conclude that K ∪ W is a
+(k − 1, l + 1, H)-kernel by walks in D.
+Corollary 3.9. Let D be an H-colored digraph and F an H-class partition of A(D). If for every F ∈ F we
+have that DhF i is strongly connected, then for every k ≥ 2 and l ≥ k + 1, D has a (k, l, H)-kernel by walks.
+Proof. First, suppose that D has no isolated vertices. Since DhF i is strongly connected for every F ∈ F , we
+have that F is walk-preservative (Lemma 2.9 (a)), and DhF i is unilateral and has no sinks for every F ∈ F .
+On the other hand, by Lemma 2.9 (b), we have that CF (D) is a symmetric digraph, which implies that CF (D)
+has a (k + 1, l − 1)-kernel for every k + 1 ≥ 3 and l − 1 ≥ k (Lemma 2.1). Hence, by Corollary 3.8, we have that
+D has a (k, l, H)-kernel by walks for every k ≥ 2 and l ≥ k + 1.
+On the other hand, if W = {x ∈ V (D) : d(x) = 0} is nonempty, then by the previous proof, we have that
+D − W has a (k, l, H)-kernel by walks for every k ≥ 2 and l ≥ k + 1. By Lemma 3.1, we can conclude that D
+has a (k, l, H)-kernel by walks for every k ≥ 2 and l ≥ k + 1.
+Proposition 3.10. Let D be an H-colored digraph, F an H-class partition of A(D) and S a (k, l)-kernel of
+CF (D) for some k ≥ 3 and l ≥ 1. If for every F ∈ S, DhF i is strongly connected and has a obstruction-free
+vertex in D, then D has a (k + 1, l + 1, H)-kernel by walks.
+Proof. First, suppose that D has no isolated vertices. Let S = {F1 , . . . , Fr } for some r ≥ 1, and for every
+i ∈ {1, . . . , r}, let zi ∈ V (DhFi i) such that zi is obstruction-free in D. By Lemma 2.9 (c) we have that zi 6= zj
+whenever {i, j} ⊆ {1, . . . , r} and i 6= j .
+Claim 1. K = {zi : i ∈ {1, . . . , r}} is a kernel by paths in D1 = Dh∪F ∈S F i.
+In order to show that K is an absorbent set by paths in D1 , consider w ∈ V (D1 ) \ K. Since w ∈ V (D1 ),
+then there exists j ∈ {1, . . . , r} such that w ∈ V (DhFj i). It follows from the fact that DhFj i is strongly
+connected that there exists a wzj -path in DhFj i, say P . Hence, P is a wK-path in D1 , concluding that
+K is an absorbent set by paths in D1 .
+It only remains to show that K is a path-independent set in D1 . It follows from Lemma 2.9 (c) that
+V (DhFi i) ∩ V (DhFj i) = ∅ for every {i, j} ⊆ {1, . . . r} with i 6= j, which implies that there is no zi zj -path
+in D1 for every {i, j} ⊆ {1, . . . r} with i 6= j. Hence, K is a path-independent set in D1 , and the claim
+holds.
+Now, we will show that K is a (k + 1, l + 1, H)-kernel by walks in D. In order to show that K is an (l + 1, H)absorbent set by walks in D, notice that F is a walk-preservative partition of A(D) (Lemma 2.9 (a)), and, since
+K is a kernel by walks in D1 , we can conclude from Proposition 2.11 that K is an (l + 1, H)-absorbent set by
+walks in D.
+It only remains to show that K is a (k + 1, H)-independent set by walks in D. Consider {zi , zj } ⊆ K with
+i 6= j, and a zi zj -walk in D, say C = (zi = x0 , x1 . . . , xn = zj ).
+Claim 2. OH (C) 6= ∅.
+Proceeding by contradiction, suppose that OH (C) = ∅, which implies that there exists F ∈ F such
+that A(C) ⊆ F . Since zi and zj are obstruction-free in D, then F = Fi and F = Fj (Lemma 2.2 (b)),
+concluding that Fi = Fj , which is no possible since Fi 6= Fj . Hence, OH (C) 6= ∅ and the claim holds.
+By Claim 2, suppose that OH (C) = {αi : i ∈ {1, . . . , t}} where t ≥ 1, and αi ≤ αi+1 for every i ∈
+{1, . . . , t − 1}. For every i ∈ {1, . . . , t}, let Gi ∈ F such that (xαi , x+
+αi ) ∈ Gi , and G0 ∈ F such that
+(x0 , x1 ) ∈ G0 . It follows from definition of CF (D) that C 0 = (G0 , G1 , . . . , Gt ) is a walk in CF (D). Notice that
+zi ∈ V (DhG0 i), zj ∈ V (DhGt i), and lH (C) = l(C 0 ) + 1. Since zi and zj are obstruction-free in D, then Fi = G0
+and Fj = Gt (Lemma 2.2 (b)), which implies that {G0 , Gt } ⊆ S and G0 6= Gt . Since S is a k-independent set in
+CF (D), then l(C 0 ) ≥ k, which implies that lH (C) ≥ k + 1. Hence, K is a (k + 1, H)-independent set by walks
+in D. Therefore, K is a (k + 1, l + 1, H)-kernel by walks in D.
+On the other hand, if W = {x ∈ V (D) : d(x) = 0} is nonempty, then by the previous proof, we have
+that D − W has a (k + 1, l + 1, H)-kernel by walks, say K. By Lemma 3.1, we can conclude that K ∪ W is a
+(k + 1, l + 1, H)-kernel by walks in D.
+9
+
+Theorem 3.11. If D is an H-colored digraph such that for every vertex x ∈ V (D), there exists an xw-H-walk
+for some vertex obstruction-free w in D, then D has an kernel by H-walks.
+Proof. First, we define the digraph D0 whose vertex set consists in the obstruction-free vertices of D, and
+(x, z) ∈ A(D0 ) if and only if there exists an xz-H-walk in D. Now, we will show that D0 has a kernel, say K,
+by proving that D0 is a transitive digraph. Then, a simple proof will show that K is a kernel by H-walks in D.
+In order to show that D0 is a transitive digraph, consider {(u, v), (v, w)} ⊆ A(D0 ). It follows from definition
+of D0 that there exists a uv-H-walk in D, say W1 , and a vw-H-walk in D, say W2 . Since v is a obstruction-free
+vertex in D, then we have that W1 ∪ W2 is a uw-H-walk in D, which implies that (u, w) ∈ A(D0 ), concluding
+that D0 is a transitive digraph.
+Since D0 is a transitive digraph, consider a kernel in D0 , say K. We will show that K is a kernel by H-walks
+in D. It follows from definition of D0 and the fact that K is an independent set in D0 , that K is an independent
+set by H-walks in D. It only remains to show that K is an absorbent set by H-walks in D.
+Consider x ∈ V (D) \ K. If x is a obstruction-free vertex in D, then x ∈ V (D0 ) and, since K is a kernel
+in D0 , there exists w ∈ K such that (x, w) ∈ A(D0 ), which implies that there exists an xw-H-walk in D. If
+x∈
+/ V (D0 ), then by hypothesis, there exists z ∈ V (D0 ) and an xz-H-walk in D, say W1 . If z ∈ K, then W1 is a
+xK-H-walk in D. If z ∈
+/ K, then there exists w ∈ K such that (z, w) ∈ A(D0 ), which implies that there exists
+an zw-H-walk in D, say W2 . Since z is a obstruction-free vertex in D, then W1 ∪ W2 is an xK-H-walk in D,
+concluding that K is a kernel by H-walks in D.
+Corollary 3.12. If D is an m-colored digraph such that for every vertex x ∈ V (D), there exists a monochromatic
+xw-walk with color c, for some vertex w such that every arc in A(w) has color c, then D has a kernel by
+monochromatic paths.
+Proof. Consider the digraph H whose vertices are the colors represented in A(D), and A(H) = {(c, c) : c ∈
+V (H)}. Since D is an H-colored digraph satisfying the hypothesis on Lemma 3.11, it follows that D has a
+kernel by H-walks, which is a kernel by monochromatic paths in D.
+Corollary 3.13. If D is an m-colored digraph such that for every vertex x ∈ V (D), there exists a alternating
+xw-walk, for some vertex w such that A− (w) and A+ (w) have no colors in common, then D has a kernel by
+properly colored walks.
+Proof. Consider the digraph H whose vertices are the colors represented in A(D), and A(H) = {(c, d) : {c, d} ⊆
+V (H), c 6= d}. Since D is an H-colored digraph satisfying the hypothesis on Theorem 3.11, it follows that D
+has a kernel by H-walks, which is a kernel by alternating walks in D.
+Theorem 3.14. Let D be an H-colored digraph and F an H-class partition of A(D) such that for every F ∈ F ,
+DhF i is strongly connected and has a obstruction-free vertex in D. For every k ≥ 2, D has a (k, H)-kernel by
+walks.
+Proof. Since CF (D) is a symmetric digraph (Lemma 2.9 (b)), for every k ≥ 2 we have that CF (D) has a
+k-kernel (Theorem 1.1). By Theorem 3.10, D has a (k, H)-kernel by walks for every k ≥ 3. On the other hand,
+it follows from Theorem 3.11 that D has a (2, H)-kernel by walks, concluding that D has a (k, H)-kernel by
+walks for every k ≥ 2.
+
+Acknowledgments
+Hortensia Galeana-Sánchez is supported by CONACYT FORDECYT-PRONACES/39570/2020 and UNAMDGAPA-PAPIIT IN102320. Miguel Tecpa-Galván is supported by CONACYT-604315.
+
+References
+[1] C. Andenmatten: H-distance, H-A-kernel and in-state splitting in H-colored graphs and digraphs. (Master Thesis supervised by H. Galeana-Sánchez and J. Pach), École Polytechnique Fédérale de Lausanne,
+Switzerland, (2019).
+[2] P. Arpin, V. Linek: Reachability problems in edge-colored digraphs, Discrete. Math. 307, 2276-2289 (2007).
+[3] J. Bang-Jensen: G. Gutin Digraphs: Theory, Algorithms and Applications, Springer, Longdon, 2000.
+[4] G. Benı́tez-Bobadilla, H. Galeana-Sánchez, C. Hernández Cruz: Panchromatic patterns by paths, arXiv
+1903.10031v1 https://arxiv.org/pdf/1903.10031.pdf, 24 Mar 2019
+
+10
+
+[5] C. Berge: Graphs and Hypergraphs in: North-Holland Mathematical Library, North-Holland Publishing
+Co., Amsterdam (1985)
+[6] V. Chvátal: On the computational Complexity of Finding a kernel Report CRM300, Centre de Recherches
+Mathématiques, Université de Montréal (1973).
+[7] N. Creignou: The class of problems that are linearly equivalent to satisfiability or a uniform method for
+proving np-completeness, Theor. Comput. Sci., 145, 111-145 (1995).
+[8] P. Delgado-Escalante, H. Galeana-Sánchez: Restricted domination in arc-colored digraphs, AKCE Int. J.
+Comb. 1, 95-104 (2014).
+[9] Y. Dimopoulos, V. Magirou: A graph theoretic approach to default logic, Inform. Comput. 112, 239-256
+(1994).
+[10] Y. Dimopoulos, A. Torres: Graph theoretical structures in logic programs and default theories, Theor.
+Comp. Sci. 170 (1–2), 209-244 (1996).
+[11] A.S. Fraenkel: Combinatorial game theory foundations applied to digraph kernels, Electron. J. Comb. 4
+(2), (1997).
+[12] H. Galeana-Sánchez: Kernels by monochromatic paths and the color class digraph, Discuss. Math. Graph
+Theory 31, 273-281 (2011).
+[13] H. Galeana-Sánchez: Kernels in edge coloured digraphs, Discrete Math. 184, 87-99 (1998).
+[14] H. Galeana Sánchez, C. Hernández-Cruz: On the existence of (k, l)-kernels in infinite digraphs: a survey,
+Discuss. Math. 34, 431-466 (2014).
+[15] H . Galeana-Sánchez, C. Hernández-Cruz: k-kernels in generalizations of transitive digraphs, Discuss. Math.
+Graph Theory 31, 293-312 (2011).
+[16] H. Galeana-Sánchez, R. Sánchez-López: H-kernels and H-obstructions in H-colored digraphs, Discrete
+Math. 338, 2288-2294 (2015).
+[17] H. Galeana-Sánchez, R. Sánchez-López: Richardson's Theorem in H-coloured digraphs, Graphs and Combin. 32, 629-638 (2016).
+[18] H. Galeana-Sánchez, M. Tecpa-Galván: Some extensions for Richardson's theorem for (k, l, H)-kernels and
+(k, l, H)-kernels by walks in H-colored digraphs, submitted.
+[19] D. König: Theorie der endlichen undenlichen Graphen, Reprinted from Chelsea Publishing Company
+(1950).
+[20] M. Kwaśnik: On (k, l)-kernels, Graph Theory (Lagów, 1981) Lecture Notes in Math 1018, 114-121 (1983).
+[21] M. Kwaśnik: On (k, l)-kernels in graphs and their products (Ph.D. thesis supervised by M. Borowiecki),
+Technical University of Wroclaw, Wroclaw (1980).
+[22] V. Linek, B. Sands: A note on paths in edge-colored tournaments, Ars Combin. 44, 225-228 (1996).
+[23] J. von Neumann, O. Morgestern: Theory of Games and Economic Behavior, Princeton University Press,
+Princeton (1944).
+[24] K. B. Reid: Monotone reachability in arc-colored tournaments, Congr. Numer. 146, 131-141 (2000).
+[25] B. Sands, N. Sauer, R. Woodrow: On monochromatic paths in edge coloured digraphs, J. Combin. Theory
+Ser. B33, 271-275 (1982).
+[26] S. Szeider: Finding paths in graphs avoiding forbbiden transitions, Discrete Appl. Math. 126, 261-273
+(2003).
+
+11
+
+

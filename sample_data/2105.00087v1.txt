@@ -1,0 +1,7521 @@
+A LOCAL TRACE FORMULA FOR p-ADIC INFINITESIMAL SYMMETRIC
+SPACES: THE CASE OF GUO-JACQUET
+
+arXiv:2105.00087v1 [math.RT] 30 Apr 2021
+
+HUAJIE LI
+
+Abstract. We establish an invariant local trace formula for the tangent space of some symmetric
+spaces over a non-archimedean local field of characteristic zero. These symmetric spaces are studied
+in Guo-Jacquet trace formulae and our methods are inspired by works of Waldspurger and Arthur.
+Some other results are given during the proof including a noninvariant local trace formula, Howe's
+finiteness for weighted orbital integrals and the representability of the Fourier transform of weighted
+orbital integrals. These local results are prepared for the comparison of regular semi-simple terms,
+which are weighted orbital integrals, of an infinitesimal variant of Guo-Jacquet trace formulae.
+
+Contents
+1. Introduction
+2. Notation and preliminaries
+3. Symmetric pairs
+4. Weighted orbital integrals
+5. The noninvariant trace formula
+6. Howe's finiteness for weighted orbital integrals
+7. Representability of the Fourier transform of weighted orbital integrals
+8. Invariant weighted orbital integrals
+9. The invariant trace formula
+10. A vanishing property at infinity
+References
+
+1
+4
+7
+17
+21
+27
+33
+41
+47
+52
+55
+
+1. Introduction
+The Guo-Jacquet trace formula [15] is a promising tool to generalise Waldspurger's result [32] on the
+relation between toric periods and central values of automorphic L-functions for GL2 to higher ranks.
+It is inspired by Jacquet's new proof [19] of Waldspurger's theorem. Although such a formula has not
+been established in full generality, its simple form was used by Feigon-Martin-Whitehouse [14] to obtain
+some evidence for the conjecture of Guo-Jacquet. For applications, one needs to compare geometric sides
+of Guo-Jacquet trace formulae for different symmetric pairs. Some local results on the comparison of
+relative orbital integrals include Guo's fundamental lemma [15] and Zhang's smooth transfer [37].
+In order to study the Guo-Jacquet trace formula and its comparison, one may begin with an infinitesimal variant. That is to say, we replace a symmetric space by its tangent space (called an infinitesimal
+symmetric space). Such a variant should share some similarities with the geometric side of Guo-Jacquet
+trace formula. It is simpler than the original formula because spectral objects are replaced by the
+Fourier transform of geometric objects (cf. [33] and [8]). Moreover, by the method of descent dating
+back to Harish-Chandra's works, the comparison at the infinitesimal level should imply the comparison
+of geometric sides of original formulae (see [37] on the transfer of orbital integrals).
+An infinitesimal variant of Guo-Jacquet trace formulae has been established in [25] and [26] via an
+analogue of Arthur's truncation process in [2] (see also [8] for its Lie algebra variant). We actually consider
+more general cases suggested by [36] and [28]. Most (namely regular semi-simple) terms appearing in
+these formulae can be written as explicit weighted orbital integrals on infinitesimal symmetric spaces
+over a number field (see [25, Theorem 9.2] and [26, Theorem 9.2]). They are noninvariant analogues of
+ordinary orbital integrals (which can be compared locally thanks to [15] and [37]) and should be the next
+Date: May 4, 2021.
+1
+
+objects to be compared. As the first evidence, the weighted fundamental lemma has been proved in [26,
+Theorem 10.9] thanks to Labesse's work [23] on the base change for GLn .
+The same philosophy of Waldspurger's work [34] on the endoscopic transfer has been followed by
+Zhang [37] to prove the transfer of local orbital integrals on infinitesimal symmetric spaces of GuoJacquet. A simple form of the local trace formula [37, Lemma 6.5], Howe's finiteness for orbital integrals
+[29, Theorem 6.1] and representability of the Fourier transform of orbital integrals [37, Theorem 6.1]
+apart from a simple form of the global trace formula [37, Theorem 8.4 and p. 1875] and the fundamental
+lemma [37, Lemma 5.18] at the infinitesimal level have been used in Zhang's proof. It is expected that
+such a strategy should be extended to the weighted context. In fact, some successful attempts have
+been made by Chaudouard in [9] and [10] on the stable base change. We would like to follow these
+ideas in the comparison of local weighted orbital integrals on infinitesimal symmetric spaces of GuoJacquet. However, further study in noninvariant local harmonic analysis on infinitesimal symmetric
+spaces is needed to achieve our goal. This paper aims to prepare some essential ingredients such as a
+noninvariant local trace formula, Howe's finiteness for weighted orbital integrals, representability of the
+Fourier transform of weighted orbital integrals and an invariant local trace formula. Our methods are
+mainly inspired by the works of Waldspurger's [33] and Arthur's [5].
+Let E/F be a quadratic field extension of non-archimedean local fields of characteristic zero. Denote
+by D a central division algebra over F and by GLn,D the reductive group over F whose F -points are
+GLn (D). We study two generalised cases of Guo-Jacquet trace formulae. The first case is (G, H),
+where G := GL2n,D and H := GLn,D × GLn,D denotes its diagonal subgroup by diagonal embedding.
+Denote by s the tangent space of the symmetric space G/H at the neutral element, on which H acts by
+conjugation. The second case is (G′ , H ′ ), where G′ is the group of invertible elements in a central simple
+algebra g′ over F containing E, and H ′ is the centraliser of E × in G′ . Denote by s′ the corresponding
+infinitesimal symmetric space. Notice that (G, H) and (G′ , H ′ ) are the same symmetric pair after a base
+change to an algebraic closure of F containing E. In the rest of the introduction and this paper, we shall
+focus on results in the first case and provide complete proofs. The second case is similar in statements
+and proofs, so we shall only state main results, point out additional ingredients and sketch necessary
+steps for later use.
+Before explaining the main results of this paper, we introduce some necessary notations. Let η be the
+quadratic character of F × /N E × attached to E/F , where N is the norm map E × → F × . For x ∈ G(F ),
+we denote by Nrd(x) its reduced norm. Let Cc∞ (s(F )) be the space of locally constant, compactly
+supported, complex-valued functions on s(F ). Denote by srs ⊆ s the Zariski open subset consisting of
+regular semi-simple elements (see Section 3.1). Let M0 be the group of diagonal elements in G, which
+is a common minimal
+Levi
+
+ subgroup of G and H. A Levi subgroup of G containing M0 is said to be
+0 1n
+ω-stable if ω :=
+∈ M . Denote by L G,ω (M0 ) the set of ω-stable Levi subgroups of G. Suppose
+1n 0
+that M ∈ L G,ω (M0 ). Write m := Lie(M ) and MH := M ∩ H. Let AM be the maximal F -split torus in
+the centre of M . Denote by F G (M ) the set of parabolic subgroups of G containing M . This paper is
+organised in the following way.
+In Section 2, we fix some notations of local harmonic analysis and recall some facts of Arthur's (G, M )families, most of which can be found in [33, §I-II]. In particular, for M ∈ L G,ω (M0 ) and Q ∈ F G (M ),
+Q
+we define the local weight function vM
+on G(F ) of main interest by (2.6.1).
+In Section 3, we prepare some properties of infinitesimal symmetric spaces. Some of them are stated
+for a general symmetric pair and most of them are relative avatars of classical works of Harish-Chandra
+[17]. Preliminaries on symmetric pairs can be found in [29] and [1].
+In Section 4, we define local weighted orbital integrals for the action of H(F ) on s(F ) and study their
+properties. Let M ∈ L G,ω (M0 ) and Q ∈ F G (M ). For all f ∈ Cc∞ (s(F )) and X ∈ (m ∩ srs )(F ), we
+define
+Z
+1/2
+Q
+Q
+f (Ad(x−1 )(X))η(Nrd(x))vM
+(x)dx,
+JM
+(η, X, f ) := |Ds (X)|F
+HX (F )\H(F )
+
+where |Ds (X)|F is the Weyl discriminant factor (see (3.1.1)) and HX denotes the centraliser of X in
+Q
+H. The distributions JM
+(η, X, *) on s(F ) are local analogues of the global weighted orbital integrals
+obtained in [25, Theorem 9.2].
+In Section 5, we establish the noninvariant local trace formula. For f ∈ Cc∞ (s(F )), we define its
+Fourier transform fˆ by (3.2.1). For M ∈ L G,ω (M0 ), let Tell (m ∩ s) be a set of representatives for
+MH (F )-conjugacy classes of M -elliptic Cartan subspaces in m∩s (see Section 3.2). For f, f ′ ∈ Cc∞ (s(F )),
+2
+
+we define
+J G (η, f, f ′ ) :=
+
+X
+
+M∈L G,ω (M0 )
+
+|W0Mn ||W0GLn |−1 (−1)dim(AM /AG )
+
+X
+
+c∈Tell (m∩s)
+
+|W (MH , c)|−1
+
+Z
+
+(c∩srs )(F )
+
+G
+JM
+(η, X, f, f ′ )dX,
+G
+where W0Mn , W0GLn and W (MH , c) are certain Weyl groups (see Section 3.2), and JM
+(η, X, f, f ′ ) is
+defined by (5.1.1).
+
+Theorem 1.1 (see Theorems 5.3 and 5.12). For all f, f ′ ∈ Cc∞ (s(F )), we have the equality
+J G (η, f, fˆ′ ) = J G (η, fˆ, f ′ ).
+
+This formula results from the Plancherel formula and an analogue of Arthur's truncation process in
+[5]. We cannot deduce it via the exponential map as in [33, §V] for lack of a local trace formula for
+symmetric spaces. One needs to return to the proof of [5] instead.
+In Section 6, we show Howe's finiteness for weighted orbital integrals on s(F ). For r ⊆ s(F ) an open
+compact subgroup, denote by Cc∞ (s(F )/r) the subspace of Cc∞ (s(F )) consisting of the functions invariant
+by translation of r.
+Proposition 1.2 (see Corollaries 6.6 and 6.9). Let r be an open compact subgroup of s(F ), M ∈
+L G,ω (M0 ) and σ ⊆ (m ∩ srs )(F ). Suppose that there exists a compact subset σ0 ⊆ (m ∩ s)(F ) such
+that σ ⊆ Ad((MH )(F ))(σ0 ). Then there exists a finite subset {Xi : i ∈ I} ⊆ σ and a finite subset
+{fi : i ∈ I} ⊆ Cc∞ (s(F )/r) such that for all X ∈ σ and all f ∈ Cc∞ (s(F )/r), we have the equality
+X
+G
+G
+G
+JM
+(η, X, f ) =
+JM
+(η, Xi , f )JM
+(η, X, fi ).
+i∈I
+
+The proof originates from Howe's seminal work [18] which is extended to weighted orbital integrals
+on Lie algebras by Waldspurger. We modify the argument in [33, §IV] to make it apply to our case.
+In Section 7, we show that the Fourier transform of weighted orbital integrals on s(F ) is represented
+by locally integrable functions on s(F ).
+Proposition 1.3 (see Propositions 7.2 and 7.10). Let M ∈ L G,ω (M0 ) and X ∈ (m ∩ srs )(F ). Then
+G
+there exists a locally constant function ĵM
+(η, X, *) on srs (F ) such that for all f ∈ Cc∞ (s(F )), we have
+Z
+−1/2
+G
+G
+f (Y )ĵM
+(η, X, Y )|Ds (Y )|F dY.
+JM
+(η, X, fˆ) =
+s(F )
+
+Its proof is similar to that in [33, §V] and makes use of the noninvariant trace formula and Howe's
+finiteness for weighted orbital integrals.
+G
+(η, X, *)
+In Section 8, we modify weighted orbital integrals to obtain η(Nrd(*))-invariant distributions IM
+G,ω
+on s(F ) by (8.1.1) and (8.1.7), where M ∈ L
+(M0 ) and X ∈ (m ∩ srs )(F ). The method is close to
+Arthur's standard one, but it is simpler here since there is no spectral object involved, which is also a
+feature of [33]. By the above proposition and the construction via induction, there also exists a locally
+∞
+constant function îG
+M (η, X, *) on srs (F ) such that for all f ∈ Cc (s(F )), we have
+Z
+−1/2
+s
+G
+f (Y )îG
+dY.
+IM
+(η, X, fˆ) =
+M (η, X, Y )|D (Y )|F
+s(F )
+
+In Section 9, we establish the invariant local trace formula. For f, f ′ ∈ Cc∞ (s(F )), we define
+Z
+X
+X
+GLn −1
+Mn
+−1
+G
+′
+dim(AM /AG )
+|W (MH , c)|
+I (η, f, f ) :=
+|W0 ||W0 | (−1)
+M∈L G,ω (M0 )
+
+c∈Tell (m∩s)
+
+(c∩srs )(F )
+
+G
+G
+IM
+(η, X, fˆ)IG
+(η, X, f ′ )dX.
+
+Theorem 1.4 (see Theorems 9.1 and 9.4). For all f, f ′ ∈ Cc∞ (s(F )), we have the equality
+I G (η, f, f ′ ) = I G (η, f ′ , f ).
+
+This formula is deduced from the noninvariant local trace formula. We mainly consult [33, §VII] for
+the proof.
+In Section 10, we prove a vanishing property at "infinity" of the function îG
+M (η, *, Y ) on (m ∩ srs )(F ),
+where M ∈ L G,ω (M0 ), M 6= G and Y ∈ srs (F ). Denote by vF (*) the valuation on F .
+3
+
+Proposition 1.5 (see Propositions 10.1 and 10.4). Let M ∈ L G,ω (M0 ), M 6= G. Let X ∈ (m ∩ srs )(F )
+and Y ∈ srs (F ). Then there exists N ∈ N such that if λ ∈ F × satisfies vF (λ) < −N , we have
+îG
+M (η, λX, Y ) = 0.
+
+It is an analogue of [9, Proposition 2.2] and serves as a complement of the limit formula for the function
+îG
+(η,
+*, Y ) on srs (F ) in [37, Proposition 7.1], where Y ∈ srs (F ). In a subsequent paper, we shall prove
+G
+′
+′
+some relations between the functions îG
+M and their analogues for the case of (G , H ), which are related to
+the comparison of Guo-Jacquet trace formulae at the infinitesimal level. The above vanishing property
+will be used to construct some nice test functions whose Fourier transforms have vanishing nontrivial
+weighted orbital integrals.
+In the end, we remark that although we concentrate on the case of Guo-Jacquet here, many results
+in this paper might be extended to other symmetric pairs, which can be seen from their proofs.
+Acknowledgement. This is part of my thesis under the supervision of Pierre-Henri Chaudouard at
+the Université de Paris. I am grateful to my thesis advisor for his constant support on this project
+and particularly for answering my numerous questions about Waldspurger's and Arthur's papers on
+the local trace formula. I would like to thank Jean-Loup Waldspurger for his valuable comments on
+my manuscript which pointed out an error in an earlier version. I also thank Raphaël Beuzart-Plessis
+for helpful discussions on general symmetric pairs during my revision of this article. This work was
+supported by grants from Région Ile-de-France.
+2. Notation and preliminaries
+2.1. Fields. Let F be a non-archimedean local field of characteristic zero. Denote by | * |F (resp. vF (*))
+the normalised absolute value (resp. the valuation) on F and by OF the ring of integers of F . Fix a
+uniformiser ̟ of OF . Let q be the cardinality of the residue field of OF .
+2.2. Groups and the map HP . Let G be a (connected) reductive group defined over F . All algebraic
+groups and algebraic varieties in this article are assumed to be defined over F until further notice. Fix
+a Levi subgroup M0 of a minimal parabolic subgroup of G.
+Denote by AG the maximal F -split torus in the centre of G. Define
+aG := HomZ (X(G)F , R),
+where X(G)F is the group of F -rational characters of G. Define the homomorphism HG : G(F ) → aG
+by
+hHG (x), χi = log(|χ(x)|F )
+
+for all x ∈ G(F ) and χ ∈ X(G)F . Set aG,F := HG (G(F )), which is a lattice in aG .
+Fix a maximal compact subgroup K = KG of G(F ) which is admissible relative to M0 in the sense
+of [3, p. 9]; in other words, K is the stabiliser in G(F ) of a special point in the apartment associated
+to AM0 of the Bruhat-Tits building of G. For a central division algebra D over F , we denote by GLn,D
+the reductive group over F whose F -points are GLn (D). In this paper, when G = ResE/F GLn,D′ with
+D′ being a central division algebra over a finite extension E of F , we choose M0 ≃ (ResE/F Gm,D′ )n to
+be the subgroup of diagonal elements in G, and K = GLn (OD′ ) with OD′ being the ring of integers of
+D′ (see [35, p. 191] for example). Set W0G := NormG(F ) (M0 )/M0 (F ) to be the Weyl group of (G, M0 ),
+where NormG(F ) (M0 ) denotes the normaliser of M0 in G(F ). It is known that any element in W0G admits
+a representative in K.
+By a Levi subgroup of G, we mean a group M containing M0 which is the Levi component of some
+parabolic subgroup of G. For such a group M , set KM := M (F ) ∩ K. Then the triplet (M, KM , M0 )
+satisfies the same hypotheses as (G, K, M0 ). Denote by F G (M ), P G (M ) and L G (M ) the set of
+parabolic subgroups of G containing M , parabolic subgroups of G with Levi factor M and Levi subgroups
+of G containing M respectively.
+For P ∈ F G (M0 ), let MP be the Levi component containing M0 and NP the unipotent radical. Denote
+AP := AMP and aP := aMP whose dual R-linear space is denoted by a∗P . Define a map HP : G(F ) → aMP
+by
+HP (mnk) = HMP (m)
+for all m ∈ MP (F ), n ∈ NP (F ) and k ∈ K. Let P ∈ P G (MP ) be the parabolic subgroup opposite to P .
+For P ⊆ Q a pair of parabolic subgroups in F G (M0 ), the restriction X(MQ )F ֒→ X(MP )F induces
+Q
+a pair of dual maps aP ։ aQ and a∗Q ֒→ a∗P . Let aQ
+P be the kernel of the former map aP ։ aQ . Set ∆P
+4
+
+∨
+to be the set of simple roots for the action of AP on P ∩ MQ . Denote by (∆Q
+P ) the set of "coroots" as
+Q ∨
+Q
+in [6, p. 26]. Then (∆P ) is a basis of the R-linear space aP .
+
+2.3. Heights. We fix a height function k * k : G(F ) → R as in [5, §4]. It satisfies the following properties:
+(1) kxk ≥ 1, ∀x ∈ G(F );
+(2) kxyk ≤ kxkkyk, ∀x, y ∈ G(F );
+(3) there exist constants c > 0 and N ∈ N such that kx−1 k ≤ ckxkN , ∀x ∈ G(F ).
+If P ∈ F G (M0 ), for any x ∈ G(F ), we can choose mP (x) ∈ MP (F ), nP (x) ∈ NP (F ) and kP (x) ∈ K
+such that x = mP (x)nP (x)kP (x). Then
+(4) there exist constants c > 0 and N ∈ N such that kmP (x)k + knP (x)k ≤ ckxkN , ∀x ∈ G(F ).
+We also fix a Euclidean norm (still denoted by k * k) on the R-linear space aM0 which is invariant
+under the action of W0G on aM0 . Then
+(5) there exist c1 , c2 > 0 such that
+c1 (1 + log kyk) ≤ 1 + kHM0 (y)k ≤ c2 (1 + log kyk), ∀y ∈ M0 (F ).
+In addition, we require that k * k is a norm on G(F ) in the sense of [22, §18.2]. This is possible. For
+example, for G = GLn , by writing (g, g −1 ) = (gij , hij )1≤i,j≤n , one may define kgk := sup{|gij |F , |hij |F }
+i,j
+
+for g ∈ G(F ). Since {gij , hij }1≤i,j≤n is a set of generators for the ring of regular functions of G (viewed
+as an affine variety over F ), this defines a norm in the sense of [22, §18.2] on GLn (F ). For general G,
+one can choose an closed embedding G → GLn over F and define the norm on G(F ) by the pull-back
+of the norm on GLn (F ). By [22, Proposition 18.1.(2)], this defines a norm in the sense of [22, §18.2] on
+G(F ).
+2.4. Functions and distributions. Let g := Lie(G). More generally, we shall use a minuscule Fraktur
+letter to denote the Lie algebra of its corresponding algebraic group. Denote by Ad the adjoint action
+of G on itself or g. The adjoint action of g on itself is denoted by ad.
+For a locally compact and totally disconnected topological space X (e.g. G(F ) or g(F )), denote
+by Cc∞ (X) the space of locally constant, compactly supported, complex-valued functions on X. For
+f ∈ Cc∞ (X), denote by Supp(f ) its support. Denote by Cc∞ (X)∗ the space of distributions on X, i.e., the
+linear dual of Cc∞ (X).
+Suppose that there is a left action of G(F ) on such an X. Then G(F ) acts on Cc∞ (X) (or more
+generally the space of complex functions on X) from the left by
+g * f (x) := f (g −1 * x), ∀g ∈ G(F ), f ∈ Cc∞ (X), x ∈ X.
+
+Moreover, G(F ) acts on Cc∞ (X)∗ from the left by
+
+g * d(f ) := d(g −1 * f ), ∀g ∈ G(F ), d ∈ Cc∞ (X)∗ , f ∈ Cc∞ (X).
+
+Let η : G(F ) → C× be a locally constant character. We say a function f ∈ Cc∞ (X) (resp. a distribution
+d ∈ Cc∞ (X)∗ ) is η-invariant if g * f = η(g)f (resp. g * d = η(g)d) for all g ∈ G(F ). For trivial η, we simply
+say that such a function (resp. distribution) is invariant.
+2.5. Haar measures. Fix the Haar measure on K such that vol(K) = 1. Following [33, §I.4], for all
+P ∈ F G (M0 ), we fix a Haar measure on NP (F ) such that
+Z
+exp(2ρP (HP (n)))dn = 1,
+NP (F )
+
+where ρP is the half of the sum of roots (with multiplicity) associated to the parabolic subgroup P
+opposite to P . From [5, p. 12], for all M ∈ L G (M0 ), there are compatible Haar measures on G(F ) and
+M (F ) such that for all P ∈ P G (M ) and f ∈ Cc∞ (G(F )), we have
+Z
+Z
+f (mnk)dkdndm.
+f (x)dx =
+G(F )
+
+M(F )×NP (F )×K
+
+We shall fix such measures.
+For a F -split torus T , we choose the Haar measure on T (F ) such that the maximal compact subgroup
+of T (F ) is of volume 1. For a general torus T , we choose the Haar measure on T such that the induced
+measure on T (F )/AT (F ) satisfies vol(T (F )/AT (F )) = 1.
+Notice that if M0 is a torus, we have associated to it two measures. However, it will be clear which
+one should be used according to the context.
+5
+
+Fix open neighbourhoods Vg of 0 in g(F ) and VG of 1 in G(F ) such that the exponential map
+exp : Vg → VG induces a homeomorphism between them. Choose the unique Haar measure on g(F )
+such that exp preserves the measures. Similarly, we obtain Haar measures on F -points of Lie algebras
+of algebraic subgroups of G.
+From the fixed Euclidean norm k * k on aM0 , we deduce measures on aM0 and its subspaces.
+2.6. (G, M )-families. Following [3, p. 15], we define
+Q ∨ −1
+θPQ (λ) := vol(aQ
+P /Z(∆P ) )
+
+Y
+
+∨
+α∨ ∈(∆Q
+P)
+
+λ(α∨ ), ∀λ ∈ ia∗P ,
+
+Q
+Q ∨
+∨
+where Z(∆Q
+P ) denotes the lattice in aP generated by (∆P ) .
+Suppose that M ∈ L G (M0 ) and that Q ∈ F G (M ). Let (cP )P ∈P G (M) be a (G, M )-family in the
+sense of [3, p. 36]. By [3, Lemma 6.2], we can define
+X
+cP (λ)θPQ (λ)−1 .
+cQ
+:=
+lim
+M
+λ→0
+
+{P ∈P G (M):P ⊆Q}
+
+We sometimes write cM := cG
+M if Q = G.
+An important example is following. According to [3, p. 40-41], for x ∈ G(F ),
+vP (λ, x) := e−λ(HP (x)) , ∀λ ∈ ia∗M , P ∈ P G (M ),
+is a (G, M )-family (denoted by (vP (x))P ∈P G (M) ). Then we obtain a function
+X
+Q
+(2.6.1)
+vM
+(x) := lim
+vP (λ, x)θPQ (λ)−1 , ∀x ∈ G(F ).
+λ→0
+
+{P ∈P G (M):P ⊆Q}
+
+For a smooth function cP (λ) on ia∗P , we can associate to it a smooth function c′P (λ) on ia∗P as in
+[3, (6.3) in §6]. Denote by c′P the value of c′P (λ) at λ = 0. Let (cP )P ∈P G (M) and (dP )P ∈P G (M) be
+two (G, M )-families, we define their product ((cd)P )P ∈P G (M) in the obvious way and have the following
+product formula (see [3, Lemma 6.3])
+X
+(2.6.2)
+(cd)M =
+c′Q dQ
+M.
+Q∈F G (M)
+
+G
+2.7. The maps dG
+M and s. Suppose that M ∈ L (M0 ). As in [4, p. 356], we define a map
+G
+G
+dG
+M : L (M ) × L (M ) → R≥0
+
+such that for all (L1 , L2 ) ∈ L G (M ) × L G (M ),
+G
+(1) dG
+M (G, M ) = dM (M, G) = 1;
+G
+(2) dM (L1 , L2 ) = dG
+M (L2 , L1 );
+L1
+L2
+(3) dG
+(L
+,
+L
+)
+=
+6
+0
+if and only if aG
+1
+2
+M
+M = aM ⊕ aM .
+Following [33, §II.4], we also choose a map (not unique)
+s : L G (M ) × L G (M ) → F G (M ) × F G (M )
+such that for all (L1 , L2 ) ∈ L G (M ) × L G (M ),
+(4) s(L1 , L2 ) ∈ P G (L1 ) × P G (L2 );
+(5) if s(L1 , L2 ) = (Q1 , Q2 ), then s(L2 , L1 ) = (Q2 , Q1 );
+(6) (splitting formula) if (cP )P ∈P G (M) and (dP )P ∈P G (M) are (G, M )-families, we have the equality
+X
+Q1 Q2
+(cd)M =
+dG
+M (L1 , L2 )cM cM ,
+L1 ,L2 ∈L G (M)
+
+where (Q1 , Q2 ) := s(L1 , L2 );
+(7) (descent formula) if (cP )P ∈P G (M) is a (G, M )-family and L ∈ L G (M ), we have the equality
+X
+′
+′ Q
+cL =
+dG
+M (L, L )cM ,
+L′ ∈L G (M)
+
+where Q′ denotes the second component of s(L, L′ ).
+6
+
+3. Symmetric pairs
+3.1. General cases. Following [1, Definition 7.1.1], by a symmetric pair, we mean a triple (G, H, θ)
+where H ⊆ G are a pair of reductive groups, and θ is an involution on G such that H is the subgroup of
+fixed points of θ.
+Suppose that (G, H, θ) is a symmetric pair. Let g := Lie(G) and h := Lie(H). Write dθ for the
+differential of θ. Then
+h = {X ∈ g : (dθ)(X) = X}.
+Define
+S := {x ∈ G : xθ(x) = 1},
+on which G acts by
+x * s := xsθ(x)−1 , ∀x ∈ G, s ∈ S.
+We have a symmetrization map G/H → S defined by x 7→ xθ(x)−1 which identifies the symmetric space
+G/H with the G-orbit of the neutral element on S. The induced action of H on S is the conjugation by
+H. Let s be the tangent space at the neutral element of S. Then
+s = {X ∈ g : (dθ)(X) = −X},
+
+on which H acts by restriction of the adjoint action. Notice that
+g = h ⊕ s.
+
+For X ∈ s, denote by HX (resp. gX , hX , sX ) the centraliser of X in H (resp. g, h, s).
+We say an element X ∈ s is semi-simple if the orbit Ad(H)(X) is Zariski closed in s. By [29, Fact A, p.
+108-109], X ∈ s(F ) is semi-simple if and only if Ad(H(F ))(X) is closed in s(F ) in the analytic topology.
+We say an element X ∈ s is regular if HX has minimal dimension. It is known that X ∈ s is regular
+if and only if gX (or sX ) has minimal dimension (cf. [21, Proposition 7]). Denote by srs the subset
+of s consisting of regular semi-simple elements in s. For X ∈ s, consider the characteristic polynomial
+det(λ − ad(X)|g ). Denote by Ds (X) be the coefficient of the least power of λ appearing nontrivially in
+this polynomial. Then Ds (X) is an H-invariant polynomial on s. From [29, end of p. 107], we know
+that X ∈ s is regular semi-simple if and only if Ds (X) 6= 0. Thus srs is a principal Zariski open subset
+of s.
+By a Cartan subspace of s, we mean a maximal abelian subspace for the Lie bracket c ⊆ s (defined
+over F ) consisting of semi-simple elements. For such c, let creg := c ∩ srs . By [24, Theorem 5.1 and
+Corollary of Theorem 5.2], if c ⊆ s is a Cartan subspace, then the centraliser of c in s is c itself. By [24,
+Corollary 2 of Theorem 3.2], if X ∈ srs (F ), then sX is a Cartan subspace of s. Hence, if X ∈ creg (F )
+with c ⊆ s being a Cartan subspace, then sX = c because of the maximality. By [24, Corollary 2 of
+Theorem 4.1], all Cartan subspaces of s are of the form sX where X ∈ srs (F ). By [31, p. 323], all Cartan
+subspaces of s are conjugate by H over an algebraic closure of F . In particular, all Cartan subspaces of
+s have the same dimension.
+For a Cartan subspace c ⊆ s, denote by Tc the centraliser of c in H and set tc := Lie(Tc ). It is known
+that if X ∈ creg (F ) with c ⊆ s being a Cartan subspace, then HX = Tc (see [29, p. 112]). Note that Tc
+is not necessarily a torus in general (though it is always a torus in cases of main interest in this paper
+thanks to Corollary 3.11.3)).
+For X ∈ s(F ), we define the Weyl discriminant factor
+1/2
+
+|Ds (X)|F := |Ds (X)|F .
+
+From the above discussion, we see that if X ∈ c(F ) with c ⊆ s being a Cartan subspace, then
+1/2
+
+|Ds (X)|F = | det(ad(X)|h/tc ⊕s/c )|F .
+
+(3.1.1)
+
+For a Cartan subspace c ⊆ s, set W (H, c) := NormH(F ) (c)/Tc (F ) to be its Weyl group, where
+NormH(F ) (c) denotes the normaliser of c in H(F ). Fix a set T (s) of representatives for H(F )-conjugacy
+classes of Cartan subspaces in s, which is a finite set by [29, p. 105]. Then we have the Weyl integration
+formula (see [29, p. 106])
+Z
+Z
+Z
+X
+|W (H, c)|−1
+|Ds (X)|F
+(3.1.2)
+f (X)dX =
+f (Ad(x−1 )(X))dxdX
+s(F )
+
+c∈T (s)
+
+creg (F )
+
+Tc (F )\H(F )
+
+for all f ∈ Cc∞ (s(F )). Recall that the adjoint action induces a local isomorphism β : (Tc (F )\H(F )) ×
+creg (F ) → srs (F ) of F -analytic manifolds, whose image is open in srs (F ). Here we should use compatible
+Haar measures on s(F ) and creg (F ), i.e., we require that β should preserve the measures. For particular
+7
+
+cases to be considered, we shall fix Haar measures on s(F ) in the following sections. Notice that we shall
+not use the Haar measure on creg (F ) obtained via the exponential map.
+The lemma below makes the definition of Fourier transform on s(F ) possible.
+Lemma 3.1. Let (G, H, θ) be a symmetric pair. Then there exists a G-invariant θ-invariant nondegenerate symmetric bilinear form h*, *i on g. In particular, g = h ⊕ s is an orthogonal direct sum with
+respect to h*, *i, and the restriction of h*, *i to h or s is non-degenerate.
+Proof. This is [1, Lemma 7.1.9].
+
+
+
+The following lemma is a special case of [38, Lemma 3.10], which is an analogue of Harish-Chandra's
+compactness lemma [17, Lemma 25].
+Lemma 3.2. Let σs be a compact subset of s(F ). Suppose that c is a Cartan subspace of s. Let σc be a
+compact subset of creg (F ). Then
+{x ∈ Tc (F )\H(F ) : Ad(x−1 )(σc ) ∩ σs 6= ∅}
+
+is relatively compact in Tc (F )\H(F ).
+
+s
+Proof. Choose an arbitrary X ∈ σc . We have HX = Tc . Let NAd(H)(X),X
+be the normal space (see [1,
+Notation 2.3.3]) to Ad(H)(X) in s at the point X. By [1, Proposition 7.2.1], since X ∈ s is semi-simple,
+s
+one has NAd(H)(X),X
+≃ sX as HX -spaces. Note that since X ∈ creg , creg ⊆ sX is an étale Luna slice at
+X in the sense of [1, Theorem A.2.3]. Thus we can apply [38, Lemma 3.10].
+
+
+Denote by F [s]H the F -algebra of H-invariant polynomial functions on s. For c ⊆ s a Cartan subspace,
+denote by F [c]W (H,c) the F -algebra of W (H, c)-invariant polynomial functions on c. An analogue of
+Chevalley restriction theorem holds for symmetric spaces.
+Lemma 3.3. 1) Let c be a Cartan subspace of s. The restriction
+F [s]H → F [c]W (H,c)
+
+is an isomorphism.
+2) The F -algebra F [s]H has a finite system of algebraically independent homogeneous generators.
+Proof. See [30, Theorem 7 and Corollary of Theorem 8] and [29, Proposition 2.3].
+
+
+
+The next lemma is an analogue of [17, Lemma 28].
+Lemma 3.4. Let σ ⊆ s(F ) be a compact subset. Let c be a Cartan subspace of s. Then c(F ) ∩
+Cl(Ad(H(F ))(σ)) is relatively compact in c(F ), where Cl denotes the closure of a subset in s(F ).
+Proof. This is [37, Lemma 6.12], whose proof relying on Lemma 3.3 applies to an arbitrary symmetric
+pair.
+
+The following lemma is an analogue of [33, Lemme III.4].
+Lemma 3.5. Let σ ⊆ s(F ) be a compact subset. Let c be a Cartan subspace of s and Tc the centraliser of
+c in H. Then there exists cσ > 0 such that for all x ∈ H(F ) and X ∈ creg (F ) satisfying Ad(x−1 )(X) ∈ σ,
+we have
+inf log kτ xk ≤ cσ sup{1, − log |Ds (X)|F }.
+τ ∈Tc (F )
+
+Proof. Let k * kTc \H be any norm on (Tc \H)(F ) in the sense of [22, §18.2]. Applying the argument of
+[22, Lemma 20.3] to the finite morphism
+β : (Tc \H) × creg → srs
+
+of affine algebraic varieties defined by β(x, X) := Ad(x−1 )(X), we show the inequality
+log kxkTc \H ≤ cσ sup{1, − log |Ds (X)|F }.
+
+By [22, Proposition 18.3], the quotient H → Tc \H has the norm descent property in the sense of [22,
+§18.6]. That is to say, the restriction of k * kTc \H to Tc (F )\H(F ) is equivalent to the abstract norm
+inf τ ∈Tc (F ) kτ * k on Tc (F )\H(F ).
+
+The lemma below is an analogue of [17, Lemma 44].
+Lemma 3.6. There exists ε > 0 such that the function |Ds (X)|−ε
+F is locally integrable on c(F ) for any
+Cartan subspace c of s.
+8
+
+Proof. See [38, Lemma 4.3].
+
+
+
+Corollary 3.7. For any r ≥ 0, the function sup{1, − log |Ds (X)|F }r is locally integrable on c(F ) for
+any Cartan subspace c of s.
+Proof. We have the elementary fact (cf. the proof of [22, Corollary 20.2]): for ε > 0 and r ≥ 0, there
+exists c > 0 such that
+sup{1, log y}r ≤ cy ε + 1, ∀y > 0.
+Then it suffices to apply Lemma 3.6.
+
+
+
+We say an element X ∈ s(F ) is nilpotent if 0 ∈ Cl(Ad(H(F ))(X)), where Cl denotes the closure of a
+subset in s(F ). From [1, Lemmas 2.3.12 and 7.3.8], we know that X ∈ s(F ) is nilpotent if and only if it
+is a nilpotent element in g. Denote by N s the set of nilpotent elements in s(F ), which is a cone. The
+following lemma is an analogue of Jacobson-Morozov theorem.
+Lemma 3.8. Let (G, H, θ) be a symmetric pair and X ∈ N s . Then there exists a group homomorphism
+φ : SL2 (F ) → G(F ) such that
+
+
+
+
+
+
+0 1
+0 0
+t
+dφ
+= X, dφ
+∈ s(F ) and φ
+∈ H(F ), ∀t ∈ F × .
+0 0
+1 0
+t−1
+Proof. This is [1, Lemma 7.1.11].
+
+
+
+Let X ∈ srs (F ). The orbital integral of X is the distribution IX on s(F ) defined by
+Z
+1/2
+f (Ad(x−1 )(X))dx.
+(3.1.3)
+∀f ∈ Cc∞ (s(F )), IX (f ) := |Ds (X)|F
+HX (F )\H(F )
+
+The next lemma is an analogue of Harish-Chandra's submersion principle [17, Theorem 11].
+Lemma 3.9. Let I : srs (F ) → C be a function. The following conditions are equivalent:
+(1) I is locally constant, invariant by the adjoint action of H(F ) and of support included in Ad(H(F ))(σ)
+with σ ⊆ srs (F ) a compact subset;
+(2) there exists f ∈ Cc∞ (srs (F )) such that
+∀X ∈ srs (F ), I(X) = IX (f ).
+Proof. For c ∈ T (s), apply the argument of [11, Lemme 6.1] to the morphism
+−1
+
+defined by Φc (x, X) := Ad(x
+
+Φc : (Tc (F )\H(F )) × creg (F ) → srs (F )
+)(X). Then glue the results for all c ∈ T (s) together.
+
+
+
+3.2. The case of (G, H). Let D be a central division algebra over F . Let g be the associative algebra
+of 2n × 2n matrices with entries in D. Denote by G := g× = GL2n,D the group of invertible
+ elements
+
+1n
+in g. Equipped with the Lie bracket, g is identified with the Lie algebra of G. Let ǫ :=
+.
+−1n
+Denote by H the subgroup of fixed points of the involution Ad(ǫ) on G. Then H = GLn,D × GLn,D is
+diagonally embedded into G. Define
+S := {x ∈ G : xAd(ǫ)(x) = 1}
+and its tangent space at the neutral element
+s := {X ∈ g : Ad(ǫ)(X) = −X}.
+Then we have
+and
+
+g=h⊕s
+
+1
+dim g.
+2
+Let M0 be the group of diagonal elements in G, which is a common minimal Levi subgroup of G and H.
+For a linear subspace v ⊆ g, we write v× := v ∩ G.
+Note that the F -rank of G is 2n. Denote Gn := G, Hn := H and sn := s. Recall the following
+description of semi-simple elements and descendants (see [1, Definition 7.2.2]).
+dim s = dim h =
+
+9
+
+Proposition 3.10. The results below hold for F being any field of characteristic zero.
+1) An element X of s(F ) is semi-simple if and only if it is H(F )-conjugate to an element of the form
+
+
+0 0 1m 0
+ 0 0 0 0 
+
+X(A) := 
+ A 0 0 0 
+0 0 0 0
+
+with A ∈ GLm (D) being semi-simple in the usual sense. More precisely, the set of H(F )-conjugacy
+classes of semi-simple elements of s(F ) is bijective to the set of pairs (m, [A]) where 0 ≤ m ≤ n is an
+integer and [A] is a semi-simple conjugacy class in GLm (D). Moreover, X(A) is regular semi-simple if
+and only if m = n and A is regular semi-simple in GLn (D) in the usual sense.
+2) Let X = X(A) ∈ s(F ) be semi-simple. Then the descendant (HX , sX ) (as a representation) is
+isomorphic to
+((GLm,D )A , (glm,D )A ) × (Hn−m , sn−m ),
+where (GLm,D )A (resp. (glm,D )A ) denotes the centraliser of A in GLm,D (resp. glm,D ).
+
+Proof. This is stated in [36, Proposition 5.2] for a non-archimedean local field of characteristic zero, but
+its proof included in [20, Propositions 2.1 and 2.2] is valid for any field of characteristic zero.
+
+Corollary 3.11. We have
+1) srs ⊆ s× ;
+√
+2) for X ∈ srs , HX is a torus of dimension 21 dim g;
+3) for c ⊆ s a Cartan subspace, Tc is a torus of dimension
+
+1
+2
+
+√
+dim g.
+
+Proof. 1) and 2) are clear from Proposition 3.10 applied to an algebraic closure of F . 3) results from 2)
+since for c ⊆ s a Cartan subspace, Tc = HX for any X ∈ creg 6= ∅.
+
+Lemma 3.12. Let P be a parabolic subgroup of G. Then P ∩ H is a parabolic subgroup of H if and only
+if ǫ ∈ P . Moreover, if ǫ belongs to a Levi factor M of P , then M ∩ H is a Levi factor of P ∩ H.
+Proof. One may consider all the groups over an algebraic closure of F . We first suppose that P ∩ H is
+a parabolic subgroup of H. Then ǫ ∈ Cent(H) ⊆ P ∩ H, where Cent(H) denotes the centre of H. This
+establishes one direction.
+We now suppose that ǫ ∈ P . Denote by N the unipotent radical of P and let M be a Levi factor of P .
+By the argument in the last paragraph of the proof of [25, Lemma 4.4], we show that ǫ is N -conjugate to
+an element in M with the help of [2, Lemma 2.1] (actually we need its variant over a local field for the
+characteristic function of a singleton here, whose proof is similar). Then replacing M by its N -conjugate
+if necessary, we may assume that ǫ ∈ M .
+Let G = GL(V ) for a vector space V = ⊕1≤i≤r Vi . Suppose that
+and that
+
+P = {g ∈ G : g(V1 ⊕ ... ⊕ Vi ) ⊆ V1 ⊕ ... ⊕ Vi , ∀1 ≤ i ≤ r}
+
+M = {g ∈ G : g(Vi ) ⊆ Vi , ∀1 ≤ i ≤ r}.
+Since ǫ ∈ M , we have ǫ(Vi ) ⊆ Vi for all 1 ≤ i ≤ r. Let Vi+ (resp. Vi− ) be the +1(resp. −1)-eigenspace of
+Vi under the action of ǫ. For ǫ2 = 1, we have Vi = Vi+ ⊕Vi− . Let V + := ⊕1≤i≤r Vi+ and V − := ⊕1≤i≤r Vi− .
+Then
+H = {g ∈ G : g(V + ) ⊆ V + , g(V − ) ⊆ V − }.
+Hence,
+P ∩ H = {g ∈ G : g(V1+ ⊕ ... ⊕ Vi+ ) ⊆ V1+ ⊕ ... ⊕ Vi+ , g(V1− ⊕ ... ⊕ Vi− ) ⊆ V1− ⊕ ... ⊕ Vi− , ∀1 ≤ i ≤ r}.
+
+It means exactly that P ∩ H is a parabolic subgroup of H and proves the other direction. Morover,
+M ∩ H = {g ∈ G : g(Vi+ ) ⊆ Vi+ , g(Vi− ) ⊆ Vi− , ∀1 ≤ i ≤ r}.
+
+That is to say, M ∩ H is a Levi factor of P ∩ H.
+
+
+
+0 1n
+. For P ∈ F G (M0 ), we say that P is "ω-stable" if ω ∈ P . Denote by F G,ω (M0 )
+Set ω :=
+1n 0
+the subset of ω-stable parabolic subgroups in F G (M0 ). For M ∈ L G (M0 ), we say that M is "ω-stable"
+if ω ∈ M . Notice that M is ω-stable if and only if M = MP for some P ∈ F G,ω (M0 ). Denote by
+L G,ω (M0 ) the subset of ω-stable Levi subgroups in L G (M0 ). Let An be the group of diagonal matrices
+in GLn , which is a minimal Levi subgroup of GLn . For Mn ∈ L GLn (An ), denote by Mn,D the reductive
+10
+
+group over F whose F -points are Mn (D) and let mn,D := Lie(Mn,D ); in particular, the notion An,D
+
+×
+mn,D mn,D
+makes sense. There is a bijection Mn 7→ M =
+between L GLn (An ) and L G,ω (M0 ) (cf.
+mn,D mn,D
+[25, Proposition 5.2]). We shall always use the notation Mn to denote the preimage of M under this
+bijection. Notice that if M ∈ L G,ω (M0 ) and Q ∈ F G (M ), then Q ∈ F G,ω (M0 ).
+Suppose that M ∈ L G,ω (M0 ). If X ∈ m ∩ s, then AM ⊆ HX . We say an element X ∈ (m ∩ srs )(F ) is
+M -elliptic if AM is the maximal F -split torus in HX (which is a torus by Corollary 3.11.2)). Denote by
+(m ∩ srs )(F )ell the set of M -elliptic elements in (m ∩ srs )(F ). Write MH := M ∩ H. For X ∈ (m ∩ srs )(F ),
+let [X]MH be the MH (F )-conjugacy class of X. Denote by Γell ((m ∩ srs )(F )) the set of MH (F )-conjugacy
+classes in (m ∩ srs )(F )ell . If c ⊆ m ∩ s is a Cartan subspace, then AM ⊆ Tc . We say a Cartan subspace
+c ⊆ m ∩ s is M -elliptic if AM is the maximal F -split torus in Tc (which is a torus by Corollary 3.11.3)).
+Since (MH , m ∩ s) appears as the product of some copies of the form (H, s) in lower dimensions (cf. [25,
+§5.1]), we define W (MH , c) and T (m ∩ s) as in Section 3.1. In our notation, we write (m ∩ s)rs for the
+Zariski open subset of m ∩ s consisting of regular semi-simple elements with respect to the MH -action.
+By Proposition 3.10 and its product form, we see that m ∩ srs ⊆ (m ∩ s)rs . Since a Cartan subspace
+is generally the same as the centraliser of a regular semi-simple element, we also deduce that a Cartan
+subspace of m ∩ s is nothing but a Cartan subspace of s contained in m ∩ s. Denote by Tell (m ∩ s) the
+subset of representatives that are M -elliptic Cartan subspaces in T (m ∩ s).
+Lemma 3.13. Let M ∈ L G,ω (M0 ) and [X]MH ∈ Γell ((m ∩ srs )(F )).
+1) Let M ′ ∈ L G,ω (M0 ) and [X ′ ]MH′ ∈ Γell ((m′ ∩ srs )(F )) be such that X ′ is H(F )-conjugate to X.
+Then there exists
+
+
+
+wn
+GL
+: wn ∈ W0 n,D ,
+w∈
+wn
+GLn,D
+
+where W0
+
+denotes the Weyl group of (GLn,D , An,D ), such that
+(Ad(w)(M ), [Ad(w)(X)]Ad(w)(M)∩H ) = (M ′ , [X ′ ]MH′ ).
+
+2) The cardinality of
+{(M ′ , [X ′ ]MH′ ) : M ′ ∈ L G,ω (M0 ), [X ′ ]MH′ ∈ Γell ((m′ ∩ srs )(F )), X ′ is H(F )-conjugate to X}
+is
+|W0GLn ||W0Mn |−1 ,
+
+where W0GLn (resp. W0Mn ) denotes the Weyl group of (GLn , An ) (resp. (Mn , An )).
+Proof. 1) Let x ∈ H(F ) be such that Ad(x)(X) = X ′ . Then Ad(x)(HX ) = HX ′ . Since X ∈ (m∩srs )(F )ell
+and X ′ ∈ (m′ ∩ srs )(F )ell , we have Ad(x)(AM ) = AM ′ and thus Ad(x)(M ) = M ′ . As x ∈ H(F ), we
+′
+′
+is a maximal F -split torus, so there exists
+have Ad(x)(MH ) = MH
+. We see that Ad(x)(AM0 ) ⊆ MH
+−1
+′
+′
+′ −1
+m ∈ MH (F ) such that Ad(m x)(AM0 ) = AM0 . That is to say, w′ := m′ x ∈ NormH(F ) (AM0 ) =
+NormH(F ) (M0 ), where NormH(F ) (AM0 ) denotes the normaliser of AM0 in H(F ). Now Ad(x)(AM ) = AM ′
+in [25, §9.1]
+implies that Ad(w′ )(AM ) = AM ′ . Because M, M ′ ∈ L G,ω (M
+0 ), it is shown
+ that any
+
+
+w
+GL
+n
+: wn ∈ W0 n,D . Hence,
+isomorphism AM → AM ′ induced by W0H can be given by
+w
+n
+
+
+
+wn
+GL
+: wn ∈ W0 n,D such that w−1 w′ ∈ CentW0H (AM ) = W0MH , where
+there exists w ∈
+wn
+CentW0H (AM ) denotes the centraliser of AM in W0H . We can check that such a w satisfies the condition
+in the lemma.
+
+
+
+wn
+GLn,D
+acts transitively on this set. Let
+2) By 1), the group
+: wn ∈ W0
+wn
+
+
+
+wn
+GLn,D
+: wn ∈ W0
+w∈
+wn
+be such that
+(Ad(w)(M ), [Ad(w)(X)]Ad(w)(M)∩H ) = (M, [X]MH ).
+Then w ∈ MH (F ). Thus the condition on w is equivalent to
+
+
+
+wn
+Mn,D
+,
+: wn ∈ W0
+w∈
+wn
+11
+
+M
+
+where W0 n,D denotes the Weyl group of (Mn,D , An,D ). We see that the cardinality of the set in the
+GL
+M
+lemma is |W0 n,D ||W0 n,D |−1 or |W0GLn ||W0Mn |−1 .
+
+Proposition 3.14. For f ∈ Cc∞ (s(F )), we have the equality
+Z
+Z
+X
+X
+|W (MH , c)|−1
+f (X)dX =
+|W0Mn ||W0GLn |−1
+s(F )
+
+M∈L G,ω (M0 )
+
+creg (F )
+
+c∈Tell (m∩s)
+
+|Ds (X)|F
+
+Z
+
+AM (F )\H(F )
+
+f (Ad(x−1 )(X))dxdX.
+Proof. From [25, beginning of §9.2], any H(F )-conjugacy class in srs (F ) is the image of a class [X]MH ∈
+Γell ((m ∩ srs )(F )) for some M ∈ L G,ω (M0 ). By Lemma 3.13, the Weyl integration formula (3.1.2) can
+be written as the above equality (cf. [5, p. 16-17] and [33, (3) in §I.3]).
+
+For Pn ∈ L GLn (An ), denote by Pn,D the algebraic group over F whose F -points are Pn (D) and let
+
+×
+pn,D pn,D
+pn,D := Lie(Pn,D ). There is a bijection Pn 7→ P =
+between F GLn (An ) and F G,ω (M0 )
+pn,D pn,D
+(cf. [25, Proposition 5.2]). We shall always use the notation Pn to denote the preimage of P under this
+bijection. Following [37, p. 1846], we shallfix the Haar measures
+on some
+
+ subspaces of s(F ) as follows.
+m
+m
+nPn,D nPn,D
+P
+P
+n,D
+n,D
+Let P ∈ F G,ω (M0 ). Then we have mP =
+and nP =
+. We have fixed
+mPn,D mPn,D
+nPn,D nPn,D
+the Haar measures on mPn,D (F ) and nPn,D (F ) in Section 2.5. We shall choose the same Haar measure
+for any of the four copies in mP (F ) or nP (F ) under these identifications. In particular, we obtain the
+Haar measures on (mP ∩ s)(F ) and (nP ∩ s)(F ).
+Lemma 3.15. Let Q ∈ F G,ω (M0 ). For Y ∈ (mQ ∩ srs )(F ), the map
+
+NQH (F ) → (nQ ∩ s)(F ), n 7→ Ad(n−1 )(Y ) − Y
+1/2
+
+−1/2
+
+is an isomorphism of F -analytic manifolds whose Jacobian is |Ds (Y )|F |DmQ ∩s (Y )|F
+
+.
+
+Proof. See [25, Lemma 8.1] for the isomorphism and the proof of [37, Proposition 6.3.(ii)] for the Jacobian.
+
+Fix a continuous and nontrivial unitary character Ψ : F → C× . Let h*, *i be the non-degenerate
+symmetric bilinear form on g(F ) defined by
+hX, Y i := Trd(XY ), ∀X, Y ∈ g(F ),
+where Trd denotes the reduced trace on g(F ). It is invariant by the adjoint action of G(F ) and Ad(ǫ).
+For f ∈ Cc∞ (s(F )), define its normalised Fourier transform fˆ ∈ Cc∞ (s(F )) by
+Z
+ˆ
+f (Y )Ψ(hX, Y i)dY,
+(3.2.1)
+∀X ∈ s(F ), f (X) := cΨ (s(F ))
+s(F )
+
+ˆ
+where cΨ (s(F )) is the unique constant such that fˆ(X) = f (−X) for all f ∈ Cc∞ (s(F )) and all X ∈ s(F ).
+For any M ∈ L G,ω (M0 ), the restriction of h*, *i on m ∩ s is non-degenerate. Then we can define similarly
+the normalised Fourier transform of f ∈ Cc∞ ((m ∩ s)(F )).
+Suppose that P ∈ F G,ω (M0 ). Let η be the quadratic character of F × attached to a quadratic
+extension E/F . Denote by Nrd the reduced norm on G(F ). For f ∈ Cc∞ (s(F )), we define a function
+(parabolic descent) fPη ∈ Cc∞ ((mP ∩ s)(F )) by
+Z
+f (Ad(k −1 )(Z + U ))η(Nrd(k))dU dk
+(3.2.2)
+fPη (Z) :=
+KH ×(nP ∩s)(F )
+
+for all Z ∈ (mP ∩ s)(F ). We show that (fˆ)ηP = (fPη )ˆ , so we shall denote it by fˆPη without confusion. In
+fact, the integral on (nP ∩ s)(F ) and the Fourier transform commute by our choices of Haar measures
+(see [33, §I.7]); the commutativity of the integral on KH and the Fourier transform results from the
+H(F )-invariance of h*, *i.
+The following result is an analogue of [17, Theorem 13].
+Proposition 3.16. Let f ∈ Cc∞ (s(F )). Then
+Z
+1/2
+sup |Ds (X)|F
+X∈srs (F )
+
+HX (F )\H(F )
+12
+
+|f (Ad(x−1 )(X))|dx < +∞.
+
+Proof. It is proved in [37, Theorem 6.11] (see also [36, p. 77]) that for any fixed Cartan subspace c of s,
+Z
+1/2
+s
+|f (Ad(x−1 )(X))|dx < +∞.
+sup |D (X)|F
+X∈creg (F )
+
+HX (F )\H(F )
+
+Since T (s) is a finite set and the orbital integral is constant on any H(F )-orbit, we obtain a uniform
+bound for all X ∈ srs (F ).
+
+The lemma below is an analogue of [17, Theorem 15].
+− 1 −ε
+
+Lemma 3.17. There exists ε > 0 such that the function |Ds (X)|F 2
+
+is locally integrable on s(F ).
+
+Proof. Choose ε > 0 verifying the condition of Lemma 3.6. Let f ∈ Cc∞ (s(F )) with f ≥ 0. By the Weyl
+integration formula (3.1.2), we have
+Z
+Z
+Z
+X
+1
+−ε
+− 1 −ε
+|W (H, c)|−1
+|Ds (X)|F2
+f (Ad(x−1 )(X))dxdX.
+|Ds (X)|F 2 f (X)dX =
+s(F )
+
+creg (F )
+
+c∈T (s)
+
+ATc (F )\H(F )
+
+The convergence of the right hand side results from Proposition 3.16 and Lemmas 3.4 and 3.6.
+
+
+
+− 21
+
+Corollary 3.18. For any r ≥ 0, the function |Ds (X)|F sup{1, − log |Ds (X)|F }r is locally integrable
+on s(F ).
+Proof. It is the same as the proof of Corollary 3.7.
+
+
+
+3.3. The case of (G′ , H ′ ). Let E be a quadratic extension of F . Let g′ be a central simple algebra over
+F with a fixed embedding of F -algebras E ֒→ g′ . Let h′ := Centg′ (E) be the centraliser of E in g′ . By
+the double centraliser theorem (see [27, Theorem 3.1 in Chapter IV] for example), we know that h′ is a
+×
+×
+central simple algebra over E and that dim h′ = 21 dim g′ . Denote by G′ := g′ (resp. H ′ := h′ ) the
+′
+′
+group of invertible elements in g (resp. h ), which is considered as a reductive group over F with Lie
+algebra g′ (resp. h′ ). Let α ∈ E\F be such that α2 ∈ F . Then E = F (α) and Ad(α) is an involution on
+G′ independant of the choice of α. We see that H ′ is the subgroup of fixed points of Ad(α). Define
+S ′ := {x ∈ G′ : xAd(α)(x) = 1}
+
+and its tangent space at the neutral element
+Then we have
+
+s′ := {Y ∈ g′ : Ad(α)(Y ) = −Y }.
+g′ = h′ ⊕ s′
+
+and
+
+dim s′ = dim h′ =
+
+1
+dim g′ .
+2
+
+×
+
+For a linear subspace v′ ⊆ g′ , we write v′ := v′ ∩ G′ .
+Notice that if dim g = dim g′ , then after a base change to an algebraic closure of F containing E,
+the symmetric pair (G′ , H ′ ) is the same as the one (G, H) defined in Section 3.2. By Corollary 3.11, we
+×
+see that s′rs ⊆
+s′ and that for Y ∈ s′rs (resp. c′ ⊆ s′ a Cartan subspace), HY′ (resp. Tc′ ) is a torus of
+√
+dimension 12 dim g′ .
+f′ be a parabolic subgroup of G′ . Then P
+f′ ∩ H ′ is a parabolic subgroup of H ′ if and
+Lemma 3.19. Let P
+′
+′
+f
+f
+f′ , then M
+f′ ∩ H ′ is a Levi factor of P
+f′ ∩ H ′ .
+only if α ∈ P . Moreover, if α belongs to a Levi factor M of P
+
+Proof. It is the same as the proof of Lemma 3.12, except that one replaces ǫ with α.
+
+
+
+′
+
+By the Wedderburn-Artin theorem, G is isomorphic to GLn,D for some positive integer n and some
+central division algebra D over F . Since E embeds into g′ (F ), we see that n deg(D) is even, where
+deg(D) denotes the degree of D. From the Noether-Skolem theorem (see [27, Theorem 2.10 of Chapter
+IV] for example), up to conjugation by G′ (F ), the emdedding H ′ ֒→ G′ is reduced to one of the two
+cases below (see [12, §2.1 and §3.1] and [26, §3.4]).
+Case I: if deg(D) is even, then (G′ , H ′ ) = (GLn,D , ResE/F GLn,D′ ), where D′ := CentD (E) denoting
+the centraliser of E in D is a central division algebra over E of degree deg(D)
+. Let M0′ ≃ (ResE/F Gm,D′ )n
+2
+′
+n
+′
+(resp. Me0 ≃ (Gm,D ) ) be the subgroup of diagonal elements in H (resp. G′ ), which is a minimal Levi
+′
+f′ the unique element in L G′ (M ′ ) such
+subgroup of H ′ (resp. G′ ). For M ′ ∈ L H (M0′ ), denote by M
+e
+0
+
+13
+
+f′ ∩ H = M ′ . Then the map M ′ 7→ M
+f′ induces a bijection between L H ′ (M ′ ) and L G′ (M ′ ) (cf.
+that M
+0
+e
+0
+[26, Case I in §3.4]). Notice that we can identify AM ′ with AM
+f′ .
+Case II: if deg(D) is odd, then (G′ , H ′ ) = (GLn,D , ResE/F GL n2 ,D⊗F E ), where D ⊗F E is a central
+n
+division algebra over E of degree deg(D). Let M0′ ≃ (ResE/F Gm,D⊗F E ) 2 (resp. Me0′ ≃ (Gm,D )n ) be
+the subgroup of diagonal elements in H ′ (resp. G′ ), which is a minimal Levi subgroup of H ′ (resp. G′ ).
+′
+′
+′
+Denote by L G (Me0′ , M0′ ) the subset of elements in L G (Me0′ ) containing M0′ . For M ′ ∈ L H (M0′ ), denote
+f′ the unique element in L G′ (M ′ , M0′ ) such that M
+f′ ∩ H = M ′ . Then the map M ′ 7→ M
+f′ induces
+by M
+e
+0
+
+′
+
+′
+
+a bijection between L H (M0′ ) and L G (Me0′ , M0′ ) (cf. [26, Case II in §3.4]). Notice that we can identify
+AM ′ with AM
+f′ .
+′
+f′ ∩ s′rs )(F )
+f′ ∩ s′ , then AM ′ ⊆ H ′ . We say an element Y ∈ (m
+Suppose that M ′ ∈ L H (M0′ ). If Y ∈ m
+Y
+′
+is M -elliptic if AM ′ is the maximal F -split torus in HY′ (which is a torus by Corollary 3.11.2)). Denote
+f′ ∩ s′rs )(F )ell the set of M ′ -elliptic elements in (m
+f′ ∩ s′rs )(F ). For Y ∈ (m
+f′ ∩ s′rs )(F ), let [Y ]M ′
+by (m
+′
+′
+′
+f ∩ srs )(F )) the set of M ′ (F )-conjugacy classes
+be the M (F )-conjugacy class of Y . Denote by Γell ((m
+f′ ∩ s′ is a Cartan subspace, then AM ′ ⊆ Tc′ . We say a Cartan subspace
+f′ ∩ s′rs )(F )ell . If c′ ⊆ m
+in (m
+′
+′
+′
+′
+f
+c ⊆ m ∩s is M -elliptic if AM ′ is the maximal F -split torus in Tc′ (which is a torus by Corollary 3.11.3)).
+f′ ∩ s′ ) appears as the product of some copies of the form (H ′ , s′ ) in lower dimensions (cf.
+Since (M ′ , m
+f′ ∩ s′ ) as in Section 3.1. In our notation, we write
+[26, beginning of §5]), we define W (M ′ , c′ ) and T (m
+′
+′
+′
+′
+f
+f
+(m ∩ s )rs for the Zariski open subset of m ∩ s consisting of regular semi-simple elements with respect to
+the M ′ -action. By a base change to an algebraic closure of F containing E and the relevant discussion
+f′ ∩ s′rs ⊆ (m
+f′ ∩ s′ )rs and that a Cartan subspace of m
+f′ ∩ s′ is nothing but a
+in Section 3.2, we see that m
+f′ ∩ s′ . Denote by Tell (m
+f′ ∩ s′ ) the subset of representatives that are
+Cartan subspace of s′ contained in m
+′
+′
+′
+f
+M -elliptic Cartan subspaces in T (m ∩ s ).
+′
+f′ ∩ s′rs )(F )).
+Lemma 3.20 (cf. Lemma 3.13). Let M ′ ∈ L H (M0′ ) and [Y ′ ]M ′ ∈ Γell ((m
+′
+H
+′
+′
+e ∩ srs )(F )) be such that Y is H ′ (F )-conjugate to Y ′ . Then
+1) Let M ∈ L (M0 ) and [Y ]M ∈ Γell ((m
+H′
+there exists w ∈ W0 such that
+
+(Ad(w)(M ′ ), [Ad(w)(Y ′ )]Ad(w)(M ′ ) ) = (M, [Y ]M ).
+
+2) The cardinality of
+′
+
+is
+
+e ∩ s′rs )(F )), Y is H ′ (F )-conjugate to Y ′ }
+{(M, [Y ]M ) : M ∈ L H (M0′ ), [Y ]M ∈ Γell ((m
+′
+
+′
+
+|W0H ||W0M |−1 .
+
+Proposition 3.21. For f ′ ∈ Cc∞ (s′ (F )), we have the equality
+Z
+Z
+X
+X
+′ ′ −1
+′
+M′
+H ′ −1
+|W (M , c )|
+f (Y )dY =
+|W0 ||W0 |
+s′ (F )
+
+M ′ ∈L H ′ (M0′ )
+
+f ′ (Ad(x−1 )(Y ))dxdY.
+
+s′
+
+c′reg (F )
+
+f′ ∩s′ )
+c′ ∈Tell (m
+
+|D (Y )|F
+
+Z
+
+AM ′ (F )\H ′ (F )
+
+Proof. From [26, Lemma 9.1], any H ′ (F )-conjugacy class in s′rs (F ) is the image of a class [Y ]M ′ ∈
+f′ ∩ s′rs )(F )) for some M ′ ∈ L H ′ (M0′ ) in our case. By Lemma 3.20, the Weyl integration formula
+Γell ((m
+
+(3.1.2) can be written as the above equality (cf. [5, p. 16-17] and [33, (3) in §I.3]).
+′
+f′ ) such
+f′ the unique element in F G′ (M
+In both of Case I and Case II, for P ′ ∈ F H (M0′ ), denote by P
+0
+′
+′
+f′ ) (cf. [26,
+f′ ∩ H = P ′ . Then the map P ′ 7→ P
+f′ induces a bijection between F H (M ′ ) and F G (M
+that P
+0
+0
+§3.4]). Let τ ∈ D× in Case I (resp. τ ∈ GL2 (D) in Case II) be an element such that Ad(α)(τ ) = −τ .
+′
+Let P ′ ∈ F H (M0′ ). Then we have mPf′ ∩ s′ = mP ′ τ = τ mP ′ and nPf′ ∩ s′ = nP ′ τ = τ nP ′ by [26,
+Proposition 3.12]. We have fixed the Haar measures on mP ′ (F ) and nP ′ (F ) in Section 2.5. We shall
+choose the same Haar measures on (mPf′ ∩ s′ )(F ) and (nPf′ ∩ s′ )(F ) using above identifications induced
+by τ . Such Haar measures depend on the choice of τ .
+′
+
+′
+Lemma 3.22. Let Q′ ∈ F H (M0′ ). For X ∈ (mQ
+f′ ∩ srs )(F ), the map
+′
+−1
+)(X) − X
+NQ′ (F ) → (nQ
+f′ ∩ s )(F ), n 7→ Ad(n
+′
+
+1/2
+
+is an isomorphism of F -analytic manifolds whose Jacobian is |Ds (X)|F |D
+14
+
+′
+mQ
+f′ ∩s
+
+−1/2
+
+(X)|F
+
+.
+
+Proof. See [26, Lemma 8.1] for the isomorphism. The computation of its Jacobian is close to the proof
+of [37, Proposition 6.3.(ii)].
+
+Fix a continuous and nontrivial unitary character Ψ : F → C× . Let h*, *i be the symmetric bilinear
+form on g′ (F ) defined by
+hY, Xi := Trd(Y X), ∀Y, X ∈ g′ (F ),
+where Trd denotes the reduced trace on g′ (F ). It is non-degenerate, which can be seen after the base
+change to an algebraic closure of F . It is also invariant by the adjoint action of G′ (F ) and Ad(α). For
+f ′ ∈ Cc∞ (s′ (F )), define its normalised Fourier transform fˆ′ ∈ Cc∞ (s′ (F )) by
+Z
+′
+′
+′
+ˆ
+(3.3.1)
+∀Y ∈ s (F ), f (Y ) := cΨ (s (F ))
+f ′ (X)Ψ(hY, Xi)dX,
+s′ (F )
+
+ˆ
+where cΨ (s′ (F )) is the unique constant such that fˆ′ (Y ) = f ′ (−Y ) for all f ′ ∈ Cc∞ (s′ (F )) and all
+′
+f′ ∩ s′ is non-degenerate. Then we can
+Y ∈ s′ (F ). For any M ′ ∈ L H (M0′ ), the restriction of h*, *i on m
+f′ ∩ s′ )(F )).
+define similarly the normalised Fourier transform of f ′ ∈ Cc∞ ((m
+′
+H′
+′
+′
+∞ ′
+Suppose that P ∈ F (M0 ). For f ∈ Cc (s (F )), we define a function (parabolic descent) fP′ ′ ∈
+∞
+Cc ((mPf′ ∩ s′ )(F )) by
+Z
+′
+(3.3.2)
+fP ′ (Z) :=
+f ′ (Ad(k −1 )(Z + U ))dU dk
+KH ′ ×(nPf′ ∩s′ )(F )
+
+for all Z ∈ (mPf′ ∩ s′ )(F ). By our choices of Haar measures (see [33, §I.7]) and the H ′ (F )-invariance of
+h*, *i, we show that (fˆ′ )P ′ = (fP′ ′ )ˆ , which will be denoted by fˆ′ P ′ without confusion.
+Proposition 3.23. Let f ′ ∈ Cc∞ (s′ (F )). Then
+Z
+1/2
+s′
+sup |D (Y )|F
+Y ∈s′rs (F )
+
+′ (F )\H ′ (F )
+HY
+
+|f ′ (Ad(x−1 )(Y ))|dx < +∞.
+′
+
+−1
+
+′
+
+Corollary 3.24 (cf. Corollary 3.18). For any r ≥ 0, the function |Ds (Y )|F 2 sup{1, − log |Ds (Y )|F }r
+is locally integrable on s′ (F ).
+The rest of this section is devoted to the proof of Proposition 3.23. We shall follow the main steps
+in [37, §6.3], which is similar to the proof of [17, Theorem 13], and only point out some additional
+ingredients. Let n be the F -rank of G′ . Denote G′n := G′ , Hn′ := H ′ and s′n := s′ . Recall that the F -rank
+of Hn′ is n in Case I (resp. n2 in Case II). We shall use induction on n. For n = 1 in Case I (resp.
+n = 2 in Case II), the proposition is evident since HY′ (F )\H ′ (F ) is compact in our case.
+The following description of semi-simple elements and descendants (see [1, Definition 7.2.2]) is a
+generalisation of [16, Lemma 2.1] (see also [37, Proposition 4.7]).
+Proposition 3.25. 1) An element Y of s′ (F ) is semi-simple if and only if it is H ′ (F )-conjugate to an
+element of the form
+
+
+B 0
+Y (B) :=
+,
+0 0
+×
+
+′
+-action. More precisely, the set of H ′ (F )with B ∈ s′m (F ) being semi-simple with respect to the Hm
+′
+conjugacy classes of semi-simple elements in s (F ) is bijective to the set of pairs (m, [B]) where 0 ≤ m ≤ n
+′
+is an integer in Case I (resp. an even number in Case II) and [B] is a semi-simple Hm
+(F )-conjugacy
+′ ×
+class in sm (F ). Moreover, Y (B) is regular semi-simple if and only if m = n and B is regular semi×
+simple in s′ (F ).
+2) Let Y = Y (B) ∈ s′ (F ) be semi-simple. Then the descendant (HY′ , s′Y ) (as a representation) is
+isomorphic to
+′
+′
+(Hm,B
+, s′m,B ) × (Hn−m
+, s′n−m ),
+
+′
+′
+where Hm,B
+(resp. s′m,B ) denotes the centraliser of B in Hm
+(resp. s′m ).
+
+Proof. 1) By the base change to an algebraic closure of F containing E, we see from [20, Proposition 2.1]
+that an element Y ∈ s′ (F ) which is H ′ (F )-conjugate to Y (B) in the proposition is semi-simple. Now we
+suppose
+Y ∈ s′ (F ) is semi-simple. Since Y 2 ∈ h′ (F ), up to H ′ (F ) conjugation,
+ that 
+ wemay suppose
+ that
+
+A
+0
+A
+0
+A 0
+×
+2
+′
+Y =
+with A ∈ hm (F ) being semi-simple in the usual sense. From
+Y =Y
+,
+0 0
+0 0
+0 0
+15
+
+
+
+B 0
+we deduce that Y =
+for some B ∈ s′m (F ) such that AB = BA and some C ∈ s′n−m (F ). As
+0 C
+
+
+A 0
+×
+Y2 =
+, we have B ∈ s′m (F ). Because Y is semi-simple, it is shown in [20, p. 71] that Y and Y 2
+0 0
+have the same rank over an algebraic closure of F containing E. Then C = 0. We can also see from [20,
+′
+Proposition 2.1] that B is semi-simple with respect to the Hm
+-action after the base change. We have
+established the first statement.
+×
+For the second statement, it suffices to notice that two such elements Y (B1 ) with B1 ∈ s′m1 (F ) and
+′
+′ ×
+Y (B2 ) with B2 ∈ sm2 (F ) in the proposition are H (F )-conjugate if and only if m1 = m2 (denoted by
+′
+m) and B1 and B2 are Hm
+(F )-conjugate.
+The third statement follows from the base change or 2).
+2) It can be shown by direct calculation.
+
+Fix a Cartan subspace c′ of s′ . The lemma below is an analogue of [17, Lemma 29].
+′
+
+Lemma 3.26. Let f ′ ∈ Cc∞ (s′ (F ) − N s ). Then
+Z
+′
+1/2
+sup |Ds (Y )|F
+
+′ (F )\H ′ (F )
+HY
+
+Y ∈c′reg (F )
+
+|f ′ (Ad(x−1 )(Y ))|dx < +∞.
+
+Proof. We may apply the argument of [37, Lemma 6.14] relying on Lemma 3.4 and [38, Proposition 3.11],
+which is an analogue of Harish-Chandra's semi-simple descent for orbital integrals [22, Lemma 16.1]. By
+Proposition 3.25.2), it suffices to prove the boundedness of orbital integrals for
+′
+′
+(Hm,B
+, s′m,B ) × (Hn−m
+, s′n−m )
+
+×
+
+′
+with B ∈ s′m (F ) being semi-simple with respect to the Hm
+-action and 0 < m ≤ n. Since there exists an
+′
+′
+′
+′
+Hm,B -equivariant linear isomorphism sm,B → hm,B induced by Z 7→ ZB, the first factor (Hm,B
+, s′m,B ) is
+covered by Harish-Chandra's work [17, Theorem 13] on classical orbital integrals on Lie algebras. Then
+′
+we conclude by applying the induction hypothesis to the second factor (Hn−m
+, s′n−m ).
+
+′
+
+Consider X0 ∈ N s . By the Jacobson-Morozov theorem for symmetric spaces (Lemma 3.8), there
+exists a group homomorphism φ : SL2 (F ) → G′ (F ) such that
+
+
+
+
+
+
+0 1
+0 0
+1 0
+′
+X0 = dφ
+, Y0 := dφ
+∈ s (F ) and D0 := dφ
+∈ h′ (F ).
+0 0
+1 0
+0 −1
+
+Write r′ := dim s′Y0 and m′ := 12 Tr(ad(−D0 )|s′Y ).
+0
+
+Lemma 3.27.
+√ We have
+1) r′ ≥ 21 dim g′ ;
+√
+2) r′ + m′ > 14 dim g′ + 41 dim g′ .
+Proof. It suffices to check these relations after a base change to an algebraic closure of F containing E.
+Then the lemma is exactly [37, Proposition 4.4].
+
+Let s′bdd be the set of X ∈ s′ (F ) such that there exists an open neighbourhood σ ′ of X in s′ (F )
+satisfying
+Z
+′
+1/2
+|f ′ (Ad(x−1 )(Y ))|dx < +∞
+sup |Ds (Y )|F
+′
+
+for all f ∈
+
+′ (F )\H ′ (F )
+HY
+
+Y ∈c′reg (F )
+
+Cc∞ (s′ (F ))
+
+′
+
+′
+
+with Supp(f ) ⊆ σ . The next lemma is an analogue of [17, Lemma 38].
+′
+
+Lemma 3.28. We have N s − {0} ⊆ s′bdd .
+Proof. We may apply the argument of [37, Lemma 6.16] thanks to Lemma 3.27. We only sketch some
+steps for convenience and omit the details. In fact, we use induction on r′ , which is also dim h′X0 by [37,
+′
+Lemma 3.2] and dim s′ = dim h′ = 12 dim g′ (cf. [37, Lemma 4.3]), for X0 ∈ N s − {0}. Suppose that for
+′
+all X0′ ∈ N s − {0} satisfying h′X ′ < r′ , we have X0′ ∈ s′bdd . We need to show that X0 ∈ s′bdd . Denote
+′
+
+0
+
+′
+
+′
+
+′
+
+by Nqs the union of all H ′ (F )-orbits in N s of dimension ≤ q. Then X0 ∈ N 1s dim g′ −r′ − N 1s dim g′ −r′ −1 ,
+′
+
+′
+
+2
+
+2
+
+and the induction hypothesis means that N s − N 1s dim g′ −r′ ⊆ s′bdd . Fix t ∈ F × with |t|F > 1 and then
+2
+construct an open H ′ (F )-invariant neighbourhood ω0 of X0 in s′ (F ) as in the proof of [37, Lemma 6.16].
+Let Y ∈ c′reg (F ) and f ′ ∈ Cc∞ (ω0 ). As in [37, (1) in p. 1853] and the first paragraph of the proof of [37,
+16
+
+′
+
+Lemma 6.16], there exists fα′ 0 ∈ Cc∞ (s′ (F )) such that Supp(fα′ 0 ) ∩ N 1s dim g′ −r′ = ∅ and that (see (3.1.3)
+2
+for the notation)
+1
+
+It−1 Y (f ′ ) = |t|F4
+
+(3.3.3)
+
+dim g′ + 14
+
+√
+dim g′ −r ′ −m′
+
+(IY (f ′ ) + IY (fα′ 0 )).
+
+By Lemma 3.26 and the induction hypothesis, we have
+a :=
+
+sup
+Y
+
+1
+4
+
+Denote c := |t|F
+(3.3.3) that
+
+′
+
+dim g
+
++ 14
+
+√
+
+dim g′ −r ′ −m′
+
+∈c′reg (F )
+
+IY (|fα′ 0 |) < +∞.
+
+< 1 (by Lemma 3.27 and |t|F > 1). By iteration, we deduce from
+
+It−d Y (f ′ ) = cd IY (f ′ ) +
+
+X
+
+ck Itk−d Y (fα′ 0 ).
+
+X
+
+ck Itk Y (fα′ 0 ).
+
+1≤k≤d
+
+Replacing Y with td Y , we get
+IY (f ′ ) = cd Itd Y (f ′ ) +
+
+1≤k≤d
+′
+
+By Lemma 3.4, we have lim Itd Y (f ) = 0. Then
+d→+∞
+
+|IY (f ′ )| ≤ a
+′
+
++∞
+X
+
+k=1
+
+ck =
+
+ac
+.
+1−c
+
+′
+
+As we may replace f by |f | in the above argument, we have completed the proof.
+Proof of Proposition 3.23. We may use the argument in [17, §VI.7] to show that 0 ∈
+proposition follows from Lemmas 3.26 and 3.28.
+
+
+s′bdd .
+
+Then the
+
+
+4. Weighted orbital integrals
+4.1. The case of (G, H). Let E/F be a quadratic field extension and η the quadratic character of
+F × /N E × attached to it, where N is the norm map E × → F × . For x ∈ H(F ), which is viewed as
+an element in G(F ), we denote by Nrd(x) its reduced norm. Suppose that M ∈ L G,ω (M0 ) and that
+Q ∈ F G (M ). For all f ∈ Cc∞ (s(F )) and X ∈ (m ∩ srs )(F ), we define the weighted orbital integral
+Z
+1/2
+Q
+Q
+(4.1.1)
+JM
+(η, X, f ) := |Ds (X)|F
+f (Ad(x−1 )(X))η(Nrd(x))vM
+(x)dx.
+HX (F )\H(F )
+
+Recall that this definition depends implicitly on the choice of a maximal compact subgroup of G(F ),
+Q
+(x) is left-invariant by M (F ) and we have HX ⊆ MH for
+which has been fixed in Section 2.2. Since vM
+Q
+X ∈ m ∩ srs , we see that vM (x) is left-invariant by HX (F ). This integral is absolutely convergent since
+the orbit Ad(H(F ))(X) is closed in s(F ), which ensures that the integrand is a compactly supported
+(and locally constant) function on the homogeneous space.
+Q
+Q
+Notice that for x ∈ MH (F ), we have JM
+(η, Ad(x−1 )(X), f ) = η(Nrd(x))JM
+(η, X,f ). Sometimes it is
+0 A
+convenient to introduce a transfer factor as in [37, Definition 5.7]: for X =
+∈ srs (F ), define
+B 0
+(4.1.2)
+
+κ(X) := η(Nrd(A)),
+
+where Nrd(A) denotes the reduced norm of A ∈ GLn (D). Then we have κ(Ad(x−1 )(X)) = η(Nrd(x))κ(X),
+Q
+and thus the function κ(*)JM
+(η, *, f ) is constant on Ad(MH (F ))(X).
+Though we mainly consider M ∈ L G,ω (M0 ), it is unharmful to extend our definition by (4.1.1) to all
+Levi subgroups of the form M = Ad(w)(L), where L ∈ L G,ω (M0 ) and w ∈ W0H .
+One may also extend in the obvious way the definition (4.1.1) of weighted orbital integrals to the
+symmetric pair (L, LH , Ad(ǫ)), where L ∈ L G,ω (M0 ), since it appears as the product of some copies of
+the form (G, H, Ad(ǫ)) in lower dimensions.
+Proposition 4.1. Suppose that M ∈ L G,ω (M0 ) and that Q ∈ F G (M ).
+Q
+1) For X ∈ (m ∩ srs )(F ) fixed, the support of the distribution JM
+(η, X, *) is contained in the closed
+orbit Ad(H(F ))(X).
+Q
+2) For f ∈ Cc∞ (s(F )) fixed, the function JM
+(η, *, f ) is locally constant on (m ∩ srs )(F ). If c ⊆ m ∩ s is
+a Cartan subspace, the restriction of this function to creg (F ) vanishes outside a compact subset of c(F ).
+17
+
+3) If w ∈ NormH(F ) (M0 ), x ∈ MH (F ) and k ∈ KH , we have the equality
+G
+G
+JAd(w)(M)
+(η, Ad(wx)(X), Ad(k)(f )) = η(Nrd(wxk))JM
+(η, X, f )
+
+for all X ∈ (m ∩ srs )(F ) and f ∈ Cc∞ (s(F )).
+4) For X ∈ (m ∩ srs )(F ) and f ∈ Cc∞ (s(F )), we have the equality
+M
+
+η
+Q
+),
+JM
+(η, X, f ) = JM Q (η, X, fQ
+
+η
+where fQ
+∈ Cc∞ ((mQ ∩ s)(F )) is defined by (3.2.2).
+5) (Descent formula) If L ∈ L G,ω (M0 ), L ⊆ M and X ∈ (l ∩ srs )(F ), we have
+X
+η
+G
+′
+L′
+JM
+(η, X, f ) =
+dG
+L (M, L )JL (η, X, fQ′ )
+L′ ∈L G (L)
+
+for all f ∈ Cc∞ (s(F )), where Q′ denotes the second component of s(M, L′ ) (see Section 2.7).
+6) (Non-equivariance) For X ∈ (m ∩ srs )(F ), y ∈ H(F ) and f ∈ Cc∞ (s(F )), we have the equality
+X
+M
+η
+G
+JM
+(η, X, Ad(y −1 )(f )) = η(Nrd(y))
+),
+JM Q (η, X, fQ,y
+Q∈F G (M)
+
+η
+where fQ,y
+∈ Cc∞ ((mQ ∩ s)(F )) is defined by
+Z
+η
+′
+(4.1.3)
+fQ,y
+(Z) :=
+f (Ad(k −1 )(Z + U ))η(Nrd(k))vQ
+(ky)dU dk, ∀Z ∈ (mQ ∩ s)(F ).
+KH ×(nQ ∩s)(F )
+
+Proof. 1) This is obvious from the definition.
+2) Let Y ∈ (m ∩ srs )(F ). Then c := sY ⊆ m ∩ s is a Cartan subspace and Y ∈ creg (F ). Since
+Ad(MH (F ))(creg (F )) is an open subset of (m ∩ srs )(F ) (see [29, p. 105]), in order to prove the first
+Q
+statement, it suffices to find a neighbourhood U of Y in creg (F ) on which the function κ(*)JM
+(η, *, f )
+is constant. We shall follow the proof of [22, Theorem 17.11]. Consider the function φ on creg (F ) ×
+(Tc (F )\H(F )) defined by φ(X, x) := (κf )(Ad(x−1 )(X)). Then φ is locally constant but usually not
+compactly supported. However, now choosing a compact neighbourhood σc of Y in creg (F ), we see from
+Harish-Chandra's compactness lemma for symmetric spaces (Lemma 3.2) applied to σs := Supp(f ) that
+the restriction of φ to σc × (Tc (F )\H(F )) is compactly supported. By [22, Lemma 2.1], there exists an
+open neighbourhood U of Y in σc such that φ(X, x) = φ(Y, x) for all X ∈ U and x ∈ Tc (F )\H(F ). It
+Q
+follows that the function κ(*)JM
+(η, *, f ) is constant on U .
+The second statement is a corollary of Lemma 3.4.
+3) The effect of Ad(w) is a consequence of our choice of Haar measures. The effect of Ad(x) results
+G
+from the left-invariance of vM
+(x) by MH (F ). The effect of Ad(k) comes from the right-invariance of
+G
+vM (x) by KH . One should keep in mind the effect of η(Nrd(x)) in every step.
+4) Write QH := Q ∩ H ∈ F H (M0 ). One sees that MQH = MQ ∩ H and that NQH = NQ ∩ H.
+Applying the change of variables x = mnk with m ∈ MQH (F ), n ∈ NQH (F ) and k ∈ KH in (4.1.1),
+M
+Q
+since vM
+(x) = vM Q (m), we have
+Z
+M
+1/2
+Q
+f (Ad(mnk)−1 (X))η(Nrd(mk))vM Q (m)dkdndm.
+JM
+(η, X, f ) = |Ds (X)|F
+(MQH ,X (F )\MQH (F ))×NQH (F )×KH
+
+Applying Lemma 3.15 to Y = Ad(m−1 )(X), we deduce
+Z
+1/2
+Q
+mQ ∩s
+JM (η, X, f ) =|D
+(X)|F
+M
+
+f (Ad(k −1 )(Ad(m−1 )(X) + U ))
+
+(MQH ,X (F )\MQH (F ))×KH ×(nQ ∩s)(F )
+
+η(Nrd(mk))vM Q (m)dU dkdm
+Z
+1/2
+mQ ∩s
+=|D
+(X)|F
+
+MQH ,X (F )\MQH (F )
+
+M
+
+η
+fQ
+(Ad(m−1 )(X))η(Nrd(m))vM Q (m)dm
+
+M
+η
+).
+=JM Q (η, X, fQ
+
+5) It follows from (7) in Section 2.7 and 4).
+6) By the change of variables, we see that
+Z
+1/2
+G
+JM
+(η, X, Ad(y −1 )(f )) = |Ds (X)|F
+
+HX (F )\H(F )
+18
+
+f (Ad(x−1 )(X))η(Nrd(xy))vM (xy)dx.
+
+For x ∈ H(F ) and Q ∈ F G,ω (M0 ), let kQ (x) be an element in KH such that xkQ (x)−1 ∈ QH (F ). It
+follows from the product formula (2.6.2) that (see the proof of [3, Lemma 8.2])
+X
+Q
+′
+vM (xy) =
+vM
+(x)vQ
+(kQ (x)y).
+Q∈F G (M)
+
+As in 4), we write
+G
+JM
+(η, X, Ad(y −1 )(f )) =η(Nrd(y))
+
+X
+
+Q∈F G (M)
+
+1/2
+
+|Ds (X)|F
+
+′
+vQ
+(kQ (x)y)dx
+
+=η(Nrd(y))
+
+X
+
+Q∈F G (M)
+
+1/2
+
+|Ds (X)|F
+
+Z
+
+HX (F )\H(F )
+
+Q
+f (Ad(x−1 )(X))η(Nrd(x))vM
+(x)
+
+Z
+
+(MQH ,X (F )\MQH (F ))×NQH (F )×KH
+
+M
+
+′
+(ky)dkdndm.
+f (Ad(mnk)−1 (X))η(Nrd(mk))vM Q (m)vQ
+
+Applying again Lemma 3.15 to Y = Ad(m−1 )(X), we obtain
+Z
+X
+1/2
+G
+JM
+(η, X, Ad(y −1 )(f )) =η(Nrd(y))
+|DmQ ∩s (X)|F
+
+(MQH ,X (F )\MQH (F ))×KH ×(nQ ∩s)(F )
+
+Q∈F G (M)
+
+M
+
+′
+(ky)dU dkdm
+f (Ad(k −1 )(Ad(m−1 )(X) + U ))η(Nrd(mk))vM Q (m)vQ
+Z
+X
+1/2
+η
+=η(Nrd(y))
+|DmQ ∩s (X)|F
+fQ,y
+(Ad(m−1 )(X))
+MQH ,X (F )\MQH (F )
+
+Q∈F G (M)
+M
+
+η(Nrd(m))vM Q (m)dm
+X
+M
+η
+=η(Nrd(y))
+).
+JM Q (η, X, fQ,y
+Q∈F G (M)
+
+
+Lemma 4.2. Suppose that M ∈ L G,ω (M0 ) and that Q ∈ F G (M ). Let σ ⊆ s(F ) be a compact
+subset. There exist constants c > 0 and N ∈ N such that if x ∈ H(F ) and X ∈ (m ∩ srs )(F ) satisfy
+Ad(x−1 )(X) ∈ σ, then
+Q
+|vM
+(x)| ≤ c sup{1, − log |Ds (X)|F }N .
+Proof. It is shown in the proof of [33, Lemme III.5] that there exist constants c1 > 0 and N ∈ N such
+that for all x ∈ G(F ),
+Q
+|vM
+(x)| ≤ c1 (1 + log kxk)N .
+Suppose that x ∈ H(F ) and X ∈ (m ∩ srs )(F ) satisfy Ad(x−1 )(X) ∈ σ. If we replace x by yx and X
+by Ad(y)(X), where y ∈ MH (F ), the two sides in the inequality to be proved remain unchanged. Since
+T (m ∩ s) is a finite set, we may fix a Cartan subspace c ⊆ m ∩ s and suppose that X ∈ creg (F ). Let
+τ ∈ Tc (F ) be such that
+kτ xk = ′ inf kτ ′ xk.
+Then
+
+τ ∈Tc (F )
+
+Q
+Q
+|vM
+(x)| = |vM
+(τ x)| ≤ c1 (1 + log kτ xk)N = c1 (1 +
+
+Now it suffices to apply Lemma 3.5.
+
+inf
+
+τ ′ ∈Tc (F )
+
+log kτ ′ xk)N .
+
+
+Corollary 4.3. Suppose that M ∈ L G,ω (M0 ) and that Q ∈ F G (M ). Let f ∈ Cc∞ (s(F )). There exist
+constants c > 0 and N ∈ N such that for all X ∈ (m ∩ srs )(F ), we have
+M
+
+η
+)| ≤ c sup{1, − log |Ds (X)|F }N .
+|JM Q (η, X, fQ
+
+Proof. By Proposition 4.1.4) and Lemma 4.2 applied to σ = Supp(f ), we see that
+Z
+M
+1/2
+Q
+η
+|f (Ad(x−1 )(X))vM
+(x)|dx
+)| ≤|Ds (X)|F
+|JM Q (η, X, fQ
+HX (F )\H(F )
+Z
+1/2
+≤c sup{1, − log |Ds (X)|F }N |Ds (X)|F
+|f (Ad(x−1 )(X))|dx.
+HX (F )\H(F )
+
+Now we draw our conclusion by Proposition 3.16.
+
+
+19
+
+′
+
+′
+
+4.2. The case of (G′ , H ′ ). Suppose that M ′ ∈ L H (M0′ ) and that Q′ ∈ F H (M ′ ). For all f ′ ∈
+f′ ∩ s′rs )(F ), we define the weighted orbital integral
+Cc∞ (s′ (F )) and Y ∈ (m
+Z
+1/2
+Q′
+Q′
+′
+s′
+(4.2.1)
+JM
+f ′ (Ad(x−1 )(Y ))vM
+′ (Y, f ) := |D (Y )|F
+′ (x)dx.
+′ (F )\H ′ (F )
+HY
+
+Recall that this definition depends implicitly on the choice of a maximal compact subgroup of H ′ (F ),
+which has been fixed in Section 2.2. By the base change to an algebraic closure of F containing E, we
+′
+f′ ∩ s′rs . Then v Q ′ (x) is left-invariant by H ′ (F ). This integral
+see that HY′ ⊆ HY′ 2 ⊆ M ′ for Y ∈ m
+Y
+M
+is absolutely convergent since the orbit Ad(H ′ (F ))(Y ) is closed in s′ (F ). Notice that for x ∈ M ′ (F ),
+Q′
+Q′
+Q′
+−1
+′
+′
+′
+we have JM
+)(Y ), f ′ ) = JM
+′ (Ad(x
+′ (Y, f ), i.e., the function JM ′ (*, f ) is constant on Ad(M (F ))(Y ).
+One may extend in the obvious way the definition (4.2.1) to the symmetric pair (Le′ , L′ , Ad(α)), where
+′
+L′ ∈ L H (M0′ ), since it appears as the product of some copies of the form (G′ , H ′ , Ad(α)) in lower
+dimensions.
+′
+
+′
+
+Proposition 4.4. Suppose that M ′ ∈ L H (M0′ ) and that Q′ ∈ F H (M ′ ).
+′
+f′ ∩ s′rs )(F ) fixed, the support of the distribution J Q ′ (Y, *) is contained in the closed orbit
+1) For Y ∈ (m
+M
+Ad(H ′ (F ))(Y ).
+Q′
+′
+′
+′
+′
+f′
+f′
+2) For f ′ ∈ Cc∞ (s′ (F )) fixed, the function JM
+′ (*, f ) is locally constant on (m ∩ srs )(F ). If c ⊆ m ∩ s
+′
+is a Cartan subspace, the restriction of this function to creg (F ) vanishes outside a compact subset of
+c′ (F ).
+3) If w ∈ NormH ′ (F ) (M0′ ), x ∈ M ′ (F ) and k ∈ KH ′ , we have the equality
+′
+
+′
+
+′
+H
+′
+H
+JAd(w)(M
+′ ) (Ad(wx)(Y ), Ad(k)(f )) = JM ′ (Y, f )
+
+f′ ∩ s′rs )(F ) and f ′ ∈ Cc∞ (s′ (F )).
+for all Y ∈ (m
+f′ ∩ s′rs )(F ) and f ′ ∈ Cc∞ (s′ (F )), we have the equality
+4) For Y ∈ (m
+′
+
+M
+
+Q
+Q
+′
+′
+JM
+′ (Y, f ) = JM ′ (Y, fQ′ ),
+′
+
+′
+∞
+′
+where fQ
+′ ∈ Cc ((m f′ ∩ s )(F )) is defined by (3.3.2).
+Q
+
+′
+l′ ∩ s′rs )(F ), we have
+5) (Descent formula) If L′ ∈ L H (M0′ ), L′ ⊆ M ′ and Y ∈ (e
+X
+′
+H′
+′
+′
+L
+′
+JM
+dH
+′ (Y, f ) =
+L′ (M , L)JL′ (Y, fQ )
+
+L∈L H ′ (L′ )
+
+for all f ′ ∈ Cc∞ (s′ (F )), where Q denotes the second component of s(M ′ , L) (see Section 2.7).
+f′ ∩ s′rs )(F ), y ∈ H ′ (F ) and f ′ ∈ Cc∞ (s′ (F )), we have the equality
+6) (Noninvariance) For Y ∈ (m
+X
+M ′
+H′
+−1
+′
+JM
+)(f ′ )) =
+JM ′Q (Y, fQ
+′ (Y, Ad(y
+′ ,y ),
+Q′ ∈F H ′ (M ′ )
+
+′
+∞
+′
+where fQ
+′ ,y ∈ Cc ((m f′ ∩ s )(F )) is defined by
+Q
+Z
+′
+′
+′
+f ′ (Ad(k −1 )(Z + U ))vQ
+(4.2.2)
+fQ
+′ (ky)dU dk, ∀Z ∈ (m f′ ∩ s )(F ).
+′ ,y (Z) :=
+Q
+′
+KH ′ ×(nQ
+f′ ∩s )(F )
+
+Proof. It is almost the same as the proof of Proposition 4.1, except that one needs to use Lemma 3.22
+to show 4) and 6).
+
+′
+
+′
+
+Lemma 4.5 (cf. Lemma 4.2). Suppose that M ′ ∈ L H (M0′ ) and that Q′ ∈ F H (M ′ ). Let σ ′ ⊆ s′ (F ) be
+f′ ∩ s′rs )(F )
+a compact subset. There exist constants c > 0 and N ∈ N such that if x ∈ H ′ (F ) and Y ∈ (m
+−1
+′
+satisfy Ad(x )(Y ) ∈ σ , then
+′
+
+′
+
+Q
+s
+N
+|vM
+.
+′ (x)| ≤ c sup{1, − log |D (Y )|F }
+′
+
+′
+
+Corollary 4.6. Suppose that M ′ ∈ L H (M0′ ) and that Q′ ∈ F H (M ′ ). Let f ′ ∈ Cc∞ (s′ (F )). There exist
+f′ ∩ s′rs )(F ), we have
+constants c > 0 and N ∈ N such that for all Y ∈ (m
+M
+
+′
+
+′
+
+′
+s
+N
+|JM ′Q (Y, fQ
+.
+′ )| ≤ c sup{1, − log |D (Y )|F }
+
+Proof. We may apply the argument of Corollary 4.3 with the help of Proposition 4.4.4), Lemma 4.5 and
+Proposition 3.23.
+
+20
+
+5. The noninvariant trace formula
+5.1. The case of (G, H). Suppose that M ∈ L G,ω (M0 ). For x, y ∈ G(F ), we define a (G, M )-family
+(vP (x, y))P ∈P G (M) as in [5, (12.1) in §12] by
+vP (λ, x, y) := e−λ(HP (y)−HP (x)) , ∀λ ∈ ia∗M , P ∈ P G (M ),
+
+where P ∈ P G (M ) is the parabolic subgroup opposite to P . Let E/F be a quadratic field extension
+and η the quadratic character of F × /N E × attached to it. For f, f ′ ∈ Cc∞ (s(F )) and X ∈ (m ∩ srs )(F )ell ,
+we define
+(5.1.1)
+Z
+G
+JM
+(η, X, f, f ′ ) := |Ds (X)|F
+
+f (Ad(x−1 )(X))f ′ (Ad(y −1 )(X))η(Nrd(x−1 y))vM (x, y)dxdy.
+
+(AM (F )\H(F ))2
+
+Proposition 5.1. Suppose that M ∈ L G,ω (M0 ) and that f, f ′ ∈ Cc∞ (s(F )).
+1) The integral (5.1.1) is absolutely convergent.
+G
+2) The function JM
+(η, *, f, f ′ ) is locally constant on (m ∩ srs )(F )ell .
+G
+3) If c ⊆ m ∩ s is an M -elliptic Cartan subspace, the restriction of JM
+(η, *, f, f ′ ) to creg (F ) vanishes
+outside a compact subset of c(F ).
+4) If w ∈ NormH(F ) (M0 ), x ∈ MH (F ) and k, k ′ ∈ KH , we have the equality
+G
+G
+JAd(w)(M)
+(η, Ad(wx)(X), Ad(k)(f ), Ad(k ′ )(f ′ )) = η(Nrd(kk ′ ))JM
+(η, X, f, f ′ )
+
+for all X ∈ (m ∩ srs )(F )ell .
+5) There exist constants c > 0 and N ∈ N such that for all X ∈ (m ∩ srs )(F )ell , we have
+G
+|JM
+(η, X, f, f ′ )| ≤ c sup{1, − log |Ds (X)|F }N .
+
+6) For all X ∈ (m ∩ srs )(F )ell , we have
+X
+G
+JM
+(η, X, f, f ′ ) =
+
+η
+
+η
+L2
+L1
+′
+dG
+M (L1 , L2 )JM (η, X, fQ )JM (η, X, f Q2 ),
+1
+
+L1 ,L2 ∈L G (M)
+
+where (Q1 , Q2 ) := s(L1 , L2 ) (see Section 2.7).
+Proof. The statements 1)-4) can be proved in the same way as the proof of analogous properties for
+(4.1.1) in Section 4. Notice that the η(Nrd(*))-invariant effects coming from x and y may sometimes
+cancel.
+For x ∈ G(F ), we define a (G, M )-family (v P (x))P ∈P G (M) by
+v P (λ, x) := eλ(HP (x)) , ∀λ ∈ ia∗M , P ∈ P G (M ).
+
+Then vP (x, y) = v P (x)vP (y) as the product of (G, M )-families. Notice that for all Q ∈ P G (M ) and
+x ∈ G(F ), we have
+Q
+vQ
+M (x) = vM (x).
+
+The statement 6) is a consequence of the splitting formula of (G, M )-families ((6) in Section 2.7) and
+
+Proposition 4.1.4). It together with Corollary 4.3 implies the statement 5).
+For f, f ′ ∈ Cc∞ (s(F )), we define
+Z
+X
+X
+|W (MH , c)|−1
+J G (η, f, f ′ ) :=
+|W0Mn ||W0GLn |−1 (−1)dim(AM /AG )
+creg (F )
+(5.1.2)
+c∈Tell (m∩s)
+M∈L G,ω (M0 )
+G
+JM
+(η, X, f, f ′ )dX.
+
+This expression is absolutely convergent by Proposition 5.1.5) and Corollary 3.7.
+Remark 5.2. We have the equality
+J G (η, f, f ′ ) = J G (η, f ′ , f ).
+It results from the fact that for all M ∈ L G,ω (M0 ) and all x, y ∈ G(F ), we have vM (x, y) = vM (y, x).
+Again, one may extend in the obvious way the definitions (5.1.1) and (5.1.2) to the symmetric pair
+(L, LH , Ad(ǫ)), where L ∈ L G,ω (M0 ), since it appears as the product of some copies of the form
+(G, H, Ad(ǫ)) in lower dimensions.
+21
+
+Theorem 5.3 (Noninvariant trace formula). For all f, f ′ ∈ Cc∞ (s(F )), we have the equality
+J G (η, f, fˆ′ ) = J G (η, fˆ, f ′ ).
+The rest of this section is devoted to the proof of Theorem 5.3.
+Fix P0 ∈ P G (M0 ). Denote
+
+G
+a+
+P0 := {T ∈ aM0 : α(T ) ≥ 0, ∀α ∈ ∆P0 }.
+
+For T ∈ a+
+P0 , write
+
+d(T ) := inf α(T ),
+α∈∆G
+P
+
+0
+
+which is invariant under the translation by aG . Set R0 := (aM0 ,F + aG )/aG , which is a lattice in
+aM0 /aG . For T ∈ R0 ∩ (a+
+P0 /aG ), we define a function u(*, T ) on AG (F )\G(F ) as in [5, p. 21], which is
+the characteristic function of certain compact subset. To be precise, let CM0 (T ) be the convex hull in
+aM0 /aG of
+{TB : B ∈ P G (M0 )},
+where TB denotes the unique W0G -translate of T which lies in a+
+B . Then u(x, T ) is defined as the
+characteristic function of the set of points
+x = k1 mk2 , m ∈ AG (F )\M0 (F ), k1 , k2 ∈ KG ,
+
+in AG (F )\G(F ) such that HM0 (m) lies in CM0 (T ).
+Let f, f ′ ∈ Cc∞ (s(F )). For x ∈ H(F ), we define
+Z
+f (X)f ′ (Ad(x−1 )(X))dX.
+k(x, f, f ′ ) :=
+s(F )
+
+For T ∈ R0 ∩ (a+
+P0 /aG ), we define
+′
+
+T
+
+K (η, f, f ) :=
+
+Z
+
+k(x, f, f ′ )η(Nrd(x))u(x, T )dx.
+
+AG (F )\H(F )
+
+Since AG (F )\H(F ) is a closed subgroup of AG (F )\G(F ), the restriction of u(x, T ) to AG (F )\H(F ) is
+also compactly supported, and the above integral is absolutely convergent.
+By the Weyl integration formula (Proposition 3.14), we obtain the geometric expansion
+Z
+X
+X
+|W (MH , c)|−1
+K T (η, X, f, f ′ )dX,
+K T (η, f, f ′ ) =
+|W0Mn ||W0GLn |−1
+M∈L G,ω (M0 )
+
+where
+T
+
+′
+
+s
+
+K (η, X, f, f ) :=|D (X)|F
+
+creg (F )
+
+c∈Tell (m∩s)
+
+Z
+
+AG (F )\H(F )
+
+Z
+
+f (Ad(x−1 )(X))f ′ (Ad(xy)−1 (X))η(Nrd(y))
+
+AM (F )\H(F )
+
+u(y, T )dxdy.
+By the change of variables xy 7→ y, we can write
+(5.1.3)
+Z
+T
+′
+s
+K (η, X, f, f ) = |D (X)|F
+f (Ad(x−1 )(X))f ′ (Ad(y −1 )(X))η(Nrd(x−1 y))uM (x, y, T )dxdy,
+(AM (F )\H(F ))2
+
+where
+uM (x, y, T ) :=
+
+Z
+
+u(x−1 ay, T )da
+
+AG (F )\AM (F )
+
+is defined as in [5, p. 21].
+For x, y ∈ G(F ) and T ∈ R0 ∩ (a+
+P0 /aG ), we define the second weight function vM (x, y, T ) as in [5, p.
+30], which is left-invariant under the multiplication of AM (F ) on x or y. To be precise, let λ ∈ a∗M ⊗R C
+be a point whose real part λR ∈ a∗M is in general position. For P ∈ P G (M ), set
+∨
+∆λP := {α ∈ ∆G
+P : λR (α ) < 0},
+
+λ
+where α∨ is the "coroot" associated to α ∈ ∆G
+P (see [6, p. 26]). Denote by φP the characteristic function
+λ
+′
+′
+′
+λ
+of the set of T ∈ aM such that ̟α (T ) > 0 for each α ∈ ∆P and that ̟α (T ) ≤ 0 for each α ∈ ∆G
+P − ∆P ,
+∨
+G
+G ∗
+G
+where {̟α : α ∈ ∆P } is the basis of (aP ) which is dual to {α : α ∈ ∆P }. Let
+
+YP (x, y, T ) := TP + HP (x) − HP (y), ∀P ∈ P G (M ).
+22
+
+The set YM (x, y, T ) = {YP (x, y, T ) : P ∈ P G (M )} is a (G, M )-orthogonal set in the sense of [5, p. 19].
+Define
+X
+λ
+σM (T ′ , YM (x, y, T )) :=
+(−1)|∆P | φλP (T ′ − YP (x, y, T )), ∀T ′ ∈ aM /aG .
+P ∈P G (M)
+
+The function σM (*, YM (x, y, T )) is known to be compactly supported (see [5, p. 22]). Then vM (x, y, T )
+is defined as the integral
+Z
+vM (x, y, T ) :=
+σM (HM (a), YM (x, y, T ))da.
+AG (F )\AM (F )
+
+Now, we define the corresponding weighted orbital integral
+(5.1.4)
+Z
+T
+′
+s
+J (η, X, f, f ) := |D (X)|F
+f (Ad(x−1 )(X))f ′ (Ad(y −1 )(X))η(Nrd(x−1 y))vM (x, y, T )dxdy.
+(AM (F )\H(F ))2
+
+Let c ⊆ m ∩ s be an M -elliptic Cartan subspace. For ε > 0 and T ∈ aM0 ,F ∩ a+
+P0 with large kT k,
+consider the domain near the singular set
+c(ε, T ) := {X ∈ creg (F ) : |Ds (X)| ≤ e−εkT k }.
+
+Lemma 5.4. Fix an arbitary constant ε0 > 0. Fix a constant ε′ > 0 satisfying the condition of Lemma
+3.6. Let c ⊆ m ∩ s be an M -elliptic Cartan subspace. Given ε > 0, there exists c > 0 such that for any
+T ∈ aM0 ,F ∩ a+
+P0 with kT k ≥ ε0 ,
+Z
+ε′ εkT k
+(|K T (η, X, f, f ′ )| + |J T (η, X, f, f ′ )|)dX ≤ ce− 2 .
+c(ε,T )
+
+Proof. It is shown in [5, (4.8) in p. 31] that there exist c1 , d1 > 0 such that for all x, y ∈ G(F ) and
+T ∈ aM0 ,F ∩ a+
+P0 with kT k ≥ ε0 ,
+uM (x, y, T ) ≤ c1 (kT k + log kxk + log kyk)d1 .
+
+For any a1 , a2 ∈ AM (F ), we deduce that
+
+uM (x, y, T ) = uM (a1 x, a2 y, T ) ≤ c1 (kT k + log ka1 xk + log ka2 yk)d1 .
+
+Since Tc (F )/AM (F ) is compact, there exists c2 > 0 such that
+uM (x, y, T ) ≤ c2 (kT k +
+
+inf
+
+τ1 ∈Tc (F )
+
+log kτ1 xk +
+
+inf
+
+τ2 ∈Tc (F )
+
+log kτ2 yk)d1 .
+
+Now let x, y ∈ H(F ) and X ∈ c(ε, T ), and assume that
+
+f (Ad(x−1 )(X))f ′ (Ad(y −1 )(X)) 6= 0.
+
+Let σ ⊆ s(F ) be a compact subset containing Supp(f ) ∪ Supp(f ′ ). From Lemma 3.5, there exists cσ > 0
+such that
+inf log kτ1 xk, inf log kτ2 yk ≤ cσ sup{1, − log |Ds (X)|F }.
+τ1 ∈Tc (F )
+
+τ2 ∈Tc (F )
+
+Therefore, there exists c′σ > 0 such that
+(5.1.5)
+
+uM (x, y, T ) ≤ c′σ (kT k − log |Ds (X)|F )d1 .
+
+By Proposition 3.16, there exists c3 > 0 such that
+Z
+1/2
+(5.1.6)
+|Ds (X)|F
+|f (x−1 Xx)|dx ≤ c3
+AM (F )\H(F )
+
+and
+(5.1.7)
+
+|D
+
+s
+
+1/2
+(X)|F
+
+Z
+
+AM (F )\H(F )
+
+|f ′ (y −1 Xy)|dy ≤ c3
+
+for all X ∈ creg (F ).
+Putting the estimates (5.1.5), (5.1.6) and (5.1.7) into the definition (5.1.3) of K T (η, X, f, f ′ ), we
+obtain the inequality
+|K T (η, X, f, f ′ )| ≤ c′σ c23 (kT k − log |Ds (X)|F )d1 .
+By Lemma 3.6, for any subset B of creg (F ) which is relatively compact in c(F ), there exists cB > 0
+such that
+Z
+−ε′
+|Ds (X)|F
+dX ≤ cB .
+B
+
+23
+
+We deduce that for m ∈ Z,
+
+m
+
+vol(B ∩ {X ∈ creg (F ) : |Ds (X)|F = q − 2 }) ≤ cB q −
+
+(5.1.8)
+
+ε′ m
+2
+
+.
+
+c′B
+
+We claim that for any B as above, there exists
+> 0 such that
+Z
+ε′ εkT k
+(kT k − log |Ds (X)|F )d1 dX ≤ c′B e− 2 .
+B∩c(ε,T )
+
+This is an analogue of the exercise in [5, p. 32] and we include here a proof for completeness. For
+X ∈ c(ε, T ), we have
+1
+kT k ≤ − log |Ds (X)|F .
+ε
+Therefore,
+
+d Z
+Z
+1 1
+s
+d1
+(kT k − log |D (X)|F ) dX ≤ 1 +
+(− log |Ds (X)|F )d1 dX.
+ε
+B∩c(ε,T )
+B∩c(ε,T )
+Since
+B ∩ c(ε, T ) =
+we have
+Z
+
+B∩c(ε,T )
+
+k
+m≥ 2εkT
+log q
+
+(− log |Ds (X)|F )d1 dX =
+
+Applying (5.1.8), we obtain
+Z
+
+B∩c(ε,T )
+
+a
+
+X
+
+m
+
+(B ∩ {X ∈ creg (F ) : |Ds (X)|F = q − 2 }),
+
+k
+m≥ 2εkT
+log q
+
+
+
+m log q
+2
+
+(− log |Ds (X)|F )d1 dX ≤
+
+d1
+
+m
+
+vol(B ∩ {X ∈ creg (F ) : |Ds (X)|F = q − 2 }).
+
+X
+
+k
+m≥ 2εkT
+log q
+
+
+
+m log q
+2
+
+d1
+
+cB q −
+
+ε′ m
+2
+
+.
+
+Now we can confirm our claim by noting the basic fact: for d > 0 and a > 1, there exists cd,a > 0 such
+that
+X md
+x
+≤ cd,a a− 2 , ∀x ≥ 0.
+m
+a
+m≥x
+
+Taking
+we see that
+
+Z
+
+B = {X ∈ creg (F ) : K T (η, X, f, f ′ ) 6= 0},
+
+c(ε,T )
+
+|K T (η, X, f, f ′ )|dX ≤ c′σ c23 c′B e−
+
+ε′ εkT k
+2
+
+.
+
+This is half of the lemma.
+It is proved in [5, p. 32] that there exist c4 , d2 > 0 such that for all x, y ∈ G(F ) and T ∈ aM0 ,F ∩ a+
+P0
+with kT k ≥ ε0 ,
+vM (x, y, T ) ≤ c4 (kT k + log kxk + log kyk)d2 .
+By the same argument as before, we obtain
+Z
+ε′ εkT k
+|J T (η, X, f, f ′ )|dX ≤ c5 e− 2
+c(ε,T )
+
+for some c5 > 0. This establishes the other half of the lemma.
+
+
+
+Lemma 5.5. Suppose that δ > 0. Then there exist c, ε1 , ε2 > 0 such that
+|uM (x, y, T ) − vM (x, y, T )| ≤ ce−ε1 kT k
+
+ε2 kT k
+}.
+for all T ∈ aM0 ,F ∩ a+
+P0 with d(T ) ≥ δkT k, and all x, y ∈ {x ∈ G(F ) : kxk ≤ e
+
+Proof. This is Arthur's main geometric lemma [5, Lemma 4.4].
+
+
+
+Lemma 5.6. Suppose that δ > 0. Let c ⊆ m ∩ s be an M -elliptic Cartan subspace. Then there exist
+c, ε > 0 such that
+Z
+|K T (η, X, f, f ′ ) − J T (η, X, f, f ′ )|dX ≤ ce−εkT k
+creg (F )
+
+for all T ∈ aM0 ,F ∩
+
+a+
+P0
+
+with sufficiently large kT k and d(T ) ≥ δkT k.
+24
+
+Proof. Fix ε2 > 0 to be the constant given by Lemma 5.5. Let x, y ∈ H(F ) and X ∈ creg (F ) − c( ε22 , T ),
+and assume that
+f (Ad(x−1 )(X))f ′ (Ad(y −1 )(X)) 6= 0.
+
+Let σ ⊆ s(F ) be a compact subset containing Supp(f ) ∪ Supp(f ′ ). From Lemma 3.5, there exists cσ > 0
+such that
+inf kτ1 xk, inf kτ2 yk ≤ cσ sup{1, |Ds (X)|−1
+F }.
+τ1 ∈Tc (F )
+
+Since X ∈ creg (F ) −
+
+c( ε22 , T ),
+
+τ2 ∈Tc (F )
+
+we have
+sup{1, |Ds (X)|−1
+F } ≤ sup{1, e
+
+ε2 kT k
+2
+
+}=e
+
+ε2 kT k
+2
+
+.
+
+Then, multiplying x and y by elements in Tc (F ) if necessary, and taking kT k ≥
+that
+kxk, kyk ≤ eε2 kT k .
+
+2 log cσ
+,
+ε2
+
+we can assume
+
+It follows from Lemma 5.5 that
+
+|uM (x, y, T ) − vM (x, y, T )| ≤ ce−ε1 kT k .
+By the definitions (see (5.1.3) and (5.1.4)) of K T (η, X, f, f ′ ) and J T (η, X, f, f ′ ), we obtain that
+Z
+|K T (η, X, f, f ′ ) − J T (η, X, f, f ′ )|dX ≤ c1 e−ε1 kT k ,
+creg (F )−c(
+
+where
+c1 := c
+
+Z
+
+ε2
+2
+
+,T )
+
+s
+
+creg (F )
+
+|D (X)|F
+
+Z
+
+(AM (F )\H(F ))2
+
+|f (Ad(x−1 )(X))f ′ (Ad(y −1 )(X))|dxdydX
+
+is finite by Proposition 3.16 and Lemma 3.4.
+One can draw the conclusion by combining this with Lemma 5.4.
+Define
+J T (η, f, f ′ ) :=
+
+X
+
+M∈L G,ω (M0 )
+
+|W0Mn ||W0GLn |−1
+
+X
+
+c∈Tell (m∩s)
+
+|W (MH , c)|−1
+
+
+Z
+
+J T (η, X, f, f ′ )dX,
+
+creg (F )
+
+where J T (η, X, f, f ′ ) is defined by (5.1.4).
+Proposition 5.7. Suppose that δ > 0. Then there exist c, ε > 0 such that
+|K T (η, f, f ′ ) − J T (η, f, f ′ )| ≤ ce−εkT k
+for all T ∈ aM0 ,F ∩ a+
+P0 with sufficiently large kT k and d(T ) ≥ δkT k.
+Proof. Apply Lemma 5.6.
+
+
+
+It is proved in [5, (6.5) in p. 46] that vM (x, y, T ) is an exponential polynomial in T ∈ R0 ∩ (a+
+P0 /aG ).
+Denote by ṽM (x, y) the constant term of vM (x, y, T ) as in [5, (6.6) in p. 46]. Then for f, f ′ ∈ Cc∞ (s(F ))
+and X ∈ (m ∩ srs )(F )ell , J T (η, X, f, f ′ ) is also an exponential polynomial in T ∈ R0 ∩ (a+
+P0 /aG ) whose
+constant term is given by
+(5.1.9)
+Z
+J ̃M (η, X, f, f ′ ) := |Ds (X)|F
+f (Ad(x−1 )(X))f ′ (Ad(y −1 )(X))η(Nrd(x−1 y))ṽM (x, y)dxdy.
+(AM (F )\H(F ))2
+
+Thus for f, f ′ ∈ Cc∞ (s(F )), J T (η, f, f ′ ) is still an exponential polynomial in T ∈ R0 ∩ (a+
+P0 /aG ) whose
+constant term is given by
+Z
+X
+X
+ ̃ f, f ′ ) :=
+|W (MH , c)|−1
+(5.1.10) J(η,
+J ̃M (η, X, f, f ′ )dX.
+|W0Mn ||W0GLn |−1
+M∈L G,ω (M0 )
+
+c∈Tell (m∩s)
+
+Corollary 5.8. For f, f ′ ∈ Cc∞ (s(F )), we have the equality
+ ̃ f, fˆ′ ) = J(η,
+ ̃ fˆ, f ′ ).
+J(η,
+25
+
+creg (F )
+
+Proof. By the Plancherel formula, for x ∈ H(F ), we have
+
+k(x, f, fˆ′ ) = k(x, fˆ, f ′ ).
+
+Then for all T ∈ R0 ∩ (a+
+P0 /aG ),
+
+K T (η, f, fˆ′ ) = K T (η, fˆ, f ′ ).
+Finally, apply Proposition 5.7 to conclude.
+Lemma 5.9. For all Q ∈ F
+have the equality
+ ̃ f, f ′ ) =
+J(η,
+
+G,ω
+
+(M0 ), there exists a constant
+
+X
+
+MQn
+
+Q∈F G,ω (M0 )
+
+where J
+
+MQ
+
+η
+η
+(η, fQ
+, f ′Q)
+
+|W0
+
+c′Q
+
+
+′
+
+such that for all f, f ∈
+
+Cc∞ (s(F )),
+
+we
+
+η
+
+η
+, f ′ Q )c′Q ,
+||W0GLn |−1 (−1)dim(AQ /AG ) J MQ (η, fQ
+
+is defined by (5.1.2).
+
+Proof. Suppose that M ∈ L G,ω (M0 ). It is shown in [5, p. 92] that
+X
+Q
+ṽM (x, y) = (−1)dim(AM /AG )
+vM
+(x, y)c′Q ,
+Q∈F G (M)
+
+where c′Q is a constant for each Q ∈ F G,ω (M0 ).
+Now substitude this in the definition (5.1.9) of J ̃M (η, X, f, f ′ ). Note that
+M
+
+Q
+vM
+(m1 n1 k1 , m2 n2 k2 ) = vM Q (m1 , m2 )
+
+for m1 ∈ MQH (F ), n1 ∈ NQH (F ), m2 ∈ MQH (F ), n2 ∈ NQH (F ), k1 , k2 ∈ KH . By the same argument as
+the proof of Proposition 4.1.4), one shows that
+Z
+η
+M
+η
+Q
+|Ds (X)|F
+f (Ad(x−1 )(X))f ′ (Ad(y −1 )(X))η(Nrd(x−1 y))vM
+(x, y)dxdy = JM Q (η, X, fQ
+, f ′ Q ),
+(AM (F )\H(F ))2
+
+where
+
+M
+η
+η
+JM Q (η, X, fQ
+, f ′Q )
+
+is defined by (5.1.1). Therefore, we have
+X
+η
+M
+η
+, f ′ Q )c′Q .
+J ̃M (η, X, f, f ′ ) = (−1)dim(AM /AG )
+JM Q (η, X, fQ
+Q∈F G (M)
+
+ ̃ f, f ′ ).
+Then the lemma follows from the definition (5.1.10) of J(η,
+
+
+
+Proof of Theorem 5.3. Using Lemma 5.9 and Corollary 5.8, we can prove the theorem by induction on
+the dimension of G.
+
+′
+
+5.2. The case of (G′ , H ′ ). Suppose that M ′ ∈ L H (M0′ ). For x, y ∈ H ′ (F ), we define an (H ′ , M ′ )family (vP ′ (x, y))P ′ ∈P H ′ (M ′ ) by
+′
+
+′
+
+vP ′ (λ, x, y) := e−λ(HP ′ (y)−HP ′ (x)) , ∀λ ∈ ia∗M ′ , P ′ ∈ P H (M ′ ),
+
+where P ′ ∈ P H (M ′ ) is the parabolic subgroup opposite to P ′ . For f, f ′ ∈ Cc∞ (s′ (F )) and Y ∈
+f′ ∩ s′rs )(F )ell , we define
+(m
+Z
+H′
+′
+s′
+(5.2.1)
+JM ′ (Y, f, f ) := |D (Y )|F
+f (Ad(x−1 )(Y ))f ′ (Ad(y −1 )(Y ))vM ′ (x, y)dxdy.
+(AM ′ (F )\H ′ (F ))2
+′
+
+Proposition 5.10. Suppose that M ′ ∈ L H (M0′ ) and that f, f ′ ∈ Cc∞ (s′ (F )).
+1) The integral (5.2.1) is absolutely convergent.
+H′
+′
+′
+f′
+2) The function JM
+′ (*, f, f ) is locally constant on (m ∩ srs )(F )ell .
+′
+′
+′
+′
+f ∩ s is an M -elliptic Cartan subspace, the restriction of J H ′′ (*, f, f ′ ) to c′reg (F ) vanishes
+3) If c ⊆ m
+M
+outside a compact subset of c′ (F ).
+4) If w ∈ NormH ′ (F ) (M0′ ), x ∈ M ′ (F ) and k, k ′ ∈ KH ′ , we have the equality
+′
+
+′
+
+′
+′
+H
+′
+H
+JAd(w)(M
+′ ) (Ad(wx)(Y ), Ad(k)(f ), Ad(k )(f )) = JM ′ (Y, f, f )
+
+f′ ∩ s′rs )(F )ell .
+for all Y ∈ (m
+f′ ∩ s′rs )(F )ell , we have
+5) There exist constants c > 0 and N ∈ N such that for all Y ∈ (m
+′
+
+′
+
+H
+′
+s
+N
+|JM
+.
+′ (Y, f, f )| ≤ c sup{1, − log |D (Y )|F }
+26
+
+f′ ∩ s′ )(F )ell , we have
+6) For all Y ∈ (m
+rs
+X
+H′
+JM ′ (Y, f, f ′ ) =
+
+L′
+
+′
+
+L′
+
+′
+′
+′
+1
+2
+dH
+M ′ (L1 , L2 )JM ′ (Y, fQ′ )JM ′ (Y, fQ′2 ),
+1
+
+L′1 ,L′2 ∈L H ′ (M ′ )
+
+where (Q′1 , Q′2 ) := s(L′1 , L′2 ) (see Section 2.7).
+Proof. It is almost the same as the proof of Proposition 5.1, except that one needs to use Proposition
+4.4.4) and Corollary 4.6 to show 6) and 5).
+
+For f, f ′ ∈ Cc∞ (s′ (F )), we define
+Z
+X
+X
+′ ′ −1
+H′
+′
+H′
+M ′ −1
+dim(AM ′ /AH ′ )
+|W (M , c )|
+J (f, f ) :=
+|W0 ||W0 | (−1)
+c′reg (F )
+f′ ∩s′ )
+(5.2.2)
+M ′ ∈L H ′ (M0′ )
+c′ ∈Tell (m
+′
+
+H
+′
+JM
+′ (Y, f, f )dY.
+
+This expression is absolutely convergent by Proposition 5.10.5) and Corollary 3.7. One may extend in
+the obvious way the definitions (5.2.1) and (5.2.2) to the symmetric pair (Le′ , L′ , Ad(α)), where L′ ∈
+′
+L H (M0′ ).
+Remark 5.11. We have the equality
+′
+
+′
+
+J H (f, f ′ ) = J H (f ′ , f ).
+′
+
+It results from the fact that for all M ′ ∈ L H (M0′ ) and all x, y ∈ H ′ (F ), we have vM ′ (x, y) = vM ′ (y, x).
+
+Theorem 5.12 (Noninvariant trace formula). For all f, f ′ ∈ Cc∞ (s′ (F )), we have the equality
+′
+′
+J H (f, fˆ′ ) = J H (fˆ, f ′ ).
+
+Proof. We may simply copy the proof of Theorem 5.3 here with obvious modifications. Especially, one
+needs to use Proposition 3.23 to show analogues of Lemmas 5.4 and 5.6 for the case of (G′ , H ′ ).
+
+6. Howe's finiteness for weighted orbital integrals
+6.1. The case of (G, H). For an open compact subgroup r of s(F ), denote by Cc∞ (s(F )/r) the subspace
+of Cc∞ (s(F )) consisting of the functions invariant by translation of r. Let isr ∗ : Cc∞ (s(F ))∗ → Cc∞ (s(F )/r)∗
+be the dual map of the natural injection Cc∞ (s(F )/r) ֒→ Cc∞ (s(F )).
+For any set σ, denote by C[σ] the C-linear space of maps from σ to C with finite support. For
+M ∈ L G,ω (M0 ) and σ ⊆ (m ∩ srs )(F ), we define the linear map
+G
+δM
+: C[σ] → Cc∞ (s(F ))∗ ,
+X
+G
+(zX )X∈σ 7→
+z X JM
+(η, X, *),
+X∈σ
+
+where zX ∈ C is the coordinate at X ∈ σ.
+∗
+L
+and δM
+in the
+For L ∈ L G,ω (M0 ) and rL ⊆ (l ∩ s)(F ) an open compact subgroup, we define il∩s
+rL
+same way by using (L, LH , Ad(ǫ)) in place of (G, H, Ad(ǫ)).
+Proposition 6.1 (Howe's finiteness). Let r be an open compact subgroup of s(F ), M ∈ L G,ω (M0 )
+and σ ⊆ (m ∩ srs )(F ). Suppose that there exists a compact subset σ0 ⊆ (m ∩ s)(F ) such that σ ⊆
+Ad(MH (F ))(σ0 ). Then the image of the linear map
+is of finite dimension.
+
+G
+isr ∗ ◦ δM
+: C[σ] → Cc∞ (s(F )/r)∗
+
+Remark 6.2. For M = G, Proposition 6.1 is essentially included in a more general result [29, Theorem
+6.1] in the context of θ-groups (in the sense of [30, p. 467]).
+The rest of this section is devoted to the proof of Proposition 6.1. We shall follow the main steps in
+G
+[33, §IV.2-6]. Since the function κ(*)JM
+(η, *, f ) is constant on Ad(MH (F ))(X) for f ∈ Cc∞ (s(F )) and
+X ∈ (m ∩ srs )(F ), and T (m ∩ s) is a finite set, by Lemma 3.4, we may and shall suppose that σ is
+relatively compact in (m ∩ s)(F ). The proposition will be proved by induction on the dimension of G.
+Recall that we have chosen the standard maximal compact subgroup K = GL2n (OD ) of G(F ) =
+GL2n (D). Let k = g(OF ) := gl2n (OD ), which is an OF -lattice in g(F ) = gl2n (D) and is stable under
+the adjoint action of K. Since H ∈ L G (M0 ), we have set KH = K ∩ H(F ) = GLn (OD ) × GLn (OD ).
+27
+
+Let h(OF ) := k ∩ h(F ) and s(OF ) := k ∩ s(F ). Then we see that k = h(OF ) ⊕ s(OF ) and that
+s(OF ) is stable under the adjoint action of KH . For all P ∈ F G (M0 ), we fix aP ∈ AP (F ) such that
+|α(aP )|F < 1, ∀α ∈ ∆G
+P.
+Recall that we denote by N s the set of nilpotent elements in s(F ) and fix a uniformiser ̟ of OF . Let
+X ∈ N s ∩ (k − ̟k). By the Jacobson-Morozov theorem for symmetric spaces (Lemma 3.8), there exists
+a group homomorphism φ : SL2 (F ) → G(F ) such that
+
+
+
+
+0 1
+̟
+dφ
+= X and aφ := φ
+∈ H(F ).
+0 0
+̟−1
+We define the parabolic subgroup P X of G as in [33, §IV.3]. More concretely, set
+g[i] := {Y ∈ g : Ad(aφ )(Y ) = ̟i Y, ∀i ∈ Z}
+and
+pX :=
+
+M
+
+g[i];
+
+i≥0
+
+then let
+P X := {x ∈ G : Ad(x)(pX ) = pX }.
+
+(6.1.1)
+
+Note that P X is independent of the choice of φ by [7, Proposition 5.7.1]. Since aφ commutes with ǫ, one
+has ǫ ∈ P X . By Lemma 3.12, P X ∩H is a parabolic subgroup of H. Then there exists an element x ∈ KH
+such that P ′ := Ad(x)(P X ) ∈ F G (M0 ). We shall fix such an x. Let aX := Ad(x−1 )(aP ′ ) ∈ H(F ). Note
+that aX depends on the choice of x, but this is unimportant. It is proved in [33, (3) in §IV.3] that
+Ad(aX )(X) ∈ ̟k.
+But Ad(aX )(X) ∈ s(F ). Thus we have
+Ad(aX )(X) ∈ ̟s(OF ).
+
+(6.1.2)
+
+Lemma 6.3. There exists an integer h ∈ N such that for all Y ∈ ̟h s(OF ), all integers l ≥ h and all
+Z ∈ Ad(aX )−1 (̟l s(OF )), there exists γ ∈ KH with η(Nrd(γ)) = 1 such that
+Ad(γ)(X + Y + Z) ∈ X + Y + ̟l s(OF ).
+Proof. It is analogous to the proof of [33, Lemme IV.3]. The point is that we require γ ∈ H(F ) and
+η(Nrd(γ)) = 1 here.
+Set
+M
+nX :=
+g[i].
+i≥1
+
+φ
+
+Since a commutes with ǫ, one has g[i] = (g[i] ∩ h) ⊕ (g[i] ∩ s).
+It is proved in [33, (4) in §IV.3] that
+Ad(aX )−1 (k) ⊆ k + Ad(aX )−1 (k) ∩ nX .
+By the intersection of s(F ) with both sides in the last expression, we have
+(6.1.3)
+
+Ad(aX )−1 (s(OF )) ⊆ s(OF ) + Ad(aX )−1 (s(OF )) ∩ nX .
+
+It is shown in [33, (2) in §IV.3] and the proof of [33, Lemme IV.3] that there exists c ∈ N such that
+nX ∩ Ad(aX )−1 (k) ⊆ ad(X)(̟−c k).
+By the intersection of s(F ) with both sides in the last expression, we have
+(6.1.4)
+
+nX ∩ Ad(aX )−1 (s(OF )) ⊆ ad(X)(̟−c h(OF )).
+
+Fix such an integer c. There exists c′ ∈ N such that for all l ≥ c′ , we have
+• ̟l k ⊆ Vg ;
+• exp(̟l k) ⊆ {x ∈ K : η(Nrd(x)) = 1};
+• Ad(exp(Y ′ ))(Y ) ≡ Y + ad(Y ′ )(Y ) mod ̟l+c k, ∀Y ∈ k, Y ′ ∈ ̟l k.
+28
+
+′′
+
+Fix such an integer c′ . There exists c′′ ∈ N such that Ad(aX )−1 (̟c k) ⊆ k. Fix such an integer c′′ .
+Let h ∈ N be such that h ≥ max{c + c′ , c + c′′ }. Let Y, l and Z be as in the statement. Thanks to
+(6.1.3), we can write Z = Z1 + Z2 , where Z1 ∈ ̟l s(OF ) and Z2 ∈ Ad(aX )−1 (̟l s(OF )) ∩ nX . Because
+′
+of (6.1.4), we can choose Z ′ ∈ ̟l−c h(OF ) such that Z2 = ad(X)(Z ′ ). Since Z ′ ∈ ̟c h(OF ) from the
+′
+′
+hypothesis l ≥ h ≥ c + c , we can define γ := exp(Z ). Then we have γ ∈ KH and η(Nrd(γ)) = 1. It is
+shown in the proof of [33, Lemme IV.3] that γ verifies
+Ad(γ)(X + Y + Z) ∈ X + Y + ̟l k.
+
+But both of Ad(γ)(X + Y + Z) and X + Y belong to s(F ). Hence, we deduce that
+Ad(γ)(X + Y + Z) ∈ X + Y + ̟l s(OF ).
+
+
+
+X
+
+s
+
+For X ∈ N ∩ (k − ̟k), we shall fix an integer h such that
+(1) hX verifies the condition of Lemma 6.3;
+(2) hX ≥ 1;
+X
+(3) Ad(aX )(̟h s(OF )) ⊆ ̟s(OF ).
+Denote by N G the set of nilpotent elements in g(F ). Let Pg(F ) (resp. Ps(F )) be the projective space
+associated to g(F ) (resp. s(F )) and π : g(F ) − {0} → Pg(F ) the natural projection. Since π(N G − {0})
+is compact and N s − {0} is a closed subset of N G − {0}, we know that π(N s − {0}) is compact. One
+also sees that
+π(N s ∩ (k − ̟k)) = π(N s − {0}).
+We can and shall choose a finite set N0 ⊆ N s ∩ (k − ̟k) such that
+[
+X
+π(X + ̟h s(OF ))
+X∈N0
+
+is an open neighbourhood of π(N s − {0}) ⊆ Ps(F ).
+
+G
+Lemma 6.4. There exists an integer c ∈ N such that for all d ∈ δM
+(C[σ]) and all f ∈ Cc∞ (s(F ))
+satisfying d(f ) 6= 0, we have
+[
+X
+F × (X + ̟h s(OF ))] 6= ∅.
+Supp(f ) ∩ [̟−c s(OF ) ∪
+X∈N0
+
+Proof. Recall that σ is assumed to be relatively compact in (m ∩ s)(F ). Fix an open compact neighbourhood σ ′ of σ in s(F ). Fix P0 ∈ P H (M0 ) and set
+H
+A+
+P0 := {a ∈ AM0 (F ) : |α(a)|F ≥ 1, ∀α ∈ ∆P0 }.
+
+Similarly, for all B ∈ P G (M0 ), set
+
+G
+A+
+B := {a ∈ AM0 (F ) : |α(a)|F ≥ 1, ∀α ∈ ∆B }.
+
+We see from the argument of [25, Lemma 4.11] that
+[
+A+
+P0 ⊆
+
+A+
+B.
+
+{B∈P G (M0 ):P0 ⊆B}
+
+By the Cartan decomposition, there exists a compact subset Γ ⊆ H(F ) such that H(F ) = KH A+
+P0 Γ.
+Fix such a Γ. Then
+[
+H(F ) ⊆
+KH A+
+B Γ.
+−c′
+
+{B∈P G (M0 ):P0 ⊆B}
+
+Fix c ∈ N such that Ad(Γ)(σ ) ⊆ ̟ s(OF ). Since Ad(A+
+B )(s(OF )) ⊆ s(OF ) + (nB ∩ s)(F ) and
+(nB ∩ s)(F ) ⊆ N s , we obtain
+′
+Ad(H(F ))(σ ′ ) ⊆ ̟−c s(OF ) + N s .
+Choose an integer c such that
+c ≥ c′ + sup hX .
+′
+
+′
+
+X∈N0
+
+Let d and f be as in the statement. It is evident that
+′
+
+Supp(f ) ∩ Ad(H(F ))(σ ′ ) 6= ∅.
+
+Suppose that X1 ∈ ̟−c s(OF ), X2 ∈ N s satisfy X1 + X2 ∈ Supp(f ). If X2 ∈ ̟−c s(OF ), we are done.
+X
+If not, let X ∈ N0 be such that π(X2 ) ∈ π(X + ̟h s(OF )). Then there exists λ ∈ F × such that
+29
+
+X
+
+X2 ∈ λ(X + ̟h s(OF )). Since X2 ∈
+/ ̟−c s(OF ), we have vF (λ) < −c and thus vF (λ) + hX < −c′ .
+X
+X
+X
+Therefore, X1 ∈ λ̟h s(OF ) and then X1 + X2 ∈ λ(X + ̟h s(OF )) ⊆ F × (X + ̟h s(OF )). This is
+exactly what we want to prove.
+
+We shall fix an integer c verifying the condition in Lemma 6.4. We shall also fix another integer h
+such that
+h ≥ sup hX .
+
+(6.1.5)
+
+X∈N0
+
+Denote
+C := {f ∈ Cc∞ (s(F )/̟h s(OF )) : Supp(f ) ⊆ ̟−c s(OF )},
+
+which is a C-linear space of finite dimension. For all L ∈ L G (M ), L 6= G, let r(L) := ̟h (l ∩ s)(OF ).
+Lemma 6.5. Let z = (zX )X∈σ ∈ C[σ]. Suppose that
+∗
+L
+G
+1) il∩s
+r(L) ◦ δM (z) = 0 for all L ∈ L (M ), L 6= G;
+G
+2) δM
+(z)(C) = 0.
+G
+Then is̟h s(OF ) ∗ ◦ δM
+(z) = 0.
+G
+Proof. Write d := δM
+(z). It suffices to prove by induction on the integer e ≥ c the assertion
+(A)e : for all f ∈ Cc∞ (s(F )/̟h s(OF )) with Supp(f ) ⊆ ̟−e s(OF ), we have d(f ) = 0.
+If e = c, this is true by the hypothesis 2). Fix an e > c and suppose that (A)e−1 is true. For any
+open compact subset s ⊆ g(F ), denote by 1s its characteristic function. It suffices to prove that for all
+Y ∈ ̟−e s(OF ) − ̟−e+1 s(OF ), we have d(1Y +̟h s(OF ) ) = 0.
+Suppose that Y ∈ ̟−e s(OF ) − ̟−e+1 s(OF ). The hypothesis e > c implies ̟−c s(OF ) ⊆ ̟−e+1 s(OF )
+and thus Y ∈
+/ ̟−c s(OF ). Suppose on the contary that d(1Y +̟h s(OF ) ) 6= 0. By Lemma 6.4, there exists
+X
+X ∈ N0 and λ ∈ F × such that (Y + ̟h s(OF )) ∩ λ(X + ̟h s(OF )) 6= ∅. Fix such X and λ. Since
+vF (Y ) = −e and vF (X) = 0, we have vF (λ) = −e. As h ≥ hX ≥ hX − e (see (6.1.5)), we obtain
+X
+X
+X
+̟h s(OF ) ⊆ λ̟h s(OF ) and then Y ∈ λ(X +̟h s(OF )). Let Y ′ ∈ ̟h s(OF ) such that Y = λ(X +Y ′ ).
+Let Z ∈ Ad(aX )−1 (̟h s(OF )). Since h + e ≥ hX , we can apply Lemma 6.3 to X, Y ′ , λ−1 Z and
+l := h + e. Then there exists γ ∈ KH with η(Nrd(γ)) = 1 such that
+
+Ad(γ)(X + Y ′ + λ−1 Z) ∈ X + Y ′ + ̟h+e s(OF ).
+
+From vF (λ) = −e, we deduce that
+
+Ad(γ)(λ(X + Y ′ ) + Z) ∈ λ(X + Y ′ ) + ̟h s(OF ),
+
+i.e.,
+Since γ ∈ KH , this is equivalent to
+
+Ad(γ)(Y + Z) ∈ Y + ̟h s(OF ).
+
+Ad(γ)(Y + Z + ̟h s(OF )) = Y + ̟h s(OF )
+
+or
+Ad(γ)(1Y +Z+̟h s(OF ) ) = 1Y +̟h s(OF ) .
+By Proposition 4.1.3), we obtain
+d(1Y +Z+̟h s(OF ) ) = η(Nrd(γ))d(1Y +̟h s(OF ) ).
+Because η(Nrd(γ)) = 1, we have
+d(1Y +Z+̟h s(OF ) ) = d(1Y +̟h s(OF ) ).
+
+Now, by the sum over Z ∈ Ad(aX )−1 (̟h s(OF )) + ̟h s(OF ) /̟h s(OF ) (a finite set), we get
+
+(6.1.6)
+
+d(1Y +̟h s(OF ) ) = [k ′ : s(OF )]−1 d(1Y +̟h k′ ),
+
+where
+(6.1.7)
+
+k ′ := Ad(aX )−1 (s(OF )) + s(OF ).
+
+By Proposition 4.1.6), we have the equality
+
+d Ad(aX )(1Y +̟h k′ ) − η(Nrd(aX ))1Y +̟h k′ = η(Nrd(aX ))
+30
+
+X
+
+Q∈F G (M),Q6=G
+
+
+
+M
+δM Q (z) (1Y +̟h k′ )ηQ,(aX )−1 .
+
+From (4.1.3), it is clear that (1Y +̟h k′ )ηQ,(aX )−1 is invariant by translation of r(MQ ). By the hypothesis
+
+
+M
+1), we have δM Q (z) (1Y +̟h k′ )ηQ,(aX )−1 = 0 for all Q ∈ F G (M ), Q 6= G, so
+
+(6.1.8)
+η(Nrd(aX ))d(1Y +̟h k′ ) = d Ad(aX )(1Y +̟h k′ ) .
+We see easily that
+
+Ad(aX )(1Y +̟h k′ ) = 1s ,
+where
+s := Ad(aX )(Y ) + ̟h Ad(aX )(k ′ ).
+
+(6.1.9)
+
+Recall Y = λ(X + Y ′ ) above. As X ∈ N0 , by (6.1.2), we have Ad(aX )(X) ∈ ̟s(OF ). Since
+X
+Y ∈ ̟h s(OF ), by the hypothesis (3) on hX , we have Ad(aX )(Y ′ ) ∈ ̟s(OF ). For vF (λ) = −e, we
+obtain
+′
+
+Ad(aX )(Y ) ∈ ̟−e+1 s(OF ).
+
+(6.1.10)
+We see from (6.1.7) that
+
+Ad(aX )(k ′ ) = s(OF ) + Ad(aX )(s(OF )).
+X
+
+By (6.1.5) and the hypothesis (3) on hX , we have ̟h Ad(aX )(s(OF )) ⊆ ̟h Ad(aX )(s(OF )) ⊆ ̟s(OF ).
+Then by (6.1.5) and the hypothesis (2) on hX , we have
+(6.1.11)
+
+X
+
+̟h Ad(aX )(k ′ ) = ̟h s(OF ) + ̟h Ad(aX )(s(OF )) ⊆ ̟h s(OF ) + ̟s(OF ) = ̟s(OF ).
+
+From (6.1.9), (6.1.10) and (6.1.11), we see that
+
+Supp(1s ) ⊆ ̟−e+1 s(OF ).
+
+Since s(OF ) ⊆ Ad(aX )(k ′ ), we know that 1s is invariant by translation of ̟h s(OF ). Using the induction
+hypothesis (A)e−1 , we have
+d(1s ) = 0.
+Thanks to (6.1.6) and (6.1.8), we obtain
+d(1Y +̟h s(OF ) ) = 0.
+This proves (A)e and thus the lemma.
+
+
+
+Proof of Proposition 6.1. We use induction on the dimension of G. Suppose that for all L ∈ L G (M ), L 6=
+G, and all open compact subgroups rL of (l ∩ s)(F ), the image of the linear map
+∗
+
+L
+∞
+∗
+il∩s
+rL ◦ δM : C[σ] → Cc ((l ∩ s)(F )/rL )
+
+is of finite dimension. This is actually a product form of the proposition in lower dimensions. Now we
+would like to prove the proposition. The argument below is also valid for the case G = M .
+Enlarge h in (6.1.5) if necessary such that r ⊇ ̟h s(OF ). We shall prove that the image of is̟h s(OF ) ∗ ◦
+G
+δM
+is of finite dimension. Admit this for the moment. Since isr ∗ factorises by is̟h s(OF ) ∗ , the image of
+s∗
+G
+i r ◦ δM
+is also of finite dimension. Then we finish the proof.
+Let K1 be the kernel of the linear map
+M
+M
+∗
+L
+il∩s
+Cc∞ ((l ∩ s)(F )/r(L))∗ ,
+r(L) ◦ δM : C[σ] →
+L∈L G (M),L6=G
+
+L∈L G (M),L6=G
+
+whose image is of finite dimension by our induction hypothesis applied to rL := r(L) for all L ∈
+G
+L G (M ), L 6= G. Hence, to prove that is̟h s(OF ) ∗ ◦ δM
+(C[σ]) is of finite dimension, it suffices to prove
+∗
+G
+that is̟h s(OF ) ◦ δM
+(K1 ) is of finite dimension.
+Consider the composition of the linear maps
+∗
+
+G
+d1 := is̟h s(OF ) ◦ δM
+
+and
+
+K1
+
+: K1 → Cc∞ (s(F )/̟h s(OF ))∗
+
+Res : Cc∞ (s(F )/̟h s(OF ))∗ → C ∗ .
+The latter map is the natural restriction. Lemma 6.5 says that
+which is denoted by K2 . Then
+
+ker(Res ◦ d1 ) = ker(d1 ),
+d1 (K1 ) ≃ K1 /K2 ≃ Res ◦ d1 (K1 ) ⊆ C ∗ .
+31
+
+Since C is of finite dimension, we see that d1 (K1 ) is of finite dimension.
+
+
+
+Corollary 6.6. Let r be an open compact subgroup of s(F ), M ∈ L G,ω (M0 ) and σ ⊆ (m ∩ srs )(F ).
+Suppose that there exists a compact subset σ0 ⊆ (m ∩ s)(F ) such that σ ⊆ Ad(MH (F ))(σ0 ). Then there
+exists a finite subset {Xi : i ∈ I} ⊆ σ and a finite subset {fi : i ∈ I} ⊆ Cc∞ (s(F )/r) such that for all
+X ∈ σ and all f ∈ Cc∞ (s(F )/r), we have the equality
+X
+G
+G
+G
+JM
+(η, X, f ) =
+JM
+(η, Xi , f )JM
+(η, X, fi ).
+i∈I
+
+G
+Proof. By Proposition 6.1, there exists a finite subset {Xi : i ∈ I} ⊆ σ such that {isr ∗ ◦ δM
+(Xi ) : i ∈ I}
+s∗
+G
+is a basis of ir ◦ δM (C[σ]). By linear algebra, there exists a finite subset {fi : i ∈ I} ⊆ Cc∞ (s(F )/r)
+G
+such that isr ∗ ◦ δM
+(Xi )(fj ) = δij , ∀i, j ∈ I, where δij denotes the Kronecker delta function. Choose such
+{Xi : i ∈ I} and {fi : i ∈ I}.
+Then, for all X ∈ σ, there exists λi , ∀i ∈ I such that
+X
+G
+G
+JM
+(η, X, *) =
+λi JM
+(η, Xi , *) ∈ Cc∞ (s(F )/r)∗ .
+i∈I
+
+Hence, for all i ∈ I,
+
+G
+JM
+(η, X, fi ) =
+
+X
+
+G
+λj JM
+(η, Xj , fi ) =
+
+j∈I
+
+X
+
+λj δji = λi .
+
+j∈I
+
+We have finished the proof.
+′
+
+
+
+′
+
+′
+
+′
+
+6.2. The case of (G , H ). For an open compact subgroup r of s (F ), denote by Cc∞ (s′ (F )/r′ ) the
+′∗
+subspace of Cc∞ (s′ (F )) consisting of the functions invariant by translation of r′ . Let irs′ : Cc∞ (s′ (F ))∗ →
+Cc∞ (s′ (F )/r′ )∗ be the dual map of the natural injection Cc∞ (s′ (F )/r′ ) ֒→ Cc∞ (s′ (F )).
+′
+For any set σ ′ , denote by C[σ ′ ] the C-linear space with a basis σ ′ . For M ′ ∈ L H (M0′ ) and σ ′ ⊆
+f′ ∩ s′rs )(F ), we define the linear map
+(m
+′
+
+H
+′
+∞ ′
+∗
+δM
+′ : C[σ ] → Cc (s (F )) ,
+X
+H′
+(zY )Y ∈σ′ 7→
+z Y JM
+′ (Y, *),
+Y ∈σ′
+
+′
+
+where zY ∈ C is the coordinate at Y ∈ σ .
+∗
+′
+L′
+′
+′
+le′ ∩s′
+e′
+and δM
+For L′ ∈ L H (M0′ ) and rL
+′ in the
+′ ⊆ (l ∩ s )(F ) an open compact subgroup, we define ir ′
+′
+L
+same way by using (Le′ , L′ , Ad(α)) in place of (G′ , H ′ , Ad(α)).
+′
+
+Proposition 6.7 (Howe's finiteness). Let r′ be an open compact subgroup of s′ (F ), M ′ ∈ L H (M0′ )
+f′ ∩ s′rs )(F ). Suppose that there exists a compact subset σ0′ ⊆ (m
+f′ ∩ s′ )(F ) such that σ ′ ⊆
+and σ ′ ⊆ (m
+′
+′
+Ad(M (F ))(σ0 ). Then the image of the linear map
+′∗
+
+is of finite dimension.
+
+′
+
+H
+′
+∞ ′
+′ ∗
+isr′ ◦ δM
+′ : C[σ ] → Cc (s (F )/r )
+
+The rest of this section is devoted to the proof of Proposition 6.7. It is similar to the proof of Proposition 6.1 and we only point out some additional argument. Recall that we have chosen the standard maximal compact subgroup KH ′ = GLn (OD′ ) of H ′ (F ) = GLn (D′ ) in Case I (resp. KH ′ = GL n2 (OD⊗F E ) of
+H ′ (F ) = GL n2 (D ⊗F E) in Case II). Since Ad(τ )(D′ ) = D′ in Case I (resp. Ad(τ )(D ⊗F E) = D ⊗F E
+in Case II), we deduce that Ad(τ )(OD′ ) = OD′ in Case I (resp. Ad(τ )(OD⊗F E ) = OD⊗F E in Case
+II). Thus Ad(τ )(KH ′ ) = KH ′ . Let h′ (OF ) := gln (OD′ ) in Case I (resp. h′ (OF ) := gl n2 (OD⊗F E ) in
+Case II). Let s′ (OF ) := h′ (OF )τ = τ h′ (OF ) be an OF -lattice in s′ (F ) (see Section 3.3 for the choice of
+τ ). Let k ′ := h′ (OF ) ⊕ s′ (OF ), whose decomposition is stable under the adjoint action of KH ′ because
+′
+′
+Ad(τ )(KH ′ ) = KH ′ . For all P ′ ∈ F H (M0′ ), we fix aP ′ ∈ AP ′ (F ) such that |α(aP ′ )|F < 1, ∀α ∈ ∆H
+P′ .
+′
+′
+Starting from X ∈ N s ∩ (s′ (OF ) − ̟s′ (OF )), we obtain a group homomorphism φ : SL
+(F )
+2 (F ) → G 
+̟
+by the Jacobson-Morozov theorem for symmetric spaces (Lemma 3.8). Denote aφ := φ
+∈
+̟−1
+H ′ (F ). Define P X as in (6.1.1), which contains the centraliser CentG′ (aφ ) of aφ in G′ as a Levi factor.
+Since aφ commutes with α, by Lemma 3.19, P X ∩ H ′ is a parabolic subgroup of H ′ , which contains the
+centraliser CentH ′ (aφ ) of aφ in H ′ as a Levi factor. We want to show that there exists x ∈ KH ′ such
+′
+′
+that Ad(x)(P X ∩ H ′ ) ∈ F H (M0′ ) and that Ad(x)(P X ) ∈ F G (Me0′ ).
+32
+
+′
+
+Lemma 6.8. For Y ∈ N s , there exists x ∈ H ′ (F ) such that Ad(x)(Y ) is in the Jordan normal form,
+i.e., diagonal block matrices with entries in D′ τ in Case I (resp. (D ⊗F E)τ in Case II) whose blocks
+are of the form
+
+
+0 τ
+
+
+..
+..
+
+
+.
+.
+.
+
+
+
+..
+
+. τ 
+0
+Proof. It can be proved in the same way as [16, Lemmas 2.2 and 2.3] by linear algebra over a division
+ring.
+
+Thanks to Lemma 6.8, we can construct explicitly the above morphism φ (see [13, p. 184]). If X
+′
+is in the Jordan normal form, by loc. cit., we may choose aφ ∈ AL′ (F ) for some L′ ∈ L H (M0′ ) such
+that CentH ′ (aφ ) = L′ and that CentG′ (aφ ) = Le′ . For a general X as above, by Lemma 6.8, there exists
+′
+y ∈ H ′ (F ) such that Ad(y)(aφ ) ∈ AL′ (F ) for some L′ ∈ L H (M0′ ) satisfying CentH ′ (Ad(y)(aφ )) = L′
+and CentG′ (Ad(y)(aφ )) = Le′ . Let x ∈ KH ′ be such that x−1 y ∈ (P X ∩ H ′ )(F ). Then Ad(x)(P X ∩ H ′ ) =
+Ad(y)(P X ∩ H ′ ) contains L′ as a Levi factor and Ad(x)(P X ) = Ad(y)(P X ) contains Le′ as a Levi factor.
+Furthermore, since Ad(x)(P X ) ∩ H ′ = Ad(x)(P X ∩ H ′ ), we see that Ad(x)(P X ∩ H ′ ) and Ad(x)(P X )
+f′ between F H ′ (M ′ ) and F G′ (M ′ ).
+are associated under the bijection P ′ 7→ P
+0
+e
+0
+′
+f′ = Ad(x)(P X ). Put
+Fix x ∈ KH ′ as above and denote P ′ := Ad(x)(P X ∩ H ′ ) ∈ F H (M0′ ). Then P
+′
+X
+−1
+a := Ad(x )(aP ′ ) ∈ H (F ). By the argument of [33, (3) in §IV.3], we show that
+(6.2.1)
+
+Ad(aX )(X) ∈ ̟s′ (OF ).
+
+Proof of Proposition 6.7. We may apply the argument of Proposition 6.1 with obvious modifications.
+Especially, one needs to use Proposition 4.4 and (6.2.1) to show an analogue of Lemma 6.5 for the case of
+(G′ , H ′ ). Additionally, to prove an analogue of Lemma 6.3 for this case, one may resort to the argument
+rather than the consequence of some steps in the proof of [33, Lemme IV.3] since our definition of k ′ is
+different from g′ (OF ) := gln (OD ). However, there is no essential difficulty with our preparation above
+and we omit details here.
+
+′
+
+Corollary 6.9 (cf. Corollary 6.6). Let r′ be an open compact subgroup of s′ (F ), M ′ ∈ L H (M0′ ) and σ ′ ⊆
+f′ ∩s′rs )(F ). Suppose that there exists a compact subset σ0′ ⊆ (m
+f′ ∩s′ )(F ) such that σ ′ ⊆ Ad(M ′ (F ))(σ0′ ).
+(m
+′
+Then there exists a finite subset {Yi : i ∈ I} ⊆ σ and a finite subset {fi : i ∈ I} ⊆ Cc∞ (s′ (F )/r′ ) such
+that for all Y ∈ σ ′ and all f ′ ∈ Cc∞ (s′ (F )/r′ ), we have the equality
+X
+H′
+′
+H′
+′
+H′
+′
+JM
+JM
+′ (Y, f ) =
+′ (Yi , f )JM ′ (Y, fi ).
+i∈I
+
+7. Representability of the Fourier transform of weighted orbital integrals
+7.1. The case of (G, H). Following [33, §V.6], we denote by E s the space of functions e : srs (F ) → C
+such that
+(1) e is locally constant;
+(2) for any open compact subset r of s(F ), there exist constants c > 0 and N ∈ N such that for all
+X ∈ r ∩ srs (F ), one has the inequality
+|e(X)| ≤ c sup{1, − log |Ds (X)|F }N .
+−1/2
+
+If e ∈ E s , the function X 7→ |Ds (X)|F
+It defines then a distribution on s(F ):
+(7.1.1)
+
+e(X) is locally integrable on s(F ) thanks to Corollary 3.18.
+
+∀f ∈ Cc∞ (s(F )), f 7→
+
+Z
+
+−1/2
+
+s(F )
+
+f (X)e(X)|Ds (X)|F
+
+dX.
+
+Denote by D s the space of distributions obtained in this way. The map E s → D s defined above is an
+isomorphism. For d ∈ D s , we shall always denote by ed its preimage in E s .
+Notice that the notion E s can be defined for any symmetric pair, and that the definition D s can at
+least be extended to the symmetric pair (M, MH , Ad(ǫ)), where M ∈ L G,ω (M0 ), since it appears as the
+product of some copies of the form (G, H, Ad(ǫ)) in lower dimensions.
+33
+
+If d ∈ D s is η(Nrd(*))-invariant with respect to the adjoint action of H(F ), then so is ed ∈ E s and by
+the Weyl integration formula (Proposition 3.14), we have the equality
+Z
+X
+X
+Mn
+GLn −1
+−1
+G
+|W (MH , c)|
+JG
+(η, X, f )ed (X)dX
+(7.1.2)
+d(f ) =
+|W0 ||W0 |
+M∈L G,ω (M0 )
+
+creg (F )
+
+c∈Tell (m∩s)
+
+G
+for all f ∈ Cc∞ (s(F )), where JG
+(η, X, f ) is defined by (4.1.1).
+
+Remark 7.1S (Glueing). Let d ∈ Cc∞ (s(F ))∗ and (ri )i∈I be a family of open compact subsets of s(F )
+ri = s(F ). Suppose that for all i ∈ I, there exists di ∈ D s such that d(f ) = di (f ) for all
+such that
+i∈I
+
+f ∈ Cc∞ (s(F )) with Supp(f ) ⊆ ri . Then d ∈ D s . Refer to [33, Remarque V.6] for the details.
+
+G
+Let M ∈ L G,ω (M0 ) and X ∈ (m ∩ srs )(F ). Denote by JˆM
+(η, X, *) the distribution on s(F ) defined by
+G
+G
+JˆM
+(η, X, f ) := JM
+(η, X, fˆ)
+
+for all f ∈ Cc∞ (s(F )), where the right hand side is defined by (4.1.1). We also have a similar definition
+for the symmetric pair (M, MH , Ad(ǫ)), where M ∈ L G,ω (M0 ). The main result of this section is the
+following.
+Proposition 7.2 (Representability). Let M ∈ L G,ω (M0 ) and X ∈ (m ∩ srs )(F ). Then the distribution
+G
+JˆM
+(η, X, *) ∈ D s .
+Remark 7.3. For M = G, Proposition 7.2 is essentially [37, Theorem 6.1.(i)] (see also [36, Theorem 6.2]).
+The rest of this section is devoted to the proof of Proposition 7.2. We shall follow the main steps in
+[33, §V.7-10].
+Let c be a Cartan subspace of s. Recall that Tc denotes the centraliser of c in H. Suppose that
+e0 : (Tc (F )\H(F )) × creg (F ) → C is a function such that
+(1) e0 is locally constant;
+(2) for any open compact subset r of s(F ), there exist constants c > 0 and N ∈ N such that for all
+x ∈ Tc (F )\H(F ) and X ∈ creg (F ) satisfying Ad(x−1 )(X) ∈ r, one has the inequality
+e0 (x, X) ≤ c sup{1, − log |Ds (X)|F }N .
+
+Following [33, §V.7], for f ∈ Cc∞ (s(F )), we define
+Z
+Z
+1/2
+|Ds (X)|F
+(7.1.3)
+d0 (f ) :=
+
+f (Ad(x−1 )(X))e0 (x, X)dxdX.
+
+Tc (F )\H(F )
+
+creg (F )
+
+Lemma 7.4. Let c be a Cartan subspace of s. Suppose that e0 satisfies the above hypotheses. Then the
+integral (7.1.3) is absolutely convergent. Moreover, the distribution d0 ∈ D s .
+Proof. We define a function e′ : srs (F ) → C by
+X
+(7.1.4)
+e′ (X) :=
+
+e0 (x, Ad(x)(X))
+
+{x∈Tc (F )\H(F ):Ad(x)(X)∈c(F )}
+
+for all X ∈ srs (F ). If X ∈
+/ Ad(H(F ))(creg (F )), then e′ (X) = 0. If X ∈ Ad(H(F ))(creg (F )), then
+the sum in (7.1.4) is actually over the finite set W (H, c)y, where y ∈ H(F ) is any element such that
+Ad(y)(X) ∈ c(F ). Hence, e′ is well-defined.
+Additionally, one may check that e′ ∈ E s from the hypotheses on e0 . Let d′ ∈ D s be the distribution
+associated to e′ by (7.1.1). For all f ∈ Cc∞ (s(F )), by the Weyl integration formula (3.1.2), we have
+Z
+Z
+1/2
+′
+−1
+s
+f (Ad(x−1 )(X))e′ (Ad(x−1 )(X))dxdX.
+(7.1.5)
+d (f ) = |W (H, c)|
+|D (X)|F
+creg (F )
+
+Since
+e′ (Ad(x−1 )(X)) =
+
+Tc (F )\H(F )
+
+X
+
+e0 (wx, Ad(w)(X))
+
+w∈W (H,c)
+
+for all x ∈ Tc (F )\H(F ) and all X ∈ creg (F ), we deduce that
+Z
+X Z
+1/2
+d′ (f ) = |W (H, c)|−1
+f (Ad(x−1 )(X))e0 (wx, Ad(w)(X))dxdX.
+|Ds (X)|F
+w∈W (H,c)
+
+creg (F )
+
+Tc (F )\H(F )
+
+34
+
+Applying the change of variables X 7→ Ad(w−1 )(X) and x 7→ w−1 x, which does not modify the Haar
+measures, we obtain
+d′ (f ) = d0 (f )
+for all f ∈ Cc∞ (s(F )). That is to say, d0 = d′ ∈ D s .
+Note that in the argument above, we have used the convergence of an analogue of (7.1.5) with e0 and
+f replaced by their absolute values. It also results in the absolute convergence of (7.1.3).
+
+Corollary 7.5 (Parabolic induction). Let M ∈ L G,ω (M0 ), P ∈ P G (M ) and d ∈ D m∩s . Then the
+distribution on s(F ) defined by ∀f ∈ Cc∞ (s(F )), f 7→ d(fPη ) belongs to D s , where fPη is defined by (3.2.2).
+
+Proof. Applying the Weyl integration formula (3.1.2) to d(fPη ), we see that it suffices to fix a Cartan
+subspace c ⊆ m ∩ s and prove that the distribution on s(F ) defined by
+(7.1.6)
+Z
+Z
+1/2
+|Dm∩s (X)|F
+∀f ∈ Cc∞ (s(F )), f 7→
+fPη (Ad(x−1 )(X))ed (Ad(x−1 )(X))dxdX
+creg (F )
+
+Tc (F )\MH (F )
+
+belongs to D s . Recall that ed ∈ E m∩s is associated to d by (7.1.1).
+Define a function e1 : H(F ) × creg (F ) → C by
+Z
+(7.1.7)
+e1 (x, X) := η(Nrd(x))
+ed (Ad(mP (x)k)−1 (X))η(Nrd(mP (x)k))dk
+MH (F )∩K
+
+for all x ∈ H(F ) and all X ∈ creg (F ), where mP (x) ∈ MH (F ) is any element such that mP (x)−1 x ∈
+NPH (F )KH . Since KH is a special subgroup of H(F ), such mP (x) is well-defined modulo MH (F ) ∩ K.
+Hence, the integral (7.1.7) is independent of the choice of mP (x). The function e1 is left Tc (F )-invariant
+on the first variable, so it induces a function (still denoted by e1 ) : Tc (F )\H(F ) × creg (F ) → C.
+We shall check that e1 verifies the hypotheses of Lemma 7.4. Firstly, e1 is locally constant because
+ed is locally constant and e1 is right KH -invariant on the first variable. Secondly, suppose that r is
+an open compact subset of s(F ). We fix an open compact subset rM ⊆ (m ∩ s)(F ) such that if X ∈
+(m∩s)(F ), U ∈ (nP ∩s)(F ), k ∈ KH satisfy Ad(k)(X +U ) ∈ r, then X ∈ rM ; this is possible for it suffices
+to let rM contain the projection of Ad(KH )(r) to (m ∩ s)(F ). Replacing rM with Ad(MH (F ) ∩ K)(rM )
+if necessary, we may additionally assume that
+(7.1.8)
+
+Ad(MH (F ) ∩ K)(rM ) = rM .
+
+Since ed ∈ E m∩s , there exist constants c > 0 and N ∈ N such that
+
+|ed (X)| ≤ c sup{1, − log |Dm∩s (X)|F }N
+
+for all X ∈ rM ∩ (m ∩ s)rs (F ). One sees from (3.1.1) that for all X ∈ (m ∩ s)rs (F ),
+1/2
+
+|Ds (X)|F |Dm∩s (X)|−1
+F = | det(ad(X)|g/m )|F .
+Hence, |Ds (X)|F |Dm∩s (X)|−1
+F is bounded for X ∈ rM ∩ (m ∩ s)rs (F ). Recall that m ∩ srs ⊆ (m ∩ s)rs (see
+Section 3.2) and that |Ds (X)|F 6= 0 for X ∈ srs (F ) (see Section 3.1). We deduce that there exists c′ > 0
+such that
+(7.1.9)
+
+|ed (X)| ≤ c′ sup{1, − log |Ds (X)|F }N
+
+for all X ∈ rM ∩ srs (F ). Now, suppose that x ∈ Tc (F )\H(F ) and X ∈ creg (F ) satisfy Ad(x−1 )(X) ∈ r.
+Write x = mnk with m ∈ MH (F ), n ∈ NPH (F ) and k ∈ KH . Then
+Ad(x−1 )(X) = Ad(k −1 )(Ad(m−1 )(X) + U ),
+
+where U := Ad(n−1 m−1 )(X) − Ad(m−1 )(X) ∈ (nP ∩ s)(F ). Thus Ad(m−1 )(X) ∈ rM by our assumption
+on rM . Thanks to (7.1.8) and (7.1.9), we obtain
+|e1 (x, X)| ≤ c′ sup{1, − log |Ds (X)|F }N .
+To sum up, e1 verifies the hypotheses of Lemma 7.4.
+Applying Lemma 7.4 to c and e1 , we know that the distribution d1 on s(F ) defined by
+Z
+Z
+1/2
+f (Ad(x−1 )(X))e1 (x, X)dxdX
+|Ds (X)|F
+∀f ∈ Cc∞ (s(F )), d1 (f ) :=
+Tc (F )\H(F )
+
+creg (F )
+
+35
+
+belongs to D s . Note that e1 (mnk, X) = η(Nrd(k))e1 (m, X) for m ∈ MH (F ), n ∈ NPH (F ), k ∈ KH . By
+the same argument as the proof of Proposition 4.1.4), one shows that
+Z
+Z
+1/2
+d1 (f ) =
+|Dm∩s (X)|F
+fPη (Ad(m−1 )(X))e1 (m, X)dmdX
+creg (F )
+
+=
+
+Z
+
+creg (F )
+
+Tc (F )\MH (F )
+
+|D
+
+m∩s
+
+1/2
+(X)|F
+
+Z
+
+Tc (F )\MH (F )
+
+fPη (Ad(m−1 )(X))
+
+Z
+
+ed (Ad(mk)−1 (X))η(Nrd(k))
+MH (F )∩K
+
+dkdmdX.
+Note that for k ∈ MH (F ) ∩ K, we have Ad(k −1 )fPη = η(Nrd(k))fPη . By the change of variables mk 7→ m,
+
+one can eliminate the integral over MH (F ) ∩ K and see that d1 is the same as (7.1.6).
+
+Let M ∈ L G,ω (M0 ) and d ∈ D m∩s . Suppose that d is η(Nrd(*))-invariant with respect to the adjoint
+action of MH (F ). Following [33, §V.9], we define a distribution IndG,w
+M (d) on s(F ) by
+(7.1.10)
+Z
+X
+X
+Ln
+Mn −1
+−1
+G
+|W
+(L
+,
+c)|
+JM
+(η, X, f )ed (X)dX
+IndG,w
+(d)(f
+)
+:=
+|W
+||W
+|
+H
+0
+0
+M
+{L∈L G,ω (M0 ):L⊆M}
+
+c∈Tell (l∩s)
+
+creg (F )
+
+G
+for all f ∈ Cc∞ (s(F )), where JM
+(η, X, f ) is defined by (4.1.1). In particular, if M = G and d ∈ D s is
+η(Nrd(*))-invariant with respect to the adjoint action of H(F ), we have IndG,w
+G (d) = d by (7.1.2).
+
+Corollary 7.6. Let M ∈ L G,ω (M0 ) and d ∈ D m∩s . Suppose that d is η(Nrd(*))-invariant with respect
+to the adjoint action of MH (F ). Then the integral (7.1.10) is absolutely convergent. Moreover, the
+s
+distribution IndG,w
+M (d) ∈ D .
+Remark 7.7. This corollary is unnecessary for the proof of Proposition 7.2 but useful in Section 8.1.
+Proof of Corollary 7.6. It suffices to fix a Cartan subspace c ⊆ m ∩ s and prove the same assertion for
+the distribution on s(F ) defined by
+Z
+G
+∞
+JM
+(η, X, f )ed (X)dX.
+(7.1.11)
+∀f ∈ Cc (s(F )), f 7→
+creg (F )
+
+Define a function e2 : (Tc (F )\H(F )) × creg (F ) → C by
+
+(7.1.12)
+
+G
+e2 (x, X) := η(Nrd(x))vM
+(x)ed (X)
+
+for all x ∈ Tc (F )\H(F ) and all X ∈ creg (F ). It is locally constant. Note that ed (Ad(m−1 )(X)) =
+η(Nrd(m))ed (X) for x ∈ MH (F ) and X ∈ (m ∩ srs )(F ) by our assumption on d. Thus we may use the
+same argument as in the proof of Corollary 7.5 to show the inequality
+|ed (X)| = |ed (Ad(m−1 )(X))| ≤ c′ sup{1, − log |Ds (X)|F }N .
+
+G
+(x). In sum, e2 verifies the hypotheses of Lemma
+Thanks to Lemma 4.2, one has a similar bound for vM
+7.4.
+Applying Lemma 7.4 to c and e2 , we know that the integral
+Z
+Z
+1/2
+|Ds (X)|F
+∀f ∈ Cc∞ (s(F )), f 7→
+f (Ad(x−1 )(X))e2 (x, X)dxdX
+creg (F )
+
+Tc (F )\H(F )
+
+is absolutely convergent and defines a distribution in D s . This distribution is the same as (7.1.11).
+
+
+
+m∩s
+
+Remark 7.8. Instead of the hypothesis ed ∈ E
+, an analogue of Corollary 7.6 holds if one assumes
+that d is defined via (7.1.1) by a function ed : (m ∩ srs )(F ) → C locally constant, η(Nrd(*))-invariant
+with respect to the adjoint action of MH (F ), and such that for any open compact subset r of (m ∩ s)(F ),
+there exist constants c > 0 and N ∈ N such that for all X ∈ r ∩ srs (F ), one has the inequality
+|ed (X)| ≤ c sup{1, − log |Ds (X)|F }N .
+
+The proof is the same, except that we need not use the boundedness of |Ds (X)|F |Dm∩s (X)|−1
+F for
+X ∈ rM ∩ srs (F ) (see the proof of Corollary 7.5).
+
+Lemma 7.9. Let M ∈ L G,ω (M0 ) and c ⊆ m ∩ s be an M -elliptic Cartan subspace.
+1) Let M ′ ∈ L G,ω (M0 ), c′ ∈ Tell (m′ ∩ s) and x ∈ H(F ) be such that Ad(x)(c) = c′ . Then there exist
+′
+elements m′ ∈ MH
+(F ) and w ∈ NormH(F ) (M0 ) such that x = m′ w.
+2) The cardinality of
+{(M ′ , c′ ) : M ′ ∈ L G,ω (M0 ), c′ ∈ Tell (m′ ∩ s), c′ is H(F )-conjugate to c}
+36
+
+is
+|W0GLn ||W0Mn |−1 |W (MH , c)||W (H, c)|−1 .
+Proof. 1) Since c ⊆ m ∩ s (resp. c′ ⊆ m′ ∩ s) is M -elliptic (resp. M ′ -elliptic), we have ATc = AM
+(resp. ATc′ = AM ′ ). From Ad(x)(c) = c′ , we obtain Ad(x)(ATc ) = ATc′ , Ad(x)(AM ) = AM ′ and
+′
+Ad(x)(M ) = M ′ , which implies that Ad(x)(MH ) = MH
+. Then 1) can be shown by the same argument
+as in the proof of Lemma 3.13.1).
+2) We can and shall identify an M -elliptic (resp. M ′ -elliptic) Cartan subspace in m ∩ s (resp. m′ ∩ s)
+′
+′
+with its MH (F )(resp. MH
+(F ))-conjugacy class. Then Tell (m′ ∩ s) is identified to the set of MH
+(F )′
+′
+3.13.1),
+we
+also
+conjugacy classes of M -elliptic
+Cantan
+subspaces
+in
+m
+∩
+s.
+As
+in
+the
+proof
+of
+Lemma
+
+
+
+w
+GL
+n
+: wn ∈ W0 n,D acts transitively on the set of pairs in 2).
+see that the group W0H,ω :=
+wn
+Firstly, let us count M ′ appearing in the pairs (cf. [22, p.426]). 
+wn
+Since M ∈ L G,ω (M0 ), for w ∈ W0H,ω , we see that w =
+∈ NormW H,ω (M ) if and only if
+0
+wn
+wn ∈ Norm GLn,D (Mn,D ), where NormW H,ω (M ) (resp. Norm GLn,D (Mn,D )) denotes the normaliser of
+W0
+
+W0
+
+0
+
+M (resp. Mn,D ) in
+
+W0H,ω
+
+(resp.
+
+GL
+W0 n,D ).
+
+GLn,D
+
+|W0
+
+Hence, the number of M ′ is
+
+||Norm
+
+GLn,D
+
+W0
+
+(Mn,D )|−1 .
+
+Secondly, for such an M ′ fixed, we count c′ such that (M ′ , c′ ) belongs to the set of pairs in 2) (cf. [22,
+Lemma 7.1]).
+For x ∈ H(F ), we claim that Ad(x)(c′ ) ⊆ m′ ∩ s if and only if x ∈ NormH(F ) (M ′ ), which denotes the
+normaliser of M ′ in H(F ). On the one hand, suppose that Ad(x)(c′ ) ⊆ m′ ∩ s. Then AM ′ ⊆ CentH (m′ ∩
+s) ⊆ Ad(x)(Tc′ ), where CentH (m′ ∩ s) denotes the centraliser of m′ ∩ s in H. Since Ad(x)(AM ′ ) =
+Ad(x)(ATc′ ) is the maximal F -split torus in Ad(x)(Tc′ ), we have AM ′ ⊆ Ad(x)(AM ′ ). By comparison
+of dimensions, we deduce that Ad(x)(AM ′ ) = AM ′ , so x ∈ NormH(F ) (M ′ ). On the other hand, suppose
+that x ∈ NormH(F ) (M ′ ). Since x ∈ H(F ), we have Ad(x)(m′ ∩ s) = (m′ ∩ s). But c′ ⊆ m′ ∩ s, so we
+obtain Ad(x)(c′ ) ⊆ m′ ∩ s. In sum, we have proved our claim.
+From this claim, the number of c′ is
+′
+|MH
+(F )\NormH(F ) (M ′ )/NormH(F ) (c′ )|.
+
+′
+Since MH
+(F ) is a normal subgroup of NormH(F ) (M ′ ), we know that the number of the double cosets is
+equal to
+′
+′
+(F )||NormH(F ) (c′ )/(NormH(F ) (c′ ) ∩ MH
+(F ))|−1
+|NormH(F ) (M ′ )/MH
+
+′
+=|NormH(F ) (M ′ )/MH
+(F )||NormH(F ) (c′ )/NormMH′ (F ) (c′ )|−1 .
+
+For x ∈ NormH(F ) (M ′ ), we have Ad(x)(AM ′ ) = AM ′ . Because M ′ ∈ L G,ω (M0 ), there exists w ∈ W0H,ω
+′
+(F ), where CentH(F ) (AM ′ ) denotes the centraliser of AM ′ in
+such that w−1 x ∈ CentH(F ) (AM ′ ) = MH
+′
+H(F ). Since x ∈ NormH(F ) (M ), we have w ∈ NormW H,ω (M ′ ). That is to say,
+0
+
+′
+
+′
+NormH(F ) (M ) = NormW H,ω (M ′ )MH
+(F ).
+0
+
+Therefore,
+′
+′
+|NormH(F ) (M ′ )/MH
+(F )| =|NormW H,ω (M ′ )||(NormW H,ω (M ′ ) ∩ MH
+(F ))|−1
+0
+
+0
+
+=|Norm
+
+′
+′
+(Mn,D
+)||(W0H,ω ∩ MH
+(F ))|−1
+
+=|Norm
+
+′
+(Mn,D
+)||W0
+
+GL
+W0 n,D
+
+GL
+W0 n,D
+
+′
+Mn,D
+−1
+
+GLn,D
+
+′
+and Mn,D are W0
+Since M ′ and M are W0H,ω -conjugate, Mn,D
+′
+|NormH(F ) (M ′ )/MH
+(F )| = |Norm
+
+GLn,D
+
+W0
+
+|
+
+.
+
+-conjugate. Hence,
+Mn,D −1
+
+(Mn,D )||W0
+
+|
+
+.
+
+We also have
+|NormH(F ) (c′ )/NormMH′ (F ) (c′ )| =|NormH(F ) (c′ )/Tc′ (F )||NormMH′ (F ) (c′ )/Tc′ (F )|−1
+′
+=|W (H, c′ )||W (MH
+, c′ )|−1 .
+37
+
+Since (M ′ , c′ ) and (M, c) are W0H,ω -conjugate, we obtain
+|NormH(F ) (c′ )/NormMH′ (F ) (c′ )| = |W (H, c)||W (MH , c)|−1 .
+
+To sum up, the number of c′ is
+|Norm
+
+GLn,D
+
+W0
+
+Mn,D −1
+
+|
+
+(Mn,D )||W0
+
+|W (MH , c)||W (H, c)|−1 .
+
+Finally, combining the numbers of M ′ and c′ , we obtain the number of pairs (M ′ , c′ ) in 2).
+
+
+
+Proof of Proposition 7.2. First of all, suppose that X ∈ (m ∩ srs )(F )ell . Then c := sX ⊆ m ∩ s is
+an M -elliptic Cartan subspace and X ∈ creg (F ). Fix an open compact subgroup r ⊆ s(F ) and set
+r∗ := {Y ∈ s(F ) : ∀Z ∈ r, Ψ(hY, Zi) = 1}, which is also an open compact subgroup of s(F ). For all
+L ∈ L G (M ), fix an open compact subgroup rL ⊆ (l∩s)(F ) such that if Q ∈ P G (L) and if f ∈ Cc∞ (s(F ))
+η
+η
+∗
+in the same way
+satisfies Supp(f ) ⊆ r, then Supp(fQ
+) ⊆ rL , where fQ
+is defined by (3.2.2). Define rL
+∗
+as r .
+There exists a neighbourhood σ of X in creg (F ) such that for all L ∈ L G (M ) and all f ∈ Cc∞ ((l ∩
+∗
+L
+s)(F )/rL
+), the function JM
+(η, *, f ) is constant on σ. In fact, for L and f fixed, this results from Proposition 4.1.2) (actually its product form is needed). It suffices to apply Howe's finiteness (the product form
+of Corollary 6.6) to each symmetric pair (L, LH , Ad(ǫ)) and an arbitrary compact neighbourhood of X
+in creg (F ), and then take the intersection of a finite number of neighbourhoods involved.
+We shall fix a σ satisfying the above condition and such that if two elements of σ are H(F )-conjugate
+(or equivalently W (H, c)-conjugate), then they are the same. The latter condition is achievable since
+the W (H, c)-conjugates of an element in creg (F ) form a finite subset, which is discrete. Consider the
+local isomorphism β : (Tc (F )\H(F )) × creg (F ) → srs (F ) of F -analytic manifolds induced by the adjoint
+action. Its restriction to (Tc (F )\H(F )) × σ is injective. Choose a neighbourhood ε of 1 in Tc (F )\H(F )
+such that η(Nrd(ε)) = 1. The set β(ε, σ) is a neighbourhood of X in s(F ). Fix a function f ′ ∈ Cc∞ (s(F ))
+such that Supp(f ′ ) ⊆ β(ε, σ), f ′ ≥ 0 and f ′ (X) 6= 0.
+Let f ∈ Cc∞ (s(F )) with Supp(f ) ⊆ r. We shall calculate J G (η, fˆ, f ′ ), which is defined by (5.1.2).
+Consider M ′ ∈ L G,ω (M0 ) and c′ ∈ Tell (m′ ∩ s). If c′ and c are not H(F )-conjugate, by our choice
+G
+′
+′
+ˆ ′
+of f ′ , the function JM
+′ (η, *, f , f ) vanishes on creg (F ). Now suppose that c and c are H(F )-conjugate.
+′
+′
+Let x ∈ H(F ) be such that Ad(x)(c) = c . By Lemma 7.9.1), there exist elements m′ ∈ MH
+(F ) and
+′
+′
+′
+w ∈ NormH(F ) (M0 ) such that x = m w. By Proposition 5.1.4), for X ∈ creg (F ), we have
+G
+′ ˆ ′
+G
+′ −1
+JM
+)(X ′ ), fˆ, f ′ )
+′ (η, X , f , f ) = JM ′ (η, Ad(m
+
+G
+= JAd(w)(M)
+(η, Ad(wx−1 )(X ′ ), fˆ, f ′ )
+G
+= JM
+(η, Ad(x−1 )(X ′ ), fˆ, f ′ ).
+
+From our choices of Haar measures, we obtain
+Z
+Z
+G
+′ ˆ ′
+JM ′ (η, X , f , f ) =
+c′reg (F )
+
+creg (F )
+
+G
+JM
+(η, Y, fˆ, f ′ )dY.
+
+By Lemma 7.9.2), the number of pairs (M ′ , c′ ) with c′ being H(F )-conjugate to c is
+|W0GLn ||W0Mn |−1 |W (MH , c)||W (H, c)|−1 .
+We deduce that
+J (η, fˆ, f ′ ) = (−1)dim(AM /AG ) |W (H, c)|−1
+G
+
+Z
+
+creg (F )
+
+G
+JM
+(η, Y, fˆ, f ′ )dY.
+
+G
+It follows from our `
+choice of f ′ that the support of the restriction to creg (F ) of the function JM
+(η, *, fˆ, f ′ )
+is contained in
+Ad(w)(σ). Then
+w∈W (H,c)
+
+Z
+
+creg (F )
+
+G
+(η, Y, fˆ, f ′ )dY =
+JM
+
+X
+
+w∈W (H,c)
+
+Z
+
+creg (F )
+
+G
+JM
+(η, Y, fˆ, f ′ )1Ad(w)(σ) (Y )dY,
+
+where 1Ad(w)(σ) denotes the characteristic function of Ad(w)(σ). By the change of variables Y 7→
+Ad(w)(Y ), which does not modify the Haar measure, we have
+Z
+Z
+G
+G
+JM
+(η, Ad(w)(Y ), fˆ, f ′ )dY.
+JM
+(η, Y, fˆ, f ′ )1Ad(w)(σ) (Y )dY =
+σ
+
+creg (F )
+
+38
+
+Since w ∈ W (H, c), we have shown above that
+
+G
+G
+JM
+(η, Ad(w)(Y ), fˆ, f ′ ) = JM
+(η, Y, fˆ, f ′ ),
+
+which is independent of w. Therefore,
+J (η, fˆ, f ′ ) = (−1)dim(AM /AG )
+G
+
+Z
+
+σ
+
+G
+JM
+(η, Y, fˆ, f ′ )dY.
+
+G
+Let Y ∈ σ. Applying the splitting formula for JM
+(η, Y, fˆ, f ′ ) (Proposition 5.1.6)), we have
+X
+L2
+L1
+′η
+G
+ˆη
+JM
+(η, Y, fˆ, f ′ ) =
+dG
+M (L1 , L2 )JM (η, Y, fQ )JM (η, Y, f Q2 ).
+1
+
+L1 ,L2 ∈L G (M)
+
+η
+η
+η
+∗
+is invariant by translation of rM
+For all Q ∈ F G (M ), since Supp(fQ
+) ⊆ rMQ , fˆQ
+. In particular, fˆQ
+Q
+1
+L1
+∗
+ˆη ) is constant on σ and thus equal to
+is invariant by rL
+.
+Then
+by
+our
+assumption
+on
+σ,
+J
+(η,
+*,
+f
+M
+1
+Q1
+J L1 (η, X, fˆη ). Therefore,
+M
+
+Q1
+
+J G (η, fˆ, f ′ ) =
+
+X
+
+η
+L1
+),
+c(L1 , L2 )JM
+(η, X, fˆQ
+1
+
+L1 ,L2 ∈L G (M)
+
+where
+dim(AM /AG )
+c(L1 , L2 ) := dG
+M (L1 , L2 )(−1)
+
+Z
+
+η
+
+σ
+
+L2
+JM
+(η, Y, f ′ Q2 )dY.
+
+We claim that c(G, M ) 6= 0. In fact, from (1) and (4) in Section 2.7, we have
+Z
+η
+M
+c(G, M ) = (−1)dim(AM /AG ) JM
+(η, Y, f ′ Q2 )dY,
+σ
+
+where MQ2 = M . By Proposition 4.1.4), we have
+η
+
+Q2
+M
+(η, Y, f ′ ).
+JM
+(η, Y, f ′ Q2 ) = JM
+Q2
+= 1, we obtain
+Since vM
+Q2
+G
+(η, Y, f ′ ) = JG
+(η, Y, f ′ ).
+JM
+
+Hence,
+c(G, M ) = (−1)dim(AM /AG )
+
+Z
+
+1/2
+
+σ
+
+|Ds (Y )|F
+
+Z
+
+f ′ (Ad(x−1 )(Y ))η(Nrd(x))dxdY.
+
+HY (F )\H(F )
+
+If Ad(x−1 )(Y ) ∈ Supp(f ′ ) ⊆ β(ε, σ), since the restriction of β to (HY (F )\H(F )) × σ is injective, we
+have x ∈ ε and then η(Nrd(x)) = 1. Since f ′ ≥ 0 and f ′ (X) 6= 0, we deduce our claim. Now, because of
+(3) in Section 2.7, we have
+X
+η
+L1
+G
+)
+(7.1.13)
+JˆM
+(η, X, f ) = J G (η, fˆ, f ′ ) −
+c(L1 , L2 )c(G, M )−1 JˆM
+(η, X, fQ
+1
+
+L1 ,L2 ∈L G (M),L1 6=G
+
+for all f ∈ Cc∞ (s(F )) with Supp(f ) ⊆ r.
+By induction on the dimension of G and parabolic induction (Corollary 7.5), one can suppose that
+η
+L1
+)
+for all L1 ∈ L G (M ), L1 6= G, the distribution on s(F ) defined by ∀f ∈ Cc∞ (s(F )), f 7→ JˆM
+(η, X, fQ
+1
+belongs to D s . This is actually a product form of the induction hypothesis in lower dimensions.
+We claim that the distribution on s(F ) defined by ∀f ∈ Cc∞ (s(F )), f 7→ J G (η, fˆ, f ′ ) belongs to D s
+(cf. [33, (3) in §V.10]). In fact, thanks to the noninvariant trace formula (Theorem 5.3), one can replace
+J G (η, fˆ, f ′ ) with J G (η, f, fˆ′ ). By its definition (5.1.2), it suffices to fix M ′ ∈ L G,ω (M0 ), c′ ∈ Tell (m′ ∩ s)
+and prove that the distribution on s(F ) defined by
+Z
+∞
+G
+ˆ′
+∀f ∈ Cc (s(F )), f 7→
+JM
+′ (η, Y, f, f )dY
+c′reg (F )
+
+belongs to D s . By the splitting formula (Proposition 5.1.6)), it suffices to fix L′1 , L′2 ∈ L G (M ′ ) and
+prove that the distribution on s(F ) defined by
+Z
+η
+L′
+L′
+JM1′ (η, Y, f η ′ )JM2′ (η, Y, fˆ′ Q′2 )dY,
+∀f ∈ Cc∞ (s(F )), f 7→
+Q1
+
+c′reg (F )
+
+39
+
+where (Q′1 , Q′2 ) := s(L′1 , L′2 ), belongs to D s . By Proposition 4.1.4) and the definition (4.1.1), we have
+Z
+Q′1
+Q′
+L′1
+1/2
+η
+s
+JM ′ (η, Y, fQ′ ) = JM ′ (η, Y, f ) = |D (Y )|F
+f (Ad(x−1 )(Y ))η(Nrd(x))vM1′ (x)dx.
+1
+
+Then
+
+Z
+
+η
+L
+L
+JM1′ (η, Y, f η ′ )JM2′ (η, Y, fˆ′ Q′2 )dY
+′
+
+′
+
+c′reg (F )
+
+=
+
+HY (F )\H(F )
+
+Z
+
+Q1
+
+1/2
+
+c′reg (F )
+
+|Ds (Y )|F
+
+Z
+
+η
+Q
+L
+f (Ad(x−1 )(Y ))η(Nrd(x))vM1′ (x)JM2′ (η, Y, fˆ′ Q′2 )dxdY.
+′
+
+′
+
+Tc′ (F )\H(F )
+
+Define a function e3 : (Tc′ (F )\H(F )) × c′reg (F ) → C by
+η
+Q
+L
+e3 (x, Y ) := η(Nrd(x))vM1′ (x)JM2′ (η, Y, fˆ′ Q′2 ).
+′
+
+′
+
+Q′
+
+It is locally constant by the product form of Proposition 4.1.2). Using Lemma 4.2 to dominate vM1′ (x)
+η
+L′
+and Corollary 4.3 to dominate JM2′ (η, Y, fˆ′ Q′2 ), we check that e3 verifies the hypotheses of Lemma 7.4,
+which implies our claim.
+G
+(η, X, *) conincides with some element in D s for all
+Now (7.1.13) shows that the distribution JˆM
+∞
+G
+f ∈ Cc (s(F )) with Supp(f ) ⊆ r. By glueing (Remark 7.1), the distribution JˆM
+(η, X, *) ∈ D s .
+Finally, consider a general X ∈ (m ∩ srs )(F ). There exists x ∈ MH (F ) such that Y := Ad(x−1 )(X) ∈
+G
+G
+(l ∩ s)(F )ell for some L ∈ L G,ω (M0 ), L ⊆ M . Then JˆM
+(η, X, *) = η(Nrd(x))JˆM
+(η, Y, *). Applying
+the descent formula (Proposition 4.1.5)), the product form of the elliptic case that we have just proved
+(applied to Y ∈ (l ∩ s)(F )ell ) and parabolic induction (Corollary 7.5), we deduce that the distribution
+G
+G
+JˆM
+(η, Y, *) ∈ D s . Thus the distribution JˆM
+(η, X, *) ∈ D s .
+
+′
+
+′
+
+7.2. The case of (G′ , H ′ ). We define E s in the same way as the previous case. For e ∈ E s , thanks to
+Corollary 3.24, it defines a distribution on s′ (F ):
+Z
+′
+−1/2
+f ′ (Y )e(Y )|Ds (Y )|F dY.
+(7.2.1)
+∀f ′ ∈ Cc∞ (s′ (F )), f ′ 7→
+s′ (F )
+
+′
+
+′
+
+Denote by D s the space of distributions obtained in this way. For d ∈ D s , we shall always denote by
+′
+′
+′
+ed ∈ E s its preimage under the isomorphism E s → D s defined above. One may extend these definitions
+f′ , M ′ , Ad(α)), where M ′ ∈ L H ′ (M ′ ). If d ∈ D s′ is invariant with respect to
+to the symmetric pair (M
+0
+′
+the adjoint action of H ′ (F ), then so is ed ∈ E s and by the Weyl integration formula (Proposition 3.21),
+we have the equality
+Z
+X
+X
+′
+′
+H′
+′
+|W (M ′ , c′ )|−1
+(7.2.2)
+d(f ′ ) =
+JH
+|W0M ||W0H |−1
+′ (Y, f )ed (Y )dY
+M ′ ∈L H ′ (M0′ )
+
+c′reg (F )
+
+f′ ∩s′ )
+c′ ∈Tell (m
+
+′
+
+H
+′
+for all f ′ ∈ Cc∞ (s′ (F )), where JH
+′ (Y, f ) is defined by (4.2.1).
+′
+f′ ∩ s′rs )(F ). Denote by JˆH ′′ (Y, *) the distribution on s′ (F ) defined by
+Let M ′ ∈ L H (M0′ ) and Y ∈ (m
+M
+H′
+′
+H′
+ˆ′
+JˆM
+′ (Y, f ) := JM ′ (Y, f )
+
+for all f ′ ∈ Cc∞ (s′ (F )), where the right hand side is defined by (4.2.1). One also has a similar definition
+f′ , M ′ , Ad(α)), where M ′ ∈ L H ′ (M0′ ).
+for the symmetric pair (M
+′
+f′ ∩ s′rs )(F ). Then the distribution
+Proposition 7.10 (Representability). Let M ′ ∈ L H (M0′ ) and Y ∈ (m
+′
+′
+H
+s
+JˆM ′ (Y, *) ∈ D .
+
+The rest of this section is devoted to the proof of Proposition 7.10. Although it is similar to the proof
+of Proposition 7.2, we shall sketch some steps for later use.
+Let c′ be a Cartan subspace of s′ . Recall that Tc′ denotes the centraliser of c′ in H ′ . Suppose that
+e0 : (Tc′ (F )\H ′ (F )) × c′reg (F ) → C is a function such that
+(1) e0 is locally constant;
+(2) for any open compact subset r′ of s′ (F ), there exist constants c > 0 and N ∈ N such that for all
+x ∈ Tc′ (F )\H ′ (F ) and Y ∈ c′reg (F ) satisfying Ad(x−1 )(Y ) ∈ r′ , one has the inequality
+′
+
+e0 (x, Y ) ≤ c sup{1, − log |Ds (Y )|F }N .
+40
+
+For f ′ ∈ Cc∞ (s′ (F )), we define
+Z
+′
+(7.2.3)
+d0 (f ) :=
+
+s′
+
+c′reg (F )
+
+|D (Y
+
+1/2
+)|F
+
+Z
+
+f ′ (Ad(x−1 )(Y ))e0 (x, Y )dxdY.
+
+Tc′ (F )\H ′ (F )
+
+Lemma 7.11 (cf. Lemma 7.4). Let c′ be a Cartan subspace of s′ . Suppose that e0 satisfies the above
+′
+hypotheses. Then the integral (7.2.3) is absolutely convergent. Moreover, the distribution d0 ∈ D s .
+′
+
+f′
+
+′
+
+′
+
+Corollary 7.12 (Parabolic induction). Let M ′ ∈ L H (M0′ ), P ′ ∈ P H (M ′ ) and d ∈ D m ∩s . Then the
+′
+distribution on s′ (F ) defined by ∀f ′ ∈ Cc∞ (s′ (F )), f ′ 7→ d(fP′ ′ ) belongs to D s , where fP′ ′ is defined by
+(3.3.2).
+Proof. We may apply the argument of Corollary 7.5 with the aid of Lemma 3.22.
+f′
+
+′
+
+
+
+′
+
+Let M ′ ∈ L H (M0′ ) and d ∈ D m ∩s . Suppose that d is invariant with respect to the adjoint action of
+′
+,w
+′
+′
+M (F ). We define a distribution IndH
+M ′ (d) on s (F ) by
+(7.2.4)
+Z
+X
+X
+′
+,w
+′
+L′
+M ′ −1
+′ ′ −1
+H′
+′
+IndH
+(d)(f
+)
+:=
+||W
+|
+|W
+|W
+(L
+,
+c
+)|
+JM
+′ (Y, f )ed (Y )dY
+0
+0
+M′
+{L′ ∈L H ′ (M0′ ):L′ ⊆M ′ }
+
+c′ ∈Tell (le′ ∩s′ )
+
+c′reg (F )
+
+′
+
+′
+
+H
+′
+′
+′
+s
+for all f ′ ∈ Cc∞ (s′ (F )), where JM
+is
+′ (Y, f ) is defined by (4.2.1). In particular, if M = H and d ∈ D
+H ′ ,w
+′
+invariant with respect to the adjoint action of H (F ), we have IndH ′ (d) = d by (7.2.2).
+f′
+
+′
+
+′
+
+Corollary 7.13. Let M ′ ∈ L H (M0′ ) and d ∈ D m ∩s . Suppose that d is invariant with respect to the
+adjoint action of M ′ (F ). Then the integral (7.2.4) is absolutely convergent. Moreover, the distribution
+′
+,w
+s′
+IndH
+M ′ (d) ∈ D .
+Remark 7.14. This corollary is unnecessary for the proof of Proposition 7.10 but useful in Section 8.2.
+Proof of Corollary 7.13. We may apply the argument of Corollary 7.6 thanks to Lemmas 4.5 and 7.11.
+
+′
+f′ ∩ s′ be an M ′ -elliptic Cartan subspace.
+Lemma 7.15 (cf. Lemma 7.9). Let M ′ ∈ L H (M0′ ) and c′ ⊆ m
+′
+H
+′
+′
+′
+e ∩ s ) and x ∈ H (F ) be such that Ad(x)(c′ ) = c. Then there exist
+1) Let M ∈ L (M0 ), c ∈ Tell (m
+elements m ∈ M (F ) and w ∈ NormH ′ (F ) (M0′ ) such that x = mw.
+2) The cardinality of
+′
+
+is
+
+e ∩ s′ ), c is H ′ (F )-conjugate to c′ }
+{(M, c) : M ∈ L H (M0′ ), c ∈ Tell (m
+′
+
+′
+
+|W0H ||W0M |−1 |W (M ′ , c′ )||W (H ′ , c′ )|−1 .
+
+Proof of Proposition 7.10. We may apply the argument of Proposition 7.2 with obvious modifications.
+One needs almost all results that we have prepared in this and previous sections, notably Howe's finiteness
+
+(Corollary 6.9) and the noninvariant trace formula (Theorem 5.12).
+8. Invariant weighted orbital integrals
+8.1. The case of (G, H). Let M ∈ L G,ω (M0 ) and X ∈ (m ∩ srs )(F ). We shall define a distribution
+G
+IˆM
+(η, X, *) ∈ D s which is η(Nrd(*))-invariant with respect to the adjoint action of H(F ) by induction
+L
+on dim(G). Suppose that for all L ∈ L G (M ), L 6= G, we have defined a distribution IˆM
+(η, X, *)
+by an analogue of (8.1.1) where G is replaced by L such that the following properties are verified:
+L
+IˆM
+(η, X, *) ∈ D l∩s and is η(Nrd(*))-invariant with respect to the adjoint action of LH (F ). This is
+L,G,w
+actually a product form of the induction hypothesis in lower dimensions. Denote by IˆM
+(η, X, *) its
+G,w
+∞
+image under IndL (see (7.1.10)). As in [33, (1) in §VI.1], for f ∈ Cc (s(F )), we set
+X
+L,G,w
+G
+G
+(8.1.1)
+IˆM
+(η, X, f ) := JˆM
+(η, X, f ) −
+IˆM
+(η, X, f ).
+L∈L G (M),L6=G
+
+G
+Proposition 8.1. The distribution IˆM
+(η, X, *) ∈ D s and is η(Nrd(*))-invariant with respect to the
+adjoint action of H(F ).
+41
+
+G
+Proof. The first statement results from the representability of JˆM
+(η, X, *) (Proposition 7.2), the induction
+hypothesis and Corollary 7.6. Now let us consider the second one.
+Let f ∈ Cc∞ (s(F )) and y ∈ H(F ). By the H(F )-invariance of h*, *i, we see that (Ad(y −1 )(f ))ˆ =
+Ad(y −1 )(fˆ). Applying Proposition 4.1.6), we have
+X
+M
+G
+G
+JˆM
+(η, X, Ad(y −1 )(f )) = JM
+(η, X, Ad(y −1 )(fˆ)) = η(Nrd(y))
+JM Q (η, X, (fˆ)ηQ,y ).
+Q∈F G (M)
+
+For all Q ∈ F G (M ), we show that
+
+η
+(fˆ)ηQ,y = (fQ,y
+)ˆ
+
+by the same argument of an analogous property of (3.2.2). Then
+X
+M
+η
+G
+(8.1.2)
+JˆM
+(η, X, Ad(y −1 )(f )) = η(Nrd(y))
+).
+JˆM Q (η, X, fQ,y
+Q∈F G (M)
+
+Let L ∈ L G (M ), L 6= G. Applying Proposition 4.1.6) again to JLG (η, Y, Ad(y −1 )(f )) in the integrand
+of the definition (7.1.10) of IndG,w
+L , we obtain
+X
+L,M ,w
+L,G,w
+η
+(8.1.3)
+IˆM
+(η, X, Ad(y −1 )(f )) = η(Nrd(y))
+IˆM Q (η, X, fQ,y
+),
+Q∈F G (L)
+
+L,M ,w
+IˆM Q (η, X, *)
+
+M ,w
+L
+where
+∈ D mQ ∩s denotes the image of IˆM
+(η, X, *) under IndL Q , which is defined by a
+product form of (7.1.10).
+From (8.1.1), (8.1.2) and (8.1.3), we deduce that
+X
+G
+G
+IˆM (η, X, Ad(y −1 )(f )) =JˆM
+(η, X, Ad(y −1 )(f )) −
+IˆL,G,w (η, X, Ad(y −1 )(f ))
+M
+
+=η(Nrd(y))
+
+
+
+X
+
+Q∈F G (M)
+
+L∈L G (M),L6=G
+
+JˆMQ (η, X, f η ) −
+M
+Q,y
+
+
+
+X
+
+L∈L MQ (M),L6=G
+
+L,M ,w
+η
+IˆM Q (η, X, fQ,y
+) .
+
+M
+
+Consider Q 6= G first. By the induction hypothesis, IˆM Q (η, X, *) ∈ D mQ ∩s is η(Nrd(*))-invariant with
+M ,M ,w
+M
+respect to the adjoint action of MQH (F ), so IˆM Q Q (η, X, *) = IˆM Q (η, X, *). By the definition of
+M
+IˆM Q (η, X, *) (a product form of (8.1.1)), the term in brackets is zero. Thus it remains the term for
+η
+η
+Q = G. Note that fG,y
+= fG
+. By Proposition 4.1.4) applied to Q = G, we see that the term in brackets
+G
+ˆ
+is exactly IM (η, X, f ) defined by (8.1.1). Therefore, we show that
+G
+G
+IˆM
+(η, X, Ad(y −1 )(f )) = η(Nrd(y))IˆM
+(η, X, f ),
+
+which is the second statement.
+
+
+
+G,ω
+
+îG
+M (η, X, *)
+
+G
+ĵM
+(η, X, *))
+
+Let M ∈ L
+(M0 ) and X ∈ (m ∩ srs )(F ). Denote by
+(resp.
+the element of
+G
+G
+E s associated to IˆM
+(η, X, *) (resp. JˆM
+(η, X, *)) ∈ D s by (7.1.1). That is to say, for all f ∈ Cc∞ (s(F )),
+Z
+−1/2
+G
+s
+ˆ
+dY
+IM (η, X, f ) =
+f (Y )îG
+M (η, X, Y )|D (Y )|F
+s(F )
+
+and
+G
+JˆM
+(η, X, f ) =
+
+Z
+
+s(F )
+
+−1/2
+
+G
+f (Y )ĵM
+(η, X, Y )|Ds (Y )|F
+
+dY.
+
+We also have a similar definition for the symmetric pair (M, MH , Ad(ǫ)), where M ∈ L G,ω (M0 ).
+
+Lemma 8.2. Let M ∈ L G,ω (M0 ) and X ∈ (m ∩ srs )(F ). Let L ∈ L G,ω (M0 ) and Y ∈ (l ∩ srs )(F )ell .
+G
+Then îG
+M (η, X, Y ) = ĵM (η, X, Y ).
+Proof. Let L2 ∈ L G (M ), L2 6= G, L1 ∈ L G,ω (M0 ), L1 ⊆ L2 and c ∈ Tell (l1 ∩s). We define a distribution
+dG,w
+L1 ,L2 ,c (η, X, *) on s(F ) by
+Z
+2
+(8.1.4)
+dG,w
+(η,
+X,
+f
+)
+:=
+JLG2 (η, Z, f )îL
+L1 ,L2 ,c
+M (η, X, Z)dZ
+creg (F )
+
+L2
+for all f ∈ Cc∞ (s(F )). By a product form of Proposition 8.1, the distribution IˆM
+(η, X, *) ∈ D l2 ∩s
+and is η(Nrd(*))-invariant with respect to the adjoint action of (L2 ∩ H)(F ). We see from the proof of
+s
+Corollary 7.6 that the integral (8.1.4) is absolutely convergent and the distribution dG,w
+L1 ,L2 ,c (η, X, *) ∈ D .
+42
+
+s
+We denote by eG,w
+L1 ,L2 ,c (η, X, *) its associated element in E by (7.1.1). From the definitions (8.1.1) and
+(7.1.10), we have
+X
+X
+X
+L
+L
+G
+îG
+|W0 1,n ||W0 2,n |−1
+M (η, X, *) =ĵM (η, X, *) −
+L2 ∈L G (M),L2 6=G {L1 ∈L G,ω (M0 ):L1 ⊆L2 }
+
+|W (L1 ∩
+
+H, c)|−1 eG,w
+L1 ,L2 ,c (η, X, *).
+
+c∈Tell (l1 ∩s)
+
+To prove the lemma, it suffices to fix such a triple (L2 , L1 , c) and prove that eG,w
+L1 ,L2 ,c (η, X, Y ) = 0. But
+(7.1.12) and (7.1.4) in the proofs of Corollary 7.6 and Lemma 7.4 respectively allow us to calculate
+eG,w
+L1 ,L2 ,c (η, X, Y ); explicitly, we have
+X
+G
+2
+(x)îL
+η(Nrd(x))vL
+(8.1.5)
+eG,w
+M (η, X, Ad(x)(Y )).
+L1 ,L2 ,c (η, X, Y ) =
+2
+{x∈Tc (F )\H(F ):Ad(x)(Y )∈c(F )}
+
+Let x ∈ Tc (F )\H(F ) such that Ad(x)(Y ) ∈ c(F ). As Y ∈ (l ∩ srs )(F )ell and c ∈ Tell (l1 ∩ s), from
+the proof of Lemma 3.13.1), there exist elements l1 ∈ (L1 ∩ H)(F ) and w ∈ NormH(F ) (M0 ) such that
+x = l1 w. Since any element in W0H admits a representative in KH , we can suppose that w ∈ KH . Then
+G
+G
+G
+
+vL
+(x) = vL
+(1) since L1 ⊆ L2 . But vL
+(1) = 0 for L2 6= G. Thus eG,w
+L1 ,L2 ,c (η, X, Y ) = 0 by (8.1.5).
+2
+2
+2
+Lemma 8.3. Let M ∈ L G,ω (M0 ).
+1) The function (X, Y ) 7→ îG
+M (η, X, Y ) is locally constant on (m ∩ srs )(F ) × srs (F ).
+2) If w ∈ NormH(F ) (M0 ), x ∈ MH (F ) and y ∈ H(F ), we have the equality
+G
+îG
+Ad(w)(M) (η, Ad(wx)(X), Ad(y)(Y )) = η(Nrd(wxy))îM (η, X, Y )
+
+for all (X, Y ) ∈ (m ∩ srs )(F ) × srs (F ).
+3) If λ ∈ F × , we have the equality
+
+G
+îG
+M (η, λX, Y ) = îM (η, X, λY )
+
+for all (X, Y ) ∈ (m ∩ srs )(F ) × srs (F ).
+4) Let rM ⊆ (m ∩ s)(F ) and r ⊆ s(F ) be two compact subsets. Then there exist constants c > 0 and
+N ∈ N such that
+s
+N
+s
+N
+|îG
+M (η, X, Y )| ≤ c sup{1, − log |D (X)|F } sup{1, − log |D (Y )|F }
+
+for all X ∈ rM ∩ srs and Y ∈ r ∩ srs .
+5) Let f ∈ Cc∞ (s(F )) and rM ⊆ (m ∩ s)(F ) be a compact subset. Then there exist constants c > 0 and
+N ∈ N such that
+G
+(η, X, f )| ≤ c sup{1, − log |Ds (X)|F }N
+|IˆM
+for all X ∈ rM ∩ srs .
+
+Proof. Let rM ⊆ (m ∩ s)(F ) and r ⊆ s(F ) be two open compact subgroups. Set r∗ := {Y ∈ s(F ) : ∀Z ∈
+r, Ψ(hY, Zi) = 1}, which is an open compact subgroup of s(F ). Notice that if f ∈ Cc∞ (s(F )) satisfies
+Supp(f ) ⊆ r, then fˆ ∈ Cc∞ (s(F )/r∗ ). Applying Howe's finiteness (Corollary 6.6) to r∗ and rM ∩ srs , we
+know that there exists a finite subset {Xi : i ∈ I} ⊆ rM ∩srs and a finite subset {fi : i ∈ I} ⊆ Cc∞ (s(F )/r∗ )
+such that for all X ∈ rM ∩ srs and all f ∈ Cc∞ (s(F )) with Supp(f ) ⊆ r, we have
+X
+G
+G
+G
+JM
+(η, X, fˆ) =
+JM
+(η, Xi , fˆ)JM
+(η, X, fi ).
+i∈I
+
+We deduce that
+(8.1.6)
+
+G
+ĵM
+(η, X, Y ) =
+
+X
+
+G
+G
+ĵM
+(η, Xi , Y )JM
+(η, X, fi )
+
+i∈I
+
+for all X ∈ rM ∩ srs and Y ∈ r ∩ srs .
+G
+1) The local constancy of (X, Y ) 7→ ĵM
+(η, X, Y ) on (m ∩ srs )(F ) × srs (F ) results from (8.1.6), PropoG
+s
+sition 4.1.2) and ĵM (η, Xi , *) ∈ E for i ∈ I. For L ∈ L G,ω (M0 ), we deduce from Lemma 8.2 the local
+constancy of (X, Y ) 7→ îG
+M (η, X, Y ) on (m ∩ srs )(F ) × (l ∩ srs )(F )ell . Let (X, Y ) ∈ (m ∩ srs )(F ) × srs (F ).
+Choose L ∈ L G,ω (M0 ) and Y ′ ∈ (l ∩ srs )(F )ell such that Y ′ is H(F )-conjugate to Y . Fix a neighbourhood V1 × V2 of (X, Y ′ ) in (m ∩ srs )(F ) × (l ∩ srs )(F )ell such that (X, Y ) 7→ κ(Y )îG
+M (η, X, Y ) is constant
+on V1 × V2 . Thanks to the η(Nrd(*))-invariance of îG
+M (η, X, *) with respect to the adjoint action of H(F )
+(Proposition 8.1), we know that (X, Y ) 7→ κ(Y )îG
+M (η, X, Y ) is constant on V1 × Ad(H(F ))(V2 ) which is
+43
+
+a neighbourhood of (X, Y ) in (m ∩ srs )(F ) × srs (F ). Since κ(*) is locally constant on srs (F ), we show
+that (X, Y ) 7→ îG
+M (η, X, Y ) is constant on a neighbourhood of (X, Y ) in (m ∩ srs )(F ) × srs (F ).
+2) The effect of Ad(y) comes from Propostion 8.1. Then when considering the effects of Ad(w)
+and Ad(x), up to H(F )-conjugation, we may and shall suppose that Y ∈ (l ∩ srs )(F )ell for some L ∈
+L G,ω (M0 ). That is to say, it suffices to prove the equality
+G
+îG
+Ad(w)(M) (η, Ad(wx)(X), Y ) = η(Nrd(wx))îM (η, X, Y )
+G
+for all (X, Y ) ∈ (m ∩ srs )(F ) × (l ∩ srs )(F )ell . By Lemma 8.2, we may replace îG
+Ad(w)(M) and îM by
+
+G
+G
+ĵAd(w)(M)
+and ĵM
+respectively in the equality to be proved. Now the equality results from Proposition
+4.1.3).
+3) Let λ ∈ F × , X ∈ (m ∩ sreg )(F ) and f ∈ Cc∞ (s(F )). From (3.1.1), we have
+(dim(g)−rank(g))/2
+
+|Ds (λX)|F = |λ|F
+
+|Ds (X)|F ,
+
+where dim(g) and rank(g) denote the dimension and rank (over an algebraic closure of F ) of g respectively.
+Then we have
+Z
+−1/2
+G
+G
+G
+f (Y )ĵM
+(η, λX, Y )|Ds (Y )|F dY = JˆM
+(η, λX, f ) = JM
+(η, λX, fˆ)
+s(F )
+Z
+1/2
+Q
+=|Ds (λX)|F
+fˆ(Ad(x−1 )(λX))η(Nrd(x))vM
+(x)dx
+HλX (F )\H(F )
+
+(dim(g)−rank(g))/4 G
+=|λ|F
+JM (η, X, fˆ(λ*)).
+
+But
+fˆ(λ*) =cΨ (s(F ))
+
+Z
+
+f (Z)Ψ(hλ*, Zi)dZ = cΨ (s(F ))
+s(F )
+Z
+− dim(s)
+f (λ−1 Z)Ψ(h*, Zi)dZ
+=|λ|F
+cΨ (s(F ))
+
+Z
+
+f (Z)Ψ(h*, λZi)dZ
+s(F )
+
+s(F )
+
+− dim(g)/2
+=|λ|F
+(f (λ−1 *))ˆ .
+
+Thus we have
+G
+JM
+(η, X, fˆ(λ*))
+
+− dim(g)/2 ˆG
+=|λ|F
+JM (η, X, f (λ−1 *))
+
+Z
+
+=
+
+− dim(g)/2
+|λ|F
+
+Z
+
+s(F )
+
+−1/2
+
+G
+f (λ−1 Y )ĵM
+(η, X, Y )|Ds (Y )|F
+
+dY
+
+−1/2
+
+G
+f (Y )ĵM
+(η, X, λY )|Ds (λY )|F dY
+s(F )
+Z
+−1/2
+(rank(g)−dim(g))/4
+G
+f (Y )ĵM
+(η, X, λY )|Ds (Y )|F dY.
+=|λ|F
+
+=
+
+s(F )
+
+Therefore, we deduce the equality
+G
+G
+ĵM
+(η, λX, Y ) = ĵM
+(η, X, λY )
+
+for all λ ∈ F × and all (X, Y ) ∈ (m ∩ srs )(F ) × srs (F ). We obtain a similar equality for îG
+M thanks
+to Lemma 8.2 and the η(Nrd(*))-invariance of îG
+(η,
+X,
+*)
+with
+respect
+to
+the
+adjoint
+action
+of H(F )
+M
+(Proposition 8.1).
+G
+4) A similar bound for (X, Y ) 7→ ĵM
+(η, X, Y ) on (rM ∩ srs ) × (r ∩ srs ) results from (8.1.6), Corollary
+G
+4.3 (together with Proposition 4.1.4)) and ĵM
+(η, Xi , *) ∈ E s for i ∈ I. For L ∈ L G,ω (M0 ), we deduce
+from Lemma 8.2 a similar bound of (X, Y ) 7→ îG
+M (η, X, Y ) on (rM ∩ srs ) × (r ∩ (l ∩ srs )(F )ell ). Let
+(X, Y ) ∈ (rM ∩ srs ) × (r ∩ srs ). Thanks to the η(Nrd(*))-invariance of îG
+M (η, X, *) with respect to the
+adjoint action of H(F ) (Proposition 8.1), if we replace Y by Ad(y)(Y ), where y ∈ H(F ), the two sides
+in the inequality to be proved remain unchanged. Since any Cartan subspace in s is H(F )-conjugate
+to an element in Tell (l ∩ s) for some L ∈ L G,ω (M0 ), with the help of Lemma 3.4, it suffices to fix
+L ∈ L G,ω (M0 ), c ∈ Tell (l ∩ s) and rc ⊆ c(F ) a compact subset, prove a similar bound for (X, Y ) ∈
+(rM ∩ srs ) × (rc ∩ creg ), and then obtain a uniform bound for (X, Y ) ∈ (rM ∩ srs ) × (r ∩ srs ) by the
+finiteness of Tell (l ∩ s). But this is what we have established.
+
+5) It is a consequence of 4) applied to r := Supp(f ) and Corollary 3.18.
+44
+
+G
+For M ∈ L G,ω (M0 ) and X ∈ (m ∩ srs )(F ), we define a distribution IM
+(η, X, *) on s(F ) by
+G
+G
+IM
+(η, X, fˆ) := IˆM
+(η, X, f )
+
+(8.1.7)
+for all f ∈ Cc∞ (s(F )).
+
+G
+G
+Remark 8.4. For M = G, it is evident that IG
+(η, X, f ) = JG
+(η, X, f ) for all X ∈ srs (F ) and f ∈
+∞
+Cc (s(F )).
+
+One may easily extend the definitions (8.1.1) and (8.1.7) to the symmetric pair (L, LH , Ad(ǫ)), where
+L ∈ L G,ω (M0 ), since it appears as the product of some copies of the form (G, H, Ad(ǫ)) in lower
+dimensions.
+G
+Lemma 8.5. Let M ∈ L G,ω (M0 ) and X ∈ (m ∩ srs )(F ). The distribution IM
+(η, X, *) on s(F ) is
+independent of the choice of the H(F )-invariant non-degenerate symmetric bilinear form h*, *i on s(F )
+or the continuous nontrivial unitary character Ψ of F .
+
+Proof. Suppose that h*, *i′ is another bilinear form and that Ψ′ is another character. Denote by f 7→ f ̃ the
+G
+G
+G
+associated Fourier transform and by I ̃M
+(η, X, *) (resp. J ̃M
+(η, X, *)) the associated analogue of IˆM
+(η, X, *)
+G
+∞
+∞
+(resp. JˆM (η, X, *)). For f ∈ Cc (s(F )), define f− ∈ Cc (s(F )) by f− (Y ) := f (−Y ) for all Y ∈ s(F ).
+ ̃ ˆ
+Since f ̃ = fˆ = f− for all f ∈ C ∞ (s(F )), it suffices to prove the equality
+c
+
+G
+G
+(η, X, fˆ)
+I ̃M
+(η, X, f ̃) = IˆM
+
+for all f ∈ Cc∞ (s(F )).
+Let τ ′ be the linear automorphism of s(F ) such that
+∀Y, Z ∈ s(F ), hY, Zi′ = hτ ′ (Y ), Zi.
+
+Let a ∈ F × such that Ψ′ (*) = Ψ(a*). Set τ := aτ ′ . Then
+
+cΨ′ (s(F )) ˆ
+f (τ (*))
+f ̃(*) =
+cΨ (s(F ))
+
+for all f ∈ Cc∞ (s(F )). One may check that τ is an H(F )-equivariant linear automorphism of s(F ) thanks
+to H(F )-invariance of two bilinear forms. One also deduces that
+∀Y, Z ∈ s(F ), hτ (Y ), Zi = hY, τ (Z)i
+
+from the symmetry of two bilinear forms. Now for all f ∈ Cc∞ (s(F )) and all Y ∈ s(F ), we have
+Z
+Z
+cΨ′ (s(F )) ˆ
+ ̃
+f (−Y ) = f ̃(Y ) = cΨ′ (s(F ))
+f ̃(Z)Ψ′ (hY, Zi′ )dZ = cΨ′ (s(F ))
+f (τ (Z))Ψ(hτ (Y ), Zi)dZ
+s(F )
+s(F ) cΨ (s(F ))
+Z
+Z
+cΨ′ (s(F ))2
+cΨ′ (s(F ))2
+ˆ
+=
+f (τ (Z))Ψ(hY, τ (Z)i)dZ =
+fˆ(Z ′ )Ψ(hY, Z ′ i)dZ ′
+cΨ (s(F )) s(F )
+cΨ (s(F ))| dets(F ) (τ )|F s(F )
+=
+
+cΨ′ (s(F ))2
+cΨ′ (s(F ))2
+ˆ
+fˆ(Y ) =
+f (−Y ).
+2
+cΨ (s(F )) | dets(F ) (τ )|F
+cΨ (s(F ))2 | dets(F ) (τ )|F
+
+Therefore, we obtain
+
+cΨ′ (s(F ))
+cΨ (s(F ))
+
+1/2
+
+= | dets(F ) (τ )|F . Then for all f ∈ Cc∞ (s(F )), we have
+1/2
+f ̃(*) = | dets(F ) (τ )|F fˆ(τ (*)).
+
+G
+s
+ ̃G
+ ̃G
+Denote by ĩG
+M (η, X, *) (resp. j̃M (η, X, *)) the element of E associated to IM (η, X, *) (resp. JM (η, X, *))
+s
+∞
+∈ D by (7.1.1). For f ∈ Cc (s(F )), we have
+Z
+−1/2
+s
+G
+f ̃(Y )ĩG
+dY
+I ̃M
+(η, X, f ̃) =
+M (η, X, Y )|D (Y )|F
+s(F )
+Z
+1/2
+−1/2
+s
+= | dets(F ) (τ )|F
+dY
+fˆ(τ (Y ))ĩG
+M (η, X, Y )|D (Y )|F
+s(F )
+Z
+−1/2
+−1/2
+−1
+= | dets(F ) (τ )|F
+fˆ(Y )ĩG
+(Y ))|Ds (τ −1 (Y ))|F dY.
+M (η, X, τ
+s(F )
+
+We reduce ourselves to proving the equality
+(8.1.8)
+
+−1/2 G
+ĩM (η, X, τ −1 (Y
+
+| dets(F ) (τ )|F
+
+−1/2
+
+))|Ds (τ −1 (Y ))|F
+45
+
+−1/2
+
+s
+= îG
+M (η, X, Y )|D (Y )|F
+
+for all Y ∈ srs (F ). But we have the equality
+G
+G
+J ̃M
+(η, X, f ̃) = JˆM
+(η, X, fˆ)
+G
+since both sides equal JM
+(η, X, f− (*)), which is defined by (4.1.1). The same computation as above
+G
+G
+G
+shows that the equality (8.1.8) is true when one replaces ĩG
+M and îM with j̃M and ĵM respectively. Recall
+that τ is H(F )-equivariant, so HY = Hτ −1 (Y ) for Y ∈ srs (F ). As a consequence, for L ∈ L G,ω (M0 ),
+Y ∈ (l ∩ srs )(F )ell if and only if τ −1 (Y ) ∈ (l ∩ srs )(F )ell . One may conclude by Lemma 8.2 together with
+the η(Nrd(*))-invariance of îG
+M (η, X, *) with respect to the adjoint action of H(F ) (Proposition 8.1). 
+′
+f′ ∩ s′rs )(F ). We shall define a distribution
+8.2. The case of (G′ , H ′ ). Let M ′ ∈ L H (M0′ ) and Y ∈ (m
+′
+′
+H
+s
+ˆ
+IM ′ (Y, *) ∈ D which is invariant with respect to the adjoint action of H ′ (F ) by induction on dim(H ′ ).
+L′
+le′ ∩s′
+Suppose that we have defined a distribution IˆM
+which is invariant with respect to the
+′ (Y, *) ∈ D
+′
+adjoint action of L′ (F ) for all L′ ∈ L H (M ′ ), L′ 6= H ′ . This is actually a product form of the induction
+′
+L′ ,H ′ ,w
+,w
+hypothesis in lower dimensions. Denote by IˆM
+(Y, *) its image under IndH
+(see (7.2.4)). For
+′
+L′
+f ′ ∈ Cc∞ (s′ (F )), we set
+X
+L′ ,H ′ ,w
+H′
+′
+′
+ˆH ′
+(8.2.1)
+IˆM
+IˆM
+(Y, f ′ ).
+′ (Y, f ) := JM ′ (Y, f ) −
+′
+
+L′ ∈L H ′ (M ′ ),L′ 6=H ′
+
+H′
+s′
+Proposition 8.6. The distribution IˆM
+and is invariant with respect to the adjoint action of
+′ (Y, *) ∈ D
+H ′ (F ).
+′
+
+H
+Proof. We may apply the argument of Proposition 8.1 thanks to the representability of JˆM
+′ (Y, *) (Propo
+sition 7.10), Corollary 7.13 and Proposition 4.4.6).
+′
+f′ ∩ s′rs )(F ). Denote by îH ′′ (Y, *) (resp. ĵ H ′′ (Y, *)) the element of E s′
+Let M ′ ∈ L H (M0′ ) and Y ∈ (m
+M
+M
+′
+′
+H
+s′
+ˆH
+associated to IˆM
+by (7.2.1). That is to say, for all f ′ ∈ Cc∞ (s′ (F )),
+′ (Y, *) (resp. JM ′ (Y, *)) ∈ D
+Z
+′
+−1/2
+s′
+H′
+′
+ˆ
+f ′ (X)îH
+dX
+IM ′ (Y, f ) =
+M ′ (Y, X)|D (X)|F
+
+s′ (F )
+
+and
+H′
+′
+JˆM
+′ (Y, f ) =
+
+Z
+
+′
+
+s′ (F )
+
+′
+
+−1/2
+
+H
+s
+f ′ (X)ĵM
+′ (Y, X)|D (X)|
+F
+
+dX.
+′
+
+f′ , M ′ , Ad(α)), where M ′ ∈ L H (M0′ ).
+One has a similar definition for the symmetric pair (M
+
+′
+f′ ∩ s′rs )(F ). Let L′ ∈ L H ′ (M0′ ) and X ∈ (e
+Lemma 8.7. Let M ′ ∈ L H (M0′ ) and Y ∈ (m
+l′ ∩ s′rs )(F )ell .
+′
+′
+H
+H
+Then îM ′ (Y, X) = ĵM ′ (Y, X).
+
+Proof. We may apply the argument of Lemma 8.2 by using Proposition 8.6 and consulting the proofs of
+Corollary 7.13, Lemmas 7.11 and 3.20.1).
+
+′
+
+Lemma 8.8. Let M ′ ∈ L H (M0′ ).
+′
+′
+′
+f′
+1) The function (Y, X) 7→ îH
+M ′ (Y, X) is locally constant on (m ∩ srs )(F ) × srs (F ).
+′
+′
+′
+2) If w ∈ NormH ′ (F ) (M0 ), x ∈ M (F ) and y ∈ H (F ), we have the equality
+′
+
+′
+
+H
+îH
+Ad(w)(M ′ ) (Ad(wx)(Y ), Ad(y)(X)) = îM ′ (Y, X)
+
+f′ ∩ s′rs )(F ) × s′rs (F ).
+for all (Y, X) ∈ (m
+×
+3) If λ ∈ F , we have the equality
+
+′
+
+′
+
+H
+îH
+M ′ (λY, X) = îM ′ (Y, λX)
+
+f′ ∩ s′rs )(F ) × s′rs (F ).
+for all (Y, X) ∈ (m
+′
+f′ ∩ s′ )(F ) and r′ ⊆ s′ (F ) be two compact subsets. Then there exist constants c > 0
+4) Let rM ′ ⊆ (m
+and N ∈ N such that
+′
+
+′
+
+′
+
+s
+N
+s
+N
+|îH
+M ′ (Y, X)| ≤ c sup{1, − log |D (Y )|F } sup{1, − log |D (X)|F }
+
+′
+′
+′
+′
+for all Y ∈ rM
+′ ∩ srs and X ∈ r ∩ srs .
+′
+′
+f′
+5) Let f ′ ∈ Cc∞ (s′ (F )) and rM
+′ ⊆ (m ∩ s )(F ) be a compact subset. Then there exist constants c > 0
+and N ∈ N such that
+′
+′
+|IˆH ′ (Y, f ′ )| ≤ c sup{1, − log |Ds (Y )|F }N
+M
+
+′
+′
+for all Y ∈ rM
+′ ∩ srs .
+
+46
+
+Proof. It is almost the same as the proof of Lemma 8.3, except that one needs to use Howe's finiteness
+(Corollary 6.9), Proposition 8.6 and Lemma 8.7. We also need Proposition 4.4.2) for 1), Proposition
+4.4.3) for 2), Corollary 4.6 for 4) and Corollary 3.24 for 5).
+
+′
+
+′
+
+f′ ∩ s′rs )(F ), we define a distribution I H ′ (Y, *) on s′ (F ) by
+For M ′ ∈ L H (M0′ ) and Y ∈ (m
+M
+H′
+′
+ˆ′
+ˆH ′
+IM
+′ (Y, f ) := IM ′ (Y, f )
+
+(8.2.2)
+
+for all f ′ ∈ Cc∞ (s′ (F )). One may easily extend the definitions (8.2.1) and (8.2.2) to the symmetric pair
+′
+(Le′ , L′ , Ad(α)), where L′ ∈ L H (M0′ ).
+′
+
+′
+
+H
+′
+H
+′
+′
+′
+Remark 8.9. For M ′ = H ′ , it is evident that IH
+∈
+′ (Y, f ) = JH ′ (Y, f ) for all Y ∈ srs (F ) and f
+∞ ′
+Cc (s (F )).
+′
+f′ ∩ s′rs )(F ). The distribution I H ′′ (Y, *) on s′ (F ) is
+Lemma 8.10. Let M ′ ∈ L H (M0′ ) and Y ∈ (m
+M
+independent of the choice of the H ′ (F )-invariant non-degenerate symmetric bilinear form h*, *i on s′ (F )
+or the continuous nontrivial unitary character Ψ of F .
+
+Proof. We may apply the argument of Lemma 8.5 thanks to Proposition 8.6 and Lemma 8.7.
+
+
+
+9. The invariant trace formula
+9.1. The case of (G, H). For f, f ′ ∈ Cc∞ (s(F )), we define
+Z
+X
+X
+|W (MH , c)|−1
+I G (η, f, f ′ ) :=
+|W0Mn ||W0GLn |−1 (−1)dim(AM /AG )
+creg (F )
+(9.1.1)
+c∈Tell (m∩s)
+M∈L G,ω (M0 )
+G
+G
+IˆM
+(η, X, f )IG
+(η, X, f ′ )dX.
+G
+(η, *, f ′ ) vanishes outside a compact subset of c(F ),
+From Proposition 4.1.2), for any c ∈ Tell (m ∩ s), IG
+so one may apply Lemma 8.3.5) to show that this expression is absolutely convergent with the help of
+Proposition 3.16 and Corollary 3.7.
+
+Theorem 9.1 (Invariant trace formula). For all f, f ′ ∈ Cc∞ (s(F )), we have the equality
+I G (η, f, f ′ ) = I G (η, f ′ , f ).
+
+The rest of this section is devoted to the proof of Theorem 9.1. We shall follow the main steps in [33,
+§VII.2-3]. The theorem will be proved by induction on the dimension of G.
+G
+Let f ∈ Cc∞ (srs (F )) and M ∈ L G,ω (M0 ). By Proposition 4.1.2) and 3), the function κ(*)JM
+(η, *, f ) :
+(m ∩ srs )(F ) → C is locally constant and invariant by the adjoint action of MH (F ), where κ is defined
+by (4.1.2). Moreover, the support of its restriction to c(F ) for any c ∈ T (m ∩ s) is included in the
+G
+compact subset creg (F ) ∩ Ad(H(F ))(Supp(f )). Then κ(*)JM
+(η, *, f ) defines a locally constant function
+on (m ∩ s)rs (F ) (see Section 3.2 for the notation) via the extension by zero on the complement. From
+Harish-Chandra's submersion principle (Lemma 3.9), there exists f ′ ∈ Cc∞ ((m ∩ s)rs (F )) such that
+Z
+1/2
+G
+m∩s
+κ(X)JM (η, X, f ) = |D
+(X)|F
+f ′ (Ad(x−1 )(X))dx
+MH,X (F )\MH (F )
+
+′′
+
+′
+
+for all X ∈ (m ∩ srs )(F ). Let f := κf ∈
+product form. Then we have
+(9.1.2)
+
+Cc∞ ((m
+
+∩ s)rs (F )), where we extend the definition of κ to the
+
+G
+M
+JM
+(η, X, f ) = JM
+(η, X, f ′′ ), ∀X ∈ (m ∩ srs )(F ).
+
+We have shown that for f ∈ Cc∞ (srs (F )) and M ∈ L G,ω (M0 ), there exists a function f ′′ ∈ Cc∞ ((m ∩
+s)rs (F )) such that (9.1.2) holds. We shall fix such an f ′′ and denote it by φG
+M (f ).
+As before, one may extend in the obvious way the definition (9.1.1) and the notation φG
+M (f ) to the
+symmetric pair (M, MH , Ad(ǫ)), where M ∈ L G,ω (M0 ), since it appears as the product of some copies
+of the form (G, H, Ad(ǫ)) in lower dimensions.
+Lemma 9.2. Let M ∈ L G,ω (M0 ), X ∈ (m∩srs )(F )ell and f, f ′ ∈ Cc∞ (srs (F )). Then we have the equality
+X
+X
+η
+L2
+L1
+L
+′η
+G
+ˆL
+(9.1.3)
+JM
+(η, X, fˆ, f ′ ) =
+dG
+L (L1 , L2 )IM (η, X, φL (fQ ))IL (η, X, φL (f Q2 )),
+1
+
+L∈L G (M) L1 ,L2 ∈L G (L)
+
+G
+where JM
+(η, X, fˆ, f ′ ) is defined by (5.1.1), and (Q1 , Q2 ) := s(L1 , L2 ) (see Section 2.7).
+47
+
+Proof. By definition,
+G
+JM
+(η, X, fˆ, f ′ )
+
+= |D
+
+s
+
+where
+φ1 (y) := |D
+
+s
+
+Z
+
+1/2
+(X)|F
+
+1/2
+(X)|F
+
+f ′ (Ad(y −1 )(X))η(Nrd(y))φ1 (y)dy,
+
+AM (F )\H(F )
+
+Z
+
+fˆ(Ad(x−1 )(X))η(Nrd(x−1 ))vM (x, y)dx.
+
+AM (F )\H(F )
+
+For L ∈ L G (M ) and L2 ∈ L G (L), since Q2 ∈ P G (L2 ), by Proposition 4.1.4), we have
+η
+
+η
+
+Q2
+L2
+′
+′
+′
+2
+ILL (η, X, φL
+L (f Q2 )) = JL (η, X, f Q2 ) = JL (η, X, f ).
+
+(9.1.4)
+
+Since X ∈ (m ∩ srs )(F )ell , the right hand side of (9.1.3) is
+Z
+1/2
+s
+f ′ (Ad(y −1 )(X))η(Nrd(y))φ2 (y)dy,
+|D (X)|F
+AM (F )\H(F )
+
+where
+
+X
+
+φ2 (y) :=
+
+X
+
+Q2
+η
+L1
+ˆL
+dG
+L (L1 , L2 )IM (η, X, φL (fQ ))vL (y).
+1
+
+L∈L G (M) L1 ,L2 ∈L G (L)
+
+It suffices to fix y ∈ H(F ) and prove that φ1 (y) = φ2 (y).
+Let L ∈ L G (M ) and
+X
+η
+Q2
+L1
+hL :=
+dG
+L (L1 , L2 )φL (fQ )vL (y).
+1
+
+L1 ,L2 ∈L G (L)
+
+Then
+
+X
+
+φ2 (y) =
+
+L
+IˆM
+(η, X, hL ).
+
+L∈L G (M)
+
+For Y ∈ (l ∩ srs )(F ), we have
+
+X
+
+JLL (η, Y, hL ) =
+
+Q2
+η
+L1
+L
+dG
+L (L1 , L2 )JL (η, Y, φL (fQ ))vL (y).
+1
+
+L1 ,L2 ∈L G (L)
+
+For L1 ∈ L G (L), as in (9.1.4), we have
+η
+η
+Q1
+L1
+1
+JLL (η, Y, φL
+L (fQ )) = JL (η, Y, fQ ) = JL (η, Y, f ).
+1
+
+Then
+1/2
+
+JLL (η, Y, hL ) = |Ds (Y )|F
+
+1
+
+Z
+
+f (Ad(x−1 )(Y ))η(Nrd(x))h(x, y)dx,
+
+HY (F )\H(F )
+
+where
+
+X
+
+h(x, y) :=
+
+Q2
+Q1
+dG
+L (L1 , L2 )vL (x)vL (y).
+
+L1 ,L2 ∈L G (L)
+
+It is shown in the proof of [33, Lemme VII.2] that
+X
+
+h(x, y) = vL (x, y) =
+
+Q
+′
+vQ
+(y)vL
+(x).
+
+Q∈F G (L)
+
+Thus
+JLL (η, Y, hL ) =
+
+X
+
+′
+vQ
+(y)JLQ (η, Y, f ).
+
+Q∈F G (L)
+
+As in (9.1.4), we have
+M
+
+M
+
+η
+η
+) = JLL (η, Y, φL Q (fQ
+)).
+JLQ (η, Y, f ) = JL Q (η, Y, fQ
+
+Let
+h′L :=
+
+X
+
+M
+
+η
+′
+vQ
+(y)φL Q (fQ
+).
+
+Q∈F G (L)
+
+Then we obtain
+(9.1.5)
+for all Y ∈ (l ∩ srs )(F ).
+
+JLL (η, Y, hL ) = JLL (η, Y, h′L )
+48
+
+L
+By a product form of Proposition 8.1, the distribution d := IˆM
+(η, X, *) ∈ D l∩s and is η(Nrd(*))invariant with respect to the adjoint action of LH (F ). By a product form of (7.1.2), we deduce from
+(9.1.5) that
+L
+L
+IˆM
+(η, X, hL ) = IˆM
+(η, X, h′L ).
+
+Therefore,
+X
+
+φ2 (y) =
+
+L
+IˆM
+(η, X, hL ) =
+
+L∈L G (M)
+
+X
+
+=
+
+′
+vQ
+(y)
+
+X
+
+X
+
+L
+IˆM
+(η, X, h′L )
+
+L∈L G (M)
+M
+η
+L
+)).
+IˆM
+(η, X, φL Q (fQ
+
+L∈L MQ (M)
+
+Q∈F G (M)
+
+By (7.1.10) and (7.1.2) (actually their product forms are needed), we have
+L,M ,w
+M ,w
+η
+η
+IˆM Q (η, X, fQ
+) = IndL Q (d)(fQ
+)
+X
+X
+L′
+=
+|W0 n ||W0Ln |−1
+
+c∈Tell (l′ ∩s)
+
+{L′ ∈L G,ω (M0 ):L′ ⊆L}
+
+X
+
+|W0 ||W0Ln |−1
+
+M
+η
+=d(φL Q (fQ
+))
+
+M
+η
+L
+IˆM
+(η, X, φL Q (fQ
+)).
+
+=
+
+X
+
+L′n
+
+{L′ ∈L G,ω (M0 ):L′ ⊆L}
+
+=
+
+c∈Tell (l′ ∩s)
+
+|W (L′H , c)|−1
+
+Z
+
+|W (L′H , c)|−1
+
+Z
+
+M
+
+creg (F )
+
+η
+JL Q (η, Z, fQ
+)ed (Z)dZ
+M
+
+creg (F )
+
+η
+))ed (Z)dZ
+JLL (η, Z, φL Q (fQ
+
+Then by (8.1.1), we get
+X
+
+M
+η
+L
+)) =
+IˆM
+(η, X, φL Q (fQ
+
+X
+
+L,M ,w
+η
+)
+IˆM Q (η, X, fQ
+
+L∈L MQ (M)
+
+L∈L MQ (M)
+
+M
+M
+η
+η
+Q
+=JˆM Q (η, X, fQ
+) = JM Q (η, X, fˆQ
+) = JM
+(η, X, fˆ).
+
+Hence,
+φ2 (y) =
+
+X
+
+Q
+′
+(η, X, fˆ)
+vQ
+(y)JM
+
+Q∈F G (M)
+1/2
+
+=|Ds (X)|F
+
+Z
+
+fˆ(Ad(x−1 )(X))η(Nrd(x))
+
+AM (F )\H(F )
+
+But
+
+X
+
+X
+
+Q
+′
+vQ
+(y)vM
+(x)dx.
+
+Q∈F G (M)
+
+Q
+′
+vQ
+(y)vM
+(x) = vM (x, y),
+
+Q∈F G (M)
+
+which implies that φ1 (y) = φ2 (y).
+
+
+
+Proof of Theorem 9.1. We use induction on the dimension of G. Suppose that the equality is true for
+L ∈ L G,ω (M0 ), L 6= G, which is actually a product form in lower dimensions. Now we would like to
+prove the equality for G. The argument below is also valid for the case L G,ω (M0 ) = {G}, i.e., n = 1.
+First of all, suppose that f, f ′ ∈ Cc∞ (srs (F )). Applying Lemma 9.2 to the definition (5.1.2) of
+G
+J (η, fˆ, f ′ ), we obtain
+Z
+X
+X
+Mn
+GLn −1
+−1
+G
+′
+dim(AM /AG )
+ˆ
+|W (MH , c)|
+J (η, f , f ) =
+|W0 ||W0 | (−1)
+M∈L G,ω (M0 )
+
+G
+JM
+(η, X, fˆ, f ′ )dX
+X
+=
+|W0Mn ||W0GLn |−1 (−1)dim(AM /AG )
+M∈L G,ω (M0 )
+
+X
+
+X
+
+X
+
+c∈Tell (m∩s)
+
+X
+
+L∈L G,ω (M0 )
+
+|W (MH , c)|−1
+
+Z
+
+creg (F )
+
+η
+L1
+L2
+L
+′η
+ˆL
+dG
+L (L1 , L2 )IM (η, X, φL (fQ1 ))IL (η, X, φL (f Q2 ))dX
+
+L∈L G (M) L1 ,L2 ∈L G (L)
+
+=
+
+creg (F )
+
+c∈Tell (m∩s)
+
+|W0Ln ||W0GLn |−1 (−1)dim(AL /AG ) BL (η, f, f ′ ),
+49
+
+where
+
+X
+
+BL (η, f, f ′ ) :=
+
+dG
+L (L1 , L2 )
+
+L1 ,L2 ∈L G (L)
+
+|W (MH , c)|−1
+X
+
+=
+
+Z
+
+X
+
+{M∈L G,ω (M0 ):M⊆L}
+
+creg (F )
+
+|W0Mn ||W0Ln |−1 (−1)dim(AM /AL )
+
+X
+
+c∈Tell (m∩s)
+
+η
+L2
+L
+L
+′η
+1
+IˆM
+(η, X, φL
+L (fQ ))IL (η, X, φL (f Q2 ))dX
+1
+
+η
+
+η
+L2
+L1
+′
+L
+dG
+L (L1 , L2 )I (η, φL (fQ ), φL (f Q2 )).
+1
+
+L1 ,L2 ∈L G (L)
+
+Here we have used the absolute convergence of the expressions above to exchange the order of sums, and
+η
+L2
+′η
+1
+I L (η, φL
+L (fQ1 ), φL (f Q2 )) is defined by a product form of (9.1.1).
+By the noninvariant trace formula (Theorem 5.3) and Remark 5.2, we have the equality J G (η, fˆ, f ′ ) =
+J G (η, fˆ′ , f ). Therefore,
+X
+(9.1.6)
+|W0Ln ||W0GLn |−1 (−1)dim(AL /AG ) (BL (η, f, f ′ ) − BL (η, f ′ , f )) = 0.
+L∈L G,ω (M0 )
+
+Let L ∈ L G,ω (M0 ), L 6= G. Applying the induction hypothesis, we have
+X
+η
+L2
+L1
+L
+′η
+BL (η, f, f ′ ) =
+dG
+L (L1 , L2 )I (η, φL (f Q2 ), φL (fQ )).
+1
+
+L1 ,L2 ∈L G (L)
+
+By exchanging L1 and L2 and by using (2) and (5) in Section 2.7, we obtain BL (η, f, f ′ ) = BL (η, f ′ , f ).
+We deduce from (9.1.6) that BG (η, f, f ′ ) = BG (η, f ′ , f ). But
+BG (η, f, f ′ ) = I G (η, f, f ′ ),
+which implies I G (η, f, f ′ ) = I G (η, f ′ , f ).
+Now consider f, f ′ ∈ Cc∞ (s(F )) in general. Let {Ωi }i≥1 be a sequence of increasing open compact
+∞
+S
+Ωi = srs (F ). Such a consequence exists. For example, one may take
+subsets of srs (F ) such that
+i≥1
+
+Ωi := {X ∈ srs (F ) : kXk ≤ i} for all i ≥ 1, where k * k denotes the abstract norm on srs (F ) defined by
+[22, (18.2.1) in §18.2]. From [22, Proposition 18.1.(3)], since k * k is continuous, we deduce that Ωi is
+∞
+S
+Ωi = srs (F ). For all i ≥ 1,
+compact for all i ≥ 1. It is obvious that Ωi is open for all i ≥ 1 and that
+i≥1
+
+denote by 1Ωi the characteristic function of Ωi . Let fi := f 1Ωi and fi′ := f ′ 1Ωi .
+Let M ∈ L G,ω (M0 ) and c ∈ Lell(m ∩ s). For all X ∈ creg (F ), by Lebesgue's dorminated convergence
+G
+G
+G
+theorem, we have lim IG
+(η, X, fi′ ) = IG
+(η, X, f ′ ). For X ∈ (m ∩ srs )(F ), because IˆM
+(η, X, *) ∈ D s
+i→∞
+
+G
+(see Proposition 8.1), again by Lebesgue's dorminated convergence theorem, we have lim IˆM
+(η, X, fi ) =
+i→∞
+
+G
+IˆM
+(η, X, f ). Because of Lemma 3.4 applied to Supp(f ′ ), there exists a compact subset r ⊆ c(F ) such
+G
+that for all X ∈ creg (F ) − r, IG
+(η, X, fi′ ) = 0 for all i ≥ 1. By Lemma 8.3.4) applied to r and Supp(f ′ ),
+there exist constants c > 0 and N ∈ N such that
+Z
+−1/2
+G
+s
+ˆ
+dY
+|IM (η, X, fi )| =
+|fi (Y )îG
+M (η, X, Y )||D (Y )|F
+s(F )
+Z
+−1/2
+≤ c sup{1, − log |Ds (X)|F }N
+|f (Y )| sup{1, − log |Ds (Y )|F }N |Ds (Y )|F dY
+s(F )
+
+G
+for all i ≥ 1 and X ∈ r ∩ creg . For all X ∈ srs (F ), we also have |IG
+(η, X, fi′ )| ≤ IX (|f ′ |), where
+IX is defined by (3.1.3). Combining Corollary 3.18, Corollary 3.7 and Proposition 3.16, we deduce
+G
+G
+that {IˆM
+(η, X, fi )IG
+(η, X, fi′ )}i≥1 is bounded by an integrable function on creg (F ). Using Lebesgue's
+dorminated convergence theorem once again, we obtain
+Z
+Z
+G
+G
+′
+G
+G
+ˆ
+IM (η, X, f )IG (η, X, f )dX = lim
+IˆM
+(η, X, fi )IG
+(η, X, fi′ )dX.
+creg (F )
+
+i→∞
+
+creg (F )
+
+Therefore,
+I G (η, f, f ′ ) = lim I G (η, fi , fi′ ).
+i→∞
+
+By exchanging f and f ′ and using the regular semi-simple support case that we have proved, we draw
+the conclusion.
+
+50
+
+Corollary 9.3. Let M, L ∈ L G,ω (M0 ), X ∈ (m ∩ srs )(F )ell and Y ∈ (l ∩ srs )(F )ell . Then we have the
+equality
+dim(AL /AG ) G
+(−1)dim(AM /AG ) îG
+îL (η, Y, X).
+M (η, X, Y ) = (−1)
+Proof. By Lemma 8.3.2), up to MH (F )-conjugation on X and LH (F )-conjugation on Y , we may and
+shall suppose that there exist Cartan subspaces c1 ∈ Tell (m∩s) and c2 ∈ Tell (l∩s) such that X ∈ c1,reg (F )
+and Y ∈ c2,reg (F ). As in the proof of Proposition 7.2, we can choose an open compact neighbourhood V1
+of X in c1,reg (resp. V2 of Y in c2,reg ) such that if two elements in V1 (resp. V2 ) are H(F )-conjugate, then
+they are the same. Let f, f ′ ∈ Cc∞ (s(F )) with Supp(f ) ⊆ Ad(H(F ))(V2 ) and Supp(f ′ ) ⊆ Ad(H(F ))(V1 ).
+By an analogous calculation to that of J G (η, fˆ, f ′ ) in the proof of Proposition 7.2, with the help of
+Lemma 8.3.2) and Proposition 4.1.3), we show the equalities
+Z
+G
+′
+dim(AM /AG )
+G
+G
+I (η, f, f ) = (−1)
+IˆM
+(η, X1 , f )IG
+(η, X1 , f ′ )dX1
+V1
+
+and
+G
+IˆM
+(η, X1 , f ) =
+
+for all X1 ∈ V1 by (7.1.2). Then
+′
+
+G
+
+dim(AM /AG )
+
+I (η, f, f ) = (−1)
+
+Z
+
+V2
+
+Z
+
+V1 ×V2
+
+Similarly, we have
+G
+
+′
+
+dim(AL /AG )
+
+I (η, f , f ) = (−1)
+
+Z
+
+V2 ×V1
+
+G
+îG
+M (η, X1 , Y2 )IG (η, Y2 , f )dY2
+
+G
+G
+′
+îG
+M (η, X1 , Y2 )IG (η, Y2 , f )IG (η, X1 , f )dY2 dX1 .
+
+G
+′ G
+îG
+L (η, Y2 , X1 )IG (η, X1 , f )IG (η, Y2 , f )dX1 dY2 .
+
+By Harish-Chandra's submersion principle (Lemma 3.9), when f ′ varies, the function X1 7→ IX1 (f ′ ) =
+G
+G
+κ(X1 )IG
+(η, X1 , κf ′ ) on V1 runs over all Cc∞ (V1 ), so the function IG
+(η, *, f ′ ) on V1 also runs over all
+∞
+G
+Cc (V1 ). Similarly, when f varies, the function IG (η, *, f ) on V2 runs over all Cc∞ (V2 ). Then from the
+invariant trace formula (Theorem 9.1), we deduce that
+dim(AL /AG ) G
+(−1)dim(AM /AG ) îG
+îL (η, Y2 , X1 )
+M (η, X1 , Y2 ) = (−1)
+
+for all (X1 , Y2 ) ∈ V1 × V2 . We conclude by (X, Y ) ∈ V1 × V2 .
+
+
+
+9.2. The case of (G′ , H ′ ). For f, f ′ ∈ Cc∞ (s′ (F )), we define
+Z
+X
+X
+′ ′ −1
+H′
+′
+H′
+M ′ −1
+dim(AM ′ /AH ′ )
+|W (M , c )|
+I (f, f ) :=
+|W0 ||W0 | (−1)
+c′reg (F )
+f′ ∩s′ )
+(9.2.1)
+M ′ ∈L H ′ (M0′ )
+c′ ∈Tell (m
+H′
+H′
+′
+IˆM
+′ (Y, f )IH ′ (Y, f )dY.
+
+f′ ∩ s′ ), I H′′ (*, f ′ ) vanishes outside a compact subset of c′ (F ),
+From Proposition 4.4.2), for any c′ ∈ Tell (m
+H
+so one may apply Lemma 8.8.5) to show that this expression is absolutely convergent with the help of
+Proposition 3.23 and Corollary 3.7. One may extend in the obious way the definition (9.2.1) to the
+f′ , M ′ , Ad(α)), where M ′ ∈ L H ′ (M ′ ).
+symmetric pair (M
+0
+Theorem 9.4 (Invariant trace formula). For all f, f ′ ∈ Cc∞ (s′ (F )), we have the equality
+′
+
+′
+
+I H (f, f ′ ) = I H (f ′ , f ).
+Proof. We may apply the argument of Theorem 9.1 with obvious modifications. It is deduced from
+the noninvariant trace formula (Theorem 5.12) and other results that we have prepared in previous
+sections.
+
+′
+
+f′ ∩ s′rs )(F )ell and X ∈ (e
+Corollary 9.5. Let M ′ , L′ ∈ L H (M0′ ), Y ∈ (m
+l′ ∩ s′rs )(F )ell . Then we have the
+equality
+′
+
+′
+
+dim(AL′ /AH ′ ) H
+(−1)dim(AM ′ /AH ′ ) îH
+îL′ (Y, X).
+M ′ (Y, X) = (−1)
+
+Proof. We may apply the argument of Corollary 9.3 by using the invariant trace formula (Theorem 9.4)
+and consulting the proof of Proposition 7.10.
+
+51
+
+10. A vanishing property at infinity
+10.1. The case of (G, H). The following proposition is an analogue of [9, Proposition 2.2].
+Proposition 10.1. Let M ∈ L G,ω (M0 ), M 6= G. Let X ∈ (m ∩ srs )(F ) and Y ∈ srs (F ). Then there
+exists N ∈ N such that if λ ∈ F × satisfies vF (λ) < −N , we have
+îG
+M (η, λX, Y ) = 0.
+Remark 10.2. A limit formula at infinity for îG
+G (η, λX, Y ) in the spirit of Laplace transform is given in
+[37, Proposition 7.1] (see also [36, Proposition 6.4]), which is an analogue of [33, Proposition VIII.1].
+Proof of Proposition 10.1. We shall imitate the proof of [9, Proposition 2.2].
+By Lemma 8.3.2), up to H(F )-conjugation on Y , we may and shall suppose that there exists L ∈
+L G,ω (M0 ) and an L-elliptic Cartan subspace c ⊆ l ∩ s such that Y ∈ creg (F ). By Lemma 8.2, we have
+the equality
+G
+îG
+M (η, λX, Y ) = ĵM (η, λX, Y ).
+Thus it suffices to prove that there exists N ∈ N such that if λ ∈ F × satisfies vF (λ) < −N , we have
+G
+ĵM
+(η, λX, Y ) = 0.
+
+Fix an OF -lattice kh (resp. ks ) of h(F ) (resp. s(F )). Denote by kes the dual OF -lattice of ks in s(F ),
+i.e.,
+kes := {Z ∈ s(F ) : ∀Z ′ ∈ ks , Ψ(hZ, Z ′ i) = 1}.
+
+Set
+
+c(X) := {X ′ ∈ c(F ) : ∃x ∈ H(F ), Ad(x)(X ′ ) = X},
+
+which is a finite (perhaps empty) set. For λ ∈ F × , choose hλ ∈ N such that both of the functions
+G
+ĵM
+(η, λX, *) and |Ds (*)|F are constant on Y + ̟hλ ks .
+Let f (resp. f ′ ) ∈ Cc∞ (s(F )) be the characteristic function of Y + ̟hλ ks (resp. ̟−hλ kes ). Then for
+Z ∈ s(F ), we see that
+Z
+Z
+′
+′
+ˆ
+Ψ(hZ, Z ′ i)dZ ′
+Ψ(hZ, Z i)dZ = cΨ (s(F ))Ψ(hZ, Y i)
+f (Z) =cΨ (s(F ))
+Y +̟ hλ ks
+=cΨ (s(F ))vol(̟hλ ks )Ψ(hZ, Y
+
+̟ hλ ks
+
+′
+
+i)f (Z).
+
+G
+Now there are two expressions for JM
+(η, λX, fˆ). One the one hand,
+(10.1.1)
+Z
+−1/2
+−1/2
+f (Z)ĵ G (η, λX, Z)|Ds (Z)|
+dZ = vol(̟hλ ks )ĵ G (η, λX, Y )|Ds (Y )|
+.
+J G (η, λX, fˆ) =
+M
+
+M
+
+s(F )
+
+F
+
+M
+
+F
+
+On the other hand,
+(10.1.2)
+1/2
+G
+JM
+(η, λX, fˆ) = |Ds (λX)|F
+
+Z
+
+HλX (F )\H(F )
+
+1/2
+
+=cΨ (s(F ))vol(̟hλ ks )|Ds (λX)|F
+
+Z
+
+G
+fˆ(Ad(x−1 )(λX))η(Nrd(x))vM
+(x)dx
+
+HX (F )\H(F )
+
+G
+Ψ(hAd(x−1 )(λX), Y i)f ′ (Ad(x−1 )(λX))η(Nrd(x))vM
+(x)dx.
+
+Fix an open neighbourhood Vh of 0 in h(F ) which is invariant by the adjoint action of H(F ) such that
+a homeomorphic exponential map is defined on Vh . Choose a ∈ N verifying the following conditions:
+(1) ̟a kh ⊆ Vh ;
+(2) Ka := exp(̟a kh ) is a subgroup of KH ;
+(3) η(Nrd(Ka )) = 1;
+(4) the adjoint action of Ka stabilises ks (and thus kes ).
+Fix a set Γ of representatives in H(F ) of double cosets HX (F )\H(F )/Ka . We may and shall suppose
+that if x ∈ Γ and y ∈ HX (F )xKa verify Ad(y −1 )(X) ∈ c(F ), then Ad(x−1 )(X) ∈ c(F ).
+The integral in (10.1.2) can be decomposed as
+XZ
+G
+Ψ(hAd(y −1 )(λX), Y i)f ′ (Ad(y −1 )(λX))η(Nrd(y))vM
+(y)dy.
+x∈Γ
+
+HX (F )\HX (F )xKa
+
+52
+
+G
+By the conditions (2), (3) and (4) on a respectively, the factors vM
+, η and f ′ can be extracted from
+the integral. By comparing (10.1.1) and (10.1.2), since h*, *i is invariant by the adjoint action of Ka , we
+obtain
+(10.1.3)
+Z
+X
+1/2
+′
+−1
+G
+G
+s
+s
+f (Ad(x )(λX))η(Nrd(x))vM (x)
+ĵM (η, λX, Y ) =cΨ (s(F ))|D (λX)D (Y )|F
+HX (F )\HX (F )xKa
+
+x∈Γ
+
+Ψ(hAd(y
+
+−1
+
+)(λX), Y i)dy
+
+1/2
+
+=cΨ (s(F ))|Ds (λX)Ds (Y )|F vol(Ka )−1
+
+X
+
+vol(HX (F )\HX (F )xKa )f ′ (Ad(x−1 )(λX))
+
+x∈Γ
+G
+η(Nrd(x))vM
+(x)i(x),
+
+where
+i(x) :=
+
+Z
+
+Ψ(hAd(x−1 )(λX), Ad(y)(Y )i)dy.
+
+Ka
+
+For x ∈ Γ, consider the map Ka → F defined by
+
+∀y ∈ Ka , y 7→ hAd(x−1 )(X), Ad(y)(Y )i.
+
+(10.1.4)
+
+Its differential at the point y0 ∈ Ka is the map h(F ) → F defined by
+
+∀Z ∈ h(F ), Z 7→ hAd(x−1 )(X), Ad(y0 )([Z, Y ])i.
+
+(10.1.5)
+
+Since h*, *i is invariant by the adjoint action of G(F ), we see that
+
+hAd(x−1 )(X), Ad(y0 )([Z, Y ])i = h[Y, Ad(xy0 )−1 (X)], Zi.
+
+Because the restriction of h*, *i to h(F ) is non-degenerate, the map (10.1.5) is not surjective if and only if
+[Y, Ad(xy0 )−1 (X)] = 0.
+
+Since Y ∈ creg (F ), this condition is equivalent to
+
+Ad(xy0 )−1 (X) ∈ c(F ).
+
+From our choice of Γ, as y0 ∈ Ka , it implies that
+Let
+
+Ad(x−1 )(X) ∈ c(F ).
+
+Γ′ := {x ∈ Γ : Ad(x−1 )(X) ∈ c(F )},
+which is a finite (perhaps empty) subset of Γ. Then for x ∈ Γ − Γ′ , the map (10.1.4) is a submersion.
+Define
+[
+Ω :=
+HX (F )xKa ,
+x∈Γ−Γ′
+
+which is an open and closed subset of H(F ). Fix a basis of the F -linear space s(F ). For Z ∈ s(F ), define
+its norm kZk ∈ R≥0 as the maximum of normalised absolute values of coefficients of Z with respect to
+the fixed basis. For Z ∈ s(F ) − {0}, define ν(Z) ∈ Z by kZk = |̟ν(Z) |F . Let SX be the closure of
+0
+SX
+:= {̟−ν(Ad(y
+
+−1
+
+)(X))
+
+Ad(y −1 )(X) : y ∈ Ω}
+
+in the unit sphere Ss := {Z ∈ s(F ) : kZk = 1}. Then SX is compact. Recall that we denote by N s the
+set of nilpotent elements in s(F ).
+Lemma 10.3. We have
+0
+SX − SX
+⊆ N s − {0}.
+
+/ SX . Let Z ∈ SX . There exists a sequence
+Proof of Lemma 10.3. Since SX ⊆ Ss , it is obvious that {0} ∈
+{yi } in Ω such that when i → ∞,
+−1
+
+̟−ν(Ad(yi
+
+)(X))
+
+Ad(yi−1 )(X) → Z.
+
+We distinguish two cases.
+i) Suppose that the sequence {kAd(yi−1 )(X)k} remains bounded. By Harish-Chandra's compactness
+lemma for symmetric spaces (Lemma 3.2), the projection of the sequence {yi } to HX (F )\H(F ) is contained in a compact subset. By taking a subsequence, since the projection of Ω to HX (F )\H(F ) is
+0
+closed, we may assume that when i → ∞, Ad(yi−1 )(X) → Ad(y −1 )(X) with y ∈ Ω. Thus Z ∈ SX
+in this
+case.
+53
+
+ii) Suppose that the sequence {kAd(yi−1 )(X)k} is unbounded. By taking a subsequence, we may
+assume that when i → ∞, kAd(yi−1 )(X)k → +∞. The eigenvalues of ad(Ad(yi−1 )(X)) are the same as
+those of ad(X); here ad(Ad(yi−1 )(X)) and ad(X) are viewed as linear endomorphisms of g. Thus the
+−1
+eigenvalues of ad(̟−ν(Ad(yi )(X)) Ad(yi−1 )(X)) tend to zero when i → ∞. Hence ad(Z) is nilpotent. We
+shall prove that Z ∈ N s in this case.
+Since g is reductive, one has g = z ⊕ gder , where z denotes the centre of g and gder denotes the derived
+algebra of g, and gder is semisimple. Let Z = Z1 + Z2 with Z1 ∈ z(F ) and Z2 ∈ gder (F ). Since ad(Z) is
+nilpotent as a linear endomorphism of g, we deduce that ad(Z2 ) is nilpotent as a linear endomorphism
+of gder . As gder is semisimple, we obtain that Z2 is a nilpotent element in g. Let X = X1 + X2
+−1
+with X1 ∈ z(F ) and X2 ∈ gder (F ). The projection of ̟−ν(Ad(yi )(X)) Ad(yi−1 )(X) to z(F ) is equal to
+−1
+̟−ν(Ad(yi )(X)) X1 , which tends to zero when i → ∞. Thus Z1 = 0, and Z = Z2 is a nilpotent element
+in g. Hence Z ∈ N s .
+
+For U ∈ N s − {0}, consider the map Ka → F defined by
+
+∀y ∈ Ka , y 7→ hU, Ad(y)(Y )i.
+
+(10.1.6)
+
+Its differential at the point y0 ∈ Ka is the map h(F ) → F defined by
+
+∀Z ∈ h(F ), Z 7→ hU, Ad(y0 )([Z, Y ])i = h[Y, Ad(y0−1 )(U )], Zi
+
+by the G(F )-invariance of h*, *i. Since Y ∈ creg (F ) and Ad(y0−1 )(U ) ∈ N s − {0}, we have
+[Y, Ad(y0−1 )(U )] 6= 0.
+
+Then the map (10.1.6) is a submersion by the non-degeneration of h*, *i on h(F ).
+Using Lemma 10.3 and combining our discussion on the maps (10.1.4) and (10.1.6), we deduce that
+f
+f
+there exists an open compact neighbourhood Sf
+X of SX in Ss such that the map φ : Ka × SX → F × SX
+defined by
+∀(y, Z) ∈ Ka × Sf
+X , (y, Z) 7→ (hZ, Ad(y)(Y )i, Z)
+is a submersion. Since any submersion is open, the image of φ (denoted by Im(φ)) is an open compact
+′
+f
+subset of F × Sf
+X . Then the map φ induces a surjective submersion φ : Ka × SX → Im(φ). Applying
+Harish-Chandra's submersion principle [17, Theorem 11] to φ′ , there exists a function φ ∈ Cc∞ (Im(φ))
+such that for all Φ′ ∈ Cc∞ (Im(φ)),
+Z
+Z
+′
+φ(t, Z)Φ′ (t, Z)dZdt.
+Φ (hZ, Ad(y)(Y )i, Z)dZdy =
+Ka ×Sf
+X
+
+Im(φ)
+
+Fix such a φ. Denote by C (F × Sf
+X ) the space of locally constant, complexed-valued functions on
+∞
+f
+f
+F × SX . For Φ ∈ C (F × SX ), the restriction of Φ to Im(φ) belongs to Cc∞ (Im(φ)), so we obtain
+Z
+Z
+φ(t, Z)Φ(t, Z)dZdt.
+Φ(hZ, Ad(y)(Y )i, Z)dZdy =
+∞
+
+F ×Sf
+X
+
+Ka ×Sf
+X
+
+f
+By taking Φ(t, Z) := Ψ(μt)β(Z) with μ ∈ F and β ∈ Cc∞ (Sf
+X ), we deduce that for all Z ∈ SX ,
+Z
+Z
+φ(t, Z)Ψ(μt)dt.
+Ψ(μhZ, Ad(y)(Y )i)dy =
+F
+
+Ka
+
+∞
+∞
+f
+Since Im(φ) is an open compact subset of F × Sf
+X , we see that φ ∈ Cc (Im(φ)) ⊆ Cc (F × SX ) =
+P
+∞
+∞ f
+∞
+∞ f
+cj * ξj ⊗ χj with cj ∈ C, ξj ∈ Cc (F ) and χj ∈ Cc (SX ). Then
+Cc (F ) ⊗ Cc (SX ). Suppose that φ =
+
+Z
+
+1≤j≤m
+
+φ(t, Z)Ψ(μt)dt =
+
+F
+
+X
+
+cj ξˆj (μ)χj (Z),
+
+1≤j≤m
+
+where ξˆj ∈
+is the Fourier transform of ξj . We see that there exists N0 ∈ N such that for all
+μ ∈ F × satisfying vF (μ) < −N0 and all Z ∈ SX , we have
+Z
+Ψ(μhZ, Ad(y)(Y )i)dy = 0.
+Cc∞ (F )
+
+Ka
+
+Fix such an N0 .
+Recall that for x ∈ Γ,
+
+i(x) =
+
+Z
+
+Ψ(μhZ, Ad(y)(Y )i)dy,
+
+Ka
+54
+
+where μ := λ̟ν(Ad(x
+i(x) = 0 if
+
+−1
+
+)(X))
+
+and Z := ̟−ν(Ad(x
+
+Set
+
+−1
+
+)(X))
+
+Ad(x−1 )(X). For x ∈ Γ − Γ′ , we have Z ∈ SX , so
+
+vF (λ) + ν(Ad(x−1 )(X)) < −N0 .
+ν0 := sup ν(Ad(x−1 )(X)),
+x∈Γ
+
+which is finite thanks to Harish-Chandra's compactness lemma for symmetric spaces (Lemma 3.2). Now
+let
+N := N0 + ν0 .
+G
+G
+(η, λX, Y ) = 0, it suffices to prove vM
+(x) = 0 for
+Suppose that vF (λ) < −N . From (10.1.3), to show ĵM
+′
+all x ∈ Γ .
+For x ∈ Γ′ , we have Ad(x−1 )(X) ∈ creg (F ). Then Ad(x−1 )(HX ) = Tc . Since X ∈ (m ∩ srs )(F ),
+we see that Ad(x−1 )(AM ) is an F -split torus in Tc . As c ⊆ l ∩ s is L-elliptic, AL is the maximal
+F -split torus in Tc . Thus Ad(x−1 )(AM ) ⊆ AL . Then AM ⊆ Ad(x)(AL ) ⊆ Ad(x)(AM0 ). We deduce
+that Ad(x)(AM0 ) is a maximal F -split torus in MH , so it is MH (F )-conjugate to AM0 . Therefore,
+G
+x ∈ MH (F )NormH(F ) (M0 ) ⊆ MH (F )KH . Consequently, we have vM
+(x) = 0 and conclude.
+
+
+10.2. The case of (G′ , H ′ ).
+′
+f′ ∩ s′rs )(F ) and X ∈ s′rs (F ). Then there
+Proposition 10.4. Let M ′ ∈ L H (M0′ ), M ′ 6= H ′ . Let Y ∈ (m
+×
+exists N ∈ N such that if λ ∈ F satisfies vF (λ) < −N , we have
+′
+
+îH
+M ′ (λY, X) = 0.
+
+Proof. It is almost the same as the proof of Proposition 10.1, except that one needs to use Lemma 8.8.2)
+and Lemma 8.7.
+
+References
+[1] Avraham Aizenbud and Dmitry Gourevitch. Generalized Harish-Chandra descent, Gelfand pairs, and an Archimedean
+analog of Jacquet-Rallis's theorem. Duke Math. J., 149(3):509–567, 2009. With an appendix by the authors and Eitan
+Sayag.
+[2] James Arthur. A trace formula for reductive groups. I. Terms associated to classes in G(Q). Duke Math. J., 45(4):911–
+952, 1978.
+[3] James Arthur. The trace formula in invariant form. Ann. of Math. (2), 114(1):1–74, 1981.
+[4] James Arthur. The invariant trace formula. I. Local theory. J. Amer. Math. Soc., 1(2):323–383, 1988.
+[5] James Arthur. A local trace formula. Inst. Hautes Études Sci. Publ. Math., (73):5–96, 1991.
+[6] James Arthur. An introduction to the trace formula. In Harmonic analysis, the trace formula, and Shimura varieties,
+volume 4 of Clay Math. Proc., pages 1–263. Amer. Math. Soc., Providence, RI, 2005.
+[7] Roger W. Carter. Finite groups of Lie type. Pure and Applied Mathematics (New York). John Wiley & Sons, Inc.,
+New York, 1985. Conjugacy classes and complex characters, A Wiley-Interscience Publication.
+[8] Pierre-Henri Chaudouard. La formule des traces pour les algèbres de Lie. Math. Ann., 322(2):347–382, 2002.
+[9] Pierre-Henri Chaudouard. Sur certaines identités endoscopiques entre transformées de Fourier. J. Reine Angew. Math.,
+585:1–59, 2005.
+[10] Pierre-Henri Chaudouard. Sur le changement de base stable des intégrals orbitales pondérées. Ann. Sci. École Norm.
+Sup. (4), 40(1):51–112, 2007.
+[11] Pierre-Henri Chaudouard. Le transfert lisse des intégrales orbitales d'après Waldspurger. In On the stabilization of
+the trace formula, volume 1 of Stab. Trace Formula Shimura Var. Arith. Appl., pages 145–180. Int. Press, Somerville,
+MA, 2011.
+[12] Marion Chommaux. Distinction of the Steinberg representation and a conjecture of Prasad and Takloo-Bighash. J.
+Number Theory, 202:200–219, 2019.
+[13] Neil Chriss and Victor Ginzburg. Representation theory and complex geometry. Modern Birkhäuser Classics.
+Birkhäuser Boston, Ltd., Boston, MA, 2010. Reprint of the 1997 edition.
+[14] Brooke Feigon, Kimball Martin, and David Whitehouse. Periods and nonvanishing of central L-values for GL(2n).
+Israel J. Math., 225(1):223–266, 2018.
+[15] Jiandong Guo. On a generalization of a result of Waldspurger. Canad. J. Math., 48(1):105–142, 1996.
+[16] Jiandong Guo. Uniqueness of generalized Waldspurger model for GL(2n). Pacific J. Math., 180(2):273–289, 1997.
+[17] Harish-Chandra. Harmonic analysis on reductive p-adic groups. Lecture Notes in Mathematics, Vol. 162. SpringerVerlag, Berlin-New York, 1970. Notes by G. van Dijk.
+[18] Roger Howe. The Fourier transform and germs of characters (case of Gln over a p-adic field). Math. Ann., 208:305–322,
+1974.
+[19] Hervé Jacquet. Sur un résultat de Waldspurger. Ann. Sci. École Norm. Sup. (4), 19(2):185–229, 1986.
+[20] Hervé Jacquet and Stephen Rallis. Uniqueness of linear periods. Compositio Math., 102(1):65–123, 1996.
+[21] B. Kostant and S. Rallis. Orbits and representations associated with symmetric spaces. Amer. J. Math., 93:753–809,
+1971.
+55
+
+[22] Robert E. Kottwitz. Harmonic analysis on reductive p-adic groups and Lie algebras. In Harmonic analysis, the trace
+formula, and Shimura varieties, volume 4 of Clay Math. Proc., pages 393–522. Amer. Math. Soc., Providence, RI,
+2005.
+[23] Jean-Pierre Labesse. Noninvariant base change identities. Mém. Soc. Math. France (N.S.), (61):iv+113, 1995.
+[24] J. Lepowsky and G. W. McCollum. Cartan subspaces of symmetric Lie algebras. Trans. Amer. Math. Soc., 216:217–
+228, 1976.
+[25] Huajie Li. An infinitesimal variant of Guo-Jacquet trace formula I: the case of (GL2n,D , GLn,D × GLn,D ). arXiv
+e-prints, page arXiv:1904.07102, Apr 2019.
+[26] Huajie Li. An infinitesimal variant of Guo-Jacquet trace formula II. arXiv e-prints, page arXiv:2001.07083, January
+2020.
+[27] J.S. Milne. Class field theory (v4.03), 2020. Available at www.jmilne.org/math/.
+[28] Dipendra Prasad and Ramin Takloo-Bighash. Bessel models for GSp(4). J. Reine Angew. Math., 655:189–243, 2011.
+[29] Cary Rader and Steve Rallis. Spherical characters on p-adic symmetric spaces. Amer. J. Math., 118(1):91–178, 1996.
+[30] È. B. Vinberg. The Weyl group of a graded Lie algebra. Math. USSR, Izv., 10:463–495, 1977.
+[31] Thierry Vust. Opération de groupes réductifs dans un type de cônes presque homogènes. Bull. Soc. Math. France,
+102:317–333, 1974.
+[32] J.-L. Waldspurger. Sur les valeurs de certaines fonctions L automorphes en leur centre de symétrie. Compositio Math.,
+54(2):173–242, 1985.
+[33] J.-L. Waldspurger. Une formule des traces locale pour les algèbres de Lie p-adiques. J. Reine Angew. Math., 465:41–99,
+1995.
+[34] J.-L. Waldspurger. Le lemme fondamental implique le transfert. Compositio Math., 105(2):153–236, 1997.
+[35] André Weil. Basic number theory. Classics in Mathematics. Springer-Verlag, Berlin, 1995. Reprint of the second (1973)
+edition.
+[36] Chong Zhang. On linear periods. Math. Z., 279(1-2):61–84, 2015.
+[37] Chong Zhang. On the smooth transfer for Guo-Jacquet relative trace formulae. Compos. Math., 151(10):1821–1877,
+2015.
+[38] Wei Zhang. Fourier transform and the global Gan-Gross-Prasad conjecture for unitary groups. Ann. of Math. (2),
+180(3):971–1049, 2014.
+
+Aix Marseille Univ, CNRS, Centrale Marseille, I2M, Marseille, France
+E-mail: huajie.LI@univ-amu.fr
+
+56
+
+
