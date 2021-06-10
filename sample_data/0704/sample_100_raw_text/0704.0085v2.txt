@@ -1,0 +1,2915 @@
+DAMTP-2007-30
+
+arXiv:0704.0085v2 [hep-th] 9 Apr 2007
+
+A Universality in PP-Waves
+Partha Mukhopadhyay
+Department of Applied Mathematics and Theoretical Physics
+University of Cambridge
+Wilberforce Road, Cambridge CB3 0WA, UK
+E-mail: P.Mukhopadhyay@damtp.cam.ac.uk
+Abstract
+We discuss a universality property of any covariant field theory in space-time expanded
+around pp-wave backgrounds. According to this property the space-time lagrangian density evaluated on a restricted set of field configurations, called universal sector, turns out
+to be same around all the pp-waves, even off-shell, with same transverse space and same
+profiles for the background scalars. In this paper we restrict our discussion to tensorial
+fields only. In the context of bosonic string theory we consider on-shell pp-waves and argue that universality requires the existence of a universal sector of world-sheet operators
+whose correlation functions are insensitive to the pp-wave nature of the metric and the
+background gauge flux. Such results can also be reproduced using the world-sheet conformal field theory. We also study such pp-waves in non-polynomial closed string field theory
+(CSFT). In particular, we argue that for an off-shell pp-wave ansatz with flat transverse
+space and dilaton independent of transverse coordinates the field redefinition relating the
+low energy effective field theory and CSFT with all the massive modes integrated out is
+at most quadratic in fields. Because of this simplification it is expected that the off-shell
+pp-waves can be identified on the two sides. Furthermore, given the massless pp-wave
+field configurations, an iterative method for computing the higher massive modes using
+the CSFT equations of motion has been discussed. All our bosonic string theory analyses
+can be generalised to the common Neveu-Schwarz sector of superstrings.
+
+1
+
+Contents
+1 Introduction and Summary
+
+2
+
+2 A Universality in PP-Waves
+
+7
+
+3 Universality on World-Sheet
+10
+3.1 Constant Dilaton . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+3.2 Non-Constant Dilaton . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+3.3 Generalisation to NSR Superstrings . . . . . . . . . . . . . . . . . . . . . . 17
+4 PP-Waves in Closed String Field Theory
+19
+4.1 Effective Field Theory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+4.2 Closed String Field Theory . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+A A Proof of Universality
+
+27
+
+B Closure of Universal Sector under Field Redefinition
+
+30
+
+C Correlators in Constant Dilaton
+
+30
+
+D Correlators in Non-Constant Dilaton
+
+33
+
+E Field Redefinition and Gauge Transformation
+
+36
+
+1
+
+Introduction and Summary
+
+In a previous work [1] we argued that string theory in the maximally supersymmetric
+type IIB plane wave background with constant five-form Ramond-Ramond (RR) flux
+(RR plane wave) [2] possesses a universality property. According to this property there
+exists a universal sector of string configurations for which the classical space-time action
+evaluated around the RR plane wave takes the same value as in flat space. The argument
+leading to this property involved showing that the relevant light-cone world-sheet theory
+[3, 4] has certain properties that are required to hold in order for the universal sector to
+exist. By looking at the other examples of pp-waves where string theory has been studied
+in light-cone gauge, this universality property was then generalised to all the exact string
+solutions of pp-wave type, hereafter called exact pp-waves, with the same profile for the
+dilaton.
+
+2
+
+The original motivation for this work was to study open string tachyon condensation
+[5] in RR backgrounds. In fact, it was argued that the above universality property applied to the D-brane worldvolume actions has the following indication: For every D-brane
+configuration extending along the light-cone directions x± in flat space there exists a corresponding D-brane configuration in each of the relevant pp-waves. Moreover for unstable
+configurations the tachyon potential is universal. The aforementioned correspondence is
+in the sense that the tachyon solutions representing such D-branes in the worldvolume
+theory on an unstable D-brane configuration are universal. This also implies the same
+D-brane descent relations of flat space [6] in case of the relevant D-branes in pp-waves.
+The above argument is based on the classical theory in space-time and therefore understanding of the systematics of the string loop expansion in RR backgrounds seems
+important in this case1 . Assuming this reliability, if correct, the above results are nontrivial at least for the following reasons: The universality of tachyon potential is a new
+result for an RR background which does not follow from the analysis of [7]. Once we know
+how to formulate open string field theory in an RR pp-wave, we have a prediction for the
+tachyon potential. Moreover, the universal sector of D-branes contain non-BPS D-branes
+which are difficult to study using a manifestly supersymmetric formalism [8, 9, 10, 11].
+The open string boundary condition for the world-sheet fields that are space-time spinors
+were found in [10] to be bi-local in flat background. This boundary condition should have
+proper generalisations to other relevant pp-waves2 .
+Although the arguments of [1], which was designed to relate the space-time theory
+and the light-cone world-sheet theory, showed the existence of a universal sector of string
+configurations, its precise description was not found. It was also not clear whether string
+theory plays any special role as long as the universality is concerned. The purpose of
+the present paper is to go beyond the "light-cone argument" of [1] and study the universality property further with a fully covariant treatment. The results of this paper are
+summarised below:
+1. We consider an arbitrary covariant field theory of tensorial fields in space-time and
+define the universal sector of field configurations. We argue that the space-time
+lagrangian density evaluated around a pp-wave background, even off-shell, with the
+fluctuations restricted to the universal sector, is insensitive to the pp-wave nature
+1
+2
+
+I thank Ashoke Sen for emphasising this point.
+This question wa studied in [1] for the case of type IIB RR plane wave.
+
+3
+
+of the background metric and background fluxes.
+2. Using the construction of bosonic non-polynomial closed string field theory (CSFT)
+[12, 13] in an exact pp-wave given in terms of the relevant world-sheet conformal
+field theory (CFT) we argue that universality requires the existence of a universal
+sector of world-sheet operators whose correlation functions are insensitive to the
+background gauge flux and the pp-wave nature of the background metric. Such
+requirements can indeed be verified explicitly using the world-sheet CFT.
+3. Using the equivalence between the low energy effective field theory (EFT) and CSFT
+with all the higher massive modes integrated out, as formulated by Ghoshal and Sen
+in [14], we describe a general method of identifying between the two sides the offshell pp-wave configurations with flat transverse space and dilaton independent of
+the transverse coordinates. This method also includes an iterative procedure to
+compute all the massive field configurations using their equations of motion.
+Below we shall discuss these results in more detail following the same order.
+A pp-wave [15, 16, 17] admits a covariantly constant null Killing vector corresponding
+to translation of a particular coordinate v (or x− ). Generically an (N + 2)-dimensional
+pp-wave can be obtained by attaching an N-dimensional euclidean space (called the transverse space) parameterised by xI (I = 1, 2, * * * , N) with a two-dimensional space parame-
+
+terised by u (or x+ ) and v such that the only non-zero component of the covariant metric
+tensor with a v index is ĝuv , which is constant. In Brinkmann coordinates [15] the pp-wave
+
+nature of the metric is manifested in the fact that the components ĝuu (u, x) and ĝuI (u, x)
+are generically non-zero, but independent of v as required by the null Killing symmetry.
+The background can also contain null gauge fluxes and scalars, all independent of v. The
+universal sector of field configurations is obtained by restricting the number of covariant v
+indices with respect to the number of covariant u indices of a generic tensorial fluctuation
+in a certain way and not letting the fluctuation vary along v. By considering an arbitrary
+covariant field theory in space-time we argue that the effects of the background fluxes
+and the metric components ĝuu and ĝuI are erased inside the universal sector so that the
+effective metric becomes:
+I
+J
+ds2ef f = 2dudv + G⊥
+IJ (u, x)dx dx ,
+
+4
+
+(1.1)
+
+where ĝIJ = G⊥
+IJ (u, x) is the transverse space metric which is also independent of v.
+This, however, is not true for the background scalar fields. Since the vacuum expectation
+value of a scalar field can be thought to determine the effective couplings of a theory,
+the universal sector should be sensitive to that value. This gives the complete covariant
+description of universality (for tensorial fields) as observed in [1] in the context of lightcone gauge.
+Given the above discussion, which directly concerns the space-time theory, we then
+proceed to study its relevance to string theory from the world-sheet point of view. Our
+discussion in the context of string theory will be restricted to bosonic strings which can
+be generalised to the common Neveu-Schwarz (NS) sectors of superstring theories. In
+this framework we deal with the world-sheet sigma model CFT corresponding to an exact
+pp-wave with dilaton independent of transverse coordinates [18, 19, 20, 21]. A natural
+framework where the above discussion of universality can be related to the world-sheet
+theory appears to be the closed string field theory (CSFT). Using the connection between
+CFT and CSFT3 , we identify a set of operators in the CFT, called the universal sector
+of operators, which correspond to the universal sector of field configurations. We then
+argue that universality requires the correlation functions involving only such operators to
+be insensitive to the background gauge flux and the pp-wave nature of the background
+metric. More precisely, such correlation functions are expressed in terms of those in the
+effective background (1.1) with both the gauge flux and dilaton switched off. We verify
+these relations explicitly using the world-sheet theory.
+Finally we study pp-waves with flat transverse space and dilaton independent of transverse directions in CSFT. It was argued by Horowitz and Steif in [19] that certain more
+restricted pp-waves which are solutions of the low energy effective field theory (EFT) are
+also exact solutions in string theory to all orders in α′ expansion. By exploiting certain
+special geometrical properties of the backgrounds it was argued that all the α′ corrections
+to the EFT equations of motion drop off for these restricted pp-waves. This, however, is
+not true for the generic pp-wave ansatz of our consideration as described at the beginning
+of this paragraph. In this case one expects to receive corrections to all orders4 . Certainly
+computing these corrections to arbitrarily high order seems impossible from the point of
+view of sigma model perturbation theory. Nevertheless, an encouraging feature is that all
+3
+
+A CSFT is usually constructed with reference to a world-sheet CFT and it describes the space-time
+theory expanded around the corresponding background.
+4
+It was argued in [20] that such corrections can give rise to new exact "stringy" solutions.
+
+5
+
+such corrections to the equation of motion are quadratic in fields. Since in the context of
+CSFT α′ does not play the role of a small expansion parameter, one may wonder if such
+corrections can be computed using this framework. This, however, requires us to find
+the precise relation between EFT and CSFT. This problem was formulated by Ghoshal
+and Sen in [14], which we refer the reader to for the details. The basic idea behind this
+relationship is that after integrating out all the massive modes of CSFT by using their
+equations of motion one arrives at an effective field theory with the same massless dynamical degrees of freedom as in EFT such that it is related to EFT through suitable field
+redefinition. Although this field redefinition is quite complicated in general, once known,
+it provides us with a map between the off-shell configurations of EFT and CSFT with
+all the massive fields integrated out. We point out that a Horowitz-Steif type argument
+implies that for a generic off-shell pp-wave ansatz with flat transverse space and dilaton
+independent of transverse coordinates such field redefinitions simplify enormously to become at most quadratic in fields. Given this expectation we then proceed to formulate
+a CSFT computation that will enable us to find this field redefinition and therefore the
+off-shell map relating such pp-waves in EFT and CSFT. Moreover, it turns out that all
+the aforementioned α′ corrections to the equation of motion are invariant under this field
+redefinition and therefore can be directly obtained from the relevant CSFT computation.
+This computation, however by itself, does not enable us to find the massive modes on
+the CSFT side given the profiles of the massless modes of EFT. To this end we discuss
+an iterative method of computing the massive modes of CSFT using their equations of
+motion. Therefore the whole construction enables us to find the CSFT solution for any
+exact pp-wave, given its form on the EFT side, or equivalently, given the world-sheet
+sigma model CFT5 .
+It would be interesting to perform the relevant CSFT computations to realise the
+above procedure explicitly and find the desired α′ corrections to the equation of motion.
+It would also be interesting to study the universality property by including the space-time
+spinors. Although we do not have a formulation of string field theory in RR backgrounds
+the world-sheet counterpart of universality can perhaps still be studied using a manifestly
+supersymmetric formalism such as pure spinor formalism [23].
+The rest of the paper is organised as follows: The general discussion of the universality
+property of an arbitrary space-time theory has been given in sec.2. Its world-sheet coun5
+
+See [22] for an earlier discussion on this topic.
+
+6
+
+terpart in the context of string theory is discussed in sec.3. Our discussion of pp-waves
+in CSFT has been given in sec.4. Several appendices contain various technical details.
+
+2
+
+A Universality in PP-Waves
+
+In this section we shall elaborate on the universality property of a space-time theory and
+give its precise statement. We begin by discussing the generic form of the relevant backgrounds. These are pp-waves which admit a covariantly constant null Killing symmetry.
+The generic ansatz for an (N + 2)-dimensional pp-wave metric is given by [15, 16, 17],
+I
+J
+ds2 = 2dudv + K(u, x)du2 + 2AI (u, x)dudxI + G⊥
+IJ (u, x)dx dx .
+
+(2.1)
+
+We shall use μ = 0, 1, * * * , N + 1 for the (N + 2)-dimensional vector indices with I =
+
+1, 2, * * * , N being the transverse space vector indices. The light-cone coordinates are u =
+x+ = √12 (xN +1 + x0 ) and v = x− = √12 (xN +1 − x0 ). K(u, x), AI (u, x) and G⊥
+IJ (u, x)
+
+are certain arbitrary smooth functions. As mentioned earlier, all these functions are
+ 
+∂
+. In
+independent of v as a requirement of the null Killing symmetry generated by: ∂v
+μ
+
+addition to the metric the background may contain gauge field fluxes which are null and
+scalars, all independent of v. For example, if the second rank anti-symmetric tensor6 b̂μν
+and the dilaton D̂ are switched on then the non-zero components are given as follows:
+ĤuIJ = HIJ (u, x) = ∂I BJ (u, x) − ∂J BI (u, x) ,
+
+D̂ = Φ(u, x) ,
+
+(2.2)
+
+where Ĥμνρ = ∂[μ b̂νρ] = ∂μ b̂νρ + ∂ν b̂ρμ + ∂ρ b̂μν is the gauge invariant flux. HIJ (u, x),
+BI (u, x) and Φ(u, x) are certain arbitrary functions independent of v. b̂μν can therefore
+be chosen to have the following non-zero components:
+b̂uI = −BI (u, x) .
+
+(2.3)
+
+Notice that for arbitrary values of the functions appearing in eqs.(2.1) and (2.2) the
+background is in general off-shell.
+We shall now describe what we mean by a universal sector of field configurations with
+a simple example. Let us consider a scalar field propagating in the background pp-wave
+6
+We shall denote the metric, the second rank anti-symmetric tensor gauge field, its three-form field
+strength and the dilaton of the low energy effective field theory of string theory by ĝμν , b̂μν , Ĥμνρ and D̂
+respectively.
+
+7
+
+metric (2.1) with flat transverse space G⊥
+IJ (u, x) = δIJ . The lagrangian density is taken
+to be,
+L(φ) =
+
+q
+
+−ĝ φ✷φ ,
+
+(2.4)
+
+where ĝ = det ĝμν . It takes the value −1 whenever ĝμν is given by (2.1) (with flat transverse
+space) and the laplacian computed for such a metric is,
+
+q
+1
+✷ = √ ∂μ −ĝ ĝ μν ∂ν ,
+−ĝ
+2
+= 2∂u ∂v + (AI AI − K)∂v2 − ∂I AI ∂v − 2AI ∂I ∂v + ∂⊥
+,
+
+
+
+
+(2.5)
+
+2
+where the transverse laplacian is ∂⊥
+= ∂ I ∂I . Notice that all the terms in the lagrangian
+density containing the functions K(u, x) and AI (u, x), which make the background non-
+
+trivially different from flat space, also contain derivatives with respect to v. It is therefore
+immediately clear that the configurations φ(u, x), independent of v, effectively see the
+background to be flat. In other words, for all backgrounds in (2.1) with G⊥
+IJ = δIJ ,
+L(φ(u, x)) is same and is equal to that computed in flat background. Therefore in the
+present example the universal sector of field configurations is given by the set of all φ(u, x).
+Notice that by restricting field configurations to this sector we are mimicking the limit:
+K → 0, AI → 0 and therefore universality holds even for off-shell backgrounds.
+
+We shall now proceed to generalise the above discussion to any covariant space-time
+field theory which includes fields of arbitrarily high integer spins and where all the spacetime fields are allowed to fluctuate. Let ψμν*** (v, u, x) be a tensor field of arbitrary rank
+in a given theory. Denoting its background value for an off-shell pp-wave configuration
+by Ψμν*** (u, x), we define the fluctuations χμν*** (v, u, x):
+ψμν*** (v, u, x) = Ψμν*** (u, x) + χμν*** (v, u, x).
+
+(2.6)
+
+We shall now use notations ψ(v, u, x), Ψ(u, x) and χ(v, u, x) for the sets of all possible
+fields ψμν*** (v, u, x), their pp-wave background profiles and the corresponding fluctuations
+respectively. If L(ψ(v, u, x)) denotes the covariant lagrangian density for the present
+theory, then the lagrangian density for fluctuations:
+LΨ (χ(v, u, x)) = L(Ψ(u, x) + χ(v, u, x)) ,
+
+(2.7)
+
+will generically depend on the background configuration Ψ(u, x). But according to the
+universality property there exists a restricted set of fluctuations χU S (u, x) independent of
+8
+
+v such that,
+Any covariant lagrangian density evaluated on χU S (u, x) takes the same value
+around all the pp-waves, even off-shell, with the same transverse space and
+(2.8)
+
+same profiles for the background scalars.
+
+i.e. if Ψ(u, x) and Ψ′ (u, x) are two arbitrary pp-wave backgrounds with same transverse
+space metric G⊥
+IJ (u, x) and background scalars, then,
+′
+
+LΨ (χU S (u, x)) = LΨ (χU S (u, x)) .
+
+(2.9)
+
+In particular, if Ψ corresponds to a flat transverse space with all the background scalars
+set to zero (or a non-zero constant for the dilaton), then LΨ (χU S (u, x)) will take the same
+value as in flat space Lf lat (χU S (u, x)).
+
+We shall now specify what the universal sector χU S (u, x) is. First "tensorially reduce"
+a generic element χμν*** (v, u, x) of the set χ(v, u, x) to the transverse space. It will be
+(Mv ,Mu )
+decomposed into a set of fields χIJK***
+(v, u, x), where Mv and Mu are the numbers of
+covariant v and u indices respectively. Then χU S (u, x) is given by the set of all possible
+(Mv ,Mu )
+fields χIJK***
+(u, x), independent of v, such that Mu ≥ Mv .
+n
+
+(M ,M )
+
+v
+u
+χU S (u, x) = χIJK***
+(u, x)|Mu ≥ Mv
+
+o
+
+.
+
+(2.10)
+
+Notice that the deformations of flat background that correspond to pp-wave backgrounds
+(2.1, 2.2) themselves are contained in the universal sector. We prove the universality
+theorem (2.8) or eq.(2.9) for the tensorial fields in appendix A.
+Notice that while defining χU S in (2.10) we did not commit to any specific form of the
+space-time action. This automatically raises the question whether the universal sector is
+invariant under field redefinition or not. If we have two sets of space-time fields χ(v, u, x)
+and χ̂(v, u, x) related by a field redefinition, then a generic element in χ̂(v, u, x) can be
+written as,
+χ̂μν*** (v, u, x) = fμν*** (χ(v, u, x)) ,
+
+(2.11)
+
+where the right hand side represents a generic field redefinition involving fields inside
+χ(v, u, x) and their derivatives. The question is if we restrict the fields on the right hand
+side to be inside the universal sector χU S (u, x) then whether the field on the left hand
+9
+
+side is necessarily inside χU S (u, x) or not. We have argued in appendix B that the answer
+is indeed yes.
+We shall end this section with some comments about the symmetries. Certainly the
+isometries of the transverse space are preserved by the universal sector. But the Lorentz
+transformation generated by Luv , which is not a symmetry of any of the pp-wave backgrounds, appears to be a symmetry of the universal sector (see also [1]) when the transverse space metric is independent of u. This transformation scales u and v equally in the
+opposite way and therefore scales the functions K(u, x) and AI (u, x) while preserving the
+pp-wave structure of the background. But since the universal sector is insensitive to such
+components of the metric the transformation remains a symmetry within this sector7 . The
+Lorentz transformation generated by LvI does not preserve the pp-wave structure, though
+it takes the universal sector to itself. The transformation generated by LuI preserves the
+pp-wave structure, but it takes the universal sector to outside.
+
+3
+
+Universality on World-Sheet
+
+Our discussion in the previous section has been general and applicable to any covariant
+field theory in space-time expanded around a pp-wave background. In this section we
+shall study the universality property in the context of string theory from the world-sheet
+point of view. In order to do so we shall consider exact pp-waves that are given by the
+ansatz in (2.1, 2.2) with the further restriction that the transverse space is flat and the
+background dilaton is independent of transverse directions:
+G⊥
+IJ (u, x) = δIJ ,
+
+Φ = Φ(u) .
+
+(3.1)
+
+For the analysis in this section the transverse space will play the role of a spectator and
+therefore any G⊥
+IJ (u, x) which corresponds to an on-shell background can be incorporated.
+We restrict it to flat space merely to simplify our presentation.
+Since the statement in (2.8) concerns a space-time field theory, a natural framework
+to study its relevance to the world-sheet theory is string field theory. Indeed a string
+field theory is usually constructed for an on-shell background given by the corresponding
+7
+
+To see this more explicitly one notices that any term in the space-time lagrangian density evaluated
+on the universal sector has equal number of u and v indices. This is simply because the effective metric
+for such terms is ημν on the (u, v)-plane. This term therefore must be invariant under equal and opposite
+scaling along u and v directions.
+
+10
+
+world-sheet sigma model CFT. Using this connection here we shall derive certain worldsheet properties that are required to hold in order for the universality theorem (2.8) to be
+valid. In particular, we shall find that the correlation functions of a specific set of worldsheet operators should be given in terms of those in flat background with both the gauge
+flux and dilaton switched off. We shall verify these results explicitly using world-sheet
+techniques in appendices C and D.
+We begin by considering the bosonic non-polynomial CSFT action S pp [12, 13] around
+an on-shell pp-wave background (2.1, 2.2, 3.1),
+S pp (χ) =
+
+∞
+1 X
+1 n pp
+{χ } ,
+2
+κ n=2 n!
+
+(3.2)
+
+where κ is the closed string coupling constant which is related to the constant part of the
+background dilaton8 . {χn }pp is a certain sphere correlation function in CFTpp ⊕ CFTgh
+which involves n string fields . Here CFTpp and CFTgh denote the matter conformal
+field theory corresponding to the pp-wave background and the background independent
+
+(b, c) ghost CFT respectively. Among the {χn }'s, {χ2 } is special in the following sense:
+It is given by a particular inner product hχ, Qpp χi, as defined in [13], where Qpp is the
+
+BRST charge corresponding to the pp-wave background. Therefore the matter part of
+the relevant correlator involves the matter stress tensor (T pp(z), T̄ pp (z̄)). The matter part
+
+of any other {χn } for n > 2 involves only the matter part of the string field. According
+to (2.8) the string field theory action Spp (χU S ) evaluated at a string field configuration
+χU S that is restricted to the universal sector must be same for all pp-waves with the
+same dilaton profile in (3.1) (having the transverse space already been chosen to be flat)9 .
+Below we shall derive the relevant sigma model correlators from this condition for the
+cases of constant and non-constant dilaton separately.
+8
+
+We follow the notations of [13] except for the following few differences: (1) we use the notation χ for
+the string field instead of Ψ, (2) we have absorbed a factor of κ inside the string field so that the coupling
+constant appears only as a pre-factor in the action, (3) we are using an additional superscript pp or f lat
+on various notations to explicitly indicate the background. We have also removed the subscript 0 from
+the notation {* * *}0 in [13].
+9
+Notice that both the statement (2.8) and its proof in appendix A consider the space-time lagrangian
+density while here, in the discussion of CSFT, we are considering the space-time action. This could make
+a difference in case of the non-constant dilaton. But it will be explained in section 3.2 (see footnote 11)
+that this does not happen when the background dilaton depends only on u, as we are considering here,
+and therefore our analysis with the action goes through. I thank Ashoke Sen for emphasising this point.
+
+11
+
+3.1
+
+Constant Dilaton
+
+Since the dilaton is constant and is taken to be same for all the backgrounds under
+consideration, the overall coupling dependent factor in eq.(3.2) is same. Therefore in
+order for (2.8) to be true we must have,
+{χnU S }pp = {χnU S }f lat .
+
+(3.3)
+
+In order to derive the relevant CFT correlators as discussed above, let us first see what
+it means to have the string field restricted to the universal sector in terms of CFT. The
+string field can be thought of as a first quantised state in CFTpp ⊕CFTgh satisfying certain
+
+conditions (see [13] for the complete definition of the string field). This first quantised
+state is expanded in terms of the basis in the relevant subspace of the matter-ghost Hilbert
+space. Therefore every such basis state has a matter and a ghost operator associated with
+it. The coefficients in this expansion turn out to play the role of the space-time fields.
+Since the ghosts are background independent, the tensorial properties of these fields are
+determined by the corresponding matter operators. Therefore the universal sector of field
+configurations, defined in eq.(2.10), corresponds to restricting the matter operators to a
+certain sub-sector which we call universal sector of matter operators10 . Below we shall
+specify this sector explicitly. Satisfaction of eq.(3.3) for n > 2 will then imply that all
+possible matter correlators involving operators only from the universal sector are universal
+and same as that evaluated in flat background. As discussed above, for n = 2 there is an
+extra source of background dependence through the stress tensor. However, we shall see
+that eq.(3.3) is automatically satisfied for n = 2 once the aforementioned universality of
+the relevant CFT correlators holds.
+The world-sheet lagrangian density for the matter part takes the following form for
+the relevant backgrounds:
+ ̄ + ∂V ∂U
+ ̄ + K(U, X)∂U ∂U
+ ̄ + A− (U, X)∂U ∂X
+ ̄ I + A+ (U, X)∂X I ∂U
+ ̄
+Lpp ∼ ∂U ∂V
+I
+I
+ ̄ I ,
++∂XI ∂X
+(3.4)
+where A±
+I = AI ± BI and I = 1, 2, * * * , 24. For an exact background this is a conformal
+field theory with central charge 26. The universal sector of matter operators OU S , which
+10
+Notice that all the ghost operators are universal anyway as the ghost sector is background
+independent.
+
+12
+
+corresponds to the universal sector of field configurations given in eq.(2.10), is given by,
+OU S =
+
+
+M
+Yu
+
+
+∂ mi U
+
+i=1
+
+M
+Yū
+
+ī=1
+
+∂ ̄m̄ī U
+
+Mv
+Y
+
+∂ nj V
+
+j=1
+
+Mv̄
+Y
+
+j̄=1
+
+∂ ̄n̄j̄ V O(X)eipU (z, z̄)|Mu + Mū ≥ Mv + Mv̄
+
+
+
+
+,(3.5)
+
+
+
+where O(X) is an arbitrary operator in the transverse part of the CFT. In flat space
+
+these operators are well defined whose correlators can be computed easily. Although it
+is difficult to solve the relevant CFT for an arbitrary exact pp-wave, as has already been
+explained, the correlation functions of the operators inside OU S are universal and should
+be same as that evaluated in flat background,
+h
+
+Y
+i
+
+Oi (zi , z̄i )ipp = h
+
+Y
+i
+
+Oi (zi , z̄i )if lat ,
+
+for Oi ∈ OU S , ∀i ,
+
+(3.6)
+
+where h* * *ipp and h* * *if lat denote matter correlators in pp-wave and flat background with-
+
+out any flux respectively. We have derived eq.(3.6) using the world-sheet theory in appendix C.
+We shall now show that the condition (3.6) is enough to guarantee the relation (3.3)
+for n = 2. We first write,
+Lpp = Lf lat + ∆Lpp ,
+
+(3.7)
+
+ ̄ + ∂V ∂U
+ ̄ + ∂XI ∂X
+ ̄ I is the lagrangian density corresponding to the
+where, Lf lat ∼ ∂U ∂V
+flat background. Therefore the stress tensor and the BRST charge also take the similar
+structure:
+T (z) = T f lat (z) + ∆T pp (z) ,
+
+T̄ (z̄) = T̄ f lat (z̄) + ∆T̄ pp (z̄) ,
+
+Qpp = Qf lat + ∆Qpp , (3.8)
+
+where (T f lat (z), T̄ f lat (z̄)) and Qf lat denote the stress tensor components and the BRST
+charge in the flat background. Notice that T f lat (z) and T̄ f lat (z̄) are contained in OU S .
+
+This means hχU S , Qf lat χU S ipp is universal. Therefore in order for eq.(3.3) to be true for
+n = 2 we need to have,
+hχU S , ∆Qpp χU S ipp = 0 .
+
+(3.9)
+
+To see why this is right first notice that the only matter operators that appear in ∆Qpp
+are ∆T pp (z) and ∆T̄ pp (z̄) as the BRST charge is linear in the energy-momentum tensor.
+The next step is to argue that the operators ∆T pp (z) and ∆T̄ pp (z̄) are contained in OU S .
+13
+
+pp
+This can be easily seen by Fourier expanding the functions K and AI appearing in ∆Tαβ
+(α, β = 0, 1 referring to the standard (τ, σ) coordinates on the cylinder.),
+pp
+∆Tαβ
+
+1
+~ ~
+= ∂α U∂β U − δαβ ∂γ U∂ γ U
+dku d24 k K̃(ku , k)eiku U +ik.X
+2
+Z
+
+~ ~
+I
+I
+γ I
+dku d24 k ÃI (ku , k)eiku U +ik.X ,
++ ∂α U∂β X + ∂α X ∂β U − δαβ ∂γ U∂ X
+(3.10)
+
+
+Z
+
+where K̃(ku , k) and ÃI (ku , k) are the Fourier transforms of K(u, x) and AI (u, x) respectively. Finally notice that any given term in these operators has no dependence on V and
+at least one (first order derivative of) U. Then using the flat space result that a correlator
+involving the elements of OU S is nonzero only when the total numbers of U's and V 's (we
+mean derivatives of them) are same, we arrive at eq.(3.9).
+
+3.2
+
+Non-Constant Dilaton
+
+The situation is more complicated when the dilaton varies in space-time. In this case
+using the general argument of appendix A one has the following form of the space-time
+action evaluated on the universal sector:
+Vv
+S (χU S ) = 2
+κ
+pp
+
+Z
+
+dud24 x e−2Φ(u) U(u, x) ,
+
+(3.11)
+
+where Vv is the infinite volume resulting from the integration over v. Φ(u) denotes the
+background dilaton in (3.1) that appears in the world-sheet sigma model such that it does
+not include any constant part. This constant part is absorbed into κ so that the effective
+string coupling is: κef f (u) = κeΦ(u) . U(u, x) is the universal contribution, implying that11 ,
+S f lat (χU S ) =
+
+Vv
+κ2
+
+Z
+
+dud24 x U(u, x) .
+
+(3.12)
+
+We shall now translate the requirement of universality as given by eqs.(3.11, 3.12) into
+condition on the CFT correlators. This will be done by an induction method and therefore
+we begin by considering an example below.
+11
+
+Referring the reader to the issue raised in footnote 9, we notice that considering the space-time action
+instead of the lagrangian density could make a difference in the present case only if there were a term
+in U which is a total derivative with respect to u. Such terms, however, are not allowed due to general
+covariance. In fact, according to the general argument of appendix A, U(u, x) can involve only transverse
+derivatives (see footnote 14). This is also responsible for the fact that in the present case U(u, x) does
+not have any dependence on the background dilaton.
+
+14
+
+Let us consider the graviton h̃μν in the string field expansion:
+|χi →
+
+Z
+
+μ
+μ
+ν
+ν
+d26 k h̃μν (k)c1 c̄1 (α−1
+ᾱ−1
++ α−1
+ᾱ−1
+)|ki ,
+
+(3.13)
+
+where |ki ∝ eik.X (0, 0)|0i, |0i being the SL(2,C) vacuum12 . This contributes to {Ψ2 }f lat
+a term of the following form (see, for example, [14]):
+Z
+
+d26 kd26 p p2 δ(k + p)h̃μν (k)h̃μν (p) = −
+
+Z
+
+d26 x μν
+h (x)∂ 2 hμν (x) ,
+(2π)26
+
+(3.14)
+
+where hμν (x) and h̃μν (k) are Fourier transform of each other. Restricting this term to the
+universal sector one gets,
+−
+
+Vv
+(2π)26
+
+Z
+
+h
+
+2
+dud24x hμν (u, x)∂⊥
+hμν (u, x)
+
+i
+
+US
+
+,
+
+(3.15)
+
+where [* * *]U S represents the quantity [* * *] with the field components restricted according
+
+to (2.10). Fourier transforming this universal term back to the momentum space one gets,
+Vv
+2π
+
+Z
+
+dpu d24 p
+
+Z
+
+dku d24 k ~k 2 δ(pu + ku )δ 24 (~p + ~k)
+n
+
+h̃μν (pu , p~)h̃μν (ku , ~k)
+
+oh
+
+i
+
+US
+
+.
+
+(3.16)
+
+In an arbitrary pp-wave background with background dilaton Φ(u) the universal term in
+(3.15) is supposed to be replaced by,
+Vv
+−
+(2π)26
+
+Z
+
+h
+
+2
+hμν (u, x)
+dud24 x e−2Φ(u) hμν (u, x)∂⊥
+
+i
+
+US
+
+,
+
+(3.17)
+
+Fourier transformation of this expression gives,
+N
+Y
+
+∞
+X
+(−2)N
+Vv
+dpu d24 p dku d24 k ~k 2
+2π
+N!
+N =0
+h
+i
+μν
+h̃ (pu , p~)h̃μν (ku , p~)
+,
+
+Z
+
+(
+
+Z
+
+!
+
+dl(a) Φ(l(a) ) δ(pu + ku +
+
+a=1
+
+N
+X
+
+l(a) )δ(~p + ~k)
+
+a=1
+
+)
+
+US
+
+(3.18)
+
+where Φ̃(l) is the Fourier transform of Φ(u). Comparing the factors kept in the curly
+brackets in the expressions (3.16) and (3.18) we conclude that in presence of the nontrivial dilaton the particular two point vertex changes in the following way:
+~k 2 δ(pu + ku )δ 24 (~p + ~k) → ~k 2
+12
+
+∞
+X
+
+(−2)N
+N!
+N =0
+
+N
+Y
+
+!
+
+dl(a) Φ(l(a) ) δ(pu + ku +
+
+a=1
+
+N
+X
+
+l(a) )δ(~p + ~k) .
+
+a=1
+
+The CFT states |0i and |ki have been denoted by |1i and |1, ki respectively in [13].
+
+15
+
+(3.19)
+Generalising this to an (n + 2)-point vertex one gets:
+(i)
+
+f (p, k, k )δ(pu + ku +
+
+n
+X
+
+ku(i) )δ 24 (~p
+
++ ~k +
+
+i=1
+
+∞
+X
+
+(−2)N Z
+→ f (p, k, k (i) )
+N!
+N =0
+δ(pu + ku +
+
+n
+X
+
+ku(i) +
+
+N
+X
+
+N
+Y
+
+dl(a) Φ̃(l(a) )
+
+a=1
+
+l(a) )δ 24 (~p + ~k +
+
+a=1
+
+i=1
+
+n
+X
+
+~k (i) )
+
+! i=1
+n
+X
+
+~k (i) ) ,
+
+i=1
+
+(3.20)
+
+where it is understood that each of the momenta appearing in the argument of the factor f (p, k, k (i) ) has zero covariant v component. Notice also that the above equation is
+schematic in the sense that depending on the vertex f can carry space-time indices. For
+the two-point vertex considered above f is a scalar as the gravitons are contracted between each other. But there are terms where the gravitons are contracted with momenta.
+In such cases f will carry the necessary indices. Since the vertex is computed from a CFT
+correlator we conclude from the expression (3.20) that a generic matter correlator that
+appears in the computation of S pp (χU S ) with a non-constant dilaton is given by,
+h
+
+~
+iku U +i~k.X
+
+hI ◦ Oout e
+∞
+X
+
+(−2)
+N!
+N =0
+
+
+N
+
+Z
+i(ku +
+
+hI ◦ Oout e
+
+N
+Y
+
+a=1
+
+PN
+
+i
+
+(0, 0)
+
+n
+Y
+
+(i)
+~
+iku U +i~k (i) .X
+
+Oi e
+
+i=1!
+
+!
+
+~
+
+(zi , z̄i ) Oin eipu U +i~p.X (0, 0)ipp
+Φ(u) =
+
+dl(a) Φ̃(l(a) )
+
+~
+l )U +i~k.X
+a=1 (a)
+
+(0, 0)
+
+for Oout , Oin , Oi ∈ OU S , ∀i .
+
+
+
+n
+Y
+
+i=1
+
+(i)
+
+~
+iku U +i~k (i) .X
+
+Oi e
+
+!
+
+~
+
+lat
+(zi , z̄i ) Oin eipu U +i~p.X (0, 0)ifΦ=0
+,
+
+(3.21)
+
+where I is the inversion map: I(z) = 1/z. The correlator on the left side is computed
+in CFTpp , where the background contains a non-constant dilaton Φ(u). The correlators
+on the right side are computed in CFTf lat with the dilaton set to zero. Notice that the
+right hand side can be computed in any other relevant background with Φ = 0 as the
+computation is done in the universal sector. To check a simple consistency condition: if
+the left hand side is computed in a background with constant dilaton Φ(u) = c, then
+one sets Φ̃(k) = cδ(k) on the right side. The result turns out to be e−2c times the same
+correlator computed with Φ(u) = 0, which is expected. Notice also that eq.(3.21) is
+16
+
+claimed only for the universal sector - generically the result will be complicated if we
+sprinkle around "non-universal" operators inside the correlator. The derivation of the
+result (3.21) using path integral has been presented in appendix D.
+Notice that the above argument is based on the universality of U(u, x) in the sense of
+eqs.(3.11, 3.12) and we have not explicitly addressed the potential background dependence
+of the CSFT quadratic term through the energy-momentum tensor as we did in the case of
+constant dilaton. In presence of a non-trivial dilaton Φ(u), the energy-momentum tensor
+receives a correction [24] of the following form in addition to that in eq.(3.10) over its
+flat-space expression:
+pp
+∆Φ Tαβ
+∝ ∂α ∂β Φ(U) − δαβ ∂ 2 Φ(U)
+,
+Z
+
+= (δαβ ∂ 2 U − ∂α ∂β U)
+
+dl l2 Φ̃(l)eilU ,
+
+(3.22)
+
+This operator belongs to OU S and is independent of V . Therefore by the same argument
+pp
+as given below eq.(3.10), a matter correlator involving ∆Φ Tαβ
+and an arbitrary number
+of operators inside OU S is zero in flat space with constant dilaton. Then using eq.(3.21)
+we conclude,
+hχU S , ∆Φ Qpp χU S ipp
+Φ(u) = 0 ,
+
+(3.23)
+
+where ∆Φ Qpp is the dilaton contribution to the BRST operator Qpp which is linear in
+pp
+∆Φ Tαβ
+. This shows that there is no dependence of the CSFT action on the background
+dilaton inside the universal sector that might be introduced through the BRST operator.
+
+This is consistent with the fact that U(u, x) is independent of the background dilaton, as
+claimed in footnote 11.
+
+3.3
+
+Generalisation to NSR Superstrings
+
+The above discussion in bosonic string theory can be generalised to the common NS
+sector of the Neveu-Schwarz-Ramond (NSR) superstrings. Here we demonstrate this by
+considering type II string theory. We have already discussed the bosonic sector of the
+world-sheet theory. The fermionic sector of the world-sheet lagrangian density for an
+exact NS-NS pp-wave takes the following form in conformal gauge,
+f lat
+pp
+Lpp
+II = LII + ∆LII ,
+
+17
+
+(3.24)
+
+where the lagrangian density for flat background is,
+ ̄ v + ψ v ∂ψ
+ ̄ u + ψI ∂ψ
+ ̄ I + a.h. ,
+LfIIlat ∼ ψ u ∂ψ
+
+(3.25)
+
+and,
+∆Lpp
+II ∼
+
+ ̄ u + AI (U, X)(ψ u ∂ψ
+ ̄ I + ψ I ∂ψ
+ ̄ u)
+K(U, X)ψ u ∂ψ
+i
+ ̄ u ψ I + DIJ (U, X)∂Uψ
+ ̄ I ψ J + EIJ (U, X)∂X
+ ̄ I ψ u ψ J + a.h.
++CI (U, X)∂Uψ
+
+h
+
++PIJ (U, X)ψ u ψ I ψ̄ u ψ̄ J + QIJK (U, X)(ψ u ψ I ψ̄ J ψ̄ K + ψ J ψ K ψ̄ u ψ̄ I ) ,
+
+(3.26)
+
+where CI (u, x), DIJ (u, x), EIJ (u, x), PIJ (u, x), QIJK (u, x) are certain functions constructed out of HIJ (u, x) and derivatives of K(u, x) and AI (u, x). a.h. in eqs.(3.25, 3.26)
+are obtained by replacing: ψ → ψ̄, ∂ ̄ → ∂ and HIJ → −HIJ . In this case we consider the
+space-time tensors coming from the NS-NS sector states. The space-time indices on these
+fields come from both world-sheet bosons and fermions in the matter sector. Following
+eq.(2.10) one finds that the universal sector of matter operators is given by,
+OUIIS =
+
+n
+
+OB (MuB , MūB , MvB , Mv̄B )OF (MuF , MūF , MvF , Mv̄F )|M+ ≥ M−
+
+o
+
+, (3.27)
+
+where the bosonic part OB (MuB , MūB , MvB , Mv̄B ) is given by the same operator as that
+appears inside the curly bracket in eq.(3.5), the only differences being that the dimensionality of the transverse space is now 8, instead of 24 and a change in notation where
+we have added a superscript B to various numbers Mu etc. appearing in eq.(3.5). The
+fermionic part is given by,
+MūF
+
+MuF
+
+O
+
+F
+
+(MuF , MūF , MvF , Mv̄F )
+
+=
+
+Y
+
+mi
+
+∂ ψ
+
+i=1
+
+u
+
+Y
+
+ ̄m̄ī
+
+∂ ψ̄
+
+Mv̄F
+
+MvF
+u
+
+Y
+
+nj
+
+∂ ψ
+
+j=1
+
+ī=1
+
+v
+
+Y
+
+j̄=1
+
+∂ ̄n̄j̄ ψ v OF (ψ⊥ , ψ̄⊥ )(z, z̄) (3.28)
+,
+
+where OF (ψ⊥ , ψ̄⊥ ) is an arbitrary operator constructed out of the transverse ψ I and ψ̄ I .
+The numbers M± appearing in eq.(3.27) are defined as follows:
+M+ = M+B + M+F ,
+M− = M−B + M−F ,
+
+M+B = MuB + MūB ,
+M−B = MvB + Mv̄B ,
+
+M+F = MuF + MūF ,
+M−F = MvF + Mv̄F ,
+
+(3.29)
+
+The general arguments leading to the conditions on the correlation functions in the bosonic
+case, namely eq.(3.6) for constant dilaton and eq.(3.21) for non-constant background
+dilaton, remain the same. Therefore the analogues of those those conditions are given
+18
+
+by the same equations, i.e. (3.6) and (3.21) with the universal sector of operators now
+given as in eq.(3.27). For constant dilaton the world-sheet derivation of this condition has
+been given in appendix C. For non-constant dilaton it goes through in the same way as
+discussed in appendix D for the bosonic case as any non-triviality of this analysis involves
+only the bosonic sector of the world-sheet theory.
+
+4
+
+PP-Waves in Closed String Field Theory
+
+It was shown in [19] that there is a large class of pp-waves that are exact solutions in
+string theory to all orders in α′ corrections. For such solutions HIJ in eq.(2.2) and
+FIJ (u, x) = ∂I AJ (u, x) − ∂J AI (u, x) ,
+
+(4.1)
+
+are taken to be functions of only u and therefore are more restricted than what we have
+considered in (2.1, 2.2, 3.1). With this restricted ansatz all the α′ corrections to the low
+energy effective field theory (EFT) equations of motion are zero. As we shall briefly review
+below, this is not true for our more general ansatz. In fact, in our case such unknown
+corrections are, in principle, non-zero at arbitrary higher orders.
+In this section we shall discuss a general method of identifying an off-shell pp-wave
+background of EFT in CSFT with all the massive modes integrated out by their equations
+of motion. The off-shell ansatz that we consider is given on the EFT side by eqs.(2.1),
+(2.2) and (3.1). In general such an exact identification (certainly up to field redefinition)
+of off-shell field configurations is difficult to do in practice. This is because the field redefinition between EFT and CSFT with all the massive modes integrated out is in general
+complicated. We shall argue that for the off-shell pp-wave ansatz that we are considering
+here this field redefinition is at most quadratic in fields and therefore can be found with
+limited computations. In this work we shall not perform any explicit CSFT computation,
+rather we shall formulate the problem in principle and indicate how the explicit construction can be done by computing a set of cubic terms in the action (3.2). Our analysis
+will indicate that all the α′ corrections to the equations of motion discussed above, which
+will be shown to be invariant under the relevant field redefinition, can be computed using
+CSFT. We shall also outline an iterative method of computing the massive modes using
+the CSFT equations of motion in terms of the functions K(u, x), AI (u, x), BI (u, x) and
+Φ(u) characterising the background on the EFT side. Whenever these functions correspond to an exact CFT on the world-sheet our iterative procedure gives the corresponding
+19
+
+CSFT solution. For definiteness we shall consider the non-polynomial bosonic CSFT action (3.2) constructed around the flat space. But it should be possible to generalise the
+basic method to incorporate the common NS sectors of superstrings.
+Since we shall not perform any explicit CSFT computation, our construction, as indicated above, will be based on the expectation that EFT and CSFT with all the massive
+modes integrated out are physically equivalent. The connection between these two theories is as follows: Integrating out all the massive fields in CSFT by satisfying their
+equations of motion one arrives at an effective field theory involving the same massless
+field content as in EFT. There could be certain additional unphysical fields which can be
+eliminated away algebraically. The dynamical fields of the two theories and their off-shell
+gauge transformations should be related by suitable field redefinitions. Once this field
+redefinition is completely known any off-shell field configuration in one of the two theories
+can be identified in the other. This field redefinition was found at the linearised level in
+[14], which we refer the reader to for the detailed formulation of the above connection.
+Below we first briefly review the off-shell pp-wave ansatz and the relevant equations of
+motion on the EFT side and then discuss our construction in CSFT in section 4.2.
+
+4.1
+
+Effective Field Theory
+
+The field content of the EFT includes the metric ĝμν = ημν + ĥμν , the dilaton D̂ and
+the second rank antisymmetric tensor gauge field b̂μν whose three-form field strength is
+Ĥμνρ = ∂[μ b̂νρ] . The action is given by,
+S ∝
+L =
+
+Z
+
+dudvd24x L ,
+
+q
+
+
+
+−ĝ e−2D̂ R(ĝ) + 4∂μ D̂∂ μ D̂ −
+
+1
+Ĥμνρ Ĥ μνρ + O(α′ ) ,
+12
+
+
+(4.2)
+
+where the proportionality constant in the action is left arbitrary as a freedom of adding a
+constant piece to D̂. The action receives corrections at arbitrary higher order in α′ . The
+non-zero components of the off-shell background that we are interested in are given by,
+ĥuu = K(u, x) ,
+
+ĥuI = AI (u, x) ,
+
+b̂uI = −BI (u, x) ,
+
+D̂ = Φ(u) .
+
+(4.3)
+
+The theory possesses gauge symmetries under general coordinate transformations and
+anti-symmetric tensor gauge transformations. The off-shell ansatz in (4.3) is not gauge
+invariant and therefore has been written by fixing some of the gauge symmetries. Some
+20
+
+amount of residual gauge symmetry is still present which preserve the above ansatz. This
+has been discussed in appendix E.
+All the α′ corrections in (4.2) are not identically zero for the generic ansatz (4.3). The
+equations of motion reduce to the following form:
+1
+1 2
+∂⊥ K − ∂u ∂ I AI − (FIJ F IJ
+2
+4
+
+∂ I FIJ = 0 ,
+∂ I HIJ = 0 ,
+
+
+√
+√
+1
++ HIJ H IJ ) + 2∂u2 Φ + ′ C2
+α′ ∂⊥ F, α′ ∂⊥ H = 0 ,
+α
+(4.4)
+
+where FIJ and HIJ have been defined in eqs.(4.1) and (2.2) respectively. The last equation
+generically receives α′ corrections to all orders. All such corrections, collectively given by
+
+√
+√
+the term C2
+α′ ∂⊥ F, α′ ∂⊥ H , are quadratic in FIJ and/or HIJ , but contain arbitrary
+higher powers of transverse derivatives [20, 17]. In a special case where both FIJ and HIJ
+are independent of the transverse coordinates [19]:
+FIJ = FIJ (u) ,
+
+HIJ = HIJ (u) ,
+
+(4.5)
+
+all such corrections drop off. Notice that the last equation in (4.4) is invariant under
+adding a purely u dependent function to K(u, x): K(u, x) → K(u, x) + f (u). The fact
+
+that the equations (4.4) are at most quadratic in fields will be crucial in our following
+discussion on CSFT.
+
+4.2
+
+Closed String Field Theory
+
+As mentioned earlier, here we shall formulate the problem of identifying the off-shell ppwave configuration (4.3) in CSFT. We denote the set of dynamical fields of CSFT by χ =
+{gμν = ημν + hμν , bμν , D, χmassive }, where χmassive is the set of (infinite number of) massive
+fields. After integrating out the full set χmassive one arrives at a low energy effective field
+theory containing only gμν , bμν , D and certain additional non-dynamical fields that can
+be eliminated away algebraically. See [14] for the details of the procedure. The field
+redefinition that relates these dynamical fields and that of EFT takes the following form:
+h
+hμν (v, u, x) = ĥμν (v, u, x) + fμν
+(ĥρσ , b̂ρσ , ∂ρ D̂) ,
+b
+bμν (v, u, x) = b̂μν (v, u, x) + fμν
+(ĥρσ , b̂ρσ , ∂ρ D̂) ,
+D
+∂μ D(v, u, x) = ∂μ D̂(v, u, x) + fμ (ĥρσ , b̂ρσ , ∂ρ D̂) ,
+
+21
+
+(4.6)
+
+where in the last equation derivative of the dilaton has been considered in order to make
+the equation insensitive to a constant shift which was also left unfixed while writing
+down the EFT action in (4.2). It was shown in [14] that at the linearised level the
+field redefinition takes the form of the above equations with all the f -fields set to zero.
+Therefore all such fields are necessarily at higher orders in the hatted fields. Notice that
+we have also used the well-known fact that the dilaton always appears with derivatives in
+these fields. We have argued in appendix E that for a generic off-shell pp-wave background
+h
+(4.3) the only non-vanishing f function is the component fuu
+(ĥρσ , b̂ρσ , D̂) which takes the
+following form:
+h
+fuu
+(ĥuu = K, ĥuI = AI , b̂uI = −BI , ∂u D̂ = ∂u Φ) = K2 (AI , BI , ∂u Φ) ,
+
+(4.7)
+
+where K2 (AI , BI , ∂u Φ) is an undetermined scalar on the transverse space which is second
+order in the fields AI , BI and Φ but may contain transverse derivatives of arbitrarily high
+order. Notice that such transverse derivatives can not act on Φ. Therefore, by the similar
+argument as in appendix E, the dilaton dependence is restricted only to the following
+type of additive terms: ∂u Φ∂u Φ, ∂u Φ∂ I AI and ∂u Φ∂ I BI , where arbitrarily high powers of
+transverse laplacian are allowed to act on ∂ I AI and/or ∂ I BI . This implies,
+huu = K + K2 ,
+
+huI = AI ,
+
+buI = −BI ,
+
+D=Φ,
+
+(4.8)
+
+where the dilaton is identified up to an additive constant. Given these equations we shall
+now onwards work with the variables huu , AI , BI and Φ on the CSFT side. One would
+therefore expect the CSFT equations of motion to include the first two equations in (4.4)
+in the same form and the last equation in the following form:
+E1 (huu , AI , ∂u Φ) + E2 (AI , BI , ∂u Φ) = 0 ,
+
+(4.9)
+
+where,
+1 2
+∂ huu − ∂u ∂ I AI + 2∂u2 Φ ,
+2 ⊥
+1
+1 2
+K2 (AI , BI , ∂u Φ) − (FIJ F IJ + HIJ H IJ )
+E2 (AI , BI , ∂u Φ) = − ∂⊥
+2
+4
+√
+√
+1
++ ′ C2 ( α′∂⊥ F, α′ ∂⊥ H) ,
+α
+
+E1 (huu , AI , ∂u Φ) =
+
+are the terms which are linear and quadratic in fields respectively.
+22
+
+(4.10)
+
+We shall now try to understand how the first two equations in (4.4) and eq.(4.9) are
+realised in CSFT. The CSFT equation of motion is given by,
+Q|χi +
+
+∞
+X
+
+1 N
+|χ i = 0 ,
+N =2 N!
+
+(4.11)
+
+where Q = Qf lat . The string field |χi is expanded in terms of ghost number two states
+with certain properties in the combined matter-ghost conformal field theory. The fields
+huu , huI , buI and D, as given by eqs.(4.8), appear in the coefficients of these states in such
+an expansion. In particular, following [14] we may write for the massless component:
+h
+n
+o
+1
+u
+u
+u
+I
+|χimassless = − √
+dku d~k h̃uu (ku , ~k)α−1
+ᾱ−1
++ ÃI (ku , ~k) − iB̃I (ku , ~k) α−1
+ᾱ−1
+n2
+i
+o
+I
+u
++ ÃI (ku , ~k) + iB̃I (ku , ~k) α−1
+c1 c̄1 |ku , ~ki
+ᾱ−1
+√ Z
+n
+o
+α′
+u
+~
+dku d~k k I ÃI (ku , ~k) − iB̃I (ku , ~k) c+
++
+0 c1 α−1 |ku , ki
+√2 Z
+n
+o
+α′
+u
+~
+−
+dku d~k k I ÃI (ku , ~k) + iB̃I (ku , ~k) c+
+0 c̄1 ᾱ−1 |ku , ki
+Z2
+h√
+i
+√
+u
+u
++ dku 2Φ̃(ku )(c1 c−1 − c̄1 c̄−1 ) + α′ ku Φ̃(ku )c+
+0 (c1 α−1 − c̄1 ᾱ−1 ) |ku i ,
+Z
+
+(4.12)
+
+where h̃uu (ku , ~k), ÃI (ku , ~k), B̃I (ku , ~k) and Φ̃(ku ) are the Fourier transforms of huu (u, x),
+√1
+AI (u, x), BI (u, x) and Φ(u) respectively. c+
+0 = 2 (c0 +c̄0 ). The first two equations in (4.4)
+and the linear part in (4.9) should therefore be obtained from the first term in eq.(4.11).
+
+Indeed these parts can be shown to be obtained from the massless quadratic part of the
+action (3.2) which was computed in [14]. In particular, E1 (huu , AI , ∂u Φ) in eq.(4.9) is
+contributed by the following term (computed in [14]), in the quadratic lagrangian density
+(up to a constant pre-factor):
+μν
+
+h
+
+
+
+1 2
+1
+1 2
+∂ hμν − ∂μ ∂ ρ hνρ + ∂μ ∂ν hρρ − ∂μ ∂ν D → hvv ∂⊥
+huu − ∂u ∂ I AI − ∂u2 Φ , (4.13)
+2
+2
+2
+
+
+
+
+
+
+where in the second step we have restricted the fields inside square brackets according to
+our ansatz in (4.3). Notice that the term computed is outside the universal sector as it
+contains the component hvv . Generically, a higher rank equation of motion,
+E∗ (universal sector) = 0 ,
+
+(4.14)
+
+(where the subscript ∗ indicates that the expression has covariant tensor indices) for the
+
+fields inside universal sector can not carry covariant v indices. If ∗ includes covariant u
+23
+
+indices then there exists a non-universal field varying which the equation of motion (4.14)
+is supposed to be obtained. Therefore to get such an equation of motion one needs to
+compute all the terms in the action that are linear in the relevant non-universal field13 .
+In the context of (4.13) the relevant non-universal field is hvv and therefore to get the full
+form of the relevant equation of motion one needs to compute all the terms in the action
+(3.2) (for flat background) that are linear in hvv . Fortunately, from (4.9, 4.10) it is clear
+that such terms must be at most cubic in order. Since the quadratic terms have already
+been computed in [14], to complete the task one needs to compute only the cubic terms
+in the lagrangian density which should be given by (up to a constant pre-factor):
+hvv (u, x)E2 (AI (u, x), BI (u, x), ∂u Φ(u)) .
+
+(4.15)
+
+From this computation one should be able to obtain all the α′ corrections to the EFT
+√
+√
+equation of motion given by C2 ( α′ ∂⊥ F, α′ ∂⊥ H). Also notice that the presence of an
+additive term ∂u Φ∂u Φ in K2 (AI , BI , ∂u Φ) can not be concluded from this computation.
+Since it is a purely u dependent term, the equation of motion is insensitive to adding such
+a term as explained below eq.(4.5). With this we conclude our discussion of formulating
+the problem of identifying the off-shell massless pp-wave configurations of EFT in CSFT.
+We shall now discuss how to compute the massive fields in CSFT once the massless
+components are given in terms of the functions K(u, x), AI (u, x), BI (u, x) and Φ(u)
+following eqs.(4.8). From the above discussion we have concluded:
+|χN imassless = 0 ,
+13
+
+∀N >2,
+
+(4.16)
+
+This, however, is not true if the expression on the left hand side of (4.14) is a scalar. In fact, for
+any scalar field solution T (x) that depends entirely on the transverse directions, the relevant equation
+of motion can be obtained without computing any non-universal term in the action. This is why such
+solutions are universal. In the context of the worldvolume theory on an unstable D-brane configuration in
+a pp-wave background with constant dilaton this argument was applied in [1] to certain tachyon solutions
+representing lower dimensional D-branes. Gravity solutions, on the other hand, are not generically
+universal because of the requirement of computing non-universal terms in the action. Pp-waves themselves
+are examples of this. Although these solutions belong to the universal sector, the solutions themselves
+are not generically universal. Universality of a given pp-wave solution P implies that it can be realised
+as a solution in all the pp-wave backgrounds in a given universality class (a universality class is the
+set of all pp-waves for which the universality theorem (2.8) holds and therefore can be characterised by
+the transverse space and the profiles for the background scalars). This in turn implies that P can be
+superposed with any solution representing a pp-wave belonging to this universality class. This is not true
+in general as the last equation in (4.4) is not linear. Whenever the quadratic piece drops off for a given
+pp-wave, the solution is universal and can be superposed with any other pp-wave solution. Nevertheless
+it is generically true that given two arbitrary pp-waves, a third one can always be found. But the sum
+rule is not simple superposition, rather more complicated when the quadratic terms are non-zero.
+
+24
+
+and
+1
+Q|χimassless + |χ2 imassless = 0
+2
+
+⇒
+
+(
+
+∂ I FIJ = 0 , ∂ I HIJ = 0 ,
+E1 (huu , AI , Φ) + E2 (AI , BI , ∂u Φ) = 0 ,
+
+(4.17)
+
+where |χN imassless denotes the massless component of |χN i. For reasons to be clarified
+
+shortly, let us denote the massless component in (4.12) by |χ(1) i. Then notice that the
+massive part of |χ2(1) i can still be non-zero. This switches on higher massive modes through
+the equation of motion (4.11). Therefore the coefficients of all such higher massive states
+in |χi must be higher order in the functions appearing in eqs.(4.8). To compute such
+coefficients we first expand it according to the degree of order at which those functions
+appear,
+|χi =
+
+∞
+X
+
+n=1
+
+|χ(n) i ,
+
+(4.18)
+
+where |χ(n) i is the component of the string field whose expansion involves coefficients that
+are only n-th order in these functions. For example, |χ(1) i = |χimassless in eq.(4.12) is
+linear. Subtracting the string field equation in (4.17) from (4.11) we get,
+∞
+X
+
+n=2
+
+∞
+∞
+∞
+X
+1
+1 X
+1 X
+χ(n) )N i + |∆(2) i = 0 ,(4.19)
+|χ(n) χ(m) i +
+|(
+Q|χ(n) i + |χ(1) χ(n) i +
+2 m=2
+2
+N =3 N! n=1
+
+!
+
+where
+|∆(2) i = |χ2(1) i − |χ2(1) imassless .
+
+(4.20)
+
+To solve eq.(4.19) iteratively we introduce a parameter β to count the order of fields,
+∞
+X
+
+∞
+1 X
+β Q|χ(n) i + β |χ(1) χ(n) i +
+β n+m |χ(n) χ(m) i
+2 m=2
+n=2
+∞
+∞
+X
+1
+1 X
+β n χ(n) )N i + β 2 |∆(2) i = 0 ,
++
+|(
+2
+N =3 N! n=1
+n
+
+n+1
+
+!
+
+(4.21)
+
+We shall now show that equating the coefficient of each power of β to zero gives us a well
+defined iterative procedure to construct the full solution. Equating the coefficient of β 2
+to zero one gets,
+1
+Q|χ(2) i + |∆(2) i = 0 .
+2
+25
+
+(4.22)
+
+At the third order one finds,
+Q|χ(3) i + |χ(1) χ(2) i +
+
+1 3
+|χ i = 0 .
+3! (1)
+
+(4.23)
+
+At the N-th order (N ≥ 4) the equation turns out to be,
+Q|χ(N ) i + |χ(1) χ(N −1) i +
++
+
+N
+X
+
+n=3
+
+
+
+
+n
+X
+
+X
+
+
+
+−2
+1 NX
+|χ(n) χ(N −n) i
+2 n=2
+
+
+r=0 n1 ,n2 ,***,nr ≥2 Pr
+
+i=1
+
+ni −r=N −n
+
+1
+|χn−r χ(n1 ) * * * χ(nr ) i = 0 , (4.24)
+r!(n − r)! (1)
+
+where the summations in the parenthesis in the second line are constrained. The constraint
+is also shown in the subscript to that parenthesis. Since |χ(1) i is known, one can use
+eq.(4.20) to compute |∆(2) i which can, in turn, be used in eq.(4.22) to compute |χ(2) i.
+The standard way is to fix a gauge for the massive fields so that Q can be inverted to
+solve eq.(4.22). Once |χ(2) i is known it can be used along with |χ(1) i in eq.(4.23) to solve
+|χ(3) i. In order to establish that this iterative method continues to hold one needs to show
+
+that to find the solution at the N-th order, namely |χ(N ) i using eq.(4.24) the knowledge
+for |χ(N +1) i is not required. This can be easily verified by investigating eq.(4.24). For
+example, at N = 4 one gets,
+
+1
+1
+Q|χ(4) i + |χ(1) χ(3) i + |χ2(2) i + |χ2(1) χ(2) i + |χ4(1) i = 0 .
+2
+4!
+
+(4.25)
+
+Notice that this iterative method is different from a small parameter expansion. In the
+latter case at every stage of the iteration an equation is solved approximately by neglecting
+terms of higher order. In our method an equation at a given stage of the iteration is solved
+exactly.
+Acknowledgement
+I am thankful to Justin R. David, Cesar Gomez, Michael B. Green, Alok Kumar and
+Nicholas P. Warner for useful discussion and Juan Maldacena for drawing my attention to
+ref.[19] at a very early stage of this work. I wish to thank Sumit R. Das and Ashoke Sen
+for valuable discussion and their comments on preliminary drafts. Preliminary versions of
+this work were presented at CERN, where a part of this work was finished, in June 2006,
+Purdue and Kentucky University in October 2006 and at Saha Institute of Nuclear Physics
+- Calcutta, Indian Institute of Science - Bangalore and Institute of Physics - Bhubaneswar
+26
+
+in December 2006. I thank the Theoretical Physics divisions of these institutions and
+universities for their interest. This work was also presented in the conferences Indian
+String Meeting 2006, held at Puri and Field Theory Aspects of Gravity 2006, held at Goa
+in December 2006. I thank the organisers and participants of these conferences for their
+interest. This work was financially supported by PPARC.
+
+A
+
+A Proof of Universality
+
+Here we shall explain our argument for why the universality theorem in (2.8) holds in the
+pp-wave backgrounds as described in eqs. (2.1) and (2.2). In this argument we shall be
+concerned only with the tensor fields in space-time for which the universal sector is given
+in eq.(2.10). In order to proceed with the argument we shall first demonstrate this with a
+particular form of the space-time action, namely the low energy effective field theory action
+for massless fields in bosonic string theory which has all the essential features relevant to
+our discussion. Later we shall generalise the argument to an arbitrary covariant action.
+Therefore we start with the action in (4.2) for the metric, the second rank antisymmetric tensor gauge field and dilaton. We first expand the fields around the background (2.1, 2.2),
+ĝμν = Gμν + ĥμν ,
+
+b̂μν = Bμν + êμν ,
+
+D̂ = Φ + φ̂ ,
+
+(A.1)
+
+where Gμν , Bμν and Φ are the background fields in eqs.(2.1), (2.3) and (2.2) respectively.
+Therefore Ψ(u, x) and χ(v, u, x), as defined below eq.(2.6), are the sets of these background
+fields and the hatted fields that appear as fluctuations in the above equations in the present
+context. The universal sector defined in eq.(2.10) is therefore given by,
+χU S (u, x) =
+
+(
+
+ĥuu (u, x) , ĥuv (u, x) , ĥuI (u, x) , ĥIJ (u, x) ,
+êuv (u, x) , êuI (u, x) , êIJ (u, x) , φ(u, x)
+
+)
+
+.
+
+(A.2)
+
+The lagrangian density in (4.2), once computed by restricting the fluctuations to the
+universal sector, takes the following form:
+L = e−Φ(u,x) U(u, x) ,
+where U(u, x) is a sum of terms of the following generic form:
+U(u, x) →
+
+q
+
+−G(u, x) Gμ1 ν1 Gμ2 ν2 * * * Gμn νn [* * *]μ1 ν1 μ2 ν2 ***μn νn ,
+27
+
+(A.3)
+
+=
+
+q
+
+G⊥ (u, x) Gμ1 ν1 Gμ2 ν2 * * * Gμn νn [* * *]μ1 ν1 μ2 ν2 ***μn νn ,
+
+(A.4)
+
+where G(u, x) = det Gμν and G⊥ (u, x) = det G⊥
+IJ . In general the quantity inside the
+square bracket contains the following three types of objects:
+1. derivatives - some of which may act on the background inverse metric pre-factors,
+2. background fields in (2.1, 2.2, 2.3) and
+3. fluctuations in (A.2).
+To establish (2.8) or eq.(2.9) we shall now argue that U(u, x) is universal among all the
+
+pp-wave backgrounds with the same transverse space metric G⊥
+IJ (u, x) and background
+dilaton Φ(u, x). It is clear from equations (A.4) that this will be true if the following
+quantity is universal,
+U(u, x) = Gμ1 ν1 Gμ2 ν2 * * * Gμn νn [* * *]μ1 ν1 μ2 ν2 ***μn νn .
+
+(A.5)
+
+In order to establish universality of U(u, x) we first tensorially reduce [* * *]μν*** to the
+transverse space to get a set of tensors in the transverse space,
+n
+
+v ,Mu
+[* * *]μν*** → [* * *]M
+IJK***
+
+o
+
+,
+
+(A.6)
+
+where Mv and Mu are the number of covariant v and u indices in [* * *]μν*** respectively.
+
+v ,Mu
+Since none of the fields appearing in the expression of [* * *]M
+IJK*** depends on v, all the Mv
+number of v indices are coming purely from fields and not from derivatives. Moreover since
+
+all the fields (both the backgrounds and fluctuations) are in the universal sector (2.10)
+v ,Mu
+we must have: Mu ≥ Mv on the right hand side of (A.6). But [* * *]M
+IJK*** with Mu > Mv
+can not appear in U(u, x) in eq.(A.5) simply because the only non-zero components of
+the background inverse metric are:
+Gμν → Guv , Gvv , GvI , G⊥IJ .
+
+(A.7)
+
+Mv = Mu ,
+
+(A.8)
+
+Therefore we must have:
+
+in all terms on the right hand side of eq.(A.5). This is precisely the kind of contraction
+that erases the pp-wave structure of the metric background so that effectively it becomes,
+f
+μ
+ν
+⊥
+I
+J
+Gef
+μν dx dx = 2dudv + GIJ (u, x)dx dx ,
+
+28
+
+(A.9)
+
+which is simply the flat Minkowski space when G⊥
+IJ (u, x) = δIJ .
+The above argument shows that the functions K(u, x) and AI (u, x) in the background
+metric (2.1) do not appear in U(u, x). We shall now show that the functions BI (u, x) in
+the background flux (2.2) also do not appear in U(u, x). In order to do so we first notice
+that the facts that [* * *]μν*** does not contain any derivative with respect to v, contains
+
+fields only in the universal sector together with eq.(A.8) imply that every individual field
+appearing in [* * *]μν*** contains equal number of covariant u and v indices. For any gauge
+
+invariant background flux which is null, such as the one in (2.2), such components are
+zero. Therefore the functions BI (u, x) do not appear in U(u, x).
+Notice that the transverse derivatives14 of the background dilaton Φ(u, x) do appear
+in [* * *]μν*** . Because of this and the exponential pre-factor in eq.(A.3) we need to have
+
+the same dilaton profile for all those pp-wave backgrounds for which the universality of
+the space-time action is supposed to hold.
+We can now generalise the above argument to incorporate an arbitrary covariant action
+in space-time. In this case any generic term in the lagrangian density, once computed on
+the universal sector after expanding around a generic pp-wave background, will take the
+following form:
+Larbit → V ({Φ(u, x)}) U(u, x) ,
+
+(A.10)
+
+where {Φ(u, x)} is the set of all the scalar fields in the theory at their background values
+and V ({φ}) is a multi-scalar potential depending on the term chosen and the theory.
+U(u, x) takes the same form as in eq.(A.4) except that now it contains tensor fields with
+arbitrarily high spins, which doe not have any effect on our argument above. Therefore
+the conclusion will be that the above term is computed to be same in all the backgrounds
+with the same transverse space and the same profiles {Φ(u, x)} for the background scalars.
+This establishes the universality theorem in (2.8) for the tensor fields.
+14
+
+Equation (A.8) and the restriction of field configurations to the universal sector imply that all the
+Mu number of covariant u indices are also purely field indices so that all the derivatives that appear in
+U (u, x) are along the transverse directions.
+
+29
+
+B
+
+Closure of Universal Sector under Field Redefinition
+
+Here we shall argue that an arbitrary field redefinition takes the universal sector to itself.
+Referring the reader to the discussion around eq.(2.11) we would, therefore, like to show
+that,
+χ̂μν*** (u, x) ≡ fμν*** (χU S (u, x)) ∈ χU S (u, x) ,
+
+(B.1)
+
+where χU S (u, x) is defined in (2.10). After tensorially reducing to the transverse space a
+generic term in fμν*** (χU S (u, x)) takes the following form:
+(N ,N ;Mu ,Mv )
+
+u
+v
+fμν*** (χU S (u, x)) → fIJK***
+
+(u, x) ,
+
+(B.2)
+
+where Nu (Nv ) is the number of covariant u (v) indices that are free while Mu (Mv ) is the
+same that are contracted. Notice that all the (Nv + Mv ) number of covariant v indices,
+irrespective of whether they are contracted or not, should be purely field indices. Since
+all the fields that appear are in the universal sector, the total number of u indices coming
+from such fields and possibly additional derivatives must satisfy,
+Nu + Mu ≥ Nv + Mv .
+
+(B.3)
+
+On the other hand the total number of contracted covariant u and v indices, namely
+(Mu + Mv ), should be same as the total number of contravariant u and v indices coming
+from the factors of the background inverse-metric. Since the only non-zero components
+of background inverse-metric are as given in (A.7) we must have,
+Mv ≥ Mu .
+
+(B.4)
+
+Nu ≥ Nv ,
+
+(B.5)
+
+Equations (B.3) and (B.4) imply,
+
+which in tern implies (B.1).
+
+C
+
+Correlators in Constant Dilaton
+
+Here we shall argue that the matter correlation functions involving only the operators defined in eq.(3.5) are universal in all the exact pp-wave backgrounds with constant dilaton.
+30
+
+In particular, we shall show that eq.(3.6) is correct. The correlator on the left hand side
+of eq.(3.6) can be obtained from a correlator of the following form:
+h
+
+M
+Yu
+
+∂ mi U(zi )
+
+i=1
+
+M
+Yū
+
+M
+Yv
+
+∂ ̄m̄ī U(z̄ī )
+
+∂ nj V (zj′ )
+
+j=1
+
+ī=1
+
+Mv̄
+Y
+
+∂ ̄n̄j̄ V (z̄j̄′ )
+
+j̄=1
+
+such that Mu + Mū ≥ Mv + Mv̄ ,
+
+N
+Y
+
+k=1
+
+eipk U (wk , w̄k )Ô(X)ipp ,
+(C.1)
+
+where Ô(X) is an arbitrary operator in the flat transverse part of the CFT. Below we
+shall argue that the correlator in (C.1) is computed to be same as in flat background. In
+order to do so we first separate the world-sheet lagrangian density in (3.4) into Lf lat and
+∆Lpp as indicated in eq.(3.7). Then we treat Lf lat exactly and ∆Lpp as interaction. This
+gives the following relation between the correlators in pp-wave and flat background:
+h* * *ipp = h* * *if lat + h* * *ifc lat ,
+
+(C.2)
+
+where the second term on the right hand side is a correction term given by,
+h* * *ifc lat =
+
+∞
+X
+
+(−1)N
+h* * * (∆S pp [U, X])N if lat ,
+N!
+N =1
+
+(C.3)
+
+∆S pp [U, X] being the part of the world-sheet action in pp-wave corresponding to the
+lagrangian density ∆Lpp in eq.(3.7). This contains integrated operators involving K(U, X)
+f lat
+and A±
+we Fourier expand such functions and finally
+I (U, X). In order to compute h* * *ic
+compute the correlators on the right hand side of (C.3) in flat background. For example,
+
+the first term of the infinite expansion is proportional to,
+Z
+
+dku d~k
+
+Z
+
+ ̄ iku U +i~k.~x (z, z̄)if lat
+d2 z K̃(ku , ~k)h* * * ∂U ∂Ue
+h
+
+~
+
+~
+
+~
+ ̄ I iku U +ik.~x (z, z̄)if lat + Ã− (ku , ~k)h* * * ∂X I ∂Ue
+ ̄ iku U +ik.~x (z, z̄)if lat ,
++Ã+
+I (ku , k)h* * * ∂U ∂X e
+I
+i
+
+(C.4)
+
+±
+~
+where K̃(ku , ~k) and Ã±
+I (ku , k) are the Fourier transforms of K(U, X) and AI (U, X) respectively. Since all the correlators are computed in flat background an U can only be
+contracted with a V . The fact that none of the operators in (C.1) and in ∆S pp [U, X]
+
+involve momenta along V implies, in turn, that all the U-derivatives15 have to be contracted with V -derivatives in order to produce a non-zero result. Since the total number
+of U-derivatives appearing in (C.1) is always greater than or equal to that of V -derivatives
+15
+
+By U (V )-derivative we mean an operator of the form ∂ m U (z) (∂ m V (z)) or ∂ ̄m U (z̄) (∂ ̄m V (z̄)).
+
+31
+
+and the higher N-rems in (C.3) introduce increasing number of U-derivatives and no V derivatives, all the correction terms given in (C.3) are zero for the correlators in (C.1).
+Therefore such correlators are computed to be same as in flat background. An equivalent
+path integral argument, which is more cumbersome, can also be constructed leading to
+the same conclusion. This establishes eq.(3.6).
+We shall now generalise the above argument for the NS-NS sector of type II superstrings as considered in section 3.3. In particular, we shall argue that the same condition
+as in eq.(3.6) holds for the operators given in eq.(3.27). In this case the relevant correlators
+can be obtained from a correlator of the following form:
+B
+
+B
+
+F
+
+F
+
+h[DU]M+ [DV ]M− [Dψ u ]M+ [Dψ v ]M− ÔB (X)ÔF (ψ⊥ , ψ̄⊥ )
+such that M+B + M+F ≥ M−B + M−F ,
+
+Y
+k
+
+eipk U ipp ,
+(C.5)
+
+B
+
+where we use schematic notations: [DU]M+ represents a product of M+B number of opF
+erators of the form ∂ n U(z) or ∂ ̄m U(w̄), [Dψ u ]M+ represents a product of M+F number of
+F
+B
+operators of the form ∂ n ψ u (z) or ∂ ̄m ψ̄ u (w̄) and similarly for [DV ]M− and [Dψ v ]M− respectively. ÔF (ψ⊥ , ψ̄⊥ ) is a fermionic analogue of ÔF (X) appearing in eq.(C.1), namely
+an arbitrary operator constructed out of the transverse ψ I and ψ̄ I . Just like in (C.1), all
+the operators in (C.5) are understood to be inserted at different points on the complex
+
+plane. In order to see why the correlator in C.5 should be same as that computed in
+flat background when the condition on the numbers M±B and M±F , as shown in eq.(C.5),
+is satisfied, we first notice that the interaction terms in the world-sheet lagrangian density now includes the fermionic sector given in eq.(3.26) in addition to the bosonic one
+in eq.(3.7). The features of the fermionic interaction terms in (3.26) that are relevant
+to our argument are as follows: (1) ψ v and ψ̄ v do not appear, (2) all the terms except
+ ̄ I ψ J and its counterpart in a.h. involve ψ u and/or ψ̄ u and (3) all the bosonic
+DIJ (U, X)∂Uψ
+operators that appear in (3.26) are from the universal sector. Since we treat the flat part
+in (3.25) exactly, a ψ v (ψ̄ v ) appearing in the correlator (C.5) can only be contracted with
+a ψ u (ψ̄ u ) either appearing in (C.5) as an external operator or coming from the interaction terms in (3.26). Therefore when M+F = M−F , none of the fermionic interaction terms
+ ̄ I ψ J and its counterpart in
+contribute with the possible exceptions being DIJ (U, X)∂Uψ
+a.h.. But even these terms do not contribute as can be argued in the following way: the
+bosonic sector in (C.5) satisfies the condition M+B ≥ M−B . Therefore whenever a term like
+ ̄ I ψ J appears in the correlation function it always increases the number of
+DIJ (U, X)∂Uψ
+32
+
+U-derivatives than that of V -derivatives. The result is zero due to the fact that in flat
+space this numbers should match in order to get a non-zero result.
+Let us now discuss the cases when M+F 6= M−F . We begin with M+F > M−F . In this case
+the result is zero, matching with the flat space result, simply because there are not enough
+number of ψ v (ψ̄ v ) operators to contract with all the ψ u (ψ̄ u ) operators. When M+F < M−F
+
+the fermionic interaction terms could become important as the extra number of ψ v (ψ u )
+operators can now be contracted with these terms. But since in this case we must have
+
+M+B > M−B , and all the bosonic operators in the fermionic interaction terms are in the
+universal sector, the result is zero, again matching with the flat space result, as there
+are not enough number of V -derivatives to contract all the existing U-derivatives. This
+establishes that the correlators in (C.5) are same as that evaluated in flat background.
+
+D
+
+Correlators in Non-Constant Dilaton
+
+The analysis in the previous section does not go through when the CFT background
+contains non-constant dilaton as in this case one needs to be more careful about how
+to treat the Fradkin-Tseytlin term [25] that couples the dilaton through the world-sheet
+curvature. In this appendix we shall discuss this issue and establish eq.(3.21). We start
+with the pre-gauge-fixed path integral,
+W̃ =
+
+Z
+
+DX μ Dg −S
+e ,
+Vdif f ×W eyl
+
+(D.1)
+
+where the sigma model action is,
+iǫαβ
+1
+αβ
+2 √
+S =
+d σ g g Gμν (X) + √ Bμν (X) ∂α X μ ∂β X ν + S F T ,
+′
+4πα
+g
+Z
+1
+√
+d2 σ g RΦ(X) ,
+(D.2)
+SF T =
+4π
+where ǫ01 = 1 and R appearing in the Fradkin-Tseytlin term S F T is the world-sheet
+curvature. Choosing the conformal gauge:
+!
+
+Z
+
+gab (σ) = e2ρ(σ) δab ,
+
+(D.3)
+
+and introducing the diffeomorphism ghosts one arrives at W̃ = W Wgh , where Wgh =
+R
+R
+DbDce−Sgh is the (b, c) ghost path integral and W = DX μ e−S is the matter part of
+our interest. The matter action in conformal gauge turns out to be,
+S = S pp + S F T ,
+33
+
+(D.4)
+
+where S pp corresponds to the lagrangian density in (3.4). Once the condition of Weyl
+invariance is satisfied by choosing the background to be on-shell the conformal factor
+ρ(σ) can, in principle, be eliminated from the path integral relevant to the computation
+of any correlation function. However the effect of the Fradkin-Tseytlin term16 ,
+1
+d2 σ∂a ∂a ρΦ(X) ,
+2πZ
+1
+ ̄
+d2 z∂ ∂ρΦ(X)
+,
+(D.5)
+= −
+π
+has to be computed with an appropriate choice of ρ(σ). Nevertheless the final result
+should be independent of this choice. Here our goal is to study the effect of this term
+on a correlation function involving operators inside the universal sector in an exact ppSF T = −
+
+Z
+
+wave background with nontrivial dilaton Φ(u). Below we first recall what happens for the
+constant dilaton and then we generalise the method to incorporate non-constant dilaton
+profile of our interest.
+As it is well known, for constant dilaton: Φ = c, (D.5) can be computed explicitly by
+choosing a particular coordinate system on the sphere. For example:
+2
+2
+A
+A
+dzdz̄ =
+dwdw̄ ,
+1 + zz̄
+1 + w w̄
+1
+z =
+,
+(D.6)
+w
+where A is a constant determining the radius of the sphere and (z, z̄) is the local coordinate
+
+ds2 =
+
+
+
+
+
+
+
+
+
+system around the in-state at τ → −∞ whereas (w, w̄) (w = 1/z) patches around the
+out-state at τ → ∞. These coordinate systems correspond to choosing:
+
+
+w w̄
+ρ = ln A − ln(1 + zz̄) = ln A − ln
+.
+(D.7)
+1 + w w̄
+Converting the integration in eq.(D.5) into a line integral in (w, w̄)-system one gets,
+SF T =
+
+1
+ic I
+,
+dw
+π C∞
+w(1 + w w̄)
+
+(D.8)
+
+where C∞ is a circle around the point w = 0. This gives: SF T = −2c, which is the correct
+
+result. As expected, the result does not depend on the choice of ρ. This can be checked
+in the following way: First add a variation δρ(z, z̄) on the right hand side of eq.(D.7).
+Finiteness of the metric at z → ∞ requires,
+lim δρ → constant .
+
+z→∞
+16
+
+In the second line of (D.5) we have moved to the complex coordinate system: z = eτ +iσ .
+
+34
+
+(D.9)
+
+Therefore it does not contribute to the residue in eq.(D.8) leaving the result unchanged.
+Let us now consider the case of non-constant dilaton Φ(u) in an exact pp-wave background. In this case partially integrating the right hand side of (D.5) and Fourier transforming Φ(U) to Φ̃(k) one can write:
+FT
+FT
+FT
+S F T = S(1)
++ S(2)
++ S(3)
+,
+
+(D.10)
+
+where
+1
+ ̄ ikU (z, z̄) ,
+dk k Φ̃(k)
+dz̄ρ(z, z̄)∂Ue
+π
+∂R
+Z
+Z
+1
+ ̄ ikU (z, z̄)
+d2 z ρ(z, z̄)∂U ∂Ue
+=
+dk k 2 Φ̃(k)
+π
+Z
+1Z 2
+ ̄ ikU (z, z̄) ,
+−i dk k Φ̃(k)
+d z ρ(z, z̄)∂ ∂Ue
+π
+I
+I
+Z
+i
+i
+1
+=
+I ◦ eikU (w, w̄) ,
+dz ∂ρΦ(U) = dk Φ̃(k)
+dw
+π ∂R
+π ∂R
+w(1 + w w̄)
+(D.11)
+
+FT
+S(1)
+= −
+FT
+S(2)
+
+FT
+S(3)
+
+Z
+
+I
+
+Where I ◦ φ is the conformal transformation of φ under inversion I(z) = 1/z. ∂R is the
+boundary of the coordinate patch (z, z̄). We are interested in computing the following
+correlation function:
+h* * *ipp
+Φ(u) =
+=
+
+Z
+
+DX μ e−S
+
+∞
+X
+
+(−1)N
+N!
+N =0
+
+pp −S F T
+
+Z
+
+*** ,
+
+DX μ e−S
+
+pp
+
+
+
+FT
+FT
+FT
+S(1)
++ S(2)
++ S(3)
+
+N
+
+*** ,
+
+(D.12)
+
+where * * * includes operators inside the universal sector. Notice that all the operators
+appearing in (D.11) are themselves inside the universal sector. Therefore using the result
+of the previous appendix we conclude:
+h* * *ipp
+Φ(u)
+
+=
+
+∞
+X
+
+
+
+(−1)N
+FT
+FT
+F T N f lat
+h* * * S(1)
++ S(2)
++ S(3)
+iΦ=0 .
+N!
+N =0
+
+(D.13)
+
+FT
+FT
+The operators in S(1)
+and S(2)
+necessarily involve U-derivatives. Since such operators
+can contract only with V -derivatives, which are not available in sufficient number, the
+
+contribution of such terms drop off from the above correlator. This implies:
+h* * *ipp
+Φ(u) =
+
+∞
+X
+
+
+
+(−1)N
+F T N f lat
+h* * * S(3)
+iΦ=0 .
+N!
+N =0
+
+35
+
+(D.14)
+
+FT
+To compute this we first notice that S(3)
+involves a line integral along ∂R, which is a
+collection of circles Ci 's around the insertions included in * * * which are at finite values of
+
+(z, z̄) and a circle C∞ around the point z = ∞ (w = 0) which can also support an insertion
+from * * *. Since eikU can not be contracted with any operators in * * *, contributions will
+come only from C∞ . It is then straightforward to establish the result (3.21) by evaluating
+the necessary residues.
+The fact that the final result does not depend on the choice of ρ follows from the same
+
+reasoning as in the case of constant dilaton. This, however, is not as straightforward as
+presented here in case of a correlation functions with non-universal operators. In that
+FT
+FT
+FT
+case the contributions from S(1)
+and S(2)
+are not necessarily zero. Out of these two, S(2)
+is sensitive to the local variation of the Weyl factor. The second term in its expression
+ ̄ = 0. This holds in the full pp-wave
+in (D.11) is zero by the equation of motion: ∂ ∂U
+
+CFT because of which one can always fix the light-cone gauge for such backgrounds.
+ ̄ does not contract with eikU . This is true in flat background and does not
+Moreover ∂ ∂U
+get spoiled in presence of the interactions given by ∆Lpp in eq.(3.7). From the structure
+FT
+of the world-sheet operator appearing in the first term in S(2)
+we infer that it contributes
+to the uu component of the metric beta function. In fact it corresponds to the ∂u2 Φ term
+in the equation of motion in (4.4). In the above analysis we have considered the Weyl
+dependence of only S F T and therefore this is the only contribution expected. Considering
+the complete Weyl dependence one expects this contribution to go away due to the spaceFT
+time equation of motion. S(1)
+, on the other hand, receives contributions only from the
+boundaries of the punctured sphere. Such effects need to be handled with more care
+in a generic situation by considering the complete Weyl dependence including that of
+the insertions at the punctures. However, such issues can be neglected for correlation
+functions involving only the universal sector operators.
+
+E
+
+Field Redefinition and Gauge Transformation
+
+Here we shall first find the higher order terms in the field redefinition (4.6) given by the secb
+h
+(ĥρσ , b̂ρσ , ∂ρ D̂) and fμD (ĥρσ , b̂ρσ , ∂ρ D̂)
+ond rank tensor and vector fields: fμν
+(ĥρσ , b̂ρσ , ∂ρ D̂), fμν
+when the off-shell field configurations are restricted to the pp-wave ansatz in eq.(4.3). In
+particular, by using arguments similar to that in [19] we shall show that the only non-zero
+
+component is as given in eq.(4.7). Later we shall also discuss the gauge symmetries of
+36
+
+EFT and CSFT and how they are related to this field redefinition.
+In order to find the f -fields appearing in eqs.(4.6) we first notice that all such fields
+should necessarily be expressible in terms of the non-zero components in the background
+pp-wave ansatz in (4.3), Christoffel connection and derivatives. The only non-zero components of the Christoffel connection are [17],
+Γ̂μνρ → Γ̂vuu ,
+
+Γ̂vuI ,
+
+Γ̂vIJ ,
+
+Γ̂Iuu ,
+
+Γ̂IuJ .
+
+(E.1)
+
+It turns out that a covariant u index can not be contracted [19]. This is because the
+background inverse metric (A.7) allows contraction only with a covariant v index and a
+non-zero field with a covariant v index can not be constructed in this case. It is also not
+possible to construct a field without a covariant u index. Because of this and the fact that
+all the f -fields are necessarily higher order in the functions appearing in (4.3) we conclude
+that any non-zero f -field (1) should have at least one covariant u index, (2) should have no
+covariant v index, (3) can not have a non-zero covariant u index if it is a vector. Therefore
+h
+h
+b
+h
+the only nonzero f -fields are: fuu
+, fuI
+and fuI
+. Let us first consider fuu
+. Because of the
+same reasons mentioned above it must be quadratic in fields. Any higher order term
+
+necessarily has more than two covariant u indices. Therefore the allowed expression for
+h
+fuu
+is precisely given by K2 (AI , BI , delu Φ) as described below eq.(4.7). Using similar
+h
+b
+reasoning one can argue that fuI
+and fuI
+can at most be linear in fields and therefore
+must be zero.
+We shall now discuss the gauge symmetries of the EFT and CSFT. Although the gauge
+transformations are understood on the EFT side, they are not fully known on the CSFT
+side. After integrating out all the massive modes the CSFT gauge transformations for the
+massless fields take complicated form in general. But in our case, since we know the form
+of the complete field redefinition, we shall find the relevant CSFT gauge transformations
+fully. Once the expression for K2 (AI , BI , ∂u Φ) is computed through the CSFT computation as indicated in sec. 4.2, such gauge transformations will be completely known and it
+should be possible to verify them explicitly in CSFT.
+
+We begin by discussing the gauge symmetries on the EFT side. This theory possesses
+gauge invariance under the anti-symmetric tensor gauge transformation (TGT) and general coordinate transformation (GCT). The infinitesimal form of TGT, parameterised by
+ζ̂μ (u, v, x), is given by,
+δζ̂ b̂μν = ∂μ ζ̂ν − ∂ν ζ̂μ ,
+
+δζ̂ ĝμν = 0 ,
+37
+
+δζ̂ D̂ = 0 .
+
+(E.2)
+
+Since the only non-zero gauge invariant background flux components are ĤuIJ = ĤIJ (u, x)
+(see eqs.(2.2)), the components b̂uv , b̂vI and b̂IJ should at most be pure gauge with the only
+remaining non-trivial components being b̂uI (u, x). The pure gauge components are set to
+zero by using the gauge freedom corresponding to the components ζ̂v and ζ̂I . Therefore
+the non-trivial component of the residual gauge transformation, parameterised by: ζ̂μres =
+(ζ̂u (u, x), ζ̂v = 0, ζ̂I = 0), is given by:
+δζ̂res b̂Iu = ∂I ζ̂u .
+
+(E.3)
+
+The infinitesimal form of GCT, parameterised by ξˆμ (u, v, x), is given by,
+δξ̂ ĝμν = ∂μ ξˆν + ∂ν ξˆμ − 2Γ̂ρμν ξˆρ ,
+δξ̂ b̂μν = ∂μ ξˆρ b̂ρν + ∂ν ξˆρ b̂μρ + ξˆρ ∂ρ b̂μν ,
+δ D̂ = ξˆρ ∂ρ D̂ ,
+
+(E.4)
+
+ξ̂
+
+A part of this gauge invariance is broken by the ansatz in (4.3). The non-trivial components of the residual transformations are parameterised by: ξˆμres = (ξˆu (u, x), ξ̂v = 0, ξ̂I (u))
+and can be shown to take the following form:
+δξ̂res ĥuu = 2∂u ξˆu + (∂ I K − 2∂u AI )ξˆI ,
+δ res ĥuI = ∂I ξˆu + ∂u ξˆI − F J ξˆJ ,
+ξ̂
+δξ̂res b̂uI
+
+I
+
+= −∂ BI ξˆJ ,
+J
+
+(E.5)
+
+The residual gauge transformations in (E.3, E.5) should leave the equations of motion
+(4.4) invariant. It is straightforward to see this for (E.3). The transformation in (E.5)
+implies,
+2
+2
+δξ̂res (∂⊥
+K − 2∂ I ∂u AI ) = ∂ K (∂⊥
+K − 2∂ I ∂u AI )ξˆK ,
+δξ̂res FIJ = ∂ K FIJ ξˆK , δξ̂res HIJ = ∂ K HIJ ξˆK ,
+
+(E.6)
+
+Using these transformations one can show that, as expected, the variation of the equations
+of motion in (4.4) is zero. It is straightforward to see this for the first two equations. The
+variation of the left hand side of the last equation in (4.4) gives,
+
+√
+1 2
+1
+1 √ ′
+α ∂⊥ F, α′ ∂⊥ H
+. (E.7)
+ξˆK ∂ K ∂⊥
+K − ∂u ∂ I AI − (FIJ F IJ + HIJ H IJ ) + ′ C2
+2
+4
+α
+
+
+
+
+By the same equation of motion, the expression inside the square bracket is dependent
+only on u and therefore the result is zero.
+38
+
+The residual gauge invariance in (E.3, E.5) and the field redefinition (4.6, 4.7) determine the form of the gauge transformations on the CSFT side. We shall now discuss
+this systematically and finally come up with certain results that need to be verified with
+explicit CSFT computations, which we leave for future work. The infinitesimal gauge
+transformation of the full CSFT is given by:
+δ|χi = Q|Λi +
+
+∞
+X
+
+1
+|χN −2 Λi ,
+N =3 (N − 2)!
+
+(E.8)
+
+where |Λi is the ghost number one infinitesimal gauge transformation parameter and we
+have absorbed a factor of κ in it with respect to [13]. The above equation encodes the
+gauge transformation of all the higher massive fields. We are, however, interested in the
+transformations of the dynamical massless components only once all the massive ones
+have been integrate out by using their equations of motion. Generically this procedure
+leads to a complicated form of the gauge transformation for the massless fields on the
+CSFT side. It was shown in [14] that taking,
+i
+|Λi = − √
+2
+
+Z
+
+
+
+μ
+μ
+d26 k iζ̃μ (k)(c1 α−1
++ c̄1 ᾱ−1
++
+
+s
+
+
+
+α′ μ +
+μ
+μ 
+k c0 ) − ξ ̃μ (k)(c1 α−1
+− c̄1 ᾱ−1
+) |ki ,(E.9)
+2
+
+and interpreting ζ̃ and ξ ̃ to be the Fourier transforms of ζ̂ and ξˆ respectively the gauge
+transformation in (E.8) reproduces the gauge transformations in (E.2, E.4) at the linearised level. It means that, as expected, the complications come from the higher order
+terms in (E.8). Therefore the general form of the relevant gauge transformations can be
+written as:
+δζ bμν = ∂μ ζν − ∂ν ζμ + ∆(b)
+μν ,
+δξ bμν = Θ(b)
+μν ,
+
+(g)
+δζ gμν = ∆μν
+,
+
+δζ D = ∆(D) ,
+
+(g)
+δξ gμν = ∂μ ξν + ∂ν ξμ + Θμν
+,
+
+δξ D = Θ(D) ,
+
+(E.10)
+
+where all the higher order terms given by ∆'s and Θ's are linear in ζμ and ξμ respectively,
+but can depend on the massless fields hμν , bμν and ∂μ D to arbitrarily high order. The
+gauge transformation parameters ζμ and ξμ are same as ζ̂μ and ξˆμ in (E.2, E.4) respectively
+at the linearised level:
+ζμ = ζ̂μ + ∆μ(ζ̂) ,
+
+ξμ = ξˆμ + Θ(μξ̂) ,
+
+(E.11)
+
+where ∆μ(ζ̂) and Θ(μξ̂) contain all the higher order terms. These contributions are also linear
+in the gauge transformation parameters appearing in the superscripts, but can depend
+39
+
+on the massless fields to arbitrarily high order. However, as we shall see below, for our
+off-shell pp-wave ansatz the ∆'s and Θ's in eqs.(E.10) are at most quadratic and those in
+eqs.(E.11) are at most linear in the massless fields.
+Let us begin with TGT. The residual gauge transformation is parameterised by: ζμres =
+res
+res
+ζ̂μres + ∆(μζ̂ ) , where ζ̂μres has been given above eq.(E.3). Since ∆(μζ̂ ) has to be linear in
+ζ̂μres and at least linear in the massless fields, there is no way to construct this. Also the
+field redefinition relating buI and b̂uI is trivial in this case. Therefore the first equation in
+(E.10) reduces to,
+δζres bIu = ∂I ζu ,
+
+ζu = ζ̂u .
+
+(E.12)
+
+res
+However, for GCT the residual transformation parameter: ξμres = ξˆμres +Θ(μξ̂ ) = (ξu , ξv , ξI ),
+where ξˆμres is given above eq.(E.5), can take the following form:
+
+ξu (u, x) = ξˆu (u, x) + LuI (u, x)ξˆI (u) ,
+
+ξv = 0 ,
+
+ξI = ξˆI ,
+
+(E.13)
+
+where LuI is linear in AI and/or BI but may contain arbitrarily high powers of transverse laplacian. This and the field redefinition (4.6, 4.7) determines the residual gauge
+transformation completely.
+δξres huu = 2∂u ξu + (∂ I K − 2∂u AI )ξI + K(A)I (∂I ξu − ∂u ξI − FI J ξJ ) + K(B)I ∂ J BI ξJ
+δξres huI
+
+
+
+
+
+−2∂u LuJ ξJ − K(A)I ∂I LuJ ξJ ,
+= ∂I ξu + ∂u ξI − FI J ξJ − ∂I LuJ ξJ ,
+
+δξres buI = ∂ J BI ξJ ,
+
+(E.14)
+
+where K(A)I and K(B)I are defined to be,
+δA K2 = K(A)I δAI ,
+
+δB K2 = K(B)I δBI ,
+
+(E.15)
+
+and therefore are linear in massless fields. This shows that the transformations in (E.14)
+are at most quadratic in massless fields. Therefore to verify this in CSFT one needs to
+compute the right hand side of (E.8) up to at most N = 4. However, it was pointed out in
+[14] that a certain trivial symmetry of the CSFT action needs to be considered in addition
+to the pure gauge transformation in (E.8) in order to realise TGT and GCT of the EFT
+completely at higher order. Therefore the transformations in (E.14) may not be obtained
+entirely from (E.8). It would be interesting to understand this explicitly through CSFT
+computations.
+40
+
+References
+[1] P. Mukhopadhyay, "Tachyon condensation and non-BPS D-branes in a RamondRamond plane wave background," arXiv:hep-th/0611138.
+[2] M. Blau, J. Figueroa-O'Farrill, C. Hull and G. Papadopoulos, "A new maximally
+supersymmetric background of IIB superstring theory," JHEP 0201, 047 (2002)
+[arXiv:hep-th/0110242].
+[3] R. R. Metsaev, "Type IIB Green-Schwarz superstring in plane wave RamondRamond background," Nucl. Phys. B 625, 70 (2002) [arXiv:hep-th/0112044].
+[4] R. R. Metsaev and A. A. Tseytlin, "Exactly solvable model of superstring in plane
+wave Ramond-Ramond background," Phys. Rev. D 65, 126004 (2002) [arXiv:hepth/0202109].
+[5] A. Sen, "Tachyon condensation on the brane antibrane system," JHEP 9808, 012
+(1998) [arXiv:hep-th/9805170]; A. Sen, "SO(32) spinors of type I and other solitons
+on brane-antibrane pair," JHEP 9809, 023 (1998) [arXiv:hep-th/9808141]; A. Sen,
+"Tachyon dynamics in open string theory," Int. J. Mod. Phys. A 20, 5513 (2005)
+[arXiv:hep-th/0410103].
+[6] A. Sen, "Descent relations among bosonic D-branes," Int. J. Mod. Phys. A 14, 4061
+(1999) [arXiv:hep-th/9902105];
+[7] A. Sen, "Universality of the tachyon potential," JHEP 9912, 027 (1999) [arXiv:hepth/9911116].
+[8] P. Mukhopadhyay, "Unstable non-BPS D-branes of type-II string theories in
+light-cone Green-Schwarz formalism," Nucl. Phys. B 600, 285 (2001) [arXiv:hepth/0011047].
+[9] N. V. Suryanarayana, August 2004 - unpublished
+[10] P. Mukhopadhyay, "Non-BPS D-branes in light-cone Green-Schwarz formalism,"
+JHEP 0501, 059 (2005) [arXiv:hep-th/0411103].
+
+41
+
+[11] P. Mukhopadhyay, "On D-brane boundary state analysis in pure-spinor formalism,"
+JHEP 0603, 066 (2006) [arXiv:hep-th/0505157]; P. Mukhopadhyay, "DDF construction and D-brane boundary states in pure spinor formalism," JHEP 0605, 055 (2006)
+[arXiv:hep-th/0512161].
+[12] M. Saadi and B. Zwiebach, "CLOSED STRING FIELD THEORY FROM POLYHEDRA," Annals Phys. 192, 213 (1989); T. Kugo, H. Kunitomo and K. Suehiro,
+"Nonpolynomial Closed String Field Theory," Phys. Lett. B 226, 48 (1989); T. Kugo
+and K. Suehiro, "Nonpolynomial Closed String Field Theory: Action And Its Gauge
+Invariance," Nucl. Phys. B 337, 434 (1990). A. Sen, "ON THE BACKGROUND
+INDEPENDENCE OF STRING FIELD THEORY," Nucl. Phys. B 345, 551 (1990).
+[13] B. Zwiebach, "Closed string field theory: Quantum action and the B-V master equation," Nucl. Phys. B 390, 33 (1993) [arXiv:hep-th/9206084].
+[14] D. Ghoshal and A. Sen, "Gauge and general coordinate invariance in nonpolynomial
+closed string theory,"Nucl. Phys. B 380, 103 (1992) [arXiv:hep-th/9110038].
+[15] H. W. Brinkmann, "Einstein spapces which are mapped conformally on each other,"
+Math. Ann. 94 (1925) 119;
+[16] C. Duval, G. W. Gibbons and P. Horvathy, "Celestial Mechanics, Conformal
+Structures, and Gravitational Waves," Phys. Rev. D 43, 3907 (1991) [arXiv:hepth/0512188].
+[17] A. A. Tseytlin, "A Class of finite two-dimensional sigma models and string vacua,"
+Phys. Lett. B 288, 279 (1992) [arXiv:hep-th/9205058]. A. A. Tseytlin, "String Vacuum Backgrounds With Covariantly Constant Null Killing Vector And 2-D Quantum
+Gravity," Nucl. Phys. B 390, 153 (1993) [arXiv:hep-th/9209023]. A. A. Tseytlin, "Finite Sigma Models And Exact String Solutions With Minkowski Signature Metric,"
+Phys. Rev. D 47, 3421 (1993) [arXiv:hep-th/9211061].
+[18] D. Amati and C. Klimcik, "NONPERTURBATIVE COMPUTATION OF THE
+WEYL ANOMALY FOR A CLASS OF NONTRIVIAL BACKGROUNDS," Phys.
+Lett. B 219 (1989) 443.
+
+42
+
+[19] G. T. Horowitz and A. R. Steif, "SPACE-TIME SINGULARITIES IN STRING
+THEORY," Phys. Rev. Lett. 64, 260 (1990).
+[20] R. E. Rudd, "COMPACTIFICATION PROPAGATION," Nucl. Phys. B 352, 489
+(1991).
+[21] C. Duval, Z. Horvath and P. A. Horvathy, "Vanishing of the conformal anomaly for
+strings in a gravitational wave," Phys. Lett. B 313, 10 (1993) [arXiv:hep-th/0306059];
+C. Duval, Z. Horvath and P. A. Horvathy, "Strings in plane-fronted gravitational
+waves," Mod. Phys. Lett. A 8, 3749 (1993) [arXiv:hep-th/0602128].
+[22] Y. Michishita, "Field redefinitions, T-duality and solutions in closed string field
+theories,"arXiv:hep-th/0602251.
+[23] N. Berkovits, "ICTP lectures on covariant quantization of the superstring,"
+arXiv:hep-th/0209059.
+[24] T. Banks, D. Nemeschansky and A. Sen, "Dilaton Coupling And Brst Quantization
+Of Bosonic Strings," Nucl. Phys. B 277, 67 (1986).
+[25] E. S. Fradkin and A. A. Tseytlin, "Quantum String Theory Effective Action," Nucl.
+Phys. B 261 (1985) 1.
+
+43
+
+

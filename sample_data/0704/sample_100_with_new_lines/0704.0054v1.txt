@@ -1,0 +1,533 @@
+arxiv07040054v1 mathca 2 apr 2007
+the hardylorentz spaces h pq rn 
+wael abushammala and alberto torchinsky
+abstract
+in this paper we consider the hardylorentz spaces h pq rn  with
+0  p  1 0  q   we discuss the atomic decomposition of
+the elements in these spaces their interpolation properties and the
+behavior of singular integrals and other operators acting on them
+the real variable theory of the hardy spaces represents a fruitful setting for
+the study of maximal functions and singular integral operators in fact it
+is because of the failure of these operators to preserve l1 that the hardy
+space h 1 assumes its prominent role in harmonic analysis now for many
+of these operators the role of l1 can just as well be played by h 1  or
+weak h 1  however although these operators are amenable to h 1  l1 and
+h 1  l1 estimates interpolation between h 1 and h 1 has not been
+available similar considerations apply to h p and weak h p for 0  p  1
+the purpose of this paper is to provide an interpolation result for the
+hardylorentz spaces h pq  0  p  1 0  q   including the case of
+weak h p as and end point for real interpolation the atomic decomposition
+is the key ingredient in dealing with interpolation since in this context neither
+truncations are available nor reiteration applies
+the paper is organized as follows the lorentz spaces including criteria
+that assure membership in lpq  0  p   0  q   are discussed in
+section 1 in section 2 we show that distributions in h pq have an atomic
+decomposition in terms of h p atoms with coefficients in an appropriate mixed
+norm space an interesting application of this decomposition is to h pq lp
+estimates for caldernzygmund singular integral operators p  q  
+also by manipulating the different levels of the atomic decomposition we
+show that for 0  q1  q  q2   h pq is an intermediate space between
+h pq1 and h pq2  this result applies to caldernzygmund singular integral
+operators including those with variable kernels marcinkiewicz integrals and
+other operators
+the lorentz spaces
+the lorentz space lpq rn   lpq  0  p   0  q   consists of those
+measurable functions f with finite quasinorm kf kpq given by
+kf kpq
+ z 
+1p 
+q dt
+t f t
+p 0
+kf kp  sup t1p f  t 
+0  q  
+q  
+the lorentz quasinorm may also be given in terms of the distribution function mf   x  rn  f x   loosely speaking the inverse of the
+nonincreasing rearrangement f  of f  indeed we have
+kf kpq
+1q  x
+ z 
+ 1q
+k 1p q
+2 mf 2 
+ mf  d
+p 0
+when 0  q   and
+kf kp  sup 2k mf 2k 1p 
+q  
+note that in particular lpp  lp  and lp is weak lp 
+the following two results are useful in verifying that a function is in lpq 
+lemma 11 let 0  p   and 0  q   assume that the nonnegative
+sequence k  satisfies 2k k   lq  further suppose that the nonnegative
+function  verifies the following property there exists 0    1 such that
+given an arbitrary integer k0  we have   k0  k0  where k0 is essentially
+bounded and satisfies kk0 k  c 2k0  and
+k0 p
+mk0  2   c
+2k k p 
+then   lpq  and kkpq  c k2k k klq 
+proof it clearly suffices to verify that k2k    2k 1p klq   where 
+is an arbitrary positive constant now given k0  let k0 and k0 be as above
+and put   c  1 where c is the constant in the above inequalities for this
+choice of     2k0   k0  2k0 
+when q   we have
+k0 
+k0 1p
+mk0  2 
+2 k 
+ c 2k0 1 sup  2k k  
+kk0
+thus 2k0 mk0  2k0 1p  supkk0  2k k   and consequently
+2k0 m  2k0 1p  c k2k k kl 
+all k0 
+when 0  q   let 1    2 and rewrite the righthand side above
+1 k1 p
+k  
+when p  q by hlders inequality with exponent r  qp and its conjugate
+r   this expression is dominated by
+1r  x
+irp 1r
+k pr 
+ c 2k0 p
+iq pq
+2k1 k
+and when 0  q  p r  1 and we get a similar bound by simply observing
+that it does not exceed
+k0 p
+k0 p
+iq pq
+whence continuing with the estimate we have
+k0 p
+mk0  2   c 2
+k0 p
+iq pq
+which yields since 1    2 
+k0 1p
+2 m  2 
+ c2
+k0 
+iq 1q
+2k1 k
+thus raising to the q and summing we get
+ k1 q
+k0  q
+k0 1p q
+2 m  2 
+kk0
+which upon changing the order of summation in the righthand side of the
+above inequality is bounded by
+q h x
+2k  k  
+2k 0  q  c
+k0 
+the reader will have no difficulty in verifying that for lemma 11 to hold
+it suffices that x0 satisfies
+mx0  2k0 1p  c k0 
+all k0 
+this holds for instance when kx0 krr  c 2k0r pk0  0  r   in fact the
+assumptions of lemma 11 correspond to the limiting case of this inequality
+as r  
+another useful condition is given by our next result the proof is left to
+the reader
+lemma 12 let 0  p   and let the nonnegative sequence k  be
+such that 2k k   lq  0  q   further suppose that the nonnegative
+function  satisfies the following property there exists 0    1 such that
+given an arbitrary integer k0  we have   k0 k0  where k0 and k0 satisfy
+k0 p
+k0 
+mk0  2   c
+2k k
+k0 
+k0  2   c
+0    min1 qp 
+2k k
+then   lpq  and kkpq  c k2k k klq 
+we will also require some basic concepts from the theory of real interpolation let a0  a1  be a compatible couple of quasinormed banach spaces
+ie both a0 and a1 are continuously embedded in a larger topological vector
+space the peetre k functional of f  a0  a1 at t  0 is defined by
+kt f  a0  a1  
+inf
+f f0 f1
+kf0 k0  t kf1 k1 
+where f  f0  f1  f0  a0 and f1  a1 
+in the particular case of the lq spaces the k functional can be computed
+by holmstedts formula see 12 specifically for 0  q0  q1   let  be
+given by 1  1q0  1q1  then
+1q0
+z t
+1q1
+f s ds
+kt f  l  l  
+f s ds
+the intermediate space a0  a1  q  0    1 0  q   consists of
+those f s in a0  a1 with
+z  h
+iq dt 1q
+kf ka0 a1  q 
+t kt f  a0  a1 
+kf ka0 a1   sup t kt f  a0  a1     q   
+finally for the l and lpq spaces we have the following result let
+0  q1  q  q2   and suppose that 1q  1  q1  q2  then
+lq  lq1  lq2 q  and l1q  l1q1  l1q2 q  see 4
+the hardylorentz spaces h pq
+in this paper we adopt the atomic characterization of the hardy spaces h p 
+0  p  1 recall that a compactly supported function a with n1p  1
+vanishing moments is an h p atom with defining interval i of course i is
+a cube in rn  if suppa  i and i1p ax  1 the hardy space
+distributions
+f that can be written as f 
+p r   h consists of those
+j aj  where the aj s are h p atoms
+j p   and the convergence is
+in the sense of distributions as well as in h p  furthermore
+kf kh p  inf
+j p
+where the infimum is taken over all possible atomic decompositions of f 
+this last expression has traditionally been called the atomic h p norm of f 
+c fefferman rivire and sagher identified the intermediate spaces between the hardy space h p0  0  p0  1 and l  as
+h p0  l q  h pq 
+1p  1  p0  0  q   
+where h pq consists of those distributions f whose radial maximal function
+mf x  supt0 f  t x belongs to lpq  here  is a compactly supported smooth function with nonvanishing integral see 10 r fefferman
+and soria studied in detail the space h 1  which they called weak h 1  see
+just as in the case of h p  h pq can be characterized in a number of
+different ways including in terms of nontangential maximal functions and
+lusin functions in what follows we will calculate the quasinorm of f in h pq
+by the means of the expression
+2 mmf 2k 1p
+ 0  p  1 0  q   
+where mf is an appropriate maximal function of f 
+passing to the atomic decomposition of h pq  the proof is divided in two
+parts first we construct an essentially optimal atomic decomposition parilov has obtained independently this result for h 1q when 1  q see 14
+also r fefferman and soria gave the atomic decomposition of weak h 1 
+see 11 and alvarez the atomic decomposition of weak h p  0  p  1 see
+theorem 21 letp
+f  h pq  0  p  1 0  q   then f has an atomic
+decomposition f  jk jk ajk  where the ajk s are h p atoms with defining
+intervals ijk that have bounded overlap uniformly for each k the sequence
+p p
+p qp 1q
+jk  satisfies
+  and the convergence is in the
+p p
+p qp 1q
+sense of distributions furthermore
+ kf kh pq 
+j jk 
+proof the idea of constructing an atomic decomposition using calderns
+reproducing formula is well understood so we will only sketch it here for
+further details see 5 and 18 let nf x  supf  t y  x  y  t
+denote the nontangential maximal function of f with respect to a suitable
+smooth function  with nonvanishing integral one considers the open sets
+ok  nf  2k  all integers k and builds the atoms with defining interval
+associated to the intervals actually cubes of the whitney decomposition
+of ok  and hence satisfying all the required properties more precisely one
+constructs a sequence of bounded
+p functions fk with norm not exceeding c 2
+for each k and such that f  kn fk  0 as n   in the sense of distrip
+butions these functions have the further property that fk x  j jk x 
+where jk x  c 2k  c is a constant each jk has vanishing moments up
+to order n1p  1 and is supported in ijk  roughly one of the whitney
+cubes  where the ijk s have bounded overlaps for each k uniformly in k it
+only remains now to scale jk 
+jk x  jk ajk x 
+and balance the contribution of each term to the sum let jk  2k ijk 1p 
+then ajk x is essentially an h p atom with defining interval ijk  and one
+has
+ 2k ok 1p  thus
+jk 
+2 ok 1p
+ kf kh pq 
+0  q   
+as an application of this atomic decomposition the reader should have
+no difficulty in showing directly the c fefferman rivire sagher characterization of h pq  see 10
+another interesting application of this decomposition is to h pq  lp
+estimates for caldernzygmund singular integral operators t  p  q  
+this approach combines the concept of pquasi local operator of weisz see
+17 with the idea of variable dilations of r fefferman and soria see 11
+intuitively since hrmanders condition implies that t maps h 1 into l1  say
+for t to be defined in h 1s  1  s   some strengthening of this condition
+is required this is accomplished by the variable dilations moreover since
+we will include p  1 in our discussion as p gets smaller more regularity of
+the kernel of t will be required this justifies the following definition
+given 0  p  1 let n  n1p  1 and associated to the kernel
+kx y of a caldernzygmund singular integral operator t  consider the
+modulus of continuity p given by
+p   sup
+ kx y 
+y  yi  k x yi  dy dx 
+i i rn 2i
+where 0    1 and the sup is taken over the collection of arbitrary intervals
+i of rn centered at yi  here for a multiindex   1      n 
+k x yi  
+d kx y yy 
+p  controls the behavior of t on atoms more precisely if a is an h p atom
+with defining interval i and 0    1 observe that
+t ax  kx y 
+y  yi  k x yi  ay dy 
+and consequently
+t axp dx  p  
+rn 2i
+we are now ready to prove the h pq  lp estimate for a caldernzygmund singular integral operator t with kernel kx y
+theorem 22 let 0  p  1 and p  q   assume that a caldernzygmund singular integral operator t is of weaktype r r for some 1  r 
+ and that the modulus of continuity p of the kernel k satisfies a dini
+condition of order qq  p namely
+hz 1
+d iqpq
+apq 
+p qqp
+then t maps h pq continuously into lp  and kt f kp  c apq kf kh pq 
+proof we need to show that
+2k0 p mt f 2k0   c kf kph pq 
+all k0 
+p p
+let f  k j jkp
+ajk  bepthe atomic decomposition of f given in theorem
+21 and set f1 
+j jk ajk  and f2  f  f1  further let k 
+kk0
+ and recall that kk klq  kf kh pq 
+j jk 
+since kf1 krr  c 2k0rp kf kph p  we have
+2pk0 mt f1  2k0   c kf kph p 
+next put ijk
+ 21n 32pkk0n ijk  and let
+ijk
+kk0 j
+since ijk
+  232pkk0 ijk   2k0 p 34pkk0 jk p  we get
+ijk
+  c 2k0 p
+34pkk0
+jk p
+kk0
+kk0
+ c 2k0 p sup k
+kk0
+c 2k0 p kf kph p
+also since 0  p  1 it readily follows that
+jk p t ajk xp 
+t f2xp 
+kk0
+and by tonelli and the estimate for t a we have
+t ajk xp dx
+jk 
+t f2 x dx 
+rn 
+rn ijk
+kk0
+kk0
+ 2 pkk0 n 
+ 2 pkn qqp qpq
+p qqp
+kk kplq
+d iqpq
+kf kph pq 
+this bound gives at once
+2pk0 x 
+   t f2 x  2k0   c apq kf kph pq 
+which implies that
+2pk0 mt f2  2k0 1   2pk0   x 
+   t f2 x  2k0 1 
+ c kf kph p  c apq kf kph pq 
+finally
+2k0 p mt f 2k0   2k0 p mt f1  2k0 1   2k0 p mt f2  2k0 1 
+ c kf kph p  c apq kf kph pq 
+and since kf kh p  c kf kh pq for all q we have finished 
+we pass now to the converse of theorem 21 it is apparent that a
+condition that relates the coefficients j with the
+p corresponding atoms aj
+involved in an atomic decomposition of the form j j aj x is relevant here
+more precisely if ij denotes the supporting interval of aj  let
+ik  j  2k  j ij 1p  2k1  
+and for   j  put
+kkpq 
+xh x
+jik
+j p
+iqp 1q
+we then have
+theorem
+and let f be a distribution given
+p 23 let 0  p  1 0  q  
+by f  j j aj x  where the aj s are h atoms and the convergence is in
+the sense of distributions further assume that the family ij  consisting of
+the supports of the aj s has bounded overlap at each level ik uniformly in k
+and kkpq   then f  h pq  and kf kh pq  c kkpq
+proof let mf x  supt0 f  t x denote the radial maximal function
+of f with respect to a suitable smooth function  with support contained in
+x  1 and nonvanishing integral we will verify that mf satisfies the
+conditions of lemma 11 and is thus in lpq 
+fix an integer k0 and let
+gx 
+j aj x 
+kk0 jik
+since kmgk  kgk it suffices to estimate gx let c be the bounded
+overlap constant for the family of the supports of the aj s then for j  ik 
+j  aj x 
+j  ij 1p aj x  2k ij x 
+ij 
+and consequently
+gx 
+kk0
+ij x  c 2k0 
+next let
+hx 
+kk0 jik
+j aj x 
+since aj has n  n1p  1 vanishing moments it is not hard to see
+that if ij is the defining interval of aj and ij is centered at xj  and  
+n  n  1n  1p then with c independent of j j x  maj x satisfies
+j x  c
+ij 1p
+ij   x  xj n 
+thus if 1  p  1
+mhxp  c
+jik kk0
+j  ij 1p p
+ij   x  xj n p
+which upon integration yields
+1p p
+mhx dx  c
+j  ij 
+jik kk0
+dx 
+ij   x  xj n p
+the integrals in the righthand side above are of order ij 1p and consequently by chebychevs inequality
+ij  
+2kp
+j p ij 1  c
+2k0 p mh  2k0   c
+kk0
+jik kk0
+jik
+thus lemma 11 applies with   mf  k0  mg k0  mh and k 
+ and we get
+jik
+2 mmf 2k 1p
+1p o
+n x
+ij 
+jik
+which since
+j p
+ j  ik 
+2kp
+is bounded by c kkpq 0  q   
+ij  
+the next result is of interest because it applies to arbitrary decompositions in h pq  the proof relies on lemma 12 and is left to the reader
+theorem
+p 24 let 0  p  1 0  q   and let f be a distribution given
+by f  j j aj x  where the aj s are h p atoms and the convergence is
+in the sense of distributions further assume that kkq   for some
+0    minp q then f  h pq  and kf kh pq  c kkq 
+interpolation between hardylorentz spaces
+we are now ready to identify the intermediate spaces of a couple of hardylorentz spaces with the same first index p  1
+theorem 25 let 0  p  1 given 0  q1  q  q2   define 0    1
+by the relation 1q  1  q1  q2  then with equivalent quasinorms
+h pq  h pq1  h pq2 q 
+proof since the nontangential maximal function nf of a distribution f in
+h pq1 is in lpq1  and that of f in h pq2 is in lpq2  we have
+kt nf  lpq1  lpq2   c kt f  h pq1  h pq2  
+thus
+knf kpq  knf klpq1 lpq2 q  c kf kh pq1 h pq2 q 
+and h pq1  h pq2 q  h pq 
+to show thep
+other
+p embedding with the notation in the proof of theorem
+21 write f  k j jk ajk  and recall that for every integer k the level
+set ik  j
+the sequence jk 
+p  jk ipjk   2  contains
+pexclusively
+let k  jik jk   by construction k k  kf kh pq  now rearrange
+k  into l  and for each l  1 let kl p
+be suchpthat kl  l  for
+l0  1 let kl0  k1      kl0  and put f1l0  kkl
+j jk ajk and f2l0 
+pq1
+f  f1l0  then by theorem 22 f1l0  h  f2l0  h pq2  and with the
+usual interpretation for q2  
+kf1l0 kh pq1  c
+l q1
+1q1
+kf2l0 kh pq2  c
+l q2
+l0 1
+1q2
+so for t  0 and every positive integer l0  we have
+kt f  h
+pq1
+pq2
+l q1
+1q1
+l q2
+l0 1
+1q2 i
+now by homstedts formula there is a choice of l0 such that the righthand
+side above  kt k  lq1  lq2  and consequently
+kt f  h pq1  h pq2   c kt k  lq1  lq2  
+thus
+kf kh pq1 h pq2 q  c kk klq1 lq2 q
+ c kk klq  c kf kh pq 
+and h pq  h pq1  h pq2 q 
+the reader will have no difficulty in verifying that theorem 25 gives that
+if t is a continuous sublinear map from h 1 into l1  and from h 1 into l1 
+then kt f k1q  c kf kh 1q for 1  q   this observation has numerous
+applications for instance consider the caldernzygmund singular integral
+operators with variable kernel defined by
+x xy
+t f x  pv
+f y dy 
+x  yn
+under appropriate growth and smoothness assumptions on  t maps h 1
+continuously into l1  see 6 and h 1 continuously into l1  see 8 thus
+if  satisfies the assumptions of both of these results t maps h 1q continuously into l1q for 1  q   a similar result follows by invoking the
+characterization of h 1q given by c fefferman rivire and sagher however in this case the h p lp estimate requires additional smoothness of  as
+shown for instance in 6 similar considerations apply to the marcinkiewicz
+integral see 9 and 7
+finally when p  1 our results cover for instance the cz operators
+satisfying t  1  0 discussed by alvarez and milman see 3 these operators as well as a more general related class introduced in 15 preserve h p
+and h p for nn    p  1 and consequently by theorem 25 they
+also preserve h pq for p in that same range and q  p
+references
+1 w abushammala and a torchinsky the atomic decomposition for
+h 1q rn  proceedings of the international conference on harmonic
+analysis and ergodic theory 2005 to appear
+2 j alvarez h p and weak h p continuity of caldernzygmund type operators lecture notes in pure and appl math 157 1992 1734
+3 j alvarez and m milman h p continuity of caldernzygmund type
+operators j math anal appl 118 1986 6379
+4 j bergh and j lfstrm interpolation spaces an introduction
+springerverlag 1976
+5 a p caldern an atomic decomposition of distributions in parabolic
+h p spaces advances in math 25 1977 216225
+6 j chen y ding and d fan a class of integral operators with variable
+kernels in hardy spaces chinese annals of math a 23 2002 289
+296
+7 y ding cc lin and s shao on the marcinkiewciz integral with
+variable kernels indiana math j 53 2004 805821
+8 y ding s z lu and s shao integral operators with variable kernels
+on weak hardy spaces j math anal appl 317 2006 127135
+9 y ding s z lu and q xue marcinkiewicz integral on hardy spaces
+integr equ oper theory 42 2002 174182
+10 c fefferman n m rivire and y sagher interpolation between h p
+spaces the real method trans amer math soc 191 1974 7581
+11 r fefferman and f soria the space weak h 1  studia math 85 1987
+116
+12 t holmstedt interpolation of quasinormed spaces math scand 25
+1970 177199
+13 p kre interpolation despaces vectoriels qui ne sont ni norms ni complets applications ann inst fourier grenoble 17 1967 137174
+14 d v parilov two theorems on the hardylorentz classes h 1q  zap
+nauchm sem speterburg otdel mat inst steklov pomi 327
+2005 150167
+15 t quek and d yang caldernzygmund type operators on weighted
+weak hardy spaces over rn  acta math sinica engl ser 16 2000
+141160
+16 a torchinsky realvariable methods in harmonic analysis dover publications inc 2004
+17 f weisz summability of multidimensional fourier series and hardy
+spaces kluwer academic publishers 2002
+18 j m wilson on the atomic decomposition for hardy spaces pacific j
+math 116 1985 201207
+department of mathematics indiana university
+bloomington in 47405
+email wabushamindianaedu torchinsindianaedu

@@ -1,0 +1,1129 @@
+arXiv:0704.0072v1 [math-ph] 1 Apr 2007
+
+The decomposition method and Maple procedure
+for finding first integrals of nonlinear PDEs
+of any order with any number of independent variables
+
+Yu. N. Kosovtsov
+Lviv Radio Engineering Research Institute, Ukraine
+email: kosovtsov@escort.lviv.net
+
+Abstract
+In present paper we propose seemingly new method for finding solutions of some types of nonlinear PDEs in closed form. The method is
+based on decomposition of nonlinear operators on sequence of operators
+of lower orders. It is shown that decomposition process can be done by
+iterative procedure(s), each step of which is reduced to solution of some
+auxiliary PDEs system(s) for one dependent variable. Moreover, we find
+on this way the explicit expression of the first-order PDE(s) for first integral of decomposable initial PDE. Remarkably that this first-order PDE
+is linear if initial PDE is linear in its highest derivatives.
+The developed method is implemented in Maple procedure, which can
+really solve many of different order PDEs with different number of independent variables. Examples of PDEs with calculated their general
+solutions demonstrate a potential of the method for automatic solving of
+nonlinear PDEs.
+
+1
+
+Introduction
+
+Nonlinear partial differential equations (PDEs) play very important role in many
+fields of mathematics, physics, chemistry, and biology, and numerous applications. If for nonlinear ordinary differential equations (ODEs) one can observe
+incontestable progress in their automatic solving, the situation for nonlinear
+PDEs seems as nearly hopeless one.
+Despite the fact that various methods for solving nonlinear PDEs have been
+developed in 19-20 centuries as the suitable groups of transformations, such as
+point or contact transformations, differential substitutions, and Backlund transformations etc., the most powerful method for explicit integration of secondorder nonlinear PDEs in two independent variables remains the method of Darboux [1]-[4]. The original Darboux method (as already Darboux stated in [1])
+is extendable in principle to equations of all orders in an arbitrary number of
+independent variables, even to systems of equations; however, in [1]-[2] and subsequent papers by many authors, the detailed calculations were performed only
+1
+
+for a single second-order equation with one dependent and two independent
+variables.
+The Darboux method was refined in recent years into more precise and efficient (although not completely algorithmic) form [5]-[8] and references therein.
+Nevertheless this approaches suffer from high complexity and necessitate to use
+some tricks.
+There were some partially successful attempts to extend modern variants of
+the Darboux method based on Laplace cascade method on higher-order PDEs
+and PDEs in the space of more than two independent variables [10]-[13] but
+they suffer from high complexity too.
+There is an original approach to the problem, based on the special type
+of local change of variables which leads to the order reduction of initial PDE,
+proposed in [14], which is suitable for high dimensions problems but of very
+special class though.
+In present paper we propose seemingly new method for finding solutions
+of some types of nonlinear PDEs in closed form. The method is based on
+decomposition of nonlinear operators on sequence of operators of lower orders. It
+is shown that decomposition process can be done by iterative procedure(s), each
+step of which is reduced to solution of some auxiliary PDEs system(s) for one
+dependent variable. Moreover, we find on this way the explicit expression of the
+first-order PDE(s) for first integral of decomposable initial PDE. Remarkably
+that this first-order PDE is linear if initial PDE is linear in its highest derivatives.
+The developed method is implemented in Maple procedure, which can really
+solve many of different order PDEs with different number of independent variables. Examples of PDEs with calculated their general solutions demonstrate a
+potential of the method for automatic solving of nonlinear PDEs.
+
+2
+2.1
+
+Bases of the method
+Decomposable PDEs
+
+The simplest second-order non-linear PDE for w = w(t, x)
+∂2w
+1 ∂w ∂w
+=
+∂t∂x
+w ∂t ∂x
+
+(1)
+
+can be easily transformed to the following decomposed form
+1 ∂w
+∂
+ln(
+) = 0,
+∂t
+w ∂x
+
+(2)
+
+from which we can without difficulty obtain the general solution to PDE (1) in
+two steps. First step gives us
+1 ∂w
+d ln(G(x))
+=
+,
+w ∂x
+dx
+
+2
+
+(3)
+
+where G(x) is an arbitrary function. And then, solving the equation (3) on the
+second step, we obtain
+w(t, x) = F (t)G(x) ,
+(4)
+where F (t) is one more arbitrary function.
+The main observations on analyzing the grounds of solvability of the PDE
+(1) by the above method are that
+1. The PDE (1) is "decomposable", i.e., it can be represented as a composition of successive differential operators of type (5) (not necessarily linear). It is
+clear that such type of decomposition can be done for some PDEs of any order
+and with any number of independent variables in the following manner
+D1 (w) = u1 ,
+D2 (u1 ) = u2 ,
+...... ,
+Dn (un−1 ) = 0 ,
+
+(5)
+
+where ~x = (x1 , . . . , xm ), w = w(~x), ui = ui (~x) and
+Di (u) = Vi (~x, u,
+
+∂u
+∂u
+,...,
+).
+∂x1
+∂xm
+
+Assuming that Vi are arbitrary functions, and eliminating ui by successive substitutions in system (5), we get a family of PDEs for w of nth order
+Dn (Dn−1 (. . . D1 (w) . . . )) = 0 .
+
+(6)
+
+which are "decomposable" and in principle their solutions general or particular
+can be obtained by integration of split system (5). The PDE (6) is nonlinear if
+at least one of the operators Di is nonlinear. Not all PDEs admit such representation. And in positive cases such representation is not unique in general.
+Note that as a matter of fact Di need not be the first-order differential
+operators. So the composition procedure for nth order PDE, when n > 2 can
+be as follows
+D1n1 (w) = u ,
+D2n2 (u) = 0 ,
+
+(7)
+
+where n1 , n2 are integers and n1 + n2 = n, w = w(~x), u = u(~x), and (k ≤ j)
+Dij (u) = Vi (~x, u,
+
+∂ku
+∂j u
+∂u
+, . . . , k1
+,
+.
+.
+.
+,
+).
+∂x1
+∂x1 . . . ∂xkmm |k1 +***+km =k≤j
+∂xjm
+
+The late representation allows us to carry out the PDE's decomposition or
+order reduction gradually bit by bit.
+We have to stress here that in general representations (5) and (7) may have
+different meaning. For example, some PDEs do not admit representation (5)
+but permit the form (7) with both solvable DEs.
+3
+
+2. Each step of the solving process for decomposed PDE is faced with the
+necessity to solve differential equation Di (ui−1 ) = ui (or Dij (ui−1 ) = ui ), so all
+such DEs must be solvable. Note that only first step Dn (un−1 ) = 0 is free from
+arbitrary functions.
+So one of the PDEs solving strategies may be as follows. First of all we
+try to decompose given PDE. In order to do so we have to solve corresponding
+auxiliary nonlinear PDE system for unknown functions Vi , it is sufficient to
+find a particular solution here. And, if it is successful, then, deciding between
+the variants, try to solve each arising DE from the chain (5). Main obstacle
+here, beginning at the second step is just mentioned necessity to solve DEs with
+arbitrary functions. There are sufficiently narrow circle of solvable (in sense of
+the general solutions) DEs with an arbitrary function as a parameter.
+Another (classification) approach can be based on the usage of only solvable
+DEs. That is, we can form a composition of successive solvable differential
+operators and as a result obtain a families of solvable PDEs. Such a way leads to
+extensive nontrivial families for different types of nonlinear PDEs which general
+solutions can be expressed in closed form. But on this way we encounter a
+difficulty to circumscribe such families integrally and are forced to consider
+particular subfamilies. Nevertheless it yields extensive field of PDEs for methods
+testing [15].
+
+2.2
+
+Decomposition algorithm for decomposable PDEs
+
+For nth order PDE, when n > 2 there are some slightly different approaches
+which are dictated by goals of the problem. If the goal is to decompose given
+nonlinear operator then we have to use the scheme (7) with n1 = 1, n2 = n − 1.
+And conversely we have to use the scheme (7) with n1 = n − 1, n2 = 1 if the
+goal is to solve given PDE. The last procedure in some features resembles the
+well-known technics of reducing ODEs order, e.g., by first integral method. Of
+course, it is possible to use intermediate cases.
+All above cases can be treated by the same way as we consider below but
+each of them leads to auxiliary PDEs systems of different order, viz n2 + 1, with
+corresponding calculation complexity.
+In sequel we will consider for shortness only the case with n1 = n−1, n2 = 1,
+as more practical for PDEs solving.
+Let us consider the decomposition of type (7) with D1n−1 (w) as a solution
+of the following equation with respect of u = u(~x)
+J(u, ~x, w,
+
+∂kw
+∂ n−1 w
+∂w
+, . . . , k1
+,
+.
+.
+.
+,
+n−1 ) = 0
+∂x1
+∂xm
+∂x1 . . . ∂xkmm |k1 +***+km =k≤n−1
+
+and
+D2 (u) = V (~x, u,
+
+∂u
+∂u
+,...,
+).
+∂x1
+∂xm
+
+(8)
+
+(9)
+
+If substitute u = D1n−1 (w) into (9) we obtain decomposable n-th order PDE
+V (~x, U0 , Ux1 , . . . , Uxm ) = 0 ,
+4
+
+(10)
+
+where (we use below the following notation w = W0 and
+
+∂kw
+k
+m
+∂x1 1 ...∂xk
+m
+
+= Wk1 ,...,km )
+
+D1n−1 (w) = U0 ,
+−
+
+∂J
+∂xi
+
++
+
+P
+
+∂J
+∂Wk1 ,...,km
+∂J
+∂u
+
+∗
+Wk1∗ ,...,km
+
+= Uxi
+
+(11)
+(i = 1, . . . , m) ,
+
+(12)
+
+where kj∗ = kj + 1 if j = i and kj∗ = kj otherwise, and it is supposed that
+differentiations in sum are carried out on all indexed W 's which are involved in
+J.
+Here we can introduce U0 and Ux1 , . . . , Uxm as new independent variables
+if express m variables from the set {Wk1 ,...,km } with k1 + * * * + km = n using
+linear system (12).
+Assuming that given PDE of order n
+F (~x, w,
+
+∂kw
+∂nw
+∂w
+, . . . , k1
+,..., n ) = 0
+k
+m
+∂x1
+∂xm
+∂x1 . . . ∂xm |k1 +***+km =k≤n
+
+(13)
+
+is decomposable, we receive, that after substitution of the new variables, lefthand side of given PDE must turn into (10) with some V .
+Left-hand side of given PDE expressed in new variables is the first-order
+differential expression with respect to
+J(U0 , ~x, W0 , W1,0,...,0 , . . . , Wk1 ,...,km |k1 +***+km =k≤n−1 , . . . , W0,0,...,n−1 )
+and must not depend on all indexed W 's, that is derivatives of F expressed in
+new variables with respect to all indexed W 's are equal to zero. Sequence of
+such derivatives of F equated to zero form a second-order PDE system for J.
+So a solution (particular as well) the PDE system gives possible expression of
+differential operator D1n−1 (w) through (8) and differential operator D2 (u) by
+substituting the solution of J into left-hand side of given PDE expressed in new
+variables.
+Of course, there are problems where a operator decomposition is required
+only. But in most cases obtained decomposition is intended for finding solutions
+for given PDE. If in obtained decomposition the corresponding PDE D2 (u) = 0
+is solvable, then substitution of obtained u into J expressed in original variables
+gives us a first integral (see its definition in the next subsection) of given PDE.
+It is easy to see that for decomposable PDEs the first integral is a differential
+equation, so we can try to solve it or to find a first integral for this new DE (or
+decompose it) by the scheme described above until we come to the first-order
+DE.
+Remarkably that in the approach under consideration the finding of first
+integrals can be done more directly and effectively.
+
+2.3
+
+Differential equation for first integral of decomposable
+PDEs
+
+The first integral I of the PDE is an expression, involving one arbitrary function, which is equivalent in some sense to the given PDE. The first integral
+5
+
+vanishes on the set of solutions of given PDE. And (in accordance with [4]) all
+differential consequences of the equation I = 0 coincide with respective differential consequences of given PDE (e.g., elimination of the arbitrary function leads
+to the given PDE).
+Our goal here is to find PDE for first integral of a decomposable PDE. To
+do so we first of all have to take into account that u(~x) is the solution of the
+corresponding PDE
+∂u
+∂u
+V (~x, u,
+,...,
+) = 0,
+∂x1
+∂xm
+so u(~x) depends only on ~x but in no way on indexed W 's. Secondly, the dependent variable in this case, namely
+J(u(~x), ~x, W0 , W1,0,...,0 , . . . , Wk1 ,...,km |k1 +***+km =k≤n−1 , . . . , W0,0,...,n−1 )
+of given PDE (13) expressed in new variables do not to depend on Ux1 , . . . , Uxm
+and is a first integral of given PDE.
+If now consider u(~x) as an unknown function, we can denote the first integral
+as
+I(~x, W0 , W1,0,...,0 , . . . , Wk1 ,...,km |k1 +***+km =k≤n−1 , . . . , W0,0,...,n−1 ) =
+J(u(~x), ~x, W0 , W1,0,...,0 , . . . , Wk1 ,...,km |k1 +***+km =k≤n−1 , . . . , W0,0,...,n−1 )
+and instead of (12) in the form
+X
+∂J
+∂J
+∂J
+∗ = −Ux
++
+Wk1∗ ,...,km
+i
+∂xi
+∂Wk1 ,...,km
+∂u
+
+(i = 1, . . . , m)
+
+we arrive to the following system
+
+X
+∂I
+∂I
+∗ = 0
++
+Wk1∗ ,...,km
+∂xi
+∂Wk1 ,...,km
+
+(i = 1, . . . , m) .
+
+(14)
+
+If express m variables from the set {Wk1 ,...,km } with k1 + * * * + km = n (at
+least one of which is actual for given PDE - note that there are some variants
+here as a rule, so we can obtain some consistent PDEs on this stage) using linear
+system (14) and substitute them into given PDE (13) we receive a first-order
+(even linear if PDE (13) is linear in its highest derivatives) PDE with respect to
+first integral I. And it remains only to solve this PDE(s) to find a first integral
+of given PDE.
+Note, given PDE is decomposable iff exists a solution of such first-order
+PDE(s).
+
+3
+
+Examples
+
+To facilitate necessary calculations in the process of finding first integrals I
+have implemented above described method in prototype of Maple procedure
+reduce PDE order (see Appendix). The input data of the procedure are given
+6
+
+PDE of any order and dependent variable of the PDE with any number of
+independent variables. The procedure tries to find first integral(s) of the input
+linear or nonlinear PDE.
+The Maple built-in procedure pdsolve is used inside my procedure to solve
+the first-order PDE for first integral. As different Maple versions have different
+PDE solving abilities so the output depends on Maple version. In the following
+examples I refer to Maple 11.
+The procedure reduce PDE order is able to find first integrals for many
+known and unknown linear and nonlinear PDEs. Here we give examples of
+PDEs for which it is possible to find finally their general solutions. More examples one can find in collection of solvable nonlinear PDEs [15].
+
+3.1
+
+Second-order PDE with two independent variables
+
+For PDE (w = w(t, x))
+∂2w a
+−
+∂t∂x w
+
+
+
+∂w
+∂x
+
+2 
+
+1 ∂w
+c ∂w
+c ∂w
+bc
+c2
+−
++b+
+−
+−kw− −
+= 0 (15)
+w ∂t
+w ∂x 2aw ∂t
+2a 4aw
+
+with a 6= 0 and 4ak − b2 6= 0 the procedure reduce PDE order outputs the
+following first integral
+!
+
+√
+c + 2a ∂w
+∂x + bw
+2
+√
+
+ t 4ak − b − 2 arctan
+
+
+w 4ak − b2
+
+
+√
+I = F 1 x,
+
+2
+4ak − b
+
+
+
+with arbitrary function F 1.
+The ODE I = 0 can be solved and one obtains (after some hand simplifications and edition) the following general solution to (15)
+
+w(t, x) =
+" Z
+#
+√
+√
+√
+Z
+c
+exp(t b2 − 4ak)F (x)(b + b2 − 4ak) − b2 − 4ak + b
+1
+√
+− { exp
+dx dx+
+2a
+2a
+1 + exp(t b2 − 4ak)F (x)
+"
+
+1
+G(t)} exp −
+2a
+
+Z
+
+#
+√
+√
+√
+exp(t b2 − 4ak)F (x)(b + b2 − 4ak) − b2 − 4ak + b
+√
+dx ,
+1 + exp(t b2 − 4ak)F (x)
+
+where F (x) and G(t) are arbitrary functions.
+
+7
+
+3.2
+
+Second-order PDE with four independent variables
+
+For PDE
+∂2w
+∂2w
+∂w
+∂2w
++ A2
++ A3
++ C0 + B1
++
+∂x1 ∂x4
+∂x2 ∂x4
+∂x3 ∂x4
+∂x4
+∂w
+∂w
+∂w
+C1 (A1
++ A2
++ A3
++ B1 w + B0 )+
+∂x1
+∂x2
+∂x3
+∂w
+∂w
+∂w
+C2 (A1
++ A2
++ A3
++ B1 w + B0 )2 = 0 ,
+∂x1
+∂x2
+∂x3
+A1
+
+(16)
+
+where w = w(x1 , x2 , x3 , x4 ) and Ai , Bi , Ci are constants, the procedure reduce PDE order outputs the following first integral
+!
+
+∂w
+∂w
+∂w
++
+A
++
+A
++
+B
+w
++
+B
+)
++
+C
+2C2 (A1 ∂x
+2
+3
+1
+0
+1
+∂x
+∂x
+1
+3
+p2
+2 arctan
+
+
+
+
+4C0 C2 − C12
+
+
+p
+I = F 1 x1 , x2 , x3 , x4 +
+
+2
+4C0 C2 − C1
+
+
+with arbitrary function F 1.
+The PDE I = 0 can be solved and one obtains the following general solution
+to (16)
+w(x1 , x2 , x3 , x4 ) =
+−
+
+B1 x1
+1
+exp(−
+)
+2A1 C2
+A1
+
+Z
+
+c
+
+x1
+
+exp(
+
+B1 ξ
+1
+)(2B0 C2 + C1 + tan[ x4
+A1
+2
+
+q
+4C0 C2 − C12
+
+q
++ G(ξ, (A2 ξ + A1 x2 − A2 x1 ), (A3 ξ + A1 x3 − A3 x1 ))] 4C0 C2 − C12 )dξ
++ exp(−
+
+B1 x1
+)F [(A1 x2 − A2 x1 ), (A1 x3 − A3 x1 ), x4 ] ,
+A1
+
+where F (t1 , t2 , t3 ) and G(t1 , t2 , t3 ) are arbitrary functions, c is arbitrary constant.
+
+3.3
+
+Third order PDE with two independent variables
+
+For PDE (w = w(t, x))
+w2
+
+∂ 2 w ∂w
+∂w
+∂3w
+− 2w
++2
+2
+∂t∂x
+∂t∂x ∂x
+∂t
+
+
+
+∂w
+∂x
+
+2
+
+−w
+
+∂w ∂ 2 w
+− aw3 = 0
+∂t ∂x2
+
+(17)
+
+the procedure reduce PDE order outputs the following first integrals
+
+
+
+∂w
+∂2w
+∂w ∂w
+1
+∂2w
+∂w ∂w
+1
+2 2
+2
+−
+− axw ), 2 ax w + 2w(
+−x
+) + 2x
+I1 = F 1 t, 2 (w
+w
+∂t∂x
+∂t ∂x
+w
+∂t
+∂t∂x
+∂t ∂x
+8
+
+and
+
+"
+
+"
+2 ##
+
+1
+∂2w
+∂w
+2
+I2 = F 1 x, 2 w 2 − atw −
+w
+∂x
+∂x
+
+with arbitrary function F 1.
+We can form some PDEs from I1 and to solve them we can repeat the process
+of order reduction with the procedure reduce PDE order. The ODE I2 = 0 can
+be solved directly and one obtains in any way the following general solution to
+(17)
+
+
+Z
+Z
+atx2
+w(t, x) = F (t) exp
+− xH(t) + x G(x)dx − xG(x)dx ,
+2
+where F (t), H(t) and G(x) are arbitrary functions.
+
+3.4
+
+Fourth order PDE with two independent variables
+
+For PDE (w = w(t, x))
+∂4w
+w
+− 2w2
+∂t2 ∂x2
+3
+
+"
+
+∂2w
+2 w 2 +
+∂x
+
+
+
+
+
+∂ 3 w ∂w
+∂ 3 w ∂w
++
+∂t2 ∂x ∂x
+∂t∂x2 ∂t
+
+∂w
+∂x
+
+2 # 
+
+∂w
+∂t
+
+2
+
+
+
+
+2
+∂2w
+∂w ∂w
+−2 w
+−2
++
+∂t∂x
+∂t ∂x
+
+"
+2 #
+
+∂2w
+∂2w
+∂w
+=0
+−w 2 w 2 −2
+∂t
+∂x
+∂x
+
+(18)
+
+the procedure reduce PDE order outputs the following first integrals
+"
+
+2 #
+3
+∂w ∂ 2 w
+∂ 2 w ∂w
+∂w ∂w
+1
+2 ∂ w
+,
+− 2w
+−w 2
++2
+I1 = F 1(t, 3 w
+w
+∂t2 ∂x
+∂t ∂t∂x
+∂t ∂x
+∂x ∂t
+1
+w3
+
+"
+
+∂2w
+∂3w
+−
+x
+∂t2
+∂t2 ∂x
+
+
+
+"
+
+
+2 #
+
+2 #
+∂w ∂ 2 w
+∂w ∂w
+∂w
+∂ 2 w ∂w
+w +
+2
+x−
+w − 2x
+)
++ 2
+∂t ∂t∂x
+∂t ∂x
+∂t
+∂x ∂t
+2
+
+and
+"
+
+2 #
+3
+2
+2
+1
+∂
+w
+∂
+w
+∂
+w
+∂w
+∂w
+∂w
+∂w
+,
+I2 = F 1(x, 3 w2
+− 2w
+w+2
+−
+w
+∂t∂x2
+∂x ∂t∂x
+∂t ∂x2
+∂t ∂x
+1
+w3
+
+"
+
+∂2w
+∂3w
+−
+t
+∂x2
+∂t∂x2
+
+
+
+2
+
+w +
+
+"
+
+∂w ∂ 2 w
+∂ 2 w ∂w
+2
++
+∂x ∂t∂x
+∂x2 ∂t
+
+with arbitrary function F 1.
+
+9
+
+
+
+t−
+
+
+
+∂w
+∂x
+
+2 #
+
+∂w
+w − 2t
+∂t
+
+
+
+∂w
+∂x
+
+2 #
+)
+
+The wealth of first integrals here allows us to operate with them in many
+different ways. Apart from aforesaid subsequent order reduction we can, for
+example, from
+"
+
+2 #
+2
+2
+3
+1
+∂
+w
+∂
+w
+∂
+w
+∂w
+∂w
+∂w
+∂w
+= F (x)
+w2
+− 2w
+w+2
+−
+w3
+∂t∂x2
+∂x ∂t∂x
+∂t ∂x2
+∂t ∂x
+and
+"
+ 2
+
+
+2 #
+
+∂ w
+∂3w
+∂w
+∂ 2 w ∂w
+∂w ∂ 2 w
+1
+2
+w−
+[
+−t
++
+t−
+w + 2
+w3 ∂x2
+∂t∂x2
+∂x ∂t∂x
+∂x2 ∂t
+∂x
+
+2
+∂w ∂w
+] = G(x) ,
+2t
+∂t ∂x
+where F (x) and G(x) are arbitrary functions, algebraically eliminate mixed
+derivative and obtain the following ODE
+∂2w
+w 2 −
+∂x
+
+
+
+∂w
+∂x
+
+2
+
++ [tF (x) − G(x)] w2 = 0 ,
+
+which gives the general solution to (18)
+ Z
+Z
+w(t, x) = H(t) exp t xF (x) dx − tx F (x) dx+
+
+Z
+Z
+x G(x) dx − xG(x) dx + xK(t) ,
+where F (x), H(t), G(x) and K(t) are arbitrary functions.
+
+4
+
+Conclusion
+
+The method have considered above is efficient enough for solving decomposable
+PDEs of relatively high order with many independent variables. The main
+limitation here is concerned with abilities to solve corresponding auxiliary firstorder PDEs for first integrals.
+An adaptability of the method to PDEs which are not decomposable but
+which general solutions can be expressed in closed form remains unsolved yet.
+But it can be shown on examples that there are some ways to extend the method
+for some types of such PDEs. These approaches deserve further thorough study
+in another publication.
+
+References
+[1] G. Darboux, Sur les equations aux derivees partieles du second ordre. Ann.
+Sci. Ecole Norm. Sup. 1870, v. 7, pp. 163-173.
+10
+
+[2] G. Darboux, Lecons sur la theorie generale des surfaces. v.II. Paris: Hermann, 1915.
+[3] E. Goursat, Lecons sur l'integration des equations aux derivees partieles
+du second ordre a deux variables independantes. V.I,II. Paris: Hermann,
+1896, 1898.
+[4] A.R. Forsyth, Theory of differential equations. Part 4. Partial differential
+equations, vol. 6, Dover Press, New York, 1959.
+[5] M. Juras, Generalized Laplace invariants and classical integration methods for second-order scalar hyperbolic partial differential equations in the
+plane, Differential Geometry and Applications: Proc., Conf. Brno (Czech
+Republic), 28 Aug.-1 Sept. 1995, Brno: Masaric Univ., 1966, pp. 275-284.
+[6] M. Juras, Geometric aspects of second-order scalar hyperbolic partial differential equations in the plane, Ph.D. thesis, 1997, Utah State University,
+USA.
+[7] V.V. Sokolov, A.V. Zhiber, On the Darboux integrable hyperbolic equations. Phys. Lett. A, v. 208, pp. 303-308, 1995.
+[8] A.V. Zhiber, V.V. Sokolov, Exact integrable Liouville type hyperbolic equations [in Russian], Uspekhi Mat. Nauk, Vol. 56, No. 1, pp. 64-104, 2001.
+[9] S.P.Tsarev, On Darboux integrable nonlinear partial differential equations,
+Proc. Steklov Institute of Mathematics, v. 225, p. 372-381, 1999.
+[10] J. Le Roux. Extensions de la methode de Laplace aux equations lineaires aux derivees partielles dordre superieur au second. Bull. Soc. Math.
+de France, v. 27, p. 237262, 1899. A digitized copy is obtainable from
+http://www.numdam.org/
+[11] U. Dini, Sopra una classe di equazioni a derivate parziali di secondordine
+con un numero qualunque di variabili. Atti Acc. Naz. dei Lincei. Mem.
+Classe fis., mat., nat. (ser. 5) v. 4, 1901, p. 121178. Also Opere v. III, p.
+489566.
+[12] U. Dini, Sopra una classe di equazioni a derivate parziali di secondordine.
+Atti Acc. Naz. dei Lincei. Mem. Classe fis., mat., nat. (ser. 5) v. 4, 1902,
+p. 431467. Also Opere v. III, p. 613660.
+[13] S.P. Tsarev, On factorization and solution of multidimensional linear partial differential equations. http://arxiv.org/abs/cs.SC/0609075, 2006.
+[14] V.M. Boyko, W.I. Fushchych, Lowering of order and general solutions of
+some classes of partial differential equations, Reports on Math. Phys., V.
+41, No. 3, pp. 311-318, 1998.
+[15] Yu.N. Kosovtsov, The general solutions of some nonlinear second
+and third order PDEs with constant and nonconstant parameters.
+http://arxiv.org/abs/math-ph/0609003 , 2006.
+11
+
+5
+
+Appendix.
+Maple procedure reduce PDE order
+
+reduce PDE order:=proc(pde,unk)
+local B,W,N,NN,ARG,acargs,i,M,pde0,DN,IND,IND2,IND3,IND4,ARGS,SUB,SUB0,
+Z0,Bargs,EQS,XXX,WW,BB,PP,pdeI,IV,s,AN;
+option 'Copyright (c) 2006-2007 by Yuri N. Kosovtsov. All rights reserved.';
+N:=PDETools[difforder](op(1,[selectremove(has,indets(pde,function),unk)]));
+NN:=op(1,[selectremove(has,op(1,[selectremove(has,indets(pde,function),unk)]),diff)]);
+ARG:=[op(unk)];
+acargs:={};
+for i from 1 to nops(ARG) do
+if PDETools[difforder](NN,op(i,ARG))=0 then else acargs:=acargs union {op(i,ARG)}
+fi; od;
+acargs:=convert(acargs,list);
+M:=op(0,unk)(op(acargs));
+if type(pde,equation)=true then
+pde0:=lhs(subs(unk=M,pde))-rhs(subs(unk=M,pde)) else pde0:=subs(unk=M,pde)
+fi;
+DN:=[seq(seq(i,i=1..nops(acargs)),j=1..N)];
+IND:=seq(op(combinat[choose](DN,i)),i=1..N);
+IND2:=seq(op(combinat[choose](DN,i)),i=1..N-2);
+IND3:=op(combinat[choose](DN,N-1));
+IND4:=op(combinat[choose](DN,N));
+ARGS:=op(unk),M,seq(convert(D[op(op(i,[IND2]))](op(0,unk))
+(op(acargs)),diff),i=1..nops([IND2]));
+SUB:={M=W[0],seq(convert(D[op(op(i,[IND]))](op(0,unk))
+(op(acargs)),diff)=W[op(op(i,[IND]))],i=1..nops([IND]))};
+SUB0:={W[0]=op(0,unk)(op(ARG)),
+seq(W[op(op(i,[IND]))]=subs(M=op(0,unk)(op(ARG)),
+convert(D[op(op(i,[IND]))](op(0,unk))(op(acargs)),diff)),i=1..nops([IND]))};
+Z0:=B(ARGS,seq(convert(D[op(op(i,[IND3]))](op(0,unk))(op(acargs)),diff),
+i=1..nops([IND3])));
+Bargs:=op(indets(subs(SUB,Z0),name));
+EQS:=convert(subs(SUB,{seq(diff(Z0,op(i,acargs))=0,i=1..nops(acargs))}),diff);
+XXX:={seq(W[op(op(i,[IND4]))],i=1..nops([IND4]))};
+WW:=select(type,indets(subs(SUB,pde0)), 'name') intersect
+{seq(W[op(op(i,[IND4]))],i=1..nops([IND4]))};
+BB:=select(has,combinat[choose](XXX, nops(acargs)),WW);
+PP:={};
+pdeI:={seq({subs(subs(solve(EQS,op(i,BB)),subs(SUB,pde0)))},i=1..nops(BB))};
+IV:={seq(W[op(op(i,[IND4]))],i=1..nops([IND4]))};
+for s from 1 to nops(pdeI) do
+try
+AN:=pdsolve(op(s,pdeI),{B},ivars=IV);
+
+12
+
+for i from 1 to nops(AN) do
+if op(0,lhs(op(i,AN)))=B then
+PP:=PP union {rhs(op(i,AN))}
+fi;
+od;
+catch:
+end try;
+od;
+PP:=subs(SUB0,PP);
+RETURN(PP);
+end proc:
+
+Calling Sequence: reduce PDE order (PDE, f (~x));
+PDE - partial differential equation;
+f (~x) - indeterminate function with its arguments.
+
+13
+
+

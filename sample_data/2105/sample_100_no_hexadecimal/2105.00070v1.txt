@@ -1,0 +1,2320 @@
+Prepared for submission to JINST
+
+Comparative evaluation of analogue front-end designs for
+
+arXiv:2105.00070v1 [physics.ins-det] 30 Apr 2021
+
+the CMS Inner Tracker at the High Luminosity LHC
+
+The Tracker Group of the CMS Collaboration
+N. Emriskovaa,b
+a CERN,
+
+CH-1211 Geneva 23, Switzerland
+de Strasbourg,
+CNRS, IPHC UMR 7178, Strasbourg, France
+
+b Université
+
+E-mail: natalia.emriskova@cern.ch
+Abstract: The CMS Inner Tracker, made of silicon pixel modules, will be entirely replaced
+for the operation at the High Luminosity LHC. One of the crucial components of the new Inner
+Tracker system is the readout chip, being developed by the RD53 Collaboration, and in particular
+its analogue front-end that receives the signal from the sensor and digitizes it. Three different
+analogue front-ends called Synchronous, Linear, and Differential were designed and implemented
+in the RD53A demonstrator chip. A dedicated evaluation program was carried out to select the most
+suitable design to build a radiation tolerant pixel detector able to sustain high particle rates with high
+efficiency and a small fraction of spurious pixel hits. The test results showed that all three analogue
+front-ends presented strong points, but also limitations. The Differential front-end demonstrated
+very low noise, but the threshold tuning became problematic after irradiation. Moreover, a saturation
+in the preamplifier feedback loop was limiting the signal return to baseline having an impact on
+the dead time. The Synchronous front-end showed very good timing performance, but also higher
+noise. The Linear front-end had all the studied performance parameters within requirements, but
+it had the largest time walk. This limitation was addressed and mitigated in an improved design.
+The analysis of the advantages and disadvantages of the three front-ends in the context of the CMS
+Inner Tracker operation requirements led to the selection of the Linear front-end for integration in
+the final CMS readout chip.
+Keywords: Analogue electronic circuits, Front-end electronics for detector readout, Radiationhard electronics, Performance of High Energy Physics Detectors
+
+Contents
+1
+
+CMS pixel detector upgrade for the High Luminosity LHC
+
+1
+
+2
+
+RD53A analogue front-ends
+
+3
+
+3
+
+CMS requirements for the analogue front-end
+
+7
+
+4
+
+Equalization of threshold dispersion
+
+10
+
+5
+
+Noise evaluation
+
+12
+
+6
+
+Dead time and time-over-threshold calibration
+
+14
+
+7
+
+Late-detected hits
+
+16
+
+8
+
+Conclusions
+
+21
+
+The Tracker Group of the CMS Collaboration
+
+1
+
+25
+
+CMS pixel detector upgrade for the High Luminosity LHC
+
+The High Luminosity upgrade [1] of the CERN Large Hadron Collider (LHC) [2] will boost its
+potential for physics discoveries, but also impose extreme operating conditions for the experiments.
+Along with the accelerator, the Compact Muon Solenoid (CMS) [3] detector will be substantially
+upgraded during the Long Shutdown 3, starting in 2025 [4]. This upgrade is referred to as the
+CMS Phase-2 Upgrade [5]. The silicon tracking system, located at the heart of CMS, is detecting
+trajectories of charged particles. It will be entirely replaced during the Long Shutdown 3 because of
+the accumulated radiation damage and to fully profit from the increased luminosity. The goal of the
+upgrade is to maintain or improve the tracking and vertex reconstruction performance of the detector
+in the harsh environment of the High Luminosity LHC (HL-LHC). The CMS Phase-2 tracker will
+consist of the Outer Tracker, made of silicon modules with strip and macro-pixel sensors, and the
+Inner Tracker (IT), based on silicon pixel modules [6].
+The high granularity of the IT offers excellent spatial resolution, used for a precise threedimensional reconstruction of particle trajectories, as well as the identification of primary interaction
+vertices and secondary decay vertices. The latest layout of one quarter of the Phase-2 IT in the
+r-z view ∗ is shown in Figure 1. It will be composed of a barrel component with four cylindrical
+∗ CMS
+
+adopts a right-handed coordinate system with the origin centred at the nominal collision point inside the
+experiment. The x axis points towards the centre of the LHC, the y axis points vertically upwards and the z axis points
+along the beam direction. The azimuthal angle φ is measured from the x axis in the x-y plane, the radial coordinate
+in this plane is denoted by r and the polar angle θ is measured from the z axis. The pseudorapidity η is defined as
+η = −ln tan(θ/2) [6].
+
+–1–
+
+r [mm]
+
+0.0
+
+1.0
+
+3.0
+
+2.0
+
+250
+200
+150
+4.0
+η
+
+100
+50
+0
+
+0
+
+500
+
+1000
+
+1500
+
+2000
+
+2500 z [mm]
+
+Figure 1: Layout of one quarter of the Phase-2 Inner Tracker in the r-z view. Green lines correspond
+to pixel modules with two readout chips and orange lines represent modules with four chips. The
+TEPX ring shown in brown will be used by the Beam Radiation Instrumentation and Luminosity
+(BRIL) project [7] for dedicated luminosity and background measurements. The grey line represents
+the beam pipe envelope.
+
+layers, called Tracker Barrel Pixel detector (TBPX). Eight smaller double-discs forming the Tracker
+Forward Pixel detector (TFPX) and four larger double-discs forming the Tracker Endcap Pixel
+detector (TEPX) will be placed in the forward direction on each side. The forward acceptance will
+be extended up to a pseudorapidity of |η| = 4 [6], as indicated by the red line in Figure 1.
+The IT detector comprises an active area of 4.9 m2 and it will be composed of 3892 pixel
+modules. Two pixel sizes are considered for the Phase-2 IT: 100 × 25 μm2 pixels and 50 × 50 μm2
+pixels. With a pixel area of 2500 μm2 the total number of readout channels will amount to about
+2 billion. The detector design strives for a minimal mass of the detector to avoid degradation of
+the tracking performance due to the interactions of particles with the detector material. Therefore,
+lightweight mechanical structures made of carbon fiber, two-phase CO2 cooling [6] and a low
+voltage powering scheme based on serial powering [8] will be used. The data will be transmitted
+through low-mass electrical links and optical fibers [6] to further reduce the detector mass.
+The main building block of the IT system is a hybrid pixel module, shown in Figure 2. It
+is composed of a silicon sensor bump-bonded to two or four readout chips. Pixel modules with
+two readout chips are indicated in green in Figure 1 and modules with four chips are indicated in
+orange. The readout chips of the module are wire-bonded to a flexible printed circuit board with
+passive components and connectors, called the high density interconnect, that distributes power
+(low voltage to power the pixel chips and high voltage to bias the sensor), clock and control signals
+and collects data from the chips. The signal produced in the sensor is transmitted to the front-end
+pixel electronics, where it is processed and the data are stored during the trigger latency interval,
+which will increase from the current 3.2 to 12.8 μs. The hit information is sent to the back-end
+data acquisition system of the experiment only after receipt of a Level-1 trigger [9] signal. In the
+innermost layer of the IT, the hit rate will reach 3.5 GHz cm−2 , while the CMS Level-1 trigger rate
+will increase from 100 to 750 kHz [9].
+
+–2–
+
+Downstream
+power connector
+
+gh
+Hi
+
+er
+
+ity
+
+t
+In
+
+e
+nn
+
+t
+
+n
+rre
+Cu
+
+ct
+
+co
+
+Upstream
+power connector
+
+ns
+De
+
+Digital I/O
+connector
+(elink)
+
+n
+Se
+
+so
+
+r
+
+o
+ad
+
+Wire bond
+pads
+
+53
+RD
+
+C
+ut
+
+ps
+
+hi
+
+Re
+
+Figure 2: A 3D exploded view of the Phase-2 Inner Tracker pixel module with four readout
+chips [10]. From top to bottom the following components can be seen: the high density interconnect,
+the silicon pixel sensor, the RD53 readout chips, and the module rails allowing to mount the module
+on a support structure and ensuring the electrical isolation of the module.
+
+2
+
+RD53A analogue front-ends
+
+A high-performance radiation tolerant pixel readout chip is essential for good tracking performance of the IT operating at HL-LHC. Such a readout chip is being designed in TSMC [11] 65 nm
+CMOS technology by the RD53 Collaboration [12], a joint effort between the ATLAS and CMS
+experiments. A large-scale demonstrator chip called RD53A [13] containing design variations was
+produced. Its purpose is to prove the suitability of the chosen technology for low threshold, low
+noise, and low power operation at high hit rates, to verify sufficient radiation tolerance [14], and
+to select the most suitable design for the final readout chip. It is a mixed signal chip, having both
+analogue and digital circuits. It features custom-designed intellectual property blocks, such as clock
+data recovery and phase locked loop blocks [15] for the clock recovery from the command stream
+running at 160 Mb/s; a high speed output transmitter with a current mode logic cable driver [16]
+sending data at 1.28 Gb/s on up to four output lanes; and a shunt low-dropout regulator [17] for
+serial powering of the pixel modules. The chip size is 20.0 × 11.8 mm2 , which is about half the
+size of the final chip, as it was sharing the chip reticle with CMS Outer Tracker chips. The pixel
+matrix is composed of 400 × 192 square pixels with 50 μm pitch. All the common analogue and
+digital circuitry needed to bias, configure, monitor, and read out the chip is placed at the bottom
+chip periphery [13].
+The analogue-to-digital conversion is performed by the analogue front-end (AFE), whose
+basic structure (shown in Figure 3) includes a charge sensitive amplifier (CSA) usually referred
+to as preamplifier (PA), a feedback circuit taking care of the signal return to baseline and leakage
+current compensation, a threshold discriminator, a threshold trimming circuit to address pixel-topixel variation of the threshold voltage, and a time-over-threshold (TOT) counting of the input
+signal amplitude. In the RD53A chip the TOT40 digitization with 4-bit resolution is done with
+
+–3–
+
+Analog front-end
+IN
+
+Bump
+pad
+
+OUT
+
+Trimming
+
+Calibration
+injection
+
+TOT counting
+& storage
+
+VTh
+
+Comparator
+
+Time
+
+Time
+
+TOT
+Signal
+amplitude
+
+Preamplifier + Feedback loop
+Signal
+amplitude
+
+Time
+
+Signal
+amplitude
+
+Signal collection
+Signal
+amplitude
+
+Digital domain
+
+Time
+
+Figure 3: Signal processing steps in different parts of a generic analogue front-end, from signal
+collection to digitization.
+respect to rising edges of the 40 MHz LHC clock† . Therefore, one TOT40 unit corresponds to
+25 ns [13]. The chip also features a circuit for the generation of internal calibration charge injection
+signals. The circuit, connected to the input of the PA, enables the injection of a well-defined and
+programmable charge to test the front-end functionalities and calibrate the chip response. Every
+pixel in the RD53A chip contains the same circuit based on two switches that generate voltage steps
+fed to an injection capacitor [13].
+The RD53A AFEs are grouped by four, i.e. 2 × 2 pixels, into analogue "islands", which are
+embedded in a synthesized digital "sea", as shown in Figure 4. Three different AFE designs have
+been proposed within the RD53 project, to allow for comparison and to provide a choice of the
+most suitable option for each of the two experiments. The chip is divided horizontally into three
+sections, each one having one AFE design, as indicated in Figure 5. The synchronous (SYNC) AFE
+is implemented between columns 0 and 127, the linear (LIN) AFE between columns 128 and 263,
+and the differential (DIFF) AFE between columns 264 and 399. It was not possible to have an equal
+area for all three designs because the 400-pixels wide matrix is built of 8 × 8 pixel cores [13]. The
+three AFEs share the digital logic and the chip periphery in the RD53A chip [13]. All three AFEs
+are based on a CSA with a feedback loop ensuring the return to baseline of the PA output after each
+hit. The gain of the PA can be chosen globally thanks to different feedback capacitors (CF ) present
+in each AFE. The specific features of each AFE are discussed in the following paragraphs.
+Synchronous front-end. The schematic of the Synchronous front-end is shown in Figure 6. It
+features a single-stage CSA with a Krummenacher feedback (IKrum , VREF_Krum ) [19], which ensures
+both the sensor leakage current compensation and the constant current discharge of the feedback
+capacitor. The Krummenacher current (IKrum ) drives the speed of the PA output return to baseline.
+The PA is AC-coupled (CAC ) to a synchronous discriminator composed of a differential amplifier,
+providing a further small gain, and a positive feedback latch, which performs the signal comparison
+with a threshold (Vth ) and generates the discriminator output. The latter can also be switched
+to a local oscillator with a selectable frequency higher than the standard LHC clock, in order
+† In the final pixel chip,
+
+the counting will be performed on both the rising and the falling edge of the clock, resulting
+in a finer TOT80 counting at 80 MHz with one TOT80 unit equal to 12.5 ns [18].
+
+–4–
+
+Figure 4: RD53A layout of four analogue
+islands, i.e. sixteen pixels, surrounded by
+the fully synthesized digital "sea" [13].
+
+Figure 5: Photograph of the RD53A chip,
+wire-bonded to a test card, indicating the
+placement of the three analogue front-ends.
+
+to perform a fast TOT counting. The distinctive feature of this AFE is a so-called "auto-zero"
+functionality. In traditional designs, the transistor mismatch causing pixel-to-pixel variations of the
+threshold is compensated with a trimming digital-to-analogue converter (DAC). In the SYNC AFE
+instead, internal capacitors (Caz ) are used to compensate voltage offsets automatically. A periodic
+acquisition of a baseline (VBL ) is required, which can be done during LHC abort gaps [13, 20].
+Linear front-end. The Linear front-end implements a linear pulse amplification in front of the
+discriminator. The schematic of this AFE is shown in Figure 7. As for the SYNC AFE, the PA of
+the LIN AFE is based on a CSA featuring a Krummenacher feedback (IKrum , VREF_Krum ). The signal
+from the CSA is fed to a low power threshold discriminator based on current comparison, which
+compares the signal with the threshold (Vth ). It is composed of a transconductance stage followed
+by a transimpedance amplifier (TIA) providing a low impedance path for fast switching. A 4-bit
+binary weighted trimming DAC with adjustable range (IDAC ) allows to reduce threshold dispersion
+across the pixel matrix [13, 21].
+Differential front-end. The PA of the Differential front-end, shown in Figure 8, has a continuous
+reset (Iff ), unlike the other two designs, which use the Krummenacher feedback with constant current
+reset. This continuous feedback is able to prevent the input from saturation for a leakage current
+of up to 2 nA [18]. For higher currents, a dedicated leakage current compensation (LCC) circuit
+can be enabled. The LCC is disconnected from the input when disabled, which improves the AFE
+stability and noise performance. The DC-coupled precomparator provides additional gain in front
+of the comparator and acts as a differential threshold circuit, i.e. the global threshold is adjustable
+through two distributed threshold voltages (Vth1 and Vth2 ) instead of one. The precomparator stage
+is followed by a classic time-continuous comparator. The threshold is trimmed in each pixel using
+a local 5-bit trimming DAC (TDAC) [13].
+Although the basic functionalities of the RD53A chip and each of the three AFEs were
+previously verified and reported [22–26], a comparison of the three designs against the CMS
+requirements, in terms of spurious hit rate, dead time and radiation tolerance, was yet to be
+performed. The objective of this work was to evaluate the three AFE designs against the requirements
+and to compare their performance. A dedicated evaluation program has been established and the
+most relevant detector performance parameters were studied. The key measurements that enabled
+
+–5–
+
+BUMP PAD
+
+DIFFERENTIAL
+AMPLIFIER
+
+Injection
+VREF_Krum
+
+Figure 6: Schematic of the Synchronous front-end implemented in the RD53A chip [13].
+
+IKrum /2
+
+BUMP PAD
+
+Injection
+
+TIA
+
+IKrum
+
+Figure 7: Schematic of the Linear front-end implemented in the RD53A chip [13].
+
+TDAC
+
+parasitic
+
+Vth1
+
+! TDAC sign
+
+Cf 0
+
+BUMP PAD
+
+In2
+
+2
+
+Out2
+
+Buf
+
+1
+
+Out1
+
++
+
+TDAC sign
+
+Digital power domain
+
+In1
+
+Analog power domain
+
+Injection
+
+Vth2
+TDAC
+
+Figure 8: Schematic of the Differential front-end implemented in the RD53A chip [13].
+
+–6–
+
+CMS to identify the most suitable option for integration into the CMS pixel detector are presented
+in this paper. All presented test results were obtained with the BDAQ53 test system [27], using the
+calibration injection circuit, with RD53A chips bump-bonded to sensors with rectangular pixels,
+i.e. 100 × 25 μm2 , if not stated differently, and operated at cold temperature of approximately
+−10 °C, which is the lowest temperature that could be achieved with the cooling systems available
+for the lab test set-ups.
+
+3
+
+CMS requirements for the analogue front-end
+
+The first step towards the choice of the AFE for the CMS final chip was the establishment of
+the evaluation criteria. The most relevant detector parameters were used to derive the following
+CMS requirements:
+Optimal threshold. The new CMS readout chip will feature 50 × 50 μm2 pixels, while the pixel
+size is 100 × 150 μm2 in the present CMS pixel detector [28]. The readout chip can be bump-bonded
+either to sensors with square pixels of the same size or to rectangular pixels of 100 × 25 μm2 , thanks
+to electrode routing in the sensor [6]. Silicon sensors with a thickness of 150 μm will be used.
+This is about half the thickness of the current 285 μm thick sensors [28]. The main advantage
+of thin sensors is better radiation tolerance, but the collected signal charge is smaller. The charge
+distribution obtained with 120 GeV protons from a test beam collected in a 130 μm thick sensor with
+100 × 150 μm2 pixels is shown in Figure 9. The most probable value (MPV) is about 7900 e− before
+irradiation and it decreases by about 2000 e− after irradiation to 1.2 × 1015 neq /cm2 [6]. Based on
+the expected signal, a detection threshold of 1000 e− is required by CMS for the innermost layer
+of the IT to ensure sufficient detection efficiency, especially with irradiated sensors. A threshold of
+1200 e− is sufficient for the outer layers of the detector, where the fluence is lower.
+Before irradiation
+
+Number of entries
+
+7
+
+Data
+Fit: Landau ⊗ Gaussian
+
+6
+
+χ / ndf
+2
+
+301.1 / 48
+−
+
+Width (e ) 733.6 ± 6.8
+
+5
+
+−
+
+MPV (e )
+
+7871 ± 10.1
+
+−
+
+4
+
+Noise (e ) 1271 ± 10.9
+
+3
+2
+1
+0
+0
+
+5
+
+10
+
+15
+
+After irradiation
+
+×10
+
+3
+
+Number of entries
+
+×10
+
+3
+
+8
+
+×103
+20
+25
+30
+Charge (electrons)
+
+2.2
+2
+1.8
+1.6
+1.4
+1.2
+1
+0.8
+0.6
+0.4
+0.2
+0
+0
+
+Data
+Fit: Landau ⊗ Gaussian
+
+χ / ndf
+2
+
+1080 / 286
+−
+
+Width (e ) 422.1 ± 4.2
+−
+MPV (e ) 5722 ± 7.4
+−
+
+Noise (e ) 1187 ± 7.8
+
+5
+
+10
+
+15
+
+×103
+20
+25
+30
+Charge (electrons)
+
+Figure 9: Test beam measurement of the collected charge before (left) and after (right) irradiation to
+1.2 × 1015 neq /cm2 , using single pixel clusters, in a 130 μm thick pixel sensor with 100 × 150 μm2
+pixels. The red line represents a fit to a Landau distribution convoluted with a Gaussian [6].
+
+Radiation tolerance. The IT is the CMS subdetector closest to the LHC interaction point and
+therefore it is exposed to the highest radiation levels. Two scenarios are envisaged for the HL-LHC:
+in the "nominal" scenario, the accelerator would deliver a maximum of 140 proton-proton (pp)
+
+–7–
+
+collisions per bunch crossing, to reach a total integrated luminosity of 3000 fb−1 by the end of
+the physics program. In the "ultimate" scenario, the number of pp collisions per bunch crossing
+would be pushed up to 200, reaching an integrated luminosity of 4000 fb−1 . A fluence reaching
+2.6 × 1016 neq /cm2 and a total ionizing dose (TID) up to 1.4 Grad are expected in the innermost
+layer in the nominal scenario, while the figures would scale up to 3.4 × 1016 neq /cm2 and 1.9 Grad
+in the ultimate scenario. The RD53A chip was designed to withstand a TID of at least 500 Mrad and
+an average leakage current up to 10 nA/pixel [14]. However, with this specification the radiation
+levels expected in CMS, reaching 1.9 Grad in the ultimate luminosity scenario, would imply a
+replacement of the innermost layer of the IT barrel after every two years of operation. The CMS
+Collaboration aims for one replacement of the innermost layer during the ten-year lifetime of the
+detector, hence a higher radiation tolerance is privileged.
+Noise occupancy. For a stable operation at low threshold it is important to minimize the front-end
+noise to have a limited fraction of spurious hits in the data. Single pixels that are too noisy can
+be disabled, to keep the overall noise occupancy low, but their fraction must be low in order not
+to significantly affect the detector efficiency. The average noise occupancy has to be much smaller
+than the hit occupancy. Based on the occupancy simulation for different parts of the detector, shown
+in Figure 10, the average noise occupancy of the new front-end is required to be below 10−6 , i.e. two
+orders of magnitude below the lowest expected occupancy.
+
+Occupancy
+
+CMS Phase-2 Simulation
+
+t t , PU 200, s = 14 TeV
+
+−3
+
+10
+
+10− 4
+
+TFPX
+Double-disc 1
+Double-disc 2
+Double-disc 3
+Double-disc 4
+
+TBPX
+Layer 1
+Layer 2
+Layer 3
+Layer 4
+
+−5
+
+10
+
+−4
+
+−3
+
+−2
+
+TEPX
+
+Double-disc 5
+
+−1
+
+Double-disc 9
+
+Double-disc 6
+
+Double-disc 10
+
+Double-disc 7
+
+Double-disc 11
+
+Double-disc 8
+
+Double-disc 12
+
+0
+
+1
+
+2
+
+3
+
+4
+η
+
+Figure 10: Simulation of the hit occupancy as a function of pseudorapidity for all layers and
+double-discs of the Inner Tracker for simulated top quark pair production events with a pileup of
+200 events [6].
+
+Dead time. CMS requires a maximum dead time of 1% in the innermost layer of the IT barrel to
+ensure high detection efficiency even at the highest expected hit rate. This requirement translates
+to a maximum efficiency loss of 1% at maximum hit rate caused by the total dead time (digital +
+analogue). The dead time in the RD53A chip has a minor contribution from the digital buffering
+and a major contribution from the CSA of the AFE. While the digital contribution is due to the
+
+–8–
+
+limited hit buffer size and cannot be reduced with the chip settings, the AFE dead time depends
+on the TOT response calibration. The TOT response to a given input charge can be set in the
+chip to a certain number of TOT40 units (one TOT40 unit corresponds to one 40 MHz clock cycle,
+i.e. to 25 ns). The charge resolution is obtained by dividing the input charge by the corresponding
+number of clock cycles and can therefore be expressed in e− /TOT40 units.
+
+Efficiency losses (%)
+
+A Monte Carlo simulation of hit efficiency losses due to the digital, analogue, and total dead
+time is shown in Figure 11 for two charge resolutions: 1500 e− /TOT40 and 3000 e− /TOT40 . The
+simulation was performed for two pixel module positions in the innermost layer of the IT barrel:
+the centre (z = 0), denoted L1c, and the edge, denoted L1e. For each position both pixel geometries
+were simulated. The rectangular pixels are represented with solid bins and the squared pixels with
+hashed bins. The squared pixels cause a slightly higher inefficiency. As expected, the TOT charge
+resolution has no influence on the digital dead time, and the hit losses caused by the AFE are smaller
+with the coarser charge resolution of 3000 e− /TOT40 . The efficiency losses are higher in the centre
+making the dead time requirement difficult to meet. With the charge resolution of 1500 e− /TOT40
+the requirement is not satisfied in any of the two module positions, while with 3000 e− /TOT40 the
+requirement is satisfied on average. The hit efficiency losses are slightly above the requirement in
+the centre and slightly below at the edge. The charge resolution of 3000 e− /TOT40 was therefore
+taken as the TOT calibration requirement for the AFE evaluation.
+2
+1500 e-/TOT40
+
+3000 e-/TOT40
+
+CMS requirement
+
+1
+analogue
+
+digital
+
+0
+1 2 3 4 5 6 7 8 9 10 11 12 13
+L1c
+L1e
+L1c
+L1e
+
+Figure 11: Hit efficiency losses due to the digital buffering (green) and analogue dead time (blue)
+simulated at 200 pileup for two charge resolutions: 1500 e− /TOT40 and 3000 e− /TOT40 . The
+simulation was done for the centre (c) and edge (e) of the innermost layer (L1) of the IT barrel and
+for two pixel geometries: the solid bins represent the 100 × 25 μm2 pixels and hashed bins represent
+the 50 × 50 μm2 pixels. The red line represents the CMS requirement.
+The impact of charge resolution on tracking performance was also evaluated. Simulation
+of the tracking performance for the reconstruction of single muons with a transverse momentum
+of 10 GeV was performed with planar 150 μm-thick sensors, with both sensor pixel geometries
+and two different thresholds: 1200 e− and 2400 e− . The resolution on the transverse (d 0 ) and
+
+–9–
+
+2400 e-
+
+σ (z0) (μm)
+
+σ (d0) (μm)
+
+Threshold
+20
+
+Threshold
+
+150
+50×50 μm2
+
+2400 e-
+
+50×50 μm2
+100
+
+1200 e15
+2400 e100×25 μm2
+
+1200
+
+100×25 μm2
+
+50
+
+e50×50 μm2
+0
+
+10
+0
+
+3000
+6000
+Charge resolution (e-/TOT40)
+
+0
+
+2400 e1200 e1200 e-
+
+3000
+6000
+Charge resolution (e-/TOT40)
+
+Figure 12: Influence of the charge resolution on the transverse (left) and longitudinal (right) impact
+parameter resolution obtained from simulation. The 100 × 25 μm2 pixels are represented in blue
+and the 50 × 50 μm2 pixels are represented in red. The dark colours indicate the threshold of 1200 e−
+and the light colours indicate the threshold of 2400 e− .
+longitudinal (z 0 ) impact parameters integrated over the full η range is shown in Figure 12 for three
+charge resolutions: 600 e− /TOT40 , 3000 e− /TOT40 and 6000 e− /TOT40 . The impact parameter
+resolution deteriorates for a higher threshold and appears to be insensitive to the charge resolution.
+Since a higher charge resolution does not affect the tracking performance, a charge resolution of
+3000 e− /TOT40 was taken as the baseline calibration for the inner regions of the Inner Tracker.
+
+4
+
+Equalization of threshold dispersion
+
+The calibration injection circuit is used to inject a range of charges to measure the threshold of
+each pixel and the threshold dispersion across the matrix. The occupancy versus charge of a pixel
+is a sigmoid from 0 to 100% occupancy, commonly called S-curve. An example of an S-curve
+plot including more than 26 000 pixels is shown in Figure 13(a). The calibration charge at which
+50% occupancy is reached is taken as a measurement of the charge equivalent of the threshold
+of each pixel. The mean value of the pixel threshold distribution represents the global threshold
+and the root-mean-square (RMS) is the threshold dispersion. Typically, pixel-to-pixel variations
+result in a threshold dispersion of several hundred electrons, which can be reduced to less than
+hundred electrons after setting optimal trim bits for each pixel with a dedicated tuning algorithm.
+Examples of untuned and tuned threshold distributions are shown in Figure 13(b) and Figure 13(c),
+respectively.
+The threshold tuning capability of the three AFE designs was tested and proven to be functional
+in many samples, and it was evaluated also after irradiation. An assembly of an RD53A chip and a
+sensor with 50 × 50 μm2 pixels was irradiated at Karlsruhe Institute of Technology [29] with 23 MeV
+protons up to a fluence of 3 × 1015 neq /cm2 , corresponding to a TID reaching 350 Mrad. The RD53A
+chip was not powered during irradiation. The sample was irradiated at room temperature and kept
+constantly at cold temperature after irradiation to avoid annealing. It was tested at −10 °C in a
+
+– 10 –
+
+2500
+
+104
+
+60
+
+102
+
+40
+20
+
+101
+
+0
+
+100
+
+0
+
+2000
+4000
+Charge (e )
+
+6000
+
+Number of pixels
+
+103
+
+2000
+
+Number of pixels
+
+Occupancy (%)
+
+80
+
+17500
+
+= 3063 e
+= 424 e
+
+15000
+Number of pixels
+
+100
+
+1500
+1000
+500
+00
+
+12500
+10000
+7500
+5000
+2500
+
+2000
+4000
+Charge (e )
+
+00
+
+6000
+
+(b) Untuned threshold
+distribution.
+
+(a) S-curves.
+
+= 3030 e
+= 62 e
+
+2000
+4000
+Charge (e )
+
+6000
+
+(c) Tuned threshold
+distribution.
+
+Figure 13: S-curves (a) and threshold distribution before (b) and after (c) tuning obtained with all
+pixels of the LIN AFE of one RD53A chip. The red lines in the threshold distributions represent
+fits to Gaussian distributions and the mean (μ) and width (σ) of the fit functions are given.
+
+3000
+2000
+1000
+00
+
+4000
+3000
+2000
+1000
+
+500 1000 1500 2000
+Measured threshold (e )
+
+(a) SYNC AFE.
+
+00
+
+1750
+
+LIN FE
+Masked: 0.1 %
+Mean: 1022 e
+RMS:
+93 e
+
+5000
+
+1500
+Number of pixels
+
+Number of pixels
+
+4000
+
+SYNC FE
+Masked: 3.0 %
+Mean: 1007 e
+RMS: 105 e
+
+Number of pixels
+
+5000
+
+DIFF FE
+Masked: 11.2 %
+Mean: 1006 e
+RMS:
+75 e
+
+1250
+1000
+750
+500
+250
+
+500 1000 1500 2000
+Measured threshold (e )
+
+(b) LIN AFE.
+
+00
+
+500 1000 1500 2000
+Measured threshold (e )
+
+(c) DIFF AFE.
+
+Figure 14: Threshold distributions of the SYNC AFE (a), the LIN AFE (b), and the DIFF AFE (c)
+obtained with an RD53A chip after irradiation. The mean and RMS were calculated using all
+non-masked pixels in each AFE.
+
+dry environment. The sensor bias voltage was adjusted to reach an average leakage current of
+10 nA/pixel, which is the maximum specification for the RD53A chip [14]. The pixels with a noise
+occupancy higher than 10−4 were considered noisy and masked, based on the lowest hit occupancy
+expected from the simulation presented in Figure 10. The remaining pixels were tuned to a threshold
+of 1000 e− . Pixels with an anomalously high threshold that could not be adjusted with the range of
+the trim bits were masked in the tuning procedure. The threshold distributions of the three AFEs
+after tuning are shown in Figure 14.
+All three AFEs were functional after irradiation and could reach the required threshold with a
+threshold dispersion of about 100 e− . The threshold tuning of the LIN AFE worked well and only
+0.1% of pixels were masked. The auto-zeroing in the SYNC AFE worked well too, however the
+leakage current caused a higher noise in this front-end and 3% of the pixels were masked. The
+threshold distribution of the DIFF AFE features a narrow core and long tails, and 11.2% of pixels
+were masked. The large fraction of masked pixels in the DIFF AFE is the consequence of a long
+
+– 11 –
+
+Number of pixels
+
+2000
+1750
+1500
+1250
+1000
+750
+500
+250
+00
+
+DIFF FE
+Untuned
+Out of scale: 5.8%
+
+5000
+10000
+15000
+Measured threshold (e )
+
+Figure 15: Untuned threshold distribution of the DIFF AFE in the irradiated RD53A chip.
+tail in the untuned threshold distribution, shown in Figure 15. Pixels with a too high threshold
+cannot be tuned to the desired threshold value because the range covered by the trim bits is a global
+setting for the whole chip. As the threshold dispersion depends on several AFE parameters, many
+parameter combinations were tried to mitigate the problem, and the 11.2% of masked pixels was
+the best result that could be achieved with this irradiated sample.
+This study triggered an investigation and the design team discovered that the combined effect of
+irradiation and cold temperature provoked a PMOS threshold increase in the DIFF precomparator,
+resulting in a small voltage margin. Simulations showed that the voltage margin is smaller in cold
+and decreases with irradiation, reaching a value close to zero for the DIFF AFE design implemented
+in the RD53A chip after irradiation to 200 Mrad, which explains the problematic threshold tuning
+observed after irradiation to 350 Mrad. A design improvement of the DIFF precomparator was
+proposed and simulated, obtaining an extension of the expected operation range up to 500 Mrad,
+which remains marginal compared to the expected dose in the CMS detector. With such operation
+range, replacements of the innermost layer would be required every two years once the ultimate
+luminosity is reached, while CMS is aiming at one replacement during the whole high-luminosity
+program. For this reason the choice was oriented towards the other two AFEs, which seem promising
+candidates for a higher radiation tolerance.
+
+5
+
+Noise evaluation
+
+In the pixel readout chips, single noisy pixels can be disabled to reduce the rate of noise hits.
+However, the fraction of disabled pixels should not significantly increase the detection inefficiency.
+A single pixel was considered noisy if its noise occupancy was above 10−4 based on the lowest
+occupancy expected in the IT detector from simulation (Figure 10). Therefore, as a first step of the
+noise evaluation, every pixel with more than 100 hits in 106 triggers was disabled at a threshold of
+1200 e− . As a second step, the noise occupancy of the non-masked pixels was measured. A new set
+of 106 triggers was sent to each front-end, without any charge injection, so that each recorded hit is
+induced by the noise. The average noise occupancy is then defined as the number of noise hits per
+pixel and per trigger. It was measured for the three AFEs, using a non-irradiated RD53A chip with
+a sensor with the highest capacitance, i.e. rectangular pixels, operated at a temperature of about
+−10 °C. Results of noise occupancy measurements are presented in Figure 16. The fraction of
+
+– 12 –
+
+PA bias set to 5 μA/pixel
+
+Noise occupancy
+
+Noise occupancy
+
+1E-03
+10-3
+1E-04
+10-4
+1E-05
+10-5
+1E-06
+10-6
+1E-07
+10-7
+1E-08
+10-8
+1E-09
+10-9
+1E-10
+10-10
+
+CMS requirement
+SYNC
+Masked: 0.4%
+LIN
+Masked: 0.1%
+
+1E-05
+10-5
+1E-06
+10-6
+
+CMS requirement
+SYNC
+Masked: 0.4%
+
+1E-07
+10-7
+1E-08
+10-8
+
+LIN
+Masked: 0.1%
+
+1E-09
+10-9
+1E-10
+10-10
+
+1E-11
+10-11
+1E-12
+10-12
+
+Threshold: 1200 e−
+
+1E-03
+10-3
+1E-04
+10-4
+
+1E-11
+10-11
+DIFF
+Masked: 0%
+
+1E-13
+10-13
+700 800 900 100011001200130014001500
+Threshold
+
+DIFF
+Masked: 0%
+
+1E-12
+10-12
+1E-13
+10-13
+
+3
+
+4
+
+5
+
+6
+
+7
+
+Current consumption (μA/pixel)
+
+(e-)
+
+(a) Influence of the threshold.
+
+(b) Influence of the PA bias current [23].
+
+Figure 16: Noise occupancy measurement of the three AFEs implemented in the RD53A chip as
+a function of the threshold (a) and the PA bias current (b). The SYNC AFE is shown in blue, the
+LIN AFE in green and the DIFF AFE in violet. The CMS requirement for the maximum noise
+occupancy is indicated in red. The number of masked noisy pixels is given for each AFE.
+masked noisy pixels is indicated in the legend and the maximum noise occupancy of 10−6 , required
+by CMS, is indicated by the red line. The TOT was calibrated to 1100 e− /TOT40 .
+First, the influence of the threshold on the average noise occupancy was evaluated. The result is
+shown in Figure 16(a). The threshold was gradually decreased from 1200 e− , keeping the same noisy
+pixels disabled. As expected, the average noise occupancy decreases with increasing threshold,
+regardless of the front-end design. The DIFF front-end shows very good noise performance, with
+the average noise occupancy several orders of magnitude below the requirement, even for low
+thresholds. No hits were found in this front-end in 106 triggers at higher thresholds, hence a higher
+number of triggers was sent to evaluate the average noise occupancy. The other two AFEs satisfy
+the noise requirement down to a threshold of 1000 e− , which complies also with the requirement on
+the detection threshold. Nonetheless, it can be noticed that the fraction of masked pixels is higher
+in the SYNC AFE.
+The influence of the PA bias current on the noise was also studied. When this current increases,
+the transconductance of the input transistor is increased, which results in lower noise with a penalty
+of an increase in the analogue current consumption. The average noise occupancy was measured for
+different PA bias currents and is presented in Figure 16(b) as a function of the measured analogue
+current consumption per pixel. All the other front-end settings that could contribute to the current
+consumption were kept constant during this measurement. As expected the noise in all three
+AFEs decreases when more current is provided. The DIFF AFE shows again a very good noise
+performance with the average noise occupancy well below the requirement, even when operated
+with low PA bias. The LIN and the SYNC AFE need 3.5 μA and 4.5 μA per pixel, respectively, to
+reach the required noise level. All three AFEs can meet the CMS noise requirement if the PA bias
+
+– 13 –
+
+current is adapted, hence this parameter is a handle to reduce the front-end noise at the price of an
+increase in the power consumption.
+
+6
+
+Dead time and time-over-threshold calibration
+
+Preamplifier output
+
+An important consideration for a highly efficient particle detector is the event loss due to the
+dead time, especially at high luminosity and high pileup. As explained in Section 3 the dead time
+caused by the AFE depends on the TOT calibration and a charge resolution of 3000 e− /TOT40 is
+necessary to achieve the 1% dead time required for the innermost layer of the IT barrel. The TOT
+response can be set by adjusting the discharge current of the PA. When the PA discharge current
+increases, the PA output returns faster to the baseline and the corresponding TOT is smaller, as
+illustrated in Figure 17. Therefore, a faster PA discharge leads to a reduced detector dead time.
+In the following the required charge resolution of 3000 e− /TOT40 is also referred to as the fast
+discharge.
+Increasing discharge current
+
+Threshold
+
+Comparator output
+
+Time
+TOT
+Increasing
+discharge current
+
+Time
+
+Figure 17: Sketch of the influence of the discharge current on the signal shape at the output of the
+PA and on the corresponding TOT.
+The TOT charge resolution of the three AFEs was measured with a constant charge injection
+of 6000 e− for different PA discharge currents. First, the charge resolution of all three AFEs was set
+to about 1100 e− /TOT40 , as can be observed in Figure 18(a). This resolution is not reached for the
+same current in different AFEs. Then the PA discharge current was increased to verify the front-end
+compliance with the dead time requirement. As expected, when the discharge current increases the
+PA discharges faster and the charge resolution is coarser. All three AFEs can reach the required
+charge resolution indicated by the red line. The SYNC and LIN AFEs can also discharge faster,
+while the DIFF AFE shows a saturation of the PA discharge current DAC and would be operated at
+its limit to reach the dead time required for the inner layers.
+A dedicated measurement was carried out on the DIFF AFE, to better understand the observed
+saturation effect. The charge resolution of the DIFF AFE versus the discharge current was measured
+for different input charges, ranging from 3 to 20 ke− . The result, presented in Figure 18(b), confirms
+the saturation of the discharge current DAC in this AFE, occurring at 30% of the DAC range,
+
+– 14 –
+
+LIN
+
+Charge resolution (e- / TOT40)
+
+Charge resolution (e- / TOT40)
+
+4 000
+
+SYNC
+
+3 500
+DIFF
+
+3 000
+CMS requirement
+
+2 500
+2 000
+1 500
+1 000
+
+6500
+DIFF FE
+5500
+
+20 ke-
+
+4500
+
+15 ke10 ke-
+
+3500
+2500
+
+6 ke-
+
+1500
+
+3 ke-
+
+500
+5
+
+10 15 20 25 30 35
+
+40 45 50
+
+PA discharge current (DAC range in %)
+
+(a)
+
+5
+
+10 15 20 25 30 35 40 45 50
+
+PA discharge current (DAC range in %)
+
+(b)
+
+Figure 18: The charge resolution as a function of the PA discharge current (a) measured with a
+constant charge injection of 6000 e− for the three RD53A AFEs and (b) measured for different input
+charges for the DIFF AFE only.
+
+regardless of the input charge. This implies a marginal operation of this particular AFE to reach the
+dead time requirement.
+Increasing the discharge current reduces the dead time, as mentioned above, but it also reduces
+the AFE stability, and therefore it is likely to induce more noise. Hence the noise was re-evaluated
+for the fast discharge operation. The noise was measured for two detection thresholds, 1000 e−
+and 1200 e− , and two charge resolutions, 1100 e− /TOT40 and the required 3000 e− /TOT40 . The
+combination of these four parameters defined four measurement scenarios for which the average
+noise occupancy was measured. The measurement method was the same as in Section 5. In brief,
+pixels with more than 100 hits in 106 triggers were declared noisy and masked, then the average
+noise occupancy of non-masked pixels was defined as the number of noise hits per pixel and per
+trigger, measured over 106 events.
+The fraction of masked pixels is shown in Figure 19(a) and the average noise occupancy in
+Figure 19(b) for the four considered scenarios. The average noise occupancy of all three AFEs is
+higher at fast discharge and is the highest at fast discharge and low threshold, as expected. The DIFF
+AFE demonstrates again excellent noise performance, with almost no noisy pixels and the average
+noise occupancy well below the requirement, even at fast discharge. At slow discharge the noise in
+this AFE was so low that only an upper limit was estimated. The LIN AFE has few noisy pixels and
+the average noise occupancy satisfies the requirement for any scenario. The SYNC AFE appears to
+be the noisiest of the three, reaching almost 3.8% of noisy pixels when operated at fast discharge
+and low threshold. The higher noise in this AFE, significantly increasing with more aggressive chip
+settings, was considered a critical aspect for the operation in the innermost layer of the CMS Inner
+Tracker.
+
+– 15 –
+
+3%
+
+1100
+
+e-/TOT
+
+3000
+
+e-/TOT
+
+40
+
+40
+
+1000 e1200 e1000 e1200 e-
+
+Noise occupancy
+
+Fraction of masked pixels
+
+4%
+
+1E-04
+10-4
+
+1000 e-
+
+1100 e-/TOT40
+
+1E-05
+10-5
+
+3000
+
+1E-06
+10-6
+
+e-/TOT
+
+1200 e1000 e-
+
+40
+
+1200 eCMS requirement
+
+2%
+
+1E-07
+10-7
+1%
+
+0%
+
+upper
+limit
+
+1E-08
+10-8
+
+SYNC
+
+LIN
+
+1E-09
+10-9
+
+DIFF
+
+(a)
+
+SYNC
+
+LIN
+
+DIFF
+
+(b)
+
+Figure 19: Fraction of masked noisy pixels (a) and the average noise occupancy after masking (b)
+of the three AFEs in the RD53A chip. The blue colours represent the charge calibration of
+1100 e− /TOT40 and the red colours represent the charge calibration of 3000 e− /TOT40 . The darker
+colours are used for the threshold of 1000 e− and the lighter colours are used for the threshold of
+1200 e− .
+
+7
+
+Late-detected hits
+
+The time response of the pixel readout chip is of high importance to assign detected hits to their
+corresponding LHC bunch crossings (BXs) and to limit the out-of-time pileup causing spurious
+hits in the reconstruction. The time response of the AFE, i.e. the combination of the PA rise time
+and the discriminator speed, is a function of the input charge. Pulses with the same peaking time
+but different amplitude pass the discriminator threshold at different times. High amplitude signals,
+depicted in blue in Figure 20, pass the threshold within one BX, i.e. within 25 ns. If the deposited
+charge is just above the threshold instead, the signal is rising slower and is detected later by the
+discriminator. Such a hit, shown in red, might be assigned to the following BX, and appears as a
+spurious hit in another event. The smallest charge (Qmin ) which can be detected within the correct
+BX (dark blue signal) is equivalent to the so-called "in-time threshold" that is higher than the
+threshold of the discriminator. The time behaviour of an AFE is typically described by its time walk
+curve, i.e. the response delay of the discriminator as a function of the input charge. An example of
+a simulated time walk curve of the LIN AFE is shown in Figure 21. Given that the discriminator
+of one of the three AFEs is synchronous to the clock, the time walk of this AFE cannot be directly
+measured and another method had to be used to compare the timing of the three AFEs.
+Front-end time response measurement
+The charge injection in the RD53A chip can be delayed with respect to the rising edge of the
+clock with a step size of 1.5625 ns [13]. The front-end time response was measured by injecting
+calibration pulses with different amplitudes and with different time delays. The detection threshold
+was set to 1000 e− and the full range of available charges up to 35 ke− was scanned, using a finer
+
+– 16 –
+
+Time (ns)
+
+Preamplifier output
+
+In-time
+threshold
+
+30
+25
+20
+15
+
+Threshold
+
+10
+5
+BX1 BX2
+0
+
+25
+
+50
+
+75
+
+100
+
+125
+
+0
+
+150
+
+0
+
+Qmin
+
+5
+
+Time (ns)
+
+Figure 20: Illustration of the discriminator time
+response for different signal amplitudes.
+
+10
+Charge (ke-)
+
+Figure 21: Simulated time walk curve of the
+linear front-end in the RD53A chip.
+
+charge step for low charges where timing is critical. Each charge was injected 50 times to a pixel
+for each time delay. Figure 22 shows the two-dimensional plot of charge versus time for all three
+AFEs. The x axis represents time in nanoseconds and t = 0 indicates the time when the highest
+charge is detected. The y axis, showing the injected charge in electrons, is limited to 10 ke− in this
+figure. The colour code indicates the detection probability for a given BX, for each combination
+of charge and injection delay. The yellow zone corresponds to 100% detection efficiency, while in
+the white part no hit is detected. The left edge of the coloured region corresponds to the time walk
+curve. In the upper part of the plot, the coloured region is a straight rectangle with a time width of
+25 ns, which confirms that high charges are always detected within one BX. Small charges instead
+are detected later, resulting in a tail in the detection region. This tail extends up to about 40 ns in
+the SYNC and DIFF AFE, indicating that these two AFEs have a comparable time response. The
+DIFF AFE is able to correctly assign slightly smaller charges than the SYNC AFE. The LIN AFE
+appears to be the slowest of the three, with the largest time walk of more than two BX.
+
+SYNC FE
+
+LIN FE
+
+DIFF FE
+
+1.0
+
+8000
+
+0.8
+
+6000
+
+0.6
+
+4000
+
+0.4
+
+2000
+
+0.2
+
+0 20
+
+Probability of being detected
+
+Injected charge (e )
+
+10000
+
+0
+
+20
+40
+60
+Time of detection (ns)
+
+80
+
+20
+
+0
+
+20
+40
+60
+Time of detection (ns)
+
+80
+
+20
+
+0
+
+20
+40
+60
+Time of detection (ns)
+
+80
+
+0.0
+
+Figure 22: The measured time response of the SYNC AFE (left), the LIN AFE (middle), and the
+DIFF AFE (right) obtained with one RD53A chip.
+
+– 17 –
+
+Combination with time of arrival simulation
+A Monte Carlo simulation was performed within the standard CMS simulation and reconstruction software framework called CMSSW [30] to evaluate the influence of the time response of each
+AFE on the detector performance and to estimate the resulting fraction of spurious hits. The time
+of arrival of particles was simulated for different locations in the IT detector, given that it depends
+on the position of the pixel module with respect to the interaction point. Sixteen different locations
+were studied: the centre (z = 0) and edge module of each barrel layer, the innermost and outermost
+module of the first and last small disc, as well as of the first and last large disc (Figure 1). For each
+location about 2000 minimum bias QCD events, without pileup and without a transverse momentum
+cut, were simulated. The simulated pixel hits, corresponding to single pixels with deposited charge,
+were sorted by released charge, ranging from 600 e− ‡ to 50 ke− , with a granularity of 150 e− and
+a time resolution of 0.25 ns. The simulated time of arrival versus charge distribution for the central
+module (z = 0) of the innermost layer of the IT barrel is presented in Figure 23(a).
+Such a distribution was combined with the time response measurement introduced in the
+previous section. The x axis of the time response is reversed, obtaining the acceptance region, in
+time and charge, giving the probability of a charge to be detected in the correct BX. This way,
+instead of showing when a hit is detected by the electronics, the figure indicates when a hit has to
+occur to be detected in a given BX. The y axis has to be extended to match the charge range in the
+simulation. Assuming that the time response remains constant for very large signals, the yellow
+region with sharp edges is extended up to 50 ke− . For illustration, the time response of the LIN
+AFE, after such modifications, is presented in Figure 23(b).
+When the acceptance region of the front-end is superimposed with the hit distribution from
+simulation, as indicated in Figure 23(c), the hits that are inside the yellow part of the acceptance
+region have a 100% probability to be assigned to the correct BX. On the other hand, hits that are
+outside of the detection region have zero probability to be detected in time. Figure 23(d) shows the
+hits that will be assigned to a wrong BX, obtained from the exclusion of the two overlaid plots. The
+integral of the exclusion plot divided by the total number of hits gives the fraction of late-detected
+hits in a given location of the future detector.
+An important part of this method is the time alignment of the two overlapping plots. The
+origin of the time axis of both the measurement and the simulation have to be correctly aligned.
+The t = 0 of the simulation corresponds to the time when the two proton bunches overlap in the
+interaction region, corrected with the expected time of flight from the interaction point to the given
+module. The zero of the chip acceptance can be shifted to maximize the overlap, as it would be
+done in the detector by calibration. For this measurement, the peak of the simulation is placed three
+fully efficient bins from the left edge of the acceptance region, i.e. 4.625 ns, as it is indicated in
+Figure 23(c). This estimate of about 5 ns was used to account for the imperfect time alignment in
+the detector due to the variations in the length of the electrical links, jitter and other contributions,
+adding also some margin.
+‡ Given
+
+that charges smaller than 600 e− are not expected to be detected because of the threshold, the simulation
+started at this charge to avoid overloading the computing time.
+
+– 18 –
+
+10000
+0
+
+20
+
+0
+20
+Time (ns)
+
+40
+
+Charge (e )
+
+100
+
+20000
+
+40000
+Number of hits
+
+Charge (e )
+
+101
+
+30000
+
+0.8
+
+Probability to be detected
+
+102
+
+40000
+
+1.0
+
+50000
+
+20000
+
+0.4
+0.2
+
+10
+
+1
+
+10000
+
+10
+
+2
+
+0
+
+(a) Time of arrival simulation.
+
+0.6
+
+30000
+
+20
+
+0
+20
+Time (ns)
+
+40
+
+0.0
+
+(b) AFE acceptance region for a given BX.
+
+4.625 ns
+
+50000
+
+102
+
+Charge (e )
+
+40000
+
+101
+
+30000
+
+100
+
+20000
+10000
+0
+
+(c) Overlay between measurement and simulation.
+
+20
+
+0
+20
+Time (ns)
+
+40
+
+Number of hits
+
+50000
+
+10
+
+1
+
+10
+
+2
+
+(d) Late-detected hits.
+
+Figure 23: Different steps of the time response evaluation method.
+
+Fraction of late hits
+The method described above was used to evaluate the fraction of hits detected late by the three
+AFE designs. The result is shown in Figure 24 for the selected detector locations. The left half of
+the histogram corresponds to the IT barrel layers, numbered from the centre outwards L1 to L4. For
+each layer the study was done for two pixel modules, one at the edge (e) and the one in the centre
+(c) of the barrel. The fraction of late hits increases with the distance from the interaction point. The
+right half of the histogram is dedicated to the discs, numbered D1 to D12 with increasing distance
+from the interaction point. For each disc one module on the innermost (i) and one on the outermost
+(o) ring is presented. For any given disc the fraction of late detected hits is higher on the outer ring.
+An ideal front-end with infinitely fast time response was also simulated and the fraction of hits
+detected late was estimated using the same method described above. Results are shown in grey in
+Figure 24 overlaid to the estimates of the actual analogue front-ends, because they represent the
+irreducible background. For the considered positions, this fraction is between 0.38% and 7.26%.
+These are hits generated by particles whose travel time up to the sensor is more than 25 ns longer than
+the minimum, for which the detector is tuned. The SYNC and DIFF AFE have similar performance,
+
+– 19 –
+
+Fraction of late hits (%)
+
+IT Barrel
+
+IT Disks
+
+20
+SYNC
+LIN
+
+15
+
+DIFF
+Ideal FE
+
+10
+
+5
+
+0
+L1e
+
+L1c
+
+L2e
+
+L2c
+
+L3e
+
+L3c
+
+L4e
+
+L4c
+
+D1i
+
+D1o
+
+D8i
+
+D8o
+
+D9i
+
+D9o D12i D12o
+
+Position in the detector
+
+Figure 24: Fraction of hits detected late by the three RD53A AFEs for 16 pixel module positions.
+The IT barrel layers are numbered from the centre outwards L1 to L4 and for each layer the module
+at the edge is denoted "e" and the one in the centre is denoted "c". The IT discs are numbered D1
+to D12 with increasing distance from the interaction point and for each disc the innermost ring is
+denoted "i" and the outermost one is denoted "o".
+causing few percent of misassigned hits on top of the background. The DIFF is slightly faster. The
+LIN AFE instead is significantly slower, causing up to additional 11% of late hits in the detector,
+on top of the intrinsic worst case 7%.
+LIN FE slow time response mitigation
+Following the outcome of the previous measurement, a modification of the discriminator circuit
+was proposed by the design team to improve the time response of the LIN AFE. The discriminator is
+composed of two stages: a transconductance stage and a transimpedance amplifier (TIA). In the TIA
+two diode-connected transistors, initially introduced to minimise the static current consumption at
+the output of the discriminator, were forcing other transistors to operate in the deep sub-threshold
+regime, consequently making them slower. A significant improvement in time walk at the cost of
+a marginal increase in static current consumption was achieved by removing those two transistors.
+This led to a simpler TIA stage in the new design of the LIN AFE [31], for the next version of the
+chip, called RD53B [18].
+Circuit simulations were used to extract the time walk curves of both the original and the
+improved LIN AFE designs. They were transformed into time response plots and combined with
+the time of arrival simulations to estimate the fraction of late hits for the simulated designs. The
+simulated RD53A design was compared to the measurement and the difference in late hits is shown
+in Figure 25. The simulated AFE gives a slightly higher number of late hits. Nevertheless, the
+simulation demonstrates a very good agreement with the measurement, the difference in late hits
+being below 1%. This confirms the validity of the simulation, which can therefore be used to
+predict the fraction of late hits induced by the improved design. The difference in late hits between
+the original design (RD53A) and the new one (RD53B) is also shown in Figure 25. The new LIN
+
+– 20 –
+
+Number of module positions
+
+10
+
+RD53A simulation vs. measurement
+Mean difference: 0.67%
+
+8
+6
+
+RD53A vs. RD53B simulation
+Mean difference: 5.01%
+
+4
+2
+0
+
+0
+
+2
+
+4
+6
+8
+10
+Difference in late hits (%)
+
+Figure 25: Difference between the fraction of hits detected late by the simulated and measured
+RD53A design of the LIN AFE (light green) and difference between the fraction of hits detected late
+by the simulated RD53A version of the LIN AFE and the improved RD53B version (dark green).
+AFE demonstrates on average 5% less misassigned hits. The improved design of the LIN AFE
+was also implemented in a test chip and verified before and after irradiation. The simulation and
+measurement results after an irradiation up to 1 Grad show that the degradation of time walk after
+irradiation is minor [31].
+Late-hit occupancy
+The fraction of late-detected hits was converted to the occupancy due to late hits, using the
+simulated hit occupancies extracted from Figure 10. The result is shown in Figure 26 for all the
+positions in the detector. The irreducible background of misassigned hits is almost uniform in
+the tracker and amounts to between 10−5 and 10−4 , regardless of the AFE design. The late-hit
+occupancy levels are at least one order of magnitude above the required noise level, indicated by the
+red line in the figure. Hence the spurious hit rate in the detector is dominated by the time response
+of the AFE, not by the noise. Moreover, the performance of the improved design of the LIN AFE
+is comparable to the other two AFEs, although it remains slightly higher.
+
+8
+
+Conclusions
+
+A new generation pixel readout chip is being designed for the upgrade of the CMS Inner Tracker
+to cope with stringent requirements imposed by unprecedented radiation levels and hit rates. Three
+different analogue front-ends were designed by the RD53 Collaboration and implemented in a large
+scale demonstrator chip, called RD53A. The three designs were characterized and the expected
+detector performance was evaluated against the requirements to choose the most suitable option for
+CMS.
+The differential analogue front-end showed the best noise performance, with the noise occupancy several orders of magnitude below the requirement, as well as a very good time response.
+Nevertheless, this analogue front-end showed a problematic threshold tuning after irradiation, at
+
+– 21 –
+
+IT Barrel
+
+IT Disks
+
+Late-hit occupancy
+
+1E-01
+10-1
+
+1,E-01
+
+SYNC
+
+1E-02
+10-2
+
+LIN new design
+
+1,E-02
+
+DIFF
+
+1E-03
+10-3
+
+Ideal AFE
+
+1,E-03
+
+Noise requirement
+
+1E-04
+10-4
+
+1,E-04
+
+1E-05
+10-5
+
+1,E-05
+
+1E-06
+10-6
+
+1,E-06
+
+1E-07
+10-7
+
+1,E-07
+
+L1e
+
+L1c
+
+L2e
+
+L2c
+
+L3e
+
+L3c
+
+L4e
+
+L4c
+
+D1i
+
+D1o
+
+D8i
+
+D8o
+
+D9i
+
+D9o D12i D12o
+
+Position in the detector
+
+Figure 26: The occupancy due to hits detected late by the RD53A AFEs for different module
+positions in the detector. The IT barrel layers are numbered from the centre outwards L1 to L4 and
+for each layer the module at the edge is denoted "e" and the one in the centre is denoted "c". The
+IT discs are numbered D1 to D12 with increasing distance from the interaction point and for each
+disc the innermost ring is denoted "i" and the outermost one is denoted "o".
+
+cold temperature of −10 °C and with high leakage current. An improved design was proposed,
+expected to extend the operation with effective threshold tuning up to 500 Mrad, according to the
+simulation results. However, given the radiation levels expected in CMS, such an operation range
+would require several replacements of the innermost layer of the Inner Tracker barrel during the
+physics program. In addition, a saturation in the preamplifier feedback requires to operate at the
+limits of the time-over-threshold response in order to match the dead time requirement for the
+innermost layer of the Inner Tracker.
+The synchronous analogue front-end features an automatic threshold tuning performed periodically by the auto-zeroing circuit and offers a very good timing performance. However, it appeared
+to be the noisiest of the three analogue front-ends. The noise increased for lower thresholds and
+fast preamplifier return to baseline, becoming critical for the operation settings of Layer 1.
+The linear analogue front-end satisfied all the requirements, but featured a slower time response.
+However, an improved design was developed and is expected from simulation to reach a timing
+performance almost equivalent to the other two analogue front-ends. Since all the performance
+parameters of this analogue front-end were within CMS requirements and the main drawback was
+addressed and mitigated, the linear analogue front-end was identified as the lowest-risk option for
+the future pixel detector. CMS selected the linear analogue front-end with an improved design for
+the integration into the next version of the RD53 pixel chip for CMS, named C-ROC. A prototype
+is expected to become available in 2021.
+
+– 22 –
+
+Acknowledgments
+The tracker groups gratefully acknowledge financial support from the following funding agencies: BMWFW and FWF (Austria); FNRS and FWO (Belgium); CERN; MSE and CSF (Croatia);
+Academy of Finland, MEC, and HIP (Finland); CEA and CNRS/IN2P3 (France); BMBF, DFG,
+and HGF (Germany); GSRT (Greece); NKFIA K124850, and Bolyai Fellowship of the Hungarian
+Academy of Sciences (Hungary); DAE and DST (India); IPM (Iran); INFN (Italy); PAEC (Pakistan); SEIDI, CPAN, PCTI and FEDER (Spain); Swiss Funding Agencies (Switzerland); MST
+(Taipei); STFC (United Kingdom); DOE and NSF (U.S.A.).
+Individuals have received support from HFRI (Greece).
+
+References
+[1] G. Apollinari, I. Béjar Alonso, O. Brüning, M. Lamont and L. Rossi, High-Luminosity Large Hadron
+Collider (HL-LHC), Preliminary Design Report CERN-2015-005, 2015.
+[2] L. Evans and P. Bryant, LHC Machine, JINST 3 (2008) S08001.
+[3] CMS Collaboration, S. Chatrchyan et al., The CMS experiment at the CERN LHC, JINST 3 (2008)
+S08004.
+[4] Official HL-LHC project website.
+https://project-hl-lhc-industry.web.cern.ch/content/project-schedule.
+[5] C. Collaboration, Technical Proposal for the Phase-II Upgrade of the CMS Detector, Tech. Rep.
+CERN-LHCC-2015-010, LHCC-P-008, CMS-TDR-15-02, 2015.
+[6] C. Collaboration, The Phase-2 Upgrade of the CMS Tracker, Tech. Rep. CERN-LHCC-2017-009,
+CMS-TDR-014, 2017.
+[7] C. Collaboration, The Phase-2 Upgrade of the CMS Beam Radiation, Instrumentation, and
+Luminosity Detectors: Conceptual Design, Tech. Rep. CMS-NOTE-2019-008,
+CERN-CMS-NOTE-2019-008, 2020.
+[8] D. Koukola on behalf of the CMS Collaboration, Serial Powering for the Tracker Phase-2 Upgrade,
+PoS (Vertex2019) 039.
+[9] C. Collaboration, The Phase-2 Upgrade of the CMS Level-1 Trigger, Tech. Rep.
+CERN-LHCC-2020-004, CMS-TDR-021, 2020.
+[10] B. Ristic on behalf of the CMS Tracker Group, Prototype Module Construction for the High
+Luminosity Upgrade of the CMS Pixel Detector, PoS (Vertex2019) 058.
+[11] Taiwan Semiconductor Manufacturing Company (TSMC) website. https://www.tsmc.com/.
+[12] RD53 Collaboration, J. Christiansen and M. Garcia-Sciveres, RD Collaboration Proposal:
+Development of pixel readout integrated circuits for extreme rate and radiation, Scientific Committee
+Paper CERN-LHCC-2013-008, LHCC-P-006, 2013.
+[13] RD53 Collaboration, M. Garcia-Sciveres, The RD53A Integrated Circuit, Tech. Rep.
+CERN-RD53-PUB-17-001, 2017.
+[14] RD53 Collaboration, M. Garcia-Sciveres, RD53A Integrated Circuit Specifications, Tech. Rep.
+CERN-RD53-PUB-15-001, 2015.
+
+– 23 –
+
+[15] K. Moustakas, P. Rymaszewski, T. Hemperek, H. Krüger, M. Vogt, T. Wang and N. Wermes, A Clock
+and Data Recovery Circuit for the ATLAS/CMS HL-LHC Pixel Front End Chip in 65 nm CMOS
+Technology, PoS (TWEPP2019) 046.
+[16] T. Wang, T. Hemperek, H. Krüger, K. Moustakas, P. Rymaszewski and M. Vogt, A high speed
+transmitter circuit for the ATLAS/CMS HL-LHC pixel readout chip, PoS (TWEPP2018) 098.
+[17] M. Karagounis, D. Arutinov, M. Barbero, F. Huegging, H. Krueger and N. Wermes, An integrated
+Shunt-LDO regulator for serial powered systems, Proceedings of ESSCIRC (2009) 276.
+[18] RD53 Collaboration, M. Garcia-Sciveres, F. Loddo and J. Christiansen, RD53B Manual, Tech. Rep.
+CERN-RD53-PUB-19-002, 2019.
+[19] F. Krummenacher, Pixel detectors with local intelligence: an IC designer point of view, NIM A 305
+(1991) 527.
+[20] E. Monteil, L. Pacher, A. Paternò, N. Demaria, A. Rivetti, M. Da Rocha Rolo, F. Rotondo et al., A
+synchronous analog very front-end in 65 nm CMOS with local fast ToT encoding for pixel detectors at
+HL-LHC, JINST 12 (2017) C03066.
+[21] L. Gaioni, F. De Canio, M. Manghisoni, L. Ratti, V. Re and G. Traversi, 65 nm CMOS analog
+front-end for pixel detectors at the HL-LHC, JINST 11 (2016) C02049.
+[22] T. Heim, Test results from the RD53A pixel readout chip and design status of its successor, in
+Proceedings of The 12th International Hiroshima Symposium on the Development and Application of
+Semiconductor Tracking Detectors, 2019.
+[23] L. Gaioni, RD53 analog front-end processors for the ATLAS and CMS experiments at the
+High-Luminosity LHC, PoS (Vertex2019) 021.
+[24] A. Dimitrievska and A. Stiller, RD53A: A large-scale prototype chip for the phase II upgrade in the
+serially powered HL-LHC pixel detectors, NIM A 958 (2020) 162091.
+[25] E. Monteil, RD53A: a large scale prototype for HL-LHC silicon pixel detector phase 2 upgrades, PoS
+(TWEPP2018) 157.
+[26] L. Gaioni, Test results and prospects for RD53A, a large scale 65 nm CMOS chip for pixel readout at
+the HL-LHC, NIM A 936 (2019) 282.
+[27] M. Daas, Y. Dieter, J. Dingfelder, M. Frohne, G. Giakoustidis, T. Hemperek, F. Hinterkeuser et al.,
+BDAQ53, a versatile pixel detector readout and test system for the ATLAS and CMS HL-LHC
+upgrades, NIM A 986 (2021) 164721.
+[28] C. Collaboration, CMS Technical Design Report for the Pixel Detector Upgrade, Tech. Rep.
+CERN-LHCC-2012-016, CMS-TDR-11, 2012.
+[29] V. Cindro, World Irradiation Facilities for Silicon Detectors, PoS (Vertex2014) 026.
+[30] D. J. Lange, The CMS reconstruction software, Journal of Physics: Conference Series 331 (2011)
+032020.
+[31] RD53 Collaboration, L. Gaioni and F. Loddo, CMS analog front-end: simulations and measurements,
+Tech. Rep. CERN-RD53-PUB-20-002, 2020.
+
+– 24 –
+
+The Tracker Group of the CMS Collaboration
+Institut für Hochenergiephysik, Wien, Austria
+W. Adam, T. Bergauer, D. Blöch, M. Dragicevic, R. Frühwirth1 , V. Hinger, H. Steininger
+Universiteit Antwerpen, Antwerpen, Belgium
+W. Beaumont, D. Di Croce, X. Janssen, T. Kello, A. Lelek, P. Van Mechelen, S. Van Putte,
+N. Van Remortel
+Vrije Universiteit Brussel, Brussel, Belgium
+F. Blekman, M. Delcourt, J. D'Hondt, S. Lowette, S. Moortgat, A. Morton, D. Muller, A.R. Sahasransu, E. Sørensen Bols
+Université Libre de Bruxelles, Bruxelles, Belgium
+Y. Allard, D. Beghin, B. Bilin, B. Clerbaux, G. De Lentdecker, W. Deng, L. Favart, A. Grebenyuk,
+D. Hohov, A. Kalsi, A. Khalilzadeh, M. Mahdavikhorrami, I. Makarenko, L. Moureaux, A. Popov,
+N. Postiau, F. Robert, Z. Song, L. Thomas, P. Vanlaer, D. Vannerom, Q. Wang, H. Wang, Y. Yang
+Université Catholique de Louvain, Louvain-la-Neuve, Belgium
+A. Bethani, G. Bruno, F. Bury, C. Caputo, P. David, A. Deblaere, C. Delaere, I.S. Donertas,
+A. Giammanco, V. Lemaitre, K. Mondal, J. Prisciandaro, N. Szilasi, A. Taliercio, M. Teklishyn,
+P. Vischia, S. Wertz
+Institut Ruđer Bošković, Zagreb, Croatia
+V. Brigljević, D. Ferenček, D. Majumder, S. Mishra, M. Roguljić, A. Starodumov2 , T. Šuša
+Department of Physics, University of Helsinki, Helsinki, Finland
+P. Eerola
+Helsinki Institute of Physics, Helsinki, Finland
+E. Brücken, T. Lampén, L. Martikainen, E. Tuominen
+Lappeenranta-Lahti University of Technology, Lappeenranta, Finland
+P. Luukka, T. Tuuva
+Université de Strasbourg, CNRS, IPHC UMR 7178, Strasbourg, France
+J.-L. Agram3 , J. Andrea, D. Apparu, D. Bloch, C. Bonnin, G. Bourgatte, J.-M. Brom, E. Chabert,
+L. Charles, C. Collard, E. Dangelser, D. Darej, U. Goerlach, C. Grimault, L. Gross, C. Haas,
+M. Krauth, E. Nibigira, N. Ollivier-Henry, E. Silva Jiménez
+Université de Lyon, Université Claude Bernard Lyon 1, CNRS/IN2P3, IP2I Lyon, UMR 5822,
+Villeurbanne, France
+E. Asilar, G. Baulieu, G. Boudoul, L. Caponetto, N. Chanon, D. Contardo, P. Dené, T. Dupasquier,
+G. Galbit, S. Jain, N. Lumb, L. Mirabito, B. Nodari, S. Perries, M. Vander Donckt, S. Viret
+RWTH Aachen University, I. Physikalisches Institut, Aachen, Germany
+L. Feld, W. Karpinski, K. Klein, M. Lipinski, D. Louis, D. Meuser, A. Pauls, G. Pierschel, M. Rauch,
+N. Röwert, J. Schulz, M. Teroerde, M. Wlochal
+
+– 25 –
+
+RWTH Aachen University, III. Physikalisches Institut B, Aachen, Germany
+C. Dziwok, G. Fluegge, O. Pooth, A. Stahl, T. Ziemons
+Deutsches Elektronen-Synchrotron, Hamburg, Germany
+C. Cheng, P. Connor, A. De Wit, G. Eckerlin, D. Eckstein, E. Gallo, M. Guthoff, A. Harb,
+C. Kleinwort, R. Mankel, H. Maser, M. Meyer, C. Muhl, A. Mussgiller, Y. Otarid, D. Pitzl,
+O. Reichelt, M. Savitskyi, R. Stever, N. Tonon, A. Velyka, R. Walsh, Q. Wang, A. Zuber
+University of Hamburg, Hamburg, Germany
+A. Benecke, H. Biskop, P. Buhmann, M. Eich, F. Feindt, A. Froehlich, E. Garutti, P. Gunnellini,
+M. Hajheidari, J. Haller, A. Hinzmann, H. Jabusch, G. Kasieczka, R. Klanner, V. Kutzner, T. Lange,
+S. Martens, M. Mrowietz, C. Niemeyer, Y. Nissan, K. Pena, O. Rieger, P. Schleper, J. Schwandt,
+D. Schwarz, J. Sonneveld, G. Steinbrück, A. Tews, B. Vormwald, J. Wellhausen, I. Zoi
+Institut für Experimentelle Teilchenphysik, KIT, Karlsruhe, Germany
+M. Abbas, L. Ardila, M. Balzer, T. Barvich, T. Blank, E. Butz, M. Caselle, W. De Boer, A. Dierlamm,
+A. Droll, K. El Morabit, F. Hartmann, U. Husemann, R. Koppenhöfer, S. Maier, S. Mallows,
+T. Mehner, M. Metzler, J.-O. Müller-Gosewisch, Th. Muller, M. Neufeld, A. Nürnberg, O. Sander,
+M. Schröder, I. Shvetsov, H.-J. Simonis, J. Stanulla, P. Steck, M. Wassmer, M. Weber, A. Weddigen,
+F. Wittig
+Institute of Nuclear and Particle Physics (INPP), NCSR Demokritos, Aghia Paraskevi, Greece
+G. Anagnostou, P. Assiouras, G. Daskalakis, I. Kazas, A. Kyriakis, D. Loukas
+Wigner Research Centre for Physics, Budapest, Hungary
+T. Balázs, K. Márton, F. Siklér, V. Veszprémi
+National Institute of Science Education and Research, HBNI, Bhubaneswar, India
+A. Das, C. Kar, P. Mal, R. Mohanty, P. Saha, S. Swain
+University of Delhi, Delhi, India
+A. Bhardwaj, C. Jain, G. Jain, A. Kumar, K. Ranjan, S. Saumya
+Saha Institute of Nuclear Physics, Kolkata, India
+R. Bhattacharya, S. Dutta, P. Palit, G. Saha, S. Sarkar
+INFN Sezione di Baria , Università di Barib , Politecnico di Baric , Bari, Italy
+P. Cariolaa , D. Creanzaa , c , M. de Palmaa , b , G. De Robertisa , L. Fiorea , M. Incea , b , F. Loddoa ,
+G. Maggia , c , S. Martiradonnaa , M. Mongellia , S. Mya , b , G. Selvaggia , b , L. Silvestrisa
+INFN Sezione di Cataniaa , Università di Cataniab , Catania, Italy
+S. Albergoa , b , S. Costaa , b , A. Di Mattiaa , R. Potenzaa , b , M.A. Saizua, 4 , A. Tricomia , b , C. Tuvea , b
+INFN Sezione di Firenzea , Università di Firenzeb , Firenze, Italy
+G. Barbaglia , M. Brianzia , A. Cassesea , R. Ceccarellia , b , R. Ciaranfia , V. Ciullia , b , C. Civininia ,
+R. D'Alessandroa , b , F. Fioria , b , E. Focardia , b , G. Latinoa , b , P. Lenzia , b , M. Lizzoa , b ,
+M. Meschinia , S. Paolettia , R. Seiditaa , b , G. Sguazzonia , L. Viliania
+
+– 26 –
+
+INFN Sezione di Genova, Genova, Italy
+F. Ferro, E. Robutti
+INFN Sezione di Milano-Bicoccaa , Università di Milano-Bicoccab , Milano, Italy
+F. Brivioa , M.E. Dinardoa , b , P. Dinia , S. Gennaia , L. Guzzia , b , S. Malvezzia , D. Menascea ,
+L. Moronia , D. Pedrinia , D. Zuoloa , b
+INFN Sezione di Padovaa , Università di Padovab , Padova, Italy
+P. Azzia , N. Bacchettaa , P. Bortignona, 5 , D. Biselloa , T.Dorigoa , M. Tosia , b , H. Yarara , b
+INFN Sezione di Paviaa , Università di Bergamob , Bergamo, Università di Paviac , Pavia, Italy
+L. Gaionia , b , M. Manghisonia , b , L. Rattia , c , V. Rea , b , E. Riceputia , b , G. Traversia , b
+INFN Sezione di Perugiaa , Università di Perugiab , CNR-IOM Perugiac , Perugia, Italy
+P. Asenova , c , G. Baldinellia , b , F. Bianchia , b , G.M. Bileia , S. Bizzagliaa , M. Capraia ,
+B. Checcuccia , D. Ciangottinia , L. Fanòa , b , L. Farnesinia , M. Ionicaa , M. Magherinia , b ,
+G. Mantovania , b , V. Mariania , b , M. Menichellia , A. Morozzia , F. Moscatellia , c , D. Passeria , b ,
+A. Piccinellia , b , P. Placidia , b , A. Rossia , b , A. Santocchiaa , b , D. Spigaa , L. Storchia ,
+T. Tedeschia , b , C. Turrionia , b
+INFN Sezione di Pisaa , Università di Pisab , Scuola Normale Superiore di Pisac , Pisa, Italy
+P. Azzurria , G. Bagliesia , A. Bastia , R. Beccherlea , V. Bertacchia , c , L. Bianchinia , T. Boccalia ,
+F. Bosia , R. Castaldia , M.A. Cioccia , b , R. Dell'Orsoa , S. Donatoa , A. Giassia , M.T. Grippoa , b ,
+F. Ligabuea , c , G. Magazzua , E. Mancaa , c , G. Mandorlia , c , M. Massaa , E. Mazzonia ,
+A. Messineoa , b , A. Moggia , F. Morsania , F. Pallaa , S. Paroliaa , b , F. Raffaellia , G. Ramirez
+Sancheza , c , A. Rizzia , b , S. Roy Chowdhurya , c , P. Spagnoloa , R. Tenchinia , G. Tonellia , b ,
+A. Venturia , P.G. Verdinia
+INFN Sezione di Torinoa , Università di Torinob , Torino, Italy
+R. Bellana , b , S. Colia , M. Costaa , b , R. Covarellia , b , G. Dellacasaa , N. Demariaa , S. Garbolinoa ,
+M. Grippoa , b , E. Migliorea , b , E. Monteila , b , M. Montenoa , G. Ortonaa , L. Pachera , b , A. Rivettia ,
+A. Solanoa , b , A. Vagnerinia , b
+Instituto de Física de Cantabria (IFCA), CSIC-Universidad de Cantabria, Santander, Spain
+J. Duarte Campderros, M. Fernandez, A. Garcia Alonso, G. Gomez, F.J. Gonzalez Sanchez,
+R. Jaramillo Echeverria, D. Moya, A. Ruiz Jimeno, L. Scodellaro, I. Vila, A.L. Virto, J.M. Vizan Garcia
+CERN, European Organization for Nuclear Research, Geneva, Switzerland
+D. Abbaneo, I. Ahmed, E. Albert, J. Almeida, M. Barinoff, J. Batista Lopes, G. Bergamin6 ,
+G. Blanchot, F. Boyer, A. Caratelli, R. Carnesecchi, D. Ceresa, J. Christiansen, K. Cichy, E. Curras
+Rivera, J. Daguin, S. Detraz, M. Dudek, N. Emriskova7 , F. Faccio, N. Frank, T. French, A. Hollos,
+G. Hugo, J. Kaplon, Z. Kerekes, K. Kloukinas, N. Koss, L. Kottelat, D. Koukola, M. Kovacs, A. La
+Rosa, P. Lenoir, R. Loos, A. Marchioro, I. Mateos Dominguez8 , S. Mersi, S. Michelis, A. Millet,
+A. Onnela, S. Orfanelli, T. Pakulski, A. Papadopoulos9 , A. Perez, F. Perez Gomez, J.-F. Pernot,
+P. Petagna, Q. Piazza, P. Rose, S. Scarfì10 , M. Sinani, R. Tavares Rego, P. Tropea, J. Troska,
+A. Tsirou, F. Vasey, P. Vichoudis, A. Zografos11
+
+– 27 –
+
+Paul Scherrer Institut, Villigen, Switzerland
+W. Bertl† , L. Caminada12 , A. Ebrahimi, W. Erdmann, R. Horisberger, H.-C. Kaestli, D. Kotlinski,
+U. Langenegger, B. Meier, M. Missiroli12 , L. Noehte12 , T. Rohe, S. Streuli
+Institute for Particle Physics, ETH Zurich, Zurich, Switzerland
+K. Androsov, M. Backhaus, R. Becker, P. Berger, D. di Calafiori, A. Calandri, L. Djambazov,
+M. Donega, C. Dorfer, F. Glessgen, C. Grab, D. Hits, W. Lustermann, M. Meinhard, V. Perovic,
+M. Reichmann, B. Ristic, U. Roeser, D. Ruini, J. Sörensen, R. Wallny
+Universität Zürich, Zurich, Switzerland
+K. Bösiger, D. Brzhechko, F. Canelli, K. Cormier, R. Del Burgo, M. Huwiler, A. Jofrehei, B. Kilminster, S. Leontsinis, A. Macchiolo, U. Molinatti, R. Maier, V. Mikuni, I. Neutelings, A. Reimers,
+P. Robmann, Y. Takahashi, D. Wolf
+National Taiwan University (NTU), Taipei, Taiwan
+P.-H. Chen, W.-S. Hou, R.-S. Lu
+University of Bristol, Bristol, United Kingdom
+E. Clement, D. Cussans, J. Goldstein, S. Seif El Nasr-Storey, N. Stylianou
+Rutherford Appleton Laboratory, Didcot, United Kingdom
+J.A. Coughlan, K. Harder, M.-L. Holmberg, K. Manolopoulos, T. Schuh, I.R. Tomalin
+Imperial College, London, United Kingdom
+R. Bainbridge, J. Borg, C. Brown, G. Fedi, G. Hall, D. Monk, M. Pesaresi, K. Uchida
+Brunel University, Uxbridge, United Kingdom
+K. Coldham, J. Cole, M. Ghorbani, A. Khan, P. Kyberd, I.D. Reid
+The Catholic University of America, Washington DC, USA
+R. Bartek, A. Dominguez, R. Uniyal, A.M. Vargas Hernandez
+Brown University, Providence, USA
+G. Benelli, B. Burkle, X. Coubez, U. Heintz, N. Hinton, J. Hogan13 , A. Honma, A. Korotkov,
+D. Li, M. Lukasik, M. Narain, S. Sagir14 , F. Simpson, E. Spencer, E. Usai, J. Voelker, W.Y. Wong,
+W. Zhang
+University of California, Davis, Davis, USA
+E. Cannaert, M. Chertok, J. Conway, G. Haza, D. Hemer, F. Jensen, J. Thomson, W. Wei, T. Welton,
+R. Yohay15 , F. Zhang
+University of California, Riverside, Riverside, USA
+G. Hanson, W. Si
+University of California, San Diego, La Jolla, USA
+P. Chang, S.B. Cooperstein, N. Deelen, R. Gerosa, L. Giannini, S. Krutelyov, B.N. Sathia, V. Sharma,
+M. Tadel, A. Yagil
+
+– 28 –
+
+University of California, Santa Barbara - Department of Physics, Santa Barbara, USA
+V. Dutta, L. Gouskos, J. Incandela, M. Kilpatrick, S. Kyre, H. Qu, M. Quinnan
+University of Colorado Boulder, Boulder, USA
+J.P. Cumalat, W.T. Ford, E. MacDonald, A. Perloff, K. Stenson, K.A. Ulmer, S.R. Wagner
+Cornell University, Ithaca, USA
+J. Alexander, Y. Bordlemay Padilla, S. Bright-Thonney, Y. Cheng, J. Conway, D. Cranshaw, A. Datta,
+A. Filenius, S. Hogan, S. Lantz, J. Monroy, H. Postema, D. Quach, J. Reichert, M. Reid, D. Riley,
+A. Ryd, K. Smolenski, C. Strohman, J. Thom, P. Wittich, R. Zou
+Fermi National Accelerator Laboratory, Batavia, USA
+A. Bakshi, D.R. Berry, K. Burkett, D. Butler, A. Canepa, G. Derylo, J. Dickinson, A. Ghosh,
+C. Gingu, H. Gonzalez, S. Grünendahl, L.A. Horyn, M. Johnson, P. Klabbers, C.M. Lei, R. Lipton,
+S. Los, P. Merkel, P. Murat, S. Nahn, F. Ravera, R. Rivera, L. Spiegel, L. Uplegger, E. Voirin,
+H.A. Weber
+University of Illinois at Chicago (UIC), Chicago, USA
+H. Becerril Gonzalez, X. Chen, S. Dittmer, A. Evdokimov, O. Evdokimov, C.E. Gerber, D.J. Hofman, C. Mills, T. Roy, S. Rudrabhatla, J. Yoo
+The University of Iowa, Iowa City, USA
+M. Alhusseini, S. Durgut, J. Nachtman, Y. Onel, C. Rude, C. Snyder, K. Yi16
+Johns Hopkins University, Baltimore, USA
+O. Amram, N. Eminizer, A. Gritsan, S. Kyriacou, P. Maksimovic, C. Mantilla Suarez, J. Roskes,
+M. Swartz, T. Vami
+The University of Kansas, Lawrence, USA
+J. Anguiano, A. Bean, S. Khalil, E. Schmitz, G. Wilson
+Kansas State University, Manhattan, USA
+A. Ivanov, T. Mitchell, A. Modak, R. Taylor
+University of Mississippi, Oxford, USA
+J.G. Acosta, L.M. Cremaldi, S. Oliveros, L. Perera, D. Summers
+University of Nebraska-Lincoln, Lincoln, USA
+K. Bloom, D.R. Claes, C. Fangmeier, F. Golf, C. Joo, I. Kravchenko, J. Siado
+State University of New York at Buffalo, Buffalo, USA
+I. Iashvili, A. Kharchilava, C. McLean, D. Nguyen, J. Pekkanen, S. Rappoccio
+Boston University, Boston, USA
+A. Albert, Z. Demiragli, D. Gastler, E. Hazen, A. Peck, J. Rohlf
+Northeastern University, Boston, USA
+J. Li, A. Parker, L. Skinnari
+
+– 29 –
+
+Northwestern University, Evanston, USA
+K. Hahn, Y. Liu, K. Sung
+The Ohio State University, Columbus, USA
+B. Cardwell, B. Francis, C.S. Hill, K. Wei
+University of Puerto Rico, Mayaguez, USA
+S. Malik, S. Norberg, J.E. Ramirez Vargas
+Purdue University, West Lafayette, USA
+R. Chawla, S. Das, M. Jones, A. Jung, A. Koshy, G. Negro, J. Thieman
+Purdue University Northwest, Hammond, USA
+T. Cheng, J. Dolen, N. Parashar
+Rice University, Houston, USA
+K.M. Ecklund, S. Freed, A. Kumar, H. Liu, T. Nussbaum
+University of Rochester, Rochester, USA
+R. Demina, J. Dulemba, O. Hindrichs
+Rutgers, The State University of New Jersey, Piscataway, USA
+E. Bartz, A. Gandrakotra, Y. Gershtein, E. Halkiadakis, A. Hart, A. Lath, K. Nash, M. Osherson,
+S. Schnetzer, R. Stone
+Texas A&M University, College Station, USA
+R. Eusebi
+Vanderbilt University, Nashville, USA
+P. D'Angelo, W. Johns
+†: Deceased
+1: Also at Vienna University of Technology, Vienna, Austria
+2: Also at Institute for Theoretical and Experimental Physics, Moscow, Russia
+3: Also at Université de Haute-Alsace, Mulhouse, France
+4: Also at Horia Hulubei National Institute of Physics and Nuclear Engineering (IFIN-HH),
+Bucharest, Romania
+5: Also at University of Cagliari, Cagliari, Italy
+6: Also at Institut Polytechnique de Grenoble, Grenoble, France
+7: Also at Université de Strasbourg, CNRS, IPHC UMR 7178, Strasbourg, France
+8: Also at Universidad de Castilla-La-Mancha, Ciudad Real, Spain
+9: Also at University of Patras, Patras, Greece
+10: Also at École Polytechnique Fédérale de Lausanne, Lausanne, Switzerland
+11: Also at National Technical University of Athens, Athens, Greece
+12: Also at Universität Zürich, Zurich, Switzerland
+13: Now at Bethel University, St. Paul, Minnesota, USA
+14: Now at Karamanoglu Mehmetbey University, Karaman, Turkey
+
+– 30 –
+
+15: Now at Florida State University, Tallahassee, USA
+16: Also at Nanjing Normal University, Nanjing, China
+
+– 31 –
+

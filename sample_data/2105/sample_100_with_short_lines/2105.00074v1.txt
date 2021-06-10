@@ -1,0 +1,665 @@
+flowpacket hybrid traffic classification
+for classaware network routing
+sayantan chowdhury  ben liang  ali tizghadam  ilijc albanese
+ university
+
+of toronto canada
+
+ telus
+
+canada
+
+arxiv210500074v1 csni 30 apr 2021
+
+abstract
+network traffic classification using machine learning techniques has been widely studied most
+existing schemes classify entire traffic flows but there are major limitations to their practicality at a
+network router the packets need to be processed with minimum delay so the classifier cannot wait
+until the end of the flow to make a decision furthermore a complicated machine learning algorithm
+can be too computationally expensive to implement inside the router in this paper we introduce
+flowpacket hybrid traffic classification fphtc where the router makes a decision per packet based
+on a routing policy that is designed through transferring the learned knowledge from a flowbased
+classifier residing outside the router we analyze the generalization bound of fphtc and show its
+advantage over regular packetbased traffic classification we present experimental results using a
+realworld traffic dataset to illustrate the classification performance of fphtc we show that it is
+robust toward traffic pattern changes and can be deployed with limited computational resource
+
+i i ntroduction
+traffic classification is critical to the operation of computer networks in many aspects such as
+network management qualityofservice guarantee and security concerns as a large segment of
+network traffic is encrypted in recent years traditional methods of classification eg the protocolbased approach and content comparison are no longer appropriate 1 in contrast machine learning
+algorithms can identify traffic flows with high accuracy using statistical features 26
+for classaware routing in a network the routers need to conduct traffic classification before
+forwarding the traffic however common machine learning algorithms are often too computationally
+expensive for the routers for example even though deep neural networks is known to provide
+accurate classification outcomes they are computationally intensive to train while they need to be
+updated frequently to adapt to the changing traffic pattern over time more importantly the statistical
+features required for flowbased traffic classification techniques often are not available for realtime
+classification in general statistical features such as the variance of packet length are extracted at
+the end of each flow after the lengths of all packets are observed therefore they are not useful for
+a router that must route the packets of a flow as they arrive with as little delay as possible some
+authors have proposed early recognition of traffic classes by observing a subset of packets from each
+flow 79 however this still might cause significant delay as a router generally needs to process
+millions of packets within a fraction of a second
+a naive alternative is pure packetbased traffic classification where each packet is observed and
+classified immediately ie the classifier does not wait for a stream of packets from a flow the router
+can look at the simple features embedded in the packet header and make a quick decision per packet
+packetbased traffic classification requires only fast lookup of the packet headers and thus is amenable
+to practical implementation in highspeed routers however a key drawback of this approach is that
+the classification performance can be poor due to the absence of detailed statistical features that are
+available in flowbased classification
+this motivates us to combine the advantages of both flowbased and packetbased traffic classification we propose a novel flowpacket hybrid traffic classification fphtc method where a
+lowcomplexity routing policy with packet classification at the router is designed with the assistance
+of a flowbased classifier that resides outside the router to the best of our knowledge there exists no
+prior work that considers this hybrid form between flowbased and packetbased methods for network
+traffic classification in the router
+our contributions can be summarized as follows
+ we propose fphtc which generates a lowcomplexity routing policy to be applied to the
+incoming packets at a router the routing policy enables classaware routing using only simple
+
+incoming traffic
+flows
+
+traffic mirror
+
+traffic selector
+
+flowbased
+traffic classifier
+
+deep packet
+inspection
+
+labeled
+flows
+
+labeled
+packets
+
+packetbased
+routing policy
+designer
+
+packetbased
+routing policy
+
+flowbased
+traffic classifier
+designer
+
+router
+
+classaware
+routing output
+
+figure 1 diagram illustrating the fphtc framework
+
+features eg those that can be directly read from the packet header we generate the routing
+policy by exploiting the knowledge learned by a highly accurate flowbased classifier residing
+outside the router the routing policy is constructed as a decision tree trained using the packets
+labeled by the flowbased classifier in fphtc we can employ the flowbased classifier to label
+any number of packets and thus the resulting routing policy can be highly accurate
+ we show that fphtc can be deployed in an online learning setting where a new routing policy
+is updated at the router whenever the performance of the current routing policy falls below a
+certain threshold due to changes in the traffic pattern this is achieved by adaptively retraining
+the flowbased classifier and then the routing policy upon receiving the feedback that routing
+policy update is required
+ we provide theoretical justification for the performance advantage of fphtc over regular packetbased traffic classification in terms of the generalization bound this further enables exploring
+the tradeoff between the cost of labeling data for training the flowbased classifier and the
+generalization bound of the routing policy
+ we conduct extensive experiments using an aggregate dataset of 43590 encrypted traffic flows
+from 10 and 11 we train gradient boosted tree models xgboost 12 and lightgbm 13
+as the flowbased classifier and compare the performance of fphtc with regular packetbased
+traffic classification for different training dataset sizes we observe substantial performance gain
+under fphtc
+the rest of this paper is structured as follows the concept of fphtc is presented in section ii
+where we describe different components of fphtc routing policy design and update procedure in
+detail section iii provides an analytical comparison between fphtc and regular packetbased traffic
+classification in terms of the generalization bound in section iv we present our experimental setup
+and classification performance of fphtc section v concludes the paper
+ii f lowpacket h ybrid t raffic c lassification
+we propose fphtc for a router that needs to conduct classaware traffic processing in this section
+we provide a detailed description of our scheme a diagram illustrating the overall framework of
+fphtc is given in fig 1
+a core components of fphtc
+1 router the router accepts an incoming stream of packets and processes them according to their
+service classes using the routing policy the basic structure and function of such a routing policy are
+welldefined in prior works on packet classification 14 15 throughout our work we focus on
+how to generate routing policy rules by training a machine learning model for packetbased traffic
+
+classification where the chosen header fields of each packet are its features ie the inputs into the
+learning model and the packet is classified by the learning model to determine its cos for example
+the chosen header fields may be the source ip address destination ip address source port number
+and destination port number among others and the possible actions may be to route a packet as
+delay sensitive delay moderate or delay tolerant
+2 flowbased traffic classifier the flowbased traffic classifier resides outside the router in
+some powerful equipment that can handle the heavy computation required by sophisticated machine
+learning techniques it is a complex and highly accurate machine learning model that can classify a
+traffic flow in terms of cos for all of its packets it is trained using a number of bidirectional tcp
+flows with a set of flowlevel statistical features extracted from the raw dataset
+various methods are possible to generate the training dataset for the flowbased traffic classifier in
+this work since we are ultimately interested in online classification to handle changing traffic pattern
+over time we propose to use a continuously updated recording of the past traffic specifically we
+use a traffic mirror and a traffic selector as shown in fig 1 to separate a selected small portion of
+the incoming traffic flows the selected flows are then labeled using a deep packet inspection dpi
+module according to their cos the true cos labels obtained by dpi are used to train the flowbased
+classifier we note that dpi cannot be used to replace the role of the flowbased classifier for all
+flows due to its prohibitive cost and delay for common encrypted traffic
+the role of the flowbased traffic classifier designer includes data preprocessing hyperparameter
+selection and finally training the flowbased classifier once the flowbased classifier is trained we
+use it to infer the cos labels of all incoming flows captured by the traffic mirror then all packets
+belonging to a flow can be tagged by cos label of the flow we note that the cos labels generated
+in this way by a flowbased classifier are too late to be used in the routing of the labeled packets
+however what this achieves is to create a packetlevel dataset for training the packetbased routing
+policy as explained below
+3 packetbased routing policy designer the packetbased routing policy designer takes labeled
+packets from the flowbased classifier as input and it outputs a routing policy for the router specifically the routing policy designer trains a packetbased classifier using the labeled packets as the
+training dataset
+in this work we use the binary decision tree learning model for the packetbased classifier in
+the decision tree each path from the root to a node is a routing policy rule thus to obtain routing
+policy rules that can be used in the router the routing policy designer only needs to train a decision
+tree on the packetlevel dataset furthermore we note that the number of routing policy rules equals
+the number of leaf nodes in the decision tree this provides an easy way to control the size of the
+routing policy ie the routing policy designer can limit the maximum number of leaf nodes while
+training the decision tree
+b construction of routing policy
+the construction of the routing policy in fphtc involves transferring learned knowledge from
+the flowbased classifier to the routing policy designer in the machine learning literature knowledge
+distillation 16 17 is a technique where a simple student model is trained on the predictions supplied
+by a highly accurate and complex teacher model in fphtc we train a decision tree at the routing
+policy designer using the predictions from the flowbased classifier as training targets in essence the
+routing policy designer tries to approximate the performance of the flowbased classifier
+the flowbased classifier is trained with flowlevel statistical features whereas the routing policy
+designer uses only some features that can be read directly from the packet header therefore it is
+clear that the learned routing policy will perform worse than the flowbased classifier given the same
+traffic data for training however since there are unlabeled training data available ie those that
+have not been labeled by dpi we can label those data samples using our flowbased classifier to
+substantially enlarge the training dataset for the routing policy designer since the decision tree at the
+routing policy designer is trained on a much larger dataset than that of the flowbased classifier the
+performance of the routing policy can be close to that of the flowbased classifier more importantly
+since the routing policy created by fphtc utilizes information learned from a more powerful flow
+
+collect data
+and label
+using dpi
+
+slot 1
+
+slot 2
+
+train
+flowbased
+classifier
+
+slot 3
+
+collect more
+data and
+label using
+flowbased
+classifier
+
+slot 4
+
+slot 5
+
+design
+routing
+policy
+
+slot 6
+
+slot 7
+
+update
+routing
+policy to
+the router
+
+slot 8
+
+time slots
+
+figure 2 fphtc in online setting
+
+based classifier it can substantially outperform a regular packetbased classifier trained using only
+the small amount of labels generated by dpi
+c routing policy update procedure in online setting
+in a practical system the data pattern of the incoming traffic changes over time eg due to new
+applications appearing in the network or changing user behavior therefore we design fphtc to
+dynamically update the routing policy over time
+in fig 2 we illustrate how the modules sequentially function over a continuous stream of traffic
+at any given time slot we collect and label a small portion of the incoming traffic flows using dpi
+to train the flowbased classifier meanwhile we continue to collect flows to be used in the training
+of the routing policy once the flowbased classifier is trained we use it to label those collected flows
+not labeled by dpi then the routing policy designer trains a decision tree to generate the routing
+policy which is then updated to the router
+one important question is whether we should repeat these steps and update the routing policy at
+each time slot if the traffic data pattern does not change too frequently routing policy update at
+every time slot would be a waste of resources to retrain the flowbased classifier the labeling cost
+using dpi would also be expensive a costeffective solution is to update the routing policy only
+when the traffic pattern has altered significantly this can be inferred by measuring the performance
+deterioration at the router a feedback signal can be generated for example based on the increase
+in packet drop or congestion to indicate that a routing policy update is necessary we demonstrate
+the adaptiveness of fphtc in the online setting in section iv
+iii c omparison w ith r egular packet based t raffic c lassification
+to highlight the benefit of combining flowbased and packetbased traffic classification in fphtc
+we compare it against regular packetbased traffic classification without the help from a flowbased
+classifier in this section we provide a theoretical justification of why fphtc performs better than
+regular packetbased traffic classification
+in regular packetbased traffic classification a decision tree at the routing policy designer is trained
+with the true labels of the packets in contrast in fphtc only the flowbased classifier requires true
+labels hence for fair comparison we maintain that the training dataset size of the regular packetbased traffic classifier is equal to the training dataset size of the flowbased classifier in fphtc when
+both are measured in terms of the number of flows
+let n be the number of flows in the training dataset for the routing policy designer in fphtc
+recall that these flows are labeled by the flowbased classifier the flowbased classifier is trained
+with a  fraction of these flows which have been labeled by dpi if the cost of labeling each flow
+using dpi is cdpi  then the total cost is ncdpi  increasing  will lead to a more accurate flowbased
+classifier in fphtc and ultimately a more accurate routing policy however this will also result in
+a greater cost of labeling flows thus there exists a tradeoff that should be carefully analyzed
+
+suppose h is the hypothesis set of a classifier with some capacity measure hc  if f  h is the
+function learned by the classifier from n training samples and f is the ground truth ie the target
+function of interest then the generalization bound can be expressed as follows 17
+
+
+hc
+ 
+1
+rf  rf   o
+nr
+where r is the expected loss the o term is the estimation error and  is the approximation
+error the rate of learning is given by onr  for difficult or nonseparable problems r  21 and
+this represents a slow rate of learning in contrast for easy or separable problems where the trained
+classifier makes no training error r  1 and this represents a fast rate of learning 17
+in fphtc the flowbased classifier and the routing policy designer play the role of the teacher
+and the student respectively let hfl be the hypothesis set for the flowbased classifier with capacity
+measure hfl c  let ffl  hfl be the function learned by the flowbased classifier and f be the ground
+truth since only a fraction  of the flows are used for training the generalization bound of the
+flowbased classifier is given by
+
+
+hfl c
+ fl 
+2
+rffl   rf   o
+n
+where fl is the approximation error of the flowbased classifier here we use a common assumption
+that the rate of learning for the more sophisticated teacher is inversely proportional to the size of the
+training dataset ie on1 
+similarly let hrp be the hypothesis set of the routing policy designer in fphtc with capacity
+measure hrp c  and let frp  hrp be the function determined by the routing policy designer we
+have
+
+
+hrp c
+rfrp   rffl   o
+ rp 
+3
+n
+where rp is the approximation error of the routing policy as the student learns using the teachers
+predictions the decision boundary of the original classification problem has been translated to a
+smoother one thus the student aided by the teachers predictions learns at a faster rate than with
+the true labels so that its rate of learning is represented by the parameter 05    1
+combining 2 and 3 we get
+rfrp   rf   rfrp   rffl   rffl   rf 
+
+
+
+
+hrp c
+hfl c
+ fl
+o
+ rp  o
+n
+n
+ 
+
+ hrp c  hfl c
+o
+ rp  fl 
+n  
+
+4
+
+this gives the generalization bound for fphtc we note that this bound improves as  increases
+as a further step for system optimization we can consider a weighted sum of the generalization
+bound and the dpi labeling cost as a function of 
+ hrp c  hfl c
+ rp  fl  ncdpi 
+5
+n 
+where k is a constant of proportionality to minimize c we differentiate 5 wrt  and set the
+derivative equal to zero finally we obtain the optimal  for fphtc as
+
+ 1
+khfl c 1
+
+ 
+
+6
+n1 cdpi
+c  k 
+
+in regular packetbased traffic classification we have the same hypothesis set hrp  since it represents
+the capability of the same router the function fpk  hrp is chosen to approximate the ground truth
+f without the help of the teacher again we can bound the regular packetbased traffic classifier as
+follows
+
+
+hrp c
+rfpk   rf   o 
+ pk 
+7
+n
+
+where pk is the approximation error of the regular packetbased traffic classifier as the student is
+trained using true labels in this case the classification problem is difficult and the rate of learning is
+slower at on12  comparing 7 with 4 we see that fphtc outperforms regular packetbased
+traffic classification if the following inequality holds
+
+
+
+ 
+hrp c
+ hrp c  hfl c
+
+
+
+
+
+
+o
+ pk 
+8
+o
+rp
+fl
+n  
+n
+let us now explain why it is reasonable for 8 to hold in our traffic classification problem as
+the teacher is a highly complex flowbased classifier and the student is a simple decision tree trained
+at the routing policy designer we have hfl c  hrp c  hence fphtc may be viewed as an
+instance of hintons knowledge distillation framework 16 except that in our case the feature spaces
+of the teacher and the student are different furthermore the flowbased classifier is trained with
+many flowlevel statistical features whereas the routing policy is designed based on a much smaller
+number of packetlevel features therefore the approximation error of the routing policy is much
+larger than that of 
+the flowbased classifier thus in 8 fl  rp  pk  furthermore as   05
+we have n   n when   1 therefore even though hfl c  hrp c  the large value of
+hfl c can be balanced by the parameters  and 
+note that  is an intrinsic parameter that we cannot control but we can control  on the one
+hand if  
+is close to 1 there is no benefit from using  on the other hand if  is too small both
+n  and n approaches zero and the difference between  and 05 is lost however a moderate
+ can satisfy 8 and allow fphtc to outperform regular packetbased traffic classification
+iv e xperimental e valuation
+in this section we first discuss our experimental setup then we evaluate the performance of
+fphtc and compare it against regular packetbased traffic classification to demonstrate the impacts
+of the training dataset size and the online setting
+a dataset and learning models
+we use the combined realworld traffic traces of iscx vpnnonvpn 2016 10 18 and iscx
+tornontor 2016 11 19 it contains pcap files for 43590 encrypted tcp bidirectional flows from
+8 application types we group these 8 application types into 3 cos categories as shown in table 1
+for flowbased classification we extract 268 features from each tcp flow our current set of features
+includes source and destination ip addresses in addition to the list of 266 features used in 6
+we remove the flows with no payload from our dataset and use 90 of the rest of the dataset as
+the full training dataset plus 10 for testing in various experiments that require different training
+dataset sizes we use a randomly selected subset of the full training dataset all training datasets
+are balanced by applying the sklearnutilsresample function from scikitlearn v0213 20 so that
+the number of training samples in each cos class is the same all machine learning models are
+implemented in python 383 we use balanced test accuracy as the main performance metric which
+is the average of the proportion of correctly classified samples in each class this performance metric
+is not affected by the imbalance in the dataset
+the routing policy designer takes labeled packets as input with 4 features source ip address
+destination ip address source port number and destination port number the 32bit ipv4 addresses
+are converted to decimal numbers to be used as feature values given a set of labeled flows we obtain
+the corresponding set of unique packets having these 4 features note that these 4 features guarantee
+that all packets from a particular tcp flow are mapped to the same routing output
+we note that the traffic dataset is structured for this type of data it is known that the gradient
+boosted tree ensemble is appropriate as a learning model 21 we use the stateoftheart gradient
+boosted tree ensembles xgboost 12 and lightgbm 13 as the flowbased classifier in our experiments the xgboost model is trained with 100 trees in the ensemble the learning rate is 03 and
+the maximum depth of each tree is limited to 6 for lightgbm we use the gradientbased oneside
+sampling goss boosting method the number of trees in the ensemble is 100 with the number
+of leaves and maximum depth restricted to 31 and unlimited respectively the learning rate remains
+03
+
+cos label
+
+application type
+
+delay sensitive
+
+chat voip
+
+delay moderate
+
+audio video
+
+delay tolerant
+
+ftp mail p2p web
+
+table 1 application types and cos labels
+
+flowbased classifier with lightgbm
+flowbased classifier with xgboost
+fphtc with lightgbm
+fphtc with xgboost
+regular packetbased traffic classification
+
+balanced test accuracy 
+
+800
+775
+750
+725
+700
+675
+650
+625
+
+0
+
+5000
+10000
+15000
+20000
+25000
+30000
+ flows in the training dataset for routing policy designer in fphtc
+
+35000
+
+figure 3 balanced test accuracy vs n size of training dataset for the routing policy designer in
+fphtc with 90 confidence interval
+
+the routing policy designer trains a single cart with the predictions from the flowbased classifier
+as training targets we use a decision tree classifier with balanced class weights and entropy as the
+criterion for choosing the best split the parameters such as maximum depth and maximum leaf
+nodes which determine the structure of the tree are kept unlimited
+b impact of size of training datasets
+the performance of fphtc is shown in fig 3 with 1000 flows in the training dataset of the
+flowbased classifier we present the balanced test accuracy of fphtc with 90 confidence interval
+we observe that it increases as the training dataset size for the routing policy designer is increased
+recall that since this training dataset is generated by the flowbased classifier there is no theoretical
+limit to its size in contrast the training dataset size for the regular packetbased traffic classifier
+remains the same as that of the flowbased classifier thus we observe that fphtc outperforms
+regular packetbased traffic classification when the training dataset for the routing policy designer
+becomes large enough the performance gain of fphtc is larger when the flowbased classifier
+and the regular packetbased traffic classifier are trained using a small training dataset for example
+when the flowbased classifier with lightgbm and the routing policy designer are trained using 1000
+flows and the maximum number of available flows ie full training dataset containing 34473 flows
+respectively fphtc is about 9 more accurate than regular packetbased traffic classification thus
+fphtc significantly improves accuracy in the low data regime
+we note that the performance of fphtc is strictly ascending in fig 3 if we had more than 34473
+unique flows in our available dataset for training we could have further increased the training dataset
+size for the routing policy designer and observed a larger gain of fphtc over regular packetbased
+traffic classification also we see that using lightgbm as the flowbased classifier performs slightly
+better than using xgboost therefore we will present the results using lightgbm as the flowbased
+classifier for the rest of the experiments
+in table 2 for various training dataset sizes we present the balanced test accuracy of the flowbased
+classifier with lightgbm regular packetbased traffic classifier and fphtc where n  34473 the
+experiment has been repeated over 10 randomly chosen training and test sets and then the average
+accuracy is listed we note that there is a significant gap between the accuracy of the flowbased
+classifier and the regular packetbased traffic classifier the gap is especially large when we have a
+small training dataset this gap is due to the many more features observed by the flowbased classifier
+
+ flows in the
+training dataset
+
+flowbased
+classifier
+
+fphtc
+
+regular
+packetbased
+
+1000
+
+7959
+
+7499
+
+6593
+
+5000
+
+8959
+
+8485
+
+7897
+
+10000
+
+9227
+
+8713
+
+8385
+
+table 2 balanced test accuracy vs  flows in the training dataset for the flowbased classifier and
+the regular packetbased classifier
+
+balanced test accuracy 
+
+90
+85
+80
+75
+70
+65
+60
+0
+
+fphtc
+regular packetbased traffic classification
+flowbased classifier
+5
+10
+15
+time slots
+
+20
+
+25
+
+30
+
+figure 4 performance of fphtc in online setting with traffic pattern changing after every 10 time
+slots
+than the regular packetbased traffic classifier this confirms our rationale for this work that there is
+room for improvement for the routing policy if it can utilize the knowledge learned by the flowbased
+classifier furthermore we observe that fphtc can substantially reduce that gap especially when
+the amount of training data is small
+c classification performance of fphtc in online setting
+finally we implement the routing policy update procedure of fphtc in an online setting in this
+experiment we simply use the test accuracy of the routing policy as a feedback signal if the accuracy
+is dropped below some accuracy threshold at the end of a time slot retraining of the flowbased
+classifier and the routing policy update begin from the next time slot training stops when the accuracy
+crosses back above the accuracy threshold and the consecutive improvement in accuracy is less than
+some saturation threshold
+to simulate a neverending stream of traffic we keep shuffling our training dataset randomly we
+run our experiment over 30 time slots and we change the data pattern after every 10 time slots to
+simulate traffic pattern change we always use only a subset of 5 application types as the incoming
+traffic after 10 time slots we pick another subset of 5 application types and generate the incoming
+traffic thus the test traffic pattern is changed at time slot 0 at time slot 10 and at time slot 20 the
+changing of applications over time is shown in table 3
+at each time slot where retraining is needed the first 1000 flows are selected and labeled by
+dpi to be used for training the flowbased classifier then 10000 flows are labeled by the trained
+flowbased classifier and used for routing policy design we use an accuracy threshold of 80 and a
+saturation threshold of 1 in our experiment fig 4 illustrates how the balanced test accuracy drops
+after every 10 time slots due to the traffic pattern change then retraining begins the routing policy
+is updated and we observe gradual increase of the test accuracy once the test accuracy is saturated
+the routing policy update stops and we observe a flat line in the test accuracy again we observe
+that fphtc substantially outperforms regular packetbased traffic classification in the online setting
+v c onclusion
+in this paper we propose flowpacket hybrid traffic classification fphtc which enables
+lowcomplexity but highly accurate packetbased classification at a network router in fphtc a
+
+application types in the dataset
+at time slot 0
+
+audio ftp video voip web
+
+at time slot 10
+
+ftp mail p2p video voip
+
+at time slot 20
+
+audio chat ftp mail web
+
+table 3 change of traffic pattern over time
+
+sophisticated flowbased classifier residing outside the router uses highdimensional flowlevel features
+to achieve high classification accuracy while a routing policy designer generates a simple routing
+policy for the router based on a small number of packetlevel features utilizing the knowledge of
+the flowbased classifier we discuss routing policy updates in an online setting which keeps fphtc
+robust towards traffic pattern change over time our experimental results confirms that the learned
+knowledge from the flowbased classifier can substantially improve the performance of the routing
+policy
+r eferences
+1 m finsterbusch c richter e rocha j muller and k hanssgen a survey of payloadbased traffic classification
+approaches ieee communications surveys tutorials vol 16 no 2 pp 11351156 2014
+2 a moore and d zuev internet traffic classification using bayesian analysis techniques in proc acm sigmetrics
+int conf on measurement and modeling of computer systems 2005
+3 t auld a moore and s f gull bayesian neural networks for internet traffic classification ieee transactions on
+neural networks vol 18 no 1 pp 223239 2007
+4 m roughan s sen o spatscheck and n duffield classofservice mapping for qos a statistical signaturebased
+approach to ip traffic classification in proc acm sigcomm conference on internet measurement 2004
+5 p wang s lin and m luo a framework for qosaware traffic classification using semisupervised machine learning
+in sdns in proc ieee international conference on services computing scc 2016
+6 s chowdhury b liang and a tizghadam explaining classofservice oriented network traffic classification with
+superfeatures in proc acm conext workshop on big data machine learning and artificial intelligence for data
+communication networks bigdama 2019
+7 l bernaille and r teixeira early recognition of encrypted applications in proc passive and active network
+measurement 2007
+8 t t t nguyen g armitage p branch and s zander timely and continuous machinelearningbased classification
+for interactive ip traffic ieeeacm transactions on networking vol 20 no 6 pp 18801894 2012
+9 g xie m iliofotou r keralapura m faloutsos and a nucci subflow towards practical flowlevel traffic
+classification in proc ieee infocom 2012
+10 g drapergil a lashkari m mamun and a ghorbani characterization of encrypted and vpn traffic using timerelated features in proc international conference on information systems security and privacy icissp 2016
+11 a lashkari g drapergil m mamun and a ghorbani characterization of tor traffic using time based features in
+proc international conference on information system security and privacy icissp 2017
+12 t chen and c guestrin xgboost a scalable tree boosting system in proc acm sigkdd international conference
+on knowledge discovery and data mining 2016
+13 g ke q meng t finley t wang w chen w ma q ye and t liu lightgbm a highly efficient gradient
+boosting decision tree in proc neural information processing systems nips 2017
+14 p gupta and n mckeown packet classification on multiple fields sigcomm comput commun rev vol 29 no 4
+p 147160 1999
+15  algorithms for packet classification netwrk mag of global internetwkg vol 15 no 2 p 2432 2001
+16 g hinton o vinyals and j dean distilling the knowledge in a neural network in proc nips deep learning and
+representation learning workshop 2015
+17 d lopezpaz b schlkopf l bottou and v vapnik unifying distillation and privileged information in proc
+international conference on learning representations iclr 2016
+18 iscx vpnnonvpn 2016 online available httpswwwunbcacicdatasetsvpnhtml
+19 iscx tornontor 2016 online available httpswwwunbcacicdatasetstorhtml
+20 f pedregosa et al scikitlearn machine learning in python journal of machine learning research vol 12 pp
+28252830 2011
+21 r bekkerman the present and the future of the kdd cup competition an outsiders perspective 2015 online
+available httpswwwlinkedincompulsepresentfuturekddcupcompetitionoutsidersronbekkerman
+

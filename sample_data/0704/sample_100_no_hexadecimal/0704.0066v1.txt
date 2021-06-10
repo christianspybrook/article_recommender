@@ -1,0 +1,7722 @@
+Lagrangian quantum field theory
+in momentum picture
+IV. Commutation relations for free fields
+Bozhidar Z. Iliev
+
+∗ † ‡
+
+arXiv:0704.0066v1 [hep-th] 1 Apr 2007
+
+Short title: QFT in momentum picture: IV
+Produced : → February 1, 2008
+
+http://www.arXiv.org e-Print archive No. : arXiv:0704.0066[hep-th]
+
+•HO R
+/
+BO•
+
+TM
+
+Subject Classes:
+Quantum field theory
+
+2000 MSC numbers:
+81Q99, 81S05, 81T99
+
+2003 PACS numbers:
+03.70.+k, 11.10.Ef, 11.10.-z,
+11.90.+t, 12.90.+b
+
+Key-Words:
+Commutation relations, Anticommutation relations, Free quantum fields
+Paracommutation relations, Parafermi and parabose commutation relations
+Heisenberg relations (equations), Euler-Lagrange equations, Equations of motion
+Lagrangians for free fields, Momentum operator, Angular momentum operator
+Spin and orbital angular momentum operators, Normal ordering
+
+∗
+
+Laboratory of Mathematical Modeling in Physics, Institute for Nuclear Research and Nuclear
+Energy, Bulgarian Academy of Sciences, Boul. Tzarigradsko chaussée 72, 1784 Sofia, Bulgaria
+†
+E-mail address: bozho@inrne.bas.bg
+‡
+URL: http://theo.inrne.bas.bg/∼bozho/
+
+Contents
+1 Introduction
+
+1
+
+2 The momentum picture
+
+3
+
+3 Lagrangians, Euler-Lagrange equations and dynamical variables
+
+5
+
+4 On the uniqueness of the dynamical variables
+
+10
+
+5 Heisenberg relations
+
+14
+
+6 Types of possible commutation relations
+6.1 Restrictions related to the momentum operator . . . . . . . . . . . . . . . . .
+6.2 Restrictions related to the charge operator . . . . . . . . . . . . . . . . . . . .
+6.3 Restrictions related to the angular momentum operator(s) . . . . . . . . . . .
+
+20
+21
+25
+27
+
+7 Inferences
+
+31
+
+8 State vectors, vacuum and mean values
+
+37
+
+9 Commutation relations for several coexisting different free fields
+9.1 Commutation relations connected with the momentum operator. Problems
+and their possible solutions . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9.2 Commutation relations connected with the charge and angular momentum
+operators . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+9.3 Commutation relations between the dynamical variables . . . . . . . . . . . .
+9.4 Commutation relations under the uniqueness conditions . . . . . . . . . . . .
+
+43
+
+10 Conclusion
+
+54
+
+References
+This article ends at page . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+55
+57
+
+44
+49
+50
+52
+
+Abstract
+Possible (algebraic) commutation relations in the Lagrangian quantum theory of free
+(scalar, spinor and vector) fields are considered from mathematical view-point. As sources of
+these relations are employed the Heisenberg equations/relations for the dynamical variables
+and a specific condition for uniqueness of the operators of the dynamical variables (with
+respect to some class of Lagrangians). The paracommutation relations or some their generalizations are pointed as the most general ones that entail the validity of all Heisenberg
+equations. The simultaneous fulfillment of the Heisenberg equations and the uniqueness requirement turn to be impossible. This problem is solved via a redefinition of the dynamical
+variables, similar to the normal ordering procedure and containing it as a special case. That
+implies corresponding changes in the admissible commutation relations. The introduction of
+the concept of the vacuum makes narrow the class of the possible commutation relations;
+in particular, the mentioned redefinition of the dynamical variables is reduced to normal
+ordering. As a last restriction on that class is imposed the requirement for existing of an
+effective procedure for calculating vacuum mean values. The standard bilinear commutation
+relations are pointed as the only known ones that satisfy all of the mentioned conditions and
+do not contradict to the existing data.
+
+1.
+
+Introduction
+
+The main subject of this paper is an analysis of possible (algebraic) commutation relations
+in the Lagrangian quantum theory1 of free fields. These relations are considered only from
+mathematical view-point and physical consequence of them, like the statistics of many-particle systems, are not investigated.
+The canonical quantization method finds its origin in the classical Hamiltonian mechanics [9, 10] and naturally leads to the canonical (anti)commutation relations [3, 11, 12]. These
+relations can be obtained from different assumptions (see, e.g., [1, 13–15]) and are one of the
+basic corner stones of the present-day quantum field theory.
+Theoretically there are possible also non-canonical commutation relations. The best
+known example of them being the so-called paracommutation relations [16–18]. But, however,
+it seems no one of the presently known particles/fields obeys them.
+In the present work is shown how different classes of commutation relations, understood
+in a broad sense as algebraic connections between creation and/or annihilation operators,
+arise from the Lagrangian formalism, when applied to three types of Lagrangians describing
+free scalar, spinor and vector fields. Their origin is twofold. One one hand, a requirement for
+uniqueness of the dynamical variables (that can be calculated from Lagrangians leading to
+identical Euler-Lagrange equation) entails a number of specific commutation relations. On
+another hand, any one of the so-called Heisenberg relations/equations [3, 11], implies corresponding commutation relations; for example, the paracommutation relations arise from
+the Heisenberg equations regarding the momentum operator, when 'charge symmetric' Lagrangian is employed.2 The combination of the both methods leads to strong, generally
+incompatible, restrictions on the admissible types of commutation relations.
+The introduction of the concept of vacuum, combined with the mentioned uniqueness of
+the operators of the dynamical variables, changes the situation and requires a redefinition
+of these operators in a way similar to the one known as the normal ordering [1, 3, 11, 12],
+which is its special case. Some natural assumptions reduce the former to the letter one; in
+particular, in that way are excluded the paracommutation relations. However, this does not
+reduce the possible commutation relations to the canonical ones. Further, the requirement
+to be available an effective procedure for calculating vacuum mean (expectation) values, to
+which reduce all predictable results in the theory, puts new restriction, whose only realistic
+solution at the time being seems to be the standard canonical (anti)commutation relations.
+The layout of the work is as follows.
+Sect. 2 gives an idea of the momentum picture of motion and discusses the relations
+between the creation and annihilation operators in it and in Heisenberg picture. In Sect. 3
+are reviewed some basic results from [13–15], part of which can be found also in papers like [1,
+3, 11, 12]. In particular, the explicit expression of the dynamical variables via the creation
+1
+
+In this paper we considered only the Lagrangian (canonical) quantum field theory in which the quantum
+fields are represented as operators, called field operators, acting on some Hilbert space, which in general
+is unknown if interacting fields are studied. These operators are supposed to satisfy some equations of
+motion, from them are constructed conserved quantities satisfying conservation laws, etc. From the view-point
+of present-day quantum field theory, this approach is only a preliminary stage for more or less rigorous
+formulation of the theory in which the fields are represented via operator-valued distributions, a fact required
+even for description of free fields. Moreover, in non-perturbative directions, like constructive and conformal
+field theories, the main objects are the vacuum mean (expectation) values of the fields and from these are
+reconstructed the Hilbert space of states and the acting on it fields. Regardless of these facts, the Lagrangian
+(canonical) quantum field theory is an inherent component of the most of the ways of presentation of quantum
+field theory adopted explicitly or implicitly in books like [1–8]. Besides, the Lagrangian approach is a source
+of many ideas for other directions of research, like the axiomatic quantum field theory [3, 7, 8].
+2
+Ordinary [3, 11], the commutation relations are postulated and the validity of the Heisenberg relations is
+then verified. We follow the opposite method by postulating the Heisenberg equations and, then, looking for
+commutation relations that are compatible with them.
+
+and annihilation operators are presented (without assuming some commutation relations or
+normal ordering) and it is pointed to the existence of a family of such variables for a given
+system of Euler-Lagrange equations for free fields. The last fact is analyzed in Sect. 4,
+where a number of its consequences, having a sense of commutation relations, are drawn.
+The Heisenberg relations and the commutation relations between the dynamical variables
+are reviewed and analyzed in Sect. 5. It is pointed that the letter should be consequences
+from the former ones. Arguments are presented that the Heisenberg equation concerning
+the angular momentum operator should be split into two independent ones, representing its
+'orbital' and 'spin' parts, respectively.
+Sect. 6 contains a method for assigning commutation relations to the Heisenberg equations. It is shown that the Heisenberg equation involving the 'orbital' part of the angular
+momentum gives rise to a differential, not algebraic, commutation relation and the one concerning the 'spin' part of the angular momentum implies a complicated integro-differential
+connections between the creation and annihilation operators. Special attention is paid to
+the paracommutation relations, whose particular kind are the ordinary ones, which ensure
+the validity of the Heisenberg equations concerning the momentum operator. Partially is
+analyzed the problem for compatibility of the different types of commutation relations derived. It is proved that some generalization of the paracommutation relations ensures the
+fulfillment of all of the Heisenberg relations.
+Sect. 7 is devoted to consequences from the commutation relations derived in Sect. 6
+under the conditions for uniqueness of the dynamical variables presented in Sect. 4. Generally, these requirements are incompatible with the commutation relations. To overcome
+the problem, it is proposed a redefinition of the dynamical variables via a method similar to
+(and generalizing) the normal ordering. This, of course, entails changes in the commutation
+relations, the new versions of which happen to be compatible with the uniqueness conditions
+and ensure the validity of the Heisenberg relations.
+The concept of the vacuum is introduced in Sect. 8. It reduces (practically) the redefinition of the operators of the dynamical variables to the one obtained via the normal ordering
+procedure in the ordinary quantum field theory, but, without additional suppositions, does
+not reduce the commutation relations to the standard bilinear ones. As a last step in specifying the commutation relations as much as possible, we introduce the requirement the theory
+to supply an effective way for calculating vacuum mean values of (anti-normally ordered)
+products of creation and annihilation operators to which are reduced all predictable results,
+in particular the mean values of the dynamical variables. The standard bilinear commutation
+relation seems to be the only ones know at present that survive that last condition, however
+their uniqueness in this respect is not investigated.
+Sect. 9 deals with the same problems as described above but for systems containing at
+least two different quantum fields. The main obstacle is the establishment of commutation
+relations between creation/annihilation operators concerning different fields. Argument is
+presented that they should contain commutators or anticommutators of these operators.
+The major of corresponding commutation relations are explicitly written and the results
+obtained turn to be similar to the ones just described, only in 'multifield' version.
+Section 10 closes the paper by summarizing its main results.
+The books [1–3] will be used as standard reference works on quantum field theory. Of
+course, this is more or less a random selection between the great number of (text)books and
+papers on the theme to which the reader is referred for more details or other points of view.
+For this end, e.g., [4, 12, 19] or the literature cited in [1–4, 12, 19] may be helpful.
+Throughout this paper ~ denotes the Planck's constant (divided by 2π), c is the velocity of
+light in vacuum, and i stands for the imaginary unit. The superscripts † and ⊤ mean respectively Hermitian conjugation and transposition (of operators or matrices), the superscript ∗
+
+denotes complex conjugation, and the symbol ◦ denotes compositions of mappings/operators.
+By δf g , or δfg or δf g (:= 1 for f = g, := 0 for f = g) is denoted the Kronecker δ-symbol,
+depending on arguments f and g, and δn (y), y ∈ Rn , stands for the n-dimensional Dirac
+δ-function; δ(y) := δ1 (y) for y ∈ R.
+The Minkowski spacetime is denoted by M . The Greek indices run from 0 to dim M −1 =
+3. All Greek indices will be raised and lowered by means of the standard 4-dimensional
+Lorentz metric tensor η μν and its inverse ημν with signature (+ − − −). The Latin indices
+a, b, . . . run from 1 to dim M − 1 = 3 and, usually, label the spacial components of some
+object. The Einstein's summation convention over indices repeated on different levels is
+assumed over the whole range of their values.
+At last, we ought to give an explanation why this work appears under the general title
+"Lagrangian quantum field theory in momentum picture" when in it all considerations are
+done, in fact, in Heisenberg picture with possible, but not necessary, usage of the creation and
+annihilation operators in momentum picture. First of all, we essentially employ the obtained
+in [13–15] expressions for the dynamical variables in momentum picture for three types of
+Lagrangians. The corresponding operators in Heisenberg picture, which in fact is used in this
+paper, can be obtained via a direct calculation, as it is partially done in, e.g., [1] for one of
+the mentioned types of Lagrangians. The important point here is that in Heisenberg picture
+it suffice to be used only the standard Lagrangian formalism, while in momentum picture one
+has to suppose the commutativity between the components of the momentum operator and
+the validity of the Heisenberg relations for it (see below equations (2.6) and (2.7)). Since for
+the analysis of the commutation relations we intend to do the fulfillment of these relations is
+not necessary (they are subsidiary restrictions on the Lagrangian formalism), the Heisenberg
+picture of motion is the natural one that has to be used. For this reason, the expression for the
+dynamical variables obtained in [13–15] will be used simply as their Heisenberg counterparts,
+but expressed via the creation and annihilation operators in momentum picture. The only
+real advantage one gets in this way is the more natural structure of the orbital angular
+momentum operator. As the commutation relations considered below are algebraic ones, it
+is inessential in what picture of motion they are written or investigated.
+
+2.
+
+The momentum picture
+
+Since the momentum picture of motion will be used only partially in this work, below is
+presented only its definition and the connection between the creation/annihilation operators
+in it and in Heisenberg picture. Details concerning the momentum picture can be found
+in [20, 21] and in the corresponding sections devoted to it in [13–15].
+Let us consider a system of quantum fields, represented in Heisenberg picture of motion
+by field operators φ̃i (x) : F → F, i = 1, . . . , n ∈ N, acting on the system's Hilbert space
+F of states and depending on a point x in Minkowski spacetime M . Here and henceforth,
+all quantities in Heisenberg picture will be marked by a tilde (wave) " ̃" over their kernel
+symbols. Let P̃μ denotes the system's (canonical) momentum vectorial operator, defined via
+the energy-momentum tensorial operator T̃ μν of the system, viz.
+Z
+1
+T̃0μ (x) d3 x.
+(2.1)
+P̃μ :=
+c
+x0 =const
+
+Since this operator is Hermitian, P̃μ† = P̃μ , the operator
+U(x, x0 ) = exp
+
+
+1 X
+(xμ − xμ0 ) P̃μ ,
+i~ μ
+
+(2.2)
+
+where x0 ∈ M is arbitrarily fixed and x ∈ M ,3 is unitary, i.e. U † (x0 , x) := ( U(x, x0 ))† =
+U −1 (x, x0 ) := ( U(x, x0 ))−1 and, via the formulae
+X̃ 7→ X (x) = U(x, x0 )( X̃ )
+
+(2.3)
+
+Ã(x) 7→ A(x) = U(x, x0 ) ◦ ( Ã(x)) ◦ U
+
+−1
+
+(x, x0 ),
+
+(2.4)
+
+realizes the transition to the momentum picture. Here X̃ is a state vector in system's Hilbert
+space of states F and Ã(x) : F → F is (observable or not) operator-valued function of x ∈ M
+which, in particular, can be polynomial or convergent power series in the field operators
+φ̃i (x); respectively X (x) and A(x) are the corresponding quantities in momentum picture.
+In particular, the field operators transform as
+φ̃i (x) 7→ φi (x) = U(x, x0 ) ◦ φ̃i (x) ◦ U −1 (x, x0 ).
+
+(2.5)
+
+Notice, in (2.2) the multiplier (xμ − xμ0 ) is regarded as a real parameter (in which P̃μ is
+linear). Generally, X (x) and A(x) depend also on the point x0 and, to be quite correct, one
+should write X (x, x0 ) and A(x, x0 ) for X (x) and A(x), respectively. However, in the most
+situations in the present work, this dependence is not essential or, in fact, is not presented
+at all. For that reason, we shall not indicate it explicitly.
+The momentum picture is most suitable in quantum field theories in which the components P̃μ of the momentum operator commute between themselves and satisfy the Heisenberg
+relations/equations with the field operators, i.e. when P̃μ and φ̃i (x) satisfy the relations:
+[ P̃μ , P̃ν ] = 0
+
+(2.6)
+
+[ φ̃i (x), P̃μ ] = i~∂μ φ̃i (x).
+
+(2.7)
+
+Here [A, B]± := A ◦ B ± B ◦ A, ◦ being the composition of mappings sign, is the commutator/anticommutator of operators (or matrices) A and B.
+However, the fulfillment of the relations (2.6) and (2.7) will not be supposed in this paper
+until Sect. 6 (see also Sect. 5).
+†±
+Let a±
+s (k) and as (k) be the creation/annihilation operators of some free particular field
+(see Sect. 3 below for a detailed explanation of the notation). We have the connections
+)
+1 μ
+± i~
+x kμ −1
+p
+ã±
+U (x, x0 ) ◦ a±
+s (k) = e
+s (k) ◦ U(x, x0 )
+m2 c2 + k2
+(2.8)
+k
+=
+0
+1 μ
+†±
+± i~
+x kμ −1
+†±
+ãs (k) = e
+U (x, x0 ) ◦ as (k) ◦ U(x, x0 )
+whose explicit form is
+1
+
+μ
+
+± i~ x0 kμ ±
+ã±
+as (k)
+s (k) = e
+
+ã†s ± (k)
+
+=
+
+)
+
+1 μ
+e± i~ x0 kμ a†s ± (k)
+
+k0 =
+
+p
+
+m2 c2 + k2 .
+
+(2.9)
+
+†±
+Further it will be assumed ã±
+s (k) and ãs (k) to be defined in Heisenberg picture, indepen†±
+dently of a±
+s (k) and as (k), by means of the standard Lagrangian formalism. What concerns
+†±
+the operators a±
+s (k) and as (k), we shall regard them as defined via (2.9); this makes them
+independent from the momentum picture of motion. The fact that the so-defined operators
+†±
+a±
+s (k) and as (k) coincide with the creation/annihilation operators in momentum picture
+(under the conditions (2.6) and (2.7)) will be inessential in the almost whole text.
+3
+
+The notation x0 , for a fixed point in M , should not be confused with the zeroth covariant coordinate
+η0μ xμ of x which, following the convention xν := ηνμ xμ , is denoted by the same symbol x0 . From the context,
+it will always be clear whether x0 refers to a point in M or to the zeroth covariant coordinate of a point
+x ∈ M.
+
+3.
+
+Lagrangians, Euler-Lagrange equations
+and dynamical variables
+
+In [13–15] we have investigated the Lagrangian quantum field theory of respectively scalar,
+spin 21 and vector free fields. The main Lagrangians from which it was derived are respectively
+(see loc. cit. or, e.g. [1, 3, 11, 12]):
+L̃′sc = L̃′sc ( φ̃, φ̃† ) = −
+
+1
+1
+m2 c4 φ̃(x) ◦ φ̃† (x) +
+c2 ~2 (∂μ φ̃(x)) ◦ (∂ μ φ̃† (x))
+1 + τ ( φ̃)
+1 + τ ( φ̃)
+(3.1a)
+
+1
+ ̃
+ ̃
+L̃′sp = L̃′sp ( ψ̃, ψ̆) = − i~c{ ψ̆ (x)C −1 γ μ ◦ (∂μ ψ̃(x))
+2
+ ̃⊤
+ ̃⊤
+− (∂μ ψ̆ (x))C −1 γ μ ◦ ψ̃(x)} + mc2 ψ̆ (x)C −1 ◦ ψ̃(x)
+⊤
+
+L̃′v = L̃′v ( Ũ, Ũ † ) =
+
+m2 c4
+†
+μ
+Ũ μ ◦ Ũ
+1 + τ ( Ũ)
+c2 ~2 
+†
+ν
+μ†
+ν
+−(∂μ Ũ ν ) ◦ (∂ μ Ũ ) + (∂μ Ũ ) ◦ (∂ν Ũ )
++
+1 + τ ( Ũ)
+
+(3.1b)
+
+(3.1c)
+
+Here it is used the following notation: φ̃(x) is a scalar field, a tilde (wave) over a symbol
+means that it is in Heisenberg picture, the dagger † denotes Hermitian conjugation, ψ̃ :=
+ ̃
+ ̃ ⊤ := C( ψ̃ † γ 0 ) is its charge conjugate with γ μ
+( ψ̃0 , ψ̃1 , ψ̃2 , ψ̃3 ) is a 4-spinor field, ψ̆ := C ψ
+being the Dirac gamma matrices and the matrix C satisfies the equations C −1 γ μ C = −γ μ
+and C ⊤ = −C, Uμ is a vector field, m is the field's mass (parameter) and the function
+(
+1 for A† = A (Hermitian operator)
+,
+(3.2)
+τ (A) :=
+0 for A† 6= A (non-Hermitian operator)
+with A : F → F being an operator on the systems Hilbert space F of states, takes care of
+is the field charged (non-Hermitian) or neutral (Hermitian, uncharged). Since a spinor field
+is a charged one, we have τ ( ψ̃) = 0; sometimes below the number 0 = τ ( ψ̃) will be written
+explicitly for unification of the notation.
+We have explored also the consequences from the 'charge conjugate' Lagrangians
+L̃′′sc = L̃′′sc ( φ̃, φ̃† ) := L̃′sc ( φ̃† , φ̃)
+ ̃
+ ̃
+L̃′′sp = L̃′′sp ( ψ̃, ψ̆) := L̃′sp ( ψ̆, ψ̃)
+L̃′′v
+
+=
+
+L̃′′v ( Ũ,
+
+†
+
+Ũ ) :=
+
+L̃′v ( Ũ † ,
+
+Ũ),
+
+(3.3a)
+(3.3b)
+(3.3c)
+
+as well as from the 'charge symmetric' Lagrangians
+ 1 ′
+1 ′
+L̃sc + L̃′′sc =
+L̃sc ( φ̃, φ̃† ) + L̃′sc ( φ̃† , φ̃)
+2
+2
+ 1 ′
+1 ′
+ ̃
+ ̃
+ ̃
+′′′
+L̃′′′
+L̃sp + L̃′′sp =
+L̃sp ( ψ̃, ψ̆) + L̃′sp ( ψ̆, ψ̃)
+sp = L̃sp ( ψ̃, ψ̆) :=
+2
+2
+ 1 ′
+1 ′
+′′′
+†
+L̃v + L̃′′v =
+L̃v ( Ũ, Ũ † ) + L̃′v ( Ũ † , Ũ) .
+L̃′′′
+v = L̃v ( Ũ, Ũ ) :=
+2
+2
+′′′
+†
+L̃′′′
+sc = L̃sc ( φ̃, φ̃ ) :=
+
+(3.4a)
+(3.4b)
+(3.4c)
+
+It is essential to be noted, for a massless, m = 0, vector field to the Lagrangian formalism
+are added as subsidiary conditions the Lorenz conditions
+∂ μ Ũ μ = 0
+
+†
+
+∂ μ Ũ μ = 0
+
+(3.5)
+
+on the solutions of the corresponding Euler-Lagrange equations. Besides, if the opposite is
+not stated explicitly, no other restrictions, like the (anti)commutation relations, are supposed
+to be imposed on the above Lagrangians. And a technical remark, for convenience, the fields
+†
+ ̃
+φ̃, ψ̃ and Ũ and their charge conjugate φ̃† , ψ̆ and Ũ , respectively, are considered as
+independent field variables.
+Let L̃′ denotes any one of the Lagrangians (3.1) and L̃′′ (resp. L̃′′′ ) the corresponding
+to it Lagrangian given via (3.3) (resp. (3.4)). Physically the difference between L̃′ and L̃′′ is
+that the particles for L̃′ are antiparticles for L̃′′ and vice versa. Both of the Lagrangians L̃′
+and L̃′′ are not charge symmetric, i.e. the arising from them theories are not invariant under
+the change particle↔antiparticle (or, in mathematical terms, under some of the changes
+†
+ ̃
+φ̃ ↔ φ̃† , ψ̃ ↔ ψ̆, Ũ ↔ Ũ ) unless some additional hypotheses are made. Contrary to
+this, the Lagrangian L̃′′′ is charge symmetric and, consequently, the formalism on its base
+is invariant under the change particle↔antiparticle.4
+The Euler-Lagrange equations for the Lagrangians L̃′ , L̃′′ and L̃′′′ happen to coincide [13–15]:5
+∂  ∂ L̃′  ∂ L̃′′
+∂  ∂ L̃′′  ∂ L̃′′′
+∂  ∂ L̃′′′ 
+∂ L̃′
+≡
+≡
+= 0,
+− μ
+− μ
+− μ
+∂χ
+∂x ∂(∂μ χ)
+∂χ
+∂x ∂(∂μ χ)
+∂χ
+∂x ∂(∂μ χ)
+
+(3.6)
+
+†
+ ̃
+where χ = φ̃, φ̃† , ψ̃, ψ̆, Ũ, Ũ for respectively scalar, spinor and vector field.
+Since the creation and annihilation operators are defined only on the base of Euler-Lagrange equations [1, 3, 11–15], we can assert that these operators are identical for the La†±
+grangians L̃′ , L̃′′ and L̃′′′ . We shall denote these operators by a±
+s (k) and as (k) with the
+†+
+convention
+that a+
+s (k) (resp. as (k)) creates a particle (resp. antiparticle) with 4-momenp
+tum ( m2 c2 + k2 , k), polarization s (see below) and charge (−q) (resp. (+q))6 and a†s − (k)
+(resp. a−
+s (k)) annihilates/destroys such a particle (resp. antiparticle). Here and henceforth
+3
+k ∈ R is interpreted as (anti)particle's 3-momentum and the values of the polarization index
+s depend on the field considered: s = 1 for a scalar field, s = 1 or s = 1, 2 for respectively
+massless (m = 0) or massive (m 6= 0) spinor field, and s = 1, 2, 3 for a vector field.7 Since
+massless vector field's modes with s = 3 may enter only in the spin and orbital angular momenta operators [15], we, for convenience, shall assume that the polarization indices s, t, . . .
+take the values from 1 to 2j + 1 − δ0m (1 − δ0j ), where j = 0, 12 , 1 is the spin for scalar, spinor
+and vector field, respectively, and δ0m := 1 for m = 0 and δ0m := 0 for m 6= 0;8 if the value
+s = 3 is important when j = 1 and m = 0, it will be commented/considered separately. Of
+course, the creation and annihilation operators are different for different fields; one should
+write, e.g., j a±
+(k) for a±
+s (k), but we shall not use such a complicated notation and will
+s
+assume the dependence on j to be an implicit one.
+
+Besides, under the same assumptions, the Lagrangian L̃′′′ does not admit quantization via anticommutators (commutators) for integer (half-integer) spin field, while L̃′ and L̃′′ do not make difference between
+integer and half-integer spin fields.
+5
+Rigorously speaking, the Euler-Lagrange equations for the Lagrangian (3.4b) are identities like 0 = 0 -
+see [22]. However, bellow we shall handle this exceptional case as pointed in [14].
+6
+For a neutral field, we put q = 0.
+7
+For convenience, in [14], we have set s = 0 if m = 0 and s = 1, 2 if m 6= 0 for a spinor field. For a massless
+vector field, one may set s = 1, 2, thus eliminating the 'unphysical' value s = 3 for m = 0 - see [1, 11, 15].
+†±
+†±
+±
+In [13], for a scalar field, the notation φ±
+0 (k) and φ0 (k) is used for a1 (k) and a1 (k), respectively.
+8
+In this way the case (j, s, m) = (1, 3, 0) is excluded from further considerations; if (j, m) = (1, 0) and
+q = 0, the case considered further in this work corresponds to an electromagnetic field in Coulomb gauge,
+as the modes with s = 3 are excluded [15]. However, if the case (j, s, m) = (1, 3, 0) is important for some
+reasons, the reader can easily obtain the corresponding results by applying the ones from [15].
+4
+
+The following settings will be frequently used throughout this chapter:
+
+(
+
+0 for scalar field
+1 for q = 0 (neutral (Hermitian) field)
+j := 12 for spinor field
+τ :=
+
+0 for q 6= 0 (charged (non-Hermitian) field)
+
+1 for vector field
+(
++1 for integer j (bose fields)
+2j
+ε := (−1) =
+−1 for half-integer j (fermi fields)
+[A, B]± := [A, B]±1 := A ◦ B ± B ◦ A,
+
+(3.7)
+
+(3.8)
+
+where A and B are operators on the system's Hilbert space F of states.
+The dynamical variables corresponding to L̃′ , L̃′′ and L̃′′′ are, however, completely different, unless some additional conditions are imposed on the Lagrangian formalism [13–15].
+ω and
+In particular, the momentum operators P̃μω , charge operators Q̃ω , spin operators S̃μν
+orbital operators L̃ωμν , where ω = ′, ′′, ′′′, for these Lagrangians are [13–15]:
+P̃μ′
+
+1
+=
+1+τ
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+s=1
+
+d3 kkμ |
+
+k0 =
+
+√
+
+m2 c2 +k2
+
+†−
++
+{a†s + (k) ◦ a−
+s (k) + εas (k) ◦ as (k)}
+
+(3.9a)
+P̃μ′′
+
+P̃μ′′′
+
+1
+=
+1+τ
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+s=1
+
+1
+=
+2(1 + τ )
+
+d3 kkμ |
+
+k0 =
+
+√
+
+m2 c2 +k2
+
+†−
+−
+†+
+{a+
+s (k) ◦ as (k) + εas (k) ◦ as (k)}
+
+(3.9b)
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
+d3 kkμ |
+
+k0 =
+
+s=1
+
+√
+
+m2 c2 +k2
+
++
+†−
+{[a†s + (k), a−
+s (k)]ε + [as (k), as (k)]ε }
+
+(3.9c)
+
+Q̃′ = +q
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
+†−
++
+d3 k{a†s + (k) ◦ a−
+s (k) − εas (k) ◦ as (k)}
+
+(3.10a)
+
+Q̃′′ = −q
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
+†−
+−
+†+
+d3 k{a+
+s (k) ◦ as (k) − εas (k) ◦ as (k)}
+
+(3.10b)
+
+1
+Q̃ = q
+2
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
++
+†−
+d3 k{[a†s + (k), a−
+s (k)]ε − [as (k), as (k)]ε }
+
+(3.10c)
+
+′′′
+
+′
+S̃μν
+
+′′
+S̃μν
+
+s=1
+
+s=1
+
+s=1
+
+(−1)j−1/2 j~
+=
+1+τ
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+(−1)j−1/2 j~
+=ε
+1+τ
+
+′′′
+=
+S̃μν
+
+(−1)j−1/2 j~
+2(1 + τ )
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+ ss′ ,−
+d3 k σμν
+(k)a†s + (k) ◦ a−
+s′ (k)
+
+(3.11a)
+
+′
+
+ss ,+
++ σμν
+(k)a†s − (k) ◦ a+
+s′ (k)
+
+ ss′ ,+
+†−
+d3 k σμν
+(k)a+
+s′ (k) ◦ as (k)
+
+(3.11b)
+
+ ss′ ,−
+(k)[a†s + (k), a−
+d3 k σμν
+s′ (k)]ε
+
+(3.11c)
+
+′
+
+ss ,−
+†+
++ σμν
+(k)a−
+s′ (k) ◦ as (k)
+
+ss′ ,+
+
++ σμν
+
+(k)[a†s − (k), a+
+s′ (k)]ε
+
+L̃′μν =x0 μ P̃ν′ − x0 ν P̃μ′
++
+
+(−1)j−1/2 j~
+1+τ
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+ ss′ ,−
+d3 k lμν
+(k)a†s + (k) ◦ a−
+s′ (k)
+′
+
+ss ,+
++ lμν
+(k)a†s − (k) ◦ a+
+s′ (k)
+→
+−
+→
+− ←−−−
+2j+1−δ0m (1−δ0j ) Z
+n
+ ←−−∂−
+X
+∂  −
+i~
+3
+†+
++
+d k as (k) kμ ν − kν μ ◦ as (k)
+2(1 + τ )
+∂k
+∂k
+
+(3.12a)
+
+s=1
+
+→
+− ←−−−
+→
+−
+ ←−−∂−
+∂  + o
+√
+−
+kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+k0 = m2 c2 +k2
+=x0 μ P̃ν′′ − x0 ν P̃μ′′
+2j+1−δ0m (1−δ1j ) Z
+X
+ ss′ ,+
+(−1)j−1/2 j~
+†−
+d3 k lμν
+(k)a+
++ε
+s′ (k) ◦ as (k)
+1+τ
+′
+εa†s − (k)
+
+L̃′′μν
+
+s,s =1
+
+′
+
+ss ,−
+†+
++ lμν
+(k)a−
+s′ (k) ◦ as (k)
+→
+−
+→
+− ←−−−
+2j+1−δ0m (1−δ0j ) Z
+n
+ ←−−∂−
+X
+i~
+∂  †−
+3
++
++
+d k as (k) kμ ν − kν μ ◦ as (k)
+2(1 + τ )
+∂k
+∂k
+
+(3.12b)
+
+s=1
+
+L̃′′′
+μν
+
+→
+−
+→
+− ←−−−
+ ←−−∂−
+∂  †+ o
+−
+√
+− εas (k) kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+k0 = m2 c2 +k2
+=x0 μ P̃ν′′′ − x0 ν P̃μ′′′
+2j+1−δ0m (1−δ1j ) Z
+X
+ ss′ ,−
+(−1)j−1/2 j~
+d3 k lμν
+(k)[a†s + (k), a−
++
+s′ (k)]ε
+2(1 + τ )
+′
+s,s =1
+
+′
+
+ss ,+
++ lμν
+(k)[a†s − (k), a+
+s′ (k)]ε
+→
+−
+→
+− ←−−−
+2j+1−δ0m (1−δ0j ) Z
+n
+ ←−−∂−
+X
+i~
+∂  −
+3
+†+
++
+d k as (k) kμ ν − kν μ ◦ as (k)
+4(1 + τ )
+∂k
+∂k
+s=1
+
+(3.12c)
+
+→
+− ←−−−
+→
+−
+→
+−
+→
+− ←−−−
+ ←−−∂−
+ ←−−∂−
+∂  †+
+∂  †−
++
+−
+kμ ν − kν μ ◦ as (k) + as (k) kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+∂k
+∂k
+←
+−
+−
+−
+→
+−
+←
+−
+−
+−
+→
+−
+o
+
+∂ 
+∂
+√
+(k)
+.
+− εa†s − (k) kμ ν − kν μ ◦ a+
+s
+∂k
+∂k
+k0 = m2 c2 +k2
+εa−
+s (k)
+
+√
+Here we have used the following notation: (−1)n+1/2 := (−1)n i for all n ∈ N and i := + −1,
+←−−−
+→
+−
+ ∂A(k) 
+
+∂
+∂B(k) 
+A(k)kμ ν ◦ B(k) := − kμ
+◦
+B(k)
++
+A(k)
+◦
+k
+μ
+∂k
+∂kν
+∂kν
+= kμ
+
+
+
+←−
+−
+→
+−
+
+∂
+A(k) ν ◦ B(k)
+(3.13)
+∂k
+′
+
+′
+
+ss ,±
+ss ,±
+for operators A(k) and B(k) having C 1 dependence on k,9 and σμν
+(k) and lμν
+(k) are
+9
+
+More generally, if ω : {F → F} → {F → F} is a mapping on the operator space over the system's Hilbert
+→
+−
+←
+−
+space, we put A ω ◦ B := −ω(A) ◦ B + A ◦ ω(B) for any A, B : F → F. Usually [2, 12], this notation is used
+for ω = ∂μ .
+
+some functions of k such that10
+′
+
+′
+
+′
+
+′
+
+ss ,±
+ss ,±
+ss ,±
+ss ,±
+σμν
+(k) = −σνμ
+(k) lμν
+(k) = −lνμ
+(k)
+′
+
+′
+
+ss ,±
+ss ,±
+σμν
+(k) = lνμ
+(k) = 0
+
+for j = 0 (scalar field)
+
+ss′ ,−
+ss′ ,+
+ss′
+s′ s
+ss′
+σμν
+(k) = −σμν
+(k) =: σμν
+(k) = −σμν
+(k) = −σνμ
+(k)
+′
+′
+′
+′
+′
+ss ,−
+ss ,+
+ss
+ss
+ss
+lμν
+(k) = −lμν
+(k) =: lμν
+(k) = −lμν
+(k) = −lνμ
+(k)
+
+for j = 1 (vector field)
+
+(3.14)
+
+for j = 1 (vector field).
+
+A technical remark must be make at this point. The equations (3.9)–(3.12) were derived in [13–15] under some additional conditions, represented by equations (2.6) and (2.7),
+which are considered bellow in Sect. 5 and ensure the effectiveness of the momentum picture of motion [21] used in [13–15]. However, as it is partially proved, e.g., in [1], when the
+quantities (3.9)–(3.12) are expressed via the Heisenberg creation and annihilation operators
+(see (2.9)), they remain valid, up to a phase factor, and without making the mentioned
+assumptions, i.e. these assumptions are needless when one works entirely in Heisenberg picture. For this reason, we shall consider (3.9)–(3.12) as pure consequence of the Lagrangian
+formalism.
+ω and L̃ω , ω = ′, ′′, ′′′, are denoted
+We should emphasize, in (3.11) and (3.12) with S̃μν
+μν
+ω
+the spin and orbital, respectively, operators for L̃ , which are the spacetime-independent
+parts of the spin and orbital, respectively, angular momentum operators [14, 23]; if the last
+ω
+ω
+operators are denoted by S̃ μν and L̃μν , the total angular momentum operator of a system
+with Lagrangian L̃ω is [23]
+ω
+
+ω
+
+ω
+M̃ωμν = L̃μν + S̃ μν = L̃ωμν + S̃μν
+,
+ω
+
+ω
+
+ω = ′, ′′, ′′′
+
+(3.15)
+
+ω
+
+ω (and hence L̃
+ω
+and S̃ μν = S̃μν
+μν = L̃μν ) iff S̃ μν is a conserved operator or, equivalently, iff
+the system's canonical energy-momentum tensor is symmetric.11
+Going ahead (see Sect. 6), we would like to note that the expressions (3.9c) and, consequently, the Lagrangian L̃′′′ are the base from which the paracommutation relations were
+first derived [16].
+And a last remark. Above we have expressed the dynamical variables in Heisenberg picture
+via the creation and annihilation operators in momentum picture. If one works entirely in
+Heisenberg picture, the operators (2.9), representing the creation and annihilation operators
+in Heisenberg picture, should be used. Besides, by virtue of the equations
+†
+∓
+†±
+†
+†∓
+(a±
+s (k)) = as (k) (as (k)) = as (k)
+†
+†
+ã±
+= ã†s ∓ (k) ã†s ± (k) = ã∓
+s (k)
+s (k),
+
+(3.16)
+(3.17)
+
+some of the relations concerning a†s ± (k), e.g. the Euler-Lagrange and Heisenberg equations,
+are consequences of the similar ones regarding a±
+s (k). In view of (2.9), we shall consider (3.9)–
+(3.12) as obtained form the corresponding expressions in Heisenberg picture by making the
+†±
+†±
+±
+replacements ã±
+s (k) 7→ as (k) and ãs (k) 7→ as (k). So, (3.9)–(3.12) will have, up to a
+phase factor, a sense of dynamical variables in Heisenberg picture expressed via the creation/annihilation operators in momentum picture.
+10
+
+For the explicit form of these functions, see [13–15]; see also equation (6.57) below.
+In [14,23] the spin and orbital operators are labeled with an additional left superscript ◦, which, for brevity,
+ω
+ω
+is omitted in the present work as in it only these operators, not S̃ μν and L̃μν , will be considered. Notice,
+ω
+ω
+the operators S̃ μν and L̃μν are, generally, time-dependent while the orbital and spin ones are conserved, as
+a result of which the total angular momentum is a conserved operator too [14, 23].
+11
+
+4.
+
+On the uniqueness of the dynamical variables
+
+Let D = Pμ , Q, Sμν , Lμν denotes some dynamical variable, viz. the momentum, charge,
+spin, or orbital operator, of a system with Lagrangian L. Since the Euler-Lagrange equations
+for the Lagrangians L′ , L′′ and L′′′ coincide (see (3.6)), we can assert that any field satisfying
+these equations
+admits at least three classes of conserved operators, viz. D ′ , D ′′ and D ′′′ =
+
+1
+′
+′′
+2 D + D . Moreover, it can be proved that the Euler-Lagrange equations for the Lagrangian
+Lα,β := α L′ + β L′′
+
+α + β 6= 0
+
+(4.1)
+
+do not depend on α, β ∈ C and coincide with (3.6). Therefore there exists a two parameter
+family of conserved dynamical variables for these equations given via
+Dα,β := α D ′ + β D ′′
+
+α + β 6= 0.
+
+(4.2)
+
+Evidently L′′′ = L 1 , 1 and D ′′′ = D 1 , 1 . Since the Euler-Lagrange equations (3.6) are linear
+2 2
+2 2
+and homogeneous (in the cases considered), we can, without a lost of generality, restrict the
+parameters α, β ∈ C to such that
+α + β = 1,
+(4.3)
+which can be achieved by an appropriate renormalization (by a factor (α+β)−1/2 ) of the field
+operators. Thus any field satisfying the Euler-Lagrange equations (3.6) admits the family
+Dα,β , α + β = 1, of conserved operators. Obviously, this conclusion is valid if in (4.1) we
+replace the particular Lagrangians L′ and L′′ (see (3.1) and (3.3)) with any two Lagrangians
+(of one and the same field variables) which lead to identical Euler-Lagrange equations. However, the essential point in our case is that L′ and L′′ do not differ only by a full divergence,
+as a result of which the operators Dα,β are different for different pairs (α, β), α + β = 1.12
+Since one expects a physical system to possess uniquely defined dynamical characteristics,
+e.g. energy and total angular momentum, and the Euler-Lagrange equations are considered
+(in the framework of Lagrangian formalism) as the ones governing the spacetime evolution of
+the system considered, the problem arises when the dynamical operators Dα,β , α+β = 1, are
+independent of the particular choice of α and β, i.e. of the initial Lagrangian one starts off.
+Simple calculation show that the operators (4.2), under the condition (4.3), are independent
+of the particular values of the parameters α and β if and only if
+D ′ = D ′′ .
+
+(4.4)
+
+Some consequences of the condition(s) (4.4) will be considered below, as well as possible ways
+for satisfying these restrictions on the Lagrangian formalism.
+Combining (3.9)–(3.12) with (4.4), for respectively D = Pμ , Q, Sμν , Lμν , we see that a
+free scalar, spinor or vector field has a uniquely defined dynamical variables if and only if
+the following equations are fulfilled:
+2j+1−δ0m (1−δ0j ) Z
+
+X
+s=1
+
+d3 k kμ
+
+k0 =
+
+√
+
+m2 c2 +k2
+
+ †+
+−
+†+
+as (k) ◦ a−
+s (k) − εas (k) ◦ as (k)
+
+†−
+†−
++
+− a+
+s (k) ◦ as (k) + εas (k) ◦ as (k) = 0 (4.5)
+
+12
+Note, no commutativity or some commutation relations between the field operators and their charge (or
+Hermitian) conjugate are presupposed, i.e., at the moment, we work in a theory without such relations and
+normal ordering.
+
+q×
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+s=1
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+
+−
+†+
+d3 k a†s + (k) ◦ a−
+s (k) − εas (k) ◦ as (k)
+
+†−
+†−
++
++ a+
+s (k) ◦ as (k) − εas (k) ◦ as (k) = 0 (4.6)
+
+ ss′ ,−
+ss′ ,−
+−
+†+
+d3 k σμν
+(k)a†s + (k) ◦ a−
+s′ (k) − εσμν (k)as′ (k) ◦ as (k)
+′
+
+′
+
++
+ss ,+
+†−
+ss ,+
+†−
+− εσμν
+(k)a+
+s′ (k) ◦ as (k) + σμν (k)as (k) ◦ as′ (k) = 0 (4.7)
+
+ ss′ ,−
+ss′ ,−
+−
+†+
+d3 k lμν
+(k)a†s + (k) ◦ a−
+s′ (k) − εlμν (k)as′ (k) ◦ as (k)
+′
+
+′
+
++
+ss ,+
+†−
+ss ,+
+†−
+− εlμν
+(k)a+
+s′ (k) ◦ as (k) + lμν (k)as (k) ◦ as′ (k)
+→
+−
+→
+−
+→
+− ←−−−
+→
+− ←−−−
+2j+1−δ0m (1−δ0jZ)
+ ←−−∂−
+n
+ ←−−∂−
+X
+∂  −
+∂  †+
+1
+−
+3
+†+
+d k as (k) kμ ν − kν μ ◦as (k)+εas (k) kμ ν − kν μ ◦as (k)
++
+2
+∂k
+∂k
+∂k
+∂k
+s=1
+
+→
+−
+→
+−
+→
+− ←−−−
+→
+− ←−−−
+ ←−−∂−
+ ←−−∂−
+∂  †−
+∂  + o
+†−
+kμ ν − kν μ ◦as (k)−εas (k) kμ ν − kν μ ◦as (k)
+∂k
+∂k
+∂k
+∂k
+
+−a+
+s (k)
+
+k0 =
+
+√
+
+m2 c2 +k2
+
+= 0.
+(4.8)
+
+In (4.6) is retained the constant factor q as in the neutral case it is equal to zero and,
+consequently, the equation (4.6) reduces to identity.
+Since the Euler-Lagrange equations do not impose some restrictions on the creation and
+annihilation operators, the equations (4.5)–(4.8) can be regarded as subsidiary conditions
+on the Lagrangian formalism and can serve as equations for (partial) determination of the
+creation and annihilation operators. The system of integral equations (4.5)–(4.8) is quite
+complicated and we are not going to investigate it in the general case. Below we shall
+restrict ourselves to analysis of only those solutions of (4.5)–(4.8), if any, for which the
+integrands in (4.5)–(4.8) vanish. This means that we shall replace the system of integral
+equations (4.5)–(4.8) with respect to creation and annihilation operators with the following
+system of algebraic equations (do not sum over s and s′ in (4.12) and (4.13)!):
+−
+†+
++
+†−
+†−
++
+a†s + (k) ◦ a−
+s (k) − εas (k) ◦ as (k) − as (k) ◦ as (k) + εas (k) ◦ as (k) = 0 (4.9)
++
+−
+†+
++
+†−
+†−
+a†s + (k) ◦ a−
+s (k) − εas (k) ◦ as (k) + as (k) ◦ as (k) − εas (k) ◦ as (k) = 0
+
+if q 6= 0
+(4.10)
+
+→
+−
+→
+− ←−−−
+→
+−
+→
+− ←−−−
+ ←−−∂−
+ ←−−∂−
+∂  −
+∂  †+
+−
+kμ ν − kν μ ◦ as (k) + εas (k) kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+∂k
+∂k
+←
+−
+−
+−
+→
+−
+←
+−
+−
+−
+→
+−
+←
+−
+−
+−
+→
+−
+←
+−
+−
+−
+→
+−
+
+
+∂
+∂  †−
+∂  + o
+∂
+†−
+√
+− a+
+−
+k
+−
+k
+◦a
+(k)−
+εa
+(k)
+◦as (k)
+=0
+k
+ν
+ν
+μ
+s (k) kμ
+s
+s
+∂kν
+∂kμ
+∂kν
+∂kμ
+k0 = m2 c2 +k2
+(4.11)
+X ′
+ss ,−
+ss′ ,−
+−
+†+
+σμν
+(k)a†s + (k) ◦ a−
+s′ (k) − εσμν (k)as′ (k) ◦ as (k)
+n
+
+a†s + (k)
+
+s,s′
+
+′
+
+′
+
++
+ss ,+
+†−
+ss ,+
+†−
+− εσμν
+(k)a+
+s′ (k) ◦ as (k) + σμν (k)as (k) ◦ as′ (k) = 0 (4.12)
+
+X
+s,s′
+
+′
+
+′
+
+ss ,−
+ss ,−
+−
+†+
+lμν
+(k)a†s + (k) ◦ a−
+s′ (k) − εlμν (k)as′ (k) ◦ as (k)
+′
+
+′
+
++
+ss ,+
+†−
+ss ,+
+†−
+− εlμν
+(k)a+
+s′ (k) ◦ as (k) + lμν (k)as (k) ◦ as′ (k) = 0 (4.13)
+
+Here: s = 1, . . . , 2j + 1 − δ0m (1 − δ0j ) in (4.9)–(4.11) and s, s′ = 1, . . . , 2j + 1 − δ0m (1 −
+δ1j ) in (4.12) and (4.13). (Notice, by virtue of (3.14), the equations (4.12) and (4.13) are
+identically valid for j = 0, i.e. for scalar fields.) Since all polarization indices enter in (4.5)
+and (4.6) on equal footing, we do not sum over s in (4.9)–(4.11). But in (4.12) and (4.13)
+we have retain the summation sign as the modes with definite polarization cannot be singled
+out in the general case. One may obtain weaker versions of (4.9)–(4.13) by summing in them
+over the polarization indices, but we shall not consider these conditions below regardless of
+the fact that they also ensure uniqueness of the dynamical variables.
+At first, consider the equations (4.9)–(4.11). Since for a neutral field, q = 0, we have
+†±
+as (k) = a±
+s (k), which physically means coincidence of field's particles and antiparticles,
+the equations (4.9)–(4.11) hold identically in this case.
+Let consider now the case q 6= 0, i.e. the investigated field to be charged one. Using the
+standard notation (cf. (3.8))
+[A, B]η := A ◦ B + ηB ◦ A,
+
+(4.14)
+
+for operators A and B and η ∈ C, we rewrite (4.9) and (4.10) as
++
+†−
+[a†s + (k), a−
+s (k)]−ε − [as (k), as (k)]−ε = 0
+
++
+†−
+[a†s + (k), a−
+s (k)]−ε + [as (k), as (k)]−ε = 0
+
+(4.9′ )
+(4.10′ )
+
+if q 6= 0,
+
+which are equivalent to
+[a†s ± (k), a∓
+s (k)]−ε = 0
+
+if q 6= 0.
+
+(4.15)
+
+Differentiating (4.15) and inserting the result into (4.11), one can verify that (4.11) is
+tantamount to
+nh
+
+i
+
+∂ 
+∂
+(k)
+a†s + (k), kμ ν − kν μ ◦ a−
+s
+∂k
+∂k
+−ε
+
+
+i o
+h
+∂
+∂
+†−
+(k),
+k
+−
+k
+◦
+a
+(k)
+− a+
+μ
+ν
+s
+s
+∂kν
+∂kμ
+−ε
+
+k0 =
+
+√
+
+m2 c2 +k2
+
+=0
+
+if q 6= 0, (4.16)
+
+Consider now (4.12) and (4.13). By means of the shorthand (4.14), they read
+X ′
+ss ,−
+ss′ ,+
+†−
++
+σμν
+(k)[a†s + (k), a−
+s′ (k)]−ε + σμν (k)[as (k), as′ (k)]−ε = 0
+
+(4.17)
+
+s,s′
+
+X
+
+′
+
+′
+
++
+ss ,−
+ss ,+
+†−
+lμν
+(k)[a†s + (k), a−
+s′ (k)]−ε + lμν (k)[as (k), as′ (k)]−ε = 0.
+
+(4.18)
+
+s,s′
+
+For a scalar field, j = 0, these conditions hold identically, due to (3.14). But for j 6= 0 they
+impose new restrictions on the formalism. In particular, for vector fields, j = 1 and ε = +1
+they are satisfied iff (see (3.14))
+†−
+†+
++
++
+†−
+−
+[a†s + (k), a−
+s′ (k)]−ε − [as (k), as′ (k)]−ε − [as′ (k), as (k)]−ε + [as′ (k), as (k)]−ε = 0. (4.19)
+
+One can satisfy (4.17) and (4.18) if the following generalization of (4.15) holds
+[a†s ± (k), a∓
+s′ (k)]−ε = 0.
+
+(4.20)
+
+For spin j = 12 (and hence ε = −1 – see (3.7)), the conditions (4.12) and (4.13) cannot
+be simplified much, but, if one requires the vanishment of the operator coefficients after
+ss′ ,±
+ss′ ,±
+σμν
+(k) and lμν
+(k), one gets
+a†s ± (k) ◦ a∓
+s′ (k) = 0
+
+j=
+
+1
+2
+
+ε = −1.
+
+(4.21)
+
+Excluding some special cases, e.g. neutral scalar field (q = 0 and j = 0), the equations (4.15) and (4.21) are unacceptable from many viewpoints. The main of them is that they
+are incompatible with the ordinary (anti)commutation relations (see, e.g., e.g. [1, 11, 12, 18]
+or Sect. 6, in particular, equations (6.13) bellow); for example, (4.21) means that the acts of
+creation and annihilation of (anti)particles with identical characteristics should be mutually
+independent, which contradicts to the existing theory and experimental data.
+Now we shall try another way for achieving uniqueness of the dynamical variables for
+free fields. Since in (4.9)–(4.13) naturally appear (anti)commutators between creation and
+annihilation operators and these (anti)commutators vanish under the standard normal ordering [1,11,12,18], one may suppose that the normally ordered expressions of the dynamical
+variables may coincide. Let us analyze this method.
+Recall [1, 3, 11, 12], the normal ordering operator N (for free field theory) is a linear
+operator on the operator space of the system considered such that to a product (composition)
+c1 ◦ * * * ◦ cn of n ∈ N creation and/or annihilation operators c1 , . . . cn it assigns the operator
+(−1)f cα1 ◦ * * * cαn . Here (α1 , . . . , αn ) is a permutation of (1, . . . , n), all creation operators
+stand to the left of all annihilation ones, the relative order between the creation/annihilation
+operators is preserved, and f is equal to the number of transpositions among the fermion
+operators (j = 12 ) needed to be achieved the just-described order ("normal order") of the
+operators c1 ◦ * * * ◦ cn in cα1 ◦ * * * cαn .13 In particular this means that
+
+†−
+†−
++
+N a+
+s (k) ◦ at (p) = as (k) ◦ at (p)
+
+†+
+†+
+−
+N a−
+s (k) ◦ at (p) = εat (p) ◦ as (k)
+
+and, consequently, we have
+
+
+N [a†s ± (k), a∓
+t (p)]−ε = 0
+
+
+†+
+−
+N a†s + (k) ◦ a−
+t (p) = as (k) ◦ at (p)
+
++
+†−
+N a†s − (k) ◦ a+
+t (p) = εat (p) ◦ as (k)
+
+†∓
+N [a±
+s (k), at (p)]−ε = 0,
+
+(4.22)
+
+(4.23)
+
+due to ε := (−1)2j = ±1 (see (3.7)). (In fact, below only the equalities (4.22) and (4.23),
+not the general definition of a normal product, will be applied.)
+Applying the normal ordering operator to (4.9′ ), (4.10′ ), (4.17) and (4.18), we, in view
+of (4.23), get the identity 0 = 0, which means that the conditions (4.9), (4.10), (4.12)
+and (4.13) are identically satisfied after normal ordering. This is confirmed by the application
+of N to (3.9) and (3.10), which results respectively in (see (4.22))
+N ( P̃μ′ ) = N ( P̃μ′′ )
+=
+
+13
+
+1
+1+τ
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+s=1
+
+d3 kkμ |
+
+k0 =
+
+√
+
+m2 c2 +k2
+
++
+†−
+{a†s + (k) ◦ a−
+s (k) + as (k) ◦ as (k)} (4.24)
+
+We have slightly modified the definition given in [1, 3, 11, 12] because no (anti)commutation relations are
+presented in our exposition till the moment. In this paper we do not concern the problem for elimination of
+†±
+the 'unphysical' operators a±
+3 (k) and a3 (k) from the spin and orbital momentum operators when j = 1; for
+details, see [15], where it is proved that, for an electromagnetic field, j = 1 and q = 0, one way to achieve this
+±
+is by adding to the number f above the number of transpositions between a±
+s (k), s = 1, 2, and a3 (k) needed
+for getting normal order.
+
+1
+N ( Q̃ ) = N ( Q̃ ) =
+1+τ
+′
+
+′′
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
++
+†−
+d3 k{a†s + (k) ◦ a−
+s (k) − as (k) ◦ as (k)}.
+
+s=1
+
+(4.25)
+
+Therefore the normal ordering ensures the uniqueness of the momentum and charge operators,
+if we redefine them respectively as
+P̃μ := N ( P̃μ′ )
+
+Q̃ := N ( Q̃′ ).
+
+(4.26)
+
+Putting ωμν := kμ ∂k∂ ν − kν ∂k∂ μ and using (4.22), one can verify that
+←−
+−
+→
+− †− 
+←−
+−
+→
+− †−
++
+N a+
+s (k) ωμν ◦ as (k) = as (k) ωμν ◦ as (k)
+
+←−
+−
+→
+−
+←−
+−
+→
+− −
+†+
+N a†s + (k) ωμν ◦ a−
+s (k) = as (k) ωμν ◦ as (k)
+←−
+−
+→
+− †+ 
+←−
+−
+→
+− −
+†+
+N a−
+s (k) ωμν ◦ as (k) = −εas (k) ωμν ◦ as (k)
+
+←−
+−
+→
+−
+←−
+−
+→
+− †−
++
+N a†s − (k) ωμν ◦ a+
+s (k) = −εas (k) ωμν ◦ as (k).
+
+(4.27)
+
+As a consequence of these equalities, the action of N on the l.h.s. of (4.11) vanishes. Combining this result with the mentioned fact that the normal ordering converts (4.12) and (4.13)
+into identities, we see that the normal ordering procedure ensures also uniqueness of the spin
+and orbital operators if we redefine them respectively as:
+′
+′′
+)=
+) := N ( S̃μν
+S̃μν := N ( S̃μν
+
+×
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+(−1)j−1/2 j~
+1+τ
+(4.28)
+
+ ss′ ,−
++
+ss′ ,+
+†−
+d k σμν
+(k)a†s + (k) ◦ a−
+s′ (k) + εσμν (k)as′ (k) ◦ as (k)
+3
+
+L̃μν := N ( L̃′μν ) := N ( L̃′′μν ) = x0 μ P̃ν − x0 ν P̃μ +
+×
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+i~
++
+2(1 + τ )
+
+ ss′ ,−
++
+ss′ ,+
+†−
+d3 k lμν
+(k)a†s + (k) ◦ a−
+s′ (k) + εlμν (k)as′ (k) ◦ as (k)
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+s=1
+
+(−1)j−1/2 j~
+1+τ
+
+→
+−
+→
+− ←−−−
+ ←−−∂−
+∂  −
+3
+†+
+d k as (k) kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+
+(4.29)
+
+n
+
+→
+− ←−−−
+→
+−
+ ←−−∂−
+o
+∂
+†−
++ a+
+−
+k
+◦
+a
+(k)
+ν
+s (k) kμ
+s
+∂kν
+∂kμ
+
+k0 =
+
+√
+
+m2 c2 +k2
+
+,
+
+where (3.14) was applied.
+
+5.
+
+Heisenberg relations
+
+The conserved operators, like momentum and charge operators, are often identified with the
+generators of the corresponding transformations under which the action operator is invariant [1, 3, 11, 12]. This leads to a number of commutation relations between the components
+of these operators and between them and the field operators. The relations of the letter
+set are known/referred as the Heisenberg relations or equations. Both kinds of commutation relations are from pure geometric origin and, consequently, are completely external to
+the Lagrangian formalism; one of the reasons being that the mentioned identification is, in
+
+general, unacceptable and may be carried out only on some subset of the system's Hilbert
+space of states [23, 24]. Therefore their validity in a pure Lagrangian theory is questionable
+and should be verified [11]. However, the considered relations are weaker conditions than
+the identification of the corresponding operators and there are strong evidences that these
+relations should be valid in a realistic quantum field theory [1,11]; e.g., the commutativity between the momentum and charge operators (see below (5.18)) expresses the experimental fact
+that the 4-momentum and charge of any system are simultaneously measurable quantities.
+It is known [1, 11], in a pure Lagrangian approach, the field equations, which are usually
+identified with the Euler-Lagrange, 14 are the only restrictions on the field operators. Besides,
+these equations do not determine uniquely the field operators and the letter can be expressed
+through the creation and annihilation operators. Since the last operators are left completely
+arbitrary by a pure Lagrangian formalism, one is free to impose on them any system of
+compatible restrictions. The best known examples of this kind are the famous canonical
+(anti)commutation relations and their generalization, the so-called paracommutation relations [16, 18]. In general, the problem for compatibility of such subsidiary to the Lagrangian
+formalism system of restrictions with, for instance, the Heisenberg relations is open and
+requires particular investigation [11]. For example, even the canonical (anti)commutation
+relations for electromagnetic field in Coulomb gauge are incompatible with the Heisenberg
+equation involving the (total) angular momentum operator unless the gauge symmetry of this
+field is taken into account [11, § 84]. However, the (para)commutation relations are, by construction, compatible with the Heisenberg relations regarding momentum operator (see [16]
+or below Subsect. 6.1). The ordinary approach is to be imposed a system of equations on
+the creation and annihilation operators and, then, to be checked its compatibility with, e.g.,
+the Heisenberg relations. In the next sections we shall investigate the opposite situation:
+assuming the validity of (some of) the Heisenberg equations, the possible restrictions on
+the creation and annihilation operators will be explored. For this purpose, below we briefly
+review the Heisenberg relations and other ones related to them.
+Consider a system of quantum fields φ̃i (x), i = 1, . . . , N ∈ N, where φ̃i (x) denote the
+components of all fields (and their Hermitian conjugates), and P̃μ , Q̃ and M̃μν be its
+momentum, charge and (total) angular momentum operators, respectively. The Heisenberg
+relations/equations for these operators are [1, 3, 11, 12]
+∂ φ̃i (x)
+∂xμ
+[ φ̃i (x), Q̃] = e( φ̃i )q φ̃i (x)
+
+[ φ̃i (x), P̃μ ] = i~
+
+[ φ̃i (x), M̃μν ] = i~{xμ ∂ν φ̃i (x) − xν ∂μ φ̃i (x)} + i~
+
+(5.1)
+(5.2)
+X
+
+Iij′ μν
+
+φ̃i′ (x).
+
+(5.3)
+
+i′
+
+Here: q = const is the fields' charge, e( φ̃i ) = 0 if φ̃†i = φ̃i , e( φ̃i ) = ±1 if φ̃†i 6= φ̃i with
+i′ = −I i′ characterize the transformation properties
+e( φ̃i ) + e( φ̃†i ) = 0, and the constants Iiμν
+iνμ
+of the field operators under 4-rotations. (If ε( φ̃i ) 6= 0, it is a convention whether to put
+ε( φ̃i ) = +1 or ε( φ̃i ) = −1 for a fixed i.)
+We would like to make some comments on (5.3). Since its r.h.s. is a sum of two operators,
+the first (second) characterizing the pure orbital (spin) angular momentum properties of
+the system considered, the idea arises to split (5.3) into two independent equations, one
+involving the orbital angular momentum operator and another concerning the spin angular
+momentum operator. This is supported by the observation that, it seems, no process is known
+for transforming orbital angular momentum into spin one and v.v. (without destroying the
+14
+Recall, there are Lagrangians whose classical Euler-Lagrange equations are identities. However, their
+correct and rigorous treatment [22] reveals that they entail field equations which are mathematically correct
+and physically sensible.
+
+sp
+system). So one may suppose the existence of operators M̃or
+μν and M̃μν such that
+
+[ φ̃i (x), M̃or
+μν ] = i~{xμ ∂ν φ̃i (x) − xν ∂μ φ̃i (x)}
+X ′
+i
+Iiμν
+φ̃i′ (x)
+[ φ̃i (x), M̃sp
+μν ] = i~
+M̃μν = M̃or
+μν +
+
+i′
+M̃sp
+μν .
+
+(5.4)
+(5.5)
+(5.6)
+
+However, as particular calculations demonstrate [5,14,15], neither the spin (resp. orbital)
+nor the spin (resp. orbital) angular momentum operator is a suitable candidate for M̃sp
+μν
+(resp. M̃or
+μν ). If we assume the validity of (5.1), then equations (5.4) and (5.5) can be
+satisfied if we choose
+ext
+M̃or
+μν (x) = L̃μν := xμ P̃ν − xν P̃μ
+
+(5.7)
+
+(0)
+ext
+M̃sp
+μν (x) = M̃μν (x) := M̃μν − L̃μν = S̃μν + L̃μν − {xμ P̃ν − xν P̃μ }
+
+(5.8)
+
+with M̃μν satisfying (5.3). These operators are not conserved ones. Such a representation
+is in agreement with the equations (3.12), according to which the operator (5.7) enters additively in the expressions for the orbital operator.15 The physical sense of the operator (5.7)
+is that it represents the orbital angular momentum of the system due to its movement as a
+whole. Respectively, the operator (5.8) describes the system's angular momentum as a result
+of its internal movement and/or structure.
+Since the spin (orbital) angular momentum is associated with the structure (movement)
+of a system, in the operator (5.8) are mixed the spin and orbital angular momenta. These
+quantities can be separated completely via the following representations of the operators
+sp
+Mor
+μν and Mμν in momentum picture (when (5.1) holds)
+int
+Mor
+μν = xμ Pν − xμ Pμ + Lμν
+
+Msp
+μν
+
+(5.9)
+
+= Mμν − (xμ Pν − xμ Pμ ) −
+
+Lint
+μν ,
+
+(5.10)
+
+where Lint
+μν describes the 'internal' orbital angular momentum of the system considered and
+depends on the Lagrangian we have started off. Generally said, Lint
+μν is the part of the
+orbital angular momentum operator containing derivatives of the creation and annihilation
+operators. In particular, for the Lagrangians L′ , L′′ and L′′′ (see Sect. 3), the explicit forms
+of the operators (5.9) and (5.10) respectively are:
+or
+M′μν
+=xμ Pν′ − xν Pμ′
+
+i~
++
+2(1 + τ )
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+s=1
+
+→
+−
+→
+− ←−−−
+n
+ ←−−∂−
+∂  −
+†+
+d k as (k) kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+3
+
+→
+−
+→
+− ←−−−
+ ←−−∂−
+∂  + o
+−
+kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+′′
+′′
+=xμ Pν − xν Pμ
+εa†s − (k)
+
+M′′μνor
+
+i~
++
+2(1 + τ )
+−
+15
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+s=1
+
+√
+
+m2 c2 +k2
+
+→
+−
+→
+− ←−−−
+n
+ ←−−∂−
+∂  †−
++
+d k as (k) kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+3
+
+→
+−
+→
+− ←−−−
+ ←−−∂−
+∂  †+ o
+kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+
+εa−
+s (k)
+
+k0 =
+
+(5.11a)
+
+k0 =
+
+√
+
+(5.11b)
+
+m2 c2 +k2
+
+This is evident in the momentum picture of motion, in which xμ stands for x0 μ in (3.12) - see [13–15].
+
+or
+′′′
+′′′
+M′′′
+μν =xμ Pν − xν Pμ
+
+i~
++
+4(1 + τ )
+
+→
+−
+→
+− ←−−−
+n
+ ←−−∂−
+∂  −
+†+
+d k as (k) kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
+3
+
+s=1
+
+→
+− ←−−−
+→
+−
+→
+−
+→
+− ←−−−
+ ←−−∂−
+ ←−−∂−
+∂  †+
+∂  †−
++
+−
+kμ ν − kν μ ◦ as (k) + as (k) kμ ν − kν μ ◦ as (k)
+∂k
+∂k
+∂k
+∂k
+←
+−
+−
+−
+→
+−
+←
+−
+−
+−
+→
+−
+o
+
+∂ 
+∂
+√
+(k)
+.
+− εa†s − (k) kμ ν − kν μ ◦ a+
+s
+∂k
+∂k
+k0 = m2 c2 +k2
+(5.11c)
+εa−
+s (k)
+
+M′μνsp
+
+M′′μνsp
+
+sp
+M′′′
+μν
+
+(−1)j−1/2 j~
+=
+1+τ
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+(−1)j−1/2 j~
+=ε
+1+τ
+
+(−1)j−1/2 j~
+=
+2(1 + τ )
+
+ ss′ ,−
+ss′ ,−
+d3 k (σμν
+(k) + lμν
+(k))a†s + (k) ◦ a−
+s′ (k)
+′
+
+′
+
+ss ,+
+ss ,+
++ (σμν
+(k) + lμν
+(k))a†s − (k) ◦ a+
+s′ (k)
+(5.12a)
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+ ss′ ,+
+ss′ ,+
+†−
+d3 k (σμν
+(k) + lμν
+(k))a+
+s′ (k) ◦ as (k)
+′
+
+′
+
+ss ,−
+ss ,−
+†+
++ (σμν
+(k) + σμν
+(k))a−
+s′ (k) ◦ as (k)
+(5.12b)
+
+2j+1−δ0m (1−δ1j ) Z
+
+X
+
+s,s′ =1
+
+ ss′ ,−
+ss′ ,−
+d3 k (σμν
+(k) + lμν
+(k))[a†s + (k), a−
+s′ (k)]ε
+′
+
+′
+
+ss ,+
+ss ,+
++ (σμν
+(k) + lμν
+(k))[a†s − (k), a+
+s′ (k)]ε .
+(5.12c)
+
+Obviously (see Sect. 2), the equations (5.12) have the same form in Heisenberg picture in
+terms of the operators (2.9) (only tildes over M and a must be added), but the equations (5.11) change substantially due to the existence of derivatives of the creation and
+annihilation operators in them [13–15]:
+or
+M̃′μν
+
+M̃′′μνor
+
+i~
+=
+2(1 + τ )
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+s=1
+
+→
+− ←−−−
+→
+−
+n
+ ←−−∂−
+∂  −
+†+
+d k ãs (k) kμ ν − kν μ ◦ ãs (k)
+∂k
+∂k
+3
+
+→
+− ←−−−
+→
+−
+ ←−−∂−
+o
+∂
+√
+− εã†s − (k) kμ ν − kν μ ◦ ã+
+s (k)
+∂k
+∂k
+k0 = m2 c2 +k2
+→
+−
+→
+− ←−−−
+2j+1−δ0m (1−δ0j ) Z
+n
+ ←−−∂−
+X
+∂  †−
+i~
+3
++
+d k ãs (k) kμ ν − kν μ ◦ ãs (k)
+=
+2(1 + τ )
+∂k
+∂k
+s=1
+→
+− ←−−−
+→
+−
+ ←−−∂−
+∂  †+ o
+−
+− εãs (k) kμ ν − kν μ ◦ ãs (k)
+∂k
+∂k
+
+k0 =
+
+√
+
+m2 c2 +k2
+
+(5.13a)
+
+(5.13b)
+
+or
+M̃′′′
+μν
+
+i~
+=
+4(1 + τ )
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+s=1
+
+→
+−
+→
+− ←−−−
+n
+ ←−−∂−
+∂
+d3 k ã†s + (k) kμ ν − kν μ ◦ ã−
+s (k)
+∂k
+∂k
+
+→
+−
+→
+− ←−−−
+→
+−
+→
+− ←−−−
+ ←−−∂−
+ ←−−∂−
+∂  †+
+∂  †−
++
+−
+− εãs (k) kμ ν − kν μ ◦ ãs (k) + ãs (k) kμ ν − kν μ ◦ ãs (k)
+∂k
+∂k
+∂k
+∂k
+←
+−
+−
+−
+→
+−
+←
+−
+−
+−
+→
+−
+
+o
+∂
+∂ 
+√
+− εã†s − (k) kμ ν − kν μ ◦ ã+
+.
+s (k)
+∂k
+∂k
+k0 = m2 c2 +k2
+(5.13c)
+sp
+From (5.13) and (5.12) is clear that the operators M̃or
+μν and M̃μν so defined are conserved
+(contrary to (5.7) and (5.8)) and do not depend on the validity of the Heisenberg relations (5.1) (contrary to expressions (5.11) in momentum picture).
+The problem for whether the operators (5.12) and (5.13) satisfy the equations (5.4)
+and (5.5), respectively, will be considered in Sect. 6.
+There is an essential difference between (5.4) and (5.5): the equation (5.5) depends on
+i′
+the particular properties of the operators φ̃i (x) under 4-rotations via the coefficients Iiμν
+(see (5.25) below), while (5.4) does not depend on them. This is explicitly reflected in (5.11)
+and (5.12): the former set of equations is valid independently of the geometrical nature of the
+fields considered, while the latter one depends on it via the 'spin' ('polarization') functions
+ss′ ,±
+ss′ ,±
+σμν
+(k) and lμν
+(k). Similar remark concerns (5.3), on one hand, and (5.1) and (5.2), on
+another hand: the particular form of (5.3) essentially depends on the geometric properties
+of φ̃i (x) under 4-rotations, the other equations being independent of them.
+It should also be noted, the relation (5.3) does not hold for a canonically quantized
+electromagnetic field in Coulomb gauge unless some additional terms it its r.h.s., reflecting
+the gauge symmetry of the field, are taken into account [11, § 84].
+As it was said above, the relations (5.1)–(5.3) are from pure geometrical origin. However,
+the last discussion, concerning (5.4)–(5.8), reveals that the terms in braces in (5.3) should be
+connected with the momentum operator in the (pure) Lagrangian approach. More precisely,
+on the background of equations (3.11a)–(3.12c), the Heisenberg relation (5.3) should be
+replaced with
+X ′
+i
+Iiμν
+(5.14)
+φ̃i′ (x),
+[ φ̃i (x), M̃μν ] = xμ [ φ̃i (x), P̃ν ] − xν [ φ̃i (x), P̃μ ] + i~
+j
+
+which is equivalent to (5.3) if (5.1) is true. An advantage of the last equation is that it is valid
+in any picture of motion (in the same form) while (5.3) holds only in Heisenberg picture.16
+Obviously, (5.14) is equivalent to (5.5) with M̃sp
+μν defined by (5.8).
+The other kind of geometric relations mentioned at the beginning of this section are
+connected with the basic relations defining the Lie algebra of the Poincaré group [7, pp. 143–
+147], [8, sect. 7.1]. They require the fulfillment of the following equations between the components P̃μ of the momentum and M̃μν of the angular momentum operators [3, 5, 7, 8]:
+[ P̃μ , P̃ν ] = 0
+
+[ M̃μν , P̃λ ] = −i~(ηλμ P̃ν − ηλν P̃μ ).
+
+[ M̃κλ , M̃μν ] = −i~ ηκμ M̃λν − ηλμ M̃κν − ηκν M̃λμ + ηλν M̃κμ .
+
+(5.15)
+(5.16)
+(5.17)
+
+We would like to pay attention to the minus sign in the multiplier (−i~) in (5.16) and (5.17)
+with respect to the above references, where i~ stands instead of −i~ in these equations. When
+16
+
+In other pictures of motion, generally, additional terms in the r.h.s. of (5.3) will appear, i.e. the functional
+form of the r.h.s. of (5.3) is not invariant under changes of the picture of motion, contrary to (5.14).
+
+(a representation of) the Lie algebra of the Poincaré group is considered, this difference in the
+sign is insignificant as it can be absorbed into the definition of M̃μν . However, the change
+of the sign of the angular momentum operator, M̃μν 7→ − M̃μν , will result in the change
+i~ 7→ −i~ in the r.h.s. of (5.3). This means that equations (5.15), (5.16) and (5.3), when
+considered together, require a suitable choice of the signs of the multiplier i~ in their right
+hand sides as these signs change simultaneously when M̃μν is replaced with − M̃μν . Since
+equations (5.3), (5.16) and (5.17) hold, when M̃μν is defined according to the Noether's
+theorem and the ordinary (anti)commutation relations are valid [13–15], we accept these
+equations in the way they are written above.
+To the relations (5.15)–(5.17) should be added the equations [3, p. 78]
+[ Q̃, P̃μ ] = 0
+
+[ Q̃, M̃μν ] = 0,
+
+(5.18)
+(5.19)
+
+which complete the algebra of observables and express, respectively, the translational and
+rotational invariance of the charge operator Q̃; physically they mean that the charge and
+momentum or the charge and angular momentum are simultaneously measurable quantities.
+Since the spin properties of a system are generally independent of its charge or momentum,
+one may also expect the validity of the relations17
+[ S̃μν , P̃μ ] = 0
+[ S̃μν , Q̃] = 0.
+
+(5.20)
+(5.21)
+
+But, as the spin describes, in a sense, some of the rotational properties of the system,
+equality like [ S̃μν , L̃κλ ] = 0 is not likely to hold. Indeed, the considerations in [13–15] reveal
+that (5.20) and (5.21), but not the last equation, are true in the framework of the Lagrangian
+formalism with added to it standard (anti)commutation relations. Notice, if (5.20) and (5.21)
+hold, then, respectively, (5.16) and (5.19) are equivalent to
+[ L̃μν , P̃λ ] = −i~(ηλμ P̃ν − ηλν P̃μ ).
+[ Q̃, L̃μν ] = 0.
+
+(5.22)
+(5.23)
+
+It is intuitively clear, not all of the commutation relations (5.1)–(5.3) and (5.15)–(5.21)
+are independent: if D̃ denotes some of the operators P̃μ , Q̃, M̃μν , S̃μν or L̃μν and the
+commutators [ φ̃i (x), D̃] , i = 1, . . . , N , are known, then, in principle, one can calculate the
+commutators [Γ( φ̃1 (x), . . . , φ̃N (x)), D̃] , where Γ( φ̃1 (x), . . . , φ̃N (x)) is, for example, any
+function/functional bilinear in φ̃1 (x), . . . , φ̃N (x); to prove this fact, one should apply the
+identity [A, B ◦ C] = [A, B] ◦ C + B ◦ [A, C] a suitable number of times. In particular, if
+D̃1 and D̃2 denote any two (distinct) operators of the dynamical variables, and [ φ̃i (x), D̃1 ]
+is known, then the commutator [ D̃1 , D̃2 ] can be calculated explicitly. For this reason, we
+can expect that:
+(i) Equation (5.1) implies (5.15), (5.16), (5.18), (5.20) and (5.22).
+(ii) Equation (5.2) implies (5.18), (5.19), (5.21), and (5.23).
+(iii) Equation (5.3) implies (5.16), (5.17), and (5.19).
+Besides, (5.3) may, possibly, entail equations like (5.17) with S or L for M , with an exception
+of M̃μν in the l.h.s., i.e.
+
+[ S̃κλ , M̃μν ] = −i~ ηκμ S̃λν − ηλμ S̃κν − ηκν S̃λμ + ηλν S̃κμ
+(5.24)
+
+[ L̃κλ , M̃μν ] = −i~ ηκμ L̃λν − ηλμ L̃κν − ηκν L̃λμ + ηλν L̃κμ
+17
+
+Recall, S̃μν (resp. L̃μν ) is the conserved spin (resp. orbital) operator, not the generally non-conserved
+spin (resp. orbital) angular momentum operator [23].
+
+The validity of assertions (i)–(iii) above for free scalar, spinor and vector fields, when respectively
+′
+
+i
+Iiμν
+7→ Iμν = 0 e( φ̃) = −e( φ̃† ) = +1
+(5.25a)
+i
+ ̃
+ ̃
+i′
+(5.25b)
+φ̃i (x) 7→ ψ̃(x), ψ̆(x) Iiμν
+7→ Iψμν = Iψ̆μν = − σμν e( ψ̃) = −e( ψ̆) = +1
+2
+′
+i
+σ
+†σ
+φ̃i (x) 7→ Ũμ (x), Ũμ† (x) Iiμν
+7→ Iρμν
+= Iρμν
+= δμσ ηνρ − δνσ ημρ e( Ũμ ) = −e( Ũμ† ) = +1,
+(5.25c)
+
+φ̃i (x) 7→ φ̃(x), φ̃† (x)
+
+where σ μν := 2i [γ μ , γ ν ] with γ μ being the Dirac γ-matrices [1, 25], is proved in [13–15],
+respectively. Besides, in loc. cit. is proved that equations (5.24) hold for scalar and vector
+fields, but not for a spinor field.18
+Thus, we see that the Heisenberg relations (5.1)–(5.3) are stronger than the commutation
+relations (5.15)–(5.23), when imposed on the Lagrangian formalism as subsidiary restrictions.
+
+6.
+
+Types of possible commutation relations
+
+In a broad sense, by a commutation relation we shall understand any algebraic relation
+between the creation and annihilation operators imposed as subsidiary restriction on the
+Lagrangian formalism. In a narrow sense, the commutation relations are the equations (6.13),
+with ε = −1, written below and satisfied by the bose creation and annihilation operators. As
+anticommutation relations are known the equations (6.13), with ε = +1, written below and
+satisfied by the fermi creation and annihilation operators. The last two types of relations
+are often referred as the bilinear commutation relations [18]. Theoretically are possible also
+trilinear commutation relations, an example being the paracommutation relations [16, 18]
+represented below by equations (6.18) (or (6.20)).
+Generally said, the commutation relations should be postulated. Alternatively, they
+could be derived from (equivalent to them) different assumptions added to the Lagrangian
+formalism. The purpose of this section is to be explored possible classes of commutation
+relations, which follow from some natural restrictions on the Lagrangian formalism that are
+consequences from the considerations in the previous sections. Special attention will be paid
+on some consequences of the charge symmetric Lagrangians as the free fields possess such a
+symmetry [1, 3, 11, 12].
+As pointed in Sect 3, the Euler-Lagrange equations for the Lagrangians L̃′ , L̃′′ and L̃′′′
+coincide and, in quantum field theory, the role of these equations is to be singled out the
+independent degrees of freedom of the fields in the form of creation and annihilation operators
+†±
+′
+′′
+′′′
+a±
+s (k) and as (k) (which are identical for L̃ , L̃ and L̃ ). Further specialization of these
+operators is provided by the commutation relations (in broad sense) which play a role of field
+equations in this situation (with respect to the mentioned operators).
+Before proceeding on, we would like to simplify our notation. As a spin variable, s say, is
+always coupled with a 3-momentum one, k say, we shall use the letters l, m and n to denote
+pairs like l = (s, k), m = (t, p) and n = (r, q). Equipped with this convention, we shall write,
+†±
+±
+±
+e.g.,
+a†s ±R(k). We set δlm := δst δ3 (k − p) and a summation sign like
+P al for as (k) and al forP
+d3 k, where the range of the polarization variable s will
+l should be understood as
+s
+be clear from the context (see, e.g., (3.9)–(3.12)).
+18
+
+The problem for the validity of assertions (i)–(iii) or equations (5.24) in the general case of arbitrary
+fields (Lagrangians) is not a subject of the present work.
+
+6.1.
+
+Restrictions related to the momentum operator
+
+First of all, let us examine the consequences of the Heisenberg relation (5.1) involving the
+momentum operator. Since in terms of creation and annihilation operators it reads [1,13–15]
+p
+±
+†±
+†±
+[a±
+(k),
+P
+]
+=
+∓k
+a
+(k)
+[a
+(k),
+P
+]
+=
+∓k
+a
+(k)
+k
+=
+m2 c2 + k2 ,
+(6.1)
+μ
+μ s
+μ
+μ s
+0
+s
+s
+
+the field equations in terms of creation and annihilation operators for the Lagrangians (3.1),
+(3.3) and (3.4) respectively are (see [13–15] or (6.1) and (3.9)):
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
+qμ
+
+q0 =
+
+t=1
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
+q0 =
+
+t=1
+
+X
+
+qμ
+
+√
+
+q0 =
+
+t=1
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
+X
+
+qμ
+
+q0 =
+
+qμ
+
+X
+
+m2 c2 +q2
+
+√
+
+qμ
+
+√
+
+q0 =
+
+t=1
+
+2j+1−δ0m (1−δ0j ) Z
+
+
+ ±
+†−
++
+as (k), a†t + (q) ◦ a−
+t (q) + εat (q) ◦ at (q) −
+
+(6.2a)
+
+
+†−
++
+a†s ± (k), a†t + (q) ◦ a−
+t (q) + εat (q) ◦ at (q) −
+
+(6.2b)
+
+ ±
+
+†−
+†+
+−
+as (k), a+
+t (q) ◦ at (q) + εat (q) ◦ at (q) −
+
+(6.3a)
+
+
+†+
+†−
+−
+a†s ± (k), a+
+t (q) ◦ at (q) + εat (q) ◦ at (q) −
+
+(6.3b)
+
+
+
+m2 c2 +q2
+
+± (1 + τ )a†s ± (k)δst δ3 (k − q) d3 q = 0
+
+3
+3
+± (1 + τ )a±
+s (k)δst δ (k − q) d q = 0
+
+t=1
+
+2j+1−δ0m (1−δ0j ) Z
+
+m2 c2 +q2
+
+3
+3
+± (1 + τ )a±
+s (k)δst δ (k − q) d q = 0
+
+qμ
+
+2j+1−δ0m (1−δ0j ) Z
+
+√
+
+q0 =
+
+t=1
+
+m2 c2 +q2
+
+√
+
+
+
+m2 c2 +q2
+
+√
+
+m2 c2 +q2
+
+
+
+
+
+± (1 + τ )a†s ± (k)δst δ3 (k − q) d3 q = 0
+
+†−
+†+
++
+−
+a±
+s (k), [at (q), at (q)]ε + [at (q), at (q)]ε
+
+± (1 +
+
+3
+τ )a±
+s (k)δst δ (k
+
+3
+
+
+
+−
+
+(6.4a)
+
+− q) d q = 0
+
+†−
++
+a†s ± (k), [a†t + (q), a−
+t (q)]ε + [at (q), at (q)]ε
+
+
+
+−
+
+(6.4b)
+
+± (1 + τ )a†s ± (k)δst δ3 (k − q) d3 q = 0,
+
+where j and ε are given via (3.7), the generalized commutation function [*, *]ε is defined
+by (4.14), and the polarization indices take the values
+
+
+for j = 0 or for j = 12 and m = 0
+1
+s, t = 1, . . . , 2j + 1 − δ0m (1 − δ0j ) = 1, 2
+for j = 12 and m 6= 0 or for j = 1 and m = 0 .
+
+
+1, 2, 3 for j = 1 and m 6= 0
+(6.5)
+The "b" versions of the equations (6.2)–(6.4) are consequences of the "a" versions and the
+equalities
+†∓
+†
+(a±
+l ) = al
+
+[A, B]η
+
+†
+
+†
+
+†
+
+= η[A , B ]η
+
+(a†l ± ) = a∓
+l
+
+(6.6)
+
+for [A, B]η = η[B, A]η
+
+η = ±1.
+
+(6.7)
+
+Applying (6.2)–(6.4) and the identity
+[A, B ◦ C] = [A, B]η ◦ C − ηB ◦ [A, C]η
+
+for η = ±1
+
+(6.8)
+
+for the choice η = −1, one can prove by a direct calculation that
+[ P̃μ , P̃ν ] = 0 [ Q̃, P̃μ ] = 0
+
+[ S̃μν , P̃λ ] = 0
+
+[ L̃μν , P̃λ ] = −i~{ηλμ P̃ν − ηλν P̃μ }
+
+[ M̃μν , P̃λ ] = −i~{ηλμ P̃ν − ηλν P̃μ },
+
+(6.9)
+
+where the operators P̃μ , Q̃, S̃μν , L̃μν , and M̃μν denote the momentum, charge, spin,
+orbital and total angular momentum operators, respectively, of the system considered and
+are calculated from one and the same initial Lagrangian. This result confirms the supposition,
+made in Sect. 5, that the assertion (i) before (5.24) holds for the fields investigated here.
+Below we shall study only those solutions of (6.2)–(6.4) for which the integrands in them
+vanish, i.e. we shall replace the systems of integral equations (6.2)–(6.4) with the following
+systems of algebraic equations (see the above convention on the indices l and m and do not
+sum over indices repeated on one and the same level):
+ ± †+
+
+±
+†−
++
+al , am ◦ a−
+(6.10a)
+m + εam ◦ am − ± (1 + τ )δlm al = 0
+ †± †+
+
+†±
+†−
++
+(6.10b)
+al , am ◦ a−
+=0
+m + εam ◦ am − ± (1 + τ )δlm al
+ ± +
+
+±
+†+
+al , am ◦ a†m− + εa−
+(6.11a)
+m ◦ am − ± (1 + τ )δlm al = 0
+ †± +
+
+†±
+†+
+(6.11b)
+al , am ◦ a†m− + εa−
+=0
+m ◦ am − ± (1 + τ )δlm al
+
+ ± †+ −
+±
+†−
+al , [am , am ]ε + [a+
+(6.12a)
+m , am ]ε − ± 2(1 + τ )δlm al = 0
+ †± †+ −
+
+†
+±
+†−
+(6.12b)
+al , [am , am ]ε + [a+
+= 0.
+m , am ]ε − ± 2(1 + τ )δlm al
+
+It seems, these are the most general and sensible trilinear commutation relations one may
+impose on the creation and annihilation operators.
+First of all, we should mentioned that the standard bilinear commutation relations, viz. [1,
+3, 11–15]
+±
+[a±
+l , am ]−ε = 0
+
+[a†l ± , a†m± ]−ε = 0
+
+±
+2j+1
+[a∓
+τ δlm idF
+l , am ]−ε = (±1)
+
+[a†l ∓ , a†m± ]−ε = (±1)2j+1 τ δlm idF
+
+†±
+[a±
+l , am ]−ε = 0
+
+[a†l ± , a±
+m ]−ε = 0
+
+†±
+2j+1
+[a∓
+δlm idF
+l , am ]−ε = (±1)
+
+2j+1
+[a†l ∓ , a±
+δlm idF ,
+m ]−ε = (±1)
+
+(6.13)
+
+provide a solution of any one of the equations (6.10)–(6.12) in a sense that, due to (3.7)
+and (6.8), with η = −ε any set of operators satisfying (6.13) converts (6.10)–(6.12) into
+identities.
+Besides, this conclusion remains valid also if the normal ordering is taken into account,
+†−
+†+
+†+
++
+−
+−
+i.e. if, in this particular case, the changes a†m− ◦ a+
+m 7→ εam ◦ am and am ◦ am 7→ εam ◦ am
+are made in (6.10)–(6.12).
+Now we shall demonstrate how the trilinear relations (6.12) lead to the paracommutation relations. Equations (6.12) can be 'split' into different kinds of trilinear commutation
+relations into infinitely many ways. For example, the system of equations
+ ± + †− 
+al , [am , am ]ε − ± (1 + τ )δlm a±
+(6.14a)
+l =0
+ ± †+ − 
+al , [am , am ]ε − ± (1 + τ )δlm a±
+(6.14b)
+l =0
+ †± + †− 
+(6.14c)
+al , [am , am ]ε − ± (1 + τ )δlm a†l ± = 0
+ †± †+ − 
+(6.14d)
+al , [am , am ]ε − ± (1 + τ )δlm a†l ± = 0
+
+provides an evident solution of (6.12). However, it is a simple algebra to be seen that
+these relations are incompatible with the standard (anti)commutation relations (6.13) and,
+
+in this sense, are not suitable as subsidiary restrictions on the Lagrangian formalism. For
+our purpose, the equations
+ + + †− 
+al , [am , am ]ε − + 2δlm a+
+(6.15a)
+l =0
+ + †+ − 
++
+al , [am , am ]ε − + 2τ δlm al = 0
+(6.15b)
+ − + †− 
+−
+al , [am , am ]ε − − 2τ δlm al = 0
+(6.15c)
+ − †+ − 
+al , [am , am ]ε − − 2δlm a−
+(6.15d)
+l =0
+
+and their Hermitian conjugate provide a solution of (6.12), which is compatible with (6.13),
+i.e. if (6.13) hold, the equations (6.15) are converted into identities.
+The idea of the paraquantization is in the following generalization of (6.15)
+ + + †− 
+al , [am , an ]ε − + 2δln a+
+(6.16a)
+m =0
+ + †+ − 
+al , [am , an ]ε − + 2τ δln a+
+(6.16b)
+m =0
+ − + †− 
+−
+al , [am , an ]ε − − 2τ δlm an = 0
+(6.16c)
+ − †+ − 
+−
+al , [am , an ]ε − − 2δlm an = 0
+(6.16d)
+
+which reduces to (6.15) for n = m and is a generalization of (6.13) in a sense that any set
+of operators satisfying (6.13) converts (6.16) into identities, the opposite being generally not
+valid.19
+Suppose that the field considered consists of a single sort of particles, e.g. electrons or
+photons, created by b†l := a†l and annihilated by bl := a†l − . Then the equation Hermitian
+conjugated to (6.15a) reads
+[bl , [b†m , bm ]ε ] = 2δlm bm .
+(6.17)
+
+This is the main relation from which the paper [16] starts. The basic paracommutation
+relations are [16–18, 26]:
+[bl , [b†m , bn ]ε ] = 2δlm bn
+
+(6.18a)
+
+[bl , [bm , bn ]ε ] = 0.
+
+(6.18b)
+
+The first of them is a generalization (stronger version) of (6.17) by replacing the second index
+m with an arbitrary one, say n, and the second one is added (by "hands") in the theory as
+an additional assumption. Obviously, (6.18) are a solution of (6.15) and therefore of (6.12)
+in the considered case of a field consisting of only one sort of particles.
+The equations (6.15) contain also the relativistic version of the paracommutation relations, when the existence of antiparticles must be respected [18, sec. 18.1]. Indeed, noticing
+†
+†+
+that the field's particles (resp. antiparticles) are created by b†l := a+
+l (resp. cl := al ) and
+annihilated by bl := a†l − (resp. cl := a−
+l ), from (6.15) and the Hermitian conjugate to them
+equations, we get
+[bl , [b†m , bm ]ε ] = 2δlm bm
+
+[cl , [c†m , cm ]ε ] = 2δlm cm
+
+(6.19a)
+
+[b†l , [c†m , cm ]ε ]
+
+[c†l , [b†m , bm ]ε ]
+
+(6.19b)
+
+=
+
+−2τ δlm b†m
+
+=
+
+−2τ δlm c†m .
+
+Generalizing these equations in a way similar to the transition from (6.17) to (6.18), we
+obtain the relativistic paracommutation relations as (cf. (6.16))
+
+19
+
+[bl , [b†m , bn ]ε ] = 2δlm bn
+
+[bl , [bm , bn ]ε ] = 0
+
+(6.20a)
+
+[cl , [c†m , cn ]ε ]
+[b†l , [c†m , cn ]ε ]
+
+= 2δlm cn
+
+[cl , [cm , cn ]ε ] = 0
+
+(6.20b)
+
+= −2τ δln b†m
+
+[c†l , [b†m , bn ]ε ] = −2τ δln c†m .
+
+(6.20c)
+
+Other generalizations of (6.15) are also possible, but they do not agree with (6.13). Moreover, it is easy
+to be proved, any other (non-trivial) arrangement of the indices in (6.16) is incompatible with (6.13).
+
+The equations (6.20a) (resp. (6.20b)) represent the paracommutation relations for the field's
+particles (resp. antiparticles) as independent objects, while (6.20c) describe a pure relativistic
+effect of some "interaction" (or its absents) between field's particles and antiparticles and
+fixes the paracommutation relations involving the bl 's and cl 's, as pointed in [18, p. 207]
+(where bl is denoted by al and cl by bl ). The relations (6.17) and (6.20) for ε = +1 (resp.
+ε = −1) are referred as the parabose (resp. parafermi) commutation relations [18]. This
+terminology is a natural one also with respect to the commutation relations (6.16), which
+will be referred as the paracommutation relations too.
+As first noted in [16], the equations (6.13) provide a solution of (6.20) (or (6.18) in the
+nonrelativistic case) but the latter equations admit also an infinite number of other solutions.
+Besides, by taking Hermitian conjugations of (some of) the equations (6.18) or (6.20) and
+applying generalized Jacobi identities, like
+α[[A, B]ξ , C]η + ξη[[A, C]−α/ξ , B]−α/η − α2 [[B, C]ξη/α , A]1/α = 0
+
+β[A, [B, C]α , ]−βγ + γ[B, [C, A]β , ]−γα + α[C, [A, B]γ , ]−αβ = 0
+[[A, B]η , C]− + [[B, C]η , A]− + [[C, A]η , B]− = 0 η = ±1
+
+[[A, B]ξ , [C, D]η ]− = [[A, B]ξ , C]− , D]η + η[[A, B]ξ , D]− , C]1/η
+
+αξη 6= 0
+
+α, β, γ = ±1
+
+(6.21)
+
+η 6= 0,
+
+one can obtain a number of other (para)commutation relations for which the reader is referred
+to [16, 18, 26].
+Of course, the paracommutation relations (6.16), in particular (6.18) and (6.20) as their
+stronger versions, do not give the general solution of the trilinear relations (6.12). For
+instance, one may replace (6.12) with the equations
+
+ + †+ −
++
+†−
+al , [am , an ]ε + [a+
+(6.22a)
+m , an ]ε − + 2(1 + τ )δln am = 0
+
+ − †+ −
+−
+†−
+al , [am , an ]ε + [a+
+(6.22b)
+m , an ]ε − − 2(1 + τ )δlm an = 0.
+
+and their Hermitian conjugate, which in terms of the operators bl and cl introduced above
+read
+[bl , [b†m , bn ]ε + [c†m , cm ]ε ] = 2(1 + τ )δlm bn
+
+(6.23a)
+
+[cl , [b†m , bn ]ε + [c†m , cm ]ε ] = 2(1 + τ )δlm cn ,
+
+(6.23b)
+
+and supplement these relations with equations like (6.18b). Obviously, equations (6.16) convert (6.22) into identities and, consequently, the (standard) paracommutation relations (6.20)
+provide a solution of (6.23). On the base of (6.23) or other similar equations that can be
+obtained by generalizing the ones in (6.10)–(6.12), further research on particular classes of
+trilinear commutation relations can be done, but, however, this is not a subject of the present
+work.
+Let us now pay attention to the fact that equations (6.10), (6.11) and (6.12) are generally
+different (regardless of existence of some connections between their solutions). The cause for
+this being that the momentum operators for the Lagrangians L′ , L′′ and L′′′ are generally
+different unless some additional restrictions are added to the Lagrangian formalism (see
+Sect. 4). A necessary and sufficient condition for (6.10)–(6.12) to be identical is
+†+ −
++
+†−
+[a±
+l , [am , am ]−ε − [am , am ]−ε ] = 0,
+
+(6.24)
+
+which certainly is valid if the condition (4.9′ ), viz.
++
+†−
+[a†m+ , a−
+m ]−ε − [am , am ]−ε = 0,
+
+(6.25)
+
+ensuring the uniqueness of the momentum operator are, holds. If one adopts the standard
+bilinear commutation relations (6.13), then (6.25), and hence (6.24), is identically valid, but
+in the framework of, e.g., the paracommutation relations (6.16) (or (6.20) in other form) the
+equations (6.25) should be postulated to ensure uniqueness of the momentum operator and
+therefore of the field equations.
+On the base of (6.10) or (6.11) one may invent other types of commutation relations,
+which will not be investigated in this paper because we shall be interested mainly in the
+case when (6.10), (6.11) and (6.12) are identical (see (6.24)) or, more generally, when the
+dynamical variables are unique in the sense pointed in Sect. 4.
+
+6.2.
+
+Restrictions related to the charge operator
+
+The consequences of the Heisenberg relations (5.2), involving the charge operator for a charged
+field, q 6= 0 (and hence τ = 0 – see (3.7)), will be examined in this subsection. In terms of
+creation and annihilation operators it is equivalent to [1, 13–15]
+±
+[a±
+s (k), Q] = qas (k)
+
+[a†s ± (k), Q] = −qa†s ± (k),
+
+(6.26)
+
+the values of the polarization indices being specified by (6.5). Substituting here (3.10), we
+see that, for a charged field, the field equations for the Lagrangians L′ , L′′ and L′′′ (see
+Sect. 3) respectively are:
+2j+1−δ0m (1−δ0j ) Z
+
+X
+t=1
+
+2j+1−δ0m (1−δ0jZ)
+
+X
+t=1
+
+t=1
+
+(6.27a)
+
+†−
++
+†±
+3
+d3 p{[a†s ± (k), a†t + (p) ◦ a−
+t (p) − εat (p) ◦ at (p)] + as (k)δst δ (k − p)} = 0
+
+(6.27b)
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
+†+
+†−
+−
++
+±
+3
+d3 p{[a±
+s (k), at (p) ◦ at (p) − εat (p) ◦ at (p)] − as (k)δst δ (k − p)} = 0
+
+†+
+†−
+−
++
+±
+3
+d3 p{[a±
+s (k), at (p) ◦ at (p) − εat (p) ◦ at (p)] + as (k)δst δ (k − p)} = 0
+
+(6.28a)
+
+2j+1−δ0m (1−δ0jZ)
+
+†+
+†−
+−
+†±
+3
+d3 p{[a†s ± (k), a+
+t (p) ◦ at (p) − εat (p) ◦ at (p)] − as (k)δst δ (k − p)} = 0
+
+2j+1−δ0m (1−δ0jZ)
+
+†−
+†+
++
+−
+±
+3
+d3 p{[a±
+s (k), [at (p), at (p)]ε − [at (p), at (p)ε ] − 2as (k)δst δ (k − p)} = 0
+
+X
+t=1
+
+X
+t=1
+
+2j+1−δ0m (1−δ0jZ)
+
+X
+t=1
+
+(6.28b)
+
+(6.29a)
+
+†−
++
+†±
+3
+d3 p{[a†s ± (k), [a†t + (p), a−
+t (p)]ε − [at (p), at (p)ε ] + 2as (k)δst δ (k − p)} = 0.
+
+(6.29b)
+
+Using (6.27)–(6.29) and (6.8), with η = ε = −1, or simply (6.26), one can easily verify
+the validity of the equations
+[ P̃μ , Q̃] = 0 [ L̃μν , Q̃] = 0
+
+[ S̃μν , Q̃] = 0 [ M̃μν , Q̃] = 0,
+
+(6.30)
+
+where the operators P̃μ , Q̃, S̃μν , L̃μν and M̃μν are calculated from one and the same
+initial Lagrangian according to (3.9)–(3.12). This result confirms the validity of assertion (ii)
+before (5.24) for the fields considered.
+Following the above considerations, concerning the momentum operator, we shall now
+replace the systems of integral equations (6.27)–(6.29) with respectively the following stronger
+systems of algebraic equations (by equating to zero the integrands in (6.27)–(6.29)):
+ ± †+
+
+†−
++
+±
+al , am ◦ a−
+(6.31a)
+m − εam ◦ am − − δlm al = 0
+ †± †+
+
+†±
+†−
++
+(6.31b)
+al , am ◦ a−
+=0
+m − εam ◦ am − + δlm al
+ ± +
+
+†+
+±
+al , am ◦ a†m− − εa−
+(6.32a)
+m ◦ am − + δlm al = 0
+ †± +
+
+†±
+†+
+(6.32b)
+al , am ◦ a†m− − εa−
+=0
+m ◦ am − − δlm al
+
+ ± †+ −
+±
+†−
+al , [am , am ]ε − [a+
+(6.33a)
+m , am ]ε − − 2δlm al = 0
+ †± †+ −
+
+†
+±
+†−
+(6.33b)
+al , [am , am ]ε − [a+
+= 0.
+m , am ]ε − + 2δlm al
+
+These trilinear commutation relations are similar to (6.10)–(6.12) and, consequently, can be
+treated in analogous way.
+By invoking (6.8), it is a simple algebra to be proved that the standard bilinear commutation relations (6.13) convert (6.31)–(6.33) into identities. Thus (6.13) are stronger version
+of (6.31)–(6.33) and, in this sense, any type of commutation relations, which provide a
+solution of (6.31)–(6.33) and is compatible with (6.13), is a suitable candidate for generalizing (6.13). To illustrate that idea, we shall proceed with (6.33) in a way similar to the
+'derivation' of the paracommutation relations from (6.12).
+Obviously, the equations (cf. (6.14) with τ = 0, as now q 6= 0)
+±
++
+†−
+[a±
+l , [am , am ]ε ] + δlm am = 0
+
+(6.34a)
+
+†+ −
+±
+[a±
+l , [am , am ]ε ] − δlm am = 0
+
+(6.34b)
+
+and their Hermitian conjugate provide a solution of (6.33), but, as a direct calculations shows,
+they do not agree with the standard (anti)commutation relations (6.13). A solution of (6.33)
+compatible with (6.13) is given by the equations (6.15), with τ = 0 as the field considered is
+charged one - see (3.7). Therefore equations (6.16), with τ = 0, also provide a compatible
+with (6.13) solution of (6.33), from where immediately follows that the paracommutation
+relations (6.20), with τ = 0, convert (6.33) into identities. To conclude, we can say that the
+paracommutation relations (6.20), in particular their special case (6.13), ensure the simultaneous validity of the Heisenberg relations (5.1) and (5.2) for free scalar, spinor and vector
+fields.
+Similarly to (6.22), one may generalize (6.33) to
+
+ + †+ −
++
+†−
+al , [am , an ]ε − [a+
+(6.35a)
+m , an ]ε − − 2δln am = 0
+
+ − †+ −
+−
++
+†−
+al , [am , an ]ε − [am , an ]ε − − 2δlm an = 0.
+(6.35b)
+which equations agree with (6.13), (6.15), (6.16) and (6.20), but generally do not agree
+with (6.22), with τ = 0, unless the equations (6.16), with τ = 0, hold.
+More generally, we can assert that (6.33) and (6.12), with τ = 0, hold simultaneously if
+and only if (6.15), with τ = 0, is fulfilled. From here, again, it follows that the paracommutation relations ensure the simultaneous validity of (5.1) and (5.2).
+Let us say now some words on the uniqueness problem for the Heisenberg equations
+involving the charge operator. The systems of equations (6.31)–(6.33) are identical iff
+
+ ± †+ −
+†−
+(6.36)
+al , [am , am ]−ε + [a+
+m , am ]−ε − = 0,
+
+which, in particular, is satisfied if the condition
++
+†−
+[a†m+ , a−
+m ]−ε + [am , am ]−ε = 0,
+
+(6.37)
+
+ensuring the uniqueness of the charge operator (see (4.10′ )), is valid. Evidently, equations (6.36) and (6.24) are compatible iff
+
+
+ + †± ∓ 
+†± ∓
+(6.38)
+al , [am , am ]−ε − = 0 a−
+l , [am , am ]−ε − = 0
+
+which is a weaker form of (4.15) ensuring simultaneous uniqueness of the momentum and
+charge operator.
+
+6.3.
+
+Restrictions related to the angular momentum operator(s)
+
+It is now turn to be investigated the restrictions on the creation and annihilation operators
+that follow from the Heisenberg relations (5.3) concerning the angular momentum operator.
+They can be obtained by inserting the equations (3.11) and (3.12) into (5.3). As pointed
+in Sect. 5, the resulting equalities, however, depend not only on the particular Lagrangian
+employed, but also on the geometric nature of the field considered; the last dependence
+ss′ m± (k) and lss′ m± (k) (see
+being explicitly given via (5.25) and the polarization functions σμν
+μν
+also (3.14)).
+Consider the terms containing derivatives in (5.3),
+
+∂ 
+∂
+−
+x
+φ̃i (x).
+L̃or
+:=
+i~
+x
+ν
+μ
+μν
+∂xν
+∂xμ
+
+(6.39)
+
+If φ̃i (k) denotes the Fourier image of φ̃i (x), i.e.
+φ̃i (x) = Λ
+
+Z
+
+1
+
+d4 ke− i~ k
+
+μx
+
+μ
+
+φ̃i (k),
+
+(6.40)
+
+with Λ being a normalization constant, then the Fourier image of (6.39) is
+
+∂
+∂ 
+or
+L̃μν = i~ kμ ν − kν μ φ̃i (k).
+∂k
+∂k
+
+(6.41)
+
+Comparing this expression with equations (3.12), we see that the terms containing derivatives
+in (3.12) should be responsible for the term (6.39) in (5.3).20 For this reason, we shall suppose
+that the momentum operator M̃μν admits a representation
+sp
+M̃μν = M̃or
+μν + M̃μν
+
+(6.42)
+
+sp
+such that the operators M̃or
+μν and M̃μν satisfy the relations (5.4) and (5.5), respectively.
+Thus we shall replace (5.3) with the stronger system of equations (5.4)–(5.5). Besides,
+sp
+we shall admit that the explicit form of the operators M̃or
+μν and M̃μν are given via (5.13)
+and (5.12) for the fields investigated in the present work.
+Let us consider at first the 'orbital' Heisenberg relations (5.4), which is independent
+of the particular geometrical nature of the fields studied. Substituting (5.13) and (6.40)
+into (5.4), using that φ̃i (±k), with k2 = m2 c2 , is a linear combination of ã±
+s (k) with classical,
+not operator-valued, functions of k as coefficients [1, 13–15] and introducing for brevity the
+operator
+∂
+∂
+(6.43)
+ωμν (k) := kμ ν − kν μ ,
+∂k
+∂k
+20
+
+The terms proportional to the momentum operator in (3.12) disappear if the creation and annihilation
+operators (2.9) in Heisenberg picture are employed (see also [13–15]).
+
+we arrive to the following integro-differential systems of equations:
+2j+1−δ0m (1−δ0j ) Z
+
+X
+t=1
+
+
+− εã†t − (p) ◦ ã+
+t (q)] )
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+t=1
+
+t=1
+
+X
+t=1
+
+t=1
+
+X
+t=1
+
+√
+
+m2 c2 +p2
+
+= 2(1 + τ )ωμν (k)(ã±
+s (k)) (6.44a)
+
+p0 =
+
+√
+
+m2 c2 +p2
+
+= 2(1 + τ )ωμν (k)(ã†s ± (k)) (6.44b)
+
+q=p
+
+p0 =
+
+√
+
+m2 c2 +p2
+
+= 2(1 + τ )ωμν (k)(ã±
+s (k)) (6.45a)
+
+
+†−
+d3 p (−ωμν (p) + ωμν (q))([ã†s ± (k), ã+
+t (p) ◦ ãt (q)
+q=p
+
+p0 =
+
+√
+
+m2 c2 +p2
+
+= 2(1 + τ )ωμν (k)(ã†s ± (k)) (6.45b)
+
+
+†+
+−
+d3 p (−ωμν (p) + ωμν (q))([ã±
+s (k), [ãt (p), ãt (q)]ε
+
+
+†−
++ [ã+
+t (p), ãt (q)]ε ] )
+
+2j+1−δ0m (1−δ0j ) Z
+
+p0 =
+
+
+†−
++
+d3 p (−ωμν (p) + ωμν (q))([ã±
+s (k), ãt (p) ◦ ãt (q)
+
+
+†+
+− εã−
+t (p) ◦ ãt (q)] )
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
+q=p
+
+
+†+
+− εã−
+t (p) ◦ ãt (q)] )
+
+2j+1−δ0m (1−δ0j ) Z
+
+q=p
+
+
+d3 p (−ωμν (p) + ωμν (q))([ã†s ± (k), ã†t + (p) ◦ ã−
+t (q)
+
+
+− εã†t − (p) ◦ ã+
+t (q)] )
+
+2j+1−δ0m (1−δ0j ) Z
+
+X
+
+
+†+
+−
+d3 p (−ωμν (p) + ωμν (q))([ã±
+s (k), ãt (p) ◦ ãt (q)
+
+q=p
+
+p0 =
+
+√
+
+m2 c2 +p2
+
+= 4(1 + τ )ωμν (k)(ã±
+s (k)) (6.46a)
+
+
+d3 p (−ωμν (p) + ωμν (q))([ã†s ± (k), [ã†t + (p), ã−
+t (q)]ε
+
+
+†−
++ [ã+
+t (p), ãt (q)]ε ] )
+
+q=p
+
+p0 =
+
+√
+
+m2 c2 +p2
+
+= 4(1 + τ )ωμν (k)(ã†s ± (k)), (6.46b)
+
+p
+where k0 = m2 c2 + k2 is set after the differentiations are performed (see (6.43)). Following the procedure of the previous considerations, we replace the integro-differential equations (6.44)–(6.46) with the following differential ones:
+
+±
+◦
+◦
+◦
+†+
+−
+†−
++
+(−ωμν
+(m) + ωμν
+(n))([ã±
+l , ãm ◦ ãn − εãm ◦ ãn ] ) n=m = 2(1 + τ )δlm ωμν (l)(ãl ) (6.47a)
+
+†±
+◦
+◦
+†−
++
+◦
+(−ωμν
+(m) + ωμν
+(n))([ã†l ± , ã†m+ ◦ ã−
+n − εãm ◦ ãn ] ) n=m = 2(1 + τ )δlm ωμν (l)(ãl ) (6.47b)
+
+±
+◦
+◦
++
+†−
+−
+†+
+◦
+(−ωμν
+(m) + ωμν
+(n))([ã±
+l , ãm ◦ ãn − εãm ◦ ãn ] ) n=m = 2(1 + τ )δlm ωμν (l)(ãl ) (6.48a)
+
+†±
+◦
+◦
+†−
+−
+†+
+◦
+(−ωμν
+(m) + ωμν
+(n))([ã†l ± , ã+
+m ◦ ãn − εãm ◦ ãn ] ) n=m = 2(1 + τ )δlm ωμν (l)(ãl ) (6.48b)
+
+†+ −
++
+†−
+◦
+◦
+◦
+±
+(−ωμν
+(m) + ωμν
+(n))([ã±
+l , [ãm , ãn ]ε + [ãm , ãn ]ε ] ) n=m = 4(1 + τ )δlm ωμν (l)(ãl ) (6.49a)
+
+†±
+◦
+◦
++
+†−
+◦
+(−ωμν
+(m) + ωμν
+(n))([ã†l ± , [ã†m+ , ã−
+n ]ε + [ãm , ãn ]ε ] ) n=m = 4(1 + τ )δlm ωμν (l)(ãl ),
+(6.49b)
+where we have set (cf. (6.43))
+◦
+ωμν
+(l) := ωμν (k) = kμ
+
+and k0 =
+
+p
+
+∂
+∂
+− kν μ
+∂kν
+∂k
+
+if l = (s, k)
+
+m2 c2 + k2 is set after the differentiations are performed.
+
+(6.50)
+
+Remark. Instead of (6.47)–(6.49) one can write similar equations in which the operator
+◦ (n) is deleted and the factor + 1 or − 1 , respectively, is added on their right
+or +ωμν
+2
+2
+hand sides. These manipulations correspond to an integration by parts of some of the terms
+in (6.44)–(6.46).
+The main difference of the obtained trilinear relations with respect to the previous ones
+considered above is that they are partial differential equations of first order.
+The relations (6.49) agree with the equations (6.16) in a sense that if (6.16) hold,
+then (6.49) become identically valid. Indeed, since
+
+◦
+◦
+◦
+±
+(−ωμν
+(m) + ωμν
+(n))(ã±
+m δln ) n=m = −2δlm ωμν (m)(ãm )
+
+(6.51)
+◦
+◦
+◦
+±
+(−ωμν
+(m) + ωμν
+(n))(ã±
+n δlm ) n=m = +2δlm ωμν (m)(ãm ),
+◦ (m)
+−ωμν
+
+df (x)
+for a C 1 function f , the
+due to (6.50), (6.43) and the equality dδ(x)
+dx f (x) = −δ(x) dx
+◦
+◦
+application of the operator (−ωμν (m) + ωμν (n)) to (6.16) and subsequent setting n = m
+entails (6.49). In particular, this means that the paracommutation relations (6.20) and,
+moreover, the standard (anti)commutation relations (6.13) convert (6.49) into identities.
+Therefore the 'orbital' Heisenberg relations (5.4) hold for scalar, spinor and vector fields
+satisfying the bilinear or para commutation relations.
+It should be noted, the paracommutation relations are not the only trilinear commutation
+relations that are solutions of (6.49). As an example, we shall present the trilinear relations
+
+
+ + + †− 
++
+†+ −
+(6.52a)
+al , [am , an ]ε − = a+
+l , [am , an ]ε − = −(1 + τ )δln am
+ − †+ − 
+ − + †− 
+(6.52b)
+al , [am , an ]ε − = al , [am , an ]ε − = +(1 + τ )δlm a+
+n,
+
+which reduce to (6.14) for n = m, do not agree with (6.13), but convert (6.49) into identities
+(see (6.51)). Other example is provided by the equations (6.22), which are compatible with
+the paracommutation relations and, as a result of (6.51), convert (6.49) into identities. Prima
+facie one may suppose that any solution of (6.12) provides a solution of (6.49), but this is
+not the general case. A counterexample is provided by the commutation relations
+
+ ± †+ −
+±
+†−
+al , [am , an ]ε + [a+
+(6.53)
+m , an ]ε − ± 2(1 + τ )δln am = 0,
+
+±
+which reduce to (6.12) for n = m, satisfy (6.49) with ã+
+l for ãl , and do not satisfy (6.49)
+±
+−
+with ãl for ãl (see (6.51) and cf. (6.22)).
+′
+′′
+From (5.13) follows that the operator M̃or
+μν is independent of the Lagrangian L , L or
+′′′
+L one starts off if and only if (see (4.11))
+
+
+◦
+◦
++
+†−
+(−ωμν
+(m) + ωμν
+(n)) [ã†m+ , ã−
+= 0.
+(6.54)
+n ]−ε − [ãm , ãn ]−ε
+n=m
+
+This condition ensures the coincidence of the systems of equations (6.47), (6.48) and (6.49)
+too. However, the following necessary and sufficient condition for the coincidence of these
+systems is expressed by the weaker equations
+ 
+
+
+◦
+◦
+†+ −
++ †−
+= 0.
+(6.55)
+(−ωμν
+(m) + ωμν
+(n)) ã±
+l , [ãm , ãn ]−ε − [ãm , ãn ]−ε −
+n=m
+It is now turn to be considered the 'spin' Heisenberg relations (5.5).
+Recall, the field operators φi for the fields considered here admit a representation [13–15]
+XZ
+
+t,−
+−
+(6.56)
+φi = Λ
+d3 p vit,+ (p)a+
+t (p) + vi (p)at (p) ,
+t
+
+where Λ is a normalization constant and vit,± (p) are classical, not operator-valued, complex
+or real functions which are linearly independent. The particular definition of vit,± (p) depends
+
+on the geometrical nature of φi and can be found in [13–15] (see also [1]), where the reader
+can find also a number of relations satisfied by vit,± (p). Here we shall mention only that
+vit,± (p) = 1 for a scalar field and vit,+ (p) = vit,− (p) =: vit (p) = (vit (p))∗ for a vector field.
+ss′ ,±
+ss′ ,±
+The explicit form of the polarization functions σμν
+(k) and lμν
+(k) (see Sect. 3, in
+particular (3.14)) through vit,± (k) are [13–15]:
+(−1)j X s,±
+(v (k))∗ Iii′ μν vit,±
+′ (k)
+j + δj0 ′ i
+
+′
+
+ss ,±
+σμν
+(k) =
+
+i,i
+
+(−1)j
+
+′
+
+ss ,±
+lμν
+(k) =
+
+2j + δj0
+
+→
+− ←−−−
+→
+−
+ ←−−∂−
+X s,±
+∂  t,±
+∗
+(vi (k)) kμ ν − kν μ vi (k),
+∂k
+∂k
+
+(6.57)
+
+i
+
+′
+
+′
+
+ss ,±
+ss ,±
+with an exception that σ0a
+(k) = σa0
+(k) = 0, a = 1, 2, 3, for a spinor field, j = 21 , [14].
+Evidently, the equations (3.14) follow from the mentioned facts (see also (5.25)).
+Substituting (6.56) and (5.12) into (5.5), we obtain the following systems of integral
+equations (corresponding respectively to the Lagrangians L′ , L′′ and L′′′ ):
+
+Z
+Z
+ ss′ ,−
+(−1)j+1 j X
+−
+3
+ss′ ,−
+†+
+d k
+d3 pvit,± (p) (σμν
+(k) + lμν
+(k))[a±
+t (p), as (k) ◦ as′ (k)]
+1+τ
+′
+s,s ,t
+XXZ
++
+±
+†−
+ss′ ,+
+ss′ ,+
+i′
+(k)
+◦
+a
+(k)]
+(p),
+a
++ (σμν
+(k) + lμν
+(k))[a±
+=
+d3 pIiμν
+(6.58)
+vit,±
+′ (p)at (p)
+s
+t
+s′
+t
+
+i′
+
+ε
++
+
+(−1)j+1 j
+1+τ
+
+XZ
+
+d3 k
+
+s,s′ ,t
+
+Z
+
+ ss′ ,+
++
+†−
+ss′ ,+
+(k) + lμν
+(k))[a±
+d3 pvit,± (p) (σμν
+t (p), as′ (k) ◦ as (k)]
+
+−
+ss′ ,−
+ss′ ,−
+(σμν
+(k) + lμν
+(k))[a±
+t (p), as′ (k)
+
+(−1)j+1 j
+2(1 + τ )
+
+XZ
+
+s,s′ ,t
+
+ss′ ,+
++ (σμν
+(k)
+
++
+
+d3 k
+
+Z
+
+◦ a†s + (k)]
+
+=
+
+XXZ
+
+′
+
+±
+i
+d3 pIiμν
+(6.59)
+vit,±
+′ (p)at (p)
+
+t
+
+i′
+
+
+ ss′ ,−
+
+−
+†+
+ss′ ,−
+d3 pvit,± (p) (σμν
+(k) + lμν
+(k)) a±
+t (p), [as (k), as′ (k)]ε −
+
+ss′ ,+
+lμν
+(k))
+
+
+
+†−
++
+a±
+t (p), [as (k), as′ (k)]ε −
+
+
+
+=
+
+XXZ
+i′
+
+′
+
+i
+±
+d3 pIiμν
+vit,±
+′ (p)at (p).
+
+t
+
+(6.60)
+
+For the difference of all previously considered systems of integral equations, like (6.2)–
+(6.4), (6.27)–(6.29) and (6.44)–(6.46), the systems (6.58)–(6.60) cannot be replaced by ones
+consisting of algebraic (or differential) equations. The cause for this state of affairs is that
+in (6.58)–(6.60) enter polarization modes with arbitrary s and s′ and, generally, one cannot
+'diagonalize' the integrand(s) with respect to s and s′ ; moreover, for a vector field, the modes
+with s = s′ are not presented at all (see (3.14)). That is why no commutation relations can
+be extracted from (6.58)–(6.60) unless further assumptions are made. Without going into
+details, below we shall sketch the proof of the assertion that the commutation relations (6.16)
+convert (6.60) into identities for massive spinor and vector fields.21 In particular, this entails
+that the paracommutation and the bilinear commutation relations provide solutions of (6.60).
+Let (6.16) holds. Combining it with (6.60), we see that the latter splits into the equations
+The equations (6.58)–(6.60) are identities for scalar fields as for them Iμν = 0 and vit,± (k) = 1, which
+reflects the absents of spin for these fields.
+21
+
+Z
+
+(−1)j j X
+st,−
+st,−
+ts,+
+ts,+
+(p) + lμν
+(p)) + ε(σμν
+(p) + lμν
+(p)) a+
+d3 pvit,+ (p) τ (σμν
+s (p),
+1 + τ s,t
+X ′ XZ
++
+i
+=
+d3 pvis,+
+(6.61a)
+Iiμν
+′ (p)as (p)
+s
+
+i′
+
+(−1)j+1 j
+1+τ
+
+XZ
+s,t
+
+ ts,−
+ts,−
+st,+
+st,+
+d3 pvit,− (p) (σμν
+(p) + lμν
+(p)) + ετ (σμν
+(p) + lμν
+(p)) a−
+s (p),
+=
+
+X
+i′
+
+i′
+Iiμν
+
+XZ
+
+−
+d3 pvis,−
+(6.61b)
+′ (p)as (p).
+
+s
+
+Inserting here (6.57),Pwe see that one needs the explicit definition of vis,± (k) and formulae for
+∗
+sums like ρii′ (k) := s vis,± (k)(vis,±
+′ (k)) , which are specific for any particular field and can
+be found in [13–15]. In this way, applying (5.25), (3.7) and the mentioned results from [13–15],
+one can check the validity of (6.61) for massive fields in a way similar to the proof of (5.3)
+in [13–15] for scalar, spinor and vector fields, respectively.
+We shall end the present subsection with the remark that the equations (4.17) and (4.18),
+which together with (4.15) ensure the uniqueness of the spin and orbital operators, are
+sufficient conditions for the coincidence of the equations (6.58), (6.59) and (6.60).
+
+7.
+
+Inferences
+
+To begin with, let us summarize the major conclusions from Sect. 6. Each of the Heisenberg
+equations (5.1)–(5.3), the equations (5.3) being split into (5.4) and (5.5), induces in a natural
+way some relations that the creation and annihilation operators should satisfy. These relations can be chosen as algebraic trilinear ones in a case of (5.1) and (5.2) (see (6.10)–(6.12)
+and (6.31)–(6.33), respectively). But for (5.4) and (5.5) they need not to be algebraic and
+are differential ones in the case of (5.4) (see (6.47)–(6.49)) and integral equations in the case
+of (5.5) (see (6.58)–(6.60)). It was pointed that the cited relations depend on the initial
+Lagrangian from which the theory is derived, unless some explicitly written conditions hold
+(see (6.24), (6.37) and (6.55)); in particular, these conditions are true if the equations (4.9)–
+(4.13), ensuring the uniqueness of the corresponding dynamical operators, are valid. Since
+the 'charge symmetric' Lagrangians (3.4) seem to be the ones that best describe free fields,
+the arising from them (commutation) relations (6.12), (6.33), (6.49) and (6.60) were studied in more details. It was proved that the trilinear commutation relations (6.16) convert
+them into identities, as a result of which the same property possess the paracommutation
+relations (6.20) and, in particular, the bilinear commutation relations (6.13). Examples of trilinear commutation relations, which are neither ordinary nor para ones, were presented; some
+of them, like (6.14), (6.34) and (6.52), do not agree with (6.13) and other ones, like (6.16),
+(6.22) and (6.35), generalize (6.20) and hence are compatible with (6.13). At last, it was
+demonstrated that the commutators between the dynamical variables (see (5.15)–(5.23)) are
+uniquely defined if a Heisenberg relation for one of the operators entering in it is postulated.
+The chief aim of the present section is to be explored the problem whether all of the
+reasonable conditions, mentioned in the previous sections and that can be imposed on the
+creation and annihilation operators, can hold or not hold simultaneously. This problem is
+suggested by the strong evidences that the relations (5.1)–(5.3) and (5.15)–(5.23), with a
+possible exception of (5.3) (more precisely, of (5.5)) in the massless case, should be valid in
+a realistic quantum field theory [1, 3, 7, 8, 11, 12]. Besides, to the arguments in loc. cit., we
+shall add the requirement for uniqueness of the dynamical variables (see Sect. 4).
+
+As it was shown in Sect. 6, the relations (5.1), (5.2), (5.4) and (5.5) are compatible if
+one starts from a charge symmetric Lagrangian (see (3.4)), which best describes a free field
+theory; in particular, the commutation relations (6.16) (and hence (6.20) and (6.13)) ensure
+their simultaneous validity.22 For that reason, we shall investigate below only commutation
+relations for which (5.1), (5.2), (5.4) and (5.5) hold. It will be assumed that they should be
+such that the equations (6.10)–(6.12), (6.31)–(6.33), (6.47)–(6.49) and (6.58)–(6.60), respectively, hold.
+Consider now the problem for the uniqueness of the dynamical variables and its consistency with the commutation relations just mentioned for a charged field. It will be assumed
+that this uniqueness is ensured via the equations (4.9)–(4.11).
+The equation (4.15), viz.
+[a†m± , a∓
+(7.1)
+m ]−ε = 0,
+is a necessary and sufficient conditions for the uniqueness of the momentum and charge
+operators (see Sect. 4 and the notation introduced at the beginning of Sect. 6). Before
+commenting on this relation, we would like to derive some consequences of it. Applying
+consequently (6.8) for η = −ε, (7.1) and the identity
+[A, B ◦ C]+ = [A, B]η ◦ C − ηB ◦ [A, C]−η
+
+η = ±1
+
+(7.2)
+
+for η = +ε, −ε, we, in view of (7.1), obtain
+†−
++
++
+†− +
++
++
+†−
+[a+
+m , [am , am ]ε ] = [am , [am , am ]−ε ]+ = (1 − ε)[am , am ]ε ◦ am
+
+†+
+−
+−
+†+ −
+−
+†+ −
+[a−
+m , [am , am ]ε ] = ε[am , [am , am ]−ε ]+ = ε(1 − ε)[am , am ]ε ◦ am .
+
+(7.3)
+
+Forming the sum and difference of (6.12a), for τ = 0, and (6.33a), we see that the system
+of equations they form is equivalent to
+†+ −
+[a+
+l , [am , am ]ε ] = 0
+
++
+†−
+[a−
+l , [am , am ]ε ] = 0
+
++
+−
+−
++
+†−
+†+ −
+[a+
+l , [am , am ]ε ] + 2δlm al = 0 [al , [am , am ]ε ] − 2δlm al = 0.
+
+(7.4a)
+(7.4b)
+
+Combining (7.4b), for l = m, with (7.3), we get
++
++
+†+ −
+−
+−
+(1 − ε)[a†m− , a+
+m ]ε ◦ am + 2am = 0 ε(1 − ε)[am , am ]ε ◦ am − 2am = 0.
+
+(7.5)
+
+Obviously, these equations reduce to
+a±
+m =0
+
+(7.6)
+
+for bose fields as for them ε = +1 (see (3.7)). Since the operators (7.6) describe a completely
+unobservable field, or, more precisely, an absence of a field at all, the obtained result means
+that the theory considered cannot describe any really existing physical field with spin j = 0, 1.
+Such a conclusion should be regarded as a contradiction in the theory. For fermi fields, j = 21
+and ε = −1, the equations (7.5) have solutions different from (7.6) iff a±
+m are degenerate
+operators, i.e. with no inverse ones, in which case (7.4a) is a consequence of (7.5) and (7.1)
+(see (6.8) and (7.3) too).
+The source of the above contradiction is in the equation (7.1), which does not agree with
+the bilinear commutation relations (6.13) and contradicts to the existing correlation between
+creation and annihilation of particles with identical characteristics (m = (t, p) in our case)
+as (7.1) can be interpreted physically as mutual independence of the acts of creation and
+annihilation of such particles [1, § 10.1].
+At this point, there are two ways for 'repairing' of the theory. On one hand, one can
+forget about the uniqueness of the dynamical variables (in a sense of Sect. 4), after which
+22
+
+The special case(s) when (5.5) may not hold for a massless field will not be considered below.
+
+the formalism can be developed by choosing, e.g., the charge symmetric Lagrangians (3.4)
+and following the usual Lagrangian formalism; in fact, this is the way the parafield theory is
+build [16,18]. On another hand, one may try to change something at the ground of the theory
+in such a way that the uniqueness of the dynamical variables to be ensured automatically.
+We shall follow the second method. As a guiding idea, we shall have in mind that the
+bilinear commutation relations (6.13) and the related to them normal ordering procedure
+provide a base for the present-day quantum field theory, which describes sufficiently well
+the discovered elementary particles/fields. On this background, an extensive exploration of
+commutation relations which are incompatible with (6.13) is justified only if there appear
+some evidences for fields/particles that can be described via them. In that connection it
+should be recalled [17, 18], it seems that all known particles/fields are described via (6.13)
+and no one of them is a para particle/field.
+Using the notation introduced at the beginning of Sect. 4, we shall look for a linear
+mapping (operator) E on the operator space over the system's Hilbert space F of states such
+that
+E( D ′ ) = E( D ′′ ).
+(7.7)
+
+As it was shown in Sect. 4, an example of an operator E is provided by the normal ordering
+operator N . Therefore an operator satisfying (7.7) always exists. To any such operator E
+there corresponds a set of dynamical variables defined via
+D = E( D ′ ).
+
+(7.8)
+
+Let us examine the properties of the mapping E that it should possess due to the requirement (7.7).
+First of all, as the operators of the dynamical variables should be Hermitian, we shall
+require
+†
+(7.9)
+E( B) = E( B † )
+for any operator B, which entails
+
+D † = D,
+
+(7.10)
+
+due to (3.9)–(3.12) and (7.8).
+As in Sect. 4, we shall replace the so-arising integral equations with corresponding algebraic ones. Thus the equations (4.5)–(4.20) remain valid if the operator E is applied to their
+left hand sides.
+Consider the general case of a charged field, q 6= 0. So, the analogue of (4.15) reads
+
+(7.11)
+E [a†m± , a∓
+m ]−ε = 0,
+
+which equation ensures the uniqueness of the momentum and charge operators. Respectively,
+the condition (4.11) transforms into
+
+
+◦
+◦
++
+†−
+(−ωμν
+(m) + ωμν
+(n)) E([a†m+ , a−
+= 0,
+(7.12)
+n ]−ε ) − E([am , an ]−ε )
+n=m
+
+which, by means of (7.11) can be rewritten as (cf. (4.16))
+
+ ◦
++
+†−
+ωμν (n) E([a†m+ , a−
+n ]−ε ) − E([am , an ]−ε )
+
+n=m
+
+= 0.
+
+At the end, equations (4.17) and (4.18) now should be written as
+X ′
+
+
+ss′ ,+
+†−
++
+ss ,−
+=0
+σμν
+(k) E [a†s + (k), a−
+s′ (k)]−ε + σμν (k) E [as (k), as′ (k)]−ε
+
+(7.13)
+
+(7.14)
+
+s,s′
+
+X ′
+
+
++
+ss ,−
+ss′ ,+
+†−
+lμν
+(k) E [a†s + (k), a−
+= 0.
+s′ (k)]−ε + lμν (k) E [as (k), as′ (k)]−ε
+s,s′
+
+(7.15)
+
+These equations can be satisfied if we generalize (7.11) to (cf. (4.20))
+
+E [a†s ± (k), a∓
+s′ (k)]−ε = 0
+for any s and s′ . At last, the following stronger version of (7.16)
+
+E [a†m± , a∓
+n ]−ε = 0,
+
+(7.16)
+
+(7.17)
+
+for any m = (t, p) and n = (r, q), ensures the validity of (7.14) and (7.15) and thus of the
+uniqueness of all dynamical variables.
+It is time now to call attention to the possible commutation relations. The replacement
+D ′ , D ′′ , D ′′′ 7→ D := E( D ′ ) = E( D ′′ ) = E( D ′′′ ) results in corresponding changes in the
+whole of the material of Sect. 6. In particular, the systems of commutation relations (6.10)–
+(6.12), (6.31)–(6.33), (6.47)–(6.49) and (6.58)–(6.60) should be replaced respectively with:23
+
+ ±
+†−
++
+±
+al , E(a†m+ ◦ a−
+(7.18)
+m ) + ε E(am ◦ am ) − ± (1 + τ )δlm al = 0
+
+ ±
+†−
++
+±
+al , E(a†m+ ◦ a−
+(7.19)
+m ) − ε E(am ◦ am ) − − δlm al = 0
+
+±
+◦
+◦
+†+
+−
+†−
++
+◦
+(−ωμν (m) + ωμν (n))([ãl , E(ãm ◦ ãn ) − ε E(ãm ◦ ãn )] ) n=m = 2(1 + τ )δlm ωμν (l)(ã±
+l )
+(7.20)
+Z
+Z
+ ss′ ,−
+(−1)j+1 j X
+†+
+−
+ss′ ,−
+d3 k
+d3 pvit,± (p) (σμν
+(k) + lμν
+(k))[a±
+t (p), E(as (k) ◦ as′ (k))]
+1+τ
+s,s′ ,t
+XXZ
+±
++
+±
+ss′ ,+
+ss′ ,+
+†−
+i′
++ (σμν (k) + lμν (k))[at (p), E(as (k) ◦ as′ (k))] =
+d3 pIiμν
+vit,±
+′ (p)at (p).
+i′
+
+t
+
+(7.21)
+
+Due to the uniqueness conditions (7.11)–(7.14), one can rewrite the terms E(a†m± ◦ a∓
+m)
+in (7.18)–(7.21) in a number of equivalent ways; e.g. (see (7.11))
+∓
+†±
+E(a†m± ◦ a∓
+m ) = ε E(am ◦ am ) =
+
+1
+E([a†m± , a∓
+m ]ε ).
+2
+
+(7.22)
+
+Consider the general case of a charged field, q 6= 0 (and hence τ = 0). The system of
+equations (7.18)–(7.19) is then equivalent to
+ ±
+
+al , E(a†m± ◦ a∓
+(7.23a)
+m) − = 0
+ +
+
++
+al , E(a†m− ◦ a+
+(7.23b)
+m ) − + εδlm al = 0
+
+ −
+−
+(7.23c)
+al , E(a†m+ ◦ a−
+m ) − − δlm al = 0.
+
+These (commutation) relations ensure the simultaneous fulfillment of the Heisenberg relations (5.1) and (5.2) involving the momentum and charge operators, respectively. To ensure
+also the validity of (7.20), with τ = 0, and, consequently, of (5.4), we generalize (7.23) to
+
+ ±
+(7.24a)
+al , E(a†m± ◦ a∓
+n) − = 0
+ +
+
+†−
++
++
+al , E(am ◦ an ) − + εδlm an = 0
+(7.24b)
+
+ −
+−
+al , E(a†m+ ◦ a−
+(7.24c)
+n ) − − δlm an = 0,
+
+for any l = (s, k), m = (t, p) and n = (t, q) (see also (6.51)). In the way pointed in
+Sect. 6, one can verify that (7.24) for any l = (s, k), m = (t, p) and n = (r, p) entails (7.21)
+and hence (5.5). At last, to ensure the validity of all of the mentioned conditions and a
+23
+
+To save some space, we do not write the Hermitian conjugate of the below-written equations.
+
+suitable transition to a case of Hermitian field, for which q = 0 and τ = 1 (see (3.7)), we
+generalize (7.24) to
+
+ +
++
+(7.25a)
+al , E(a†m+ ◦ a−
+n ) − + τ δln am = 0
+ −
+
+†−
++
+−
+al , E(am ◦ an ) − − ετ δln am = 0
+(7.25b)
+ +
+
+†−
++
++
+al , E(am ◦ an ) − + εδlm an = 0,
+(7.25c)
+ −
+
+−
+al , E(a†m+ ◦ a−
+(7.25d)
+n ) − − δlm an = 0
+
+where l, m and n are arbitrary. As a result of (7.17), which we assume to hold, and τ a†l ± =
+τ a±
+l (see (3.7)), the equations (7.25a) and (7.25c) (resp. (7.25b) and (7.25d)) become identical
+when τ = 1 (and hence a†l ± = a±
+l ); for τ = 0 the system (7.25) reduces to (7.24). Recalling
+2j
+that ε = (−1) (see (3.7)), we can rewrite (7.25) in a more compact form as
+ ±
+
+2j+1
+al , E(a†m± ◦ a∓
+(7.26a)
+τ δln a±
+n ) − + (±1)
+m =0
+
+ ±
+2j+1
+τ δlm a±
+(7.26b)
+al , E(a†m∓ ◦ a±
+n ) − − (∓1)
+n = 0.
+Since the last equation is equivalent to (see (7.17)) and use that ε = (−1)2j )
+ ±
+
+†∓
+2j+1
+al , E(a±
+δln a±
+m ◦ an ) − + (±1)
+m = 0,
+
+(7.26b′ )
+
+it is evident that the equations (7.26a) and (7.26b) coincide for a neutral field.
+Let us draw the main moral from the above considerations: the equations (7.17) are
+sufficient conditions for the uniqueness of the dynamical variables, while (7.26) are such
+conditions for the validity of the Heisenberg relations (5.1)–(5.5), in which the dynamical
+variables are redefined according to (7.8). So, any set of operators a±
+l and E, which are
+simultaneous solutions of (7.17) and (7.26), ensure uniqueness of the dynamical variables
+and at the same time the validity of the Heisenberg relations.
+Consider the uniqueness problem for the solutions of the system of equations consisting
+of (7.17)and (7.26). Writing (7.17) as
+∓
+†±
+E(a†m± ◦ a∓
+n ) = ε E(an ◦ am ) =
+
+1
+E([a†m± , a∓
+n ]ε ),
+2
+
+(7.27)
+
+which reduces to (7.22) for n = m, and using ε = (−1)2j (see (3.7)), one can verify that (7.26)
+is equivalent to
+
+ +
+†−
++
+al , E([a+
+(7.28a)
+m , an ]ε ) − + 2δln am = 0
+
+ +
+†+ −
++
+al , E([am , an ]ε ) − + 2τ δln am = 0
+(7.28b)
+ −
+
+†−
+−
+al , E([a+
+(7.28c)
+m , an ]ε ) − − 2τ δlm an = 0
+ −
+
+−
+al , E([a†m+ , a−
+(7.28d)
+n ]ε ) − − 2δlm an = 0.
+
+The similarity between this system of equations and (6.16) is more than evident: (7.28) can
+be obtained from (6.16) by replacing [*, *]ε with E([*, *]ε ).
+As it was said earlier, the bilinear commutation relations (6.13) and the identification of
+E with the normal ordering operator N ,
+E = N,
+
+(7.29)
+
+convert (7.27)–(7.28) into identities; by invoking (6.8), for η = −ε, the reader can check
+this via a direct calculation (see also (4.23)). However, this is not the only possible solution
+
+of (7.27)–(7.28). For example, if, in the particular case, one defines an 'anti-normal' ordering
+operator A as a linear mapping such that
+†−
+†−
++
+A(a+
+m ◦ an ) := εan ◦ am
+
+†+
+−
+†+
+A(a−
+m ◦ an ) := am ◦ an
+
+−
+†+
+A(a†m+ ◦ a−
+n ) := εan ◦ am
+
+(7.30)
+
+†−
++
+A(a†m− ◦ a+
+n ) := am ◦ an ,
+
+then the bilinear commutation relations (6.13) and the setting E = A provide a solution
+of (7.27)–(7.28); to prove this, apply (6.8) for η = −ε. Evidently, a linear combination of
+N and A, together with (6.13), also provides a solution of (7.27)–(7.28).24 Other solution
+of the same system of equations is given by E = id and operators a±
+l satisfying (6.16), in
+†±
+,∓
+,∓
+particular the paracommutation relations (6.20), and am ◦ an = εan ◦ a†m± . The problem
+for the general solution of (7.27)–(7.28) with respect to E and a±
+l is open at present.
+Let us introduce the particle and antiparticle number operators respectively by (see (7.27),
+(7.9) and (3.16))
+
+1
+†−
+†
+†
+E [a+
+, a†l − ] = E(a+
+l
+l ◦ al ) = ( Nl ) =: Nl
+2
+
+1
+†
+†
+† †
+†
+] = E(a†l + ◦ a−
+Nl := E [a†l + , a−
+l ) = ( Nl ) =: Nl .
+l
+2
+Nl :=
+
+(7.31)
+
+As a result of the commutation relations (7.28), with n = m, they satisfy the equations25
++
+[ Nl , a+
+m ]− = δlm al
+
+(7.32a)
+
++
+[ Nl , a+
+m ]− = τ δlm al
+[ Nl , a†m+ ]− = τ δlm a†l +
+[ †Nl , a†m+ ]− = δlm a†l + .
+†
+
+(7.32b)
+(7.32c)
+(7.32d)
+
+Combining (3.9)–(3.12) and (5.11)–(5.13) with (7.8), (7.27) and (7.31), we get the following
+expressions for the operators of the (redefined) dynamical variables:
+1 X
+P̃μ =
+l = (s, k)
+(7.33)
+kμ | √ 2 2 2 ( Nl + †Nl )
+k0 = m c +k
+1+τ
+l
+X
+Q̃ = q
+(− Nl + †Nl )
+(7.34)
+l
+
+S̃μν =
+
+(−1)j−1/2 j~ X
+mn,+
+mn,− †
+{εσμν
+Nnm + σμν
+Nmn )}
+1+τ
+m,n
+
+L̃μν = x0 μ P̃ν − x0 ν P̃μ +
++
+
+(7.35)
+
+m=(s,k)
+n=(s′ ,k)
+
+(−1)j−1/2 j~ X mn,+
+mn,− †
+{εlμν Nnm + lμν
+Nmn )}
+1+τ
+m,n
+
+X
+
+i~
+◦
+◦
+−ωμν
+(l) + ωμν
+(m) ( Nl + †Nl )
+2(1 + τ )
+
+m=(s,k)
+n=(s′ ,k)
+
+(7.36)
+
+m=l=(s,k)
+
+l
+
+(−1)j−1/2 j~ X
+mn,+
+mn,+
+mn,−
+mn,− †
+{ε(σμν
++ lμν
+) Nnm + (σμν
++ lμν
+) Nmn )}
+1+τ
+m,n
+X
+
+i~
+◦
+◦
+=
+−ωμν
+(l) + ωμν
+(m) ( Nl + †Nl ) m=l=(s,k) .
+2(1 + τ )
+
+M̃sp
+μν =
+M̃or
+μν
+
+m=(s,k)
+n=(s′ ,k)
+
+(7.37)
+(7.38)
+
+l
+
+If we admit a±
+l to satisfy the 'anomalous" bilinear commutation relations (8.27) (see below), i.e. (6.13)
+with ε for −ε and (±1)2j for (±1)2j+1 , then E = N , A also provides a solution of (7.27)–(7.28). However,
+as it was demonstrated in [13–15], the anomalous commutation relations are rejected if one works with the
+charge symmetric Lagrangians (3.4).
+25
+The equations (7.32a) and (7.32b) correspond to (7.28a) and (7.28b), respectively, and (7.32c) and (7.32d)
+correspond to the Hermitian conjugate to (7.28c) and (7.28d), respectively.
+24
+
+◦ (l) is defined via (6.50), we have set
+Here ωμν
+′
+
+′
+
+mn,±
+ss ,±
+mn,±
+ss ,±
+σμν
+:= σμν
+(k) lμν
+:= lμν
+(k)
+
+for m = (s, k) and n = (s′ , k),
+
+(7.39)
+
+and (see (7.27))
+
+1
+†
+†−
+†
+, a†m− ] = E(a+
+E [a+
+l ◦ am ) = ( Nml ) =: Nml
+l
+2
+
+1
+†+
+†
+†
+†
+†
+:= E [a†l + , a−
+◦ a−
+m ] = E(al
+m ) = ( Nml ) =: Nml
+2
+
+Nlm :=
+†
+
+Nlm
+
+(7.40)
+
+are respectively the particle and antiparticle transition operators (cf. [26, sec. 1] in a case of
+parafields). Obviously, we have
+Nl = Nll
+
+†
+
+Nl = †Nll .
+
+(7.41)
+
+The choice (7.29), evidently, reduces (7.33)–(7.36) to (4.24), (4.25), (4.28) and (4.29), respectively.
+In terms of the operators (7.38), the commutation relations (7.28) can equivalently be
+rewritten as (see also (7.9))
++
+[ Nlm , a+
+n ]− = δmn al
+
++
+[ †Nlm , a+
+n ]− = τ δmn al
+
+[ Nlm , a†n+ ]−
+[ †Nlm , a†n+ ]−
+
+=
+=
+
+τ δmn a†l +
+δmn a†l + .
+
+(7.42a)
+(7.42b)
+(7.42c)
+(7.42d)
+
+If m = l, these relations reduce to (7.32), due to (7.39).
+We shall end this section with the remark that the conditions for the uniqueness of
+the dynamical variables and the validity of the Heisenberg relations are quite general and
+are not enough for fixing some commutation relations regardless of a number of additional
+assumptions made to reduce these conditions to the system of equations (7.27)–(7.28).
+
+8.
+
+State vectors, vacuum and mean values
+
+Until now we have looked on the commutation relations only from pure mathematical viewpoint. In this way, making a number of assumptions, we arrived to the system (7.27)–(7.28) of
+commutation relations. Further specialization of this system is, however, almost impossible
+without making contact with physics. For the purpose, we have to recall [1, 3, 11, 12] that
+the physically measurable quantities are the mean (expectation) values of the dynamical
+variables (in some state) and the transition amplitudes between different states. To make
+some conclusions from these basic assumption of the quantum theory, we must rigorously
+said how the states are described as vectors in system's Hilbert space F of states, on which
+all operators considered act.
+For the purpose, we shall need the notion of the vacuum or, more precisely, the assumption
+of the existence of unique vacuum state (vector) (known also as the no-particle condition).
+Before defining rigorously this state, which will be denoted by X0 , we shall heuristically
+analyze the properties it should possess.
+First of all, the vacuum state vector X0 should represent a state of the field without any
+particles. From here two conclusions may be drawn: (i) as a field is thought as a collection
+of particles and a 'missing' particle should have vanishing dynamical variables, those of the
+vacuum should vanish too (or, more generally, to be finite constants, which can be set equal
+
+†−
+are
+to zero by rescaling some theory's parameters) and (ii) since the operators a−
+l and al
+interpreted as ones that annihilate a particle characterize by l = (s, k) and charge −q or +q,
+respectively, and one cannot destroy an 'absent' particle, these operators should transform
+the vacuum into the zero vector, which may be interpreted as a complete absents of the field.
+Thus, we can expect that
+
+D( X0 ) = 0
+
+a−
+l ( X0 )
+
+=0
+
+(8.1a)
+a†l − ( X0 )
+
+= 0.
+
+(8.1b)
+
+†+
+are interpreted as ones creating a particle characFurther, as the operators a+
+l and al
+†+
+terize by l = (s, k) and charge −q or +q, respectively, state vectors like a+
+l ( X0 ) and al ( X0 )
+should correspond to 1-particle states. Of course, a necessary condition for this is
+
+X0 6= 0,
+
+(8.2)
+
+due to which the vacuum can be normalize to unit,
+h X0 | X0 i = 1,
+
+(8.3)
+
+where h*|*i : F × F → C is the Hermitian scalar (inner) product of F. More generally, if
+†+
+M(a+
+l1 , al2 , . . .) is a monomial only in i ∈ N creation operators, the vector
+†+
+ψl1 l2 ... := M(a+
+l1 , al2 , . . .)( X0 )
+
+(8.4)
+
+may be expected to describe an i-particle state (with i1 particles and i2 antiparticles, i1 +i2 =
+†+
++ †+
+i, where i1 and i2 are the number of operators a+
+l and al , respectively, in M(al1 , al2 , . . .)).
+Moreover, as a free field is intuitively thought as a collection of particles and antiparticles,
+it is natural to suppose that the vectors (8.4) form a basis in the Hilbert space F. But the
+validity of this assumption depends on the accepted commutation relations; for its proof,
+when the paracommutation relations are adopted, see the proof of [18, p. 26, theorem I-1].
+Accepting the last assumption and recalling that the transition amplitude between two
+states is represented via the scalar product of the corresponding to them state vectors, it
+is clear that for the calculation of such an amplitude is needed an effective procedure for
+calculation of scalar products of the form
+†+
+†
+′ +
+†+
+hψl1 l2 ... |φm1 m2 ... i := h X0 |( M(a+
+l1 , al2 , . . .)) ◦ M (am1 , am2 , . . .) X0 i,
+
+(8.5)
+
+with M and M′ being monomials only in the creation operators. Similarly, for computation
+of the mean value of some dynamical operator D in a certain state, one should be equipped
+with a method for calculation of scalar products like
+†+
+†
+′ +
+†+
+hψl1 l2 ... | Dφm1 m2 ... i := h X0 |( M(a+
+l1 , al2 , . . .)) ◦ D ◦ M (am1 , am2 , . . .) X0 i.
+
+(8.6)
+
+Supposing, for the moment, the vacuum to be defined via (8.1), let us analyze (8.1)–(8.6).
+Besides, the validity of (7.27)–(7.28) will be assumed.
+From the expressions (7.8) and (3.9)–(3.12) for the dynamical variables, it is clear that
+the condition (8.1a) can be satisfied if
+E(a†m± ◦ a∓
+n )( X0 ) = 0,
+
+(8.7)
+
+which, in view of (7.27), is equivalent to any one of the equations
+†∓
+E(a±
+m ◦ an )( X0 ) = 0
+
+†∓
+E([a±
+m , an ]ε )( X0 ) = 0.
+
+(8.8a)
+(8.8b)
+
+Equation (8.7) is quite natural as it expresses the vanishment of all modes of the vacuum
+corresponding to different polarizations, 4-momentum and charge. It will be accepted hereafter.
+By means of (8.8) and the commutation relations (7.28) in the form (7.42), in particular (7.32), one can explicitly calculate the action of any one of the operators (7.33)–(7.38)
+on the vectors (8.4): for the purpose one should simply to commute the operators Nlm (or
+Nl = Nll ) with the creation operators in (8.4) according to (7.42) (resp. (7.32)) until they
+act on the vacuum and, hence, giving zero,
+p as a result of (8.8) and (7.42) (resp. (7.32)). In
+particular, we have the equations (k0 = m2 c2 + k2 ):
+
+
++
+(8.9)
+P̃μ a†l + ( X0 ) = kμ a†l + ( X0 ) l = (s, k)
+P̃μ a+
+l ( X0 ) = kμ al ( X0 )
+
+
++
+Q̃ a+
+Q̃ a†l + ( X0 ) = +qa†l + ( X0 )
+(8.10)
+l ( X0 ) = −qal ( X0 )
+ (−1)j−1/2 j~ X
+lm,+
+ml,−
+{εσμν
++ τ σμν
+} m=(t,k) a+
+S̃μν a+
+m |m=(t,k) ( X0 )
+l l=(s,k) ( X0 ) =
+1+τ
+t
+(8.11)
+ (−1)j−1/2 j~ X
+†+
+lm,+
+ml,−
+†+
+{ετ σμν + σμν } m=(t,k) am |m=(t,k) ( X0 )
+S̃μν al l=(s,k) ( X0 ) =
+1+τ
+t
+
+
++
++
+◦
+L̃μν a+
+l l=(s,k) ( X0 ) = (x0 μ kν − x0 ν kμ )(al )( X0 ) − i~ ωμν (l)(al ) ( X0 )
++
+
+L̃μν a†l +
+
+l=(s,k)
+
+(−1)j−1/2 j~ X
+lm,+
+ml,−
+{ετ lμν
++ lμν
+}
+1+τ
+t
+
+ (−1)j−1/2 j~ X
+lm,+
+lm,+
+(
+X
+)
+=
+{ε(σμν
++ lμν
+)
+0
+l=(s,k)
+1+τ
+t
+
+M̃or
+μν
+
+
+a†l + l=(s,k) ( X0 )
+
+(8.12)
+
+a† + |
+( X0 )
+m=(t,k) m m=(t,k)
+
+ml,−
+ml,−
++ τ (σμν
++ lμν
+)}
+
+M̃sp
+μν
+
+a+ |
+( X0 )
+m=(t,k) m m=(t,k)
+
+
+
+◦
+( X0 ) = (x0 μ kν − x0 ν kμ )(a†l + )( X0 ) − i~ ωμν
+(l)(a†l + ) ( X0 )
++
+
++
+M̃sp
+μν al
+
+(−1)j−1/2 j~ X lm,+
+ml,−
+{εlμν + τ lμν
+}
+1+τ
+t
+
+a+ |
+( X0 )
+m=(t,k) m m=(t,k)
+
+(−1)j−1/2 j~ X
+lm,+
+lm,+
+{ετ (σμν
++ lμν
+)
+=
+1+τ
+t
+
+(8.13)
+
+ml,−
+ml,−
++ (σμν
++ lμν
+)} m=(t,k) a†m+ |m=(t,k) ( X0 )
+
+
+
+†+
+†+ 
+◦
++
+◦
+M̃or
+ã+
+μν ãl ( X0 ) = −i~ ωμν (l)(ãl ) ( X0 ). (8.14)
+l ( X0 ) = −i~ ωμν (l)(ãl ) ( X0 )
+
+These equations and similar, but more complicated, ones with an arbitrary monomial in the
+†+
+creation operators for a+
+are the base for the particle interpretation of the quantum
+l or al
++
+theory of free fields. For instance, in view of (8.9) and (8.10), the state vectors
+p al ( X0 ) and
+a†l + ( X0 ) are interpreted as ones representing particles with 4-momentum ( m2 c2 + k2 , k)
+and charges −q and +q, respectively; similar multiparticle interpretation can be given to the
+general vectors (8.4) too.
+The equations (8.9)–(8.12) completely agree with similar ones obtained in [13–15] on the
+base of the bilinear commutation relations (6.13).
+By means of (8.7), the expression (8.6) can be represented as a linear combination of
+terms like (8.5). Indeed, as D is a linear combinations of terms like E(a†m± ◦ a∓
+n ), by means of
+the relations (7.28) we can commute each of these terms with the creation (resp. annihilation)
+†+
++ †+
+†
+′′ † − −
+operators in the monomial M′ (a+
+m1 , am2 , . . .) (resp. ( M(al1 , al2 , . . .)) = M (al1 , al2 , . . .))
+and thus moving them to the right (resp. left) until they act on the vacuum X0 , giving
+the zero vector - see (8.7). In this way the matrix elements of the dynamical variables,
+in particular their mean values, can be expressed as linear combinations of scalar products
+
+of the form (8.5). Therefore the supposition (8.7) reduces the computation of mean values
+of dynamical variables to the one of the vacuum mean value of a product (composition)
+of creation and annihilation operators in which the former operators stand to the right of
+the latter ones. (Such a product of creation and annihilation operators can be called their
+'antinormal' product; cf. the properties (7.30) of the antinormal ordering operator A.)
+The calculation of such mean values, like (8.5) for states ψ, φ 6= X0 , however, cannot
+be done (on the base of (7.27)–(7.28), (8.7) and (8.1a)) unless additional assumption are
+made. For the purpose one needs some kind of commutation relations by means of which
+the creation (resp. annihilation) operators on the r.h.s. of (8.5) to be moved to the left (resp.
+right) until they act on the left (resp. right) vacuum vector X0 ; as a result of this operation,
+the expressions between the two vacuum vectors in (8.5) should transform into a linear
+combination of constant terms and such with no contribution in (8.5). (Examples of the last
+type of terms are E(a†m± ◦ a∓ ) and normally ordered products of creation and annihilation
+operators.) An alternative procedure may consists in defining axiomatically the values of all
+or some of the mean values (8.5) or, more stronger, the explicit action of all or some of the
+operators, entering in the r.h.s. of (8.5), on the vacuum.26 It is clear, both proposed schemes
+should be consistent with the relations (7.27)–(7.28), (8.1b) and (8.7)–(8.8).
+Let us summarize the problem before us: the operator E in (7.27)–(7.28) has to be fixed
+and a method for computation of scalar products like (8.5) should be given provided the
+vacuum vector X0 satisfies (8.1b), (8.2), (8.3) and (8.7). Two possible ways for exploration
+of this problem were indicated above.
+†±
+∓
+Consider the operator E. Supposing E(a†m± ◦ a∓
+n ) to be a function only of am and an ,
+†±
+†±
+∓
+±
+∓
+−
+we, in view of (8.1b), can write E(am ◦ an ) = f (am ◦ an ) ◦ b with b = an (upper sign) or
+b = a†m− (lower sign) and some functions f ± . Applying (7.27), we obtain (do not sum over l)
+−
++ †+ −
+E(a†m+ ◦ a−
+l ) = f (am , al ) ◦ al
+
+−
+†+
++ †+ −
+E(a−
+l ◦ am ) = εf (am , al ) ◦ al
+
+†−
+†−
+†−
+− +
+E(a+
+m ◦ al ) = f (am , al ) ◦ al
+
+†−
+†−
+− +
+E(a†l − ◦ a+
+m ) = εf (am , al ) ◦ al .
+
+Since E is a linear operator, the expression E(a†m± ◦a∓
+n ) turns to be a linear and homogeneous
+,
+which
+immediately
+implies
+f ± (A, B) = λ± A for operators A and
+function of a†m± and a∓
+n
+B and some constants λ± ∈ C. For future convenience, we assume λ± = 1, which can be
+achieved via a suitable renormalization of the creation and annihilation operators.27 Thus,
+the last equations reduce to
+−
+†+
+E(a†m+ ◦ a−
+l ) = am ◦ al
+
+E(a−
+l
+
+◦ a†m+ )
+
+=
+
+εa†m+
+
+◦
+
+a−
+l
+
+†−
+†−
++
+E(a+
+m ◦ al ) = am ◦ al
+
+E(a†l −
+
+◦ a+
+m)
+
+=
+
+εa+
+m
+
+◦
+
+a†l − .
+
+(8.15a)
+(8.15b)
+
+Evidently, these equations convert (7.27), (8.7) and (8.8) into identities. Comparing (8.15)
+and (4.22), we see that the identification
+E= N
+
+(8.16)
+
+of the operator E with the normal ordering operator N is quite natural. However, for our
+purposes, this identification is not necessary as only the equations (8.15), not the general
+definition of N , will be employed.
+26
+27
+
+Such an approach resembles the axiomatic description of the scattering matrix [1, 7, 8].
+Since λ+ = 0 or/and λ− = 0 implies D = 0, due to (7.8), these values are excluded for evident reasons.
+
+As a result of (8.15), the commutation relations (7.28) now read:
++
+†−
++
+[a+
+l , am ◦ an ] + δln am = 0
+†+
+−
+[a+
+l , am ◦ an ]
++
+†−
+[a−
+l , am ◦ an ]
+†+
+−
+[a−
+l , am ◦ an ]
+
++ τ δln a+
+m =0
+− τ δlm a−
+n =0
+− δlm a−
+n = 0.
+
+(8.17a)
+(8.17b)
+(8.17c)
+(8.17d)
+
+(In a sense, these relations are 'one half' of the (para)commutation relations (6.16): the
+†−
+latter are a sum of the former and the ones obtained from (8.17) via the changes a+
+m ◦ an 7→
+†
++
+†
++
+†−
+−
+−
+εan ◦ a+
+m and am ◦ an 7→ εan ◦ am ; the last relations correspond to (7.28) with E = A, A
+being the
+ordering operator - see (7.30). Said differently, up to the replacement
+√ antinormal
+±
+a±
+→
+7
+2a
+for
+all
+l,
+the
+relations (8.17) are identical with (6.16) for ε = 0; as noted in [26, the
+i
+l
+remarks following theorem 2 in sec. 1], this is a quite exceptional case from the view-point
+of parastatistics theory.) By means of (6.8) for η = −ε, one can verify that equations (8.17)
+agree with the bilinear commutation relations (6.13), i.e. (6.13) convert (8.17) into identities.
+The equations (8.15) imply the following explicit forms of the number operators (7.31)
+and the transition operators (7.40):
+†−
+Nl = a+
+l ◦ al
+
+†−
+Nlm = a+
+l ◦ am
+
+Nl = a†l + ◦ a−
+l
+
+†
+
+(8.18)
+
+Nlm = a†l + ◦ a−
+m.
+
+(8.19)
+
+†
+
+As a result of them, the equations (7.33)–(7.36) are simply a different form of writing of (4.24),
+(4.25), (4.28) and (4.29), respectively.
+Let us return to the problem of calculation of vacuum mean values of antinormal ordered
+products like (8.5). In view of (8.1b) and (8.3), the simplest of them are
+h X0 |λ idF ( X0 )i = λ
+
+h X0 | M± ( X0 )i = 0
+
+(8.20)
+
+where λ ∈ C and M+ (resp. M− ) is any monomial of degree not less than 1 only in the
+†±
+†± ±
+± ±
+creation (resp. annihilation) operators; e.g. M± = a±
+l , al , al1 ◦al2 , al1 ◦al2 . These equations,
+with λ = 1, are another form of what is called the stability of the vacuum: if Xi denotes an
+i-particle state, i ∈ N ∪ {0}, then, by virtue of (8.20) and the particle interpretation of (8.4),
+we have
+h Xi | X0 i = δi0 ,
+(8.21)
+i.e. the only non-forbidden transition into (from) the vacuum is from (into) the vacuum.
+More generally, if Xi′ ,0 and X0,j ′′ denote respectively i′ -particle and j ′′ -antiparticle states,
+with X0,0 := X0 , then
+(8.22)
+h Xi′ ,0 | X0,j ′′ i = δi′ 0 δ0j ′′ ,
+i.e. transitions between two states consisting entirely of particles and antiparticles, respectively, are forbidden unless both states coincide with the vacuum. Since we are dealing with
+free fields, one can expect that the amplitude of a transitions from an (i′ -particle + j ′ -antiparticle) state Xi′ ,j ′ into an (i′′ -particle + j ′′ -antiparticle) state Xi′′ ,j ′′ is
+h Xi′ ,j ′ | Xi′′ ,j ′′ i = δi′ i′′ δj ′ j ′′ ,
+
+(8.23)
+
+but, however, the proof of this hypothesis requires new assumptions (vide infra).
+Let us try to employ (8.17) for calculation of expressions like (8.5). Acting with (8.17)
+and their Hermitian conjugate on the vacuum, in view of (8.1b), we get
++
+†−
+a+
+m ◦ (−an ◦ al + δln idF )( X0 ) = 0
+
+†+
+a†n+ ◦ (a−
+− δlm idF )( X0 ) = 0
+m ◦ al
+
+†+
++
+†−
++
+− τ δlm idF )( X0 ) = 0.
+a†m+ ◦ (−a−
+n ◦ al + τ δln idF )( X0 ) = 0 an ◦ (am ◦ al
+
+(8.24)
+
+These equalities, as well as (8.17), cannot help directly to compute vacuum mean values
+of antinormally ordered products of creation and annihilation operators. But the equations (8.24) suggest the restrictions28
+a†l − ◦ a+
+m ( X0 ) = δlm X0
+
++
+a−
+l ◦ am ( X0 ) = τ δlm X0
+
+†+
+a−
+l ◦ am ( X0 ) = δlm X0
+
+a†l − ◦ a†m+ ( X0 ) = τ δlm X0
+
+(8.25)
+
+to be added to the definition of the vacuum. These conditions convert (8.24) into identities
+and, in this sense agree with (8.17) and, consequently, with the bilinear commutation relations (6.13). Recall [16, 18], the relations (8.25) are similar to ones accepted in the parafield
+theory and coincide with that for parastatistics of order p = 1; however, here we do not suppose the validity of the paracommutation relations (6.20) (or (6.16)). Equipped with (8.25),
+one is able to calculate the r.h.s. of (8.5) for any monomial M (resp. M′ ) and monomials
+M′ (resp. M) of degree 1, deg M′ = 1 (resp. deg M = 1).29 Indeed, (8.25), (8.1b) and (8.3)
+entail:
+−
+†+
+h X0 |a†l − ◦ a+
+m ( X0 )i = h X0 |al ◦ am ( X0 )i = δlm
+
+†−
++
+◦ a†m+ ( X0 )i = τ δlm
+h X0 |a−
+l ◦ am ( X0 )i = h X0 |al
+
+†+
++ †+
+†
++
+†
+†+
+h X0 |( M(a+
+l1 , al2 , * * * )) ◦ am ( X0 )i = h X0 |( M(al1 , al2 , * * * )) ◦ am ( X0 )i = 0
+
+†−
++
+†+
+†+
+◦ M(a+
+h X0 |a−
+m1 , am2 , * * * )( X0 )i = 0
+l ◦ M(am1 , am2 , * * * )( X0 )i = h X0 |al
+
+deg M ≥ 2
+deg M ≥ 2.
+(8.26)
+
+Hereof the equation (8.23) for i′ + j ′ = 1 (resp. i′′ + j ′′ = 1) and arbitrary i′′ and j ′′ (resp. i′
+and j ′ ) follows.
+However, it is not difficult to be realized, the calculation of (8.5) in cases more general
+than (8.20) and (8.26) is not possible on the base of the assumptions made until now.30 At
+this point, one is free so set in an arbitrary way the r.h.s. of (8.5) in the mentioned general
+case or to add to (8.17) (and, possibly, (8.25)) other (commutation) relations by means of
+which the r.h.s. of (8.5) to be calculated explicitly; other approaches, e.g. some mixture
+of the just pointed ones, for finding the explicit form of (8.5) are evidently also possible.
+Since expressions like (8.5) are directly connected with observable experimental results, the
+only criterion for solving the problem for calculating the r.h.s. of (8.5) in the general case
+can be the agreement with the existing experimental data. As it is known [1, 3, 11, 12], at
+present (almost?) all of them are satisfactory described within the framework of the bilinear
+commutation relations (6.13). This means that, from physical point of view, the theory
+should be considered as realistic one if the r.h.s. of (8.5) is the same as if (6.13) are valid
+or is reducible to it for some particular realization of an accepted method of calculation,
+e.g. if one accepts some commutation relations, like the paracommutation ones, which are
+a generalization of (6.13) and reduce to them as a special case (see, e.g., (6.20)). It should
+be noted, the conditions (8.1b)–(8.3) and (8.25) are enough for calculating (8.5) if (6.16),
+or its versions (6.17) or (6.20), are accepted (cf. [16]). The causes for that difference are
+†−
+†−
++
+replacements like [a+
+m , an ] 7→ 2am ◦an , when one passes from (6.16) to (8.17); the existence
++
+of terms like a†n− ◦ a+
+m al in (6.16) are responsible for the possibility to calculate (8.5).
+†±
+Since the operators a±
+are, generally, degenerate (with no inverse ones), we cannot say that (8.24)
+l and al
+implies (8.25).
+29
+For deg M′ = 0 (resp. deg M′ = 0) - see (8.20).
+30
+It should be noted, the conditions (8.1b)–(8.3) and (8.25) are enough for calculating (8.5) if the relations (6.16), or their version (6.20), are accepted (cf. [16]). The cause for that difference is in replacements
++
+†−
++
+†−
+†−
++
+like [a+
+m , an ] 7→ 2am ◦ an , when one passes from (6.16) to (8.17); the existence of terms like an ◦ am ◦ al
+in (6.16) is responsible for the possibility to calculate (8.5), in case (6.16) hold.
+28
+
+If evidences appear for events for which (8.5) takes other values, one should look, e.g.,
+for other commutation relations leading to desired mean values. As an example of the last
+type can be pointed the following anomalous bilinear commutation relations (cf. (6.13))
+±
+[a±
+l , am ]ε = 0
+
+[a†l ± , a†m± ]ε = 0
+
+±
+2j
+[a∓
+l , am ]ε = (±1) τ δlm idF
+
+[a†l ∓ , a†m± ]ε = (±1)2j τ δlm idF
+
+†±
+[a±
+l , am ]ε = 0
+
+[a†l ± , a±
+m ]ε = 0
+
+†±
+2j
+[a∓
+l , am ]ε = (±1) δlm idF
+
+2j
+[a†l ∓ , a±
+m ]ε = (±1) δlm idF ,
+
+(8.27)
+
+which should be imposed after expressions like E(a†m± ◦ a∓
+n ) are explicitly calculated. These
+relations convert (8.17) and (8.25) into identities and by their means the r.h.s. of (8.5) can be
+calculated explicitly, but, as it is well known [1, 3, 11, 12, 27] they lead to deep contradictions
+in the theory, due to which should be rejected.31
+At present, it seems, the bilinear commutation relations (6.13) are the only known commutation relations which satisfy all of the mentioned conditions and simultaneously provide
+an evident procedure for effective calculation of all expressions of the form (8.5). (Besides,
+for them and for the paracommutation relations the vectors (8.4) form a base, the Fock
+base, for the system's Hilbert space of states [18].) In this connection, we want to mention
+that the paracommutation relations (6.16) (or their conventional version (6.20)), if imposed
+as additional restrictions to the theory together with (8.17), reduce in this particular case
+to (6.13) as the conditions (8.25) show that we are dealing with a parafield of order p = 1,
+i.e. with an ordinary field [17, 18].32
+Ending this section, let us return to the definition of the vacuum X0 . It, generally,
+depends on the adopted commutation relations. For instance, in a case of the bilinear commutation relations (6.13) it consists of the equations (8.1a)–(8.3), while in a case of the
+paracommutation relations (6.16) (or other ones generalizing (6.13)) it includes (8.1a)–(8.3)
+and (8.25).
+
+9.
+
+Commutation relations for
+several coexisting different free fields
+
+Until now we have considered commutation relations for a single free field, which can be
+scalar, or spinor or vector one. The present section is devoted to similar treatment of a
+system consisting of several, not less than two, different free fields. In our context, the
+fields may differ by their masses and/or charges and/or spins; e.g., the system may consist
+of charged scalar field, neutral scalar field, massless spinor field, massive spinor field and
+massless neural vector field. It is a priori evident, the commutation relations regarding only
+one field of the system should be as discussed in the previous sections. The problem is to be
+derived/postulated commutation relations concerning different fields. It will be shown, the
+developed Lagrangian formalism provides a natural base for such an investigation and makes
+superfluous some of the assumptions made, for example, in [17, p. B 1159, left column] or
+in [18, sec. 12.1], where systems of different parafields are explored.
+To begin with, let us introduce suitable notation. With the indices α, β, γ = 1, 2, . . . , N
+will be distinguished the different fields of the system, with N ∈ N, N ≥ 2, being their
+number, and the corresponding to them quantities. Let q α and j α be respectively the charge
+31
+
+As it was demonstrated in [13–15], a quantization like (8.27) contradicts to (is rejected by) the charge
+symmetric Lagrangians (3.4).
+32
+Notice, as a result of (8.17), the relations (6.16) correspond to (7.28) for E = A, with A being the
+antinormal ordering operator (see (7.30)).
+
+and spin of
+
+
+0
+α
+j := 12
+
+
+1
+
+the α-th field. Similarly to (3.7), we define
+
+(
+for scalar α-th field
+1 for q α = 0 (neutral (Hermitian) field)
+τ α :=
+for spinor α-th field
+0 for q α 6= 0 (charged (non-Hermitian) field)
+for vector α-th field
+(
++1 for integer j α (bose fields)
+α
+.
+εα := (−1)2j =
+−1 for half-integer j α (fermi fields)
+(9.1)
+
+Suppose Lα is the Lagrangian of the α-field. For definiteness, we assume Lα for all
+α to be given by one and the same set of equations, viz. (3.1), or (3.3) or (3.4). To save
+some space, below the case (3.4), corresponding to charge symmetric Lagrangians, will be
+considered in more details; the reader can explore other cases as exercises.
+Since the Lagrangian of our system of free fields is
+X
+L :=
+Lα ,
+(9.2)
+α
+
+the dynamical variables are
+D=
+
+X
+α
+
+Dα
+
+(9.3)
+
+and the corresponding system of Euler-Lagrange equations consists of the independent equations for each of the fields of the system (see (3.6) with Lα for L). This allows an introduction
+of independent creation and annihilation operators for each field. The ones for the α-th field
+†±
+will be denoted by a±
+α,sα (k) and aα,sα (k); notice, the values of the polarization variables
+generally depend on the field considered and, therefore, they also are labeled with index
+α for the α-th field. For brevity, we shall use the collective indices lα , mα and nα , with
+†±
+lα := (α, sα , k) etc., in terms of which the last operators are a±
+lα and alα , respectively. The
+particular expressions for the dynamical operators D α are given via (3.9)–(3.12) in which
+the following changes should be made:
+τ 7→ τ α
+′
+
+j 7→ j α
+
+ε 7→ εα
+
+α ′ α ,±
+
+ss ,±
+s s
+σμν
+(k) 7→ σμν
+
+(k)
+
+s 7→ sα
+′
+
+s′ 7→ s′ α
+α ′ α ,±
+
+ss ,±
+s s
+lμν
+(k) 7→ lμν
+
+(k).
+
+(9.4)
+
+The content of sections 4 and 5 remains valid mutatis mutandis, viz. provided the just
+pointed changes (9.4) are made and the (integral) dynamical variables are understood in
+conformity with (9.3).
+
+9.1.
+
+Commutation relations connected with the momentum operator.
+Problems and their possible solutions
+
+In sections 6–8, however, substantial changes occur; for instance, when one passes from (6.12)
+or (6.15) to (6.16). We shall consider them briefly in a case when one starts from the charge
+symmetric Lagrangians (3.4).
+The basic relations (6.12), which arise from the Heisenberg relation (5.1) concerning the
+momentum operator, now read (here and below, do not sum over α, and/or β and/or γ if
+the opposite is not indicated explicitly!)
+
+ ± †+ −
+(9.5a)
+, a†m−β ]εβ − ± (1 + τ )δlα mβ a±
+alα , [amβ , amβ ]εβ + [a+
+lα = 0
+mβ
+
+ †± †+ −
+(9.5b)
+, a†m−β ]εβ − ± (1 + τ )δlα mβ a†lα± = 0.
+alα , [amβ , amβ ]εβ + [a+
+mβ
+
+It is trivial to be seen, the following generalizations of respectively (6.14) and (6.15)
+
+ ± +
+(9.6a)
+alα , [amβ , a†m−β ]εβ − ± (1 + τ β )δlα mβ a±
+lα = 0
+
+ ± †+ −
+(9.6b)
+alα , [amβ , amβ ]εβ − ± (1 + τ β )δlα mβ a±
+lα = 0
+
+ †± +
+(9.6c)
+alα , [amβ , a†m−β ]εβ − ± (1 + τ β )δlα mβ a†lα± = 0
+
+ †± †+ −
+(9.6d)
+alα , [amβ , amβ ]εβ − ± (1 + τ β )δlα mβ a†lα± = 0
+
+
+†−
++
+a+
+lα , [amβ , amβ ]εβ
+
+
+
+−
+
+
+†+ −
+a+
+lα , [amβ , amβ ]εβ −
+
+ − +
+alα , [amβ , a†m−β ]εβ −
+
+ − †+ −
+alα , [amβ , amβ ]εβ −
+
+
++ 2δlα mβ a+
+lα = 0
+
+(9.7a)
+
+2τ δlα mβ a+
+lα
+−
+β
+2τ δlα mβ alα
+2δlα mβ a−
+lα =
+
+=0
+
+(9.7b)
+
+=0
+
+(9.7c)
+
+0
+
+(9.7d)
+
++
+−
+−
+
+β
+
+provide a solution of (9.5) in a sense that they convert it into identity. As it was said in
+Sect. 6, the equations (9.6) (resp. (9.7)) for a single field, i.e. for β = α, agree (resp. disagree)
+with the bilinear commutation relations (6.13).
+The only problem arises when one tries to generalize, e.g., the relations (9.7) in a way
+similar to the transition from (6.15) to (6.16). Its essence is in the generalization of expres] and τ β δlα mβ a±
+sions like [a†m±β , a∓
+lα . When passing from (6.15) to (6.16), the indices l and
+mβ εβ
+m are changed so that the obtained equations to be consistent with (6.13); of course, the
+numbers ε and τ are preserved because this change does not concern the field regarded. But
+the situation with (9.7) is different in two directions:
+(i) If we change the pair (mβ , mβ ) in [a†m±β , a∓
+] with (mβ , nγ ), then with what the nummβ εβ
+β
+β
+γ
+ber ε should be replace? With ε , or ε or with something else? Similarly, if the mentioned
+changed is performed, with what the multiplier τ β in τ β δlα mβ a±
+lα should be replaced? The
+β
+β
+problem is that the numbers ε and τ are related to terms like a†m±β ◦ a∓
+and a±
+◦ a†m∓β ,
+mβ
+mβ
+in the momentum operator, as a whole and we cannot say whether the index β in εβ and τ β
+originates from the first of second index mβ in these expressions.
+(ii) When writing (mβ , nγ ) for (mβ , mβ ) (see (i) above), then shall we replace δlα mβ a±
+lα
+±
+±
+α
+γ
+,
+or
+δ
+?
+For
+a
+single
+field,
+γ
+=
+β
+=
+α,
+this
+problem
+is
+a
+a
+,
+or
+δ
+with δlα mβ a±
+l n mβ
+mβ nγ lα
+nγ
+solved by requiring an agreement of the resulting generalization (of (6.16) in the particular
+case) with the bilinear commutation relations (6.13). So, how shall (6.13) be generalized for
+several, not less than two, different fields? Obviously, here we meet an obstacle similar to
+the one described in (i) above, with the only change that −εβ should stand for εβ .
+Let blα and clα denote some creation or annihilation operator of the α-field. Consider the
+problem for generalizing the (anti)commutator [blα , clα ]±εα . This means that we are looking
+for a replacement
+[blα , clα ]±εα 7→ f ± (blα , cmβ ; α, β),
+
+(9.8)
+
+where the functions f ± are such that
+f ± (blα , cmβ ; α, β)
+
+β=α
+
+= [blα , clα ]±εα .
+
+(9.9)
+
+Unfortunately, the condition (9.9) is the only restriction on f ± that the theory of free fields
+can provide. Thus the functions f ± , subjected to equation (9.9), become new free parameters
+of the quantum theory of different free fields and it is a matter of convention how to choose/fix
+them.
+
+It is generally accepted [18, appendix F], the functions f ± to have forms 'maximum'
+similar to the (anti)commutators they generalize. More precisely, the functions
+f ± (blα , cmβ ; α, β) = [blα , cmβ ]±εαβ
+
+(9.10)
+
+εαα = εα ,
+
+(9.11)
+
+where εαβ ∈ C are such that
+
+are usually considered as the only candidates for f ± . Notice, in (9.10), εαβ are functions in
+α and β, not in lα and/or mβ . Besides, if we assume εαβ to be function only in εα and εβ ,
+then the general form of εαβ is
+εαβ = uαβ εα + (1 − uαβ )εβ + v αβ (1 − εα εβ )
+
+uαβ , v αβ ∈ C,
+
+(9.12)
+
+due to (9.1) and (9.11). (In view of (6.13), the value εαβ = +1 (resp. εαβ = −1) corresponds
+to quantization via commutators (resp. anticommutators) of the corresponding fields.)
+Call attention now on the numbers τ α which originate and are associated with each term
+[blα , cmα ]±εα . With every change (9.8) one can associate a replacement
+τ α 7→ g(blα , cmβ ; α, β),
+
+(9.13)
+
+where the function g is such that
+g(blα , cmβ ; α, β)
+
+β=α
+
+= τ α.
+
+(9.14)
+
+Of course, the last condition does not define g uniquely and, consequently, the function
+g, satisfying (9.14), enters in the theory as a new free parameter. Suppose, as a working
+hypothesis similar to (9.10)–(9.11), that g is of the form
+g(blα , cmβ ; α, β) = τ αβ ,
+
+(9.15)
+
+where τ αβ are complex numbers that may depend only on α and β and are such that
+τ αα = τ α .
+
+(9.16)
+
+Besides, if we suppose τ αβ to be functions only in τ α and τ β , then
+τ αβ = xαβ τ α + y αβ τ β + (1 − xαβ − y αβ )τ α τ β
+
+xαβ , y αβ ∈ C,
+
+(9.17)
+
+as a result of (9.1) and (9.16).
+Let us summarize the above discussion. If we suppose a preservation of the algebraic
+structure of the bilinear commutation relations (6.13) for a system of different free fields,
+then the replacements
+[blα , clα ]±εα 7→ [blα , cmβ ]±εαβ
+α
+
+τ 7→ τ
+
+αα
+
+τ
+
+αα
+
+=τ
+
+εαα = εα
+
+(9.18a)
+
+α
+
+(9.18b)
+
+should be made; accordingly, the relations (6.13) transform into:
+[a†lα± , a†m±β ]−εαβ = 0
+
+±
+[a±
+lα , amβ ]−εαβ = 0
+±
+αβ
+δlα mβ idF ×
+[a∓
+lα , amβ ]−εαβ = τ
+†±
+[a±
+lα , amβ ]−εαβ = 0
+
+†±
+[a∓
+lα , amβ ]−εαβ = δlα mβ idF ×
+
+
+
+
+
+1
+−εαβ
+
+1
+−εαβ
+
+[a†lα∓ , a†m±β ]−εαβ = τ αβ δlα mβ idF ×
+] αβ = 0
+[a†lα± , a±
+mβ −ε
+
+= δlα mβ idF ×
+]
+[a†lα∓ , a±
+mβ −εαβ
+
+
+
+
+
+1
+−εαβ
+
+1
+−εαβ
+
+,
+
+(9.19)
+
+
+where 1 (resp. −εαβ ) in −ε1αβ corresponds to the choice of the upper (resp. lower) signs. If
+we suppose additionally εαβ (resp. τ αβ ) to be a function only in εα and εβ (resp. in τ α and
+τ β ), then these numbers are defined up to two sets of complex parameters:
+εαβ = uαβ εα + (1 − uαβ )εβ + v αβ (1 − εα εβ )
+
+uαβ , v αβ ∈ C
+
+τ αβ = xαβ τ α + y αβ τ β + (1 − xαβ − y αβ )τ α τ β
+
+xαβ , y αβ ∈ C.
+
+(9.20a)
+(9.20b)
+
+A reasonable further specialization of εαβ and τ αβ may be the assumption their ranges
+to coincide with those of εα and τ α , respectively. As a result of (9.1), this supposition is
+equivalent to
+v αβ = −uαβ , −uαβ + 1, uαβ − 1, uαβ
+
+(xαβ , y αβ ) = (0, 0), (0, 1), (1, 0), (1, 1).
+
+uαβ ∈ C
+
+(9.21a)
+(9.21b)
+
+Other admissible restriction on (9.20) may be the requirement εαβ and τ αβ to be symmetric,
+viz.
+εαβ (εα , εβ ) = εβα (εα , εβ ) = εαβ (εβ , εα )
+τ
+
+αβ
+
+α
+
+β
+
+(τ , τ ) = τ
+
+βα
+
+α
+
+β
+
+(τ , τ ) = τ
+
+αβ
+
+β
+
+α
+
+(τ , τ ),
+
+(9.22a)
+(9.22b)
+
+which means that the α-th and β-th fields are treated on equal footing and there is no a
+priori way to number some of them as the 'first' or 'second' one.33 In view of (9.20), the
+conditions (9.22) are equivalent to
+1
+v αβ ∈ C
+2
+= xαβ .
+
+uαβ =
+
+(9.23a)
+
+y αβ
+
+(9.23b)
+
+If both of the restrictions (9.21) and (9.23) are imposed on (9.20), then the arbitrariness of
+the parameters in (9.20) is reduced to:
+1 1 1 1
+(9.24a)
+(uαβ , uαβ ) =
+,− , ,
+2 2
+2 2
+(xαβ , y αβ ) = (0, 0), (1, 1)
+(9.24b)
+and, for any fixed pair (α, β), we are left with the following candidates for respectively εαβ
+and τ αβ :
+1
+α
+β
+α β
+εαβ
++ := (+1 + ε + ε − ε ε )
+2
+1
+α
+β
+α β
+εαβ
+− := (−1 + ε + ε + ε ε )
+2
+τ0αβ := τ α + τ β
+
+(9.25b)
+
+τ1αβ
+
+(9.25d)
+
+α
+
+β
+
+α β
+
+:= τ + τ − τ τ .
+
+(9.25a)
+
+(9.25c)
+
+When free fields are considered, as in our case, no further arguments from mathematical
+or physical nature can help for choosing a particular combination (εαβ , τ αβ ) from the four
+possible ones according to (9.25) for a fixed pair (α, β). To end the above considerations of
+εαβ and τ αβ , we have to say that the choice
+1
+
+αβ
+α
+β
+α β
+α
+β
+,
+τ
+)
+=
+(εαβ , τ αβ ) = (εαβ
+(9.26)
+(+1
++
+ε
++
+ε
+−
+ε
+ε
+),
+τ
++
+τ
++
+0
+2
+33
+
+However, nothing can prevent us to make other choices, compatible with (9.18), in the theory of free
+fields; for instance, one may set εαβ = εα εβ εβα and τ αβ = 21 (τ α + τ β )τ βα.
+
+is known as the normal case [18, appendix F]; in it the relative behavior of bose (resp.
+fermi) fields is as in the case of a single field, i.e. they are quantized via commutators (resp.
+anticommutators) as (εαβ , τ αβ ) = (+1, 0) (resp. (εαβ , τ αβ ) = (−1, 0)), and the one of bose and
+fermi field is as in the case of a single fermi field, viz. the quantization is via commutators as
+αβ
+(εαβ , τ αβ ) = (+1, 0). All combinations between εαβ
+± and τ0,1 different from (9.26) are referred
+as anomalous cases. Above we supposed the pair (α, β) to be fixed. If α and β are arbitrary,
+the only essential change this implies is in (9.25), where the choice of the subscripts +, −, 0
+and 1 may depend on α and β. In this general situation, the normal case is defined as the one
+when (9.26) holds for all α and β. All other combinations are referred as anomalous cases;
+such are, for instance, the ones when some fermi and bose operators satisfy anticommutation
+relations, e.g. (9.19) with εαβ = −1 for εα + εβ = 0, or some fermi fields are subjected to
+commutation relations, like (9.19) with εαβ = +1 for εα = εβ = −1. For some details on this
+topic, see, for instance, [18, appendix F], [7, chapter 20] and [27, sect 4-4]. Fields/operators
+for which εαβ = +1 (resp. εαβ = −1), with β 6= α, are referred as relative parabose (resp.
+parafermi) in the parafield theory [17, 18]. One can transfer this terminology in the general
+case and call the fields/operators for which εαβ = +1 (resp. εαβ = −1), with β 6= α, relative
+bose (resp. fermi) fields/operators.
+Further the relations (9.19) will be referred as the multifield bilinear commutation relations and it will be assumed that they represent the generalization of the bilinear commutation relations (6.13) when we are dealing with several, not less than two, different quantum
+fields. The particular values of εαβ and τ αβ in them are insignificant in the following; if one
+likes, one can fix them as in the normal case (9.26). Moreover, even the definition (9.19)
+of τ αβ is completely inessential at all, as τ αβ always appears in combinations like τ αβ δlα mβ
+(see (9.19) or similar relations, like (9.27), below), which are non-vanishing if β = α, but
+then τ αα = τ α ; so one can freely write τ α for τ αβ in all such cases.
+Equipped with (9.19) and (9.18), we can generalize (9.7) in different ways. For example,
+the straightforward generalization of (6.16) is:
+
+ + +
+(9.27a)
+alα , [amβ , a†nγ− ]εβγ − + 2δlα nγ a+
+=0
+mβ
+
+ + †+ −
+(9.27b)
+=0
+alα , [amβ , anγ ]εβγ − + 2τ αγ δlα nγ a+
+mβ
+
+ − +
+(9.27c)
+alα , [amβ , a†nγ− ]εβγ − − 2τ αβ δlα mβ a−
+nγ = 0
+
+ − †+ −
+(9.27d)
+alα , [amβ , anγ ]εβγ − − 2δlα mβ a−
+nγ = 0.
+However, generally, the relations (9.19) do not convert (9.27) into identities. The reason is
+that an equality/identity like (cf. (6.8))
+[blα , cmβ ◦ dnγ ] = [blα , cmβ ]−εαβ ◦ dnγ + λαβγ cmβ ◦ [blα , dnγ ]−εαγ ,
+
+(9.28)
+
+where blα , cmβ and dnγ are some creation/annihilation operators and λαβγ ∈ C, can be valid
+only for
+λαβγ = εαβ
+
+εαγ = 1/εαβ
+
+(εαβ 6= 0),
+
+(9.29)
+
+which, in particular, is fulfilled if γ = β and εαβ = ±1. So, the agreement between (9.19)
+and (9.27) depends on the concrete choice of the numbers εαβ . There exist cases when even
+the normal case (9.26) cannot ensure (9.19) to convert (9.27) into identities; e.g. when the
+α-th field and β-th fields are fermion ones and the γ-th field is a boson one. Moreover, it can
+be proved that (9.19) and (9.27) are compatible in the general case if unacceptable equalities
+±
+like a±
+l ◦ am = 0 hold.
+One may call (9.27) the multifield paracommutation relations as from them a corresponding generalization of (6.18) and/or (6.20) can be derived. For completeness, we shall record
+
+the multifield version of (6.20):
+[blα , [b†mβ , bnγ ]εβγ ] = 2δlα mβ bnγ
+
+[blα , [bmβ , bnγ ]εβγ ] = 0
+
+(9.30a)
+
+[clα , [c†mβ , cnγ ]εβγ ]
+[b†lα , [c†mβ , cnγ ]εβγ ]
+
+= 2δlα mβ cnγ
+
+[clα , [cmβ , cnγ ]εβγ ] = 0
+
+(9.30b)
+
+= −2τ αγ δlα nγ b†mβ
+
+[c†lα , [b†mβ , bnγ ]εβγ ] = −2τ αγ δlα nγ c†mβ .
+
+(9.30c)
+
+For details regarding these multifield paracommutation relations, the reader is referred to [17,
+18], where the case τ α = τ β = τ αβ = 0 is considered.
+We leave to the reader as exercise to write down the multifield versions of the commutation relations (6.22) or (6.23), which provide examples of generalizations of (9.7) and hence
+of (9.19) and (9.27).
+
+9.2.
+
+Commutation relations connected with the charge and
+angular momentum operators
+
+In a case of several, not less than two, different fields, the basic trilinear commutation relations (6.33), which ensure the validity of the Heisenberg relation (5.2) concerning the charge
+operator, read:
+
+ ± †+ −
+†−
+(9.31a)
+,
+a
+]
+alα , [amβ , amβ ]εβ − [a+
+− 2δlα mβ a±
+β
+β
+β
+ε
+lα = 0
+−
+m
+m
+
+ †± †+ −
+(9.31b)
+, a† − ] β + 2δlα mβ a†lα± = 0.
+alα , [amβ , amβ ]εβ − [a+
+mβ mβ ε −
+
+Of course, these relations hold only for those fields which have non-vanishing charges, i.e.
+in (9.31) is supposed (see (9.1))
+τα = 0 τβ = 0
+
+( ⇐⇒ q α q β 6= 0).
+
+(9.32)
+
+The problem for generalizing (9.31) for these fields is similar to the one for (9.7) in the
+case of non-vanishing charges, τ β = 0. Without repeating the discussion of Subsect. 9.1,
+we shall adopt the rule (9.18) for generalizing (anti)commutation relations between creation/annihilation operators of a single field. By its means one can obtain different generalizations of (9.31). For instance, the commutation relations.
+
+ + †+ −
+†−
+(9.33a)
+,
+a
+=0
+alα , [amβ , anγ ]εβγ − [a+
+− 2δlα nγ a+
+γ ]εβγ
+β
+n
+−
+m
+mβ
+
+ − †+ −
+(9.33b)
+, a† − ] βγ − − 2δlα mβ a−
+alα , [amβ , anγ ]εβγ − [a+
+nγ = 0
+mβ nγ ε
+
+and their Hermitian conjugate contain (9.31) and (6.35) as evident special cases and agree
+with (9.19) if γ = β and εαβ εβγ = +1. Besides, the multifield paracommutation relations (9.27) for charged fields, τ α = τ β = τ γ = 0, convert (9.33) into identities and, in this
+sense, (9.33) agree with (contain as special case) (9.27) for charged fields. As an example
+of commutation relations that do not agree with (9.27) for charged fields and, consequently,
+with (9.33), we shall point the following ones:
+
+ ± +
+(9.34a)
+=0
+alα , [amβ , a†nγ− ]εβγ − + δlα nγ a±
+mβ
+
+ ± †+ −
+±
+(9.34b)
+alα , [amβ , anγ ]εβγ − − − δlα nγ amβ = 0,
+
+which are a multifield generalization of (6.34).
+
+The consideration of commutation relations originating from the 'orbital' Heisenberg
+equation (5.4) is analogous to the one of the same relations regarding the charge operator.
+The multifield version of (6.49) is:
+
+†+ −
+◦
+◦
+(−ωμν
+(mβ ) + ωμν
+(nγ ))([ã±
+lα , [ãmβ , ãnγ ]εβγ
+, ã†n−
++ [ã+
+γ ]εβγ ] )
+mβ
+
+nγ =mβ
+
+◦
+(lα )(ã±
+= 4(1 + τ αβ )δlα mβ ωμν
+lα ) (9.35a)
+
+
+◦
+◦
+(−ωμν
+(mβ ) + ωμν
+(nγ ))([ã†lα± , [ã†m+β , ã−
+nγ ]εβγ
+, ã†n−
++ [ã+
+γ ]εβγ ] )
+mβ
+
+nγ =mβ
+
+◦
+(lα )(ã†lα± ) (9.35b)
+= 4(1 + τ αβ )δlα mβ ωμν
+
+where
+
+∂
+∂
+− kν μ
+if lα = (α, sα , k).
+(9.36)
+ν
+∂k
+∂k
+Applying (6.51), with mβ for m and nγ for n, one can check that the multifield paracommutation relations (9.27) convert (9.35) into identities and hence provide a solution of (9.35)
+and ensure the validity of (5.4), when system of different free fields is considered. An example
+of a solution of (9.35) which does not agree with (9.27) is provided by the following multifield
+generalization of (6.52):
+
+ + +
+
+
+†+ −
+αγ
+(9.37a)
+)δlα nγ a+
+alα , [amβ , a†nγ− ]εβγ − = a+
+lα , [amβ , anγ ]εβγ − = −(1 + τ
+mβ
+
+
+
+ − +
+†+ −
+αβ
+(9.37b)
+)δlα mβ a+
+alα , [amβ , a†nγ− ]εβγ − = a−
+nγ ,
+lα , [amβ , anγ ]εβγ − = +(1 + τ
+◦
+ωμν
+(lα ) := ωμν (k) = kμ
+
+which provides a solution of (9.5). Notice, the evident multifield version of (6.53) agrees
+with (9.5), but disagrees with (9.35) when the lower signs are used.
+At last, the multifield exploration of the 'spin' Heisenberg relations (5.5) is a mutatis
+mutandis (see (9.35)) version of the corresponding considerations in the second part of Subsect. 6.3. The main result here is that the multifield bilinear commutation relations (9.19),
+as well as their para counterparts (9.27), ensure the validity of (5.5).
+
+9.3.
+
+Commutation relations between the dynamical variables
+
+The aim of this subsection is to be discussed/proved the commutation relations (5.15)–(5.24)
+for a system of at least two different quantum fields from the view-point of the commutation
+relations considered in subsections 9.1 and 9.2.
+To begin with, we rewrite the Heisenberg relations (5.1), (5.2) and (5.4) in terms of
+creation and annihilation operators for a multifield system [1, 11]:
+[a†lα± , Pμ ] = ∓kμ a†lα±
+
+±
+[a±
+lα , Pμ ] = ∓kμ alα
+
+[a±
+lα ,
+[ã±
+lα ,
+
+Q] =
+
+qa±
+lα
+
+
+±
+◦
+α
+Mor
+μν ] = i~ωμν (l ) ãlα
+
+[a†lα± ,
+[ã†lα± ,
+
+(9.38)
+
+Q] = −qa†lα±
+◦
+α
+Mor
+μν ] = i~ωμν (l )
+p
+
+(9.39)
+
+ã†lα± ,
+
+(9.40)
+
+where lα = (α, sα , k), ω ◦ (lα ) is defined by (9.36) and k0 = m2 c2 + k2 is set in (9.38)
+and (9.40) (after the differentiations are performed in the last case). The corresponding
+version of (5.5) is more complicated and depends on the particular field considered (do not
+sum over sα !):
+X
+α
+± sα tα ,−
+± sα tα ,+
+sp
+(k)a−
+σμν
+(k)a+
+f s [a±
+α,tα (k)
+α,tα (k) + σμν
+α,sα (k), Mμν ] = i~gα
+tα
+
+sα
+
+±
+sp
+f [a†α,s
+α (k), Mμν ] = i~hα
+
+X
+
++
+± sα tα ,−
+σμν
+(k)a†α,t
+α (k)
+
+α α ,+
+
+s t
++ ±σμν
+
+−
+(k)a†α,t
+α (k) ,
+
+tα
+
+where fsα = −1, 0, +1 (depending on the particular field), gα := −hα :=
+α α
+±σ s t ,+ (k)
+μν
+
+(9.41)
+
+α α
+
+1
+j α +1
+j α +δj α 0 (−1)
+
+and
+
+s t ,−
+and ±σμν
+(k) are some functions which strongly depend on the particular field
+sα tα ,±
+sα tα ,±
+±
+considered, with σμν
+(k) being related to the spin (polarization) functions σμν
+(k)
+(see (3.14) and (3.11)).34 As a result of (5.6), (9.40) and (9.41), one can easily write the
+
+Heisenberg relations (5.3) in a form similar to (9.38)–(9.41).
+34
+
+If φ̃α
+i (k) are the Fourier images of the α-th field and
+X ̆ sα ,+
+ ̄
+sα ,−
+(k)ã−
+φ̃α
+vi
+(k)ã+
+i (k) =
+α,sα (k) ,
+α,sα (k) + vi
+sα
+
+(9.42)
+
+The commutation relations involving the momentum operator are:
+[ Pμ , Pν ] = 0 [ Q, Pμ ] = 0
+
+[ Sμν , Pλ ] = [ Msp
+μν , Pλ ] = 0
+
+(9.45)
+
+[ Lμν , Pλ ] = [ Mor
+μν , Pλ ] = [ Mμν , Pλ ] = −i~{ηλμ Pν − ηλν Pμ }.
+We claim that these equations are consequences from (9.38) and the explicit expressions (3.9)–
+(3.12) and (5.11)–(5.13) for the operators of the dynamical variables of the free fields considered in the present work. In fact, since (9.38) implies
+∓
+lα = (α, sα , k), mβ = (β, sβ , k)
+[b±
+lα ◦ cmβ , Pμ ] = 0
+←−
+−
+→
+−
+◦
+α
+∓
+∓
+±
+[b±
+lα ωμν (l ) ◦ cmβ , Pμ ] = ±2(kμ ηνλ − kν ημλ )blα ◦ cmβ ,
+
+(9.46a)
+(9.46b)
+
+←−
+−
+→
+−
+†±
+±
+±
+◦ (lα ) is defined via (9.36) and (3.13), the verification of (9.45)
+where b±
+,
+c
+=
+a
+,
+a
+and
+ω
+α
+α
+α
+α
+μν
+l
+l
+l
+l
+reduces to almost trivial algebraic calculations. Further, we assert that any system of commutation relations considered in Subsect. 9.1 entails (9.45): as these relations always imply (9.5)
+(or similar multifield versions of (6.10) and (6.11) in the case of the Lagrangians (3.1) or (3.3),
+respectively) and, on its turn, (9.5) implies (5.1), the required result follows from the last
+assertion and the remark that (5.1) and (9.38) are equivalent. As an additional verification
+of the validity of (9.45), the reader can prove them by invoking the identity (6.8) and any
+system of commutation relations mentioned in Subsect. 9.1, in particular (9.19) and (9.27).
+The commutation relations concerning the charge operator read:
+[ Q, Q] = 0
+
+[ Pμ , Q] = 0
+
+[ Lμν , Q] = [ Sμν , Q] = 0
+
+[ Mor
+μν ,
+
+Q] =
+
+[ Msp
+μν ,
+
+(9.47)
+
+Q] = [ Mμν , Q] = 0.
+
+These equations are trivial corollaries from (3.9)–(3.12) and (5.11)–(5.13) and the observation
+that (9.39) implies
+†∓
+, Q] = [a±
+[a†lα± ◦ a∓
+lα ◦ amβ , Q] = 0
+mβ
+
+if q α = q β ,
+
+(9.48)
+
+due to (6.8) for η = −1. Since any one of the systems of commutation relations mentioned in
+Subsect. 9.2 entails (9.31) (or systems of similar multifield versions of (6.31) and (6.32), if the
+Lagrangians (3.1) or (3.3) are employed), which is equivalent to (9.39), the equations (9.47)
+hold if some of these systems is valid. Alternatively, one can prove via a direct calculation
+that the commutation relations arising from the charge operator entail the validity of (9.47);
+α
+
+where vis
+
+,±
+
+(k) are linearly independent functions normalize via the condition
+X` sα ,±  ́∗ tα ,±
+α α
+α
+vi
+(k) vi
+(k) = δ s t f s ,
+
+(9.43)
+
+i
+α
+
+with f s = 1 for j α = 0,
+
+1
+2
+
+α
+
+and f s = 0, −1 for (j α , sα ) = (1, 3) or (j α , sα ) = (1, 1), (1, 2), respectively, then
++ sα tα ,±
+σμν
+(k)
+
+:=
+
+1 X` sα ,+  ́∗ i′ tα ,±
+v
+(k) Iiμν vi′ (k)
+gα ′ i
+i,i
+
+− sα tα ,±
+σμν
+(k)
+
+(9.44)
+
+1 X` sα ,−  ́∗ i′ tα ,±
+v
+(k) Iiμν vi′ (k),
+:=
+gα ′ i
+i,i
+
+′
+
+α α
+
+i
+s t ,±
+with Iiμν
+given via (5.25). Besides, σμν
+(k) =
+α
+1
+j = 2 and (μ, ν) = (a, 0), (0, a) with a = 1, 2, 3.
+
+± sα tα ,±
+σμν
+(k)
+
+α α
+
+s t
+with an exception that σμν
+
+,±
+
+(k) = 0 for
+
+for the purpose the identity (6.8) and the explicit expressions for the dynamical variables via
+the creation and annihilation operators should be applied.
+At last, consider the commutation relations involving the different angular momentum
+operators:
+[ Pλ , Sμν ] = [ Pλ , Msp
+μν ] = 0
+
+[ Pλ , Lμν ] = [ Pλ , Mor
+μν ] = [ Pλ , Mμν ] = +i~{ηλμ Pν − ηλν Pμ }
+
+sp
+[ Q, Lμν ] = [ Q, Sμν ] = [ Q, Mor
+μν ] = [ Q, Mμν ] = [ Q, Mμν ] = 0
+
+[ Sκλ , Mμν ] = −i~ ηκμ Sλν − ηλμ Sκν − ηκν Sλμ + ηλν Sκμ
+
+[ Lκλ , Mμν ] = −i~ ηκμ Lλν − ηλμ Lκν − ηκν Lλμ + ηλν Lκμ
+
+[ Mκλ , Mμν ] = −i~ ηκμ Mλν − ηλμ Mκν − ηκν Mλμ + ηλν Mκμ .
+
+(9.49)
+
+(The other commutators, that can be form from the different angular momentum operators,
+are complicated and cannot be expressed in a 'closed' form.) The proof of these relations is
+based on equations like (see (9.40) and (6.8))
+
+◦
+α
+lα = (α, sα , k), mβ = (β, sβ , k),
+(9.50)
+[blα ◦ cmβ , Mor
+μν ] = i~ωμν (l ) blα ◦ cmβ
+
+†+ †−
+−
+with blα , clα = a+
+lα , alα , alα , alα , and similar, but more complicated, ones involving the other
+angular momentum operators. It, generally, depends on the particular field considered and
+will be omitted.
+As it was said in Subsect. 6.3, the Heisenberg relations concerning the angular momentum
+operator(s) do not give rise to some (algebraic) commutation relations for the creation and
+annihilation operators. For this reason, the only problem is which of the commutation
+relations discussed in subsections 9.1 and 9.2 imply the validity of the equations (9.49) (or
+part of them). The general answer of this problem is not known but, however, a direct
+calculation by means of (9.7), if it holds, and (6.8) shows the validity of (9.49). Since (9.19)
+and (9.27) imply (9.7), this means that the multifield bilinear and para commutation relations
+are sufficient for the fulfillment of (9.49).
+To conclude, let us draw the major moral of the above material: the multifield bilinear
+commutation relations (9.19) and the multifield paracommutation relations (9.27) ensure
+the validity of all 'standard' commutation relations (9.45), (9.47) and (9.49) between the
+operators of the dynamical variables characterizing free scalar, spinor and vector fields.
+
+9.4.
+
+Commutation relations under the uniqueness conditions
+
+As it was said at the end of the introduction to this section, the replacements (9.4) ensure the
+validity of the material of Sect. 4 in the multifield case. Correspondingly, the considerations
+in Sect. 7 remain valid in this case provided the changes
+l 7→ lα
+
+m 7→ mβ
+
+n 7→ nγ
+
+τ δlm 7→ τ αβ δlα mβ = τ α δlα mβ
+
+[bm , bm ]ε 7→ [bmβ , bmβ ]εβ
+
+(9.51)
+
+[bm , bn ]ε 7→ [bmβ , bnγ ]εβγ ,
+
+with bm (or bmβ ) being any creation/annihilation operator, and, in some cases, (9.4) are
+made.35 Without going into details, we shall write the final results.
+The multifield version of (7.27)–(7.28) is:
+†±
+βγ
+E(a∓
+E(a†m±β ◦ a∓
+nγ ◦ amβ ) =
+nγ ) = ε
+
+1
+E([a†m±β , a∓
+nγ ]εβγ )
+2
+
+(9.52)
+
+35
+As a result of (7.11), (7.16) and (7.17), in expressions like (7.18)–(7.26) the number ε should be replace
+by εαβ , where α and β are the corresponding field indices of the creation/annihilation operators on which the
+operator E acts, i.e. ε E (bm ◦ bn ) 7→ εβγ E (bmβ ◦ bnγ ).
+
+
+†−
++
++
+a+
+lα , E([amβ , anγ ]εβγ ) − + 2δlα nγ amβ = 0
+
+ +
+αγ α γ +
+δl n amβ = 0
+alα , E([a†m+β , a−
+nγ ]εβγ ) − + 2τ
+
+ −
+, a†nγ− ]εβγ ) − − 2τ αβ δlα mβ a−
+alα , E([a+
+nγ = 0
+mβ
+
+ −
+−
+alα , E([a†m+β , a−
+nγ ]εβγ ) − − 2δlα mβ anγ = 0
+
+
+(9.53a)
+(9.53b)
+(9.53c)
+(9.53d)
+
+γ =β.
+
+(9.53e)
+
+As one can expect, the relations (9.53a)–(9.53d) can be obtained from the multifield paracommutation relations (9.27) via the replacement [*, *]ε 7→ E([*, *]εβγ ). It should be paid special
+attention on the equation (9.53e). It is due to the fact that in the expressions for the dynamifor β 6= α, and it corresponds to
+cal variables do not enter 'cross-field-products', like a†lα+ ◦a−
+mβ
+the condition (ii) in [17, p. B 1159]. The equality (9.53e) is quite important as it selects only
+that part of the ' E-transformed' multifield paracommutation relations (9.27) which is compatible with the bilinear commutation relations (9.19) (see (9.28) and (9.29)). Besides, (9.53e)
+makes (9.53a)–(9.53d) independent of the particular definition of εαβ (see (9.11)).
+The equations (9.52) are the only restrictions on the operator E; examples of this operator
+are provided by the normal (resp. antinormal) ordering operator N (resp. A), which has the
+properties (cf. (4.22) (resp. (7.30))
+
+† −
+†−
+†+
++
+−
+:= a†m+β ◦ a−
+N a+
+◦
+a
+:=
+a
+◦
+a
+N
+a
+◦
+a
+γ
+γ
+γ
+β
+β
+β
+nγ
+n
+n
+n
+m
+m
+m
+(9.54)
+
+†−
+† +
+βγ +
++
+βγ † +
+−
+−
+N amβ ◦ anγ := ε anγ ◦ amβ N amβ ◦ anγ := ε anγ ◦ a†m−β
+
+†+
+†+
+† −
+−
++
+βγ † −
+:= εβγ a−
+◦
+a
+A
+a
+◦
+a
+:=
+ε
+a
+A a+
+γ
+γ
+γ ◦a β
+β
+β
+nγ ◦ amβ
+n
+n
+n
+m
+m
+m
+(9.55)
+
+
+†−
++
+A a−
+◦ a†n+
+:= a−
+◦ a†n+
+A a†m−β ◦ a+
+γ
+γ
+nγ := amβ ◦ anγ .
+mβ
+mβ
+
+The material of Sect. 8 has also a multifield variant that can be obtained via the replacements (9.51) and (9.4). Here is a brief summary of the main results found in that
+way.
+The operator E should possess the properties (9.54) and, in this sense, can be identified
+with the normal ordering operator,
+E = N.
+(9.56)
+
+As a result of this fact and εββ = εβ
+final form:
+ + +
+alα , amβ
+ + †+
+alα , amβ
+ − +
+alα , amβ
+ − †+
+alα , amβ
+
+(see (9.11)), the commutation relations (9.53) take the
+
+
+◦ a†nβ− − + δlα nβ a+
+=0
+mβ
+
+◦ a−
+=0
++ τ αβ δlα nβ a+
+nβ −
+mβ
+
+◦ a†nβ− − − τ αβ δlα mβ a−
+=0
+nβ
+
+◦ a−
+=0
+− δlα mβ a−
+nβ −
+nβ
+
+(9.57a)
+(9.57b)
+(9.57c)
+(9.57d)
+√
+7→ 2a±
+lα ,
+
+which is the multifield version of (8.17) and corresponds, up to the replacement a±
+lα
+to (9.27) with εβγ = 0.
+The vacuum state vector X0 is supposed to be uniquely defined by the following equations
+(cf. (8.1b)–(8.3)):
+†−
+a−
+lα X0 = 0 alα X0 = 0
+
+(9.58a)
+
+X0 6= 0
+
+h X0 | X0 i = 1
+
+( X0 ) = δlα mβ X0
+a†lα− ◦ a+
+mβ
++
+αβ
+δlα mβ X0
+a−
+lα ◦ amβ ( X0 ) = τ
+
+(9.58b)
+(9.58c)
+†+
+a−
+lα ◦ amβ ( X0 ) = δlα mβ X0
++
+αβ
+δlα mβ
+a−
+lα ◦ amβ ( X0 ) = τ
+
+X0 .
+
+(9.58d)
+
+The Hilbert space F of state vectors is a direct sum of the Hilbert spaces F α of the
+different fields and it is supposed to be spanned by the vectors
++
+ψlα1 lα2 ... = M(a+
+α , a α2 , . . . )( X0 )
+l 1
+l
+1
+
+2
+
+1
+
+(9.59)
+
+2
+
++
+with M(a+
+α , a α2 , . . . ) being arbitrary monomial only in the creation operators.
+l
+l 1
+1
+
+2
+
+Since (9.58a), (9.56) and (9.54) imply the multifield version of (8.7), the computation of
+the mean values of (8.6), with l1 7→ l1α1 etc., of the dynamical variables is reduced to the one
+of scalar products like (cf. (8.5))
+†
++
+hψlα1 lα2 ... |φmβ1 mβ2 ...i = h X0 | M(a+
+◦ M′ (a+ β1 , a+ β2 , . . . )( X0 )i
+α1 , a α2 , . . . )
+l
+l
+1
+
+2
+
+1
+
+2
+
+1
+
+2
+
+m1
+
+m2
+
+(9.60)
+
+of basic vectors of the form (9.59). By means of the basic properties (9.58) of the vacuum,
+one is able to calculate the simplest forms of the vacuum mean values (9.60), viz. the multifield versions (see (9.51)) of (8.20) and (8.26). But more general such expression cannot
+be calculated by means of (9.57)–(9.58). Prima facie one can suppose that the multifield
+commutation relations (9.19), which ensure the vectors (9.59) to form a base of the system's
+Hilbert space of states, can help for the calculation of (9.60) in more complicated cases. In
+fact, this is the case which works perfectly well and covers the available experimental data.
+In this connection, we must mention that the applicability of (9.19) for calculation of (9.60)
+is ensured by the compatibility/agreement between (9.19) and (9.57): by means of (6.8) for
+η = −εαβ , one can check that (9.19) converts (9.57) into identities.36
+The commutation relations (9.57) admit as a solution also the multifield version of the
+anomalous bilinear commutation relations (8.27) but it, as we said earlier, leads to contradictions and must be rejected. The existence of solutions of (9.57) different from it and (9.19)
+seems not to be investigated. If there appear date which do not fit into the description by
+means of (9.19), one should look for other, if any, solutions of (9.57) or compatible with (9.57)
+effective procedures for calculating vacuum mean values like (9.60).
+
+10.
+
+Conclusion
+
+In this paper we have investigated two sources of (algebraic) commutation relations in the
+Lagrangian quantum theory of free scalar, spinor and vector fields: the uniqueness of the
+dynamical variables (momentum, charge and angular momentum) and the Heisenberg relations/equations for them. If one ignores the former origin, which is the ordinary case, the
+paracommutation relations or some their generalizations seems to be the most suitable candidates for the most general commutation relations that ensure the validity of all Heisenberg
+equations. The simultaneous consideration of the both sources mentioned reveals, however,
+their incompatibility in the general case. The outlet of this situation is in the redefinition
+of the operators of the dynamical variables, similar to the normal ordering procedure and
+containing it as a special case. That operation ensures the uniqueness of the new (redefined)
+dynamical variables and changes the possible types of commutation relations. Again, the
+commutation relations, connected with the Heisenberg relations concerning the (redefined)
+momentum operator, entail the validity of all Heisenberg equations.
+36
+
+Recall, equations (9.19) and (9.27), or (9.53a)–(9.53d), for γ 6= β are generally incompatible. For instance,
+excluding some special cases, like systems consisting of only fermi (bose) fields or one fermi (bose) field and
+arbitrary number of bose (fermi) fields, the only operators satisfying (9.19) and (9.27) for γ 6= β and having
+normal spin-statistics connection are such that bmβ ◦ bnγ = 0, with γ 6= β and bmβ and cnγ being any
+creation/annihilation operators, which, in particular, means that no states with two particles from different
+fields can exist.
+
+Further constraints on the possible commutation relations follow from the definition/introduction of the concept of the vacuum (vacuum state vector). They practically reduce the
+redefined dynamical variables to the ones obtained via normal ordering procedure, which
+results in the explicit form (8.17) of the admissible commutation relations. In a sense,
+they happen to be 'one half' of the paracommutation ones. As a last argument in the way
+for finding the 'unique true' commutation relations, we require the existence of procedure
+for calculation of vacuum mean values of anti-normally ordered products of creation and
+annihilation operators, to which the mean values of the dynamical variables and the transition
+amplitudes between different states are reduced. We have pointed that the standard bilinear
+commutation relations are, at present, the only known ones that satisfy all of the conditions
+imposed and do not contradict to the existing experimental data.
+The consideration of a system of at least two different quantum free fields meets a new
+problem: the general relations between creation/annihilation operators belonging to different fields turn to be undefined. The cause for this is that the commutation relations for any
+fixed field are well defined only on the corresponding to it Hilbert subspace of the system's
+Hilbert space of states and their extension on the whole space, as well as the inclusion in
+them of creation/annihilation operators of other fields, is a matter of convention (when free
+fields are concerned); formally this is reflected in the structure of the dynamical variables
+which are sums of those of the individual fields included in the system under consideration.
+We have, however, presented argument by means of which the a priori existing arbitrariness in the commutation relations involving different field operators can be reduced to the
+'standard' one: these relations should contain either commutators or anticommutators of
+the creation/annihilation operators belonging to different fields. A free field theory cannot
+make difference between these two possibilities. Accepting these possibilities, the admissible
+commutation relations (9.57) for system of several different fields are considered. They turn
+to be corresponding multifield versions of the ones regarding a single field. Similarly to the
+single field case, the standard multifield bilinear commutation relations seem to be the only
+known ones that satisfy all of the imposed restrictions and are in agreement with the existing
+data.
+
+Acknowledgments
+This research was partially supported by the National Science Fund of Bulgaria under Grant
+No. F 1515/2005.
+
+References
+[1] N. N. Bogolyubov and D. V. Shirkov. Introduction to the theory of quantized fields.
+Nauka, Moscow, third edition, 1976. In Russian. English translation: Wiley, New York,
+1980.
+[2] J. D. Bjorken and S. D. Drell. Relativistic quantum mechanics, volume 1 and 2. McGrawHill Book Company, New York, 1964, 1965. Russian translation: Nauka, Moscow, 1978.
+[3] Paul Roman. Introduction to quantum field theory. John Wiley&Sons, Inc., New YorkLondon-Sydney-Toronto, 1969.
+[4] Lewis H. Ryder. Quantum field theory. Cambridge Univ. Press, Cambridge, 1985.
+Russian translation: Mir, Moscow, 1987.
+[5] A. I. Akhiezer and V. B. Berestetskii. Quantum electrodynamics. Nauka, Moscow,
+1969. In Russian. English translation: Authorized English ed., rev. and enl. by the
+
+author, Translated from the 2d Russian ed. by G.M. Volkoff, New York, Interscience
+Publishers, 1965. Other English translations: New York, Consultants Bureau, 1957;
+London, Oldbourne Press, 1964, 1962.
+[6] Pierre Ramond. Field theory: a modern primer, volume 51 of Frontiers in physics. Reading, MA Benjamin-Cummings, London-Amsterdam-Don Mills, Ontario-Sidney-Tokio, 1
+edition, 1981. 2nd rev. print, Frontiers in physics vol. 74, Adison Wesley Publ. Co.,
+Redwood city, CA, 1989; Russian translation from the first ed.: Moscow, Mir 1984.
+[7] N. N. Bogolubov, A. A. Logunov, and I. T. Todorov. Introduction to axiomatic quantum
+field theory. W. A. Benjamin, Inc., London, 1975. Translation from Russian: Nauka,
+Moscow, 1969.
+[8] N. N. Bogolubov, A. A. Logunov, A. I. Oksak, and I. T. Todorov. General principles of
+quantum field theory. Nauka, Moscow, 1987. In Russian. English translation: Kluwer
+Academic Publishers, Dordrecht, 1989.
+[9] P. A. M. Dirac. The principles of quantum mechanics. Oxford at the Clarendon Press,
+Oxford, fourth edition, 1958. Russian translation in: P. Dirac, Principles of quantum
+mechanics, Moscow, Nauka, 1979.
+[10] P. A. M. Dirac. Lectures on quantum mechanics. Belfer graduate school of science,
+Yeshiva University, New York, 1964. Russian translation in: P. Dirac, Principles of
+quantum mechanics, Moscow, Nauka, 1979.
+[11] J. D. Bjorken and S. D. Drell. Relativistic quantum fields, volume 2. McGraw-Hill Book
+Company, New York, 1965. Russian translation: Nauka, Moscow, 1978.
+[12] C. Itzykson and J.-B. Zuber. Quantum field theory. McGraw-Hill Book Company, New
+York, 1980. Russian translation (in two volumes): Mir, Moscow, 1984.
+[13] Bozhidar Z. Iliev. Lagrangian quantum field theory in momentum picture. In O. Kovras,
+editor, Quantum Field Theory: New Researcn, pages 1–66. Nova Science Publishers, Inc.,
+New York, 2005.
+http://arXiv.org e-Print archive, E-print No. hep-th/0402006, February 1, 2004.
+[14] Bozhidar Z. Iliev. Lagrangian quantum field theory in momentum picture. II. Free spinor
+fields.
+http://arXiv.org e-Print archive, E-print No. hep-th/0405008, May 1, 2004.
+[15] Bozhidar Z. Iliev. Lagrangian quantum field theory in momentum picture. III. Free
+vector fields.
+http://arXiv.org e-Print archive, E-print No. hep-th/0505007, May 1, 2005.
+[16] H. S. Green. A generalized method of field quantization. Phys. Rev., 90(2):270–273,
+1953.
+[17] O. W. Greenberg and A. M. I. Messiah. Selection rules for parafields and the absence
+of para particles in nature. Phys. Rev., 138B(5B):1155–1167, 1965.
+[18] Y. Ohnuki and S. Kamefuchi. Quantum field theory and parafields. University of Tokyo
+Press, Tokyo, 1982.
+[19] Silvan S. Schweber. An introduction to relativistic quantum field theory. Row, Peterson and Co., Evanston, Ill., Elmsford, N.Y., 1961. Russian translation: IL (Foreign
+Literature Pub.), Moscow, 1963.
+
+[20] Bozhidar Z. Iliev. Pictures and equations of motion in Lagrangian quantum field theory.
+In Charles V. Benton, editor, Studies in Mathematical Physics Research, pages 83–125.
+Nova Science Publishers, Inc., New York, 2004.
+http://arXiv.org e-Print archive, E-print No. hep-th/0302002, February 2003.
+[21] Bozhidar Z. Iliev. Momentum picture of motion in Lagrangian quantum field theory. International Journal of Theoretical Physics, Group Theory, and Nonlinear Optics,
+??(?):??–??, 2007. To appear.
+http://arXiv.org e-Print archive, E-print No. hep-th/0311003, November, 2003.
+[22] Bozhidar Z. Iliev. On operator differentiation in the action principle in quantum field theory. In Stancho Dimiev and Kouei Sekigava, editors, Proceedings of the 6th International
+Workshop on Complex Structures and Vector Fields, 3–6 September 2002, St. Knstantin
+resort (near Varna), Bulgaria, "Trends in Complex Analysis, Differential Geometry and
+Mathematical Physics", pages 76–107. World Scientific, New Jersey-London-SingaporeHong Kong, 2003.
+http://arXiv.org e-Print archive, E-print No. hep-th/0204003, April 2002.
+[23] Bozhidar Z. Iliev. On angular momentum operator in quantum field theory. In Frank
+Columbus and Volodymyr Krasnoholovets, editors, Frontiers in quantum physics research, pages 129–142. Nova Science Publishers, Inc., New York, 2004.
+http://arXiv.org e-Print archive, E-print No. hep-th/0211153, November 2002.
+[24] Bozhidar Z. Iliev. On momentum operator in quantum field theory. In Frank Columbus
+and Volodymyr Krasnoholovets, editors, Frontiers in quantum physics research, pages
+143–156. Nova Science Publishers, Inc., New York, 2004.
+http://arXiv.org e-Print archive, E-print No. hep-th/0206008, June 2002.
+[25] J. D. Bjorken and S. D. Drell. Relativistic quantum mechanics, volume 1. McGraw-Hill
+Book Company, New York, 1964. Russian translation: Nauka, Moscow, 1978.
+[26] A. B. Govorkov. Parastatistics and internal symmetries. In N. N. Bogolyubov, editor,
+Physics of elementary particles and atomic nuclei, volume 14, No. 5, of Particles and
+nuclei, pages 1229–1272. Energoatomizdat, Moscow, 1983. In Russian.
+[27] R. F. Streater and A. S. Wightman. PCT, spin and statistics and all that. W. A.
+Benjamin, Inc., New York-Amsterdam, 1964. Russian translation: Nauka, Moscow,
+1966.
+

@@ -1,0 +1,459 @@
+vessel and port efficiency metrics through
+validated ais data
+toma martini  dejan tepec  joao pita costa  kristijan agran and athanasios chaldeakis
+ xlab
+arxiv210500063v1 csai 30 apr 2021
+research ljubljana slovenia
+tomazmartincic dejanstepec joaopitacosta kristijancagranxlabsi
+ university of ljubljana faculty of computer and information science ljubljana slovenia
+ piraeus port authority piraeus greece
+abstractautomatic identification system ais data represents a rich source of information about maritime traffic and
+offers a great potential for data analytics and predictive modelling
+solutions which can help optimizing logistic chains and reducing
+environmental impacts in this work we address the main limitations of the validity of ais navigational data fields by proposing
+a machine learningbased datadriven methodology to detect and
+to the possible extent also correct erroneous data additionally
+we propose a metric that can be used by vessel operators and
+ports to express numerically their business and environmental
+efficiency through time and spatial dimensions enabled with
+the obtained validated ais data we also demonstrate port
+area vessel movements pares tool which demonstrates the
+proposed solutions
+index termsais data validation port metrics environment
+covid19
+i i ntroduction
+automatic identification system ais data represents a
+rich source of maritime traffic information and offers a great
+potential for data analytic and predictive modelling solutions which can help optimizing logistic chains and reducing
+environmental impacts in this work we address the main
+limitations of the validity of ais navigational data fields by
+proposing a machine learningbased datadriven methodology
+to detect and to the most possible extent also correct erroneous data additionally we propose a metric that can be
+used by vessel operators and ports to numerically express their
+business and environmental efficiency through time and spatial
+dimensions enabled with such obtained validated ais data
+different studies have reported significant errors in the
+transmitted ais data 1 which can significantly reduce its
+usability and effectiveness for gathering insights using automated data analytics solutions one of the most interesting
+ais reported fields is that of navigational status which could
+serve as an essential tool to measure ports business eg
+vessel waiting times vessel turnaround times as well as
+environmental eg emission metrics studies have found that
+at least 30 of the vessels were detected as transmitting
+incorrect status information an example of errors in ais
+navigational status is presented in figure 1a vessels can be
+moored only at terminals however sometimes they report
+moored navigational status in the anchorage areas or even
+while sailing other navigational statuses are also occasionally
+falsely reported
+some of the static ais reported fields eg vessel type
+mmsi imo can be corrected through dedicated maritime
+vessel databases but this is not the case with the dynamically
+reported fields eg navigational status in order to correct
+navigational status in realtime we propose and compare three
+different approaches the first approach utilizes the vessels
+speed and location along with the predetermined location of
+anchorage and terminal areas the downside of this method
+is the requirement of setting the speed threshold and the
+availability of gis data anchorage and port areas from the
+ports as the second approach we propose to utilize the
+vessels speed and rotation information which omits the need
+for manually provided data finally we propose to utilize
+different machine learning techniques 2 3 on reported ais
+fields spatial and kinematic which automatically classifies
+reported information into appropriate navigational status that
+is validated with the reported one an example of corrected
+ais transmitted navigational data is presented in figure 1b
+validated ais data is used to extract vessel voyages in a
+predefined area and the time spent in different navigational
+positions is calculated in order to evaluate port entry and port
+turnaround times we have evaluated our proposed methods
+in the port of piraeus greece where historical data one
+year and live ais data is collected from the aishub1  vessel
+arrivals and turnaround times are validated against fal forms
+data collected by the port proposed port efficiency metrics
+based on waiting times are globally applicable without the
+need for manually provided data port efficiency metrics for
+different ports are computed in an interval of one year and
+combined with vesselspecific ais reported fields eg vessel
+type vessel length which provides additional value to the
+proposed automatic datadriven metric this allows for the
+comparison on a vessel and cargo level
+our main contributions can be summarized as follows
+ three different methods for ais navigational status validation and correction based on static and manually
+provided data as well as a completely automatic machine
+learningbased approach
+ the procedure for extracting vessel voyages out of validated ais data in a predefined area together with port
+and vessel efficiency metric for the calculation of time
+1 httpwwwaishubnet
+fig 1 reported ais navigational statuses with errors a and corrected navigational statues by our methods b red under
+way using engine blue at anchor yellow moored
+spent in different navigational positions eg port entry
+waiting time port turnaround time
+the evaluation of the proposed methods on live and historical ais data in different ports together with validation
+against ground truth data provided in port of piraeus
+fal forms
+ii r elated w ork
+the availability of largescale automatic identification system ais data made available by the recent buildup of
+terrestrial as well as satellite constellations offers an essential
+tool for maritime situational awareness applications 4 different studies have reported significant errors in the transmitted
+ais data 1 which can significantly reduce its usability
+and effectiveness for gathering insights using automated data
+analytics solutions one of the most interesting ais reported
+fields is that of navigational status which could serve as a tool
+to measure ports business eg vessel waiting times vessel
+turnaround times as well as environmental eg emission
+metrics studies have found that at least 30 of the vessels
+were detected as transmitting incorrect status information
+most of the work is focused on using reported positional data
+for route extraction prediction and anomaly detection 46
+and are not utilizing the reported ais navigational statuses
+due to its unreliability 7
+most of the work around port areas and regions of highdensity traffic is focused on simple statistical analysis and
+visualizations of reported ais data 8 9 in our work
+we propose to use validated ais data to extract vessel voyages in a predefined area and the time spent in different
+navigational positions in order to evaluate port entry and
+port turnaround times besides serving as a useful tool to
+measure aspects of the ports business metric eg vessel
+waiting times vessel turnaround times the same approach
+also supports the estimation of environmental eg emission
+impacts 7 in comparison with the most common approach of
+ais navigational data use and validation 7 10 where speed
+information is used to classify navigational status into three
+newly defined classes cruising mode maneuvering mode
+hotelling mode we propose a method that validates preserves
+and uses the originally reported navigational statuses
+iii p ort a rea v essel m ovements  pares
+the port area vessel movements pares tool presented
+in figure 2 validates and utilizes ais data to extract information about vessels movements inside the port areas the
+tool can process historical data or work in live mode the
+process of extracting movements and times consists of three
+main steps in the first step the pares tool has to select data
+based on the selected time period the vessels location and
+the vessel types in the second step the model has to validate
+the data and extract additional features which are used in the
+third step to clean the data and group the ais messages into
+separate voyages in the context of pares voyage is defined
+as all movements that vessels make inside of the port area at
+single arrival to the port the first vessel arrives to the port
+area then it sails to the terminal with an optional stop in
+the anchorage area when the vessel arrives to the terminal
+the cargo processing operations can begin after all cargo is
+unloaded and loaded onto the vessel it leaves the port the
+pares model extracts information about waiting times at the
+anchorage area cargo processing times at the terminal and
+the duration of the vessel movements inside of the port area
+together with the average speed of the movements
+a ais data validation
+one of the most important features in ais messages also
+validated by the pares is the vessel navigational status
+this is a crucial piece of information used to split the
+voyage into separate parts the tool takes advantage of three
+navigational statuses 0 underway using engine 1 at anchor
+and 5 moored we developed three different approaches to
+determinate vessel navigational status each approach has its
+own advantages and disadvantages
+fig 2 port area vessel movements pares tool used for maritime traffic analysis around port of piraeus using validated
+ais data depicting vessels captured in the bay area and detailed analysis for a particular vessel
+in the first approach navigational statuses are determined
+based on vessel location and its speed for the location we
+observe if the vessel is inside predefined polygons that mark
+anchorage and terminal areas see figure 3 the main problems here are that polygons have to be determined manually
+and that the vessel can anchorage on the border of a polygon
+in that case the pares tool would falsely detect multiple
+changes of the navigational status the vessel can be entering
+and exiting anchorage area polygon multiple times during
+single anchoring due to normal vessel movements during
+anchorage
+in the second approach we observe the vessels speed
+and rate of rotation moored and anchored vessels are not
+moving with exception of rotations of anchored vessels this
+distinction can be used to separate moored and anchored
+vessels for example vessels speed and heading with marked
+anchoring and mooring periods are plotted in figure 4
+vessels that are moored at terminal cannot rotate and vessels
+at anchorage normally rotate due to winds and water flows
+circles in anchorage area in the figure 1 the method is very
+accurate for longer stops but can be unreliable for detecting
+short duration anchorages where the vessel has not rotated
+enough it is important to encode vessel heading considering
+it has cyclical values in range between 0 and 360 we
+encoded it using sin cos cyclical encoding sin 2heading
+ and
+360
+2heading
+cos 360  this yields two features with values between
+1 and 1
+in the third approach we utilized machine learning algorithms multiple algorithms and libraries were evaluated
+from unsupervised clustering technique hdbscan 2 to
+supervised classification methods such as catboost 3 and
+knearest neighbours knn with hdbscan we obtained
+clusters of anchored and moored vessels from ais messages
+of stopped vessels based on their location and reported navigational status with catboost we tried to classify navigational
+status from vessel location and speed we also prepared
+lagged features that helped the model for more accurate
+classifications the cleanest result was produced by knn with
+large number of neighbours taken into account with the knn
+we classified navigational status of stopped vessels from vessel
+location for best results at least 300 neighbours were used
+another problem is that of the missing ais messages there
+are different types of data outages if there are missing ais
+messages of a single vessel ais transmitter is not working
+properly or it is turned off on purpose if there are missing ais
+messages in a specific area there is a problem with terrestrial
+based ais receiver or the area is not covered if there is no
+ais data for some period the problem is in the ais data
+provider or in our ais data collection system in some cases
+we can just ignore the data loss if the vessel was moored
+or anchored for the whole time of data outage or the vessel
+was moving in straight line in other cases we cannot extract
+correct times the best solution is to mark vessel stops or time
+periods with missing data
+b voyage extraction
+voyage represents vessel movement in port area from the
+arrival to the port area the optional stop in the anchorage area
+the stop at the terminal and the departure from the port area
+validated messages are grouped into the voyages based on
+the vessel identification number mmsi and time between
+two consecutive ais messages in the port area if there is less
+than 24 hours between two messages from the same vessels in
+the port area the messages can be grouped into the voyage if
+the gap in messages is more than 5 hours long and the vessel
+moved for more than 100 meters in that time the chain of ais
+messages is split into two voyages at that point to extract
+voyages we built pandas dataframe from ais messages in a
+selected port area each row represents a single ais message
+and columns represent ais message fields we sorted rows
+by mmsi and time to split data in different voyages we
+built a set of different conditions that compare two consecutive
+rows change of mmsi more than 24 hour time gap more
+than 5 hour time gap and change of location for more than
+dec 17
+2019
+speed
+heading sin
+fig 3 manually drawn polygons in ppa port area anchorage area with blue color and terminals with yellow
+100 meters for efficient comparison of consecutive rows we
+utilized the pandas dataframe shift method
+c port efficiency metrics
+the pares tool is capable of providing different metrics
+for describing the current state of vessels in the port and its
+surrounding areas as well as historical data analysis
+turnaround time is one of the ports key performance
+indicators the faster cargo is unloaded and loaded the better
+the port is the pares can automatically extract this information from ais data time periods aggregations eg weekly
+aggregations can be used to monitor the ports performance
+through time it is also possible to compare different ports we
+identified several vessels with multiple arrivals in two or more
+ports for which we have enabled the pares tool one of the
+problems when comparing different ports is that we dont have
+information about amount of cargo
+it is possible to monitor arrival and departure times for
+different parts of port with the tool someone could spot
+abnormal or even missing arrival or departure of regular
+vessels lines
+iv e xperiments
+the pares tool was tested on more than one year of
+historical ais data made available by aishub and validated
+on 2 months of data collected in port of piraeus greece
+though it is directly applicable to any port in the world
+without the need of port cooperation it is hard to get ground
+truth data for validation of the results from the pares tool
+for the validation of the turnaround times in the port the ais
+gathered data can be validated against the data by the port
+community systems pcs in the ports the data is manually
+entered so we have no way of knowing how accurately
+the times are entered it is possible to export vessel calls
+data from marinetraffic2  but for the ports of our interest
+2 httpswwwmarinetrafficcom
+dec 18
+dec 19
+heading encoded
+speed kn
+moving threshold
+heading cos
+fig 4 vessel speed and its encoded heading during
+anchored blue background and moored yellow background period
+polygons capture larger port area and not just the terminals
+thus turnaround times can have significant offsets of multiple
+hours making data not accurate enough in order to validate
+the pares tool
+obtained vessel calls data from port of piraeus is missing
+vessel departure times and contains only arrival times therefore we were not able to compare turnaround times detected
+by the pares with the ground truth data captured in the port
+instead we compared number of daily arrivals detected by
+the pares with daily arrivals captured in the pcs averaged
+mean average error mae across all vessel types is 446
+with an average of 54 arrivals per day captured in the ground
+truth data the comparison is plotted in figure 6
+aggregated vessel arrivals provide useful information for
+analysis number of daily arrivals to the port of piraeus based
+on vessel type are presented in figure 5 we grouped vessel
+types into 3 different categories cargo vessels ais type 70
+ 79 tankers ais type 80  89 and passenger vessels ais
+type 40  49 and 60  69 the number of arrivals of cargo
+vessels and tankers has some variance but no obvious trend
+the passenger vessels follow a strong seasonal trend with the
+most traffic happening in the summer months in the summer
+of 2019 we can observe weekly periodical trends in passenger
+vessels traffic with peaks over the weekends grey periods are
+marking the time with possible disruptions on the collection
+of ais data there are five labour strikes3  most of them
+having visible noticeable effect on the number of daily arrivals
+especially on passenger vessels extreme weather eg strong
+winds conditions can also interrupt the maritime traffic the
+number of arrivals of passenger vessels severely dropped in
+march due to the progress of the covid19 pandemic in
+europe the maritime passenger traffic started to recover in
+the end of may however the numbers in july and august are
+still lower than in the last year no significant reduction of
+3 httpscitystarcarcomstrikes
+number of daily arrivals
+jul 2019
+sep 2019
+cargo vessels
+nov 2019
+passenger vessels
+jan 2020
+tankers
+strikes
+mar 2020
+may 2020
+jul 2020
+strong winds
+number of daily arrivals
+fig 5 number of daily arrivals of cargo vessels passenger vessels and tankers to the port of piraeus different events are
+labelled on a timeline representing the cause for the reduce traffic gray areas represents periods with missing ais data
+with daily departures at 420am in the morning and arrivals
+around 210pm in the afternoon it is possible to monitor
+possible delays in arrivals or departures in the presented
+sample the vessel did not depart from the passenger terminal
+in two occasions in a short period of time the first missed
+departure was caused by strong winds4 and the second one by
+a general ferry strike5 
+sep 29
+oct 13
+2019 cargo vessels p
+oct 27
+cargo vessels g
+nov 10
+nov 24
+passenger vessels p
+passenger vessels g
+strikes
+fig 6 number of daily arrivals detected by pares compared
+with ground truth vessel call data from the port comparison
+is made separately for passenger and cargo vessels gray area
+depicts missing data in the port or in the ais collection
+process
+table i arrivals and departures of high speed vessel
+mmsi  into ppa passenger terminal
+arrival time
+20190912
+20190913
+20190915
+20190916
+20190921
+20190922
+20190923
+20190925
+departure time
+1428
+1544
+1619
+1417
+1434
+1436
+1359
+1411
+20190913
+20190915
+20190916
+20190917
+20190922
+20190923
+20190925
+20190926
+turnaround time
+0425
+0420
+0418
+0422
+0419
+0422
+0421
+0419
+days 1346
+days 1226
+days 1149
+days 1349
+days 1334
+days 1335
+days 1407
+days 1358
+traffic can be noticed for cargo and tanker vessels in the port
+of piraeus
+pares also provides a possibility to explore the exact
+arrival departure times of a specific vessel a subset of
+features representing the results of the pares tool for a
+single passenger vessel highspeed 4 mmsi 239658000
+are presented in table i the vessel has a regular schedule
+v c onclusion
+in this work we present the port area vessel movements
+pares tool which validates and extracts information about
+vessel movements inside the port areas several static and
+machine learningbased datadriven techniques were presented
+to detect and to the possible extent also correct erroneous
+data validated automatic identification system ais data is
+used for data analytics and predictive modelling solutions to
+which the considered usecases present significant opportunities to optimize logistic chains and reduce environmental
+impacts the proposed metrics can be used by vessel operators
+and ports to express numerically their business and environmental efficiency through time and spatial dimensions when
+enabled with the obtained validated ais data these enhanced
+information can translate into improvements to the business
+intelligence at the port allowing for better decisionmaking
+based on more accurate data insight at a low price in what
+regards data acquisition
+acknowledgment
+this work was partially supported by the european commission through the horizon 2020 research and innovation
+program under grants 769355 pixel
+r eferences
+1 a harati mokhtari a wall p brooks and j wang automatic identification system ais data reliability and human error implications
+journal of navigation vol 60 pp 373  389 09 2007
+2 r j campello d moulavi and j sander densitybased clustering
+based on hierarchical density estimates in pacificasia conference on
+knowledge discovery and data mining springer 2013 pp 160172
+4 httpswwwferryhoppercomenblogferrynewsstrongwindsgreekferrieslatest
+5 httpsnewsgtpgr20190917ferrystrikegreeceannouncedseptember24
+3 l prokhorenkova g gusev a vorobev a v dorogush and a gulin
+catboost unbiased boosting with categorical features in advances in
+neural information processing systems 2018 pp 66386648
+4 g pallotta m vespe and k bryan vessel pattern knowledge discovery from ais data a framework for anomaly detection and route
+prediction entropy vol 15 no 6 pp 22182245 2013
+5 s mascaro a e nicholso and k b korb anomaly detection
+in vessel tracks using bayesian networks international journal of
+approximate reasoning vol 55 no 1 pp 8498 2014
+6 s mao e tu g zhang l rachmawati e rajabally and gb
+huang an automatic identification system ais database for maritime
+trajectory prediction and data mining in proceedings of elm2016
+springer 2018 pp 241257
+7 d chen y zhao p nelson y li x wang y zhou j lang and
+x guo estimating ship emissions based on ais data for port of tianjin
+china atmospheric environment vol 145 pp 1018 2016
+8 y c altan and e n otay maritime traffic analysis of the strait of
+istanbul based on ais data the journal of navigation vol 70 no 6
+pp 13671382 2017
+9 l zhang q meng and t f fwa big ais data based spatialtemporal
+analyses of ship traffic in singapore port waters transportation research part e logistics and transportation review vol 129 pp 287
+304 2019
+10 s k ng c loh c lin v booth j w chan a c yip y li
+and a k lau policy change driven by an aisassisted marine
+emission inventory in hong kong and the pearl river delta atmospheric
+environment vol 76 pp 102112 2013
+2020 ieee personal use of this material is permitted
+permission from ieee must be obtained for all other uses in
+any current or future media including reprintingrepublishing
+this material for advertising or promotional purposes creating
+new collective works for resale or redistribution to servers or
+lists or reuse of any copyrighted component of this work in
+other works

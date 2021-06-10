@@ -1,0 +1,479 @@
+visualizing teleportation
+scott m cohen
+arxiv07040051v2 physicsedph 13 may 2008
+department of physics duquesne university pittsburgh pennsylvania 15282 and
+department of physics carnegiemellon university pittsburgh pennsylvania 15213
+a novel way of picturing the processing of quantum information is described allowing a direct visualization of teleportation of quantum states and providing a simple and intuitive understanding
+of this fascinating phenomenon the discussion is aimed at providing physicists a method of explaining teleportation to nonscientists the basic ideas of quantum physics are first explained in
+lay terms after which these ideas are used with a graphical description out of which teleportation
+arises naturally
+introduction
+one of the most exciting and fastestgrowing fields of physics today is quantum information especially since the
+discovery by shor 1 2 that there exist calculations for which a quantum computer is apparently far more efficient than
+a classical computer interest in understanding quantum information has increased at an impressive rate one widely
+publicized discovery that has emerged from work in this field is teleportation 3 while not precisely equivalent to the
+process enjoying widespread fame amongst fans of star trek beam me up scotty the phenomenon referred to here
+is nonetheless fascinating and perhaps even astonishing the reason for the widespread publicity of this rigorously
+proven and experimentally tested 4 5 6 7 8 though not yet unambiguously demonstrated scientific prediction
+is almost certainly in large part due to the fact that it shares the same name as the justmentioned intriguing idea
+from sciencefiction
+the usual way of describing teleportation is through mathematical equations and this mathematics is relatively
+straightforward as has been amply demonstrated elsewhere 3 9 hence an understanding of this phenomenon is
+accessible to physicists other scientists and those possessing a reasonably strong level of mathematical skill there
+does on the other hand seem to be a good deal of misunderstanding of teleportation amongst nonscientists with the
+notion floating around that the amazing phenomenon shown regularly in episodes of star trek  that is of material
+objects being teleported from one place to another  has actually turned out to be possible in real life nothing could
+be further from the truth of course so we are left wondering how to rectify this unfortunate state of affairs the
+question i address here is the following can the true scientific phenomenon of teleportation be understood by others
+those without much skill in mathematics the usual explanations will certainly fail in this regard even if carefully
+presented by a competent physicist because mathematics has a wellknown tendency to scare people away and in any
+case the mathematics of teleportation is not all that simple the paper is addressed to physicists possessing a solid
+understanding of quantum physics including graduate students with the aim to provide a method by which such a
+physicist can explain teleportation to someone who is not mathematically inclined thus the objective is ultimately
+though indirectly to educate the general public about teleportation and by extension quantum mechanics itself the
+approach involves only the most basic ideas about quantum physics and while it does not entirely avoid mathematical
+expressions it uses only the simplest mathematics one only needs to accept that certain objects are either 0 or 1 and
+relies almost entirely on pictures allowing the layperson to visualize  and thus understand  what is happening
+in the following sections i will describe my method of directly visualizing teleportation these sections are written
+as if addressed to the layperson the next section explains the probabilistic nature of quantum physics by considering
+quantum coins which are examples of twolevel systems this section describes how one should think about
+measurements what is meant by probabilities for classical systems and then how these ideas can be used to describe
+quantum systems then in section iii i present my graphical approach to understanding the dynamics of quantum
+information processing which is then used in section iii b to explain in pictures how teleportation of quantum states
+is possible one of the crucial observations will be that a shared entangled state on say systems a and b provides
+the parties with multiple images of the state of an additional system a the ability to manipulate these images
+ independently by each party and differently from one image to the next  is what allows teleportation to be
+accomplished more generally these ideas provide important insights into why entanglement is a valuable resource as
+i have described in detail elsewhere and they have been useful in understanding other aspects of quantum information
+ electronic
+address cohensmduqedu
+processing 10 11
+probabilities
+perhaps the most fundamental aspect of quantum theory is that it can only make predictions in terms of probabilities in general even if one has a complete description of the state of a quantum system one will not know ahead of
+time what the outcome of a given measurement will be this is in direct contradiction with our everyday experience
+which we refer to as classical for example a flipped classical coin which lands heads heads is then a complete
+description of the state of this coin is known with certainty to be heads and also with certainty to not be tails
+that is if we know the state of a classical coin in this case heads we can predict with certainty the answer to
+any reasonable question we choose to ask or measure about that coin for example is it tails we therefore
+need to understand what is meant by the state of a quantum system and how this state relates to probabilities and
+outcomes of measurements the following definition of a measurement will be adequate for our purposes
+definition a measurement is a procedure that provides answers to a collection of yesno questions which is
+both mutually exclusive when the answer to one of the questions is yes the answer to all the others is no and
+complete all possibilities are included that is one of the questions will always be answered in the affirmative the
+single question that receives the yes answer is referred to as the outcome of the measurement
+for example since a classical coin is either heads or tails and these two possibilities are mutually exclusive a
+measurement on a classical coin is a procedure that answers the two questions is it heads and is it tails since
+the coin will always be one or the other there will always be a yes answer to one of these questions and then the
+other question is always answered no hence these two questions do indeed constitute a measurement according to
+the above definition if is it heads is answered affirmatively then heads is the outcome of the measurement
+it turns out that these two questions also constitute a measurement on quantum coins however in contrast to
+the classical case in which this is the only possible measurement there is a vast array of possible measurements on
+quantum coins this will become clearer from the discussion in the following sections where we introduce a compact
+way of describing these things a way commonly used in quantum mechanics
+classical coins and classical probabilities
+consider again a flipped classical coin the coin lands either heads or tails it will be useful to use a somewhat
+abbreviated notation hi for heads and t i for tails the statement that if it is heads it is not tails that is has
+zero probability of being tails will be represented as
+ht hi  0
+the leftfacing bracket hi represents the known initial state it is heads and the rightfacing bracket ht  represents
+the question is it tails the number 0 appearing on the righthand side of the equal sign then gives the
+probability that with this initial state the answer to this question will be yes for the above example we have that
+the probability is 0 which is as expected since when the coin is h it will never be t  note that it is useful to use the
+left and rightfacing brackets so that we can easily read off what is the initial state and what is the question being
+asked about it simply writing t h  0 in the above equation would lead to confusion when we discuss two coins see
+below which might have an initial state where one is tails the other heads represented by t hi
+perhaps an even more trivial statement if it is heads then it is heads with certainty or with probability one
+will similarly be represented as
+hhhi  1
+again the rightfacing bracket contains the question hh or is it heads and the fact that the expression is equal
+to 1 indicates that the answer to this question will always be yes when the initial state is hi these statements
+are trivial because if we know the state of a classical coin we can predict with certainty whether it will be heads or
+tails when we look at it
+although the remaining equations will look a bit more involved the only mathematics the reader need understand
+is contained in the above two equations along with two others that are almost exactly the same the discussion in the
+remainder of this paper will follow from the four simple statements hhhi  1 ht t i  1 ht hi  0 hht i  0
+next let us consider two coins in this case a complete list of mutually exclusive possibilities is hh ht t h t t 
+we can make statements in exactly the same way we did above for example if they are hh then they are not ht 
+which in our notation is written
+hh1 t2 h1 h2 i  hh1 h1 i  ht2 h2 i  1  0  0
+where the subscripts 1 2 have been inserted for clarity to indicate which coin is which note that in this equation
+we have equated the expression hh1 t2 h1 h2 i with the product of two expressions hh1 h1 i and ht2 h2 i this is
+because any question about the two coins jointly is the same as two questions one about each of the coins separately
+it is obviously also true that if they are hh then they are hh so
+hh1 h2 h1 h2 i  hh1 h1 i  hh2 h2 i  1  1  1
+for three coins there are eight possibilities hhh hht ht h t hh ht t t ht t t h t t t  and the same
+notation will readily account for this case as well we will not need to consider more than three coins here though
+it is in principle straightforward to do so
+quantum coins and quantum probabilities
+quantum coins behave very differently as compared to their classical counterparts and quantum probabilities must
+be understood in very different ways we still have heads and tails hi and t i as possible states of a quantum coin
+we refer to these two states as being orthogonal to each other by which we simply mean that they are mutually
+exclusive if the quantum coin is h it is definitely with certainty not t  and viceversa we note that the four
+equations appearing in the previous section are equally true for both quantum and classical coins however there
+now exist some very strange possibilities if i were to suggest that a classical coin can be both h and t at one and
+the same time you would be completely justified in thinking id gone slightly crazy i am going to tell you though
+that at least in a certain though very real sense this is the case for quantum coins though you may still wonder a
+bit about my sanity the point is that in the quantum case it makes complete sense to ask questions such as if
+the coin is h is it half h and half t  or we can turn this around and ask if the coin is half h and half t  is it
+h neither of these questions makes any sense whatsoever when referred to a classical coin on the other hand for
+a quantum coin these are not only legitimate questions but they are in fact very important ones we do not consider
+the negligible possibility of a classical coin landing on its edge and in any case this bears no relationship to what we
+mean by a quantum coin being half h and half t 
+to represent these questions we can write the state q of a quantum coin that is half h and half t as
+qi 
+hi  t i
+then the answer to the question if the coin is half h and half t  is it h is answered by the equation
+hhqi  hh
+hi  t i
+ hhhi  hht i
+ 1  0  
+which should be interpreted as meaning yes with probability 12 implying also no with probability 112  12
+in quantum mechanics it is actually the square of the object on the lefthand side of the foregoing equation that
+represents the probability rather than that object itself which is known as the probability amplitude however
+although the difference between probabilities and probability amplitudes is crucial to the understanding of quantum
+mechanics i have chosen in the present discussion to overlook this distinction for the benefit of the layperson to whom
+these ideas are aimed as they would only serve to complicate matters causing unnecessary confusion amongst the
+intended audience the leftfacing bracket qi represents the known initial state and the rightfacing bracket hh
+represents the question is it heads the number 12 appearing on the righthand side of the last line then gives
+the probability that with this initial state the answer to this question will be yes the point to understand here is
+that even though we have a complete description q of the state of the quantum coin we do not generally know in
+advance whether the coin will be h or t when we look at it we can only predict in terms of probabilities if we
+perform this experiment many times half the time the answer will be yes and the other half of the time it will be no
+furthermore there are many more questions we can ask in the quantum as compared to the classical case we are
+no longer restricted to asking is the coin h or is it t  but we can ask other questions such as the reverse of
+the question we just answered
+hqhi 
+hh  ht  hi
+ hhhi  ht hi
+ 1  0  
+we see that the question if the coin is h is it half h and half t  has the same answer as the previous question
+yes with probability 12 and no with probability 12
+we note that in the remainder of the paper instead of phrasing questions as is the coin half h and half t  we
+instead ask whether it is equal parts h and t  while there is no real difference between these two questions this
+rephrasing allows us to simplify the notation by dispensing with the factors of 12 that have appeared in the above
+discussion in doing so the equations will not yield the same numbers as probabilities for the various questions but
+this will not hamper the presentation since the numerical values of the probabilities are not crucial to the ideas we
+wish to convey we just need to remember that certain objects are equal to 1 and others are equal to 0
+iii
+teleportation
+what exactly do we mean by teleportation in the context of quantum information it is not a material object that
+is being teleported but rather the state of a quantum system we will assume that the system is a quantum coin
+with a complete set of mutually exclusive orthogonal states being heads and tails which we may denote as
+hi and t i suppose alice and bob are physicists in locations widely separated from each other they each have a
+quantum coin  labeled a and b respectively  and these two coins are in the state
+b0 iab  ha hb i  ta tb i
+where the subscripts used here refer to system a b in alices bobs possession this state of two quantum coins has
+a very strange property which is known as entanglement and the state itself is an example of a maximally entangled
+state entanglement is a rather strange sort of correlation between quantum systems which manifests itself in the
+state b0 by the fact that neither system a nor b can be considered to have a definite state of its own independent
+of the other system whatever is the state of coin a coin b will have the same state but one cannot say anything
+about the state of either coin independent of the other one it is this property of entanglement that is credited with
+enabling alice and bob to accomplish teleportation
+alice is given another coin system a prepared in a state
+sa i  ch ha i  ct ta i
+with arbitrary coefficients ch and ct that are completely unknown to her and to bob if ch  12 and ct  12
+we have the case discussed in the previous section where the coin is equally likely to be found to be h or t  for
+other values of these coefficients the two possibilities will in general not be equally likely alices task is to perform
+operations on the systems in her possession a and a in such a way that bob will end up with his system b in
+precisely the state sb i which is the same state as sa i but now on the distant system b it turns out that this task
+can be accomplished if alice communicates information to bob perhaps via a telephone about what she ended up
+doing to her systems after which bob performs a rather simple quantum operation dependent on the information
+obtained from alice on system b
+an important point to understand in what follows is that nothing either of them does in this process provides
+even the slightest information about the coefficients ch and ct  so the state s that has been teleported remains
+completely unknown to the parties this aspect of teleportation becomes even more amazing if one considers the
+amount of information that is conveyed the information contained in a quantum state is far greater than the amount
+actually transmitted from alice to bob via the telephone as we will see below the amount transmitted via the
+telephone is two classical bits enough to convey which one of four possibilities has been chosen true the classical
+information one can encode in a twolevel quantum system cannot exceed one bit one bit is the amount of information
+needed to choose between two possibilities such as hi and t i but if alice wanted to tell bob how to create the
+state in his own lab by communicating with him over a phone line this would require an infinite amount of classical
+information that is enough information to completely describe the arbitrary numbers ch and ct it is infinite because
+one of these numbers might well be an irrational number such as  having a decimal expansion that is unending
+never repeating itself of course alice and bob are both completely ignorant of what these numbers are so even if
+it were possible to transmit an infinite amount of information they dont even know what information they would
+need to send nonetheless when they share entanglement it is possible for the two of them by working together to
+create the unknown state on bobs coin b with the communication of only two classical bits
+visualizing quantum information processing
+let us now introduce the pictorial method which will be used to visualize teleportation the simple diagrams we
+will use to depict states of multiple quantum coins held by two different parties are familiar to many researchers
+working in quantum information we will now illustrate how these diagrams are used to represent quantum states
+and then how they can be used to follow what happens to these coins when measurements are performed by one of
+the parties then we will be ready to use them for visualizing teleportation
+states of quantum coins
+to depict the state of a single quantum coin labeled a standing for alice she will also have the other coin labeled
+a while bobs single coin is labeled b we may use a simple box diagram
+sa i  ch hai  ct ta i 
+hai ch
+ta i
+the coefficients ch and ct appearing in the boxes indicate how much is in that part of the state sa of coin a the
+next example illustrates the case where there are two coins a and b held by two different parties then the state
+of these two coins might be
+hb i tb i
+sa hb i 
+hai ch
+ta i
+with sa as given above the empty squares on the righthand side of this diagram represent the fact that system b is
+not t  has zero probability of being tails the ch in the upperleft corner represents the probability the coins are
+both heads and the ct in the lowerleft the probability bobs coin is heads and alices is tails
+if there are three parties involved a threedimensional cube could be used to represent this situation however it
+will serve our present purposes to represent both of alices systems along the vertical dimension of the diagram we
+might have coins a and b as in the previous example and coin a being heads the overall state of these three coins
+represented as
+hb i tb i
+sa hahb i 
+haha i
+ta ha i
+hata i
+ta ta i
+if instead the ab systems are both t  this picture is
+hb i tb i
+haha i
+ta ha i
+sa ta tb i 
+hata i
+ta ta i
+now consider what happens if we add the previous two equations together then our two coins ab are equal parts in
+hh and in t t  which is what we previously referred to as the maximally entangled state b0 iab  ha hb ita tb i
+the corresponding diagram looks like
+hb i tb i
+sa iha hb i  ta tb i
+haha i
+ta ha i
+hb i tb i
+hata i
+ta ta i
+hai sa
+ta i
+notice how there are now two images of the state sa i this observation turns out to be rather useful in understanding
+entanglement 10 11 but we will not need to discuss such issues here let us now look at how to represent
+measurements by use of these diagrams
+measurements on quantum coins
+suppose alice and bob share three quantum coins in the state represented in the last equation of the previous
+section and alice wants to know something about her coins if she measures coin a and discovers it is h then we
+have
+hbi tb i
+hha  
+hai sa
+ta i
+hb i tb i
+recall that when the rightfacing bracket hha  is attached to the leftfacing one ha i on the left of this equation we get
+hha ha i  1 which preserves the upper row whereas hha ta i  0 indicating that the bottom row is annihilated
+multiplied by 0 which is why it no longer appears on the far right of this equation the interpretation is as follows
+when the question is coin a heads is answered in the affirmative the other coins are left in the state sa hb i we
+see how this measurement acts on both of the images simultaneously rather than on the two independently the
+upperleft image has been preserved intact but the other image was annihilated disappearing altogether
+on the other hand if the outcome of alices measurement had been that coin a was t  this would be represented
+hbi tb i
+hta  
+hai sa
+ta i
+hb i tb i
+in this case the upperleft image has disappeared and the one in the lowerright has been preserved intact in each
+of these cases the state of coin a is unchanged but that of coin b is left in a state that corresponds directly to the
+outcome of alices measurement on a if she discovers that coin a was h or t  then coin b ends up h or t 
+alternatively she could do a measurement that includes the question is coin a equal parts h and t  if the answer
+to this question is yes then
+hb i tb i
+hha   hta 
+hb i tb i
+hai sa
+ta i
+sa i hb i  tb i 
+which is just a sum of the previous two equations notice how after each of the three measurement outcomes we have
+just considered the two images have been collapsed into a single row once again we see that the state of coin b
+ends up corresponding to the outcome of alices measurement on coin a this illustrates some of the strangeness
+that resides in entangled states of quantum systems no matter what measurement alice makes on coin a and no
+matter what outcome she obtains from that measurement the resulting state of coin b will correspond directly to
+that outcome
+the way the images of sa appear in the diagram is crucial the fact that the two start out in different rows
+and in different columns will be important in what is to come if entanglement between systems ab was absent for
+example if they were in the unentangled state ha i  ta i hb i then this would be represented by recall that
+sa i  ch ha i  ct ta i
+hb i tb i
+ha hai
+taha i
+hata i
+ta ta i
+sa i hai  ta i hb i 
+hb i tb i
+hai sa
+ta i
+under these circumstances bobs view of the lower image of sa is obstructed by the presence of the upper image
+the two images effectively appear as one to him as will become clear in the following section the presence of
+entanglement between the ab coins will be necessary for them to accomplish teleportation we will see that it is
+bobs and alices ability to see the two images separately and the consequent ability for each of them to act
+differently on one of the images as compared to the other that is crucial to their success
+in the next section we turn to the task of teleporting the state sa onto bobs coin b to begin this process
+alice will perform a measurement that asks joint questions that is questions about both coins in her possession
+simultaneously as an example she could ask if they are both h that is
+hb i tb i
+hha ha 
+ha hai
+taha i
+hb i tb i
+hata i
+ta ta i
+the ch appearing in the box on the right corresponds to the probability that the answer to this question will be
+yes more important for our purposes is to recognize that when this is the outcome of the measurement coin b
+ends up h once again a consequence of the initial entanglement between coins a and b
+now let us see how teleportation is possible
+visualizing teleportation
+teleportation is accomplished with the aid of the extra systems a b in the entangled state b0 iab  system a starts
+in state sa i discussed above and this is the state they will teleport alice will ask a set of joint questions which
+together constitute a measurement about the state of the two coins in her possession a and a the first question
+she asks is whether these two coins are equal parts hh and t t  when the answer is yes we have
+hb i tb i
+hha ha  hta ta  
+ha hai
+taha i
+hbi tb i
+hata i
+ta ta i
+notice how the middle two rows are annihilated by this outcome because these rows correspond to a situation where
+the two coins are different  one h and one t  whereas we are asking if they are the same and the remaining
+rows are collapsed into a single row now if we look carefully or perhaps not even so carefully at the final
+diagram in this picture we will arrive at a rather startling conclusion we see that the state of bobs system b
+is now sb i  ch hb i  ct tb i that is the unknown state sa i originally on system a is now on bobs system
+b furthermore the question asked by alice had nothing whatsoever to do with the coefficients ch and ct  which
+determine what the original state of coin a was hence the parties remain completely ignorant of the state s yet
+that state has been successfully teleported
+we are not quite finished however since we would like for alice and bob to be able to teleport no matter which
+joint question ends up being the outcome of alices measurement because of the probabilistic nature of the quantum
+world she cannot choose the outcome of her measurement instead alice effectively asks all of the questions in her
+chosen measurement and then must wait for nature to decide which question she nature that is will choose as the
+outcome the nice thing about nature is that she will tell alice which question was chosen
+there must be four questions in a complete set of questions making up a joint measurement on coins a a let me
+illustrate with one other question how alice and bob can succeed with teleportation and then the reader is asked to
+believe that they can also succeed with either of the remaining two questions these can be treated in a very similar
+way to the one shown here 12 the second question is are coins a a equal parts t h and ht  the corresponding
+diagram is
+hb i tb i
+hta ha   hha ta  
+ha hai
+taha i
+hbi tb i
+hata i
+ta ta i
+here the first and last rows are annihilated by this outcome and the middle two are collapsed into a single row
+looking at the final diagram we see that coin b is left in the state ct hb i  ch tb i which has the coefficients ch
+and ct exchanged in comparison to the state s that we want it to be in however alice knows that this is the
+question to which nature answered yes and she can call bob on the telephone and inform him of this fact once
+he knows this is the question that was answered affirmatively all he needs to do is flip his quantum coin recall
+that this is a quantum coin which he cannot simply pick up and turn over instead what we mean by this is that he
+exchanges h for t and viceversa in turns out that this is a legitimate action that can be performed on a quantum
+coin and it will leave coin b in the desired state ct hb i  ch tb i  ct tb i  ch hb i  sb i notice also that they
+again remain completely ignorant of the coefficients ch and ct  nothing that has happened has provided them with
+any such information nor have they needed it it turns out that no matter which of the four outcomes of alices
+measurement she obtains once she informs bob of that outcome he will be able to perform a legitimate action on
+his quantum coin that will leave his coin in the state sb i all bob needs to know in order to choose which action
+to perform is the outcome of alices measurement alice needs only to send him two bits of information enough to
+choose between one of the four possible outcomes furthermore none of the four outcomes provides either party with
+any information about the coefficients ch and ct  so they both remain completely ignorant of the original state they
+have just successfully teleported
+the diagrams provide a great deal of insight into what is going on the crucial observation is the presence of two
+images of the state s resulting from the entanglement between coins a b alice does a measurement that while not
+acting independently on these two images does act differently on them as we alluded to above this measurement
+picks out different parts of s from the different images in a way such that all of s is preserved and none of it is
+repeated for example in the previous example the h part is preserved from the lowerright image and the t part
+from the upperleft one and viceversa in the example before that this suggests and it is indeed the case that for
+coins that have more than two sides a sixsided quantum die for example the parties can teleport the state of such
+an nsided coin by sharing a maximallyentangled state that is large enough to provide them with n images of the
+unknown state s then alice can design her measurement such that for each outcome 1 a different part of s is
+extracted from each image and 2 the whole state is preserved across the n images afterward bob can recover the
+state simply by rearranging the various parts which he will be able to do once alice informs him of the outcome of
+her measurement alices measurement does not provide them with any information about the original state they are
+attempting to teleport nor does bobs rearrangement require that they know anything about it in all cases they
+remain ignorant of the state they are teleporting the reader is encouraged to draw a diagram perhaps for coins
+with n  3 sides each see the following paragraph and follow through the argument to be sure it is clear how this
+is done the diagram will have n  n  n2 horizontal rows representing alices two nsided coins a a each row
+corresponding to one of the combinations of sides of these two coins hh ht hu hv    where h t u v   
+label the various sides and n vertical columns representing bobs coin b
+a complete measurement for the n  3 case will include n2  9 outcomes but an essentially complete understanding
+can be gained if the reader considers only the three outcomes corresponding to 1 hha ha   hta ta   hua ua  2
+hha ta   hta ua   hua ha  and 3 hha ua   hta ha   hua ta  where u is the third side of these coins the other six
+outcomes involve additional complications that i have not explained here but these outcomes are not crucial for the
+general kind of understanding we are aiming for here in this case the appropriate generalization of b0 is the state
+ha hb i  ta tb i  ua ub i and the three terms in this expression yield the three images needed for teleportation
+teleporting classical coins
+in this section i consider teleportation of classical coins which turns out to be possible using a method that bears
+a striking resemblance to the method used for quantum coins imagine that chloe prepares a classical coin labeled
+a as either h or t  and gives it to alice who is not allowed to look at the coin chloe also prepares classical coins
+a and b such that they are either hh both h or t t both t  she then gives coin a to alice and coin b to bob
+but again does not allow these parties to look at their coins alice now asks chloe the following two questions are
+coins a and a the same or are they different this pair of yesno questions represents a measurement as defined
+earlier on this pair of coins if chloe informs her they are the same then alice knows that coin b which is guaranteed
+to be the same as a is also the same as a if on the other hand chloe says coins a and a are different then coin b
+is also different from a alice now calls bob on the telephone and tells him to flip or dont flip in the first case
+a same as a she tells him not to flip while when a and a are different she tells him to flip after he follows her
+instruction bobs coin b will with certainty match coin a the state of coin a has been teleported onto coin b
+it is instructive to look at why the quantum case is astonishing while the classical one is rather mundane there
+are three important differences between classical and quantum teleportation the first difference has to do with the
+information that alice would need to transmit to bob in order to inform him of the state of coin a if she happened
+to know that state for a classical coin there are only two possibilities h or t  so she would need to transmit only
+one bit to bob this is the same amount of information that is actually transmitted when she tells him flip or
+dont flip  again two possibilities in contrast as was discussed at the beginning of section iii for the case of
+quantum coins it would require an infinite amount of information for alice to inform bob of the state of coin a
+whereas she only actually transmits two bits of information when informing him which of her four questions was the
+outcome of her measurement we see that the two cases classical vs quantum are dramatically different in terms of
+the amounts of information involved
+the second difference between these two cases is a bit more subtle in the classical case if alice were to cheat
+and actually look at coin a she would automatically know what state that coin is in and be able to tell bob what
+to do with his coin  turn it h or turn it t  another onebit message encompassing these two possibilities this
+absolutely will not work for a quantum coin which alice cannot simply look at to discover its state the reason
+is the following to begin with in contrast to a classical coin when alice looks at her quantum coin she invariably
+disturbs it in the process that is no matter what state the coin was in before she looked at it the state after she
+looks at it is with certainty given by the outcome of her measurement for example even if the state is equal parts
+h and t  before she asks if it is h or t  if the answer is h t  then the coin is now h t  or if it is h to begin
+with and she does a measurement that answers yes to the question is it equal parts h and t  then the state of
+the coin will now be equal parts h and t  hence when she looks at it she will get one of two answers those being
+the two possible outcomes of her measurement as to the state of the coin but if she looks at it wrong that answer
+will not tell her what the state was beforehand but only what it is now furthermore since she has now disturbed
+the state there is no way to go back and try again since the coin is now in a completely different state than the one
+she is trying to discover the moral of this story is twofold with quantum coins 1 dont bother trying to cheat
+and 2 theres no point in asking for a doover
+the third difference between the quantum and classical cases is even more subtle and is related to entanglement
+for which there is no counterpart with classical coins for classical teleportation chloe must tell alice whether or not
+coins a a are the same or different when these coins are classical and since chloe is the one that prepared them
+she is certainly able to do so however in the quantum case coins a b are entangled which means that neither one
+has a definite state of its own since coin a does not have a definite state the question whether coins a a are the
+same have the same state has no answer  even if we assume that chloe prepared coins a b in their entangled state
+there is nothing whatsoever that she or anyone else can say about the state of coin a except that it is entangled
+with b and has no definite state of its own it is worth noting that in both the quantum and classical cases coins a b
+are correlated with each other in ways that at first glance appear to be very similar  when one is measured and found
+to be h t  the other one will also be h t  nonetheless the correlations present in the entangled state b0 of
+quantum coins a b have no analog in the case of classical coins one reason is precisely what we have just discussed
+that the quantum coins can be correlated in this way even though neither of the individual coins has a definite state
+of its own a classical coin always has a definite state of its own
+conclusion
+i have described a novel way to visualize the processing of quantum information and used this picture to give a simple
+way to see how teleportation is possible the picture turns out to be useful beyond just providing an understanding
+of previously known phenomena teleportation however indeed it has given us a deeper understanding of the
+process of deterministically implementing nonlocal unitaries by local operations and classical communication when
+shared entanglement is available as a resource allowing us to construct new protocols 10 that go far beyond what
+was previously known to be possible 13 we have also used this picture to study the question of what entanglement
+resources are required to locally implement other nonlocal operations such as measurement protocols for the purpose
+of distinguishing sets of quantum states that are indistinguishable without the extra entangled resource 11
+acknowledgments
+this work has been supported in part by the national science foundation through grant no phy0456951 i am
+very grateful for numerous discussions with bob griffiths and others in his research group
+1 p w shor in proceedings of the 35th annual symposium on the foundations of computer science edited by s goldwasser
+ieee computer society los alamitos ca 1994
+2 e gerjuoy am j phys 73 521 2005
+3 c bennett et al phys rev lett 70 1895 1993
+4 m barrett et al nature 429 737 2004
+5 m riebe et al nature 429 734 2004
+6 d bouwmeester et al nature 390 575 1997
+7 a furusawa et al science 282 706 1998
+8 j f sherson et al nature 443 557 2006
+9 m nielsen and i chuang quantum computation and quantum information cambridge university press cambridge
+uk 2000
+10 l yu r b griffiths and sm cohen to be published
+11 s m cohen phys rev a 77 012304 1 2008
+12 the other two questions involve minus signs and are represented as 3 hha ha   hta ta  and 4 hha ta   hta ha 
+respectively multiplying one or the other of the states h and t by a minus sign is another valid quantum operation
+which bob can perform on his coin by doing so he effectively turns each of these cases into one of the two already shown
+explicitly in the paper when question 3 is answered affirmatively multiplication of tb by the minus sign is all that is
+needed to complete the teleportation and for question 4 the minus sign operation need only be followed by bob flipping
+his quantum coin
+13 b reznik y aharonov and b groisman phys rev a 65 032312 1 2002

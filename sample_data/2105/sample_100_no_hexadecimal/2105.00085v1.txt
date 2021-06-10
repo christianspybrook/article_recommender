@@ -1,0 +1,2384 @@
+arXiv:2105.00085v1 [quant-ph] 30 Apr 2021
+
+Guaranteeing Completely Positive Quantum
+Evolution
+Daniel Dilleya , Alvin Gonzalesb , Mark Byrda,b
+a
+
+Physics Department, Southern Illinois University, 1245 Lincoln Dr, Carbondale, IL
+62901
+b
+School of Computing, Southern Illinois University, 1230 Lincoln Dr, Carbondale, IL
+62901
+E-mail: quantumdilley@yahoo.com
+
+Guaranteeing Completely Positive Quantum Evolution
+
+2
+
+Abstract. In open quantum systems, it is known that if the system and environment
+are in a product state, the evolution of the system is given by a linear completely
+positive (CP) Hermitian map. CP maps are a subset of general linear Hermitian
+maps, which also include non completely positive (NCP) maps. NCP maps can arise
+in evolutions such as non-Markovian evolution, where the CP divisibility of the map
+(writing the overall evolution as a composition of CP maps) usually fails. Positive
+but NCP maps are also useful as entanglement witnesses. In this paper, we focus
+on transforming NCP maps to CP maps through composition with the asymmetric
+depolarizing map. We use separate asymmetric depolarizing maps acting on the
+individual subsystems.
+Previous work have looked at structural physical approximation (SPA), which
+is a CP approximation of a NCP map using a mixture of the NCP map with a
+completely depolarizing map. We prove that the composition can always be made
+CP without completely depolarizing in any direction. It is often possible to depolarize
+less in some directions. We give the general proof by using the Choi matrix and an
+isomorphism from a maximally entangled two qudit state to qubits. We also give
+measures that describe the amount of disturbance the depolarization introduces to the
+original map. Given our measures, we show that asymmetric depolarization has many
+advantages over SPA in preserving the structure of the original NCP map. Finally,
+we give some examples. For some measures and examples, completely depolarizing
+(while not necessary) in some directions can give a better approximation than keeping
+the depolarizing parameters bounded by the required depolarization if symmetric
+depolarization is used.
+
+1. Introduction
+Linear Hermitian maps play an important role in many areas of quantum information
+science. The evolution of an open quantum system is often clearly non-unitary and
+given by a linear Hermitian map [1]. For quantum technologies, knowledge of the error
+map allows one to construct efficient quantum error correction codes provided that some
+conditions are met [2]. Linear Hermitian maps can be categorized as completely positive
+(CP) or non CP (NCP) (defined below) and the latter can be used as entanglement
+witnesses [3, 4]. This paper focuses on transforming NCP maps to CP maps via
+composition with local asymmetric depolarizing maps. This transformation is important
+for research in areas such as entanglement, quantum error correction, and non Markovian
+evolution.
+When the system and bath are initially uncorrelated, the system is known to evolve
+under a completely positive map. This is a map, say Φ, that is not only positive
+(maps positive operators to positive operators) but is also positive when extended by
+an arbitrary identity map I, i.e., Φ → I ⊗ Φ to act on a larger system. However, it can
+be quite difficult to prepare the system such that it starts completely uncorrelated from
+its environment. For such cases, it is not known generally how to describe the system
+evolution with a CP linear Hermitian map [5–9]. Note, that it is possible in specific
+cases for the evolution of a system with initial correlations to the environment to be
+CP [10–12]. There is also the process tensor formalism [13, 14], which always results
+
+Guaranteeing Completely Positive Quantum Evolution
+
+3
+
+in CP linear Hermitian maps, but the process tensor acts on input maps and not on
+density matrices. In this paper, we are focused on mappings from density matrices to
+density matrices.
+There is also disagreement on the physicality of NCP evolution maps [15, 16].
+However, in the case of non-Markovian evolution the initial CP map tends to be non CP
+divisible (i.e., the map cannot be decomposed into CP maps for all arbitrary intermediate
+time steps) [13]. This implies that an intermediate evolution map can be NCP [17]. For
+this paper, we focus on transforming a given NCP map to a CP map and leave discussions
+of physicality of NCP maps for future work. Still, we require the domain of the NCP
+map to be restricted so that the output of the map is positive.
+The composition of the initial NCP map with an asymmetric depolarizing map
+may or may not be CP divisible depending on the strength of the depolarizer (with no
+depolarizing, the composition is equal to the initial NCP map, which is trivially not
+CP divisible and when we depolarize completely the composition is equivalent to the
+completely depolarizing map, which is CP divisible). Thus, this composition may be
+useful in the study of non-Markovian evolution.
+Positive but NCP maps do not preserve the positivity of some entangled states,
+but they do for all separable states. Consequently, they can be used as entanglement
+witnesses [18]. The most common witness is the negativity of the partial transpose which
+is a necessary and sufficient condition for detecting entanglement for 2×2 or 2×3 systems
+[3, 19]. To implement the partial transpose experimentally, Horodecki and Eckert
+introduced structural physical approximation (SPA), which is a CP approximation of a
+NCP map [20].
+In the SPA, the completely depolarizing map is mixed with the NCP map. This
+allows us to make the overall map CP. Note that this is equivalent to composing with a
+symmetric depolarization map. Symmetric depolarization destroys information equally
+in all directions, which preserves the direction of the Bloch, or polarization vector, given
+by the original NCP map. However, if we only focus on getting a CP approximation, in
+many situations, it is often unnecessary and worse to use symmetric depolarization. For
+example, if the NCP map only changes the state in one direction, we likely only need
+to depolarize in that direction to get a CP approximation.
+In quantum error correction, the goal is to correct for the effects of the error map.
+The known necessary and sufficient conditions for quantum error correction require that
+the error map is CP [21, 22]. In the case of NCP errors, these known CP necessary and
+sufficient conditions can lead to codes that are not in the domain of the error map,
+which means that the process as described is not physical [23]. Thus, the results of
+this paper may help with correcting for NCP error maps by transforming them via the
+asymmetric depolarizing map (ADM) into CP maps. Regardless, the code should still
+be in the domain of the original NCP map because a valid quantum state is necessary.
+Furthermore, this process of creating a CP composition via the ADM may reduce
+the amount of errors effecting the system. For example, if the NCP error map causes a
+repolarization error, i.e., it extends the Bloch vector of the input state, the asymmetric
+
+Guaranteeing Completely Positive Quantum Evolution
+
+4
+
+depolarizer that creates a CP composition will eliminate the repolarization error. In
+these situations, using the ADM is better than the symmetric depolarizer because the
+ADM offers more freedom for minimizing the errors occurring on the input state.
+In this paper, we investigate composing the asymmetric depolarizing map with a
+NCP map to get a CP composition. We give a novel proof for the complete positivity
+of the composition by using an isomorphism between a bipartite maximally entangled
+qudit and its qubit representation. From this isomorphism, the positivity of the Choi
+matrix is proven. In Section 4.2, we determine the amount of disturbance the ADM
+introduces and compare it with symmetric depolarization. Using certain measures, we
+provide examples that show the advantages of using ADM. In certain cases, while not
+necessary to achieve complete positivity, we can depolarize more in some directions
+such that complete positivity of the composition is achieved but with an even higher
+value for a measure that we denote M1 , (see Eq. (69)) than would have been attained
+by restricting depolarization in all directions to be less than or equal to the amount
+required by symmetric depolarization.
+2. Background
+Here we consider a combined initial system and environment state given by ρSE , where
+the system is under our control and the environment is not. The initial system state is
+given by the partial trace ρS = trE (ρSE ). Thus, the system evolves as
+E(ρS ) = trE (U ρSE U † ),
+
+(1)
+
+where U is a global unitary and E is a superoperator. In the case of an uncorrelated
+system and bath, the evolution of the system is given by a completely positive (CP)
+map [24]
+X
+E(ρS ) =
+Ei ρS Ei† .
+(2)
+i
+
+We drop subscripts when it is clear from context which subspace we are considering.
+E is CP iff E is positive for all positive inputs and the map E ⊗ In is positive for all
+positive inputs for all positive integers n [24]. Complete positivity is also given by the
+Choi matrix. Let E : Cn×n → Cm×m . Then the map is CP iff its Choi matrix
+CE =
+
+n−1
+X
+
+E(|iihi|) ⊗ |jihj|
+
+(3)
+
+ij=0
+
+is positive [24].
+If the system and environment are correlated, the system map may be given by a
+not completely positive map (NCP)
+X
+E(ρS ) =
+ηi Ei ρEi† ,
+(4)
+i
+
+Guaranteeing Completely Positive Quantum Evolution
+
+5
+
+where ηi ∈ {±1} and it is necessary that there ∃ηi = −1 [5–9, 24].
+The first representation of maps we gave in Eq. (2) and Eq. (4) is called the operator
+sum representation (OSR). In this paper, we also use the SMR representation [1] in
+describing the system evolution. In SMR, the evolution of the system is given by the
+A-matrix A acting on the vectorized form of ρS . This vectorization is given by
+X
+ X
+vec(ρs ) = vec
+cij |αi ihβj | =
+cij |αi βj i,
+(5)
+where |αi i and |βj i are basis vectors.
+multiplication
+
+Then, the action of A is given by matrix
+
+ρ0 = Aρ,
+
+(6)
+
+where we dropped the text vec for simplification of notation. In index notation, this is
+given by [1]
+ρ0r0 s0 = Ar0 s0 ,rs ρrs .
+
+(7)
+
+To preserve hermiticity and trace, A also satisfies
+As0 r0 ,sr = (Ar0 s0 ,rs )∗ ,
+
+(8)
+
+and
+X
+
+Ar0 r0 ,sr = δsr ,
+
+(9)
+
+r
+
+respectively.
+There is also the B-matrix B, which is related to A by
+Br0 r,s0 s ≡ Ar0 s0 ,rs .
+
+(10)
+
+The B-matrix is often used because the constraints on the A-matrix transfer nicely. The
+conditions are hermiticity
+Br0 r,s0 s = (Bs0 s,r0 r )∗ ,
+
+(11)
+
+and trace preserving
+X
+
+Br0 r,s0 r = δr0 s0 .
+
+(12)
+
+r
+
+Since B is Hermitian, it has an eigenvector/eigenvalue decomposition
+X
+Br0 r,s0 s ρrs =
+γ(α)Crα0 r ρrs (Csα0 s )∗ ,
+
+(13)
+
+α,r,s
+
+where the C are the eigenvectors and γ the eigenvalues of B. One may write the map
+as
+X
+Φ(ρ) = Bρ =
+ηα Aα ρA†α ,
+(14)
+α
+
+p
+where Aα ≡ |γ(α)|C α so that ηα = ±1. This shows us the relation between the OSR
+and SMR representation. It is known that the map is completely positive if and only if
+all ηα = 1.
+
+Guaranteeing Completely Positive Quantum Evolution
+
+6
+
+2.1. Structural Physical Approximation
+The problem of converting a NCP map to a CP map has been studied under structural
+physical approximation (SPA), which was first introduced by Horodecki and Ekert, and
+expanded upon by several authors [20, 25–34]. SPAs are often used to approximate the
+partial transpose map and detect entanglement [35–49]. In SPA, the NCP superoperator
+Φ is approximated by
+e
+Φ(ρ)
+= pLcomp (ρ) + (1 − p)Φ(ρ),
+
+(15)
+
+where Lcomp is the completely depolarizing channel, i.e., Lcomp (ρ) = tr(ρ)I/d, where d
+is the dimension of ρ, and 0 ≤ p ≤ 1. Notice that SPA is equal to the composition
+e = L1−p ◦ Φ,
+Φ
+
+(16)
+
+where the L1−p is the symmetric depolarization channel which scales the polarization
+vector n [50–53] by the factor 1 − p. The symmetric depolarization channel for a single
+qubit can be written in OSR as
+
+
+p
+3p
+(17)
+ρ + (σx ρσx + σy ρσy + σz ρσz ).
+L1−p (ρ) = 1 −
+4
+4
+We study the composition
+e0 = L0 ◦ Φ,
+Φ
+
+(18)
+
+where L0 performs asymmetric depolarization on each local state. The asymmetric
+depolarization channel for a single qubit can be written in OSR as
+1
+L(ρ) = [(1 + α + β + γ)ρ + (1 + α − β − γ)σx ρσx
+4
++(1 − α + β − γ)σy ρσy + (1 − α − β + γ)σz ρσz ] ,
+
+(19)
+
+where α, β, and γ are the amounts of depolarization in the x, y, and z directions,
+respectively. The asymmetric depolarizer does not generally preserve the direction of
+e0 can
+the Bloch vector of the input state. From the SPA, we immediately see that Φ
+be made CP with appropriate (symmetric) depolarization. However, in the SPA it is
+necessary that the systems are depolarized symmetrically and equally. Thus, it is not
+immediately clear that depolarizing the individual local systems differently leads to a
+CP composition.
+Using a qudit to qubit isomorphism, we prove that symmetric depolarization is
+not necessary. We also show that when using asymmetric depolarization, completely
+depolarizing is not necessary in any direction for any of the local systems for Eq. (18)
+to be CP. However, we also show that there exist NCP maps that are robust against
+depolarization and completely depolarizing is almost necessary.
+
+Guaranteeing Completely Positive Quantum Evolution
+
+7
+
+3. Extending the A-matrix to Higher Dimensions
+One might think that a valid A-matrix A is trivially extensible to higher dimensions in
+the SMR representation by A ⊗ I. However, this is not true as we show by a simple
+counter example below. If we want the tensor product of two A-matrices A1 ⊗A2 to have
+the correct action when operating on a two-qubit density operator, we need to focus our
+attention to the operator-sum representation. By definition, when an A-matrix acts on
+the vectorized form of a single qubit density operator, the resultant state is the same
+thing we would have gotten by sending the qubit through a channel expressed in OSR;
+that is,
+X
+(Aρv )d =
+Ei ρEi = E(ρ),
+(20)
+i
+
+where the subscripts d and v represent density and vector forms of an operator,
+respectively. An arbitrary two-qubit state has the form
+
+ff
+3
+X
+1
+AB
+I ⊗ I + ~r * ~σ ⊗ I + I ⊗ ~s * ~σ +
+tij σ̂i ⊗ σ̂j ,
+(21)
+ρ =
+4
+i,j=1
+which when acted upon by A1 ⊗ A2 becomes
+
+ff
+3
+X
+1
+AB
+ρ = A1 ⊗ A2 (I)v ⊗ (I)v + (~r * ~σ )v ⊗ (I)v + (I)v ⊗ (~s * ~σ )v +
+tij (σ̂i )v ⊗ (σ̂j )v
+4
+i,j=1
+(22)
+
+ff
+3
+X
+1
+=
+(I)v ⊗ (I)v + A1 (~r * ~σ )v ⊗ (I)v + (I)v ⊗ A2 (~s * ~σ )v +
+tij A1 (σ̂i )v ⊗ A2 (σ̂j )v .
+4
+i,j=1
+The reason we vectorized all of the 2 × 2 sub-matrices in this state is that it
+simulates Eq. (20) exactly on the subsystems. Thus, it is the same as if we derived the
+operator-sum decomposition for A1 and A2 and then acted upon the state ρAB with
+E1 (.) ⊗ E2 (.). A really nice structure occurs when calculating the resultant vectorized
+state for a two-qubit system. It turns out that if our state initially has the representation
+!
+A
+B
+ρAB =
+,
+(23)
+C D
+then the correct vectorized form of it is given by
+
+
+Av
+ B 
+ v 
+AB
+ρv = 
+.
+ Cv 
+Dv
+
+(24)
+
+Therefore, we can use the normal extension A1 ⊗ A2 if we vectorize our two-qubit state
+locally.
+
+Guaranteeing Completely Positive Quantum Evolution
+
+8
+
+Generally, we can simply perform a rotation on some general A-matrix W so that
+its rows act on ρv the same way A1 ⊗ A2 does. This equates to the exchange of the rows
+3 ↔ 5, 4 ↔ 6, 11 ↔ 13, and 12 ↔ 14, which is essentially a permutation matrix of the
+following form:
+
+
+1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+
+
+ 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 
+
+
+
+
+ 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 
+
+
+ 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 
+
+
+ 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 
+
+
+ 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 
+
+
+ 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 
+
+
+R=
+(25)
+.
+ 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 
+
+
+ 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 
+
+
+ 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 
+
+
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 
+
+
+
+
+ 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 
+
+
+ 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 
+
+
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+Therefore, if we want to use the same vectorization, specifically the one given in Eq. (24),
+for ρv when acted on by W, we simply apply the rotation R such that W → RWRT .
+By doing this, we can always use the vectorization in Eq. (24) to obtain the correct
+result. For any amount of qubits d, there exists a permutation matrix that will always
+lead to the same vectorization method for any A1 ⊗ A2 ⊗ * * * ⊗ Ad . Hence, the two-qubit
+A-matrix of A1 ⊗ A2 is given by RA1 ⊗ A2 R. Note that for this particular permutation
+matrix R = RT and R2 = I.
+The following example extends a single qubit A-matrix with identity to act on a
+two-qubit state.
+3.1. Example 1
+Let our initial two qubit state be the maximally mixed state
+1
+(26)
+ρAB = IAB .
+4
+Let us perform the maximal depolarization on system A and leave the system B alone.
+We might naturally assume that the global A-matrix can be calculated directly as
+
+
+1 0 0 1
+
+1
+0 0 0 0
+A = Lcomp ⊗ I = 
+(27)
+ ⊗ I.
+2 0 0 0 0
+1 0 0 1
+
+Guaranteeing Completely Positive Quantum Evolution
+
+9
+
+Then straight-forward calculation gives
+
+1
+Avec(ρAB ) = vec Φ+ .
+4
+1
+This result is obviously wrong. The correct output state is I. To find the
+4
+correct A-matrix for the extension to higher dimensions, we can use the OSR. Let
+P
+EL (ρ) = i Ei ρEi† correspond to the OSR of Lcomp . Then, the extended map is given
+by
+X
+EL ⊗ I(ρ) =
+(Ei ⊗ I)ρ(Ei† ⊗ I).
+(28)
+i
+
+Using Eq. (14) we can return to the SMR representation and get the B-matrix and the
+A-matrix. The correct B and A-matrices are
+X
+B = 1/4
+vec(σi ⊗ I)vec(σi ⊗ I)†
+i
+
+⇒
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1/2 0 0 0 0
+0 0 0 0 0 1/2 0 0 0 0
+0
+0 1/2 0 0 0
+0 0 0 0 0 0 1/2 0 0 0
+0
+0
+0 0 0 0
+0 0 0 0 0 0
+0 0 0 0
+0
+0
+0 0 0 0
+0 0 0 0 0 0
+0 0 0 0
+0
+0
+0 0 0 1/2 0 0 0 0 0 0
+0 0 0 1/2 0
+0
+0 0 0 0 1/2 0 0 0 0 0
+0 0 0 0 1/2
+0
+0 0 0 0
+0 0 0 0 0 0
+0 0 0 0
+0
+0
+0 0 0 0
+0 0 0 0 0 0
+0 0 0 0
+0
+0
+0 0 0 0
+0 0 0 0 0 0
+0 0 0 0
+0
+0
+0 0 0 0
+0 0 0 0 0 0
+0 0 0 0
+0
+1/2 0 0 0 0
+0 0 0 0 0 1/2 0 0 0 0
+0
+0 1/2 0 0 0
+0 0 0 0 0 0 1/2 0 0 0
+0
+0
+0 0 0 0
+0 0 0 0 0 0
+0 0 0 0
+0
+0
+0 0 0 0
+0 0 0 0 0 0
+0 0 0 0
+0
+0
+0 0 0 1/2 0 0 0 0 0 0
+0 0 0 1/2 0
+0
+0 0 0 0 1/2 0 0 0 0 0
+0 0 0 0 1/2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(29)
+
+4. NCP to CP
+Our goal of transforming a NCP map to a CP map is equivalent to going from an initial
+B-matrix with at least one negative eigenvalue to a final B-matrix with all positive
+eigenvalues. Equivalently, this is going from Eq. (4) to Eq. (2) in OSR.
+4.1. Composition: Asymmetric Depolarization
+We use composition with the asymmetric depolarization map, which is also known
+as generalized depolarization. Obviously, if we completely depolarize the composition
+
+Guaranteeing Completely Positive Quantum Evolution
+
+10
+
+would be a CP map because we always end up with the maximally mixed state.
+Asymmetric depolarization has been studied in other contexts in the past [54–57], but
+here we use it to transform a NCP map to a CP map without completely depolarizing.
+Note that the ADM is doubly stochastic, i.e., it preserves the identity matrix and it
+is trace preserving. We first give the proof for the single qubit A-matrix because the
+general case closely follows the same arguments.
+Theorem 1. Let the single qubit asymmetric depolarization map be given by
+L = Φ+ Φ+ + α Ψ+ Ψ+ + β Ψ− Ψ− + γ Φ− Φ−
+
+
+1+γ
+0
+0
+1−γ
+
+1
+α+β α−β
+0 
+ 0
+= 
+for α, β, γ ∈ [−1, 1].
+
+α−β α+β
+0 
+2 0
+1−γ
+0
+0
+1+γ
+
+(30)
+
+The asymmetric depolarizer in OSR is
+1
+L(ρ) = [(1 + α + β + γ)ρ + (1 + α − β − γ)σx ρσx
+4
++(1 − α + β − γ)σy ρσy + (1 − α − β + γ)σz ρσz ] .
+
+(31)
+
+Let A be a single qubit trace preserving NCP map. Then, L ◦ A is CP for appropriate
+nonzero values of α, β, and γ.
+Proof. This depolarizing map is completely positive when the following Fujiwara-Algoet
+[58] conditions are satisfied:
+|γ ± α| ≤ 1 ± β.
+
+(32)
+
+We can maximally depolarize by letting α = β = γ = 0. We use the Choi matrix
+representation. The action of L on the Pauli matrices are
+L(σx ) = ασx ,
+
+L(σy ) = βσy ,
+
+and
+
+L(σz ) = γσz .
+
+(33)
+
+The ADM leaves the identity matrixEDinvariant. Next, note that the unormalized
+e+ Φ
+e + is given by
+maximally entangled 2 qubit state Φ
+e+
+Φ
+
+ED
+
+e + = 1 (I ⊗ I + σx ⊗ σx − σy ⊗ σy + σz ⊗ σz ).
+Φ
+2
+
+(34)
+
+We can now get to the main proof. The Choi matrix for L ◦ A is given by
+1
+X
+
+1
+L ◦ A(|iihj|) ⊗ |iihj| = [L ◦ A(I) ⊗ I + L ◦ A(σx ) ⊗ σx
+2
+i,j=0
+− L ◦ A(σy ) ⊗ σy + L ◦ A(σz ) ⊗ σz ].
+
+(35)
+
+Guaranteeing Completely Positive Quantum Evolution
+
+11
+
+We then use the fact that A is trace preserving, the Pauli matrices are Hermitian, and a
+Hermitian matrix can be expanded in the basis of all possible tensors of Pauli matrices.
+We have
+A(I) = I +
+
+3
+X
+
+(ak σk )0
+
+(36)
+
+k=1
+
+and
+3
+X
+A(σj ) =
+(ak σk )j ,
+
+∀j ∈ {x, y, z},
+
+(37)
+
+k=1
+
+where the ak 's are arbitrary constants. Substituting Eq. (33), Eq. (36), and Eq. (37)
+into Eq. (35) we have
+"
+#
+" 3
+#
+3
+1
+X
+X
+X
+1
+L I+
+(ak σk )0 ⊗ I + L
+(ak σk )x ⊗ σx
+L ◦ A(|iihj|) ⊗ |iihj| =
+2
+i,j=0
+k=1
+k=1
+" 3
+#
+" 3
+#
+!
+X
+X
+−L
+(ak σk )y ⊗ σy + L
+(ak σk )z ⊗ σz
+k=1
+
+"
+
+k=1
+3
+X
+
+3
+X
+1
+= I⊗I+
+mk (ak σk )0 ⊗ I +
+mk (ak σk )x ⊗ σx
+2
+k=1
+k=1
+#
+3
+3
+X
+X
+mk (ak σk )z ⊗ σz
+mk (ak σk )y ⊗ σy +
+−
+k=1
+
+k=1
+
+1
+= (I ⊗ I + J),
+2
+
+(38)
+
+where mk corresponds to α, β, or γ and J is everything inside the square braces except
+the I ⊗ I term. The Choi matrix, Eq. (38), becomes positive as J goes to zero.
+We can arbitrarily shrink J asymmetrically by decreasing the values of α, β, and γ
+independently. Thus, from continuity, with nonzero values of α, β, and γ, L ◦ A is CP
+for some choice of α, β, and γ.
+Before proving the general case, we show an isomorphism from maximally entangled
+qudits to the basis of tensored Pauli matrices that we will use. This Theorem 2 will be
+used to rewrite the Choi matrix in Pauli matrix form.
+Theorem 2. For the unormalized maximally entangled two qudit state with qudit
+dimension d = 2n , where n represents the number of qubits, we have the relation
+e+
+Φ
+d
+
+ED
+
+e+ =
+Φ
+d
+
+d−1
+X
+
+1
+|iiihjj| =
+di
+i,j=0
+
+3
+X
+
+wi1 ,i2 ,...,in (σi1 ,i2 ,...,in )⊗2
+
+1 ,i2 ,...,in =0
+
+3
+
+1X
+=
+wi (σi )⊗2 ,
+d
+i=0
+
+(39)
+
+Guaranteeing Completely Positive Quantum Evolution
+
+12
+
+where i represents the identity or x, y or z for the Pauli matrix, the subscript on the i
+represents the subspace, i = i1 , i2 , ..., in , (σi1 ,i2 ,...,in )⊗2 = (σi1 ⊗ σi2 ⊗ ... ⊗ σin )⊗2 , and
+wi1 ,i2 ,...,in = { + 1 for an even number of σ2 s in σi1 ,i2 ,...,in
+− 1 for an odd number of σ2 s in σi1 ,i2 ,...,in }.
+
+(40)
+
+We refer to the right hand side of Eq. (39) as the Pauli Form. Note that σ0 = I, σ1 = σx ,
+σ2 = σy , and σ3 = σz .
+Proof. The proof relies on figuring out the spectral decomposition of the Pauli Form.
+The ricochet property states
+X
+X
+M ⊗ I |iii =
+I ⊗ M T |iii .
+(41)
+i
+
+i
+
+E
++
+e
+Acting on the right of the Pauli Form with Φd , we get
+1
+2n
+
+3
+X
+
+(wi1 ,i2 ,...,in σi1 ,i2 ,...,in ⊗ σi1 ,i2 ,...,in )
+
+i1 ,i2 ,...,in =0
+
+1
+= n
+2
+=
+
+=
+
+1
+2n
+
+=2
+
+|iii
+
+i=0
+
+3
+X
+
+(wi1 ,i2 ,...,in I ⊗
+
+σi1 ,i2 ,...,in σiT1 ,i2 ,...,in )
+
+i1 ,i2 ,...,in =0
+3
+X
+
+(I ⊗ I)
+
+i1 ,i2 ,...,in =0
+
+1 n
+(4 )
+2n
+n
+
+d−1
+X
+
+d−1
+X
+
+d−1
+X
+
+d−1
+X
+
+|iii
+
+(42)
+
+i=0
+d−1
+X
+
+|iii
+
+i=0
+
+|iii
+
+i=0
+
+|iii .
+
+(43)
+
+i=0
+
+Note that the ± signs in the definition of w comes from the relation σyT = −σy .
+E
+e + is an eigenvector of the Pauli form. Also, keep in mind that
+Therefore, Φ
+d
+D
+E
+e+ Φ
+e + = d = 2n . Thus, we can write our Pauli form in its spectral decomposition as
+Φ
+1
+di
+
+3
+X
+
+e+
+wi1 ,i2 ,...,in (σi1 ,i2 ,...,in )⊗2 = Φ
+d
+
+1 ,i2 ,...,in =0
+
+ED
+
+e+ +
+Φ
+d
+
+X
+
+λi |λi ihλi | ,
+
+(44)
+
+i
+
+E
+
+e + } are orthogonal eigenvectors. Next, we
+where λi are real eigenvalues and {|λi i , Φ
+d
+show that the Pauli Form is a pure state and thus the λi are all zero. Taking the square
+of both sides of Eq. (44) and then taking the trace, we have
+"
+"
+#2 
+#2 
+3
+ED
+X
+X
+1
+e+ Φ
+e+ +
+wi ,i ,...,i (σi ,i ,...,i )⊗2  = tr  Φ
+λi |λi ihλi |  .
+tr 
+d
+d
+d i ,i ,...,i =0 1 2 n 1 2 n
+i
+1 2
+
+n
+
+(45)
+
+Guaranteeing Completely Positive Quantum Evolution
+
+13
+
+Since the Pauli matrices are traceless, Eq. (45) simplifies to
+#
+"
+"
+#
+3
+ED
+X
+X
+1
+e+ Φ
+e+ +
+I ⊗ I = tr 2n Φ
+⇒ tr 2
+λ2i |λi ihλi |
+d
+d
+d i ,i ,...,i =0
+i
+n
+1 2
+X
+1 n n
+⇒ n 4 4 = 4n +
+λ2i
+4
+i
+X
+n
+n
+⇒4 =4 +
+λ2i
+i
+
+⇒ λi = 0.
+
+(46)
+
+Therefore, we must have
+1
+di
+
+3
+X
+
+e+
+wi1 ,i2 ,...,in (σi1 ,i2 ,...,in )⊗2 = Φ
+d
+
+ED
+
+e+ .
+Φ
+d
+
+(47)
+
+1 ,i2 ,...,in =0
+
+Remark. We can find a unitary relation between k pairs of maximally entangled qubits
+E⊗k
+E
++
+e+
+e
+(ebits) Φ
+and
+a
+maximally
+entangled
+bipartite
+qudit
+state
+Φ
+. Specifically,
+2
+d
+
+e+
+U Φ
+2
+
+E⊗k
+
+E
+e+ ,
+= Φ
+d
+
+(48)
+
+where U Eis a SWAP operator and d = 2k . We only need to consider k ≥ 2. Notice
+e + = Pd−1 |iii is isomorphic to the identity Pd−1 |iihi|. When there is an even
+that Φ
+d
+
+i=0
+
+i=0
+
+number of ebits, Eq. (48) implies
+X
+Ueven
+i1 , i1 , i2 , i2 , * * * , ik/2 , ik/2 ik/2+1 , ik/2+1 , ik/2+2 , ik/2+2 , * * * , ik , ik = I
+
+(49)
+
+i∈{0,1}
+
+and when there is an odd number of ebits,
+X
+Uodd
+i1 , i1 , i2 , i2 , * * * , ibk/2c+1 ibk/2c+1 , ibk/2c+2 , ibk/2c+2 , * * * , ik , ik = I,
+
+(50)
+
+i∈{0,1}
+
+where the subscript k represents the k th ebit pair and the two situations require a different
+form of SWAP. Keep in mind that U is done before applying the isomorphism to the
+E⊗k
+e+
+state Φ
+so we can swap any of the systems. The idea is to make the string in the
+ket and the bra equal. Let n = 2k be the number of qubits and the qubits in the outer
+product be labeled as
+n ED n
++ 1, * * * , n − 1, n .
+(51)
+1, 2, * * * ,
+2 2
+For an even number of ebits,
+Ueven = SWAP(n/2),n−1 SWAP[(n/2)−2],n−3 * * * SWAP4,[(n/2)+3] SWAP2,[(n/2)+1] .
+
+(52)
+
+Guaranteeing Completely Positive Quantum Evolution
+
+14
+
+For an odd number of ebits, we first perform
+U1 = SWAP[(n/2)+1],[(n/2)+2,(n/2)+3,*** ,n] .
+
+(53)
+
+This leads to
+i1 , i1 , i2 , i2 , * * * , ibk/2c , ibk/2c , ibk/2c+1 ibk/2c+2 , ibk/2c+2 , * * * , ik , ik , ibk/2c+1 .
+
+(54)
+
+Note that the qubit labels reset after U1 . Then perform
+U2 = SWAP[(n/2)−1],n−2 SWAP[(n/2)−3],n−4 * * * SWAP4,[(n/2)+3] SWAP2,[(n/2)+1] .
+
+(55)
+
+Thus, for an odd number of ebits
+Uodd = U2 U1 .
+
+(56)
+
+Theorem 2 and the remark might be useful in other problems. We can now prove
+our main theorem.
+Theorem 3. Any n qubit trace-preserving NCP map ANCP can be made CP by
+composing it with a map that performs asymmetric depolarization on each qubit with
+appropriate nonzero values of αi , βi , and γi , where i represents the ith qubit being
+depolarized.
+Proof. We again make use of the Choi matrix. For a n qubit system, we perform the
+ADM on each qubit individually. This action is equivalent to performing
+L0 = Πni=1 Li ⊗ I,
+
+(57)
+
+where i represents the ith qubit. We can maximally depolarize by letting αi = βi =
+γi = 0. This depolarizing map is completely positive when the following inequalities are
+satisfied:
+|γi ± αi | ≤ 1 ± βi .
+
+(58)
+
+The action of Li on the Pauli matrices are
+Li (σx ) = αi σx ,
+
+Li (σy ) = βi σy ,
+
+and
+
+Li (σz ) = γi σz .
+
+(59)
+
+The identity matrix is left invariant. A is a mapping from n qubits to m qubits (m may
+n
+n
+m
+m
+or may not equal n). Thus, A : C2 ×2 → C2 ×2 . Let d = 2n . The Choi matrix for
+the composition is
+d−1
+X
+i=0
+
+1
+L ◦ A(|iihj|) ⊗ |iihj| =
+d
+
+3
+X
+
+0
+
+wi1 ,i2 ,...,in L0 ◦ A(σi1 ,i2 ,...,in ) ⊗ σi1 ,i2 ,...,in
+
+i1 ,i2 ,...,in =0
+3
+
+1X
+wi L0 ◦ A(σi ) ⊗ σi
+=
+d
+i=0
+
+
+3
+X
+1
+= L0 ◦ A(I) ⊗ I +
+wi L0 ◦ A(σi ) ⊗ σi  ,
+d
+i6=0
+
+(60)
+
+Guaranteeing Completely Positive Quantum Evolution
+
+15
+
+where 0 = 00...0, i = i1 , i2 , ..., in , we used Theorem 2 on the right hand side of the first
+line, and we explicitly separated the identity term on the last line. Like before, since A
+is trace preserving, and Hermitian matrices can be expanded in the basis of tensor of
+Pauli matrices including identity,
+
+
+3
+X
+(61)
+A(I) = k I +
+(aj σj )0 
+j6=0
+
+and
+
+
+
+3
+X
+A(σi ) =  (aj σj )i  ,
+
+∀i 6= 0,
+
+(62)
+
+j6=0
+
+where k = 2n /2m is a positive nonzero constant to preserve the trace (A is trace
+preserving) and the aj 's are arbitrary constants. Substituting Eq. (59), Eq. (61),
+and Eq. (62) into Eq. (60), we have
+
+
+n −1
+2X
+3
+X
+1
+wi L0 ◦ A(σi ) ⊗ σi 
+L0 ◦ A(|iihj|) ⊗ |iihj| = L0 ◦ A(I) ⊗ I +
+d
+i=0
+i6=0
+
+
+ 
+
+
+
+3
+3
+X
+X
+X
+1
+k
+wi L0  (aj σj )i  ⊗ σi 
+(aj σj )0  ⊗ I +
+= L0 I +
+d
+k
+j6=0
+i6=0
+j6=0
+
+
+
+
+3
+3
+X
+
+
+k
+1 X X
+mj (aj σj )0  ⊗ I +
+wi
+mj (aj σj )i ⊗ σi 
+= I +
+d
+k
+j6=0
+
+k
+= (I ⊗ I + J),
+d
+
+i6=0
+
+j6=0
+
+(63)
+
+where the mj 's are the products of the appropriate αi , βi and γi constants from the
+local ADMs and J is everything in between the square braces that is not I ⊗ I. The
+Choi matrix Eq. (63) becomes positive as J goes to zero. We can arbitrarily shrink J
+asymmetrically by decreasing αi , βi , and γi independently. Thus, from continuity, with
+nonzero values of αi , βi , and γi , L0 ◦ A is CP.
+Remark: Keep in mind that there exist NCP maps that are robust to asymmetric
+and symmetric depolarizers. This means that the parameters α, β, and γ must be
+extremely close to zero in order to obtain a CP composition with the NCP A-matrix.
+For instance, if we define a NCP map to be
+
+
+κ
+κ
+κ
+κ
+ κ
+0
+κ
+0 
+
+
+A=
+(64)
+,
+κ
+0
+0 
+ κ
+1 − κ −κ −κ 1 − κ
+
+Guaranteeing Completely Positive Quantum Evolution
+16
+√
+where κ > 1/2(3 − 5), we see that the parameters of the asymmetric depolarizer
+must be less than or equal to 1/κ to get a CP composition L ◦ A. To see this,
+we completely depolarize in two directions and determine the constraint on the third
+direction. The eigenvalues of the composition with L(1/κ, 0, 0) and L(0, 0, 1/κ) contain
+one negative value and the composition with L(0, β, 0) requires β = 1/κ for a CP
+composition, which gives the eigenvalues of {1, 1, 0, 0} for the composition. Therefore,
+maps where κ becomes increasingly large certainly do not capture any advantages over
+the symmetric depolarizer. We can look at the individual directions separately because
+we are depolarizing asymmetrically.
+Since there exists initial states outside the domain whose eigenvalues of their
+resultant states blow up to ±∞ as κ → ∞, we need to check the validity of this
+map. Just like the asymmetric depolarizer, we can define a translation of the original
+state's Bloch vector with the A-matrix
+
+
+2 + z0 0 0
+z0
+
+1
+ x0 − iy0 2 0 x0 − iy0 
+(65)
+T = 
+
+2  x0 + iy0 0 2 x0 + iy0 
+−z0
+0 0 2 − z0
+to perform the action
+{x, y, z} −→ {x + x0 , y + y0 , z + z0 }
+
+(66)
+
+on the initial Bloch vector [59]. This transformation will obviously be NCP for any nonzero translation vector {x0 , y0 , z0 } since the image Bloch sphere is not fully contained
+in the initial Bloch Sphere. This translation matrix only has a valid physical domain
+when the translation vector has a magnitude less than or equal to 2, even though it is
+a valid A-matrix for values outside of this interval. This begs the question of whether
+or not (64) represents a valid mapping of our qubit. The answer to this question is yes,
+it is valid. Figure 1 illustrates the action of this map when κ = 1.
+When κ → ∞, we see that the state
+ρ=
+
+
+
+1
+1
+I − σx −→ A(ρ) = I − σz
+2
+2
+
+(67)
+
+always leads to a valid state. The domain for the output state increases as κ decreases. In
+the limit as κ → ∞, the only valid output is the |1i-state given by the transformation in
+(67). So this valid A-matrix can have an operator-sum decomposition with eigenvalues,
+in the limit, that blow up to ±∞ while illustrating true robustness to the asymmetric
+depolarizing map. It is very interesting how there exists a mapping that is so resistant
+to heavy noise in all directions, yet the magnitude of the Bloch vector for the |−i-state is
+left invariant at the end of that mapping. Future research can look into the physicality
+of this map such as the global evolution on some correlated state that would induce
+such a transformation on one of the subsystems.
+
+Guaranteeing Completely Positive Quantum Evolution
+
+17
+
+Figure 1. On top left, the length of the initial Bloch vector is r = 1/6 and it increases
+in length by intervals of 1/6 from left to right. So the bottom right Bloch sphere has
+a radius of 1. We fix κ = 1. We see that as the length of the initial Bloch vector
+increases, there is more intersection between the Bloch sphere and its image. Thus,
+we only need to consider when r = 1 to determine that the transformation is always
+possible with increasing κ.
+
+4.2. Asymmetric Depolarization Map Measures
+From this point on, we let L = Πni=1 Li ⊗ I or the single qubit ADM. When we perform
+ADM, we generally change the state's Bloch vector. Therefore, it is important to
+measure how much the state is changed. There are multiple measures we can use.
+First, we give our ADM measure M1
+1
+M1 := (|α| + |β| + |γ|),
+(68)
+3
+which is basically just an averaging over the absolute values of the depolarizing
+parameters. The range of M1 is 0 ≤ M1 ≤ 1. At the two extremes, we have total
+loss of the Bloch vector and the magnitude of the Bloch vector unchanged for the values
+of 0 and 1, respectively. For n qubits, this measure generalizes in the obvious way to
+!
+3n
+1 X
+M1 :=
+|ci | ,
+(69)
+3n i=1
+where the ci 's are the depolarization parameters. The M1 measure for the symmetric
+depolarizing channel is simply given by a single depolarizing parameter that we can call
+τ that is between 0 and 1.
+For single qubits, we also have the closed form for measures using fidelity and the
+diamond norm. We can calculate the fidelity between the initial state and the final state
+for the asymmetric depolarizer when it is composed with some error map A. Define the
+matrix
+
+
+α 0 0
+
+
+D =  0 β 0 .
+(70)
+0 0 γ
+
+Guaranteeing Completely Positive Quantum Evolution
+We can define two fidelity measures. The first fidelity is
+
+ff
+p
+1
+0
+1 + ~r * D~r + (1 − ~r * ~r)(1 − ~r 0 * D2~r 0 ) ,
+F (ρ, L ◦ Aρ) =
+2
+
+18
+
+(71)
+
+where ~r is the Bloch vector of the initial state ρ and ~r 0 is the Bloch vector of the
+state Aρ. This fidelity is good for error correction since we would reduce the effect
+of the composition while we ensuring complete positivity of the composition. For the
+symmetric depolarizer, D = τ I. If we are interested in approximating the A-matrix
+while ensuring a CP composition with the asymmetric depolarizer, then we want to use
+the calculation
+
+ff
+p
+1
+0
+0
+1 + ~r * D~r + (1 − ~r 0 * ~r 0 )(1 − ~r 0 * D2~r 0 ) .
+(72)
+F (Aρ, L ◦ Aρ) =
+2
+When comparing the gate fidelity of two Pauli channels, the general equation is
+given by the diamond norm [60] and has the analytical form of
+X (1)
+(2)
+(73)
+||E1 (ρ) − E2 (ρ)|| =
+|κi − κi |
+i
+
+where each channel has the form
+X (j)
+X (j)
+Ej (ρ) =
+κi σ̂i ρσ̂i such that
+κi = 1 for j = 1, 2.
+i
+
+(74)
+
+i
+
+In the case where E1 (ρ) is the asymmetric depolarizing channel and E2 (ρ) is the
+symmetric depolarizing channel, we have that the diamond norm ||E1 (ρ) − E2 (ρ)|| is
+equal to
+
+ff
+1
+|α + β + γ − 3τ | + |α − β − γ + τ | + |α − β + γ − τ | + |α + β − γ − τ | . (75)
+4
+The parameters α, β, and γ describe the asymmetric depolarizer and the parameter
+τ describes the symmetric one. The distance between the asymmetric depolarizer and
+symmetric depolarizer gives us a measure of the advantage of the asymmetric depolarizer
+because the performance of the asymmetric depolarizer is generally lower bounded by
+the symmetric depolarizer.
+4.3. ADM Composition vs SPA: Information Loss
+We would like to show that the composition with the asymmetric depolarizer is generally
+better than the SPA at retaining information. As was shown in the introduction, the
+SPA is equivalent to composition with a symmetric depolarizer. The natural way to
+compare the two compositions would be to use mutual information and show that
+I(L ◦ A(ρ); A(ρ)) ≥ I(Lsymm ◦ A(ρ); A(ρ)), where L is the asymmetric depolarizer,
+Lsymm is the symmetric depolarizer, A is the input NCP A-matrix, and I(A; B) is the
+mutual information for the systems A and B. However, since this calculates the mutual
+information for product states, i.e., A and B are not correlated, these values are zero.
+Instead, we bound the linear entropy SL (ρ) = 1 − tr(ρ2 ) [61].
+
+Guaranteeing Completely Positive Quantum Evolution
+
+19
+
+Lemma 1. Let A be a trace preserving NCP map; τ be the depolarization parameter for
+Lsymm ; ci 's be the depolarization parameters for L; and L ◦ A and Lsymm ◦ A be CP with
+the minimum depolarization required (minimum depolarization is given by maximizing
+M1 with ci ≥ τ ∀i). Then, the linear entropy is bounded by
+SL (Lsymm ◦ A(ρ)) ≥ SL (L ◦ A(ρ)) ∀ρ.
+
+(76)
+
+Remark. If the depolarization parameters are not constrained by ci ≥ τ ∀i, the result
+does not hold as shown by the counter examples in Subsection 5.2. Also, note that the
+linear entropy is a good measure for qubits, but can be a misleading measure for higher
+dimensional states due to the possible distribution of the eigenvalues.
+Proof. The minimum depolarization for the ADM composition L◦A can be bounded by
+going back to the positivity of the Choi matrix of the compositions. Notice that the Choi
+matrix for the SPA is equivalent to the Choi matrix for the ADM composition when all
+the depolarizing parameters are equal (this must be true because when the depolarizing
+parameters are all equal we are symmetrically depolarizing). Then, the composition is
+CP for some optimal symmetric depolarization value c. At this value, the purity of the
+output of the two compositions are the same and the symmetric depolarization used for
+the SPA is optimal. Since ci ≥ τ ∀i, the purity of the output of the ADM composition
+must be greater than or equal to the purity of the output of the SPA and the bound
+follows.
+4.4. Composition with ADM as a Structural Physical Approximation
+Can the composition L ◦ A be considered a structural physical approximation of the
+NCP A-matrix? Structural physical approximations should preserve the structure of the
+original A-matrix by preserving the direction of the Bloch vector of the output of the
+original NCP A-matrix [25]. The ADM does not in general preserve the direction of the
+Bloch vector. When the ADM depolarizes symmetrically, the composition is completely
+equivalent to the SPA if local depolarizers are also used for the SPA.
+5. Examples
+We give some examples of NCP maps and their corresponding ADMs that convert them
+to CP maps. The first two examples are detailed and for the last two examples we just
+give the corresponding ADM. Note that we let L = L(α, β, γ) and T = T (x0 , y0 , z0 )
+(the translation matrix defined in Eq. (65)).
+5.1. Example 2
+This example illustrates the advantage of asymmetric over symmetric depolarization
+with regards to making CP maps. In general, a single qubit trace-preserving map has
+
+Guaranteeing Completely Positive Quantum Evolution
+
+20
+
+the form [1]
+
+
+
+A=
+
+
+a
+b
+b∗
+d
+e
+f
+g
+h
+∗
+∗
+∗
+e
+g
+f
+h∗
+∗
+1 − a −b −b 1 − d
+
+For this example, let us use the NCP translation
+
+5
+
+1 0
+T (0, 0, 1/2) = 
+4 0
+−1
+
+
+
+
+.
+
+
+(77)
+
+matrix
+0
+4
+0
+0
+
+0
+0
+4
+0
+
+1
+0
+0
+3
+
+
+
+
+
+
+
+(78)
+
+so that the Bloch sphere gets shifted up from its initial position along the z-axis by
+1/2 as seen in Fig. (2). Intuitively, the asymmetric depolarizer that will work best (as
+given by our measures in Section 4.2), for making this a valid CP map by composition,
+is given by shrinking
+p the z component of the Bloch vector by 2/3. Then, the α and β
+we get a CP composition when we depolarize p
+the z
+components are 2/3. Note thatp
+component by 2/3 and α, β ∈ [0, 2/3]. We obviously would choose α = β = 2/3
+because we would like to depolarize by the least amount possible.
+The symmetric depolarizer that will work best, for making this a valid CP map by
+composition, is given by shrinking the z component of the Bloch vector by 2/3 which
+also shrinks the x and y components by the same proportion. From our M1 measure
+we can see that the ADM composition performs better than the SPA. M1 = 2/3 for the
+√
+symmetric depolarizer compared to M1 = (2 + 2 6)/9 ≈ 0.767 > 0.667 for the ADM.
+In terms of the bloch sphere, the ADM shrinks the image space of the transpose into
+an ellipsoid, while the symmetric depolarizer retains the image shape of a sphere. The
+volume of the image space for the ADM composition is always greater than the volume
+of the SPA image space. However, the symmetric depolarizer maintains the shape of
+the image space of the orignal NCP map, but the ADM does not.
+The eigenvalues of the resultant dynamical B-matrix for
+p
+p
+L( 2/3, 2/3, 2/3) ◦ T (0, 0, 1/2)
+(79)
+are {5/3, 1/3, 0, 0} and for
+p
+p
+L( 2/3, 2/3, 2/3)
+(80)
+√
+√
+are {(1/6)(5 + 2 6), 1/6, 1/6, (1/6)(5 − 2 6)}. For the SPA, the eigenvalues of the
+resultant dynamical B-matrix
+L(2/3, 2/3, 2/3) ◦ T (0, 0, 1/2)
+√
+√
+are {(1/6)(5 + 17), 1/3, (1/6)(5 − 17), 0} and for
+L(2/3, 2/3, 2/3)
+
+(81)
+
+(82)
+
+Guaranteeing Completely Positive Quantum Evolution
+
+21
+
+Figure 2. The first picture illustrates the action of the NCP translation map on an
+arbitrary qubit on the Bloch sphere. The lighter image represents the original Bloch
+sphere and the darker sphere is the image of the translation map along the z-axis.
+The second image demonstrates how the ellipsoid positivity domain of the final state
+becomes completely inscribed inside the original Bloch sphere after the asymmetric
+depolarizing map composes with the translation map. Therefore, we have a valid CP
+map in the end.
+
+are {(3/2, 1/6, 1/6, 1/6)}.
+Notice how both the composition map and also the L map must have non-negative
+eigenvalues to have a valid implementable protocol. In general, the minimum degree
+of depolarization can be obtained in a numerical optimization program that maximizes
+the M1 measure in Eq. (68) while leaving both sets of eigenvalues non-negative. A
+calculation of the fidelity in Eq. (71) between initial pure states and final states for the
+ADM composition and the SPA are given by
+
+√
+√
+1 
+8 + 6 + 2 cos(θ) + (2 − 6) cos(2θ) ,
+(83)
+FADM (ρ, L ◦ T (ρ)) =
+12
+and
+
+
+1
+FSPA (ρ, L ◦ T (ρ)) =
+5 + cos(θ)
+6
+
+(84)
+
+which are only dependent on the polar angle θ. The difference of the ADM composition
+√
+and SPA fidelity measures is given by (1/6)( 6 − 2)sin(θ)2 which is always greater than
+or equal to zero. Thus, the ADM is better at state preservation than the symmetric
+depolarizer as illustrated in Figure (3). The gate fidelity in Eq. (75) between the two
+√
+depolarizers is (1/3)( 6 − 2) ≈ .15. Interesting enough, this value is double the maximum difference of the fidelity of the best ADM composition and SPA set-ups.
+
+5.2. Example 3
+If we allow the asymmetric depolarizer to depolarize more in some directions than the
+symmetric depolarizer, we can get even higher values for the M1 measure in some cases.
+
+Guaranteeing Completely Positive Quantum Evolution
+
+22
+
+Fidelity
+1.00
+0.95
+0.90
+0.85
+0.80
+0.75
+0.70
+0.5
+
+1.0
+
+1.5
+
+2.0
+
+2.5
+
+3.0
+
+θ
+
+Figure 3. The solid line gives the fidelity, with respect to the parameter θ, between
+the output of the ADM composition with the initial state, when the initial states are
+pure. The dashed line represents the fidelity for the SPA with the initial state. The
+lowest achievable fidelity in each case is 2/3 which occurs at θ = π, but for any other
+value of θ corresponding to non-unit fidelity, we see that the ADM composition has a
+higher fidelity than the SPA.
+
+Take for example the following valid NCP map given by
+
+√
+√
+0
+0 1 − 1/ 2
+−1/ 2
+√
+ −1/√2 −1 0
+−1/ 2
+
+√
+√
+A=
+0 −1 −1/ 2
+ −1/ √2
+√
+1 + 1/ 2 0
+0
+1/ 2
+
+
+
+
+,
+
+
+(85)
+
+√ √
+which has an associated B-matrix with eigenvalues 2, − 2, 2, and 0. The optimal
+symmetric depolarizer that makes the composition CP is given by the parameter
+√
+κ = 1/(1 + 2 2).
+(86)
+It turns out that for any α, β, γ ≥ κ for the asymmetric depolarizer, and not all equal to
+κ, we cannot make the composition CP. An optimization shows that we can completely
+depolarize in the x and z direction, while leaving the y direction unchanged; that is,
+α = 0 = γ and β = 1.
+
+(87)
+
+The M1 measure is optimal and higher for the asymmetric depolarizer, even though we
+depolarized more than the symmetric depolarizer in two of the directions. To maintain
+complete positivity of the composition map while the magnitude of the depolarizing
+is less than or equal to the symmetric depolarizer in each direction, we must include
+negative values for one or two of the asymmetric depolarizing parameters. Depending
+on what measure you choose to use, M1 measure or fidelity, you may want to depolarize
+more in some directions and less in others over the symmetric depolarizer.
+In this next example, our M1 measure can only be optimized when we depolarize
+more than the symmetric depolarizer in two of the directions. Define the NCP map
+
+Guaranteeing Completely Positive Quantum Evolution
+with the evolutionary operator
+
+
+
+A=
+
+
+√
+1 − 1/ 2
+√
+−1/ 2
+√
+−1/ 2
+√
+1/ 2
+
+0
+1
+0
+0
+
+23
+
+√
+0 −1/ 2
+√
+0 −1/ 2
+√
+1 −1/ 2
+√
+0 1 + 1/ 2
+
+
+
+
+
+
+
+(88)
+
+√
+which has an associated B-matrix with the eigenvalues {1 ± 2, ±1}. This map will
+√
+translate the original Bloch sphere in the negative x and z directions by − 2 so that
+the original and image spheres touch at one point, i.e., there is only a single state in the
+domain defined by the state
+√
+(89)
+ρ = (1/2)[I + (1/ 2)(σ̂x + σ̂z )]
+on the domain and σ̂y ρT σ̂y on the image. If we symmetrically depolarize with parameter
+κ = 1/3,
+
+(90)
+
+then the SPA becomes completely positive. The M1 measure is equal to 1/3 in this case,
+but we can obtain a value of (1/3) ∗ 1.309 when we use an asymmetric depolarizer with
+parameters
+α = γ = 49/200 < κ and β = 819/1000 > κ.
+
+(91)
+
+It turns out that we can only achieve an M1 measure of up to 1/3 when |α|, |β|, |γ| ≥
+1/3. You can see this by slightly bumping the absolute value of each parameter
+consecutively by a small value above 1/3 and noticing that the composition map becomes
+NCP. Therefore, it is necessary to depolarize more than the symmetric depolarizer in
+two of the directions in order to achieve an advantage for the ADM. We also achieve a
+higher fidelity of Eq. (71) in this case (151/400 = 0.3775) than we do in the symmetric
+one (1/3).
+5.3. Example 4
+Let
+
+ANCP
+
+
+0
+0
+
+=
+0
+1
+
+0
+0
+x
+0
+
+0
+x
+0
+0
+
+
+1
+0
+
+,
+0
+0
+
+BNCP
+
+
+0
+0
+
+=
+0
+0
+
+0
+1
+x
+0
+
+0
+x
+1
+0
+
+
+0
+0
+
+,
+0
+0
+
+where x > 1. Then, the composition L(1/x2 , −1/x2 , −1) ◦ ANCP is CP, where
+
+
+
+
+0
+0
+0
+1
+0
+0
+0
+0
+
+
+0
+0
+1/x2 0
+1
+1/x2 0
+
+
+0
+2
+2
+L(1/x , −1/x , −1) = 
+BL = 
+,
+.
+0
+0
+1
+0
+0 1/x2
+0 1/x2
+1
+0
+0
+0
+0
+0
+0
+0
+
+(92)
+
+(93)
+
+Guaranteeing Completely Positive Quantum Evolution
+
+24
+
+Notice how the initial and final states are left invariant after this transformation due to
+the fact that L ◦ A = I ⊗ I. This will always be true if A is invertible and its inversion
+has a positive dynamical B-matrix. This leads to the open question of which full-rank
+invertible A-matrices have non-negative dynamical B-matrices for the inverse? In the
+case of asymmetric depolarization, the initial parameters α, β, γ must be greater than 1
+or less than −1. The translation NCP map will always have a negative inversion. There
+exists other A maps that cannot be expressed in terms of translations and asymmetric
+depolarization. Generally, it is unknown for these maps which will have CP inversions.
+5.4. Example 5
+Let
+
+ANCP
+
+
+1/2
+ 0
+
+=
+ 0
+1/2
+
+0
+x
+0
+0
+
+
+0 3/2
+0
+0 
+
+,
+x
+0 
+0 −1/2
+
+
+
+BNCP
+
+
+1/2 0
+0
+x
+ 0 3/2 0
+0 
+
+
+=
+,
+0 1/2
+0 
+ 0
+x
+0
+0 −1/2
+
+(94)
+
+where x 6∈ (−2, 2). Then, the composition L(1/x2 , 1/x2 , 0) ◦ ANCP is CP, where
+
+
+
+
+1/2
+0
+0 1/x2
+1/2
+0
+0
+1/2
+
+
+
+
+1/2 0
+0 
+0
+0 
+ 0
+ 0 1/x2
+2
+2
+BL = 
+L(1/x , 1/x , 0) = 
+.
+,
+0 1/2
+0 
+0
+1/x2 0 
+ 0
+ 0
+1/x2 0
+0
+1/2
+1/2
+0
+0
+1/2
+(95)
+6. Conclusion
+In this paper, we studied transforming a NCP map to a CP map through composition
+with the asymmetric depolarizing map (ADM). The ADM acts as a super-superoperator
+that maps the input NCP map to a CP map. This problem is similar to structural
+physical approximation. However, in SPA, symmetric depolarization is required. We
+found that a trace preserving NCP map on qubits can always be made CP by acting
+on the individual qubits with local ADMs. The proof uses an isomorphism between a
+maximally entangled 2 qudit state and n qubits. Furthermore, we prove that these local
+ADMs never have to completely depolarize in any direction and are not required to be
+symmetric.
+Note that a global ADM can preserve the structure of the input NCP map better
+than local ADMs on the individual qubits. This is due to the fact that the depolarization
+factors from the multiple local depolarizers mutiply on the correlation matrix. Thus, the
+correlation matrix shrinks more rapidly than the local Bloch, or polarization, vectors.
+However, experimentally implementing a global ADM is very difficult for a large number
+of qubits. Next, we defined measures of the ADM, which tells us how much the input
+state into the ADM is disturbed. Under these measures, the ADM composition has some
+
+Guaranteeing Completely Positive Quantum Evolution
+
+25
+
+advantage over SPA in preserving the structure of the original map. Finally, we gave
+examples. One interesting example (in Eq. (64)), shows that there exist valid A-matrices
+that are robust against asymmetric depolarization and completely depolarizing becomes
+almost necessary. We also showed with another example (in Eq. (85)) that, under the
+measure we called M1 and also the fidelity, sometimes completely depolarizing in one
+direction (while not necessary) results in a better approximation. Finally, for qutrit
+maps, the task of transforming a NCP map to a CP map via local ADMs is unproven.
+We leave this for future work.
+
+Guaranteeing Completely Positive Quantum Evolution
+
+26
+
+[1] E. C. G. Sudarshan, P. M. Mathews, and Jayaseetha Rau. Stochastic dynamics of quantummechanical systems. Phys. Rev., 121:920–924, Feb 1961.
+[2] Michael A. Nielsen and Isaac L. Chuang. Quantum Computation and Quantum Information: 10th
+Anniversary Edition. Cambridge University Press, New York, NY, USA, 10th edition, 2011.
+[3] Michal Horodecki, Pawel Horodecki, and Ryszard Horodecki. Separability of mixed states:
+necessary and sufficient conditions. Physics Letters A, 223(1):1 – 8, 1996.
+[4] Barbara M. Terhal. Bell inequalities and the separability criterion. Physics Letters A, 271(5):319–
+326, 2000.
+[5] Philip Pechukas. Reduced dynamics need not be completely positive. Phys. Rev. Lett., 73:1060–
+1062, Aug 1994.
+[6] Robert Alicki. Comment on "reduced dynamics need not be completely positive". Phys. Rev.
+Lett., 75:3020–3020, Oct 1995.
+[7] Philip Pechukas. Pechukas replies:. Phys. Rev. Lett., 75:3021–3021, Oct 1995.
+[8] Thomas F. Jordan, Anil Shaji, and E. C. G. Sudarshan. Dynamics of initially entangled open
+quantum systems. Phys. Rev. A, 70:052110, Nov 2004.
+[9] Anil Shaji and E.C.G. Sudarshan. Who's afraid of not completely positive maps? Physics Letters
+A, 341(1):48 – 54, 2005.
+[10] Longjiang Liu and D. M. Tong. Completely positive maps within the framework of direct-sum
+decomposition of state space. Phys. Rev. A, 90:012305, Jul 2014.
+[11] Cesar A Rodriguez-Rosario, Kavan Modi, Aik meng Kuah, Anil Shaji, and E C G Sudarshan.
+Completely positive maps and classical correlations. Journal of Physics A: Mathematical and
+Theoretical, 41(20):205301, apr 2008.
+[12] Kavan Modi. Operational approach to open dynamics and quantifying initial correlations.
+Scientific Reports, 2, August 2012.
+[13] Felix A. Pollock, César Rodrı́guez-Rosario, Thomas Frauenheim, Mauro Paternostro, and Kavan
+Modi. Non-markovian quantum processes: Complete framework and efficient characterization.
+Phys. Rev. A, 97:012127, Jan 2018.
+[14] Kavan Modi. Operational approach to open dynamics and quantifying initial correlations.
+Scientific Reports, 2, August 2012.
+[15] John-Mark A. Allen, Jonathan Barrett, Dominic C. Horsman, Ciarán M. Lee, and Robert W.
+Spekkens. Quantum common causes and quantum causal models. Phys. Rev. X, 7:031021, Jul
+2017.
+[16] David Schmid, Katja Ried, and Robert W. Spekkens. Why initial system-environment correlations
+do not imply the failure of complete positivity: A causal perspective. Phys. Rev. A, 100:022112,
+Aug 2019.
+[17] Simon Milz, M. S. Kim, Felix A. Pollock, and Kavan Modi. Completely positive divisibility does
+not mean Markovianity. Phys. Rev. Lett., 123:040401, July 2019.
+[18] Ryszard Horodecki, Pawel Horodecki, Michal Horodecki, and Karol Horodecki. Quantum
+entanglement. Rev. Mod. Phys., 81:865–942, Jun 2009.
+[19] Asher Peres. Separability criterion for density matrices. Phys. Rev. Lett., 77:1413–1415, Aug
+1996.
+[20] Pawel Horodecki and Artur Ekert. Method for direct detection of quantum entanglement. Phys.
+Rev. Lett., 89:127902, Aug 2002.
+[21] Emanuel Knill and Raymond Laflamme. Theory of quantum error-correcting codes. Phys. Rev.
+A, 55:900–911, Feb 1997.
+[22] Charles H. Bennett, David P. DiVincenzo, John A. Smolin, and William K. Wootters. Mixed-state
+entanglement and quantum error correction. Phys. Rev. A, 54:3824–3851, Nov 1996.
+[23] Alvin Gonzales, Daniel Dilley, and Mark S. Byrd. Sufficient conditions and constraints for reversing
+general quantum errors, 2020.
+[24] Man-Duen Choi. Completely positive linear maps on complex matrices. Linear Algebra and its
+Applications, 10(3):285 – 290, 1975.
+
+Guaranteeing Completely Positive Quantum Evolution
+
+27
+
+[25] Pawel Horodecki. From limits of quantum nonlinear operations to multicopy entanglement
+witnesses and state spectrum estimation, 2001.
+[26] Jaromı́r Fiurášek. Structural physical approximations of unphysical maps and generalized
+quantum measurements. Phys. Rev. A, 66:052315, Nov 2002.
+[27] Carolina Moura Alves, Daniel K. L. Horodecki, Paweland Oi, L. C. Kwek, and Artur K.
+Ekert. Direct estimation of functionals of density operators by local operations and classical
+communication. Phys. Rev. A, 68:032306, Sep 2003.
+[28] Pawel Horodecki. Measuring quantum entanglement without prior state reconstruction. Phys.
+Rev. Lett., 90:167901, Apr 2003.
+[29] Pawel Horodecki. From limits of quantum operations to multicopy entanglement witnesses and
+state-spectrum estimation. Phys. Rev. A, 68:052101, Nov 2003.
+[30] R Augusiak, J Bae, L Czekaj, and M Lewenstein. On structural physical approximations
+and entanglement breaking maps. Journal of Physics A: Mathematical and Theoretical,
+44(18):185308, apr 2011.
+[31] Hyang-Tag Lim, Yong-Su Kim, Young-Sik Ra, Joonwoo Bae, and Yoon-Ho Kim. Experimental
+realization of an approximate transpose operation for qutrit systems using a structural physical
+approximation. Phys. Rev. A, 86:042334, Oct 2012.
+[32] Joonwoo Bae. Designing quantum information processing via structural physical approximation.
+Reports on Progress in Physics, 80(10):104001, sep 2017.
+[33] Satyabrata Adhikari. Structural physical approximation for the realization of the optimal singlet
+fraction with two measurements. Phys. Rev. A, 97:042344, Apr 2018.
+[34] Anu Kumari and Satyabrata Adhikari. Detection of a mixed bipartite entangled state in arbitrary
+dimension via a structural physical approximation of partial transposition. Phys. Rev. A,
+100:052323, Nov 2019.
+[35] Dariusz Chruściński, Justyna Pytel, and Gniewomir Sarbicki. Constructing optimal entanglement
+witnesses. Phys. Rev. A, 80:062314, Dec 2009.
+[36] J. K. Korbicz, M. L. Almeida, J. Bae, M. Lewenstein, and A. Acı́n. Structural approximations to
+positive maps and entanglement-breaking channels. Phys. Rev. A, 78:062105, Dec 2008.
+[37] Dariusz Chruściński and Justyna Pytel. Constructing optimal entanglement witnesses. ii.
+witnessing entanglement in 4n × 4n systems. Phys. Rev. A, 82:052310, Nov 2010.
+[38] Dariusz Chruściński and Justyna Pytel. Optimal entanglement witnesses from generalized
+reduction and robertson maps. Journal of Physics A: Mathematical and Theoretical,
+44(16):165304, mar 2011.
+[39] R Augusiak, J Bae, L Czekaj, and M Lewenstein. On structural physical approximations
+and entanglement breaking maps. Journal of Physics A: Mathematical and Theoretical,
+44(18):185308, apr 2011.
+[40] Hyang-Tag Lim, Young-Sik Ra, Yong-Su Kim, Joonwoo Bae, and Yoon-Ho Kim. Experimental
+implementation of the universal transpose operation using the structural physical approximation.
+Phys. Rev. A, 83:020301, Feb 2011.
+[41] Bang-Hai Wang and Dong-Yang Long. Constructing all entanglement witnesses from density
+matrices. Phys. Rev. A, 84:014303, Jul 2011.
+[42] Hyang-Tag Lim, Yong-Su Kim, Young-Sik Ra, Joonwoo Bae, and Yoon-Ho Kim. Experimental
+realization of an approximate partial transpose for photonic two-qubit systems. Phys. Rev.
+Lett., 107:160401, Oct 2011.
+[43] Erling Størmer. Separable states and the structural physical approximation of a positive map.
+Journal of Functional Analysis, 264(9):2197 – 2205, 2013.
+[44] Bang-Hai Wang and Dong-Yang Long. Structural physical approximations and entanglement
+witnesses. Phys. Rev. A, 87:062324, Jun 2013.
+[45] Amir Kalev and Joonwoo Bae. Optimal approximate transpose map via quantum designs and its
+applications to entanglement detection. Phys. Rev. A, 87:062314, Jun 2013.
+[46] Dariusz Chruściński and Gniewomir Sarbicki. Entanglement witnesses: construction, analysis and
+
+Guaranteeing Completely Positive Quantum Evolution
+[47]
+
+[48]
+[49]
+[50]
+[51]
+[52]
+[53]
+[54]
+[55]
+[56]
+[57]
+[58]
+[59]
+[60]
+
+[61]
+
+28
+
+classification. Journal of Physics A: Mathematical and Theoretical, 47(48):483001, nov 2014.
+Dariusz Chruściński and Gniewomir Sarbicki. Disproving the conjecture on the structural
+physical approximation to optimal decomposable entanglement witnesses. Journal of Physics
+A: Mathematical and Theoretical, 47(19):195301, apr 2014.
+Satyabrata Adhikari. Estimation of entanglement negativity of a two-qubit quantum system with
+two measurements. EPL (Europhysics Letters), 124(4):40006, dec 2018.
+Joonwoo Bae, Beatrix C Hiesmayr, and Daniel McNulty. Linking entanglement detection and
+state tomography via quantum 2-designs. New Journal of Physics, 21(1):013012, jan 2019.
+Mahler, G. and Weberruss, V.A. Quantum Networks: Dynamics of Open Nanostructures. Springer
+Verlag, Berlin, 2nd edition, 1998.
+L. Jakóbczyk and M. Siennicki. Geometry of Bloch vectors in two-qubit system. Physics Letters
+A, 286:383, 2001.
+Byrd, M.S. and N. Khaneja. Characterization of the Positivity of the Density Matrix in Terms of
+the Coherence Vector Representation. Physical Review A, 68:062322, 2003.
+G. Kimura. The Bloch Vector for N-Level Systems. Physics Letters A, 314:339, 2003.
+Garry Bowen and Sougato Bose. Teleportation as a depolarizing quantum channel, relative
+entropy, and classical capacity. Phys. Rev. Lett., 87:267901, Dec 2001.
+Vinayak Jagadish, R. Srikanth, and Francesco Petruccione. Measure of positive and not completely
+positive single-qubit pauli maps. Physical Review A, 99(2), Feb 2019.
+Vinayak Jagadish and Francesco Petruccione. An invitation to quantum channels. Quanta,
+7(1):54, Jul 2018.
+Katarzyna Siudzińska. Geometry of pauli maps and pauli channels. Phys. Rev. A, 100:062331,
+Dec 2019.
+Akio Fujiwara and Paul Algoet. One-to-one parametrization of quantum channels. Phys. Rev. A,
+59:3290–3294, May 1999.
+Vinayak Jagadish, R. Srikanth, and Francesco Petruccione. Measure of not-completely-positive
+qubit maps: The general case. Physical Review A, 100(1), Jul 2019.
+Giuliano Benenti and Giuliano Strini. Computing the distance between quantum channels:
+usefulness of the fano representation. Journal of Physics B: Atomic, Molecular and Optical
+Physics, 43(21):215508, oct 2010.
+Nicholas A. Peters, Tzu-Chieh Wei, and Paul G. Kwiat. Mixed-state sensitivity of several
+quantum-information benchmarks. Physical Review A, 70(5), Nov 2004.
+

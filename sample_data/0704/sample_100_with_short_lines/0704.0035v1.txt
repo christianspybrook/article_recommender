@@ -1,0 +1,1185 @@
+convergence of the discrete dipole approximation
+ii an extrapolation technique to increase the accuracy
+maxim a yurkin
+faculty of science section computational science of the university of amsterdam
+kruislaan 403 1098 sj amsterdam the netherlands
+and
+institute of chemical kinetics and combustion siberian branch of the russian academy of
+sciences institutskaya 3 novosibirsk 630090 russia
+myurkinscienceuvanl
+valeri p maltsev
+institute of chemical kinetics and combustion siberian branch of the russian academy of
+sciences institutskaya 3 novosibirsk 630090 russia
+and
+novosibirsk state university pirogova str 2 630090 novosibirsk russia
+alfons g hoekstra
+faculty of science section computational science of the university of amsterdam
+kruislaan 403 1098 sj amsterdam the netherlands
+alfonsscieneuvanl
+
+abstract
+we propose an extrapolation technique that allows accuracy improvement of the
+discrete dipole approximation computations the performance of this technique was
+studied empirically based on extensive simulations for 5 test cases using many different
+discretizations the quality of the extrapolation improves with refining discretization
+reaching extraordinary performance especially for cubically shaped particles a two
+order of magnitude decrease of error was demonstrated we also propose estimates of
+the extrapolation error which were proven to be reliable finally we propose a simple
+method to directly separate shape and discretization errors and illustrated this for one
+test case
+keywords discrete dipole approximation nonspherical particle light scattering accuracy
+extrapolation
+ocis code 2905850 2602110 0004430
+
+1
+
+1 introduction
+the discrete dipole approximation dda is a wellknown method to solve the light
+scattering problem for arbitrary shaped particles since its introduction by purcell and
+pennypacker1 it has been improved constantly the formulation of dda summarized by
+draine and flatau2 more than 10 years ago is still most widely used for different applications3
+partly due to the publicly available highquality and userfriendly code ddscat4
+dda directly discretizes the volume of the scatterer and hence is applicable to arbitrary
+shaped particles however the drawback of this discretization is the extreme computational
+complexity of dda of on 2 where n is the number of dipoles this complexity is
+decreased to onlogn by advanced numerical techniques25 still the usual application
+strategy for dda is single computation where a discretization is chosen based on available
+computational resources and some empirical estimates of the expected errors34 these error
+estimates are based on a limited number of benchmark calculations3 and hence are external to
+the light scattering problem under investigation such error estimates have evident drawbacks
+however no better alternative is available
+usually errors in dda are studied as a function of the size parameter of the scatterer x
+at a constant or few different values of n eg 26 only several papers directly present errors
+versus discretization parameter eg d  the size of a single dipole715 the range of d
+typically studied in those papers is limited to a 5 times difference between minimum and
+maximum values with the exception of two papers910 where it is 15 times only two
+papers715 use extrapolation to zero d to get an exact result of some measured quantity
+however they use the simplest linear extrapolation without any theoretical foundation nor
+discussion of its capabilities
+it is acknowledged for a long time that dda errors are due to two different factors
+shape it is not always possible to describe the particle shape exactly by a collection of
+cubical cells and discretization finite size of each cell6 however the question which of
+them is more important in different cases is still open a discussion on this issue spanned
+through several papers1620 that have not reached any definite conclusions yet the uncertainty
+is due to the indirect methods used that have inherent interpretation problems
+in accompanying paper21 that from now on we will refer to as paper 1 we performed a
+theoretical analysis of dda convergence when refining the discretization it provides the
+basis for this paper where an extrapolation technique is introduced section 2 to improve the
+accuracy of dda computations we thoroughly discuss all free parameters that influence
+extrapolation performance and provide a stepbystep prescription which can be used with
+any existing dda code without any modifications it is important to note that although
+paper 1 provides a firm theoretical background it is not necessary to go through all
+theoretical details to understand and apply the extrapolation technique that we introduce here
+in section 3 we present extensive numerical results of dda computations for 5 different
+scatterers using many different discretizations these results are discussed in section 4 to
+evaluate the performance of the extrapolation technique we also propose a new method to
+directly separate shape and discretization errors of dda described and illustrated in
+section 3b the results and possible applications are discussed in section 4 we formulate
+the conclusions of the paper in section 5
+
+2 extrapolation
+in this section we describe a straightforward technique to significantly increase the accuracy
+of a dda simulation with a relatively small increase of computation time this technique
+2
+
+does not require any modification of a dda program but only postprocessing of computed
+data therefore it can be easily implemented in any existing dda code
+in paper 1 we have proven that the error of any measured quantity is bounded by a
+quadratic function of the discretization parameter y  kd m k  free space wave vector m 
+refractive index of the scatterer
+ y  a2  b2 ln y y 2  a1  b1 ln y y 
+
+
+
+
+
+
+
+
+
+1
+
+where  is some measured quantity eg extinction efficiency qext mueller matrix elements
+at some scattering angle sij  etc and  y its error difference between a result of the
+numerical simulation and an exact value a1 2  b1 2 are constants independent on y which
+y
+
+are described in detail in paper 1
+here we proceed and assume that for sufficiently small y  y can in fact be
+approximated by a quadratic function of y taking the logarithmic term as a constant the
+applicability of this assumption will be tested empirically in section 3b introduction of
+higherorder terms is possible but not necessary contrary to the quadratic term and we avoid
+it in order to keep our technique as simple and robust as possible we can now write
+ y  a0  a1 y  a 2 y 2   y 
+2
+y
+where a0 a1 a2 are constants that are chosen such that   the error of the approximation  is
+minimized a0 is then an estimate for the exact value of the measured quantity  0 a
+procedure to determine a0 is basically fitting of a quadratic function over several points
+ y  y   which are obtained by a standard dda simulation in the ideal case of  y  0 one
+can use any three values of y to obtain the exact value of  0 however in practice different
+fits will always give different results we limit ourselves to the usual leastsquare polynomial
+fit of the data there are three question one should answer before conducting such a fit
+1 how many and which values of y to use
+2 how to weight the influence of different calculated values used in the fitting ie what is
+the behavior of expected errors  y note that in the polynomial fit we minimize 2 the
+summation of the squared difference between computed values and the fitting function
+weighted by the inverse of the expected error  y
+3 how to estimate the difference between a0 and  0 ie the error of the final result
+it is important to note that although there are some theoretical hints answers to these
+questions are mainly empirical and should be tested our approach is based on the test cases
+presented in section 3b these may not be representative for all scattering problems but they
+do show the potential power of our approach we do not attempt to choose the most suitable
+fit options but merely demonstrate the applicability of the technique
+we start by analyzing the second question ie what is the expected deviation from the
+quadratic model ie what is the functional dependence of  y on y to be used as weighting
+function in the polynomial fitting procedure for cubically shaped particles defined in
+paper 1 as particles whose shape can be exactly discretized using cubical subvolumes one
+expects a smooth variation of the function  y and the error can be attributed as a model error
+ie coming mainly from neglecting higher order terms in the convergence analysis of paper 1
+in that case the error  y is expected to be a cubical function of y we have tried cubical
+quadratic and linear error functions when fitting results for cubically shaped particles and
+found that although the differences are small cubical errors generally lead to the best fits
+data not shown
+shape errors which are present for noncubically shaped particles are expected to be
+very sensitive to y because they depend upon the position of the particle surface inside the
+boundary dipole that changes considerably by a small variation of y for details see paper 1
+3
+
+therefore shape errors can be viewed as random noise superimposed upon a smooth variation
+of  y the asymptotic behavior of shape errors is linear in y see paper 1 indeed in certain
+cases we found that using linear errors  y results in significantly better fits than when using
+cubical errors however in other cases linear errors performed significantly worse in our
+experience using a cubical error function is in general always more reliable even in the
+presence of shape errors because it decreases the influence of points with high values of y
+where the error is larger and less predictable since we want the procedure to be as robust as
+possible and not to use more complex error functions than strictly needed eg polynomial
+we take a cubical dependence of the error  y both for cubically and noncubically shaped
+scatterers
+the choice of values of y for computation can be described by the interval yminymax
+the number of points and their spacing ymin is usually determined by available computer
+hardware time or memory bounds that is the best discretization that can be computed for a
+given resource the goal of the extrapolation procedure is to increase the accuracy beyond
+this single dda boundary we will show in section 3b that the overall performance of this
+technique strongly depends upon ymin
+the choice of ymax is governed by two notions a larger interval of data points generally
+leads to better extrapolation but errors for high values of y are more random and their
+significance is anyway much smaller since we use a cubical error function we have found
+that for cubically shaped scatterers a good choice is y max  2 y min  while for noncubically
+shaped scatterers increasing the interval to y max  4 y min does improve the fits probably that
+is due to the fact that the quality of fit for noncubically shaped scatterers is determined by
+quasirandom shape errors and increasing the range leads to larger statistical significance of
+the result we will also demand that ymax is less than 1 since otherwise dda is definitely far
+from its asymptotic behavior
+spacing of the sample points depends partly on the problem especially for cubically
+shaped scatterers in that case an arbitrary number of dipoles cannot be used we space
+computational points approximately uniform on a logarithmic scale acknowledging the fact
+that a relative difference in y is more significant than an absolute the total number of points
+should be large enough for statistical significance however a large number of points
+increases computational time we have used 5 points for cubically shaped particles ratio of
+1 y values is 87654 and 9 points for noncubically shaped particles ratio of 1 y values is
+1614121087654 or less if y max  4 y min 
+the estimation of the error of the final result is difficult since this error is due to model
+imperfection and not to some kind of random noise the standard leastsquare fitting
+technique22 provides a standard error se for the parameter a0 which we use as a starting
+point numerical simulations section 3b show that for spheres the only noncubical shape
+we studied real errors are less than 2se in most cases that is what one would expect if  y
+is considered completely random which is similar to the expected behavior of the shape
+errors for cubical shapes on the contrary we have to estimate the error as 10se to reliably
+describe the real errors it is important to note that an error estimate based on the se is the
+simplest one can use its drawback is that we have to use a large multiplier based on the real
+errors obtained in some of our simulations which may lead to significant overestimation of
+real errors in certain cases
+we can now formulate the stepbystep extrapolation technique we use abbreviations
+c and nc for cubically and noncubically shaped scatterers respectively
+1 select ymin based on your computational resources
+2 take ymax to be 2 c or 4 nc times ymin but not larger than 1
+4
+
+3 choose 5 c or 9 nc points over the interval yminymax approximately uniformly
+spaced on a logarithmic scale
+4 perform dda computations for each y
+5 fit the quadratic function eq 2 over the points  y  y  using y3 as errors of data
+points a0 is then the estimate of  0
+multiply se of a0 by 10 c or 2 nc to obtain an estimate of the extrapolation error
+results of using this procedure are presented in section 3 together with computational costs
+the extrapolation procedure is similar to a romberg integration method22 which is
+adaptive the error estimate obtained by extrapolation is an internal accuracy indicator of
+dda computations that is just as important as the increase in the accuracy itself our error
+estimate opens the way to adaptive dda ie a code that will reach a required accuracy using
+minimum computational resources
+
+3 numerical simulations
+adiscrete dipole approximation
+the basics of the dda method were summarized by draine and flatau2 in this paper we use
+the ldr prescription for dipole polarizability23 which is most widely used nowadays eg in
+the publicly available code ddscat 614 we also employ dipole size correction6 for noncubically shaped scatterers to ensure that the cubical approximation of the scatterer has the
+correct volume this is believed to diminish shape errors especially for small scatterers2 we
+use a standard discretization scheme without any improvements for boundary dipoles
+the main numerical challenge of dda is to solve a large system of 3n linear equations
+this is done iteratively using some krylovsubspace method22 while the matrixvector
+products are computed using an fftbased algorithm5 our code  amsterdam dda
+adda  is capable of running on a cluster of computers parallelizing a single dda
+computation which allows us to use practically an unlimited number of dipoles since we are
+not limited by the memory of a single computer2425 we used a relative error of residual
+ 10 8 as a stopping criterion tests suggest that the relative error of the measured quantities
+due to the iterative solver is then  10 7 data not shown and hence can be neglected total
+relative errors in our simulations are  10 6  10 5  see section 3b all dda simulations
+were carried out on the dutch national compute cluster lisa26
+the execution time of one iteration depends solely on n it consists of an arithmetic part
+which scales linearly with n and an fft part which scales as nlnn the number of iterations
+only slightly depends on the discretization parameter y for fixed geometry of the scatterer
+rahola proved this theoretically for any krylovsubspace method27 and our own experience
+agrees with this conclusion therefore the total computational time scales linearly with n
+  y 3  or slightly faster considering logarithm and imperfect optimization which is
+consistent with our timing results data not shown
+we can now estimate the computational overhead of the extrapolation technique
+compared to a single dda computation for ymin time  tymin considering the spacing of
+points we used described in section 2 the execution time needed for 5 points computation is
+t 5  25t  y min  and for the 9 points computation  t 9  27t  y min   memory requirements are
+the same as for a single computation for comparison one should note that an 8 times increase
+in computational time and memory requirements for single dda computation with
+5
+
+fig 1 cubical discretization of a sphere using 16 dipoles per diameter total 2176 dipoles
+
+y  y min 2  gives only a 2 to 4 times increase in accuracy depending in which error regime 
+linear or quadratic  ymin is located
+
+bresults
+we study five test cases one cube with kd  8  three spheres with kd  3 10 30  and a
+particle obtained by a cubical discretization of the kd  10 sphere using 16 dipoles per d
+total 2176 dipoles see fig 1 x equal to that of a sphere by d we denote the diameter of a
+sphere or the edge size of a cube all scatterers are homogenous with m  15  although
+dda errors significantly depend on m see eg 12 we limit ourselves to one single value and
+study the effects of size and shape of the scatterer
+the maximum number of dipoles per d nd was 256 the values of nd that we used are
+of the form 4567  2 p p is an integer except for the discretized sphere where all nd are
+multiples of 16 this is required to exactly describe the shape of the particle composed from a
+number of cubes  see fig 1 the minimum values for nd were 8 for the kd  3 sphere 16
+for the cube the kd  10 sphere and the discretized sphere and 40 for the kd  30 sphere
+typical computation time for the finest discretization for the cube with y  0047 
+resulting in n  17  10 7  currently is 25 hours on a cluster of 64 p434 ghz processors we
+expect that it can be improved by an order of magnitude by using modern fft routines eg
+fastest fourier transform in the west  fftw28 and a faster iterative solvers biconjugate
+gradient stabilized or quasiminimal residual that were shown to be clearly superior to
+cgnr2930 that we still use we are currently improving our code along these lines
+all computations use a direction of incidence parallel to one of the principal axes of the
+cubical dipoles the scattering plane is parallel to one of the faces of the cubical dipoles in
+this paper we show results only for the extinction efficiency qext for incident light polarized
+parallel to one of the principal axes of the cubical dipoles and phase function s11  as the
+6
+
+signed relative error of qext 
+
+02
+
+a
+
+cube kd8
+fit 5 best points
+discretized sphere kd10
+fit 5 best points
+01
+
+00
+
+01
+
+signed relative error of qext 
+
+06
+04
+
+sphere kd3
+fit 9 best points
+sphere kd10
+fit 9 best points
+sphere kd30
+fit 9 best points
+
+b
+
+02
+00
+02
+04
+00
+
+01
+
+02
+
+03
+
+04
+
+05
+06
+ykdm
+
+07
+
+08
+
+09
+
+10
+
+fig 2 signed relative errors of qext versus y and their fits by quadratic functions for a kd  8 cube
+and discretized kd  10 sphere b 3 spheres 5 and 9 best points are used for fits in a and b
+respectively
+
+most commonly used in applications however the extrapolation technique is equally
+applicable to any measured quantity for instance we have also applied it for other mueller
+matrix elements data not shown
+reference exact results of s11  and qext for spheres are obtained by mie theory the
+relative accuracy of the code we use31 is at least  10 6  unfortunately no analytical theory
+is available for the cube and the discretized sphere which could provide us with exact results
+instead we use extrapolation over the 5 finest discretizations as reference results for these
+shapes
+to justify this choice we discuss as an example simulation results of qext for the cube
+instead of showing values of qext itself we show in fig 2a qext a0  1  with a0 obtained
+through fitting the 5 finest discretizations the extrapolation through these 5 best points
+ y min  0047  y max  0094  is also shown the deviation of the fit from the five best points
+that overlap on fig 2a is very small indeed this is also characterized by a small estimate
+of the extrapolation error 18  10 6 see table 1 in paper 1 we proved that dda converges
+to the exact solution therefore the result of the best extrapolation should be close to the exact
+result the relative difference between the best discretization and the best extrapolation is
+only 90  105  therefore it does not make a big difference which one to use as a reference
+when evaluating for instance the error of the extrapolation through the 5 worst
+7
+
+table 1 extrapolation errors of qext estimate of the extrapolation errors is 10se for first two
+particles and 2se for spheres
+ymin
+
+ymax
+
+points error for ymin
+
+kd  8 cube
+0047
+0094
+5
+0094
+019
+5
+019
+038
+5
+038
+075
+5
+discretized kd  10 sphere
+0058
+012
+5
+012
+023
+5
+023
+093
+4
+kd  3 sphere
+0018
+0070
+9
+0035
+014
+9
+0070
+028
+9
+014
+054
+9
+028
+054
+5
+kd  10 sphere
+0059
+023
+9
+012
+047
+9
+023
+093
+9
+kd  30 sphere
+018
+070
+9
+018
+035
+5
+
+extrapolation
+estimate
+real
+
+90105
+16104
+22104
+11104
+
+18106
+66106
+53105
+37104
+
+
+46106
+40105
+32104
+
+10104
+20104
+43104
+
+24105
+90106
+12103
+
+
+79106
+59104
+
+22104
+40104
+68104
+90104
+24104
+
+10105
+59105
+87105
+37104
+43103
+
+41106
+48105
+57106
+70104
+18103
+
+27104
+55104
+15103
+
+20104
+55104
+31103
+
+27105
+37104
+21103
+
+38104
+38104
+
+13103
+33103
+
+14103
+69104
+
+table 2 comparison of shape and discretization errors of qext for kd  10 sphere discretized with
+y  093 all errors are relative to the best extrapolation result for the discretized sphere
+error
+
+shape
+31103
+
+discretization
+83103
+
+total
+52103
+
+discretizations  y min  038  y max  075  hence all conclusions with respect to the
+reliability of the error estimates as discussed in section 4 do not depend on the choice of
+reference if ymin is large enough we also apply this reasoning to smaller ymin and assume that
+using the reference value obtained by extrapolation of the finest discretizations is a good
+enough estimate of the exact value
+the same justification is valid for the discretized sphere see table 1 for qext results
+comparison of errors of different extrapolations results of s11  shown in fig 3 and fig 4
+is even more convincing reference results themselves both of qext and s11  can be found
+in paper 1
+next we show the results obtained by the extrapolation technique the dependence of
+the signed relative errors of qext on y for all 5 test cases are shown in fig 2 fig 2a depicts
+results for the cube and the discretized sphere the 5 best points for each scatterer are fitted
+by a quadratic function using the method described in section 2 fig 2b depicts
+extrapolation results for spheres using the 9 best points for each of them cf section 2 since
+the exact mie solution is available intersection of a fit with a vertical axis is a measure of the
+accuracy of extrapolation result table 1 summarizes the parameters ymin ymax number of
+points of all the extrapolations which were carried out and their performance for qext
+
+8
+
+relative error of s11 
+
+a
+
+y  0094
+y  0047
+extrapolation
+estimate
+
+2
+
+10
+
+3
+
+10
+
+4
+
+10
+
+5
+
+10
+
+6
+
+10
+
+y  019
+y  0094
+extrapolation
+estimate
+
+relative error of s11 
+
+2
+
+10
+
+b
+
+3
+
+10
+
+4
+
+10
+
+5
+
+10
+
+c
+
+1
+
+relative error of s11 
+
+10
+
+2
+
+10
+
+3
+
+10
+
+y  075
+y  038
+extrapolation
+estimate
+
+4
+
+10
+
+0
+
+30
+
+60
+90
+120
+scattering angle  deg
+
+150
+
+180
+
+fig 3 errors of s11  in logarithmic scale for extrapolation using 5 values of y in the intervals a
+00470094 b 0094019 and c 038075 for kd  8 cube estimate of the extrapolation error
+is 10se
+
+next we present some of the extrapolations results for s11  results for the cube are
+shown in fig 3 each subfigure shows real compared to the best extrapolation  reference
+and estimated errors together with the errors of the finest and crudest discretizations used
+only the estimate of the error is shown for the best extrapolation  fig 3a fig 3b and c
+show extrapolation results using 5 points in the intervals 0094019 and 038075
+respectively the performance of the extrapolation for the discretized sphere is shown in fig
+4 a  best extrapolation b and c  results for extrapolation using 5 and 4 points in the
+intervals 012023 and 023093 respectively the broad spacing of points for
+9
+
+y  012
+y  0058
+extrapolation
+estimate
+
+2
+
+relative error of s11 
+
+10
+
+a
+
+3
+
+10
+
+4
+
+10
+
+5
+
+relative error of s11 
+
+10
+
+y  023
+y  012
+extrapolation
+estimate
+
+2
+
+10
+
+b
+
+3
+
+10
+
+4
+
+10
+
+5
+
+relative error of s11 
+
+10
+1
+10
+
+c
+
+2
+
+10
+
+3
+
+10
+
+y  093
+y  023
+extrapolation
+estimate
+
+4
+
+10
+
+0
+
+30
+
+60
+90
+120
+scattering angle  deg
+
+150
+
+180
+
+fig 4 errors of s11  in logarithmic scale for extrapolation using 5 values of y in the intervals a
+0058012 b 012023 c 4 values of y in the interval 023093 for the discretized kd  10
+sphere estimate of the extrapolation error is 10se
+
+extrapolation depicted in fig 4c is as was noted above due to the complex shape of the
+discretized sphere that limits possible values of y to be 093 divided by an integer total time
+for computing these 4 points is  16t  y min   it is important to note once more that we use
+10se as an estimate of extrapolation error for the cube and discretized sphere and 2se for
+spheres cf section 2
+extrapolation results for the kd  3 sphere are summarized in fig 5 a shows the best
+extrapolation using 9 points in the interval 00180070 and b shows the worst but still
+satisfactory result ie one that shows definite improvement of accuracy over most of the 
+10
+
+a
+
+2
+
+relative error of s11 
+
+10
+
+3
+
+10
+
+4
+
+10
+
+y  0070
+y  0018
+extrapolation
+estimate
+
+5
+
+10
+
+6
+
+10
+
+1
+
+b
+
+10
+
+relative error of s11 
+
+2
+
+10
+
+3
+
+10
+
+y  055
+y  014
+extrapolation
+estimate
+
+4
+
+10
+
+5
+
+10
+
+0
+
+30
+
+60
+90
+120
+scattering angle  deg
+
+150
+
+180
+
+fig 5 errors of s11  in logarithmic scale for extrapolation using 9 values of y in the intervals a
+00180070 b 014055 for kd  3 sphere estimate of the extrapolation error is 2se
+
+range the extrapolation using 5 points from the interval 028054 is no longer satisfactory
+data not shown errors of the two best extrapolations for the kd  10 sphere using 9 points
+from the intervals 0059023 and 012047 are shown in fig 6a and b respectively a
+third extrapolation for kd  10 sphere is not satisfactory data not shown both
+extrapolations for the kd  30 sphere show similar controversial results only one of them 9
+points from the interval 018070 that is overall slightly better is shown in fig 7 the
+estimate of the extrapolation error is overall slightly higher than the real errors of the
+extrapolation data not shown
+results of s11  for all extrapolations see table 1 support the following trend the
+quality of the extrapolation defined as decrease of error compared to a single dda
+computation for ymin rapidly degrades with increasing ymin the ratio of estimated to real
+errors increase with increasing ymin that can be considered as a degradation of the estimate
+quality
+computation of exact results for both the kd  10 sphere and its cubical discretization
+ y  093  allows us for the first time to directly separate and compare shape and
+discretization error of single dda computations the shape error is the difference between
+some measured quantity for a discretized sphere calculated to a high accuracy and that for
+the exact sphere the discretization error is difference between calculation using a limited
+number of dipoles 2176 and exact very accurate solution for the cubical discretization of
+the sphere first curve in fig 4c the total error is just the sum of the two these three
+11
+
+1
+
+relative error of s11 
+
+10
+
+y  023
+y  0059
+extrapolation
+estimate
+
+a
+
+2
+
+10
+
+3
+
+10
+
+4
+
+10
+
+y  047
+y  012
+extrapolation
+estimate
+
+1
+
+relative error of s11 
+
+10
+
+b
+
+2
+
+10
+
+3
+
+10
+
+4
+
+10
+
+0
+
+30
+
+60
+90
+120
+scattering angle  deg
+
+150
+
+180
+
+fig 6 errors of s11  in logarithmic scale for extrapolation using 9 values of y in the intervals a
+0059023 b 012047 for kd  10 sphere estimate of the extrapolation error is 2se
+
+types of errors for s11  are shown in fig 8 all relative to the exact value for discretized
+sphere errors of qext are shown in table 2
+
+4 discussion
+in their review draine and flatau2 gave the condition y  1 for applicability of dda usually
+y  06 10 dipoles per wavelength in the medium is used in applications3 smaller y are
+used only in studies of dda errors21213 or of light scattering by particles much smaller than a
+wavelength then d is determined by a shape of a scatterer and y being proportional to
+scatterer size can be arbitrarily small32 however if one wishes to achieve better than usual
+accuracy of a dda simulation smaller y must be used
+the best extrapolation for the cube fig 3a shows a large improvement compared to
+the best single dda calculation it should be noted however that this result is based on the
+empiric error estimate maximum errors are decreased more than 2 orders of magnitude this
+would be impossible to reach by a single dda calculation as it will require over 6 orders of
+magnitude increase in execution time and memory since there is only linear convergence for
+such small y even for y min  038 the extrapolation can be called satisfactory because the
+maximum error is decreased almost two times when considering the estimate of the error the
+real errors are even less it is important to note that an estimate of the error is important by
+12
+
+relative error of s11 
+
+10
+
+y  018
+extrapolation
+
+1
+
+10
+
+2
+
+10
+
+3
+
+0
+
+30
+
+60
+90
+120
+scattering angle  deg
+
+150
+
+180
+
+fig 7 errors of s11  in logarithmic scale for extrapolation using 9 values of y in the interval
+018070 for kd  30 sphere
+
+relative error of s11 
+
+discretization
+shape
+total
+10
+
+1
+
+10
+
+2
+
+10
+
+3
+
+0
+
+30
+
+60
+90
+120
+scattering angle  deg
+
+150
+
+180
+
+fig 8 comparison of discretization and shape errors of s11  for kd  10 sphere discretized using 16
+dipoles per d  y  093
+
+itself even when it is not less than the error of a single dda computation because it does not
+require an exact solution that is usually unavailable in real applications in general the
+extrapolation decreases large errors better than those that are already small ie it may
+significantly decrease maximum errors but prove less satisfactory for certain measured
+quantity eg s11 for certain  this conclusion holds true for all the extrapolations we
+performed fig 3  fig 7 and those not shown
+extrapolation results for the discretized sphere fig 4 are similar to those for the cube
+extrapolations for y min  0058 and 012 are very good more than an order of magnitude
+decrease of maximum errors while for y min  023 it is on the edge of being satisfactory
+the latter is strongly influenced by the fact that only 4 points in a broad interval are used
+hence it does not fully comply with the procedure specified in section 2
+the best extrapolation for the kd  3 sphere fig 5a shows results comparable to
+cubically shaped scatterers however it uses an extremely small y min  0018  already for
+y min  014 fig 5b it only decreased the maximum errors by a factor of two a similar
+13
+
+boundary value of ymin for satisfactory extrapolation is observed for kd  10 sphere fig
+6b while the best extrapolation fig 6a does show good results 4 times decrease of
+maximum error although significantly worse than the analogous results for cubically shaped
+scatterers unfortunately we are currently not able to reach sufficiently small y for the
+kd  30 sphere and the best extrapolation fig 7 uses rather large y min  018  resulting in
+almost negligible improvement of accuracy
+we have also studied a kd  8 porous cube that was obtained by dividing a cube into
+27 smaller cubes and then removing randomly 9 of them all the conclusions are the same as
+those reported for the cube but with slightly higher overall errors data not shown
+extrapolation of qext table 1 shows similar results as discussed above however the
+improvement of accuracy is generally less than for maximum errors in s11  which is in
+agreement with what we stated above since errors in qext are already small moreover one
+should take into account that errors of a single dda calculation for some ymin are
+unexpectedly small eg the last extrapolations for the cube and the kd  3 sphere but these
+are just lucky hits near the points where the function qext  y  crosses the horizontal axis
+cf fig 2
+summarizing all results we can conclude that shape errors significantly degrade the
+extrapolation performance because of its abrupt behavior and therefore the extrapolation
+technique is much more suited for cubically shaped particles one may expect satisfactory
+extrapolation for noncubically shaped particles only when y min  015  while for cubically
+shaped particles the condition is y min  04  it is important to note though that extrapolation
+can be used for any ymin the estimate of the error coming from the fitting procedure se can
+then be used to decide whether this extrapolation was satisfactory or not the quality of the
+extrapolation significantly increases with decreasing ymin hence extrapolation is of biggest
+value for obtaining very accurate benchmark results the size of the particle for which the
+extrapolation technique provides significant improvement is mainly determined by available
+computational resources that are required to reach small enough ymin however further testing
+is required to evaluate the quality of extrapolation for scatterers large compared to the
+wavelength
+it is important to note that the linear extrapolation that was applied in two papers715 may
+lead to completely erroneous results eg if points on the right branch of the parabolas for the
+cube and kd  3 sphere in fig 2 are used quadratic extrapolation as proposed in this
+paper is much more reliable
+throughout all the extrapolations we have used error estimates as specified in section 2
+10se and 2se for cubically and noncubically shaped scatterers respectively all the
+results show that these estimates are reliable ie in most cases real errors are less than the
+estimates there are only two exceptions both for the kd  3 sphere the fourth extrapolation
+of qext table 1  real error 18 times larger than estimate  and second of s11  real error
+152 times larger than estimate for broad range of  data not shown the existence of such
+exceptions is acceptable since the estimates have a statistical nature of a confidence interval
+however these estimates though reliable are definitely not optimal ie they often
+significantly overestimate the real errors eg fig 5a it also seems to be sensitive to the
+spacing of y values used for extrapolation  cf fig 4c where unusually broad spacing was
+used generally this overestimation increases with increasing ymin we can conclude that the
+error estimate should be improved and this is subject of future research however the current
+estimate is already suitable for practical applications since they mainly require reliability of
+the error estimate which is demonstrated empirically in this paper
+it is important to note that we limited ourselves to a single value of m while bounds of
+ymin to obtain satisfactory extrapolation definitely dependent on m other conclusions such as
+14
+
+the reliability of the error estimate are expected to hold true for a broad range of m this can
+be easily tested for specific values of m of interest using the methodology put forward in this
+paper
+finally we discuss the results presented in fig 8 one cannot conclude that shape errors
+dominate over discretization errors or the other way around for some  shape errors are
+much larger than discretization for others  vice versa however maximum errors occurring
+in backscattering directions are definitely due to shape errors ratio of maximum shape to
+maximum discretization errors is about 4 errors in qext table 2 are on the contrary mostly
+due to discretization although they are almost two orders of magnitude smaller than
+maximum errors of s11 one may expect shape errors to become even more important for
+smaller values of y since the linear component of discretization errors is significantly smaller
+than that of shape errors hence for large values of y shape errors scale linearly and
+discretization  almost quadratically our single result principally shows different angle
+dependence of shape and discretization errors of s11 shape errors have a clear tendency to
+significantly increase towards backscattering while the general trend of discretization errors
+is uniform over the whole  range
+we have presented a simple method to directly separate shape and discretization errors
+and only one result for illustration all previous comparisons of shape and discretization
+errors had significant inherent interpretation problems that caused a lot of discussions about
+their conclusions1620 our method is free of such problems and therefore can be used for
+rigorous study of shape errors in dda for instance it can help to directly evaluate the
+performance of different techniques to reduce such errors eg weighted discretization wd9
+discretization errors are then the limit one can achieve by drastically reducing shape errors
+we have used a traditional dda formulation2 to show that the extrapolation technique
+can be used with current dda codes eg ddscat4 without any modifications however
+as we showed in paper 1 several modern improvements of dda namely integration of
+greens tensor it33 and wd should significantly change the convergence behavior of dda
+computations and hence influence the performance of the extrapolation technique it should
+completely eliminate the linear term for cubically shaped scatterers this will improve the
+accuracy especially for small y and probably also improve the quality of the extrapolation for
+such scatterers wd should significantly decrease shape and hence total errors for noncubically shaped particles moreover it should significantly decrease the amplitude of quasirandom error oscillations because it takes into account the location of the interface inside the
+boundary dipoles therefore wd should improve the quality of the extrapolation for noncubically shaped scatterers testing of extrapolation performance of dda using it and wd is
+a subject of a future study
+
+5 conclusion
+based on the theoretical convergence analysis as presented in paper 1 we proposed an
+extrapolation technique together with a stepbystep prescription which allows accuracy
+improvement of dda computations the performance of this technique was studied
+empirically and we showed that it significantly suppresses maximum errors of s11  when
+y min  04 and 015 for cubically and noncubically shaped scatterers respectively for
+m  15  the quality of the extrapolation improves with decreasing ymin reaching
+extraordinary performance especially for cubically shaped particles  more than two order of
+magnitude decrease of error when y min  005 for wavelengthsized scatterers with m  15
+total computational time for extrapolation is less than 27 times that for a single dda
+computation
+15
+
+the proposed estimates of the extrapolation error were proven to be reliable although
+they can be improved to decrease overestimation of the errors in some cases this error
+estimate is completely internal and hence can be used to create adaptive dda  a code that
+will automatically refine discretization to reach a required accuracy
+we also proposed a simple method to directly separate shape and discretization errors
+maximum errors of s11  for the kd  10 sphere with m  15  discretized using 16 dipoles
+per diameter  y  093  are mostly due to shape errors however the same is not true for all
+measured quantities this method can be employed to rigorously study fundamental
+properties of these two types of errors and to directly evaluate the performance of different
+techniques aimed at reducing shape errors
+our theory predicts that modern dda improvements namely it and wd should
+significantly change the performance of the extrapolation technique however numerical
+testing of these predictions is left for future research
+
+acknowledgements
+we thank gorden videen and michiel min for valuable comments on earlier version of this
+manuscript and denis shamonin for help with 3d graphics our research is supported by the
+nato science for peace program through grant sfp 977976
+
+references
+1 e m purcell and c r pennypacker scattering and adsorption of light by nonspherical dielectric
+grains astrophys j 186 705714 1973
+2 b t draine and p j flatau discretedipole approximation for scattering calculations j opt soc
+am a 11 14911499 1994
+3 b t draine the discrete dipole approximation for light scattering by irregular targets in light
+scattering by nonspherical particles theory measurements and applications m i mishchenko j w
+hovenier and l d travis eds academic press new york 2000 pp 131145
+4 b t draine and p j flatau user guide for the discrete dipole approximation code ddscat 61
+httpxxxarxivorgabsastroph0409262 2004
+5 j j goodman b t draine and p j flatau application of fastfouriertransform techniques to the
+discretedipole approximation opt lett 16 11981200 1991
+6 b t draine the discretedipole approximation and its application to interstellar graphite grains
+astrophys j 333 848872 1988
+7 j i hage j m greenberg and r t wang scattering from arbitrarily shaped particles  theory and
+experiment appl opt 30 11411152 1991
+8 f rouleau and p g martin a new method to calculate the extinction properties of irregularly shaped
+particles astrophys j 414 803814 1993
+9 n b piller influence of the edge meshes on the accuracy of the coupleddipole approximation opt
+lett 22 16741676 1997
+10 n b piller and o j f martin increasing the performance of the coupleddipole approximation a
+spectral approach ieee trans ant propag 46 11261137 1998
+11 n b piller coupleddipole approximation for high permittivity materials opt comm 160 1014
+1999
+12 a g hoekstra j rahola and p m a sloot accuracy of internal fields in volume integral equation
+simulations of light scattering appl opt 37 84828497 1998
+13 s d druger and b v bronk internal and scattered electric fields in the discrete dipole approximation
+j opt soc am b 16 22392246 1999
+14 y l xu and b a s gustafson comparison between multisphere lightscattering calculations
+rigorous solution and discretedipole approximation astrophys j 513 894909 1999
+15 m j collinge and b t draine discretedipole approximation with polarizabilities that account for both
+finite wavelength and target geometry j opt soc am a 21 20232028 2004
+16 k f evans and g l stephens microwave radiativetransfer through clouds composed of realistically
+shaped ice crystals 1 single scattering properties j atmos sci 52 20412057 1995
+
+16
+
+17 h okamoto a macke m quante and e raschke modeling of backscattering by nonspherical ice
+particles for the interpretation of cloud radar signals at 94 ghz an error analysis contrib atmos phys
+68 319334 1995
+18 c l liu and a j illingworth error analysis of backscatter from discrete dipole approximation for
+different ice particle shapes atmos res 44 231241 1997
+19 h lemke h okamoto and m quante comment on error analysis of backscatter from discrete dipole
+approximation for different ice particle shapes  liu cl illingworth aj 1997 atmos res 44 231241 atmos res 49 189197 1998
+20 c l liu and a j illingworth reply to comment by lemke okamoto and quante on error analysis of
+backscatter from discrete dipole approximation for different ice particle shapes atmos res 50 12
+1999
+21 m a yurkin v p maltsev and a g hoekstra convergence of the discrete dipole approximation i
+theoretical analysis j opt soc am a 23 25782591 2006
+22 w h press b p flannery s a teukolsky and w t vetterling numerical recipes in c the art of
+scientific computing cambridge university press new york 1990
+23 b t draine and j j goodman beyond clausiusmossotti  wavepropagation on a polarizable point
+lattice and the discrete dipole approximation astrophys j 405 685697 1993
+24 a g hoekstra m d grimminck and p m a sloot large scale simulations of elastic light scattering
+by a fast discrete dipole approximation int j mod phys c 9 87102 1998
+25 m a yurkin k a semyanov p a tarasov a v chernyshev a g hoekstra and v p maltsev
+experimental and theoretical study of light scattering by individual mature red blood cells with scanning
+flow cytometry and discrete dipole approximation appl opt 44 52495256 2005
+26 description of the national compute cluster lisa httpwwwsaranluserinfolisadescription 2005
+27 j rahola on the eigenvalues of the volume integral operator of electromagnetic scattering siam j
+sci comp 21 17401754 2000
+28 m frigo and s g johnson fftw an adaptive software architecture for the fft proc icassp 3
+13811384 1998
+29 p j flatau improvements in the discretedipole approximation method of computing scattering and
+absorption opt lett 22 12051207 1997
+30 j rahola solution of dense systems of linear equations in the discretedipole approximation siam j
+sci comp 17 7889 1996
+31 c f bohren and d r huffman absorption and scattering of light by small particles wiley new
+york 1983
+32 m min j w hovenier a dominik a de koter and m a yurkin absorption and scattering
+properties of arbitrary shaped particles in the rayleigh domain a rapid computational method and a
+theoretical foundation for the statistical approach j quant spectrosc radiat transf 97 161180
+2006
+33 p c chaumet a sentenac and a rahmani coupled dipole method for scatterers with large
+permittivity phys rev e 70 036606 2004
+
+17
+

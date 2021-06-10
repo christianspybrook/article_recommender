@@ -1,0 +1,1891 @@
+arXiv:0704.0069v1 [math.DS] 1 Apr 2007
+
+Dynamical Objects for Cohomologically
+Expanding Maps.
+John W. Robertson
+February 20, 2013
+
+John W. Robertson1
+Wichita State University
+Wichita, Kansas 67260-0033
+Phone: 316-978-3979
+Fax: 316-978-3748
+robertson@math.wichita.edu
+
+Abstract
+The goal of this paper is to construct invariant dynamical objects
+for a (not necessarily invertible) smooth self map of a compact manifold. We prove a result that takes advantage of differences in rates of
+expansion in the terms of a sheaf cohomological long exact sequence
+to create unique lifts of finite dimensional invariant subspaces of one
+term of the sequence to invariant subspaces of the preceding term.
+This allows us to take invariant cohomological classes and under the
+right circumstances construct unique currents of a given type, including unique measures of a given type, that represent those classes and
+are invariant under pullback. A dynamically interesting self map may
+have a plethora of invariant measures, so the uniquess of the constructed currents is important. It means that if local growth is not
+too big compared to the growth rate of the cohomological class then
+the expanding cohomological class gives sufficient "marching orders"
+to the system to prohibit the formation of any other such invariant
+1
+
+Research partially supported by a Wichita State University ARCS Grant.
+
+1
+
+current of the same type (say from some local dynamical subsystem).
+Because we use subsheaves of the sheaf of currents we give conditions
+under which a subsheaf will have the same cohomology as the sheaf
+containing it. Using a smoothing argument this allows us to show
+that the sheaf cohomology of the currents under consideration can be
+canonically identified with the deRham cohomology groups. Our main
+theorem can be applied in both the smooth and holomorphic setting.
+
+MSC: 37C05, 32H50, 18F20, 55N30
+
+1
+
+Introduction
+
+Our purpose is to construct invariant dynamical objects for a self map f : X →
+X of a compact topological space. We make use of sheaf cohomology and
+differences in rates of expansion in different terms of a long exact sequence
+to construct invariant sections of a sheaf. We will show that there are invariant degree 1 currents (or eigencurrents) corresponding to each expanding
+eigenvector of H 1 (X, R). We also show that successive preimages of sufficiently regular degree one currents converge to one of these eigencurrents.
+We show that if most of the expansion f : X → X is "along" an invariant
+cohomological class v ∈ H k (X, R) then there is an invariant current c in that
+cohomology class and other sufficiently regular currents in the same class
+converge to c under successive pullback.
+The group cohomology of Z acting on a space of functions on X via pullback has been studied in the context of dynamical systems [Kat03]. This
+work seems related to ours, but to be pursued in an essentially different direction. Our map f is not assumed to be invertible, so there is not necessarily
+a Z action, only an N action. Also, we use sheaves rather than functions and
+make substantial use of cohomological tools. Most importantly, we are particularly interested in the construction of invariant currents, especially when
+the current is some sense unique.
+Our results are actually motivated by results in higher dimensional holomorphic dynamics showing the existence of a unique closed positive (1, 1) current under a variety of circumstances (just about any recent paper on higher
+dimensional holomorphic dynamics either proves such results or makes essential use of such results, see e.g. [FS92], [HOV94], [HOV95], [BS91a], [BS91b],
+[BS92], [BLS93], [BS98a], [BS98b], [BS99], [Can01], [McM02], [FS94a], [FS94b],
+2
+
+[FS95b], [FS01], [FS95a], [JW00], [FJ03], [Ued94], [Ued98], [Ued97], and
+[DS05]).
+While invariant measures have been a focal point in dynamics, it seems
+that invariant currents also have an imporant role to play. We will show under
+mild conditions that if some degree one cohomological class of a smooth self
+map f of a compact manifold is invariant and expanded there is necessarily
+a invariant degree one current of a certain type representing that class. We
+obtain analogous results for higher degree currents given bounds on the local
+growth rates of f . The uniqueness of these classes is significant. It seems
+clear that one could modify a map locally near a fixed point to obtain other
+invariant currents of the same type without affecting the topology. Thus
+our results also say that any local modification that created an invariant
+current of the given type must violate the local growth conditions. In other
+words, as long as things do not grow too fast compared to the growth rate of
+the cohomology class, the expansion of the cohomology class gives sufficient
+"marching orders" to points that no other invariant cohomological class of the
+given type can be created by purely local dynamical behavior. Our results
+give explicit conditions under which uniqueness is guaranteed. For degree
+one currents, no restriction on local growth rates is necessary for our results.
+
+2
+
+Cohomomorphisms
+
+We will make use of sheaves in this paper. There are two standard definitions of sheaves on a topological space X, one as a topological space
+([Bre97],[GR84]), and one as a functor on the category TopX satisfying various axioms ([Har77],[Wei97]). Since we will often want to make use of a
+topology on sections of a sheaf A that differs from the topology these inherit
+using the topological definition of a sheaf, we will instead use the functor
+definition of a sheaf.
+Our sheaves will always be sheaves of K modules over some fixed field K.
+We will require that K have an absolute value for which K is complete.
+Given a continuous map f : X → Y and sheaves A and B on X and
+Y respectively, an f -cohomomorphism is a generalized notion of a pullback
+from B to A through f . Different types of geometric objects pull back
+differently, and this allows us to handle all cases at once.
+We take the following facts from from [Bre97] page 14–15.
+Definition 1. If A and B are sheaves on X and Y then an "f-cohomomorphism"
+3
+
+k : B → A is a collection of homomorphisms kU : B(U ) → A (f −1 (U )), for
+U open in Y , compatible with restrictions.
+Note that if A is a sheaf on X and f : X → Y is continuous then there
+is a canonical cohomomorphism f∗ A ; A where f∗ A is the direct image of
+A , i.e. given an open U ⊂ Y , f∗ A (U ) = A (f −1 (U )).
+Remark. Given a continuous map f : X → Y of topological spaces X and
+Y and sheaves A and B on X and Y respectively, all f -cohomomorphisms
+f : B ; A are given by a composition of the form
+j
+
+f∗
+
+B → f∗ A → A
+where j : B → f∗ A is a sheaf homomorphism, and each such composition is
+seen to given an f -cohomomorphism.
+The usual notion of "a morphism of sheaves on X" is the same as an idX
+cohomomorphism of sheaves on X.
+
+2.1
+
+Cohomomorphisms and Γ.
+
+The functor Γ returns the global sections of that sheaf. Given a morphism
+φ : A → A 0 of sheaves on X, Γφ is just the homomorphism A (X) → A 0 (X).
+Given sheaves A and B on X and Y and given f : X → Y continuous
+then for a sheaf cohomomorphism F : B → A one defines ΓF to be the
+homomorphism B(Y ) → A (X). This extends Γ to be a functor on the
+category of topological spaces with an associated sheaf where morphisms are
+given by cohomomorphisms.
+
+3
+
+Invariant Global Sections
+
+Fix a continuous self map f : X → X of a
+be interested in f self cohomomorphisms of
+typically have several sheaves of interest on
+f self cohomomorphism, we let fA : A ; A
+f -cohomomorphism of A .
+Assume that X is a manifold and that
+p
+
+q
+
+A →B→C
+4
+
+topological space X. We will
+sheaves A on X. As we will
+X, each with a corresponding
+be the default notation for an
+
+is a short exact sequence of sheaves on X. Let f : X → X be a continuous
+self map of X and assume further that we are given f self cohomomorphisms
+of each of these sheaves and that
+A
+
+p
+
+/B
+
+fA
+
+
+
+A
+
+C
+
+fB
+
+
+
+p
+
+/
+
+q
+
+/B
+
+q
+
+/
+
+
+
+(1)
+fC
+
+C
+
+commutes. We will say that a commutative diagram as in (1) is an f selfcohomomorphism of the sequence A → B → C .
+Applying the functor Γ to this diagram, the rows can be extended in the
+usual long exact sequence. The resulting diagram is commutative ([Bre97]
+page 62).
+
+0
+
+/ A (X)
+
+
+0
+
+/
+
+B(X)
+
+Γp
+
+ΓfA
+
+/ A (X)
+
+Γp
+
+/
+
+
+
+/
+
+C (X)
+
+Γq
+
+ΓfB
+
+B(X)
+
+Γq
+
+/
+
+
+
+/
+
+H 1 (X, A )
+
+H1p
+
+δ
+
+ΓfC
+
+C (X)
+
+δ
+
+/
+
+
+
+/ ***
+
+(2)
+
+H 1 fA
+
+H 1 (X, A )
+
+H1p
+
+/ ***
+
+One can think of B as providing local potentials for members of C and
+of A as being those potentials which give rise to the zero member of C .
+It will be assumed that the reader is familiar with interpreting H 1 (X, A )
+as classifying equivalence classes of bundles with transition functions in A .
+We will frequently refer to members of H 1 (X, A ) as bundles. Sections of
+such bundles will be assumed to be given locally by local sections of B,
+so that every member c of Γ(C ) is given locally by potentials in B, and
+these potentials, taken together, are a section of the corresponding bundle
+δ(c) ∈ H 1 (X, A ).
+Convention 1. We will frequently refer to a member v of H 1 (X, A ) as a
+bundle, to a member c ∈ Γ(C ) as a divisor and if δ(c) = v we will call c a
+divisor of the bundle v. We think this substantially adds to the readability of
+the paper.
+Definition 2. The support of a divisor c ∈ Γ(C ) is defined to be the complement of the union of all open sets U such that cU = 0.
+
+5
+
+Lemma 3. If an open set U lies outside the support of some c ∈ Γ(C ) then
+f −1 (U ) lies outside the support of fC (c)
+Proof. We note that by the definition of an f -cohomomorphism fC : C → C ,
+since the cohomomorphism fC on C (U ) is a homomorphism from C (U ) to
+C (f −1 (U )) and the induced action of fC on Γ(C ) restricted to U must agree
+with its action C (U ) → C (f −1 (U )), then if an open set U is outside the
+support of c then f −1 (U ) is outside the support of of fC (c).
+The following conditions for a given v ∈ H 1 (X, A ) will be of interest:
+Definition 4. We will refer to a bundle v ∈ H 1 (X, A ) for which (H 1 p)(v) =
+0 as being closed.
+Note that this notion depends upon the exact sequence A → B → C ,
+and not just on v. If B is γ acyclic then every member of H 1 (X, A ) is closed.
+Definition 5. We will call a bundle v ∈ H 1 (X, A ) base point free if for every
+x ∈ X there is some divisor c ∈ Γ(C ) associated to v whose support does
+not contain x.
+Lemma 6. If B is soft, X is a regular topological space, and a ∈ H 1 (X, A )
+is a closed bundle then a is base point free.
+Proof. From the long exact sequence there is some c0 ∈ Γ(C ) with δ(c0 ) = a
+q
+and given any point x ∈ X, from the fact that B  C the germ c0x of c0
+at x is the image under qx of some germ b00x of Γ(B) at x. Choose an open
+neighborhood U of x on which there is some b0 ∈ B(U ) with b0x = b00x . The
+topological assumption on X implies that there is a neighborhood V b U
+of x. The
+ fact that B 0 is soft implies there is some b ∈ Γ(B) such that
+0
+
+b V = b V . Then c = c − b ∈ Γ(C ) has δ(c) = a and x 6∈ Supp(c).
+Definition 7. We will refer to a bundle a ∈ H 1 (X, A ) such that fA (a) = λ*a
+for some λ ∈ C as a λ eigenbundle.
+We also find it useful to introduce a relevant notion of expansiveness
+of a map f : X → X relative to a base point free closed eigenbundle v ∈
+H 1 (X, A ).
+Definition 8. Given a base point free closed eigenbundle v ∈ H 1 (X, A )
+then we say that f is cohomologically expansive at x for v if for any open
+neighborhood U of x and any divisor c ∈ Γ(C ) of v, the set U intersects the
+support of fCk (c) for all sufficiently large k.
+6
+
+Remark. It is a corollary of the definition that the set of points at which
+f is cohomologically expansive for v is closed and forward invariant. If
+Supp fCk (c) = f −k (Supp(c)) for each c ∈ Γ(C ) then the set of cohomologically expansive points is totally invariant.
+The notion of being cohomologically expansive at x for v means roughly
+that under iteration by f small neighborhoods U of x always grow to cover
+enough of X that the pullback of the bundle v to the set f k (U ) is a nontrivial
+bundle on f k (U ) whenever k is large.
+We show that if B is soft and X is a compact metric space then some
+minimal expansion takes place at points where f is cohomologically expansive
+for a closed eigenbundle a ∈ H 1 (X, A ).
+We use B (x) to denote the ball of radius  about x.
+Lemma 9. Let X be a compact metric space. If B is soft and v is a closed
+eigenbundle then there exists δ > 0 such that for every  > 0 there exists
+some K > 0 such that if f is cohomologically expanding at x then for every
+k > K, diam f k (B (x)) > δ.
+Proof. The bundle v is base point free by Lemma 6. Using compactness we
+can conclude that there is a finite open cover U1 , . . . , U` of X such that for
+each j, Uj is disjoint from Supp cj for some cj ∈ Γ(C ) with δ(cj ) = v. We
+will prove the lemma by contradiction. Let δ be the Lebesgue number of the
+cover U1 , . . . , U` . If the lemma is false there is some  > 0 and some increasing
+sequence kn and points xn at which f is cohomologically expansive such that
+diam f kn (B (xn )) ≤ δ for each n. By going to a subsequence if necessary we
+can assume xn converges to a point x∞ . Letting U = B 1  (x∞ ) we see that
+2
+U ⊂ B (xn ) for all large n and thus there is some one cj of c1 , . . . , c` such that
+f kn (U ) is disjoint from Supp cj for infinitely many values of n. Consequently
+U is disjoint from Supp fCkn (cj ) for infinitely many n, contrary to x∞ being
+a point at which f is cohomologically expansive for v.
+We included Lemma 9 to show that our notion of cohomological expansion
+is genuinely expansive. However, depending on the nature of A , being cohomologically expansive can imply that neighborhoods grow a great deal under
+iteration indeed. In Lemma 10 we show that given any closed set K such that
+the pullback of a fixed point free closed eigenbundle a ∈ H 1 (X, A ) to K is a
+trivial bundle then any neighborhood U of a point at which f is cohomologically expanding for a is so expanded under iteration that f k (U ) 6⊂ int K for
+7
+
+all sufficiently large k. The collection of such sets K typically contains very
+large sets about every point so no matter where f k (x) is the conclusion that
+f k (U ) does not lie in any int K implies some points of f k (U ) must lie far away
+from f k (x). The point is roughly that large iterates of any neighborhood of
+x can not be homotopically contracted to a point in X.
+Lemma 10. If B is soft, then
+ for any closed set K ⊂ X such that the image
+1
+1
+of H (X, A ) → H (K, A K ) is zero, given any divisor c ∈ Γ(C ), there is
+another divisor c0 ∈ Γ(C ) associated to the same bundle and c0 is supported
+outside the interior of K. Consequently, if f is cohomologically expansive
+at x ∈ X for some base point free closed eigenbundle a ∈ H 1 (X, A ) then
+necessarily for any neighborhood U of x, f k (U ) 6⊂ int K for all large k, where
+int K is the interior of K.
+Proof. We use the commutative diagram
+H 0 (X, B)
+ 
+H 0 (K, B K )
+
+Γq
+
+Γq
+
+/
+
+/
+
+H 0 (X, C )
+
+ 
+H 0 (K, C K )
+
+δ
+
+δ
+
+/
+
+H 1 (X, A )
+
+/0
+
+which we have written using H 0 instead of Γ so it is clear what the ambi
+ent space is in eachcase. From exactness there exists some β ∈ H 0 (K, B K)
+such that δ(β) = cK . Then since B is soft the map H 0 (X, B) 
+→ H 0 (K, B K )
+is surjective so there is some b ∈ Γ(B) = H 0 (X, B) such that bK = β. Then
+c0 = c − (Γq)(b) has δ(c0 ) = δ(c) and c0 K = 0 so Supp(c0 ) is disjoint from
+the interior of K.
+It is easy to see that if f is cohomologically expansive at x ∈ X for some
+fixed point free closed eigenbundle a ∈ H 1 (X, A ) then necessarily for any
+neighborhood U of x, f k (U ) ∩ Supp c6= ∅ for all large k for any c ∈ Γ(C ) such
+that δ(c) = a. Hence f k (U ) can not lie in the interior of K for any large
+k.
+Convention 2. We let K be either R or C, although our central theorems
+only require K to be a complete field with an absolute value.
+The following Theorem takes advantage of the fact that in an exact sequence the eigenvalues of members of nonadjacent members of the sequence
+do not have to agree to give conditions under which one can uniquely "lift"
+8
+
+fixed members of one term of the exact sequence to a fixed member of the preceding term. Interpreted as a statement in the context of sheaf cohomology
+we will be able to use this Theorem to make dynamical conclusions.
+The theorem shows that each closed eigenbundle of the induced map
+fA : H 1 (X, A ) → H 1 (X, A ) with sufficiently large eigenvalue has a unique
+associated invariant divisor c ∈ Γ(C ).
+Definition 11. Given any finite dimensional K vector space V along with
+a linear map g : V → V and any positive real number r, we let the r chronically expanding subspace of V be the span of the subspaces associated2 to
+eigenvalues of absolute value greater than r. We refer to the 1 chronically
+expanding subspace simply as the chronically expanding subspace.
+Theorem 12 (Unique Invariant Subspace Theorem). We will assume the
+following:
+• f : X → X is a continuous self map of a topological space X.
+• We are given an f self cohomomorphism of a short exact sequence of
+sheaves on X,
+p
+q
+A →B→C
+• Γ(B) is a Banach space over K, and there exists some α, d ∈ R>0 such
+that kΓfB k (B)k ≤ d * αk kBk for k ∈ N, B ∈ Γ(B),
+• Γ(C ) is a topological vector space over K.
+• If a sequence Ci ∈ Γ(C ) of divisors converges to another divisor C∞
+then the support of C∞ is contained in the closure of the union of the
+supports of Ci .
+• The maps ΓfC and Γq are continuous.
+• We are given a finite dimensional H 1 (fA ) invariant subspace W of the
+α chronically expanding subspace of H 1 (X, A ). We also require W to
+be comprised only of closed bundles.
+2
+
+Meaning for each eigenvector λ we include not just the λ eigenspace, but also every
+v ∈ V such that (g − λ * idV )n (v) = 0 for some positive integer n.
+
+9
+
+Then given any K linear map s : W → Γ(C ) such that δs = idW there is a
+K linear map τ : W → Γ(B) satisfying
+κ := lim (ΓfC )k sg k = s + (Γq)τ
+(3)
+k→∞
+
+where g : W → W is the inverse of H 1 fA W . Under iterated pullback the
+rescaled pullbacks of any divisor C ∈ Γ(C ) of a bundle w ∈ W converge
+toward the invariant plane of divisors κ(W ) ⊂ Γ(C ). The map κ : W →
+Γ(C ) is the unique map making the diagram
+W MMM
+oo
+MMι M
+o
+&
+wo
+/ Γ(C )
+/ H 1 (X, A )
+κ
+
+Γ(B)
+
+Γq
+
+δ
+
+g
+ΓfB
+
+
+
+ΓfC
+
+
+
+Γ(B)
+
+Γq
+
+H 1 fA
+
+o W MMM ι
+κ o
+MMM
+o
+&
+
+
+wo
+/ Γ(C )
+/ H 1 (X, A )
+δ
+
+commute. Finally, for any basepoint free eigenbundle v ∈ W the support of
+the corresponding invariant divisor κ(v) ∈ Γ(C ) is contained in the set of
+points on which f is cohomologically expansive for v.
+
+Proof. We note that δ (ΓfC )sg −s = 0 and so there is a map σ : W → Γ(B)
+such that (Γq)σ = (ΓfC )sg − s.
+Define Φ : Hom(W, Γ(B)) → Hom(W, Γ(B)) by Φ(σ) = (ΓfB )σg −1 . We
+will show that the sequence of maps Φk is exponentially contracting on
+Hom(W, Γ(B)). Fix a norm k * k on W . The assumption that W lies in
+the α chronically expanding subspace of H 1 (X, A ) implies that there exists
+some β > α and some c > 0 such that kg −k (w)k ≤ cβ −k kwk for k ∈ N,
+w ∈ W . This with the assumption on the rate of expansion of ΓfB easily
+implies that
+ α k
+kφk * kwk
+kΦk (φ)(w)k = k(ΓfB )k (φ(g −k (w)))k ≤ cd
+β
+ k
+k
+Thus Φ is an operator of norm no more than cd αβ , where α < β.
+Letting τk = σ + Φ(σ) + Φ2 (σ) + * * * + Φk (σ) then limk→∞ τk converges
+to some map τ . It is easily confirmed that (Γq)τk = (ΓfC )k sg −k − s. Equation (3) then follows by continuity of Γq.
+10
+
+The conclusions about the map κ are easy consequences of its definition.
+For the final conclusion note that if we just let W be the span of v then
+we have already shown that if C is the unique invariant member of Γ(C )
+associated to v then for any divisor c0 ∈ Γ(C ) satisfying δ(c0 ) = v letting
+λ be the eigenvalue of v we can write c0 = κ(v) + (Γq)(b) and equation 3
+becomes (ΓfC )k c0 /λk = κ(v) + (Γq)(ΓfB )k bλk where the final term goes to
+zero as k → ∞ (by our assumptions on growth rates of g −1 and ΓfB ). Hence
+(ΓfC )k (c0 )/λk converges to c = κ(v). If U is any open subset of X and if the
+support of c0 is disjoint from f n (U ) for arbitrarily large values of n, then the
+support of (ΓfC )n (c0 ) must be disjoint from U for arbitrarily large values of
+n. Since, rescaled, these converge to c then U must lie outside the support
+of c.
+Remark. While we have not formally required X to be compact, the requirement that Γ(B) be a Banach space makes this the main case in which
+Theorem 12 is apt to have interesting applications.
+Theorem 12 shows that among all members of Γ(C ) representing a cohomology class in W there is a unique invariant linear subspace which can be
+identified with W and all other such members of Γ(C ) are contracted to this
+invariant copy of W in Γ(C ) under (rescaled) pullback.
+Corollary 13. Assume that the hypothesis of Theorem 12 are satisfied, and
+that g : W → W is dominated by a single simple real eigenvalue r > 0 with
+eigenvector v. Let C ≡ κ(v) be the unique invariant divisor of v. Then given
+a divisor C0 ∈ Γ(C ) of any w ∈ W the successive rescaled pullbacks fCk (C0 )/rk
+converge to a multiple (possibly zero) of C.
+Proof. This is a direct consequence of equation (3).
+The assumption that g : W → W is dominated by a single simple real
+eigenvalue is meant to handle the most typical situation, and is not an essential restriction.
+Remark. Given that for a fixed f : X → X the category of SC sheaves A
+on X endowed with an f self cohomomorphism F is an abelian category
+with enough injectives, then the functor Fixed Γ which gives the fixed global
+sections of A under F will be left exact and its right derived functors should
+be of dynamical interest. In the case where A is a sheaf of functions and
+f is invertible this is just group cohomology with the group Z acting on
+Γ(A ) and has been an object of study for some time (see, e.g. [Kat03]). We
+11
+
+anticipate studying the case of more general sheaves A and the right derived
+functors of the composition Fixed Γ in a future paper, including the case of
+endomorphisms.
+
+3.1
+
+Regularity and Positivity
+
+Typically our regularity results for the members invariant plane κ(W ) will
+be most easily described in terms of B rather than C . We therefore make
+the following definition.
+Definition 14. Given a subsheaf B 0 ⊂ B we will say a divisor C ∈ Γ(C ) has
+local B 0 potentials if C ∈ Γ(q(B 0 )). This is equivalent to requiring that about
+each point x ∈ X there
+is an open neighborhood U and some B0 ∈ B 0 (U )
+
+0
+such that q(B ) = CU .
+The proof of Theorem 12 implicitly provides a method to prove regularity
+results for members of the invariant plane κ(W ). We make this explicit as a
+corollary (of the proof).
+Corollary 15. Assume we are given f : X → X and a short exact sequence
+p
+q
+of sheaves A → B → C satisfying the hypothesis of Theorem 12. Assume
+that B 0 is a subsheaf of B and that ΓfB (B 0 ) ⊂ B 0 . Let C 0 be the image of
+B 0 under q : B → C . Let A 0 ⊂ A be the kernel of q : B → C 0 . Assume
+that the canonical map H 1 (X, A 0 ) → H 1 (X, A ) is injective. Assume that
+there are basis members w1 , . . . , wk of W with divisors each of which has local
+potentials in B 0 . Let r be the the inverse of the absolute value of the largest
+eigenvalue of g −1 (so for all j ≥ 0, g −j is an operator of norm no more
+than cr−j for some c > 0) Finally assume that for any sequence of numbers
+aj , j = 0, 1, 2, . . . such that |aj | is no more than a constant times r−j as
+j → ∞ then for B ∈ Γ(B 0 ) the exponentially decaying sequence
+a0 B + a1 (ΓfB )(B) + a2 (ΓfB )2 (B) + * * *
+
+(4)
+
+converges in the Banach space structure on Γ(B) to a member of Γ(B 0 ).
+Then the map κ : W → Γ(C ) lands in Γ(C 0 ).
+Proof. Since W lies in the α chronically expanding subspace of W then necessarily α/r < 1. Thus the terms of equation (4) have exponentially decreasing
+norms and the series is exponentially decaying.
+12
+
+By the assumption of a divisor in Γ(C 0 ) for each member wj of a basis
+then the map s : W → Γ(C ) in Theorem 12 can be assumed to land in Γ(C 0 ).
+Then (ΓfC )sg −1 − s lands in Γ(C 0 ) and satisfies δ((ΓfC )sg −1 − s) = 0. Since
+H 1 (X, A 0 ) → H 1 (X, A ) injects it easily follows that for each wj one can
+choose σ(wj ) to be a member Bj of Γ(B)0 . Using the basis w1 , . . . , wk to write
+g −1 as a matrix A, and letting aij,` be the ij entry of A` (so for each ij, aij,` is
+bounded by a constant times r−` ) we see that τ` (wj ) = Bj + (ΓfB )(a1j,1 B1 +
+* * * + akj,1 Bk ) + (ΓfB )2 (a1j,2 B2 + * * * + akj,2 Bk ) + * * * + (ΓfB )` (a1j,` B1 + * * * +
+akj,` Bk ). Gathering all the B1 terms, B2 terms, etc... from the right hand
+side we see that τ = limk→∞ τk is a member of Γ(B 0 ) and thus that κ lands
+in Γ(C 0 ) by equation (3).
+The following trivial observation will suffice for our needed positivity
+conclusions.
+Observation. Assume we have an f self cohomomorphism of a short exact
+p
+q
+sequence of sheaves A → B → C satisfying the hypothesis of Theorem 12,
+and also a subsheaf C 0 ⊂ C such that
+1. C 0 is closed under multiplication by R>0 . Note that C 0 is not necessarily
+a sheaf of K modules, or even of groups.
+2. fC (C 0 ) ⊂ C 0
+3. Γ(C 0 ) is closed in Γ(C ).
+Then for any closed eigenbundle v ∈ H 1 (X, A ) with eigenvalue in K0 and at
+least one divisor C0 ∈ Γ(C 0 ) the unique invariant divisor C ∈ Γ(C ) of v also
+lies in Γ(C 0 ).
+Proof. The proof is trivial since C = limk→∞ (ΓfC )k (C0 )/λk where λ ∈ R>0 is
+the eigenvalue of v.
+
+4
+
+Subsheaf Cohomology
+
+In applications of Theorem 12 it is common that there is a well understood
+exact sequence of sheaves
+d
+
+d
+
+d
+
+S0 →0 S1 →1 S2 →2 * * *
+
+13
+
+(5)
+
+
+and that B is a subsheaf of Sk for some k, A is the kernel of dk B : B →
+Sk+1 and C is the image of B in Sk+1 . Moreover, in these cases the self cohomomorphism f on A → B → C is induced by an f self cohomomorphism
+of the sequence (5). In order to apply Theorem 12 to these cases we need to
+understand the R module H 1 (X, A ) and its induced self map.
+There does not seem to be a computationally useful way to extract an
+d
+d
+injective resolution of A using subsheaves of S0 →0 S1 →1 * * * even if this
+last sequence is acyclic. Consider for example the case where for each n,
+Sn is the sheaf of currents of degree n and B ⊂ Sk is a subsheaf of mildly
+regular currents. It is not clear one could make the regularization method of
+[dR84] work to compare H 1 (X, A ) to deRham cohomology groups because
+his chain homotopy operator A does not restrict well to B since dA does not
+preserve regularity. We use a standard sheaf cohomological trick, which we
+include here as a proposition which we will need and which we expect to be
+commonly used in conjuction with Theorem 12 because of the requirement
+that Γ(B) be a Banach space.
+Theorem 16 (Subsheaf Cohomology). Assume we are given an exact sed
+d1
+d2
+quence of sheaves S0 →0 S1 →
+ S2 → * * *0 and that B is a subsheaf of Sk for
+some k ≥ 1. Let A = ker dk B , and B be the preimage of B under dk−1 .
+Further assume that for each j ≥ 1 we have H j (X, B 0 ) = 0, H j (X, B) = 0
+and for any m satisfying 0 ≤ m ≤ k − 1 we have H j (X, Sm ) = 0 for j ≥ 1.
+Then for each n ≥ 1 there is a canonical isomorphism
+H n (X, A ) ∼
+= H n+k (X, ker d0 ).
+Proof. While this result is essential for us,
+ its proof is a standard cohomological trick. First one notes that ker dk−1 B0 = ker dk−1 by the definition of
+B 0 . One has the short exact sequences of sheaves:
+ker dk−1 → B 0 → (dk (B 0 ) = A )
+and
+ker dj → Sj → ker dj+1 ,
+
+j = 0, . . . , k − 2.
+
+Considering the long exact sequences for these shows that the induced maps
+H n (X, A ) → H n+1 (X, ker dk−1 ) and H n+j (X, ker dk−j ) → H n+j−1 (X, ker dk−j−1 )
+are isomorphisms for j = 1, . . . , k −1. Composing each of these canonical isomorphisms gives a canonical isomorphism from H n (X, A ) → H n+k (X, ker d0 ).
+
+14
+
+Remark. We take it as clear from the functorality of the δ map in the long
+d
+d
+d
+exact sequence that given an f -self cohomomorphism of S0 →0 S1 →1 S2 →2
+* * * which maps B to itself that the induced map of H 1 (X, A ) is identified
+with the induced map of H k+1 (X, ker d0 ) via the above isomorphism.
+We will need one more tool be able to make effective use of Theorem 16
+for calculating sheaf cohomology of subsheaves of sheaves of currents.
+Definition 17. By an interval flow h on a bounded open interval I ⊂ R we
+∂
+will mean the flow obtained by integrating a vector field of the form σ(t) ∂t
+where σ is positive exactly on I and zero elsewhere. We use h(x, t) to denote
+the location of x ∈ R after following the flow for time t.
+Definition 18. By an n-box in Rn we will mean an open subset which is
+a product of n bounded open intervals I1 , . . . , In . By an n-box in an n
+dimensional manifold we will mean an n-box which is compactly supported
+in some coordinate patch. By an n-subbox of an n box U = I1 × * * * × In we
+will mean an n box of the form I10 × * * * × In0 where Ik0 is a subinterval of Ik
+for each k ∈ 1, . . . , n.
+Definition 19. By an n-box flow we will mean the Rn action h on Rn
+which is the product of n interval flows h1 (t1 ), . . . , hn (tn ) on Rn . That is
+h(x, t) = (h1 (x1 , t1 ), . . . , hn (xn , tn )) where x = (x1 , . . . , xn ), t = (t1 , . . . , tn )
+and h1 , . . . , hn are interval flows on I1 , . . . , In respectively. We refer to the
+n-box I1 × * * * × In as the open support of the n-box flow. We will often ht
+to denote the diffeomorphism h(*, t) : Rn → Rn .
+Definition 20. Let h be an n-box flow on an n-box B. Let ρ be a compactly
+supported smooth volume form on Rn . With this data we define an operator
+Sh,ρ on smooth k forms on any n box U containing B by
+Z
+Sh,ρ (φ) =
+h∗t (φ)ρ(t)
+(6)
+Rn
+
+We say Sh,ρ defines a box smear on U , or smears U . We will omit the
+subscript from Sh,ρ when the meaning is clear from context. It is clear S(φ)
+is compactly supported in U if φ is.
+It is clear from the definition of S that if ψ is an n − k form on U then
+Z
+Z
+SH,ρ (φ) ∧ ψ =
+φ ∧ S−H,ρ (ψ)
+U
+
+U
+
+15
+
+where −H is the family Ht with the parameter negated. From this motivation
+we define a smear of a current.
+Definition 21. Given h, ρ defining a smear on an n box U we define the
+smear Sh,ρ on currents on U via
+< Sh,ρ (C), φ >≡< C, S−h,ρ (φ) > .
+
+Lemma 22. Given h, ρ defining a smear S on an n box U then d S(C) =
+S(dC) for currents C on any open subset of U containing the open support
+of the smear. Also, restricted to the open support of the smear, S(C) is a
+smooth form on V .
+
+Proof. We remark that it is clear that d S(φ) = S(dφ) for forms φ, and
+consequently for currents φ via the definition.
+Because on the open support of the smear, a smear is just convolution
+with a smooth function, then we see that if V is an open subset
+ of the open
+support of smear S on U then for any current C on U , S(C)V is a smooth
+form on V .
+Proposition 23. Let B be a sheaf of degree k currents. Assume that B
+contains the sheaf of smooth k forms on X, and that B(U ) is closed under
+smears on any n-box U ⊂ X. Let B 0 be the preimage under d of B in the
+sheaf of degree k − 1 currents. Then B 0 is soft, and therefore, Γ-acyclic.
+Proof. To show that B 0 is soft it is sufficient to show that B 0 is locally soft
+([Bre97] page 69). Given an n-box U in X we therefore only need to show
+that if K is a closed subset of X in U and if W is an open neighborhood
+of K then given any member B00 of B 0 (W ) there is an
+ open neighborhood
+
+W0 ⊂ W of K and a member B0 ∈ B 0 (U ) such that B0 W0 = B00 W0 .
+Choose any pair of open sets V1 , V2 such that K b V1 b V2 b W . Then
+V2 \ V1 is compact and can therefore be covered by finitely many (open) nsubboxes Y1 . . . , YN of U . Moreover these subboxes can all be chosen to be
+disjoint from K and to lie inside W . Letting S1 , . . . , Sn be smears on U with
+0
+open support Y1 , . . . , YN respectively then let B = S1 (S
+2 (* * * (S0 N
+(B0 )) * * * )).
+Then on each Yj , B is given by a smooth k form. Also, BW = B0 W . Finally,
+we choose a smooth function ψ : U → [0, 1] which is one on a neighborhood
+of V1 and zero on a neighborhood of U \ V2 . Then the current B0 ≡ ψB
+extends (by zero) to a current on all of U . Then for each Yj , B0 Yj is a
+
+smooth function times a smooth form. Thus d(B0  ) is a smooth form and
+Yj
+
+16
+
+Figure 1: A current comprised of parallel submanifolds smeared and cropped.
+lies in B(Yj ). The boxes Yj cover V2 \ V1 . Outside V2 , B0 is identically zero.
+We know that dB ∈ B(W ) by Lemma 22. We also know
+ that ψ ≡ 1 on
+0
+an open neighborhood W1 of V1 . Thus d(B W1 ) = d(BW1 ) ∈ B(W1 ). We
+thus conclude that B0 ∈ B 0 (U ) since its restriction to each Yj , to W1 and to
+U \ V2 is a section of B 0 . Letting W0 = V2 \ (Y1 ∪ Y2 ∪ * * * ∪YN ) then W0 is
+an open neighborhood of K, then W0 ⊂ W1 so B0 W0 = BW0 = B00 since
+W0 is disjoint from the open support of each of the smears S1 , . . . , SN . This
+completes the proof that B 0 is soft.
+The following gives a broad generalization of the equalivalence of the cohomology of currents with the deRham cohomology groups. To the author's
+knowledge, this result is new.
+Corollary 24. Let B be a sheaf of degree k currents. Assume that B contains the sheaf of smooth k forms on X, and that B(U ) is closed under
+smears on any n-box U ⊂ X. Letting A be the subsheaf of d closed members
+of B, then
+H m (X, A ) = H m+k (X, K),
+where K is R or C depending on whether or not we allow complex valued
+currents and forms.
+17
+
+Proof. This is an immediate consequence of Proposition 23 and Theorem 16.
+
+5
+
+Invariant Currents
+
+Notation 1. If G is some sheaf of functions on a smooth orientable manifold
+X we will use F k (G ) to denote the sheaf of k forms on X with coefficients
+in G . We will let Fck (G ) be the subsheaf of closed (in the sense of currents)
+members of F k (G ).
+It will be convenient to use either degree or dimension of a current depending on the context (just as dimension and codimension are useful for
+discussing manifolds), so we will not stick to just one of these terms. We will
+let C k denote the sheaf of degree k currents with the index written above
+as is typical for cohomology since d increases the degree. We will similarly
+write Ck for the sheaf of dimension k currents with the index written below
+since d decreases dimension as is common for homology. We use the following
+convention to realize a form α as a current so that if α is C 1 then dα is the
+same whether computed as a current or a form.
+Definition 25. Given an k form α with L1 coefficients on an n manifold X
+we realize α as a degree k current via
+Z
+k+1
+(
+)
+α∧β
+β 7→ (−1) 2
+X
+
+Definition 26. Given a (possibly complex) nonzero deRham cohomology
+k
+class c ∈ HdeRham
+(X) with f ∗ (c) = α * c for some scalar α ∈ C we will refer
+to a current C in the same cohomology class as α as an eigencurrent for f if
+f ∗ (C) = αC.
+Currents naturally pushforward, rather than pullback. Because we are
+considering maps which are not necessarily invertible we need to address
+how this pullback is performed. If f has critical points it is impossible to
+define a continuous pullback operation f ∗ on all currents in a way that agrees
+with expected cases. For instance, consider f (x) = x2 and let Ca be the
+dimension one current on R with Ca (h(x)dx) = h(a), i.e. Ca is a unit mass
+vector. Then the pullback f ∗ (Ca ) should be the sum of weighted unit masses
+at the two preimages of this vector (just like the pullback of a point mass
+18
+
+∗
+is a sum of point
+ masses each weighted by multiplicity), that is, f (Ca ) =
+1
+√ C√a − C−√a . However, these pullbacks do not converge to a current as
+2 a
+a → 0 so f ∗ (C0 ) is not defined. Since we want f ∗ to be continuous, we are
+forced to work with currents that have some extremely mild regularity. We
+address this in the next section.
+
+5.1
+
+Nimble Forms and Lenient Currents
+
+Finding a good set of currents to use to study smooth finite self maps (not
+necessarily invertible) of compact manifolds turns out to be rather delicate.
+Our solution is to first expand our class of forms to include pushforwards (in
+the sense of currents) of forms through an appropriate class of smooth maps.
+Then we restrict our attention to currents which act on this extended class
+of forms.
+This solution has the very nice property that it can potentially be adapted
+directly to study the dynamics of other various other categories of smooth
+maps (by simply changing which forms are considered nimble, according
+to the class of maps used). It will convenient to first define the natural
+pushforward operator on forms:
+Definition 27. Given a compact orientable manifold X we let SX be the
+category of smooth maps f : X → X of nonzero degree and having the
+property that the critical set has measure zero. We use critical set here to
+mean the points at which Df is not invertible.
+It follows from our definition that the image of any set of positive measure
+under some f ∈ SX has positive measure.
+Definition 28. Given a compact orientable manifold X we define N k to be
+those currents φ which are a finite sum of currents of the form p∗ (σ) where
+p : X → X is a map in SX and σ is a form of degree k. The pushforward
+p∗ (σ) is computed in the sense of currents.
+We will later show that nimble forms are also, in fact, bona fide forms.
+Definition 29. We topologize N k by saying φj → φ in N k if for sufficiently
+large j there are maps
+P f1 , . . . , fk and k forms
+P σ1j , . . . , σkj as well as forms
+σ1 , . . . , σk such that i fi∗ (σij ) = φj and i fi∗ (σi ) = φ (where pushforwards are taken in the sense of currents) and for each i ∈ 1, . . . , k, the forms
+σij converge to σi in the strong sense (i.e. all derivatives converge uniformly).
+19
+
+Lemma 30. Given a compact orientable manifold Y , N k (Y ) is a topological
+vector space.
+Proof. This follows easily from our definition of the topology.
+We now define the corresponding space of currents.
+Definition 31. We define the dimension k lenient currents Lk (Y ) to be
+the topological dual of N k (Y ). Every member of Lk (Y ) is a dimension k
+current, but with the added structure of its action on all nimble k forms. We
+give Lk the weak topology, i.e. Ci → C in Lk iff < Ci , φ >→< C, φ > for
+every φ ∈ N k . We write L k for the lenient currents of degree k.
+We define operations of wedge products with smooth forms as is usual for
+currents. It is clear that the lenient dimension k currents give a sheaf on X.
+The following properties of nimble forms are also immediately clear.
+Lemma 32. Let f : X → X be a member of SX . The pushforward (as
+a current) of a nimble k form by f is again a nimble form. Moreover
+f∗ : N k (X) → N k (X) is continuous (in the topology of nimble forms). Also
+the exterior derivative of a nimble form (as a current) is a nimble form and
+d : N k (X) → N k+1 (X) is continuous.
+The basic necessary facts about pulling back lenient currents are then
+immediate. We state them here:
+Lemma 33. Given f : X → X a member of SX the induced map f ∗ on the
+sheaf of lenient degree k currents is an f cohomomorphism of sheaves. Both
+f ∗ : L k (X) → L k (X) and d : L k (X) → L k+1 (X) are continuous. Lastly,
+f ∗ d = df ∗ : L k (Y ) → L k+1 (X).
+Proposition 34. Assume that f : X → X is a member of SX . Let R be the
+regular set of f . By Sard's theorem R has full measure. Since the critical set
+is compact then R is an open subset of X. Since the preimage of a measure
+zero set has measure zero for SX maps then f −1 (R) is also a full measure
+open set in X. There is a well defined operation f? which maps k forms on
+f −1 (R) to k forms on R. Given a k form β on X, f? (β) is defined on any
+open subset V ⊂ R such that each component U1 , . . . , Um of f −1 (V ) maps
+diffeomorphically onto V by the formula
+?
+
+1 X 
+(f Ui )−1 (β) * σi
+(7)
+f? (β)V ≡
+deg f i
+20
+
+
+where σi ∈ {±1} is the oriented degree of f Ui : Ui → V . The pushforward
+f? satisfies:
+• f? d = df? (keeping in mind that f? returns a current on R)
+• f? (1) = 1
+• f? (f ∗ (β) ∧ α) = β ∧ f? (α)
+• (f? )n = (f n )?
+• The formula
+Z
+
+Z
+
+∗
+
+f (β) ∧ α =
+X
+
+β ∧ f? (α)
+
+(8)
+
+X
+
+holds for any k form β with L∞
+loc coefficients on Y and any smooth n−k
+form α on X. This justifies using f? to pullback currents. (Part of the
+conclusion is that both sides are integrable.)
+Proof. Each statement is a consequence of formula (7) except the integrability conclusion for equation (8). Local charts can be given which are bounded
+subsets of Rn and for which Df remains uniformly bounded (over each of the
+charts) and thus f ∗ (β) will be a form with L∞
+loc coefficients in these charts.
+Thus the left hand side of (8) is the integral of a bounded function over a
+finite union of bounded charts and is therefore absolutely integrable. Since
+f? (f ∗ (β) ∧ α) = β ∧ f? (α) it is sufficient to show that if γ is an n form with
+L∞
+loc coefficients then
+Z
+Z
+f? (γ).
+
+γ=
+f −1 (R)
+
+(9)
+
+R
+
+Typicaly f? (γ) is unbounded so we need to show that the right hand side of
+(9) is integrable. About any point x ∈ R we can find an open V such that
+each of the preimages U1 , . . . , Uk of V is mapped diffeomorphically onto V .
+Since X is orientable and n dimensional there is a well defined notion of the
+absolute value of an n form. Then
+Z 
+Z
+Z
+XZ
+ −1 ? 
+1 X
+
+
+|γ| =
+|γ|.
+(γ) =
+|f? (γ)| ≤
+ (f Ui )
+deg f i V
+−1 (V )
+U
+f
+V
+i
+i
+Now R is covered by countably many such sets V and listing them as V0 , V1 , V2 , . . . ,
+we can let V00 = V0 , V10 = V1 \ V0 , V20 = V2 \ (V0 ∪ V1 ), . . . . Then R is the union
+21
+
+of the countable collection of disjoint measurable sets Vj0 and
+Z
+Z
+XZ
+XZ
+|f? (γ)| =
+|f? (γ)| ≤
+|γ| =
+|γ|.
+R
+
+j
+
+Vj
+
+j
+
+f −1 (Vj )
+
+f −1 (R)
+
+R
+Since f −1 (R) |γ| is finite then f? (γ) is an L1 form. Using precisely the same
+argument but with the absolute
+values Rremoved and the inequalities replaced
+R
+with equalities then shows R f? (γ) = f −1 (R) γ.
+Since R and f −1 (R) are open and full measure then f? is an operator
+which takes in forms on X and returns forms defined almost everywhere on
+X.
+We now show that nimble forms are bona fide forms.
+Lemma 35. If g : X → X is a map in SX and σ is a smooth k form on X
+then the current g∗ (σ) is the current of integration against the form g? (σ).
+Proof. If φ is a smooth n − k form then by definition < g∗ (σ), φ >=<
+k+1 R
+k+1 R
+σ, g ∗ (φ) >= (−1)( 2 ) X σ ∧ g ∗ (φ) = (−1)( 2 ) X g? (σ) ∧ φ =< g? (σ), φ >
+by formula (8) of Proposition 34
+As described in [Fed69], an inner product on a vector space V can be
+viewed as an isomorphism ` : V → V ∗ satisfying certain properties. The
+inverse of ` gives the induced inner product on V ∗ . The fact that < v, w >≤
+kvk * kwk with equality iff v and w are scalar multiples implies that the inner
+product norm on V ∗ isVthe same
+norm of V ∗ acting onVV .
+Vk operator
+Vk as the
+k
+∗
+V V
+gives an inner product on k V .
+V →
+`:
+The induced map
+We call this the canonical inner product on k V induced by the inner product on V . Hence, given a Riemannian
+there are canonical
+Vk metric onVX,
+k ∗
+smoothly varying inner products on
+T
+X
+and
+T
+x
+x X for each x ∈ X.
+Vk
+At any point x V∈ X we V
+define k
+Dx f k to be the operatorVnorm of the
+V
+k
+k
+linear function
+Dx f :
+Tx X → k Tf (x) X. We define k k Df k to be
+Vk
+the L∞
+Dx f k. Also, given a k form φ we define
+loc norm of the map x 7→ k
+Vk
+∞
+the comass kφkL∞
+of
+φ
+to
+be
+the
+L
+norm
+of
+the
+function
+x
+→
+7
+k
+φx k. It
+loc
+loc
+is clear that the k forms with the comass norm is a Banach space. We now
+show that the k forms with L∞
+loc coefficients are naturally lenient currents.
+We start by defining the action on nimble forms.
+
+22
+
+Definition 36. Given an n − k form C with L∞
+loc coefficients we define
+Z
+n−k+1
+(
+)
+2
+< C, p∗ (σ) >= (−1)
+C ∧ p? (σ)
+X
+∞
+Lemma 37. The space F n−k (L∞
+loc ) of n−k forms with Lloc coefficients under
+the comass norm includes P
+continuously into Lk (X) where the action of C ∈
+n−k
+∞
+F
+(Lloc ) on some φ = i fi∗ (σi ) ∈ N k (X), with each fi ∈ SX and each
+σi ∈ F k (C ∞ ) is given by
+XZ
+< C, φ >≡
+fi∗ (C) ∧ σi .
+X
+
+i
+
+Proof. The assumption that X is compact means that any two Riemannian metrics on X are comparable. Choose one so the notion of the comass
+norm makes sense. The result is then a straightforward consequence of equation (8), Lemma 35, and our definitions.
+Remark. It follows that a current with local F k (L∞
+loc ) potentials is also a
+lenient current.
+∗
+Remark. Given a member C of F k (L∞
+loc ) then f (C) is the same whether
+done as a lenient current or as a form. This, along with the fact that df ∗ =
+f ∗ d justifies the ad hoc pullback of closed positive (1, 1) currents used so
+successfully in holomorphic dynamics. Similarly dC gives the same result
+whether calculated as a lenient current or a form if C ∈ F k (C 1 ).
+
+5.2
+
+Hölder Lemmas
+
+We will want to apply Corollary 15 to show that each eigencurrent we construct has local d potentials (or ddc potentials in the holomorphic case) which
+are forms with Hölder continuous coefficients. In order to do this we will need
+a few facts which we include here in order to avoid having to include regularization results as afterthoughts to our main theorems.
+Observation. Let Hα be the functions with coefficients that are Hölder of
+exponent at least equal to some fixed α > 0. Since diffeomorphisms preserve
+Hölder exponents and averages of Hölder functions are Hölder then we take
+it as clear that Corollary 24 applies to show that H 1 (X, A 0 ) = H 1 (X, A )
+where A 0 is the closed members of F k (Hα )) and A is the closed degree k
+currents.
+23
+
+Lemma 38. Let X be a compact manifold (real or complex) with a Riemannian metric and of real dimension n. Let f : X → X be a smooth map. Then
+local coordinate charts Ui can be chosen on X (each representing a convex
+open subset of Rn ) so that there is a positive constant 1 < M so that for any
+k form φ, there exist constants c, C > 0 such that writing each f k∗ (φ) in any
+of the charts Ui as
+X
+f k∗ (φ) =
+aki dx∧i
+then each function aki satisfies
+sup |aki | ≤ c * kf k∗ (φ)kcomass
+
+(10)
+
+x∈Ui
+
+and for each j ∈ 1, . . . , n,
+ ∂a 
+ ki 
+sup 
+ ≤ C * M k.
+∂x
+x∈Ui
+j
+Proof. Equation (10) is a basic fact.
+The rest is a straightforward consequence of realizing a self map of a
+manifold as being made up of a bunch of maps between different coordinate
+patches in Rn . That is, one chooses an open cover of patches Ui of X. Each
+patch is realized in Rn as a round ball. Thinking of each patch as lying in Rn
+then we can find explicit maps from between open subsets of Rn of the form
+pij : Ui ∩ f −1 (Uj ) → Uj . By shrinking each open ball Ui a small amount the
+resulting patches still cover X but the derivatives of the maps pij are all now
+bounded (since we are working on relatively compact subsets of the previous
+maps pij ).
+Then given any x we can keep track of which patch f k (x) is in at each time
+and can then realize the map f k (x) as a composition pi1 i2 ◦ pi2 i3 ◦ * * * ◦ pik−1 ik .
+Since each partial derivative of each pij is uniformly bounded then any partial
+derivative of the composition grows at most exponentially with k and we are
+done.
+The following observation will also be useful:
+Lemma 39. If there are positive constants c, C, m, M with m < 1 < M
+such that a sequence of smooth functions hk on an open convex set U ⊂ Rn
+satisfies
+khk ksup < c * mk
+24
+
+and
+
+w ∂h w
+w kw
+w < C * Mk
+w
+∂xj sup
+
+for all k ∈ 0, 1, 2, . . . then h1 +h2 +h3 +. . . converges to a bounded continuous
+log(m)
+.
+function which is Hölder of any exponent α < log(m/M
+)
+Proof. The proof is elementary.
+
+5.3
+
+Eigencurrents for Cohomologically Expanding Smooth
+Maps
+
+V
+to be
+We will call a section V of k T X a k-vector field. We define kV kL∞
+loc
+∞
+the Lloc norm of the function x 7→ kVx k. Whether Theorem 12 applies to a
+V
+map will depend the size of k k Df k. Replacing f with an iterate does not
+affect the needed estimate so we make the following definition.
+Definition 40. We define Υk to be the limit supremum as j → ∞ of
+V
+1
+k k D(f j )k j . It follows that Υ1 ≥ eλ for any Lyapunov exponent λ and
+that Υk ≤ Υk1 ([Fed69] page 33).
+We let B be the sheaf F k−1 (L∞
+loc ). The norm k * k∞ clearly makes Γ(B)
+into aVBanach space. Given a member B ∈ Γ(B), since
+Vkthe∗ operator norm on
+k
+each
+Tx X is equal to the norm already defined on
+Tx X for each x ∈ X
+∞
+then kBk∞ is equal to supremum of the Lloc norm of the function x 7→ B(Vx )
+as V varies over all L∞
+loc k-vector fields of norm no more than one.
+Theorem 41. Given f : X → X an a map in SX for the compact orientable
+k
+manifold X, assume that c ∈ HdeRham
+(X) is a cohomology class (using either real or complex deRham cohomology) which is an eigenvector for f ∗ with
+eigenvalue β. Assume also that |β| > Υk−1 . Then there exists a unique eigencurrent C with local F k−1 (L∞
+loc ) potentials representing the class c. Moreover
+C has local F k−1 (H) potentials.
+Also, given any neighborhood U ⊂ X of any point in the support of C,
+then for every lenient current C0 with local F k−1 (L∞
+loc ) potentials and which
+represents the cohomology class c then f k (U ) ∩ Supp C0 6= ∅ for all large k.
+k
+k
+Assume that the linear map f ∗ : HdeRham
+(X) → HdeRham
+(X) is dominated
+0
+by a single simple real eigenvalue r. Given C any current which has local
+k−1
+F k−1 (L∞
+loc ) potentials and which represents a cohomology class in the Υ
+k
+chronically expanding subspace of HdeRham (X), then the successive rescaled
+25
+
+pullbacks f k∗ (C0 )/rk of C0 converge to a multiple of C in the sense of lenient
+currents (and thus also in the sense of currents).
+Proof. We let B = F k−1 (L∞
+loc ), A and C be the kernel and image respecd
+k
+tively of B → L . By Theorem 24, H 1 (X, A ) can be canonically identified
+with H k (X, K). Since B is Γ-acyclic then every member of H 1 (X, A ) is a
+closed bundle with respect to the short exact sequence A → B → C .
+From Lemma 33 there is an induced f cohomorphism of the short exι
+d
+act sequence A → B → C . Also Γ(C ) is a space of lenient currents by
+Lemma 33 and thus has a natural structure as a topological vector
+R space. If
+aR sequence Bi ∈ Γ(B) converges to B ∈ Γ(B) then < dBi , φ >= X Bi ∧dφ =
+B ∧ dφ =< dB, φ > so the map d : Γ(B) → Γ(C ) is continuous.
+X
+The cohomomorphism ΓfB is pullback f ∗ of differential forms. Fixing any
+real α satisfying Υk−1 < α < |β| it isVclear from the definition of Υk−1 that one
+th
+can choose a real d > 0 such that k k−1 D(f ` )k ≤ d*α` for all
+Vk` ∈ N.` The `
+`∗
+`∗
+pullback f (B) of B ∈ Γ(B) satisfies kf (B)k∞ = supV kB( D(f )(V ))k∞
+where theVsupremum is taken over all k-covector fields V with kV
+Vkk∞ ≤` 1.
+k
+`
+However
+D(f )(V ) isVa k-covector field of norm no more than k
+D(f )k,
+so kf `∗ (B)k∞ ≤ kBk∞ * k D(f ` )k∞ ≤ d * α` kBk∞ .
+Given any W in the Υk−1 chronically expanding subspace of H k (X, K),
+we can alter our choice of α > Υk−1 so that W also lies in the α chronically
+expanding subspace of H k (X, K).
+We can therefore apply Theorem 12 to conclude that there is a (unique)
+map κ : W → Γ(C ) such that f ∗ κ = κf ∗ , where the first f ∗ is pullback of
+currents and the second is pullback on H k (X, K).
+In fact κ(W ) lies in the space of currents with locally Hölder potentials
+(meaning F k−1 (H) potentials) by applying Corollary 15 in conjunction with
+Observation 5.2, Lemma 38 and Lemma 39. The second half of the Theorem
+is a consequence of equation (3).
+Remark. Theorem 41 gives regular degree one eigencurrents for every eigenvalue of f ∗ : H 1 (X, K) → H 1 (X, K) of norm greater one without requiring
+any constraints on the local behavior of f . The degree one eigencurrents
+seem to be, in some sense, more robust than currents of lower dimension,
+including invariant measures. Moreover since codimension one closed submanifolds are closed currents with local F 0 (L∞
+loc ) potentials then successive
+rescaled preimages of such manifolds in the right cohomological class will
+converge to the eigencurrent.
+26
+
+Remark. The fact that eigencurrents constructed via Theorem 41 have local
+potentials which are forms does not imply their support has positive Lebesgue
+measure as the classical example of a monotonic nonconstant function which
+is constant on a set of full measure shows.
+1
+1
+Remark. The assumption that f ∗ : HdeRham
+(X) → HdeRham
+(X) is dominated
+by a single simple real eigenvalue r is not essential, but just meant to handle
+the simplest case. In fact the proof actually shows that if W lies in the
+Υk−1 chronically expanding subspace of H k (X, K) then every current in the
+invariant plane κ(W ) ⊂ Γ(C ) of currents has local F k−1 (H) potentials and
+any current with cohomological class in W with local F k−1 (L∞
+loc ) potentials
+is attracted to κ(W ) under successive rescaled pullback.
+
+Since measures are of particular interest in dynamics, we note that H 1 (X, F n−1 (L∞
+loc )) =
+n
+∗
+H (X, K) = K by Corollary 24 so there is a unique f eigenvalue and it is
+precisely the topological degree of f . We thus obtain:
+Corollary 42. Given that Υn−1 < deg f then there is a unique dimension
+k−1
+zero eigencurrent C with F k−1 (L∞
+(H)
+loc ) potentials (and in fact it has F
+0
+k−1
+potentials) and the successive rescaled preimages of any C with F (L∞
+loc )
+potentials converge to C. If additionally there is no point x ∈ X about which
+f is locally an orientation reversing diffeomorphism then C (and every other
+member of κ(W )) is a positive distribution and is therefore a Radon measure.
+Proof. Since f ∗ pulls back dimension zero currents (i.e. distributions) which
+are positive to distributions which are positive then by Corollary 3.1 the
+distribution C is positive. It is therefore a Radon measure (see e.g. [HL99]
+page 270).
+Remark. In the case where f is orientation reversing on some parts of X (but
+not on all of X) some special remarks apply. If it happens that successive
+rescaled images of some point converge to a dimension zero eigencurrent then
+since preimages of points are counted with multiplicity then when pulled back
+through a portion of X on which f reverses orientation the sign of a point
+is flipped. Thus in this case the eigencurrent may not describe so much
+the distribution of preimages as the relative density of preimages counted
+negatively as compared to those counted positively. The number of actual
+preimages of a point may grow exponentially faster than the degree of the
+map in such cases so that dividing by the degree does not yield a measure in
+the limit unless some such "cancellation" takes place in the limit. One would
+27
+
+expect that the corresponding eigencurrents have local potentials which are
+not of bounded variation in such a case.
+
+5.4
+
+Eigencurrents for Smooth Covering Maps
+
+We will call a covering map which is locally a diffeomorphism a smooth
+covering map. We now consider the special case of smooth self covering
+maps f : X → X of a compact smooth orientable manifold X. We show
+that in this case we have a substantially broader collection of currents whose
+successive pullbacks converge to an eigencurrent, albeit we need different
+estimates for Theorem 12 to apply. We will pull back currents by pushing
+forward forms with f? . Since the regular set of f is all of X then f? is a well
+defined operator from smooth forms to smooth forms.
+Definition 43. For a map satisfying the hypothesis of Proposition 34 we
+define the operation f ∗ from currents on X to currents on Y by
+< f ∗ (C), α >≡< C, f? (α) > .
+Clearly f ∗ preserves the dimension of a current.
+Let Mk−1 be the sheaf for which Mk−1 (U ) is the Banach space of bounded
+linear operations on the topological vector space comprised of F k−1 (C ∞ )(U )
+with the k * k∞ norm. Equivalently, Mk−1 is the sheaf of dimension k − 1
+currents of finite mass.
+Choose a Riemannian metric on X. If f : X → X is a smooth cover
+then for each x ∈ X and each ` ∈ N, Dx (f ` ) : Tx X → Tf ` (x) X is invertible.
+Vk
+Vk
+`
+D
+(f
+)
+:
+Tx X →
+We
+let
+ν
+(x,
+`)
+be
+the
+operator
+norm
+of
+the
+inverse
+of
+k
+x
+Vk
+1/`
+Tf ` (x) X. We define νk (`) = supx∈X νk (x, `) . We define νk = lim sup`→∞ νk (`).
+The iterated pushforward operation f?` : F k−1 (C ∞ )(X) → F k−1 (C ∞ )(X)
+satisfies kf?` (φ)k∞ ≤ νk (`) * kφk∞ as is straightforward to verify. If f is invertible then νk is a bound on the growth of the k th wedge product of the
+derivative under f −1 . For non-invertible f , νk represents a bound on the
+growth of the k th wedge product of the derivative under any sequence of
+successive branches of f −1 .
+Theorem 44. Given f : X → X a smooth self covering map and that
+k
+c ∈ HdeRham
+(X) is a cohomology class (using either real or complex deRham cohomology) which is an eigenvector for f ∗ with eigenvalue β. Assume
+28
+
+also that |β| > νk−1 . Then there exists a unique eigencurrent C with local
+Mk−1 potentials representing the class c. Moreover C has local F k−1 (C 0 )
+potentials. Consequently C is a current of order one.
+Also, given any neighborhood U ⊂ X of any point in the support of C, then
+for every lenient current C0 with local Mk−1 potentials and which represents
+the cohomology class c then f k (U ) ∩ Supp C0 6= ∅ for all large k.
+k
+k
+Assume that the linear map f ∗ : HdeRham
+(X) → HdeRham
+(X) is dominated
+0
+by a single simple real eigenvalue r. Given C any current which has local
+Mk−1 potentials and which represents a cohomology class in the ν k−1 chronik
+(X), then the successive rescaled pullbacks
+cally expanding subspace of HdeRham
+k∗
+0
+k
+0
+f (C )/r of C converge a multiple of C.
+Proof. We let A and C be the kernel and image respectively of d : Mk−1 →
+C k . Since df? = f? d then pullback of currents gives an f cohomomorphism
+of the short exact sequence of sheaves A → Mk−1 → C .
+Since ΓMk−1 is the continuous linear operators on a normed vector space
+then it is a Banach space. From the observations previous to the statement
+of Theorem 44 one concludes that for any α > νk−1 there is a constant d > 0
+such that kf `∗ (B)k ≤ d * αk kBk for all ` ∈ N.
+Since Γ(C ) is a space of currents it is naturally a topological vector space
+over K.
+The map f ∗ : Γ(C ) → Γ(C ) is continuous since if Ci → C in Γ(C ) then
+< f ∗ (Ci ), φ >=< Ci , f? (φ) >→< C, f? (φ) >=< f ∗ (C), φ >.
+If Pi → P in ΓMk−1 (using the Banach space structure) then kPi − Pk →
+0 by assumption then kP(dφ) − Pi (dφ)k ≤ kP − Pi k * kdφk → 0. Hence
+< dPi , φ >= Pi (dφ) → P(dφ) =< dP, φ > and so we conclude that the map
+d : ΓMk−1 → Γ(C ) is continuous.
+Given any W in the νk−1 chronically expanding subspace of H k (X, K),
+we can alter our choice of α > νk−1 so that W also lies in the α chronically
+expanding subspace of H k (X, K).
+We can therefore apply Theorem 12 to conclude that there is a (unique)
+map κ : W → Γ(C ) such that f ∗ κ = κf ∗ , where the first f ∗ is pullback of
+currents and the second is pullback on H k (X, K).
+In fact κ(W ) in the currents with locally continuous potentials by applying applying Corollary 15 in conjunction with Observation 5.2, Lemma 38
+and Lemma 39. The second half of the Theorem is a consequence of equation (3).
+
+29
+
+Proposition 45. Let Y be an oriented codimension k submanifold of X. If
+the cohomological class of Y (as a current) lies in the νk−1 chronically expanding subspace of H k (X, K) then the successive rescaled preimages of Y converge to the invariant plane of currents κ(W ). If f ∗ : H k (X, K) → H k (X, K)
+is dominated by a single real eigenvalue r > νk−1 then the successive rescaled
+preimages of Y converge to a multiple (possibly zero) of the r eigencurrent.
+In particular, if νn−1 < deg f then the successive rescaled preimages of any
+point converge to the unique invariant measure with Mn−1 potentials.
+Proof. This follows immediately from Theorem 44 if we show that Y has
+local potentials in Mk−1 . This is equivalent to showing that locally Y = dP
+where < P, φ >≤ a * kφk∞ for some a > 0. Let B be a ball in Rn and Y0
+a k-plane in Rn . Then there is a k + 1 half plane P such that, as currents
+in U , ∂P = Y0 . Moreover it is clear that < P, φ >≤ akφk∞ for some real
+a > 0. (There are also local potentials for Y which are given by forms with
+L1loc coefficients. These can be constructed by choosing a projection π from
+U \ Y0 to a codimension one cylinder C with axis Y0 , and choosing a volume
+form σ on C. The local potential is the pullback π ∗ (σ).)
+Remark. As with Theorem 41, Theorem 44 gives regular degree one eigencurrents for every eigenvalue of f ∗ : H 1 (X, K) → H 1 (X, K) of norm greater one
+without requiring any constraints on the local behavior of f . In holomorphic
+dynamics much progress has been made in constructing degree one eigencurrents and then constructing dynamically important invariant measures via
+a generalized wedge product (see the references cited at the beginning of
+Section 6).
+Remark. The proof of Proposition 45 could clearly be modified to apply to
+many singular manifolds as well.
+
+6
+
+Holomorphic Endomorphisms
+
+We now restrict our interest to holomorphic dynamics. Thus all manifolds
+are assumed to be complex manifolds and all maps are assumed to be holomorphic unless stated otherwise.
+Holomorphic endomorphisms of the Riemann sphere have been studied
+in great detail. For endomorphisms much of the theory is still in its beginnings. Much attention has been paid to holomorphic automorphisms of
+C2 [FM89], [FS92], [HOV94], [HOV95], [BS91a], [BS91b], [BS92], [BLS93],
+30
+
+[BS98a], [BS98b], [BS99] or K3 surfaces [Can01], [McM02], the major developments for endomorphisms have been on Pn , [FS94a], [FS94b], [FS95b],
+[FS01], [FS95a], [JW00], [FJ03], [Ued94], [Ued98], [Ued97]. Recent significant developments have been made for endomorphisms of Kahler manifolds
+in [DS05]. The paper [DS05] shows existence of eigencurrents (or Green's
+currents) for endomorphisms of Kahler manifolds under a simple condition
+on the comparative rates of growth of volume in two different dimensions.
+They also show that a specific weighted sum of an arbitrary closed positive
+smooth current will converge to the Green's current, and that the Green's
+current has a Hölder continuous potential. In this setting our theorem shows
+that arbitrary (rescaled) preimages of a broader class of currents will converge to the Green's current. A wide variety of results have been proven
+in these various circumstances either showing the existence of invariant currents, showing convergence of currents to invariant currents, or studying the
+properties of these invariant currents. We include here results that follow
+from the method of this paper, which we are sure substantially overlap with
+existing results. Presumably our cohomologicaly lifting theorem could be
+used in conjuction with Theorem 12 to show existence of higher degree (k, k)
+currents given certain bounds on local growth rates.
+
+6.1
+
+ddc Cohomology
+
+Let Z be a complex manifold and let f : Z → Z be a holomorphic self map
+of Z. Let H be the sheaf of pluriharmonic functions, let L∞
+loc be the sheaf
+of locally bounded functions, and let C be the sheaf of currents with local
+c
+potentials in L∞
+loc , i.e. currents locally of the form dd b, for b a locally bounded
+function. The members of C are closed (1, 1) currents on Z.
+Using the usual pullback on functions, and the induced pullback on currents with function potentials (i.e. pullback the current by pulling back its
+local potentials), then we get a self cohomomorphism of the exact sequence
+of sheaves
+ddc
+H → L∞
+(11)
+loc → C .
+We note that H 1 (Z, H ) is a finite dimensional R vector space as can be
+seen from the long exact sequence for the short exact sequence R → O → H
+where the first map is inclusion and the second takes the imaginary part. The
+terms H 1 (Z, O) → H 1 (Z, H ) → H 2 (Z, R) give the finite dimensionality
+since O is a coherent analytic sheaf (see e.g. [Tay02] page 302).
+31
+
+Then from Theorem 12 we obtain:
+Corollary 46. Given v any closed eigenbundle of H 1 (Z, H ) for f ∗ with
+eigenvalue r > 1, there is a unique closed (1, 1) current C such that limk→∞ f k∗ (C0 )/rk
+converges to C for any divisor C0 of v.
+Remark. We note that the terms "closed eigenbundle" and "divisor" in Corollary 46 are understood using the long exact sequence for (11).
+We can apply Corollary 15 to show that
+Corollary 47. Any such invariant current C so obtained has Hölder continuous local potentials.
+Proof. The result follows from Lemma 5.2, Lemma 38, the fact that the
+ddc closed Hölder continuous functions are the same as the ddc closed L∞
+loc
+functions and from Corollary 15.
+Also from Observation 3.1,
+Corollary 48. If v has a plurisubharmonic section the current C is positive.
+
+7
+
+Result via Invariant Sections
+
+We stated early on that our construction of invariant members of H 0 (C ) for
+a self cohomomorphism of a short exact sequence A → B → C of sheaves
+could be done in terms of finding invariant sections of bundles. We illustrate
+this here in a specific case where we can take advantage of geometry to make
+further conclusions. Finding an invariant section of a bundle is equivalent to
+finding an invariant trivialization of the bundle, and we will make our initial
+statement in terms of a trivialization.
+Let Z be a compact complex manifold. Let f : Z → Z be a holomorphic
+endomorphism. Let p ∈ H 1 (Z, H ) be an eigenvector for f ∗ with real eigenvalue λ of norm greater than one. If f ∗ were to have complex eigenvalues of
+interest, an analogous construction can be made to the one that follows.
+We note that there is a canonical bundle map f ̃: f ∗ (p) → p which gives
+the map f on the base space. It is easy to show that there is a map σ : p → λp
+which is the identity on the base space and takes the form r 7→ λr + b on the
+fibers, where b is a constant. What is more, the map τλ is easily seen to be
+
+32
+
+unique up to the addition of a constant. Then define the map fˇ: p → p to
+be the composition of
+f ̃
+
+τ
+
+λ
+p→
+λp = f ∗ (p) → p.
+
+Then fˇ is the map f on the base space and takes the form r 7→ λr + b on
+the fibers.
+Since every pluriharmonic bundle is trivial as a smooth bundle, then we
+can choose a smooth trivialization t : p → R, i.e. t(a + r) = σ(a) + r for any
+a ∈ p, r ∈ R, where a + r is computed in the fiber containing a.
+Theorem 49. There is a unique continuous trivialization g : p → R such
+that:
+g(a + r) = g(a) + r for a ∈ p and r ∈ R,
+g(fˇ(a)) = λ * g(a) for a ∈ p,
+moreover
+g = lim λ−k ◦ t ◦ fˇ◦k
+k→∞
+
+and the limit converges uniformly. Finally, the zero set of g is the image of a
+section g : Z → p and is exactly the set of points whose forward image under
+fˇ remains bounded.
+Proof. Define a function T : p → R by
+
+T (a) ≡ t fˇ(a) − λ * t(a).
+Note that T descends to a well defined continuous function
+ T : Z → R since
+for an arbitrary r ∈ R one has T (a + r) = t fˇ(a + r) − λ * t(a + r) =
+t(fˇ(a) + λr) − λ * (t(a) + r) = T (a).
+One notes that since the function T is necessarily bounded if Z is compact
+then defining
+g(a) ≡ t(a) + λ−1 * T (a) + λ−2 T (fˇ(a)) + λ−3 T (fˇ◦2 (a)) + * * *
+gives a continuous function g : p → R satisfying the above two properties.
+Assume g1 and g2 are two such functions. Then ∆ ≡ g1 − g2 : p → R is a
+function satisfying ∆(a + r) = ∆(a) for a ∈ p and r ∈ R so ∆ descends to a
+continuous function ∆ : p → R satisfying ∆(fˇ(a)) = λ * ∆(a). However since
+λ > 1 one concludes that this is only possible if ∆ ≡ 0 since M is compact
+so ∆(M ) has compact image in R.
+33
+
+It is easy to check using the definition of T that λ−k ◦ t ◦ fˇ◦k (a) is exactly
+a partial sum of the first k terms of the above series and this gives the
+convergence result. The conclusion about the section g is trivial.
+The above construction can be carried through almost without modification for any subspace of H 1 (Z, H ) on which f ∗ is expanding. This gives
+an alternate way of understanding the convergence of preimages of sections.
+The point is that if s is any section of p, i.e. the potential of a current C,
+then λ1 f ∗ (C) is a current with potential which is the setwise preimage of s
+under fˇ (this is easy to confirm from the construction of f ). The Green's
+trivialization g shows that fˇ is uniformly repelling away from the image of
+the invariant section g. Thus as long as s is bounded in p, (not even necessarily continuous), then the successive preimages of s will converge uniformly
+to the section g. Since uniform convergence of potentials implies convergence
+of currents then the rescaled pullbacks of a current C converge to the current with potential g. We already have this as a theorem, so we have not
+restated it as such here. This is just an alternative approach. Note that in
+the case where Z = P2 [FJ03] has given far more precise control of when the
+successive rescaled preimages of a current will converge to the eigencurrent.
+
+7.1
+
+Sections version with an Invariant Ample Bundle
+
+It is also interesting to consider the special case where there is an invariant
+ample bundle with eigenvalue λ ≥ 2 an integer. Without loss of generality
+we assume ` is very ample. The morphism of sheaves log | * | : O∗ → H
+induces a map from holomorphic line bundles to pluriharmonic bundles. We
+let p = log |`| be the corresponding pluriharmonic bundle.
+It is easy to see that there is a holomorphic map ` → `λ which is of the
+form σλ : z 7→ az λ , a ∈ C∗ on each fiber and is the identity on the base
+space. There is also a canonical holomorphic map f ̃: f ∗ (`) → ` which is a
+line bundle map and is f on the base space.
+One then defines the holomorphic map f ̆: ` → ` which is the composition
+of
+f ̃
+σ
+` →k `k = f ∗ (`) → `.
+This map is of the form z 7→ az k on each fiber and is equal to the map
+f : Z → Z on the base space. Let `∗ denote ` with its zero section removed,
+so that log | * | : ` → p is a well defined continuous map. Since the preimage
+34
+
+of the zero section of ` under f ̆ is the zero section then f ̆ is a holomorphic
+self map of `∗ . It is easy to confirm that f ̆: ` → ` can be rescaled so that
+the diagram
+`  ̆ /`
+
+
+p
+
+f
+log |*|
+fˇ
+
+/
+
+
+
+log |*|
+
+p
+
+commutes.
+Our Greens trivialization g : p → R can be pulled back to give a Green's
+function G : `∗ → R on the punctured bundle `∗ . It satisfies G(f ̃(w)) =
+λ * G(w) and G(βw) = G(w) + log |β| for w ∈ ` and β ∈ C∗ . Since g is
+a trivialization of an R bundle over a compact space, g is proper. Since
+log | * | : `∗ → p is proper then G is proper. Thus, in this setting one can
+construct a Greens function that is exactly analogous to the Green's function
+constructed on Cn+1 for a holomorphic endomorphism of Pn . Potentially one
+could take advantage of the special geometry of very ample bundles to get
+information about the dynamics in this situation.
+
+8
+
+Bibliography
+
+References
+[BLS93] Eric Bedford, Mikhail Lyubich, and John Smillie. Polynomial diffeomorphisms of C2 . IV. The measure of maximal entropy and laminar currents. Invent. Math., 112(1):77–125, 1993.
+[Bre97]
+
+Glen E. Bredon. Sheaf Theory. Springer-Verlag, 1997.
+
+[BS91a] Eric Bedford and John Smillie. Polynomial diffeomorphisms of C2 :
+currents, equilibrium measure and hyperbolicity. Invent. Math.,
+103(1):69–99, 1991.
+[BS91b] Eric Bedford and John Smillie. Polynomial diffeomorphisms of C2 .
+II. Stable manifolds and recurrence. J. Amer. Math. Soc., 4(4):657–
+679, 1991.
+
+35
+
+[BS92]
+
+Eric Bedford and John Smillie. Polynomial diffeomorphisms of C2 .
+III. Ergodicity, exponents and entropy of the equilibrium measure.
+Math. Ann., 294(3):395–420, 1992.
+
+[BS98a] Eric Bedford and John Smillie. Polynomial diffeomorphisms of
+C2 . V. Critical points and Lyapunov exponents. J. Geom. Anal.,
+8(3):349–383, 1998.
+[BS98b] Eric Bedford and John Smillie. Polynomial diffeomorphisms of C2 .
+VI. Connectivity of J. Ann. of Math. (2), 148(2):695–735, 1998.
+[BS99]
+
+Eric Bedford and John Smillie. Polynomial diffeomorphisms of C2 .
+VII. Hyperbolicity and external rays. Ann. Sci. École Norm. Sup.
+(4), 32(4):455–497, 1999.
+
+[Can01] Serge Cantat. Dynamique des automorphismes des surfaces K3.
+Acta Math., 187(1):1–57, 2001.
+[dR84]
+
+Georges de Rham. Differentiable Manifolds. Springer-Verlag, 1984.
+
+[DS05]
+
+Tien-Cuong Dinh and Nessim Sibony. Green currents for holomorphic automorphisms of compact kähler manifolds. J. Amer. Math.
+Soc., 18(2):291–312, 2005.
+
+[Fed69]
+
+Herbert Federer. Geometric Measure Theory. Springer-Verlag,
+1969.
+
+[FJ03]
+
+Charles Favre and Mattias Jonsson. Brolin's Theorem for Curves
+in Two Complex Dimensions. Ann. Inst. Fourier, 53:1461–1501,
+2003.
+
+[FM89]
+
+Shmuel Friedland and John Milnor. Dynamical properties of
+plane polynomial automorphisms. Ergodic Theory Dynam. Systems, 9(1):67–99, 1989.
+
+[FS92]
+
+John Erik Fornaess and Nessim Sibony. Complex Hénon mappings
+in C2 and Fatou-Bieberbach domains. Duke Mathematical Journal,
+65(2):345–380, 1992.
+
+[FS94a]
+
+John Erik Fornaess and Nessim Sibony. Complex dynamics in
+higher dimension. In Complex Potential Theory, pages 131–186,
+1994.
+36
+
+[FS94b] John Erik Fornaess and Nessim Sibony. Complex dynamics in
+higher dimension. I. Astérisque, 222:201–231, 1994.
+[FS95a]
+
+John Erik Fornaess and Nessim Sibony. Classification of recurrent
+domains for some holomorphic maps. Math. Ann., 301(4):813–820,
+1995.
+
+[FS95b] John Erik Fornaess and Nessim Sibony. Complex dynamics in
+higher dimension. II. In Modern methods in complex analysis
+(Princeton, NJ, 1992), pages 135–182. Princeton Univ. Press,
+Princeton, NJ, 1995.
+[FS01]
+
+John Erik Fornaess and Nessim Sibony. Dynamics of p2 (examples).
+In Laminations and foliations in dynamics, geometry and topology
+(Stony Brook, NY, 1998), pages 47–85. Amer. Math. Soc., Providence, RI, 2001.
+
+[GR84]
+
+H. Grauert and R. Remmert. Coherent Analytic Sheaves. SpringerVerlag, 1984.
+
+[Har77]
+
+Robin Hartshorne. Algebraic Geometry. Springer-Verlag, 1977.
+
+[HL99]
+
+Francis Hirsche and Gilles Lacombe. Elements of Functional Analysis, volume 192 of Graduate Texts in Mathematics. Springer-Verlag,
+1999. Translated from the 1997 French original by Silvio Levy.
+
+[HOV94] John H. Hubbard and Ralph W. Oberste-Vorth. Hénon mappings
+in the complex domain. I. The global topology of dynamical space.
+Inst. Hautes Études Sci. Publ. Math., (79):5–46, 1994.
+[HOV95] John H. Hubbard and Ralph W. Oberste-Vorth. Hénon mappings
+in the complex domain. II. Projective and inductive limits of polynomials. In Real and complex dynamical systems (Hillerød, 1993),
+volume 464 of NATO Adv. Sci. Inst. Ser. C Math. Phys. Sci., pages
+89–132. Kluwer Acad. Publ., Dordrecht, 1995.
+[JW00]
+
+Mattias Jonsson and Brendan Weickert. A nonalgebraic attractor
+in P2 . Proc. Amer. Math. Soc., 128(10):2999–3002, 2000.
+
+[Kat03]
+
+Anatole Katok. Combinatorial constructions in ergodic theory and
+dynamics, volume 30 of Unversity Lecture Series. American Mathematical Society, Providence, RI, 2003.
+37
+
+[McM02] Curtis T. McMullen. Dynamics on K3 surfaces: Salem numbers
+and Siegel disks. J. Reine Angew. Math., 545:201–233, 2002.
+[Tay02]
+
+Joseph L Taylor. Several Ccomplex Variables with Connections
+to Algebraic Geometry and Lie Groups. American Mathematical
+Society, 2002.
+
+[Ued94]
+
+Tetsuo Ueda. Fatou sets in complex dynamics in projective spaces.
+J. Math. Soc. Japan, 46:545–555, 1994.
+
+[Ued97]
+
+Tetsuo Ueda. Complex dynamics on Pn and kobayashi metric.
+In Complex dynamical systems and related areas, pages 188–191.
+Surikaisekikenkyusho Kokyuroku No 988, 1997. (Kyoto 1996).
+
+[Ued98]
+
+Tetsuo Ueda. Critical orbits of holomorphic maps on projective
+spaces. J. Geometric Analysis, 8(2):319–334, 1998.
+
+[Wei97]
+
+Charles A. Weibel. An Introduction to Homological Algebra. Cambridge University Press, 1997.
+
+38
+
+

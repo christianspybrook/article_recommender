@@ -1,0 +1,1441 @@
+arXiv:0704.0078v1 [gr-qc] 1 Apr 2007
+
+Linear perturbations of matched spacetimes: the
+gauge problem and background symmetries
+Marc Mars∗, Filipe C. Mena♭ and Raül Vera‡
+∗
+Facultad de Ciencias, Universidad de Salamanca,
+Plaza de la Merced s/n, 37008 Salamanca, Spain
+♭
+Departamento de Matemática, Universidade do Minho,
+Campus de Gualtar, 4710 Braga, Portugal
+♭
+Mathematical Institute, University of Oxford,
+24-29 St Giles', Oxford OX1 3LB, UK
+‡
+Fisika Teorikoaren Saila, Euskal Herriko
+Unibertsitatea, Apt. 644, Bilbao 48080, Basque Country, Spain
+June 18, 2013
+Abstract
+We present a critical review about the study of linear perturbations of matched
+spacetimes including gauge problems. We analyse the freedom introduced in the
+perturbed matching by the presence of background symmetries and revisit the particular case of spherically symmetry in n-dimensions. This analysis includes settings
+with boundary layers such as brane world models and shell cosmologies.
+
+PACS numbers: 0420, 0240
+
+1
+
+Introduction
+
+An important aspect in any geometric gravitational theory is the analysis of how to match
+two spacetimes. This is true in particular for General Relativity and its perturbation
+theory. Despite the relevance and maturity of the matching theory one often finds papers
+where the matching conditions are not properly used. Most of the difficulties arise from
+the fact that the matching conditions are imposed in specific coordinate systems in a
+manner which is not completely coordinate independent. More specifically, matching two
+spacetimes requires identifying the boundaries pointwise, and sometimes this identification
+is done implicitly by fixing spacetime coordinates, without paying enough attention to the
+fact that solving the matching involves finding an identification of the boundary and that
+this should not be fixed a priori.
+In perturbation theory this problem also arises, and it gets complicated by the fact
+that the fields to be matched (as the perturbed metric) are gauge dependent. So, in
+addition to a priori choices of identifications of the boundary, there is also the problem
+
+1
+
+that particular gauges are often used. It may be argued that the matching theory must
+be gauge independent and therefore it can be performed in any gauge. This is true, but
+only when due care is taken to ensure that the choice of gauge does not restrict, a priori,
+the perturbed identification of the boundaries.
+A complete description of the linearized matching conditions has been achieved only
+recently by Carter and Battye [5] and independently by Mukohyama [6]. To second order,
+the matching conditions have been recently found in [7]. Despite these papers, we believe
+that some confusion still lingers in the field, in particular with respect to the existing gauge
+invariant formulations. The aim of this paper is to try to clarify these issues. In order
+to do that, we will critically discuss some of the approaches proposed in the literature
+trying to make clear which are the implicit assumptions made and to what extent are
+they justified.
+The first papers discussing the perturbed matching theory are, as far as we know,
+the classic papers by Gerlach and Sengupta [2, 3]. However, as explained below, their
+description of the perturbed matching theory contains imprecisions, and we will therefore
+start discussing their approach pointing out the difficulties they encounter. A first attempt
+to justify the claims in [2, 3] is due to Martı́n-Garcı́a and Gundlach [4], who propose a
+different but nevertheless closely related set of linearized matching conditions. Pointing
+out the implicit assumption made by these authors will also help us to try to explain the
+subtleties inherent to the perturbed matching theory.
+In [6] the linearized matching conditions are described for arbitrary backgrounds,
+perturbations and matching hypersurfaces, and then applied to the case of two background
+spacetimes with a high degree of symmetry, namely those which admit a maximal group of
+isometries acting on codimension two spacelike submanifolds (e.g. spherically symmetric
+spacetimes). In order to simplify the matching conditions, Mukohyama derives a set of
+matching conditions for so-called doubly gauge invariants. However, a gap arises in his
+final conclusions as the presented set of conditions for doubly gauge invariant quantities
+for the linearized matching of spacetimes are only shown to be necessary conditions.
+Analysing sufficiency touches directly on the issue we are trying to emphasize in this
+paper, so we devote one section to clarify this point, where we show how these conditions
+are, stricktly speaking, not sufficient. Since the matching conditions in terms of doubly
+gauge invariants are widely used in the literature, we consider important to close this
+gap. Moreover, the constructions of gauge invariant quantities using spherical harmonic
+decompositons leaves out the l = 0 and l = 1 sectors. We will discuss this issue and its
+consequences.
+The paper is organized as follows. We start by summarising the perturbed matching
+conditions in Section 2, where we also describe the gauge freedom involved. Then, the
+procedures used in the classic papers [2, 3] together with the justifications and further
+developments in [4] are reviewed in Section 3. Section 4 focuses on the consequences of
+the existence of symmetries in the background configuration, which will have relevance
+in our final discussion. Section 5 has three subsections. The first one is devoted to
+present briefly the procedure and results discussed in [6] particularised to the case of
+spherically symmetric backgrounds. In the second subsection we analyse the sufficiency
+of the doubly gauge invariant matching conditions in [6]. The last subsection is devoted
+to the study of the freedom left in the perturbation of the matching hypersurface once
+the metric perturbations have been fixed at both sides. We finish with an appendix where
+explicit expressions for the discontinuities of the perturbed second fundamental forms in
+
+2
+
+the spherical case are given. Some of these expressions are used in the main text.
+
+2
+
+Linearized matching
+
+In this section we describe the gauge freedom involved in the linearised spacetime matching
+and summarise the perturbed matching conditions.
+
+2.1
+
+Gauge freedom
+
+The purpose of the matching theory is to construct a new spacetime out of two spacetimes
+M ± with boundary by finding a suitable diffeomorphism between the boundaries which
+allows for their pointwise identification. In particular, the matched spacetime cannot
+be thought to exist beforehand. Another aspect to bear in mind is that the matching
+conditions involve exclusively tensors on the identified boundary Σ and hence any coordinate system in M ± is equally valid. This is well-known but it is still source of confusion
+sometimes.
+In perturbed matching theory, not only the metrics are perturbed but also the matching hypersurfaces may be deformed. Furthermore, as for the metric, the "deviation" of the
+matching hypersurface is also a gauge dependent quantity. This can be best understood
+by viewing perturbations as ε-derivatives (at ε = 0) of a one-parameter family of space+
+times (Mε+ , gε+ ) with boundary Σ+
+ε . It is convenient to embed Mε within a larger manifold
++
+(without boundary) Vε to clarify the discussion. A priori, the manifolds (Mε+ , gε ) are
+completely distinct so it makes no direct sense to talk about ε-derivatives. It is necessary
+to identify first the different manifolds so that a single point p refers to one point on each
+of the manifolds. Obviously, there are infinite ways to identify the manifolds, all of them
+equally valid a priori. This freedom leads to the gauge dependence of the perturbed metric (and of any other geometrically defined tensor). The identification above may, or may
++
+not, map the boundaries Σ+
+ε among themselves. A priori, a point in Σ0 may be mapped,
++
++
+for ε 6= 0, to a point on Σ+
+ε , to a point interior to Mε or to a point exterior to Mε (within
++
+the extension Vε ) which is not part of the manifold. How can we then take derivatives
+with respect to ε at those later points? Since only derivatives at ε = 0 are needed, restricting to infinitesimal values of ε entails no loss of generality. Then, if for some small
++
+ε, a point q ∈ Σ+
+0 is mapped to the exterior of Mε , it follows from differentiability with
+respect to ε that q is mapped, for the reverse value −ε, to a point interior to Mε+ . Thus,
+perturbations can be defined at the boundary by taking one sided derivatives, i.e. to take
+limits ε → 0, with a sign restriction on ε (c.f. [7] for an alternative discussion).
+However, an important issue remains: How do we describe the deformation of the
++
+boundary Σ+
+0 ? As a set of points each boundary Σε maps, with the above identification,
+into a hypersurface of the background spacetime, which we call Σ̂+
+ε . In general, this
+and
+may
+well
+touch
+it
+or
+cross
+it. This gives us
+hypersurface will not coincide with Σ+
+0
+an idea of how the boundary is deformed, but only as a subset, not pointwise. In order
+to know how the boundary actually moves within the background, we need to prescribe a
++
+priori a pointwise identification of Σ+
+0 with Σε . This identification is completely different
+and independent from the one described above involving spacetime points, and involves
+only the points on the boundaries. As before, there are infinitely many ways to identify the
+boundaries, and this defines a second gauge freedom, which involves objects intrinsically
+
+3
+
+defined on the boundary. This gauge freedom will be referred as hypersurface gauge, as
+opposed to the usual spacetime gauge described above.
+With both identifications chosen, the deformation of the boundary within the background can already be described: Fix a point q on the background boundary Σ+
+0 . The
+,
+for
+each
+ε.
+The
+spacetime
+idenidentification of the boundaries defines a point qε on Σ+
+ε
++
+tification takes this point qε and maps it into a point q̂ε of the background M0 (perhaps
+after a sign restriction on ε). Obviously q̂ε belongs to the perturbed hypersurface Σ̂+
+ε . We
+have therefore not only a deformation of the background hypersurface as a set of points,
+but also pointwise information. It only remains to take the tangent vector of the curve
+~ + = dq̂ε |ε=0 which encodes completely the deformation of the matching
+q̂ε at ε = 0, i.e. Z
+dε
+hypersurface as seen from the background spacetime. Two final remarks are in order:
+~ + is defined exclusively on Σ+
+(i) Z
+0 , no extension thereof is defined or required and (ii)
++
+~ depends on both the spacetime and hypersurface gauges, since its defining curve is
+Z
+~ + = Q+~n 0 + T~ + , where
+constructed using both identifications. However, decomposing Z
++
+~ + is tangent to it, it turns
+~n+0 is the unit normal of Σ+
+(assumed
+non-null
+anywhere)
+and
+T
+0
+out that Q+ depends on the spacetime gauge but not on the hypersurface gauge. This
+is because changing the hypersurface gauge reorganizes the points within each Σ̂+
+ε , but
+cannot modify any of them as a set of points.
+Tensors defined intrinsically on the boundaries Σ+
+ε are completely unaffected by the
+spacetime identification, and are therefore invariant under spacetime gauge transformations. Recall that the matching conditions involve only objects intrinsic to the matching hypersurfaces. Since the perturbed matching conditions are, formally, just their εderivatives, it follows by construction that the perturbed matching conditions must be
+gauge invariant under spacetime gauge transformations. This may seem surprising at first
+sight since the matching conditions must involve the perturbed metric, which is obviously
+gauge dependent. However, the conditions turn out to be gauge independent because they
+~ + , which is spacetime gauge dependent. This vector
+also involve the deformation vector Z
+is therefore of fundamental importance and must be taken into account in any sensible
+approach to the problem, as we shall see next.
+
+2.2
+
+Matching conditions
+
+Let (M0± , g0± ) be n-dimensional spacetimes with non-null boundaries Σ±
+0 . Matching them
+requires an identification of the boundaries, i.e. a pair of embeddings Φ± : Σ0 −→ M0±
+i
+with Φ± (Σ0 ) = Σ±
+0 , where Σ0 is an abstract copy of any of the boundaries. Let ξ
+±
+(i, j, . . . = 1, . . . , n − 1) be a coordinate system on Σ0 . Tangent vectors to Σ0 are obtained
+∂Φα
+±
+(α, β, . . . = 0, . . . , n − 1). There are also unique (up to orientation) unit
+by e±α
+=
+i
+∂ξ i
+(0)
+
+(0)
+
+normal vectors n± α to the boundaries. We choose them so that if n+ α points towards
+(0)
+M + then n− α points outside of M − or viceversa. The first and second fundamental are
+(0)
+±β (0)
+± ±α
+simply q (0) ij ± ≡ e±α
+K (0) ij ± = −n±α e±β
+i ej g αβ |Σ± ,
+i ∇β ej . The matching conditions
+(in the absence of shells) require the equality of the first and second fundamental forms
+on Σ±
+0 , i.e.
+q (0) ij + = q (0) ij − , K (0) ij + = K (0) ij − .
+(1)
+±
+Under a perturbation of the background metric gpert
+= g (0)± + g (1)± and of the matching
+~ ± = Q± n~(0) ± + T~ ± , the matching conditions will be perturbatively
+hypersurfaces via Z
+
+4
+
+satisfied if and only if [6]
+(1)−
+q (1)+
+ij = q ij ,
+
+(1)−
+K (1)+
+ij = K
+ij ,
+
+(2)
+
+with
+±β (1) ±
+q (1) ij ± = LT~ ± q (0) ij ± + 2Q± K (0) ij ± + e±α
+i ej g αβ ,
+(0)
+
+(0)
+
+(3)
+l
+
+(0)±
+
+±β
+(0) ± (0) ±
+K (1) ij ± = LT~ ± K (0) ij ± − ǫDi Dj Q± + Q± (−n± μ n± ν Rαμβν e±α
+il K
+i ej + K
+j )
+ǫ (1) ± (0) α (0) β (0) ±
+(0)
+(1)±μ
+±β
+g αβ n± n± K ij − n± μ Sαβ e±α
+(4)
++
+i ej ,
+2
+±α
+
+(0)
+
+(1)±α
+where ǫ = nα n(0)α , D is the covariant derivative of (Σ, q (0)± ) and S (1) βγ ≡ 21 (∇±
+β g γ +
+(1) ±α
+± α (1) ± 1
+∇±
+g βγ ).
+γ g β −∇
+In these equations, Q± and T~ ± are a priori unknown quantities and fulfilling the
+~ ± exist such that (2) are satisfied.
+matching conditions requires showing that two vectors Z
+~ ± a priori,
+The spacetime gauge freedom can be exploited to fix either or both vectors Z
+but this should be avoided (or at least carefully analysed) if additional spacetime gauge
+choices are made, in order not to restrict a priori the possible matchings. Regarding the
+hypersurface gauge, this can be used to fix one of the vectors T~ + or T~ − , but not both.
+As already stressed the linearized matching conditions are by construction spacetime
+gauge invariant (in fact each of the tensors q (1) ij ± , K (1) ij ± is). Moreover, the set of
+conditions (2) are hypersurface gauge invariant, provided the background is properly
+matched, since [6] under such a gauge transformation given by the vector ζ~ on Σ0 , q (1) ij
+transforms as q (1) ij + Lζ~ q (0) ij , and similarly for K (1) ij .
+
+3
+
+On previous spacetime gauge invariant formalisms
+
+The first attempt to derive a general formalism for the matching conditions in linearized
+gravity is, to our knowledge, due to Gerlach and Sengupta [2]. Their approach is based
+on the description of the matching hypersurface Σ as a level set of a function f defined
+on the spacetime. Assuming the level sets {f = const} to be timelike, a field of spacelike
+unit normals is defined as nμ = (g αβ f,α f,β )−1/2 f,μ . The unperturbed matching conditions
+correspond to the continuity everywhere (in particular across Σ) of the tensors
+Kαβ ≡ qα μ qβ ν ∇μ nν ,
+
+qαβ ≡ gαβ − nα nβ ,
+
+(5)
+
+which are the spacetime versions of the first and second fundamental forms introduced
+above. Being f defined everywhere, it makes sense to perturb it in order to describe the
+variation of the matching hypersurface. Obviously, by perturbing f one also perturbs nμ .
+The perturbed matching conditions proposed in [2] read
+qμ α qν β △(qαβ )+ = qμ α qν β △(qαβ )− ,
+
+qμ α qν β △(Kαβ )+ = qμ α qν β △(Kαβ )− ,
+
+(6)
+
+where qβ α is the projector onto Σ, △ stands for perturbation and + and − denote the
+quantities as computed from either side of the matching hypersurface Σ. These expressions involve the projections of the perturbations of qαβ and Kαβ onto Σ. The need of
+1
+
+We will abuse slightly the notation and refer to vectors on Σ0 and their images on spacetime with
+the same symbol. The meaning should be clear from the context.
+
+5
+
+considering only the projected components is justified in [2] since the matching conditions need to be intrinsic to the matching hypersurfaces. However, Gerlach and Sengupta
+themselves note that conditions (6) are not gauge2 invariant.
+Since the main interest in [2, 3] refers to spherically symmetric backgrounds, this
+"ambiguity" is fixed in that case by finding suitable gauge invariant combinations of
+the linearized matching conditions, which turn out to give a correct set of necessary
+perturbed matching conditions in spherical symmetry. It should be stressed however, that
+the authors consider these gauge invariant subset to be sufficient also, with no further
+justification.
+We know from the discussion in Sect. 2.1 above that (6) cannot be correct as it leads
+to a set of gauge dependent conditions. Since, on the other hand the proposal (6) may
+look plausible, it is of interest to point out where, and in which sense, it fails to be correct.
+The first source of problems comes from assuming that the matched spacetime is given
+beforehand. Indeed, qαβ and Kαβ are spacetime tensors and they can only exist (and be
+continuous) once the matched spacetime is constructed. But this is precisely the purpose
+of the matching conditions, so the conditions become circular. Another aspect of the same
+problem is that one can only talk about continuity once the pointwise identification of
+the boundaries is chosen. But a level set of a function defines only a set of points and not
+the way those points must be identified. A third instance of the same issue is that tensor
+components must be expressed in some basis, e.g. a common coordinate system covering
+both sides of Σ. But again this cannot be assumed a priori. It needs to be constructed.
+Let us however mention that once the pointwise identification of the boundaries is
+chosen, the use of spacetime tensors is allowed provided they are finally projected onto
+the hypersurface. In that sense, and when properly used, using spacetime indices may
+simplify some calculations notably (see Carter and Battye, [5] where this notation is used
+to derive the perturbed matching conditions).
+Besides this aspect (which already affects the background matching) the perturbed
+equations (6) suffer from one extra problem. The perturbations △(qαβ )(p) and △(Kαβ )(p)
+at a point p in the background can be defined by taking ε-derivatives at fixed p and ε = 0
+of the corresponding tensors (defined by gαβ (ε) and fε ). For each value of ε, the matching
+conditions impose the continuity of qαβ (ε) and Kαβ (ε) everywhere (with the caveat already
+mentioned regarding the identification of the boundaries). However, continuity of △(qαβ )
+and △(Kαβ ) at p would only follow if derivatives of continuous functions with respect
+to an external parameter were necessarily continuous (in our case, the derivative with
+respect to ε), which is not true in general. A trivial example is given by the function
+u(ε, x) = |x + ε|, whith x ∈ R. For each ε this function is continuous. However, the
+derivative with respect to ε does not even exist at x = 0, ε = 0. This reflects the fact that
+subtracting continuous tensors at a fixed spacetime point p leads to objects that need not
+be continuous. This is in fact the main problem of (6) as linearized matching conditions.
+An immediate question arises: Why is the gauge invariant subset of matching conditions found in [2, 3] for spherically symmetric backgrounds correct? In order to understand
+this, let us rewrite (6) using the formalism of section 2.2. First of all, since △(nα nβ ) will
+(0)
+contain, at least, one free nα , we have
+±
+
+qμ α qν β △(qαβ )± = qμ α qν β g (1) αβ .
+2
+
+(7)
+
+Throughout this section gauge will refer to spacetime gauge. Hypersurface gauges will only appear
+briefly towards the end of the section.
+
+6
+
+(1)μ (0)
+
+Moreover, a simple calculation gives △(∇α nβ ) = ∇α (△nβ ) − Sαβ nμ
+
+αμ (0) (0)
+−g (1) nμ nβ
+
+(0)
+
+and △(qβα ) =
+
++ g (0)αμ △(nμ )nβ + n(0)α △(nβ ). These, together with standard properties
+of the projector, lead to
+
+
+α
+α β
+α β (1)ρ (0) ±
+qμ α qν β △(Kαβ )± = a(0)
+q
+△(n
+)
++
+q
+q
+∇
+(△n
+)
+−
+q
+q
+S
+n
+,
+(8)
+μ
+α
+μ
+ν
+α
+β
+μ
+ν
+ν
+ρ
+αβ
+(0)
+
+(0)
+
+where aν ≡ n(0)α ∇α nν . In general, these expressions do not agree with (3) and (4).
+~ ± = 0, then △f ≡ 0 on Σ because
+However, when the gauges are chosen so that Z
+the matching hypersurface is unperturbed as seen from the background. Consequently
+Σ
+(0)
+(0)
+∂α (△f ) ∝ nα on Σ, which implies △(nα ) = hnα for some function h. Imposing ~n(ε) to
+αβ (0) (0)
+be unit for all ε fixes h = 2ǫ g (1) nα nβ . Inserting into (8) the matching conditions (6)
+become
+−
++
+(9)
+= qμ α qν β g (1) αβ ,
+qμ α qν β g (1) αβ
+ǫ
+
+
+
+ǫ (1) αβ (0) (0)
+αβ
+(0)
+(1)ρ
+α β (1)ρ (0) +
+−
+g (1) n(0)
+g
+nα nβ Kμν − qμ α qν β Sαβ n(0)
+=
+,
+α nβ Kμν − qμ qν Sαβ nρ
+ρ
+2
+2
+which agree with (2) (with the exception that (9) refers to spacetime tensors and (2) are
+defined on Σ). Since Gerlach and Sengupta derive a subset of gauge invariant matching
+conditions out of (6) in the spherically symmetric case and their conditions are correct in
+one gauge, it follows that the invariant subset is correct in any gauge. This is the reason
+why the results in [2, 3] involving spherically symmetric backgrounds turn out to be fine.
+Substantial progress in the linearized matching problem was made by Martı́n-Garcı́a
+and Gundlach [4]. These authors pointed out the lack of justification in [2, 3] for the choice
+of (6) as matching conditions. It was also argued that for spacetimes with boundary it
+only makes sense to define perturbations by using gauges where the perturbed matching
+hypersurface is mapped onto the background matching hypersurface. Perturbations in this
+gauge, called "surface gauge" (not to be confused with hypersurface gauge) are denoted
+ ̄ and its defining property is △f
+ ̄ = 0. The idea was to write down the matching
+by △,
+conditions in this gauge and then transform into any other gauge if necessary. As noticed
+by the authors, the surface gauge is not unique since there are still three degrees of freedom
+left, which correspond to the three directions tangent to Σ.
+A relevant observation made in [4] was that the continuity of tensorial perturbations
+may depend on the index position in the tensors. The authors argue that the tensors
+truly intrinsic to the hypersurfaces are q αβ , K αβ (with indices upstairs) and propose the
+following perturbed matching conditions
+ ̄ αβ )+ = △(q
+ ̄ αβ )− ,
+△(q
+
+ ̄ αβ )+ = △(K
+ ̄ αβ )− ,
+△(K
+
+(10)
+
+which are demonstrated to become exactly (9). This shows the equivalence of both proposals in the surface gauge, as explicitly stated in [4]. This justifies partially the validity of
+both approaches in the surface gauge. However, the justification is not complete because
+of the issue we discuss next.
+Indeed, conditions (10) still carry one implicit assumption that needs to be clarified.
+As already stressed the perturbed matching conditions have two inherent and independent
+degrees of gauge freedom. The approach by Martı́n-Garcı́a and Gundlach involves only
+spacetime objects, and therefore can only notice the spacetime gauge freedom. This leads
+
+7
+
+to an incorrect statement in [4], as it is not true that the linearized matching conditions
+read (10) in any surface gauge. Conditions (10) will only be valid when the spacetime
+gauge maps pairs of background points (identified, via the background matching) to pairs
+of points on the perturbed boundaries Σ±
+ε which are also identified through the matching.
+Notice that not all surface gauges have this property. In explicit terms, this means that
+~ ± must (i) only have tangential components (so that we are in surface gauge)
+the vectors Z
+and (ii) have the same components when written in terms of an intrinsic basis of Σ0 . In
+~ + and Z
+~ − are the same
+less precise, but more intuitive terms, condition (ii) states that Z
+vector, i.e. that the gauges in both regions are chosen such that the displacement of
+one fixed point of the background hypersurface is identical in both regions (the displaced
+point, of course, stays on the unperturbed hypersurface, due to the choice of surface
+gauge). Observe finally that if Q± = 0 and T~ + = T~ − , then the linearized matching
+conditions (2) truly reduce to conditions (9), once the latter are projected on Σ. This
+shows the correctness of the approaches by Gerlach and Sengupta and Martı́n-Garcı́a and
+Gundlach in special gauges.
+
+4
+
+Freedom in matching due to symmetries
+
+We devote this section to the study of the consequences of the existence of background
+symmetries on perturbed spacetime matchings.
+The existence of symmetries in the background configuration introduces two issues
+which are important to take into consideration: the first corresponds to the freedom introduced by the matching procedure, when preserving the symmetries, at the background
+level [9], c.f. [10] for an application. The second issue corresponds to the consequences
+that the symmetries in the background configuration may have on the perturbation of the
+matching.
+It must be stressed here that the arbitrariness introduced by the presence of symmetries
+in the background configuration is completely independent from both the hypersurface and
+spacetime gauge freedoms. However, that arbitrariness is gauge dependent and therefore
+a gauge choice can be made to remove it. As we will show, an isometry in the background
+implies that there is a direction along which the difference [T~ ] ≡ T~ + − T~ − cannot be
+determined by the perturbed matching equations. But, as we have discussed at the end
+of section 2, one could eventually choose part of the spacetime gauges (if there is any
+freedom left) to fix [T~ ]. Note, finally, that a change of hypersurface gauge leaves [T~ ]
+invariant.
+
+4.1
+
+Isometries
+
+We shall now consider the presence of isometries in the background configuration. So,
+let us assume that one of the sides, say (M0+ , g (0)+ ), admits an isometry generated by
+the Killing vector field ξ~+ tangent to the boundary Σ+
+0 . The commutation of the Lie
+derivative and the pull-back implies [9]
++β
+(0) +
+Lξ~+ q (0) ij + = e+α
+i ej Lξ~+ g αβ |Σ0 = 0,
+
+which means that ξ~+ is a Killing vector of (Σ0 , q (0) ij + ). This implies from expression (3)
+that q (1) ij + is invariant under the transformation T~ + → T~ + + ξ~+ |Σ0 .
+8
+
+As for K (1) ij + , from its expression (4), it is again clear that the previous transformations of T~ + will leave K (1) ij + invariant provided Lξ~+ K (0) ij + = 0. But this is precisely the
+(0)
+(0)
+case since ξ~+ is a Killing vector orthogonal to n+ , which implies Lξ~+ n+ β |Σ+0 = 0, and
+hence
+(0)
+(0)
++β
++α +β
+Lξ~+ K (0) ij + = e+α
+i ej Lξ~+ (∇n+ )αβ |Σ0 = ei ej ∇α Lξ~+ n+ β |Σ0 = 0.
+
+Of course, all this discussion also applies to the (−) side.
+The combination of the invariance of q (1) ij ± and K (1) ij ± leads to the fact that the
+first order perturbed matching conditions are invariant under a change of the vectors
+T~ ± along the direction of any isometry of the background configuration (preserved by
+the matching). Then, as expected, when symmetries are present the linearized matching
+conditions cannot determine the difference [T~ ] completely: they leave undetermined the
+relative (between the two sides) deformation of the hypersurface along the direction of
+the symmetry. Note that, still, the shape of the perturbed hypersurface is completely
+determined, since that is driven by Q± .
+The overall picture is as follows: at the background level we have the arbitrariness of
+−
++
+the identification of Σ+
+0 with Σ0 [9], which can be seen as a "sliding" between Σ0 and
+Σ−
+0 . The perturbation adds to this an arbitrary shift of the deformation of the matching
+hypersurface at each side along the orbits of the isometry group. As an example, in
+the description of stationary and axisymmetric compact bodies discussed in [10, 9], the
+background sliding corresponds to an arbitrary constant rotation of the interior with
+respect to the exterior. Note that, in that case, this rotation is only relevant because
+the exterior is taken to be asymptotically flat. As a result, two identical interiors can,
+in principle, give rise to two exteriors that differ by a constant rate rotation [10]. The
+shift of the surface deformation would, in principle, lead to an arbitrary constant rotation
+along the axial coordinate of the surface deformation of the body. Likewise, two identical
+perturbations in the interior of the body may produce two different perturbations in the
+exterior, which may differ by a relative constant rate rotation. A choice of spacetime
+gauge could be used to relate the deformations inside and outside. However, this may
+interfere with other gauge fixings that may have been made.
+
+5
+
+n-dimensional spherically symmetric backgrounds
+
+In this section we shall revisit Mukohyama's theory for linearized matching in the special
+case of spherical symmetry. Similar results [6] hold for backgrounds admitting isometry
+groups of dimension (n−1)(n−2)/2 acting on non-null codimension-two orbits of arbitrary
+topology (strictly speaking the orbits need to be compact).
+
+5.1
+
+The approach of Mukohyama
+
+Concentrating on one of the two spacetimes to be matched, either + or −, we consider a
+spherically symmetric background metric of the form
+(0)
+
+gαβ dxα dxβ = γab dxa dxb + r 2 ΩAB dθA dθB ,
+
+(11)
+
+where γab (a, b, .. = 0, 1) is a Lorentzian two-dimensional metric (depending only on {xa }),
+r > 0 is a function of {xa }, and ΩAB dθA dθB is the n − 2 dimensional unit sphere metric
+with coordinates {θA } (A, B, . . . = 2, 3, . . . , n − 1).
+9
+
+A general spherically symmetric background hypersurface can be given in parametric
+form as
+Σ0 := {x0 = Z (0)0 (λ), x1 = Z (0)1 (λ), θA = θA },
+(12)
+where {ξ i} = {λ, θA } is a coordinate system in Σ0 adapted to the spherical symmetry.
+The tangent vectors to Σ0 read
+~eλ = Z  ̇(0) 0 ∂x0 + Z  ̇(0) 1 ∂x1
+
+Σ0
+
+,
+
+~eθA = ∂θA |Σ0 ,
+
+(13)
+
+where dot is derivative w.r.t. λ. With N 2 ≡ −ǫeλ a eλ b γab |Σ0 , so that ǫ = 1 (ǫ = −1)
+corresponds to a timelike (spacelike) hypersurface, the unit normal to Σ0 reads
+√
+
+− det γ   ̇(0) 1 0
+(0)
+n =
+−Z dx + Z  ̇(0) 0 dx1
+,
+(14)
+N
+Σ0
+where the sign choice of N corresponds to the choice of orientation of the normal. The
+background induced metric and second fundamental form on Σ0 read
+q (0) ij dξ idξ j = −ǫN 2 dλ2 + r 2 |Σ0 ΩAB |Σ0 dθA dθB ,
+
+K (0) ij dξ i dξ j = N 2 Kdλ2 + r 2 K̄|Σ0 ΩAB |Σ0 dθA dθB ,
+where
+
+(0)
+
+K ≡ N −2 eλ a eλ b ∇a nb ,
+
+(15)
+(16)
+
+K̄ = n(0)a ∂xa ln r.
+
+It follows that the background matching conditions (1) are
+N+2 = N−2 ,
+
+2
+2
+r+
+| Σ0 = r−
+| Σ0 ,
+
+K+ = K− ,
+
+K̄+ = K̄− .
+
+(17)
+
+Using (3) and (4) we could now compute the first order perturbations q (1) ij and K (1) ij in
+~ (or equivalently Q and T~ ), c.f. Eqs. (45) and (46)
+terms of the above quantities and Z
+in [6]. Let us recall (see subsection 2.2) that while the individual tensors q (1) ij and K (1) ij
+are not hypersurface gauge invariant, their respective differences from the + and − sides
+(i.e. the linearized matching conditions) are. Those tensors depend of the hypersurface
+gauge through the tangent vectors T~ + and T~ − , which under a gauge change transform
+simply by adding the gauge vector. It follows that only their difference [T~ ] can appear
+in the linearized matching conditions. Consequently there are three degrees of freedom
+that cannot be fixed by the equations, but can be fixed by choosing the hypersurface
+gauge, for instance to set T~ + . Thus, the linearized matching conditions can be looked at
+as equations for the difference [T~ ] as well as for Q+ and Q− , i.e. for five objects. If these
+equations admit solutions, then the linearized matching is possible and it is impossible
+otherwise.
+Mukohyama emphasizes the convenience to look for doubly gauge invariant quantities
+to write down the linearized matching conditions, however the matching conditions are
+already gauge invariant (both for the spacetime and hypersurfaces gauges). Looking for
+gauge invariant combinations on each side amounts to writing equations where the difference vector [T~ ] simply drops. Indeed, in many cases, knowing the value of such vector
+in a specific matching is not interesting. In that sense, using doubly gauge invariant
+quantities is useful as it lowers the number of equations to analyse. However, we want to
+stress that this is not related to obtaining gauge invariant linearized matching equations.
+
+10
+
+It is just related to not solving for superfluous information. In fact, a set of equations
+where also Q+ and Q− have disappeared would be even more convenient from this point
+of view, provided one is not interested in knowing how the hypersurfaces are deformed in
+the specific spacetime gauge being used.
+Since the use of doubly gauge invariant matching conditions is used extensively, let us
+recall its main ingredients in order to discuss if they really are equivalent to the full set
+of linearized matching equations and in which sense.
+To that aim Mukohyama [6], decomposes the perturbation tensors q (1) ij and K (1) ij in
+terms of scalar Y , vector VA and tensor harmonics TAB on the sphere, as3
+q
+
+(1)
+
+ij dξ
+
+i
+
+dξ
+
+∞
+∞
+X
+X
+2
+A
+B
+(σ00 Y dλ + σ(Y ) T(Y )AB dθ dθ ) +
+2(σ(T )0 V(T )A + σ(L)0 V(L)A )dλdθA
+=
+
+j
+
+l=0
+
++
+
+l=1
+
+∞
+X
+
+(σ(T ) T(T )AB + σ(LT ) T(LT )AB + σ(LL) T(LL)AB )dθA dθB ,
+
+(18)
+
+l=2
+
+K
+
+(1)
+
+ij dξ
+
+i
+
+dξ
+
+j
+
+=
+
+∞
+X
+
+2
+
+A
+
+(κ00 Y dλ + κ(Y ) T(Y )AB dθ dθ ) +
+
+l=0
+
++
+
+B
+
+∞
+X
+
+∞
+X
+
+2(κ(T )0 V(T )A + κ(L)0 V(L)A )dλdθA
+
+l=1
+
+(κ(T ) T(T )AB + κ(LT ) T(LT )AB + κ(LL) T(LL)AB )dθA dθB ,
+
+(19)
+
+l=2
+
+where all the scalar coefficients depend only on λ. Each coefficient in the decomposition
+has indices l and m which have been dropped for notational simplicity. Notice that
+each coefficient σ and κ is defined in the range of l's appearing in the corresponding
+summatory. By construction, each of the σ and κ are spacetime-gauge invariant (but
+not hypersurface-gauge invariant). For l ≥ 2 they can even be written down [6] explicity
+in terms of spacetime-gauge invariant quantities. In a similar way, the doubly gaugeinvariant quantities presented in [6], are only defined for l ≥ 2 (except k(T )0 , which is also
+defined for l = 1), and read
+
+l≥2:
+f00 ≡ σ00 − 2N∂λ N −1 χ ,
+
+2
+l≥2:
+f ≡ σ(Y ) + ǫN −2 χ∂λ r 2 |Σ0 +
+k 2 σ(LL) ,
+n − 2 l
+l≥2:
+f0 ≡ σ(T )0 − r 2 |Σ0 ∂λ r −2 |Σ0 σ(LT ) ,
+l≥2:
+f(T ) ≡ σ(T ) ,
+l≥2:
+k00 ≡ κ00 + ǫKσ00 + ǫχ∂λ K,
+l≥1:
+k(T )0 ≡ κ(T )0 − K̄σ(T )0 ,
+(20)
+
+
+1
+1
+l≥2:
+k(L)0 ≡ κ(L)0 + (ǫK − K̄)σ(L)0 + (ǫK + K̄) χ − r 2 |Σ0 ∂λ (r −2 |Σ0 σ(LL) ) ,
+2
+2
+l≥2:
+k(LT ) ≡ κ(LT ) − K̄σ(LT ) ,
+l≥2:
+k(LL) ≡ κ(LL) − K̄σ(LL) ,
+l≥2:
+k(Y ) ≡ κ(Y ) − K̄σ(Y ) + ǫN −2 r 2 |Σ0 χ∂λ K̄,
+l≥2:
+k(T ) ≡ κ(T ) − K̄σ(T ) ,
+3
+
+The ranges of l's are not made explicit in [6] in order to include also non-compact homogeneous
+spaces, where the index l is continuous. However, to discuss sufficiency of the equations we need to be
+precise on the range of validity of each equation.
+
+11
+
+where kl2 = l(l + n − 3) and
+l≥2:
+
+χ ≡ σ(L)0 − r 2 |Σ0 ∂λ (r −2|Σ0 σ(LL) ).
+
+The orthogonality properties of the scalar, vector and tensor harmonics imply that
+the equalities of the coefficients σ and κ for each l and m is equivalent to the equality of
+the perturbation tensors (18) and (19) at both sides of Σ0 . Thus, recalling the notation
+[f ] ≡ f + |Σ0 − f − |Σ0 , the equations
+l≥0:
+l≥1:
+l≥2:
+
+l≥0:
+l≥1:
+l≥2:
+
+[σ00 ] = [σ(Y ) ] = 0
+[σ(L)0 ] = [σ(T )0 ] = 0
+[σ(T ) ] = [σ(LT ) ] = [σ(LL) ] = 0
+
+(21)
+
+[κ00 ] = [κ(Y ) ] = 0
+[κ(L)0 ] = [κ(T )0 ] = 0
+[κ(T ) ] = [κ(LT ) ] = [κ(LL) ] = 0
+
+(22)
+
+are equivalent to (2) and therefore correspond exactly to the linearized matching conditions in this setting. Notice that each of the equalities in (21) and (22) is in fact one
+equation for each l and m in the appropriate range. We will however refer to them simply
+as equations.
+The full linearized matching conditions obviously imply the following equalities in
+terms of the doubly-gauge invariant quantities (20),
+l≥2:
+
+l≥1:
+l≥2:
+
+[f00 ] = [f ] = [f0 ] = [f(T ) ] = 0
+
+(23)
+
+[k(T )0 ] = 0
+[k00 ] = [k(Y ) ] = [k(L)0 ] = [k(LL) ] = [k(LT ) ] = [k(T ) ] = 0.
+
+(24)
+
+Whether these equations can be regarded as the full set of linearized matching conditions
+or not requires studying their sufficiency, i.e. whether they imply (21)-(22) or not. This
+point was not mentioned in [6] and in fact the answer turns out to be negative, although
+in a mild way, as we discuss in the next subsection.
+
+5.2
+
+On the sufficiency of the continuity of the doubly-gauge invariants
+
+~ ± such that
+Let us recall that fulfilling the matching conditions requires finding two Z
+(21)-(22) are satisfied. The key issue for the matching is therefore to show existence of
+~ ± so that all the equations hold.
+deformation vectors Z
+A plausibility argument in favour of the sufficiency of (23)-(24) comes from simple
+equation counting. Indeed, as already discussed, the linearized matching conditions are
+spacetime and hypersurface gauge invariant and therefore can only involve the difference
+vector [T~ ], i.e. three quantities. Since constructing double gauge invariant quantities on
+each side eliminates this vector, the number of equations should be reduced exactly by
+three if they are to remain equivalent to the original set. This is precisely what happens
+as we go from the original forteen equations in (21)-(22) down to eleven equations in
+(23)-(24). This argument however is not conclusive, both because it is not rigorous and
+because each equation in those expressions is, in fact, a set of equations depending on l
+and m, and the range of l's changes with the equations. Let us therefore analyse this issue
+
+12
+
+in detail. In particular we need to discuss what are the consequences of the non-existence
+of doubly gauge-invariant variables for l = 0 and l = 1 (except for k(T )0 which exists for
+l = 1), something not mentioned in [6].
+Let us start by finding explicit expressions for σ's valid in the whole range of l's. As
+in [6], we decompose g (1) in harmonics as
+g (1) αβ dxα dxβ =
+
+∞
+X
+
+(hab Y dxa dxb + h(Y ) T(Y )AB dθA dθB )
+
+l=0
+
++
+
+∞
+X
+
+2(h(T )a V(T )A + h(L)a V(L)A )dxa dθA
+
++
+
+∞
+X
+
+(h(T ) T(T )AB + h(LT ) T(LT )AB + h(LL) T(LL)AB )dθA dθB ,
+
+l=1
+
+(25)
+
+l=2
+
+~ as
+and Z
+α
+
+Zα dx
+
+=
+
+∞
+X
+
+=
+
+∞
+X
+
+a
+
+za Y dx +
+
+∞
+X
+
+(z(T ) V(T )A + z(L) V(L)A )dθA
+
+l=1
+
+l=0
+
+(0)
+
+QY n
+
+l=0
+
+− ǫN
+
+−2
+
+
+
+zλ Y eλ +
+
+P∞
+
+∞
+X
+
+(z(T ) V(T )A + z(L) V(L)A )dθA ,
+
+(26)
+
+l=1
+
+P∞
+
+which implies Tα dxα = l=0 (−ǫN −2 zλ Y eλ ) + l=1 (z(T ) V(T )A + z(L) V(L)A )dθA . Inserting
+these expressions into (2) and expanding in spherical harmonics it is straightforward to
+find
+
+l≥0:
+[σ00 ] = 0 ⇔ [hλλ ] + 2[Q]N 2 K + 2N∂λ N −1 [zλ ] = 0,
+l≥1:
+[σ(L)0 ] = 0 ⇔ [zλ ] + [h(L)λ ] + r 2 |Σ0 ∂λ (r −2 |Σ0 [z(L) ]) = 0,
+(27)
+l≥2:
+[σ(LL) ] = 0 ⇔ [z(L) ] + [h(LL) ] = 0,
+(28)
+2
+k 2 [z(L) ] = 0,
+l≥0:
+[σ(Y ) ] = 0 ⇔ [h(Y ) ] + 2[Q]r 2 |Σ0 K̄ − ǫN −2 [zλ ]∂λ (r 2 |Σ0 ) −
+n−2 l
+l≥1:
+[σ(T )0 ] = 0 ⇔ [h(T )λ ] + r 2 |Σ0 ∂λ (r −2 |Σ0 [z(T ) ]) = 0,
+l≥2:
+[σ(LT ) ] = 0 ⇔ [z(T ) ] + [h(LT ) ] = 0,
+(29)
+l≥2:
+[σ(T ) ] = 0 ⇔ [h(T ) ] = 0,
+where [hλλ ], [h(L)λ ], etc. denote eλ a eλ b [hab ], eλ a [h(L)a ], etc. Later on we will also write
+down the explicit expressions for (22) but they are not needed in this subsection.
+It is obvious by the form of f 's and κ's (20) that the set of equations (21)-(22) are
+equivalent to (23)-(24) together with
+l≥2:
+
+[σ(L)0 ] = [σ(LT ) ] = [σ(LL) ] = 0
+
+(30)
+
+l = 0, 1 :
+l=1:
+
+[σ00 ] = [σ(Y ) ] = 0
+[σ(L)0 ] = [σ(T )0 ] = 0
+
+(31)
+
+l = 0, 1 :
+l=1:
+
+[κ00 ] = [κ(Y ) ] = 0
+[κ(L)0 ] = 0.
+
+(32)
+
+Sufficiency of Mukohyama's doubly gauge invariant matching conditions would follow if
+these equations serve exclusively to determine the discontinuity [T~ ], i.e. [zλ ] for l ≥ 0
+13
+
+and [z(T ) ], [z(L) ] for l ≥ 1. Now, the explicit expressions (27), (29), (28) show that (30)
+determine uniquely [zλ ], [z(T ) ] and [z(L) ] for l ≥ 2. So, restricted to the sector l ≥ 2
+Mukoyama's doubly gauge invariant matching conditions can be regarded as equivalent
+to the full set of matching conditions. Taking all l's into account, however, the equations
+turn out not to be sufficient. To show this, it is enough to display one equation involving
+the discontinuity of the background metric perturbations and [Q] (but not [T~ ]) which holds
+as a consequence of the full set of matching conditions (21)-(22) but not as a consequence
+of (23)-(24). Using the fact that each l = 1 expression refers to n − 1 objects (one for
+each m), the number of equations in (31)-(32) is 7n − 3, while the number of unkowns in
+[T~ ] not yet determined by (30), i.e. [zλ ] for l = 0, 1 and [z(T ) ], [z(L) ] for l = 1 is 3n − 2,
+which is smaller. It is to be expected, therefore, that (31), (32) imply conditions where
+these variables do not appear. This can be made explicit, for instance, by combining
+[σ00 ]l=0 = 0 with [σ(Y ) ]l=0 = 0 which yields
+
+
+
+ǫN
+2
+2
+l=0:
+[hλλ ] + 2[Q]N K + 2N∂λ
+[h(Y ) ] + 2[Q]r |Σ0 K̄
+= 0,
+∂λ (r 2 |Σ0 )
+whenever ∂λ (r 2 |Σ0 ) 6= 0. (If ∂λ (r 2 |Σ0 ) = 0 it is enough to consider [σ(Y ) ]l=0 = 0.) This
+relation is enough to show that the continuity of the doubly-gauge invariant variables of
+Mukohyama is not sufficient to ensure the existence of the perturbed matching. Of course,
+this does not invalidate Mukohyama's approach in any way, which remains interesting
+and useful. It only means that, when using this approach to solve linearized matchings,
+one still needs to look more carefully into the l = 0 and l = 1 sector to make sure that
+the remaining equations (31) and (32) hold.
+On the other hand, equations (31), (32) do not completely determine [T~ ]. The variable
+[z(T ) ]l=1 only appears in [σ(T )0 ]l=1 = 0, in the term ∂λ (r −2 |Σ0 [z(T ) ]). As a result, the
+matching conditions do not fix [z(T ) ]l=1 completely, but up to a constant factor times
+r 2 |Σ0 (for each m). Recalling that V(T )A dθA for l = 1 correspond to the three Killing
+vectors on the sphere, this arbitrary constant (for each m) accounts for the addition to
+[T~ ] of an arbitrary Killing vector of the sphere. This is in accordance with the discussion
+in Section 4. We devote the following subsection to complete the study of the freedom
+left in the matching.
+
+5.3
+
+Freedom in the matching
+
+As already emphasized, solving the linearized matching amounts to finding perturbation
+~ + and Z
+~ − . Assume now that a linearized matching between two given backvectors Z
+grounds and perturbations has been done. It is natural to ask what is the most general
+~ + and Z
+~−
+matching between those two spaces, i.e. what is the most general solution for Z
+of the matching conditions. Geometrically, this means finding all the possible deformations of the matching hypersurface Σ0 which allow the two spaces to be matched.
+Since this problem is of interest not only when the full matching conditions are imposed
+but also in situations where layers of matter are present (e.g. in brane-world or shell
+cosmologies) so that jumps in the second fundamental forms are allowed, we will analyse
+this issue in two steps. First, we will study the equations involving the perturbed first
+fundamental forms and will determine the freedom they admit. On a second step we
+will write down the extra conditions coming from the equality of the second fundamental
+forms.
+
+14
+
+Thus, let us consider two perturbation configurations of the same background matching
+and denote their respective sets of difference variables on Σ0 as [f ] and [f ]′ for any given
+variable f . Now, we will define the difference between the two configurations as < f >≡
+[f ]′ − [f ] for any variable f . The assumption that the perturbation on each side is fixed
+once and for all implies < g (1) >= 0. We are assuming that the linearized matching
+conditions are satisfied in each case, and so we can subtract them. Linearity implies that
+the differences of the linearised matching equations become equations for the difference
+~ >. The general solution of these equations clearly determines the freedom in
+vector < Z
+the deformation of the hypesurface.
+The difference of the equations in (21) for the two configurations using < g (1) >= 0
+give the following set of equations
+
+l≥0:
+< σ00 >= 0 → < Q > N 2 K + N∂λ N −1 < zλ > = 0,
+(33)
+2
+−2
+l ≥ 1 : < σ(L)0 >= 0 → < zλ > +r |Σ0 ∂λ (r |Σ0 < z(L) >) = 0,
+(34)
+l ≥ 2 : < σ(LL) >= 0 → < z(L) >= 0,
+(35)
+2
+−2
+2
+l ≥ 0 : < σ(Y ) >= 0 → 2 < Q > r |Σ0 K̄ − ǫN < zλ > ∂λ (r |Σ0 )
+2
+−
+kl2 < z(L) >= 0,
+(36)
+n−2
+l ≥ 1 : < σ(T )0 >= 0 → ∂λ (r −2 |Σ0 < z(T ) >) = 0,
+(37)
+l ≥ 2 : < σ(LT ) >= 0 → < z(T ) >= 0,
+(38)
+l ≥ 2 : < σ(T ) >= 0 → 0 = 0.
+Expressions (35) and (38) readily determine < z(L) >l≥2 =< z(T ) >l≥2 = 0, which substituted in (34) give < zλ >l≥2 = 0. As a result, (36) for l ≥ 2 lead to < Q >l≥2 = 0.
+Clearly all the equations for l ≥ 2 are now satisfied. We now concentrate on the l = 1
+equations. Equation (37) implies that < z(T ) >l=1 = ar 2 |Σ0 , where a is a constant for each
+m. Combining equations (33), (34) and (36) for l = 1 we obtain the following equation
+for r −2 |Σ0 < z(L) >l=1 ,
+
+K̄∂λ2 (r −2 |Σ0 < z(L) >l=1 ) + (2K̄ + ǫK)∂λ (ln r|Σ0 ) − K̄∂λ ln N ∂λ (r −2 |Σ0 < z(L) >l=1 )
+NK
+(39)
+− 2 r −2 |Σ0 < z(L) >l=1 = 0,
+r
+while (34) and (33) determine < zλ >l=1 and < Q >l=1 respectively (provided K =
+6 0,
+which occurs generically). The two equations for l = 0 can be rearranged onto
+K̄∂λ (N −1 < zλ >l=0 ) + N −1 < zλ >l=0 ǫK∂λ ln(r|Σ0 ) = 0
+
+(40)
+
+plus the equation (33) for l = 0, which determines < Q >l=0 .
+Summarizing, we have found that the freedom in the deformation of the hypersurface
+compatible with the linearized matching conditions involving the first fundamental form
+is
+~ ′ − [Z]
+~ =
+[Z]
+
+1
+X
+l=0
+
+< Q > Y ~n(0) − ǫN −2 < zλ > Y ~eλ
+
+
+
+~m,
++am V~(Tm) + r −2 |Σ0 < z(L) >l=1,m V
+(L)
+where r −2 |Σ0 < z(L) >l=1,m , satisfy (39), < zλ >l=0 satisfy (40) and the rest of the
+variables are completely determined as described above. The term in am corresponds
+15
+
+to adding Killing vectors on the sphere, something already discussed in Section 4. The
+rest of terms involve combinations (with functions) of the conformal Killing vectors on
+the sphere and tangential vectors along λ. Notice that the coefficients of the conformal
+Killing (i.e. < z(L) >l=1,m ) determine all the rest of the l = 1 coefficients. In particular
+when < z(L) >l=1,m vanishes, then all the l = 1 terms vanish and the freedom becomes
+radially symmetric.
+We now add to the analysis the difference of the equations in (22). Due to the fact
+~ > vanish for l ≥ 2 we only need to consider the equations for
+that all coefficients in < Z
+l = 0, 1, i.e. (32). We refer the reader to Appendix A for the explicit expressions of (32)
+~ For the sake of completeness we also include
+in terms of the metric perturbations and Z.
+all the explicit expressions of (22) in Appendix A. The difference of equations (32), see
+(44)-(46), whenever < g (1) >= 0 read
+l = 0, 1 :
+
+(41)
+ǫ
+2
+2 2
+−<
+> n n eλ eλ −
+< Q > + 2 ∂λ N ∂λ < Q > −ǫ < Q > K N
+2N
+−ǫKN 2 ∂λ (N −2 < zλ >) − ǫ∂λ (K < zλ >) = 0,
+l=1:
+< κ(L)0 >= 0 ⇔
+(42)
+2
+−2
+−ǫ∂λ < Q > +ǫK < zλ > +ǫ < Q > ∂λ ln(r|Σ0 ) + r |Σ0 K̄∂λ (r |Σ0 < z(L) >) = 0
+l = 0, 1 :
+< κ(Y ) >= 0 ⇔
+(43)
+1
+1
++ N −2 ∂λ (r 2 |Σ0 ) (∂λ < Q > +K < zλ >) + < Qn(0)a n(0)b ∇a ∇b r 2 >
+2
+2
+
+ǫ −2 a
+l(l
++
+n
+−
+3)
+− N eλ < zλ n(0)b ∇b ∇a r 2 > +
+ǫ < Q > −2K̄ < z(L) > = 0.
+2
+n−2
+(γ)
+QRdbac
+
+< κ00 >= 0 ⇔
+(0)d (0)a
+
+b
+
+c
+
+ǫ∂λ2
+
+It can be checked that in general these equations overdetermine the previous equations,
+i.e. (39) and (40), although there may be particular cases for which they are compatible.
+Therefore, generically, they will imply that < z(L) >l=1,m = 0 and < zλ >l=0 = 0, and
+thence all the rest of the variables vanish, < zλ >l=1,m =< Q >l=1,m = 0, < zλ >l=0 =<
+Q >l=0 = 0, so that the only freedom left is given by
+~ ′ − [Z]
+~ = am V
+~m.
+[Z]
+(T )
+Finding in which particular cases equations (39)-(43) are compatible is straightforward
+but tedious and will not be carried out explicitly here.
+
+Acknowledgements
+FM and MM thank CRUP(Portugal)/MCT(Spain) for grant E-113/04. FM thanks FCT
+(Portugal) for grant SFRH/BPD/12137/2003 and CMAT, University of Minho, for support. MM was supported by the projects FIS2006-05319 of the Spanish Ministerio de
+Educación y Tecnologı́a and SA010CO of the Junta de Castilla y León. RV was supported
+by the Irish IRCSET, Ref. PD/2002/108, and now is funded by the Basque Government
+Ref. BFI05.335.
+
+16
+
+A
+
+Appendix
+
+For the sake of completeness we devote this appendix to present the explicit expressions
+~ which read
+of (22) in terms of the metric perturbations and Z,
+l≥0:
+[κ00 ] = 0 ⇔
+(44)
+1
+ǫ 2
+(γ)
+N K[hnn ] − n(0)a eλ b eλ c (2∇c [hab ] − ∇a [hbc ]) − [QRdbac ]n(0)d n(0)a eλ b eλ c
+2
+2
+ǫ
+−ǫ∂λ2 [Q] +
+∂λ N 2 ∂λ [Q] − ǫ[Q]K2 N 2 − ǫKN 2 ∂λ (N −2 [zλ ]) − ǫ∂λ (K[zλ ]) = 0,
+2
+2N
+l≥1:
+[κ(L)0 ] = 0 ⇔
+(45)
+1
+1
+− [hnλ ] − n(0)a eλ b (∂b [h(L)a ] − ∂a [h(L)b ]) − ǫ∂λ [Q] − ǫK[zλ ]
+2
+2
++(ǫ[Q] + [h(L)n ])∂λ ln(r|Σ0 ) + r 2 |Σ0 K̄∂λ (r −2 |Σ0 [z(L) ]) = 0
+l≥0:
+[κ(Y ) ] = 0 ⇔
+(46)
+1 −2
+1
+ǫ 2
+− r |Σ0 K̄[hnn ] + N ∂λ (r 2 |Σ0 ) (ǫ[hnλ ] + ∂λ [Q] + K[zλ ]) + [n(0)a ∂a h(Y ) ]
+2
+2
+2
+ǫ −2 a
+1
+(0)a (0)b
+2
+(0)b
+2
++ [Qn n ∇a ∇b r ] − N eλ [zλ n ∇b ∇a r ]
+2
+2
+l(l + n − 3) 
++
+[h(L)n ] + ǫ[Q] − 2K̄[z(L) ] = 0,
+n−2
+l≥1:
+[κ(T )0 ] = 0 ⇔
+1
+− n(0)a eλ b (∂b [h(T )a ] − ∂a [h(T )b ]) + [h(T )n ]∂λ ln(r|Σ0 ) + r 2 |Σ0 K̄∂λ (r −2 |Σ0 [z(T ) ]) = 0,
+2
+1
+1
+l≥2:
+[κ(LT ] = 0 ⇔ − [h(T )n ] + n(0)a ∂a [h(LT ) ] + K̄[z(T ) ] = 0,
+2
+2
+1
+1 (0)a
+ǫ
+l≥2:
+[κ(LT ] = 0 ⇔ − [h(L)n ] + n ∂a [h(LL) ] + K̄[z(L) ] − [Q] = 0,
+2
+2
+2
+1 (0)a
+l≥2:
+[κ(T ] = 0 ⇔ n ∂a [h(T ) ] = 0.
+2
+
+References
+[1] Gerlach U H and Sengupta U K (1979) "Gauge-invariant perturbations on most general spherically symmetric space-times" Phys. Rev. D 19 2268-2272
+[2] Gerlach U H and Sengupta U K (1979) "Junction conditions for odd-parity perturbations on most general spherically symmetric space-times" Phys. Rev. D 20 3009-3014
+[3] Gerlach U H and Sengupta U K (1979) "Even parity junction conditions for perturbations on most spherically symmetric space-times" J. Math. Phys. 20 2540-2546
+[4] Martı́n-Garcı́a J M and Gundlach (2001) "Gauge-invariant and coordinateindependent perturbations of stellar collapse II: matching to the exterior" Phys. Rev.
+D 64 024012
+[5] Carter B and Battye R A (1995) "Gravitational Perturbations of Relativistic Membranes and Strings" Phys. Lett. B35 29-35
+
+17
+
+[6] Mukohyama S (2000) "Perturbation of the junction conditions and doubly gaugeinvariant variables" Class. Quantum Grav. 17 4777-4797
+[7] Mars M (2005) "First and second order perturbations of hypersurfaces" Class. Quantum Grav. 22 3325-3347
+[8] Mars M and Senovilla J M M (1993) "Geometry of general hypersurfaces in spacetime:
+junction conditions" Class. Quantum Grav. 10 1865-1897
+[9] Vera R (2002) "Symmetry-preserving matchings" Class. Quantum Grav. 19 5249-5264
+[10] Mars M and Senovilla J M M (1998) "On the construction of global models describing
+rotating bodies; uniqueness of the exterior gravitational field" Mod. Phys. Lett. A13
+1509-1519
+
+18
+
+

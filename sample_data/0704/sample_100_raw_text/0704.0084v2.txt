@@ -1,0 +1,3312 @@
+Formation of density singularities in ideal hydrodynamics of freely cooling inelastic
+gases: a family of exact solutions
+Itzhak Fouxon, Baruch Meerson, Michael Assaf, and Eli Livne
+
+arXiv:0704.0084v2 [cond-mat.soft] 9 May 2007
+
+Racah Institute of Physics, Hebrew University of Jerusalem, Jerusalem 91904, Israel
+(Dated: February 18, 2013)
+We employ granular hydrodynamics to investigate a paradigmatic problem of clustering of particles in a freely cooling dilute granular gas. We consider large-scale hydrodynamic motions where
+the viscosity and heat conduction can be neglected, and one arrives at the equations of ideal gas
+dynamics with an additional term describing bulk energy losses due to inelastic collisions. We employ Lagrangian coordinates and derive a broad family of exact non-stationary analytical solutions
+that depend only on one spatial coordinate. These solutions exhibit a new type of singularity, where
+the gas density blows up in a finite time when starting from smooth initial conditions. The density
+blowups signal formation of close-packed clusters of particles. As the density blow-up time tc is
+approached, the maximum density exhibits a power law ∼ (tc − t)−2 . The velocity gradient blows
+up as ∼ − (tc − t)−1 while the velocity itself remains continuous and develops a cusp (rather than
+a shock discontinuity) at the singularity. The gas temperature vanishes at the singularity, and the
+singularity follows the isobaric scenario: the gas pressure remains finite and approximately uniform
+in space and constant in time close to the singularity. An additional exact solution shows that the
+density blowup, of the same type, may coexist with an "ordinary" shock, at which the hydrodynamic fields are discontinuous but finite. We confirm stability of the exact solutions with respect
+to small one-dimensional perturbations by solving the ideal hydrodynamic equations numerically.
+Furthermore, numerical solutions show that the local features of the density blowup hold universally,
+independently of details of the initial and boundary conditions.
+PACS numbers: 45.70.Qj, 47.40.-x
+
+I.
+
+INTRODUCTION
+
+Structure formation in many-body systems is one of
+central problems of non-equilibrium physics. A most
+spectacular phenomena of structure formation is clustering of matter. Here an initially structureless, almost homogeneous distribution of particles of matter
+self-assembles into clusters. Such an evolution cannot
+proceed indefinitely in a gas where interactions between
+the particles are (i) short-range and (ii) Hamiltonian.
+There are two important classes of gases where one of
+these two properties is violated, and clustering can occur. In the first one long-range forces, such as gravity,
+are present. Clustering provides here a natural mechanism of star formation1 and of the large-scale structure of the Universe2 . The second class of systems are
+dissipative systems where interactions between the particles, at the level of an effective description, are nonHamiltonian. One well-known example is optically thin
+gases and plasmas that cool by their own radiation, and
+dense condensations develop3,4,5 . In this paper we consider a more basic non-Hamiltonian many-body system:
+a gas of inelastically colliding macroscopic particles, or
+granular gas. Here particles lose energy to their internal
+degrees of freedom.
+The granular gas is the low-density limit of granular
+flows6,7 . In its simplest version, the granular gas model
+deals with a dilute assembly of identical hard spheres
+(with diameter σ and unit mass) who lose energy at instantaneous binary collisions in such a way that the normal component of the relative velocity of particles is re-
+
+duced by a constant factor 0 ≤ r < 1 (the coefficient of
+normal restitution) upon each collision. Granular gases
+exhibit a plethora of structure forming instabilities, including the clustering instability of a freely cooling homogeneous inelastic gas8,9,10,11,12,13,14,15,16,17,18,19 . This
+instability brings about the generation of a macroscopic
+flow and formation of dense clusters of particles.
+The natural language for a theoretical description of
+macroscopic flows of a granular gas is the Navier-Stokes
+granular hydrodynamics6,7 . Although the criteria of its
+validity are quite restrictive, see below, granular hydrodynamics is instrumental for theoretical investigations,
+and often prediction, of a host of collective effects in
+granular flows. Recently, applications of granular hydrodynamics have been extended to non-stationary flows
+of granular gases17,20,21,22 . The non-stationary settings
+provide sharp tests to continuum models of granular flows
+and help evaluate their domains of validity. This is especially true when the time-dependent solutions of the
+continuum equations develop finite-time singularities23 ,
+such as the recently predicted density blowup in freely
+cooling granular gases: at zero gravity17,22 , and at finite
+gravity21.
+We will assume throughout this paper nearly elastic
+particle collisions, a very small gas density (that we denote by ρ), and a very small Knudsen number:
+1−r ≪ 1,
+
+ρσ d ≪ 1 ,
+
+and
+
+lf ree /L ≪ 1 .
+
+(1)
+
+Here d > 1 is the dimension of space, lf ree is the
+mean free path of the particles, and L is the characteristic length scale of the hydrodynamic fields. Under
+
+2
+these assumptions the Navier-Stokes hydrodynamics provides a quantitatively accurate leading-order theory for
+granular gases6,7 . Previous works9,10 employed hydrodynamic equations to show that, for sufficiently large
+systems, the homogeneously cooling state of the granular gas is linearly unstable. The unstable perturbations
+grow via two (linearly) independent modes: the shear
+mode corresponding to the development of a macroscopic
+solenoidal flow, and the clustering mode corresponding
+to the development of a potential flow that causes formation of clusters of particles. How does the clustering mode develop beyond the linear regime, and do the
+hydrodynamic nonlinearities arrest the density growth?
+For the clustering instability in large systems (as well as
+for the gravitational instability2 ) the growing perturbations bring the system into a fully developed non-linear
+regime9,11,14,16,17,18 . Therefore, one has to deal with fully
+non-linear hydrodynamic equations. Not restricting ourselves to a close proximity to the homogeneously cooling state, we can formulate the problem in a more general way and explore different nonlinear flows of a freely
+evolving granular gas.
+Solving the hydrodynamic equations analytically, and
+even numerically, is a difficult task, and additional simplifications are needed. We will make two additional simplifying assumptions in this work. First, assuming a largescale flow, we will neglect the viscous and heat conduction terms in the hydrodynamic equations. Second, we
+will assume that the macroscopic flow is one-dimensional.
+A natural environment for the second assumption is provided by the geometry of a narrow channel with perfectly
+elastic side walls that we adopt here, following Refs.17,18 .
+Although the microscopic motion of particles in the channel remains two- or three-dimensional (2d or 3d), the
+macroscopic flow depends only on one spatial coordinate:
+the coordinate along the channel. This is because, in a
+narrow channel, both the shear mode and the clustering mode in the transverse directions are suppressed (see
+Refs. 17,18 for detail). As a result, one can focus on the
+development of the (one-dimensional) clustering mode as
+it enters a strongly nonlinear regime.
+Working in the channel geometry, Efrati et al.17 considered the long-wavelength limit of the clustering instability, when the linear growth rate of the instability is
+the highest. In this case the inelastic energy loss of the
+gas is the fastest process, and the gas pressure drops, almost instantaneously, to a very small value. The further
+dynamics are then (almost) purely inertial which would
+bring about a finite-time blow-up of the velocity gradient and, therefore, of the density. This is the well known
+blow-up of the free flow24 . Its signatures were observed in
+the numerical solution of the hydrodynamic equations17
+until the maximum gas density became so high that the
+numerical scheme lost accuracy. The numerical results of
+Ref.17 were tested in molecular dynamics (MD) simulations in 2d of a freely cooling gas of inelastically colliding disks in a long and narrow channel18 . The MD simulations supported the free-flow blow-up scenario until
+
+the time when the gas density approached the hexagonal
+close-packing value, and the further density growth was
+arrested.
+As we have recently found22 , the free flow asymptotics
+does not hold all the way to the density blowup. Very
+close, in time and in space, to the (attempted) free-flow
+singularity, the compressional heating starts to act and
+temporarily stabilizes the gas temperature at a small
+but finite value. As a result, the gas pressure again becomes important: it breaks the purely inertial dynamics
+and, though unable to stop the density blowup, dramatically changes the local blowup properties. It turns out
+that, after a brief crossover, the further dynamics obey a
+new blowup scenario, not limited to the long-wavelength
+limit22 . The new scenario has the following features. As
+the blow-up time tc is approached, the maximum density exhibits a power law ∼ (tc − t)−2 . The velocity
+gradient blows up as ∼ −(tc − t)−1 , whereas the velocity itself remains continuous and develops a cusp, rather
+than a shock discontinuity, at the singularity. The gas
+temperature vanishes at the singularity, but the pressure
+there remains finite. This blowup, which obeys the above
+asymptotic laws near the singularity, emerges universally,
+that is for generic initial and boundary conditions. (Note
+that, in the long-wavelength limit, the crossover from the
+free flow regime to the finite-pressure regime does not
+happen when the initial gas density is not very small.
+In this case excluded particle volume effects interfere in
+the dynamics, and arrest the density growth, before the
+crossover has a chance to occur, as indeed was observed
+in Ref.18 .)
+These findings are based on extensive numerical simulations (numerical solutions of the hydrodynamic equations for a host of initial and boundary conditions) and a
+family of exact analytical solutions of the hydrodynamic
+equations, without and with shocks, briefly announced in
+Ref.22 . In the present work we give a detailed account of
+the exact solutions and investigate their structure close
+to the singularity. We verify the exact solutions numerically. We show that the singularity follows the isobaric
+scenario: the gas pressure is approximately uniform in
+space and constant in time in a close vicinity of the developing singularity. Finally, we evaluate the validity of
+the exact solutions close to the singularity by estimating
+the role of additional physical processes: the viscosity,
+heat conduction and excluded particle volume effects.
+The remainder of the paper is organized as follows. In
+Section II we introduce the equations of ideal granular
+hydrodynamics (IGHD) and discuss their general properties. In Section III we employ Lagrangian coordinates
+and derive a family of exact solutions of the IGHD equations, consider some particular cases of the solutions and
+investigate global and local properties of the solutions.
+In Section IV we adapt the exact solutions to describe a
+different setting, where a piston moves into a granular gas
+at rest, and a density blowup, developing at the piston,
+coexists with an "ordinary" shock wave propagating into
+the gas. Besides demonstrating the presence of the two
+
+3
+different types of singularities in the same system, this solution allows an arbitrary initial density profile at large
+distances, showing that the density blowup is a local process. Section V presents the results of numerical solutions
+of the IGHD equations that confirm stability of the exact
+solutions with respect to small one-dimensional perturbations and establish universality of the density blowup
+for different initial conditions. In Section VI we discuss
+the role of non-ideal effects, neglected in our solutions,
+close to the singularity. In Section VII we summarize our
+results and discuss their bearing on cluster formation.
+II.
+
+IDEAL HYDRODYNAMICS OF A FREELY
+COOLING GRANULAR GAS
+
+Under the three strong inequalities (1), the NavierStokes granular hydrodynamics provides a quantitatively
+accurate leading-order theory for granular gases. It deals
+with three coarse-grained fields: the mass density ρ(x, t),
+the mean flow velocity v(x, t) and the granular temperature T (x, t). An additional coarse-grained field, the pressure p(x, t), is related to the density and temperature
+by the perfect gas equation of state p = ρT . Assuming
+a one-dimensional macroscopic flow, we can write these
+equations as
+∂ρ ∂(ρv)
++
+= 0,
+(2)
+∂t
+∂x 
+
+
+∂v
+∂(ρT )
+∂ √ ∂v
+∂v
+T
+ρ
+=−
+, (3)
++v
++ ν0
+∂t
+∂x
+∂x
+∂x
+∂x
+∂T
+∂T
+∂v
++v
+= −(γ − 1)T
+− ΛρT 3/2
+∂t
+∂x
+∂x
+√  2
+
+
+ν0 (γ − 1) T ∂v
+κ0 ∂ √ ∂T
++
+. (4)
++
+T
+ρ ∂x
+∂x
+ρ
+∂x
+Here γ is the adiabatic index of the gas (γ = 2 and 5/3
+for d = 2 and d = 3, respectively), Λ = 2π (d−1)/2 (1 −
+r2 )σ d−1 /[d Γ(d/2)] (see e.g.13 ), and
+. .) is the gamma
+√ Γ(.
+−1
+function. In addition,
+ν
+=
+(2σ
+π)
+and κ0 = 4ν0 in
+0
+√
+2d, and ν0 = 5(3σ 2 π)−1 and κ0 = 15ν0 /8 in 3d, see
+Ref. 6. The only difference between Eqs. (2)-(4) and
+the standard gas dynamic equations for a dilute gas of
+elastically colliding spheres is the presence in Eq. (4) of
+the inelastic energy loss term −ΛρT 3/2 .
+There are three types of dissipative terms in Eqs. (2)(4): the viscous terms in Eqs. (3) and (4), the heat
+conduction term in Eq. (4) and the energy loss term in
+Eq. (4). The viscous and heat conduction terms include
+spatial gradients of the hydrodynamic fields, whereas
+the energy loss term is independent of the gradients.
+When the characteristic hydrodynamic length scale of the
+flow is sufficiently large, the viscous and heat conduction
+terms can be neglected, while the energy loss term should
+be kept, and we arrive at the equations of ideal granular
+hydrodynamics (IGHD):
+
+
+∂(ρT )
+∂v
+∂v
+∂ρ ∂(ρv)
+=−
++
+= 0, ρ
++v
+, (5)
+∂t
+∂x
+∂t
+∂x
+∂x
+
+∂T
+∂v
+∂T
++v
+= −(γ − 1)T
+− ΛρT 3/2.
+∂t
+∂x
+∂x
+
+(6)
+
+For consistency, all the assumptions must be checked a
+posteriori, after a hydrodynamic problem in question is
+solved, and the hydrodynamic length and time scales are
+found.
+The basic state of the freely cooling gas is the homogeneously cooling state described by the Haff law25 :
+ρ = ρ0 ,
+
+v = 0,
+
+T =
+
+T0
+1/2
+
+1 + Λρ0 T0 t/2
+
+2 .
+
+(7)
+
+This state corresponds to the initial conditions ρ(x, t =
+0) = ρ0 = const, T (x, t = 0) = T0 = const and v(x, t) =
+0. Obviously, the IGHD equations reproduce the Haff's
+law exactly, as the homogeneously cooling state does not
+include gradients of the hydrodynamic fields.
+A more meaningful example of a situation where the
+IGHD applies is provided by the linear stability analysis of the homogeneously cooling state. This analysis, in the framework of the complete, non-ideal NavierStokes hydrodynamics (2)-(4) and its extensions was performed by many workers, starting from Goldhirsch and
+collaborators9 and McNamara10. The main results of the
+linear stability analysis can be described, at the level of
+order-of-magnitude estimates, as follows. The evolution
+of a small sinusoidal perturbation with the wave number k is determined by two competing processes. The
+inelastic energy loss tends to enhance the√fluctuations
+on the cooling time scale [(1 − r2 )σ d−1 ρ T ]−1 which
+is k-independent. In its turn, the viscosity and thermal conduction tend
+√to erase the perturbation on a time
+scale [k 2 lf2 ree ρσ d−1 T ]−1 , where lf ree ∼ 1/(nσ d−1 ) is
+√
+the mean free path and lf2 ree ρσ d−1 T is the characteristic value of the viscosity/heat conductivity. Balancing these two time√scales, one obtains the critical wave
+number kc ∼ lf−1
+ree 1 − r so that the perturbations with
+k < kc grow, while the short-wavelength perturbations,
+k > kc , decay9,10 . In a narrow channel, such that perturbations in the transverse direction with wave numbers smaller than kc are not allowed, only perturbations
+along the channel will grow. As a result, by the end of
+the linear stage, the hydrodynamic fields are effectively
+one-dimensional and
+√ have characteristic length scales of
+the order of lf ree / 1 − r or longer. The validity of the
+Navier-Stokes hydrodynamics (2)-(4) for the description
+of the whole range of
+√ unstable perturbations demands
+a strong inequality 1 − r ≪ 1. On the other hand,
+the IGHD model (5) and (6) is valid if we demand a
+strong inequality k ≪ kc . Indeed, one can check that, in
+this case, the growth rate of the clustering instability, as
+obtained from the IGHD, coincides in the leading order
+in k/kc with that obtained from the full hydrodynamic
+equations.
+In Section VI we will perform a consistency check, and
+establish the validity domain, of our exact nonlinear solutions of the IGHD equations (5) and (6). Now let us
+
+4
+discuss the basic properties of these equations. Although
+much simpler than the non-ideal equations (2)-(4), the
+nonlinear IGHD equations still present a hard mathematical problem. Going back to elastic particle collisions,
+Λ = 0, one recovers the ordinary ideal gas dynamics in
+one dimension. Among most interesting solutions are
+those describing the development of wave-breaking singularities when starting from smooth initial data26,27 . Note
+that, even for Λ = 0, the general initial value problem is
+not soluble analytically, except for the particular case of
+an isentropic flow, where
+the entropy per unit volume
+
+s(ρ, T ) = ρ ln T /ργ−1 is uniform in space and constant
+in time26,27 . Needless to say, at Λ > 0, Eqs. (5) and (6)
+do not allow isentropic
+solutions. The total entropy of
+R
+the fluid S = s(ρ, T ) dx, governed by Eq. (5) and (6),
+is monotone decreasing:
+Z
+dS
+= −Λ ρ2 T 1/2 dx ,
+(8)
+dt
+
+where we have assumed that there is no net entropy
+flux from the boundaries. As expected from the microscopic picture, the local entropy loss rate in Eq. (8) is
+proportional to the particle collision rate. The entropy
+loss implies that the system may exhibit self-organization
+phenomena28 as is indeed observed in the process of clustering instability.
+Before deriving a family of exact solutions exhibiting a finite-time density blowup, we note two rescaling
+symmetries of Eqs. (5) and (6). The first symmetry
+relates solutions at different Λ > 0. If ρ(x, t), v(x, t)
+and T (x, t) solve Eqs. (5) and (6) at some Λ, then the
+rescaled fields ρ[(Λ′ /Λ)x, (Λ′ /Λ)t], v[(Λ′ /Λ)x, (Λ′ /Λ)t]
+and T [(Λ′ /Λ)x, (Λ′ /Λ)t] solve the same system with the
+cooling coefficient Λ′ . Therefore, the general mathematical properties of Eqs. (5) and (6), such as the existence
+of singularities, are the same for any Λ > 0. The second symmetry relates solutions of Eqs. (5) and (6) at the
+same Λ. If ρ, v and T solve Eqs. (5) and (6), then ρ̃, ṽ
+and T̃ defined by
+p
+p
+p
+ρ̃(x, t) = αρ(αx, α βt), ṽ(x, t) = βv(αx, α βt),
+p
+(9)
+T̃ (x, t) = βT (αx, α βt) ,
+with any α > 0 and β > 0, also solve Eqs. (5) and (6).
+These symmetries are exploited in the following.
+III.
+
+A.
+
+DEVELOPMENT OF DENSITY
+SINGULARITIES
+
+Lagrangian coordinates and exact solutions
+
+Let us rewrite the governing equations (5) and (6) in
+terms of the pressure p = ρT , rather than temperature:
+
+
+∂ρ ∂(ρv)
+∂p
+∂v
+∂v
+= − , (10)
++
+= 0, ρ
++v
+∂t
+∂x
+∂t
+∂x
+∂x
+∂p
+∂v
+∂p
++v
+= −γp
+− Λρ1/2 p3/2 ,
+(11)
+∂t
+∂x
+∂x
+
+The family of exact solutions, presented in this Section,
+are smooth initially but become singular in a finite time
+tc . At the singularity, the density blows up, in contrast
+to the ordinary "wave-breaking" singularity of the ideal
+gas dynamics (Λ = 0), where only the gradients of the
+hydrodynamic fields blow up26,27 . An exact solution of a
+different type, presented in Section IV, includes a shock
+already at t = 0. That solution also exhibits a density
+blowup, and the local properties of the blowup are the
+same as in the initially smooth solutions.
+Let us introduce Lagrangian coordinates. The coordinates x(m, t) of the fluid particles obey the equation
+∂x(m, t)
+= v(x(m, t), t),
+∂t
+
+(12)
+
+where m is a continuous label (a Lagrangian coordinate)
+of particles. The defining property of the exact solutions
+that we are going to present is independence of the particle accelerations ∂t2 x(m, t) of time: the fluid particle
+coordinates x(m, t) satisfy the equation
+x(m, t) = x(m, 0) + v(m, 0)t +
+
+a(m, 0)t2
+,
+2
+
+(13)
+
+where v(m, 0) and a(m, 0) are the initial velocities and
+accelerations of the fluid particles, respectively. As we
+will see later, the total mass of gas is finite for our solutions. As a result, the pressure must vanish at the boundaries, implying existence of a point with a zero pressure
+gradient (and, therefore, a zero particle acceleration) in
+between. A fluid particle that has a zero acceleration
+(that is conserved in our solutions) moves with a constant velocity, and we choose to work in such a frame of
+reference where this particle is at rest, so that the conditions v(x = 0, t) = 0 and ∂x p(x = 0, t) = 0 are obeyed.
+It is convenient to choose the Lagrangian coordinate
+m to be the mass coordinate29 :
+Z x
+ρ(x′ , t)dx′
+(14)
+m(x, t) =
+0
+
+that is the mass content between the Eulerian points 0
+and x. The inverse transformation x(m, t) is
+Z m
+dm′
+.
+(15)
+x(m, t) =
+ρ(m′ , t)
+0
+In the Lagrangian coordinates Eqs. (10) and (11) look
+simpler:
+ 
+∂ 1
+∂v ∂v
+∂p
+=
+,
+=−
+,
+(16)
+∂t ρ
+∂m ∂t
+∂m
+∂v
+∂p
+= −γpρ
+− Λp3/2 ρ1/2 .
+(17)
+∂t
+∂m
+Let us calculate the Lagrangian acceleration:
+∂ 2 x(m, t)
+∂p(m, t)
+=−
+,
+2
+∂t
+∂m
+
+(18)
+
+5
+where we have used Eqs. (12) and (16). For the solutions obeying Eq. (13), the Lagrangian pressure gradient
+∂m p(m, t) should be independent of time. Since the pressure p(m, t) is time-independent (and zero) at the gas
+boundaries, it can depend only on m. Then Eqs. (16)
+and (17) yield
+∂2p
+= −μ2 p,
+∂m2
+
+Λ
+where μ = √ .
+γ 2
+
+(19)
+
+In view of the zero acceleration at the origin, ∂m p(0, t) =
+0, Eq. (19) yields p = 2A cos(μm), where A is constant.
+The resulting family of solutions is
+p(m, t) = 2A cos(μm),
+ρ(m, 0)
+p
+ρ(m, t) =
+,
+[1 − μt Aρ(m, 0) cos(μm)]2
+Z ms
+A cos(μm′ )
+dm′
+v(m, t) = −2μ
+ρ(m′ , 0)
+0
++ 2Aμt sin(μm) ,
+
+(20)
+(21)
+
+Now let us consider what types of initial conditions
+evolve according to Eqs. (20)-(22) and discuss the density
+blowup that is brought by this evolution.
+B.
+
+Initial conditions and density blowup for the
+exact solutions
+
+A particular member of our family of exact solutions
+(20)-(22) is determined by a specific choice of the constant A > 0 and of the initial density ρ(m, 0) ≥ 0, defined on the interval [−π/(2μ), π/(2μ)]. In the Eulerian
+coordinates one can specify an arbitrary initial density
+profile ρ(x, 0) that has a fixed total mass π/μ:
+Z ∞
+ρ(x, 0)dx = π/μ.
+(23)
+−∞
+
+(22)
+
+where we have used the condition v(m = 0, t) = 0. This
+family of solutions describes a compression flow (the velocity gradient is negative everywhere), as the compressional heating is balanced, in Eq. (17), by the inelastic
+cooling. The solutions include an arbitrary non-negative
+function ρ(m, 0): the initial gas density. The arbitrary
+constant A > 0 that, together with ρ(m, 0), determines
+the (time-dependent) Mach number of the flow, appears
+due to the rescaling symmetry of the equations and corresponds to the constant β in Eq. (9). One can check that
+the constant α in Eq. (9) corresponds to the freedom of
+multiplying ρ(m, 0) and A by α.
+As the pressure p must be non-negative, and vanish
+at the (finite or infinite) boundaries of the freely moving
+gas, the solutions (20) can hold only on a finite interval
+(−π/2μ, π/2μ) (we assume that the gas region is singleconnected, and the interval includes m = 0). Therefore,
+the total mass of the gas in these
+R ∞solutions is finite and
+fixed by parameters Λ and γ: −∞ ρ(x, 0)dx = π/μ =
+√
+2πγ/Λ.
+Once the solutions (20)-(22) in the Lagrangian coordinates are known, we can return to the Eulerian coordinates by using, at any time t, Eq. (15). Depending
+on the particular choice of the initial density, there are
+two possible types of solutions (20)-(22). First, the fixed
+mass of the gas π/μ can be distributed, at t = 0, over
+either an infinite, or a finite x-interval. This is determined by the behavior of ρ(m, 0) near m = ± π/2μ. For
+example, let ρ(m, 0) ∼ (π/2μ − m)1+a near m = π/2μ.
+Then it follows from Eq. (15) that the gas occupies an
+infinite (correspondingly, a finite) interval of positive x
+if a ≥ 0 (correspondingly, a < 0). The velocity can
+be either finite, or infinite at the gas boundaries. For
+example, for the same behavior of the initial density
+ρ(m, t = 0) ∼ (π/2μ − m)1+a near m = π/2μ one obtains a finite (correspondingly, infinite) gas velocity at
+m = π/2μ for a < 2 (correspondingly, a ≥ 2).
+
+Once ρ(x, 0) and A are specified, one needs to choose the
+origin so that the gas masses to the left and to the right
+of the origin are the same [and equal to π/(2μ)]. Then
+the initial gas pressure in the Eulerian coordinates is
+
+ Z x
+′
+′
+(24)
+p(x, 0) = 2A cos μ
+ρ(x , 0)dx .
+0
+
+Now, using Eq. (22), we calculate the velocity gradient
+in the Eulerian coordinate at t = 0:
+∂v(x, 0)
+∂v(m, 0)
+= ρ(m, 0)
+∂x
+p ∂m
+= −2μ Aρ(m, 0) cos(μm).
+
+(25)
+
+which, in view of the condition v(x = 0, t) = 0, yields
+Z xp
+v(x, 0) = −μ
+2ρ(x′ , 0)p(x′ , 0)dx′
+(26)
+0
+
+with p(x, 0) from Eq. (24). Equations (24) and (26) show
+that, once ρ(x, 0) is a smooth function of x, then the
+initial pressure and velocity are smooth functions as well.
+Let us now proceed to the properties of the solutions.
+As we already noted, these solutions describe a motion of
+fluid particles with a time-independent acceleration, see
+Eq. (13). This time-independent acceleration is
+a(m, 0) = −
+
+∂p(m, 0)
+= 2μA sin(μm).
+∂m
+
+(27)
+
+The evolution described by Eqs. (20)-(22) brings about a
+singularity of this initially smooth flow: ρ(m, t) blows up
+in a finite time, while the rest of the flow variables - the
+pressure and velocity - remain finite. The density blow up
+occurs at the Lagrangian point m0 where ρ(m, 0) cos(μm)
+reaches its maximum:
+ρ(m0 , 0) cos(μm0 ) = max [ρ(m, 0) cos(μm)] .
+
+(28)
+
+Interestingly, the point m0 corresponds, in view of
+Eq. (25), to the point of the absolute (negative) minimum of the velocity gradient in the Eulerian coordinates,
+
+6
+just as in the case of the free flow (that is, zero pressure)
+singularity24 . The singularity occurs when the Jacobian
+of the Lagrangian transformation of the fluid particles
+vanishes for the first time: ∂m x(m = m0 , tc ) = 0. For
+the time tc and the Eulerian coordinate of the singularity
+x0 we find
+1
+p
+,
+μ Aρ(m0 , 0) cos(μm0 )
+Z m0
+dm′
+.
+= x(m0 , tc ) =
+ρ(m′ , tc )
+0
+
+tc =
+xc
+
+(29)
+
+At the (fixed) Lagrangian point of singularity m0 the
+density blows up as
+ρ(m0 , t) =
+
+ρ(m0 , 0)
+.
+(1 − t/tc )2
+
+(30)
+
+In the Eulerian coordinates the blowup develops, in general, in a moving point:
+ρ[x(m0 , t), t] =
+
+ρ[x(m0 , 0), 0]
+.
+(1 − t/tc )2
+
+(31)
+
+The velocity gradient at the singularity point x(m0 , t)
+diverges. The divergence law can be easily found in the
+Langrangian coordinates, by using the continuity equation and Eqs. (21) and (29):
+∂v(x, t)
+∂x
+
+= ρ(m, t)
+x=x(m0 ,t)
+
+∂
+= − [ln ρ(m, t)]
+∂t
+
+m=m0
+
+∂v(m, t)
+∂m
+
+2
+.
+=−
+tc − t
+
+m=m0
+
+(32)
+
+Finally, the (finite) pressure is conserved on the Lagrangian trajectory:
+p(x = x(m0 , t), t) = 2A cos(μm0 ).
+
+(33)
+
+Note that the pressure does not have a minimum at the
+singularity point, so this flow does not conform to the
+popular "pressure instability" scenario9.
+It is instructive to consider several particular examples
+of solutions starting with the mass distributed over an
+infinite interval of x.
+C.
+
+Solutions with mass distributed over an infinite
+interval of x
+
+In our first example the initial density profile in the
+Lagrangian coordinates is ρ(m, 0) = ρ0 cos(μm). To return to the Eulerian coordinates, we use Eq. (15) and
+obtain
+
+
+x(m, 0)
+= tan(μm) ,
+(34)
+sinh
+l
+where we have introduced the characteristic inelastic
+cooling length scale l = 1/(μρ0 ) whose meaning will become clear shortly. We use Eq. (34) to express ρ(m, 0) =
+
+ρ0 cos(μm) through x. The rest of initial conditions follow from Eq. (20) and Eq. (22) at t = 0. Note that
+the initial gas temperature T (m, 0) = p(m, 0)/ρ(m, 0) =
+2A/ρ0 ≡ T0 is uniform in space. The initial conditions
+are
+ρ0
+ρ(x, 0) =
+, T (x, 0) = T0 ,
+(35)
+cosh(x/l)
+i
+h
+
+p
+x
+v(x, 0) = − 2T0 arcsin tanh
+.
+(36)
+l
+The initial velocity profile describes an inflow of gas
+from plus and minus infinity
+with a finite velocity there:
+p
+limx→±∞ v(x, 0) = ∓ π T0 /2. Now let us introduce the
+characteristic inelastic cooling time
+√
+√
+2
+l 2
+2γ
+√ =
+√ ,
+√
+τ=
+=
+(37)
+T0
+μρ0 T0
+ρ0 Λ T 0
+
+see Eq. (6). In its turn, l is the characteristic length
+scale the particles pass during the time τ while moving
+with thermal velocity. According to Eqs. (20)-(22), the
+hydrodynamic fields in the Lagrangian coordinates evolve
+in time in this example as
+p(m, t) = ρ0 T0 cos(μm),
+ρ0 cos(μm)
+,
+ρ(m, t) =
+[1 − (t/τ ) cos(μm)]2
+p
+v(m, t) = − 2T0 [μm − (t/τ ) sin(μm)] ,
+
+(38)
+(39)
+(40)
+
+as depicted in Fig. 1.
+Using Eqs. (15) and (39) we find the law of motion
+(13) of Lagrangian particles,
+
+
+1 + sin(μm)
+1
+x(m, t)
+= ln
+l
+2
+1 − sin(μm)
+ 
+ 2
+t
+t
+− 2
+μm +
+sin(μm)
+τ
+τ
+which, combined with Eqs. (39)-(40), yields a parametric
+representation of the solution in the Eulerian coordinates,
+see Fig. 2. The density singularity occurs at x = 0 at time
+t = τ:
+ρ0
+, T (0, t) = T0 (1 − t/τ )2 ,
+ρ(0, t) =
+(1 − t/τ )2
+∂v
+2
+p(0, t) = ρ0 T0 = const,
+(0, t) = −
+, (41)
+∂x
+τ −t
+while v(x = 0, t) = 0. Notice that the pressure has a
+local maximum at the density blowup point x = m = 0.
+The above solution can be immediately generalized.
+Indeed, it is a particular case of a one-parameter family
+of solutions generated by the initial density profile
+
+i
+x
+x
+ρ0 h
+ρ(x, 0) =
++ a + cosh−1
+−a ,
+cosh−1
+2
+l
+l
+(42)
+where a > 0 is an arbitrary parameter. For a < acr =
+arcsinh(1) = 0.88137 . . . there is a single density peak at
+
+7
+1
+
+(a)
+
+0 m
+
+1
+
+−1
+−1
+1
+
+0m
+
+1
+
+(d)
+
+p(m,t)
+
+T(m,t)
+
+0
+−1
+2 (c)
+
+1
+−1
+1
+
+0m
+
+0 m
+
+1
+
+(f)
+
+E(t)
+
+(e)
+
+0
+1 −1
+12
+
+ρ(0,t)
+
+−1/2
+
+(b)
+
+v(m,t)
+
+ρ(m,t)−1
+
+0.5
+
+0
+0
+
+0.5 t
+
+0
+1 0
+
+0.5 t
+
+1
+
+FIG. 1: (Color online) An example of a single-peak solution
+in the Lagrangian coordinates [Eqs. (38)-(40)], and a numerical solution for the same parameters. The analytical and
+numerical solutions are depicted by solid lines and symbols,
+respectively. Shown are the inverse density (a), velocity (b),
+pressure (c) and temperature (d) at times t = 0.62 (circles),
+0.77 (squares) and 0.99 (triangles) as functions of the Lagrangian coordinate m. Shown in (e) is the inverse square
+root of the density at the singularity point m = 0 (circles).
+Shown in (f) is the total energy of the gas versus time as
+described by Eq. (60). The density,
+velocity, pressure and
+p
+temperature are rescaled to ρ0 , T0 /2, ρ0 T0 /2 and T0 /2, respectively. The Lagrangian mass coordinate is measured in
+units of M/π = 1/μ. Time is measured in units of τ , so the
+density blows up at t = 1. Details of the numerical solution
+are given in Section V.
+4
+
+(a)
+
+1
+
+(b)
+
+v(x,t)
+
+ρ(x,t)
+
+10
+
+0
+
+10
+
+−0.1
+
+0.1
+
+0x
+
+0.1
+
+0
+−0.1
+
+−1
+−0.2
+1 (d)
+
+0 x
+
+0.2
+
+0 x
+
+0.2
+
+T(x,t)
+
+(c)
+
+p(x,t)
+
+2
+
+0x
+
+0
+−0.2
+
+FIG. 2: (Color online) The exact solution from Fig. 1 in the
+Eulerian coordinates. Shown are: the density in the logarithmic scale (a), the velocity (b), the pressure (c) and the temperature (d) at rescaled times t = 0.62 (the dashed-dotted
+line), 0.77 (the dashed line), 0.99 (the solid line) and the
+blowup time 1 (the dotted line in c) as functions of x. The
+x-coordinate is measured in units of l. The rest of units are
+the same as in Fig. 1.
+
+x = 0, while at a > acr there are two symmetric density
+peaks at x = ± l arccosh(sinh a). The density profile (42)
+obeys Eq. (23): the total mass of the gas remains equal
+to π/μ. Equations (15) and (42) yield
+
+
+x(m, 0)
+sinh
+= cosh a tan(μm).
+(43)
+l
+By setting p(x, 0) = ρ0 T0 cos[μm(x, 0)] we obtain the initial temperature
+s
+sinh2 a
+,
+(44)
+T (x, 0) = T0 1 +
+cosh2 (x/l)
+while v(x, 0) can be found from Eq. (26). Now we calculate the initial conditions in the Lagrangian coordinates.
+Using Eqs. (42) and (43) we obtain
+q
+ρ(m, 0) = ρ0 cos(μm) 1 − tanh2 a cos2 (μm).
+(45)
+
+Then Eq. (22) yields
+Z
+p
+v(m, 0) = − 2T0
+
+0
+
+μm
+
+dm′
+. (46)
+(1 − tanh a cos2 m′ )1/4
+2
+
+Though this integral can be expressed via the Appell hypergeometric function of two variables, the integral form
+is more visual. The time history of the hydrodynamic
+fields in the Lagrangian coordinates is shown in Fig. 3.
+To go over to the Eulerian coordinates, we calculate the
+law of motion (13) of the Lagrangian particles:
+
+
+q
+x(m, t)
+2
+2
+= ln cosh a tan(μm) + 1 + cosh a tan (μm)
+l
+  Z μm
+dm′
+t
+− 2
+τ
+(1 − tanh2 a cos2 m′ )1/4
+0
+ 2
+t
++
+sin(μm),
+τ
+and use it together with the Lagrangian solutions, see
+Fig. 4.
+The development of singularity in this case depends
+on the parameter a. For a < acr the density and the
+pressure peaks remain at x = 0 at all times until the
+singularity, while the singularity is of the same type as
+that observed for a = 0:
+ρ0
+,
+ρ(0, t) = √
+( cosh a − t/τ )2
+√
+T (0, t) = T0 ( cosh a − t/τ )2 ,
+2
+∂v
+=− √
+p(0, t) = ρ0 T0 ,
+.
+(47)
+∂x
+τ cosh a − t
+√
+The density blowup time is tc = τ cosh a. Now let
+us consider the case of a > acr with two symmetric off-center density peaks at t = 0.√ Interestingly, at
+acr < a < ãcr , where ãcr = arcsinh( 2) = 1.14621 . . .,
+
+8
+
+0
+−1
+
+1
+
+(c)
+
+−1
+−1
+0.4
+
+0m
+
+1
+
+−1
+
+0 m
+
+1
+
+0
+−1
+
+.7
+
+2
+
+10
+
+−2
+
+0
+
+2
+−3
+
+x 10
+
+0
+
+−0.1
+
+2
+
+0x
+
+0.1
+
+(c)
+
+0m
+
+(b)
+
+−.7
+−0.1
+1 (d) 0.02
+
+0x
+
+0.1
+
+0.01
+
+p(x,t)
+
+1
+
+4
+
+10
+
+10
+
+(d)
+
+T(m,t)
+
+p(m,t)
+
+2
+
+0 m
+
+(a)
+
+ρ(x,t)
+
+v(m,t)
+
+10
+
+v(x,t)
+
+4
+
+(b)
+
+T(x,t)
+
+1
+
+(a)
+
+ρ(m,t)−1
+
+0.2
+
+0
+
+−2
+
+0
+
+2
+−3
+
+x 10
+
+1
+
+FIG. 3: (Color online) An example of a two-peak solution
+in the Lagrangian coordinates. Shown are the exact solutions (20)-(22) with the initial density from Eq. (45): the
+inverse density (a), velocity (b), pressure (c) and temperature (d) at the rescaled times t = 1.1 (the dashed-dotted
+line), 1.3 (the dashed line) and 1.45 (the solid line) versus the
+Lagrangian coordinate m." The density blows
+up at the La"
+p
+grangian points ± arccos
+2/3 coth 1.5 = ±0.44628 . . . at
+the rescaled time tc = 33/4 2−1/2 tanh 1.5 = 1.45896 . . .. The
+units are the same as in Fig. 1.
+
+0
+
+−0.1
+
+0x
+
+0.1
+
+0
+−0.1
+
+0x
+
+0.1
+
+x
+FIG. 4: (Color online) The exact solution from Fig. 3 in the
+Eulerian coordinates. Shown are the density in the logarithmic scale (a), velocity (b), pressure (c) and temperature (d)
+at rescaled times t = 1.1 (the dashed-dotted line), 1.3 (the
+dashed line) and 1.45 (the solid line) as functions of x. The
+insets in (a) and (d) zoom on the density and temperature
+profiles, respectively, at t = 1.45 and clearly show the presence of two symmetric peaks at x 6= 0 developing density
+blowups simultaneously. The units are the same as in Figs. 1
+and 2.
+
+the singularity still develops at x = 0. Indeed, it is the
+maximum of the function ρ(m, 0) cos(μm), rather than
+of ρ(m, 0) that determines, in view of Eq. (28), the singularity point. For acr < a < ãcr this maximum is still
+at m = m0 = 0. As time progresses, the two symmetric
+density peaks move toward the origin, reaching it precisely at the time of singularity. The pressure still has a
+maximum at x = 0, while√in view of Eqs. (47) the time of
+singularity is still tc = τ cosh a. Instead of looking for
+the maxima of ρ(m), it is convenient to look for the minima of the inverse density which, by virtue of Eq. (21),
+can be written as
+ 
+ρ0
+1
+t
+q
+=
+−2
+ρ(m, t)
+τ
+cos(μm) 1 − tanh2 a cos2 (μm)
+ 2
+1
+t
+×
++
+cos(μm). (48)
+1/4
+2
+τ
+2
+1 − tanh a cos (μm)
+
+If ρ(m, 0) does not vanish at |m| = π/(2μ), or vanishes
+slower than linearly there, then the integral in Eq. (15)
+converges, and the total gas mass π/μ is distributed over
+a finite interval of x. It follows from Eq. (22) that the
+velocity (which vanishes at x = m = 0 and has a negative
+gradient everywhere) takes finite values at the ends of the
+interval over which the mass is distributed. As a result,
+the x-interval, occupied by the gas, shrinks in the course
+of evolution. Assuming for simplicity that ρ(m, 0) is an
+even function of m, we find from Eqs. (15) and (21) that
+the interval [−L(t), L(t)], occupied by the gas, shrinks
+with time as
+Z π/2μ s
+A cos(μm′ )
+L(t) = L(0) − 2μt
+dm′ + μAt2 (49)
+ρ(m′ , 0)
+0
+
+Using the first of Eq. (29) we find tc /τ
+=
+33/4 2−1/2 tanh a. In this case the pressure gradient is
+non-zero in the singularity point, so the pressure is neither maximum, nor minimum.
+
+and reaches its minimum at t = tc . This minimum is always positive except in the degenerate case of ρ(m, 0) =
+ρ0 / cos(μm), when the whole gas collapses into the point
+x = 0 at the time of singularity. It turns out that, in this
+degenerate case, the solution is self-similar in the Eulerian coordinates x and t and separable in the Lagrangian
+coordinates m and t. It can be shown that all self-similar
+solutions with a finite energy have an infinite density at
+some locations already at t = 0. Such initial conditions
+do not correspond to a dilute gas, so they will not be
+considered here.
+
+Differentiating this function
+with respect to m one can
+√
+verify that at t = τ cosh a the minimum is indeed at
+m = 0. Finally, at a > ãcr the density blows up symmetrically at two Eulerian points x = ± x(m0 , tc ) 6= 0,
+where
+
+p
+2/3 coth a 6= 0.
+m0 = (1/μ) arccos
+
+D.
+
+Solutions with mass distributed over a finite
+interval of x
+
+9
+A generic example of the solution on a finite Eulerian interval is provided by the uniform initial density
+ρ(m, 0) = ρ0 . In the Eulerian coordinates this choice
+corresponds to the constant initial density, ρ(x, 0) = ρ0 ,
+at the interval [−πl/2, πl/2]. The solutions (20)-(22) become
+p(m, t) = ρ0 T0 cos(μm),
+(50)
+ρ0
+p
+,
+(51)
+ρ(m, t) =
+[1 − (t/τ ) cos(μm)]2
+
+ 
+p
+μm  t
+v(m, t) = − 2T0 2E
+2 − sin(μm) ,(52)
+2
+τ
+
+which is not integrable. Now, since at a < 2 the gas
+velocity is finite at m = π/2μ (see subsection III A), then
+at a < 1 the initial macroscopic kinetic energy
+Ekin (0) =
+
+Z
+
+∞
+
+−∞
+
+ρv 2
+dx =
+2
+
+ 2
+  
+μm 
+t
+t
+E
+2 +
+sin(μm).
+τ
+2
+τ
+
+Here the singularity occurs at x = 0 at time tc = τ
+whereas L(tc ) > 0. The local structure of singularity is
+the same as in the case of an infinite interval, see subsection III F.
+
+π/2μ
+
+−π/2μ
+
+v 2 (m, 0)
+dm
+2
+
+(55)
+
+is also finite. Therefore, we assume a < 1 so that E(0) <
+∞. Using the divergence form of the energy equation,
+∂
+∂t
+
+
+
+ρT
+ρv 2
++
+γ−1
+2
+
+where E (. . . | . . .) is the elliptic integral of the second
+kind. The relation for x(m, t) is the following:
+x(m, t)
+= μm − 4
+l
+
+Z
+
+
+
+∂
+∂x
+
++
+
+
+
+γρvT
+ρv 3
++
+γ−1
+2
+
+Λρ2 T 3/2
+,
+γ−1
+
+= −
+
+
+(56)
+
+we can express the decay rate of the total energy as
+dE
+Λ
+= −
+dt
+γ−1
+Λ
+= −
+γ−1
+
+Z
+Z
+
+∞
+
+ρ2 T 3/2 dx
+−∞
+π/2μ
+−π/2μ
+
+p3/2 dm
+.
+ρ1/2
+
+(57)
+
+Using Eqs. (20) and (21), we obtain
+E.
+
+Energy decay for the exact solutions
+
+A useful global characteristics of the clustering process
+is provided by the evolution of the total kinetic energy of
+all particles versus time, E(t) > 0. This quantity is convenient to follow in experiment and in MD simulations.
+In the language of hydrodynamics it is
+
+Z ∞ 
+ρv 2
+ρT
+dx ,
+(53)
++
+E(t) =
+γ−1
+2
+−∞
+where the first term under the integral is the thermal
+energy density, and the second term is the macroscopic
+kinetic energy density. Let us compute E(t) for the exact
+solutions Eqs. (20)-(22). First, consider the conditions
+under which the initial total energy E(0) is finite. For
+the initial thermal energy we have
+Z ∞
+ρ(x, 0)T (x, 0)dx
+Eth (0) =
+(54)
+γ−1
+−∞
+Z π/2μ
+cos(μm)dm
+= 2A
+.
+−π/2μ (γ − 1)ρ(m, 0)
+Whether this quantity is finite or not depends on the
+behavior of ρ(m, 0) near m = ±π/2μ. For example, assuming as before that ρ(m, 0) ∼ (π/2μ − m)1+a near
+m = π/2μ, we find that Eth (0) is finite at a < 1 and
+infinite otherwise. A simple example of the initial condition with an infinite energy is ρ(m, 0) = ρ0 cos2 (μm)
+corresponding to the Lorentzian initial density profile
+ρ(x, 0) = ρ0 /[1+(x/l)2 ] in the Eulerian coordinates. Here
+p
+ρ(x, 0)T (x, 0) = ρ0 T0 / 1 + (x/l)2 , −∞ < x < ∞ ,
+
+√ #
+dm cos3/2 (μm) π At
+p
+.
+−
+2
+ρ(m, 0)
+−π/2μ
+(58)
+It is easy to see that the integral in this equation converges for the assumed behavior of the initial density.
+Therefore, the energy decays quadratically in time:
+dE
+Λ(2A)3/2
+=−
+dt
+γ−1
+
+E(t) = E(0) −
+
+"Z
+
+π/2μ
+
+Λ(2A)3/2 t
+γ−1
+
+2 2
+
+πΛA t
++ √
+.
+2(γ − 1)
+
+Z
+
+π/2μ
+
+−π/2μ
+
+dm cos3/2 (μm)
+p
+ρ(m, 0)
+
+(59)
+
+One can check that the decay of the thermal and macroscopic kinetic energies, separately, is also quadratic in
+time. One also observes that, at the time of the density
+blowup, t = tc , the energy constitutes a finite and nonzero fraction of the initial energy, so the time tc is not
+special for the function E(t).
+As a simple example, consider the initial density
+ρ(m, 0) = ρ0 cos(μm) corresponding to Eqs. (35) and
+(36). Here the integration in Eq. (59) is elementary, and
+we obtain
+ 
+ 2
+πγ
+t
+t
++
+,
+τ
+2(γ − 1) τ
+(60)
+where ρ0 T0 l is the characteristic energy scale. This E(t)
+dependence is shown in Fig. 1. We now proceed to the
+analysis of the local structure of the flow near a singularity.
+π
+π3
+4γ
+E(t)
+=
++
+−
+ρ0 T 0 l
+γ − 1 12 γ − 1
+
+10
+F.
+
+Local structure of the exact solutions near the
+singularity
+
+To analyze the local structure of the developing singularity we consider the Taylor expansion of the inverse
+density u(m, t) ≡ 1/ρ(m, t) in a close vicinity of m = m0
+at times close to tc . To calculate the m-derivatives it
+is convenient to p
+write u(m, t) = u(m, 0)[1 − tφ(m)]2 ,
+where φ(m) = μ Aρ(m, 0) cos(μm) satisfies the conditions φ(m0 ) = 1/tc and φ′ (m0 ) = 0, see Eqs. (28) and
+(29). After some algebra we find
+u′ (m0 , t)
+= ∆2 ,
+u′ (m0 , 0)
+u′′ (m0 , t)
+= −2tc φ′′ ∆ + O(∆2 ),
+u(m0 , 0)
+u′′′ (m0 , t) = −2tc ∆ [3u′ (m0 , 0)φ′′ + u(m0 , 0)φ′′′ ]
++O(∆2 ),
+u(4) (m0 , t)
+= 6t2c φ′′2 + O(∆),
+u(m0 , 0)
+
+(61)
+
+where all the derivatives of φ are evaluated at m = m0 ,
+and ∆ ≡ 1 − t/tc . The first non-vanishing m-derivative
+at t = tc is, therefore, of the fourth order, and we obtain
+u(m, tc )
+≃ b2 μ4 (m − m0 )4 , μ|m − m0 | ≪ 1,
+u(m0 , 0)
+
+(62)
+
+where we have introduced a positive dimensionless constant b = −tc φ′′ (m0 )/2μ2 [recall that φ(m) has a maximum at m = m0 , so that φ′′ (m0 ) < 0]. Using the expression for tc from Eq. (29) and the definition of φ one
+finds that b is independent of A and can be written as
+b=−
+
+1 d2
+ln [ρ(m, 0) cos(μm)]
+4μ2 dm2
+
+,
+m=m0
+
+where we have used [ρ(m, 0) cos(μm)]′ (m = m0 ) =
+0. The latter relation implies (ρ′ /ρ)(m = m0 ) =
+μ tan(μm0 ), so we obtain
+
+
+ρ′′ (m0 , 0)
+1
+2
+1 + 2 tan m0 − 2
+= O(1) ,
+(63)
+b=
+4
+μ ρ(m0 , 0)
+where the latter estimate assumes that the initial density
+ρ(m, 0) varies over a scale of order 1/μ. Equation (62)
+shows that, at the singularity, u = 1/ρ vanishes faster
+than quadratically in m, as expected in general when a
+singularity is analytic. GoingRback to the Eulerian coorm
+dinates, x(m, t) − x(m0 , t) = m0 u(m′ , t)dm′ , we rewrite
+Eq. (62) as
+#4/5
+" √
+u(x, tc )
+x − xc
+5 b(x − xc )
+,
+≃
+u(x0 , 0)
+l
+l
+
+1/5
+
+≪ 1, (64)
+
+where x0 ≡ x(m0 , 0), the spatial coordinate of the singularity xc is determined by Eq. (29), and l = 1/[μρ(x0 , 0)]
+
+is the inelastic cooling length scale. The validity condition in x in Eq. (64) corresponds to the validity condition
+in m in Eq. (62). Thus, at t = tc the density profile is
+singular in a vicinity of x = xc , and exhibits a power law
+with exponent 4/5:
+
+4/5
+ρ(x, tc )
+l
+√
+≃
+.
+(65)
+ρ(x0 , 0)
+5 b |x − xc |
+This power-law singularity is integrable (that is, has a
+finite mass) and symmetric with respect to xc . For comparison, the density singularity of a free flow, see e.g.24 ,
+exhibits the exponent 2/3 instead of 4/5 .
+As the velocity itself is finite at singularity, the velocity
+gradient is of interest. We obtain
+∂v
+∂x
+
+= ρ(m, t)
+x=x(m,t)
+
+2φ(m)
+∂v
+=−
+,
+∂m
+1 − tφ(m)
+
+(66)
+
+where the last equality follows from the continuity equation and definition of φ(m). As a result,
+−
+
+1
+2
+=
+− t ≃ tc − t + btc μ2 (m − m0 )2 ,
+∂x v
+φ(m)
+
+(67)
+
+up to higher order terms in tc − t and m − m0 . Using
+Eqs. (67) and (62), we find that
+s
+2
+u(m, tc )
+−
+=
+.
+tc ∂x v(x, tc )
+u(m0 , 0)
+This relation, combined with Eq. (64), yields
+
+2/5
+∂v(x, tc )
+2
+l
+√
+=−
+,
+∂x
+tc 5 b (x − xc )
+
+(68)
+
+Note that while the exponent 2/5 of this power law is
+different from the exponent 4/5 of the power law for the
+density, the two power laws have the same region of validity in x, see Eq. (64). Though the velocity gradient
+diverges at the singularity, the velocity itself is continuous there and has a cusp ∼ |xc −x|3/5 . This is in contrast
+with the "wave breaking" singularity of ordinary gas dynamics, where the velocity becomes discontinuous at the
+point where the velocity gradient blows up.
+It is clear from the above that the local profiles of the
+density and velocity at t = tc do not depend on the details
+of the initial density ρ(m, 0). This is not so for the pressure for which two types of spatial behavior are possible.
+For the special case where ρ(m, 0) cos(μm) is maximum
+at m = 0, and so m0 = 0, the density blows up at the origin x = 0. As a result, the pressure versus x has a local
+maximum at x = 0, and the value of the maximum stays
+constant in time: p(x = 0, t) = 2A. The pressure profile
+in a vicinity of x = 0 can be obtained from a Taylor expansion of Eq. (20): p(m, t)/A ≃ 2 − μ2 m2 + O(μ4 m4 ).
+At t = tc this leads to
+ 2/5
+ x 2/5
+p(x, tc )
+1 5x
+≪ 1.
+(69)
+≃1−
+,
+p(0, tc )
+2 lb2
+l
+
+11
+In the generic case, where the maximum of
+ρ(m, 0) cos(μm) is not at zero, so that m0 6= 0,
+the singularity develops at a point which is not special
+for the pressure. Here the Taylor expansion of Eq. (20)
+yields
+p(m)/A = 2 cos(μm0 ) − 2μ(m − m0 ) sin(μm0 )
++ O[μ2 (m − m0 )2 ] .
+(70)
+In this case we find
+1/5
+
+p(xc , tc )
+5(x − xc )
+,
+≃ 1 − tan(μm0 )
+p(xc , tc )
+lb2
+
+The applicability condition (76) is determined by the
+|z| ≫ 1 asymptote of F (z) and simplifies to
+x − xc (t)
+l
+
+(71)
+
+that holds at (|x − xc |/l)1/5 ≪ 1. Note that the local
+x-dependence of the pressure at t = tc is very different
+from that of the density, or velocity gradient. First, the
+pressure remains finite at t = tc . Second, even though
+the pressure gradient diverges at x = xc , the divergence
+stems from a small correction term to a constant pressure, see Eq. (69) and (71). As we discuss later, this
+difference in behavior is crucial for understanding the
+physical nature of the singularity.
+Now let us investigate the local structure of the flow
+immediately before the singularity: at tc − t ≪ tc . The
+leading terms of the double Taylor expansion of the inverse density u(m, t) = u(m, 0)[1 − tφ(m)]2 in a vicinity
+of m = m0 and t = tc (that is, at μ|m − m0 | ≪ 1 and
+∆ ≪ 1) are the following:
+u(m, t)
+≃ ∆2 +2b∆μ2 (m−m0 )2 +b2 μ4 (m−m0 )4 ; (72)
+u(m0 , 0)
+we recall that ∆ = 1 − t/tc. Equation (72) can be written
+in a self-similar form:
+#
+2 "
+
+t
+u(m, t)
+μ(m − m0 )
+,
+(73)
+= 1−
+U p
+u(m0 , 0)
+tc
+1 − t/tc
+
+U (y) = (1 + by 2 )2 . Now, x(m, t) − xc (t) =
+Rwhere
+m
+′
+u(m
+, t)dm′ can be written as
+m0
+#
+5/2 "
+
+x(m, t) − xc (t)
+t
+μ(m − m0 )
+= 1−
+Ξ p
+,
+l
+tc
+1 − t/tc
+Ry
+where Ξ(y) = 0 U (y ′ )dy ′ . Evaluating this integral, we
+arrive at the self-similar form in the Eulerian coordinates:
+
+2 
+
+2
+x − xc (t)
+t
+u(x, t)
+1 + bF 2
+= 1−
+,
+u(x0 , 0)
+tc
+l(1 − t/tc )5/2
+(74)
+where the function F (z) is defined implicitly by the fifth
+order polynomial equation
+b2 F 5 (z) 2bF 3 (z)
++
++ F (z) = z
+5
+3
+
+corresponding to the condition μ|m − m0 | ≪ 1 in Eq.
+(72). The asymptotes of F (z) are
+
+z2 ≪ 1 ,
+ z,
+F (z) ≃
+(77)
+
+(5z/b2 )1/5 , z 2/5 ≫ 1 .
+
+(75)
+
+that has a unique real solution. Equation (74) holds at
+x that satisfy the strong inequality
+
+1/2
+
+
+t
+x − xc (t)
+1−
+F
+≪ 1,
+(76)
+tc
+l(1 − t/tc )5/2
+
+1/5
+
+≪ 1.
+
+The same condition guarantees the validity of the powerlaw density profile (65) at t = tc .
+Therefore, near the singularity the density has the following self-similar form:
+
+
+ρ(x, t)
+1
+x − xc (t)
+,
+(78)
+R
+=
+ρ(x0 , 0)
+(1 − t/tc )2
+l(1 − t/tc )5/2
+where R(z) = 1/[1 + bF 2 (z)]2 . In the region corresponding to z ≪ 1 one has R(z) ≃ 1. That is, ρ(x, t) develops
+a plateau in a narrow region near xc (t) that we will call
+the inner region. The inner region shrinks as (tc − t)5/2
+as t approaches tc :
+2
+
+ρ(x0 , 0)
+|x − xc (t)|
+ρ(x, t) ≃
+≪ 1. (79)
+at
+(1 − t/tc )2
+l(1 − t/tc )5/2
+At intermediate distances, or in the outer region,
+
+
+|x − xc (t)|
+l(1 − t/tc )5/2
+
+2/5
+
+≫ 1,
+
+x − xc (t)
+l
+
+1/5
+
+≪ 1,
+
+the time-independent power law (65) builds up. At
+t = tc the power law rules in the whole region (|x −
+xc (t)|/l)1/5 ≪ 1.
+The development of the singular profile of the velocity
+gradient can be inferred by going back to Eq. (67):
+∂v
+2
+=−
+,
+∂x
+(tc − t)[1 + bF 2 (z)]
+
+z=
+
+[x − xc (t)]
+. (80)
+l(1 − t/tc )5/2
+
+Thus ∂x v develops a plateau ∂x v = −2/(tc − t) [cf. Eq.
+(32)] in the inner region, while the power law described
+by Eq. (68) sets in the outer region in the same way as
+the density power law.
+The development of the pressure profile as t approaches
+tc is different in the case of m0 = 0 and m0 6= 0. In the
+former case we have
+
+
+p(x, t)
+x
+1 − t/tc 2
+,
+(81)
+≃1−
+F
+p(0, t)
+2
+l(1 − t/tc )5/2
+that holds at (|x|/l)2/5 ≪ 1.
+
+2
+|x|/l(1 − t/tc )5/2 ≪ 1,
+
+In the inner region,
+
+p(x, t)
+x2
+1
+,
+≃1−
+p(0, t)
+(1 − t/tc )4 2l2
+
+(82)
+
+12
+while in the outer region the time-independent profile
+(69) sets it.
+In the generic case of m0 6= 0 we obtain, for
+1/5
+[|x − xc (t)|/l]
+≪ 1,
+p(x, t)
+≃ 1
+p[xc (t), t]
+p
+− tan(μm0 ) 1 − t/tc F
+
+
+
+x − xc (t)
+l(1 − t/tc )5/2
+
+
+
+.
+
+In the inner region this yields
+
+p(x, t)
+x − xc (t)
+,
+≃ 1 − tan(μm0 )
+p[xc (t), t]
+l(1 − t/tc )2
+
+(83)
+
+whereas the time-independent profile (71) sets in the
+outer region. We observe that in the inner region,
+[|x − xc (t)|/l]1/5 ≪ 1, the pressure is approximately constant. This suggests that the sound waves are the fastest
+physical process near the singularity. Before we consider
+the hierarchy of time scales in more detail, let us reiterate that the finite-time singularity described here is quite
+different from the free-flow singularity24 where the density blows up as (tc − t)−1 , the plateau of the inner region
+shrinks with time as (tc − t)3/2 , the power law tail in the
+outer region is ∼ x2/3 , and where the Lagrangian velocity, rather than the Lagrangian acceleration, is constant
+in time.
+G.
+
+Time scale separation and isobaric scenario
+
+In general, there are three time scales that characterize
+the dynamics described by the nonlinear IGHD equations
+√
+(5) and (6): the sound travel√time tsound ∼ L/ T , the
+cooling time tcooling ∼ 1/(Λρ T ), and the inertial time
+tinertial ∼ L/v. Here ρ, T , and v are typical values of the
+fields, while L = L(t) is the characteristic spatial scale
+of the flow. The evolution of the hydrodynamic fields
+can produce time scale separation: a strong inequality
+between the time scales. Moreover, the hierarchy of the
+time scales can be different in different regions of space.
+Let us evaluate the time scales for our exact solutions
+(20)-(22). Here there are only two independent time
+scales: the sound travel and the cooling time scales. This
+stems from the fact that the compressional heating and
+the inelastic cooling balance each other in the equation
+for the pressure, so that tinertial ∼ tcooling . Consider the
+5/2
+inner region |x − xc | <
+∼ l(1 −
+√t/tc ) √ . From the results
+of the previous subsection,√ T ∼ T0 (1 − t/tc ), while
+L(t) ∼ l(1 − t/tc )5/2 . As l/ T0 ∼ τ ∼ tc , we obtain
+
+3/2
+t
+tsound ∼ tc 1 −
+.
+(84)
+tc
+Now, using ρ ∼ ρ0 (1 − t/tc )−2 , we find
+
+
+t
+.
+tcooling ∼ tc 1 −
+tc
+
+(85)
+
+We observe that, except close to tc , tsound ∼ tcooling ∼ tc .
+However, as the singularity is approached, the sound
+travel time in the inner region becomes much shorter
+than the cooling time. In this situation, the pressure
+in the inner region is expected to become constant5 as
+our solutions indeed show.
+To further elucidate this point, let us estimate the
+size of the spatial region at t = tc such that, within
+this region, the time scales obey the strong inequality
+tsound
+p ≪ tcooling . Equations (84) and (85) show that,
+at 1 − t/tc ≪ 1, tsound ≪ tcooling in the inner region.
+At these times the size L(t) of the shrinking inner region obeys the inequality (L/l)1/5 ≪ 1. As we saw in the
+previous subsection, the shrinking inner region leaves behind stationary profiles of the fields. Therefore, at t = tc ,
+the local time scales at some |x| = x0 ≪ l can be estimated by their values at those times when L(t) shrinks
+to the size x0 . That is, at t = tc the time scale separation tsound ≪ tcooling ∼ tinertial holds in the region
+(|x − xc |/l)1/5 ≪ 1 which is precisely the region where
+the pressure is approximately constant. Therefore, the
+density blowup, as featured by our exact solutions, locally follows the isobaric scenario, previously suggested
+in the context of condensation processes developing in
+gases and plasmas that cool by their own radiation5,30 .
+This fact has important consequences for the theory of
+clustering that will be explored elsewhere.
+We now proceed to the derivation of an additional solution that would allow us to demonstrate two important
+features of the developing density singularity: its locality
+and its possible coexistence with shock singularities of
+ordinary gas dynamics.
+
+IV. A PISTON MOVING INTO A GRANULAR
+GAS AT REST: A BLOWUP WITH A SHOCK
+
+The family of exact solutions, describing the finite time
+density blowup and reported in Section
+√ III, have a special
+value of the total gas mass, π/μ = ( 2πγ)/Λ. Here we
+relax this requirement by constructing an exact solution
+that can have an arbitrarily large mass. In this solution
+both the finite-time density blowup and an "ordinary"
+shock discontinuity are present.
+First, we note that formation of a density singularity
+in hydrodynamics is a local process. The set of Eqs. (10)(11) is hyperbolic and has a finite speed of propagation
+of information. Therefore, a finite-time density blowup,
+developing at a point with a finite x, cannot be affected
+by a change in the initial conditions sufficiently far away
+(provided the velocity is finite there). In particular, this
+is true for initial density variations that change the total
+mass of the gas, possibly making it infinite. The solution
+that we are going to present here illustrates this point,
+as it has an arbitrary density distribution sufficiently far
+from the developing singularity.
+The solution also illustrates another point that is absent in the solutions reported in Section III: appearance
+
+13
+of shocks. At Λ = 0, Eqs. (10)-(11) become the equations
+of classical ideal gas dynamics which produce shocks: initially smooth hydrodynamic fields develop shock discontinuities in a finite time26,27 . Shocks can also appear at
+Λ > 0, the case of our interest. The following argument
+can be helpful in elucidating the comparative role of the
+two types of singularities: the density blowup and the
+shock. Let the initial conditions be fixed. Then, as Λ
+goes down, the development of a density blow up will
+be delayed in time (the delay time becoming infinite as
+Λ → 0). On the other hand, the time of shock formation must obviously approach a finite limit as Λ → 0.
+Therefore, for sufficiently small Λ the shock formation
+will typically precede the density blowup. In the exact
+solution that we are going to present, the shock is present
+in the solution from the very beginning.
+We choose for this solution (an extended version of)
+a basic setting of ideal one-dimensional gas dynamics:
+at t = 0 a piston starts moving at a constant speed v0
+into an undriven granular gas at rest. Because such a
+gas has a zero temperature everywhere, the initial state
+of the gas is uniquely characterized by the initial density profile, say ρ0 (x). It is convenient to go over to
+the frame moving with the piston, where the piston rests
+at x = 0. There one needs to solve Eqs. (5) and (6)
+with the initial conditions ρ(x, 0) = ρ0 (x), v(x, 0) = −v0 ,
+T (x, 0) = 0 and the boundary conditions v(x = 0, t) = 0
+and v(x = +∞, t) = −v0 . At t = 0 the gas hits the
+piston wall at x = 0, and a shock forms instantaneously
+and starts propagating into the gas. Each of the hydrodynamic fields experiences a discontinuity at the shock front
+x0 (t) that obeys x0 (0) = 0. The solution at x > x0 (t)
+is of course ρ(x, t) = ρ0 (x + v0 t), v(x, t) = −v0 and
+T (x, t) = 0, while at 0 ≤ x ≤ x0 (t) non-trivial distributions of the hydrodynamic fields develop. We show below
+that a special choice of ρ0 (x) yields a solution that, at
+x < x0 (t), is of the same type as that described in Section
+III.
+The jump conditions at the shock front are provided by
+the same Rankine-Hugoniot conditions as in the ordinary
+gas26 . Indeed, these conditions can be obtained by considering the equations of mass, momentum and energy
+balance in an infinitesimal volume (x0 (t) − ǫ, x0 (t) + ǫ),
+in the limit of ǫ → 0. While the mass and momentum
+balances are exactly the same as in the ordinary gas, the
+inelastic loss correction to the energy balance is proporR x (t)+ǫ
+tional to x00(t)−ǫ ρ2 T 3/2 dx (see subsection III E), and it
+vanishes at ǫ → 0 despite the discontinuity of the integrand. The Rankine-Hugoniot conditions state that,
+in the frame moving with the piston, the mass, momentum and energy fluxes should be continuous through the
+shock26 :
+ρ2 (v2 − ẋ0 ) = −ρ1 (v0 + ẋ0 ),
+ρ2 (v2 − ẋ0 )2 + ρ2 T2 = ρ1 (v0 + ẋ0 )2 ,
+2γρ2 (v2 − ẋ0 )T2
+ρ2 (v2 − ẋ0 )3 +
+γ−1
+
+(86)
+(87)
+
+= −ρ1 (v0 + ẋ0 )3 ,
+
+(88)
+
+where the subscripts 1 and 2 stand for the upstream and
+downstream values of the fields, respectively. These conditions yield
+(γ − 1)v0
+(γ + 1)v2
+dx0
+=
++
+,
+(89)
+dt
+2
+2
+2
+(γ + 1)ρ1
+(γ − 1) (v0 + v2 )
+ρ2 =
+, T2 =
+. (90)
+γ−1
+2
+Now let us go over to the Lagrangian coordinates, see
+Eq. (14). We denote the Lagrangian coordinate of the
+shock front by mf (t):
+mf (t) = lim
+
+δ→0
+
+Z
+
+x0 (t)−δ
+
+ρ(x′ , t)dx′ ,
+
+(91)
+
+0
+
+where δ > 0. Differentiating Eq. (91) over t we find
+
+
+
+
+dmf
+dx0
+dx0
+(92)
+= ρ2
+− v2 = ρ1
++ v0 ,
+dt
+dt
+dt
+where the second equality holds by virtue of Eq. (86).
+Using this result together with Eqs. (89) and (90), we
+obtain
+s
+(γ + 1)p2
+dmf
+γ−1
+, u2 =
+=
+u1 ,
+dt
+2u1
+γ+1
+r
+2p2 u1
+m
+(93)
+v2 = −v0 +
+γ +1
+where the inverse density u1,2 = 1/ρ1,2 is introduced and
+T is expressed via p and u. Now we show that it is possible to choose the initial density profile ρ0 (m) [or, equivalently, ρ0 (x)] so that the solution of Eqs. (16) and (17)
+at 0 ≤ m ≤ mf (t) is a constant acceleration solution presented in Section III. In the upstream region, m > mf (t),
+the gas is undisturbed by the shock, and the solution is
+u(m, t) = u0 (m), v(m, t) = −v0 and p(m, t) = 0. In the
+downstream region 0 < m < mf (t) the hydrodynamic
+fields at t > 0 are
+p(m) = 2A cos(μm),
+h
+i2
+p
+u(m, t) = f (m) − μt A cos(μm) ,
+Z m
+p
+v(m, t) = −2μ
+f (m′ ) A cos(μm′ )dm′
+
+(94)
+(95)
+
+0
+
++ 2Aμt sin(μm),
+
+(96)
+
+where f (m) is a yet unknown function. By construction,
+the upstream and downstream solutions obey the governing equations, and what is left is to impose the boundary
+conditions (93) at the shock front. The first condition
+becomes
+s
+A(γ + 1) cos[μmf (t)]
+dmf
+=
+.
+(97)
+dt
+u0 [mf (t)]
+
+14
+Once u0 (m) is known, this equation, together with the
+initial condition mf (0) = 0, determines the shock coordinate versus time, mf = mf (t), via its inverse function:
+t = t0 (mf ), where
+Z ms
+u0 (m′ )
+dm′ .
+(98)
+t0 (m) =
+′)
+A(γ
++
+1)
+cos(μm
+0
+Using the inverse function t0 (m), we demand the second
+and third conditions in Eq. (93),
+s
+p
+(γ − 1)u0 (m)
+f (m) − μt0 (m) A cos(μm) =
+, (99)
+γ+1
+Z m
+p
+−2μ
+f (m′ ) A cos(μm′ )dm′ + 2Aμt0 (m) sin(μm)
+0
+s
+4Au0 (m) cos(μm)
+.
+(100)
+= −v0 +
+γ+1
+on the interval 0 < m < π/(2μ). Using Eqs. (98) and
+(99), we can express f (m) via u0 (m):
+Z ms
+u0 (m′ ) cos(μm)
+f (m) = μ
+dm′
+(γ + 1) cos(μm′ )
+0
+s
+(γ − 1)u0 (m)
+.
+(101)
++
+γ+1
+Note that this relation does not include the parameter A.
+We now substitute Eq. (101) into Eq. (100) and arrive at
+a closed equation for u0 (m):
+s
+Z m
+Z m′
+u0 (m′′ )
+−2μ2
+dm′ cos(μm′ )
+dm′′
+(γ + 1) cos(μm′′ )
+0
+0
+s
+Z m
+(γ − 1)u0 (m′ ) cos(μm′ )
+−2μ
+dm′
+γ+1
+0
+s
+Z m
+u0 (m′ )
++2μ sin(μm)
+dm′
+(γ + 1) cos(μm′ )
+0
+s
+v0
+4u0 (m) cos(μm)
+.
+(102)
+= −√ +
+γ+1
+A
+This cumbersomepequation is a linear integral equation
+for the function u0 (m), and it is soluble analytically.
+Changing the order of integration in the first term of the
+equation, we rewrite the first term as
+s
+Z m
+Z m
+u0 (m′′ )
+2
+′′
+cos(μm′ )dm′
+−2μ
+dm
+(γ + 1) cos(μm′′ ) m′′
+0
+s
+Z m
+u0 (m′′ )
+′′
+= −2μ sin(μm)
+dm
+(γ + 1) cos(μm′′ )
+0
+s
+Z m
+u0 (m′′ )
+′′
+′′
+.
+dm sin(μm )
++2μ
+(γ + 1) cos(μm′′ )
+0
+
+This brings a partial cancelation of terms in Eq. (102),
+and we obtain a simpler equation
+s
+Z m
+u0 (m′ )
+′
+′
+2μ
+dm sin(μm )
+(γ + 1) cos(μm′ )
+0
+s
+Z
+p
+(γ − 1) m
+dm′ u0 (m′ ) cos(μm′ )
+−2μ
+γ+1 0
+s
+u0 (m) cos(μm)
+v0
+.
+= −√ + 2
+γ+1
+A
+Now let us introduce an auxiliary function
+s
+u0 (m) cos(μm)
+g(m) = 2
+γ+1
+that obeys, on the interval 0 < m < π/(2μ), a linear
+integral equation:
+Z m
+h
+i
+p
+v0
+g(m′ ) tan(μm′ ) − γ − 1 dm′ = − √ + g(m)
+μ
+A
+0
+(103)
+The solution for g(m) is elementary:
+
+√
+v0 exp − γ − 1 μm
+√
+g(m) =
+,
+(104)
+A cos(μm)
+so the result for u0 (m) is
+u0 (m) =
+
+
+√
+v02 (γ + 1) exp −2 γ − 1 μm
+.
+4A cos3 (μm)
+
+(105)
+
+To complete the formal construction of the solution, we
+present the initial gas density in the Eulerian coordinates,
+ρ0 (x), in a parametric form:
+ p
+
+ρ0 (m) = ρ0 cos3 (μm) exp 2 γ − 1 μm ,
+Z m
+dm′
+,
+(106)
+x=
+ρ0 (m′ )
+0
+where ρ0 = 4A/[(γ + 1)v02 ]. The graph of ρ0 (x) is shown
+in Fig. 5.
+Now we use Eq. (105) to calculate the inverse function t = t0 (mf ) from Eq. (98) that determines the shock
+motion law in the Lagrangian coordinates, mf = mf (t):
+
+√
+exp − γ − 1 z ′ dz ′
+,
+t0 (m) = t∗ Φ(μm), Φ(z) =
+cos2 z ′
+0
+(107)
+where we have introduced the characteristic inelastic
+cooling time scale t∗ = 2l/[(γ + 1)v0 ], and l = 1/(μρ0 )
+is the inelastic cooling length scale. As Φ(z) diverges at
+z = π/2, mf (t) satisfies, at any finite time, the double
+inequality 0 < mf (t) < π/(2μ). We reiterate that, in the
+upstream region m > mf (t), the gas is unperturbed by
+Z
+
+z
+
+15
++ v0 (t/t∗ ) sin(μm) .
+
+2
+
+ρ(x,0)
+
+1.5
+
+1
+
+0.5
+
+0
+0
+
+0.5
+
+1
+x
+
+1.5
+
+2
+
+FIG. 5: The initial density ρ0 (x) (in units of ρ0 ) versus the
+Eulerian coordinate (in units of l), see Eq. (106), in the
+problem of a piston moving into a granular gas at rest for
+γ = 2.
+(a)
+
+0
+
+−1
+
+ρ (m,t)
+−4
+
+10
+
+(b)
+
+v(m,t)
+
+1
+
+0
+
+1.5
+
+(c)
+
+−1.5
+0
+0.3
+
+0.5 m 1
+
+1.5
+
+(d)
+
+T(m,t)
+
+p(m,t)
+
+1.5
+
+0.5 m 1
+
+0
+
+0
+0
+
+0.5 m 1
+
+1.5
+
+0
+
+0.5 m 1
+
+1.5
+
+FIG. 6: (Color online) The exact solution (108), in the Lagrangian coordinates, of the problem of a piston moving into
+a granular gas at rest. Shown are the inverse density (a), velocity (b), pressure (c) and temperature (d) at rescaled times
+(from left to right) tv0 /l = 0.2, 0.4, 0.6 and 0.65 as a function of m measured in units of 1/μ (the solid lines). The
+dashed lines are the initial conditions: the initial density from
+Eq. (106), the constant (rescaled) velocity −1, and zero temperature and pressure. The density, velocity, pressure and
+temperature are rescaled to ρ0 , v0 , ρ0 v02 and v02 , respectively,
+and γ = 2. The density blows up at the piston, m = 0, at the
+rescaled time tc v0 /l = t∗ v0 /l = 2/3. The rescaled Lagrangian
+coordinate of the shock at the blowup time is 1.08031 . . ..
+
+the shock. The final form of the solution in the downstream region, 0 ≤ m < mf (t), is
+(γ + 1)ρ0 v02 cos(μm)
+,
+2
+ρ0 (γ + 1)
+ρ(m, t) =
+2 ,
+
+√
+cos(μm) Φ(μm) + γ − 1Φ′ (μm) − t/t∗
+Z μm
+i
+h
+p
+v(m, t) = −v0
+dz cos z Φ(z) + γ − 1Φ′ (z)
+p(m, t) =
+
+0
+
+(108)
+
+This solution is shown in Fig. 6. Note that, at fixed ρ0
+and v0 , the characteristic spatial and temporal scales of
+the solution behave as 1/Λ. For this solution, the gas
+density blows up in a finite
+time at the point m where
+√
+the function Φ(μm) + γ − 1Φ′ (μm) has its minimum.
+One can easily see that, for γ ≤ 2, this function is monotone increasing with m. As a consequence, the density
+blows up at the piston
+√ (that is, at m = 0), and this
+happens at t = tc = γ − 1 t∗ . At this time, the shock
+front location
+√ m∗ ≡ mf (t∗ ) is described by the relation
+Φ(μm∗ ) = γ − 1 which yields μm∗ = 1.08031 . . . for
+γ = 2 (in 2d) and 0.87915 . . . for γ = 5/3 (in 3d). That
+is, by the time t = tc when the density blows up at
+the piston, the shock has traveled only a finite distance
+(both in the m-, and in the x-space) from the piston. It is
+obvious, therefore, that our solution allows an arbitrary
+modification of the density profile ρ0 (x) at sufficiently
+large x that are unreachable for the shock. This clearly
+shows that initial states with an arbitrary large mass of
+gas can develop a finite-time density blowup.
+
+V.
+
+NUMERICAL SOLUTIONS
+
+We confirmed the exact solutions, presented in Figs. 14 and 6, by solving numerically the IGHD equations (16)
+and (17) in the Lagrangian coordinates. In each case
+we used the initial and boundary conditions, provided
+by the exact solutions themselves. We employed the
+classical artificial viscosity, staggered grid scheme of von
+Neumann and Richtmyer31 . The number of cells (grid
+points) used varied between 1000 and 2000 and showed
+numerical convergence until close to the singularity. As
+the solution developed a density blowup, the simulation
+had to be terminated at a very high but finite maximum
+density: usually at about 107 ρ0 , where ρ0 is the initial
+density. We also enforced the simulations to stop when
+the density jump between two adjacent cells exceeded a
+prescribed value, usually 50 percent. (When such jumps
+develop near the singularity, the accuracy of the simulation degrades and can be restored only by a rezoning
+algorithm that was not employed.) One example of the
+numerical solution is shown in Fig. 1 alongside with the
+analytical solution, and very good agreement is observed.
+Very good agreement was also obtained for the solutions
+shown in Figs. 3, 4 and 6 (not shown). The numerical
+solutions inevitably add some effective noise to the system because of the spatial and temporal discretization
+and round-off errors. The fact that the analytical solutions are accurately reproduced numerically confirms
+their stability with respect to small one-dimensional perturbations.
+We also performed extensive numerical simulations
+with Eqs. (16) and (17) for a variety of initial and boundary conditions that did not correspond to any of the
+exact solutions. As already briefly reported in Ref.22 ,
+
+16
+(a)
+
+ρ−1(m,t)
+
+100
+
+time
+time
+
+−2
+
+4
+
+(b)
+
+(c) 0.01
+
+3
+
+ρ(x,t)
+
+(0,t)
+
+10
+
+10
+
+0
+
+7
+
+t 7.05
+
+0
+
+10
+0 x
+
+0
+
+0.5
+
+60 (d)
+
+2
+
+ρ(x,t)
+
+c
+
+4
+
+tc 8
+
+6
+
+t
+
+(e)
+
+6
+
+10
+
+ρ(x,t)(t −t)2
+
+0
+
+8
+
+6
+
+10
+
+0
+
+10
+−0.5
+
+6
+
+m
+ρ(0,t), p(0,t)
+
+10
+
+2
+
+−1/2
+
+0
+4
+
+ρ
+
+10
+
+4
+
+10
+
+2
+
+10
+
+0
+
+−0.1
+
+−5/2
+
+x(tc−t)
+
+0.1
+
+10
+
+−7
+
+10
+
+−5
+
+10
+
+x
+
+−3
+
+10
+
+−1
+
+10
+
+FIG. 7: (Color online) An example of numerical solution of
+Eqs. (16) and (17). The initial conditions are ρ(m, 0) = ρ0 ,
+T (m, 0) = T0 and v(m, 0) = −v0 tanh [m/(ρ0 λ)]. (a) The
+inverse density profiles at rescaled times 0, 2.06, 3.76, 5.36
+and 6.26. (b) The density ρ(x, t) in the logarithmic scale at
+times t = 2, 4, 5, 5.5 and 7 (from the bottom to the top,
+respectively) as a function of x. (c) The time history of the
+density (the solid line) and pressure (the dashed line), both
+in the logarithmic scale, at the blowup point x = 0. The inset
+depicts ρ−1/2 (x = 0, t) in the logarithmic scale versus time in
+a vicinity of t = tc . (d) The rescaled density ρ(x, t)(tc − t)2
+as a function of the rescaled coordinate x(tc − t)−5/2 at times
+t = 6.7, 6.9, 7, 7.05 and 7.07 (from the top to the bottom,
+respectively) in a vicinity of the singularity. The profiles at
+different times almost coincide demonstrating the local selfsimilarity of the blowup.(e) The log-log plot of the density
+ρ(x, t) versus x (solid lines) for the same times as in (c) (from
+the bottom to the top, respectively). The dashed line shows
+a power law ρ ∼ x−4/5 , to guide the eye. The Lagrangian and
+Eulerian coordinates, time and the hydrodynamic fields are
+made dimensionless, as explained
+√ in Section V. The parameters are Λ̃ = ρ0 Λλ = 0.5, v0 = T0 and γ = 2.
+
+these simulations show that, for generic initial conditions, a finite-time density blowup always occurs. Remarkably, the numerical solutions exhibit, close to the
+singularity, the same local scaling behaviors in space
+and in time as those exhibited by our exact solutions
+and presented in subsection III F. One series of simulations dealt with a symmetric inflow of an initially
+uniform gas, ρ(x, 0) = ρ0 and T (x, 0) = T0 , from "infinity": v(x, 0) = −v0 tanh(x/λ). Here it is convenient
+√
+to rescale the x-coordinate by λ,√ time by λ/ T0 , the
+density by ρ0 , the velocity by T0 , the temperature
+by T0 , the pressure by ρ0 T0 and the Lagrangian mass
+coordinate m by ρ0 λ. After this rescaling the governing equations Eqs. (16) and (17) keep their form, except that Λ becomes rescaled: Λ̃ = ρ0 Λλ. The rescaled
+
+initial conditions√ become ρ(x, 0) = p(x, 0) = 1 and
+v(x, 0) = −(v0 / T0 ) tanh(x). The numerical solutions
+were obtained on the (rescaled) interval |x| < 10 that
+corresponds, at t = 0, to the (rescaled) Lagrangian interval |m| < 10. The boundary√conditions are v(x =
+±10, t) = v(x = ±10, 0) = ∓(v0 / T0 ) tanh 10. Because
+of the symmetry of the problem with respect to x = 0 we
+actually solved it on the half-interval 0 < x < 10, replacing the boundary condition at x = −10 by the condition
+v(0, t) = 0.
+Here we present one typical example of such a simulation, briefly mentioned
+in Ref.22 . The parameters are
+√
+Λ̃ = 0.5, v0 = T0 and γ = 2. The (one half of the)
+simulated flow is shown in Fig. 7. Panel (a) provides a
+general view of (one half of) the system. The gas inflow
+creates a compression in the central region. A compression wave propagates outwards and steepens. This steepening would lead to a wave breaking singularity, but the
+numerical scheme resolves this singularity, by means of
+the artificial viscosity, as a shock wave that continues
+propagating outward. At the same time the gas density
+at the origin continues growing and ultimately blows up.
+The density growth in a vicinity of the origin is presented
+in panel (b). Panel (c) focuses on the density and pressure history at the origin. While the density blows up at
+t = tc , the pressure hardly varies there so the isobaric scenario holds. The inset of panel (c) verifies that, close to
+tc , the density blowup proceeds as (tc − t)−2 . Panels (d)
+and (e) add more tests of the spatial and temporal scaling behavior near the singularity. Panel (d) shows a plot
+of the rescaled density ρ(x, t)(tc − t)2 versus the rescaled
+coordinate x(tc − t)−5/2 . The collapse of the curves at
+different times proves the local self-similarity (note that
+the gas density at the origin varies, for these times, by
+four orders of magnitude). Finally, panel (e) verifies the
+presence of the inner and outer regions, described by our
+theory, see subsection III F. The density plateau, whose
+size shrinks as ∼ (tc − t)5/2 , represents the inner region,
+while in the outer region a time-independent density profile forms with a power-law behavior ρ ∼ x−4/5 as predicted by our exact solutions.
+The same universal features of the singularity were also
+observed when starting from small-amplitude sinusoidal
+density or velocity perturbations around a homogeneous
+state.
+
+VI.
+
+NON-IDEAL EFFECTS NEAR THE
+SINGULARITY
+
+Having found the exact nonlinear solutions of the
+IGHD equations (5) and (6), we are in the position to test
+the assumptions behind these equations and establish the
+domain of validity of the solutions (as accurate leadingorder descriptions) in the presence of "non-ideal" effects.
+First, the validity of the Navier-Stokes hydrodynamics,
+Eqs. (2)-(4), demands that the Knudsen number lf ree /L
+remain much smaller than unity. The smallest hydrody-
+
+17
+namic length scale of the solution can be estimated as
+L(t) ∼ l(1 − t/tc )5/2 , see subsections III F and III G. The
+mean free path lf ree ∼ 1/(ρσ d−1 ) ∼ (1−t/tc)2 /(ρ0 σ d−1 ).
+As l ∼ 1/(Λρ0 ) and Λ ∼ (1 − r)σ d−1 , we obtain
+lf ree
+1−r
+∼ p
+.
+L
+1 − t/tc
+
+(109)
+
+At t <
+∼ tc the Knudsen number is small by the assumption 1−r ≪ 1. However, as t approaches tc , the Knudsen
+number grows indefinitely which invalidates the hydrodynamics. We shall see, however, that one of the assumptions of the IGHD breaks down even earlier.
+Now consider the ratio of the viscous stress term to
+the pressure gradient term in the momentum
+equation
+√
+T
+∂
+(3). This
+ratio
+can
+be
+estimated
+as
+(ν
+v)/(ρT
+)=
+0
+x
+√
+inner
+ν0 ∂m v/ T . We first estimate all the ratios in the
+√
+region, see subsection III F. As both ∂m v and T vanish linearly as t → tc , their ratio depends on time only
+weakly, and can√be estimated by its value at t = 0. As
+|∂m v(m, 0)| ∼ Λ T (see subsection III A), we find
+√
+ν0 ∂x ( T ∂x v)
+∼ 1−r,
+∂x (ρT )
+
+(110)
+
+that is the viscous stress is always negligible in our solutions as long as 1 − r ≪ 1.
+The same estimate (up to the sign) holds for the ratio
+of the viscous heating term to the compressional heating
+term in Eq. (4):
+√
+ν0 (γ − 1) T (∂x v)2 /ρ
+∼ 1−r ≪ 1.
+(γ − 1)T ∂x v
+
+(111)
+
+In contrast to the viscous terms, the heat conduction
+term in Eq. (4), which is initially small in our solutions,
+does become important near the singularity. We estimate
+the ratio of the heat conduction term to the inelastic
+cooling term as follows:
+√
+κ0 ∂x ( T ∂x T )/ρ
+1−r
+κ0
+.
+∼
+∼
+2
+2
+3/2
+Λρ L
+1 − t/tc
+ΛρT
+
+the density becomes comparable with the (fraction
+p of)
+close packing density. This happens at 1 − t/tc ∼ ρσ d ,
+so Lvalid ∼ l(ρ0 σ d )5/4 . At moderate densities one can
+use, in numerical solutions, a half-empiric equation of
+state due to Carnahan and Starling32 , and half-empiric
+transport coefficients obtained for granular gases33 in the
+spirit of Enskog
+kinetic theory34 .
+p
+d
+When ρ0 σ ≪ 1 − r the heat conduction becomes
+important when the gas is still dilute. This happens at
+5/2
+time
+√ 1 − t/tc ∼ 1 − r so that Lvalid ∼ l(1 − r) . As long
+as 1 − r ≪ 1, the Knudsen number is still small at that
+time, and the complete Navier-Stokes hydrodynamics is
+still applicable.
+Therefore, as the blowup time tc is approached, either
+the heat conduction, or the excluded particle volume effects become important and invalidate our theory in the
+inner region. In this sense, our solutions describe an intermediate asymptotic regime of formation of a dense
+cluster of particles. Importantly, in the outer region our
+solutions remain valid until much later times. Indeed, as
+the inner region shrinks, it leaves behind stationary profiles of the fields, see subsection III F. The ratios of the
+different terms governing the IGHD validity are given,
+at some x from the outer region, by the corresponding
+ratios in the inner region estimated at the time when
+L(t) ∼ |x − xc |. As a result, at some time close to tc
+(see above), our solutions break down in the inner region which size at that time is Lvalid , while in the outer
+region, |x − xc | ≫ Lvalid , our solutions continue to hold.
+The fact that the IGHD description breaks down only
+locally, in a small region of space, can be exploited for
+derivation of an effective description of the clustering dynamics beyond the singularity time. In this description
+close-packed clusters appear as finite-mass point-like singularities of the density22 . This effective description is
+similar in spirit to the description of shocks (that actually have finite widths) as discontinuities in ordinary
+ideal gas dynamics.
+
+VII.
+
+SUMMARY
+
+(112)
+
+The same estimate is obtained for the ratio of the heat
+conduction term to the compressional heating term. This
+ratio becomes of order
+√ unity at 1 − t/tc ∼ 1 − r ≪ 1. At
+this time lf ree /L ∼ 1 − r ≪ 1, see Eq. (109), so the
+IGHD equations break down while the full Navier-Stokes
+hydrodynamics, Eqs. (2)-(4), is still valid.
+In its turn, the dilute gas assumption, ρσ d ≪ 1, breaks
+down, and excluded particle
+p volume effects become important, at 1 − t/tc ∼ ρ0 σ d ≪ 1. The relative role
+of the heat conduction and excluded particle volume effects in the breakdown of our analytic solutions near
+the attempted singularity is determined
+p by the competition between
+the small parameters ρ0 σ d and 1 − r.
+p
+d
+>
+When ρ0 σ ∼ 1 − r, our solutions remain valid until
+
+Let us briefly summarize the main results of this work.
+We introduced "ideal granular hydrodynamics" (IGHD)
+equations that provide a simple but informative description of non-stationary large-scale flows of dilute granular
+gases with nearly elastic collisions between the particles.
+We employed the IGHD equations to investigate analytically and numerically the paradigmatic phenomenon of
+particle clustering in freely cooling granular gases. We
+believe that the IGHD will provide a useful framework
+for a host of other problems involving large-scale flows of
+driven granular gases.
+We focused on a one-dimensional granular hydrodynamic flow, characteristic of an idealized channel geometry, and derived a family of exact nonlinear and nonstationary analytic solutions of the IGHD that describe a
+finite-time blowup of the gas density. The derivation was
+
+18
+made possible by a transformation of the hydrodynamic
+equations to Lagrangian coordinates. The exact solutions
+are characterized by a constant in time accelerations in
+the Lagrangian frame, and they are not self-similar. We
+investigated the local structure of the flow near the singularity and determined local spatial and temporal scaling
+laws for the hydrodynamic quantities in question. We
+also found an instructive soluble case of the problem of
+a piston entering, at a constant speed, a granular gas
+at rest. Here a density singularity, developing at the
+piston, coexists with a shock wave that is located elsewhere. Besides demonstrating the presence of the two
+different types of singularities in the same system, this
+solution allows an arbitrary density profile at large distances, showing that the density blowup is a local process. In all of these solutions the developing singularity
+obeys locally the isobaric scenario5,30 : the gas pressure
+remains approximately uniform in space and constant in
+time in a close vicinity of the blowup point. This finding
+has important consequences for the theory of clustering.
+Indeed, by imposing, in the zeroth order of theory, the
+isobaricity condition on the hydrodynamic equations, one
+arrives at a powerful reduced description of the nonlinear
+clustering process. This description is valid for a much
+broader class of initial conditions than those giving rise
+to the exact solutions reported in the present work. The
+corresponding results will be presented elsewhere.
+Our numerical solutions of the IGHD equations accurately reproduce the analytic solutions, thus confirming
+their stability with respect to small one-dimensional perturbations. Furthermore, numerical simulations with a
+variety of initial and boundary conditions showed that
+that the local scaling laws near the singularity are universal, that is independent of details of the initial and
+boundary conditions.
+We also analyzed additional physical effects, neglected
+in IGHD, which become important in a narrow spatial
+region near the attempted singularity. Depending on the
+parameters, either excluded particle volume effects, or
+heat conduction invalidate our solutions there. In the
+former case, the density growth should directly cross over
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+F. Palla and G. Meynet, Physics of Star Formation in
+Galaxies (Springer, Berlin, 2002).
+P. J. E. Peebles, Large-Scale Structure of the Universe
+(Princeton University Press, Princeton, 1980); S. F. Shandarin and Ya. B. Zeldovich, "The large-scale structure of
+the universe: Turbulence, intermittency, structures in a
+self-gravitating medium," Rev. Mod. Phys. 61, 185 (1989).
+E. N. Parker, "Instability of Thermal Fields," Astrophys.
+J. 117, 431 (1953).
+G. B. Field, "Thermal instability," Astrophys. J. 142, 531
+(1965).
+B. Meerson, "Nonlinear dynamics of radiative condensations in optically thin plasmas," Rev. Mod. Phys. 68, 215
+(1996).
+N.V. Brilliantov and T. Pöschel, Kinetic Theory of Gran-
+
+to the formation of close-packed clusters of particles. In
+the latter case, the final outcome of the nonlinear density
+growth is yet unknown. The future work should find out
+whether the heat conduction arrests the density blowup
+or only modifies the singularity law. In any case, our
+exact solutions can be viewed as instructive intermediate
+asymptotics, describing a broad class of strongly nonlinear clustering flows of granular gases. No less important,
+as breakdown of these solutions occurs only in the narrow
+regions around the density peaks, it is possible to continue the ideal solutions beyond the singularity by introducing into the theory finite-mass point-like singularities
+of the density. This procedure yields a simple effective
+description of granular gases with embedded close-packed
+clusters, in much the same way as the ideal gas dynamics
+describes a gas flow with shock discontinuities22 .
+Very recently, one of our exact solutions has been successfully tested against MD simulations of the dynamics
+of a very dilute gas of nearly elastically colliding identical
+hard disks in a very long and narrow 2d channel. The
+results will be presented elsewhere.
+Finally, we note that the power law of the density
+blowup near the singularity, ∼ (tc − t)−2 , is the same as
+the one recently found in a different setting: that of an
+initially thermalized granular gas, freely cooling and collapsing under gravity21 . In each of the two problems the
+momentum equation is "fast", while the energy equation
+is "slow" in a small vicinity of the collapse. This suggests
+common physics behind the two collapse phenomena and
+demands further investigation.
+
+Acknowledgments
+
+We are grateful to Lev S. Tsimring and Eli Waxman
+for useful discussions. This work was supported by the
+Israel Science Foundation (grant No. 107/05) and by
+the German-Israel Foundation for Scientific Research and
+Development (Grant I-795-166.10/2003).
+
+7
+
+8
+
+9
+
+10
+
+11
+
+ular Gases. (Oxford University Press, Oxford, 2004).
+I. Goldhirsch, "Rapid granular flows," Annu. Rev. Fluid
+Mech. 35, 267 (2003).
+M. A. Hopkins and M. Y. Louge, "Inelastic microstructure
+in rapid granular flows of smooth disks." Phys. Fluids A
+3, 47 (1991).
+I. Goldhirsch and G. Zanetti, "Clustering instability in dissipative gases," Phys. Rev. Lett. 70, 1619 (1993); I. Goldhirsch, M.-L. Tan, and G. Zanetti, "A molecular dynamical
+study of granular fluids I: The unforced granular gas in two
+dimensions." J. Sci. Comp. 8, 1 (1993).
+S. McNamara, "Hydrodynamics modes of a uniform granular medium," Phys. Fluids A 5, 3056 (1993).
+S. McNamara and W. R. Young, "Dynamics of a freely
+evolving, two-dimensional granular medium," Phys. Rev.
+
+19
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+E 53, 5089 (1996).
+R. Brito and M. H. Ernst, "Extension of Haff's cooling law
+in granular flows," Europhys. Lett. 43, 497 (1998).
+J. J. Brey, M. J. Ruiz-Montero, and D. Cubero, "Origin of
+density clustering in a freely evolving granular gas," Phys.
+Rev. E 60, 3150 (1999).
+S. Luding and H. J. Herrmann, "Cluster-growth in freely
+cooling granular media," Chaos 9, 673 (1999).
+T.P.C. van Noije and M.H. Ernst, "Cahn-Hilliard theory
+for unstable granular fluids," Phys. Rev. E 61, 1765 (2000).
+X. B. Nie, E. Ben-Naim, and S. Y. Chen, "Dynamics of
+freely cooling granular gases," Phys. Rev. Lett. 89, 204301
+(2002).
+E. Efrati, E. Livne, and B. Meerson, "Hydrodynamic singularities and clustering in a freely cooling inelastic gas,"
+Phys. Rev. Lett. 94, 088001 (2005).
+B. Meerson and A. Puglisi, "Towards a continuum theory
+of clustering in a freely cooling inelastic gas," Europhys.
+Lett. 70, 478 (2005).
+V. Garzó, "Instabilities in a free granular fluid described
+by the Enskog equation," Phys. Rev. E 72, 021106 (2005).
+Y. Bromberg, E. Livne, and B. Meerson, in Granular
+Gas Dynamics, edited by T. Pöschel and N.V. Brilliantov
+(Springer, Berlin, 2003), p. 251; cond-mat/0305557.
+D. Volfson, B. Meerson, and L. S. Tsimring, "Thermal
+collapse of a granular gas under gravity," Phys. Rev. E 73,
+061305 (2006).
+I. Fouxon, B. Meerson, M. Assaf, and E. Livne, "Formation
+and evolution of density singularities in hydrodynamics of
+inelastic gases," Phys. Rev. E (Rapid Communication) 75,
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+050301(R) (2007).
+L. P. Kadanoff, "Singularities and blowups," Physics Today 50(9), 11 (1997).
+G. B. Whitham, Linear and Nonlinear Waves (Wiley, New
+York, 1974), Chapter 2.
+P. K. Haff, "Grain flow as a fluid-mechanical phenomenon," J. Fluid Mech. 134, 401 (1983).
+L. D. Landau and E. M. Lifshitz, Fluid Mechanics (Pergamon Press, Oxford, 1987).
+A. J. Chorin and J. E. Marsden, A Mathematical Introduction to Fluid Mechanics (Springer, Berlin, 2000).
+H. Haken, Synergetics: An Introduction (Springer, Berlin,
+1983).
+Ya. B. Zel'dovich and Yu. P. Raizer, Physics of Shock
+Waves and High Temperature Hydrodynamic Phenomena,
+Vol. 1 (Academic Press, New York, 1966).
+B. Meerson, "The nonlinear theory of thermal instability: The intermediate- and short-wavelength limits," Astrophys. J. 347, 1012 (1989).
+R. D. Richtmyer and K. W. Morton, Difference Methods
+for Initial Value Problems. (Interscience, New York, 1967).
+N. F. Carnahan and K. E. Starling, "Equation of State
+for Nonattracting Rigid Spheres," J. Chem. Phys. 51, 635
+(1969).
+J.T. Jenkins and M.W. Richman, "Kinetic theory for plane
+flows of a dense gas of identical, rough, inelastic, circular
+disks," Phys. Fluids 28, 3485 (1985).
+P. Résibois and M. De Leener, Classical Kinetic Theory of
+Fluids (Wiley, New York, 1977).
+
+

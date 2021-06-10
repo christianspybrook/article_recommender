@@ -1,0 +1,1242 @@
+Memory Reduction using a Ring Abstraction over GPU
+RDMA for Distributed Quantum Monte Carlo Solver
+A Preprint
+
+arXiv:2105.00027v2 [cs.DC] 13 May 2021
+
+Weile Wei
+Louisiana State University
+wwei9@lsu.edu
+Arghya Chatterjee ∗
+NERSC, Berkeley Lab
+ronnie@lbl.gov
+
+Eduardo D'Azevedo
+Oak Ridge National Laboratory
+dazevedoef@ornl.gov
+Oscar Hernandez
+Oak Ridge National Laboratory
+oscar@ornl.gov
+
+Kevin Huck
+University of Oregon
+khuck@cs.uoregon.edu
+Hartmut Kaiser
+Louisiana State University
+hkaiser@cct.lsu.edu
+
+May 14, 2021
+
+Abstract
+Scientific applications that run on leadership computing facilities often face the challenge of being
+unable to fit leading science cases onto accelerator devices due to memory constraints (memorybound applications). In this work, the authors studied one such US Department of Energy missioncritical condensed matter physics application, Dynamical Cluster Approximation (DCA++), and this
+paper discusses how device memory-bound challenges were successfully reduced by proposing an
+effective "all-to-all" communication method-a ring communication algorithm. This implementation
+takes advantage of acceleration on GPUs and remote direct memory access (RDMA) for fast data
+exchange between GPUs.
+Additionally, the ring algorithm was optimized with sub-ring communicators and multi-threaded
+support to further reduce communication overhead and expose more concurrency, respectively.
+The computation and communication were also analyzed by using the Autonomic Performance
+Environment for Exascale (APEX) profiling tool, and this paper further discusses the performance
+trade-off for the ring algorithm implementation. The memory analysis on the ring algorithm shows
+that the allocation size for the authors' most memory-intensive data structure per GPU is now
+reduced to 1/p of the original size, where p is the number of GPUs in the ring communicator. The
+communication analysis suggests that the distributed Quantum Monte Carlo execution time grows
+linearly as sub-ring size increases, and the cost of messages passing through the network interface
+connector could be a limiting factor.
+Keywords DCA++, Quantum Monte Carlo, GPU Remote Direct Memory Access, memory-bound issue, exascale
+machines
+
+1
+
+Introduction
+
+Dynamical Cluster Approximation (DCA++)2 is a high-performance research software application [1, 2, 3, 4] that
+provides a modern C++ implementation to solve quantum many-body problems. DCA++ implements a quantum
+cluster method with a Quantum Monte Carlo (QMC) kernel for modeling strongly correlated electron systems. The
+DCA++ software currently uses three different programming models-message passing interface (MPI), Compute
+Unified Device Architecture (CUDA), and High Performance ParalleX (HPX)/C++ threading-together with three
+∗ Arghya Chatterjee contributed to this work mostly during his previous appointment at Oak Ridge National Laboratory, Oak
+Ridge, TN.
+2 DCA++ is available at https://github.com/CompFUSE/DCA
+
+A preprint - May 14, 2021
+
+numerical libraries-Basic Linear Algebra Subprograms (BLAS), Linear Algebra Package (LAPACK), and Matrix
+Algebra on GPU (MAGMA)-to expose the parallel computation.
+In the QMC kernel [5], the two-particle Green's function (Gt ) is needed for computing important fundamental
+quantities, such as the critical temperature (Tc ), for superconductivity. In other words, a larger Gt allows condensed
+matter physicists to explore larger and more complex (i.e., higher fidelity) physics cases. DCA++ currently stores Gt
+in a single GPU device. However, this limits the largest Gt that can be processed within one GPU. A new approach for
+partitioning the large Gt across the multiple GPUs can significantly increase scientists' capabilities to explore higher
+fidelity simulations. This paper focuses on how the memory-bound issue in DCA++ was successfully addressed by
+proposing an effective "all-to-all" communication method-a ring algorithm-to update the distributed Gt device
+array.
+1.1
+
+Contributions
+
+The primary contributions of this work are outlined as follows.
+1. The memory consumption in a QMC solver application was reduced to store a much larger Gt array across
+multi-GPUs. This significant contribution enables physicists to evaluate larger scientific problem sizes and
+compute the full Gt array in a single computation, which significantly increases the accuracy/fidelity of the
+simulation of a certain material.
+2. A ring abstraction layer was designed that updates the large distributed Gt array. The ring algorithm
+was further improved by adding sub-ring communicator and multi-threaded communication to reduce
+communication overhead and expose more concurrency, respectively.
+3. The ring abstraction layer was implemented on top of NVIDIA GPUDirect remote direct memory access
+(RDMA) for fast device memory transfer.
+4. The Autonomic Performance Environment for Exascale (APEX) performance measurement library was
+extended to support the use case, driving tool development and research.
+
+2
+
+Background
+
+QMC solver applications are widely used and are mission-critical across the US Department of Energy's (DOE's)
+application landscape. For the purpose of this paper, the authors chose to use one of the primary QMC applications,
+the DCA++ code. A production-scale scientific problem runs on DOE's fastest supercomputer, Summit, at the Oak
+Ridge Leadership Computing Facility on all 4,600 nodes; each node contains six NVIDIA Volta V100 GPUs, attaining a
+peak performance of 73.5 PFLOPS with a mixed precision implementation [5].
+Monte Carlo simulations are embarrassingly parallel, and the authors exploited this on distributed systems with a
+two-level (MPI + threading) parallelization scheme (Figure 1). Although DCA++ has been highly optimized and is
+scalable on existing hardware, this is the first effort to focus on solving the memory-bound issue described in Section
+1 and further take advantage of Summit's GPU RDMA capability.
+Figure 1 shows the parallelism hierarchy in one iteration of the QMC solver (MPI distribution + on-node threading
+parallelism). For example, each rank {R0, . . . , RN } is assigned a Markov Chain and the initial input (two particle
+Green's function, Gt,i , where t means "two-particle," and i is rank index). Each rank spawns multiple independent
+worker threads (i.e., walkers and accumulators). Most work and computation are performed on the GPU. Each walker
+thread generates a measurement result (Gσ,i array, where i is thread ID) by performing nonuniform Fourier transform
+implemented by matrix-matrix multiplication. Each walker passes its Gσ,i to its corresponding accumulator thread.
+In other words, each thread has its own Gσ,i array, and each rank will have k different Gσ,i arrays, where k is the
+number of walker threads per rank. Each accumulator thread then updates Gt,i via the formula in Eq. (1) to compute
+0 . The updated partial G 0 is then fed into the coarse-graining step for the next
+and update rank-local Gt,i to Gt,i
+t,i
+measurement. At the end of all measurements, an MPI_Reduce operation will be performed on Gt across all ranks
+to produce a final and complete Gt in the root rank. Gt is allocated before all measurements start and has a life that
+spans until the end of the DCA++ program.
+2.1
+
+Memory-Bound Issue in DCA++
+
+The results from Balduzzi et al. [5] show that although storing a Gt on the accelerator device allows condensed
+matter scientists to explore larger and more complex (i.e., higher fidelity) physics cases, the problem size is limited to
+the device memory size. Updating the device array Gt is the most time-consuming and memory-intensive process
+2
+
+A preprint - May 14, 2021
+
+[Gt,0 ]
+
+R0
+Gσ,0
+
+Walker 0
+[Gt,1 ]
+
+R1
+
+Gσ,0
+
+Walker 0
+
+[Gt,2 ]
+R2
+[Gt,3 ]
+
+Accu. 1
+
+Gσ,2
+
+Walker2
+
+Walker 1
+
+′ ]
+[Gt,1
+
+,
+
+Accu. 2
+
+Gσ,1
+
+′ ]
+[Gt,2
+
+Accu. 1
+
+R2
+′
+[Gt,3
+]
+
+Accu. 2
+
+R3
+
+MPI Distribution
+
+R1
+
+Accu. 0
+
+Gσ,2
+
+Walker 2
+
+[Gt′0 ]
+
+Accu. 0
+Gσ,1
+
+Walker 1
+
+R0
+
+R3
+
+On-node threading
+
+MPI Distribution
+
+Figure 1: Workflow of the QMC DCA++ solver.
+
+throughout DCA++ computation. A distributed Gt approach is needed to reduce memory allocation and operation in
+the device.
+In the original DCA++ algorithm, Gt is updated by a product of two smaller matrices (single-particle Green's function,
+or Gσ ). This computation update is in the particle-particle channel and is accumulated according to Eq. (1).
+∑︁
+Gt (K1, K2, K3 ) +=
+Gσ (K3 − K2, K3 − K1 ) G −σ (K2, K1 ) ,
+(1)
+σ
+
+where Ki is a combined index that represents a particular point in the momentum and frequency space, and σ =
++1 or −1 specifies the electron spin value. Gσ is the single-particle Green's function that describes the configuration
+of single electrons.
+The ability to handle a larger Gt allows simulations of complex materials to significantly increase the details, accuracy,
+and fidelity. In the previous design that kept Gt within one GPU, only a sub-slice of Gt could be computed in a single
+computation. For the simple single-orbital coarse-grained Hubbard model, physics insights or prior knowledge can
+be used to decide which sub-slices in Gt contain the important physics and thus avoid the generation of full Gt . This
+simple model allows the generic behavior that comes from electronic corrections in materials to be studied, but it
+cannot distinguish between different specific materials. Material-specific modeling requires more complex models
+that include more orbital-and other-degrees of freedom, and this requires a much larger Gt . This new distributed
+ring implementation enables the full large Gt array to be computed in a single computation, even for more complex
+multi-orbital models, to ensure that no important physics cases are overlooked.
+2.2
+
+GPU RDMA Technology
+
+GPU RDMA allows direct peer access to multi-GPU memory through a high-speed network. For NVIDIA GPUs,
+GPUDirect is a technology that allows for the direct transfer of data in GPU device memory to other GPUs on the
+same node by using the NVLINK2 interconnect and/or between GPUs on different nodes by using RDMA support
+that can bypass buffers on host memory.
+A CUDA-aware MPI3 implementation can directly pass the GPU buffer pointer to MPI calls. Acceleration support,
+such as GPUDirect, can be used by the MPI library and allows buffers being sent from the kernel memory to a network
+3 https://developer.nvidia.com/blog/introduction-cuda-aware-mpi/
+
+3
+
+A preprint - May 14, 2021
+
+without staging through host memory. There are various CUDA-aware MPI implementations, such as OpenMPI,
+MVAPICH2, and IBM Spectrum MPI4 .
+
+3
+
+Implementation: Ring Abstraction
+
+3.1
+
+Distributed Gt in QMC Solver
+
+Before introducing the communication phase of the ring abstraction layer, it is important to understand how the
+authors distributed the large device array Gt across MPI ranks. Original Gt was compared, and Gtd versions were
+distributed (Figure 2).
+In the original Gt implementation, the measurements-which were computed by matrix-matrix multiplication-are
+distributed statically and independently over the MPI ranks to avoid inter-node communications. Each MPI rank
+keeps its partial copy of Gt,i to accumulate measurements within a rank, where i is the rank index. After all the
+measurements are finished, a reduction step is taken to accumulate Gt,i across all MPI ranks into a final and complete
+Gt in the root MPI rank. The size of the Gt,i in each rank is the same size as the final and complete Gt .
+With the distributed Gtd implementation, this large device array Gt was evenly partitioned across all MPI ranks; each
+portion of it is local to each MPI rank. Instead of keeping its partial copy of Gt , each rank now keeps an instance
+d to accumulate measurements of a portion or sub-slice of the final and complete G , where the notation d in
+of Gt,i
+t
+d
+d size in each rank is reduced to 1/p of the
+Gt refers to the distributed version, and i means the i-th rank. The Gt,i
+size of the final and complete Gt , comparing the same configuration in original Gt implementation, where p is the
+d , which is
+number of MPI ranks used. For example, in Figure 2b, there are four ranks, and rank i now only keeps Gt,i
+one-fourth the size of the original Gt array size.
+d for the distributed G d implementation, each rank must see every G
+To compute the final and complete Gt,i
+σ,i from all
+t
+ranks. In other words, each rank must broadcast the locally generated Gσ,i to the remainder of the other ranks at
+every measurement step. To efficiently perform this "all-to-all" broadcast, a ring abstraction layer was built (Section.
+3.2), which circulates all Gσ,i across all ranks.
+
+3.2
+
+Pipeline Ring Algorithm
+
+A pipeline ring algorithm was implemented that broadcasts the Gσ array circularly during every measurement. The
+algorithm (Algorithm 1) is visualized in Figure 3.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+
+Algorithm 1: Pipeline ring algorithm
+generateGSigma(gSigmaBuf);
+updateG4(gSigmaBuf);
+i ← 0;
+myRank ← worldRank;
+ringSize ← mpiW orldSize;
+le f tRank ← (myRank − 1 + ringSize) % ringSize;
+rightRank ← (myRank + 1 + ringSize) % ringSize;
+sendBuf.swap(gSigmaBuf);
+while i < ringSize do
+MPI_Irecv(recvBuf, source=leftRank, tag = recvTag, recvRequest);
+MPI_Isend(sendBuf, source=rightRank, tag = sendTag, sendRequest);
+MPI_Wait(recvRequest);
+updateG4(recvBuf);
+MPI_Wait(sendRequest);
+sendBuf.swap(recvBuf);
+i++;
+end
+
+4 IBM
+
+Spectrum MPI is supported on the Summit supercomputer, and is also the CUDA-aware MPI implementation used by the
+authors in this paper.
+
+4
+
+A preprint - May 14, 2021
+
+Rank 1
+
+Rank 0
+Gσ,i
+
+×
+
+G−σ,i
+
+Gt,0
+
+Gσ,i
+
+Rank 2
+Gσ,i
+
+G−σ,i
+
+×
+
+Gt,1
+
+×
+
+Rank 3
+G−σ,i
+
+Gt,2
+
+Gσ,i
+
+×
+
+G−σ,i
+
+Gt,3
+
+MPI_Reduce
+Rank 0
+
+p
+
+Gt = ෍ Gt,i
+i=0
+
+(a) Original Gt implementation.
+GPU RDMA
+Rank 1
+
+Rank 0
+Gσ,i
+
+d
+Gt,0
+
+×
+
+G−σ,i
+
+Gσ,i
+
+×
+
+Rank 2
+Gσ,i
+
+G−σ,i
+
+d
+Gt,1
+
+×
+
+d
+Gt,2
+
+Rank 3
+G−σ,i
+
+Gσ,i
+
+×
+
+G−σ,i
+
+d
+Gt,3
+
+MPI_Reduce (optional)
+Rank 0
+
+d
+d
+Gt,0
+Gt,1
+d
+d
+Gt,2
+Gt,3
+
+Gt
+
+(b) Distributed Gt implementation.
+Figure 2: Comparison of the original Gt vs. the distributed Gtd implementation. Each rank contains one GPU resource.
+
+5
+
+A preprint - May 14, 2021
+
+Rank 1
+
+Rank 0
+
+Rank 2
+
+thread i
+
+sendBuff
+
+send/recv
+
+recvBuff
+Rank 3
+
+Wait(recv)
+
+Wait(send)
+d
+update(Gt,0
+)
+
+sendBuff.
+swap(recvBuff)
+
+Figure 3: Workflow of ring algorithm per iteration.
+
+At the start of every new measurement, a single-particle Green's function Gσ (Line 1) is generated and then used to
+d (Line 2) via the formula in Eq. (1). Between Lines 3 to 8, the algorithm initializes the indices of left and
+update Gt,i
+right neighbors and prepares the sending message buffer from the previously generated Gσ buffer. The processes are
+organized as a ring so that the first and last rank are considered to be neighbors to each other. A swap operation
+is used to avoid unnecessary memory copies for sendBuf preparation. A walker-accumulator thread allocates an
+additional recvBuf buffer of the same size as gSigmaBuf to hold incoming gSigmaBuf buffer from leftRank.
+The while loop is the core part of the pipeline ring algorithm. For every iteration, each thread in a rank receives
+a Gσ buffer from its left neighbor rank and sends a Gσ buffer to its right neighbor rank. A synchronization step
+d (Line 13).
+(Line 12) is performed afterward to ensure that each rank receives a new buffer to update the local Gt,i
+Another synchronization step follows to ensure that all send requests are finalized (Line 14). Lastly, another swap
+operation is used to exchange content pointers between sendBuf and recvBuf to avoid unnecessary memory copy and
+prepare for the next iteration of communication. In the multi-threaded version (Section 3.2.2), the thread of index, i,
+only communicates with threads of index, i, in neighbor ranks, and each thread allocates two buffers: sendBuff and
+recvBuff.
+The while loop will be terminated after ringSize − 1 steps. By that time, each locally generated Gσ,i will have traveled
+d in all ranks. Eventually, each G
+across all MPI ranks and updated Gt,i
+σ,i reaches to the left neighbor of its birth rank.
+For example, Gσ,0 generated from rank 0 will end in last rank in the ring communicator.
+d at the end of all
+Additionally, if the Gt is too large to be stored in one node, it is optional to accumulate all Gt,i
+measurements. Instead, a parallel write into the file system could be taken.
+
+3.2.1
+
+Sub-Ring Optimization.
+
+A sub-ring optimization strategy is further proposed to reduce message communication times if the large device array
+Gt can fit in fewer devices. The sub-ring algorithm is visualized in Figure 4.
+For the ring algorithm (Section 3.2), the size of the ring communicator (mpiWorldSize) is set to the same size of the
+global MPI_COMM_WORLD, and thus the size of Gt is equally distributed across all MPI ranks.
+d in one measurement, one G
+However, to complete the update to Gt,i
+σ,i must travel mpiWorldSize ranks. In total,
+there are mpiWorldSize numbers of Gσ,i being sent and received concurrently in one measurement in the global
+d is relatively small per rank, then this will cause high commuMPI_COMM_WORLD communicator. If the size of Gt,i
+nication overhead.
+
+If Gt can be distributed and fitted in fewer devices, then a shorter travel distance is required for Gσ,i , thus reducing
+d ,
+the communication overhead. One reduction step was performed at the end of all measurements to accumulate Gt,s
+i
+where si means i-th rank on the s-th sub-ring.
+6
+
+A preprint - May 14, 2021
+
+Rank 0
+
+Rank 1
+
+Rank 2
+
+sub-ring communicator 0
+
+Rank 3
+
+Rank 4
+
+Rank 5
+
+sub-ring communicator 1
+
+thread i
+
+sendBuff
+
+send/recv
+
+recvBuff
+
+Rank 6
+
+Rank 7
+
+Rank 8
+
+sub-ring communicator 2
+
+Figure 4: Workflow of sub-ring algorithm per iteration. Every consecutive S rank forms a sub-ring communicator, and no
+communication occurs between sub-ring communicators until all measurements are finished. Here, S is the number of ranks in a
+sub-ring.
+
+At the beginning of MPI initialization, the global MPI_COMM_WORLD was partitioned into several new sub-ring
+communicators by using MPI_Comm_split. The new communicator information was passed to the DCA++
+concurrency class by substituting the original global MPI_COMM_WORLD with this new communicator. Now, only
+a few minor modifications are needed to transform the ring algorithm (Algorithm 1) to sub-ring Algorithm 2. In
+Line 4, myRank is initialized to subRingRank instead of worldRank, where subRingRank is the rank index in the local
+sub-ring communicator. In Line 5, ringSize is initialized to subRingSize instead of mpiWorldSize, where subRingSize is
+the size of the new communicator. The general ring algorithm is a special case for the sub-ring algorithm because the
+subRingSize of the general ring algorithm is equal to mpiWorldSize, and there is only one sub-ring group throughout
+all MPI ranks.
+Algorithm 2: Modified ring algorithm to support sub-ring communication
+myRank ← subRingRank;
+ringSize ← subRingSize;
+
+3.2.2
+
+Multi-Threaded Ring Communication.
+
+To take advantage of the multi-threaded QMC model already in DCA++, multi-threaded ring communication support
+was further implemented in the ring algorithm. Figure 1 shows that in the original DCA++ method, each walkeraccumulator thread in a rank is independent of each other, and all the threads in a rank synchronize only after
+all rank-local measurements are finished. Moreover, during every measurement, each walker-accumulator thread
+generates its own thread-private Gσ,i to update Gt .
+The multi-threaded ring algorithm now allows concurrent message exchange so that threads of same rank-local
+thread index exchange their thread-private Gσ,i . Conceptually, there are k parallel and independent rings, where k is
+number of threads per rank, because threads of the same local thread ID form a closed ring. For example, a thread of
+index 0 in rank 0 will send its Gσ to the thread of index 0 in rank 1 and receive another Gσ from thread index of 0
+from last rank in the ring algorithm.
+The only changes in the ring algorithm are offsetting the tag values (recvTag and sendTag) by the thread index
+value. For example, Lines 10 and 11 from Algorithm 1 are modified to Algorithm 3.
+Algorithm 3: Modified ring algorithm to support multi-threaded ring
+MPI_Irecv(recvBuf, source=leftRank, tag = recvTag + threadId, recvRequest);
+MPI_Isend(sendBuf, source=rightRank, tag = sendTag + threadId, sendRequest);
+
+7
+
+A preprint - May 14, 2021
+
+12.5 GB/s
+
+12.5 GB/s
+
+GPU
+
+GPU
+
+NIC
+16GB/s
+
+CPU
+
+GPU
+
+16GB/s
+
+64 GB/s
+
+CPU
+
+GPU
+
+GPU
+
+GPU
+NVLink
+50 GB/s
+
+PCIe
+Gen4
+
+EDR IB
+
+X-bus
+(SMP)
+
+Figure 5: Architectural layout of a single node on Summit.
+
+To efficiently send and receive Gσ , each thread will allocate one additional recvBuff to hold incoming gSigmaBuf
+buffer from leftRank and perform send/receive efficiently. In the original DCA++ method, there are k numbers of
+buffers of Gσ size per rank, and in the multi-threaded ring method, there are 2k numbers of buffers of Gσ size per
+rank, where k is number of threads per rank.
+
+4
+
+Results
+
+This section evaluates this work from various perspectives-including correctness, memory analysis, scaling, and
+function activities-with help from the APEX profiling tool. All experiments were run on Summit.
+4.1
+
+Summit Node Configuration
+
+Summit is a 4,600 node, 200 PFLOPS IBM AC922 system. Each node consists of two IBM POWER9 CPUs with 512 GB
+DDR4 RAM and six NVIDIA V100 GPUs with a total of 96 GB high-bandwidth memory. Each Summit node (Figure 5)
+is divided into two sockets, and each socket has one IBM POWER9 CPU and three NVIDIA V100 GPUs, all connected
+through NVIDIA's high-speed NVLINK2. Each NVLINK2 is capable of a 25 GB/s transfer rate in each direction. Two
+IBM POWER9 CPUs within a Summit node are connected through Peripheral Component Interconnect Express bus
+(64 GB/s bidirectional). There is a Mellanox Infiniband EDR network interface connector (NIC) attached to each
+Summit node (two ports per NIC, 12.5 GB/s per port).
+4.2
+
+APEX
+
+APEX [6] is a performance measurement library for distributed, asynchronous multitasking systems. It provides
+lightweight measurements without perturbing high concurrency through synchronous and asynchronous interfaces.
+To support performance measurement in systems that employ operating system- or user-level threading, APEX uses
+a dependency chain in addition to the call stack to produce traces and task dependency graphs. The synchronous
+APEX instrumentation application programming interface (API) can be used to add instrumentation to a given run
+time and includes support for timers and counters. To support C++ threads on Linux systems, the underlying POSIX
+threads are automatically instrumented by using a preloaded shared object library that intercepts and wraps pthread
+calls in the application. The NVIDIA CUDA Profiling Tools Interface [7] provides CUDA host callback and device
+activity measurements. Additionally, the hardware and operating system are monitored through an asynchronous
+8
+
+A preprint - May 14, 2021
+
+Table 1: Comparison of function differences between the original Gt and accumulated Gtd over five runs.
+
+<5e-7
+Error
+L1
+L2
+
+Real part
+
+Imaginary part
+
+3.71e-09±1.74e-18
+3.10e-10±4.19e-18
+
+4.61e-09±2.16e-18
+3.37e-10±3.89e-18
+
+True
+True
+
+measurement that involves the periodic or on-demand interrogation of the operating system, hardware states, or
+run time states (e.g., CPU use, resident set size, memory "high water mark"). The NVIDIA Management Library
+interface [8] provides periodic CUDA device monitoring to APEX. For this work, APEX was extended to capture
+additional timers and counters related to CUDA device-to-device memory transfers, and support for key MPI calls
+was provided by a minimal implementation of the MPI Profiling Interface [9].
+4.3
+
+Accuracy Analysis
+
+To verify that this implementation generates correct results, the same input configuration was run for original and
+ring algorithm methods, and the differences between the original Gt and accumulated Gtd arrays were compared. A
+normalized L1 loss function (least absolute deviations, Eq. [2]) and normalized L2 loss function (least square errors,
+Eq. [3]) were used to compute the normalized error between original Gt and accumulated Gtd arrays in which the
+"entrywise" norm was used.5 The baseline is that the L1_error and L2_error between two arrays should be smaller
+than 5e-7 after DCA++ testing protocol, where:
+L1_error =
+
+kvec(Gt − Gtd ) k 1
+,
+kvec(Gt ) k 1
+
+(2)
+
+L2_error =
+
+kvec(Gt − Gtd ) k 2
+.
+kvec(Gt ) k 2
+
+(3)
+
+For input configuration, the single-band Hubbard model was chosen because it is a standard model of correlated
+electron systems and is used in almost all the studies of the cuprate high-temperature superconductors. Moreover,
+the cluster size was configured to 36-site (6x6 cluster), which is state-of-the-art simulations size. 100,000 Monte
+Carlo measurements were chosen to observe runtime performance of the ring algorithms as the runtime scales
+linearly with the number of measurements for constant number of ranks. Since the cluster size was configured to
+6*6 and four-point-fermionic-frequencies was set to 64, this leads 212,336,640 entries in Gt . Since each Gt entry is a
+double-precision complex number, the Gt memory size is about 3.4 GB. This configuration can produce large Gt but
+still will not hit memory-bound issues on Summit GPUs-in which each GPU has 16 GB-for the regular Gt version.
+Such configurations were run on one Summit node five times with six ranks per node and seven walker-accumulator
+threads per rank. For the distributed Gtd version, ring size was set to six so there was only one sub-ring during the
+run. The results show that the implementation generates correct results (Table 1) because the L1_error and L2_error
+on accumulated Gtd are in an acceptable range.
+4.4
+
+Memory Analysis
+
+The memory analysis results show that device memory required for Gtd decreases linearly to the size of the sub-ring
+or the number of MPI ranks in the sub-communicator, which fits the ring algorithm. The APEX profiling tool was
+used to collect memory allocation information over the time. The performance results reflect correctly to the ring
+algorithm method because the Gt was evenly distributed across MPI ranks-in which each rank uses 1 GPU-within
+one sub-ring communicator.
+For example, the requested size in cudaMalloc API was compared between original Gt (Figure 6a) and distributed
+Gtd (sub-ring size of three, Figure 6b) methods. This shows that the distributed Gtd method produced three times less
+memory allocation than the original Gt device array. At around 7 s in both cases, the distributed Gtd method allocated
+d , and the original G method allocated 3.40 GB for G .
+1.13 GB for Gt,i
+t
+t,i
+5 Entrywise
+
+norm as defined in https://en.wikipedia.org/wiki/Matrix_norm
+
+9
+
+A preprint - May 14, 2021
+
+4.00
+3.75
+3.50
+3.25
+3.00
+2.75
+2.50
+2.25
+2.00
+1.75
+1.50
+1.25
+1.00
+0.75
+0.50
+0.25
+0.00
+
+0s
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+
+10 s
+
+20 s
+
+30 s
+
+40 s
+
+50 s
+
+60 s
+
+(a) Original Gt implementation.
+4.00
+3.75
+3.50
+3.25
+3.00
+2.75
+2.50
+2.25
+2.00
+1.75
+1.50
+1.25
+1.00
+0.75
+0.50
+0.25
+0.00
+
+0s
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+G
+
+20 s
+
+40 s
+
+60 s
+
+(b) Distributed Gtd implementation with sub-ring size of three.
+Figure 6: cudaMalloc requested size (GB) over time visualized by Vampir.
+
+4.5
+
+Scaling Results
+
+In the pipeline sub-ring algorithm, each rank sends S − 1 and receives S − 1 messages, where S is the size of subring. Thus, the total number of messages scales quadratically as O(S 2 ), but the number of messages crossing each
+communication link increases linearly as O(S). Figure 7 shows the elapsed computation time for 1,400 measurements
+(per rank) of the sub-ring algorithm running with six ranks per Summit node in which each message is about 170 MB.
+The data are well approximated by a linear least-square line that indicates that the elapsed computation time increases
+linearly as the sub-ring size increases. This suggests that the sub-ring algorithm is not constrained by the total volume
+of messages but is restricted by the slowest communication link. The effective bandwidth of the sub-ring algorithm
+can be estimated as:
+effective bandwidth ≈ (170 ∗ 106 ∗ S ∗ 1, 400)/( elapsed time),
+and this is about 6 GB/s using the data for S = 60 on 10 nodes in Figure 7. This effective bandwidth is about 50% of
+the theoretical peak bandwidth for the NIC (12.5 GB/s per port) on the Summit node.
+The authors acknowledge that enabling the ring algorithm to solve existing small problem-size (single band hubbard
+model with lower cluster size) will be an overkill, since the communication overhead will drastically increase the
+runtime; therefore the authors propose, the ring algorithm be only used when the Gt cannot fit into one single GPU
+memory. When the original DCA++ is executed with a large enough problem size (when Gt cannot fit into one single
+GPU), the program simply crashes failing to allocate memory on the device. Moreover, The scalability issue of the
+ring algorithm was the core focus for the authors during the implementation and the optimization design strategies
+of the sub-ring algorithm. Without sub-ring optimization, the originally proposed ring algorithm will potentially
+take undesirably long period of time to finish a run of DCA++, especially when requesting thousands of compute
+nodes. With the sub-ring optimization, scientists are able to run large science cases while maintaining acceptable
+communication overhead.
+Since the current sub-ring size has to be configured manually, the authors plan to design a runtime adaptivity
+optimization that will automatically adapt the optimal sub-ring size. This optimization will distribute Gt into the
+minimal number of devices as well as preserves optimal runtime performance. This runtime adaptivity will be very
+10
+
+A preprint - May 14, 2021
+
+data point
+
+linear fit
+
+Execution Time (Seconds)
+
+2500
+
+2000
+
+1500
+
+1000
+
+500
+
+0
+0
+
+10
+20
+30
+40
+50
+60
+Number of MPI ranks in a sub-ring communicator
+
+70
+
+Figure 7: Time for 1,400 iterations (per rank) of the sub-ring algorithm using six ranks per Summit node, and each message size is
+170 MB.
+48.9 s
+CPU thread 0:0
+CPU thread 5:0
+CPU thread 4:0
+CPU thread 7:0
+CPU thread 3:0
+CPU thread 2:0
+CPU thread 8:0
+CPU thread 6:0
+
+49.0 s
+
+49.1 s
+
+49.2 s
+
+49.3 s
+
+MPI_Wait
+MPI_Wait
+MPI_Wait
+MPI_Wait
+
+49.4 s
+
+49.5 s
+
+49.6 s
+
+MPI_Wait
+cuMemcpyAsync
+
+MPI_Wait
+
+49.7 s
+
+49.8 s
+MPI_Wait
+
+MPI_Wait
+
+MPI_Wait
+cuMemcpyAsync
+
+MPI_Wait
+
+Figure 8: Vampir timeline graph shows the processes' activities over the time in rank 0 (DCA++ with multi-threaded ring algorithm).
+
+helpful because DCA++ is an iterative convergence algorithm and thus Gt size could be dynamically changed over
+multiple DCA++ runs for production science runs on leadership computing facilities.
+
+5
+5.1
+
+Discussion
+Concurrency Overlapping
+
+The multi-threaded ring implementation provides sufficient concurrency that overlaps communication and computation. The APEX profiling tool was used to collect data on process activities over time and visualize the data in
+Vampir.
+DCA++ was run with multi-threaded ring support and obtained the timeline activities in rank 0 at 49 s (Figure 8).
+Some concurrency overlap was observed in the multi-threaded ring algorithm so that although some threads are
+blocked in MPI_Wait, other threads of the same rank perform useful computation tasks. For example, the short
+blocks that are not labeled as MPI_Wait are mostly related to kernel activities.
+The current ring algorithm was also observed to be a lock-step algorithm in which the next computation (update Gt )
+cannot start until the previous communication step (Gσ message exchange) is finished. To expose more currency,
+HPX [10]-a task-based programming model-could be used to overlap the communication and computation. For
+example, DCA++ kernel function can be wrapped into an HPX future, which represents an ongoing computation and
+asynchronous task. Then, the communication tasks can be attached or chained to the "futurized" kernel task. Wei et
+11
+
+A preprint - May 14, 2021
+
+0s
+14
+
+10 s
+
+20 s
+
+30 s
+
+40 s
+
+50 s
+
+60 s
+
+13
+12
+11
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+
+(a) Original Gt method.
+0s
+14
+
+20 s
+
+40 s
+
+60 s
+
+13
+12
+11
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+
+(b) Distributed Gtd method with sub-ring size of three.
+Figure 9: Device memory used (GB over time) when using seven walker-accumulator thread. Visualized by Vampir.
+
+al. [4] reported that DCA++ with HPX user-level [11] threading support achieves a 20% speedup over the original
+C++ threading (kernel-level) due to faster context switching in HPX threading.
+5.2
+
+Trade-Off between Concurrency and Memory
+
+As walker-accumulator threads increase in the multi-threaded ring algorithm, GPU memory usage is also increased
+because more device memory is needed to store extra thread-private Gσ,i buffers. This might cause a new memorybound challenge if too many concurrent threads are used. One possible solution is to reduce concurrent threads to
+achieve more usable device memory.
+The same configuration was run for the original Gt and distributed Gtd versions with seven threads and then with one
+thread, respectively (Figure 9).
+For the comparison on seven threads (Figures 9a and 9b), the first spike in memory usage increase is due to Gt
+allocation, and the second significant wave is because each thread is allocating Gσ,i .
+The original algorithm needs 3.4GB for Gt and 9.6GB in total, and the new algorithm needs 1.3GB for Gtd and 11.2 GB
+in total. The non-Gt allocation in the original algorithm is 6.2 GB, and distributed Gtd method is 9.9GB, which leads to
+the overhead of 3.7 GB in Gtd version. The Gσ,i is composed of two same-size matrices (spin up and spin down matrix,
+each matrix is sized at 0.17 GB). In the original algorithm, the total Gσ allocation is 0.17*2*7 = 2.38 GB where 2 is the
+two matrices (up and down) in Gσ,i and 7 is seven threads. In the distributed Gtd method, the total Gσ allocation is
+0.17*2*3*7 = 7.14GB where 3 is three allocations (Gσ,i itself, sendBuf, recvBuf ) per thread. The overhead of overall
+Gσ allocation in the ring algorithm is 7.14 −2.38 = 4.76 GB, which is about 1 GB more than the non-Gt allocation
+(3.7GB). In Figure 9a, there is a significant reduction of allocated memory in the 42nd second, which is 1GB memory
+deallocation in Gσ . However, we did not observe a similar drop or wave pattern in Figure 9b because those sendBuf,
+recvBuf matrices are not dynamically allocated so that the dip before the allocations was hidden. This explains the
+1GB difference.
+12
+
+A preprint - May 14, 2021
+
+0s
+6.0
+5.5
+5.0
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+1.0
+0.5
+0.0
+
+10 s
+
+20 s
+
+30 s
+
+40 s
+
+50 s
+
+(a) Original Gt method.
+0s
+6.0
+5.5
+5.0
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+1.0
+0.5
+0.0
+
+10 s
+
+20 s
+
+30 s
+
+40 s
+
+50 s
+
+60 s
+
+70 s
+
+(b) Distributed Gtd method with sub-ring size of three.
+Figure 10: Device memory used (GB over time) when using one walker-accumulator thread. Visualized by Vampir.
+
+However, if only one thread was used (Figures 10a and 10b), then the maximum device usage in the distributed Gtd
+version (3.3 GB) is 1.9 GB less than the one in the original Gt version (5.2 GB). Much more usable device memory
+can be gained if concurrent walker-accumulator threads are reduced. For example, the saved device memory from
+reduced threads can be used to fit larger Gt . Furthermore, a comparison experiment was run on one Summit node
+(six ranks per node) by using the same input configuration (sub-ring size is three, measurement is 4,200 total), except
+for threading numbers per rank. The distributed Gtd with seven threads (87 s) has 1.3 times more speedup than the
+one with one thread (116 s). This result suggests that if there is insufficient device memory, then the code might use
+fewer threads with some loss (less than 30%) of run time performance. The authors are considering quantifying and
+modeling this trade-off in their future research development.
+To solve the NIC bottleneck issue and the new memory-bound challenge caused by multi-threaded communication
+(storing additional Gσ ), the authors are considering another plan to move Gσ to the CPU host in which the CPU host
+has more memory. Each Summit node contains 512 GB of DDR4 memory for use by the IBM POWER9 processors, 6 ,
+and there are only 6 * 16 GB = 96 GB of device memory. On Summit, the NICs are connected to the CPU and are not
+directly connected to the GPU. The NVLINK2 connection between CPU and GPU has peak of 50 GB/s, so it is faster
+compared with NIC's peak bandwidth (12.5 GB/s) and might not be the bottleneck. One possible future extension
+could be to consider keeping Gt on the CPU side instead of in GPU device memory so that a smaller sub-ring can be
+used or so the sub-ring can be kept on the same single node.
+Additionally, the authors have explored bidirectional ring implementation that alternates ring communication
+directions between threads. After extensive testing, the authors concluded that the bidirectional ring improved
+performance up to 1.3X across-rack (each rack has 18 compute nodes on Summit) over the current unidirectional
+ring. However, there are no potential performance benefits using the bidirectional ring approach over the current
+unidirectional ring when reserving the whole rack. Authors continue to investigate in coordination with hardware
+vendors to address the performance of bidirectional ring implementation.
+
+6
+
+Conclusions
+
+This paper presents how the authors successfully solved the memory-bound challenge in DCA++, which will allow
+physicists to explore significantly large science cases and increase the accuracy and fidelity of simulations of certain
+materials. An effective "all-to-all" communication method-a ring abstraction layer-was designed for this purpose so
+6 Summit
+
+User Guide: https://docs.olcf.ornl.gov/systems/summit_user_guide.html
+
+13
+
+A preprint - May 14, 2021
+
+that the distributed device array Gt can be updated across multi-GPUs. The Gt device array was distributed across
+multi-GPUs so that the allocation size for the most memory-intensive data structure per GPU is now reduced to 1/p
+of the original size, where p is number of GPUs in the ring communicator. This significant memory reduction (much
+larger Gt capability) is the primary contribution from this work because condensed matter scientists are now able to
+explore much larger science cases.
+In calculating the full 4-point correlation function Gt , the storage of Gt grows as O( L 3 F 3 ) where L is the number of
+cluster sites and F is the number of frequencies. This new capability will enable large-scale simulations such as 36-site
+(6x6 cluster) with over 64 frequencies to (1) obtain more accurate information, and (2) enable resolution of longer
+wavelength correlations that have longer periodicity in real space and which cannot be resolved in smaller clusters.
+The system size can grow fairly large and depends on how much memory the leadership computing facilities can
+provide. Relevant science problems that the domain specialists would like to study range in the orders of 10s-of-100s
+of Gigabits of Gt , potentially opening up more research into how we can use the host memory without losing
+performance.
+The ring algorithm implementation takes advantage of GPUDirect RDMA technology, which can directly and efficiently
+exchange device memory. Several optimization techniques were used to improve the ring algorithm performance, such
+as sub-ring communicators and multi-threaded supports. These optimizations reduced communication overhead and
+expose more concurrency, respectively. Performance profiling tools were also improved, such as APEX, which now
+allows more kernel and communication information to be captured in-depth. The ring algorithm was demonstrated
+to effectively reduce the memory allocation needed for the Gt device array per GPU. This paper also discusses various
+trade-offs between concurrency and memory usage for the multi-threaded ring algorithm and the NIC bottleneck issue.
+In the future, the authors plan to explore the HPX run time system to overlap the computation and communication in
+DCA++ to expose more concurrency and asynchronicity.
+
+Acknowledgement
+Authors would like to thank Thomas Maier (ORNL), Giovanni Balduzzi (ETH Zurich) for their insights during the
+optimization phase of DCA++.
+This work was supported by the Scientific Discovery through Advanced Computing (SciDAC) program funded by U.S.
+Department of Energy, Office of Science, Advanced Scientific Computing Research (ASCR) and Basic Energy Sciences
+(BES) Division of Materials Sciences and Engineering, as well as the RAPIDS SciDAC Institute for Computer Science
+and Data under subcontract 4000159855 from ORNL. This research used resources of the Oak Ridge Leadership
+Computing Facility, which is a DOE Office of Science User Facility supported under Contract DE-AC05-00OR22725,
+and Center for Computation & Technology at Louisiana State University.
+
+References
+[1] M. H. Hettler, A. N. Tahvildar-Zadeh, M. Jarrell, T. Pruschke, and H. R. Krishnamurthy. Nonlocal dynamical
+correlations of strongly interacting electron systems. Phys. Rev. B, 58:R7475–R7479, Sep 1998.
+[2] M. H. Hettler, M. Mukherjee, M. Jarrell, and H. R. Krishnamurthy. Dynamical cluster approximation: Nonlocal
+dynamics of correlated electron systems. Phys. Rev. B, 61:12739–12756, May 2000.
+[3] Thomas Maier, Mark Jarrell, Thomas Pruschke, and Matthias H. Hettler. Quantum cluster theories. Rev. Mod.
+Phys., 77:1027–1080, Oct 2005.
+[4] Weile Wei, Arghya Chatterjee, Kevin Huck, Oscar Hernandez, and Hartmut Kaiser. Performance analysis of a
+quantum monte carlo application on multiple hardware architectures using the hpx runtime. 2020.
+[5] Giovanni Balduzzi, Arghya Chatterjee, Ying Wai Li, Peter W Doak, Urs Haehner, Ed F D'Azevedo, Thomas A
+Maier, and Thomas Schulthess. Accelerating DCA++ (dynamical cluster approximation) scientific application
+on the Summit supercomputer. In 2019 28th International Conference on Parallel Architectures and Compilation
+Techniques (PACT), pages 433–444, Seattle, WA, USA, 2019. IEEE.
+[6] Kevin A Huck, Allan Porterfield, Nick Chaimov, Hartmut Kaiser, Allen D Malony, Thomas Sterling, and Rob
+Fowler. An autonomic performance environment for exascale. Supercomputing frontiers and innovations,
+2(3):49–66, 2015.
+[7] NVIDIA. Cuda profiling tools interface, 2020. https://docs.nvidia.com/cuda/cupti/index.
+html.
+14
+
+A preprint - May 14, 2021
+
+[8] NVIDIA.
+Nvidia management library (nvml), 2020.
+https://developer.nvidia.com/
+nvidia-management-library-nvml.
+[9] Marc Snir, Steve Otto, Steven Huss-Lederman, David Walker, and Jack Dongarra. MPI: The Complete Reference.
+The MIT Press, Cambridge, MA, USA, 1998.
+[10] Hartmut Kaiser, Patrick Diehl, Adrian S. Lemoine, Bryce Adelstein Lelbach, Parsa Amini, Agustín Berge, John
+Biddiscombe, Steven R. Brandt, Nikunj Gupta, Thomas Heller, Kevin Huck, Zahra Khatami, Alireza Kheirkhahan,
+Auriane Reverdell, Shahrzad Shirzad, Mikael Simberg, Bibek Wagle, Weile Wei, and Tianyi Zhang. HPX - the
+C++ standard library for parallelism and concurrency. Journal of Open Source Software, 5(53):2352, 2020.
+[11] Tianyi Zhang, Shahrzad Shirzad, Patrick Diehl, R Tohid, Weile Wei, and Hartmut Kaiser. An introduction to
+hpxMP: A modern OpenMP implementation leveraging HPX, an asynchronous many-task system. In Proceedings
+of the International Workshop on OpenCL, pages 1–10, New York, NY, United States, May 2019. Association for
+Computing Machinery.
+
+15
+

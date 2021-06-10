@@ -1,0 +1,2634 @@
+perspective challenges and transformative opportunities in superconductor
+vortex physics
+serena eley1 a andreas glatz2 3 and roland willa4 5
+1 department
+2 materials
+of physics colorado school of mines golden colorado usa
+science division argonne national laboratory 9700 s cass avenue argonne illinois 60639
+arxiv210500055v1 condmatsuprcon 30 apr 2021
+usa
+3 department of physics northern illinois university dekalb illinois 60115 usa
+4 theory of condensed matter physics karlsruhe institute of technology karlsruhe germany
+5 heidelberger akademie der wissenschaften heidelberg germany
+dated 4 may 2021
+in superconductors the motion of vortices introduces unwanted dissipation that is disruptive to applications fortunately material defects can immobilize vortices acting as vortex pinning centers which engenders dramatic improvements in superconductor material properties and device operation this has motivated decades of research into
+developing methods of tailoring the disorder landscape in superconductors to increase the strength of vortex pinning
+yet efficacious materials engineering still alludes us the electromagnetic properties of real disordered superconducting materials cannot yet be reliably predicted such that designing superconductors for applications remains a largely
+inefficient process of trial and error this is ultimately due to large gaps in our knowledge of vortex dynamics the field
+is challenged by the extremely complex interplay between vortex elasticity vortexvortex interactions and material
+disorder
+in this perspective we review obstacles and recent successes in understanding and controlling vortex dynamics
+in superconducting materials and devices we further identify major open questions and discuss opportunities for
+transformative research in the field this includes improving our understanding of vortex creep determining and
+reaching the ceiling for the critical current advanced microscopy to garner accurate structureproperty relationships
+frontiers in predictive simulations and the benefits of artificial intelligence as well as controlling and exploiting vortices
+in quantum information applications
+introduction
+distinguished for their ability to carry high dissipationless
+currents below a critical temperature tc  superconductors are
+used in motors generators faultcurrent limiters and particle
+accelerator magnets their impact spans beyond these examples of largescale applications also affecting nanoscale devices perhaps most renown for their key role in the quantum revolution superconductors constitute building blocks in
+current and nextgeneration devices for computing and sensing for example superconducting photons detectors feature
+highresolutions due to high kinetic inductance and a sharp
+superconductortonormal phase transition moreover superconductors can be configured to form anharmonic oscillators
+that can be exploited in quantum computing
+notwithstanding these successes the performance of superconducting devices is often impaired by the motion of
+vorticeslines threading a quantum 0  h2e of magnetic
+flux through the material see fig 1 propelled by electrical currents and thermalquantum fluctuations vortex motion
+is dissipative such that it limits the currentcarrying capacity in wires causes losses in microwave circuits contributes
+to decoherence in qubits and can also induce phase transitions understanding vortex dynamics is a formidable challenge because of the complex interplay between moving vortices material disorder that can counteract pin vortex motion and thermal energy that causes vortices to escape from
+a electronic
+mail serenaeleyminesedu
+these pinning sites furthermore as depicted in fig 2 in
+threedimensional samples bulk crystals or thick films vortices are elastic objects that form complicated shapes as they
+wind through the disorder landscape reshaping and moving
+under the influence of currentinduced lorentz forces
+these complexities encumber predictability we can neither
+predict technologically important parameters in superconductors nor prescribe an ideal defect landscape that optimizes
+these parameters for specific applications though modifying
+the disorder landscape eg using particleirradiation or by incorporating nonsuperconducting inclusions into growth precursors can engender dramatic enhancements in the current
+carrying capacity these processes are often designed through
+a trialanderror approach furthermore the optimal defect
+landscape is highlymaterial dependent this is because the
+efficacy of pinning centers depends on the relationship between their geometry and the vortex structure the latter being
+determined by parameters of the superconductor such as the
+coherence length   penetration depth   and the anisotropy
+ see fig 1 for example though particle irradiation has
+successfully doubled the critical current in cuprates and certain ironbased superconductors the same ions and energies
+do not even produce universal effects in materials belonging
+to the same class of superconductors1 
+though we can indeed tune the disorder landscape we certainly do not have full control of it defects such as stacking
+faults twin boundaries and dislocations are often intrinsic to
+materials and their densities are challenging to tune as a
+further complication to understanding vortexdefect interactions superconductors often have mixed pinning landscapes
+vortex
+vortex
+pinning at
+the extreme
+srf cavities
+and uantum
+circuits
+vortex matter
+genome
+using ai
+point
+defect
+halfloop
+vortex structure
+twin
+boundary
+advanced
+vortex
+microscopy
+thermal and
+uantum
+creep
+superconducting
+density
+supercurrent
+fig 1 frontiers in vortex matter research black line represents
+the vortex core yellow region shows how the density of superconducting electron pairs decays towards the center of the core of size
+   coherence length blue plane with arrows represents amplitude of supercurrent circulating around the core of radius up to the
+penetration depth  
+ie containing multiple types of defects though these landscapes immobilize vortices over a broader range of conditions
+temperatures and fields than landscapes containing only one
+type of defect it is challenging to infer the vortex structures
+that form within these materials and no techniques currently
+exist to fully image these structures and vortexdefect interactions on a microscopic level
+generally speaking achieving a materialsbydesign approach first entails garnering a sufficient microscopic understanding of vortexdefect and vortexvortex interactions
+then incorporating these details into simulations significant headway has been made along these lines with the implementation of largescale timedependent ginzburglandau
+tdgl simulations to study vortex motion through disordered media spearheaded by the argonne national laboratory this effort has accurately modeled critical currents jc
+in thin films 2d layered and anisotropic 3d materials as
+well as isotropic superconductors26  additionally it has determined the optimal shape size and dimensionality of defects necessary to maximize jc  depending on the magnitude
+and orientation of the magnetic field710  backed by good
+agreement with experimental and analytic results for simple
+geometries1114  the utility of the numerical routine has successfully been extended to previously unknown territories
+optimizing pinning geometries outside the scope of analytic
+methods247101518  in fact these tdgl simulations have
+columnar
+defect
+nanoparticle
+precipitate
+abplane
+doublekink
+vortex structure
+staircase vortex
+structure
+void
+stacking
+fault
+fig 2 examples of vortex structures curved blue lines that are
+predicted to form in different defect landscapes under the influence
+of an applied current imaging these structures and defects would
+allow us to establish the crucial connection between vortex excitations vortexdefect and vortexvortex interactions lorentz forces
+and resulting vortex phases that is needed for efficacious defect engineering
+unveiled new phenomenasuch as a small peak in jc b at
+high fields that is caused by double vortex occupancy of individual pinning sites19 the argonne team has even deployed
+mature optimization processes based on targeted evolution using genetic algorithms10 this is a remarkable step towards the
+goal of criticalcurrentbydesign
+a criticalcurrentbydesign must consider thermal fluctuations which dramatically impact the critical current due to
+the effects of rapid thermallyinduced vortex motion thermal
+creep creep which manifests as a decay in the persistent
+current over time is rarely problematic in lowtc superconductors as it is typically quite slow consequently nbti
+solenoids in magnetic resonance imaging systems can operate in persistent mode retaining a fairly constant magnetic
+field for essentially indefinite time periods however creep
+is fast in hightc superconductors restricting applications and
+reducing the effective jc 
+for the sake of power and magnet applications the goals
+are clearmaximize the critical current and minimize creep
+regarding the former there is much room for improvement
+no superconductor containing vortices has ever achieved a jc
+higher than 25 of its theoretical maximum
+ which is thought
+to be the depairing current jd  0 3 3 0   2  regarding creep we are fighting a theoretical lower bound20 this
+lower bound positively correlates with a materials ginzburg
+number gi   2 2kb tc sc 2  which is the ratio of the
+thermal energy to the superconducting condensation energy
+sc  20 2 0  2  2  3  the implications are grim creep is
+expected to be so fast in potential yettobediscovered roomtemperature superconductors rendering them unsuitable for
+applications the caveat is that this lower bound is limited to
+low temperatures and fields single vortex dynamics and col
+lective vortex dynamics could be key to achieving slow creep
+rates
+though superconducting sensing and computing applications do not require high currents vortices still pose a nuisance by limiting the lifetime of the quantum state in qubits21 
+inducing microwave energy loss in resonators22  and generally introducing noise it is known that dissipation from vortex motion reduces the quality factor in superconducting microwave resonators which are integral components in certain
+platforms for quantum sensors and the leading solidstate architecture for quantum computing circuitqed2326  they
+are used to address and readout qubits as well as mediate coupling between multiple qubits consequently resonator stability can be essential for qubit circuit stability moreover
+thermally activated vortex motion can contribute to 1 f noise
+and critical current fluctuations2728 in quantum circuits and is
+a suspected source of the dark count rate in superconducting
+nanowire singlephoton detectors2930 
+in these quantum circuits vortices appear due to pulsed
+control fields ambient magnetic fields31  and the selffield
+generated by bias currents30  mitigating the effects of vortices requires heavy shielding to block external fields and
+careful circuit design to control their motion the latter of
+which is quite tricky the circuit should include structures
+to trap vortices away from operational currents and readout
+as well as narrow conductor linewidths32 to make vortex formation less favorable however these etched structures may
+exacerbate another major source of decoherenceparasitic
+twolevel fluctuatorsdefects in which ions tunnel between
+two almost energetically equivalent sites which act as dipoles
+and thus interact with oscillating electric fields during device
+operation26 hence designing quantum circuits that are robust
+to environment noise is not trivial and has become a topic of
+intense interest2126
+despite all of the aforementioned applicationlimiting
+problems caused by vortices they are not pervasively detrimental to device performance for example vortices can trap
+quasiparticlesunpaired electrons that are a third source of
+decoherence in superconducting quantum circuitsboosting
+the quality factor of resonators33 and the relaxation time of
+qubits34  furthermore vortices can host elusive exotic modes
+that are in fact useful for topological qubits which are predicted to be robust to environmental noise that plagues other
+quantum device architectures to exploit these modes in computing we must control the dynamics of their vortex hosts
+hence in general these disparate goals of eliminating or utilizing vortices for applications both require an improved understanding of vortex formation dynamics and ultimately
+control
+the goal of this perspective is to present opportunities for
+transformative advances in vortex physics in particular we
+start by addressing vortex creep in sec iii a which notes
+limited knowledge of nonthermal creep processes and how
+recent increases in computational power will enable full consideration of creep in simulations second in sec iii b we
+explore the true maximum achievable critical current and the
+need to simultaneously exploit multiple pinning mechanisms
+to surpass current records for jc  next sec iii c discusses
+vortexinduced losses in response to ac magnetic fields and
+currents with a focus on the impact on superconducting rf
+cavities used in accelerators and quantum circuits we examine how the quantum revolution has handled the vortex problem for computing while sensing applications necessitate further studies as solving the aforementioned problems requires
+advanced computational algorithms we then proceed to discuss future uses of artificial intelligence to understand the vortex matter genome in sec iii d finally in sec iii e we recognize that most experimental studies use magnetometry and
+electrical transport studies to infer vortexdefect interactions
+and discuss the frontiers of microscopy that could lead to observing these interactions as well as accurately determining
+defect densities
+background
+superconductors have the remarkable ability to expel external magnetic fields up to a critical value hc1  a phenomena
+that is known as the meissner effect though surpassing hc1
+quenches superconductivity in some materials the state persists up to a higher field hc2  0 2  2 in typeii superconductors in this class of materials hc1 can be quite small
+several mt whereas hc2 can be extremely large from a few
+tesla up to as high as 120 t35  such that the interposing state
+between the lower and upper critical fields consumes much
+of the phase diagram and defines the technologically relevant
+regime this mixed state hosts a lattice of vortices whose
+density scales with the magnetic field nv  b we should also
+note that in addition to globally applied fields selffields from
+currents propagating within a superconductor can also locally
+induce vortices
+each vortex carries a single flux quantum 0 and the
+core defines a nanoscale region through which the magnetic field penetrates the material as such the vortex core
+is nonsuperconducting of diameter 2 t  and surrounded
+by circulating supercurrents of radii up to  t  as depicted in fig 1 given the dependence of the vortex size
+on these materialdependent parameters vortices effectively
+look different in different materialsfor example they are
+significantly smaller in the hightemperature superconductor
+yba2 cu3 oy ybco where  0  16 nm than in nb in
+which  0  38 nm36
+vortex motion constitutes a major source of dissipation
+in superconductors propelled by currents of density j and
+thermalquantum energy fluctuations vortices experience a
+lorentz force density fl  j  bc accompanied by joule
+heating that weakens superconducting properties it is this
+cascading process that is responsible for the undesirable impacts on applications for which examples were provided in
+sec i
+fundamentals of vortex pinning
+immobilizing vortices constitutes a major research area in
+which the most prominent benchmark to assess the strength of
+fig 3 enhancement in jc or m  jc in a an oxygenionirradiated dy2 o3 doped commercial ybco film grown by american superconductor corporation2037 in a field of 5 t b a bazro3 doped y077 gd023 ba2 cu3 oy film grown by miura et al38  c a bazro3 doped
+bafe2 as1x px 2 film grown by miura et al39  and d a heavyionirradiated nbse2 crystal40  measurements by s eley insets show
+transmission electron micrographs of defect landscape from refs 20 3840
+pinning is the critical current jc 4150 once vortices are present
+in the bulk crystallographic defects such as point defects precipitates twin boundaries stacking faults and dislocations
+provide an energy landscape to trap vortices depending on
+the defect type and density one of two mechanisms are typically responsible for vortex pinning weak collective effects
+from groups of small defects or strong forces exerted by larger
+defects
+originally formulated by larkin and ovchinnikov51  the
+theory of weak collective pinning describes how atomically
+small defects alone cannot apply a sufficient force on a vortex
+line to immobilize it however the collective action of many
+can indeed pin a vortex in the case of a random arrangement
+of small weak and uncorrelated pinning centers the average
+force on a straight flux line vanishes then only fluctuations
+in the pinning energy higher order correlations are capable
+of producing a net pinning force considering this weak collective pinning theory phenomenology finds that the resulting
+critical current should scale quadratically with the pin density
+n p  ie jc  n2p  see ref 52
+on the other hand strong pinning results when larger defects each plastically deform a vortex line and a low density
+of these defects is sufficient to pin it competition between
+the bare pinning force f p and the vortex elasticity c generates
+multivalued solutions because of this a proper averaging of
+the effective force h fpin i from individual pins is nonzero and
+results in a critical current jc  n p h fpin i here the critical current reached by strong pins depends linearly on the defect density while conceptually simpler than weak collective pinning
+it has taken significantly longer to develop a strong pinning
+formalism with its completion in the early 2000s the formalism enabled computing numerous physical observables
+including the critical current5354  the excesscurrent characteristic5560  and the ac campbell response1114 
+defects merely trap the vortex state into a metastable min
+imum thermal and quantum fluctuations release vortices
+from pinning sites and this activated motion of vortices from a
+pinned state to a more stable state is called vortex creep in the
+presence of creep the critical current jc is no longer a distinct
+boundary separating a dissipationfree regime from a dissipative one experimentally this manifests as a powerlaw transition v  j n between the superconducting state in which v  0
+and ohmic behavior the creep rate s  d lnjd lnt then
+becomes  1n and can be assessed by fitting the transitional
+regime in the currentvoltage characteristic or measuring the
+temporal decay of an induced persistent current measurements of the vortex creep rate also provide access to microscopic details such as the effective energy barriers u   t s
+surmounted and whether single vortices or bundles are creeping
+various methods of tailoring the disorder landscape in
+superconductors have proven successful in remarkably enhancing the critical current figure 3 shows examples of
+cuprates ironbased superconductors and lowtc materials
+that have all benefited from incorporating inclusions defects can be added postgrowth using techniques such as
+particle irradiation120376184 or during the growth process
+by incorporating impurities to the source material388589
+though these processes induce markedly different disorder
+landscapes both can effectuate remarkable increases in jc 
+however the conditions necessary to improve electromagnetic properties are highly materialdependentthis lack of
+universality renders defect landscape engineering a process of
+trialanderror
+particle irradiation can induce point defects vacancies interstitial atoms and substitutional atoms larger random defects or correlated disorder eg amorphous tracks known as
+columnar defects notably the critical current in commercial
+yba2 cu3 o7 coated conductors was nearly doubled through
+irradiation with protons69  oxygenions3739  goldions90  and
+silverions furthermore ironbased superconductors have
+also been shown to benefit from particle irradiation1  to incorporate larger defects such as nanoparticle inclusions numerous groups38879194 have introduced excess ba and m
+where m zr nb sn or hf into growth precursors this
+results in the formation of randomly distributed 520 nm sized
+nonsuperconducting bamo3 nanoparticles or nanorods this
+method has produced critical currents that are up to seven
+times higher than that in films without inclusions95 therefore
+has become one of the leading schemes for enhancing jc 
+the enhancement achieved by inclusions and irradiation is
+often restricted to a narrow temperature and field range partially because  and  are temperature dependent whereas
+the defect sizes and densities are fixed another reason for
+the limited range of the enhancement is that under the right
+conditions certain fast moving vortex excitations may form
+for example in materials containing parallel columnar defects doublekink excitations form at low fields and moderate
+temperatures that result in fast vortex creep concomitant with
+reduced jc 96 mixed pinning landscapes composed of different types of defects can indeed enhance jc over a broader
+temperature and field range than inclusions of only one type
+and one size more work is indeed necessary to optimize this
+thermally activated vortex motion
+vortex creep is a very complex phenomenon due to the interplay between vortexvortex interactions vortexdefect interactions vortex elasticity and anisotropy529798 these interactions determine uact t h j a generally unknown regimedependent function the simplest creep model proposed anderson and kim neglects the microscopic details of pinning
+centers and considers vortices as noninteracting rigid objects
+hopping out of potential wells of depth uact  u p 1  jjc 
+however as elastic objects the length of vortices can increase over time under force from a current and vortexvortex
+interactions are nonnegligible at high fields as such the
+andersonkim models relevance is limited to low temperatures and fields
+at high temperatures and fields collective creep theories
+which consider vortex elasticity predict an inverse power
+law form for the currentdependent energy barrier uact j 
+u p jc j  1 where  is the socalled glassy exponent
+that is related to the size and dimensionality of the vortex
+bundle that hops during the creep process99  to capture behavior across regimes the interpolation formula uact j 
+u p  jc j  1 is commonly used where   1 recovers the andersonkim prediction combining this interpolation formula with the creep time t  t0 euact jkb t  we
+find the persistent current should decay over time as jt 
+jc0 1  kb t u p  lntt0 1 and that the thermal vortex
+creep rate is
+d ln j
+kb t
+d lnt
+u p  kb t lntt0 
+where lntt0   2530 because the magnetization m  j
+creep can easily be measured by capturing the decay in the
+magnetization over time using a magnetometer moreover as
+seen from eq 1 knowledge of st h provides access to
+both u p and  hence creep measurements are a vital tool
+for revealing the size of the energy barrier its dependence on
+current field and temperature and whether the dynamics are
+glassy or plastic it is important to note that eq 1 is typically
+used to analyze creep data piecewiseit can rarely be fit to the
+entire temperature range creep rates are not predictable and
+no analytic expression exists that broadly captures the temperature and field dependence of creep both u p and  have
+unknown temperature dependencies which is a major gap in
+our ability to predict vortex creep rates
+predictive vortex matter simulations
+simulating the the behavior of vortex matter52100104 has
+a long history though the value of such simulations was
+realized long ago105106  the efficacy to produce accurate results in materials containing complex defect landscapes is
+considered a recent success tied to improvements in computational power specifically we can now numerically
+solve more realistic models ranging from langevin dynamics to timedependent ginzburglandau tdgl equations to
+fully microscopic descriptions including usadel and eilenberger bogoliubovde gennes and nonequilibrium keldysheilenberger quantum transport equations while the phenomenological tdgl equations describe vortex matter realistically on lengths scales above the superconducting coherence
+lengths full microscopic equations are needed to describe
+eg the vortex core accurately this however means that the
+system sizes which can be simulated down to the nanoscale
+using microscopic models are quite limited while tdgl can
+simulate macroscopic behavior including most dynamical features of vortex matter
+the langevin approach only considers vortex degrees of
+freedom while mostly neglecting elasticity and vortexvortex
+interactions which are nonlocal effects hence its accuracy
+is limited to when intervortex separations are significantly
+larger than   vortex pinning sites are dilute or the superconducting host is sufficiently thin that vortices can be considered 2d particles nevertheless this simple picture reveals
+remarkably rich dynamical behavior  notably realizing a dependence of jc on the strength and density of pinning centers
+105106  thermal activation of vortices from pinning sites107  a
+crossover between plastic and elastic behavior108109  and dynamic ordering of vortex lattices at large velocities110111 
+however vortex elasticity is indeed an influential parameter in bulk systems it results in vortex phases that are characterized by complex vortex structures glassy phases that do
+not exist in 2d systems as well as other interesting characteristics112118  herein lies the strength of the tdgl approach
+which is a good compromise between complexity and fidelity
+it describes the full behavior of the superconducting order parameter119 and therefore represents a mesoscopic bridge between microscopic and macroscopic scales notably it surpasses the langevin approach by i describing all essential
+properties of vortex dynamics including intervortex interac
+jc jcdp dp
+006
+069
+dy075 jc  b
+069
+075 c
+080
+no background inclusions
+074 jc  b
+c inclusions j  b 068
+with background
+080
+068
+dy  j  b
+dy  j  b
+direct sim j  b
+ background  j  b
+004
+004
+296
+222
+exp
+j j 
+008
+008
+074
+148
+jc macm2
+b t b t
+j  exp
+jc  macm 2 
+sim
+002
+000 sim
+005
+b hc2
+b hc2
+015
+074
+fig 4 a 3d stem tomogram of a 05 dydoped ybco sample image processing is discussed in ref 37 b critical current jc
+as a function of the magnetic field b applied along the caxis of ybco the simulated field dependence circles red curve with only the
+nanoparticles observed by stem tomography in the sample with 05 dy doping exhibits almost the same exponent  for jc  b  as the
+experiment triangles green curve adding 2 diameter inclusions to the simulation makes the dependence less steep squares blue curve
+which yields an exponent very similar to the experimental one in the sample with 075 dy doping stars yellow curve c snapshot of the
+tdgl vortex configuration with applied magnetic field and external current for the same defect structure as in the experiment a isosurfaces
+of the order parameter close to the normal state are shown in red and follow both vortex and defect positions the amplitude of the order
+parameter is represented on the backplane of the volume where blue corresponds to maximum order parameter amplitude arrows indicate the
+experimental and simulated jc dependencies
+tions with crossing and reconnection events ii possessing
+a rigorous connection to the microscopic bardeencooperschrieffer theory in the vicinity of the critical temperature120 
+and iii considering realistic pinning mechanisms regarding
+pinning it can specifically account for pinning due to modulation of critical temperature  tc pinning or meanfree path
+ pinning strain magnetic impurities121  geometric pinning through appropriate boundary conditions and generally
+weak to strong pinning regimesall beyond the reach of the
+langevin approach consequently the tdgl formulation is
+arguably one of the most successful physical models describing the behavior of many different physical systems even beyond superconductors122 
+in its early days the tdgl approach was used to study depinning plastic and elastic steadystate vortex motion in systems containing twin and grain boundaries as well as both regular and irregular arrays of point or columnar defects123124
+those simulations were predominately used to illustrate the
+complex dynamics of individual vortices because computational limitations prohibited the study of largescale systems
+with collective vortex dynamics only later did simulation of
+about a hundred vortices in twodimensional systems become
+possible resulting in predictions for eg the field dependence
+of jc in thin films with columnar defects125 
+a 2002 article by winiecki and adams126 deserves credit
+as one of the first simulationbased studies of vortex matter
+in threedimensional superconductors that produced a realistic electromagnetic response later in 2015 koshelev et al7
+achieved a major technical breakthrough by investigating optimal pinning by monodispersed spherical inclusions the simulated system size of 100 100 50 was much larger than
+any previously studied system enabling even more realistic
+simulations of the collective vortex dynamics than previous
+works their computational approach is based on an optimized parallel solver for the tdgl equation127  which allows
+for simulating vortex motion and determining the resulting
+electrical transport properties in applicationrelevant systems
+the efficacy of this technique is best demonstrated in a study3
+that applied the same approach to a real pinning landscape
+by incorporating scanning transmission electron microscopy
+tomography data of dydoped yba2 cu3 o7 films128129 
+and the results showed almost quantitative agreement of the
+field and angular dependent critical current with experimental
+transport measurements see fig 4
+finally we discuss applying tdgl calculations to commercial hightemperature superconducting tapes which typically consist of rare earth re or yttrium barium copper oxide rebco matrices specifically ref 8 simulated vortex dynamics in rebco coated conductors containing selfassembled bazro3 nanorods and reported good quantitative
+match to experimental measurements of jc versus the applied
+magnetic fieldangle   most notably the simulations demonstrated the nonadditive effect of defects adding irradiated
+columnar defects at a 45 angle with the nanorod c axis removes the jc   0  peak of the nanorods and generates a
+peak at   45 instead this study then went beyond simply reproducing experimental behavior and predicted the optimal concentrations of bazro3 nanorods that are necessary
+to maximize jc  which it found to be 1214 of jd at specific  far higher than had been experimentally achieved in
+similar systems this approach is certainly more efficient than
+the standard trialanderror approach growing and measuring
+samples with a large variety of defect landscape
+these recent successes in accurately predicting jc in super
+conductors based on the microstructure highlight how close
+we are to the ultimate goal of tailoring pinning landscapes
+for specific applications with welldefined critical current requirements constituting the new criticalcurrentbydesign
+paradigm18104 the routine use of tdgl simulations for efficient defect landscape optimization is a transformative opportunity in vortex physics as is expanding these computational
+successes to include the use of artificial intelligence algorithms furthermore microscopic and farfromequilibrium
+simulations of vortex matter beyond the tdgl approach require significant computational resources and are only now
+becoming feasible we will discuss related developments in
+sec iii d
+iii
+transformative opportunities
+vortex creep
+in this section we identify major opportunities to accelerate our understanding of thermallyactivated vortex hopping
+thermal creep and nonthermal tunneling quantum creep
+between pinning sites only limited situations are amenable
+to an analytic treatment of vortex creep these include thermal
+depinning of single vortices and vortex bundles in the regime
+of weak collective pinning in the strong pinning regime eg
+for columnar defects we must consider complicated excitations that form during the depinning process activation occurs via halfloop formation130  which is depicted in fig 2
+during this process the vortex nucleates outside of its pinned
+position and the curved unpinned segment grows over time
+as a current acts on it until the entire vortex eventually leaves
+the pinning site because halfloop formation likely occurs in
+a range of highcurrentcarrying materials which may contain
+amorphous tracks nanorods or twin boundaries numerical
+treatment of vortex creep within the strong pinning framework
+is of significant interest
+the first task involves studying creep of isolated vortices
+pinned by a single strong inclusion or columnar defect in accordance with analytic predictions an increase in temperature
+shifts the characteristic depinning current below jc  rounds the
+iv curves and affects the excesscurrent characteristic far beyond jc 5860  the next steps will involve studying multiple
+vortices more defects and mixed defect landscapes which
+will indeed increase the complexity of the problem warranting computational assistance
+recent advances in computational power and highperformance codes will enable tackling these challenges
+which involve long simulation times at exponentially low dynamics instead of simulating the thermal relaxation of a
+metastable configuration in a single linear simulation the
+same configuration can be simulated in parallel ie experiencing fluctuations along different world lines this accelerates the search for a rare depinning event after which parallel
+computations are interrupted and restarted from new depinned
+configurations
+in a 2017 paper20  we found that the minimum achievable
+thermal creep rate in a material depends on its ginzburg num
+ber gi as s  gi12 t tc  shown in fig 5 our result is
+limited to the andersonkim regime and considered pinning
+scenarios with analytically determined pinning energies up 
+it also somewhat gravely predicts that there is a limit to how
+much creep problem in hightc superconductors which tend
+to have high gi can be ameliorated such that we may expect the performance of yettobe discovered room temperature superconductors to be irremediably hindered by creep
+however ybco films containing nanoparticles demonstrate
+nonmonotonic temperaturedependent creep rates st  such
+that s dips to unexpectedly low values at intermediate temperatures outside of the andersonkim regime20  this dip
+thought to be induced by strong pinning from nanoparticles
+suggests that collective pinning regimes may hold the key to
+inducing slower creep rates that dip below our proposed lower
+limit in the andersonkim regime a numerical tacking of the
+vortex creep problem would improve our theoretical understanding of creep and answer a major open question in vortex
+physics  what is indeed the slowest achievable creep rate in
+different superconductors
+our finding of the lower limit to the creep rate reduces the
+guesswork in trialanderror approaches to optimizing the disorder landscape and improves our ability to select a material
+for applications requiring slow creep yet ultimately a materials quantum creep rate actually sets its minimum achievable creep rate this is a regime that is has received relatively little attentionthere have been few theoretical and
+experimental studies of quantum creep theoretical models
+are limited to tunneling barriers induced by weak collective
+pinning99131 and columnar defects132 though most materials
+have very complex mixed pinning landscapes most experimental work has focused on cuprates determining a crossover
+temperature of  8511 k in ybco films133135  152 k in
+ybco crystals134136 56 k in tl2 ba2 cacu2 o8 films136137 
+17 k in tlba2 cacu2 o7 133 30 k in hgba2 cacu2o6 133
+klein et al138 studied an ironbased superconductor finding
+crossover around 1 k in fetese no studies have been conducted in materials containing inclusions nor using any systematic tuning of the energy barrier
+furthermore the crossover between the thermal and quantum creep is unclear as previously mentioned the andersonkim models relevancy is limited to low temperatures kb t fi
+u p in which s is expected to increase approximately linearly
+with temperature a linear fit to this regime often extrapolates to nonzero s at t  0 suggestive of nonthermal creep
+in fact it is common to perfunctorily attribute this extrapolation to quantum creep without conducting measurements in
+the quantum creep regime however there are compelling discrepancies between typical experimental results in this context
+and theory for example theory predicts that the tunneling
+probability should decrease with bundle size whereas experiments often observe the opposite trend positive correlation
+between low temperature s and field139  theory also predicts a quadratic rather than linear temperaturedependent
+st  0136139  that is quantum creep may be thermally
+assisted99  and not simply present itself as a temperatureindependent creep rate at low temperatures an even more
+confounding result is that nicodemi et al140 predicted non
+letters
+004
+nature materials doi 101038nmat4840
+ba1xkxfe2as2 x  04
+ttc  14
+0h  10 t
+yba2cu3o7
+ca1xnaxfe2as2 x  04
+ca1xnaxfe2as2
+x  075
+ca1xnaxffe2as2 x  011
+fese
+003
+fete1xsex x  04
+bafe1xcox2as2
+x  0075
+x  008
+002
+bafe2xruxas2
+x  07
+t c
+12 t
+x  0075
+v3si
+001
+ca1xnaxfe2as2
+x  05
+nbse2
+fese
+k babio3
+ba1xkxfe2as2 x  04
+x  008
+lifeas
+bafe2as1xpx2
+x  033
+nbti
+mgb2
+000
+000
+002
+004
+006
+008
+010
+gi12
+figure 4  the universal lower limit for creep creep at reduced temperature ttc  14 and field of 0 h  1 t for dierent superconductors
+plotted versus
+fig 5 creep at reduced temperature t t  14 and a field of 0 h  1 t for different superconductors plotted versus gi12  the open
+gi12  see supplementary tables 13 for more details cand supplementary fig
+1 for a similar comparison at 0 h  03 t the open symbols indicate
+symbols indicate materials for which the microstructure has been modified either by irradiation or incorporation of inclusions the solid grey
+12 t t
+materials forline
+which
+the microstructure
+has
+modified
+by either irradiation or incorporation of inclusions the solid grey line represents the limit set by
+represents
+the limit set by
+gibeen
+c  the result predicts that the creep problem even in yettobediscovered hightc superconductors
+gi12 ttc  gi
+we have
+tc 4operating
+because temperatures
+it is a low temperature
+where
+the andersonkim
+description
+is typically
+valid and2017
+0 h  1 t
+may 4
+counteract
+thechosen
+benefitstofhigh
+material from
+s eley
+et al nat mater
+16 409413
+2017 copyright
+publishing
+group
+because it isnature
+the lowest
+field for
+which a large amount of s data is available in the literature by connecting the data for bafe1 x cox 2 as2 x  0075 and
+x  008 collected before and after two dierent irradiation processes the broad blue lines highlight examples of samples for which systematic
+modifications of the microstructure have tuned s towards the limit
+rate on material parameters in superconductors would fill a
+zero creep rates at t  0 using monte carlo simulations based
+major
+in ourcore
+understanding
+of vortexstrong
+physicspinning
+this would
+purely
+classical
+vortex
+model
+and
+reconciled
+with
+nonabove this field the vortex population is high enough that bzo of
+thegap
+vortex
+that is pinned
+can occur in
+significantly
+contribute
+towards
+comprehensive
+model ofinclusion of
+equilibrium
+dynamics
+becomes effective in slowing creep as it offers more pinning sites defects of dimensions  or larger for an insulating
+vortex
+dynamics
+reveal whether
+creep
+mayisinduce
+mea of semi
+has also
+been ofsuggested
+that the
+theba122p
+overall film
+meato immobilizeita higher
+fraction
+vortices than
+size
+equal
+to theand
+coherence
+volume
+that
+an ellipsoid
+surable effects in quantum circuits which typically operate at 3
+sured creep rate is simply the sum of the thermal and
+from comparing
+our results with other studies we find that creep axes
+ab and
+c  ab  such that vp  vcoh  43ab   we
+quantum components133 however in some ironbased
+millikelvin
+temperatures
+2 3
+in the ba122p
+film
+not
+only
+remarkably
+slow
+but
+fact
+the
+obtain
+67141
+coh
+c ab 6  thus in the andersonkim regime
+p h12
+superconductors
+s is fairy insensitive to t or even deslowest measured
+rate in any
+to date
+fig
+3a prior
+s  t up   6 2gi t tc  once again proportional to gi12 
+creases creep
+with increasing
+t fesc
+up to fairly
+high
+fractions
+of tto
+this study hence
+we hadeither
+speculated
+creep
+for othercomponent
+fescs seemed
+obvious
+strategy
+to minimize
+s is to increase
+up by increasing
+quantumthat
+creep
+is a significant
+at surb the
+pinning
+at the
+extreme
+can the critical
+current reach
+510
+surprisinglyprisingly
+fast high
+which
+raised anorimportant
+question
+precisely
+the
+of current
+the core that is pinned for a defect of dimensions
+the length
+depairing
+temperatures
+the creep rate
+dramatically
+dewhat shouldcreases
+we expect
+and how much
+can we gobase temper bigger than  and arbitrary shape vp  2ab2 lz  32 lz c  vcoh 
+at temperatures
+below lower
+the measurement
+ature
+motivating
+the needincluding
+for lower the
+temperature
+meagi dictates
+various
+properties
+width ofcreep
+the critiwhere
+c constituting
+is the size the
+along
+the field direction
+see fig 2c
+cooper
+pairs
+dissipationless
+current in sup lz 
+surements
+with
+resistivity
+cal fluctuation
+regionsuperconductors
+around tc that
+ishigh
+1tnormalstate
+the and
+2 is the
+core
+radius
+there energy
+is however
+a limit
+perconductors
+will vortex
+dissociate
+when
+their kinetic
+surc  gitc  setting
+  such as hightctransition
+cuprates are
+the best
+n and
+lower limitfor
+thelow
+superconducting
+width
+for candidates
+a crystal to
+this their
+approach
+by the theoretically
+elastic properties
+of vortex
+matter
+passes
+bindingsetenergy
+this could
+1119
+forperfect
+having measurable
+quantum
+creepmelting
+rates this
+is because
+achievedare
+by not
+a sufficiently
+high by
+current
+the depairing
+lographically
+sample and
+the vortex
+transition
+ which
+considered
+the termed
+andersonkim
+model this
+effective
+quantum
+rateitishas
+predicted
+to beperfunctory can
+current
+is recognized
+as the
+theoretical
+d  consequently
+it is knownthethat
+gi will
+impactcreep
+s and
+become
+be jeasily
+visualizedjdby
+considering
+a vortex
+pinned in a
+maximum achievable
+jc  such
+that it
+jc j
+often equated
+with
+d isdepin
+to mention an estimate
+refs
+62023
+when
+characterizing
+columnar
+defect
+from
+which
+can
+producing
+a halfe2 n h  jc jd 
+if lc  a0
+the
+efficiency
+the
+vortex
+pinning
+landscape
+which
+may
+vortex dynamics
+but
+testable
+formula
+has
+not
+been
+developed
+loop
+length
+along
+the
+columnar
+defect
+fig
+sq 
+c 0
+2  h a  4 a  9 j j 92  if l  a
+confusing
+perfect
+defect
+would
+not
+produce
+in pursuit of such a formula we now review how vortices depin even for an arbitrarily long columnar defect the effective lz
+most successful efforts to carefully
+tune the defect
+from various pinning centres applicable to crystals films devices
+is the
+truncated
+by hl so vp  2ab2 hl142143
+ for
+j  jc  the activation
+landscape obtain jc j
+only
+2030
+as exemplid
+2 3
+and wireswhere
+we restrict
+ourselves
+the
+early
+stages
+the
+depinning
+energy
+reffig
+256resulting in
+act
+ab have measured see
+p a series of12samplesc we
+lc is the length of the vortex segment or bundle that
+fied by
+process j 
+low
+where
+nearly
+temperature
+indepens
+most samples produce jc jd  5 whereas jc jd is routunnels  determining the dependence of the quantum creep
+dent and low h singlevortex regime sv vortex lines can be
+pinned either by the collective action of many weak pins or the
+independent action of strong pins24  first considering the most pervasive defect point defects are weak pins that will provide sufficient
+pinning only when acting collectively here jc  jsv is highest and
+for randomly distributed nanoparticles of radius r t  0
+with increasing j the tips of the pinned vortex slide along the
+surface of the nanoparticle until they meet near the equator and
+reconnect leading to depinning of the vortex26 fig 2c as j decays
+during relaxation the two tips progressively separate while j  jc 
+irradiated
+bahfo3
+bafe2as1xpx2
+ bazro3
+fese05te05
+nbse2
+nbn
+bazro3
+basno3
+mgb2
+bafe2as1xpx2
+hg1201
+commercial
+yba2cu3o7d
+ygdba2cu3o7d
+material
+fig 6 critical current jc normalized to the depairing current for
+various superconductors at t  5 k and 0 h  03 t the data includes dy2 o3 doped yba2 cu3 o7 commercial coated conductors
+and bmo3 doped y077 gd033 ba2 cu3 o7 films where m  sn
+zr or hf all grown via metal organic deposition
+tinely higher for coated conductors rebco films though
+this at first appears to be a far cry from the ultimate goal
+some surmise that this is indeed near the maximum that can
+be achieved by immobilizing vortices by means of core pinning which merely refers to a vortex preferentially sitting
+in potential wells defined by a defect to minimize the energy of its core wimbush et al36 present a compelling argument that core pinning can obtain a maximum jc jd of only
+30a current equivalent 
+to jd would produce a 
+lorentz
+force fd  jd 0  4bc 0 3 60   with bc  0 2 2 
+the thermodynamic critical field at the same time the condensation energy sc produces a characteristic pinning force
+f pcore  sc    2 b2c 20  such that the ratio of the maximal core pinning force to the depairing lorentz force is
+f pcore  fd  3 316  32
+similarly matsushita144 performed a more precise calculation
+by considering the effects of the geometry of the flux line and
+found that f pcore  fd  28 hence decades of work in designing the defect landscape to pin vortex cores may have indeed
+nearly accomplished the maximum efficiency achievable by
+means of core pinning
+if the ultimate goal of jc  jd cannot be obtained by core
+pinning alone are there other mechanisms to immobilize vortices that could indeed produce jc jd  30 magnetic interactions between vortices themselves or vortices and magnetic
+inclusions can also restrict the motion of a vortexreferred to
+as magnetic pinning herein lies a transformative opportunity
+to make large strides towards approaching jc  jd  magnetic
+pinning alone or in combination with core pinning may produce unprecedentedly high values for jc  though this mechanism has received considerably less attention than core pinning because it is quite complicated to actualize
+a high density of vortices tend to arrange themselves into a
+hexagonal lattice and one pinned to a defect via core pinning
+may restrict the motion of its neighbors subsequently affecting its neighbors neighbors due to magnetic vortexvortex interactions which occur over a length scale of   a magnetic
+inclusion provides another opportunity for inflicting magnetic
+and core pinning on a vortex again following the arguments
+of wimbush36  we can compare the pinning force induced by
+core pinning to that ofr magnetic pinning the magnetic zeeman energy mag  21 a m  b da produced by a strong ferromagnet is much greater than the condensation energy and may
+be several orders of magnitude greater than the core pinning
+energy however it is unclear whether the resulting pinning
+force is greater because it occurs over the longer length scale
+of  versus   ie f pmag  mag   such that
+f pmag  f pcore  2 20 mbc 
+hence the advantage depends on the ratio of the magnetization of the pinning site to the thermodynamic critical field
+independent of whether f pmag surpasses f pcore  concomitant
+mechanisms would produce an additive effect that may surpass current record values of jc  yet ferromagnets in proximity to superconductors can locally degrade superconductivity by inducing pair breaking such that it is challenging
+to incorporate ferromagnetic vortex pinning centers without
+compromising the superconducting state this complication
+combined with the typical materials science considerations of
+incorporating inclusions that do not induce too much strain
+on the surrounding superconducting matrix will make this a
+challenge all but insurmountable
+in addition to magnetic pinning exploiting geometric pinning provides another potentially transformative opportunity
+to dramatically boost jc in superconductors in clean narrow
+submicron superconducting strips geometric restrictions
+can induce selfarrest of vortices recovering the dissipationfree state at high fields and temperatures due to surfaceedge
+beanlivingston barrier41 or geometric4245 pinning figure 7 depicts an example of geometric vortex pinning around
+two superconducting strips
+moreover at a fixed applied current the magnetoresistance
+mr shows oscillations with increasing magnetic field indicating the penetration of complete vortex rows into the system16  therefore these mr oscillations are a way to determine the vortex structure in nanoscale superconductors at
+very high fields the vortex lattice in these strips starts to melt
+combining magnetoresistance measurements and numerical
+simulations can then relate those mr oscillations to the penetration of vortex rows with intermediate geometrical pinning
+where the vortex lattice remains unchanged and uncover the
+details of geometrical melting this opens the possibility to
+control vortices in geometrically restricted nanodevices and
+represents a novel technique of geometrical spectroscopy
+combined use of mr measurements and largescale simulations would reveal detailed information of the structure of the
+vortex system a similar reentrant behavior was observed in
+superconducting strips in a parallel field configuration here
+high fields lead to vortex crowding in which a higher density of vortex lines starts to straighten therefore reducing the
+lorenz force on the vortices the result is an intermediate
+dissipationless state145 
+introduction 5
+fig 7 field profile in a doublestrip geometry before penetration of vortices45  the arrangement and geometry eg width w and
+thickness d of the specimen significantly influence the relative importance of beanlivingston geometric and bulk pinning material
+tical stacks of inplane josephson vortices favor the
+from r willa eth zurich research collection see ref 146
+highest possible uniformity both of these aspects are part of
+the criticalcurrentbydesign paradigm104  we will describe
+these in a more general context in section iii d taking adfigure 11 geometry of the
+vantage of the modern computational approaches described
+double
+strip subject
+to experiments
+a perthere
+in combination
+with
+opens novel pathways
+pendicular
+magnetic
+field h
+new materials
+for largefield
+applications in particular the
+use
+material instead of more tratheof hight
+superconducting
+strips
+c superconducting
+ditional
+choice
+elemental
+green of width 2w and thick nbbased compounds
+ness d are separated by a gap
+2s superconducting
+field lines are rf
+shown
+in and quantum circuits
+cavities
+orange for the system in the
+meissner
+state
+superconducting
+rf cavities
+most studies of vortex dynamics in superconductors are
+conducted using dc currents and static magnetic fields yet
+the need to understand vortex dynamics under ac magnetic
+penetration
+pancake
+vortices
+fields or acofcurrents
+is rapidly
+increasing as these are the opby locally suppressing the superconducting order parameter
+a macroscopic
+eratingon
+conditions
+eg for level
+superconducting radio frequency
+srf
+and quantum
+the geometric barrier has been observed to be suppressed
+in cavities
+the oblique
+field circuits
+the for sensing and computing
+superconductors
+are
+desirable
+the
+situation
+becomes
+more
+complex
+when
+one
+considers
+analysis of an arrangement of parallel strips separated by narrow gaps simulating for rf devices because
+the minimal resistance enables very high quality factors q a
+nanosized superconducting strips and bridges in which vorthepinning
+josephson
+vortex
+stacks
+then
+is a first
+step and
+towardsmetric
+the understanding
+thesestorage with low losses and
+that indicates highofenergy
+tex
+is dictated
+by an
+intricate
+interplay
+of surface
+experimental
+narrow bandwidths srf cavities are used in current and nextbulk
+pinning asfindings
+described above in the case of a very narrow
+generation
+for particle
+accelerators used in eg high
+bridge
+jc is mostly
+by its surface barrier
+barrier whereas
+we first
+presentdefined
+the geometrical
+analysisinof the
+doubledesigns
+strip when
+results
+energy physics in addition to q the maximum accelerating
+the opposite case of very wide strips it is dominated by its
+are derived for vanishing sample thickness with the real thickness
+d serving as a cuto
+field ea  is another important metric for srf cavity perforbulk pinning properties however understanding the intermeparameter
+this
+traditional
+description
+breaks
+down
+when
+the
+gap
+width
+2s between
+mance the goal
+is often
+to maximize q at low drive powers
+diate regime where the critical current is determined both by
+which
+is essential
+for large inside
+accelerating fields and reduced debulk
+pinningdrops
+and bybelow
+the beanlivingston
+barrier at the
+the strips
+the sample thickness
+d edge
+analyzing
+the field
+configuration
+mands
+on cryogenic systems
+that are responsible for cooling
+aand
+stripclose
+is of great
+interest
+in small
+structures
+to the
+gap with
+thesuperconducting
+help of a schwarzchristoel
+transformation
+we have
+the cavities similarly higher ea is desirable as it indicates
+and wires
+found
+and
+studied
+a new
+regime
+in this
+limit
+geometric
+barrier for
+vortex
+entry
+6 revealed
+larger reachable
+particle
+energies
+recent
+studies
+that
+while bulk
+defects
+arrestthe
+voris suppressed
+vanishes
+drops
+below d the
+penetrated
+state
+still
+elemental
+niobium
+nbisand
+nbbased compounds are the
+tex
+motion awayand
+fromfinally
+the edges
+defects when
+in theirsclose
+vicinity
+material
+of choice
+forthe
+all current
+promote
+vortex penetration
+thusdome
+suppressing
+the critical
+characterized
+by a vortex
+surrounded
+by curvortexfree
+regions
+and
+barrieraccelerator applications advances in the fabrication of nbcavities have pushed their
+rent
+this phenomenon
+also quiteexit
+important
+the study the
+of field
+reappears
+to protectis vortex
+upon inlowering
+the magnetic response
+performance to extraordinary levels148149  with qvalues apsuperconducting radiofrequency cavities furthermore the
+11 andcases
+remains
+irreversible
+and exhibits
+featureproaching
+for all the
+above
+2  10
+ea in we
+excess of 45 mvm in nb150 
+role
+of defects
+near the penetrating
+edgea isshoulderlike
+asymmetric comhave
+verified
+that
+corrections
+arising
+from
+the
+magnetic
+response
+the
+shubnikov
+and
+mvm
+for
+resonators in both cases the
+pared to the exit edge of a superconducting strip this coma
+magnetic
+field
+reached
+above
+plex
+interplay
+bulk
+and
+edge
+pinning
+open
+new
+opportuniphase 60 in the penetrated state are small and can be omitted extending thethe lower critical field of the
+material but below the theoretically predicted superheating
+ties for tailored pinning structure for a given application in
+analysis to multiple strips n 3 we have determinedfield
+the specific
+sequence of flux
+at which vortices would spontaneously penetrate even a
+the simple case of the straight strip with similartype spherical
+penetrations
+into
+the
+dierent
+strips
+perfect cavity wall shown in fig 8a
+defects an optimized defect distribution can have a more than
+further
+in ea require
+higher
+critical
+current density
+than a homogeneously
+disthis
+work
+presented
+in chapter
+2 below and published
+in refincreases
+61 advances
+our a conceptual breakthrough
+our
+understanding
+nbcavity
+order
+superconducting
+film
+understanding of the magnetic field penetration into superconducting samples of com performance limits or new
+constituent materials new material candidates being considthe need for highcurrent lowcost superconductors conered include nb3 sn nbtin mgb2  febased superconductinues to grow with new applications in lightweight motors
+tors and engineered multilayer or stratified structures see
+and generators as well as strong magnets for highenergy acfig 8b srf cavities operate at temperatures well below tc
+celerators nmr machines or even tokamak fusion reactors
+and high enough frequencies to drive the superconductor into
+many of these applications require large magnetic fields and
+a metastable state near breakdown the resulting period aptherefore large critical currents which is both a fundamenproaches intrinsic time scales such as vortex nucleation and
+tal research and engineering challenge as it requires reliably
+quasiparticle relaxation times
+fabrication of uniform kmlong highperformance superconducting cables having an optimal pinning microstructure
+while the experimental progress in improving the performance and quality factor of srf cavities has been impresconsequently there are two main aspects that must be adsive149  eg the counterintuitive increase of the quality factor
+dressed for largefield applications i determining the best
+with nitrogen doping it is mostly based on trailanderror appossible pinning landscape and geometry for a targeted appliproaches a deep fundamental understanding is important to
+cation and ii controlling fabrication of long superconductmake more systematic progress requiring new theoretical and
+ing cables to incorporate an optimized pinning landscape with
+bulk
+nb pb
+vortex
+penetration
+pancake
+vortex
+bulk
+nb pb
+surface
+defects
+coated sc insulating
+layers
+fig 8 surface disorder and multilayers in srf cavities a sketch showing how vortices red parallel to the surface of a cavity wall
+penetrate the wall outside the superconductor the red lines illustrate field lines b intercalating insulating layers sisis will cause vortex
+pancakes to form and might limit the penetration depth of vortices47147  c simulation snapshot of surface vortex penetration into a typeii
+superconductor having spherical defects yellow near the surface in an ac magnetic field parallel to the surface vortex lines are shown in
+red the planar projection shows the superconducting order parameter amplitude
+computational studies because the cavities operate outofequilibrium a phenomenological description based on tdgl
+theory can only serve as a rough qualitative guide developing a fundamental theory describing the nonlinear and nonequilibrium current response of srf cavities requires a microscopic description based on quantum transport equations for
+nonequilibrium superconductors a microscopic description
+however is challenging because the rf currents under strong
+drive conditions ie high field frequencies and amplitudes
+near the breakdownsuperheating field affect both the superconducting order parameter and the kinetics of quasiparticles
+all of which have to be treated selfconsistently this endeavor
+requires development of numerical approaches to solve the
+quantum transport equations based on the keldysh and eilenberger formulations of nonequilibrium superconductivity in
+the strongcoupling limit the keldysheilenberger quantum
+transport equations are in general nonlocal in spacetime
+nonlinear and in many physical situations involve multiple
+length and time scales solving these equations requires considerable computational resources which are now becoming
+available with exascale computing facilities
+herein lies a transformative opportunity to dramatically
+boost the performance of srf cavities namely researchers
+are now equipped to develop microscopic theoretical models
+and incorporate them into computational codes to reveal the
+origin and mechanisms that limit the accelerating field of srf
+cavities the acquired knowledge will then guide materials
+optimization to maximize the critical currents superheating
+fields and quench fields reaching the theoretical limits for
+these parameters necessitates suppressing vortex nucleation
+at high rf magnetic field amplitudes screening currents near the vacuumsuperconductor interface can nucleate
+abrikosov vortices that can quench the cavity see fig 8c
+this vortex breakdown depends on i the amplitude and frequency of the surface field ii the cavitys surface roughness
+and iii the type distribution and size of defects near the
+interface the impact of nearsurface defects on vortices is
+diametric they may reduce the potential barrier for vortex
+nucleation6  but also pin nascent vortices generated by nucleation at the surface preventing a vortex avalanche and substantial dissipation given this there are various possible optimal microstructures for the srf constituent materials i a
+clean superconductor with a maximum surface barrier ii
+a superconductor with a thin few   defectfree surface and
+nanoscale defects in its bulk or iii some special spatial gradient in the size andor density of defects
+largescale tdgl simulation can be applied to study the
+conditions under which vortex avalanches form devise mechanisms that are effective at mitigating these avalanches and
+more generally gain insight into the flux penetration under rf
+field conditions furthermore by coupling the tdgl and heat
+transport equations this method can study hot spots providing insight on avoiding the formation of these hot spots in srf
+cavity walls as previously mentioned though tdgl cannot
+produce quantitative results it can serve as a useful guide to
+experiments and also provide insight into simulations based
+on microscopic transport equations lastly though discussed
+in the context of srf cavities these new computational methods can be applied to superconducting cables for ac power
+applications
+vortices in quantum circuits
+a energy loss due to vortices similar to srf cavities
+superconducting circuits for quantum information also operate at rfmicrowave frequencies and are affected by vortices specifically along with parasitic twolevel fluctuators
+and quasiparticles vortices are a considerable source of energy loss in superconducting quantum circuits2126152  these
+energy loss mechanisms create a noisy environment in which
+the qubit irreversibly interacts stochastically rather than deterministically consequently the evolution of the quantum state
+is unpredictable increasingly deviating over time from predictions until the qubit state is eventually lost this is called
+decoherence which limits the amount of time t1 over which
+hole density   
+fig 9 a an optical image showing multiple  4 resonators multiplexed to a common feed line and surrounded by a ground plane containing
+holes to pin vortices and suppress vortex formation b c scanning electron micrographs of superconducting cpw resonator without b and
+with c holes d quality factor qi versus b for varying hole density h  the field at which the vortex density matches the hole density
+each hole is filled with one vortex is plotted with a colormatched vertical line above this threshold field additional vortices are not pinned
+by the holes but instead only weakly pinned by film defects and interstitial pinning effects e  fr  fr versus b for varying h  reprinted
+with permission from ref 151 copyright 2019 american physical society
+information is retained in qubits to the microsecond range and
+there is typically a large spread in the t1 times for each qubit
+in multiqubit systems153 
+vortices appear in superconducting quantum circuits due to
+stray magnetic fields selffields generated by bias currents
+and pulsed control fields in addition to limiting t1 in qubits
+thermallyactivated vortex motion can cause significant noise
+in superconducting circuits and reduce the quality factor q of
+superconducting microwave resonators2231151  to mitigate
+this techniques have been developed to either prevent vortex
+formation or trap vortices in regions outside of the path of
+operating currents shielding circuits from ambient magnetic
+fields and narrowing linewidths constituting the device154155
+significantly reduce the vortex population for example for
+a line of width w flux will not enter until the field surpasses
+0 w2  because of this realization flux qubits typically contain linewidths of 1 m therefore exclude vortex formation up
+to a threshold magnetic field of roughly 2 mt which is 20
+times larger than the earths magnetic field154 
+though shielding has enabled remarkable headway in improving the stability of superconducting qubits for computing applications it is not a complete solution a reasonable
+amount of shielding can only suppress the field by a small
+amount which may be insufficient if devices must operate in
+highfield environments moreover shielding may render devices useless in quantum sensing applications in which the
+purpose of the device is to sense the external environment
+this has sparked research on further modifications to the device design and on understanding the effects of a magnetic
+field on different architectures of quantum circuits including transmon qubits156 and superconducting resonators151157 
+which are integral components to readout
+in addition to shielding another common remedy for the
+vortex problem in superconducting circuits involves micropatterning arrays of holes in the ground plane to serve as vortex
+traps and reduce the prevalence of vortex formation within
+that perforated area22158160  see fig 9 for example bothner et al found that qb  45 mt is a factor of 25 higher
+in nb resonators containing flux trapping holes in the ground
+plane158 compared to without the holes however chiaro et
+al160 showed that without careful design these features can
+increase the density of and subsequently losses from parasitic
+twolevel fluctuators thought to primarily form at surfaces
+and interfaces moreover coplanar waveguide resonators
+were recently found to be more robust to external magnetic
+fields when the superconducting ground plane area is reduced
+which lowers the effective magnetic field inside the cavity and
+by coupling the resonator inductively instead of capacitively
+to the microwave feedline shielding the feedline157 
+the methods we have discussed here engendered tremendous advances in suppressing the vortex problem in superconducting quantum circuits however the details are materialdependent likewise optimal mitigation strategies may be
+materialdependent for example song et al compared the
+microwave response of vortices in superconducting re rhenium and al coplanar waveguide resonators with a lattice of
+fluxtrapping holes in the ground plane generally in both
+systems vortices shift the resonance frequency f0  broaden
+the resonance dip s21  f  and reduce the quality factor q
+however vortices in the al resonators induce greater loss and
+are more sensitive to flux creep effects than in the re resonators the al resonator experienced a far more substantial fractional frequency shift d f  f0 with increasing frequency
+than the re resonator furthermore while the loss 1q due to
+vortices increased with frequency for re it decreased for al
+most research on the microwave response of vortices in quantum circuits is limited to al22313334160 
+nb32158159161162  nbtin151155  and re22  whereas al and
+nb are used in commercial quantum computers superconducting nitrides tin nbn nitin163172 and re have garnered substantial attention because they may suffer less from
+parasitic twolevel fluctuators which are particularly problematic in oxides and at interfaces26  nitrides and re are
+known to develop thinner oxide layers than al and nb and
+can be grown epitixally on common substrates173175  to
+develop a generic understanding of how to design quantum
+circuits that are resilient to ambient magnetic fields and control vortices in circuits made of nextgeneration materials we
+must study circuits consisting of broader ranges of materials
+perform further studies on nitridebased circuits investigate
+different designs for flux trapping and conduct imaging studies that can observe rather than infer the efficacy of vortex pinning sites there have been a few studies that imaged vortices
+in superconducting strips which provided guidance on appropriate line widths to preclude vortex formation32176  to build
+upon this imaging studies using eg a scanning squid or
+magnetic force microscope of devices would inform on the
+efficacies of flux trapping sites reveal locations in which vortices form and track vortex motion
+b vortices in topological quantum computing schemes
+up until now we have discussed vortices exclusively as a
+nuisance which is indeed the case for a broad range of applications a notable exception lies in the burgeoning field
+of topological quantum computing in which vortices serve as
+hosts for majorana modes177  qubits encoded using majorana
+modes are predicted to be relatively robust to noise thus have
+long coherence times one way to realize this is to couple a
+superconductor to a topological insulator induce vortices in
+the superconductor and majorana states are predicted to nucleate in the vortex core also note that majorana modes
+have been theorized to exist in other systems178184  initially
+elusive signatures of majorana vortex modes have been recently observed in a variety of systems including the ironbased superconductor fetex se1x 185186  eus islands overlying gold nanowires187  superconducting al layer encasing an
+inas nanowire188  and bi2 te3 nbse2 heterostructures189  to
+exploit these modes for computing we must be able to control
+their vortex hosts consequently vortex pinning research will
+be beneficial to vortexbased topological quantum computing
+applications
+d vortex matter genome using artificial intelligence
+criticalcurrentbydesign
+over the years research in superconductivity and vortex
+pinning has produced large amounts of experimental and simulation data on microstructures synthesis and critical current
+behavior more recently artificial intelligence ai and machine learning ml approaches have enabled revolutionary
+advances in the fields of image and speech recognition as well
+as automatic translation and are now finding an increasing
+number of applications in scientific research areas that deal
+with massive data sets like particles physics structural biology astronomy and spectroscopy combining these will
+enable novel approaches to predict pinning landscapes in superconductors for the future design of materials with tailored
+properties by using sophisticated ml algorithms and ai models this has become a promising approach within the criticalcurrentbydesign paradigm which refers to designing superconductors with desired properties using sophisticated numerical methods replacing traditional trialanderror approaches
+these properties include maximizing critical currents achieving robust critical currents with respected to variations of the
+pinning landscape which is important for largescale commercial applications or attaining uniform critical currents
+with respect to the magnetic field orientation
+the next step towards advancing the use of aiml approaches for criticalcurrentbydesign may be to build upon
+the genetic algorithms implemented in ref 10 to optimize
+pinning landscapes for maximum jc  this approach utilizes
+the idea of targeted selection inspired by biological natural
+selection in contrast with conventional optimization techniques such as coordinate descent in which one varies only
+a few parameters characterizing the entire sample targeted
+evolution allows variations in each defect individually without any apriori assumptions about the defects configuration
+this essentially means that one solves an optimization problem with theoretically infinite degrees of freedom ref 10
+demonstrated the feasibility of this approach for clean samples as well as ones with preexisting defects eg as found in
+commercial coated conductors the latter therefore provides
+a postsynthesis optimization step for existing stateoftheart
+wires and a promising path toward the design of tailored functional materials
+however the mutations of the defects required for the genetic algorithm see fig 10a were chosen randomly those
+mutations generate generations of pinning landscapes of
+which the best is chosen by targeted selection and then used
+as a seed for the next generation using a simple machine
+learning approach could further enhance the convergence of
+this method by performing only mutations which have higher
+probabilities of enhancing the critical current besides superconductors this methodology can be used to improve the intrinsic properties of other materials where defects or the topological structure plays an important role such as magnets or
+nanostructured thermoelectrics
+going beyond these mlimproved simulations one can
+build quantitative datadriven ai approaches for superconductors that will enable eg predicting the critical current phase
+diagram and extracting the defect morphology responsible for
+its performance directly from the existing accumulated experimental and simulation data without actual dynamics simulations here we will discuss two potentially transformative
+opportunities summarized in fig 10b the first application is motivated by the need for reliably producing uniform
+superconductors on macroscopic commercial scales this requires a deep understanding of material synthesis processes
+eg for selfassembled pinning structures in a superconducting matrix see fig 10b 1  materials at the forefront of
+a genetic algorithms
+jc 
+b datadriven ai
+precursors ci pi ti
+synthesis
+sc matrix with defects
+c t io
+jc 
+defect
+evolution
+simulation 
+experiment
+simulation 
+experiment
+training
+training
+prediction
+many pinning landscapes
+simulation stm 3d tomography etc
+prediction
+jc macm2
+d se
+targ
+jc 
+30 60 90
+field angle 
+120
+critical current dependencies
+fig 10 criticalcurrentbydesign using a genetic algorithms to optimize critical currents starting with a superconductor having intrinsic
+defects genetic algorithms can be used to optimize the defect structure by mutation of defects and targeted selection of landscapes with larger
+critical currents a mutation of a defect or several defects at once can be done by eg translation resizing deletion or splitting as sketched
+in the defect sequence on the right overall this procedure creates generations of mutated defect configurations and only the best is selected
+and chosen to be the seed for the next generation shown in the partial tree on the left circlesdots represent configurations where the large
+numbered one is the best using neural networks and machine learning ml to predict the best mutations could further improve the targeted
+selection approach10  b mlartificial intelligence ai to improve and tailor defect landscapes in superconductors 1 illustrates how ai
+models can be used to predict pinning landscapes from synthesis parameters and vice versa to predict synthesis parameters like precursor
+concentrations pressures and temperatures in eg vapor deposition methods for a targeted pinning landscape the models need to be
+trained by experimental or simulation data sets 2 similarly shows how to directly predict critical current dependencies like field orientation
+dependencies from pinning topologies and vice versa again the underlying model is trained by experimental and simulation data
+this quest are rebco films with selfassembled oxide inclusions in the form of nanorods and nanopartices104190  for example bazro3 bzo nanorods that nucleate and grow during metal organic chemical vapor deposition mocvd have
+proven particularly effective for pinning vortices191 
+the major difficulties in achieving consistent and uniform
+critical currents in rebco tapes containing bzo nanorods
+are the interplay of many parameters controlling the deposition process temperature of the substrate and of the precursor gases deposition rate precursor composition etc and
+strong sensitivity of the microstructure to small variations in
+these parameters even for the same nominal level of zr additives significant variations in nanorod diameter size distribution spacing distribution and angular splay have been
+observed physical factors controlling these variations remain
+poorly understood for example the nanorods diameter may
+be a mostly equilibrium property resulting from the interplay
+of strain and surface energies or caused by kinetic effects controlled by surface diffusion of adatoms and deposition rate
+these complexities have precluded the development of predictive models however making use of the accumulated
+experimental data sets and possibly synthesiskinetic growth
+simulation data monte carlo or molecular dynamic simulations which are also still in an exploratory phase allows
+building mlai models to predict pinning landscapes for
+given synthesis parameters as described above or more relevant for commercial application the prediction of synthesis
+parameters for a desired uniform pinning landscape
+to constitute a complete vortexpinning genome a second
+notable milestone is using ai to predict jc for a given pinning landscape based solely on data recognition disregarding
+tdgl simulations and conversely predicting the necessary
+pinning landscape to produce a desired jc  in fact the latter cannot be achieved by direct simulations typical data
+sets both experimental and simulationbased contain information on defect structures critical currents and other transport characteristics for a wide range of magnetic fields and
+temperatures creating an organized database of this information would enable i quickly accessible critical current values
+for a wide range of conditions ii an effective mapping of
+simulation parameters onto experimental measurements and
+iii using the data as training sets for aidriven predictions of
+defect structures for desired applications
+experimentally microstructures are routinely probed by
+transmission electron microscopy tem and less directly
+by xray diffraction xrd in contrast to simulation data
+which contains all information about pinning landscapes the
+extracted information is usually rather limited since tem
+only allows imaging of thin slices of the material and only
+detects relatively large defects a full 3d tomography of defect landscapes cf fig 4a is very time consuming and
+expensive and therefore currently typically infeasible the
+resulting aiml models will also allow for a crossvalidation
+of the simulationbased data with available experimental data
+on materials properties in superconductors with different defect microstructures
+overall this aiml approach will directly reduce the cost
+and development time of commercial superconductors and in
+particular accelerate their design for targeted applications to
+estimate the benefit of such an approach one can consider
+for example a pinning landscape defined by 9 parameters
+using traditional interpolation in this 9dimensional parameter space one would need to have a certain number of data
+points per parameter for the modest case of 15 data points
+per direction one would need to simulate measurements are
+infeasible 159  4  1010 pinning landscapes which  assuming 15 minutes per simulation on a single gpu  results in
+a total simulation time of a million gpu years this simulation time is beyond current capabilities even on the largest
+supercomputers however surrogate ml models can reduce
+this to approximately 104 simulations while maintaining the
+same resulting accuracy see seed studies in eg ref 192
+in this section we mentioned the complications associated with 3d tomographic imaging of a superconductors microstructure to supply complete information for simulations
+in the next section we detail the limitations of tomographic
+imaging and other advanced microscopy techniques many
+of which will be revolutionized by improvements in computational power and the application of advanced neural networks this in turn will have a transformative impact on vortex physics
+e advanced microscopy to better understand
+vortexdefect interactions
+quantitative pointdefect spectroscopy
+we have discussed the role of point defects in suppressing
+vortex motion via weak collective pinning notably the theory of weak collective pinning51 has attracted significant attention as it can explain the origin of novel vortex phases eg
+vortex glass193194 and vortex liquid195 phases as well as the
+associated vortex melting phase transition 196197  it cannot
+however be used to predict jc in single crystals whose defect landscape is dominated by point defects this limitation
+is not necessarily reflective of gaps in weak collective pinning
+theory itself but rather the fact that point defect densities are
+typically unknown because they are extremely challenging to
+measure over a broad spatial range
+consequently point defects are the dark matter of materials herein lies yet another transformative opportunity in
+vortex physics developing a technique to accurately measure point defect profiles and subsequent systematic studies
+correlating point defects jc b t  and sb t  may lead to
+recipes for predictably tuning the properties of superconductors most directly impacting crystals and epitaxial materials
+that lack a significant contributions from strong pinning centers the most promising routes for quantitative point defect microscopy include scanning transmission electron microscopy stem atom probe tomography apt atom electron tomography aet and positron annihilation lifetime
+spectroscopy pals here we primarily focus on stem
+combined with aet then will introduce apt and pals as
+other techniques with atomicscale resolution that are relatively untapped opportunities to reveal structureproperty relationships in superconductors
+in scanning transmission electron microscopy stem an
+imaging electron beam is transmitted through a thin specimen such that detectors can construct a realspace image of
+the microstructure and collect other diffraction data in superconductors stem studies have revealed a panoply of defects including columnar tracks defect clusters dislocations
+twin boundaries grain boundaries and stacking faults these
+studies can also provide information on other pertinent microstructural properties including strained regions that induce
+variations in the superconducting order parameter therefore
+preferential regions for vortices to sit in an otherwise defectfree landscape to identify dopants eg bahfo3 nanoparticles stem is also often performed in conjunction with
+analytical techniques such as energy dispersive xray spectroscopy
+to understand the ability of stem to determine point defect densities in superconductors we must first understand
+what limits the spatial resolution and throughput older
+stems cannot resolve point defects due to imperfections
+aberrations in the objective lenses and other factors that
+set the resolution higher than the wavelength of the imaging beam atomic resolution was finally achieved upon
+the advent of transformational aberration correction schemes
+which were first successfully demonstrated in the late 1990s
+and have been increasingly widely adopted over the past
+decade198201  in fact the spatial resolution of an aberrationcorrected stem has now fallen below the bohr radius of
+053 pm202205 
+though point defects can now be imaged in superconductors it is not straightforward to determine point defect densities a single scan captures a small fraction of the sample which may not be representative of defect distributions
+throughout the entire specimen accordingly low throughput prevents collecting a sufficiently large dataset to provide a
+reasonably quantitative picture of defect concentrations one
+of the limiting factors for throughput is the detector speed
+which has recently improved significantly owing to the development of direct electron detectors such as active pixel
+sensors aps and hybrid pixel array detectors pad these
+detectors have higher quantum efficiency operate at faster
+readout speeds and have a broader dynamic range than con
+ventional detectorschargecoupled devices ccds coupled
+with scintillators201 
+enabled by fast detectors the advent of 4dstem206 is
+another recent major milestone that is a significant step towards determining point defect densities note that 4dstem
+involves collecting a 2d raster scan in which 2d diffraction data is collected at each scanned pixel generating a
+4d dataset containing vast microstructural information in
+addition to highspeed direct electron detectors computational power was prerequisite for 4dstem implementation
+in which massive datasets can be produced see ref 206
+for an example in which a single 4dstem image recorded
+in 164 s consumes 420 gb hence over the past few years
+this has warranted efforts to develop fast image simulation
+algorithms201 and schemes to apply deep neural networks to
+extract information such as defect species and location207 
+furthermore stems can be used for electron tomography
+in which images that are collected as the sample is incrementally rotated are combined to create a 3d image of the
+microstructure208
+aberration correction highspeed detectors and the data
+revolution are transformative advances that will certainly accelerate progress in understanding structureproperty relationships in superconductors nevertheless there are more salient
+impediments to an atomicscale understanding of the true
+sample under study including artifacts from sample preparation techniques209 and beam scattering within thick samples
+to remedy the latter materials are often deposited onto membranes though this may not present a representative picture
+of the defect landscape when the sample is in a different form
+eg thicker and on a different substrate
+atom probe tomography apt is another microscopy technique with atomicscale resolution and it also provides 3d
+compositional imaging of surface and buried features over
+the past decade it has become increasingly popular due to
+the development of a commercial localelectrode atom probe
+leap for apt the specimen must be shaped as a needle and an applied electric field successively ejects layers of
+atoms from the surface of the specimen towards a detector
+by means of timeofflight mass spectroscopy the detector
+progressively collects information on the position and species
+of each atom reconstructing a 3d tomographic image of the
+specimen that can span 02 m  02 m  05 m with resolution of 01  05 nm210  as each atom is individually identifiable it can provide remarkably revealing information on
+the microstructure similar to stem sample preparation and
+data processing are bottlenecks apt also currently suffers
+from limited detection efficiency211  furthermore the analyzed volume field of view is currently too small to be sufficiently representative of the sample to provide accurate quantitative details on point defect concentrations the biggest
+complication however may be that the defect landscape of
+the apt specimen shaped as a needle may dramatically differ from the material in the form in which we typically study
+its electromagnetic properties
+lastly positron annihilation spectroscopy is a hitherto untapped opportunity to correlate vacancy concentrations with
+electrical transport properties in superconductors this non
+destructive technique can determine information about vacancies and larger voids in a material by bombarding it
+with positrons at 50 ev to 30 kev acceleration energies212213
+then measuring the time lapse between the implantation of
+positrons and emission of annihilation radiation upon implantation positrons thermalize in 10 ps then either interact
+with an electron and annihilate or form a positronium atom
+electronpositron pair214  positronium atoms will then ricochet off the walls of voids and eventually annihilate releasing
+a ray that can be detected with integrated ray detectors
+the lifetime of the positron can provide information on void
+sizes and concentration of vacancies longer lifetimes correspond to larger voids and higher vacancy densities
+pals has been used for decades to sensitively detect vacancies and vacancy clusters in metals and semiconductors212215
+as well as probe subnanometer intermolecular voids in
+polymers212216  depth profiling is possible on the nm to the
+m scale212217219 by tuning the positron implantation energy and though some systems have beam scanning capabilities enabling lateral resolution spatial resolution is generally
+quite poor due to large beam spot sizes and positron diffusion
+in most systems the spot size is typically  1 mm however pals instruments containing microprobes are capable
+of spot sizes that are smaller than 100 m220221  for example in 2017 gigl et al221 developed a stateoftheart system
+with a minimum lateral resolution of 33 m and maximum
+scanning range of 19  19 mm2  regarding speed the system
+can scan an area of 1  1 mm2 with a resolution of 250 m in
+less than 2 minutes which is considered to be an exceptionally short time frame221  moreover david et al220 reported
+a remarkably small spot diameter of 2 m in a setup with a
+short scanning range of 02  06 mm2  unfortunately further improvements to beam focus may be ineffectual and spatial resolution comparable to electron microscopy is unreachable the spatial resolution is ultimately limited by lateral
+straggle the positron diffusion length is roughly several hundreds of nanometers in a perfect crystal which limits the spot
+size even if the beam focus is improved217  ongoing efforts
+to advance pals include improving theoretical methods for
+interpretation of experimental results advancing theoretical
+descriptions of positron physics states thermalization and
+trapping incorporating sample stages that allow tuning sample environmental conditions eg temperature biasing and
+improving the efficiency of beam moderators which convert
+polychromatic positron beams to monochromatic beams217 
+2 cryogenic microstructural analysis for accurate
+determination of structureproperty relationships
+accurately correlating the formation of different vortex
+structures and intricacies of vortexdefect interactions with
+electromagnetic response is not trivial typically conventional microscopy is performed under conditions that differ from a materials actual working environment structural characterization of superconductors is routinely conducted at room temperature whereas accessing the superconducting regime requires cryogenic temperatures and is probed
+using electromagnetic stimuli yet we know that temperature changes significantly impact the microstructure causing
+straininduced phase separation and altering defects such as
+dislocations electromagnetic stimuli may similarly impact
+the defect landscape hence another transformative opportunity in vortex physics is cryogenic structural characterization of superconductors under the influence of electromagnetic stimuli which requires advances in microscopy
+scanning transmission electron microscopy combined with
+spectroscopic analysis is one of the most informative methods
+of gathering structural and chemical analysis at the atomicscale accurate determination of structureproperty relationships require insitu property measurements conducted concommitently with microscopy recent rapid advances in insitu transmission electron microscopy have been fueled by
+the introduction of a variety of commercial insitu sample
+holders that allow for electrical biasing heating magnetic
+response and mechanical deformation of nanomaterials222 
+these new capabilities have accelerated progress in a variety
+of fields including battery electrochemistry liquidphase materials growth biasinduced solidstate transformations in eg
+resistive switching devices for memory and neuromorphic applications gasphase reactions and catalysis solidstate chemical transformations eg at interfaces between semiconductors
+and metallic contacts and mechanical behavior222  for insitu tem to be beneficial to superconductors samples must
+be cooled to cryogenic temperatures and studied under the influence of magnetic fields
+developed in the 1960s liquid helium cooled stages
+have been used to study superconductors solidified gases
+and magnetic domains223  initially without the benefit of
+aberrationcorrected systems with atomicscale resolution
+more recently cryogenic stem with atomic scale resolution has been used to study quantum materials including lowtemperature spin states however these studies have been limited to a single temperature that was above the boiling point
+of the choice cryogen liquid helium or liquid nitrogen223 
+due to thermal load whereas variable temperature capabilities
+are requisite for probing phase transitions and the effects of
+thermal energy to this end there has recently been a push
+to develop advanced sample holders with stable temperature
+control223224  one of the most promising efforts is led by
+hummingbird precision machine a company that is developing a doubletilt cryoelectrical biasing holder for tems
+that allows samples to be concurrently cooled to liquid helium temperatures and electrically biased while undergoing
+atomicscale structural imaging224  because of such industry involvement in the development and commercialization of
+cryogenic sample holders and more generally the rapid pace
+of insitu tem eg the number of insitu tem papers doubled between 2010 and 2012225  we expect to see large advancements in this identified challenge over the next several
+years
+crosssectional imaging of vortex structures
+in sec i we discussed how competition between pinning
+forces vortex elasticity and currentinduced forces results
+in complicated vortex structures such as doublekinks halfloops and staircases typically we may conjecture which
+structures have formed based on the microstructure and applied field orientation subsequent correlations are made between the presumed structures and the magnetization or transport results which may be suggestive of a specific vortex
+phase however without direct proof of the structures we
+cannot unequivocally correlate distinct excitations with specific vortex phases for example in a study of a nbse2 crystal
+containing columnar defects tilted 30 from the caxis magnetization results evinced glassy behavior when the field was
+aligned with the caxis40  as these conditions are likely to
+produce vortex staircases the question arose whether and
+why vortex staircases would create a vortex glass phase
+direct imaging of vortexdefect interactions in a way that
+captures the vortex structure overlaid on the atomicscale
+structure would enable unambiguous determination of the
+phases produced by specific vortex excitations accordingly
+development of advanced microscopy techniques that can produce cross sectional images is another transformative opportunity in vortex physics in this section we summarize common techniques for imaging superconducting vortices detail
+their limitations and describe the features of an advanced instrument that could accelerate progress in understanding and
+designing materials with predetermined vortex phases
+lorentz tem ltem which exploits the aharonovbohm
+effect to capture magnetic contrast was first used by tonomura to image superconducting vortices227 and has played a
+major role in identifying new materials that host exotic magnetic phases however in ltem the objective lens serves the
+dual purpose of applying a field and observing the response
+of the specimen and is therefore limited to planview imaging that is for outofplane magnetic fields applied to a thin
+film the technique can only image magnetic contrast across
+the films surfacesuch that the vortex structure itself and interactions with defects within the bulk are outofview
+building upon tonomuras initial work hitachi228229 developed a unique specialized system containing a multipole
+magnet that can apply fields up to 50 mt at various orientations with respect to the sample though this system still
+produces planview images rather than crosssectional images revealing the full vortex structure variations in the contrast of the imaged vortex section has provided remarkable
+evidence of vortex pinning and useful information on vortexdefect interactions226230232 for example fig 11a shows
+a ltem image in which a vortex trapped within a columnar
+defect can be identified by its shape and contrast compared to
+untrapped vortices
+the most promising technique for directly imaging vortexdefect interactions may be differential phase contrast microscopy dpc233  conducted in a tem dpc is one
+of the best tools for quantitatively imaging nanoscale magnetic structures in a tem an illuminating electron beam
+is deflected by electromagnetic fields within a material
+vol 71 no 8 august 2002
+letters
+o kamimura et al
+1841
+of the experimental setup e electron beam s specimen
+columnar defect ta tilt axis c coils generating a
+b in the same direction as the columnar defects the
+ne op is also shown where contrast is generated at the
+by the fresnel phasecontrast method projected direction
+d pb and projected tilt axis pta onto op are indicated
+summary and outlook
+in this perspective we have highlighted the pivotal role that
+vortices play in superconductors and how improving our ability to control vortex dynamics will have an immediate impact
+on a range of applications herein we discussed major open
+questions in vortex physics which include the following
+fig 2 typical lorentz micrograph taken at an appropriate defocus of
+540 mm 30 k 05 mt in the lower inset the image rotation effect at
+pinned a and unpinned a vortices is emphasized by discretization of
+the intensity levels
+vortex
+duced at 20 with respect to the specimen
+diation of 240 mev au15 ions by using the
+lerator at the japan atomic energy research
+mental setup is shown in fig 1 a collimated
+e illuminated the specimen s tilted at 30 
+was mounted such that the columnar defects
+parallel as possible to the tilt axis ta in
+ct the difference between vortex lines v
+he columnar defects and unpinned ones the
+b generated by the coils c was oriented
+columnar defects the interaction between the
+and the magnetic field of the vortices resulted
+t of the wave which was transformed into an
+bution in the observation plane op by image
+fig 11 lorentz transmission electron microscopy ltem im
+2 with columnar defects two types of vortex
+een observed in lorentzage
+micrographs
+taken at
+of vortices
+in bi2 sr2 cacu2 o8  irradiated to induce columefocusing which appeared as brightdark
+nar
+defects
+trapped
+vortices can be distinguished from free ones
+with high contrast and the other with low
+slightly elongated in the
+direction
+of the shape and contrast lower contrast for vortices trapped
+based
+on their
+axis pta a typical lorentz micrograph at
+invortices
+columnar
+mt is shown in fig 2 the
+having lowdefects planview ltem images have provided usendicated by arrowheadsful
+we information
+have confirmed on vortex dynamics though the 3d vortex structure
+ast images correspond to vortices pinned at the
+within
+the bulk is hidden from view reprinted with permission from
+cts whereas highcontrast
+images correspond
+ortices whose direction isref
+perpendicular
+the
+226to copyright
+2002 the physical society of japan tem im12
+faces
+detailed features of pinned and
+agesinsets
+of b
+a heavyionirradiated nbse2 crystal40 and c a bazro3 ices are shown in the lower
+revealing
+selected pinned a and unpinned
+dopeda
+yvortices
+gd023 ba2 cu3 oy film grown by miura et al38  per077
+discrete intensity levels so that not only
+the
+use tem image in c granted by m miura red line is a
+and elongation but alsomission
+some image to
+rotation
+es of vortices can be distinguished the image
+cartoon of how a vortex might wind through the disorder landscape
+ibed here means that the lines dividing the
+k regions of the vortex images
+are rotated
+advanced
+microscopy techniques designed to capture this structure
+ticed phenomenologically that the defocus of
+is a transformative opportunity in vortex physics
+e plays a crucial role in the image contrast and fig 3 throughfocus series of lorentz micrographs at 30 k and 05 mt
+he vortices figure 3 shows a widerange
+defocus distances were a 2900 mm b 540 mm and c 230 mm pta
+and pb are also indicated by arrows
+series taken at decreasing values of defocus in
+dpc microscopy leverages these deflections to directly image electric and magnetic fields within materials at atomic
+resolution234235  consequently scanning the beam stem
+produces spatial maps of nanoscale magnetic field contrast
+to complement the atomicscale structural information resolved by a transmitting beam accordingly stemdpc is
+an invaluable tool in nanomagnetism research used to image magnetic domains236237 and canted structures such as
+skyrmions238240  most notably it is one of few techniques
+that can unequivocally identify new magnetic phases and exotic magnetic quasiparticles in realspace more generally it
+can also image nanoscale electric fields241245 in materials and
+devices to image vortexdefect structures in an stem capable of dpc the sample stage would need to be cryogenically
+cooled and the chamber should contain a magnet complications will include designing the system in a way in which the
+magnetic field does not significantly distort the beam
+ how do thermal and quantum vortex creep depend on material parameters and how can we efficiently consider creep in
+predictive simulations
+ what is the highest attainable critical current jc 
+ how do we optimize vortex pinning in quantum circuits and
+controllably exploit vortices in certain schemes for topological computing
+ given the multitude of variables that govern jc  what computational methods can improve the efficacy of the criticalcurrentbydesign approach
+ what is the relationship between jc and point defect densities as well as vortex structures and vortex phases
+to answer these and other identified questions we delineated five major categories of nearterm transformative opportunities the first involves applying recent advances in analytical and computational methods to model vortex creep
+and performing more extensive experimental investigations
+into quantum creep second we discussed how critical currents higher than the current record of 30 jd may be obtained by implementing a combination of core pinning and
+magnetic pinning this is a promising route for dramatic
+advancements in largescale applicationsachieving higher
+currents densities enables smaller motors and generators as
+well as higher field magnets third we noted that vortices
+do not only hamper largescale applications but also induce
+losses in nanoscale quantum circuits though shielding circuits has proven effective in minimizing vortex formation
+quantum senors may require exposure to the environment necessitating a better understanding of vortex dynamics in circuits furthermore vortices are desirable for use in quantum
+information applications in which case we must study how
+to manipulate single flux lines to implement braiding and entanglement of majorana bound states fourth the recent advent of highperformance computational tools to study vortex matter numerically has pushed us to the verge of predicting a superconductors electrical transport properties based
+on the material and microstructure however the quest to
+automatically tailor a defect landscape for specific applications requires considering a fairly highdimensional parameter
+space to enable an effective mapping between simulations
+and experiments and manage the multitude of variables we
+propose to apply selfadjusting machine learning algorithms
+that use neural networks fifth and finally to accurately determine structureproperty relationships we need to experimentally measure and routinely consider point defect densities which are challenging to determine we therefore highlighted the prevailing microscopy techniques for point defect
+measurements which include 4dstem and positron annihilation lifetime spectroscopy
+acknowledgments
+se acknowledges support from the national science
+foundation dmr1905909 ag was supported by the us
+department of energy office of science basic energy sciences materials sciences and engineering division rw acknowledges funding support from the heidelberger akademie
+der wissenschaften through its win initiative 8 teilprogramm
+data availability
+the data that support the findings of this study are available
+from the corresponding author upon reasonable request
+1 t
+tamegai t taen h yagyuda y tsuchiya s mohan t taniguchi
+y nakajima s okayasu m sasase h kitamura t murakami t kambara and y kanai effects of particle irradiations on vortex states in
+ironbased superconductors supercond sci technol 25 084008 2012
+2 i a sadovskyy a e koshelev c l phillips d a karpeev and
+a glatz stable largescale solver for ginzburglandau equations for superconductors j comput phys 294 639 2015
+3 i a sadovskyy a e koshelev a glatz v ortalan m w rupich and
+m leroux simulation of the vortex dynamics in a real pinning landscape of yba2 cu3 o7 coated conductors phys rev appl 5 014011
+2016
+4 a glatz v k vlaskovlasov wk kwok and g w crabtree vortex
+cutting in superconductors phys rev b 94 064505 2016
+5 i a sadovskyy y l wang zl xiao wk kwok and a glatz
+effect of hexagonal patterned arrays and defect geometry on the critical
+current of superconducting films phys rev b 95 075303 2017
+6 g j kimmel a glatz v m vinokur and i a sadovskyy edge effect
+pinning in mesoscopic superconducting strips with nonuniform distribution of defects sci rep 9 211 2019
+7 a e koshelev i a sadovskyy c l phillips and a glatz optimization of vortex pinning by nanoparticles using simulations of the timedependent ginzburglandau model phys rev b 93 060508 2016
+8 i a sadovskyy y jia m leroux j kwon h hu l fang c chaparro
+s zhu u welp jm zuo y zhang r nakasaki v selvamanickam
+g w crabtree a e koshelev a glatz and wk kwok toward superconducting critical current by design adv mater 28 4593 2016
+9 g kimmel i a sadovskyy and a glatz in silico optimization of
+critical currents in superconductors phys rev e 96 013318 2017
+10 i a sadovskyy a e koshelev wk kwok u welp and a glatz
+targeted evolution of pinning landscapes for large superconducting critical currents pnas 116 10291 2019
+11 r willa v b geshkenbein r prozorov and g blatter campbell response in typeii superconductors under strong pinning conditions phys
+rev lett 115 207001 2015
+12 r willa v b geshkenbein and g blatter campbell penetration in the
+critical state of typeii superconductors phys rev b 92 134501 2015
+13 r willa v b geshkenbein and g blatter probing the pinning landscape in typeii superconductors via campbell penetration depth phys
+rev b 93 064515 2016
+14 r willa m marziali bermdez and g pasquini thermal hysteresis
+of the campbell response as a probe for bulk pinning landscape spectroscopy phys rev b 98 184520 2018
+15 wk kwok u welp a glatz a e koshelev k j kihlstrom and
+g w crabtree vortices in highperformance hightemperature superconductors rep prog phys 79 116501 2016
+16 g p papari a glatz f carillo d stornaiuolo d massarotti v rouco
+l longobardi f beltram v m vinokur and f tafuri geometrical
+vortex lattice pinning and melting in ybacuo submicron bridges sci
+rep 6 38677 2016
+17 r
+willa a e koshelev i a sadovskyy and a glatz peak effect
+due to competing vortex ground states in superconductors with large inclusions phys rev b 98 054517 2018
+18 a glatz i a sadovskyy u welp wk kwok and g w crabtree
+the quest for high critical current in applied hightemperature superconductors j supercond nov mag 33 127141 2020
+19 r willa a e koshelev i a sadovskyy and a glatz strongpinning
+regimes by spherical inclusions in anisotropic typeii superconductors
+supercond sci technol 31 014001 2018
+20 s eley m miura b maiorov and l civale universal lower limit on
+vortex creep in superconductors nat mater 16 409413 2017
+21 w d oliver and p b welander materials in superconducting quantum
+bits mrs bulletin 38 816825 2013
+22 c song t w heitmann m p defeo k yu r mcdermott m neeley
+j m martinis and b l plourde microwave response of vortices in
+superconducting thin films of re and al phys rev b 79 174512 2009
+23 a wallraff d i schuster a blais l frunzio j majer s kumar s m
+girvin and r j schoelkopf strong coupling of a single photon to a superconducting qubit using circuit quantum electrodynamics nature 431
+162167 2004
+24 a blais rs huang a wallraff s m girvin and r j schoelkopf
+cavity quantum electrodynamics for superconducting electrical circuits
+an architecture for quantum computation phys rev a 69 062320
+2004
+25 p krantz m kjaergaard f yan t p orlando s gustavsson and w d
+oliver a quantum engineers guide to superconducting qubits appl
+phys rev 6 021318 2019
+26 c mller j h cole and j lisenfeld towards understanding twolevelsystems in amorphous solids insights from quantum circuits rep prog
+phys 82 124501 2019
+27 e trabaldo r arpaia m arzeo e andersson d golubev f lombardi
+and t bauch transport and noise properties of ybco nanowire based
+nanosquids supercond sci technol 32 073001 2019
+28 d j van harlingen b l t plourde t l robertson p a reichardt
+and j clarke decoherence in flux qubits due to 1f noise in josephson
+junctions in quantum computing and quantum bits in mesoscopic systems edited by a j leggett b ruggiero and p silvestrini springer
+us boston ma 2004 pp 171184
+29 l n bulaevskii m j graf c d batista and v g kogan vortexinduced dissipation in narrow currentbiased thinfilm superconducting
+strips phys rev b 83 144526 2011
+30 t yamashita physics and device performance of superconducting
+nanowire singlephoton detectors journal of the national institute of information and communications technology 60 5761 2013
+31 c song m p defeo k yu and b l t plourde reducing microwave
+loss in superconducting resonators due to trapped vortices appl phys
+lett 95 232501 2009
+32 g stan s b field and j m martinis critical field for complete
+vortex expulsion from narrow superconducting strips phys rev lett
+92 097003 2004
+33 i nsanzineza and b l t plourde trapping a single vortex and reducing quasiparticles in a superconducting resonator phys rev lett 113
+117002 2014
+34 c wang y y gao i m pop u vool c axline t brecht r w
+heeres l frunzio m h devoret g catelani l i glazman and r j
+schoelkopf measurement and control of quasiparticle dynamics in a superconducting qubit nature commun 5 5836 2014
+35 n miura h nakagawa t sekitani m naito h sato and y enomoto
+highmagneticfield study of hightc cuprates physica b 319 310320
+2002
+36 s c wimbush fundamentals flux pinning in applied superconductivity john wiley  sons ltd 2015 chap 1 pp 1104
+37 m leroux k j kihlstrom s holleis m w rupich s sathyamurthy
+s fleshler h p sheng d j miller s eley l civale a kayani p m
+niraula u welp and wk kwok rapid doubling of the critical current of yba2 cu3 o7 coated conductors for viable highspeed industrial
+processing appl phys lett 107 192601 2015
+38 m miura b maiorov j o willis t kato m sato t izumi y shiohara
+and l civale the effects of density and size of bamo3 mzr nb sn
+nanoparticles on the vortex glassy and liquid phase in ygdba2 cu3 oy
+coated conductors supercond sci technol 26 035008 2013
+eley m leroux m w rupich d j miller h sheng p m niraula
+a kayani u welp wk kwok and l civale decoupling and tuning
+competing effects of different types of defects on flux creep in irradiated
+yba2 cu3 o7 coated conductors supercond sci technol 30 015010
+2017
+40 s eley k khilstrom r fotovat z xiao a chen d chen m leroux
+u welp w kwok and l civale glassy dynamics in a heavy ion
+irradiated nbse2 crystal 2018
+41 c p bean and j d livingston surface barrier in typeii superconductors phys rev lett 12 14 1964
+42 e zeldov a i larkin v b geshkenbein m konczykowski d majer
+b khaykovich v m vinokur and h shtrikman geometrical barriers
+in hightemperature superconductors phys rev lett 73 1428 1994
+43 e zeldov a i larkin m konczykowski b khaykovich d majer v b
+geshkenbein and v m vinokur geometrical barriers in typeii superconductors physica c 235240 2761 1994
+44 e h brandt geometric barrier and current string in typeii superconductors obtained from continuum electrodynamics phys rev b 59 3369
+3372 1999
+45 r willa v b geshkenbein and g blatter suppression of geometric
+barrier in typeii superconducting strips phys rev b 89 104514 2014
+46 a gurevich challenges and opportunities for applications of unconventional superconductors annu rev condens matter phys 5 35
+2014
+47 a gurevich theory of rf superconductivity for resonant cavities supercond sci technol 30 034004 2017
+48 a gurevich tuning vortex fluctuations and the resistive transition in
+superconducting films with a thin overlayer phys rev b 98 024506
+2018
+49 t kubo and a gurevich fielddependent nonlinear surface resistance
+and its optimization by surface nanostructuring in superconductors phys
+rev b 100 064522 2019
+50 p dhakal g ciovati and a gurevich flux expulsion in niobium superconducting radiofrequency cavities of different purity and essential contributions to the flux sensitivity phys rev accel beams 23 023102
+2020
+51 a i larkin and y n ovchinnikov pinning in typeii superconductors
+j low temp phys 34 409 1979
+52 g blatter m v feigelman v b geshkenbein a i larkin and v m
+vinokur vortices in hightemperature superconductors rev mod phys
+66 1125 1994
+53 g blatter v b geshkenbein and j a g koopmann weak to strong
+pinning crossover phys rev lett 92 067009 2004
+54 j a g koopmann v b geshkenbein and g blatter peak effect at the
+weak to strong pinning crossover physica c 404 209 2004
+55 a u thomann v b geshkenbein and g blatter dynamical aspects
+of strong pinning of magnetic vortices in typeii superconductors phys
+rev lett 108 217001 2012
+56 a u thomann v b geshkenbein and g blatter vortex dynamics
+in typeii superconductors under strong pinning conditions phys rev b
+96 144516 2017
+57 m buchacek r willa v b geshkenbein and g blatter persistence of pinning and creep beyond critical drive within the strong pinning
+paradigm phys rev b 98 094510 2018
+58 m buchacek r willa v b geshkenbein and g blatter strong pinning theory of thermal vortex creep in typeii superconductors phys rev
+b 100 014501 2019
+59 m buchacek z l xiao s dutta e y andrei p raychaudhuri v b
+geshkenbein and g blatter experimental test of strong pinning and
+creep in currentvoltage characteristics of typeii superconductors phys
+rev b 100 224502 2019
+60 m buchacek v b geshkenbein and g blatter the role of rare events
+in the pinning problem arxiv200808010 condmatsuprcon 2020
+61 r averback and t d de la rubia displacement damage in irradiated
+metals and semiconductors solid state phys 51 281402 1997
+62 l fang y jia j a schlueter a kayani z l xiao h claus
+u welp a e koshelev g w crabtree and wk kwok dopingand irradiationcontrolled pinning of vortices in bafe2 as1x px 2 single
+crystals phys rev b 84 140504 2011
+39 s
+63 a
+a gapud n t greenwood j a alexander a khan k j leonard
+t aytug f a list m w rupich and y zhang irradiation response
+of commercial hightc superconducting tapes electromagnetic transport
+properties j nucl mater 462 108113 2015
+64 h goeckner r olson w kwok h claus and j kouvel effects of
+pbion irradiation on the vortex pinning in melttextured yba2 cu3 ox 
+physica c supercond 390 291295 2003
+65 n haberkorn j kim k gofryk f ronning a s sefat l fang
+u welp w k kwok and l civale enhancement of the critical current density by increasing the collective pinning energy in heavy ion irradiated codoped bafe2 as2 single crystals supercond sci technol 28
+055011 2015
+66 n haberkorn j kim s surez jh lee and s h moon influence
+of random point defects introduced by proton irradiation on the flux creep
+rates and magnetic field dependence of the critical current density jc of coevaporated gdba2 cu3 o7 coated conductors supercond sci technol 28 125007 2015
+67 n haberkorn b maiorov i o usov m weigand w hirata
+s miyasaka s tajima n chikumoto k tanabe and l civale influence of random point defects introduced by proton irradiation on critical current density and vortex dynamics of bafe0925 co0075 2 as2 single
+crystals phys rev b 85 014522 2012
+68 a iwase n masaki t iwata s sasaki and t nihira effect of
+120 mev o16 ion irradiation at low temperatures on superconducting
+properties of yba2 cu3 o7x and la18 sr02 cuo4  jpn j appl phys
+27 l2071l2074 1988
+69 y jia m leroux d j miller j g wen w k kwok u welp m w
+rupich x li s sathyamurthy s fleshler a p malozemoff a kayani
+o ayalavalenzuela and l civale doubling the critical current density
+of high temperature superconducting coated conductors through proton irradiation appl phys lett 103 122601 2013
+70 k j kihlstrom l fang y jia b shen a e koshelev u welp g w
+crabtree wk kwok a kayani s f zhu and hh wen highfield
+critical current enhancement by irradiation induced correlated and random
+defects in ba06 k04 fe2 as2  appl phys lett 103 202601 2013
+71 m kirk and y yan structure and properties of irradiation defects in
+yba2 cu3 o7x  micron 30 507526 1999
+72 m konczykowski f rullieralbenque e r yacoby a shaulov
+y yeshurun and p lejay effect of 53gev pbion irradiation on irreversible magnetization in ybacuo crystals phys rev b 44 7167
+7170 1991
+73 h matsui h ogiso h yamasaki t kumagai m sohma i yamaguchi and t manabe 4fold enhancement in the critical current density
+of yba2 cu3 o7 films by practical ion irradiation appl phys lett 101
+232601 2012
+74 y nakajima y tsuchiya t taen t tamegai s okayasu
+and
+m sasase enhancement of critical current density in codoped
+bafe2 as2 with columnar defects introduced by heavyion irradiation
+phys rev b 80 012510 2009
+75 b roas b hensel g saemannischenko and l schultz irradiationinduced enhancement of the critical current density of epitaxial
+yba2 cu3 o7x thin films appl phys lett 54 10511053 1989
+76 n w salovich h kim a k ghosh r w giannetta w kwok
+u welp b shen s zhu hh wen m a tanatar
+and
+r prozorov effect of heavyion irradiation on superconductivity in
+ba06 k04 fe2 as2  phys rev b 87 180502 2013
+77 y sun s pyon t tamegai r kobayashi t watashige s kasahara
+y matsuda t shibauchi and h kitamura enhancement of critical
+current density and mechanism of vortex pinning in h irradiated fese
+single crystal appl phys express 8 113102 2015
+78 i swiecicki c ulysse t wolf r bernard n bergeal j briatico
+g faini j lesueur and j e villegas strong fieldmatching effects
+in superconducting yba2 cu3 o7 films with vortex energy landscapes engineered via masked ion irradiation phys rev b 85 224502 2012
+79 t taen y nakajima t tamegai and h kitamura enhancement of
+critical current density and vortex activation energy in protonirradiated
+codoped bafe2 as2  phys rev b 86 094527 2012
+80 t taen f ohtake s pyon t tamegai and h kitamura critical current density and vortex dynamics in pristine and protonirradiated ba06
+k04 fe2 as2  supercond sci technol 28 085003 2015
+81 j
+r thompson y r sun h r kerchner d k christen b c sales
+b c chakoumakos a d marwick l civale and j o thomson
+enhanced current density jc and extended irreversibility in singlecrystal
+bi2 sr2 ca1 cu2 o8 via linear defects from heavy ion irradiation appl
+phys lett 60 23062308 1992
+82 b m vlcek h k viswanathan m c frischherz s fleshler k vandervoort j downey u welp m a kirk and g w crabtree role of
+point defects and their clusters for flux pinning as determined from irradiation and annealing experiments in yba2 cu3 o7 single crystals phys
+rev b 48 40674073 1993
+83 y zhu z x cai r c budhani m suenaga and d o welch structures and effects of radiation damage in cuprate superconductors irradiated with severalhundredmev heavy ions phys rev b 48 64366450
+1993
+84 k j leonard t aytug a a gapud f a l iii n t greenwood
+y zhang a g perezbergquist and w j weber irradiation response
+of next generation high temperature superconductors for fusion energy applications fusion science and technology 66 5762 2014
+85 t haugan p n barnes r wheeler f meisenkothen and m sumption addition of nanoparticle dispersions to enhance flux pinning of the
+yba2 cu3 o7x superconductor nature 430 867870 2004
+86 t horide t kawamura k matsumoto a ichinose m yoshizumi
+t izumi and y shiohara jc improvement by double artificial pinning centers of basno3 nanorods and y2 o3 nanoparticles in yba2 cu3 o7
+coated conductors supercond sci technol 26 075019 2013
+87 m miura b maiorov s a baily n haberkorn j o willis k marken
+t izumi y shiohara and l civale mixed pinning landscape in
+nanoparticleintroduced ygdba2 cu3 oy films grown by metal organic deposition phys rev b 83 184519 2011
+88 a palau e bartolom a llords t puig and x obradors isotropic
+and anisotropic pinning in tfagrown yba2 cu3 o7x films with bazro3
+nanoparticles supercond sci technol 24 125010 2011
+89 s c wimbush j h durrell c f tsai h wang q x jia m g
+blamire and j l macmanusdriscoll enhanced critical current
+in yba2 cu3 o7 thin films through pinning by ferromagnetic yfeo3
+nanoparticles supercond sci technol 23 045019 2010
+90 m w rupich s sathyamurthy s fleshler q li v solovyov t ozaki
+u welp w kwok m leroux a e koshelev d j miller k kihlstrom
+l civale s eley and a kayani engineered pinning landscapes for
+enhanced 2g coil wire ieee trans appl supercond 26 14 2016
+91 j l macmanusdriscoll s r foltyn q x jia h wang a serquis
+l civale b maiorov m e hawley m p maley and d e peterson
+strongly enhanced current densities in superconducting coated conductors of yba2 cu3 o7x  bazro3  nat mater 3 439443 2004
+92 j p feighan a kursumovic and j l macmanusdriscoll materials
+design for artificial pinning centres in superconductor pld coated conductors supercond sci technol 30 123001 2017
+93 m miura b maiorov f f balakirev t kato m sato y takagi
+t izumi and l civale upward shift of the vortex solid phase in hightemperaturesuperconducting wires through high density nanoparticle addition sci rep 6 20436 2016
+94 m miura b maiorov m sato m kanai t kato t kato t izumi
+s awaji p mele m kiuchi and t matsushita tuning nanoparticle
+size for enhanced functionality in perovskite thin films deposited by metal
+organic deposition npg asia mater 9 e447 2017
+95 m miura b maiorov t kato t shimode k wada s adachi
+and k tanabe strongly enhanced flux pinning in onestep deposition
+of bafe2 as066 p033 2 superconductor films with uniformly dispersed
+bazro3 nanoparticles nat commun 4 2499 2013
+96 b maiorov s a baily h zhou o ugurlu j a kennison p c dowden t g holesinger s r foltyn and l civale synergetic combination of different types of defect to optimize pinning landscape using
+bazro3 doped yba2 cu3 o7  nat mater 8 398404 2009
+97 m v feigelman v b geshkenbein a i larkin and v m vinokur
+theory of collective flux creep phys rev lett 63 2303 1989
+98 r willa j a galvis j benitollorens e herrera i guillamon and
+h suderow thermal creep induced by cooling a superconducting vortex
+lattice phys rev res 2 013125 2020
+99 g blatter v b geshkenbein and v m vinokur quantum collective
+creep phys rev lett 66 3297 1991
+100 e
+h brandt the fluxlinelattice in superconductors rep prog phys
+58 1465 1995
+101 g w crabtree and d r nelson vortex physics in hightemperature
+superconductors physics today 50 3845 1997
+102 t nattermann and s scheidl vortexglass phases in typeii superconductors advances in physics 49 607704 2000
+103 g blatter and v b geshkenbein in the physics of superconductors
+vol 1 conventional and hightc superconductors edited by k bennemann and j ketterson springer berlin 2003 p 726
+104 wk kwok u welp a glatz a e koshelev k j kihlstrom and
+g w crabtree vortices in highperformance hightemperature superconductors rep prog phys 79 116501 2016
+105 e brandt computer simulation of vortex pinning in type ii superconductors i twodimensional simulation j low temp phys 53 4170
+1983
+106 e brandt computer simulation of vortex pinning in type ii superconductors ii random point pins j low temp phys 53 71152 1983
+107 a koshelev numerical simulation of thermal depinning for twodimensional vortex system physica c 198 371377 1992
+108 y cao z jiao and h ying numerical study on the dynamics of a
+driven disordered vortex lattice phys rev b 62 41634168 2000
+109 n d scala e olive y lansac y fily and j c soret the elastic
+depinning transition of vortex lattices in two dimensions new j phys
+14 123027 2012
+110 a e koshelev and v m vinokur dynamic melting of the vortex lattice
+phys rev lett 73 35803583 1994
+111 k moon r t scalettar and g t zimnyi dynamical phases of driven
+vortex systems phys rev lett 77 27782781 1996
+112 d erta and m kardar anisotropic scaling in threshold critical dynamics of driven directed lines phys rev b 53 35203542 1996
+113 a van otterlo r t scalettar g t zimnyi r olsson a petrean
+w kwok and v vinokur dynamic phases and the peak effect in dirty
+type ii superconductors phys rev lett 84 24932496 2000
+114 s bustingorry l f cugliandolo and d domnguez langevin simulations of the outofequilibrium dynamics of vortex glasses in hightemperature superconductors phys rev b 75 024506 2007
+115 mb luo and x hu depinning and creep motion in glass states of flux
+lines phys rev lett 98 267002 2007
+116 mb luo and x hu creep of driven flux lines in typeii superconductors j supercond nov mag 23 10551057 2010
+117 a e koshelev and a b kolton theory and simulations on strong pinning of vortex lines by nanoparticles phys rev b 84 104528 2011
+118 u dobramysl h assi m pleimling and u tuber relaxation dynamics in typeii superconductors with pointlike and correlated disorder eur
+phys j b 86 228 2013
+119 a schmid a time dependent ginzburglandau equation and its applications to a problem of resistivity in the mixed state phys kondens materie
+5 302 1966
+120 l p gorkov microscopic derivation of the ginzburglandau equations
+in the theory of superconductivity sov phys jetp 9 13641367 1959
+121 m m doria a r de c romaguera m v milosevic and f m peeters
+threefold onset of vortex loops in superconductors with a magnetic core
+europhys lett 79 47006 2007
+122 i s aranson and l kramer the world of the complex ginzburglandau
+equation rev mod phys 74 99 2002
+123 w d gropp h g kaper g k leaf d m levine m palumbo and
+v m vinokur numerical simulation of vortex dynamics in typeii superconductors j comp phys 123 254266 1995
+124 g w crabtree d o gunter h g kaper a e koshelev g k leaf
+and v m vinokur numerical simulations of driven vortex systems
+phys rev b 61 14461455 2000
+125 h palonen j jykk and p paturi modeling reduced field dependence
+of critical current density in yba2 cu3 o6x films with nanorods phys
+rev b 85 024510 2012
+126 t winiecki and c s adams timedependent ginzburglandau simulations of the voltagecurrent characteristic of typeii superconductors with
+pinning phys rev b 65 104517 2002
+127 i sadovskyy a koshelev c phillips d karpeyev and a glatz stable
+largescale solver for ginzburglandau equations for superconductors j
+comput phys 294 639654 2015
+128 v
+ortalan m herrera m w rupich and n d browning three dimensional analyses of flux pinning centers in dydoped yba2 cu3 o7x
+coated superconductors by stem tomography phys c 469 20522059
+2009
+129 m herrera v ortalan d g morgan n d browning and m w
+rupich observation of the threedimensional distribution of flux pinning
+centers in dydoped yba2 cu3 o7x coated conductors j appl phys 103
+084301 2008
+130 e b sonin and b horovitz thermal and quantum creep of vortices
+trapped by twin boundaries and columnar defects phys rev b 51 6526
+6530 1995
+131 g blatter and v geshkenbein quantum collective creep effects of
+anisotropy layering and finite temperature phys rev b 47 27252741
+1993
+132 e m chudnovsky a ferrera and a vilenkin quantum depinning of
+flux lines from columnar defects phys rev b 51 11811184 1995
+133 j j kerman e l venturini m p siegal s h yun u o karlsson
+and k v rao twostage crossover from thermal to quantum flux creep
+of dilute vortex ensembles in various hightc superconducting thin films
+phys rev b 64 094509 2001
+134 i landau and h ott crossover from thermally activated flux creep to
+quantum tunneling of vortices in a yba2 cu3 o7x film physica c supercond 340 251260 2000
+135 s luo c li y he g zhang d jin z chen g xiong g lian d yin
+and c e gough magnetic relaxation study of macroscopic quantum tunnelling in ybco films supercond sci technol 15 13001303 2002
+136 a f t hoekstra a m testa g doornbos j c martinez b dam
+r griessen b i ivlev m brinkmann k westerholt w k kwok and
+g w crabtree temperature and magneticfield dependence of quantum
+creep in various hightc superconductors phys rev b 59 72227237
+1999
+137 j tejada e m chudnovsky and a garca quantum tunneling of vortices in the tl2 caba2 cu2 o8 superconductor phys rev b 47 1155211554
+1993
+138 t klein h grasland h cercellier p toulemonde and c marcenat
+vortex creep down to 03 k in superconducting fetese single crystals
+phys rev b 89 014514 2014
+139 a n lykov on the possibility of explaining the high rate of flux creep at
+ultralow temperatures using the anderson model supercond sci technol 26 055023 2013
+140 m nicodemi and h jeldtoft jensen creep of superconducting vortices
+in the limit of vanishing temperature a fingerprint of offequilibrium dynamics phys rev lett 86 43784381 2001
+141 n haberkorn j kim b maiorov i usov g f chen w yu and
+l civale increment of the collective pinning energy in na1x cax fe2 as2
+single crystals with random point defects introduced by proton irradiation
+supercond sci technol 27 095004 2014
+142 l civale pushing the limits for the highest critical currents in superconductors pnas 116 1020110203 2019
+143 v selvamanickam m h gharahcheshmeh a xu y zhang and e galstyan critical current density above 15 macm2 at 30k 3t in 22m
+thick heavilydoped gdyba2 cu3 ox superconductor tapes supercond
+sci technol 28 072002 2015
+144 t matsushita flux pinning in superconductors springerverlag berlin
+heidelberg 2007
+145 yl wang a glatz g j kimmel i s aranson l r thoutam zl xiao g r berdiyorov f m peeters g w crabtree and wk
+kwok parallel magnetic field suppresses dissipation in superconducting
+nanostrips pnas 114 e10274e10280 2017
+146 r willa on typeii superconductors geometric barrier and bulk vortex
+pinning eth research collections 2016
+147 a gurevich enhancement of rf breakdown field of superconductors by
+multilayer coating appl phys lett 88 012511 2006
+148 h padamsee rf superconductivity wileyvch verlag gmbh  co
+kgaa 2009
+149 h padamsee 50 years of success for srf acceleratorsa review supercond sci technol 30 053003 2017
+150 a grassellino a romanenko y trenikhina m checchin m martinello o s melnychuk s chandrasekaran d a sergatskov s posen
+a c crawford s aderhold and d bice unprecedented quality factors
+at accelerating gradients up to 45 mvm1in niobium superconducting resonators via low temperature nitrogen infusion supercond sci technol
+30 094004 2017
+151 j kroll f borsoi v d enden w ulihoom d de jong m quinteroperez d van woerkom a bruno s plissard d car e bakkers
+m cassidy and l p kouwenhoven magneticfieldresilient superconducting coplanarwaveguide resonators for hybrid circuit quantum electrodynamics experiments phys rev appl 11 064053 2019
+152 j martinis m ansmann and j aumentado energy decay in superconducting josephsonjunction qubits from nonequilibrium quasiparticle excitations phys rev lett 103 097002 2009
+153 d finke  quantum computing report qubit scorecard  https
+quantumcomputingreportcomscorecardsqubitquality
+2019 online accessed 20april2019
+154 d j van harlingen b l t plourde t l robertson p a reichardt
+and j clarke decoherence in flux qubits due to 1f noise in josephson
+junctions in quantum computing and quantum bits in mesoscopic systems edited by a leggett b ruggiero and p silvestrini springer us
+2004 1st ed pp 171184
+155 n samkharadze a bruno p scarlino g zheng d p divincenzo
+l dicarlo and l m k vandersypen highkineticinductance superconducting nanowire resonators for circuit qed in a magnetic field phys
+rev applied 5 044004 2016
+156 a schneider t wolz m pfirrmann m spiecker h rotzinger a v
+ustinov and m weides transmon qubit in a magnetic field evolution
+of coherence and transition frequency phys rev res 1 023003 2019
+157 d bothner d wiedmaier b ferdinand r kleiner and d koelle improving superconducting resonators in magnetic fields by reduced field
+focussing and engineered flux screening phys rev applied 8 034025
+2017
+158 d bothner t gaber m kemmler d koelle and r kleiner improving the performance of superconducting microwave resonators in magnetic
+fields appl phys lett 98 102504 2011
+159 d bothner c clauss e koroknay m kemmler t gaber m jetter
+m scheffler p michler m dressel d koelle and r kleiner reducing
+vortex losses in superconducting microwave resonators with microsphere
+patterned antidot arrays appl phys lett 100 012601 2012
+160 b chiaro a megrant a dunsworth z chen r barends b campbell
+y chen a fowler i c hoi e jeffrey j kelly j mutus c neill p j j
+omalley c quintana p roushan d sank a vainsencher j wenner
+t c white and j m martinis dielectric surface loss in superconducting resonators with fluxtrapping holes supercond sci technol 29
+104006 2016
+161 s kwon a fadavi roudsari o w b benningshof yc tang h r
+mohebbi i a j taminiau d langenberg s lee g nichols d g
+cory and gx miao magnetic field dependent microwave losses in superconducting niobium microstrip resonators j appl phys 124 033903
+2018 httpsdoiorg10106315027003
+162 m a golosovsky h j snortland and m r beasley nonlinear microwave properties of superconducting nb microstrip resonators phys
+rev b 51 6462 1995
+163 j m sage v bolkhovsky w d oliver b turek and p b welander 
+study of loss in superconducting coplanar waveguide resonators  j appl
+phys 109 063915 2011
+164 s ohya b chiaro a megrant c neill r barends y chen j kelly
+d low j mutus p omalley p roushan d sank a vainsencher
+j wenner t c white y yin b d schultz c j palmstrom b a
+mazin a n cleland and j m martinis room temperature deposition of sputtered tin films for superconducting coplanar waveguide resonators supercond sci technol 27 015009 2014
+165 m r vissers j s kline j gao d s wisbey and d p pappas reduced microwave loss in trenched superconducting coplanar waveguides
+appl phys lett 100 082602 2012
+166 h g leduc b bumble p k day b h eom j gao s golwala
+b a mazin s mchugh a merrill d c moore o noroozian a d
+turner and j zmuidzinas titanium nitride films for ultrasensitive microresonator detectors appl phys lett 97 102509 2013
+167 m sandberg m r vissers j s kline m weides j gao d s wisbey and d p pappas etch induced microwave losses in titanium nitride
+superconducting resonators appl phys lett 100 262605 2012
+168 j
+b chang m r vissers a d crcoles m sandberg j gao d w
+abraham j m chow j m gambetta m beth rothwell g a keefe
+m steffen and d p pappas improved superconducting qubit coherence
+using titanium nitride appl phys lett 103 012602 2013
+169 a j kerman e dauler w keicher j yang k berggren g goltsman
+and b b voronov kineticinductancelimited reset time of superconducting nanowire photon counters appl phys lett 88 111116 2006
+170 r barends n vercruyssen a endo p j de visser t zijlstra
+t m klapwijk and j j a baselmans reduced frequency noise
+in superconducting resonators appl phys lett 97 033507 2010
+httpsdoiorg10106313467052
+171 r barends n vercruyssen a endo p j de visser t zijlstra p diener
+s j c yates and j j a baselmans  minimal resonator loss for circuit
+quantum electrodynamics appl phys lett 97 023508 2010
+172 a bruno g de lange s asaad k l van der enden n k langford
+and l dicarlo reducing intrinsic loss in superconducting resonators by
+surface treatment and deep etching of silicon substrates appl phys lett
+106 182601 2015
+173 e dumur b delsol t weissl b kung w guichard c hoarau
+c naud k hasselbach o buisson k ratter and b gilles epitaxial
+rhenium microwave resonators ieee trans appl supercond 26 19
+2016
+174 h wang m hofheinz j wenner m ansmann r c bialczak
+m lenander e lucero  m neeley a d oconnell d sank m weides a cleland and j m martinis improving the coherence time of superconducting coplanar resonators appl phys lett 95 233508 2009
+175 m r vissers j gao d s wisbey d a hite c c tsuei a d
+corcoles m steffen and d p pappas low loss superconducting titanium nitride coplanar waveguide resonators appl phys lett 97 232509
+2010
+176 k h kuit j r kirtley w van der veur c g molenaar f j g
+roesthuis a g p troeman j r clem h hilgenkamp h rogalla
+and j flokstra vortex trapping and expulsion in thinfilm yba2 cu3 o7
+strips phys rev b 77 134504 2008
+177 cx liu d e liu fc zhang and ck chiu protocol for reading
+out majorana vortex qubits and testing nonabelian statistics phys rev
+appl 12 054035 2019
+178 e grosfeld and a stern observing majorana bound states of josephson vortices in topological superconductors pnas 108 1181011814
+2011
+179 s r lee p a sharma a l limasharma w pan and t m nenoff
+topological quantum materials for realizing majorana quasiparticles
+chemistry of materials 31 2651 2019
+180 j q you z d wang w zhang and f nori encoding a qubit with
+majorana modes in superconducting circuits sci rep 4 5535 2014
+181 m cheng r m lutchyn and s das sarma topological protection of
+majorana qubits phys rev b 85 165124 2012
+182 j c budich s walter and b trauzettel failure of protection of majorana based qubits against decoherence phys rev b 85 121405 2012
+183 s vijay and l fu teleportationbased quantum information processing
+with majorana zero modes phys rev b 94 235446 2016
+184 j alicea new directions in the pursuit of majorana fermions in solid state
+systems rep prog phys 75 076501 2012
+185 ck chiu t machida y huang t hanaguri and fc zhang scalable majorana vortex modes in ironbased superconductors sci adv 6
+2020 101126sciadvaay0443
+186 a ghazaryan p l s lopes p hosur m j gilbert and p ghaemi
+effect of zeeman coupling on the majorana vortex modes in ironbased
+topological superconductors phys rev b 101 020504 2020
+187 s manna p wei y xie k t law p a lee and j s moodera signature of a pair of majorana zero modes in superconducting gold surface
+states pnas 117 87758782 2020
+188 s vaitiekenas g w winkler b van heck t karzig mt deng
+k flensberg l i glazman c nayak p krogstrup r m lutchyn and
+c m marcus fluxinduced topological superconductivity in fullshell
+nanowires science 367 2020 101126scienceaav3392
+189 hh sun kw zhang lh hu c li gy wang hy ma za
+xu cl gao dd guan yy li c liu d qian y zhou l fu sc li fc zhang and jf jia majorana zero mode detected with spin
+selective andreev reflection in the vortex of a topological superconductor
+phys rev lett 116 257003 2016
+obradors and t puig coated conductors for power applications materials challenges supercond sci technol 27 044003 2014
+191 g majkic r pratap e galstyan a xu y zhang and v selvamanickam engineering of nanorods for superior in field performance of 2ghts conductor utilizing advanced mocvd reactor ieee trans appl supercond 27 15 2017
+192 k crombecq d gorissen d deschrijver and t dhaene a novel
+hybrid sequential design strategy for global surrogate modeling of computer experiments siam journal on scientific computing 33 19481974
+2011
+193 m p a fisher vortexglass superconductivity a possible new phase in
+bulk hightc oxides phys rev lett 62 1415 1989
+194 d s fisher m p a fisher and d a huse thermal fluctuations
+quenched disorder phase transitions and transport in typeii superconductors phys rev b 43 130 1991
+195 d r nelson vortex entanglement in hight superconductors phys
+rev lett 60 1973 1988
+196 e h brandt thermal fluctuation and melting of the vortex lattice in
+oxide superconductors phys rev lett 63 1106 1989
+197 a houghton r a pelcovits and a sudb flux lattice melting in
+hightc superconductors phys rev b 40 6763 1989
+198 p e batson n dellby and o l krivanek subngstrom resolution
+using aberration corrected electron optics nature 418 617620 2002
+199 h rose prospects for aberrationfree electron microscopy ultramicroscopy 103 16 2005 proceedings of the ninth conference on frontiers of electron microscopy in materials science
+200 u dahmen r erni v radmilovic c ksielowski md rossell and
+p denes background status and future of the transmission electron
+aberrationcorrected microscope project philos trans a math phys
+eng sci 367 37953808 2009
+201 c ophus a fast image simulation algorithm for scanning transmission
+electron microscopy asci 3 13 2017
+202 c kisielowski b freitag m bischoff h van lin s lazar g knippels
+p tiemeijer m van der stam s von harrach m stekelenburg and
+et al detection of single atoms and buried defects in three dimensions
+by aberrationcorrected electron microscope with 05 information limit
+microsc microanal 14 469477 2008
+203 r erni m d rossell c kisielowski and u dahmen atomicresolution imaging with a sub50pm electron probe phys rev lett 102
+096101 2009
+204 n alem r erni c kisielowski m d rossell w gannett and a zettl
+atomically thin hexagonal boron nitride probed by ultrahighresolution
+transmission electron microscopy phys rev b 80 155425 2009
+205 n shibata atomicresolution differential phase contrast electron microscopy j ceram soc jpn 127 708714 2019
+206 c ophus fourdimensional scanning transmission electron microscopy
+4dstem from scanning nanodiffraction to ptychography and beyond
+microsc microanal 25 563582 2019
+207 m ziatdinov o dyck a maksov x li x sang k xiao r r unocic
+r vasudevan s jesse and s v kalinin deep learning of atomically
+resolved scanning transmission electron microscopy images chemical identification and tracking local transformations acs nano 11
+1274212752 2017
+208 j miao p ercius and s j l billinge atomic electron tomography 3d
+structures without crystals science 353 2016 101126scienceaaf2157
+209 m schaffer b schaffer and q ramasse sample preparation for
+atomicresolution stem at low voltages by fib ultramicroscopy 114 62
+71 2012
+210 t petersen m miller t kelly k rajan and s ringer a new approach to electron tomography for the atom project microsc microanal
+17 956957 2011
+211 t kelly and m miller atom probe tomography review of scientific
+instruments 78 031101 2007
+212 d w gidley hg peng and r s vallery positron annihilation as
+a method to characterize porous materials annual review of materials
+research 36 4979 2006
+213 p or d dribin d cohen g erlichman e cohen o hen e piasetzky
+i sabonapadensky h steinberg s mt beck and g ron spot
+il  slow positron facility in israel aip conference proceedings 2182
+190 x
+040009 2019
+strsk m janeek i semenova j ek k bartha p harcuba
+v polyakova and s gatina 45  microstructure and lattice defects in
+ultrafine grained biomedical    and metastable  ti alloys in titanium
+in medical and dental applications woodhead publishing series in biomaterials edited by f h froes and m qian woodhead publishing 2018
+pp 455475
+215 p schultz and k lynn interaction of positron beams with surfaces thin
+films and interfaces rev mod phys 60 1988
+216 r pethrick positron annihilationa probe for nanoscale voids and free
+volume prog polym sci 22 147 1997
+217 p j schultz and k g lynn interaction of positron beams with surfaces
+thin films and interfaces rev mod phys 60 701779 1988
+218 a wagner m butterling m o liedke k potzger and r krauserehberg positron annihilation lifetime and doppler broadening spectroscopy at the elbe facility aip conference proceedings 1970 040003
+2018
+219 hg peng w e frieze r s vallery d w gidley d l moore and
+r j carter revealing hidden pore structure in nanoporous thin films
+using positronium annihilation lifetime spectroscopy appl phys lett
+86 121904 2005
+220 a david g kgel p sperr and w triftshuser lifetime measurements with a scanning positron microscope phys rev lett 87 067402
+2001
+221 t gigl l beddrich m dickmann b riencker m thalmayr s vohburger and c hugenschmidt defect imaging and detection of precipitates using a new scanning positron microbeam new journal of physics
+19 123007 2017
+222 m mcdowell k jungjohann and u celano dynamic nanomaterials phenomena investigated with in situ transmission electron microscopy
+a nano letters virtual issue nano lett 18 657659 2018 pmid
+29444554
+223 b h goodge e bianco n schnitzer h w zandbergen and l f
+kourkoutis atomicresolution cryostem across continuously variable
+temperatures microsc microanal 26 439446 2020
+224 cryogenic temperature controlled electrical biasing insitu tem
+sample platform httpswwwsbirgovsbirsearchdetail
+1618809 2019 accessed 20210104
+225 m l taheri e a stach i arslan p a crozier b c kabius t lagrange a m minor s takeda m tanase j b wagner and r sharma
+current status and future directions for in situ transmission electron microscopy ultramicroscopy 170 8695 2016
+226 o kamimura h kasai t akashi t matsuda k harada j masuko t yoshida n osakabe a tonomura m beleggia g pozzi ji shimoyama k kishio t hanaguri k kitazawa m sasase and
+s okayasu direct evidence of the anisotropic structure of vortices interacting with columnar defects in hightemperature superconductors through
+the analysis of lorentz images j phys soc jpn 71 18401843 2002
+227 a tonomura the aharonovbohm effect and its applications to electron
+phase microscopy proc jpn acad ser b 82 4558 2006
+228 k harada j endo n osakabe and a tonomura directionfree magnetic field application system ej surf sci nanotech 6 2934 2008
+229 t kawasaki t yoshida t matsuda n osakabe a tonomura i matsui and k kitazawa fine crystal lattice fringes observed using a transmission electron microscope with 1 mev coherent electron waves appl
+phys lett 76 13421344 2000
+214 j
+230 k
+harada vortex matter research by electron microscopy  memorial to
+dr akira tonomura  physics procedia 45 14 2013 proceedings of the
+25th international symposium on superconductivity iss2012
+231 a tonomura h kasai o kamimura t matsuda k harada t yoshida
+t akashi j shimoyama k kishio t hanaguri k kitazawa t masui s tajima n koshizuka p l gammel d bishop m sasase and
+s okayasu observation of structures of chain vortices inside anisotropic
+high tc superconductors phys rev lett 88 237001 2002
+232 a tonomura h kasai o kamimura t matsuda k harada
+y nakayama j shimoyama k kishio t hanaguri k kitazawa
+m sasase and s okayasu observation of individual vortices trapped
+along columnar defects in hightemperature superconductors nature 412
+620622 2001
+233 a lubk and j zweck differential phase contrast an integral perspective phys rev a 91 023805 2015
+234 n dekkers and h de lang differential phase contrast in a stem
+optik 41 452 1974
+235 j n chapman p e batson e m waddell and r p ferrier the direct determination of magnetic domain wall profiles by differential phase
+contrast electron microscopy ultramicroscopy 3 203 1978
+236 s j lee h j lee k song s y choi and h park insitu observation
+of domain wall motion in electroplated ni80fe20 thin film by lorentz
+tem and dpc imaging j magn 22 563569 2017
+237 c chen h li t seki d yin g sanchezsantolino k inoue n shibata and y ikuhara direct determination of atomic structure and magnetic coupling of magnetite twin boundaries acs nano 12 26622668
+2018
+238 s mcvitie s hughes k fallon s mcfadzean d mcgrouther m krajnak w legrand d maccariello s collin k garcia n reyren v cros
+a fert k zeissler and c h marrows a transmission electron microscope study of nel skyrmion magnetic textures in multilayer thin film
+systems with large interfacial chiral interaction sci rep 8 5703 2018
+239 t matsumoto yg so y kohno h sawada y ikuhara and n shibata
+direct observation of  7 domain boundary core structure in magnetic
+skyrmion lattice sci adv 2 2016 101126sciadv1501280
+240 s schneider d wolf m j stolt s jin d pohl b rellinghaus
+m schmidt b bchner s t b goennenwein k nielsch and a lubk
+induction mapping of the 3dmodulated spin texture of skyrmions in thin
+helimagnets phys rev lett 120 217201 2018
+241 k mller f f krause a bch m schowalter v galioit s lffler
+j verbeeck j zweck p schattschneider and a rosenauer atomic
+electric fields revealed by a quantum mechanical approach to electron picodiffraction nat commun 5 5653 2014
+242 j a hachtel j c idrobo and m chi subngstrom electric field
+measurements on a universal detector in a scanning transmission electron
+microscope asci 4 10 2018
+243 n shibata s d findlay y kohno h sawada y kondo and y ikuhara
+differential phasecontrast microscopy at atomic resolution nat phys
+8 611615 2012
+244 n shibata t seki g snchezsantolino s d findlay y kohno
+t matsumoto r ishikawa and y ikuhara electric field imaging of
+single atoms nat commun 8 15631 2017
+245 e ycelen i lazi and e g t bosch phase contrast scanning transmission electron microscopy imaging of light and heavy atoms at the limit
+of contrast and resolution sci rep 8 2676 2018

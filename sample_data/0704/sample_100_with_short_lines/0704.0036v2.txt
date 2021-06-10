@@ -1,0 +1,1538 @@
+arxiv07040036v2 qbioqm 20 jul 2007
+
+a remark on the number of steady states in a multiple futile cycle
+liming wang and eduardo d sontag
+department of mathematics
+rutgers university new brunswick nj usa
+
+abstract
+the multisite phosphorylationdephosphorylation cycle is a motif repeatedly used in cell signaling
+this motif itself can generate a variety of dynamic behaviors like bistability and ultrasensitivity without
+direct positive feedbacks in this paper we study the number of positive steady states of a general
+multisite phosphorylationdephosphorylation cycle and how the number of positive steady states varies
+by changing the biological parameters we show analytically that 1 for some parameter ranges there
+are at least n  1 if n is even or n if n is odd steady states 2 there never are more than 2n  1
+steady states in particular this implies that for n  2 including single levels of mapk cascades there
+are at most three steady states 3 for parameters near the standard michaelismenten quasisteady
+state conditions there are at most n  1 steady states and 4 for parameters far from the standard
+michaelismenten quasisteady state conditions there is at most one steady state
+
+keywords futile cycles bistability signaling pathways biomolecular networks steady states
+
+1
+
+introduction
+
+a promising approach to handling the complexity of cell signaling pathways is to decompose pathways into
+small motifs and analyze the individual motifs one particular motif that has attracted much attention in
+recent years is the cycle formed by two or more interconvertible forms of one protein the protein denoted
+here by s0  is ultimately converted into a product denoted here by sn  through a cascade of activation
+reactions triggered or facilitated by an enzyme e conversely sn is transformed back or deactivated
+into the original s0  helped on by the action of a second enzyme f  see figure 1
+e
+s0
+
+e
+s1
+
+f
+
+e
+s2
+
+s n2
+
+f
+
+e
+s n1
+
+f
+
+sn
+f
+
+figure 1 a futile cycle of size n
+such structures often called futile cycles also called substrate cycles enzymatic cycles or enzymatic
+interconversions see 1 serve as basic blocks in cellular signaling pathways and have pivotal impact on
+the signaling dynamics futile cycles underlie signaling processes such as gtpase cycles 2 bacterial
+twocomponent systems and phosphorelays 3 4 actin treadmilling 5 and glucose mobilization 6 as
+well as metabolic control 7 and cell division and apoptosis 8 and cellcycle checkpoint control 9 one
+very important instance is that of mitogenactivated protein kinase mapk cascades which regulate
+
+1
+
+primary cellular activities such as proliferation differentiation and apoptosis 1013 in eukaryotes from
+yeast to humans
+mapk cascades usually consist of three tiers of similar structures with multiple feedbacks 1416
+each individual level of the mapk cascades is a futile cycle as depicted in figure 1 with n  2 markevich
+et als paper 17 was the first to demonstrate the possibility of multistationarity at a single cascade
+level and motivated the need for analytical studies of the number of steady states conradi et al studied
+the existence of multistationarity in their paper 19 employing algorithms based on feinbergs chemical
+reaction network theory crnt for more details on crnt see 3132 the crnt algorithm confirms
+multistationarity in a single level of mapk cascades and provides a set of kinetic constants which can
+give rise to multistationarity however the crnt algorithm only tests for the existence of multiple steady
+states and does not provide information regarding the precise number of steady states
+in 18 gunawardena proposed a novel approach to the study of steady states of futile cycles his
+approach which was focused in the question of determining the proportion of maximally phosphorylated
+substrate was developed under the simplifying quasisteady state assumption that substrate is in excess
+nonetheless our study of multistationarity uses in a key manner the basic formalism in 18 even for the
+case when substrate is not in excess
+in section 2 we state our basic assumptions regarding the model the basic formalism and background
+for the approach is provided in section 3 the main focus of this paper is on section 4 where we derive
+various bounds on the number of steady states of futile cycles of size n the first result is a the lower
+bound for the number of steady states currently available results on lower bounds as in 29 can only
+handle the case when quasisteady state assumptions are valid we substantially extend these results to the
+fully general case by means of a perturbation argument which allows one to get around these restricted
+assumptions another novel feature of our results in this paper is the derivation of an upper bound
+of 2n  1 valid for all kinetic constants models in molecular cell biology are characterized by a high
+degree of uncertainly in parameters hence such results valid over the entire parameter space are of special
+significance however when more information of the parameters are available sharper upper bounds can
+obtained see theorems 4 and 5 we finally conclude our paper in section 5 with a conjecture of an n  1
+upper bound
+we remark that the results given here complement our work dealing with the dynamical behavior
+of futile cycles for the case n  2 25 showed that the model exhibits generic convergence to steady
+states but no more complicated behavior at least within restricted parameter ranges while 27 showed a
+persistence property no species tends to be eliminated for any possible parameter values these papers
+did not address the question of estimating the number of steady states an exception is the case n  1
+for which uniqueness of steady states can be proved in several ways and for which global convergence to
+these unique equilibria holds 27
+
+2
+
+model assumptions
+
+before presenting mathematical details let us first discuss the basic biochemical assumptions that go into
+the model in general phosphorylation and dephosphorylation can follow either distributive or processive
+mechanism in the processive mechanism the kinase phosphatase facilitates two or more phosphorylations
+dephosphorylations before the final product is released whereas in the distributive mechanism the kinase
+phosphatase facilitates at most one phosphorylation dephosphorylation in each molecular encounter
+in the case of n  2 a futile cycle that follows the processive mechanism can be represented by reactions
+2
+
+as follows
+s0  e  es0  es1  s2  e
+s2  f  f s2  f s1  s0  f 
+and the distributive mechanism can be represented by reactions
+s0  e  es0  s1  e  es1  s2  e
+s2  f  f s2  s1  f  f s1  s0  f
+biological experiments have demonstrated that both dual phosphorylation and dephosphorylation in mapk
+are distributive see 1416 in their paper 19 conradi et al showed mathematically that if either phosphorylation or dephosphorylation follows a processive mechanism the steady state will be unique which
+it is argued in 19 contradicts experimental observations so to get more interesting results we assume
+that both phosphorylations and dephosphorylations in the futile cycles follow the distributive mechanism
+our structure of futile cycles in figure 1 also implicitly assumes a sequential instead of a random
+mechanism by a sequential mechanism we mean that the kinase phosphorylates the substrates in a
+specific order and the phosphatase works in the reversed order this assumption dramatically reduces the
+number of different phosphoforms and simplifies our analysis in a special case when the kinetic constants
+of each phosphorylation are the same and the kinetic constants of each dephosphorylation are the same
+the random mechanism can be easily included in the sequential case biologically there are systems for
+instance the autophosphorylation of fgfreceptor1 that have been experimentally shown to follow a
+sequential mechanism 33
+to model the reactions we assume mass action kinetics which is standard in mathematical modeling
+of molecular events in biology
+
+3
+
+mathematical formalism
+
+in this section we set up a mathematical framework for studying the steady states of futile cycles let us
+first write down all the elementary chemical reactions in figure 1
+s0  e
+
+kon0
+
+
+
+koff0
+
+
+
+kcat
+es0  0 s1  e
+
+konn1
+sn1  e
+
+
+
+
+koffn1
+
+es0
+
+3
+
+kcat
+
+n1
+
+
+
+sn  e
+
+s1  f
+
+lon0
+
+
+
+loff0
+
+
+
+lcat
+f s1  0 s0  f
+
+lonn1
+sn  f
+
+
+
+
+loffn1
+
+lcat
+
+n1
+
+
+
+f sn
+
+sn1  f
+
+where kon0  etc are kinetic parameters for binding and unbinding es0 denotes the complex consisting of
+the enzyme e and the substrate s0  and so forth these reactions can be modeled by 3n  3 differentialalgebraic equations according to mass action kinetics
+ds0
+dt
+dsi
+dt
+dcj
+dt
+ddk
+dt
+
+ kon0 s0 e  koff0 c0  lcat0 d1
+ koni si e  koffi ci  kcati1 ci1  loni1 si f  loffi1 di  lcati di1  i  1     n  1
+ konj sj e  koffj  kcatj cj  j  0     n  1
+
+1
+
+ lonk1 sk f  loffk1  lcatk1 dk  k  1     n
+
+together with the algebraic conservation equations
+etot  e 
+ftot  f 
+
+n1
+x
+
+ci 
+
+0
+n
+x
+
+di 
+
+2
+
+1
+
+stot 
+
+n
+x
+
+si 
+
+n1
+x
+
+ci 
+
+0
+
+0
+
+n
+x
+
+di 
+
+1
+
+the variables s0      sn  c0      cn1  d1      dn  e f stand for the concentrations of
+s0      sn  es0      esn1  f s1      f sn  e f
+respectively for each positive vector
+ kon0      konn1  koff0      koffn1  kcat0      kcatn1 
+6n6
+lon0      lonn1  loff0      loffn1  lcat0      lcatn1   r
+
+of kinetic constants and each positive triple c  etot  ftot  stot  we have a different system  c
+3n3
+as
+let us write the coordinates of a vector x  r
+
+x  s0      sn  c0      cn1  d1      dn  e f 
+and define a mapping
+6n6
+3n3
+ r3  r3n3
+ r
+  r
+
+4
+
+with components 1      3n3 where the first 3n components are
+1 x  c  kon0 s0 e  koff0 c0  lcat0 d1 
+and so forth listing the right hand sides of the equations 1 3n1 is
+e
+
+n1
+x
+
+ci  etot 
+
+0
+
+and similarly for 3n2 and 3n3  we use the remaining equations in 2
+for each  c let us define a set
+z c  x  x  c  0
+3n3
+ x is a positive steady state of  c if and only if x  z c
+observe that by definition given x  r
+so the mathematical statement of the central problem in this paper is to count the number of elements
+in z c our analysis will be greatly simplified by a preprocessing let us introduce a function
+6n6
+3n3
+ r3  r3n3
+ r
+  r
+
+with components 1      3n3 defined as
+1  1  n1
+i  i  ni  2ni1  i1  i  2     n
+j  j  j  n  1     3n  3
+it is easy to see that
+z c  x  x  c  0
+but now the first 3n equations are
+i  lcati1 di  kcati1 ci1  0 i  1     n
+n1j  konj sj e  koffj  kcatj cj  0 j  0     n  1
+2nk  lonk1 sk f  loffk1  lcatk1 dk  0 k  1     n
+and can be easily solved as
+si1  i ef si 
+esi
+ci 
+kmi
+f si1
+di1 
+
+lm i
+where
+
+kcati  koffi
+lcati  loffi
+k
+lm i
+ kmi 
+i  cati
+ lm i 
+ i  0     n  1
+kmi lcati
+koni
+loni
+
+5
+
+3
+4
+5
+
+6
+
+we may now express
+n
+x
+
+pn
+0
+
+si 
+
+pn1
+0
+
+ci and
+
+pn
+1
+
+di in terms of s0   e and f 
+
+ 
+ n 
+ 2
+ 
+e
+e
+e
+e
+     0    n1
+ s0 0
+ 0 1
+
+s i  s 0 1  0
+f
+f
+f
+f
+0
+
+ 
+ 
+ 
+n1
+x
+1
+e
+e
+0
+0    n2 e n1
+
+ci  es0
+ es0 1
+
+  
+
+km0
+km1 f
+kmn1
+f
+f
+0
+ 
+ 
+  
+ 
+n
+x
+e
+0
+0    n1 e n
+e
+0 1 e 2
+
+di  f s0
+  
+ f s0 2
+
+
+lm 0 f
+lm 1 f
+lmn1
+f
+f
+1
+
+7
+
+although the equation   0 represents 3n  3 equations with 3n  3 unknowns next we will show that
+it can be reduced to two equations with two unknowns which have the same number of positive solutions
+as   0 let us first define a set
+c
+s c  u v  r  r  gc
+1 u v  0 g2 u v  0
+c
+2
+where gc
+1  g2  r  r are given by
+
+
+gc
+1 u v  v u1 u  2 uetot ftot   etot ftot  u
+
+
+
+2
+
+
+
+gc
+2 u v  0 u2 uv  0 u  stot 2 u  ftot u1 u  ftot 2 u v  stot 
+
+the precise statement is as follows
+lemma 1 there exists a mapping   r3n3  r2 such that for each  c the map  restricted to
+z c is a bijection between the sets z c and s c
+proof let us define the mapping   r3n3  r2 as x  ef s0  where
+x  s0      sn  c0      cn1  d1      dn  e f 
+if we can show that  induces a bijection between z c and s c we are done
+first we claim that z c  s c pick any x  z c we have that x satisfies 35
+moreover 3n2 x  c  0 yields
+e
+etot  e  es0 1  
+f
+and thus
+etot
+
+8
+e
+1  s0 1 ef 
+using 3n1 x  c  0 and 3n2 x  c  0 we get
+etot
+e1  s0 1 ef 
+
+
+ftot
+f 1  s0 2 ef 
+
+which is gc
+1 ef s0   0 after multiplying by 1  s0 2 ef  and rearranging terms
+
+to check that gc
+2 ef s0   0 we start with 3n3 x  c  0 ie
+stot 
+
+n
+x
+
+si 
+
+n1
+x
+0
+
+0
+
+6
+
+ci 
+
+n
+x
+1
+
+di 
+
+9
+
+using 7 and 8 this expression becomes
+e
+stot  s0 0   
+f
+e
+ s0 0   
+f
+
+etot s0 1 ef  ftot s0 2 ef 
+
+1  s0 1 ef 
+1  s0 2 ef 
+eftot s0 1 ef 
+f s0  ef 
+ tot 2
+
+
+f 1  s0 2 ef 
+1  s0 2 ef 
+
+where the last equality comes from 9
+after multiplying by 1  s0 2 ef  and simplifying we get
+
+
+e
+ e 2
+ e
+ e
+ e
+
+ e
+0  2  s0  0    stot 2    ftot 1    ftot 2 u s0  stot  0
+f
+f
+f
+f
+f
+f
+c
+c
+that is gc
+2 ef s0   0 since both g1 ef s0  and g2 ef s0  are zero x  s c
+
+next we will show that s c  z c for any y  u v  s c let the coordinates of x be
+defined as
+s0  v
+si1  i usi
+etot
+e
+1  s0 1 u
+e
+f
+u
+esi
+ci 
+kmi
+f si1
+di1 
+lm i
+for i  0     n  1 it is easy to see that the vector x  s0      sn  c0      cn1  d1      dn  e f  satisfies
+1 x  c  0     3n1 x  c  0 if 3n2 x  c and 3n3 x  c are also zero then x is an
+element of z c with x  y given the condition that gc
+i u v  0 i  1 2 and u  ef v  s0 
+c
+we have g1 ef s0   0 and therefore 9 holds since
+e
+
+etot
+1  s0 1 ef 
+
+in our construction we have
+ftot  f 1  s0 2 ef   f 
+
+n
+x
+
+di 
+
+1
+
+to check 3n3 x  c  0 we use
+
+gc
+2 ef s0 
+ 0
+1  s0 2 ef 
+
+
+as gc
+2 ef s0   0 and 1  s0 2 ef   0 applying 79 we have
+n
+x
+0
+
+si 
+
+n1
+x
+0
+
+ci 
+
+n
+x
+1
+
+di  s0 0 ef  
+
+eftot s0 1 ef 
+ftot s0 2 ef 
+
+ stot 
+f 1  s0 2 ef 
+1  s0 2 ef 
+7
+
+it remains for us to show that the map  is one to one on z c suppose that x1   x2   u v
+where
+xi  si0      sin  ci0      cin1  di1      din  ei  f i  i  1 2
+by the definition of  we know that s10  s20 and e1 f 1  e2 f 2  therefore s1i  s2i for i  0     n
+equation 8 gives
+etot
+ e2 
+e1 
+1  v1 u
+thus f 1  f 2  and c1i  c2i  d1i1  d2i1 for i  0     n  1 because of 35 therefore x1  x2  and 
+is one to one
+the above lemma ensures that the two sets z c and s c have the same number of elements from
+c
+now on we will focus on s c the set of positive solutions of equations gc
+1 u v  0 g2 u v  0
+ie
+
+
+gc
+1 u v  v u1 u  2 uetot ftot   etot ftot  u  0
+
+gc
+2 u v
+
+4
+
+
+
+0 u2 uv 2
+
+
+
+0 u
+
+
+
+stot 2 u
+
+ ftot u1 u 
+
+10
+ftot 2 u v
+
+ stot  0
+
+11
+
+number of positive steady states
+
+41
+
+lower bound on the number of positive steady states
+
+c
+one approach to solving 1011 is to view gc
+2 u v as a quadratic polynomial in v since g2 u 0  0
+equation 11 has a unique positive root namely
+p
+h c u  h c u2  4stot 0 u2 u
+
+12
+v
+20 u2 u
+
+where
+h c u  0 u  stot 2 u  ftot u1 u  ftot 2 u
+
+13
+
+0 u
+
+we get
+substituting this expression for v into 10 and multiplying by
+q
+
+h c u  h c u2  4stot 0 u2 u 
+e
+etot 
+c
+
+f u 
+2 u  tot 0 uu0 u  0
+u1 u 
+
+22 u
+ftot
+ftot
+14
+so any u v  s c should satisfy 12 and 14 on the other hand any positive solution u of 14
+notice that 0 u  0 and v given by 12 always positive provide a positive a solution of 1011
+that is u v is an element in s c therefore the number of positive solutions of 1011 is the same
+as the number of positive solutions of 12 and 14 but v is uniquely determined by u in 12 which
+further simplifies the problem to one equation 14 with one unknown u based on this observation we
+have
+6n6
+such that the following
+theorem 1 for each positive numbers stot   there exist 0  0 and   r
+property holds pick any etot  ftot such that
+
+ftot  etot   0 stot 
+
+15
+
+then the system  c with c  etot  ftot  stot  has at least n  1 n positive steady states when n is
+even odd
+8
+
+proof for each   stot  let us define two functions r  r  r as follows
+h stot  u  h stot stot stot  u
+s
+s
+ 0 u  stot 2 u   tot u1 u   tot 2 u
+
+
+
+16
+
+and
+f stot  u  f stot stot stot  u
+17
+q
+h stot  u  h stot  u2  4stot 0 u2 u
+
+u1 u  2 u
+22 u
+ 0 u  u0 u
+by lemma 1 and the argument before this theorem it is enough to show that there exist 0  0 and  
+6n6
+such that for all   0 0  the equation f stot  u  0 has at least n  1 n positive solutions
+r
+when n is even odd then given stot   etot  and ftot satisfying 15 we let   etot stot  0 
+and apply the result
+a straightforward computation shows that when   0
+f stot 0 u  stot u1 u  2 u  0 u  u0 u
+
+
+stot
+n1
+1  n1   n1 un
+ 0    n1 u
+ 0    n2 1 
+kmn1
+
+
+stot
+1  i1   i1 ui    
+     0    i2 1 
+kmi1
+
+
+stot
+ 1
+1  0   0 u  
+km0
+
+18
+
+where the i s and kmi s are defined as in 6 and i  kcati lcati  the polynomial f stot 0 u
+is of degree n  1 so there are at most n  1 positive roots notice that u  0 is not a root because
+f stot 0 u    0 which also implies that when n is odd there can not be n  1 positive roots
+now fix any stot and  we will construct a vector  such that f stot 0 u has n  1 distinct positive
+roots when n is even
+let us pick any n  1 positive real numbers u1      un1  such that their product is  and assume
+that
+u  u1     u  un1   un1  an un      a1 u  a0 
+19
+6n6
+such that
+where a0    0 keeping in mind that ai s are given our goal is to find a vector   r
+18 and 19 are the same for each i  0     n  1 we pick i  1 comparing the coefficients of ui1
+in 18 and 19 we have
+stot
+1  a0 i   ai1  a0  1
+20
+kmi
+
+let us pick kmi  0 such that
+
+k mi
+stot ai1
+
+i 
+
+ a0  1  1  0 then take
+k mi
+stot ai1
+
+ a0  1  1
+a0
+9
+
+0
+
+in order to satisfy 20 from the given
+0      n1  km0      kmn1  0      n1 
+we will find a vector
+ kon0      konn1  koff0      koffn1  kcat0      kcatn1 
+6n6
+lon0      lonn1  loff0      loffn1  lcat0      lcatn1   r
+
+such that i  kcati lcati  i  0     n  1 and 6 holds this vector  will guarantee that f stot 0 u
+has n  1 positive distinct roots when n is odd a similar construction will give a vector  such that
+f stot 0 u has n positive roots and one negative root
+one construction of  given i  kmi  i  i  0     n  1 is as follows for each i  0     n  1 we
+start by defining
+i kmi
+
+lm i 
+i
+consistently with the definitions in 6 then we take
+koni  1 loni  1
+and
+koffi  i kmi  kcati  1  i kmi  lcati 
+
+1  i
+kmi  loffi  lmi  lcati 
+i
+
+where i  0 1 is chosen such that
+loffi  lmi 
+
+1  i
+kmi  0
+i
+
+this  satisfies i  kcati lcati  i  0     n  1 and 6
+in order to apply the implicit function theorem we now view the functions defined by formulas in
+16 and 17 as defined also for   0 ie as functions r  r  r it is easy to see that f stot  u
+is c 1 on r  r because the polynomial under the square root sign in f stot  u is never zero on
+s
+tot 0 u  6 0 by the
+the other hand since f stot 0 u is a polynomial in u with distinct roots  f
+u
+
+i
+
+implicit function theorem for each i  1     n  1 there exist open intervals ei containing 0 and open
+intervals ui containing ui  and a differentiable function
+i  ei  ui
+such that i 0  ui  f stot  i   0 for all   ei  and the images i ei s are nonoverlapping if
+we take
+n1
+
+
+0 
+ei
+0 0  
+1
+
+then for any   0 0  we have i  as n  1 distinct positive roots of f stot  u the case when
+n is odd can be proved similarly
+the above theorem shows that when etot ftot is sufficiently small it is always possible for the futile
+cycle to have n  1 n steady states when n is even odd by choosing appropriate kinetic constants 
+10
+
+we should notice that for arbitrary  the derivative of f at each positive root may become zero which
+breaks down the perturbation argument here is an example to show that more conditions are needed
+with
+n  2 0  1 1  3   6 0  1  112 k0  18 k1  12 stot  5
+we have that
+
+f stot 0 u  3u3  12u2  15u  6  3u  12 u  2
+
+has a double root at u  1 in this case even for   001 there is only one positive root of f stot  u
+see figure 2
+10
+
+5
+
+0
+
+1
+
+u
+
+2
+
+3
+
+k5
+
+figure 2 the plot of the function f stot 001 u on 0 3 there is a unique positive real solution
+around u  214 the double root u  1 of f stot 0 u bifurcates to two complex roots with nonzero
+imaginary parts
+however the following lemma provides a sufficient condition for
+ such that f stot 0   0
+
+f
+
+s
+
+u
+
+tot 0  6 0 for any positive
+
+6n6
+ if
+lemma 2 for each positive numbers stot   and vector   r
+
+stot
+holds for all j  1     n  1 then
+
+ f
+
+s
+
+u
+
+1
+1  j
+
+kmj
+n
+
+21
+
+tot 0  6 0
+
+see appendix for the proof
+6n6
+satisfying condition 21 there exists
+theorem 2 for each positive numbers stot   and vector   r
+1  0 such that for any ftot  etot satisfying ftot  etot   1 stot  the number of positive steady
+states of system  c is greater or equal to the number of positive roots of f stot 0 u
+
+proof suppose that f stot 0 u has m roots 1      m  applying lemma 2 we have
+ f stot
+0 k  6 0 k  1     m
+u
+11
+
+by the perturbation arguments as in theorem 1 we have that there exists 1  0 such that f stot  u
+has at least m roots for all 0    1 
+the above result depends heavily on a perturbation argument which only works when etot ftot is
+sufficiently small in the next section we will give an upper bound of the number of steady states with no
+restrictions on etot ftot  and independent of  and c
+
+42
+
+upper bound on the number of steady states
+
+theorem 3 for each  c the system  c has at most 2n  1 positive steady states
+proof an alternative approach to solving 1011 is to first eliminate v from 10 instead of from 11
+ie
+etot ftot  u
+au
+v
+
+
+22
+
+
+u1 u  etot ftot 2 u
+bu
+when u1 u  etot ftot 2 u 6 0 then we substitute 22 into 11 and multiply by u1 u 
+etot ftot 2 u2 to get
+p
+
+c
+
+
+2
+
+
+etot
+etot
+etot 
+
+
+
+
+
+u 
+ u  0  stot 2  ftot u1  ftot 2 
+u
+u1 
+
+ftot
+ftot
+ftot 2
+
+
+etot  2
+
+
+ 0
+23
+ stot u1 
+ftot 2
+0 2
+
+
+
+therefore if u1 u  etot ftot 2 u 6 0 the number of positive solutions of 1011 is no greater
+than the number of positive roots of p c u
+in the special case when u1 u  etot ftot 2 u  0 by 10 we must have u  etot ftot  and
+thus 1 etot ftot   2 etot ftot  substituting into 11 we get a unique v defined as in 12 with
+u  etot ftot  but notice that in this case u  etot ftot is also a root of p c u so also in this case
+the number of positive solutions to 1011 is no greater than the number of positive roots of p c u
+it is easy to see that p c u is divisible by u consider the polynomial qc u  p c uu of
+degree 2n  1 we will first show that qc u has no more than 2n positive roots then we will prove by
+contradiction that 2n distinct positive roots can not be achieved
+it is easy to see that the coefficient of u2n1 is
+0    n1 2
+ 0
+lmn1
+and the constant term is
+
+etot
+ 0
+ftot km0
+
+so the polynomial qc u has at least one negative root and thus has no more than 2n positive roots
+suppose that s c has cardinality 2n then qc u must have 2n distinct positive roots and each of
+them has multiplicity one let us denote the roots as u1      u2n in ascending order we claim that none
+of them equals etot ftot  if so we would have 1 etot ftot   2 etot ftot  and etot ftot would
+be a double root of qc u contradiction
+12
+
+since qc 0  0 qc u is positive on intervals
+i0  0 u1  i1  u2  u3      in1  u2n2  u2n1  in  u2n  
+and negative on intervals
+j1  u1  u2      jn  u2n1  u2n 
+as remarked earlier 1 etot ftot  6 2 etot ftot  the polynomial qc u evaluated at etot ftot
+is negative and therefore etot ftot belongs to one of the j intervals say js  u2s1  u2s  for some
+s  1     n 
+on the other hand the denominator of v in 22 denoted as bu is a polynomial of degree n and
+divisible by u if bu has no positive root then it does not change sign on the positive axis of u but v
+changes sign when u passes etot ftot  thus v2s1 and v2s have opposite signs and one of u2s1  v2s1 
+and u2s  v2s  is not a solution to 1011 which contradicts the fact that both are in s c
+otherwise there exists a positive root  of bu such that there is no other positive root of bu
+between  and etot ftot  plugging  into qc u we see that qc  is always positive therefore 
+belongs to one of the i intervals say it  u2t  u2t1  for some t  0     n there are two cases
+1 etot ftot   we have
+
+u2s1  etot ftot  u2t  
+
+notice that v changes sign when u passes etot ftot  so the corresponding v2s1 and v2t have different
+signs and either u2s1  v2s1  
+ s c or u2t  v2t  
+ s c contradiction
+2 etot ftot   we have
+
+  u2t1  etot ftot  u2s 
+
+since v changes sign when u passes etot ftot  so the corresponding v2t1 and v2s have different
+signs and either u2t1  v2t1  
+ s c or u2s  v2s  
+ s c contradiction
+therefore  c has at most 2n  1 steady states
+
+43
+
+finetuned upper bounds
+
+in the previous section we have seen that any u v  s c u 6 etot ftot must satisfy 2223 but
+not all solutions of 2223 are elements in s c suppose that u v is a solution of 2223 it is
+in s c if and only if u v  0 in some special cases for example when the enzyme is in excess or the
+substrate is in excess we could count the number of solutions of 2223 which are not in s c to get
+a better upper bound
+the following is a standard result on continuity of roots see for instance lemma a41 in 30
+lemma 3 let gz  z n  a1 z n1      an be a polynomial of degree n and complex coefficients having
+distinct roots
+1      q 
+with multiplicities
+n1      nq  n
+
+13
+
+respectively given any small enough   0 there exists a   0 so that if
+hz  z n  b1 z n1      bn  ai  bi    for i  1     n
+then h has precisely ni roots in b i  for each i  1     q
+6n6
+such that 1  6 2  and each stot  0 there exists
+theorem 4 for each   0 and   r
+2  0 such that for all positive numbers etot  ftot satisfying ftot  etot   2 stot  the system
+ c has at most n  1 positive steady states
+
+proof let us define a function r  c  c as follows
+qstot  u  qstot stot stot  u
+and a set b stot  consisting of the roots of qstot  u which are not positive or the corresponding
+vs determined by us as in 22 are not positive since qstot  u is a polynomial of degree 2n  1
+if we can show that there exists 2  0 such that for any   0 2  qstot  u has at least n roots
+counting multiplicities that are in b stot  then we are done
+in order to apply lemma 3 we regard the function qstot as defined on r  c at   0
+qstot 0 u  0 2   u2  0  stot 2 u1  2   u  stot u1  2 2 u
+ 0 2   u2  0 u1  2   u  stot 2 u1  2   u  stot u1  2 2 u
+ 0   uu1  2   stot uu1  2 2  1 u
+ 2  1 u0  stot u1  2   0 
+ 2  1 f stot 0 u
+let us denote the distinct roots of qstot 0 uu as
+u1      uq 
+with multiplicities
+n1      nq  2n  1
+and the roots of 1  2 as
+u1      up  p  q
+with multiplicities
+m1      mp  n ni  mi  for i  1     p
+for each i  1     p if ui is real and positive then there are two cases ui 6  as 1  6 2 
+1 ui   we have
+2 ui   we have
+
+ui 1 ui   2 ui   1 ui   2 ui   0
+ui 1 ui   2 ui   1 ui   2 ui   0
+
+14
+
+in both cases ui 1 ui   2 ui  and   ui have opposite signs ie
+ui 1 ui   2 ui   ui   0
+let us pick   0 small enough such that the following conditions hold
+1 for all i  1     p if ui is not real then b ui  has no intersection with the real axis
+2 for all i  1     p if ui is real and positive the following inequality holds for any real u  b ui 
+u1 u  2 u  u  0
+
+24
+
+3 for all i  1     p if ui is real and negative then b ui  has no intersection with the imaginary
+axis
+t
+4 b uj  b uk    for all j 6 k  1     q
+
+by lemma 3 there exists 3  0 such that for all   0 3  the polynomial qstot  uu has exactly
+nj roots in each b uj  j  1     q denoted by ukj  k  1     nj 
+
+ i  1  p
+  p with the v defined as
+we pick one such  and we claim that none of the roots in b uip
+in 22 will be an element in s if so we are done since there are p1 ni  p1 mi  n such roots of
+qstot  u which are in b stot 
+for each i  1     p there are two cases
+1 ui is not real then condition 1 guarantees that uki  is not real for each k  1     ni  and thus is
+in b stot 
+2 ui is real and positive pick any root uki   b ui  k  1     ni  the corresponding vik  equals
+  uki 
+ 0
+uki 1 uki   2 uki 
+
+ s c and uki   b stot 
+followed from 24 so uki  vik  
+3 ui is real and negative by condition 1 and 3 uki  is not positive for all k  1     ni 
+
+the next theorem considers the case when enzyme is in excess
+6n6
+such that 1  6 2  and each etot  0 there exists 3  0
+theorem 5 for each   0   r
+such that for all positive numbers ftot  stot satisfying ftot  etot   stot 3  the system  c has
+at most one positive steady state
+6n6
+such that 1  6 2  and each etot  0 we define a function
+proof for each   0   r
+r  c  c as follows
+qetot  u  qetot etot etot  u
+
+15
+
+let us define the set c etot  as the set of roots of qetot  u which are not positive or the
+corresponding vs determined by us as in 22 are not positive if we can show that there exists 3  0
+such that for any   0 3  there is at most one positive root of qetot  u that is not in c etot 
+we are done
+in order to apply lemma 3 we now view the function qetot as defined on r  c at   0
+
+
+
+
+etot  etot 
+etot
+ 
+
+
+
+q
+0 u    u   u 0 2  0 
+u1 
+2 u1  2  u
+
+
+   u retot u
+let us denote the distinct roots of qetot 0 uu as
+u1   u2      uq 
+with multiplicities
+n1      nq  2n  1
+and u2      uq are the roots of retot u other than 
+since 1  6 2  retot u is not divisible by u   and thus n1  1
+for each i  2     q we have
+ 
+
+ui  0 ui 2 ui 
+
+
+
+
+
+0 ui  
+
+
+etot 
+etot
+
+ui 1 ui  
+2 ui  ui 1 ui   2 ui  
+
+
+
+e
+etot 
+
+
+if ui  0 then 0 ui 2 ui  and 0 ui   tot
+ ui 1 ui    2 ui  are both positive since ui 1 ui  
+
+
+
+2 ui  and   ui are non zero ui 1 ui   2 ui  and   ui must have opposite signs that is
+
+ui 1 ui   2 ui   ui   0
+let us pick   0 small enough such that the following conditions hold for all i  2     q
+1 if ui is not real then b ui  has no intersection with the real axis
+2 if ui is real and positive then for any real u  b ui  the following inequality holds
+u1 u  2 u  u  0
+
+25
+
+3 if ui is real and negative then b ui  has no intersection with the imaginary axis
+t
+4 b uj  b uk    for all i 6 k  2     q
+
+by lemma 3 there exists 3  0 such that for all   0 3  the polynomial qetot  u has exactly
+nj roots in each b uj  j  1     q denoted by ukj  k  1     nj 
+we pick one such  and if we can show that all of the roots in b ui  i  2     q are in c etot 
+then we are done since the only roots that may not be in c etot  are the roots in b u1  and there
+is one root in b u1 
+for each i  2     p there are three cases
+16
+
+1 ui is not real then condition 1 guarantees that uki  is not real for all k  1     ni 
+2 ui is real and positive pick any root uki  k  1     ni  the corresponding vik  equals
+  uki 
+ 0
+uki 1 uki   2 uki 
+so uki  is in c etot 
+3 ui is real and negative by conditions 1 and 3 uki  is not positive for all k  1     ni 
+
+5
+
+conclusions and discussions
+
+here we have set up a mathematical model for multisite phosphorylationdephosphorylation cycles of size
+n and studied the number of positive steady states based on this model we reformulated the question
+of number of positive steady states to question of the number of positive roots of certain polynomials
+through which we also applied perturbation techniques our theoretical results depend on the assumption
+of mass action kinetics and distributive sequential mechanism which are customary in the study of multisite
+phosphorylation and dephosphorylation
+an upper bound of 2n  1 steady states is obtained for arbitrary parameter combinations biologically
+when the substrate concentration greatly exceeds that of the enzyme there are at most n  1 n steady
+states if n is even odd and this upper bound can be achieved under proper kinetic conditions see
+theorem 1 for the construction on the other extreme when the enzyme is in excess there is a unique
+steady state
+as a special case of n  2 which can be applied to a single level of mapk cascades our results
+guarantees that there are no more than three steady states consistent with numerical simulations in 17
+we notice that there is an apparent gap between the upper bound 2n  1 and the upper bound of n  1
+n if n is even odd when the substrate is in excess if we think the ratio etot ftot as a parameter 
+then when   1 there are at most n  1 n steady states when n is even odd which coincides with the
+largest possible lower bound when   1 there is a unique steady state if the number of steady states
+changes continuously with respect to  then we do not expect the number of steady states to exceed
+n  1 n if n is even odd so a natural conjecture would be that the number of steady states never
+exceed n  1 under any conditions
+
+6
+
+acknowledgment
+
+we thank jeremy gunawardena for very helpful discussions
+
+7
+
+appendix
+
+proof of lemma 2 recall that dropping the us in i  i  0 1 2
+f stot 0 u  u0  stot u1  2   0 
+17
+
+so
+ f stot
+0 u  0  stot u1  2     u0  
+u
+since f stot 0   0
+stot 1  2     0 
+that is
+   
+
+stot 1  2 
+
+0
+
+therefore
+ f stot
+s 1  2   
+0   0  stot u1  2   tot
+0 
+u
+0
+
+s
+ 0  tot
+0 u1  2   1  2 0 
+
+0
+s
+1  0   0 1 2      0    n1 n 
+ 0  tot
+0
+
+
+0
+0    n2
+1
+n1
+1  0   2
+1  1       n
+1  n1 
+km0
+km1
+kmn1
+
+ 0  20 1       n0    n1 n1 
+
+
+0
+0    n2
+1
+1  0  
+1  1 2     
+1  n1 n 
+km0
+km1
+kmn1
+
+
+n1
+n
+x
+x
+0    j1
+s
+0    i1 i  j  1  i
+1  j j 
+ 0  tot
+
+0
+kmj
+j0
+
+i0
+
+
+
+1
+0
+
+n
+x
+
+0    i1 i
+
+ stot
+
+i0
+
+0    j1 j
+
+j0
+
+i0
+
+n
+x
+
+n
+x
+
+
+
+
+0    j1
+1  j j 
+j  1  i
+kmj
+
+n1
+x
+
+0    i1 i 
+
+j0
+
+
+
+
+n1
+n
+x
+x
+1  j 
+1
+0    j1 j 1  stot j  1  i
+
+0    i1 i 0    n1 n 
+ 
+0
+kmj
+i0
+
+
+
+j0
+
+where the product 0    1 is defined to be 1 for the convenience of notation
+because of 21
+stot j  1  i
+so we have
+
+ f
+
+s
+
+u
+
+tot 0   0
+
+18
+
+1  j
+ 1
+kmj
+
+references
+1 m samoilov s plyasunov and ap arkin stochastic amplification and signaling in enzymatic futile
+cycles through noiseinduced bistability with oscillations proc natl acad sci usa 10223102315
+2005
+2 s donovan km shannon and g bollag gtpase activating proteins critical regulators of intracellular signaling biochim biophys acta 16022345 2002
+3 jj bijlsma and ea groisman making informed decisions regulatory interactions between twocomponent systems trends microbiol 11359366 2003
+4 ad grossman genetic networks controlling the initiation of sporulation and the development of
+genetic competence in bacillus subtilis annu rev genet 29477508 1995
+5 h chen bw bernstein and jr bamburg regulating actin filament dynamics in vivo trends
+biochem sci 251923 2000
+6 g karp cell and molecular biology wiley 2002
+7 l stryer biochemistry freeman 1995
+8 ml sulis and r parsons pten from pathology to biology trends cell biol 13478483 2003
+9 dj lew and dj burke the spindle assembly and spindle position checkpoints annu rev genet
+37251282 2003
+10 ar asthagiri and da lauffenburger a computational study of feedback effects on signal dynamics
+in a mitogenactivated protein kinase mapk pathway model biotechnol prog 17227239 2001
+11 l chang and m karin mammalian map kinase signaling cascades nature 4103740 2001
+12 cyf huang and je ferrell jr ultrasensitivity in the mitogenactivated protein kinase cascade
+proc natl acad sci usa 931007810083 1996
+13 c widmann g spencer mb jarpe and gl johnson mitogenactivated protein kinase conservation of a threekinase module from yeast to human physiol rev 79143180 1999
+14 wr burack and tw sturgill the activating dual phosphorylation of mapk by mek is nonprocessive biochemistry 3659295933 1997
+15 je ferrell and rr bhatt mechanistic studies of the dual phosphorylation of mitogenactivated
+protein kinase j biol chem 2721900819016 1997
+16 y zhao and zy zhang the mechanism of dephosphorylation of extracellular signalregulated kinase
+2 by mitogenactivated protein kinase phosphatase 3 j biol chem 2763238232391 2001
+17 ni markevich jb hoek and bn kholodenko signaling switches and bistability arising from
+multisite phosphorylation in protein kinase cascades j cell biol 164353359 2004
+18 j gunawardena multisite protein phosphorylation makes a good threshold but can be a poor switch
+proc natl acad sci 1021461714622 2005
+19
+
+19 c conradi j saezrodriguez ed gilles and j raisch using chemical reaction network theory
+to discard a kinetic mechanism hypothesis in proc fosbe 2005 foundations of systems biology
+in engineering santa barbara aug 2005 pages 325328 2005
+20 ts gardner cr cantor and jj collins construction of a genetic toggle switch in escherichia
+coli nature 403339342 2000
+21 d angeli j e ferrell and ed sontag detection of multistability bifurcations and hysteresis in a
+large class of biological positivefeedback systems proc natl acad sci usa 101718221827 2004
+22 ee selkov stabilization of energy charge generation of oscillation and multiple steady states in
+energy metabolism as a result of purely stoichiometric regulation eur j biochem 591151157
+1975
+23 w sha j moore k chen ad lassaletta cs yi jj tyson and jc sible hysteresis drives
+cellcycle transitions in xenopus laevis egg extracts proc natl acad sci 100975980 2003
+24 f ortega j garcs f mas bn kholodenko and m cascante bistability from double phosphorylation in signal transduction kinetic and structural requirements febs j 27339153926
+2006
+25 l wang and ed sontag singularly perturbed monotone systems and an application to double
+phosphorylation cycles submitted to ieee transactions autom control special issue on systems
+biology january 2007 preprint version in arxiv mathoc0701575 20 jan 2007 2007
+26 l wang and ed sontag almost global convergence in singular perturbations of strongly monotone
+systems in positive systems pages 415422 springerverlag berlinheidelberg 2006 lecture notes
+in control and information sciences volume 341 proceedings of the second multidisciplinary international symposium on positive systems theory and applications posta 06 grenoble france
+27 d angeli p de leenheer and ed sontag a petri net approach to the study of persistence in
+chemical reaction networks submitted to mathematical biosciences also arxiv qbiomn068019v2
+10 aug 2006 2007
+28 d angeli and ed sontag translationinvariant monotone systems and a global convergence result
+for enzymatic futile cycles nonlinear analysis series b real world applications to appear 2007
+29 m thompson and j gunawardena multibit information storage by multisite phosphorylation submitted 2007
+30 ed sontag mathematical control theory deterministic finitedimensional systems volume 6 of
+texts in applied mathematics springerverlag new york second edition 1998
+31 m feinberg chemical reaction network structure and the stability of complex isothermal reactors
+ii multiple steady states for networks of deficiency one chem eng sci 43125 1988
+32 p ellison m feinberg how catalytic mechanisms reveal themselves in multiple steadystate data i
+basic principles j symbolic comput 33 275305 2002
+33 cm furdui ed lew j schlessinger ks anderson autophosphorylation of fgfr1 kinase is
+mediated by a sequential and precisely ordered reaction molecular cell 21 711717 2006
+
+20
+

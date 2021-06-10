@@ -1,0 +1,633 @@
+applying physicsbased loss functions to neural networks for improved
+generalizability in mechanics problems
+samuel j raymonda david b camarilloabc
+a department
+
+of bioengineering stanford university stanford ca 94305 usa
+of neurosurgery stanford university stanford ca 94305 usa
+department of mechanical engineering stanford university stanford ca 94305usa
+b department
+
+arxiv210500075v1 physicscompph 30 apr 2021
+
+c
+
+abstract
+physicsinformed machine learning piml has gained momentum in the last 5 years with scientists and
+researchers aiming to utilize the benefits afforded by advances in machine learning particularly in deep
+learning with large scientific data sets with rich spatiotemporal data and highperformance computing
+providing large amounts of data to be inferred and interpreted the task of piml is to ensure that these
+predictions categorizations and inferences are enforced by and conform to the limits imposed by physical
+laws in this work a new approach to utilizing piml is discussed that deals with the use of physicsbased
+loss functions while typical usage of physical equations in the loss function requires complex layers of
+derivatives and other functions to ensure that the known governing equation is satisfied here we show that
+a similar level of enforcement can be found by implementing more simpler loss functions on specific kinds of
+output data the generalizability that this approach affords is shown using examples of simple mechanical
+models that can be thought of as sufficiently simplified surrogate models for a wide class of problems
+
+1 introduction
+physicsinformed machine learning piml is a cuttingedge new field that sits at the intersection of
+scientific computing and machine learning the field is only a few years old now but has already begun
+producing some valuable insights into the combined approaches of these two domains particularly in the
+intersection of computational mechanics modeling realworld materialsfields and deep learning using
+advanced neural network architectures
+during the immense rise to power of artificial intelligence and machine learning in the last two decades
+scientific computing was not a largely looked at field of application web traffic1 customer habits 2 geospatial information 3 medical imaging 4 and many others were far easier to apply techniques such as
+deep learning to as the guiding models for these areas are often too complex to develop from first principles
+and the amount of data available made the training and testing very attractive also as a fundamentally
+probabilistic endeavor deep learning may infer values that might violate or exceed reasonable bounds 5
+which would violate the laws used in numerical physics for example rendering it fundamentally flawed as
+an application scientific data and numerical models however are not perfect and errors and systematic
+biases are present in these approaches as well so if the bounds of expected errors that were to come from
+a learnedmodel were similar to those present in a scientific model an argument could be made to rely
+just as much on the datadriven approach in numerical modeling the starting point is almost always the
+discretization of the governing partial differential equation pde into a form that can be converted into
+the syntax of a computer program on its own the pde is in some sense useless as a tool for modeling until
+specific boundary and initial values are used and appropriate parameters set this transforms the universally
+ corresponding
+
+author
+email address sjraystanfordedu samuel j raymond
+
+preprint submitted to journal of computational physics
+
+may 4 2021
+
+applicable pde to a specific model of a specific use case in a corollary manner a deep neural network
+can be thought of as a universal function approximator 6 where with enough connections and neurons
+any equation or transfer function relating two variables is theoretically constructable however without
+data and training the neural network like the pde is also completely useless and offers no contextrelevant
+inference only once the data has been fed to the neural network and the weights updated through the
+training process is the general function approximator converted to something far more brittle yet useful
+brittle here refers to the extent with which the network can make accurate inferences only within the
+bounds of the data used to train the model can a network be relied upon to provide any useful information
+even within these bounds though there has already been a number of useful applications of deep learning
+in the physical sciences 7 8 9 10 11 12 13 14 and this manner of application will continue to develop
+as more data is generated for scientific purposes relying on a datadriven model to provide mechanistic
+predictions though creates a number of problems adversarial neural network research 15 has shown just
+how brittle these models can be even with humanimperceptible changes to an input one advantage of
+numerical models is that they are far less opaque to their brittleness and generally do far better at coping
+with a large range of input parameter variations without needed to remake the model though there is
+certainly a limit to all models a dangerous prospect therefore presents itself when relying on traditional
+neural networks to provide scientifically relevant inferences
+the goals of piml are to address these shortcomings of traditional neural networks and to leverage
+the speed and fusion of data that using neural networks affords computational models are commonplace
+in essentially every area of human endeavor with new methods and techniques constantly introduced to
+manage increasingly complex scenarios 16 17 18 19 20 21 22 however as these models become more
+sophisticated they also become horrendously expensive on the scales of climate modeling23 or largescale
+molecular dynamics models 24 and with everlarger supercomputers requiring even more energy to run25
+piml also offers a more energyefficient and sustainable approach to infuse these networks with the benefits
+of preexisting domain knowledge in the last few years a number of distinct fields of piml have started
+to emerge each using a different approach to embed domain knowledge into deep learning frameworks
+these include physicsinformed neural networks pinns26 synthetic data7 and datadriven equation
+learning 27
+of these fields this work is primarily interested in the development and use of pinns 28 29 30 31 32
+33 34 26 35 36 37 38 39 the approach in pinns is to use as an inputoutput pair to the neural network
+a fundamental variable or set of variables for the physical problem and use these variables to construct
+the quantities that appear in the governing equation of motion such as the velocity and pressure fields in a
+fluids problem the equation of motion for instance the euler or navierstokes equation is then used as
+an additional term in the loss function of the deep learning architecture using an additional layer after the
+output neurons to convert the variables into the forms needed for the equation of motion the seminal work
+on this was conducted by raissi et al 26 and the interested reader is encouraged to read their work the
+new loss function of pinns then acts in a similar manner to the residuals in a finite element scheme and
+the training is performed using traditional backpropagation methods until the loss associated with both the
+l2norm and the equation of motion residual is minimized more work though is required to understand
+the right tradeoff between these two errors and if one should be weighted more than the other
+the loss function in pinns as in all deep learning plays a crucial role in the ability of the network to
+train well 40 the approach of pinns is to leverage the full understanding of the governing physics at play
+to build a basis function in the form of a neural network that solves these equations however there are
+many situations where either the governing equation is not clear or the inclusion of the full pde introduces
+such a computational overhead that any efficiencies afforded by the use of a pinn are negated it may also
+be that the entire pde is not required for a sufficiently accurate solution to be produced for the tolerated
+error for example in viscous flows or simple fluid problems the full 3d navierstokes is not required
+and training with such a complex pde may be unnecessary in this work we introduce a new approach to
+this problem by utilizing the laws of physics in the loss functions ones that tend to sit above governing
+pdes but can be applied much more efficiently and liberally to a number of different problems to present
+this the paper is structured as follows first the observation of an automatic satisfaction of the underlying
+principle of least action is shown to arise naturally in backpropagation of particular models then a number
+2
+
+of experiments to reproduce phasespace trajectories with minimized action are conducted next a simpler
+lossfunction approach is presented that uses the conservation of energy as the guiding principle and this is
+used to build a neural network to predict the motion of a pendulum this is compared with the traditional
+dataonly approach and the discussion of the comparison concludes the work
+2 methods
+21 leastaction and the conventional loss function
+suppose there exists some system that can be modeled with a lagrangian l the equations of motion
+that govern this system can be found by invoking the principle of least or stationary action 41 this
+principle states that the action which is defined as the time integral of the lagrangian from one state to
+another is minimized by the trajectory of the system as it moves through phasespace the equations that
+come from invoking this principle are known as the eulerlagrange equations 42 and are essentially a
+reformulation of newtons laws of motion mathematically this is described as follows
+some lagrangian l is proposed for a system incorporating the kinetic energy and any potential energies
+which are formed as functions of the generalized positions q and velocities q of the particles
+l  f q q  t  v
+
+1
+
+for a system of particles the kinetic energy tsys  and potential energy vsys  can be formed by combining
+the contributions from all the particles within the system
+tsys 
+
+n
+x
+1
+i0
+
+2
+
+mi q i  qi
+
+vsys 
+
+n
+x
+
+f qi  qi 
+
+2
+
+i0
+
+the action is then formed as an integral between two points in time
+z t2
+a
+lq q
+
+3
+
+t1
+
+to find the trajectory that minimizes the action the calculus of variations is invoked leading to the eulerlagrange equations
+z t2
+a  
+lq q  0
+4
+t1
+
+any spacetime trajectory that is given by the eulerlagrange equations therefore satisfies the principle of
+least action for this system
+211 minimizing action via back propagation
+remarkably an approximation to this procedure is also found in the training of a neural network if
+the inputs to the system are the initial conditions of the system and the outputs are the full spacetime
+trajectories of the system to another point in time when this is combined with the meansquared error a
+very commonly used measurement for error in deep learning an approximation to the calculus of various is
+produced
+xq
+zk2  yk
+5
+mean squared error mse 
+ k
+
+z  f qi  qi 
+xq
+x 0
+x
+mse 
+zk2  yk 
+l  lo 
+l 
+ a  0
+ k
+
+6
+7
+
+ k
+
+because this summation is over the time step outputs of the system this approximates the integral used in
+the analytical version of the principle and as the optimizer converges a spacetime trajectory is found that
+3
+
+most closely resembles that which would satisfy the eulerlagrange equations this result implies that it is
+in fact very straightforward to use a neural net to predict the motion and behavior of a system for different
+systems with a different governing lagrangian it may be possible to find precise error estimates that produce
+the required conservation properties energy momentum angular momentum needed to simulate a systems
+evolution the role of back propagation is to use the given error term as a means to direct the optimizer
+such that the total error of the predicted versus given result is as small as possible it is this optimization
+process that forces the output trajectory to be as similar to the least actionobeying trajectory as possible
+that produces this alternative approach to learning the laws of physics within the network this requires
+the variables to span the phasespace but in many mechanics problems the key variables of position and
+moment are used and are sufficient to span this space
+to test this two different mechanical systems were simulated to generate data and then a neural network
+was trained to learn the underlying structures so that for an initial starting position in phase space position
+and momentum the full spacetime trajectory of the system would be output by the network the first
+focused on the motion of a projectile under the influence of gravity both with and without the effect of drag
+the second investigated the modeling of a pendulum both a single pendulum and a double pendulum
+212 simple projectile motion
+projectile motion is one of the simplest forms of mechanics problems that is often covered in the first
+physicsstream classes in high schools this problem is useful as it describes the motion of objects in a wide
+range of fields many common phenomena incorporate projectile motion such as fountains sports etc and
+is the simplest form of motion after constant velocity motion the basis for projectile motion is that the
+motion is governed by a constant acceleration notably gravity that acts in one direction this simplest
+form of projectile motion completely decouples the motion in the horizontal and vertical directions the
+motion in the horizontal direction xt and the vertical direction yt can be described simply as
+xt  dt  xt  ut dt
+
+8
+
+1
+g dt2
+9
+2
+where ut and vt are the x and y velocities respectively and g is the acceleration due to gravity assumed
+to be constant and acting only in the y direction to generate the data for the neural network a simple
+forward euler integrator was used to generate the x y positions of the projectile from a starting position
+with a given starting velocity a range of values for the gravity and time of flight were used as well as a
+range of starting x and y velocities the deep learning toolbox in matlab r2020a was used to train a
+fully connected feedforward network the neural net consisted of an input layer with 6 neurons 2hidden
+layers with 15 neurons per layer each with with relu activation functions and an output layer consisting
+of the 4x200 time step values of the resulting motion of position and velocities in the 2 directions training
+was performed using the meansquared error performance criterion and the levenbergmarquardt algorithm
+was used for back propagation the neural net was given the starting position velocity gravity strength
+and time of flight as input the output was set as the x y positions and velocities of the projectiles over
+the time of flight
+yt  dt  yt  vt dt 
+
+213 nonlinear projectile motion
+to incorporate more realistic effects nonlinear drag was also added to the equations of motion such
+that the new equations of motion coupled the x and y directions together
+2
+
+xt  dt  xt  ut dt  cd
+
+vt
+dt
+v t
+
+10
+2
+
+yt  dt  yt  vt dt  
+
+1
+vt
+g dt2   cd
+dt
+2
+v t
+
+11
+
+here cd is the coefficient of drag and v t is the absolute velocity of the projectile the same neural
+network architecture and training procedure was used for this second case
+4
+
+214 single pendulum motion
+periodic motion is another class of commonly occurring motion that scientists and engineering encounter
+to determine the efficacy of this workflow on the prediction of periodic motion again a similar feedfoward
+network was created to learn the motion of a pendulum while it may seem that a recurrent network may
+seem more appropriate for period motion learning but with the final desire to be able to model the chaotic
+motion of double pendulums where periodicity is not assumed the simple deep fully connected layers were
+again used for the single pendulum model the generated data for the neural net came again from a simple
+forward euler integrator this was used to produce the angle and angular velocity trajectory for a mass
+from an initial starting angle and starting angular velocity the length and mass of the pendulum were set
+to equal 10 for all models in this work
+215 double pendulum motion
+chaotic motion is described by a solution that is heavily dependent on the initial conditions of a dynamic
+system the typical double pendulum is one such system that exhibits chaotic motion modeling this kind
+of system is challenging for even traditional methods when they follow the constraints they are required to
+follow the two masses were given different initial starting angles and angular velocities and were allowed
+to oscillate for two full periods in the same manner as the single pendulum here also is the reason for
+choosing not to use a recurrent network model the results of these two pendulum models are shown in
+the next section as the neural network attempted to predict the full phasespace trajectory of the pendulum
+masses from the inital conditions alone
+22 a custom loss function for robust time step predictions
+in the previous section a full timespace trajectory was predicted from initial conditions due to the
+ability of the neural network to minimize the correct trajectories and satisfy the principle of least action
+however since this method relies on having a full phasespace solution this is not a simple method to
+scale to more complex problems instead now we present an approach that only learns the evolution of a
+system by one time step but ensuring that energy is conserved from one point in time to the next here
+we show that the traditional loss function when exposed to several systems of different energy levels will
+tend to produce the lower energy solution as this better satisfies the minimization process by adding the
+extra constraint of the conservation of energy better generalizability will be introduced to the network to
+prepare this workflow a pendulum is simulated and the initial conditions are set at 0  4  0  6 
+0  8  with the angular velocity 0  0 in each case the neural network was designed with two input
+and output neurons representing angular position and angular velocity at times t and t  1 respectively
+the pendulum was simulated for 6 full cycles and the pairs of t and t  1 values were randomly mixed and
+used to train the network two loss functions were used to train the network the standard loss function
+lstandard was set as the meansquared error and the second physicsloss function lphys  lstandard  e
+where e the change in energy was taken as
+2
+2
+1
+1
+e   m t  mg1  cost    m y  mg1  cosy 
+2
+2
+
+12
+
+where the t and y subscripts refer to the true and networkpredicted values respectively this custom loss
+function was added into the training processes via matlabs deep learning toolbox to determine the
+effect of different loss functions on the prediction of the network starting positions of 0  2  0  3 
+0  6  were used and the output from each step was used as the input for the next until a solution over a
+number of periods was produced the results of this approach are shown in the next section
+3 results
+31 trajectories with least action
+to compare the neural net trajectories with that solved from by the simulator sample input values were
+given to both the simulation engine and the neural net comparisons are shown for both the projectile and
+pendulum motions with both linear and nonlinear features
+5
+
+figure 1 simple projectile motion showing the spatial trajectory of the point through 2d space black lines indicate the
+numerical simulation results and the circles are the outputs spacetime trajectories from the neural network
+
+311 projectile motion
+the results shown in figure 1 indicate excellent agreement with the trajectories from both numerical
+procedures the results are shown in figure 2 with the difference being that the coefficient of drag is now
+an added input variable the neural net is again able to successfully learn the relationships in the data
+provided between the input and output and the trajectories lie on top of the simulated values
+these results indicate that the network is able to take only a few input variables initial velocity position
+drag terms and produce a physically accurate trajectory of the motion of the projectile
+312 pendulum motion
+the results are shown in figure 3 and again we can see that the network is able to follow the motion
+through several periods of oscillation again indicating that the underlying physics are being correctly inferred
+from the training as figure 4 shows this neural network approach is also capable of following complex
+multi body motion in chaotic systems to a surprising degree of accuracy the path in phase space shows very
+little periodicity and the feedfoward fully connected layers are able to learn the trajectories of the pendulum
+and predict the masses paths through phase space with very good accuracy
+32 predicting motion with a physicsbased loss function
+to compare the efficacy of standard loss functions and pimlmotivated loss functions the prediction of
+a simple pendulums motion is shown for both the conventional and physicsbased loss functions different
+starting positions and the resulting predicted motions are show for three different starting angles
+321 conventional loss function
+figures 5  7 show the results of the prediction of the trajectory of the pendulum from the different
+starting positions while the initial predictions follow the phasespace curves for some time they quickly
+decay to the smallest energy phasespace
+
+6
+
+figure 2 nonlinear projectile motion showing the spatial trajectory of the point through 2d space black lines indicate the
+numerical simulation results and the circles are the outputs spacetime trajectories from the neural network
+
+figure 3 left phase space trajectory of the motion right angular velocity black lines indicate the numerical simulation
+results and the circles are the outputs spacetime trajectories from the neural network
+
+7
+
+figure 4 motion of the double pendulum left phase space trajectory of the motion of the top blue and lower red masses
+right angular velocities and angular positions of the upper blue and lower red masses black lines indicate the numerical
+simulation results and the circles are the outputs spacetime trajectories from the neural network
+
+figure 5 prediction of the motion of a pendulum from the starting position of
+periods
+
+8
+
+
+2
+
+using the conventional loss function over 4
+
+figure 6 prediction of the motion of a pendulum from the starting position of
+periods
+
+
+3
+
+using the conventional loss function over 4
+
+figure 7 prediction of the motion of a pendulum from the starting position of
+periods
+
+
+6
+
+using the conventional loss function over 4
+
+9
+
+figure 8 prediction of the motion of a pendulum from the starting position of
+conventional loss function over 4 periods
+
+
+2
+
+using the combined physicsbased and
+
+322 physicsbased loss function
+figures 8  10 show the results of the prediction of the trajectory of the pendulum from the different
+starting positions using the neural network trained with the custom loss function adding the conservation of
+energy term these results preserve the energy far better than the conventional approach and no decaying
+of the predictions is found for multiple periods
+
+10
+
+figure 9 prediction of the motion of a pendulum from the starting position of
+conventional loss function over 4 periods
+
+
+3
+
+using the combined physicsbased and
+
+figure 10 prediction of the motion of a pendulum from the starting position of
+conventional loss function over 4 periods
+
+
+6
+
+using the combined physicsbased and
+
+11
+
+4 discussion
+in this work a new approach to pimlbased neural networks was proposed that suggests adding only
+simple but universally applicable laws to the error function to enforce physically accurate predictions initially a comparison was made between the process of training and in solving the fundamental principle in
+mechanics the principal of least action using the appropriate variables it was shown that a standard loss
+function from deep learning the mean squared error when combined with output variables of position and
+momentum or velocity could solve the action principle albeit discretely and statistically this was used
+to predict the full timespace trajectories of a number of representative mechanics problems both linear and
+nonlinear in the form of projectile motion with and without drag and a single and double pendulum system
+by training the network on the initial conditions for a projectiles flight a network was built that could predict the trajectories of the masses as shown in figure 1 and with nonlinear drag in figure 2 while simple
+problems in mechanics the benefit offered by this approach is computational speed and existing data and
+computational data projectile motions are commonplace in sports and military applications and quickly
+predicting the path of a projectile is oftentimes needed additionally two pendulum systems were modeled
+and the trajectories of their masses were simulated both for a single and double pendulum system the
+trained neural network while based on a simple fully connected set of neurons was very capable or reproducing the periodic behavior of the single pendulum figure 3 and also the more chaotic behavior of the double
+pendulum system figure 4 while it is well understood that chaotic systems are impossible to predict after
+a particular amount of elapsed time this approach performed well to capture the nonlinear motions of the
+pendulum for as long as was shown it would be interesting to explore this further to ascertain the limits of
+this approach for more detailed nonlinear chaotic systems as they appear in nearly every aspect of human
+endeavor the second focus of this work was to investigate the utility of adding a simple physicsbased
+loss term into the loss function during training for this work a neural network was constructed to predict
+the next time step of motion for a pendulum system rather than the entire timespace history this was
+intended to reflect a more useful use of this form of piml loss function as only temporallyneighboring states
+of a system are needed for data in training rather than the entire time history a pendulum was modeled
+and initially a regular loss function using the meansquared error was used to predict the time evolution
+of a pendulum when raised from a height of 2 figure 5 3 figure 6 and 6 figure 7 these results
+showed that the trained network was preferential to the lowest energy data and after some initial success
+in prediction of the larger energy systems decayed to the smallest energy state this form of mode collapse
+is likely due to the prevalence in the training to minimize the magnitude of the error and the error itself
+preferentiating the lowest valued data when a new loss function that combined the standard meansquared
+error with a measure of the difference in the energy between the input and output states was used however
+the results were drastically different in each of the three cases figures 8  10 the neural network was
+able to predict the motion of the pendulum and conserve the energy far better than in the original case
+it is worth noting that the values predicted by the second neural network in this case show a slightly less
+precise prediction as the values lie above or below the exact solution but this is likely the effect of having to
+balance both this extra energy conservation constraint and the minimization of the error in predicted values
+despite the simplistic models used to test the proposed architecture these results show a promising
+new avenue to explore when wanting to use simulated data andor realworld data for physically relevant
+predictions and inferences adding new constraints such as the conservation of energy into the loss function
+is far more computationally efficient than the application of the traditional pinn approach and can be
+essentially universally applied to any system where the energy is conserved or the loss to the system can be
+quantified appropriately this also implies that other conservation law linear and angular momenta and
+even other forms of symmetries could be embedded to a loss function when the input and output neuron
+variables are physical quantities however as most models of interest do comprise of the same energy forms
+presented here systems of multiple particles and more complex dynamics may pose more difficult to predict
+as the number of phasespace dimensions increases in this work only simulated data which is often not
+a good measure of what can be expected of realworld data was used meaning that the networks may not
+perform as well when managing realworld noisy data there is also the need for a large amount of training
+12
+
+data that necessitates a large computational load to be performed before the training of the network can be
+done effectively also while creating this data the choice of the parameters and their ranges is a problem
+when considering how wide the spectrum of values would need to be for a neural networkbased approach
+to be useful however as the networks are much faster to use once they are trained and with the immense
+amount of existing simulated and real world data that already exists and is oftentimes just discarded anyway
+the costbenefit analysis looks promising for this form of piml moving forward
+5 conclusion
+in this work we present a new form of physicsbased loss function to train a neural network to prediction
+the evolution of a system comparisons are drawn between the process of backpropagation and the solving
+of the principle of least action that governs all mechanical systems in physics predictions of the motion
+of projectiles and pendulums with both linear and nonlinear components are made with this approach to
+solving the least action principle and a new loss function is constructed to predict the time step evolution of
+a mechanical system unlike conventional loss functions that only consider the error between the predicted
+and true value here we show that in cases where systems of different energy are used as training data
+conventional loss functions fail to properly predict different systems instead we add an additional term to
+the error to enforce the conservation of energy between the input and the out of the network and the results
+show that this drastically improves the prediction of the evolution of different systems with differing levels
+of total energy this simple but powerful alteration to the loss function in the field of physicsinformed
+machine learning opens up a new set of opportunities to fuse simulation and realworld data for deep
+learning predictions of physical systems
+references
+1 x bu j rao cz xu a reinforcement learning approach to online web systems autoconfiguration 2009 pp 211
+cited by 67 doi101109icdcs200976
+2 s vazquez t muozgarca i campanella m poch b fisas n bel g andreu a classification of usergenerated
+content into consumer decision journey stages neural networks 58 2014 6881 cited by 24 doi101016jneunet
+201405026
+3 g cheng j han a survey on object detection in optical remote sensing images isprs journal of photogrammetry and
+remote sensing 117 2016 1128 cited by 505 doi101016jisprsjprs201603014
+4 g litjens t kooi b bejnordi a setio f ciompi m ghafoorian j van der laak b van ginneken c snchez
+a survey on deep learning in medical image analysis medical image analysis 42 2017 6088 cited by 3406 doi
+101016jmedia201707005
+5 j su d vargas k sakurai one pixel attack for fooling deep neural networks ieee transactions on evolutionary
+computation 23 5 2019 828841 cited by 280 doi101109tevc20192890858
+6 k hornik approximation capabilities of multilayer feedforward networks neural networks 4 2 1991 251257 cited
+by 2585 doi101016089360809190009t
+7 s j raymond d j collins r ororke m tayebi y ai j williams a deep learning approach for designed diffractionbased acoustic patterning in microchannels scientific reports 10 1 2020 112
+8 j montgomery s raymond f osullivan j williams shale gas production forecasting is an illposed inverse problem
+and requires regularization upstream oil and gas technology 5 2020 100022
+9 x zhan y liu s j raymond h v alizadeh a g domel o gevaert m zeineh g grant d b camarillo deep
+learning head model for realtime estimation of entire brain deformation in concussion arxiv preprint arxiv201008527
+2020
+10 a g domel s j raymond c giordano y liu s a yousefsani m fanton n j cecchi o vovk i pirozzi a kight
+b avery a boumis t fetters s jandu w m mehring s monga n mouchawar i rangel e rice p roy s sami
+h singh l wu c kuo m zeineh g g  d b camarillo a new openaccess platform for measuring and sharing
+mtbi data 11 7501 doihttpsdoiorg101038s41598021870852
+11 s j raymond j maragh a masic j r williams towards an understanding of the chemomechanical influences on
+kidney stone failure via the material point method plos one 15 12 2020 e0240133
+12 d collins s raymond y ai j willams r ororke m tayebi acoustic field design in microfluidic geometries via
+huygensfresnel diffraction and deep neural networks the journal of the acoustical society of america 148 4 2020
+27072707
+13 x zhan y li y liu a g domel h v alidazeh s j raymond j ruan s barbat s tiernan o gevaert et al
+prediction of brain strain across head impact subtypes using 18 brain injury criteria arxiv preprint arxiv201210006
+2020
+
+13
+
+14 y liu a g domel n j cecchi e rice a a callan s j raymond z zhou x zhan m zeineh g grant et al
+time window of head impact kinematics measurement for calculation of brain strain and strain rate in american football
+arxiv preprint arxiv210205728 2021
+15 y ganin e ustinova h ajakan p germain h larochelle f laviolette m marchand v lempitsky domainadversarial training of neural networks journal of machine learning research 17 cited by 1505 2016
+16 s raymond v lemiale r ibrahim r lau a meshfree study of the kalthoffwinkler experiment in 3d at room and
+low temperatures under dynamic loading using viscoplastic modelling engineering analysis with boundary elements 42
+2014 2025
+17 s raymond y aimene j nairn a ouenes et al coupled fluidsolid geomechanical modeling of multiple hydraulic
+fractures interacting with natural fractures and the resulting proppant distribution in specsur unconventional
+resources conference society of petroleum engineers 2015
+18 s raymond e aimene a ouenes et al estimation of the propped volume through the geomechanical modeling of
+multiple hydraulic fractures interacting with natural fractures in spe asia pacific unconventional resources conference
+and exhibition society of petroleum engineers 2015
+19 s j raymond b jones j r williams a strategy to couple the material point method mpm and smoothed particle
+hydrodynamics sph computational techniques computational particle mechanics 2016 110
+20 s j raymond b d jones j r williams modeling damage and plasticity in aggregates with the material point method
+mpm computational particle mechanics 6 3 2019 371382
+21 s wieghold z liu s j raymond l t meyer j r williams t buonassisi e m sachs detection of sub500m
+cracks in multicrystalline silicon wafer using edgeilluminated darkfield imaging to enable thin solar cell manufacturing
+solar energy materials and solar cells 196 2019 7077
+22 s j raymond b d jones j r williams fracture shearing of polycrystalline material simulations using the material
+point method computational particle mechanics 2020 114
+23 i harris p jones t osborn d lister updated highresolution grids of monthly climatic observations  the cru ts310
+dataset international journal of climatology 34 3 2014 623642 cited by 3789 doi101002joc3711
+24 m meyers a mishra d benson mechanical properties of nanocrystalline materials progress in materials science 51 4
+2006 427556 cited by 3265 doi101016jpmatsci200508003
+25 r springer d lowenthal b rountree v freeh minimizing execution time in mpi programs on an energyconstrained
+powerscalable cluster vol 2006 2006 pp 230238 cited by 66 doi10114511229711123006
+26 m raissi p perdikaris g karniadakis physicsinformed neural networks a deep learning framework for solving forward
+and inverse problems involving nonlinear partial differential equations journal of computational physics 378 2019 686
+707 doihttpsdoiorg101016jjcp201810045
+url httpswwwsciencedirectcomsciencearticlepiis0021999118307125
+27 l zanna t bolton datadriven equation discovery of ocean mesoscale closures geophysical research letters 47 17
+2020 e2020gl088376 e2020gl088376 1010292020gl088376 arxivhttpsagupubsonlinelibrarywileycom
+doipdf1010292020gl088376 doihttpsdoiorg1010292020gl088376
+28 s goswami c anitescu s chakraborty t rabczuk transfer learning enhanced physics informed neural network for
+phasefield modeling of fracture theoretical and applied fracture mechanics 106 2020 102447 doihttpsdoiorg
+101016jtafmec2019102447
+url httpswwwsciencedirectcomsciencearticlepiis016784421930357x
+29 e haghighat r juanes sciann a kerastensorflow wrapper for scientific computations and physicsinformed deep
+learning using artificial neural networks computer methods in applied mechanics and engineering 373 2021 113552
+doihttpsdoiorg101016jcma2020113552
+url httpswwwsciencedirectcomsciencearticlepiis0045782520307374
+30 e haghighat m raissi a moure h gomez r juanes a physicsinformed deep learning framework for inversion and
+surrogate modeling in solid mechanics computer methods in applied mechanics and engineering 379 2021 113741
+doihttpsdoiorg101016jcma2021113741
+url httpswwwsciencedirectcomsciencearticlepiis0045782521000773
+31 e j hall s taverniers m a katsoulakis d m tartakovsky ginns graphinformed neural networks for multiscale
+physics journal of computational physics 433 2021 110192 doihttpsdoiorg101016jjcp2021110192
+url httpswwwsciencedirectcomsciencearticlepiis0021999121000875
+32 q he d barajassolano g tartakovsky a m tartakovsky physicsinformed neural networks for multiphysics data
+assimilation with application to subsurface transport advances in water resources 141 2020 103610 doihttps
+doiorg101016jadvwatres2020103610
+url httpswwwsciencedirectcomsciencearticlepiis0309170819311649
+33 x jin s cai h li g e karniadakis nsfnets navierstokes flow nets physicsinformed neural networks for the
+incompressible navierstokes equations journal of computational physics 426 2021 109951 doihttpsdoiorg10
+1016jjcp2020109951
+url httpswwwsciencedirectcomsciencearticlepiis0021999120307257
+34 m liu l liang w sun a generic physicsinformed neural networkbased constitutive model for soft biological tissues
+computer methods in applied mechanics and engineering 372 2020 113402 doihttpsdoiorg101016jcma
+2020113402
+url httpswwwsciencedirectcomsciencearticlepiis0045782520305879
+35 s wang p perdikaris deep learning of free boundary and stefan problems journal of computational physics 428 2021
+109914 doihttpsdoiorg101016jjcp2020109914
+
+14
+
+url httpswwwsciencedirectcomsciencearticlepiis0021999120306884
+36 l yang x meng g e karniadakis bpinns bayesian physicsinformed neural networks for forward and inverse pde
+problems with noisy data journal of computational physics 425 2021 109913 doihttpsdoiorg101016jjcp
+2020109913
+url httpswwwsciencedirectcomsciencearticlepiis0021999120306872
+37 z zhang g x gu physicsinformed deep learning for digital materials theoretical and applied mechanics letters
+2021 100220doihttpsdoiorg101016jtaml2021100220
+url httpswwwsciencedirectcomsciencearticlepiis2095034921000258
+38 n zobeiry k d humfeld a physicsinformed machine learning approach for solving heat transfer equation in advanced
+manufacturing and engineering applications engineering applications of artificial intelligence 101 2021 104232 doi
+httpsdoiorg101016jengappai2021104232
+url httpswwwsciencedirectcomsciencearticlepiis0952197621000798
+39 m mahmoudabadbozchelou m caggioni s shahsavari w h hartt g em karniadakis s jamali datadriven
+physicsinformed constitutive metamodeling of complex fluids a multifidelity neural network mfnn framework journal
+of rheology 65 2 2021 179198 arxivhttpsdoiorg10112280000138 doi10112280000138
+url httpsdoiorg10112280000138
+40 j johnson a alahi l feifei perceptual losses for realtime style transfer and superresolution lecture notes in
+computer science including subseries lecture notes in artificial intelligence and lecture notes in bioinformatics 9906
+lncs 2016 694711 cited by 2211 doi101007978331946475643
+41 j larmor on the direct application of the principle of least action to the dynamics of solid and fluid systems and
+analogous elastic problems proceedings of the london mathematical society s115 1 1883 170185 cited by 5 doi
+101112plmss1151170
+42 o agrawal formulation of eulerlagrange equations for fractional variational problems journal of mathematical analysis
+and applications 272 1 2002 368379 doi101016s0022247x02001804
+
+15
+

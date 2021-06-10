@@ -1,0 +1,365 @@
+energy density for chiral lattice fermions with chemical potential
+christof gattringera and ludovit liptakb
+institut fr physik fb theoretische physik universitt graz
+universittsplatz 5 8010 graz austria
+institute of physics slovak academy of sciences
+dbravsk cesta 9 845 11 bratislava 45 slovak republic
+we study a recently proposed formulation of overlap fermions at finite density in particular we
+compute the energy density as a function of the chemical potential and the temperature it is shown
+that overlap fermions with chemical potential approach the correct continuum behavior
+arxiv07040092v2 heplat 26 jul 2007
+pacs numbers 1115ha 1238gc
+introduction
+over the last two decades lattice gauge theory was
+turned into a powerful qualitative tool for analyzing
+qcd this progress is in part due to the advances in
+algorithms and computer technology but also on the conceptual side important breakthroughs were made most
+prominent among these is the correct implementation of
+chiral symmetry on the lattice based on the ginspargwilson equation for the dirac operator 1
+an application of lattice techniques which has seen a
+lot of attention in recent years is the study of qcd at
+finite temperature the lattice implementation of the
+chemical potential  necessary for such an analysis is
+not straightforward however it is well known 2 that
+a naive introduction leads to 2 a2 contributions which
+diverge in the continuum limit when the lattice spacing
+a is sent to zero for more traditional formulations such
+as the wilson or staggered dirac operators the problem
+has been solved by introducing the chemical potential in
+the same way as the 4component of the gauge field
+a satisfactory implementation of the chemical potential should be compatible with chiral symmetry on the
+lattice based on the ginspargwilson equation when
+attempting to introduce the chemical potential into the
+only solution of the ginspargwilson equation know in
+closed form the overlap operator 3 a potential problem quickly surfaces defining the sign function of a nonhermitian matrix in 4 bloch and wettig proposed a
+solution based on an analytic continuation of the sign
+function into the complex plane it was shown that the
+eigenvalue spectra of this construction match the expectations from random matrix theory
+in this letter we analyze the proposal 4 further
+and study the energy density of free massless overlap
+fermions with chemical potential the dependence of the
+energy density on  and the temperature t allows for a
+detailed analysis of the lattice formulation at finite density of particular interest will be the question whether
+the analytic continuation of the sign function produces
+divergent 2 a2 terms our study indicates the absence
+of such contributions and we find that the  and t dependence of the energy density is approached correctly
+setup of the calculation
+the overlap dirac operator d for fermions with a
+chemical potential  is given as
+1  5 sign h 
+h  5 1  adw  
+the sign function may be defined through the spectral
+theorem for matrices dw  denotes the usual wilson
+dirac operator
+xy 
+dwxy  1 
+a a4
+3 h
+uj xxy 
+uj x  xy 
+u4 xea4 x4y 
+u4 x 4 ea4 x4y 
+2a4
+2a4
+for later use we distinguish between the lattice spacing
+a in spatial direction and the temporal lattice constant
+a4  periodic boundary conditions are used in the spatial
+directions while in time direction we apply antiperiodic
+boundary conditions the chemical potential  is coupled in the usual exponential form 2
+for vanishing  the wilson dirac operator is 5 hermitian ie 5 dw 05  dw 0  this implies that
+h0 is a hermitian matrix as soon as the chemical potential  is turned on 5 hermiticity no longer holds and
+h is a nonhermitian general matrix this fact has
+two important consequences firstly the eigenvalues of
+h are no longer real and the sign function for a complex number has to be defined in the spectral representation of sign h secondly the spectral representation
+has to be formulated using left and right eigenvectors
+this latter problem will be dealt with later when we discuss the evaluation of sign h for the sign function
+of a complex number we use the analytic continuation
+proposed in 4 and define the sign function through the
+sign of the real part
+sign x  iy  sign x 
+the observable we study here is the energy density
+defined as
+ hn 
+hhi 
+1  ln z
+ln tr ehn 
+v  c
+here h is the hamiltonian of the system n denotes the
+number operator and   1t is the inverse temperature
+in our units the boltzmann constant k is set to k  1
+the derivatives in the second line are taken such that
+  c  const
+the continuum result for the subtracted energy density
+of free massless fermions reads see eg 5
+  0 
+ 2 t 2 
+4 2
+evaluation of the eigenvalues
+according to 6 for the evaluation of  the eigenvalues n of the dirac operator d have to be computed
+this is done in three steps first we bring the dirac operator for free fermions to 4  4 blockdiagonal form using
+fourier transformation subsequently the spectral representation is applied to the 4  4 blocks of h to evaluate
+sign h finally the eigenvalues of the blocks of d are
+computed and by summing over the discrete momenta
+all eigenvalues are obtained
+following this strategy one finds for the fourier transb of h
+form h
+b  5 h5  i5
+ h 
+with
+h5  1 
+1  cosapj   1  cosa4 p4  i 
+hj   sinapj  for j  1 2 3 
+h4   sina4 p4  i 
+1  2   s  3  4   s  s 
+h2  h25  9
+where h2   h2  the corresponding left and righteigenvectors lj and rj are given by
+0 b
+0 b
+l1  l1 h
+ s1  l2  l2 h
+ s1 
+0 b
+0 b
+l3  l3 h  s1  l4  l4 h  s1 
+b  s1r0  r2  h
+b  s1r0 
+r1  h
+when working on the lattice the inverse temperature  is given by the lattice extent in 4direction ie
+  n4 a4  thus the derivative  in 4 turns into
+n41 a4  the partition function z is given by the
+fermion determinant det d which we write as the product over all eigenvalues n  we thus find
+1  ln det d
+1  ln n n
+v n4
+v n4
+a4 c
+a4 c
+1 x 1 n
+v n4 n n a4 a4 c
+iii
+the spatial momenta are given by pj  2kj an 
+where n is the number of lattice points in the spatial
+directions and kj  0 1  n  1 the momenta in timedirection are p4  2k4  1a4 n4  k4  0 1  n4  1
+b is similar to the
+the remaining diagonalization of h
+construction of the left and righteigenfunctions for the
+b has two different
+free dirac operator one finds that h
+doubly degenerate eigenvalues
+b  s1r  r4  h
+b  s1r 
+r3  h
+the constant spinors lj  rj
+0 t
+ r1
+0 t
+are t is transposition
+ c 1 0 0 0  l2
+ c 0 0 1 0 
+0 t
+ c 0 1 0 0 
+0 t
+ c 0 0 0 1 
+ r2
+the constant c  2ss  h5 12 ensures the correct
+normalization such that the eigenvectors obey li rj  ij 
+using these eigenvectors and the spectral theorem we
+b the simple result
+find for sign h
+sign h
+sign j  rj lj 
+signs b
+plugging this back into the overlap formula 1 and diagonalizing the remaining 4  4 problem one finds two
+different eigenvalues for the overlap operator at a given
+momentum
+sign  h2  h25  h5  i h2
+h2  h25
+where each of the two eigenvalues is twofold degenerate
+the momentum dependence enters through the components h  h5 defined in 8 in the spectral sum 6 the label n runs over all momenta and the eigenvalues at fixed
+momentum as given in 13 the necessary derivative
+with respect to a4 is straightforward to compute in closed
+form and the spectral sum 6 can then be summed numerically the argument of the sign function cannot become purely imaginary on a finite lattice and no like
+terms occur we remark that after taking the derivative
+with respect to a4  we set a  a4  1 ie all the results
+we present are in lattice units
+0004
+0003
+0003
+128
+  0
+  0
+0004
+  4
+0002
+0001
+0002
+128 x 8
+0001
+128 x 12
+128 x 16
+0000
+128 x 24
+0000
+000
+002
+004
+006
+008
+010
+000
+002
+004
+006
+008
+fig 1 the energy density 0 as a function of 4 all
+in lattice units the symbols connected to guide the eye
+are for various lattice sizes the dashed line is the continuum
+result
+010
+fig 2 the energy density   0 as a function of 4 
+now for finite temperature lattices all in lattice units
+observed in fig 1 the fit function is given by
+c2 2  c4 4  c6 6  c8 8 
+results
+we begin the discussion of our results with fig 1
+where we show the subtracted energy density   0
+as a function of 4 for three different lattice volumes for
+those lattices all 4 sides have equal length ie in the
+thermodynamic limit they correspond to zero temperature thus according to 5 we expect the data symbols in fig 1 to approach the continuum form 4 4 2
+dashed line as the 4d volume is sent to infinity
+the figure clearly shows that the lattice data are predominantly linear when plotted versus 4 and that for
+small  they approach the continuum curve when the
+volume is increased it is however obvious that also on
+our largest lattice still a discrepancy remains for larger
+ in particular one finds a slight curvature upwards a
+discretization effect which here since the lattice spacing
+is just the inverse lattice extension is also a finite size
+effect furthermore for small  one expects to see finite
+temperature corrections according to 5
+in order to study these finite temperature corrections
+systematically we analyzed lattices with short temporal extent ie lattices with nonvanishing temperature
+fig 2 shows the corresponding results where we again
+plot the subtracted energy density as a function of 4 
+the lattice with the shortest temporal extent 1283 8
+which corresponds to the largest temperature shows a
+clear curvature this curvature is due to the t 2 2 2
+term in 5 which appears as a square root when plotted
+as function of 4  the effect is visible also for the other
+lattices but becomes less pronounced as the temporal
+extent is increased ie the temperature t is lowered
+in order to study this effect quantitatively we fit the
+finite temperature results to the continuum form 5 plus
+two terms even in  which parameterize the cutoff effects
+due to 5 the coefficient of the quadratic term should
+scale with the temperature such that one expects
+c2  t 2 2  n42 2 
+the coefficient for the quartic term should be constant
+c4  14 2  002533 
+the results of the fit for the data used in fig 2 and for
+the largest lattice of fig 1 are given in table 1
+the table shows that with increasing n4 the two physically significant parameters c2 and c4 approach the values expected from the continuum formula 5 c2 gets
+closer to n42 2 as listed in the second column and c4
+approaches 14 2  002533 for the largest finite temperature lattice 1283  24 the discrepancy is down to 9 
+n42 2
+0007812
+0010125
+003519
+0010
+0021
+0003472
+0004125
+003178
+0023
+0013
+0001953
+0002192
+002803
+0029
+0015
+0000868
+0000947
+002587
+0025
+0030
+128
+0000030
+0000032
+002543
+0015
+0016
+table i results of the fits to the form 14 the spatial
+volume is always 1283  the temporal extension n4 is given
+in the first column in the second column we list the corresponding value of n42 2 which is what one expects for the
+fitting coefficient c2 in the third column the coefficient c4 in
+the fourth column is expected to approach the constant value
+14 2  002533
+020
+overlap  128
+   0   
+015
+wilson  128
+010
+005
+000
+005
+fig 3 the ratio   04 as a function of  in
+lattice units we compare the results for overlap to those
+from wilson fermions
+for c2  and 2  for c4  the larger discrepancy for small
+n4 can be understood as a discretization effect since the
+temporal lattice spacing a4 is related to the temporal extension through a4  1n4 and thus larger n4 implies a
+smaller a4  for comparison we also display the fit results
+for the 1284 lattice which corresponds to zero temperature there we find excellent agreement less than 1
+discrepancy for the parameter c4  governing the leading
+term at t  0 the overall picture obtained from the fit
+results is that overlap fermions with chemical potential
+reproduce very well both the 4 term as well as the finite temperature contribution t 2 2 2 we conclude that
+the analytic continuation of the sign function does not introduce lattice artifacts such as the 2 a2 term known
+to be present in a naive implementation of the chemical
+potential
+in the final step of our analysis we study the discretization effect for larger values of  and compare the re
+1 p h ginsparg and k g wilson phys rev d 25 2649
+1982
+2 p hasenfratz and f karsch phys lett b 125 308
+1983
+3 r narayanan and h neuberger nucl phys b 443 305
+1995 h neuberger phys lett b 417 141 1998
+4 j bloch and t wettig phys rev lett 97 012003
+sults to the data from the standard wilson operator in
+fig 3 we plot the ratio   04 as a function of
+ in the continuum at t  0 this ratio has the value
+14 2  002533 indicated by the horizontal line for
+small  up to about   07 the wilson and overlap data
+fall on top of each other for very small  both operators show a prominent increase which is a leftover finite
+temperature effect which for the ratio   04
+shows up as a 12 term in the range between   01
+and 05 the data are close to the continuum value beyond 05 the discretization effects kick in and the overlap
+and wilson results start to differ a comparison with
+the equivalent plot in 6 where the results from various
+other lattice dirac operators were presented shows that
+the discretization effects of the overlap operator at large
+ are comparable to other formulations
+summary
+in this article we have analyzed the energy density of
+the overlap operator at finite chemical potential following 4 the sign function in the overlap was implemented
+through the spectral theorem using the analytic continuation of the sign into the complex plane the subtracted
+energy density   0 was analyzed for finite and
+zero temperature lattices fits of the data show that the
+expected continuum behavior is approached no trace
+of unphysical 2 a2 terms was found we conclude that
+overlap fermions with chemical potential 4 provide both
+chiral symmetry and the correct description of fermions
+at finite density
+acknowledgments
+we thank leonard fister
+gabriele jaritz christian lang stefan olejnik tilo
+wettig and florian wodlei for discussions and checking some of our calculations this work is supported by
+the slovak science and technology assistance agency
+under contract no apvt51005704 and the austrian
+exchange service ad
+2006 j bloch and t wettig contribution to lattice
+2006 heplat0609020
+5 j kapusta finite temperature field theory cambridge
+university press cambridge 1989
+6 w bietenholz and u j wiese phys lett b 426 114
+1998

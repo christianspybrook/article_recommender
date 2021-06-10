@@ -1,0 +1,358 @@
+s ubmodular m utual i nformation for targeted data
+s ubset s election
+a p reprint
+
+arxiv210500043v1 cslg 30 apr 2021
+
+suraj kothawade 
+surajkothawadeutdallasedu
+jeff bilmes 
+bilmesuwedu
+
+vishal kaushal 
+vkaushalcseiitbacin
+
+ganesh ramakrishnan 
+ganeshcseiitbacin
+
+rishabh iyer 
+rishabhiyerutdallasedu
+
+may 4 2021
+
+a bstract
+with the rapid growth of data it is becoming increasingly difficult to train or improve deep learning
+models with the right subset of data we show that this problem can be effectively solved at
+an additional labeling cost by targeted data subset selection tss where a subset of unlabeled
+data points similar to an auxiliary set are added to the training data we do so by using a rich
+class of submodular mutual information smi functions and demonstrate its effectiveness for
+image classification on cifar10 and mnist datasets lastly we compare the performance of
+smi functions for tss with other stateoftheart methods for closely related problems like active
+learning using smi functions we observe  2030 gain over the models performance before
+retraining with added targeted subset  12 more than other methods
+
+1
+
+introduction
+
+recent times have seen unprecedented growth in data across modalities such as text images and videos this has
+naturally given rise to techniques for finding effective smaller subsets of the data for a variety of endtasks an example
+of this is data subset selection for efficient andor costeffective training of machine learning models wherein we need
+to select samples which are most informative for training a model training on such smaller subsets of data often
+entails significant speedups and reduction in labeling timecost without sacrificing much on accuracy killamsetty et al
+2021 kaushal et al 2019 wei et al 2015 another flavor of this is targeted data subset selection which focuses on
+improving an existing model which is performing poorly is specific cases or improving a dataset which is imbalanced in
+certain attributes quite often in these endtasks we want to be able to select subsets that align well with a certain
+target set
+11
+
+targeted data subset selection
+
+in realworld settings the training data is often biased examples of such biases include distribution shift imbalance
+in classes presence of rare classes or rare slices and out of distribution examples in the unlabeled dataset in such
+cases a models performance can be improved at a given additional labeling cost by augmenting the training data
+with some most informative samples matching the target distribution hence called targeted subset from a large pool
+of unlabeled data one way of achieving this is by assuming access to a clean validation set matching the target set
+distribution and using it as a target another example is where the target set is a critical slice of the data eg indoor
+images of people in the dark or images from specific classes that the user might care about and we want to improve the
+models performance on the target without sacrificing the overall accuracy and with minimum additional labeling costs
+
+
+department of computer science university of texas at dallas
+department of computer science and engineering indian institute of technology bombay
+
+department of electrical  computer engineering university of washington seattle
+
+
+a preprint  m ay 4 2021
+
+fig 1 yet another case of this is where the user is aware of a certain rare slice or class in the dataset and has a few
+example images of this say either from the labeled set or from a heldout test set of this rare slice in this paper we
+will study the problem of targeted subset selection to sample unlabeled data points
+
+2
+
+preliminaries
+
+submodular functions we let v denote the groundset of n data points v  1 2 3  n and a set function
+f  2v 
+  the function f is submodular fujishige
+2005 if it satisfies the diminishing marginal returns
+namely f jx   f jy for all x  y  v j 
+ y
+facility location set cover log determinants etc are
+some examples iyer 2015 due to close connections
+between submodularity and entropy submodular functions can also be viewed as information functions zhang
+and yeung 1998 submodularity ensures that a greedy
+algorithm achieves bounded approximation factor when
+maximized nemhauser et al 1978
+
+labelled training data
+augment with t
+
+augmented
+training data
+
+targets
+
+retrain model
+
+targeted
+data subset
+selection
+targeted subset t
+
+submodular mutual information mi given a set of
+items a b  v the submodular mutual information
+mi gupta and levin 2020 iyer et al 2020 is defined
+as if a b  f a  f b  f a  b intuitively this
+measures the similarity between b and a and we refer to
+b as the query set
+
+unlabelled dataset
+
+figure 1 motivating example for targeted data subset selection tss the night images target are underrepresented
+in training data tss mines for night images and augments
+the training data to improve the performance of the final
+model
+kaushal et al 2020 extend mi to handle the case when the target can come from an auxiliary set v 0 different from the
+ground set v for targeted data subset selection v is the source set of data instances and the target is a subset of data
+points validation set or the specific set of examples of interest let   v  v 0  we define a set function f  2  
+although f is defined on  the discrete optimization problem will only be defined on subsets a  v to find an
+optimal subset given a query set q  v 0  we can define gq a  if a q a  v and maximize the same
+21
+
+examples of smi functions
+
+we use the mi functions recently introduced in iyer et al 2020 gupta and levin 2020 and their extensions introduced
+in kaushal et al 2020 for any two data points i  v and j  q let sij denote the similarity between them
+graph cut mipthe p
+submodular mutual information smi instantiation of graphcut gcmi is defined as
+igc a q  2 ia jq sij  since maximizing gcmi maximizes the joint pairwise sum with the query set it
+will lead to a summary similar to the query set q in fact specific instantiations of gcmi have been intuitively used for
+queryfocused summarization for videos vasudevan et al 2017 and documents lin 2012 li et al 2012
+facility location mi
+p  v1 in the first variant of fl we set d to be v  the smi instantiation of fl1mi can be defined
+as if l1 a q  iv minmaxja sij   maxjq sij  the first term in the min of fl1mi models diversity
+and the second term models query relevance an increase in the value of  causes the resulting summary to become
+more relevant to the query
+facility location mi
+p  v2 in the v2 variant
+p we set d to be v  q the smi instantiation of fl2mi can be defined
+as if l2 a q  iq maxja sij   ia maxjq sij  fl2mi is very intuitive for query relevance as well it
+measures the representation of data points that are the most relevant to the query set and vice versa it can also be
+thought of as a bidirectional representation score
+log determinant mi the smi instantiation of logdetmi can be defined as ilogdet a q  log detsa  
+1 t
+log detsa   2 saq sq
+saq  saq denotes the crosssimilarity matrix between the items in sets a and q the
+similarity matrix in constructed in such a way that the crosssimilarity between a and q is multiplied by  to control
+the tradeoff between queryrelevance and diversity
+
+3
+
+a framework for targeted data subset selection
+
+we apply smi functions to the setting of targeted data subset selection for improving a models accuracy on some
+target classesinstances at a given additional labeling cost k instances without compromising on the overall accuracy
+let e be an initial training set of labeled instances and t be the set of examples that the user cares about and desires
+2
+
+a preprint  m ay 4 2021
+
+better performance on let u be a large unlabeled dataset using appropriate feature representation of the instances
+we compute kernels of similarities of elements within u within t and between u and t to instantiate a mi function
+if a t  and maximize it to compute an optimal subset   u of size k given t as target query set we then
+augment e with labeled  ie l and retrain the model to achieve the desired improvement through instantiating
+a rich class of mi functions including gcmi fl1mi fl2mi com and logdetmi tss offers a rich treatment to
+targeted subset selection our framework allows for adding an explicit diversity term ga where  is the weight and
+g is a set function modeling diversity for eg total pairwise distance this is helpful in cases when if itself does not
+model diversity for eg gcmi the algorithm is summarized in algorithm 1 following ash et al 2020 killamsetty
+et al 2021 we use gradients as feature representation to compute the similarity kernels the gradients are computed
+using models inference for u and t and similarity is computed using cosine similarity
+algorithm 1 tss
+require initial labeled set of examples e large unlabeled dataset u a target subsetslice where we want to
+improve accuracy t  loss function l for learning
+1 train model with loss l on labeled set e and obtain parameters e
+2 compute the gradients e lxi  yi  i  u and e lxi  yi  i  t 
+3 using the gradients compute the similarity kernels and define a submodular function f and diversity function g
+4   maxau ak if a t   ga
+5 obtain the labels of the elements in a  l
+6 train a model on the combined labeled set e  l
+
+4
+
+effectiveness of smi for tss
+
+dataset baselines and implementation details we demonstrate the effectiveness of tss in obtaining a targeted
+subset for improving image classification accuracy for some target classes on cifar10 and mnist datasets to
+simulate a realworld setting we split the available train set into train validate and a data lake such that i the train set
+has few labeled instances and poorly represents two randomly picked classes target and ii data lake is a large set
+whose labels we do not use resembling a large pool of unlabeled data in realworld the poorly represented classes do
+not perform well on the validation set and hold clue to picking up the target of interest performance is measured on the
+test set from the respective datasets we then apply tss algorithm 1 comparing mi functions with other existing
+approaches specifically for mi functions we use logdetmi gcmi fl1mi fl2mi and gcmi  diversity equivalent
+to an intuitive approach of minimizing average gradient difference with the target for existing approaches we compare
+with three active learning baselines uncertainty sampling us badge and g lister active glister running
+them only once as per our setting ie we select the unlabeled subset only once since these active learning baselines
+do not explicitly have information of the target set to further strengthen them we also compare against two variants
+which are targetaware the first is targeted uncertainty sampling tus where a product of the uncertainty and the
+similarity with the target is used to identify the subset and second is g lister tss where the target set is used in the
+bilevel optimization finally we also compare with pure diversityrepresentation functions facility location fl
+graph cut gc log determinant logdet disparitysum dsum and random sampling we train the model
+resnet18 he et al 2016 for cifar10 lenet lecun et al 1989 for mnist using crossentropy loss and sgd
+optimizer until training accuracy exceeds 99 base model after augmenting the train set with the labeled version of
+the selected subset and retraining the model we report the average gain in accuracy for the target classes and overall
+gain in accuracy across all classes on test set averaged across 10 runs of randomly picking any two classes as target
+we run tss for different budgets and also study the effect of budget on the performance wherever applicable we
+keep the internal parameters at their default values of 1
+results in table 1 we report the results for a budget of 400 for cifar10 and 70 for mnist to keep the setting
+as realistic as possible we set the target set to be much smaller than the budget around 10 of the budget  10 for
+cifar10 and 6 for mnist we report the effect of budget on the gain in accuracy of the target classes in fig 2
+on both datasets mi functions yield the best improvement in accuracy on the target classes  2030 gain over
+the models performance before retraining with added targeted subset  12 more than other methods while also
+simultaneously increasing the overall accuracy by  26 they consistently outperform badge g lister tss us
+and tus across all budgets since the smi functions logdetmi fl2mi and gcmidiv model both queryrelevance
+and diversity they perform better than both a functions which tend to prefer relevance gcmi tus and b functions
+which tend to prefer diversityrepresentation badge fl gc dsum logdet also we observe that across different
+budgets the mi functions outperform other methods by greater margins on the target class accuracy fig 2 this is
+expected as other methods are not effective in considering the target
+3
+
+a preprint  m ay 4 2021
+
+figure 2 comparison of different methods for targeted subset selection for different budgets on cifar10 and mnist
+xaxis budgets yaxis gain in model accuracy for target classes on test set mi based approaches lines in red
+significantly outperform others across all subset sizes section 4
+method
+
+cifar10
+mnist
+target
+overall target
+overall
+base
+112
+422
+5276
+868
+random
+275
+143
+108
+0032
+badge ash et al 2020
+7245
+238
+67 1659
+glister killamsetty et al 2021
+121
+227
+1456
+227
+glistertss
+165
+178 22895
+405
+us settles 2009
+395
+203
+756 1182
+tus
+1045
+299
+621 1611
+logdet
+1185
+12
+1329
+189
+fl
+153
+263 15025
+241
+gc
+159
+179 10935
+116
+dsum
+1065
+19 20515
+392
+logdetmi
+265
+221 28035
+526
+fl2mi
+202
+17
+3436
+514
+fl1mi
+171
+228
+2121
+383
+gcmi
+176
+148 29375
+521
+gcmidiv
+182
+374
+3128
+421
+table 1 comparison of tss mi functions with other methods for a budget of 400 cifar10 and 70 mnist the
+numbers are the gain in  accuracy of the target classes target and all classes overall over the base model after
+retraining the model see text highest in blue 2nd and 3rd highest in red and green respectively
+
+5
+
+conclusion
+
+we demonstrate the effectiveness of smi functions for improving a models performance by augmenting the training
+data with samples that match a target distribution targeted data subset selection through experiments on cifar10
+and mnist datasets we empirically verify the superiority of smi functions over existing methods
+references
+jordan t ash chicheng zhang akshay krishnamurthy john langford and alekh agarwal deep batch active learning
+by diverse uncertain gradient lower bounds in iclr 2020
+4
+
+a preprint  m ay 4 2021
+
+satoru fujishige submodular functions and optimization elsevier 2005
+anupam gupta and roie levin the online submodular cover problem in acmsiam symposium on discrete
+algorithms 2020
+kaiming he xiangyu zhang shaoqing ren and jian sun deep residual learning for image recognition in proceedings
+of the ieee conference on computer vision and pattern recognition pages 770778 2016
+rishabh iyer ninad khargoankar jeff bilmes and himanshu asnani submodular combinatorial information measures
+with applications in machine learning arxiv preprint arxiv200615412 2020
+rishabh krishnan iyer submodular optimization and machine learning theoretical results unifying and scalable
+algorithms and applications phd thesis 2015
+vishal kaushal rishabh iyer suraj kothawade rohan mahadev khoshrav doctor and ganesh ramakrishnan
+learning from less data a unified data subset selection and active learning framework for computer vision in 2019
+ieee winter conference on applications of computer vision wacv pages 12891299 ieee 2019
+vishal kaushal suraj kothawade ganesh ramakrishnan jeff bilmes himanshu asnani and rishabh iyer a unified
+framework for generic queryfocused privacy preserving and update summarization using submodular information
+measures arxiv preprint arxiv201005631 2020
+krishnateja killamsetty durga sivasubramanian ganesh ramakrishnan and rishabh iyer glister generalization
+based data subset selection for efficient and robust learning in aaai 2021
+yann lecun bernhard boser john s denker donnie henderson richard e howard wayne hubbard and lawrence d
+jackel backpropagation applied to handwritten zip code recognition neural computation 14541551 1989
+jingxuan li lei li and tao li multidocument summarization via submodularity applied intelligence 373
+420430 2012
+hui lin submodularity in natural language processing algorithms and applications phd thesis 2012
+george l nemhauser laurence a wolsey and marshall l fisher an analysis of approximations for maximizing
+submodular set functionsi mathematical programming 141265294 1978
+burr settles active learning literature survey technical report university of wisconsinmadison department of
+computer sciences 2009
+arun balajee vasudevan michael gygli anna volokitin and luc van gool queryadaptive video summarization via
+qualityaware relevance estimation in proceedings of the 25th acm international conference on multimedia pages
+582590 2017
+kai wei rishabh iyer and jeff bilmes submodularity in data subset selection and active learning in international
+conference on machine learning pages 19541963 pmlr 2015
+zhen zhang and raymond w yeung on characterization of entropy function via information inequalities information
+theory ieee transactions on 44414401452 1998
+
+5
+

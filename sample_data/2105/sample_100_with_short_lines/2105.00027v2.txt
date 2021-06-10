@@ -1,0 +1,1242 @@
+memory reduction using a ring abstraction over gpu
+rdma for distributed quantum monte carlo solver
+a preprint
+
+arxiv210500027v2 csdc 13 may 2021
+
+weile wei
+louisiana state university
+wwei9lsuedu
+arghya chatterjee 
+nersc berkeley lab
+ronnielblgov
+
+eduardo dazevedo
+oak ridge national laboratory
+dazevedoefornlgov
+oscar hernandez
+oak ridge national laboratory
+oscarornlgov
+
+kevin huck
+university of oregon
+khuckcsuoregonedu
+hartmut kaiser
+louisiana state university
+hkaisercctlsuedu
+
+may 14 2021
+
+abstract
+scientific applications that run on leadership computing facilities often face the challenge of being
+unable to fit leading science cases onto accelerator devices due to memory constraints memorybound applications in this work the authors studied one such us department of energy missioncritical condensed matter physics application dynamical cluster approximation dca and this
+paper discusses how device memorybound challenges were successfully reduced by proposing an
+effective alltoall communication methoda ring communication algorithm this implementation
+takes advantage of acceleration on gpus and remote direct memory access rdma for fast data
+exchange between gpus
+additionally the ring algorithm was optimized with subring communicators and multithreaded
+support to further reduce communication overhead and expose more concurrency respectively
+the computation and communication were also analyzed by using the autonomic performance
+environment for exascale apex profiling tool and this paper further discusses the performance
+tradeoff for the ring algorithm implementation the memory analysis on the ring algorithm shows
+that the allocation size for the authors most memoryintensive data structure per gpu is now
+reduced to 1p of the original size where p is the number of gpus in the ring communicator the
+communication analysis suggests that the distributed quantum monte carlo execution time grows
+linearly as subring size increases and the cost of messages passing through the network interface
+connector could be a limiting factor
+keywords dca quantum monte carlo gpu remote direct memory access memorybound issue exascale
+machines
+
+1
+
+introduction
+
+dynamical cluster approximation dca2 is a highperformance research software application 1 2 3 4 that
+provides a modern c implementation to solve quantum manybody problems dca implements a quantum
+cluster method with a quantum monte carlo qmc kernel for modeling strongly correlated electron systems the
+dca software currently uses three different programming modelsmessage passing interface mpi compute
+unified device architecture cuda and high performance parallex hpxc threadingtogether with three
+ arghya chatterjee contributed to this work mostly during his previous appointment at oak ridge national laboratory oak
+ridge tn
+2 dca is available at httpsgithubcomcompfusedca
+
+a preprint  may 14 2021
+
+numerical librariesbasic linear algebra subprograms blas linear algebra package lapack and matrix
+algebra on gpu magmato expose the parallel computation
+in the qmc kernel 5 the twoparticle greens function gt  is needed for computing important fundamental
+quantities such as the critical temperature tc  for superconductivity in other words a larger gt allows condensed
+matter physicists to explore larger and more complex ie higher fidelity physics cases dca currently stores gt
+in a single gpu device however this limits the largest gt that can be processed within one gpu a new approach for
+partitioning the large gt across the multiple gpus can significantly increase scientists capabilities to explore higher
+fidelity simulations this paper focuses on how the memorybound issue in dca was successfully addressed by
+proposing an effective alltoall communication methoda ring algorithmto update the distributed gt device
+array
+11
+
+contributions
+
+the primary contributions of this work are outlined as follows
+1 the memory consumption in a qmc solver application was reduced to store a much larger gt array across
+multigpus this significant contribution enables physicists to evaluate larger scientific problem sizes and
+compute the full gt array in a single computation which significantly increases the accuracyfidelity of the
+simulation of a certain material
+2 a ring abstraction layer was designed that updates the large distributed gt array the ring algorithm
+was further improved by adding subring communicator and multithreaded communication to reduce
+communication overhead and expose more concurrency respectively
+3 the ring abstraction layer was implemented on top of nvidia gpudirect remote direct memory access
+rdma for fast device memory transfer
+4 the autonomic performance environment for exascale apex performance measurement library was
+extended to support the use case driving tool development and research
+
+2
+
+background
+
+qmc solver applications are widely used and are missioncritical across the us department of energys does
+application landscape for the purpose of this paper the authors chose to use one of the primary qmc applications
+the dca code a productionscale scientific problem runs on does fastest supercomputer summit at the oak
+ridge leadership computing facility on all 4600 nodes each node contains six nvidia volta v100 gpus attaining a
+peak performance of 735 pflops with a mixed precision implementation 5
+monte carlo simulations are embarrassingly parallel and the authors exploited this on distributed systems with a
+twolevel mpi  threading parallelization scheme figure 1 although dca has been highly optimized and is
+scalable on existing hardware this is the first effort to focus on solving the memorybound issue described in section
+1 and further take advantage of summits gpu rdma capability
+figure 1 shows the parallelism hierarchy in one iteration of the qmc solver mpi distribution  onnode threading
+parallelism for example each rank r0     rn  is assigned a markov chain and the initial input two particle
+greens function gti  where t means twoparticle and i is rank index each rank spawns multiple independent
+worker threads ie walkers and accumulators most work and computation are performed on the gpu each walker
+thread generates a measurement result gi array where i is thread id by performing nonuniform fourier transform
+implemented by matrixmatrix multiplication each walker passes its gi to its corresponding accumulator thread
+in other words each thread has its own gi array and each rank will have k different gi arrays where k is the
+number of walker threads per rank each accumulator thread then updates gti via the formula in eq 1 to compute
+0  the updated partial g 0 is then fed into the coarsegraining step for the next
+and update ranklocal gti to gti
+ti
+measurement at the end of all measurements an mpireduce operation will be performed on gt across all ranks
+to produce a final and complete gt in the root rank gt is allocated before all measurements start and has a life that
+spans until the end of the dca program
+21
+
+memorybound issue in dca
+
+the results from balduzzi et al 5 show that although storing a gt on the accelerator device allows condensed
+matter scientists to explore larger and more complex ie higher fidelity physics cases the problem size is limited to
+the device memory size updating the device array gt is the most timeconsuming and memoryintensive process
+2
+
+a preprint  may 14 2021
+
+gt0 
+
+r0
+g0
+
+walker 0
+gt1 
+
+r1
+
+g0
+
+walker 0
+
+gt2 
+r2
+gt3 
+
+accu 1
+
+g2
+
+walker2
+
+walker 1
+
+ 
+gt1
+
+
+
+accu 2
+
+g1
+
+ 
+gt2
+
+accu 1
+
+r2
+
+gt3
+
+
+accu 2
+
+r3
+
+mpi distribution
+
+r1
+
+accu 0
+
+g2
+
+walker 2
+
+gt0 
+
+accu 0
+g1
+
+walker 1
+
+r0
+
+r3
+
+onnode threading
+
+mpi distribution
+
+figure 1 workflow of the qmc dca solver
+
+throughout dca computation a distributed gt approach is needed to reduce memory allocation and operation in
+the device
+in the original dca algorithm gt is updated by a product of two smaller matrices singleparticle greens function
+or g  this computation update is in the particleparticle channel and is accumulated according to eq 1
+
+gt k1 k2 k3  
+g k3  k2 k3  k1  g  k2 k1  
+1
+
+
+where ki is a combined index that represents a particular point in the momentum and frequency space and  
+1 or 1 specifies the electron spin value g is the singleparticle greens function that describes the configuration
+of single electrons
+the ability to handle a larger gt allows simulations of complex materials to significantly increase the details accuracy
+and fidelity in the previous design that kept gt within one gpu only a subslice of gt could be computed in a single
+computation for the simple singleorbital coarsegrained hubbard model physics insights or prior knowledge can
+be used to decide which subslices in gt contain the important physics and thus avoid the generation of full gt  this
+simple model allows the generic behavior that comes from electronic corrections in materials to be studied but it
+cannot distinguish between different specific materials materialspecific modeling requires more complex models
+that include more orbitaland otherdegrees of freedom and this requires a much larger gt  this new distributed
+ring implementation enables the full large gt array to be computed in a single computation even for more complex
+multiorbital models to ensure that no important physics cases are overlooked
+22
+
+gpu rdma technology
+
+gpu rdma allows direct peer access to multigpu memory through a highspeed network for nvidia gpus
+gpudirect is a technology that allows for the direct transfer of data in gpu device memory to other gpus on the
+same node by using the nvlink2 interconnect andor between gpus on different nodes by using rdma support
+that can bypass buffers on host memory
+a cudaaware mpi3 implementation can directly pass the gpu buffer pointer to mpi calls acceleration support
+such as gpudirect can be used by the mpi library and allows buffers being sent from the kernel memory to a network
+3 httpsdevelopernvidiacomblogintroductioncudaawarempi
+
+3
+
+a preprint  may 14 2021
+
+without staging through host memory there are various cudaaware mpi implementations such as openmpi
+mvapich2 and ibm spectrum mpi4 
+
+3
+
+implementation ring abstraction
+
+31
+
+distributed gt in qmc solver
+
+before introducing the communication phase of the ring abstraction layer it is important to understand how the
+authors distributed the large device array gt across mpi ranks original gt was compared and gtd versions were
+distributed figure 2
+in the original gt implementation the measurementswhich were computed by matrixmatrix multiplicationare
+distributed statically and independently over the mpi ranks to avoid internode communications each mpi rank
+keeps its partial copy of gti to accumulate measurements within a rank where i is the rank index after all the
+measurements are finished a reduction step is taken to accumulate gti across all mpi ranks into a final and complete
+gt in the root mpi rank the size of the gti in each rank is the same size as the final and complete gt 
+with the distributed gtd implementation this large device array gt was evenly partitioned across all mpi ranks each
+portion of it is local to each mpi rank instead of keeping its partial copy of gt  each rank now keeps an instance
+d to accumulate measurements of a portion or subslice of the final and complete g  where the notation d in
+of gti
+t
+d
+d size in each rank is reduced to 1p of the
+gt refers to the distributed version and i means the ith rank the gti
+size of the final and complete gt  comparing the same configuration in original gt implementation where p is the
+d  which is
+number of mpi ranks used for example in figure 2b there are four ranks and rank i now only keeps gti
+onefourth the size of the original gt array size
+d for the distributed g d implementation each rank must see every g
+to compute the final and complete gti
+i from all
+t
+ranks in other words each rank must broadcast the locally generated gi to the remainder of the other ranks at
+every measurement step to efficiently perform this alltoall broadcast a ring abstraction layer was built section
+32 which circulates all gi across all ranks
+
+32
+
+pipeline ring algorithm
+
+a pipeline ring algorithm was implemented that broadcasts the g array circularly during every measurement the
+algorithm algorithm 1 is visualized in figure 3
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+
+algorithm 1 pipeline ring algorithm
+generategsigmagsigmabuf
+updateg4gsigmabuf
+i  0
+myrank  worldrank
+ringsize  mpiw orldsize
+le f trank  myrank  1  ringsize  ringsize
+rightrank  myrank  1  ringsize  ringsize
+sendbufswapgsigmabuf
+while i  ringsize do
+mpiirecvrecvbuf sourceleftrank tag  recvtag recvrequest
+mpiisendsendbuf sourcerightrank tag  sendtag sendrequest
+mpiwaitrecvrequest
+updateg4recvbuf
+mpiwaitsendrequest
+sendbufswaprecvbuf
+i
+end
+
+4 ibm
+
+spectrum mpi is supported on the summit supercomputer and is also the cudaaware mpi implementation used by the
+authors in this paper
+
+4
+
+a preprint  may 14 2021
+
+rank 1
+
+rank 0
+gi
+
+
+
+gi
+
+gt0
+
+gi
+
+rank 2
+gi
+
+gi
+
+
+
+gt1
+
+
+
+rank 3
+gi
+
+gt2
+
+gi
+
+
+
+gi
+
+gt3
+
+mpireduce
+rank 0
+
+p
+
+gt   gti
+i0
+
+a original gt implementation
+gpu rdma
+rank 1
+
+rank 0
+gi
+
+d
+gt0
+
+
+
+gi
+
+gi
+
+
+
+rank 2
+gi
+
+gi
+
+d
+gt1
+
+
+
+d
+gt2
+
+rank 3
+gi
+
+gi
+
+
+
+gi
+
+d
+gt3
+
+mpireduce optional
+rank 0
+
+d
+d
+gt0
+gt1
+d
+d
+gt2
+gt3
+
+gt
+
+b distributed gt implementation
+figure 2 comparison of the original gt vs the distributed gtd implementation each rank contains one gpu resource
+
+5
+
+a preprint  may 14 2021
+
+rank 1
+
+rank 0
+
+rank 2
+
+thread i
+
+sendbuff
+
+sendrecv
+
+recvbuff
+rank 3
+
+waitrecv
+
+waitsend
+d
+updategt0
+
+
+sendbuff
+swaprecvbuff
+
+figure 3 workflow of ring algorithm per iteration
+
+at the start of every new measurement a singleparticle greens function g line 1 is generated and then used to
+d line 2 via the formula in eq 1 between lines 3 to 8 the algorithm initializes the indices of left and
+update gti
+right neighbors and prepares the sending message buffer from the previously generated g buffer the processes are
+organized as a ring so that the first and last rank are considered to be neighbors to each other a swap operation
+is used to avoid unnecessary memory copies for sendbuf preparation a walkeraccumulator thread allocates an
+additional recvbuf buffer of the same size as gsigmabuf to hold incoming gsigmabuf buffer from leftrank
+the while loop is the core part of the pipeline ring algorithm for every iteration each thread in a rank receives
+a g buffer from its left neighbor rank and sends a g buffer to its right neighbor rank a synchronization step
+d line 13
+line 12 is performed afterward to ensure that each rank receives a new buffer to update the local gti
+another synchronization step follows to ensure that all send requests are finalized line 14 lastly another swap
+operation is used to exchange content pointers between sendbuf and recvbuf to avoid unnecessary memory copy and
+prepare for the next iteration of communication in the multithreaded version section 322 the thread of index i
+only communicates with threads of index i in neighbor ranks and each thread allocates two buffers sendbuff and
+recvbuff
+the while loop will be terminated after ringsize  1 steps by that time each locally generated gi will have traveled
+d in all ranks eventually each g
+across all mpi ranks and updated gti
+i reaches to the left neighbor of its birth rank
+for example g0 generated from rank 0 will end in last rank in the ring communicator
+d at the end of all
+additionally if the gt is too large to be stored in one node it is optional to accumulate all gti
+measurements instead a parallel write into the file system could be taken
+
+321
+
+subring optimization
+
+a subring optimization strategy is further proposed to reduce message communication times if the large device array
+gt can fit in fewer devices the subring algorithm is visualized in figure 4
+for the ring algorithm section 32 the size of the ring communicator mpiworldsize is set to the same size of the
+global mpicommworld and thus the size of gt is equally distributed across all mpi ranks
+d in one measurement one g
+however to complete the update to gti
+i must travel mpiworldsize ranks in total
+there are mpiworldsize numbers of gi being sent and received concurrently in one measurement in the global
+d is relatively small per rank then this will cause high commumpicommworld communicator if the size of gti
+nication overhead
+
+if gt can be distributed and fitted in fewer devices then a shorter travel distance is required for gi  thus reducing
+d 
+the communication overhead one reduction step was performed at the end of all measurements to accumulate gts
+i
+where si means ith rank on the sth subring
+6
+
+a preprint  may 14 2021
+
+rank 0
+
+rank 1
+
+rank 2
+
+subring communicator 0
+
+rank 3
+
+rank 4
+
+rank 5
+
+subring communicator 1
+
+thread i
+
+sendbuff
+
+sendrecv
+
+recvbuff
+
+rank 6
+
+rank 7
+
+rank 8
+
+subring communicator 2
+
+figure 4 workflow of subring algorithm per iteration every consecutive s rank forms a subring communicator and no
+communication occurs between subring communicators until all measurements are finished here s is the number of ranks in a
+subring
+
+at the beginning of mpi initialization the global mpicommworld was partitioned into several new subring
+communicators by using mpicommsplit the new communicator information was passed to the dca
+concurrency class by substituting the original global mpicommworld with this new communicator now only
+a few minor modifications are needed to transform the ring algorithm algorithm 1 to subring algorithm 2 in
+line 4 myrank is initialized to subringrank instead of worldrank where subringrank is the rank index in the local
+subring communicator in line 5 ringsize is initialized to subringsize instead of mpiworldsize where subringsize is
+the size of the new communicator the general ring algorithm is a special case for the subring algorithm because the
+subringsize of the general ring algorithm is equal to mpiworldsize and there is only one subring group throughout
+all mpi ranks
+algorithm 2 modified ring algorithm to support subring communication
+myrank  subringrank
+ringsize  subringsize
+
+322
+
+multithreaded ring communication
+
+to take advantage of the multithreaded qmc model already in dca multithreaded ring communication support
+was further implemented in the ring algorithm figure 1 shows that in the original dca method each walkeraccumulator thread in a rank is independent of each other and all the threads in a rank synchronize only after
+all ranklocal measurements are finished moreover during every measurement each walkeraccumulator thread
+generates its own threadprivate gi to update gt 
+the multithreaded ring algorithm now allows concurrent message exchange so that threads of same ranklocal
+thread index exchange their threadprivate gi  conceptually there are k parallel and independent rings where k is
+number of threads per rank because threads of the same local thread id form a closed ring for example a thread of
+index 0 in rank 0 will send its g to the thread of index 0 in rank 1 and receive another g from thread index of 0
+from last rank in the ring algorithm
+the only changes in the ring algorithm are offsetting the tag values recvtag and sendtag by the thread index
+value for example lines 10 and 11 from algorithm 1 are modified to algorithm 3
+algorithm 3 modified ring algorithm to support multithreaded ring
+mpiirecvrecvbuf sourceleftrank tag  recvtag  threadid recvrequest
+mpiisendsendbuf sourcerightrank tag  sendtag  threadid sendrequest
+
+7
+
+a preprint  may 14 2021
+
+125 gbs
+
+125 gbs
+
+gpu
+
+gpu
+
+nic
+16gbs
+
+cpu
+
+gpu
+
+16gbs
+
+64 gbs
+
+cpu
+
+gpu
+
+gpu
+
+gpu
+nvlink
+50 gbs
+
+pcie
+gen4
+
+edr ib
+
+xbus
+smp
+
+figure 5 architectural layout of a single node on summit
+
+to efficiently send and receive g  each thread will allocate one additional recvbuff to hold incoming gsigmabuf
+buffer from leftrank and perform sendreceive efficiently in the original dca method there are k numbers of
+buffers of g size per rank and in the multithreaded ring method there are 2k numbers of buffers of g size per
+rank where k is number of threads per rank
+
+4
+
+results
+
+this section evaluates this work from various perspectivesincluding correctness memory analysis scaling and
+function activitieswith help from the apex profiling tool all experiments were run on summit
+41
+
+summit node configuration
+
+summit is a 4600 node 200 pflops ibm ac922 system each node consists of two ibm power9 cpus with 512 gb
+ddr4 ram and six nvidia v100 gpus with a total of 96 gb highbandwidth memory each summit node figure 5
+is divided into two sockets and each socket has one ibm power9 cpu and three nvidia v100 gpus all connected
+through nvidias highspeed nvlink2 each nvlink2 is capable of a 25 gbs transfer rate in each direction two
+ibm power9 cpus within a summit node are connected through peripheral component interconnect express bus
+64 gbs bidirectional there is a mellanox infiniband edr network interface connector nic attached to each
+summit node two ports per nic 125 gbs per port
+42
+
+apex
+
+apex 6 is a performance measurement library for distributed asynchronous multitasking systems it provides
+lightweight measurements without perturbing high concurrency through synchronous and asynchronous interfaces
+to support performance measurement in systems that employ operating system or userlevel threading apex uses
+a dependency chain in addition to the call stack to produce traces and task dependency graphs the synchronous
+apex instrumentation application programming interface api can be used to add instrumentation to a given run
+time and includes support for timers and counters to support c threads on linux systems the underlying posix
+threads are automatically instrumented by using a preloaded shared object library that intercepts and wraps pthread
+calls in the application the nvidia cuda profiling tools interface 7 provides cuda host callback and device
+activity measurements additionally the hardware and operating system are monitored through an asynchronous
+8
+
+a preprint  may 14 2021
+
+table 1 comparison of function differences between the original gt and accumulated gtd over five runs
+
+5e7
+error
+l1
+l2
+
+real part
+
+imaginary part
+
+371e09174e18
+310e10419e18
+
+461e09216e18
+337e10389e18
+
+true
+true
+
+measurement that involves the periodic or ondemand interrogation of the operating system hardware states or
+run time states eg cpu use resident set size memory high water mark the nvidia management library
+interface 8 provides periodic cuda device monitoring to apex for this work apex was extended to capture
+additional timers and counters related to cuda devicetodevice memory transfers and support for key mpi calls
+was provided by a minimal implementation of the mpi profiling interface 9
+43
+
+accuracy analysis
+
+to verify that this implementation generates correct results the same input configuration was run for original and
+ring algorithm methods and the differences between the original gt and accumulated gtd arrays were compared a
+normalized l1 loss function least absolute deviations eq 2 and normalized l2 loss function least square errors
+eq 3 were used to compute the normalized error between original gt and accumulated gtd arrays in which the
+entrywise norm was used5 the baseline is that the l1error and l2error between two arrays should be smaller
+than 5e7 after dca testing protocol where
+l1error 
+
+kvecgt  gtd  k 1
+
+kvecgt  k 1
+
+2
+
+l2error 
+
+kvecgt  gtd  k 2
+
+kvecgt  k 2
+
+3
+
+for input configuration the singleband hubbard model was chosen because it is a standard model of correlated
+electron systems and is used in almost all the studies of the cuprate hightemperature superconductors moreover
+the cluster size was configured to 36site 6x6 cluster which is stateoftheart simulations size 100000 monte
+carlo measurements were chosen to observe runtime performance of the ring algorithms as the runtime scales
+linearly with the number of measurements for constant number of ranks since the cluster size was configured to
+66 and fourpointfermionicfrequencies was set to 64 this leads 212336640 entries in gt  since each gt entry is a
+doubleprecision complex number the gt memory size is about 34 gb this configuration can produce large gt but
+still will not hit memorybound issues on summit gpusin which each gpu has 16 gbfor the regular gt version
+such configurations were run on one summit node five times with six ranks per node and seven walkeraccumulator
+threads per rank for the distributed gtd version ring size was set to six so there was only one subring during the
+run the results show that the implementation generates correct results table 1 because the l1error and l2error
+on accumulated gtd are in an acceptable range
+44
+
+memory analysis
+
+the memory analysis results show that device memory required for gtd decreases linearly to the size of the subring
+or the number of mpi ranks in the subcommunicator which fits the ring algorithm the apex profiling tool was
+used to collect memory allocation information over the time the performance results reflect correctly to the ring
+algorithm method because the gt was evenly distributed across mpi ranksin which each rank uses 1 gpuwithin
+one subring communicator
+for example the requested size in cudamalloc api was compared between original gt figure 6a and distributed
+gtd subring size of three figure 6b methods this shows that the distributed gtd method produced three times less
+memory allocation than the original gt device array at around 7 s in both cases the distributed gtd method allocated
+d  and the original g method allocated 340 gb for g 
+113 gb for gti
+t
+ti
+5 entrywise
+
+norm as defined in httpsenwikipediaorgwikimatrixnorm
+
+9
+
+a preprint  may 14 2021
+
+400
+375
+350
+325
+300
+275
+250
+225
+200
+175
+150
+125
+100
+075
+050
+025
+000
+
+0s
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+
+10 s
+
+20 s
+
+30 s
+
+40 s
+
+50 s
+
+60 s
+
+a original gt implementation
+400
+375
+350
+325
+300
+275
+250
+225
+200
+175
+150
+125
+100
+075
+050
+025
+000
+
+0s
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+g
+
+20 s
+
+40 s
+
+60 s
+
+b distributed gtd implementation with subring size of three
+figure 6 cudamalloc requested size gb over time visualized by vampir
+
+45
+
+scaling results
+
+in the pipeline subring algorithm each rank sends s  1 and receives s  1 messages where s is the size of subring thus the total number of messages scales quadratically as os 2  but the number of messages crossing each
+communication link increases linearly as os figure 7 shows the elapsed computation time for 1400 measurements
+per rank of the subring algorithm running with six ranks per summit node in which each message is about 170 mb
+the data are well approximated by a linear leastsquare line that indicates that the elapsed computation time increases
+linearly as the subring size increases this suggests that the subring algorithm is not constrained by the total volume
+of messages but is restricted by the slowest communication link the effective bandwidth of the subring algorithm
+can be estimated as
+effective bandwidth  170  106  s  1 400 elapsed time
+and this is about 6 gbs using the data for s  60 on 10 nodes in figure 7 this effective bandwidth is about 50 of
+the theoretical peak bandwidth for the nic 125 gbs per port on the summit node
+the authors acknowledge that enabling the ring algorithm to solve existing small problemsize single band hubbard
+model with lower cluster size will be an overkill since the communication overhead will drastically increase the
+runtime therefore the authors propose the ring algorithm be only used when the gt cannot fit into one single gpu
+memory when the original dca is executed with a large enough problem size when gt cannot fit into one single
+gpu the program simply crashes failing to allocate memory on the device moreover the scalability issue of the
+ring algorithm was the core focus for the authors during the implementation and the optimization design strategies
+of the subring algorithm without subring optimization the originally proposed ring algorithm will potentially
+take undesirably long period of time to finish a run of dca especially when requesting thousands of compute
+nodes with the subring optimization scientists are able to run large science cases while maintaining acceptable
+communication overhead
+since the current subring size has to be configured manually the authors plan to design a runtime adaptivity
+optimization that will automatically adapt the optimal subring size this optimization will distribute gt into the
+minimal number of devices as well as preserves optimal runtime performance this runtime adaptivity will be very
+10
+
+a preprint  may 14 2021
+
+data point
+
+linear fit
+
+execution time seconds
+
+2500
+
+2000
+
+1500
+
+1000
+
+500
+
+0
+0
+
+10
+20
+30
+40
+50
+60
+number of mpi ranks in a subring communicator
+
+70
+
+figure 7 time for 1400 iterations per rank of the subring algorithm using six ranks per summit node and each message size is
+170 mb
+489 s
+cpu thread 00
+cpu thread 50
+cpu thread 40
+cpu thread 70
+cpu thread 30
+cpu thread 20
+cpu thread 80
+cpu thread 60
+
+490 s
+
+491 s
+
+492 s
+
+493 s
+
+mpiwait
+mpiwait
+mpiwait
+mpiwait
+
+494 s
+
+495 s
+
+496 s
+
+mpiwait
+cumemcpyasync
+
+mpiwait
+
+497 s
+
+498 s
+mpiwait
+
+mpiwait
+
+mpiwait
+cumemcpyasync
+
+mpiwait
+
+figure 8 vampir timeline graph shows the processes activities over the time in rank 0 dca with multithreaded ring algorithm
+
+helpful because dca is an iterative convergence algorithm and thus gt size could be dynamically changed over
+multiple dca runs for production science runs on leadership computing facilities
+
+5
+51
+
+discussion
+concurrency overlapping
+
+the multithreaded ring implementation provides sufficient concurrency that overlaps communication and computation the apex profiling tool was used to collect data on process activities over time and visualize the data in
+vampir
+dca was run with multithreaded ring support and obtained the timeline activities in rank 0 at 49 s figure 8
+some concurrency overlap was observed in the multithreaded ring algorithm so that although some threads are
+blocked in mpiwait other threads of the same rank perform useful computation tasks for example the short
+blocks that are not labeled as mpiwait are mostly related to kernel activities
+the current ring algorithm was also observed to be a lockstep algorithm in which the next computation update gt 
+cannot start until the previous communication step g message exchange is finished to expose more currency
+hpx 10a taskbased programming modelcould be used to overlap the communication and computation for
+example dca kernel function can be wrapped into an hpx future which represents an ongoing computation and
+asynchronous task then the communication tasks can be attached or chained to the futurized kernel task wei et
+11
+
+a preprint  may 14 2021
+
+0s
+14
+
+10 s
+
+20 s
+
+30 s
+
+40 s
+
+50 s
+
+60 s
+
+13
+12
+11
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+
+a original gt method
+0s
+14
+
+20 s
+
+40 s
+
+60 s
+
+13
+12
+11
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+
+b distributed gtd method with subring size of three
+figure 9 device memory used gb over time when using seven walkeraccumulator thread visualized by vampir
+
+al 4 reported that dca with hpx userlevel 11 threading support achieves a 20 speedup over the original
+c threading kernellevel due to faster context switching in hpx threading
+52
+
+tradeoff between concurrency and memory
+
+as walkeraccumulator threads increase in the multithreaded ring algorithm gpu memory usage is also increased
+because more device memory is needed to store extra threadprivate gi buffers this might cause a new memorybound challenge if too many concurrent threads are used one possible solution is to reduce concurrent threads to
+achieve more usable device memory
+the same configuration was run for the original gt and distributed gtd versions with seven threads and then with one
+thread respectively figure 9
+for the comparison on seven threads figures 9a and 9b the first spike in memory usage increase is due to gt
+allocation and the second significant wave is because each thread is allocating gi 
+the original algorithm needs 34gb for gt and 96gb in total and the new algorithm needs 13gb for gtd and 112 gb
+in total the nongt allocation in the original algorithm is 62 gb and distributed gtd method is 99gb which leads to
+the overhead of 37 gb in gtd version the gi is composed of two samesize matrices spin up and spin down matrix
+each matrix is sized at 017 gb in the original algorithm the total g allocation is 01727  238 gb where 2 is the
+two matrices up and down in gi and 7 is seven threads in the distributed gtd method the total g allocation is
+017237  714gb where 3 is three allocations gi itself sendbuf recvbuf  per thread the overhead of overall
+g allocation in the ring algorithm is 714 238  476 gb which is about 1 gb more than the nongt allocation
+37gb in figure 9a there is a significant reduction of allocated memory in the 42nd second which is 1gb memory
+deallocation in g  however we did not observe a similar drop or wave pattern in figure 9b because those sendbuf
+recvbuf matrices are not dynamically allocated so that the dip before the allocations was hidden this explains the
+1gb difference
+12
+
+a preprint  may 14 2021
+
+0s
+60
+55
+50
+45
+40
+35
+30
+25
+20
+15
+10
+05
+00
+
+10 s
+
+20 s
+
+30 s
+
+40 s
+
+50 s
+
+a original gt method
+0s
+60
+55
+50
+45
+40
+35
+30
+25
+20
+15
+10
+05
+00
+
+10 s
+
+20 s
+
+30 s
+
+40 s
+
+50 s
+
+60 s
+
+70 s
+
+b distributed gtd method with subring size of three
+figure 10 device memory used gb over time when using one walkeraccumulator thread visualized by vampir
+
+however if only one thread was used figures 10a and 10b then the maximum device usage in the distributed gtd
+version 33 gb is 19 gb less than the one in the original gt version 52 gb much more usable device memory
+can be gained if concurrent walkeraccumulator threads are reduced for example the saved device memory from
+reduced threads can be used to fit larger gt  furthermore a comparison experiment was run on one summit node
+six ranks per node by using the same input configuration subring size is three measurement is 4200 total except
+for threading numbers per rank the distributed gtd with seven threads 87 s has 13 times more speedup than the
+one with one thread 116 s this result suggests that if there is insufficient device memory then the code might use
+fewer threads with some loss less than 30 of run time performance the authors are considering quantifying and
+modeling this tradeoff in their future research development
+to solve the nic bottleneck issue and the new memorybound challenge caused by multithreaded communication
+storing additional g  the authors are considering another plan to move g to the cpu host in which the cpu host
+has more memory each summit node contains 512 gb of ddr4 memory for use by the ibm power9 processors 6 
+and there are only 6  16 gb  96 gb of device memory on summit the nics are connected to the cpu and are not
+directly connected to the gpu the nvlink2 connection between cpu and gpu has peak of 50 gbs so it is faster
+compared with nics peak bandwidth 125 gbs and might not be the bottleneck one possible future extension
+could be to consider keeping gt on the cpu side instead of in gpu device memory so that a smaller subring can be
+used or so the subring can be kept on the same single node
+additionally the authors have explored bidirectional ring implementation that alternates ring communication
+directions between threads after extensive testing the authors concluded that the bidirectional ring improved
+performance up to 13x acrossrack each rack has 18 compute nodes on summit over the current unidirectional
+ring however there are no potential performance benefits using the bidirectional ring approach over the current
+unidirectional ring when reserving the whole rack authors continue to investigate in coordination with hardware
+vendors to address the performance of bidirectional ring implementation
+
+6
+
+conclusions
+
+this paper presents how the authors successfully solved the memorybound challenge in dca which will allow
+physicists to explore significantly large science cases and increase the accuracy and fidelity of simulations of certain
+materials an effective alltoall communication methoda ring abstraction layerwas designed for this purpose so
+6 summit
+
+user guide httpsdocsolcfornlgovsystemssummituserguidehtml
+
+13
+
+a preprint  may 14 2021
+
+that the distributed device array gt can be updated across multigpus the gt device array was distributed across
+multigpus so that the allocation size for the most memoryintensive data structure per gpu is now reduced to 1p
+of the original size where p is number of gpus in the ring communicator this significant memory reduction much
+larger gt capability is the primary contribution from this work because condensed matter scientists are now able to
+explore much larger science cases
+in calculating the full 4point correlation function gt  the storage of gt grows as o l 3 f 3  where l is the number of
+cluster sites and f is the number of frequencies this new capability will enable largescale simulations such as 36site
+6x6 cluster with over 64 frequencies to 1 obtain more accurate information and 2 enable resolution of longer
+wavelength correlations that have longer periodicity in real space and which cannot be resolved in smaller clusters
+the system size can grow fairly large and depends on how much memory the leadership computing facilities can
+provide relevant science problems that the domain specialists would like to study range in the orders of 10sof100s
+of gigabits of gt  potentially opening up more research into how we can use the host memory without losing
+performance
+the ring algorithm implementation takes advantage of gpudirect rdma technology which can directly and efficiently
+exchange device memory several optimization techniques were used to improve the ring algorithm performance such
+as subring communicators and multithreaded supports these optimizations reduced communication overhead and
+expose more concurrency respectively performance profiling tools were also improved such as apex which now
+allows more kernel and communication information to be captured indepth the ring algorithm was demonstrated
+to effectively reduce the memory allocation needed for the gt device array per gpu this paper also discusses various
+tradeoffs between concurrency and memory usage for the multithreaded ring algorithm and the nic bottleneck issue
+in the future the authors plan to explore the hpx run time system to overlap the computation and communication in
+dca to expose more concurrency and asynchronicity
+
+acknowledgement
+authors would like to thank thomas maier ornl giovanni balduzzi eth zurich for their insights during the
+optimization phase of dca
+this work was supported by the scientific discovery through advanced computing scidac program funded by us
+department of energy office of science advanced scientific computing research ascr and basic energy sciences
+bes division of materials sciences and engineering as well as the rapids scidac institute for computer science
+and data under subcontract 4000159855 from ornl this research used resources of the oak ridge leadership
+computing facility which is a doe office of science user facility supported under contract deac0500or22725
+and center for computation  technology at louisiana state university
+
+references
+1 m h hettler a n tahvildarzadeh m jarrell t pruschke and h r krishnamurthy nonlocal dynamical
+correlations of strongly interacting electron systems phys rev b 58r7475r7479 sep 1998
+2 m h hettler m mukherjee m jarrell and h r krishnamurthy dynamical cluster approximation nonlocal
+dynamics of correlated electron systems phys rev b 611273912756 may 2000
+3 thomas maier mark jarrell thomas pruschke and matthias h hettler quantum cluster theories rev mod
+phys 7710271080 oct 2005
+4 weile wei arghya chatterjee kevin huck oscar hernandez and hartmut kaiser performance analysis of a
+quantum monte carlo application on multiple hardware architectures using the hpx runtime 2020
+5 giovanni balduzzi arghya chatterjee ying wai li peter w doak urs haehner ed f dazevedo thomas a
+maier and thomas schulthess accelerating dca dynamical cluster approximation scientific application
+on the summit supercomputer in 2019 28th international conference on parallel architectures and compilation
+techniques pact pages 433444 seattle wa usa 2019 ieee
+6 kevin a huck allan porterfield nick chaimov hartmut kaiser allen d malony thomas sterling and rob
+fowler an autonomic performance environment for exascale supercomputing frontiers and innovations
+234966 2015
+7 nvidia cuda profiling tools interface 2020 httpsdocsnvidiacomcudacuptiindex
+html
+14
+
+a preprint  may 14 2021
+
+8 nvidia
+nvidia management library nvml 2020
+httpsdevelopernvidiacom
+nvidiamanagementlibrarynvml
+9 marc snir steve otto steven husslederman david walker and jack dongarra mpi the complete reference
+the mit press cambridge ma usa 1998
+10 hartmut kaiser patrick diehl adrian s lemoine bryce adelstein lelbach parsa amini agustn berge john
+biddiscombe steven r brandt nikunj gupta thomas heller kevin huck zahra khatami alireza kheirkhahan
+auriane reverdell shahrzad shirzad mikael simberg bibek wagle weile wei and tianyi zhang hpx  the
+c standard library for parallelism and concurrency journal of open source software 5532352 2020
+11 tianyi zhang shahrzad shirzad patrick diehl r tohid weile wei and hartmut kaiser an introduction to
+hpxmp a modern openmp implementation leveraging hpx an asynchronous manytask system in proceedings
+of the international workshop on opencl pages 110 new york ny united states may 2019 association for
+computing machinery
+
+15
+

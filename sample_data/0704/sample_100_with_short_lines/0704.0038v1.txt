@@ -1,0 +1,2889 @@
+the discrete dipole approximation an overview and recent
+developments
+ma yurkinab and ag hoekstraa
+a
+
+section computational science faculty of science university of amsterdam kruislaan
+403 1098 sj amsterdam the netherlands
+b
+institute of chemical kinetics and combustion siberian branch of the russian academy of
+sciences institutskaya str 3 630090 novosibirsk russia
+
+abstract
+we present a review of the discrete dipole approximation dda which is a general method
+to simulate light scattering by arbitrarily shaped particles we put the method in historical
+context and discuss recent developments taking the viewpoint of a general framework based
+on the integral equations for the electric field we review both the theory of the dda and its
+numerical aspects the latter being of critical importance for any practical application of the
+method finally the position of the dda among other methods of light scattering simulation
+is shown and possible future developments are discussed
+keywords discrete dipole approximation review light scattering simulation
+
+
+
+corresponding author tel 31205257562 fax 31205257490
+email address myurkinscienceuvanl
+
+contents
+1
+2
+3
+
+introduction  2
+general framework 3
+various dda models  7
+31 theoretical base of the dda 7
+32 accuracy of dda simulations  13
+33 the dda for clusters of spheres 16
+34 modifications and extensions of the dda 18
+4 numerical considerations 19
+41 direct vs iterative methods 19
+42 scattering order formulation  22
+43 blocktoeplitz  23
+44 fft 24
+45 fast multipole method 24
+46 orientation averaging and repeated calculations  25
+5 comparison of the dda to other methods  27
+6 concluding remarks  28
+acknowledgements  28
+appendix description of used acronyms and symbols  28
+references  31
+
+1 introduction
+the discrete dipole approximation dda is a general method to compute scattering and
+absorption of electromagnetic waves by particles of arbitrary geometry and composition
+initially the dda was proposed by purcell and pennypacker pp 1 who replaced the
+scatterer by a set of point dipoles these dipoles interact with each other and the incident
+field giving rise to a system of linear equations which is solved to obtain dipole
+polarizations all the measured scattering quantities can be obtained from these polarizations
+the dda was further developed by draine and coworkers 25 who popularized the method
+by developing a publicly available computer code ddscat 6 later it was shown that the
+dda also can be derived from the integral equation for the electric field which is discretized
+by dividing the scatterer into small cubical subvolumes this derivation was apparently first
+performed by goedecke and obrien 7 and further developed by others see for instance
+811 it is important to note that the final equations produced by both lines of derivation of
+the dda are essentially the same the only difference is that derivations based on the integral
+equations give more mathematical insight into the approximation thus pointing at ways to
+improve the method while the model based on point dipoles is physically clearer
+the dda is called the coupled dipole method or approximation by some researchers
+1213 there are also other methods such as the volume integral equation formulation 14
+and the digitized greens function dgf 7 which were developed completely
+independently from pp however later they were shown to be equivalent to dda 815 in
+this review we will use the term dda to refer to all such methods since we describe them in
+terms of one general framework however it is difficult to separate unambiguously the dda
+from other similar methods based on the volume integral equations for the electromagnetic
+fields such as a broad range of method of moments mom with different bases and testing
+functions 1619 in our opinion one fundamental aspect of the dda is that the solution for
+the physically meaningful internal fields or their direct derivatives eg polarization plays
+an integral role in the process in other words any dda formulation can be interpreted as
+replacing a scatterer by a set of interacting dipoles this is further discussed in section 2 an
+2
+
+example of method that is not considered dda is the mom with higherorder hierarchical
+legendre basis functions 17
+the dda is a popular method in the lightscattering community and it has been
+reviewed by several authors an extensive review by draine and flatau 4 covers almost all
+dda developments up to 1994 a more recent review by draine 5 mainly concerns
+applications and numerical considerations dda theory was discussed together with other
+methods for light scattering simulations in reviews by wriedt 20 chiappetta and torresani
+21 and kahnert 15 and in books by mishchenko et al 22 and tsang et al 23 jones
+24 placed the dda in context of different methods with respect to particle characterization
+however many important dda developments since 1994 are not mentioned in any of these
+manuscripts those that are mentioned are usually considered as sidesteps and are not placed
+into a general framework moreover to the best of our knowledge numerical aspects of the
+dda have never been reviewed extensively  each paper discusses only a few particular
+aspects in this review we try to fill this gap
+a general framework is developed in section 2 to ease the further discussion of different
+dda models this framework is based on the integral equation because it allows a uniform
+description of all the dda development however connection to a physically clearer model
+of point dipoles is discussed throughout the section the sources of errors in the dda
+formulation are also discussed there
+in section 3 the physical principles of the dda are reviewed and results of different
+models are compared in subsection 31 different improvements of polarizabilities and
+interaction terms are reviewed from a theoretical point of view different expressions for cabs
+also are discussed comparison of simulation results using different formulations is given in
+subsection 32 subsection 33 covers the special case of a cluster of spheres that allows
+particular improvements and simplifications in section 34 different significant modifications
+are reviewed which do not fall completely into the general framework described in section 2
+enhancements of the dda for some special purposes also are discussed
+different numerical aspects of the dda are reviewed in section 4 these are concerned
+primarily with solving very large systems of linear equations subsection 41 subsection 42
+describes the simplest iterative procedure to solve dda linear system which has a clear
+physical meaning the special structure of the dda interaction matrix for a rectangular grid
+and its application to decrease computational costs are described in subsections 43 and 44
+respectively general methods to accelerate calculations which do not require a rectangular
+grid are discussed in subsection 45 subsection 46 covers special techniques to increase the
+efficiency of repeated calculations eg in orientation averaging
+a numerical comparison of the dda with other methods is reviewed in section 5 its
+strong and weak points are discussed section 6 concludes the review and discusses future
+development of the dda
+
+2 general framework
+the exp i t  time dependence of all fields is assumed throughout this review the scatterer
+is assumed dielectric but not magnetic magnetic permittivity   1  the electric permittivity
+is assumed isotropic to simplify the derivations however extension to arbitrary dielectric
+tensors is straightforward 1
+the general form of the integral equation governing the electric field inside the
+dielectric scatterer is the following 815
+er   e inc r    d 3 r g r r   r er   m v0  r   l v0  r   r er  
+1
+v v0
+
+1
+
+in most formulae scalar values can be replaced directly by tensors but there are exceptions extensions of
+dda to optically anisotropic scatterers are discussed in section 34
+
+3
+
+where eincr and er are the incident and total electric field at location r
+ r    r   1 4 is the susceptibility of the medium at point r r  relative
+permittivity v is the volume of the particle ie the volume that contains all points where the
+susceptibility is not zero v0 is a smaller volume such that v0  v  r  v0  v0  g r r  is
+the free space dyadic greens function defined as
+
+ 
+
+
+ expikr  expikr k 2  i  rr   1  ikr  i  3 rr  
+g r r   k 2 i  
+2
+
+r
+r
+r 2 
+r 2 
+r 2 
+ 
+where i is the identity dyadic k   c is the free space wave vector r  r  r  r  r 
+and r r is a dyadic defined as r r  r r  and  are cartesian components of the vector
+
+
+
+
+
+
+
+
+
+
+
+or tensor m is the following integral associated with the finiteness of the exclusion volume
+v0
+m v0  r    d 3 r g r r   r er   g s r r   r er   
+3
+v0
+
+where g r  r  is the static limit  k  0  of g r r  
+s
+
+
+
+ 1   1  i  3 rr  
+g s r r   
+r
+r 3 
+r 2 
+
+4
+
+l is the socalled selfterm dyadic
+l v0  r     d 2 r 
+v0
+
+n r
+
+r3
+
+5
+
+where n  is an external normal to the surface v0 at point r l is always a real symmetric
+dyadic with trace equal to 4 25 it is important to note that l does not depend on the size
+of the volume v0 but only on its shape and location of the point r inside it on the contrary
+m does depend on the size of the volume moreover it approaches zero when the size of the
+volume decreases 8 if both r and er are continuous inside v0
+when deriving eq 1 the singularity of the greens function has been treated explicitly
+therefore it is preferable to the commonly used formulation 815
+er   e inc r    d 3 r g r r   r er  
+6
+v
+
+moreover yanghjian noted 25 that there exist several methods for treating the singularity in
+eq 6 leading to different results he also proved that the derivation of eq 6 is false in the
+vicinity of the singularity of g r r   hence it can be considered correct only if the
+singularity is then treated in a way similar to that of lakhtakia 8 resulting in the correct
+eq 1
+n
+
+discretization of eq 1 is done in the following way 15 let v  uvi  vi i v j  0
+i 1
+
+for i  j  n denotes number of subvolumes 2 although the formulation is applicable to any
+set of subvolumes vi in most applications standard equal cells are used then the shape of
+the scatterer cannot always be described exactly by such standard cells hence the
+discretization may be only approximately correct assuming r  vi and choosing v0  vi 
+eq 1 can be rewritten as
+er   e inc r    d 3 r g r r   r er   m vi  r   l vi  r   r er  
+7
+j i
+vj
+
+2
+
+in the framework of the dda we usually call a subvolume a dipole
+
+4
+
+the set of eq 7 for all i is exact further one fixed point ri inside each vi its center is
+chosen and r  ri is set in many cases the following assumptions can be made
+
+ d rg r  r  rer  v g
+3
+
+i
+
+j
+
+ij
+
+ r j er j  
+
+vj
+
+8
+
+m vi  ri   m i  ri eri  
+
+9
+which state that integrals in eq 7 linearly depend upon the values of  and e at point ri
+eq 7 can then be rewritten as
+e i  e iinc   g ijv j  j e j  m i  l i  i e i 
+10
+j i
+
+where e i  eri   e  e ri    i   ri   l i  l vi  ri  
+the usual approximation 15 is to consider e and  constant inside each subvolume
+er   e i   r    i for r  vi 
+11
+which automatically implies eqs 8 9 and
+mi 0   d 3r  g ri  r  g s ri  r 
+12
+inc
+i
+
+inc
+
+
+
+
+
+vi
+
+g ij 0  
+
+1
+d 3 r g ri  r 
+v j vj
+
+13
+
+superscript 0 denotes approximate values of the dyadics a further approximation which is
+used in almost all formulations of the dda including eg 8 is
+g ij 0   g ri  r j  
+14
+this assumption is made implicitly by all formulations that start by replacing the scatterer
+with a set of point dipoles it is important to note that eq 10 and derivations resulting from
+it require weaker assumptions eqs 8 9 than imposed by eq 11 and moreover
+eq 14 it is possible to formulate the dda based on eq 10 eg the peltoniemi
+formulation 26 that is described in section 31 we postulate eq 10 as a distinctive feature
+of the dda ie a method is called the dda if and only if its main equation is equivalent to
+eq 10 with any vi i m i  l i  and g ij 
+kahnert 15 distinguished the dda from the mom by the fact that the mom solves
+directly eq 10 for unknown ei while the dda seeks not the total but the exciting electric
+fields
+
+e iexc  i  l i  m i  i e i  e i  e self
+15
+i
+e self
+ m i  l i  i e i 
+i
+
+where e
+
+self
+i
+
+16
+
+is the field induced by the subvolume on itself eq 10 is then equivalent to
+
+e iinc  e iexc   g ij  j e exc
+j
+j i
+
+17
+
+where  i is the polarizability tensor defined as
+
+18
+ i  vi  i i  l i  m i  i  
+however an alternative formulation of the dda exists 4 seeking a solution for unknown
+polarizations pi
+pi   i e iexc  vi  i e i 
+19
+e iinc   i1 pi   g ij p j 
+20
+1
+
+j i
+
+it is important to note that pi defined by eq 19 is only an approximation to the polarization
+of the subvolume vi this approximation is exact only under the assumption of eq 11 while
+the formulation itself does not require it the formulation using eq 20 can be thought as
+an intermediary between the dda and the mom as classified by kahnert 15 therefore
+5
+
+revealing complete equivalence of these two formulations the special structure of the matrix
+g ij makes eq 20 preferable over eqs 10 17 to find a numerical solution this is
+discussed in section 4
+lakhtakia 8 classified strong and weak forms of the dda as those accounting for or
+neglecting m i respectively the weak form approaches the strong form when the size of the
+cell decreases because m i approaches zero for a cubical cell vi and with ri located at the
+center of the cell l i can be calculated analytically yielding 25
+4
+li 
+i
+21
+3
+using eq 18 this results in the wellknown clausiusmossotti cm polarizability used
+originally by purcell and pennypacker 1 for the weak form of the dda
+3  i 1
+ i  i icm  id 3
+
+22
+4  i  2
+where  i   ri   and d is the size of the cubical cell
+after the internal electric fields are determined the scattered fields and cross sections
+can be calculated the scattered fields are obtained by taking the limit r   of the integral
+in eq 1 see eg 7
+expikr 
+e sca r  
+fn 
+23
+ ikr
+where n  r r is the unit vector in the scattering direction and f is the scattering amplitude
+fn  ik 3  i  n n   d 3 r  expikr   n  r er  
+
+24
+
+i vi
+
+all other differential scattering properties such as amplitude and mueller scattering matrices
+and asymmetry parameter  cos  can be derived from fn calculated for two incident
+polarizations 27 radiation forces also can be calculated 2830 consider an incident
+polarized plane wave 3
+e inc r   e 0 expik  r  
+25
+where k  ka  a is the incident direction and e 0  1  the scattering cross section csca is 27
+1
+2
+d fn 
+26
+2 
+k
+absorption and extinction cross sections cabs cext are derived 714 directly from the
+internal fields
+2
+c abs  4k   d 3 r  im r   er  
+27
+csca 
+
+
+
+i vi
+
+
+
+cext  4k   d 3r  im  rer  einc r
+i vi
+
+   4k refa  e  
+
+
+0
+
+2
+
+28
+
+where  denotes a complex conjugate conservation of energy necessitates that
+c sca  c ext  c abs 
+29
+however as was noted by draine 2 use of eq 29 for evaluation of csca can lead to larger
+errors than eq 26 especially when c abs  c sca 
+the easiest way to express eqs 24 and 27 in terms of the internal fields in the
+subvolumes centers is to assume eq 11 yielding
+f  0 n  ik 3  i  n n   i ei  d 3 r  expik r  n 
+30
+i
+
+3
+
+vi
+
+dda can be used for any incident wave eg gaussian beams 31 however we do not discuss this here
+
+6
+
+0
+cabs
+ 4k  vi im  i  ei  4k  impi ei  
+2
+
+i
+
+i
+
+31
+
+further approximation of eq 30 leaving only the lowest order expansion of the exponent
+around ri leads to
+f  0  n  ik 3  i  n n  pi exp ikri  n 
+32
+i
+
+which together with eq 28 leads to
+0
+cext
+ 4k  impi  e iinc 
+
+33
+
+i
+
+eqs 32 and 33 are identical to those used by purcell and pennypacker 1 and then by
+draine 2 while expressions for cabs compared to eq 31 are slightly different these
+differences are discussed in subsection 31 unfortunately many researchers do not specify
+explicitly how the scattering quantities are obtained from the computed internal fields or
+polarizations those who do usually use draines prescription eqs 26 32 33 and
+35
+errors of the formulation can be classified as associated with the finite cell size d
+discretization errors and with approximating the particle shape with a set of standard cells
+eg cubical shape errors discretization errors result from considering e constant inside
+each cell and the approximate evaluation of m i and g ij  shape errors also can be considered
+as resulting from the assumption of constant  and e inside bordering cells which is false
+since the edge of the particle crosses these cells on the other hand shape errors can be
+viewed as a difference of the results for the exact particle shape and for that comprised of the
+set of standard cells both errors approach zero when n    while the geometry of the
+scatterer and parameters of the incident field are fixed however the same does not apply if
+kd  0 while n is fixed ie the dda is not exact in the longwavelength limit moreover
+both errors are sensitive to the size of the scatterer in the resonance region see discussion in
+subsection 32 the behavior of these errors was studied by yurkin et al 32
+
+3 various dda models
+31
+
+theoretical base of the dda
+
+since the original manuscript by purcell and pennypacker 1 many attempts have been made
+to improve the dda the first stage 19881993 of these improvements was reviewed by
+draine and flatau 4 it has been noted 2 that eq 22 does not satisfy energy conservation
+and results obtained using this formulation do not satisfy the optical theorem based on the
+wellknown 33 radiative reaction rr electric field a correction to the polarizability for a
+finite dipole was added 2
+
+ rr 
+
+ cm
+
+
+1  2 3ik 3 cm
+draine 2 also proposed the following expression for the absorption cross section
+ 0
+cabs
+ 4k  impi  e iexc     2 3k 3pi  pi 
+i
+
+
+
+
+
+34
+
+35
+
+derived from eq 29 applied to a single point dipole the pp formulation uses eq 35
+without the second part it can be verified that eq 35 results in zero absorption for any
+scatterer if the polarizability is of the following form
+ i1  a i  2 3ik 3 i  a i  a ih 
+36
+where h denotes the conjugate transpose of a tensor for real refractive index m rr and all
+other expressions specified below result in  satisfying eq 36 which makes eq 35
+clearly favorable over eg the pp formulation it must be noted however that the original pp
+formulation where cm polarizability was used also results in zero absorption for real m
+7
+
+the correction in eq 34 is o  kd  3   several other corrections of o  kd  2  have been
+proposed the first one was proposed by goedecke and obrien 7 and independently in two
+other manuscripts 3435 they started from eqs 1012 and used the following
+simplifying fact for a cubical cell also valid for spherical cells resulting from symmetry
+r r
+1
+3
+rf
+r
+d
+
+
+  d 3 rf  r i 
+37
+2
+
+r
+3
+cube
+cube
+where the origin is in the center of the cube eq 37 is valid for any fr that has a singularity
+of less than third order for r  0  ie the integrals on both sides are defined they obtained
+2
+expikr
+mi 0  i k 2  d 3 r
+
+38
+3 cube
+r
+by expanding expikr in taylor series one can obtain
+
+2  d3r
+ ikd 3  ok 2 d 4  
+m i 0  i k 2  
+39
+3  cube r
+
+the remaining integral was evaluated by approximating the cube by a volumeequivalent
+sphere resulting in
+m i 0   i b1dgf kd  2  2 3i kd  3  okd  4  
+40
+b1dgf   4 31 3  1611992 
+41
+an exact evaluation obtained without expanding the exponent of eq 38 for the equivolume
+sphere with radius a  d 3 4 1 3 was performed by livensay and chen 36 and
+implemented into the dgf formulation of the dda by hage and greenberg 1435 and later
+lakhtakia 37
+m i 0   8 3 i 1  ika expika  1 
+42
+in terms of the first two orders of expansion this yields an identical result as eq 40 finally
+the polarizability is obtained as
+ cm
+
+ dgf 
+43
+1   cm d 3 b1dgf kd  2  2 3i kd  3 
+we denote the method based on eq 42 as lak differences between lak and dgf should
+be noticeable only for large values of kd
+dungey and bohren 38 using results by doyle 39 proposed the following treatment
+of the polarizability first each cubic cell is replaced by the inscribed sphere that is called a
+dipolar subunit with a higher relative electric permittivity s as determined by the maxwellgarnett effective medium theory 27
+ 1  1
+f s
+
+
+44
+s  2   2
+where f   6 is the volume filling factor other effective medium theories also may be used
+40 next the dipole moment of the equivalent sphere is determined using the mie theory
+and the polarizability is defined as 39
+3
+ m  i 3 1 
+45
+2k
+where 1 is the electric dipole coefficient from the mie theory see eg 41
+m  m x    x    1  xs  1 ms xs 
+1  s 1 s s 1 s
+
+46
+ms 1 ms xs 1 xs   1  xs  1 ms xs 
+where   are riccatibessel functions xs  kd 2 and ms   s are the size parameter and
+the relative refractive index of the equivalent sphere we denote this formulation for the
+polarizability as the a1term method note that this terminology was introduced later 42 it
+8
+
+has the particular property that  m  cm  const  1 when m  1  contrary to all other
+polarization prescription for which this ratio approaches 1 it should be noted that the mie
+theory is based on the assumption that the external electric field is a plane wave in most
+applications of the dda this is true for the incident electric field but not for the field created
+by other subvolumes therefore the a1term method is expected to be correct only for very
+small cell size hence it is not clear whether this method has advantages even compared to
+cm on the other hand this method may be more justified for clusters of small spheres
+where each sphere can be considered as a dipole see subsection 33
+draine and goodman 3 pointed out that considering electric fields constant for
+2
+evaluating integrals over a cell introduces errors of order o kd   this represents a problem
+for many polarizability corrections based on integral equations draine and goodman
+approached this problem from a different angle they determined the optimal polarizability in
+the sense that an infinite lattice of point dipoles with such polarizability would lead to the
+same propagation of plane waves 4 as in a medium with a given refractive index this
+polarizability was called ldr lattice dispersion relation and is as expected cm plus
+highorder corrections these corrections in turn depend on the direction of propagation a and
+the polarization of the incident field e0
+ cm
+
+ ldr 
+47
+1   cm d 3 b1ldr  b2ldr m 2  b3ldr m 2 s  kd  2  2 3ikd 3
+
+
+
+
+
+
+
+ldr
+1
+
+b
+
+ 18915316  b
+
+
+
+ldr
+2
+
+ 01648469  b
+
+
+
+s   a  e
+
+
+ldr
+3
+
+
+
+0 2
+
+ 17700004 
+
+48
+
+
+
+49
+
+we use a reverse sign convention in the denominator of eq 47 and the ldr coefficients as
+compared to the original paper 3
+recently it has been shown 43 that the ldr derivation is not completely accurate
+since the resulting dipole moment does not satisfy the transversality condition for which a
+correction was proposed this corrected ldr cldr differs principally in the fact that the
+polarizability tensor can not be made isotropic but only diagonal 43 though not dependent
+on the incident polarization
+cldr
+
+ 
+
+ cm 
+
+
+50
+1   cm d 3 b1ldr  b2ldr m 2  b3ldr m 2 a2 kd  2  2 3ikd  3
+another flaw of ldr is that it is evidently not correct for dipoles near the particle surface
+however it is not clear how to evaluate the effect of these mistreated surface dipoles on the
+overall results eg on the scattering cross section
+further improvement of the dda was initiated by peltoniemi 26 pel who showed
+that the term mvi in eq 7 can be evaluated exactly up to the third order of kd by
+expanding the term  r er  under the integral in a taylor series over the point r   ri 
+yielding
+1
+expikr 2 2
+m  vi    m i0 e   d 3 r
+k r  ikr  1  r2 2 e
+3
+2 vi
+r
+
+
+51
+1 3 expikr 2 2
+4
+ d r
+k r  3ikr  3  r r r r    e  o kd  e 
+2 vi
+r3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+where  e and their derivatives are all considered at the point ri eq 51 is correct up to the
+third order of kd since the third term in the taylor series vanishes because of symmetry for
+spherical vi of radius a the integrals can be evaluated exactly 26 in a way similar to
+4
+
+with certain direction of propagation and polarization state
+
+9
+
+obtaining eq 42 but only terms of less than fourth order of kd are significant which results
+in
+4 
+2
+3
+
+2
+3
+2 1
+2
+4
+mvi  
+52
+ ka  ika  e  a   e    e   o ka e 
+
+3 
+3
+10
+10
+
+
+
+if  is constant inside the cell then the maxwell equations state that
+53
+ 2e  m 2 k 2e    e  0 
+hence eq 9 is valid up to the third order of ka and
+54
+m i  4 3 i 1  1 10m 2 ka  2  2 3ika 3 
+piller and martin 44 proposed using sampling theory to evaluate the integrals in
+eq 1 the electric field and the susceptibility is sampled
+ r er    h r r   ri   ri eri  
+55
+
+
+
+
+
+
+
+
+
+i
+
+where hrr is the impulse response function of an antialiasing filter defined as
+sinqr   qr cosqr 
+
+h r r  
+56
+2 2 r 3
+where q  2 d  eq 1 is then transformed to eq 10 with the socalled filtered greens
+function defined as
+1
+g ij 
+d 3 r g ri  r  h r r   r j  
+57
+v j r3 v0
+eq 57 can be viewed as a generalization of eq 13 the latter is obtained if a pulse
+function is considered instead of hr the integral in eq 57 is evaluated analytically 44
+taking v0 to be infinitesimally small the filtered greens function does not have a singularity
+when ri  r j  therefore m i  vi g ii  it was shown that the fourier spectrum of er lies on a
+sphere with radius mrk if m is constant in the vicinity of r therefore at least two sampling
+points per wavelength in the scatterer are required the susceptibility is also filtered either by
+a mean value filter or a more complicated one eg a hanning window this approach is
+called fcd filtered coupled dipoles and a computer code library for evaluation of filtered
+greens function is available 45
+chaumet et al 11 proposed direct integration of the greens tensor it in eqs 12
+13 a weyl expansion of the greens tensor is performed transforming it to a form allowing
+efficient numerical computation of the selfterm  m  l  they also proposed a correction to
+the second term in draines expression for cabs eq 35 extension of their results to a nonisotropic selfterm is
+0
+cabs
+ 4k  impi  eiexc   impi   m i  li  pi   vi 
+58
+
+
+
+
+
+i
+
+
+the corrected second term is based on radiation energy of a finite dipole 11 ime self
+i  pi   in
+contrast to a point dipole used in the derivation of eq 35 one can see that eqs 58 and
+31 are equivalent moreover both of them are equivalent to eq 35 if and only if
+m i  a i   2 3ik 3vi i  a i  a ih 
+59
+this condition is similar but not equivalent to eq 36 and is always satisfied for rr dgf
+and lak other polarizability prescriptions satisfy eq 59 for real m then both eqs 58
+and 35 result in zero absorption
+rahmani chaumet and bryant 46 proposed a new method rcb to determine
+polarizability based on the known solution of the electrostatic problem for the same scatterer
+in the static limit the electric field at any point is linearly related to the incident field
+e r   c  1 r  e 0 r  
+60
+substituting eq 60 into eq 20 with the static greens tensor one can obtain the
+polarizability which would give an exact solution in the static limit as
+
+10
+
+ ircb  vi  i  i1 
+ i  ci   g s ri  r j   i c j 1 ci 
+
+61
+62
+
+j i
+
+where ci  c ri   this static polarizability then replaces the cm polarizability and the rr
+eq 34 is applied to it 46 to obtain the final polarizability for dda simulations it was
+later shown that rcb polarizabilities differ significantly from cm only for dipoles closer than
+2d to the interface 47
+in their next manuscript 48 rahmani et al stated that the previous derivation is correct
+only if the tensor c is constant inside the particle eg for ellipsoids since otherwise the
+polarizability tensor obtained from eq 61 is generally not symmetric which is physically
+impossible in the static case this shows that a particle with a nonconstant c is not
+equivalent to any set of physical point dipoles even in the static regime however it is
+equivalent to a set of nonphysical dipoles with an asymmetric polarizability therefore the
+polarization defined by eq 61 formally can be used by itself or with rr even when c is
+not constant
+collinge and draine 47 empirically combined the rcb prescription with cldr to get
+the surfacecorrected ldr scldr
+1
+63
+ scldr   rcb i   rcb d 3 b 
+
+ 
+
+ 
+
+where b is the correction matrix analogous to eq 50
+
+
+
+
+
+
+
+64
+b    b1ldr  b2ldr m 2  b3ldr m 2 a 2 kd  2  2 3ikd  3 
+all methods based on the paper by rahmani et al 46 are initially limited to very specific
+shapes of the scatterer ellipsoids infinite slabs and cylinders expansion of its applicability
+to other shapes is debatable 48 and would anyway require a preliminary solution of the
+electrostatic problem for the same shape which is generally not trivial
+all dda formulations are schematically depicted in fig 1 which also shows
+interrelations between them some formulations can be compared unambiguously in terms of
+theoretical soundness one is an improvement of the other ie it employs fewer
+approximations such formulations are depicted in the same column on fig 1 while others
+cannot be compared directly with each other they give rise to different columns comparison
+between formulations from different columns can and has been made almost exclusively
+empirically by comparing the accuracy of the simulation results see subsection 32
+all the above techniques are aimed at reducing discretization errors only a few aim at
+reducing shape errors some of them employ adaptive discretization different dipole sizes to
+better describe the shape of the scatterer see subsection 34 another approach is to average
+susceptibility in boundary subvolumes the simplest averaging using the lorentzlorenz
+mixing rule was proposed by evans and stephens 49 for the case of the boundary between
+the scatterer and its surrounding medium
+
+ ie
+i
+ f
+
+e
+4i  3
+4i  3
+
+65
+
+where  ie is the effective susceptibility and f is the volume fraction of the subvolume actually
+occupied by scatterer
+a more advanced averaging called the weighted discretization wd was proposed by
+piller 13 it modifies the susceptibility and selfterm of the boundary subvolume 5 the
+particle surface crossing the subvolume vi is assumed linear and divides the subvolume into
+two parts the principal vi p that contains the center and a secondary vi s with susceptibilities
+
+5
+
+any subvolume that has nonzero intersection with both the scatterer and the outer medium all such
+subvolumes are accounted for
+
+11
+
+integral eq 1
+discretization
+no assumptions
+sampling with
+antialiasing
+filter
+
+fcd
+
+eq 7
+eqs 8 9
+general
+formulation of
+dda  eq 20
+
+complies
+
+removing
+antialiasing
+filter
+
+cldr
+
+eqs 11
+eq 14
+
+pel
+
+scldr
+
+ldr
+a1 term
+
+it
+rr
+
+eq 14
+
+rcb
+
+simplifies to
+dgf lak
+m0
+weak form
+
+improving polarizability starting
+from dipole formulation
+
+cm
+
+fig 1 scheme of interrelation between the different dda models discussed in section 31 arrows
+down correspond to assumptions employed vertical position of the method qualitatively corresponds
+to its accuracy higher  better however methods in different columns cannot be compared directly
+
+ ip   is and electric fields e ip  e i  e si respectively electric fields are considered constant
+inside each part and related to each other via a boundary condition tensor ti 
+e is  ti e i 
+66
+then the total polarization of the subvolume can be evaluated as follows
+pi   d 3 r  rer  vi p  ip ei  vi s  is eis  vi  ie ei 
+67
+vi
+
+ ie  vi p  ip i  vi s  is ti  vi 
+68
+the susceptibility of the boundary subvolume is replaced by an effective one
+the effective selfterm is evaluated directly starting from eq 3 considering  and e
+constant inside each part
+m ie  ie   d 3 r g ri  r  g s ri  r  ip   d 3r g ri  r  g s ri  r  is ti 
+69
+vi p
+
+vis
+
+piller 13 evaluated the integrals in eq 69 numerically the final equations are the same as
+eq 20 where polarizabilities are obtained from eq 18 using effective susceptibilities and
+selfterms for boundary subvolumes hence wd does not modify the general numerical
+scheme
+currently there are no rigorous theoretical reasons for preferring one formulation over
+others however theoretical analyses of dda convergence when refining discretization
+recently conducted by yurkin et al 32 showed that it and wd significantly improve the
+convergence of shape and discretization errors respectively experimental verification of
+these theoretical conclusions is still to be performed
+
+12
+
+table 1 accuracy of different dda formulations for a spherea
+value
+cext
+
+method
+a1term
+
+x
+12
+
+ad
+24c
+
+csec s11
+
+lak
+
+csca cabs
+csec
+csca
+cabs
+csec
+
+dgf
+ldr
+ldr
+
+9
+9
+5
+32c
+8c
+7c
+
+21c
+29c
+28c
+16
+16
+16
+25
+
+csec
+s11
+csca
+
+ldr
+
+16c
+10c
+any
+
+y
+065
+085
+044
+042
+051
+1
+05 01
+1
+05 1
+1
+
+any
+
+1
+
+ldr
+
+10c
+
+16
+
+kd063
+
+s11
+
+ldr
+
+10c
+
+24
+
+kd042
+
+ldr
+
+m
+133005i
+1701i
+105
+133001i
+2514i
+43i
+m11
+2i
+1600008i
+25002i
+m3
+069
+041
+029
+069
+041
+105
+12
+14
+16
+18
+2
+15
+m7b
+m25b
+m4b
+1503i
+3514i
+7107i
+1804i
+19i
+25i
+254i
+7494i
+
+error 
+3
+6
+005 37
+05 35
+4 15
+5 1030
+1 2
+15
+3 4
+10
+20
+5
+2030
+03
+1
+5
+50
+20
+004 38
+04 23
+1 59
+44 56
+57 105
+20 86
+1
+01
+01
+1
+2
+20
+15
+1
+2
+2
+10
+20
+
+ref
+38
+56
+3
+
+51
+4e
+148
+
+061065d
+113
+20160
+32256c
+c
+40256
+056064d
+20130
+48128c
+058065d
+2060
+c
+5680
+057060d
+2030
+c
+6488
+056062d
+2030
+c
+64
+062d
+20
+c
+17
+44
+fcd
+28 56
+ 2
+
+5
+yre063
+10
+wdfcd
+0532c
+
+1538c
+6
+6
+0915c
+csec
+it
+8
+11
+52c
+1
+cabs
+21c
+cext
+11c
+csec
+rcbrr
+16
+48
+82c
+1
+75c
+59c
+34c
+13c
+csec
+scldr
+12
+13301i
+2
+47
+72c
+08
+c
+scldr
+54i
+5
+15
+rcb
+54i
+7
+15c
+a
+rms
+all errors are relative csec denotes the maximum error over all cross sections s11 and s11 correspond to
+maximum and root mean square error over the range of scattering angles  is the normalized mean error of the
+farfield electric fields 44 in some cases two errors are shown in one cell separated by a coma they
+correspond to two values of one of the parameters in the same row
+b
+approximate description of the range
+c
+this value is determined by other values in the same row
+d
+this value is slightly different for different size parameters
+e
+this corresponds to the rule of thumb for spheres
+cext s11rms
+
+32
+
+ldr
+
+accuracy of dda simulations
+
+over the years many results on the accuracy of dda simulations have been published it is
+however generally hard to systematically compare the relevant manuscripts because they all
+use different independent parameters such as the size parameter x refractive index m or
+discretization as a function of which the error is measured we will describe discretization by
+the parameter y  m kd or y re  re m  kd  the former is used wherever possible however
+in some cases a description of results is more straightforward in terms of yre accuracy results
+13
+
+for scattering by a sphere are summarized in table 1 all manuscripts on this subject can be
+divided into two classes those that fix x and vary n or equivalently the number of dipoles
+per sphere radius ad with y and those that fix ad and vary the size parameter with y the
+former is easier to interpret the latter is easier to simulate to facilitate comparison between
+different methods we provide both x and ad however one of them is dependent on the other
+some additional information on these results follows below
+draine and goodman 3 compared rr dgf and ldr for cross sections of a sphere
+with a  d  16  dgf is generally more accurate than rr for  m  1  1 ldr gives superior
+or comparable results to dgf for m  2  i ldr and dgf are comparable and for
+m  4  3i dgf is preferable over ldr in the review of ldr dda draine and flatau 4
+summarized that for  m  2 cross sections can be evaluated to accuracies of a few percent
+provided y  1  in that case differential cross sections have satisfactory accuracy relative
+errors up to 2030 but only where the absolute value of the differential cross sections is
+small for spheres such results are obtained even for  m  3  comparison of cldr to ldr
+43 only results in minor differences generally cldr results in slightly better accuracy for
+csca but worse for cabs
+piller and martin 44 compared fcd to lak by studying the dependence of the mean
+relative error of the farfield electric fields  on y for spheres with x    2 and m  15  it
+was shown that fcd with a hanning window filter for the electric permittivity  is roughly
+3 times more accurate than lak in the range 07  y  25 and gives similar accuracies for
+y  04 for larger spheres comparison of wd to traditional methods 13 was performed
+for spheres with x    2 and m  132  21  07i  lak was used to determine
+polarizabilities for m  132 in the range 04  y  13 overall accuracy was only slightly
+improved but error peaks for certain values of y were smoothed out for m  21  07i
+accuracy was improved 45 times over the whole range y  13  piller also showed 10 that a
+combination of wd and fcd gives even better results generally fcd decreases the negative
+effects of re on accuracy and wd those of im
+rahmani et al 48 showed that rcb was clearly superior to cm in calculating cross
+sections for fixed a  d  16 and m from 18  04i to 74  94i in the range y  1  two
+corrections ldr and rr over the static case were compared and they gave similar overall
+results improvement of overall accuracy compared with cm was 25 times in all cases
+studied for a thin slab it was shown 4648 that the internal fields calculated using rcb
+differ from those by cm mostly near the interfaces where rcb yields much smaller errors
+almost the same as far from interfaces
+collinge and draine 47 compared ldr rcb and scldr in calculations of cross
+sections of spheres with a  d  12  it was shown that for m  133  001i  ldr and scldr
+are superior in the range y  08  while for m  5  4i  scldr and rcb are superior
+convergence of cross sections for spheres and ellipsoids for increasing n with fixed x and
+different m from 133  001i to 5  4i  also was studied scldr showed the most stable
+results for all cases being the most or close to the most accurate one however for ellipsoids
+with large imm rcb gave significantly more accurate results for csca especially for larger y
+performance of the dda for more complex shapes also was studied by different
+authors flatau et al 50 compared dda simulations for a bisphere with an exact solution
+from a multipole expansion for m  133  001i  a  d  16  and y  08  ldr was several
+times more accurate than dgf and resulted in errors of less than 05 for both csca and cabs
+xu and gustafson 51 made a similar but much more extended study of ldr for
+m  16  0008i  a  d  25  and y  04  errors in cext cabs and cos  are within 10 for
+y  081  errors in the angular dependence of s11 are up to 20 while s12 and s21 were
+completely wrong for m  25  002i  errors in cross sections exceed 10 for y  03 
+
+14
+
+errors in the angular dependencies of the mueller matrix elements are within 1020 for
+y  03 and increase rapidly with increasing y for a fixed x  3 and m  16  0004i  errors
+in cext cabs and  cos  decrease from 10 to 1 while y decrease from 1 to 02 for
+y  033  the angular dependence of s11 is in good agreement with the rigorous solution
+while s12 and s21 differ significantly for certain orientations of the bisphere
+hage and greenberg 14 compared lak to experimental results obtained from
+microwave experiments on porous cubes using m  1362  0005i  y  064 and n  5504 
+they obtained a difference of less than 40 with the experimental results of angular scattering
+patterns except for deep minima light scattering of cubes tiles and cylinders with similar
+parameters also was studied and comparable differences between experiment and theory were
+obtained theoretical errors were estimated to be less than 10 except for deep minima
+iskander et al 34 conducted a limited test of lak for small elongated spheroids
+comparing the results to those obtained using an iterative extended boundary condition
+method using n  64  calculations were performed for aspect ratios up to 20 with maximum
+size parameter of the long axis being 10 and 05 for m  133  001i and 176  028i
+respectively errors in scattering cross section were 21 and 11 respectively ku 52
+compared lak with cm and the a1term for different shapes but his conclusions are based
+on a large parameter y up to 2 and are therefore suspicious and not further discussed here
+andersen et al 53 studied the performance of the dda for rayleighsized clusters of
+a few spheres most dda formulations are then equivalent to cm several constituent
+materials were tested all with high refractive indices in the studied region it was shown that
+the dda failed to converge using the fixed computational resources for very high up to 130
+and very low down to 012 rem up to 30 dipoles were used per diameter of a single
+sphere
+it can be concluded that particles with more complex shapes than spheres are more
+difficult to model with the dda leading to larger errors for the same m and y this effect can
+be explained in general by the increase of surface to volume ratio and hence larger fraction of
+boundary subvolumes 32 another possible reason is complex regions eg contact between
+two particles in a cluster where rapid variation of the electric field deteriorates the overall
+accuracy there is however a notable exception from this general tendency shapes which
+can be modeled exactly by a set of cubical dipoles eg a cube can be simulated using the
+dda much more accurately than spheres especially for small y 32
+draine and flatau 4 have introduced a rule of thumb for discretization use 10
+dipoles per wavelength in the medium ie either y or yre equal to 063 depending on the
+interpretation though it is widely used the accuracy of the results when using such
+discretization is hard to deduce a priori draine and flatau themselves derived an estimate of
+the error based on a set of test simulations this estimate is described above and mentioned in
+table 1 it is usually cited as a few percent accuracy in cross sections however it may
+significantly over or underestimate the error especially for large size parameters moreover
+it does not completely account for the dependence on m even in the stated range of its
+application   m  2  since dda accuracy deteriorates rapidly with increasing m see table
+1 still the rule of thumb is good first guess for many applications
+most studies of dda accuracy are limited to integral scattering quantities and at most
+the angular dependence of s11 in only a few manuscripts are other scattering quantities
+studied for instance singham 54 simulated the angular dependence of mueller matrix
+element s34 for spheres and less compact particles using cm polarizability it was shown that
+an accurate simulation of this element requires smaller values of y than for s11 for x  155
+and m  133 a calculation of s11 was accurate already for y  08  while y  02 was
+required for s34 it was also reported that for less compact objects like discs and rods the
+required y was larger 04 and 055 respectively because of the smaller interaction between
+the dipoles however hoekstra and sloot argued 55 that this effect is mostly caused by the
+15
+
+pronounced s34 sensitivity to surface roughness which is significant for smaller size if y is
+fixed they showed that for x  107 and m  105  very high accuracy is achieved with
+y  066 because of the larger number of dipoles used
+internal fields are an intermediate result in the dda they cannot be directly compared
+to the experimental results however all measured scattering quantities are derived from
+them therefore a study of their accuracy can reveal greater understanding of the nature of
+dda errors hoekstra et al 56 performed such a study for lak polarizability three
+spheres were examined with x  9  9 5 and m  105  133  001i  25  14i respectively
+values of y were 044 042 and 051 respectively the most significant errors in the
+amplitude of the internal field were localized at the boundary of the spheres with maximum
+relative errors of 34 19 and 120 respectively errors in s12 s33 s34 were significant
+only for the third sphere it was shown that for a given yre these errors rapidly increase with m
+but only slightly depend upon x in the range from 1 to 10 moreover the dda is capable of
+reproducing resonances of mie theory although their positions are slightly shifted less than
+1 in m
+druger and bronk 57 studied the accuracy of the internal fields for single and coated
+spheres they used x  15  m  18  and cm polarizability errors in the internal fields were
+localized at the interfaces with average errors larger than 30 for a single sphere with
+m  18 and y  017  and less than 7 for a single and concentric sphere with m  13 and
+y  008  the core of the concentric sphere has m  11 and its diameter is half the total
+diameter the angular dependence of the absolute values of s1 and s2 had significant errors in
+the side and backscattering it can be concluded that shape errors contribute mostly to the
+internal fields near the boundary and increase with m
+all the literature discussing dda accuracy shows errors as a function of input
+parameters and discretization which is the most straightforward way the only exception so
+far is the rule of thumb which is too general and approximate to be applied in many particular
+cases a more useful way to present errors is to fix the desired accuracy for certain input
+parameters and find the discretization that results in such accuracy such an analysis can be
+applied directly to practical calculations and can be used to derive rigorous estimates of dda
+computational requirements 58
+in a number of manuscripts the origin of errors in the dda was examined to try to
+separate and compare shape and discretization errors 495962 however no definite
+conclusions were reached the uncertainty was due to the indirect methods used that have
+inherent interpretation problems recently yurkin et al 63 proposed a direct method to
+separate shape and discretization errors which can be used to study their fundamental
+properties this method also can be applied to study the performance of different formulations
+aimed at decreasing shape errors eg wd for example it has been shown that the maximum
+errors of s11 for a sphere with x  5 and m  15  discretized using 16 dipoles per diameter
+ y  093  are mostly due to shape errors however the same is not true for all measured
+quantities in another manuscript 32 it was suggested that the discretization error should
+decrease more rapidly with decreasing y than shape errors however it is still hard to deduce
+a priori the importance of shape errors for a certain scatterer and y hence further systematic
+quantitative study is required
+33
+
+the dda for clusters of spheres
+
+there are two main peculiarities when the dda is applied to clusters of spheres first such
+particles are generally less compact yielding smaller interactions between dipoles this leads
+to a smaller condition number of the dda interaction matrix and hence faster convergence of
+the iterative solver see section 41 second when the constituent spheres are small
+compared to the wavelength each sphere can be modeled as one spherical subvolume
+yielding some theoretical simplifications
+16
+
+a general theory exists 64 based on the mie theory generalized multiparticle mie
+solution gmm 65 that allows for highly accurate simulations of clusters of spheres
+however when many small spheres are used one wants to minimize the number of unknowns
+in the linear system direct reduction of the gmm to the lowest order using only the first
+order expansion coefficients leads to dda  cm 64 improving accuracy in the gmm is
+done by accounting for higher multipole moments while the dda introduces higher order
+corrections to the coefficients of the linear system it is not clear how the accuracy of these
+two methods compare with each other however the former should lead to a formulation
+similar to a coupled multipole method subsection 34 with a larger number of unknowns
+ddabased methods starting usually with the integral equations introduced in section 2
+should be successful in making the formulation more accurate without increasing the number
+of unknowns which is the goal for large clusters of small spheres moreover the dda may
+employ fast algorithms for solving the linear system in this setting the fast multipole method
+fmm see subsection 45 seems most promising
+it should be noted however that a cluster having a small size parameter ie in the
+electrostatic approximation does not imply that all expansion coefficients except the first
+one are negligible this is because the size of the constituent particles is also very small and
+the fields inside them are far from constant especially when the spheres are located close to
+each other and have large refractive indices 66 therefore the dda does have some
+principal difficulties of calculating scattering by clusters of spheres mackowski 67 for
+instance found that for some systems composed of spheres much smaller than the
+wavelength up to 10 expansion terms were necessary to achieve convergence in studies of
+osculating spheres ngo et al 68 proved that the gmm could be chaotic and were able to
+calculate lyapunov exponents and that the slow convergence for the touching spheres was
+the result of the system lying in an attractor region a recent paper by markel et al 69
+presented computationally efficient modifications of the gmm in the static limit and
+demonstrated the insufficiency of the dda to compute scattering properties of fractal
+aggregates accurately however kim et al 70 showed that the dda is satisfactory in
+calculating the static polarizability of dielectric nanoclusters especially of clusters with a
+large number of constituents
+the development of ddabased methods for calculating light scattering by clusters of
+small spheres was started by jones 7172 who developed a method similar to cm iskander
+et al 34 used a method equivalent to lak to calculate scattering of chained aerosol
+clusters this subject was further investigated by kosaza 7374 lou and charalampopoulos
+75 lc further improved the calculations of the interaction term and scattering quantities
+starting from an integral equation for the internal field equivalent to eq 1 they assumed
+eq 11 after that the integrals in eqs 12 and 13 over spherical subvolumes can be
+evaluated analytically the result for the interaction term is the following
+g ij 0    ka g ri  r j  
+70
+where a correction function  is defined as
+sin x  x cos x
+  x  3
+ 1  1 10 x 2  o x 4  
+71
+3
+x
+eq 30 also is evaluated analytically yielding
+f  0  n   ik 3  ka  i  n n  pi exp ikri  n  
+72
+i
+
+
+
+
+
+0
+
+
+cext
+ 4k  ka  im pi  e inc
+i
+i
+
+the following expression for cabs is stated without derivation
+0
+cabs
+ 4k  ka  impi e i  
+i
+
+73
+74
+
+markel et al 76 applied the dda to fractal clusters of spheres and studied their
+optical properties however they have not fixed the polarizability of a single dipole but rather
+17
+
+treated it as a variable calculating the dependence of a clusters optical characteristics upon it
+pustovit et al 77 argued that the dda is inaccurate for touching spheres they developed a
+hybrid of the dda and the gmm which considers only pair interactions between spheres as
+the dda but when calculating them accounts for higher multipole terms this formulation
+can be considered as the one providing a more accurate evaluation of the interaction term
+eq 13 and hence similar to lc
+lc was compared to dgf and lak in a csca computation of a cluster of 10 particles for
+m  17  07i and 005  ka  05  differences between dgf and lak are less than 1 as
+expected while the difference between lc and lak increases quadratically with ka
+reaching 10 for ka  05  however as no exact eg gmm solution is presented the
+accuracy of each individual method is not clear
+okamoto 42 tested the a1term method for clusters of up to 3 touching spheres no
+effective medium is needed in this case making the method sounder it was shown that the a1term is clearly superior to ldr in crosssections calculations when each sphere is treated as a
+single dipole errors of the a1term are less than 10 for y  12 when m  133  001i  for
+three collinear touching spheres the errors are 30 and 40 for y  19 and 28 when
+m  133  001i and 2  i respectively however errors do not seem to diminish
+significantly for small y results are presented only down to y  02  therefore the a1term
+seems suitable for obtaining quick crude estimations of cross sections
+in the sequel of this subsection we mention several applications of the dda to
+scattering from clusters of spheres it was applied to describe the scattering by astrophysical
+dust aggregates 7879 using the a1term method hull et al 80 applied cm dda to diesel
+soot particles lc was applied 81 to the computation of light scattering by randomly
+branched chain aggregates lumme and rahola 40 studied scattering properties of clusters
+of large spheres each modeled by a set of dipoles with the a1term method considering
+astrophysical applications hage and greenberg 35 studied scattering by porous particles
+which were modeled as clusters of cubical cells making their method equivalent to standard
+lak recently the dda with ldr was used 82 to model scattering by porous dust grains
+and compare them to approximate theories eg effective medium theories it also was used to
+study light scattering by fractal aggregates 83 especially its dependence on the internal
+structure 84
+34
+
+modifications and extensions of the dda
+
+bourrely et al 85 proposed to use small d to minimize surface roughness but larger dipoles
+inside the particle starting with small dipoles with cm polarizability one dipole is combined
+with 6 adjacent ones if they all have the same polarizability producing a dipole located at
+the same point but with a 7 times larger polarizability this operation is repeated while
+possible interaction terms are considered in their simplest form eq 14 this method
+allows the decrease of the shape errors with only a minor increase in the number of dipoles
+the authors showed that this method is more than two times more accurate than cm for some
+test cases
+rouleau and martin 86 proposed a generalized semianalytical method a dynamic
+grid is used to evaluate the integral in eq 1 first a static grid is built inside the particle
+then each point on the static grid is used as an origin of a spherical coordinate system and
+the particle is approximated by an ensemble of volume elements in these spherical
+coordinates as usual the polarization inside each subvolume is assumed constant but
+eq 13 can be evaluated analytically in spherical coordinates polarization inside a
+subvolume is obtained by interpolation of its values at the points of the static grid in addition
+adaptive gridding is employed where smaller subvolumes are used at the boundary of the
+particle
+mulholland et al 87 proposed a coupled electric and magnetic dipole method
+cemd where a magnetic dipole is considered at each subvolume together with an electric
+18
+
+dipole polarizabilities are derived from the a1 and b1 terms of the mie theory cemd
+requires two times more variables in the linear system since the electric and magnetic fields
+are interconnected lemaire 88 went further and developed the coupled multipole method
+considering also the electric quadrupole addition of the electric quadrupole can be
+considered as a more accurate evaluation of the interaction term in eq 13 as compared to
+eq 14 it results in even better accuracy than cemd but at the expense of additional
+computation time the major disadvantage of all these four methods is that the matrix of the
+system of linear equations does not seem to have any special form suitable for faster
+algorithms see section 4 therefore computational costs are much larger compared to
+regular methods thus limiting their practical use in what follows several dda extensions
+are mentioned without further discussion
+the theoretical basis for application of the dda to optically anisotropic particles was
+summarized by lakhtakia 89 loiko and molochko 90 applied the dda to study light
+scattering by liquidcrystal spherical droplets smith and stokes 91 used the dda to
+calculate the faraday effect for nanoparticles researchers in the electrical engineering
+community applied mom in a variation that is equivalent to the dda to anisotropic
+scatterers 9293
+rectangular parallelepipeds can be used as subvolumes in the dda 112343 this
+allows an accurate description of light scattering by particles with large aspect ratios using
+fewer dipoles and is also compatible with fft techniques subsection 44
+khlebtsov 94 proposed a simplification of the dda based on the assumption that all
+polarizations are parallel to the incident electric field the number of variables is thus reduced
+three times however at a cost of accuracy moreover depolarization is completely ignored
+markel 95 analytically solved the dda equations for scattering by an infinite onedimensional periodic dipole array this approach is similar to the one used in obtaining the
+ldr formulation for dipole polarizability 3
+chaumet et al 96 generalized the dda to periodic structures and further to defects in
+a periodic grating on a surface 97 the idea of using the complex greens tensor in the
+standard dda formulation was summarized by martin 98
+yang et al 99 used the dda to calculate surface electromagnetic fields and determine
+raman intensities for small metal particles of arbitrary shape
+lemaire and bassrei 100 showed that the shape of an object can be reconstructed from
+the measured angle dependence of scattered intensities this procedure can be thought of as
+an inversion of the dependence between dipole polarizabilities and scattering this
+dependence is taken from the dda a similar idea is used in recent manuscripts on optical
+tomography 101103
+zubko et al 104 modified the greens tensor used in the dda to study the
+backscattering of debris particles they showed that the farfield part of the greens tensor is
+responsible for both the backscattering brightness surge and the negative polarization branch
+
+4 numerical considerations
+in this section the numerical aspects of the dda are discussed one should keep in mind
+however that final simulation times depend not only on the chosen numerical methods but
+also on the particular implementation recently penttila et al 105 have compared four
+different computer programs for the dda these are based on almost identical numerical
+methods the krylovsubspace iterative method section 41 combined with a fft
+acceleration of the matrixvector product section 44 however simulation times may differ
+by several factors optimizations of computer codes are not further discussed in this review
+41
+
+direct vs iterative methods
+
+there are two general types of methods to solve linear systems of equations ax  y  where x
+is an unknown vector and a and y are known matrix and vector respectively direct and
+19
+
+iterative 106 direct methods give results in a fixed number of steps while the number of
+iterations required in iterative methods is generally not known a priori the most usual
+example of a direct method is lu decomposition which allows quick solving for multiple y
+once the decomposition is performed iterative methods are usually faster less memory
+consuming and numerically more stable however iterative methods cannot be considered
+superior over direct since they strongly depend on the problem to solve 107
+for a general nn matrix in dda n  3n  computation time of lu decomposition is
+3
+on  and storage requirements on2 while computation time for one iteration is on2 107
+iterative methods for a general matrix converge in on iterations although some of them
+may not converge at all however in many cases satisfactory accuracy can be obtained after a
+much smaller number of iterations in these cases iterative methods can provide significant
+increases in speed especially for large n most iterative methods access the matrix a only
+through matrixvector multiplication sometimes also with the transposed matrix which
+allows the construction of special routines for calculation of these products such routines
+may decrease memory requirements since it is no longer necessary to store the entire matrix
+especially for matrices of special form see subsection 43 a special structure of the matrix
+may also allow acceleration of the matrixvector product from on2 to onlnn see
+subsections 44 45 however the same applies to direct methods see subsection 43
+throughout dda history mostly iterative methods were employed however see
+subsection 46 at first they were used to accelerate computations 1 but they also allowed
+larger numbers of dipoles to be simulated 6108 since storage of the entire matrix is
+prohibitive for direct methods the most widely used iterative methods in the dda are
+krylovspace methods such as 107 conjugate gradient cg cg applied to the normalized
+equation with minimization of residual norm cgnr bicg bicg stabilized bicgstab cg squared cgs generalized minimal residual gmres quasiminimal
+residual qmr transpose free qmr tfqmr and generalized producttype methods based
+on bicg gpbicg 109
+an important part of the iterative solver is preconditioning which effectively decreases
+the condition number of the matrix a and therefore speeds up convergence however this
+requires additional computational time during both initialization and each iteration
+preconditioning of the initial system can be summarized as 107
+m 1 am 21 m 2 x  m 1y 
+75
+where m1 and m2 are left and right preconditioners respectively preconditioners should
+either allow fast inversion or be integrated into the iteration process the simplest
+preconditioner of the first type is the jacobi point which is just the diagonal part of matrix
+a an example of the second type of preconditioner is the neumann polynomial
+preconditioner of order l
+l
+
+m   i  a  j 
+
+76
+
+j 1
+
+qmr and bicg can be made to employ the complex symmetric cs property of the
+dda interaction matrix to halve the number of matrixvector multiplications 110 and thus
+computational time lumme and rahola 40 were the first to apply qmrcs to the dda
+and compared it with cgnr they used m from 16  01i to 3  4i  and x from 13 to 135
+corresponding to n from 136 to 20336 for all cases studied qmrcs was 24 times faster
+than cgnr
+rahola 9 further studied qmrcs and compared it to cgnr bicgcs bicgstab cgs gmres full and with different memory length for a typical small
+problem parameters were not specified unfortunately the convergence of different methods
+was tested and qmrcs along with bicgcs showed the best results although full
+gmres was able to converge in fewer iterations gmres with as much as 40 memory
+lengths was slower than qmrcs
+20
+
+flatau 111 reviewed the use of iterative algorithms in the dda and tested many of
+them together with several preconditioners he calculated scattering of a homogenous sphere
+with x  01 and m from 133 up to 5  00001i  x  1 and m from 133 up to 133  i and
+3  00001i  left l and right r jacobi and firstorder neumann polynomial
+preconditioners were tested unfortunately the number of dipoles n was not specified which
+hampers comparison with other studies for small particles cgl was superior for all
+refractive indices studied cg and cgr showed similar results while cgnrl and bicgstabl were about 4 times slower for x  1 bicgstabl was superior while bicgstabr and cgslr were slightly worse tfqmr both with and without jacobi
+preconditioner was 34 times slower the firstorder neumann preconditioner showed
+unsatisfactory results it was concluded that bicgstabl is the most satisfactory choice
+for the dda and that method is the default one used in the ddscat program 6
+recently fan et al 112 have compared gmres qmrcs bicgstab gpbicg
+and bicgcs they tested them on wavelengthsized scatterers x up to 10 with m up to
+45  02i  and concluded that gmres with memory depth 30 was the fastest although it
+required four times more memory than the other methods however only the times of the
+matrixvector product was compared while other parts of the iteration may also take
+significant time especially for gmres30 choosing from less memoryconsuming
+methods qmrcs and bicgcs showed a better convergence rate than bicgstab and
+gpbicg especially when m  2  moreover the authors pointed out some flaws in the
+comparison by flatau 111 making his conclusions insufficient
+yurkin et al 113 employed qmrcs bicgcs and bicgstab to simulate light
+scattering by spheres with x up to 160 and 40 for m  105 and 2 respectively it was shown
+that convergence of the iterative methods becomes very slow with increasing x and m up to
+105 iterations are required and none of them is clearly preferable to the others moreover
+there seems to be no systematic dependency of the choice of the best iterative solver on x and
+m however the difference in computational time was less than a factor of two except for the
+largest x and m studied
+rahola 114 showed that the spectrum of the integral scattering operator for any
+homogenous scatterer is a line in the complex plane going from 1 to m2 except for a small
+amount of points which corresponds to refractive indices that cause resonances for the
+specific shape the spectrum of a is similar since this matrix is obtained in the dda by
+discretization of the integral operator see also 9 assuming that the spectrum of a exactly
+lies on the specified line it was shown that an estimate for the optimal reduction factor 6  can
+be given as
+1
+
+
+2
+2
+77
+1
+ 2
+2
+m 1 m 1
+eq 77 is an approximation valid for small particle sizes where no or only few resonances
+are present however in all cases the spectrum of a resembles the spectrum of the linear
+operator which is defined by shape size and refractive index of the scatterer therefore the
+spectrum and thus convergence should not depend significantly on the discretization this
+fact was confirmed empirically in other manuscripts 963
+budko and samokhin 115 generalized raholas results to arbitrary inhomogeneous
+and anisotropic scatterers they described a region in the complex plane that contains the
+whole spectrum of the integral scattering operator this region depends only on the values of
+m inside the scatterer and does not depend on x they showed that for purely real m or for m
+with very small imaginary part this region may come close to the origin therefore the
+spectrum may contain very small eigenvalues for particles larger than the wavelength this
+6
+
+norm of the residual is decreased by this factor every iteration
+
+21
+
+may explain the extremely slow convergence of the iterative solver for real m and large x
+which was recently obtained in numerical simulations 113 based on the analysis of the
+spectrum of the integral scattering operator for particles much smaller than the wavelength
+budko et al 116 proposed an efficient iteration method for this particular case
+it can be concluded that there are several modern iterative methods qmrcs bicgcs and bicgstab that have proved to be efficient when applied to the dda
+however none of them can be claimed superior to the others and one should test them for
+particular lightscattering problems moreover except for the simplest cases preconditioning
+of the dda interaction matrix is almost not studied while there is a need for it for large x and
+m since then all methods converge extremely slowly or even diverge it seems to us that the
+next major numerical advance in the dda will be achieved by developing a powerful
+preconditioner for the dda matrix
+a large number of dipoles requires large computational power and hence parallel
+computers are commonly used eg 108113 parallel efficiency is not discussed here but
+for iterative solvers it is generally close to 1 117 however this is not true for all
+preconditioners 107 and hence heavy preconditioners requiring large computational time in
+combination with a parallel dda implementation should be employed with caution
+42
+
+scattering order formulation
+
+the rayleighdebyegans rdg approximation 27 consists in considering er equal to
+eincr fn is then obtained directly from eq 24 generalization of the rdg approach is
+obtained by iteratively solving the integral equation 1 which can be rewritten as
+er   e inc r   e r  
+78
+where  is a linear integral operator describing the scatterer the iterative scheme is readily
+obtained by inserting the current lth iteration of the electric field elr into the right side of
+eq 78 and calculating the next iteration in the left side
+e  l 1 r   e inc r   e  l  r  
+79
+0
+inc
+the starting value is taken the same as in rdg e r   e r   and the general formula for
+the solution is the following
+
+
+er     l einc r  
+
+80
+
+l 0
+
+which is a direct implementation of the wellknown neumann series
+
+
+i   1    l 
+
+81
+
+l 0
+
+where i is the unitary operator a necessary and sufficient condition for neumannseries
+convergence is
+ 1
+82
+physical sense of this iterative method lies in successive calculations of interaction
+between different parts of the scatterer the zeroth approximation or rdg accounts for no
+interaction the first approximation considers the influence of scattering of each dipole on the
+others once and so on eq 82 states that the interaction inside the scatterer should be small
+but not as small as required for the applicability of rdg    1  in scattering problems
+especially in quantum physics eq 80 is called the born expansion
+although theoretically clear the born expansion is not directly applicable 118 since
+each successive iteration requires analytical evaluation of multidimensional integrals with
+rising complexity which quickly becomes unfeasible even for the simplest scatterers the
+latest result is probably that of acquista 118 who evaluated the born expansion for a
+homogenous sphere up to second order therefore realistic application of the born expansion
+does require discretization of the integral operator which is naturally done in the dda
+22
+
+a scattering order formulation sof of the dda was developed independently by
+chiappetta 119 and singham and bohren 12120 by applying the neumann series to
+eq 17  is then a matrix defined as  ij  g ij  j  where each element is a dyadic which
+can be expressed as a 33 matrix an explicit check of eq 82 for a certain scatterer is not
+feasible numerically however de hoop 121 derived a sufficient condition for scalar waves
+2 kr0  2 max  r  1 
+83
+r
+
+where r0 is the radius of the smallest sphere circumscribing the scatterer although not
+directly applicable to light scattering eq 83 can be used as an estimate
+the range of size parameter and refractive index where sof converges is limited 120
+moreover even when sof converges more advanced iterative methods converge faster see
+subsection 41 however sof has clear physical sense and can be used to study the
+importance of multiple scattering
+43
+
+blocktoeplitz
+
+a square matrix a is called toeplitz if aij  ai  j  ie matrix elements on any line parallel to
+the main diagonal are the same 106 in a blocktoeplitz bt matrix of order k elements
+ai are not numbers but square matrices themselves
+a1 k a k 1 
+ a0
+ a
+a0 o
+m 
+1
+
+a
+
+84
+ m
+o o a1 
+
+
+a  k 1 k a 1 a 0 
+a 2level bt matrix has bt matrices as components ai proceeding recursively a multilevel
+bt mbt matrix for any number of levels is defined
+let us consider a rectangular lattice nxnynz numbered in the following way
+i  n y n z n x  1i x  n z n y  1i y  n z i z 
+85
+where i  1 n  indicates the position of the element along the axes let us also define
+the vector index i  i x  i y  i z   then one can verify that the interaction matrix in eq 20
+defined by eq 13 satisfies the following
+g ij  g ji  g i  j 
+86
+this equation alone can be used to greatly reduce the storage requirements of iterative
+methods by use of indirect addressing further improvement is to note that eq 86 defines a
+symmetric 3level bt matrix orders of subsequent levels  nx ny nz whose smallest blocks
+are 33 matrices dyadics g ij 
+a rectangular lattice is not much of a restriction since any scatterer can be embedded in
+an appropriate rectangular grid however additional empty dipoles should be introduced to
+build up the grid up to the full parallelepiped moreover position and size of the dipoles
+cannot be chosen arbitrarily to better describe the shape of the scatterer this is especially
+problematic for highly porous particles or clusters of particles where the monomer has a size
+comparable to a single dipole for all other cases these restrictions are minor compared to the
+large increase in computational speed imposed by the btstructure of the interaction matrix
+a matrixvector multiplication can be transformed to a convolution which is computed using
+a fast fourier transform fft technique in onlnn operations see subsection 44 note
+however that alternative techniques exist that do not require a regular grid see subsection
+45
+the btstructure also permits acceleration of direct methods flatau et al 122 used an
+algorithm for inversion of symmetric btmatrices it has complexity on 3 n x  and storage
+23
+
+requirements on 2 n x   since only 2 block columns of the inverse matrix need to be stored
+in this case the xaxis is oriented along the longest particle dimension recently flatau 123
+studied the special case of 1d dda where all dipoles are located on a straight line and
+equally spaced in which systems of equations for different components can be separated the
+interaction matrix for each component is symmetric toeplitz and a modern fast algorithm can
+be applied for its inversion this method requires preliminarily solving linear equations for
+two right sides eg by some iterative technique then multiplication of the inverse matrix by
+any vector ie a solution of the linear system for any right part requires only onlnn
+operations however flatau pointed out a strict limitation for all methods for fast calculation
+of the inverse of the interaction matrix they are applicable only when polarizabilities of all
+dipoles are the same since otherwise the first term on the right side of eq 20 ruins the bt
+structure on the diagonal of the interaction matrix therefore they are currently limited to
+homogenous rectangular scatterers fortunately it is not a problem for matrixvector
+multiplication since the diagonal term can be evaluated independently and added to the final
+result
+44
+
+fft
+
+goodman et al 124 showed that multiplication of the interaction matrix for a rectangular
+lattice see subsection 43 by a vector can be transformed into a discrete convolution
+n
+
+ nx  n y nz 
+
+ 2 nx  2 n y  2 nz 
+
+j 1
+
+j 111
+
+j 111
+
+y i   g ij p j 
+
+ g i jpj 
+
+ g
+
+ij
+
+pj 
+
+87
+
+where g i is defined by eq 86 and g 0  0  for i  n and
+pj    1  j  n
+
+pj  
+88
+0 otherwise
+both g  and p  are then regarded as periodic in each dimension  with period 2n a
+discrete convolution can be transformed with a fft to an elementwise product of two
+vectors which is easily computed it requires evaluation of a direct and inverse fft for each
+matrixvector product each of them is a 3d fft of order 2nx2ny2nz this operation is done
+for each of the 3 cartesian components of p  and preliminary calculations is performed for 6
+independent tensor components of g  
+a slightly different method can be devised based on the paper by barrowes et al 125
+who developed an algorithm for multiplication of any mbt by a vector the multiplication is
+brought down to a 1d convolution that is evaluated by two 1d ffts of order
+ 2n x  12n y  12n z  1  flatau 123 proposed an algorithm of matrixvector
+
+multiplication for bt interaction matrix eg 1d dda which requires twice as many ffts
+as the standard algorithm but of order n instead of 2n although flatau stated that an
+extension of this algorithm to the general 3d case is straightforward it is at least not trivial
+and probably its complexity will scale the same as standard methods
+45
+
+fast multipole method
+
+the fast multipole method fmm was developed by greengard and rokhlin 126 for
+efficient evaluation of the potential and force fields in nbody simulations where all pairwise
+interactions of n particles are computed the fmm is based on truncated potential expansions
+127 it is also called a hierarchical tree method because particles are grouped together in a
+hierarchical way and the interaction between single particles and this hierarchy of particle
+groups is calculated 128 however some researchers distinguish between single and
+multilevel fmm 129130 only the latter is truly hierarchical the fmm naturally fits the
+dda since the matrixvector multiplication is actually computing the total field on each
+single dipole due to all other dipoles as was noted by hoekstra and sloot 128 the
+24
+
+computational complexity of the fmm see below is similar to fftbased methods see
+subsection 44 but it does not require any regularity of the grid thus making it applicable to
+any scatterer the drawback is that the fmm is conceptually more complex making it much
+harder to code nonetheless the fmm was implemented in the dda by rahola 9127
+error analysis is critical for the fmm since the acceleration is obtained by using
+approximations in contrast to exact fftbased methods approximation parameters are
+chosen to keep an error calculated according to some estimate in certain bounds the more
+exact the error estimate is the less computations are required thus the faster the whole
+algorithm therefore algorithm complexity is directly connected to error analysis 131
+koc and chew 129 described the application of multilevel fmm to the dda they
+used semiempirical formulae to determine the number of terms in multipole series and
+obtained on complexity however rigorous close to exact error analysis is still lacking for
+the fmm applied to the dda it will allow obtaining a real algorithm complexity with
+guaranteed accuracy such an analysis has been conducted for 2d acoustic scattering 130
+and for light scattering formulated in terms of surface integrals 131 in both cases the fmm
+was proven to have an asymptotic complexity onln2n application of the fmm to
+surfaceintegrals formulation of light scattering was reviewed by dembart and yip 132
+another problem of implementing the fmm is that it is completely dependent upon the
+exact form of the interaction potential g ij  all manuscripts mentioned above deal with
+interaction between point dipoles ie eq 14 if a more complex expression for g ij is used
+eg it most of the fmm should be developed anew this makes integration of the fmm
+and the dda a formidable problem
+the fmm is a promising method to calculate light scattering by particles that cannot be
+mapped effectively on a rectangular grid however there is still space for improving its theory
+to make it more robust and guarantee certain accuracy
+the fmm is not the only hierarchical tree method available for instance a very
+intuitively simple method was proposed by barnes and hut 133134 multipole expansions
+over the center of mass in gravitational computations are used contrary to geometrical center
+in the fmm it automatically eliminates the second term in the multipole expansion and
+allows fast evaluation of monopole terms though this method is much simpler and clearer
+than the fmm it has very little control over the errors that can be studied almost exclusively
+empirically it can be applied to the dda without significant increase in the total
+computational errors 7
+an alternative approach was proposed by ding and tsang 135 they studied scattering
+from trees and used a sparse matrix iterative approach the interaction matrix is divided into a
+strong part which accounts for interaction between nearby dipoles and a complement weak
+part a  as  a w  the strong part is sparse and therefore allows quick solution of the linear
+system the weak part is a small correction that is accounted for iteratively
+a s x  0   y  a s x  l 1  y  a w x l  
+89
+the authors demonstrate potential of this approach for some test cases
+46
+
+orientation averaging and repeated calculations
+
+in many physical applications one is interested in optical properties of an ensemble of
+randomly oriented particles when the concentration of particles is small multiple scattering
+is negligible and the optical properties are obtained by averaging singleparticle scattering
+over different particle orientations more general problems where particles are not identical
+or multiple scattering is significant are not considered here
+orientation averaging of any scattering property can be described as the integral over
+the eulers orientation angles including a probability distribution function if necessary
+7
+
+hoekstra ag unpublished results
+
+25
+
+which is brought down to a sum by appropriate quadrature the problem therefore consists in
+calculation of some scattering property for a set of different orientations of the same particle
+the easiest way is to calculate it by solving sequentially and independently each problem
+from the set however the large size of this set calls for some means of reducing the
+calculations this is especially relevant when the particle is asymmetric hence its optical
+properties are sensitive to particle orientation let us further assume for clarity that we are
+interested in the scattering matrix at a certain scattering angle all the discussion for other
+scattering properties is analogous or even simpler
+singham et al 136 noted that the set of problems described above is physically
+equivalent to a fixed orientation of the particle and different incident and scattering directions
+the latter are determined by transformation of the laboratory reference frame to the reference
+frame associated with the particle the amplitude scattering matrix and hence the mueller
+matrix also is transformed along with the reference frame see eg 137 for transformation
+formulae there are two immediate advantages of using a fixed particle orientation first a
+is kept constant see though discussion below and therefore the construction of a is done
+only once second the amplitude matrix for any scattering angle is quickly obtained after the
+linear system is solved for two incident polarizations hence integration over one euler
+angle is relatively fast
+the constancy of a can be exploited to further reduce the time of orientationaveraging
+1
+if a or its lu decomposition is obtained 75136 a single solution for any right part y can
+be obtained in n2 operations  the same or less time than required for one iteration using
+general iterative methods see subsection 41 moreover singham et al 136 and mcclain
+and ghoul 138 independently proposed an analytical way of averaging the scattering matrix
+at any scattering angle which requires on2 operations once a 1 is known khlebtsov 139
+extended this technique to averaging of extinction and absorption cross sections
+however by employing special properties of the matrix a in the dda allows
+computing matrixvector products in onlnn operations see subsections 44 45 although
+some acceleration of direct methods also can be performed see subsection 43 they are still
+on2 or slower for large n iterative methods assuming that they converge in much less than
+n iterations are clearly preferable even if many quadrature points are used moreover large n
+is unattainable by direct methods because of storage requirements another improvement
+could be using a heavy preconditioner which has large initialization cost and greatly
+increases convergence rate initialization cost is then justified because it is computed only
+once possible candidates are incomplete factorization preconditioners 107
+above it was stated that a is constant for a fixedorientation particle however modern
+dda formulations eg ldr take into account the direction of light incidence hence a
+2
+depends upon this direction but only weakly through o kd  corrections this complicates
+the techniques described above however probably they still may be used together with some
+special methods to correct for small changes in a on every step such methods have not been
+developed as yet
+another possibility to perform orientation averaging is to first compute the tmatrix of
+the particle which then allows analytical averaging 140 the tmatrix formalism is based
+on the multipole expansion which is truncated at some order n0 although n0 is hard to
+deduce a priori usually it is several times x 141142 the number of rows in the tmatrix
+equals 2 n 0  n 0  2  the simplest way to evaluate the tmatrix based on the dda is to solve
+for every incident spherical wave ie for each row of the tmatrix independently 141
+then the above discussion about optimizing this repeated calculation is relevant using
+iterative techniques with niter number of iterations computation time is
+n 02 n on iter ln n    on 02   where the first term in the sum is the time for solving the linear
+system and the second one is the actual computation of the values in the row of the tmatrix
+a new method to obtain the tmatrix from the dda interaction matrix was proposed by
+
+
+
+
+
+
+
+26
+
+
+
+mackowski 141 this requires two summations with computational time on 02 n ln n   and
+
+
+
+
+
+o n 04 n  mackowski showed that for x  5 his method is an order of magnitude faster than
+the straightforward one
+recently muinonen and zubko 143 have proposed a way to optimize ensemble
+averaging of dda results over different sizes and refractive indices it is based on calculating
+a good guess for the initial vector in the iterative solver using results of the calculations
+with similar parameters similar ideas can be used to optimize simulation of a set of slightly
+different shapes or orientational averaging
+use of repeated calculations to increase the accuracy of dda simulations was proposed
+recently by yurkin et al 63 several independent simulations with different discretization
+parameter were performed and results were extrapolated to the infinite discretization giving
+better accuracy than those of a single dda simulation
+
+5 comparison of the dda to other methods
+hovenier et al 144 compared the dda the extended boundary condition method ebcm
+and the separation of variables method svm for calculations of scattering by spheroids
+finite cylinders and bispheres parameters of the problems were as follows m  15  001i 
+equivolume size parameter x  5  y  06  the angular dependencies of scattering matrix
+elements were calculated the ebcm and svm seemed to achieve an exact solution and the
+dda showed little errors except for backscattering angles where they were up to 1020
+wriedt and comberg 145 compared the dda ebcm and finite difference time
+domain fdtd method for a cube with m  133  15 and x  29  49 97 for x  29 and
+49 the dda and ebcm achieved good accuracy in calculation of scattering intensity angle
+dependence the dda was 25 times faster but consumed 816 times more memory y was in
+the range 0305 the fdtd had similar computational requirements as the dda but was
+less accurate for x  97 the dda was the only one to achieve little errors within the given
+computational resources
+comberg and wriedt 146 compared the dda gmm see subsection 33 and the
+generalized multipole technique gmt for clusters of a few spheres a single sphere had x in
+the range 420 and m  133  15 all the methods managed to achieve good accuracy but the
+gmm was one order of magnitude and for large x even several orders faster than the other
+two the dda and gmt also were used to compute scattering by a cluster of two oblate
+spheroids with x  5 and m  133  the dda was less accurate and consumed 4 times more
+memory but was 6 times faster than the gmt
+wriedt et al 147 compared the dda fdtd gmt and discrete sources method
+dsm for the calculation of light scattering by a red blood cell rbc with x  35 and
+m  106  accuracy of all methods was similar the dda and gmt showed similar
+calculation times they were 7 times faster than the fdtd and 12 times slower than the dsm
+it should be noted that the latter employed the axisymmetric property of rbc
+recently yurkin et al 58 systematically compared the dda and the fdtd for
+spheres with m from 102 to 2 and x from 10 to 100 depending on m it was shown that
+numerical performance of the dda is much more sensitive to the refractive index than that of
+the fdtd therefore the dda is preferable for small m the fdtd for larger m cleary the
+crossover point is not well defined and will depend on the details of the problem at hand as
+well as on the particular implementations of both methods
+the main advantage of the dda is that it is one of the most general methods having a
+very broad range of applicability limited only by available computational power the reverse
+of this advantage is that it has almost no means to use the symmetry of the scatterer thus the
+dda is not able to compete with the ebcm for homogenous axisymmetric scatterers for
+homogenous nonaxisymmetric scatterers the dda is competitive with the ebcm for singleparticle orientation but the latter allows much faster orientation averaging the ebcm has
+27
+
+little applicability to inhomogeneous scatterers where the dda can be applied without any
+changes comparison between the fdtd and the dda suggests that the dda is more
+suitable for small m it also should be noted that the fdtd is even more general being easily
+applicable to nonharmonic incident electric fields moreover simulation of one pulse
+incident wave with the fdtd gives the solution for a complete spectrum of incident harmonic
+plane waves but with a limitation on accuracy
+
+6 concluding remarks
+the dda has been reviewed using a general framework based on the integral equation for the
+electric field although mainstream dda algorithms as used in several production computer
+programs has not changed significantly since 1994 many different improvements have been
+proposed since that time some of them do improve the accuracy or numerical performance of
+the dda however they still wait for a wide acceptance it seems that a critical mass of new
+improvements is building up hopefully resulting in a next breakthrough in the field of the
+dda
+in our opinion future major improvements in the dda computer implementations will
+be connected with one of the following
+1 decreasing shape errors by implementing wd or similar techniques
+2 improving polarizability and interaction terms by techniques that are still to be
+developed similar to it and pel
+3 studying different preconditioners for the dda interaction matrix either trying some of
+the known types or developing one considering the special structure of the matrix
+item 1 should improve the overall accuracy of the dda especially for cases where shape
+errors are dominant item 2 should expand the dda applicability region to higher refractive
+indices and item 3 should boost overall performance especially for large size parameters
+andor refractive indices
+
+acknowledgements
+we thank dan mackowski for clarifying discussion on the simulations of scattering by
+clusters of spheres and gorden videen for critically reading the manuscript and for valuable
+discussions our research is supported by siberian branch of the russian academy of
+sciences through the grant 200603
+
+appendix description of used acronyms and symbols
+see tables a1 and a2
+
+28
+
+table a1 acronyms in alphabetical order
+acronym
+description
+l
+left jacobi preconditioner
+i
+right jacobi preconditioner
+a1term m
+dipole term in the mie theory
+bicgstab
+bicg stabilized
+bt
+blocktoeplitz
+cemd
+coupled electric and magnetic dipole
+cg
+conjugate gradient
+cgnr
+cg applied to normalized equation with minimization of residual norm
+cgs
+cg squared
+cs
+complex symmetric
+cldr
+corrected ldr
+cm
+clausiusmossotti
+dda
+discrete dipole approximation
+dgf
+digitized greens function
+dsm
+discrete sources method
+ebcm
+extended boundary condition method
+fcd
+filtered coupled dipoles
+fdtd
+finite difference time domain
+fft
+fast fourier transform
+fmm
+fast multipole method
+gmm
+generalized multiparticle mie solution
+gmres
+generalized minimal residual
+gmt
+generalized multipole technique
+gpbicg
+generalized producttype methods based on bicg
+it
+integration of greens tensor
+lak
+lakhtakia
+lc
+lou and charalampopoulos
+ldr
+lattice dispersion relation
+mbt
+multilevel bt
+mom
+method of moments
+pel
+peltoniemi
+pp
+purcell and pennypacker
+qmr
+quasiminimal residual
+rbc
+red blood cell
+rcb
+rahmani chaumet and bryant
+rdg
+rayleighdebyegans approximation
+rr
+radiative reaction correction
+scldr
+surfacecorrected ldr
+sof
+scattering order formulation
+svm
+separation of variables method
+tfqmr
+transpose free qmr
+wd
+weighted discretization
+a
+where it is explained or first appears if no explanation is given
+
+29
+
+sectiona
+41
+41
+31
+41
+43
+34
+41
+41
+41
+41
+31
+2
+1
+1
+5
+5
+31
+5
+44
+45
+33
+41
+5
+41
+31
+31
+33
+31
+43
+31
+31
+1
+41
+5
+31
+42
+31
+31
+42
+5
+41
+31
+
+table a2 symbols used latin and greek letters in alphabetical ordera
+symbols
+0
+n
+ cos 
+
+a
+a
+a
+b
+b1  b3
+c
+csca cabs cext
+c
+d
+e einc eexc eself esca
+e0
+
+description
+superscript approximate value usually under constant field assumption
+superscript after nth iteration
+asymmetry parameter
+superscript complex conjugate
+a matrix
+k k
+radius of equivalent sphere
+correction matrix in scldr
+numerical coefficients in polarization prescriptions
+tensor of electrostatic solution
+scattering absorption extinction cross section
+speed of light in vacuum
+size of a cubical cell
+total electric field incident exciting selfinduced scattered
+polarization vector of the incident wave e 0  1
+
+e
+f
+f
+
+superscript effective
+scattering amplitude
+a function
+volume filling factor
+free space dyadic greens function tensor
+g in static limit
+interaction term
+
+g
+gs
+g ij
+h
+hr
+ii
+i j
+i
+i j
+k
+k
+l
+m
+m
+m
+n
+n
+n
+n 
+nx ny nz
+p
+p
+q
+r
+r0
+r r
+s
+si
+sij
+s
+
+t
+
+t
+v
+v0
+w
+x
+
+superscript conjugate transpose
+impulse response function of a filter
+identity dyadic tensor operator matrix
+subscript vector indices
+imaginary unity
+subscript number of the dipole
+order of a bt matrix
+free space wave vector
+selfterm dyadic
+integral associated with finiteness of v0
+preconditioner
+dyadic associated with m
+refractive index relative
+total number of dipoles
+rr
+size of a matrix
+external normal to the surface
+sizes of the rectangular lattice
+polarization
+superscript principal
+2 d
+r  r
+radius of the smallest sphere circumscribing the scatterer
+radiusvectors
+ldr coefficient dependent on incident polarization
+amplitude matrix element
+mueller matrix element
+superscript secondary
+strong
+subscript equivalent spherical dipole
+boundary condition tensor
+time
+volume of the scatterer
+exclusion volume
+superscript weak
+unknown vector
+
+30
+
+section
+2
+42
+2
+2
+31
+2
+31
+31 eq 64
+31
+31 eq 60
+2
+2
+2
+2
+2
+31
+2
+31
+31
+2
+2
+2
+31
+31
+2 41
+43
+2
+2
+43
+2
+2
+2
+41
+2
+31
+2
+2
+41
+2
+43
+2
+31
+31
+2
+42
+2
+31 eq 49
+32
+32
+31
+45
+31
+31 eq 66
+2
+2
+2
+45
+41
+
+table a2 continued
+symbols
+x
+x y z
+y
+y
+yre
+ 
+
+description
+section
+size parameter of scatterer
+32
+cartesian coordinates
+43
+a known vector right side of a linear system
+41
+ m  kd
+32
+remkd
+32
+2
+polarizability tensor
+41
+optimal reduction factor
+
+31
+kronecker symbol
+
+2
+electric permittivity relative
+
+33
+correction function
+
+intermediate tensor in rcb method
+31 eq 62
+
+42
+linear
+integral
+operator
+its
+matrix
+
+2
+sub
+superscript
+cartesian
+components
+of
+vectors
+tensors
+    
+riccatibessel
+functions
+31
+ 
+2
+electric susceptibility
+
+32
+mean relative error of farfield electric field
+
+2
+solid angle
+
+2
+circular frequency of the harmonic electric field
+
+a
+common sub and superscripts are given on their own for all vectors  the same symbol but in italic instead of
+bold denotes euclidian norm of the vector except unitary vectors
+
+references
+1 purcell em pennypacker cr scattering and adsorption of light by nonspherical dielectric grains
+astrophys j 1973186705714
+2 draine bt the discretedipole approximation and its application to interstellar graphite grains
+astrophys j 1988333848872
+3 draine bt goodman jj beyond clausiusmossotti  wavepropagation on a polarizable point lattice and
+the discrete dipole approximation astrophys j 1993405685697
+4 draine bt flatau pj discretedipole approximation for scattering calculations j opt soc am a
+19941114911499
+5 draine bt the discrete dipole approximation for light scattering by irregular targets in mishchenko
+mi hovenier jw travis ld editors light scattering by nonspherical particles theory
+measurements and applications new york academic press 2000 p 131145
+6 draine bt flatau pj user guide for the discrete dipole approximation code ddscat 61
+httpxxxarxivorgabsastroph0409262 2004
+7 goedecke gh obrien sg scattering by irregular inhomogeneous particles via the digitized greens
+function algorithm appl opt 19882724312438
+8 lakhtakia a strong and weak forms of the method of moments and the coupled dipole method for
+scattering of timeharmonic electromagneticfields int j mod phys c 19923583603
+9 rahola j solution of dense systems of linear equations in the discretedipole approximation siam j sci
+comp 1996177889
+10 piller nb coupleddipole approximation for high permittivity materials opt comm 19991601014
+11 chaumet pc sentenac a rahmani a coupled dipole method for scatterers with large permittivity
+phys rev e 200470036606
+12 singham sb bohren cf light scattering by an arbitrary particle a physical reformulation of the
+coupled dipole method opt lett 1987121012
+13 piller nb influence of the edge meshes on the accuracy of the coupleddipole approximation opt lett
+19972216741676
+14 hage ji greenberg jm wang rt scattering from arbitrarily shaped particles  theory and experiment
+appl opt 19913011411152
+15 kahnert fm numerical methods in electromagnetic scattering theory j quant spectrosc radiat transf
+200379775824
+16 peterson aw ray sl mittra r computational methods of electromagnetic scattering ieee press
+1998
+17 kim os meincke p breinbjerg o jorgensen e method of moments solution of volume integral
+equations using higherorder hierarchical legendre basis functions radio science 200439
+18 lu cc a fast algorithm based on volume integral equation for analysis of arbitrarily shaped dielectric
+radomes ieee trans ant propag 200351606612
+
+31
+
+19 ivakhnenko v eremin y light scattering by needletype and disktype particles j quant spectrosc
+radiat transf 2006100165172
+20 wriedt t a review of elastic light scattering theories part part sys charact 1998156774
+21 chiappetta p torresani b some approximate methods for computing electromagnetic fields scattered by
+complex objects meas sci technol 19989171182
+22 mishchenko mi travis ld lacis aa scattering absorption and emission of light by small particles
+cambridge cambridge university press 2002
+23 tsang l kong ja ding kh ao co scattering of electromagnetic waves numerical simulations
+new york wiley 2001
+24 jones ar light scattering for particle characterization prog ener comb sci 199925153
+25 yanghjian ad electric dyadic greens function in the source region ieee proc 198068248263
+26 peltoniemi ji variational volume integral equation method for electromagnetic scattering by irregular
+grains j quant spectrosc radiat transf 199655637647
+27 bohren cf huffman dr absorption and scattering of light by small particles new york wiley
+1983
+28 draine bt weingartner jc radiative torques on interstellar grains 1 superthermal spinup astrophys
+j 1996470551565
+29 hoekstra ag frijlink m waters lbfm sloot pma radiation forces in the discretedipole
+approximation j opt soc am a 20011819441953
+30 chaumet pc rahmani a sentenac a bryant gw efficient computation of optical forces with the
+coupled dipole method phys rev e 200572046708
+31 hoekstra ag computer simulations of elastic light scattering phd thesis university of amsterdam
+amsterdam 1994
+32 yurkin ma maltsev vp hoekstra ag convergence of the discrete dipole approximation i theoretical
+analysis j opt soc am a 20062325782591
+33 jackson jd classical electrodynamics new york wiley 1975
+34 iskander mf chen hy penner je opticalscattering and absorption by branched chains of aerosols
+appl opt 19892830833091
+35 hage ji greenberg jm a model for the opticalproperties of porous grains astrophys j 1990361251259
+36 livesay de chen km electromagnetic fields induced inside arbitrarily shaped biological bodies ieee
+trans microw theory tech 19742212731280
+37 lakhtakia a mulholland gw on 2 numerical techniques for lightscattering by dielectric agglomerated
+structures j res nat inst stand technol 199398699716
+38 dungey ce bohren cf lightscattering by nonspherical particles  a refinement to the coupleddipole
+method j opt soc am a 199188187
+39 doyle wt optical properties of a suspension of metal spheres phys rev b 19893998529858
+40 lumme k rahola j lightscattering by porous dust particles in the discretedipole approximation
+astrophys j 1994425653667
+41 van de hulst hc light scattering by small particles new york dover 1981
+42 okamoto h light scattering by clusters the a1term method opt rev 19952407412
+43 gutkowiczkrusin d draine bt propagation of electromagnetic waves on a rectangular lattice of
+polarizable points httpxxxarxivorgabsastroph0403082 2004
+44 piller nb martin ojf increasing the performance of the coupleddipole approximation a spectral
+approach ieee trans ant propag 19984611261137
+45 gaybalmaz p martin ojf a library for computing the filtered and nonfiltered 3d greens tensor
+associated with infinite homogeneous space and surfaces comp phys comm 2002144111120
+46 rahmani a chaumet pc bryant gw coupled dipole method with an exact longwavelength limit and
+improved accuracy at finite frequencies opt lett 20022721182120
+47 collinge mj draine bt discretedipole approximation with polarizabilities that account for both finite
+wavelength and target geometry j opt soc am a 20042120232028
+48 rahmani a chaumet pc bryant gw on the importance of localfield corrections for polarizable
+particles on a finite lattice application to the discrete dipole approximation astrophys j 2004607873878
+49 evans kf stephens gl microwave radiativetransfer through clouds composed of realistically shaped
+ice crystals 1 single scattering properties j atmos sci 19955220412057
+50 flatau pj fuller ka mackowski dw scattering by 2 spheres in contact  comparisons between
+discretedipole approximation and modalanalysis appl opt 19933233023305
+51 xu yl gustafson bas comparison between multisphere lightscattering calculations rigorous
+solution and discretedipole approximation astrophys j 1999513894909
+52 ku jc comparisons of coupleddipole solutions and dipole refractiveindexes for lightscattering and
+absorption by arbitrarily shaped or agglomerated particles j opt soc am a 199310336342
+
+32
+
+53 andersen ac mutschke h posch t min m tamanai a infrared extinction by homogeneous particle
+aggregates of sic feo and sio2 comparison of different theoretical approaches j quant spectrosc
+radiat transf 2006100415
+54 singham sb theoretical factors in modeling polarized light scattering by arbitrary particles appl opt
+19892850585064
+55 hoekstra ag sloot pma dipolar unit size in coupleddipole calculations of the scattering matrixelements opt lett 19931812111213
+56 hoekstra ag rahola j sloot pma accuracy of internal fields in volume integral equation simulations
+of light scattering appl opt 19983784828497
+57 druger sd bronk bv internal and scattered electric fields in the discrete dipole approximation j opt
+soc am b 19991622392246
+58 yurkin ma brock rs lu jq hoekstra ag systematic comparison of the discrete dipole
+approximation and the finite difference time domain method in preparation
+59 okamoto h macke a quante m raschke e modeling of backscattering by nonspherical ice particles
+for the interpretation of cloud radar signals at 94 ghz an error analysis contrib atmos phys
+199568319334
+60 liu cl illingworth aj error analysis of backscatter from discrete dipole approximation for different ice
+particle shapes atmos res 199744231241
+61 lemke h okamoto h quante m comment on error analysis of backscatter from discrete dipole
+approximation for different ice particle shapes  liu cl illingworth aj 1997 atmos res 44 231241 atmos res 199849189197
+62 liu cl illingworth aj reply to comment by lemke okamoto and quante on error analysis of
+backscatter from discrete dipole approximation for different ice particle shapes atmos res 19995012
+63 yurkin ma maltsev vp hoekstra ag convergence of the discrete dipole approximation ii an
+extrapolation technique to increase the accuracy j opt soc am a 20062325922601
+64 fuller ka mackowski dw electromagnetic scattering by compounded spherical particles in
+mishchenko mi hovenier jw travis ld editors light scattering by nonspherical particles theory
+measurements and applications new york academic press 2000 p 223272
+65 xu yl scattering mueller matrix of an ensemble of variously shaped small particles j opt soc am a
+20032020932105
+66 mackowski dw electrostatics analysis of radiative absorption by sphere clusters in the rayleigh limit application to soot particles appl opt 19953435353545
+67 mackowski dw calculation of total crosssections of multiplesphere clusters j opt soc am a
+19941128512861
+68 ngo d videen g dalling r chaotic light scattering from a system of osculating conducting spheres
+physics letters a 1997227197202
+69 markel va pustovit vn karpov sv obuschenko av gerasimov vs isaev il electromagnetic
+density of states and absorption of radiation by aggregates of nanospheres with multipole interactions
+phys rev b 200470054202
+70 kim hy sofo jo velegol d cole mw mukhopadhyay g static polarizabilities of dielectric
+nanoclusters phys rev a 200572053201
+71 jones ar electromagnetic wave scattering by assemblies of particles in the rayleigh approximation
+proc r soc london a 1979366111127
+72 jones ar scattering efficiency factors for agglomerates for small spheres j phys d 19791216611672
+73 kozasa t blum j mukai t opticalproperties of dust aggregates 1 wavelength dependence astron
+astrophys 1992263423432
+74 kozasa t blum j okamoto h mukai t opticalproperties of dust aggregates 2 angulardependence
+of scatteredlight astron astrophys 1993276278288
+75 lou wj charalampopoulos tt on the electromagnetic scattering and absorption of agglomerated small
+sphericalparticles j phys d 19942722582270
+76 markel va shalaev vm stechel eb kim w armstrong rl smallparticle composites 1 linear
+optical properties phys rev b 19965324252436
+77 pustovit vn sotelo ja niklasson ga coupled multipolar interactions in smallparticle metallic
+clusters j opt soc am a 200219513518
+78 lumme k rahola j hovenier jw light scattering by dense clusters of spheres icarus 1997126455469
+79 kimura h mann i light scattering by large clusters of dipoles as an analog for cometary dust
+aggregates j quant spectrosc radiat transf 200489155164
+80 hull p shepherd i hunt a modeling light scattering from diesel soot particles appl opt
+20044334333441
+81 venizelos dt lou wj charalampopoulos tt development of an algorithm for the calculation of the
+scattering properties of agglomerates appl opt 199635542548
+
+33
+
+82 voshchinnikov nv ilin vb henning t modelling the optical properties of composite and porous
+interstellar grains astron astrophys 2005429371381
+83 kohler m kimura h mann i applicability of the discretedipole approximation to lightscattering
+simulations of large cosmic dust aggregates astron astrophys 2006448395399
+84 zubko e petrov d shkuratov y videen g discrete dipole approximation simulations of scattering by
+particles with hierarchical structure appl opt 20054464796485
+85 bourrely c chiappetta p lemaire tj torresani b multidipole formulation of the coupled dipole
+method for electromagnetic scattering by an arbitrary particle j opt soc am a 1992913361340
+86 rouleau f martin pg a new method to calculate the extinction properties of irregularly shaped
+particles astrophys j 1993414803814
+87 mulholland gw bohren cf fuller ka lightscattering by agglomerates  coupled electric and
+magnetic dipole method langmuir 19941025332546
+88 lemaire tj coupledmultipole formulation for the treatment of electromagnetic scattering by a small
+dielectric particle of arbitrary shape j opt soc am a 199714470474
+89 lakhtakia a generaltheory of the purcellpennypacker scattering approach and its extension to
+bianisotropic scatterers astrophys j 1992394494499
+90 loiko va molochko vi polymer dispersed liquid crystal droplets methods of calculation of optical
+characteristics liq crys 199825603612
+91 smith da stokes kl discrete dipole approximation for magnetooptical scattering calculations opt
+expr 20061457465754
+92 su cc electromagnetic scattering by a dielectric body with arbitrary inhomogeneity and anisotropy
+ieee trans ant propag 198937384389
+93 chen rs fan zh yung ekn analysis of electromagnetic scattering of threedimensional dielectric
+bodies using krylov subspace fft iterative methods microwave opt tech lett 200339261267
+94 khlebtsov ng an approximate method for calculating scattering and absorption of light by fractal
+aggregates opt spec 200088594601
+95 markel va coupleddipole approach to scattering of light from a onedimensional periodic dipole
+structure j mod opt 19934022812291
+96 chaumet pc rahmani a bryant gw generalization of the coupled dipole method to periodic
+structures phys rev b 200367165404
+97 chaumet pc sentenac a numerical simulations of the electromagnetic field scattered by defects in a
+doubleperiodic structure phys rev b 200572205437
+98 martin ojf efficient scattering calculations in complex backgrounds aeuint j electr comm
+2004589399
+99 yang wh schatz gc vanduyne rp discrete dipole approximation for calculating extinction and
+raman intensities for small particles with arbitrary shapes j chem phys 1995103869875
+100 lemaire tj bassrei a threedimensional reconstruction of dielectric objects by the coupleddipole
+method appl opt 20003912721278
+101 belkebir k chaumet pc sentenac a superresolution in total internal reflection tomography j opt soc
+am a 20052218891897
+102 chaumet pc belkebir k sentenac a threedimensional subwavelength optical imaging using the
+coupled dipole method phys rev b 200469245405
+103 chaumet pc belkebir k lencrerot r threedimensional optical imaging in layered media opt expr
+20061434153426
+104 zubko e shkuratov y videen g discretedipole analysis of backscatter features of agglomerated
+debris particles comparable in size with wavelength j quant spectrosc radiat transf 2006100483488
+105 penttila a zubko e lumme k muinonen k yurkin ma draine bt rahola j hoekstra ag
+shkuratov y comparison between discrete dipole implementations and exact techniques j quant
+spectrosc radiat transf 2007 doi101016jjqsrt20070126
+106 press wh flannery bp teukolsky sa vetterling wt numerical recipes in c the art of scientific
+computing new york cambridge university press 1990
+107 barrett r berry m chan tf demmel j donato j dongarra j eijkhout v pozo r romine c van der
+vorst ha templates for the solution of linear systems building blocks for iterative methods siam
+1994
+108 hoekstra ag grimminck md sloot pma large scale simulations of elastic light scattering by a fast
+discrete dipole approximation int j mod phys c 1998987102
+109 zhang sl gpbicg generalized producttype methods based on bicg for solving nonsymmetric
+linear systems siam j sci comp 199718537551
+110 freund rw conjugate gradienttype methods for linearsystems with complex symmetrical coefficient
+matrices siam j sci stat comp 199213425448
+111 flatau pj improvements in the discretedipole approximation method of computing scattering and
+absorption opt lett 19972212051207
+
+34
+
+112 fan zh wang dx chen rs yung ekn the application of iterative solvers in discrete dipole
+approximation method for computing electromagnetic scattering microwave opt tech lett
+20064817411746
+113 yurkin ma maltsev vp hoekstra ag the discrete dipole approximation for simulation of light
+scattering by particles much larger than the wavelength j quant spectrosc radiat transf 2007
+doi101016jjqsrt20070133
+114 rahola j on the eigenvalues of the volume integral operator of electromagnetic scattering siam j sci
+comp 20002117401754
+115 budko nv samokhin ab spectrum of the volume integral operator of electromagnetic scattering
+siam j sci comp 200628682700
+116 budko nv samokhin ab samokhin aa a generalized overrelaxation method for solving singular
+volume integral equations in lowfrequency scattering problems differ eq 20054112621266
+117 hoekstra ag sloot pma coupled dipole simulations of elastic light scattering on parallel systems int j
+mod phys c 19956663679
+118 acquista c light scattering by tenuous particles a generalization of the rayleighgansrocard
+approach appl opt 19761529322936
+119 chiappetta p multiple scattering approach to light scattering by arbitrarily shaped particles j phys a
+19801321012108
+120 singham sb bohren cf lightscattering by an arbitrary particle  the scatteringorder formulation of
+the coupleddipole method j opt soc am a 1988518671872
+121 de hoop at convergence criterion for the timedomain iterative born approximation to scattering by an
+inhomogeneous dispersive object j opt soc am a 1991812561260
+122 flatau pj stephens gl draine bt lightscattering by rectangular solids in the discretedipole
+approximation  a new algorithm exploiting the blocktoeplitz structure j opt soc am a 19907593600
+123 flatau pj fast solvers for one dimensional light scattering in the discrete dipole approximation opt
+expr 20041231493155
+124 goodman jj draine bt flatau pj application of fastfouriertransform techniques to the discretedipole approximation opt lett 19911611981200
+125 barrowes be teixeira fl kong ja fast algorithm for matrixvector multiply of asymmetric multilevel
+blocktoeplitz matrices in 3d scattering microwave opt tech lett 2001312832
+126 greengard l rokhlin v a fast algorithm for particle simulations j comp phys 198773325348
+127 rahola j diagonal forms of the translation operators in the fast multipole algorithm for scattering
+problems bit 199636333358
+128 hoekstra ag sloot pma new computational techniques to simulate lightscattering from arbitrary
+particles part part sys charact 199411189193
+129 koc s chew wc multilevel fast multipole algorithm for the discrete dipole approximation j electrom
+wav applic 20011514471468
+130 amini s profit atj multilevel fast multipole solution of the scattering problem engin anal bound
+elem 200327547564
+131 darve e the fast multipole method i error analysis and asymptotic complexity siam j num anal
+20003898128
+132 dembart b yip e the accuracy of fast multipole methods for maxwells equations ieee comp sci
+engin 199854856
+133 barnes je hut p a hierarchical on log n forcecalculation algorithm nature 1986324446449
+134 barnes je hut p error analysis of a tree code astrophys j suppl 198970389417
+135 ding kh tsang l a sparse matrix iterative approach for modeling tree scattering microwave opt tech
+lett 200338198202
+136 singham mk singham sb salzman gc the scattering matrix for randomly oriented particles j chem
+phys 19868538073815
+137 mishchenko mi calculation of the amplitude matrix for a nonspherical particle in a fixed orientation
+appl opt 20003910261031
+138 mcclain wm ghoul wa elastic light scattering by randomly oriented macromolecules computation
+of the complete set of observables j chem phys 19868466096622
+139 khlebtsov ng orientational averaging of integrated cross sections in the discrete dipole method opt
+spec 200190408415
+140 mishchenko mi travis ld mackowski dw tmatrix computations of light scattering by nonspherical
+particles a review j quant spectrosc radiat transf 199655535575
+141 mackowski dw discrete dipole moment method for calculation of the t matrix for nonspherical
+particles j opt soc am a 200219881893
+142 mishchenko mi lightscattering by size shape distributions of randomly oriented axiallysymmetrical
+particles of a size comparable to a wavelength appl opt 19933246524666
+
+35
+
+143 muinonen k zubko e optimizing the discretedipole approximation for sequences of scatterers with
+identical shapes but differing sizes or refractive indices j quant spectrosc radiat transf 2006100288294
+144 hovenier jw lumme k mishchenko mi voshchinnikov nv mackowski dw rahola j
+computations of scattering matrices of four types of nonspherical particles using diverse methods j
+quant spectrosc radiat transf 199655695705
+145 wriedt t comberg u comparison of computational scattering methods j quant spectrosc radiat
+transf 199860411423
+146 comberg u wriedt t comparison of scattering calculations for aggregated particles based on different
+models j quant spectrosc radiat transf 199963149162
+147 wriedt t hellmers j eremina e schuh r light scattering by single erythrocyte comparison of
+different methods j quant spectrosc radiat transf 2006100444456
+148 laczik z discretedipoleapproximationbased lightscattering calculations for particles with a real
+refractive index smaller than unity appl opt 19963537363745
+
+36
+

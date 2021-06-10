@@ -1,0 +1,2072 @@
+arXiv:0704.0091v2 [math.GR] 18 Aug 2008
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES AND
+THEIR AUTOMORPHISMS
+ASHOT MINASYAN
+Abstract. We combine classical methods of combinatorial group theory with
+the theory of small cancellation over relatively hyperbolic groups to construct
+finitely generated torsion-free groups that have only finitely many classes of
+conjugate elements. Moreover, we present several results concerning embeddings into such groups.
+As another application of these techniques, we prove that every countable
+group C can be realized as a group of outer automorphisms of a group N ,
+where N is a finitely generated group having Kazhdan's property (T) and
+containing exactly two conjugacy classes.
+
+1. Introduction
+We shall start with
+Definition. Suppose that n ≥ 2 is an integer. We will say that a group M has the
+property (nCC) if there are exactly n conjugacy classes of elements in M .
+Note that a group M has (2CC) if and only if any two non-trivial elements are
+G
+conjugate in M . For two elements x, y of some group G, we shall write x ∼ y if x
+G
+and y are conjugate in G, and x ≁ y if they are not.
+For a group G, denote by π(G) the set of all finite orders of elements of G. A
+classical theorem of G. Higman, B. Neumann and H. Neumann ([8]) states that
+every countable group G can be embedded into a countable (but infinitely generated) group M , where any two elements of the same order are conjugate and
+π(M ) = π(G).
+For any integer n ≥ 2, take G = Z/2n−2 Z and embed G into a countable group
+M according to the theorem above. Then card(π(M )) = card(π(G)) = n − 1.
+Since, in addition, M will always contain an element of infinite order, the theorem
+of Higman-Neumann-Neumann implies that G has (nCC).
+Another way to construct infinite groups with finitely many conjugacy classes
+was suggested by S. Ivanov [15, Thm. 41.2], who showed for every sufficiently large
+prime p there is an infinite 2-generated group Mp of exponent p possessing exactly p
+conjugacy classes. The group Mp is constructed as a direct limit of word hyperbolic
+groups, and, as noted in [21], it is impossible to obtain an infinite group with (2CC)
+in the same manner.
+In the recent paper [21] D. Osin developed a theory of small cancellation over
+relatively hyperbolic groups and used it to obtain the following remarkable result:
+2000 Mathematics Subject Classification. 20F65, 20E45, 20F28.
+Key words and phrases. Conjugacy Classes, Relatively Hyperbolic Groups, Outer Automorphism Groups.
+This work was supported by the Swiss National Science Foundation Grant ♯ PP002-68627.
+1
+
+2
+
+ASHOT MINASYAN
+
+Theorem 1.1 ([21], Thm. 1.1). Any countable group G can be embedded into a
+2-generated group M such that any two elements of the same order are conjugate
+in M and π(M ) = π(G).
+Applying this theorem to the group G = Z/2n−2 Z one can show that for each
+integer n ≥ 2 there exists a 2-generated group with (nCC). And when n = 2 we
+get a 2-generated torsion-free group that has exactly two conjugacy classes.
+The presence of elements of finite orders in the above constructions was important, because if two elements have different orders, they can never be conjugate.
+So, naturally, one can ask the following
+Question 1. Do there exist torsion-free (finitely generated) groups with (nCC),
+for any integer n ≥ 3?
+Note that if G is the finitely generated group with (2CC) constructed by Osin,
+then the m-th direct power Gm of G is also a finitely generated torsion-free group
+which satisfies (2m CC). But what if we want to achieve a torsion-free group with
+(3CC)? With this purpose one could come up with
+Question 2. Suppose that G is a countable torsion-free group and x, y ∈ G are
+non-conjugate. Is it possible to embed G into a group M , which has (3CC), so that
+x and y stay non-conjugate in M ?
+Unfortunately, the answer to Question 2 is negative as the following example
+shows.
+Example 1. Consider the group
+G1 = ha, t k tat−1 = a−1 i
+
+(1.1)
+
+which is isomorphic to the non-trivial semidirect product Z ⋊ Z. Note that G1 is
+torsion-free, and t is not conjugated to t−1 in G1 because t ≁ t−1 in the infinite
+cyclic group hti which is canonically isomorphic to the quotient of G1 by the normal
+closure of a. However, if G1 is embedded into a (3CC)-group M , it is easy to see
+that every element of M will be conjugated to its inverse (indeed, if y ∈ M \ {1}
+M
+
+M
+
+M
+
+M
+
+and y ≁ y −1 then y ǫ ∼ a ∼ a−1 , for some ǫ ∈ {1, −1}, hence y ǫ ∼ y −ǫ – a
+M
+contradiction). In particular, t ∼ t−1 .
+An analog of the above example can be given for each n ≥ 3 – see Section 3. This
+example shows that, in order to get a positive result, one would have to strengthen
+the assumptions of Question 2.
+Let G be a group. Two elements x, y ∈ G are said to be commensurable if there
+G
+
+exist k, l ∈ Z \ {0} such that xk is conjugate to y l . We will use the notation x ≈ y
+if x and y are commensurable in G. In the case when x is not commensurable with
+G
+
+y we will write x 6≈ y. Observe that commensurability, as well as conjugacy, defines
+an equivalence relation on the set of elements of G. It is somewhat surprising that
+if one replaces the words "non-conjugate" with the words "non-commensurable" in
+Question 2, the answer becomes positive:
+Corollary 1.2. Assume that G is a countable torsion-free group, n ∈ N, n ≥ 2,
+and x1 , . . . , xn−1 ∈ G \ {1} are pairwise non-commensurable. Then there exists a
+group M and an injective homomorphism φ : G → M such that
+1. M is torsion-free and generated by two elements;
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+3
+
+2. M has (nCC);
+3. M is 2-boundedly simple;
+4. the elements φ(x1 ), . . . , φ(xn−1 ) are pairwise non-commensurable in M .
+Recall that a group G is said to be k-boundedly simple if for any x, y ∈ G \ {1}
+there exist l ≤ k and g1 , . . . , gl ∈ G such that x = g1 yg1−1 * * * gl ygl−1 in G. A group
+is called boundedly simple if it is k-boundedly simple for some k ∈ N. Evidently
+every boundedly simple group is simple; the converse is not true in general. For
+example, the infinite alternating group A∞ is simple but not boundedly simple
+because conjugation preserves the type of the decomposition of a permutation into
+a product of cycles. First examples of torsion-free finitely generated boundedly
+simple groups were constructed by A. Muranov (see [12, Thm. 2], [13, Thm. 1]).
+Corollary 1.2 is an immediate consequence of a more general Theorem 3.5 that
+will be proved in Section 3.
+Applying Corollary 1.2 to the group G = F (x1 , . . . , xn−1 ), which is free on the
+set {x1 , . . . , xn−1 }, and its non-commensurable elements x1 , . . . , xn−1 , we obtain a
+positive answer to Question 1:
+Corollary 1.3. For every integer n ≥ 3 there exists a torsion-free 2-boundedly
+simple group satisfying (nCC) and generated by two elements.
+(In the case when n = 2 the above statement was obtained by Osin in [21,
+Cor. 1.3].) In fact, for any (finitely generated) torsion-free group H we can set
+G = H ∗ F (x1 , . . . , xn−1 ), and then use Corollary 1.2 to embed G into a group M
+enjoying the properties 1 − 4 from its claim. Since there is a continuum of pairwise
+non-isomorphic 2-generated torsion-free groups ([4]), and a finitely generated group
+can contain at most countably many of different 2-generated subgroups, this shows
+that there must be continually many pairwise non-isomorphic groups satisfying
+properties 1 − 3 from Corollary 1.2.
+Recall that the rank rank(G) of a group G is the minimal number of elements required to generate G. In Section 4 we show how classical theory of HNN-extensions
+allows to construct different embeddings into (infinitely generated) groups that have
+finitely many classes of conjugate elements, and in Section 5 we use Osin's results
+(from [21]) regarding quotients of relatively hyperbolic groups to prove
+Theorem 1.4. Let H be a torsion-free countable group and let M ⊳ H be a nontrivial normal subgroup. Then H can be isomorphically embedded into a torsion-free
+group Q, possessing a normal subgroup N ⊳ Q, such that
+• Q = H * N and H ∩ N = M (hence Q/N ∼
+= H/M );
+• N has (2CC);
+Q/N
+
+Q
+
+• ∀ x, y ∈ Q \ {1}, x ∼ y if and only if φ(x) ∼ φ(y), where φ : Q → Q/N
+is the natural homomorphism;
+• rank(N ) = 2 and rank(Q) ≤ rank(H/M ) + 2.
+∼ H/M has exactly (n − 1) conjugacy classes
+This theorem implies that if Q/N =
+(e.g., if it is finite), then the group Q will have (nCC) and will not be simple
+(if n ≥ 3). Thus it may be used to build (nCC)-groups in a recursive manner.
+It also allows to obtain embeddings of countable torsion-free groups into (nCC)groups, which we could not get by using Corollary 1.2. For instance, as we saw in
+Example 1, the fundamental group of the Klein bottle G1 , given by (1.1), can not
+M
+
+be embedded into a (3CC)-group M so that t ≁ t−1 . However, with 4 conjugacy
+
+4
+
+ASHOT MINASYAN
+
+classes this is already possible: see Corollary 5.5 in Section 5. The idea is as
+follows: the group G1 can be mapped onto Z/3Z in such a way that the images of
+the elements t and t−1 are distinct. Let M be the kernel of this homomorphism.
+One can apply Theorem 1.4 to the pair (G1 , M ) to obtain the required embedding
+of G1 into a group Q. And since Z/3Z has exactly 3 conjugacy classes, the group
+Q will have (4CC).
+An application of Theorem 1.4 to the case when H = Z and M = 2Z ⊳ H also
+provides an affirmative answer to a question of A. Izosov from [9, Q. 11.42], asking
+whether there exists a torsion-free (3CC)-group Q that contains a normal subgroup
+N of index 2.
+The goal of the second part of this article is to show that every countable group
+can be realized as a group of outer automorphisms of some finitely generated (2CC)group. This problem has some historical background: in [11] T. Matumoto proved
+that every group is a group of outer automorphisms of some group (in contrast,
+there are groups, e.g., Z, that are not full automorphism groups of any group); M.
+Droste, M. Giraudet, R. Göbel ([7]) showed that for every group C there exists
+a simple group S such that Out(S) ∼
+= C; I. Bumagina and D. Wise in [3] proved
+that each countable group C is isomorphic to Out(N ) where N is a 2-generated
+subgroup of a countable C ′ (1/6)-group, and if, in addition, C is finitely presented
+then one can choose N to be residually finite.
+In Section 6 we establish a few useful statements regarding paths in the Cayley
+graph of a relatively hyperbolic group G, and apply them in Section 7 to obtain
+small cancellation quotients of G satisfying certain conditions. Finally, in Section
+8 we prove the following
+Theorem 1.5. Let C be an arbitrary countable group. Then for every non-elementary torsion-free word hyperbolic group F1 there exists a torsion-free group N satisfying the following properties:
+• N is a 2-generated quotient of F1 ;
+• N has (2CC);
+• Out(N ) ∼
+= C.
+The principal difference between this theorem and the result of [3] is that our
+group N is torsion-free and simple. Moreover, if one applies Theorem 1.5 to the
+case when F1 is a torsion-free hyperbolic group with Kazhdan's property (T) (and
+recalls that every quotient of a group with property (T) also has (T)), one will get
+Corollary 1.6. For any countable group C there is a 2-generated group N such
+that N has (2CC) and Kazhdan's property (T), and Out(N ) ∼
+= C.
+The reason why Kazhdan's property (T) is interesting in this context is the
+question from [6, p. 134] which asked whether there exist groups that satisfy
+property (T) and have infinite outer automorphism groups (it can be motivated
+by a theorem of F. Paulin [22] which claims that the outer automorphism group is
+finite for any word hyperbolic group with property (T)). Positive answers to this
+question were obtained (using different methods) by Y. Ollivier and D. Wise [14],
+Y. de Cornulier [5], and I. Belegradek and D. Osin [2]. Corollary 1.6 not only
+shows that the group of outer automorphisms of a group N with property (T)
+can be infinite, but also demonstrates that there are no restrictions whatsoever on
+Out(N ).
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+5
+
+Acknowledgements. The author would like to thank D. Osin for fruitful discussions and encouragement.
+2. Relatively hyperbolic groups
+Assume that G is a group, {Hλ }λ∈Λ is a fixed collection of subgroups of G (called
+peripheral subgroups), and X is a subset of G. The subset X is called
+S a relative
+generating set of G with respect to {Hλ }λ∈Λ if G is generated by X ∪ λ∈Λ Hλ . In
+this case G a quotient of the free product
+F = (∗λ∈Λ Hλ ) ∗ F (X ),
+where F (X ) is the free group with basis X . Let R be a subset of F such that the
+kernel of the natural epimorphism F → G is the normal closure of R in the group
+F ; then we will say that G has relative presentation
+(2.1)
+
+hX , {Hλ }λ∈Λ k R = 1, R ∈ Ri.
+
+If the sets XFand R are finite, the relative presentation (2.1) is said to be finite.
+Set H = λ∈Λ (Hλ \ {1}). A finite relative presentation (2.1) is said to satisfy a
+linear relative isoperimetric inequality if there exists C > 0 such that, for every word
+w in the alphabet X ∪ H (for convenience, we will further assume that X −1 = X )
+representing the identity in the group G, one has
+F
+
+w=
+
+k
+Y
+
+fi−1 Ri±1 fi ,
+
+i=1
+
+with equality in the group F , where Ri ∈ R, fi ∈ F , for i = 1, . . . , k, and k ≤ Ckwk,
+where kwk is the length of the word w.
+The next definition is due to Osin (see [20]):
+Definition. the group G is called hyperbolic relative to (the collection of peripheral
+subgroups) {Hλ }λ∈Λ , if G admits a finite relative presentation (2.1) satisfying a
+linear relative isoperimetric inequality.
+This definition is independent of the choice of the finite generating set X and
+the finite set R in (2.1) (see [20]). We would also like to note that, in general, it
+does not require the group G to be finitely generated, which will be important in
+this paper. The definition immediately implies the following basic facts:
+Remark 2.1 ([20]). (a) Let {Hλ }λ∈Λ be an arbitrary family of groups. Then the
+free product G = ∗λ∈Λ Hλ will be hyperbolic relative to {Hλ }λ∈Λ .
+(b) Any word hyperbolic group (in the sense of Gromov) is hyperbolic relative
+to the family {{1}}, where {1} denotes the trivial subgroup.
+Recall that a group H is called elementary if it has a cyclic subgroup of finite
+index. Further in this section we will assume that G is a non-elementary group
+hyperbolic relative to a family of proper subgroups {Hλ }λ∈Λ .
+An element g ∈ G is said to be parabolic if it is conjugated to an element of Hλ
+for some λ ∈ Λ. Otherwise g is said to be hyperbolic. Given a subgroup S ≤ G, we
+denote by S 0 the set of all hyperbolic elements of S of infinite order.
+Lemma 2.2 ([17], Thm. 4.3, Cor. 1.7). For every g ∈ G0 the following conditions
+hold.
+
+6
+
+ASHOT MINASYAN
+
+1) The element g is contained in a unique maximal elementary subgroup EG (g)
+of G, where
+EG (g) = {f ∈ G : f g n f −1 = g ±n for some n ∈ N}.
+
+(2.2)
+
+2) The group G is hyperbolic relative to the collection {Hλ }λ∈Λ ∪ {EG (g)}.
+Recall that a non-trivial subgroup H ≤ G is called malnormal if for every g ∈
+G \ H, H ∩ gHg −1 = {1}. The next lemma is a special case of Theorem 1.4 from
+[20]:
+Lemma 2.3. For any λ ∈ Λ and any g ∈
+/ Hλ , the intersection Hλ ∩ gHλ g −1 is
+finite. If h ∈ G, μ ∈ Λ and μ 6= λ, then the intersection Hλ ∩ hHμ h−1 is finite. In
+particular, if G is torsion-free then Hλ is malnormal (provided that Hλ 6= {1}).
+Lemma 2.4 ([20], Thm. 2.40). Suppose that a group G is hyperbolic relative
+to a collection of subgroups {Hλ }λ∈Λ ∪ {S1 , . . . , Sm }, where S1 , . . . , Sm are word
+hyperbolic (in the ordinary non-relative sense). Then G is hyperbolic relative to
+{Hλ }λ∈Λ .
+Lemma 2.5 ([19], Cor. 1.4). Let G be a group which is hyperbolic relative to a
+collection of subgroups {Hλ }λ∈Λ ∪ {K}. Suppose that K is finitely generated and
+there is a monomorphism α : K → Hν for some ν ∈ Λ. Then the HNN-extension
+hG, t k txt−1 = α(x), x ∈ Ki is hyperbolic with respect to {Hλ }λ∈Λ .
+In [21] Osin introduced the following notion: a subgroup S ≤ G is suitable if
+G
+
+there exist two elements g1 , g2 ∈ S 0 such that g1 6≈ g2 and EG (g1 ) ∩ EG (g2 ) = {1}.
+For any S ≤ G with S 0 6= ∅, one sets
+\
+EG (g)
+(2.3)
+EG (S) =
+g∈S 0
+
+which is obviously a subgroup of G normalized by S. Note that EG (S) = {1} if the
+subgroup S is suitable in G. As shown in [1, Lemma 3.3], if S is non-elementary
+and S 0 6= ∅ then EG (S) is the unique maximal finite subgroup of G normalized by
+S.
+Lemma 2.6. Let {H}λ∈Λ be a family of groups and let F be a torsion-free nonelementary word hyperbolic group. Then the free product G = (∗λ∈Λ Hλ ) ∗ F is
+hyperbolic relative to {Hλ }λ∈Λ and F is a suitable subgroup of G.
+Proof. Indeed, G is hyperbolic relative to {Hλ }λ∈Λ by Remark 2.1 and Lemma
+2.4. Since F is non-elementary, there are elements of infinite order x, y ∈ F such
+F
+
+that x 6≈ y (see, for example, [16, Lemma 3.2]). Evidently, x and y are hyperbolic
+elements of G that are not commensurable with each other, and the subgroups
+EG (x) = EF (x) ≤ F , EG (y) = EF (y) ≤ F are cyclic (as elementary subgroups of a
+torsion-free group). Hence EG (x) ∩ EG (y) = {1}, and thus F is suitable in G. 
+Lemma 2.7 ([21], Lemma 2.3). Suppose that G is a group hyperbolic relative to a
+family of subgroups {Hλ }λ∈Λ and S ≤ G is a suitable subgroup. Then one can find
+infinitely many pairwise non-commensurable (in G) elements g1 , g2 , * * * ∈ S 0 such
+that EG (gi ) ∩ EG (gj ) = {1} for all i 6= j.
+The following theorem was proved by Osin in [21] using the theory of small
+cancellation over relatively hyperbolic groups, and represents our main tool for
+obtaining new quotients of such groups having a number of prescribed properties:
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+7
+
+Theorem 2.8 ([21], Thm. 2.4). Let G be a torsion-free group hyperbolic relative to
+a collection of subgroups {Hλ }λ∈Λ , let S be a suitable subgroup of G, and let T, U
+be arbitrary finite subsets of G. Then there exist a group G1 and an epimorphism
+η : G → G1 such that:
+S
+(i) The restriction of η to λ∈Λ Hλ ∪ U is injective, and the group G1 is hyperbolic relative to the collection {η(Hλ )}λ∈Λ ;
+(ii) for every t ∈ T , we have η(t) ∈ η(S);
+(iii) η(S) is a suitable subgroup of G1 ;
+(iv) G1 is torsion-free;
+(v) the kernel ker(η) of η is generated (as a normal subgroup of G) by a finite
+collection of elements belonging to T * S.
+We have slightly changed the originalSformulation of the above theorem
+S from
+[21], demanding the injectivity on V = λ∈Λ Hλ ∪ U (instead of just λ∈Λ Hλ )
+and adding the last point concerning the generators of the kernel. The latter
+follows from the explicit form of the relations, imposed on G (see the proof of
+Thm. 2.4 in [21]), and the former – from part 2 of Lemma 5.1 in [21] and the fact
+that any element from V has length (in the alphabet X ∪ H) at most N , where
+N = max{|h|X ∪H : h ∈ U } + 1.
+3. Groups with finitely many conjugacy classes
+Lemma 3.1. Let G be a group and let x1 , x2 , x3 , x4 ∈ G be elements of infinite order
+G
+
+such that x1 6≈ xi , i = 2, 3, 4. Let H = hG, t k tx3 t−1 = x4 i be the HNN-extension
+H
+
+of G with associated cyclic subgroups generated by x3 and x4 . Then x1 6≈ x2 .
+Proof. Arguing by contradiction, assume that hxl1 h−1 xm
+2 = 1 for some h ∈ H,
+l, m ∈ Z \ {0}. The element h has a reduced presentation of the form
+h = g0 tǫ1 g1 tǫ2 . . . tǫk gk
+where g0 , . . . , gk ∈ G, ǫ1 , . . . , ǫk ∈ Z \ {0}, and
+
+gj ∈
+/ hx3 i if 1 ≤ j ≤ k − 1 and ǫj > 0, ǫj+1 < 0
+.
+gj ∈
+/ hx4 i if 1 ≤ j ≤ k − 1 and ǫj < 0, ǫj+1 > 0
+G
+
+By the assumptions, x1 6≈ x2 hence k ≥ 1, and in the group H we have
+(3.1)
+
+ǫk
+l −1 −ǫk
+ǫ2
+ǫ1
+. . . t−ǫ2 g1−1 t−ǫ1 g̃0 = 1,
+hxl1 h−1 xm
+2 = g0 t g1 t . . . t gk x1 gk t
+
+where g̃0 = g0−1 xm
+2 ∈ G. By Britton's Lemma (see [10, IV.2]), the left hand side
+in (3.1) can not be reduced, and this can happen only if gk xl1 gk−1 belongs to either
+hx3 i or hx4 i in G, which would contradict the assumptions. Thus the lemma is
+proved.
+
+Definition. Suppose that G is a group and Xi ⊂ G, i ∈ I, is a family of subsets.
+We shall say that Xi , i ∈ I, are independent if no element of Xi is commensurable
+with an element of Xj whenever i 6= j, i, j ∈ I.
+Lemma 3.2. Assume that G is a countable torsion-free group, n ∈ N, n ≥ 2, and
+non-empty subsets Xi ⊂ G \ {1}, i = 1, . . . , n − 1, are independent in G. Then G
+can be (isomorphically) embedded into a countable torsion-free group M in such a
+way that M has (nCC) and the subsets Xi , i = 1, . . . , n − 1, remain independent in
+M.
+
+8
+
+ASHOT MINASYAN
+
+Proof. For each i = 1, . . . , n − 1, fix an element xi ∈ Xi . First we embed G into a
+countable torsion-free group G1 such that for each non-trivial element g ∈ G there
+exist j ∈ {1, . . . , n − 1} and t ∈ G1 satisfying tgt−1 = xj in G1 , and the subsets Xi ,
+i = 1, . . . , n − 1, stay independent in G1 .
+Let g1 , g2 , . . . be an enumeration of all non-trivial elements of G. Set G(0) = G
+and suppose that we have already constructed the group G(k), containing G, so
+that for each l ∈ {1, . . . , k} there is j ∈ {1, . . . , n − 1} such that the element gl is
+conjugated in G(k) to xj , and Xi , i = 1, . . . , n − 1, are independent in G(k).
+Suppose, at first, that gk+1 is commensurable in G(k) with an element of Xj
+n−1
+G(k)
+[
+Xi . Define G(k + 1) to be the
+for some j. Then gk+1 6≈ h for every h ∈
+i=1,i6=j
+
+HNN-extension hG(k), tk+1 k tk+1 gk+1 t−1
+k+1 = xj i. By Lemma 3.1 the subsets Xi ,
+i = 1, . . . , n − 1, will remain independent in G(k + 1).
+Thus we can assume that gk+1 is not commensurable with any element from
+Sn−1
+i=1 Xi in G(k). According to the induction hypotheses one can apply Lemma 3.1
+to the HNN-extension
+G(k + 1) = hG(k), tk+1 k tk+1 gk+1 t−1
+k+1 = x1 i
+to see that the subsets Xi ⊂ G ≤ G(k + 1), i = 1, . . . , n − 1, are independent in
+G(k + 1).
+S
+Now, set G1 = ∞
+k=0 G(k). Evidently G1 has the required properties. In the same
+manner, one can embed G1 into a countable torsion-free group G2 so that each nontrivial element of G1 will be conjugated to xi in G2 , for some i ∈ {1, . . . , n − 1},
+and the subsets Xi , i = 1, . . . , n − 1, continue to be independent
+in G2 .
+S∞
+Proceeding like that we obtain the desired group M = s=1 Gs . By the construction, M is a torsion-free countable group which has exactly n conjugacy classes:
+[1], [x1 ], . . . , [xn−1 ]. The subsets Xi , i = 1, . . . , n − 1, are independent in M because
+they are independent in Gs for each s ∈ N.
+
+Corollary 3.3. In Lemma 3.2 one can add that the group M is 2-boundedly simple.
+Proof. Let a torsion-free countable group G and its non-empty independent subsets
+Xi , i = 1, . . . , n − 1, be as in Lemma 3.2. Let F = F (a1 , . . . , an−1 , b1 , . . . , bn−1 ) be
+the free group with the free generating set {a1 , . . . , an−1 , b1 , . . . , bn−1 }, and consider
+the group Ḡ = G ∗ F . For each i = 1, . . . , n − 1, define
+X̄i = Xi ∪ {ai , a−1
+i } ∪ {[aj , bi ] | j = 1, . . . , n − 1, j 6= i} ⊂ Ḡ,
+−1
+where [aj , bi ] = aj bi a−1
+j bi . Using the universal properties of free groups and free
+products one can easily see that the subsets X̄i , i = 1, . . . , n − 1, are independent
+in Ḡ.
+Now we apply Lemma 3.2 to find a countable torsion-free (nCC)-group M , containing Ḡ, such that X̄i , i = 1, . . . , n − 1, are independent in M . Observe that this
+implies that for any given i = 1, . . . , n − 1, any two elements of X̄i are conjugate in
+M
+M . For arbitrary x, y ∈ M \ {1} there exist i, j ∈ {1, . . . , n − 1} such that x ∼ ai
+M
+M
+M
+M
+M
+and x ∼ [aj , bi ] which
+and y ∼ aj . If i = j then x ∼ y. Otherwise, y ∼ aj ∼ a−1
+j
+is a product of two conjugates of aj , and, hence, of y. Therefore the group M is
+2-boundedly simple, and since G ≤ Ḡ ≤ M , the corollary is proved.
+
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+9
+
+Below is a particular (torsion-free) case of a theorem proved by Osin in [21, Thm.
+2.6]:
+Lemma 3.4. Any countable torsion-free group S can be embedded into a 2-generated
+group M so that S is malnormal in M and every element of M is conjugated to an
+element of S in M .
+Proof. Following Osin's proof of Theorem 2.6 from [21], we see that the required
+group M can be constructed as an inductive limit of relatively hyperbolic groups
+G(i), i ∈ N. More precisely, one sets G(0) = S ∗ F2 , where F2 is a free group of
+rank 2, ξ0 = idG(0) : G(0) → G(0), and for each i ∈ N one constructs a group
+G(i) and an epimorphism ξi : G(0) → G(i) so that ξi is injective on S, G(i) is
+torsion-free and hyperbolic relative to {ξi (S)}, and ξi factors through ξi−1 . The
+group M is defined
+to be the direct limit of (G(i), ξi ) as i → ∞, i.e., Q = G(0)/N
+S
+where N = i∈N ker(ξi ). By Lemma 2.3, ξi (S) is malnormal in G(i), hence the
+image of S will also be malnormal in M .
+
+Theorem 3.5. Let G be a torsion-free countable group, n ∈ N, n ≥ 2, and nonempty subsets Xi ⊂ G \ {1}, i = 1, . . . , n − 1, be independent in G. Then G can
+be embedded into a 2-generated torsion-free group M which has (nCC), so that the
+subsets Xi , i = 1, . . . , n − 1, stay independent in M . Moreover, one can choose M
+to be 2-boundedly simple.
+Proof. First, according to Corollary 3.3, we can embed the group G into a countable
+torsion-free group S such that S has (nCC) and is 2-boundedly simple, and Xi ,
+i = 1, . . . , n − 1, are independent in S. Second, we apply Lemma 3.4 to find the
+2-generated group M from its claim. Choose any i, j ∈ {1, . . . , n − 1}, i 6= j, and
+x ∈ Xi , y ∈ Xj . If x and y were commensurable in M , the malnormality of S would
+imply that x and y must be commensurable in S, contradicting the construction.
+Hence Xi , i = 1, . . . , n − 1, are independent in M . Since each element of M is
+conjugated to an element of S, it is evident that M has (nCC), is torsion-free and
+2-boundedly simple.
+
+Remark 3.6. A more direct proof of Theorem 3.5, not using Lemma 3.4, can be
+extracted from the proof of Theorem 5.1 (see Section 5), applied to the case when
+H = M.
+It is easy to see that Theorem 3.5 immediately implies Corollary 1.2 that was
+formulated in the Introduction. As promised, we now give a counterexample to
+Question 2 (formulated in the Introduction) for any n ≥ 3.
+Example 2. Let G2 = ha, t k tat−1 = a2 i be the Baumslag-Solitar BS(1, 2)-group.
+n−1
+Then G2 is torsion-free, and the elements t2 , t4 , . . . , t2
+are pairwise non-conjugate
+in G2 (since this holds in the quotient of G2 by the normal closure of a). Suppose
+n−1
+that G2 is embedded into a group M having (nCC) so that t2 , t4 , . . . , t2
+are
+n−1
+pairwise non-conjugate in M . Then t2 , . . . , t2
+is the list of representatives of all
+non-trivial conjugacy classes of M . Therefore there exist k, l ∈ {1, . . . , n − 1} such
+k
+l
+M
+M
+that t ∼ t2 and a ∼ t2 . Consequently
+M
+
+k+1
+
+t2 ∼ t2
+
+l
+
+M
+
+M
+
+M
+
+l+1
+
+and t2 ∼ a ∼ a2 ∼ t2
+
+,
+
+hence k = l = n − 1 according to the assumptions. But this yields
+M
+
+n−1
+
+t ∼ t2
+
+M
+
+M
+
+M
+
+∼ a ∼ a 2 ∼ t2 ,
+
+10
+
+ASHOT MINASYAN
+M
+
+implying that t2 ∼ t4 , which contradicts our assumptions.
+Thus G2 can not be embedded into a (nCC)-group M in such a way that
+n−1
+2
+t , . . . , t2
+remain pairwise non-conjugate in M .
+4. Normal subgroups with (nCC)
+If M is a normal subgroup of a group H, then H naturally acts on M by conjugation. We shall say that this action preserves the conjugacy classes of M if for
+any h ∈ H and a ∈ M there exists b ∈ M such that hah−1 = bab−1 .
+Lemma 4.1. Let G be a torsion-free group, N ⊳ G and x1 , . . . , xl ∈ N \ {1}
+be pairwise non-commensurable (in G) elements. Then there exists a partition
+Fl
+N \ {1} = k=1 Xk of N \ {1} into a (disjoint) union of G-independent subsets
+X1 , . . . , Xl such that xk ∈ Xk for every k ∈ {1, . . . , l}. Moreover, each subset Xk
+will be invariant under conjugation by elements of G.
+G
+
+Proof. Since ≈ is an equivalence
+relation on G \ {1}, one can find the corresponding
+F
+decomposition: G \ {1} = j∈J Yj , where Yj is an equivalence class for each j ∈ J.
+For each k = 1, . . . , l, there exists j(k) ∈ J such that xk ∈ Yj(k) . Note that
+G
+
+j(k) 6= j(m) if k 6= m since xk 6≈ xm .
+Denote J ′ = J \ {j(1), . . . , j(l − 1)},
+X1 = Yj(1) ∩ N, . . . , Xl−1 = Yj(l−1) ∩ N, and Xl =
+
+[
+
+Yj ∩ N.
+
+j∈J ′
+
+F
+Evidently N \{1} = lk=1 Xk , X1 , . . . , Xl are independent subsets of G and xk ∈ Xk
+for each k = 1, . . . , l. The final property follows from the construction since for any
+a ∈ G and j ∈ J we have aYj a−1 = Yj and aN a−1 = N .
+
+Lemma 4.2. For every countable group C and each n ∈ N, n ≥ 2, there exists a
+countable torsion-free group H having a normal subgroup M ⊳ H such that
+(i) M satisfies (nCC);
+(ii) M is 2-boundedly simple;
+(iii) the natural action of H on M preserves the conjugacy classes of M ;
+(iv) H/M ∼
+= C.
+Proof. Let H0′ be the free group of infinite countable rank. Choose N0′ ⊳ H0′ so that
+H0′ /N0′ ∼
+= C. Let F = F (x1 , . . . , xn−1 ) denote the free group freely generated by
+x1 , . . . , xn−1 . Define H0 = H0′ ∗ F and let N0 be the normal closure of N0′ ∪ F in
+H0 . Evidently, H0 /N0 ∼
+= C and the elements x1 , . . . , xn−1 ∈ N0 \ {1} are
+= H0′ /N0′ ∼
+pairwise non-commensurable in H0 .
+By Lemma 4.1, one can choose a partition of N0 \ {1} into the union of H0 independent subsets:
+n−1
+G
+N0 \ {1} =
+X0k ,
+k=1
+
+so that xk ∈ X0k for each k = 1, . . . , n − 1.
+By Corollary 3.3 there exists a countable torsion-free 2-boundedly simple group
+M1 with the property (nCC) containing a copy of N0 , such that the subsets X0k ,
+k = 1, 2, . . . , n − 1, are independent in M1 . Denote by H1 = H0 ∗N0 M1 the
+amalgamated product of H0 and M1 along N0 , and let N1 be the normal closure
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+11
+
+of M1 in H1 . Note that H1 is torsion-free as an amalgamated product of two
+torsion-free groups ([10, IV.2.7]).
+We need to verify that the elements x1 , . . . , xn−1 are pairwise non-commensurable in H1 . Indeed, if a ∈ X0k and b ∈ X0l , k 6= l, are conjugate in H1 then
+there must exist y1 , . . . , yt ∈ M1 \ N0 and z1 , . . . , zt−1 ∈ H0 \ N0 , z0 , zt ∈ H0 such
+that
+H
+−1
+z0 y1 * * * zt−1 yt zt azt−1 yt−1 zt−1
+* * * y1−1 z0−1 =1 b.
+Suppose that t is minimal possible with this property. As conjugation by elements
+of H0 preserves X0k and X0l , we can assume that z0 , zt = 1. Hence
+H
+
+−1
+y1 z1 * * * zt−1 yt ayt−1 zt−1
+* * * z1−1 y1−1 b−1 =1 1.
+
+By the properties of amalgamated products (see [10, Ch. IV]), the left-hand side
+Fn−1
+in this equality can not be reduced, consequently yt ayt−1 ∈ N0 \ {1} = k=1 X0k .
+But then yt ayt−1 ∈ X0k by the properties of M1 , contradicting the minimality of t.
+H1
+
+Thus, we have shown that xk 6≈ xl whenever k 6= l.
+Assume that the group Hi = Hi−1 ∗Ni−1 Mi , i ≥ 1, has already been constructed,
+so that
+0) Hi is countable and torsion-free;
+1) Ni−1 ⊳ Hi−1 ;
+2) Hi−1 = H0 * Ni−1 and H0 ∩ Ni−1 = N0 ;
+3) Mi satisfies (nCC);
+4) x1 , . . . , xn−1 are pairwise non-commensurable in Hi .
+Let Ni be the normal closure of Mi in Hi . Because of the condition 4) and
+Lemma 4.1, one can find a partition of Ni \ {1} into a union of Hi -independent
+subsets:
+n−1
+G
+Ni \ {1} =
+Xik ,
+k=1
+
+so that xk ∈ Xik for each k = 1, . . . , n − 1. By Lemma 3.2 there is a countable
+group a Mi+1 , with (nCC), containing a copy of Ni , in which the subsets Xik ,
+i = 1, . . . , n − 1, remain independent. Set Hi+1 = Hi ∗Ni Mi+1 . Now, it is easy to
+verify that the analogs of the conditions 0)-3) hold for Hi+1 and
+(4.1)
+
+Ni−1 ≤ Mi ≤ Ni ≤ Mi+1 .
+
+The analog of the condition 4) is true in Hi+1 by the same considerations as before
+(in the case of H1 ).
+S∞
+S∞
+Define the group H = i=1 Hi and its subgroup M = i=1 Ni . Observe that
+the condition 0) implies that H is torsion-free, condition 1) implies that M is
+normal in H, and 2) implies that H = H0 * MSand H0 ∩ M = N0 . Hence H/M ∼
+=
+∞
+H0 /(H0 ∩M ) ∼
+= C. Applying (4.1) we get M = i=1 Mi , and thus, by the conditions
+3), 4) it enjoys the property (nCC): each element of M will be a conjugate of xk
+for some k ∈ {1, . . . , n − 1}. Since x1 , . . . , xn−1 ∈ M1 ≤ M and M1 is 2-boundedly
+H
+simple, then so will be M . Finally, 4) implies that xk ≁ xl whenever k 6= l,
+and, consequently, the natural action of H on M preserves its conjugacy classes.
+Q.e.d.
+
+Lemma 4.3. Suppose that G is a group, N ⊳ G, A, B ≤ G and φ : A → B is
+an isomorphism such that φ(a) ∈ aN (i.e., the canonical images of a and φ(a) in
+
+12
+
+ASHOT MINASYAN
+
+G/N coincide) for each a ∈ A. Let L = hG, t k tat−1 = φ(a), ∀ a ∈ Ai be the
+HNN-extension of G with associated subgroups A and B, and let K be the normal
+closure of hN, ti in L . Then G ∩ K = N .
+Proof. This statement easily follows from the universal property of HNN-extensions
+and is left as an exercise for the reader.
+
+The next lemma will allow us to construct (nCC)-groups that are not simple:
+Lemma 4.4. Assume that H is a torsion-free countable group and M ⊳H is a nontrivial normal subgroup. Then H can be isomorphically embedded into a countable
+torsion-free group G possessing a normal subgroup K ⊳ G such that
+1) G = HK and H ∩ K = M ;
+2) ∀ x, y ∈ G \ {1}, φ(x) = φ(y) if and only if ∃ h ∈ K such that x = hyh−1 ,
+where φ : G → G/K is the natural homomorphism; in particular, K will
+have (2CC);
+G
+
+G/K
+
+3) ∀ x, y ∈ G \ {1}, x ∼ y if and only if φ(x) ∼ φ(y);
+Proof. Choose a set of representatives Z ⊂ H of cosets of H modulo M , in such a
+way that each coset is represented by a unique element from Z and 1 ∈
+/ Z.
+Define G(0)=H and K(0) = M . Enumerate the elements of G(0)\{1}: g1 , g2 , . . . .
+First we embed the group G(0) into a countable torsion-free group G1 , having a
+normal subgroup K1 ⊳ G1 , such that G1 = HK1 , H ∩ K1 = M and for every i ≥ 0
+there are ti ∈ K1 and zi ∈ Z satisfying ti gi ti−1 = zi .
+Suppose that the (countable torsion-free) group G(j), j ≥ 0, and K(j) ⊳ G(j),
+have already been constructed so that H ≤ G(j), G(j) = HK(j), H ∩ K(j) = M
+and, if j ≥ 1, then tj gj t−1
+j = zj for some tj ∈ K(j) and zj ∈ Z. The group G(j +1),
+containing G(j), is defined as the following HNN-extension:
+−1
+G(j + 1) = hG(j), tj+1 k tj+1 gj+1 tj+1
+= zj+1 i,
+
+where zj+1 ∈ Z ⊂ H is the unique representative satisfying gj+1 ∈ zj+1 K(j) in
+G(j). Denote by K(j + 1) ⊳ G(j + 1) the normal closure of hK(j), tj+1 i in G(j + 1).
+Evidently the group G(j + 1) is countable and torsion-free, H ≤ G(j) ≤ G(j + 1),
+G(j + 1) = HK(j + 1) and H ∩ K(j + 1) = H ∩
+SK(j) = M by Lemma 4.3.
+Now, it is easy to verify that the group G1 = ∞
+j=0 G(j) and its normal subgroup
+S∞
+K1 = j=0 K(j) enjoy the required properties.
+In the same way we can embed G1 into a countable torsion-free group G2 , that
+has a normal subgroup K2 ⊳ G2 , so that G2 = HK2 , H ∩K2 = M and each element
+of G1 \ {1} is conjugated in G2 to a corresponding element of
+Z. Performing such
+S∞
+a procedure infinitely
+many
+times
+we
+achieve
+the
+group
+G
+=
+i=1 Gi and a normal
+S∞
+subgroup K = i=1 Ki ⊳ G that satisfy the claims 1) and 2) of the lemma. It is
+easy to see that the claim 2) implies 3), thus the proof is finished.
+
+5. Adding finite generation
+Theorem 5.1. Assume that H is a countable torsion-free group and M is a nontrivial normal subgroup of H. Let F be an arbitrary non-elementary torsion-free
+word hyperbolic group. Then there exist a countable torsion-free group Q, containing
+H, and a normal subgroup N ⊳ Q with the following properties:
+1. H is malnormal in Q;
+2. Q = H * N and N ∩ H = M ;
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+13
+
+3. N is a quotient of F ;
+4. the centralizer CQ (N ) of N in Q is trivial;
+Q
+
+5. for every q ∈ Q there is z ∈ H such that q ∼ z.
+Proof. The group Q will be constructed as a direct limit of relatively hyperbolic
+groups.
+Step 0 . Set G(0) = H ∗ F and F (0) = F ; then G(0) is hyperbolic relative to its
+subgroup H and F (0) is a suitable subgroup of G(0) by Lemma 2.6. Let N (0)⊳G(0)
+be the normal closure of the subgroup hM, F i in G(0). Evidently G(0) = H * N (0)
+and H ∩ N (0) = M . Enumerate all the elements of N (0): {g0 , g1 , g2 , . . . }, and of
+G(0): {q0 , q1 , q2 , . . . }, in such a way that g0 = q0 = 1.
+Steps 0-i . Assume the groups G(j), j = 0, . . . , i, i ≥ 0, have been already
+constructed, so that
+1◦ . for each 1 ≤ j ≤ i there is an epimorphism ψj−1 : G(j − 1) → G(j) which is
+injective on (the image of) H in G(j − 1). Denote F (j) = ψj−1 (F (j − 1)),
+N (j) = ψj−1 (N (j − 1));
+2◦ . G(j) is torsion-free and hyperbolic relative to (the image of) H, and F (j) ≤
+G(j) is a suitable subgroup, j = 0, . . . , i;
+3◦ . G(j) = H * N (j), N (j) ⊳ G(j) and H ∩ N (j) = M , j = 0, . . . , i;
+4◦ . the natural image ḡj of gj in G(j) belongs to F (j), j = 0, . . . , i;
+G(j)
+
+5◦ . there exists zj ∈ H such that q̄j ∼ zj , j = 0, . . . , i, where q̄j is the image
+of qj in G(j).
+Step i+1 . Let q̂i+1 ∈ G(i), ĝi+1 ∈ N (i) be the images of qi+1 and gi+1 in G(i).
+First we construct the group G(i + 1/2), its normal subgroup Ki+1 and its element
+ti+1 as follows.
+If for some f ∈ G(i), f q̂i+1 f −1 = z ∈ H, then set G(i + 1/2) = G(i), Ki+1 =
+N (i) ⊳ G(i + 1/2) and ti+1 = 1.
+Otherwise, q̂i+1 is a hyperbolic element of infinite order in G(i). Since G(i) is
+torsion-free, the elementary subgroup EG(i) (q̂i+1 ) is cyclic, thus EG(i) (q̂i+1 ) = hhxi
+for some h ∈ H and x ∈ N (i) (by 3◦ ), and q̂i+1 = (hx)m for some m ∈ Z. Now, by
+Lemma 2.2, G(i) is hyperbolic relative to {H, hhxi}. Choose y ∈ M so that hy 6= 1
+and let G(i + 1/2) be the following HNN-extension of G(i):
+G(i + 1/2) = hG(i), ti+1 k ti+1 (hx)t−1
+i+1 = hyi.
+The group G(i + 1/2) is torsion-free and hyperbolic relative to H by Lemma 2.5.
+Let us now verify that the subgroup F (i) is suitable in G(i + 1/2). Indeed,
+according to Lemma 2.7, there are two hyperbolic elements f1 , f2 ∈ F (i) of infinite
+G(i)
+
+G(i)
+
+G(i)
+
+order in G(i) such that fl 6≈ hx, fl 6≈ hy, l = 1, 2, and f1 6≈ f2 . Then
+G(i+1/2)
+
+6≈
+f2 by Lemma 3.1. It remains to check that fl is a hyperbolic element
+f1
+of G(i + 1/2) for each l = 1, 2. Choose an arbitrary element w ∈ H and observe
+G(i)
+
+that fl 6≈ w (since H is malnormal in G(i) by Lemma 2.3, a non-trivial power of
+fl is conjugated to an element of H if and only if fl is conjugated to an element of
+H in G(i), but the latter is impossible because fl is hyperbolic in G(i)). Applying
+G(i+1/2)
+
+6≈
+w for any w ∈ H. Hence f1 , f2 ∈ F (i) are
+Lemma 3.1 again, we get that fl
+hyperbolic elements of infinite order in G(i + 1/2). The intersection EG(i+1/2) (f1 ) ∩
+
+14
+
+ASHOT MINASYAN
+
+EG(i+1/2) (f2 ) must be finite, since these groups are virtually cyclic (by Lemma 2.2),
+and f1 is not commensurable with f2 in G(i + 1/2). But G(i + 1/2) is torsion-free,
+therefore EG(i+1/2) (f1 ) ∩ EG(i+1/2) (f2 ) = {1}. Thus F (i) is a suitable subgroup of
+G(i + 1/2).
+Lemma 4.3 assures that H ∩ Ki+1 = M where Ki+1 ⊳ G(i + 1/2) is the normal
+closure of hN (i), ti+1 i in G(i + 1/2). Finally, note that
+m −1
+m
+ti+1 q̂i+1 t−1
+i+1 = ti+1 (hx) ti+1 = (hy) = z ∈ H in G(i + 1/2).
+
+Now, that the group G(i + 1/2) has been constructed, set Ti+1 = {ĝi+1 , ti+1 } ⊂
+Ki+1 and define G(i + 1) as follows. Since Ti+1 * F (i) ⊂ Ki+1 ⊳ G(i + 1/2), we can
+apply Theorem 2.8 to find a group G(i + 1) and an epimorphism φi : G(i + 1/2) →
+G(i + 1) such that φi is injective on H, G(i + 1) is torsion-free and hyperbolic
+relative to (the image of) H, {φi (ĝi+1 ), φi (ti+1 )} ⊂ φi (F (i)), φi (F (i)) is a suitable
+subgroup of G(i + 1), and ker(φi ) ≤ Ki+1 . Denote by ψi the restriction of φi on
+G(i). Then ψi (G(i)) = φi (G(i)) = G(i + 1) because G(i + 1/2) was generated by
+G(i) and ti+1 , and according to the construction, ti+1 ∈ φi (F (i)) ≤ φi (G(i)). Now,
+after defining F (i + 1) = ψi (F (i)), N (i + 1) = ψi (N (i)), ḡi+1 = φi (ĝi+1 ) ∈ F (i + 1)
+and zi+1 = φi (z) ∈ H, we see that the conditions 1◦ ,2◦ ,4◦ and 5◦ hold in the case
+when j = i + 1. The properties G(i + 1) = H * N (i + 1) and N (i + 1) ⊳ G(i + 1) are
+immediate consequences of their analogs for G(i) and N (i). Finally, observe that
+
+φ−1
+i (H ∩ N (i + 1)) = H * ker(φi ) ∩ N (i) * ker(φi ) = H ∩ N (i) * ker(φi ) * ker(φi )
+
+⊆ H ∩ Ki+1 * ker(φi ) = M * ker(φi ).
+
+Therefore H ∩ N (i + 1) = M and the condition 3◦ holds for G(i + 1).
+Let Q = G(∞) be the direct limit of the sequence (G(i), ψi ) as i → ∞, and let
+F (∞) and N = N (∞) be the limits of the corresponding subgroups. Then Q is
+torsion-free by 2◦ , N ⊳ Q, Q = H * N and H ∩ N = M by 3◦ . N ≤ F (∞) by 4◦ ,
+and 5◦ implies the condition 5 from the claim.
+Since F (0) ≤ N (0) we get F (∞) ≤ N . Thus N = F (∞) is a homomorphic
+image of F (0) = F .
+For any i, j ∈ N ∪ {∞}, i < j, we have a natural epimorphism ζij : G(i) → G(j)
+such that if i < j < k then ζjk ◦ ζij = ζik . Take any g ∈ G(0). Since F = F (0)
+is finitely generated, using the properties of direct limits one can show that if
+w = ζ0∞ (g) ∈ CQ (F (∞)) in Q, then ζ0j (g) ∈ CG(j) (F (j)) for some j ∈ N. But
+CG(j) (F (j)) ≤ EG(j) (F (j)) = {1} (by formulas (2.2)
+ and (2.3)) because F (j) is
+a suitable subgroup of G(j), hence w = ζj∞ ζ0j (g) = 1, that is, CQ (F (∞)) =
+CQ (N ) = {1}. This concludes the proof.
+
+The next statement is well-known:
+Lemma 5.2. Assume G is a group and N ⊳ G is a normal subgroup such that
+CG (N ) ⊆ N , where CG (N ) is the centralizer of N in G. Then the quotient-group
+G/N embeds into the outer automorphism group Out(N ).
+Proof. The action of G on N by conjugation induces a natural homomorphism
+φ from G to the automorphism group Aut(N ) of N . Since φ(N ) is exactly the
+group of inner automorphisms Inn(N ) of N , one can define a new homomorphism
+φ̄ : G/N → Out(N ) = Aut(N )/Inn(N ) in the natural way: φ̄(gN ) = φ(g)Inn(N )
+for every gN ∈ G/N . It remains to check that φ̄ is injective, i.e., if g ∈ G \ N then
+φ̄(gN ) 6= 1 in Out(N ); or, equivalently, φ(g) ∈
+/ Inn(N ). Indeed, otherwise there
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+15
+
+would exist a ∈ N such that ghg −1 = aha−1 for every h ∈ N , thus N 6∋ a−1 g ∈
+CG (N ), contradicting the assumptions. Q.e.d.
+
+Note that for an arbitrary group N , any subgroup C ≤ Out(N ) naturally acts
+on the set of conjugacy classes C(N ) of the group N .
+Theorem 5.3. For any n ∈ N, n ≥ 2, and an arbitrary countable group C, C can
+be isomorphically embedded into the outer automorphism group Out(N ) of a group
+N satisfying the following conditions:
+•
+•
+•
+•
+
+N
+N
+N
+N
+
+is torsion-free;
+is generated by two elements;
+has (nCC) and the natural action of C on C(N ) is trivial;
+is 2-boundedly simple.
+
+Proof. By Lemma 4.2 we can find a countable torsion-free group H and its normal
+subgroup M enjoying the properties (i)-(iv) from its claim. Now, if F denotes
+the free group of rank 2, we can obtain a countable torsion-free group Q together
+with its normal subgroup N that satisfy the conditions 1-5 from the statement of
+Theorem 5.1.
+Then N is torsion-free and generated by two elements (as a quotient of F ).
+Condition 2 implies that Q/N ∼
+= C and, by 4 and Lemma 5.2, C embeds
+= H/M ∼
+into the group Out(N ).
+Using property 5, for each g ∈ N we can find u ∈ Q and z ∈ H such that
+ugu−1 = z ∈ N ∩ H = M . Since Q = HN , there are h ∈ H and x ∈ N
+such that u = hx. Since z, h−1 zh ∈ M and the action of H on M preserves
+the conjugacy classes of M , there is r ∈ M such that rh−1 zhr−1 = z, hence
+z = rh−1 ugu−1 (rh−1 )−1 = rxgx−1 r−1 , where v = rx ∈ N . Thus for every g ∈ N
+there is v ∈ N such that vgv −1 ∈ M . Evidently, this implies that N is also 2boundedly simple. Since M has (nCC), the number of conjugacy classes in N will
+be at most n.
+H
+M
+Suppose x1 , x2 ∈ M and x1 ≁ x2 . Then x1 ≁ x2 (by the property (iii) from
+Q
+
+the claim of Lemma 4.2), and since H is malnormal in Q we get x1 ≁ x2 . Hence
+N
+x1 ≁ x2 , i.e., N also enjoys (nCC).
+The fact that the natural action of C on C(N ) is trivial follows from the same
+property for the action of H on C(M ) and the malnormality of H in Q. Q.e.d. 
+Now, let us proceed with the
+Proof of Theorem 1.4. First we apply Lemma 4.4 to construct a group G and a
+normal subgroup K ⊳ G according to its claim. Now, by Theorem 5.1, there is a
+group Q, having a normal subgroup N ⊳Q such that G is malnormal in Q, Q = GN ,
+G ∩ N = K, rank(N ) ≤ 2 (if one takes the free group of rank 2 as F ) and every
+element q ∈ Q is conjugated (in Q) to an element of G. By claim 2) of Lemma 4.4,
+K has (2CC), and an argument, similar to the one used in the proof of Theorem
+5.3, shows that N will also have (2CC). Consequently, rank(N ) > 1 because N is
+torsion-free, hence rank(N ) = 2.
+Since G = HK and H ∩ K = M we have Q = HKN = HN and H ∩ N =
+H ∩ K = M . Since Q/N ∼
+= H/M and N can be generated by two elements, we can
+conclude that rank(Q) ≤ rank(H/M ) + 2.
+
+16
+
+ASHOT MINASYAN
+Q/N
+
+Consider arbitrary x, y ∈ Q \ {1} and suppose that φ(x) ∼ φ(y). By Theorem
+Q
+
+Q
+
+Q/N
+
+5.1, there are w, z ∈ G \ {1} such that x ∼ w and y ∼ z. Therefore φ(w) ∼ φ(z),
+hence the images of w and z in G/K are also conjugate. By claim 3) of Lemma
+G
+
+Q
+
+4.4, w ∼ z, implying x ∼ y.
+
+
+
+Theorem 1.4 provides an alternative way of obtaining torsion-free groups that
+have finitely many conjugacy classes: for any countable group C we can choose
+a free group H of countable rank and a normal subgroup {1} 6= M ⊳ H so that
+H/M ∼
+= C, and then apply Theorem 1.4 to the pair (H, M ) to get
+Corollary 5.4. Assume that n ∈ N, n ≥ 2, and C is a countable group that
+contains exactly (n − 1) distinct conjugacy classes. Then there exists a torsion-free
+group Q and N ⊳ Q such that
+• Q/N ∼
+= C;
+• N has (2CC) and Q has (nCC);
+• rank(N ) = 2 and rank(Q) ≤ rank(C) + 2.
+Corollary 5.5. The group G1 , given by presentation (1.1), can be isomorphically
+embedded into a 2-generated torsion-free group Q satisfying (4CC) in such a way
+Q
+
+that t ≁ t−1 .
+Proof. Denote by K the kernel of the homomorphism φ : G1 → Z3 , for which
+φ(a) = 0 and φ(t) = 1, where Z3 is the group of integers modulo 3. Now, apply
+Theorem 1.4 to the pair (G1 , K) to find the group Q, containing G1 , and the normal
+subgroup N ⊳ Q from its claim. Since Q/N ∼
+= G1 /K ∼
+= Z3 has (3CC), the group
+Q
+
+Q will have (4CC). We also have t ≁ t−1 because the images of t and t−1 are not
+conjugate in Q/N .
+Choose an element q1 ∈ Q \ N . Then q2 = q13 ∈ N \ {1} and since N is 2generated and has (2CC), there is q3 ∈ N such that N = hq2 , q3 i in Q. As Q/N
+is generated by the image of q1 , the group Q will be generated by {q1 , q2 , q3 }, and,
+consequently, by {q1 , q3 }. Q.e.d.
+
+6. Combinatorics of paths in relatively hyperbolic groups
+Let G be a group hyperbolic relative to a family of proper subgroups {Hλ }λ∈Λ ,
+and
+S let X be a finite symmetrized relative generating set of G. Denote H =
+λ∈Λ (Hλ \ {1}).
+For a combinatorial path p in the Cayley graph Γ(G, X ∪ H) (of G with respect
+to X ∪ H) p− , p+ , L(p), and lab(p) will denote the initial point, the ending point,
+the length (that is, the number of edges) and the label of p respectively. p−1 will
+be the path obtained from p by following it in the reverse direction. Further, if Ω
+is a subset of G and g ∈ hΩi ≤ G, then |g|Ω will be used to denote the length of a
+shortest word in Ω±1 representing g.
+We will be using the following terminology from [20]. Suppose q is a path in
+Γ(G, X ∪ H). A subpath p of q is called an Hλ -component for some λ ∈ Λ (or
+simply a component) of q, if the label of p is a word in the alphabet Hλ \ {1} and
+p is not contained in a bigger subpath of q with this property.
+Two components p1 , p2 of a path q in Γ(G, X ∪ H) are called connected if they
+are Hλ -components for the same λ ∈ Λ and there exists a path c in Γ(G, X ∪ H)
+connecting a vertex of p1 to a vertex of p2 such that lab(c) entirely consists of letters
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+17
+
+from Hλ . In algebraic terms this means that all vertices of p1 and p2 belong to the
+same coset gHλ for a certain g ∈ G. We can always assume c to have length at
+most 1, as every nontrivial element of Hλ is included in the set of generators. An
+Hλ -component p of a path q is called isolated if no other Hλ -component of q is
+connected to p.
+The next statement is a particular case of Lemma 2.27 from [20]; we shall formulate it in a slightly more general form, as it appears in [18, Lemma 2.7]:
+Lemma 6.1. Suppose that a group G is hyperbolic relative to a family of subgroups
+{Hλ }λ∈Λ . Then there exists a finite subset Ω ⊆ G and a constant K ∈ N such
+that the following holds. Let q be a cycle in Γ(G, X ∪ H), p1 , . . . , pk be a collection
+of isolated components of q and g1 , . . . , gk be the elements of G represented by
+Lab(p1 ), . . . , Lab(pk ) respectively. Then g1 , . . . , gk belong to the subgroup hΩi ≤ G
+and the word lengths of gi 's with respect to Ω satisfy
+k
+X
+
+|gi |Ω ≤ K L(q).
+
+i=1
+
+Definition. Suppose that m ∈ N and Ω is a finite subset of G. Define W(Ω, m) to
+be the set of all words W over the alphabet X ∪ H that have the following form:
+W ≡ x0 h0 x1 h1 . . . xl hl xl+1 ,
+where l ∈ Z, l ≥ −2 (if l = −2 then W is the empty word; if l = −1 then W ≡ x0 ),
+hi and xi are considered as single letters and
+1) xi ∈ X ∪ {1}, i = 0, . . . , l + 1, and for each i = 0, . . . , l, there exists λ(i) ∈ Λ
+such that hi ∈ Hλ(i) ;
+2) if λ(i) = λ(i + 1) then xi+1 ∈
+/ Hλ(i) for each i = 0, . . . , l − 1;
+3) hi ∈
+/ {h ∈ hΩi : |h|Ω ≤ m}, i = 0, . . . , l.
+Choose the finite subset Ω ⊂ G and the constant K > 0 according to the claim
+of Lemma 6.1.
+Recall that a path q in Γ(G, X ∪ H) is said to be without backtracking if all of
+its components are isolated.
+Lemma 6.2. Let q be a path in the Cayley graph Γ(G, X ∪ H) with Lab(q) ∈
+W(Ω, m) and m ≥ 5K. Then q is without backtracking.
+Proof. Assume the contrary to the claim. Then one can choose a path q providing
+a counterexample of the smallest possible length. Thus if p1 , . . . , pl is the (consecutive) list of all components of q then l ≥ 2, p1 and pl must be connected Hλ′ components, for some λ′ ∈ Λ, the components p2 , . . . , pl−1 must be isolated, and q
+starts with p1 and ends with pl . Since Lab(q) ∈ W(Ω, m) we have L(q) ≤ 2l − 1.
+If l = 2 then the (X ∪ {1})-letter between p1 and p2 would belong to Hλ′
+contradicting the property 2) from the definition of W(Ω, m).
+Therefore l ≥ 3. Since p1 and pl are connected, there exists a path v in Γ(G, X ∪
+H) between (pl )− and (p1 )+ with Lab(v) ∈ Hλ′ (thus we can assume that L(v) ≤ 1).
+Denote by q̂ the subpath of q starting with (p1 )+ and ending with (pl )− . Note that
+L(q̂) = L(q) − 2 ≤ 2l − 3, and p2 , . . . , pl−1 is the list of components of q̂, all of which
+are isolated. If one of them were connected to v it would imply that it is connected
+to p1 contradicting with the minimality of q. Hence the cycle o = q̂v possesses
+
+18
+
+ASHOT MINASYAN
+
+k = l − 2 ≥ 1 isolated components, which represent elements h1 , . . . , hk ∈ H.
+Consequently, applying Lemma 6.1 one obtains that hi ∈ hΩi, i = 1, . . . , k, and
+k
+X
+
+|hi |Ω ≤ K L(o) ≤ K(L(q̂) + 1) ≤ K(2l − 2).
+
+i=1
+
+By the condition 3) from the definition of W(Ω, m) one has |hi |Ω > m ≥ 5K for
+each i = 1, . . . , k. Hence
+k * 5K ≤
+
+k
+X
+
+|hi |Ω ≤ K(2l − 2), or 5 ≤
+
+i=1
+
+2l − 2
+,
+k
+
+which contradicts the inequality k ≥ l − 2. Q.e.d.
+
+
+
+Definition. Consider an arbitrary cycle o = rqr′ q ′ in Γ(G, X ∪ H), where Lab(q)
+and Lab(q ′ ) belong to W(Ω, m). Let p be a component of q (or q ′ ). We will say
+that p is regular if it is not an isolated component of o. If m ≥ 5K, and hence q and
+q ′ are without backtracking by Lemma 6.2, this means that p is either connected
+to some component of q ′ (respectively q), or to a component of r or r′ .
+Lemma 6.3. In the above notations, suppose that m ≥ 7K and denote C =
+max{L(r), L(r′ )}. Then
+(a) if C ≤ 1 then every component of q or q ′ is regular;
+(b) if C ≥ 2 then each of q and q ′ can have at most 4C components which are
+not regular.
+(c) if l is the number of components of q, then at least (l − 6C) of components
+of q are connected to components of q ′ ; and two distinct components of q
+can not be connected to the same component of q ′ . Similarly for q ′ .
+Proof. Assume the contrary to (a). Then one can choose a cycle o = rqr′ q ′ with
+L(r), L(r′ ) ≤ 1, having at least one isolated component on q or q ′ , and such that
+L(q) + L(q ′ ) is minimal. Clearly the latter condition implies that each component
+of q or q ′ is an isolated component of o. Therefore q and q ′ together contain k
+distinct isolated components of o, representing elements h1 , . . . , hk ∈ H, where
+k ≥ 1 and k ≥ (L(q) − 1)/2 + (L(q ′ ) − 1)/2. Applying Lemma 6.1 we obtain
+hi ∈ hΩi, i = 1, . . . , k, and
+k
+X
+
+|hi |Ω ≤ K L(o) ≤ K(L(q) + L(q ′ ) + 2).
+
+i=1
+
+Recall that |hi |Ω > m ≥ 7K by the property 3) from the definition of W(Ω, m).
+Pk
+Therefore i=1 |hi |Ω ≥ k * 7K, implying
+
+
+
+
+2 L(q) L(q ′ )
+2 L(q) − 1 L(q ′ ) − 1
+7≤
++
++1 ≤
++
++ 2 ≤ 6,
+k
+2
+2
+k
+2
+2
+which yields a contradiction.
+Let us prove (b). Suppose that C ≥ 2 and q contains more than 4C isolated
+components of o. We shall consider two cases:
+Case 1. No component of q is connected to a component of q ′ . Then a component of q or q ′ can be regular only if it is connected to a component of r or r′ .
+Since, by Lemma 6.2, q and q ′ are without backtracking, two distinct components
+of q or q ′ can not be connected to the same component of r (or r′ ). Hence q and
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+19
+
+q ′ together can contain at most 2C regular components. Thus the cycle o has k
+isolated components, representing elements h1 , . . . , hk ∈ H, where k ≥ 4C > 4 and
+k ≥ (L(q)− 1)/2 + (L(q ′ )− 1)/2 − 2C. By Lemma 6.1, hi ∈ hΩi for each i = 1, . . . , k,
+Pk
+and i=1 |hi |Ω ≤ K(L(q) + L(q ′ ) + 2C). Once again we can use the property 3)
+from the definition of W(Ω, m) to achieve
+2
+7≤
+k
+
+
+
+
+
+
+2 L(q) − 1 L(q ′ ) − 1
+L(q) L(q ′ ) 2C
+≤
++
++
++
+− 2C + 1 + 3C ≤
+2
+2
+2
+k
+2
+2
+
+
+2 L(q) − 1 L(q ′ ) − 1
+2 6C
+1 3
++
+− 2C + +
+≤ 2 + + = 4,
+k
+2
+2
+k
+k
+2 2
+
+yielding a contradiction.
+Case 2. The path q has at least one component which is connected to a component of q ′ . Let p1 , . . . , pl denote the sequence of all components of q. By part
+(a), if ps and pt , 1 ≤ s ≤ t ≤ l, are connected to components of q ′ , then for any
+j, s ≤ j ≤ t, pj is connected to some component of q ′ (because q is without backtracking by Lemma 6.2). We can take s (respectively t) to be minimal (respectively
+maximal) possible. Consequently p1 , . . . , ps−1 , pt+1 , . . . , pl will contain the set of
+all isolated components of o that belong to q, and none of these components will
+be connected to a component of q ′ .
+Without loss of generality we may assume that s − 1 ≥ 4C/2 = 2C. Since ps is
+connected to some component p′ of q ′ , there exists a path v in Γ(G, X ∪H) satisfying
+v− = (ps )− , v+ = p′+ , Lab(v) ∈ H ∪ {1}, L(v) ≤ 1. Let q̄ (respectively q̄ ′ ) denote
+′
+the subpath of q (respectively q ′ ) from q− to (ps )− (respectively from p′+ to q+
+).
+′
+Consider a new cycle ō = rq̄v q̄ . Reasoning as before, one can show that ō has k
+isolated components, where k ≥ 2C ≥ 4 and k ≥ (L(q̄)−1)/2+(L(q̄ ′ )−1)/2−C −1.
+Now, an application of Lemma 6.1 to the cycle ō together with the property 3) from
+the definition of W(Ω, m) will lead to a contradiction as before.
+By the symmetry, the statement (b) of the lemma also holds for q ′ .
+The claim (c) follows from (b) and the estimate L(r) + L(r′ ) ≤ 2C because if
+two different components p and p̄ of q were connected to the same component of
+some path in Γ(G, X ∪ H), then p and p̄ would also be connected with each other,
+which would contradict Lemma 6.2.
+
+Lemma 6.4. In the previous notations, let m ≥ 7K, C = max{L(r), L(r′ )}, and
+let p1 , . . . , pl , p′1 , . . . , p′l′ be the consecutive lists of the components of q and q ′−1
+respectively If l ≥ 12 max{C, 1} + 2, then there are indices s, t, s′ ∈ N such that
+1 ≤ s ≤ 6C + 1, l − 6 max{C, 1} ≤ t ≤ l and for every i ∈ {0, 1, . . . , t − s}, the
+component ps+i of q is connected to the component p′s′ +i of q ′ .
+Proof. By part (c) of Lemma 6.3, there exists s ≤ 6C + 1 such that the component
+ps is connected to a component p′s′ for some s′ ∈ {1, . . . , l′ }. Thus there is a path
+r1 between (p′s′ )+ and (ps )+ with L(r1 ) ≤ 1. Consider a new cycle o1 = r1 q1 r′ q1′
+′
+where q1 is the segment of q from (ps )+ to q+ = r−
+and q1′ is the segment of q ′
+′
+′
+′
+from q− = r+ to (ps′ )+ .
+Observe that ps+1 , . . . , pl is the list of all components of q1 and l−s ≥ l−6C −1 ≥
+6 max{1, C} + 1, hence, according to part (c) of Lemma 6.3 applied to o1 , there is
+t ≥ l − 6 max{1, C} > s such that pt is connected to p′t′ by means of a path r1′ ,
+where s′ + 1 ≤ t′ ≤ l′ , (r1′ )− = (pt )+ , (r1′ )+ = (p′t′ )+ and L(r1′ ) ≤ 1. Consider
+
+20
+
+ASHOT MINASYAN
+
+q
+ps
+
+pt
+ps+i
+
+r
+
+p′s′
+
+r1′
+
+r3′
+
+r1
+
+p′s′ +i′
+
+p′t′
+
+r′
+
+q ′−1
+
+Figure 1.
+the cycle o2 = r1 q2 r1′ q2′ in which q2 and q2′ are the segments of q1 and q1′ from
+(ps )+ = (r1 )+ to (pt )+ and from (p′t′ )+ to (p′s′ )+ = (r1 )− respectively (Fig. 1).
+Note that ps+1 , . . . , pt is the list of all components of q2 and p′s′ +1 , . . . , p′t′ is the
+−1
+list of all components of q2′ . The cycle o2 satisfies the assumptions of part (a) of
+Lemma 6.3, therefore for every i ∈ {1, . . . , t − s} there exists i′ ∈ {1, . . . , t′ − s′ }
+such that ps+i is connected to p′s′ +i′ (ps+i can not be connected to r1 [r1′ ] because in
+this case it would be connected to ps [pt ], but q is without backtracking by Lemma
+6.2).
+It remains to show that i′ = i for every such i. Indeed, if i′ < i for some
+i ∈ {1, . . . , t − s} then one can consider the cycle o3 = r1 q3 r3′ q3′ , where q3 and
+q3′ are segments of q2 and q2′ from (q2 )− = (r1 )+ to (ps+i )+ and from (p′s′ +i′ )+ to
+(q2′ )+ = (r1 )− respectively, and (r3′ )− = (q3 )+ , (r3′ )+ = (q3′ )− , L(r3′ ) ≤ 1. According
+to part (a) of Lemma 6.3, each of the components ps+1 , . . . , ps+i of q3 must be
+connected to one of p′s′ +1 , . . . , p′s′ +i′ . Hence, since i′ < i, two distinct components
+−1
+of q3 will be connected to the same component of q3′ , which is impossible by part
+(c) of Lemma 6.3.
+The inequality i′ > i would lead to a contradiction after an application of a
+symmetric argument to q3′ . Therefore i′ = i and the lemma is proved.
+
+Lemma 6.5. In the above notations, let m ≥ 7K and C = max{L(r), L(r′ )}. For
+any positive integer d there exists a constant L = L(C, d) ∈ N such that if L(q) ≥ L
+then there are d consecutive components ps , . . . , ps+d−1 of q and p′s′ , . . . , p′s′ +d−1 of
+q ′−1 , so that ps+i is connected to p′s′ +i for each i = 0, . . . , d − 1.
+Proof. Choose the constant L so that (L − 1)/2 ≥ 12 max{C, 1} + 2 + d. Let
+p1 , . . . , pl be the consecutive list all components of q. Since Lab(q) ∈ W(Ω, m), we
+have l ≥ (L − 1)/2 (due to the form of any word from W(Ω, m)). Thus we can
+apply Lemma 6.4 to find indices s, t from its claim. By the choice of s and t, and
+the estimate on l, we have t − s ≥ d + 1, yielding the statement of the lemma. 
+Corollary 6.6. Let G be a group hyperbolic relative to a family of proper subgroups
+{Hλ }λ∈Λ . Suppose that a ∈ Hλ0 , for some λ0 ∈ Λ, is an element of infinite order,
+and x1 , x2 ∈ G \ Hλ0 . Then there exists k ∈ N such that g = ak1 x1 ak2 x2 is a
+hyperbolic element of infinite order in G whenever |k1 |, |k2 | ≥ k.
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+21
+
+Proof. Without loss of generality we can assume that x1 , x2 ∈ X , since relative
+hyperbolicity does not depend on the choice of the finite relative generating set
+([20, Thm. 2.34]). Choose the finite subset Ω ⊂ G and the constant K ∈ N
+according to the claim of Lemma 6.1, and set m = 7K. As the order of a is infinite,
+′
+there is k ∈ N such that ak ∈
+/ {h ∈ hΩi : |h|Ω ≤ m} whenever |k ′ | ≥ k. Assume
+that |k1 |, |k2 | ≥ k.
+Suppose, first, that g l = 1 for some l ∈ N. Consider the cycle o = rqr′ q ′ in
+Γ(G, X ∪ H) where q− = q+ = 1, Lab(q) ≡ (ak1 x1 ak2 x2 )l ∈ W(Ω, m) (akj are
+considered as single letters from the alphabet X ∪ H) and r, r′ , q ′ are trivial paths
+(consisting of a single point). Then, by part (a) of Lemma 6.3, every component of
+q must be regular in o, which is impossible since q is without backtracking according
+to Lemma 6.2. Hence g has infinite order in G.
+Suppose, now, that there exists λ′ ∈ Λ, u ∈ Hλ′ and y ∈ G such that ygy −1 = u.
+Denote C = |y|X ∪H . Since element u ∈ G has infinite order, there exists l ∈ N such
+that 2l ≥ 6C + 2 and ul ∈
+/ {h ∈ hΩi : |h|Ω ≤ m}. The equality yg l y −1 u−l = 1 gives
+′ ′
+rise to the cycle o = rqr q in Γ(G, X ∪H), where r and r′ are paths of length C whose
+labels represent y in G, r− = 1, q− = r+ = y, Lab(q) ≡ (ak1 x1 ak2 x2 )l ∈ W(Ω, m),
+′
+′
+′
+r−
+= q+ , q−
+= r+
+= y(ak1 x1 ak2 x2 )l y −1 and Lab(q ′ ) ≡ u−l ∈ W(Ω, m), L(q ′ ) = 1.
+By part (c) of Lemma 6.3, at least 2l − 6C ≥ 2 distinct components of q must
+be connected to distinct components of q ′ , which is impossible as q ′ has only one
+component. The contradiction shows that g must be a hyperbolic element of G. 
+Lemma 6.7. Let G be a torsion-free group hyperbolic relative to a family of proper
+subgroups {Hλ }λ∈Λ , a ∈ Hλ0 \ {1}, for some λ0 ∈ Λ, and t, u ∈ G \ Hλ0 . Suppose
+that there exists k̂ ∈ N such that for every k ≥ k̂ the element g1 = ak tak t−1
+is commensurable with g2 = ak uak u−1 in G. Then there are β, γ ∈ Hλ0 and
+ǫ, ξ ∈ {−1, 1} such that u = γtξ β, βaβ −1 = aǫ , γ −1 aγ = aǫ .
+Proof. Changing the finite relative generating set X of G, if necessary, we can
+assume that t, u, t−1 , u−1 ∈ X . Let the finite subset Ω ⊂ G and the constant
+K ∈ N be chosen according to Lemma 6.1. Define m = 7K and suppose that k is
+large enough to satisfy ak ∈
+/ {h ∈ hΩi : |h|Ω ≤ m}.
+Since g1 and g2 are commensurable, there exist l, l′ ∈ Z\{0} and y ∈ G such that
+′
+yg2l y −1 = g1l . Let C = |y|X ∪H, d = 8 and L = L(C, d) be the constant from Lemma
+6.5. Without loss of generality, assume that 4l ≥ L. Consider the cycle o = rqr′ q ′
+in Γ(G, X ∪ H) such that r and r′ are paths of length C whose labels represent y
+′
+= q+ ,
+in G, r− = 1, q− = r+ = y, Lab(q) ≡ (ak uak u−1 )l ∈ W(Ω, m), L(q) = 4l, r−
+′
+l −1
+′
+k k −1 l
+′
+′
+′
+′
+q− = r+ = yg2 y , Lab(q ) ≡ (a ta t ) ∈ W(Ω, m), L(q ) = 4l .
+Now, by Lemma 6.5, there are subpaths q̃ = p1 s1 p2 s2 p3 s3 p4 of q and q̃ ′ =
+′ ′ ′ ′ ′ ′ ′
+p1 s1 p2 s2 p3 s3 p4 of q ′−1 such that Lab(pi ) ≡ ak , Lab(p′i ) ≡ aǫk , i = 1, 2, 3, 4, for
+some ǫ ∈ {−1, 1} (which depends on the sign of l′ ), Lab(s1 ) ≡ Lab(s3 ) ≡ u,
+Lab(s2 ) ≡ u−1 , Lab(s′1 ) ≡ Lab(s′3 ) ≡ tξ , Lab(s′2 ) ≡ t−ξ , for some ξ ∈ {−1, 1}, and
+pi is connected in Γ(G, X ∪H) to p′i for each i = 1, 2, 3, 4. Therefore there exist paths
+p̃1 , p̃2 , p̃3 , p̃4 whose labels represent the elements α, β, γ, δ ∈ Hλ0 respectively, such
+that (p̃1 )− = (p1 )+ , (p̃1 )+ = (p′1 )+ , (p̃2 )− = (p′2 )+ , (p̃2 )+ = (p2 )+ , (p̃3 )− = (p3 )− ,
+(p̃3 )+ = (p′3 )− , (p̃4 )− = (p′4 )− , (p̃4 )+ = (p4 )− (see Fig. 2).
+−1
+′ ′
+′ −1
+′ ′
+The cycles s−1
+p̃2 and s3−1 p−1
+1 p̃1 s1 p2 p̃2 p2 , s2 p̃3 s2
+3 p̃3 p3 s3 p̃4 give rise to the following equalities in the group G:
+u = αtξ aǫk βa−k , u = γtξ β and u = a−k γaǫk tξ δ.
+
+22
+
+ASHOT MINASYAN
+
+p1
+a
+
+s1
+
+k
+
+s2
+
+k
+
+u
+
+−1
+
+p3
+a
+
+k
+
+u
+
+a
+
+tξ
+s′1
+
+β p̃2 p̃3 γ
+aǫk
+t−ξ aǫk
+′
+p2
+s′2
+p′3
+
+p̃1 α
+aǫk
+p′1
+
+p2
+
+s3
+
+p4
+
+u
+
+ak
+
+q
+
+δ p̃4
+tξ
+s′3
+
+aǫk
+p′4
+
+q ′−1
+
+Figure 2.
+/ Hλ0 , we
+Consequently, recalling that Hλ0 is malnormal (Lemma 2.3) and that tξ ∈
+get
+βak β −1 a−ǫk = t−ξ γ −1 αtξ ∈ Hλ0 ∩ t−ξ Hλ0 tξ = {1}, and
+a−ǫk γ −1 ak γ = tξ δβ −1 t−ξ ∈ Hλ0 ∩ tξ Hλ0 t−ξ = {1}.
+Thus
+(6.1)
+
+βak β −1 = aǫk and γ −1 ak γ = aǫk
+
+for some β = β(k), γ = γ(k) ∈ Hλ0 and ǫ = ǫ(k), ξ = ξ(k) ∈ {−1, 1}. Note that
+the proof works for any sufficiently large k, therefore we can find two mutually
+prime positive integers k, k ′ with the above properties such that ǫ(k) = ǫ(k ′ ) = ǫ
+and ξ(k) = ξ(k ′ ) = ξ. Denote β ′ = β(k ′ ) and γ ′ = γ(k ′ ), then γtξ β = u = γ ′ tξ β ′ ,
+implying
+−1
+γ −1 γ ′ = tξ ββ ′ t−ξ ∈ Hλ0 ∩ tξ Hλ0 t−ξ = {1}.
+Hence β ′ = β, γ ′ = γ,
+(6.2)
+
+′
+
+′
+
+′
+
+′
+
+βak β −1 = aǫk and γ −1 ak γ = aǫk .
+
+It remains to observe that since k and k ′ are mutually prime, the formulas (6.1)
+and (6.2) together yield
+βaβ −1 = aǫ and γ −1 aγ = aǫ ,
+q.e.d.
+
+
+7. Small cancellation over relatively hyperbolic groups
+
+Let G be a group generated by a subset A ⊆ G and let O be the set of all
+words in the alphabet A±1 , that are trivial in G. Then G has a presentation of the
+following form:
+(7.1)
+
+G = hA k Oi.
+
+Given a symmetrized set of words R over the alphabet A, consider the group G1
+defined by
+(7.2)
+
+G1 = hA k O ∪ Ri = hG k Ri.
+
+During the proof of the main result of this section we use presentations (7.2) (or,
+equivalently, the sets of additional relators R) that satisfy the generalized small
+cancellation condition C1 (ε, μ, λ, c, ρ). In the case of word hyperbolic groups this
+condition was suggested by Ol'shanskii in [16], and was afterwards generalized to
+relatively hyperbolic groups by Osin in [21]. For the definition and detailed theory
+we refer the reader to the paper [21], as we will only use the properties, that were
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+23
+
+already established there. The following observation is an immediate consequence
+of the definition:
+Remark 7.1. Let the constants εj , μj , λ, c, ρj , j = 1, 2, satisfy 0 < λ ≤ 1, 0 ≤ ε1 ≤
+ε2 , c ≥ 0, 0 < μ2 ≤ μ1 , ρ2 ≥ ρ1 > 0. If the presentation (7.2) enjoys the condition
+C1 (ε2 , μ2 , λ, c, ρ2 ) then it also enjoys the condition C1 (ε1 , μ1 , λ, c, ρ1 ).
+We will also assume that the reader is familiar with the notion of a van Kampen
+diagram over the group presentation (7.2) (see [10, Ch. V] or [15, Ch. 4]). Let ∆ be
+such a diagram. A cell Π of ∆ is called an R-cell if the label of its boundary contour
+∂Π (i.e., the word written on it starting with some vertex in the counter-clockwise
+direction) belongs to R.
+Consider a simple closed path o = rqr′ q ′ in a diagram ∆ over the presentation
+(7.2), such that q is a subpath of the boundary cycle of an R-cell Π and q ′ is a
+subpath of ∂∆. Let Γ denote the subdiagram of ∆ bounded by o. Assuming that
+Γ has no holes, no R-cells and L(r), L(r′ ) ≤ ε, it will be called an ε-contiguity
+subdiagram of Π to ∂∆. The ratio L(q)/L(∂Π) will be called the contiguity degree
+of Π to ∂∆ and denoted (Π, Γ, ∂∆).
+A diagram is said to be reduced if it has a minimal number of R-cells among all
+the diagrams with the same boundary label.
+If G is a group hyperbolic relative to a family of proper subgroups {Hi }Si∈I , with
+a finite relative generating set X , then G is generated by the set A = X ∪ i∈I (Hi \
+{1}), and the Cayley graph Γ(G, A) is a hyperbolic metric space [20, Cor. 2.54].
+As for every condition of small cancellation, the main statement of the theory is
+the following analogue of Greendlinger's Lemma, claiming the existence of a cell,
+large part of whose contour lies on the boundary of the van Kampen diagram.
+Lemma 7.2 ([21], Cor. 4.4). Suppose that the group G is generated by a subset A
+such that the Cayley graph Γ(G, A) is hyperbolic. Then for any 0 < λ ≤ 1 there is
+μ0 > 0 such that for any μ ∈ (0, μ0 ] and c ≥ 0 there are ε0 ≥ 0 and ρ0 > 0 with the
+following property.
+Let the symmetrized presentation (7.2) satisfy the C1 (ε0 , μ, λ, c, ρ0 )-condition.
+Further, let ∆ be a reduced van Kampen diagram over G1 whose boundary contour
+is (λ, c)-quasigeodesic in G. Then, provided ∆ has an R-cell, there exists an R-cell
+Π in ∆ and an ε0 -contiguity subdiagram Γ of Π to ∂∆, such that
+(Π, Γ, ∂∆) > 1 − 23μ.
+The main application of this particular small cancellation condition is
+Lemma 7.3 ([21], Lemmas 5.1 and 6.3). For any 0 < λ ≤ 1, c ≥ 0 and N > 0
+there exist μ1 > 0, ε1 ≥ 0 and ρ1 > 0 such that for any symmetrized set of words
+R satisfying C1 (ε1 , μ1 , λ, c, ρ1 )-condition the following hold.
+1. The group G1 defined by (7.2) is hyperbolic relative to the collection of
+images {η(Hi )}i∈I under the natural homomorphism η : G → G1 .
+2. The restriction of η to the subset of elements having length at most N with
+respect to A is injective.
+3. Any element that has a finite order in G1 is an image of an element of
+finite order in G.
+Below is the principal lemma of this section that will later be used to prove
+Theorem 1.5.
+
+24
+
+ASHOT MINASYAN
+
+Lemma 7.4. Assume that G is a torsion-free group hyperbolic relative to a family
+of proper subgroups {Hi }i∈I , X is a finite relative generating set of G, S is a suitable
+subgroup of G and U ⊂ G is a finite subset. Suppose that i0 ∈ I, a ∈ Hi0 \ {1}
+and v1 , v2 ∈ G are hyperbolic elements which are not commensurable to each other.
+Then there exists a word W (x, y) over the alphabet {x, y} such that the following is
+true.
+Denote w1 = W (a, v1 ) ∈ G, w2 = W (a, v2 ) ∈ G, and let hhw2 ii be the normal
+closure of w2 in G, G1 = G/hhw2 ii and η : G → G1 be the natural epimorphism.
+Then
+• η is injective on {Hλ }λ∈Λ ∪ U and G1 is hyperbolic relative to the family
+{η(Hλ )}λ∈Λ ;
+• η(S) is a suitable subgroup of G1 ;
+• G1 is torsion-free;
+• η(w1 ) 6= 1.
+G
+
+Proof. By Lemma 2.7 there are hyperbolic elements v3 , v4 ∈ S such that vi 6≈ vj if
+1 ≤ i < j ≤ 4. Then by Lemma 2.2,
+S4the group G is hyperbolic relative to the finite
+collection of subgroups {Hi }i∈I ∪ j=1 {EG (vj )}, and generated by the set
+
+
+4
+[
+[
+EG (vj ) \ {1}.
+A = X ∪  Hi ∪
+i∈I
+
+j=1
+
+Let Ω ⊂ G and K ∈ N denote the finite subset and the constant achieved after an
+application of Lemma 6.1 to this new collection of peripheral subgroups.
+Define m = 7K, λ = 1/3, c = 2 and N = max{|u|A : u ∈ U } + 1. Choose
+μj > 0, εj ≥ 0 and ρj > 0, j = 0, 1, according to the claims of Lemmas 7.2
+and 7.3. Let ε = max{ε0 , ε1 }, and let L = L(C, d) > 0 be the constant given by
+Lemma 6.5 where C = ε0 and d = 2. Evidently there exists n ∈ N such that, for
+μ = (3ε + 11)/n, one has
+0 < μ ≤ min{μ0 , μ1 }, 2n(1 − 23μ) > L, and 2n > max{ρ0 , ρ1 }.
+Set
+
+F (ε) = h ∈ hΩi : |h| ≤ max{K(32ε + 70), m} .
+
+′
+
+′
+
+′
+
+/ F(ε)
+Since the subset F (ε) is finite, we can find k ∈ N such that ak , v1k , v2k ∈
+whenever k ′ ≥ k. Consider the word
+W (x, y) ≡ xk y k xk+1 y k+1 . . . xk+n−1 y k+n−1 .
+Let wj ∈ G be the element represented by the word W (a, vj ) in G, j = 1, 2, and let
+R be the set of all cyclic shifts of W (a, v2 ) and their inverses. By Lemma 2.3, Hi0 ∩
+EG (v2 ) = {1} because G is torsion-free, hence by [21, Thm. 7.5] the presentation
+(7.2) satisfies the condition C1 (ε, μ, 1/3, 2, 2n), and therefore, by Remark 7.1, it
+satisfies the conditions C1 (ε0 , μ, 1/3, 2, ρ0) and C1 (ε1 , μ1 , 1/3, 2, ρ1).
+Observe that w1 6= 1 in G because, otherwise, there would have existed a closed
+path q in Γ(G, A) labelled by the word W (a, v1 ), and, by part (a) of Lemma 6.3,
+all components of q would have been regular in the cycle o = rqr′ q ′ (where r, r′ , q ′
+are trivial paths), which is obviously impossible.
+Denote G1 = G/hhw2 ii and let η : G → G1 be the natural epimorphism. Then,
+according to SLemma 7.3, the group G1 is is torsion-free,S hyperbolic
+S4 relative to
+4
+{η(Hi )}i∈I ∪ j=1 {η(EG (vj ))} and η is injective on the set i∈I Hi ∪ j=1 EG (vj )∪
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+25
+
+U (because the length in A of any element from this set is at most N ). Since any
+elementary group is word hyperbolic, G1 is also hyperbolic relative to {η(Hi )}i∈I
+(by Lemma 2.4) and η(v3 ), η(v4 ) ∈ η(S) become hyperbolic elements of infinite order in G1 , that are not commensurable with each other (by Lemma 2.3). Therefore
+EG1 (η(v3 )) ∩ EG2 (η(v4 )) = {1} (recall that these subgroups are cyclic by Lemma
+2.2 and because G1 is torsion-free), and, consequently, η(S) is a suitable subgroup
+of G1 .
+Suppose that η(w1 ) = 1. By van Kampen's Lemma there exists a reduced
+planar diagram ∆ over the presentation (7.2) with the word W (a, v1 ) written on its
+G
+
+boundary. Since W (a, v1 ) 6= 1, ∆ possesses at least one R-cell. It was proved in [21,
+Lemma 7.1] that any path in Γ(G, A) labelled by W (a, v1 ) is (1/3, 2)-quasigeodesic,
+hence we can apply Lemma 7.2 to find an R-cell Π of ∆ and an ε0 -contiguity
+subdiagram Γ (containing no R-cells) between Π and ∂∆ such that (Π, Γ, ∂∆) >
+1 − 23μ. Thus there exists a cycle o = rqr′ q ′ in Γ(G, A) such that q is labelled by a
+subword of (a cyclic shift of) W (a, v2 ), q ′ is labelled by a subword of (a cyclic shift
+of) W (a, v1 )±1 , L(r), L(r′ ) ≤ ε0 = C and
+L(q) > (1 − 23μ) * L(∂Π) = (1 − 23μ) * 2n > L.
+In particular, Lab(q), Lab(q ′ ) ∈ W(Ω, m). Therefore we can apply Lemma 6.5 to
+find two consecutive components of q that are connected to some components of
+q ′ . Due to the form of the word W (a, v2 ), one of the formers will have to be an
+EG (v2 )-component, but q ′ can have only EG (v1 )- or Hi0 -components. This yields
+a contradiction because EG (v2 ) 6= EG (v1 ) and EG (v2 ) 6= Hi0 . Hence η(w1 ) 6= 1 in
+G1 , and the proof is complete.
+
+8. Every group is a group of outer automorphisms of a (2CC)-group
+Lemma 8.1. There exists a word R(x, y) over the two-letter alphabet {x, y} such
+that every non-elementary torsion-free word hyperbolic group F1 has a non-elementary torsion-free word hyperbolic quotient F that is generated by two elements a, b ∈
+F satisfying
+(8.1)
+
+F
+
+F
+
+F
+
+F
+
+R(a, b) 6= 1, R(a−1 , b−1 ) = 1, R(b, a) = 1, R(b−1 , a−1 ) = 1.
+
+Proof. Consider the word
+R(x, y) ≡ xy 101 x2 y 102 . . . x100 y 200 .
+Denote by F (a, b) the free group with the free generators a, b. Let
+R1 = {R(a, b), R(a−1 , b−1 ), R(b, a), R(b−1 , a−1 )},
+and R2 be the set of all cyclic permutations of words from R1±1 . It is easy to see
+that the set R2 satisfies the classical small cancellation condition C ′ (1/8) (see [10,
+Ch. V]). Denote by Ñ the normal closure of the set
+R3 = {R(a−1 , b−1 ), R(b, a), R(b−1 , a−1 )}
+in F (a, b). Since the symmetrization of R3 also satisfies C ′ (1/8), the group F̃ =
+F (a, b)/Ñ is a torsion-free ([10, Thm. V.10.1]) word hyperbolic group (because it
+has a finite presentation for which the Dehn function is linear by [10, Thm. V.4.4])
+such that
+F̃
+
+F̃
+
+F̃
+
+F̃
+
+R(a, b) 6= 1 but R(a−1 , b−1 ) = R(b, a) = R(b−1 , a−1 ) = 1.
+
+26
+
+ASHOT MINASYAN
+
+Indeed, if the word R(a, b) were trivial in F̃ then, by Greendlinger's Lemma [10,
+Thm. V.4.4], it would contain more than a half of a relator from (the symmetrization of) R3 as a subword, which would contradict the fact that R2 enjoys C ′ (1/8).
+The group F̃ is non-elementary because every torsion-free elementary group is
+cyclic, hence, abelian, but in any abelian group the relation R(a−1 , b−1 ) = 1 implies
+R(a, b) = 1.
+Now, the free product G̃ = F̃ ∗F1 is a torsion-free hyperbolic group. Its subgroups
+F̃ and F1 are non-elementary, hence, according to a theorem of Ol'shanskii [16,
+Thm. 2], there exists a non-elementary torsion-free word hyperbolic group F and
+a homomorphism φ : G̃ → F such that φ(F̃ ) = φ(F1 ) = F and φ(R(a, b)) 6= 1 in
+F . Therefore F is a quotient of F1 , the (φ-images of the) elements a, b generate F
+and enjoy the required relations.
+
+We are now ready to prove Theorem 1.5.
+Proof of Theorem 1.5. The argument will be similar to the one used to prove Theorem 5.1.
+First, set n = 2 and apply Lemma 4.2 to find a countable torsion-free group H
+and a normal subgroup M ⊳ H, where H/M ∼
+= C and M has (2CC) (alternatively,
+one could start with a free group H ′ and M ′ ⊳ H ′ such that H ′ /M ′ ∼
+= C, and then
+apply Lemma 4.4 to the pair (H ′ , M ′ ) to obtain H and M with these properties).
+Consider the word R(x, y) and the torsion-free hyperbolic group F , generated by
+the elements a, b ∈ F which satisfy (8.1), given by Lemma 8.1. Denote G(−2) =
+H ∗ F and let N (−2) be the normal closure of hM, F i in G(−2), F (−2) = F ,
+R(−2) = {R(a, b)} – a finite subset of F (−2). By Lemma 2.6, G(−2) will be
+hyperbolic relative to the subgroup H, G(−2) = H * N (−2), H ∩ N (−2) = M and
+F (−2) will be a suitable subgroup of G(−2).
+The element a ∈ F (−2) will be hyperbolic in G(−2) and since the group G(−2)
+is torsion-free, the maximal elementary subgroup EG(−2) (a) will be cyclic generated
+by some element h−2 x−2 , where h−2 ∈ H, x−2 ∈ N (−2).
+Choose y−2 ∈ M so that h−2 y−2 6= 1. By Lemmas 2.2 and 2.5, the HNNextension
+−1
+G(−3/2) = hG(−2), t−1 k t−1 h−2 x−2 t−1
+= h−2 y−2 i
+
+is hyperbolic relative to H. As in proof of Theorem 5.1, one can verify that F (−3)
+is a suitable subgroup of G(−3/2), and apply Theorem 2.8 to find an epimorphism
+η−2 : G(−3/2) → G(−1) such that G(−1) is a torsion-free group hyperbolic relative
+to η−2 (H), η−2 is injective on H ∪ R(−2) and η−2 (t−1 ) ∈ F (−1) where F (−1) =
+η−2 (F (−2)) is a suitable subgroup of G(−1). Hence η−2 (G(−2)) = G(−1) as
+G(−3/2) was generated by G(−2) and t−1 .
+Denote N (−1) = η−2 (N (−2)), R(−1) = η−2 (R(−2)) and ψ−2 = η−2 |G(−2) :
+G(−2) ։ G(−1). One can show that G(−1) = H*N (−1) and H∩N (−1) = M using
+the same arguments as in the proof of Theorem 5.1. According to the construction,
+we have
+−1
+η−2 (t−1 )η−2 (a)η−2 (t−1
+−1 ) = η(t−1 at−1 ) ∈ N (−1) ∩ H = M
+
+in G(−1), therefore, since the conjugation by η−2 (t−1 ) is an inner automorphism
+of F (−1), we can assume that F (−1) is generated by a−1 and b−1 , where a−1 ∈ M
+and R(a−1 , b−1 ) 6= 1 in F (−1) (because η−2 (R(a, b)) 6= 1 in F (−1)).
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+27
+
+G(−1)
+
+Now, if b−1 is not a hyperbolic element of G(−1), i.e., if b−1 ∼ c for some
+c ∈ H, then c ∈ N (−1) ∩ H = M , and since M has (2CC) we can find s−1 ∈ G(−1)
+such that b−1 = s−1 a−1 s−1
+−1 . In this case we define G(0) = G(−1), N (0) = N (−1),
+F (0) = F (−1), R(0) = R(−1), a0 = a−1 , s0 = s−1 and ψ−1 = idG(−1) .
+Otherwise, if b−1 is hyperbolic in G(−1), then we construct the group G(0),
+and an epimorphism ψ−1 : G(−1) → G(0) in an analogous way, to make sure that
+η−1 is injective on H ∪ R(−1), G(0) torsion-free and hyperbolic relative to (the
+image of) H, F (0) = ψ−1 (F (−1)) is a suitable subgroup of G(0), G(0) = H * N (0)
+and H ∩ N (0) = M where N (0) = ψ−1 (N (−1)), and b0 = s0 a0 s−1
+0 in G(0) where
+b0 = ψ−1 (b−1 ), a0 = ψ−1 (a−1 ) for some s0 ∈ G(0)
+Enumerate all elements of N (0): {g0 , g1 , g2 , . . . }, and of G(0): {q0 , q1 , q2 , . . . },
+so that g0 = q0 = 1.
+The groups G(j) together with N (j) ⊳ G(j), F (j) ≤ G(j), finite subsets R(j) ⊂
+G(j), and elements aj , sj ∈ G(j), j = 1, 2, . . . , that we will construct shall satisfy
+the following properties:
+1◦ . for each j ∈ N there is an epimorphism ψj−1 : G(j − 1) → G(j) which is
+injective on H ∪ R(j − 1). F (j) = ψj−1 (F (j − 1)), N (j) = ψj−1 (N (j − 1)),
+aj = ψj−1 (aj−1 ) ∈ M , sj = ψj−1 (sj−1 ) ∈ G(j);
+2◦ . G(j) is torsion-free and hyperbolic relative to (the image of) H, and F (j) ≤
+G(j) is a suitable subgroup generated by aj and sj aj s−1
+j ;
+◦
+3 . G(j) = H * N (j), N (j) ⊳ G(j) and H ∩ N (j) = M ;
+4◦ . the natural image ḡj of gj in G(j) belongs to F (j);
+G(j)
+
+5◦ . there exists zj ∈ H such that q̄j ∼ zj , where q̄j is the image of qj in G(j);
+6◦ . if j ≥ 1, q̄j−1 ∈ G(j − 1) \ H and for each k̂ ∈ N there is k ≥ k̂ such that
+G(j−1)
+
+−1
+6≈ akj−1 q̄j−1 akj−1 q̄j−1
+, then there is a word Rj−1 (x, y)
+akj−1 sj−1 akj−1 s−1
+j−1
+over the two-letter alphabet {x, y} which satisfies
+
+−1
+) 6= 1 and
+R(j) ∋ ψj−1 Rj−1 (aj−1 , sj−1 aj−1 sj−1
+
+
+−1
+) =1 in G(j).
+ψj−1 Rj−1 (aj−1 , q̄j−1 aj−1 q̄j−1
+
+Suppose that the groups G(0), . . . , G(i) have already been defined. The group
+G(i + 1) will be constructed in three steps.
+First, assume that q̄i ∈ G(i) \ H and for each k̂ ∈ N there is k ≥ k̂ such that
+G(i)
+
+6≈ aki q̄i aki q̄i−1 . Observe that si ∈
+/ H because, otherwise, one would
+aki si aki s−1
+i
+have F (i) ⊂ H, which is impossible as F (i) is suitable in G(i). Therefore, by
+Corollary 6.6, we can suppose that k is so large that the elements v1 = aki si aki s−1
+i
+and v2 = aki q̄i aki q̄i−1 are hyperbolic in G(i). Applying Lemma 7.4 we can find a
+word W (x, y) over {x, y} such that the group G(i + 1/3) = G(i)/hhW (ai , v2 )ii and
+the natural epimorphism η : G(i) → G(i + 1/3) satisfy the following: η is injective
+on H ∪ R(i), G(i + 1/3) is torsion-free and hyperbolic relative to (the image of)
+H, η(F (i)) ≤ G(i + 1/3) is a suitable subgroup, and η(W (ai , v1 )) 6= 1. Define the
+−1
+word Ri (x, y) ≡ W (x, xk y k ). Then Ri (ai , si ai s−1
+i ) = W (ai , v1 ), Ri (ai , q̄i ai q̄i ) =
+W (ai , v2 ) in G(i), hence
+
+
+−1
+η Ri (ai , si ai s−1
+i ) 6= 1 and η Ri (ai , q̄i ai q̄i ) = 1 in G(i + 1/3).
+
+28
+
+ASHOT MINASYAN
+
+If, on the other hand, q̄i ∈ H or there is k̂ ∈ N such that for every k ≥ k̂ one has
+G(i)
+aki si aki s−1
+≈
+i
+
+aki q̄i aki q̄i−1 , then we define G(i + 1/3) = G(i), η : G(i) → G(i + 1/3)
+to be the identical homomorphism and Ri (x, y) to be the empty word.
+Let ĝi+1 and q̂i+1 denote the images of gi+1 and qi+1 in G(i
+ + 1/3), N̂ (i) =
+−1
+η(N (i)), F̂ (i) = η(F (i)) and R̂(i) = η R(i) ∪ {Ri (ai , si ai si )} . Then, using 3◦ ,
+we get G(i + 1/3) = H * N̂ (i) and H ∩ N̂ (i) = M because ker(η) ≤ N (i) (as
+ai , q̄i ai q̄i−1 ∈ N (i)).
+Now we construct the group G(i + 2/3) in exactly the same way as the group
+G(i + 1/2) was constructed in during the proof of Theorem 5.1.
+If for some f ∈ G(i + 1/3), f q̂i+1 f −1 = z ∈ H, then set G(i + 2/3) = G(i),
+Ki+1 = N̂ (i) ⊳ G(i + 2/3) and ti+1 = 1.
+Otherwise, q̂i+1 is a hyperbolic element of infinite order in G(i + 1/3). Since
+G(i + 1/3) is torsion-free, one has EG(i+1/3) (q̂i+1 ) = hhxi for some h ∈ H and
+x ∈ N̂ (i), and there is m ∈ Z such that q̂i+1 = (hx)m . Now, by Lemma 2.2,
+G(i + 1/3) is hyperbolic relative to {H, hhxi}. Choose y ∈ M so that hy 6= 1 and
+let G(i + 2/3) be the following HNN-extension of G(i + 1/3):
+G(i + 2/3) = hG(i + 1/3), ti+1 k ti+1 (hx)t−1
+i+1 = hyi.
+The group G(i + 2/3) is torsion-free and hyperbolic relative to H by Lemma 2.5.
+One can show that F̂ (i) is a suitable subgroup of G(i + 2/3) in the same way as
+during the proof of Theorem 5.1. Lemma 4.3 assures that H ∩ Ki+1 = M where
+Ki+1 ⊳ G(i + 2/3) is the normal closure of hN̂ (i), ti+1 i in G(i + 2/3). Finally, note
+that
+m −1
+m
+ti+1 q̂i+1 t−1
+i+1 = ti+1 (hx) ti+1 = (hy) = z ∈ H in G(i + 2/3).
+
+Define Ti+1 = {ĝi+1 , ti+1 } ⊂ Ki+1 . The group G(i + 1) is constructed from
+G(i + 2/3) as follows. Since Ti+1 * F̂ (i) ⊂ Ki+1 ⊳ G(i + 2/3), we can apply Theorem
+2.8 to find a group G(i + 1) and an epimorphism φi : G(i + 2/3) → G(i + 1) such
+that φi is injective on H ∪ R̂(i), G(i + 1) is torsion-free and hyperbolic relative to
+(the image of) H, {φi (ĝi+1 ), φi (ti+1 )} ⊂ φi (F̂ (i)), φi (F̂ (i)) is a suitable subgroup
+of G(i + 1), and ker(φi ) ≤ Ki+1 . Denote by ψi : G(i) → G(i + 1) the composition
+φi ◦ η. Then ψi (G(i)) = φi (G(i)) = G(i + 1) because G(i + 2/3) was generated
+by G(i) and ti+1 , and according to the construction, ti+1 ∈ φi (F̂ (i)) ≤ φi (G(i)).
+Now, after defining F (i + 1) = ψi (F (i)), N (i + 1) = ψi (N (i)), R(i + 1) = φi (R̂(i)),
+ḡi+1 = φi (ĝi+1 ) ∈ F (i + 1) and zi+1 = φi (z) ∈ H, we see that the conditions 1◦ - 5◦
+hold in the case when j = i + 1, as in the proof of Theorem 5.1. The last property
+6◦ follows from the way we constructed the group G(i + 1/3).
+Let Q = G(∞) be the direct limit of the sequence (G(i), ψi ) as i → ∞, and let
+F (∞) and N = N (∞) be the limits of the corresponding subgroups. Let a∞ , b∞
+and s∞ be the images of a0 , b0 and s0 in Q respectively. Then b∞ = s∞ a∞ s−1
+∞, Q
+is torsion-free by 2◦ , N ⊳ Q, Q = H * N and H ∩ N = M by 3◦ , N ≤ F (∞) by 4◦ .
+Hence Q/N ∼
+= C.
+= H/M ∼
+Since F (0) ≤ N (0) we get F (∞) ≤ N . Thus N = F (∞) is a homomorphic
+image of F (0) = F , and, consequently, it is a quotient of F1 . By 5◦ , for any q ∈ N
+there are z ∈ H and p ∈ Q such that pqp−1 = z. Consequently z ∈ H ∩ N = M .
+Choose x ∈ N and h ∈ H so that p = hx. Since M has (2CC) and h−1 zh ∈ M ,
+there is y ∈ M such that yh−1 zhy −1 = z, therefore (yx)q(yx)−1 = z ∈ M and
+
+GROUPS WITH FINITELY MANY CONJUGACY CLASSES
+
+29
+
+yx ∈ M N = N . Hence each element q of N will be conjugated (in N ) to an
+element of M , and since M has (2CC), therefore the group N will also have (2CC).
+The property that CQ (N ) = {1} can be established in the same way as in
+Theorem 5.1. Therefore the natural homomorphism Q → Aut(N ) is injective. It
+remains to show that it is surjective, that is for every φ ∈ Aut(N ) there is g ∈ Q
+such that φ(x) = gxg −1 for every x ∈ N . Since all non-trivial elements of N are
+conjugated, after composing φ with an inner automorphism of N , we can assume
+that φ(a∞ ) = a∞ . On the other hand, there exist q∞ ∈ N and i ∈ N such that
+−1
+φ(b∞ ) = q∞ a∞ q∞
+and q∞ is the image of qi in Q. Note that s∞ ∈
+/ H because
+si ∈ G(i) \ H for every i ∈ N. This implies that H is a proper subgroup of N ,
+−1
+thus q∞ ∈
+/ H since N = F (∞) = ha∞ , q∞ a∞ q∞
+i ≤ Q, and a∞ ∈ H. Hence
+q̄i ∈ G(i) \ H.
+Now we have to consider two possibilities.
+Case 1: for each k̂ ∈ N there is k ≥ k̂ such that
+G(i)
+
+6≈ aki q̄i aki q̄i−1 .
+aki si aki s−1
+i
+Then there is a word Ri (x, y) such that the property 6◦ holds for j = i + 1. And,
+since each ψj is injective on {1} ∪ Rj (by 2◦ ), we conclude that
+−1
+Ri (a∞ , s∞ a∞ s−1
+∞ ) 6= 1 and Ri (a∞ , q∞ a∞ q∞ ) = 1 in Q,
+
+which contradicts the injectivity of φ. Hence Case 1 is impossible.
+Case 2: the assumptions of Case 1 fail. Then we can use Lemma 6.7 to find
+β, γ ∈ H and ǫ, ξ ∈ {−1, 1} such that q̄i = γsξi β, βai β −1 = aǫi and γ −1 ai γ = aǫi
+in G(i). Denote by γ∞ the image γ in Q, and for any y ∈ Q let Cy be the
+automorphism of N defined by Cy (x) = yxy −1 for all x ∈ N .
+−1
+−1
+ǫ
+−1
+If ξ = −1 then γ∞
+a∞ γ∞ = aǫ∞ and φ(b∞ ) = q∞ a∞ q∞
+= γ∞ s−1
+∞ a∞ s∞ γ∞ ,
+hence
+
+−1
+a∞ 7→ s∞ aǫ∞ s∞
+= bǫ∞
+−1 ◦ φ :
+Aut(N ) ∋ Cs∞ γ∞
+.
+ǫ
+−1
+b∞ = s∞ a∞ s∞ 7→ a∞
+But N has no such automorphisms because R(a∞ , b∞ ) 6= 1 and R(bǫ∞ , aǫ∞ ) = 1 in
+N (since N is a quotient of F and 1 6= R(a0 , b0 ) ∈ R(0) in G(0)).
+Therefore ξ = 1. Similarly, ǫ = 1, as otherwise we would obtain a contradiction
+−1
+with the fact that R(a−1
+∞ , b∞ ) = 1 in N . Thus
+
+a∞ 7→ a∞
+−1 ◦ φ :
+Aut(N ) ∋ Cγ∞
+.
+−1
+−1
+b ∞ = s∞ a ∞ s∞
+7→ s∞ a∞ s∞
+= b∞
+And since a∞ and b∞ generate N we conclude that for all x ∈ N , φ(x) = gxg −1 ,
+where g = γ∞ ∈ Q. Thus the natural homomorphism from Q to Aut(N ) is bijective,
+implying that Out(N ) = Aut(N )/Inn(N ) ∼
+
+= Q/N ∼
+= C. Q.e.d.
+References
+[1] G. Arzhantseva, A. Minasyan, D. Osin, The SQ-universality and residual properties of relatively hyperbolic groups, J. Algebra 315 (2007), no. 1, 165-177.
+[2] I. Belegradek, D. Osin, Rips construction and Kazhdan property (T), preprint (2006). arXiv:
+math.GR/0605553
+[3] I. Bumagin, D.T. Wise, Every group is an outer automorphism group of a finitely generated
+group, J. Pure Appl. Algebra 200 (2005), no. 1-2, 137-147.
+[4] R. Camm, Simple Free Products, J. London Math. Soc. 28 (1953), 66-76.
+
+30
+
+ASHOT MINASYAN
+
+[5] Y. de Cornulier, Finitely presentable, non-Hopfian groups with Kazhdan's Property and infinite outer automorphism group, Proc. Amer. Math. Soc. 135 (2007), no. 4, 951-959.
+[6] P. de la Harpe, A. Valette, La propriété (T) de Kazhdan pour les groupes localement compacts,
+(avec un appendice de Marc Burger). Astérisque 175, 1989.
+[7] M. Droste, M. Giraudet, R. Göbel, All groups are outer automorphism groups of simple
+groups, J. London Math. Soc. (2) 64 (2001), no 3, 565-575.
+[8] G. Higman, B.H. Neumann, H. Neumann, Embedding theorems for groups, J. London Math.
+Soc. 24 (1949), 247-254.
+[9] The Kourovka notebook. Unsolved problems in group theory, 16th augmented edition, V. D.
+Mazurov and E. I. Khukhro eds., Rossiı̆skaya Akademiya Nauk, Sibirskoe Otdelenie, Institut Matematiki (Siberian branch of Russian Academy of Sciences, Mathematical Institute),
+Novosibirsk, 2006.
+[10] R. Lyndon and P. Schupp, Combinatorial Group Theory, Springer-Verlag, 1977.
+[11] T. Matumoto, Any group is represented by an outer automorphism group, Hiroshima Math.
+J. 19 (1989), no. 1, 209-219.
+[12] A. Muranov, Diagrams with selection and method for constructing boundedly generated and
+boundedly simple groups, Comm. Algebra 33 (2005), no. 4, 1217-1258.
+[13] A. Muranov, Finitely generated infinite simple groups of infinite commutator width, Int. J.
+Algebra Comput. 17 (2007), no. 3, 607-659.
+[14] Y. Ollivier, D.T. Wise, Kazhdan groups with infinite outer automorphism group, Trans. Amer.
+Math. Soc. 359 (2007), no. 5, 1959-1976.
+[15] A.Yu. Ol'shanskii, Geometry of defining relations in groups, Moscow, Nauka, 1989 (in Russian); English translation in Mathematics and its Applications (Soviet Series), 70. Kluwer
+Academic Publishers Group, Dordrecht, 1991.
+[16] A.Yu. Ol'shanskii, On residualing homomorphisms and G-subgroups of hyperbolic groups,
+Internat. J. Algebra Comput. 3, no. 4 (1993), 365-409.
+[17] D.V. Osin, Elementary subgroups of relatively hyperbolic groups and bounded generation,
+Internat. J. Algebra Comput. 16 (2006), no. 1, 99-118.
+[18] D.V. Osin, Peripheral fillings of relatively hyperbolic groups, Invent. Math. 167 (2007), no. 2,
+295-326.
+[19] D.V. Osin, Relative Dehn functions of HNN-extensions and amalgamated products, Topological and asymptotic aspects of group theory, Contemp. Math. 394, 209-220, Amer. Math.
+Soc., Providence, RI, 2006.
+[20] D.V. Osin, Relatively hyperbolic groups: intrinsic geometry, algebraic properties, and algorithmic problems, Mem. Amer. Math. Soc. 179 (2006), no. 843, vi+100 pp.
+[21] D.V. Osin, Small cancellations over relatively hyperbolic groups and embedding theorems,
+Annals of Math., to appear. arXiv: math.GR/0411039
+[22] F. Paulin, Outer automorphisms of hyperbolic groups and small actions on R-trees, Arboreal
+Group Theory (MSRI, Berkeley, 1988), R.C. Alperin ed., Math. Sci. Res. Inst. Publ. 19,
+Springer, New York, 1991.
+School of Mathematics, University of Southampton, Highfield, Southampton, SO17
+1BJ, United Kingdom.
+E-mail address: aminasyan@gmail.com
+

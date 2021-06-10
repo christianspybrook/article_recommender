@@ -1,0 +1,1588 @@
+Parameter mapping between the microscopic nonlocal Nambu–Jona-Lasinio and
+constant-sound-speed models
+S. Antić,1, 2, ∗ M. Shahrbaf,1 D. Blaschke,1, 3, 4 and A. G. Grunfeld5, 6
+1
+
+Institute for Theoretical Physics, University of Wroclaw, Max Born Pl. 9, 50-204, Wroclaw, Poland
+Physics Department, Faculty of Science, University of Zagreb, Bijenička cesta 32, 10000 Zagreb, Croatia
+3
+Bogoliubov Laboratory of Theoretical Physics, Joint Institute for Nuclear research, Joliot-Curie str. 6, 141980 Dubna, Russia
+4
+National Research Nuclear University (MEPhI), Kashirskoe Shosse 31, 115409 Moscow, Russia
+5
+CONICET, Godoy Cruz 2290, Buenos Aires, Argentina
+6
+Departamento de Fı́sica, Comisión Nacional de Energı́a Atómica,
+Av. Libertador 8250, (1429) Buenos Aires, Argentina
+(Dated: May 4, 2021)
+
+arXiv:2105.00029v1 [nucl-th] 30 Apr 2021
+
+2∗
+
+A covariant nonlocal Nambu–Jona–Lasinio (nlNJL) model, used to describe the color superconducting quark matter phase in hybrid neutron stars, is parametrized with two free parameters, the
+dimensionless vector and diquark coupling strengths ηV and ηD . Changing the values of these parameters results in different equations of state (EoS) with varying stiffness. On the other hand, the
+constant-sound-speed (CSS) model is a frequently used, simple quark matter equation of state with
+three parameters: the slope parameter A, the speed of sound cs and the bag pressure B. We show
+that the CSS model EoS provides an excellent fit to that of the nlNJL model. This work provides a
+simple functional form for the mapping between the parameter spaces of these two models, i.e. the
+ηD − ηV and A − c2s − B parameter sets. These results allow for a simplified description of the quark
+matter phase in neutron stars and for an interpretation of hybrid neutron star phenomenology in
+terms of parameters of a Lagrangian quark matter model.
+
+I.
+
+INTRODUCTION
+
+Recent investigations of neutron star (NS) properties
+support the idea that deconfined quark matter builds the
+cores not only of the heaviest known NSs [1], but even of
+all NSs in the presently observed mass range [2].
+In order to draw such conclusions, the equation of state
+(EoS) for the quark matter phase in NSs is needed. The
+best candidates to provide a reliable quark matter EoS
+under neutron star conditions are those effective models
+that share key features with low-energy QCD, such as dynamical chiral symmetry breaking and the resulting lowenergy theorems as the Gell-Mann–Oakes–Renner and
+Goldberger–Treiman relations. The most popular chiral
+effective model that reasonable fulfills these requirements
+is the Nambu Jona-Lasinio (NJL) model [3, 4], that was
+developed in order to understand the generation of a mass
+gap for fermions (nucleons) in analogy to the energy gap
+in the BCS model of electronic superconductivity, based
+on local four-fermion interactions. With the introduction
+of quarks as the fundamental fermionic degrees of freedom of strongly interacting matter, the model has been
+
+∗
+
+Guest scientist
+
+reformulated on that level of description, see [5–11] for
+early reviews and [12] for the NJL model analysis of dense
+quark matter.
+The local NJL-type models have a major caveat: the
+absence of confinement. A local four-fermion coupling is
+incompatible with the strong coupling at large-distances
+that is phenomenologically established by hadron spectroscopy and lattice QCD simulations of the free (potential) energy between static (heavy) color charges that
+exhibits a funnel-shaped interquark potential. One way
+to bring effective low-energy QCD models closer to capturing also the confining nature of the strong interaction
+at large distances is the generalization of the local fourfermion coupling to a nonlocal four-point function. A
+first step in this direction has been done with so-called
+"bilocal QCD" models [13, 14] which could successfully
+address low-energy QCD and hadron phenomenology on
+the basis of a nonperturbative model gluon propagator
+[15] or a relativistic generalization of confining potential
+models [16].
+The next step towards the modern formulation of the
+nonlocal chiral quark model (in the following denoted as
+"nlNJL") was to generalize the interaction model from
+a two-point function to a four-point function, following
+two schemes. The first one defines the nonlocal interac-
+
+2
+tion similar to the relativistic S-matrix with its dependence on the kinematic Mandelstam variables and assumes separability (a product ansatz) of pairwise relative momenta [17]. This scheme has later been denoted
+as one-gluon exchange (OGE) model. For the model
+formfactors the ansatz has been made of instantaneous
+(energy-independent) functions that depend on the relative three-momenta only. In this way, the evaluation of
+thermodynamic properties of the model within the imaginary time formalism became straightforward because the
+Matsubara summations could still be performed analytically as in the original NJL model which was recovered
+for a step function as the formfactor. Using smooth functions as formfactors of the nonlocality resulted in a lowering of the psudocritical temperature of the chiral restoration, closer to the results from lattice QCD [17]. The
+second scheme, denoted as instanton-liquid model (ILM),
+was built using a simple product ansatz for the formfactors that were attached to each of the four fermion "legs"
+[18]. A comprehensive overview over the nonlocal chiral
+quark models in this early era has been given by Georges
+Ripka in his book [19], where formal details and more
+references can be found.
+With the extension to rank-2 separable gluon propagator models, and using formfactors depending on the
+4-momentum, a close correspondence to the DysonSchwinger equation approach could be established [20].
+The finite-temperature extension led to a dramatic reduction of the chiral restoration temperature [21] which recently has been found in lattice QCD simulations as Tc0 =
+132+3
+−6 MeV in the chiral limit [22]. When coupling the
+nonlocal chiral quark dynamics to a gluon background
+field within the Polyakov-loop extension of the model
+(see [23] for the details in case of the local NJL model,
+where besides adding gluonic degrees of freedom at finite temperatures confinement is mimicked), acceptable
+values and systematics for the pseudocritical temperature of QCD could be obtained [24, 25] and thermodynamic instabilities associated with complex-conjugated
+mass poles could be largely cured [26].
+Another advantage of using covariant formfactors in
+the nlNJL model is that the momentum dependence of
+the quark mass as well as the wave function renormalization factor of the quark propagator can be described
+in accordance with lattice QCD simulations [27]. Since
+the nonperturbative low-energy interaction of the nlNJL
+model can be calibrated using lattice QCD simulations,
+one has a serious basis to extend studies of thermo-
+
+dynamic properties from the temperature axis into the
+whole phase diagram including high baryochemical potentials where no lattice QCD simulations are available
+because of the severe sign problem. Using the nlnJL
+model with realistic formfactors, the position of the critical endpoint in the phase diagram has been obtained for
+temperatures below 130 MeV [28, 29], a prediction that
+can be investigated in the upcoming heavy-ion collision
+√
+experiments with collision energies sN N ∼ 3 − 6 GeV,
+e.g., at the NICA facility of JINR Dubna, or in the fixedtarget experiment at RHIC, see Fig. 14 of Ref. [30]. A
+recent detailed review on nlNJL models and their applications to studies of matter under extreme conditions is
+given in [31].
+In the present work we want to study the EoS of quark
+matter in NSs at vanishing temperature. A first application of the covariant nlNJL model has been given
+in [32], where a simple Gaussian formfactor was used
+and only the scalar-pseudoscalar meson interaction channel has been included. It could be shown that such a
+model with two quark flavors is equivalent to a thermodynamic bag model with a bag pressure B = 81.3
+MeV/fm3 . The strange quark flavor appeared sequentially at a higher density and rendered the corresponding neutron star unstable against gravitational collapse
+for masses above 1.62 M⊙ . In order to describe stars
+with masses above 2 M⊙ as required by recent neutron
+star observations [33], one has to include a repulsive vector meson interaction channel1 . In hybrid star models
+the transition to such a quark matter phase occurs only
+at rather high densities, close to the maximum mass of
+the sequence. As it is known from studies using the local NJL model, the simultaneous addition of a scalar diquark interaction channel leads to the effect of diquark
+condensation (color superconductivity) which pushes the
+onset of quark deconfinement to lower densities and results in quark matter cores for neutron stars with typical
+masses of ∼ 1.4M⊙ [35, 36]. The situation is similar for
+the covariant nlNJL model where increasing the diquark
+coupling results in a lowering of the onset density for
+the chiral restoration transition [37]. Correspondingly, a
+phenomenologically satisfactory situation occurs for the
+hybrid neutron star EoS when a repulsive vector and diquark interaction channel is included to the covariant nlNJL model [38] since it develops an early deconfinement
+
+1
+
+We note that in the local limit such a model has been introduced
+as "vBag model" [34].
+
+3
+transition to a stiff color superconducting quark matter
+phase.
+Consequently, we will use in this study the covariant nlNJL model in the OGE scheme that is parameterized with the dimensionless vector and diquark coupling
+strengths (ηV and ηD ), given as ratios of the vector and
+diquark couplings, GV and GD , to the scalar coupling
+constant GS , respectively. The values of these input parameters, however, are not known from first principles.
+While the original version of the nlNJL model is formulated with constant, density-independent coefficients,
+in Refs. [39, 40] density-dependent coefficients have been
+introduced in such a way that the results of a recent relativistic density-functional approach to quark matter [41]
+could be reproduced. The applicability of both versions
+of nlNJL model in constructing the phase transition from
+hypernuclear matter to deconfined quark matter has laso
+been investigated [42, 43].
+The microscopic approach of the nlNJL model has the
+advantage that it allows to relate the spectrum of observable NS properties to the ranges of ηV and ηD parameters in the Lagrangian of an effective low-energy
+QCD model (for details, see [44]). It involves, however,
+time-consuming numerical routines for solving the selfconsistent nonlocal mean field equations together with
+an extrapolation procedure at high densities. For this
+reason, we explore the possibility to mimic the nlNJL
+results with simpler approach, the constant-sound-speed
+(CSS) model [45, 46].
+The CSS approach is widely used in the literature,
+in particular, for the classification [45] and systematics
+[47, 48] of hybrid neutron stars. Among the applications
+of the CSS model is also the investigation of the third and
+fourth families of compact stars for which stable branches
+have been verified as well [49–51]. The work of Ref. [46]
+demonstrates the possibility for NJL model-based approaches to color-superconducting cold quark matter to
+be well approximated by CSS parameterization. It was
+shown that the EoS for quark matter developed for the
+nonlocal separable NJL model with formfactors depending on the three-momentum in [52, 53] can be well fitted
+with the CSS model.
+It is also worth mentioning that the CSS extrapolation becomes necessary for nlNJL models of certain values of ηV and ηD parameters due to the limitation of its
+covariant formfactor realization [37] to chemical potentials up to ∼ 1600 MeV. However, we would like to map
+the nlNJL EoS to the CSS EoS for the whole range of
+
+chemical potentials in the quark matter phase, and not
+only for μB > 1600 MeV, as it was previously done [44].
+This mapping would enable a replacement of the complicated quark matter EoS by a simple model which gives
+the EoS of quark matter not only in the two-flavor colorsuperconducting (2SC) phase but also at higher densities
+for the color-flavor-locked (CFL) phase.
+The main idea of this work is to provide a simple functional form that enables a mapping between the two parameter spaces, the nLNJL model parameters ηV and ηD
+and the parameters of the CSS model: the slope parameter A, the squared speed of sound c2s and the bag pressure
+B. With the simplified description of the quark phase in
+hybrid NSs, its EoS would become easier to handle and
+would at the same time have strong microphysical justification.
+The structure of the present paper is as follows: in Sec.
+II we introduce the formulations of both nlNJL and CSS
+models and their parameters, along with an additional
+phenomenological EoS of Alford [54] for comparison. In
+Sec. III the functional dependence between the two parameter sets is found and parameter mapping between
+the two models is discussed. Finally, the main conclusion are given in Sec. IV.
+
+II. EQUATION OF STATE MODELS FOR THE
+QUARK MATTER PHASE OF A NEUTRON
+STAR
+A.
+
+Generalized nlNJL model with ηV and ηD
+parameters
+
+For the microphysical description of the quark matter phase we consider a chiral quark model that includes nonlocal separable interactions and can be considered as a nonlocal extension of the NJL model (nlNJL).
+We employ the two-flavor SU (2)f model, developed in
+Refs. [17, 37, 38], that is described by the Lagrangian
+
+GS f f GD a † a
+GV μ μ
+L = ψ̄ −i∂/ + mc ψ −
+j j −
+[j ] j +
+j j ,
+2 S S
+2 D D
+2 V V
+(1)
+with the nonlocal generalizations of the quark currents
+Z
+z
+z
+f
+(2)
+jS (x) = d4 zg(z)ψ̄(x + )Γf ψ(x − ) ,
+2
+2
+Z
+z
+z
+a
+jD
+(x) = d4 zg(z)ψ̄C (x + )iγ5 τ2 λa ψ(x − ) , (3)
+2
+2
+Z
+z
+z
+μ
+(4)
+jV (x) = d4 zg(z)ψ̄(x + )iγμ ψ(x − ) ,
+2
+2
+
+4
+in the scalar meson, scalar diquark and vector meson
+channels, respectively. The grand canonical partition
+function of the quark matter system,
+)
+( Z
+Z
+Z
+β
+
+
+,
+Z = Dψ̄Dψ exp −
+dτ d3 x L − μψ̄γ0 ψ
+0
+
+(5)
+after bosonization by the Hubbard-Stratonovich transformation, can be evaluated in the mean field approximation (MFA) with the result for the thermodynamical
+potential
+ΩMFA = −T ln Z MFA
+(6)
+2
+2
+2
+ ̄
+∆
+ω̄
+σ̄
++
+−
+=
+2G 2H
+2GV
+Z
+
+
+1
+d4 p
+ ̄ ω̄, μf c ) , (7)
+−
+ln det S −1 (σ̄, ∆,
+4
+2
+(2π)
+
+see Refs. [37, 38] for details.
+The inclusion of the scalar diquark channel together
+with the repulsive vector interaction channel, plays an
+important role in the phenomenology of hybrid EoS of
+compact stars.
+The diquark condensate gives rise to color superconductivity (2SC) and is responsible for lowering the onset
+of the phase transition from the phase with broken chiral
+symmetry to the 2SC phase. The vector interaction induces a stiffening behaviour in the EoS, that is essential
+to reach compact stars masses above 2M⊙ . Systematic
+investigation of hybrid NS properties reveals [36, 44] that
+phenomenological constraints from mass and radius measurements are optimally fulfilled when an increase in the
+diquark coupling is accompanied by a simultaneous increase in the vector coupling.
+The model includes three input parameters: mc (current quark mass), p0 (effective momentum scale) and GS
+(coupling constant). They are determined as to reproduce the pion mass and decay constant as well as the
+chiral condensate in the vacuum, at vanishing temperature and densities. The two remaining coupling constants GS and GV are driving the terms that, after
+bosonization, give rise to the color superconducting gap
+and the vector meson mean field. The dimensionless ratios ηD = GD /GS and ηV = GV /GS are free parameters. From a Fierz rearrangement of the OGE interactions one obtains ηD = 3/4 and ηV = 1/2 that could
+serve as an orientation for the values of these parameters in the vacuum. There is no precise derivation of
+effective couplings from QCD, as we consider here the
+strongly nonperturbative low-energy regime. Moreover,
+
+one has to expect that these couplings could be subject
+to a medium dependence. However, ηD values larger
+∗
+than ηD
+= (3/2)m/(m − mc ) may lead to color symmetry breaking in the vacuum [55] (where m stands for
+the dressed mass and mc for the current quark mass).
+In the present work we consider a window of values
+for ηD and ηV that was also explored in previous works
+Ref. [36, 39, 56].
+ ̄ and ω̄ are obtained from
+The mean field values σ̄, ∆
+the coupled equations
+∂ΩMFA
+= 0,
+∂ σ̄
+
+∂ΩMFA
+ ̄ = 0,
+∂∆
+
+∂ΩMFA
+= 0.
+∂ ω̄
+
+(8)
+
+As we intend to describe the behaviour of quark matter
+in the cores of NSs, we have to take into account the
+presence of leptons (electrons and muons) which we include into the thermodynamic potential as free relativistic Fermi gases. In addition, we have to consider that
+the stellar matter satisfies the following conditions: equilibrium under weak interactions (chemical equilibrium)
+as well as color and electric charge neutrality. As a consequence, it can be seen that the six different chemical
+potentials μf c (depending on the two quark flavors u and
+d and quark colors r, g and b) in Eq. (7) are not independent from each other and can be written in terms of three
+independent quantities: the baryonic chemical potential
+μ, the electron chemical potential μe and a color chemical
+potential μ8 . Basically, for each value of μ we solve selfconsistently the gap equations (8), complemented with
+the conditions for β-equilibrium and electric charge and
+color charge neutrality (details of the calculation can be
+found in the Appendix of Ref. [38]).
+In the present work, we consider a Gaussian form factor g(p) = exp(−p2 /p20 ) in Euclidean 4-momentum space.
+The fixed input parameters of the quark model considered here are mc = 5.4869 MeV, p0 = 782.16 MeV and
+GS p20 = 19.804.
+
+B.
+
+Constant speed of sound formulation
+
+The CSS EoS at zero temperature can be written in
+the form [45, 47]
+P (μ) = A
+
+
+
+μ
+μx
+
+1+β
+
+− B,
+
+(9)
+
+where μx = 1 GeV defines the scale for chemical potential, A is a slope parameter in the units of the pressure,
+B is the bag pressure and β = 1/c2s is a parameter related
+
+5
+to the squared speed of sound c2s = dP/dε. The pressure
+as a function of the chemical potential is a thermodynamical potential from which other EoS can be obtained
+by derivation. For instance, the baryon density reads
+ β
+1+β μ
+dP (μ)
+=A
+,
+(10)
+nB (μ) =
+dμ
+μx
+μx
+and the energy density is given by
+ε(μ) = μ
+
+dP (μ)
+− P (μ) = Aβ
+dμ
+
+
+
+μ
+μx
+
+1+β
+
++ B. (11)
+
+Using the definition of the pressure (9), the energy density (11) can be rewritten as
+ε(P ) = βP + (1 + β)B ,
+
+(12)
+
+which directly reveals that the squared sound speed is
+c2s = 1/β = const, since β = const.
+The speed of sound determines the stiffness of the EoS,
+which has to be large enough to allow for the maximum
+neutron star mass to fulfil the observational lower bound
+of 2.01 M⊙ from the Shapiro-delay based mass measurement on PSR J0740+6620 [33] (a recent upgrade of the
+former mass measurement [57]) at the 1σ level. The prefactor A changes the slope of the P (μ) curve and has thus
+also an effect on the stiffness of the EoS: lowering the
+value of A increases the stiffness. The effective (negative)
+bag pressure B realises quark confinement at low densities in quark matter EoS because it makes sure that any
+small but positive pressure of a hadronic phase would be
+preferable this region. The parameters A, B and c2s are
+free parameters which define the behaviour of the quark
+matter EoS.
+It is worth mentioning that for a large class of quark
+matter models, including the standard NJL model [58,
+59] or its nonlocal generalization with instantaneous,
+three-momentum dependent formfactors [60], it was observed that the sound speed appears largely densityindependent [46]. For the covariant nlNJL model such
+an observation has not yet been made. Therefore, for the
+first time in the present work the question is considered
+how well the covariant nlNJL model in the 2SC phase can
+be approximated by the quark matter EoS with constant
+speed of sound, given by Eq. (9).
+
+C.
+
+Phenomenological EoS
+
+Besides the CSS model EoS, there is a phenomenological formulation of the EoS of quark matter in use which
+
+has been introduced and motivated in Ref. [54]. In that
+work, the quark matter EoS consists of the first three
+terms of a series in even powers of the quark chemical
+potential
+ΩQM = −3/4π 2 a4 μ4 + 3/4π 2 a2 μ2 + Beff ,
+
+(13)
+
+where a4 , a2 , and Beff are coefficients independent of μ.
+The quartic coefficient a4 = 1 − c is well defined for
+an ideal massless gas for which c=0. Perturbative QCD
+corrections in lowest order, i.e. O(αs ) for massless quark
+matter lead to a reduction of a4 , e.g., accounted for by
+c = 0.3 so that a4 = 0.7. The quadratic μ2 term arises
+from an expansion in the finite strange quark mass ms
+and the diquark pairing gap ∆, so that a2 = m2s − 4∆2 .
+In CFL quark matter, they are almost in the same order
+of about 100 MeV so that the coefficient a2 is almost zero
+and this corresponds to a constant speed of sound c2s =
+1/3, the conformal limit [54]. In the phenomenological
+parameterization (13), the coefficient a2 usually varies in
+the limits ±(150 MeV)2 [61].
+However, this EoS for quark matter is softer than some
+nucleonic ones. It has been shown in [54] that even for
+this simple parameterization which hereafter we call "Alford fit", the resulting hybrid stars can have mass-radius
+relations very similar to those of pure nucleonic stars and
+the maximum mass fulfills the constraint for its observational lower limit [33].
+As another aim of the present work, we intend to compare the results of fitting the nlNJL EoS with both CSS
+parameterization and Alford parameterization.
+
+III.
+
+RESULTS AND DISCUSSION
+A.
+
+Fitting procedure
+
+In order to obtain a functional relation between the
+parameters of the two approaches, we considered 34 EoS
+based on nlNJL model (for different values of ηD and ηV
+parameters) to which we fit the CSS EoS (9) in order to
+obtain the values of A, B and β. In these EoS fits, the
+parameter B is expressed through the values of A and β
+as
+B=A
+
+
+
+μ(P = 0)
+μx
+
+1+β
+
+,
+
+(14)
+
+with the value of chemical potential for which the pressure is equal to zero, given by the nlNJL EoS.
+
+6
+One example of the CSS fit to the nlNJL EoS (with
+ηD = 0.75 and ηV = 0.14) is given in Fig. 1. For comparison, fitting the parameters of the phenomenological EoS
+(13) that was introduced by Alford et al. in [54] we obtain
+a4 = 0.003, a2 = −(102.342 MeV)2 and Beff = 124.53
+MeV fm−3 . This "Alford fit" is also shown in Fig. 1. It
+is worth mentioning that the value of a4 ≈ 0, which is
+obtained by the fit, entails that the correction relative to
+the ideal gas limit is close to 100% and thus not compatible with its value of c = 2αs /π ≈ 30% in perturbation
+theory to O(αs ) [62]. This can be seen as an hint to the
+nonperturbative nature of the quark matter EoS in this
+domain of low chemical potentials in the vicinity of the
+hadronization transition.
+In the inserted plot we further examine the low chemical potential region where the most significant difference
+between the two fits is found. The CSS follows the nlNJL
+behaviour more closely, which will be also manifested in
+the mass-radius curves discussed toward the end of the
+chapter. For the remaining chemical potentials, the two
+fits present the same quality in reproducing the nlNJL
+EoS. The quality of the fits is estimated with the χ2
+value, defined as
+χ2 =
+
+N
+X
+(PnlNJL (μi ) − Pfit (μi ))2
+
+σi2
+
+i
+
+,
+
+(15)
+
+where N is the number of points for the chemical potential and σ is the standard deviation of the nlNJL
+500
+40
+
+400
+
+30
+
+-3
+
+P [MeV fm ]
+
+20
+
+300
+
+10
+0
+960
+
+1000
+
+1040
+
+1080
+
+200
+nlNJL model
+Alford fit
+CSS fit
+
+100
+0
+
+1000
+
+1200
+
+1400
+μ [MeV]
+
+1600
+
+1800
+
+FIG. 1. EoS of the original nlNJL model for the parameter set
+(ηD , ηV ) = (0.75, 0.14) compared to its fit by the phenomenological form (13) (Alford fit, blue circles) with the parameters
+a4 = 0.003, a2 = −(102.342 MeV)2 and Beff = 124.53 MeV
+fm−3 as well as the fit by the CSS pressure of Eq. (9) (red
+squares) with the parameters A = 94.875, c2s = 0.481 and B
+= 85.614,, see Tab. I.
+
+PN
+2
+model in question defined as σ 2 = N1
+i (PnlNJL,i − Pi ) ,
+where Pi is the mean value of the nlNJL model pressures,
+PN
+P = N1
+i Pi . The PnlNJL (μi ) and Pfit (μi ) are the values of pressure in nlNJL model and for the fit in each
+point of chemical potential μi . The χ2 value for CSS fit
+is 0.031 while it is 0.038 for Alford's fit.
+From the CSS fit, the values of A and β parameters are
+obtained, from which B parameter and squared speed of
+sound c2s are calculated. These values are given in Table I
+together with the χ2 values for the 34 different nlNJL
+EoSs giving the total of 34 data points. From these values
+the functional form, between nlNJL parameter space and
+the CSS one, is to be found.
+In order to find the functional dependence between
+the two parameter spaces, we analyze the behaviour of
+the CSS model parameters for different values of ηD and
+ηV , as given in Figure 2. The parameter A shows the
+strongest dependence on both nlNJL model parameters,
+while c2s and B are almost independent on ηD and linearly
+depending on ηV , respectively. From these dependencies, the simplest functional form between two parameter
+spaces can be assumed: the variation of CSS parameters
+is linear with the change of ηD , while it is quadratic with
+the change of ηV . Thus, we write the following equations
+A = a1 ηD + b1 ηV2 + c1
+
+(16)
+
+c2s
+
++ c2
+
+(17)
+
++ c3 ,
+
+(18)
+
+= a2 ηD +
+
+B = a3 ηD +
+
+b2 ηV2
+b3 ηV2
+
+where the coefficients ai , bi and ci (with i = 1, 2, 3) are
+obtained through a two-parameter (ηD , ηV ) fitting procedure of each of the CSS parameters (A, B, c2s ) and are
+given in Table II.
+To check the quality of our method, we choose one
+original nlNJL EoS that was not included in the initial
+fitting data set (e.g. ηD = 0.75 and ηV = 0.15) and
+calculate CSS EoS using Eq. (9) with the parameter values obtained through Eqs. (16)-(18). The EoS comparison is given in Fig. 3. It is worth noticing that the
+M − R curve for our example EoS with the parameter
+set (ηD , ηV ) = (0.75, 0.15) from the middle of the parameter range crosses the revised mass value 2.08 M⊙
+for PSR J0740+6620 [33] at the radius R = 12.5 km,
+which accidentally is in the middle of the overlap region
+12.2 km < R < 13.7 km of the 1σ NICER radius measurements from the two analysis teams (Riley et al. and
+Miller et al.) that have recently been reported [63].
+We have performed the fitting procedure considering
+the Alford parameterization as well. The results show
+
+102
+
+ηV = 0.12
+
+ηD = 0.71
+
+100
+
+ηV = 0.18
+
+ηD = 0.79
+
+-3
+
+A [MeV fm ]
+
+7
+
+98
+96
+94
+92
+0.54
+
+2
+
+cS [ c ]
+
+0.52
+
+2
+
+0.5
+0.48
+0.46
+94
+
+-3
+
+B [MeV fm ]
+
+92
+90
+88
+86
+84
+82
+0.7
+
+0.72
+
+0.74
+
+0.76
+
+0.78
+
+ηD
+
+0.8 0.1
+
+0.12
+
+0.14
+
+0.16
+
+0.18
+
+ηV
+
+FIG. 2. The change of CSS parameters (A, c2s and B) with the increase of ηD for different values of ηV (from 0.12 to 0.18 in
+steps of 0.01) on the left panels, and with the increase of ηV for different values of ηD (from 0.71 to 0.78 in steps of 0.01) on
+the right panels.
+
+that the CSS parameterization works better for fitting
+the nlNJL model. For comparison, the mass-radius (M −
+R) curves for the hybrid stars constructed using nlNJL
+model and two different versions of fitted EoS are shown
+in Fig. 4. For the hadronic EoS we have employed the
+relativistic density-functional (RDF) model based on the
+DD2 parameterization [66] with excluded volume effects
+[67]. The DD2 model with excluded volume is mainly
+used in the context of an early deconfinement onset with
+large latent heat.
+The results for the M − R curves sufficiently demonstrate the applicability of the mapping that has been
+performed. It is clear that the M − R curves for the
+CSS fit and its functional version are sufficiently close
+
+for these two parameterizations to be considered equivalent. Furthermore, their difference to the M − R curve
+for the original nlNJL EoS amounts to maximally 200 m
+in radius. This difference is well visible but still much
+smaller than the design accuracy of observational radius
+measurements from NICER, which even has not yet been
+reached by the first NICER radius measurements. Therefore, our work provides a sufficiently precise tool for NS
+phenomenology. Moreover, the comparison with Alford
+fit shows that the radius of the NS is really sensitive
+to the EoS. While both fits are very close according to
+Fig. 1, the CSS parameterization performs better in the
+M − R curve, in particular close to the onset of the phase
+transition at low densities. From our results, we can see
+
+8
+500
+
+TABLE I. The values of A, B and c2s calculated from the CSS
+EoS fit to the given nlNJL model defined by the values of ηD
+and ηV .
+
+0.70
+0.71
+0.71
+0.71
+0.71
+0.72
+0.72
+0.72
+0.73
+0.73
+0.73
+0.73
+0.74
+0.74
+0.74
+0.74
+0.75
+0.75
+0.75
+0.75
+0.76
+0.76
+0.76
+0.77
+0.77
+0.77
+0.77
+0.78
+0.78
+0.79
+0.79
+0.79
+0.79
+0.8
+
+0.15
+0.12
+0.14
+0.16
+0.18
+0.13
+0.15
+0.17
+0.12
+0.14
+0.16
+0.18
+0.11
+0.13
+0.15
+0.17
+0.12
+0.14
+0.16
+0.18
+0.13
+0.15
+0.17
+0.12
+0.14
+0.16
+0.18
+0.15
+0.17
+0.12
+0.14
+0.16
+0.18
+0.17
+
+A
+[MeV/fm3 ]
+91.484
+91.053
+91.649
+92.963
+94.481
+92.132
+92.954
+94.366
+92.612
+93.19
+94.17
+96.211
+93.236
+93.563
+94.41
+95.78
+94
+94.875
+95.894
+97.934
+95.235
+96.153
+97.66
+95.556
+96.433
+97.77
+99.685
+97.485
+99.34
+97.604
+97.912
+99.216
+100.878
+101.116
+
+c2s
+[c2 ]
+0.488
+0.4557
+0.476
+0.502
+0.532
+0.467
+0.49
+0.517
+0.457
+0.478
+0.503
+0.535
+0.449
+0.468
+0.491
+0.519
+0.461
+0.481
+0.506
+0.538
+0.47
+0.494
+0.522
+0.461
+0.483
+0.509
+0.541
+0.495
+0.525
+0.464
+0.484
+0.511
+0.541
+0.528
+
+B
+[MeV/fm3 ]
+87.209
+83.425
+85.815
+89.021
+92.214
+84.592
+87.209
+90.408
+83.28
+85.658
+88.385
+92.29
+82.095
+84.217
+86.884
+90.011
+82.899
+85.614
+88.391
+92.249
+84.101
+86.873
+90.172
+82.437
+85.287
+88.512
+92.155
+86.179
+90.034
+82.718
+84.755
+87.929
+91.415
+89.766
+
+χ2
+0.039
+0.022
+0.032
+0.047
+0.075
+0.026
+0.038
+0.058
+0.021
+0.031
+0.048
+0.073
+0.017
+0.026
+0.039
+0.061
+0.044
+0.031
+0.056
+0.078
+0.027
+0.039
+0.063
+0.021
+0.032
+0.074
+0.085
+0.042
+0.065
+0.02
+0.033
+0.053
+0.084
+0.070
+
+that the Alford fit may be useful close to the maximum
+mass.
+We conclude that for the nlNJL EoS parameterizations
+within the ranges 0.7 < ηD < 0.8 and 0.11 < ηV < 0.18,
+the CSS approach can mimic the behaviour of the nlNJL
+EoS to high accuracy. The range of ηD values between
+0.7 and 0.8 is covering the value for the Fierz transformation of a one-gluon exchange interaction (ηD = 3/4) and
+entails that the quark matter is in the color superconducting phase. The CSS parameters for the nlNJL EoSs
+
+-3
+
+ηV
+
+P [MeV fm ]
+
+ηD
+
+nlNJL model
+functional EoS
+
+400
+300
+200
+100
+0
+
+1000
+
+1200
+
+1400
+μ [MeV]
+
+1600
+
+1800
+
+FIG. 3. Comparison of the EoS for the original nlNJL for
+ηD = 0.75 and ηV = 0.15 (black solid line) with its CSS representation (magenta pluses) calculated from Eq. (9) where
+the parameters A = 93.586, c2s = 0.487 and B = 84.454 are
+determined using the functions (16)-(18) with the coefficients
+from Tab. II. The χ2 value of the fit is 0.049.
+
+with high values of ηV > 0.18 are showing deviations
+from the general behaviour fitted by Eqs. (16)-(18). But
+since for these ηV -values there is a causality violation at
+large chemical potentials, the CSS form of the EoS fitted
+at low densities can be used to extrapolate the EoS above
+a certain density. A lower limit on the values of the ηV
+parameter is not explored here.
+
+IV.
+
+CONCLUSION
+
+We have considered the correspondence between the
+covariant nlNJL model and the CSS model EoS. We have
+performed a mapping between the parameters of these
+two models in a decent range with a χ2 value that qualifies an excellent fit. The finding of this equivalence allows
+to employ the simpler CSS approach instead of the covariant nlNJL model when a hybrid star EoS with color
+superconducting quark matter shall be constructed. The
+
+TABLE II. The values of ai , bi and ci coefficients (i = 1, 2, 3)
+for the mapping between the (ηD , ηV ) and (A, c2s , B) parameter spaces given by Eqs. (16)-(18).
+i
+1
+2
+3
+
+parameter
+A
+c2s
+B
+
+unit
+MeV fm−3
+c2
+MeV fm−3
+
+ai
+80.663
+0.112
+10.43
+
+bi
+199.809
+4.318
+-502.998
+
+ci
+30.575
+0.312
+-83.462
+
+9
+
+3
+2.5
+2σ
+
+M [MO. ]
+
+2
+1.5
+
+PSR J0740+6620
+
+1σ
+
+2σ
+
+GW170817
+excluded
+(Bauswein et al.)
+
+GW170817 excluded (Annala et al.)
+
+DD2p40
+
+1
+
+DD2p40 + nlNJL model
+DDp40 + CSS fit
+DD2p40 + functional EoS
+
+0.5
+9
+
+DD2p40 + Alford fit
+
+10
+
+11
+
+12
+
+13 14
+R [km]
+
+15
+
+16
+
+17
+
+18
+
+FIG. 4. The M − R sequences for hybrid star EoS obtained
+by a Maxwell construction for a DD2p40 EoS (brown dashed
+line) with the nlNJL model (black double dashed dotted line;
+ηD = 0.75, ηV = 0.14), its CSS fit (red solid line), the functional mapping (orange dashed dotted line) and the Alford fit
+(blue dotted line). The constraints on the lower limit of the
+maximum mass from the revised Shapiro-delay based mass
+measurement on the massive pulsar PSR J0740+6620 [33] are
+shown with 1σ and 2σ precision. Additionally, we mark the
+excluded regions deduced from the gravitational wave observation GW170817 [64, 65].
+
+the Alford parameterization, but this resulted in a worse
+quality of the fit when compared to the CSS one, at least
+for masses well below the maximum mass. Therefore, we
+could confirm for the first time that the covariant nlNJL
+is fitted to the CSS parameterization with high accuracy.
+While these microphysical parameters, the diquark coupling and the vector meson coupling considered here to
+vary in the range of 0.7 < ηD < 0.8 and 0.11 < ηV <
+0.18, respectively, it is possible to extend the range of
+applicability of the CSS parameter fit also beyond these
+ranges.
+Our studies can be used not only in order to explore
+the phase transition between hadronic and color superconducting quark matter in cold NS, but it can also be
+extended to finite temperatures when it will be useful in
+simulations of core collapse supernovae [68] and neutron
+star mergers [69–71] involving quark matter deconfinement.
+
+ACKNOWLEDGMENTS
+
+functional fit provided in this work allows to interpret
+the parameters of the CSS model that are favorable for
+explaining NS phenomenology in terms of the unknown
+coupling constants of the effective low-energy QCD Lagrangian. We have also tried to fit the nlNJL EoS with
+
+SA acknowledges the COST Action CA16214
+"PHAROS" for the support of this project through the
+Short Term Scientific Mission (STSM), and appreciates
+the hospitality of the Physics Department of Faculty
+of Science at University of Zagreb for having her as a
+guest scientist. This work has been supported in part
+by the Polish National Science Centre (NCN) under
+grant No.
+2019/33/B/ST9/03059 (SA,DB,MS), by
+the Russian Fund for Basic Research (RFBR) under
+grant No. 18-02-40137 (DB) and Consejo Nacional
+de Investigaciones Cientı́ficas y Técnicas, under Grant
+No. PIP17-700 (AGG).
+
+[1] E. Annala, T. Gorda, A. Kurkela, J. Nättilä,
+and
+A.
+Vuorinen,
+Nature Phys. 16, 907 (2020),
+arXiv:1903.09121 [astro-ph.HE].
+[2] D. Blaschke,
+A. Ayriyan,
+D. E. AlvarezCastillo,
+and H. Grigorian, Universe 6, 81 (2020),
+arXiv:2005.02759 [astro-ph.HE].
+[3] Y.
+Nambu
+and
+G.
+Jona-Lasinio,
+Phys. Rev. 122, 345 (1961).
+[4] Y.
+Nambu
+and
+G.
+Jona-Lasinio,
+Phys. Rev. 124, 246 (1961).
+[5] T. Eguchi, Phys. Rev. D 14, 2755 (1976).
+[6] M. K. Volkov, Annals Phys. 157, 282 (1984).
+[7] U. Vogl, M. F. M. Lutz, S. Klimt, and W. Weise,
+
+Nucl. Phys. A 516, 469 (1990).
+[8] S. Klimt, M. F. M. Lutz, U. Vogl, and W. Weise,
+Nucl. Phys. A 516, 429 (1990).
+[9] S. P. Klevansky, Rev. Mod. Phys. 64, 649 (1992).
+[10] D. Ebert, H. Reinhardt,
+and M. K. Volkov,
+Prog. Part. Nucl. Phys. 33, 1 (1994).
+[11] T.
+Hatsuda
+and
+T.
+Kunihiro,
+Phys. Rept. 247, 221 (1994), arXiv:hep-ph/9401310.
+[12] M.
+Buballa,
+Phys. Rept. 407, 205 (2005),
+arXiv:hep-ph/0402234.
+[13] H. Kleinert, in 14th International School of Subnuclear
+Physics: Understanding the Fundamental Constitutents
+of Matter (1976).
+
+10
+[14] D. Ebert and V. N. Pervushin, in 18th International Conference on High-Energy Physics (1976).
+[15] R.
+T.
+Cahill
+and
+C.
+D.
+Roberts,
+Phys. Rev. D 32, 2419 (1985).
+[16] V. N. Pervushin, Y. L. Kalinovsky, W. Kallies, and N. A.
+Sarikov, Fortsch. Phys. 38, 334 (1990).
+[17] S. M. Schmidt, D. Blaschke, and Y. L. Kalinovsky,
+Phys. Rev. C 50, 435 (1994).
+[18] R.
+D.
+Bowler
+and
+M.
+C.
+Birse,
+Nucl. Phys. A 582, 655 (1995), arXiv:hep-ph/9407336.
+[19] G. Ripka, Quarks bound by chiral fields: The quarkstructure of the vacuum and of light mesons and baryons
+(1997).
+[20] C.
+J.
+Burden,
+L.
+Qian,
+P.
+C.
+Tandy,
+C.
+D.
+Roberts,
+and
+M.
+J.
+Thomson,
+Nucl. Phys. B Proc. Suppl. 47, 362 (1996).
+[21] D. Blaschke, G. Burau, Y. L. Kalinovsky, P. Maris,
+and P. C. Tandy, Int. J. Mod. Phys. A 16, 2267 (2001),
+arXiv:nucl-th/0002024.
+[22] H. T. Ding et al., Phys. Rev. Lett. 123, 062002 (2019),
+arXiv:1903.04801 [hep-lat].
+[23] C. Ratti, M. A. Thaler,
+and W. Weise,
+Phys. Rev. D 73, 014019 (2006), arXiv:hep-ph/0506234.
+[24] D. Horvatic, D. Blaschke, D. Klabucar,
+and
+O.
+Kaczmarek,
+Phys. Rev. D 84, 016005 (2011),
+arXiv:1012.2113 [hep-ph].
+[25] A. E. Radzhabov, D. Blaschke, M. Buballa,
+and
+M.
+K.
+Volkov,
+Phys. Rev. D 83, 116004 (2011),
+arXiv:1012.0664 [hep-ph].
+[26] S.
+Benic,
+D.
+Blaschke,
+and
+M.
+Buballa,
+Phys. Rev. D 86, 074002 (2012),
+arXiv:1206.6582 [hep-ph].
+[27] S.
+Noguera
+and
+N.
+N.
+Scoccola,
+Phys. Rev. D 78, 114002 (2008),
+arXiv:0806.0818 [hep-ph].
+[28] G. A. Contrera, A. G. Grunfeld,
+and D. B.
+Blaschke,
+Phys. Part. Nucl. Lett. 11, 342 (2014),
+arXiv:1207.4890 [hep-ph].
+[29] G. A. Contrera,
+A. G. Grunfeld,
+and
+D.
+Blaschke,
+Eur. Phys. J. A 52, 231 (2016),
+arXiv:1605.08430 [hep-ph].
+[30] P. Senger (CBM), Phys. Scripta 96, 054002 (2021),
+arXiv:2102.08908 [nucl-ex].
+[31] D. G. Dumm, J. P. Carlomagno, and N. N. Scoccola,
+Symmetry 13, 121 (2021), arXiv:2101.09574 [hep-ph].
+[32] C. Gocke, D. Blaschke, A. Khalatyan, and H. Grigorian, in Workshop on Quark Matter in Astrophysics and
+Particle Physics (2001) arXiv:hep-ph/0104183.
+[33] E.
+Fonseca
+et
+al.,
+(2021),
+arXiv:2104.00880 [astro-ph.HE].
+[34] T. Klahn and T. Fischer, Astrophys. J. 810, 134 (2015),
+arXiv:1503.07442 [nucl-th].
+[35] T. Klähn, D. Blaschke, F. Sandin, C. Fuchs,
+
+[36]
+
+[37]
+
+[38]
+
+[39]
+
+[40]
+
+[41]
+
+[42]
+
+[43]
+
+[44]
+
+[45]
+
+[46]
+
+[47]
+
+[48]
+
+[49]
+
+[50]
+
+[51]
+
+[52]
+
+A. Faessler, H. Grigorian, G. Röpke, and J. Trümper,
+Phys. Lett. B 654, 170 (2007), arXiv:nucl-th/0609067.
+T. Klähn,
+R. Lastowiecki,
+and D. B.
+Blaschke,
+Phys. Rev. D88, 085001 (2013),
+arXiv:1307.6996 [nucl-th].
+D. Gomez Dumm, D. B. Blaschke, A. G. Grunfeld,
+and N. N. Scoccola, Phys. Rev. D 73, 114019 (2006),
+arXiv:hep-ph/0512218.
+D. B. Blaschke,
+D. Gomez Dumm, A. G.
+Grunfeld, T. Klähn,
+and N. N. Scoccola,
+Phys. Rev. C 75, 065804 (2007), arXiv:nucl-th/0703088.
+D. E. Alvarez-Castillo, D. B. Blaschke, A. G. Grunfeld, and V. P. Pagura, Phys. Rev. D99, 063010 (2019),
+arXiv:1805.04105 [hep-ph].
+A. Ayriyan, D. Alvarez-Castillo, D. Blaschke,
+and
+H.
+Grigorian,
+Universe 5, 61 (2019),
+arXiv:1812.10796 [astro-ph.HE].
+M. A. R. Kaltenborn, N.-U. F. Bastian,
+and
+D. B. Blaschke, Phys. Rev. D 96, 056024 (2017),
+arXiv:1701.04400 [astro-ph.HE].
+M. Shahrbaf, D. Blaschke, A. G. Grunfeld,
+and
+H. R. Moshfegh, Phys. Rev. C 101, 025807 (2020),
+arXiv:1908.04740 [nucl-th].
+M. Shahrbaf, D. Blaschke,
+and S. Khanmohamadi,
+J. Phys. G 47, 115201 (2020),
+arXiv:2004.14377 [nucl-th].
+A. Ayriyan, D. Blaschke, A. G. Grunfeld, D. AlvarezCastillo, H. Grigorian, and V. Abgaryan, "Bayesian
+analysis of multimessenger M-R data with interpolated
+hybrid EoS," (2021), arXiv:2102.13485 [astro-ph.HE].
+M.
+G.
+Alford,
+S.
+Han,
+and
+M.
+Prakash,
+Phys. Rev. D 88, 083013 (2013),
+arXiv:1302.4732 [astro-ph.SR].
+J.
+L.
+Zdunik
+and
+P.
+Haensel,
+Astron. Astrophys. 551, A61 (2013),
+arXiv:1211.1231 [astro-ph.SR].
+D.
+Blaschke
+and
+M.
+Cierniak,
+Astron. Nachr. 342, 227 (2021),
+arXiv:2012.15785 [astro-ph.HE].
+Z.
+Miao,
+A.
+Li,
+Z.
+Zhu,
+and
+S.
+Han,
+Astrophys. J. 904, 103 (2020),
+arXiv:2006.00839 [nucl-th].
+V.
+Paschalidis,
+K.
+Yagi,
+D.
+AlvarezCastillo,
+D.
+B.
+Blaschke,
+and
+A.
+Sedrakian,
+Phys. Rev. D 97, 084038 (2018),
+arXiv:1712.00451 [astro-ph.HE].
+M.
+G.
+Alford
+and
+A.
+Sedrakian,
+Phys. Rev. Lett. 119, 161104 (2017),
+arXiv:1706.01592 [astro-ph.HE].
+J. J. Li,
+A. Sedrakian,
+and M. Alford,
+Phys. Rev. D 101, 063022 (2020),
+arXiv:1911.00276 [astro-ph.HE].
+D. Blaschke, S. Fredriksson, H. Grigorian, A. M. Oz-
+
+11
+
+[53]
+
+[54]
+[55]
+
+[56]
+
+[57]
+
+[58]
+[59]
+
+[60]
+
+[61]
+
+[62]
+
+tas, and F. Sandin, Phys. Rev. D 72, 065020 (2005),
+arXiv:hep-ph/0503194.
+D.
+Blaschke,
+T.
+Klähn,
+R.
+Lastowiecki,
+and
+F.
+Sandin,
+J. Phys. G 37, 094063 (2010),
+arXiv:1002.1299 [nucl-th].
+M. Alford, M. Braby, M. W. Paris, and S. Reddy,
+Astrophys. J. 629, 969 (2005), arXiv:nucl-th/0411016.
+D. S. Zablocki, D. B. Blaschke, R. Anglani, and Yu. L.
+Kalinovsky, Three days of strong interactions. Proceedings, EMMI Workshop and 26th Max Born Symposium,
+Wroclaw, Poland, July 9-11, 2009, Acta Phys. Polon.
+Supp. 3, 771 (2010), arXiv:0912.4929 [hep-ph].
+A. Ayriyan, D. Blaschke, A. G. Grunfeld, D. AlvarezCastillo, H. Grigorian, and V. Abgaryan, (2021),
+arXiv:2102.13485 [astro-ph.HE].
+H.
+T.
+Cromartie
+et
+al.
+(NANOGrav),
+Nature Astron. 4, 72 (2019),
+arXiv:1904.06759 [astro-ph.HE].
+B.
+K. Agrawal,
+Phys. Rev. D 81, 023009 (2010),
+arXiv:1001.1584 [astro-ph.HE].
+L.
+Bonanno
+and
+A.
+Sedrakian,
+Astron. Astrophys. 539, A16 (2012),
+arXiv:1108.0559 [astro-ph.SR].
+R. Lastowiecki, D. Blaschke, H. Grigorian,
+and
+S.
+Typel,
+Acta Phys. Polon. Supp. 5, 535 (2012),
+arXiv:1112.6430 [nucl-th].
+M. G. Alford, G. F. Burgio, S. Han, G. Taranto,
+and D. Zappalà, Phys. Rev. D 92, 083002 (2015),
+arXiv:1501.07902 [nucl-th].
+E. S. Fraga, R. D. Pisarski, and J. Schaffner-Bielich,
+
+Phys. Rev. D 63, 121702 (2001), arXiv:hep-ph/0101143.
+[63] "NASA's
+NICER
+Tests
+Matters
+Limits,"
+https://svs.gsfc.nasa.gov/13832, accessed: 2021-0419.
+[64] A. Bauswein, O. Just, H.-T. Janka, and N. Stergioulas,
+Astrophys. J. Lett. 850, L34 (2017),
+arXiv:1710.06843 [astro-ph.HE].
+[65] E. Annala,
+T. Gorda,
+A. Kurkela,
+and
+A.
+Vuorinen,
+Phys. Rev. Lett. 120, 172703 (2018),
+arXiv:1711.02644 [astro-ph.HE].
+[66] S. Typel, G. Röpke, T. Klähn, D. Blaschke,
+and H. H. Wolter, Phys. Rev. C 81, 015803 (2010),
+arXiv:0908.2344 [nucl-th].
+[67] S. Typel, Eur. Phys. J. A 52, 16 (2016).
+[68] T. Fischer, N.-U. F. Bastian, M.-R. Wu, P. Baklanov, E. Sorokina, S. Blinnikov, S. Typel, T. Klähn,
+and D. B. Blaschke, Nature Astron. 2, 980 (2018),
+arXiv:1712.08788 [astro-ph.HE].
+[69] A. Bauswein, N.-U. F. Bastian, D. B. Blaschke,
+K. Chatziioannou, J. A. Clark, T. Fischer,
+and
+M.
+Oertel,
+Phys. Rev. Lett. 122, 061102 (2019),
+arXiv:1809.01116 [astro-ph.HE].
+[70] A. Bauswein, S. Blacker, V. Vijayan, N. Stergioulas, K. Chatziioannou, J. A. Clark, N.-U. F.
+Bastian, D. B. Blaschke, M. Cierniak,
+and
+T.
+Fischer,
+Phys. Rev. Lett. 125, 141103 (2020),
+arXiv:2004.00846 [astro-ph.HE].
+[71] S. Blacker, N.-U. F. Bastian, A. Bauswein, D. B.
+Blaschke, T. Fischer, M. Oertel, T. Soultanis,
+and
+S.
+Typel,
+Phys. Rev. D 102, 123023 (2020),
+arXiv:2006.03789 [astro-ph.HE].
+

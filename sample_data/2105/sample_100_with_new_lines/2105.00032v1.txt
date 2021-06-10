@@ -1,0 +1,667 @@
+article
+quantum heat engines with contact interactions
+nathan m myers 1   jacob mccready1  and sebastian deffner 12 
+arxiv210500032v1 condmatstatmech 30 apr 2021
+department of physics university of maryland baltimore county baltimore md 21250 usa
+instituto de fsica gleb wataghin universidade estadual de campinas campinas 13083859 so paulo brazil
+correspondence myersn1umbcedu nm deffnerumbcedu sd
+abstract by harnessing quantum phenomena quantum devices have the potential to outperform their
+classical counterparts here we examine using wave function symmetry as a resource to enhance the
+performance of a quantum otto engine previous work has shown that a bosonic working medium
+can yield better performance than a fermionic medium we expand upon this work by incorporating a
+singular interaction that allows the effective symmetry to be tuned between the bosonic and fermionic
+limits in this framework the particles can be treated as anyons subject to haldanes generalized
+exclusion statistics solving the dynamics analytically using the framework of statistical anyons
+we explore the interplay between interparticle interactions and wave function symmetry on engine
+performance
+keywords quantum thermodynamics quantum heat engines generalized exclusion statistics anyons
+1 introduction
+citation myers n m mccready j
+deffner s quantum heat engines
+with contact interactions preprints
+2021 1 0 httpsdoiorg
+received
+accepted
+published
+publishers note mdpi stays neutral
+with regard to jurisdictional claims in
+published maps and institutional affiliations
+thermodynamics was originally developed as a physical theory for the purpose of
+optimizing the performance of largescale devices namely steam engines 1 despite these
+practicallyfocused origins thermodynamics has proven enormously successful in formulating
+universal statements such as the second law with the growing prominence of quantum
+technologies the field of quantum thermodynamics has emerged to understand how the
+framework of thermodynamics can be extended to quantum systems 2 one of the principal
+goals of quantum thermodynamics is to discover how quantum features such as entanglement
+superposition and coherence can be best leveraged to optimize the performance of quantum
+devices
+in the tradition of thermodynamics the analysis of quantum heat engines have provided
+one of the primary tools for exploring how quantum effects change the thermodynamic behavior of a system a nonexhaustive list of literature analyzing quantum thermal machine
+performance includes works examining the role of coherence 310 quantum correlations
+11 manybody effects 91215 quantum uncertainty 16 relativistic effects 1719 degeneracy 2021 endoreversible cycles 2224 finitetime cycles 82527 energy optimization
+28 shortcuts to adiabaticity 712132934 efficiency and power statistics 3537 and comparisons between classical and quantum machines 223840 implementations have been
+proposed in a wide variety of systems including harmonically confined single ions 41 magnetic systems 42 atomic clouds 43 transmon qubits 44 optomechanical systems 4546
+and quantum dots 4748 quantum heat engines have been experimental implemented using
+nanobeam oscillators 49 atomic collisions 50 and twolevel ions 51
+a notable feature of quantum particles is that they are truly indistinguishable to account
+for this the wave function of a multiparticle state is constructed out of the symmetric for
+bosons or antisymmetric for fermions superposition of the single particle states this
+wave function symmetry has physical consequences in terms of state occupancy with any
+number of bosons allowed to occupy the same quantum state while fermions are restricted
+to single occupancy  the famous pauli exclusion principle the superposition arising from
+2 of 15
+the symmetrization requirements also leads to interference effects that manifest as exchange
+forces in the form of an effective attraction between bosons and effective repulsion between
+fermions 52 wave function symmetry leads to quantum modifications of thermodynamic
+behavior allowing for more work to be extracted from indistinguishable particles through
+mixing 53 or as the working medium of a quantum heat engine 245456 in ref56 we
+showed that for a working medium of two noninteracting identical particles a harmonic
+quantum otto engine exhibits enhanced performance if the particles are bosons and reduced
+performance if they are fermions in this paper we expand upon these results by introducing
+an interaction proportional to the inverse square of the interparticle distance in addition to the
+standard harmonic potential this model is often referred to as the singular 57 or isotonic
+oscillator 58
+this potential is of particular interest as it provides the basis for the calogerosutherland
+model 5960 a system known to host generalized exclusion statistics ges anyons 6162
+in the framework of ges the pauli exclusion principle is generalized to allow for a continuum
+of state occupancy from the single occupancy allowed to fermions up to the infinite state
+occupancy allowed to bosons 61 in the calogerosutherland model this anyonic behavior
+arises from tuning the interparticle interaction strength effectively interpolating between the
+bosonic and fermionic exchange forces 62
+we determine a closed form for the thermal state density matrix for two particles in the
+singular oscillator potential by mapping to an equivalent system of statistical anyons 24
+consisting of a statistical mixture of bosons and fermions we determine the timedependent
+internal energy while varying the oscillator potential we then analyze a quantum otto cycle
+demonstrating performance that interpolates between the bosonic and fermionic of ref 56
+as the interaction strength parameter is changed
+2 the twoparticle singular oscillator
+we begin by outlining the model notation and previous results from the literature that
+are central to our analysis we use the following hamiltonian for two particles in a singular
+oscillator potential 6263
+p1 2  p2 2
+h  1
+ m 2 x1 2  x2 2 
+2mx1  x2 2
+where the parameter  quantifies the strength of the interparticle interaction following
+calogeros original approach 59 we rewrite this hamiltonian in the center of mass and
+relative coordinate frame using the momentum coordinate transformations p  p1  p1 
+p  p1  p1 2 and the position coordinate transformations x  x1  x1 2 x  x1  x1 
+with this transformation we can solve the dynamics of the center of mass and relative
+coordinates separately
+hcm 
+ m 2 x2 
+2m 2
+hrel 
+h  1
+  2 x2 
+2 2
+4x2
+where m  2m and   m2 we see that the center of mass hamilton is identical to that of
+an unperturbed harmonic oscillator for a single particle of mass 2m while the relative motion
+hamiltonian is identical to that of a singular oscillator with a single particle of mass m2
+note that this approach is very commonly applied when solving the dynamics of classical
+interacting oscillator systems 64
+3 of 15
+the eigenfunctions and eigenenergies of eq 2 are well known and those of eq 3 have
+been determined directly 5859 using operator methods 65 and as a generalization of the
+morse potential 57 the eigenfunctions are
+rel  x  
+   1 12
+x exp 
+ln12
+x2 
+n    12
+with the corresponding eigenenergies
+erel
+ h 2n   
+where n  0 1 2  and ln  x  is the generalized laguerre polynomial 66
+for indistinguishable quantum particles the total wave function must remain symmetric
+under particle exchange for bosons and antisymmetric for fermions in the center of mass and
+relative coordinate framework the symmetry condition is satisfied by rel  x   rel  x  for
+bosons and rel  x   rel  x  for fermions 60 examining eq 4 we see that the parity
+depends on the value of the interaction strength parameter  noting the relationship between
+the generalized laguerre and hermite polynomials 67
+12 2
+h2n  x   1n 22n n l
+h2n1  x   1n 22n1 n x l12
+n  x 
+along with the gamma function identity 66
+2n 
+4 n
+we see that for   0 eq 4 becomes
+rel
+22n 2n
+h2n
+similarly for   1 eq 4 becomes
+rel
+x  p
+22n1 2n  1
+h2n1
+equations 8 and 9 correspond to the relative motion wave functions for two bosons and
+two fermions in a pure harmonic potential respectively note that the restriction of eq 8 to
+even and eq 9 to odd hermite polynomials ensures that the proper exchange symmetry
+conditions are satisfied this demonstrates that particles in the singular oscillator potential
+can be treated as anyons obeying generalized exclusion statistics 61 with  as the parameter
+that controls the nature of the particle statistics this behavior was first established by murthy
+and shankar in the context of the thermodynamics of the calogerosutherland model 62
+3 singular oscillator thermal state
+the equilibrium thermodynamic behavior of the twoparticle singular oscillator can be
+determined from the canonical partition function
+z  trexp h 
+4 of 15
+noting h  hcm  hrel the partition function can be split into the product of individual
+partition functions for the center of mass and relative motion the center of mass partition
+function can be found straightforwardly in the energy representation using the harmonic
+oscillator eigenenergies
+zcm 
+exp ecm  
+n 0
+exp h2
+exp
+exp
+ h   1
+n 0
+we can find the relative partition function using eq 5
+zrel 
+exp erel  
+n 0
+exp h 32  
+exp
+exp2h   1
+n 0
+the total canonical partition function is then
+z  zcm zrel 
+exp h   2
+exp h   1exp h   12
+equation 13 can be identified as a product of bosonic and fermionic contributions to this
+end note that the partition functions for two bosons and two fermions in a harmonic potential
+are 24
+zb 
+exp2h 
+exp h   1exp h   12
+and
+zf 
+exp h 
+ 14
+exp h   1exp h   12
+and therefore we can express the singular oscillator partition function 13 as
+z   zb 1  zf  
+this agrees with the partition function determined by murthy and shankar for the calogerosutherland model 62 and that of a statistical mixture of bosons and fermions in a harmonic
+potential using the framework of statistical anyons 24
+a fuller thermodynamic picture arises from the equilibrium thermal density matrix this
+can be determined in position representation using
+ x y 
+n 0
+exp en n  x n y
+the density matrix for the center of mass motion is given by the known thermal state of the
+quantum harmonic oscillator 68
+cm  x y  
+mcsch h 
+zcm
+ exp 
+ x  y  tanh
+  x  y  coth
+the density matrix for the relative motion can be found in closed form by combining
+eqs 4 and 16 and applying the hardyhille formula 69
+2 xyt
+ x  yt
+exp
+   n    1 n n
+ xyt2 1  t
+n 0
+5 of 15
+where i  x  is the modified bessel function of the first kind 66 this yields
+rel  x y 
+csch h  xy
+zrel 2h
+x2  y2 coth h  i 1
+ exp 
+xy csch h  
+the total thermal state density matrix in the position representation can then be determined
+from the simple cartesian product of cm and rel  eqs 17 and 19 respectively
+ x y x y  cm  x y rel  x y
+4 singular oscillator dynamics
+with the equilibrium behavior of the two particle singular oscillator established we next
+consider the evolution of the system for a timedependent parameterization of the frequency
+   t as in the case of the thermal state we will treat the dynamics of the relative and
+center of mass motion separately
+the dynamics of the center of mass coordinate described by eq 2 are that of the
+wellstudied timedependent parametric harmonic oscillator 70 the time evolved state can
+be determined using the path integral formulation by applying the appropriate propagator
+cm  x y t 
+dx0
+dy0 ucm  x x0  t cm  x0  y0  0 ucm
+y y0  t
+where ucm  x x0  t is given by 70
+ucm  x x0  t 
+exp
+ t x  2xx0  wt x0  
+2ihzt
+2hzt
+zt and wt are timedependent solutions to the classical harmonic oscillator equation of motion
+zt  t2 zt  0
+with initial conditions z0  0 0  1 and w0  1 0  0
+the dynamics of the relative coordinate described by eq 3 are that of the timedependent parametric singular oscillator the corresponding propagator for this hamiltonian
+has also been determined exactly 7174
+m xx0
+mxx0
+j12
+urel  x x0  t  
+exp  i   12 
+ t x2  wt x02   24
+hzt
+2hzt
+2hzt
+where j  x  denotes the bessel function of the first kind 66 and zt and wt are the same as in
+eq 23 as in the center of mass case the time evolved density matrix for the relative motion
+is given by
+rel  x y t 
+dx0
+dy0 urel  x x0  t rel  x0  y0  0 urel
+y y0  t
+while the integrals in eq 21 can be carried out analytically 7577 the product of bessel
+functions in eq 25 makes determining a closedform expression for general values of 
+difficult to determine an analytical expression for the timeevolved state we instead turn to
+the framework of statistical anyons 24
+in ref 24 we showed that the behavior of a pair of particles in a noninteracting
+statistical mixture of boson and fermion pairs is on average fully equivalent to that of interacting
+6 of 15
+particles obeying generalized exclusion statistics in this framework the generalized exclusion
+statistics parameter is equivalent to the probability that a given pair of particles in the statistical
+mixture are fermions pf 24 in the context of this work this means that we can exactly map
+the behavior of particles in a singular oscillator potential to the average behavior of a statistical
+mixture of bosons and fermions in a harmonic oscillator potential using this mapping the
+singular oscillator density matrix is given by
+ x1  x2  y1  y2  t  1  pf  har  x1  x2  y1  y2  t  pf har  x1  x2  y1  y2  t
+where har  x1  x2  y1  y2  t and har  x1  x2  y1  y2  t are the time evolved states for two noninteracting bosons and fermions in a harmonic potential respectively the full expressions
+were determined in ref 56 and are provided in appendix a for completeness note that
+in eq 21 we have switched back into the individual particle frame recalling that the
+generalized exclusion statistics parameter for the singular oscillator is given by the interaction
+strength 62 we have the relation pf  
+the timedependent average energy can be determined in the usual manner
+h ht i  tr x1  x2  y1  y2  t ht 
+using eq 26 this becomes
+h ht i  1  h hhar i  h hhar i
+in ref 56 we found h hhar i and h hhar i to be
+h hhar i 
+ht 
+q 3coth h0   csch h0   1
+and
+ht 
+q 3coth h0   csch h0   1
+where q is a dimensionless parameter that measures the degree of adiabaticity of the evolution 70
+1 h 2 2 2
+0 t zt  t2  t2 wt2  t2 
+20 t
+h hhar i 
+for a perfectly adiabatic stroke q  1 and in general q  1 4170 by combining eqs 28
+ 30 we find
+ht 
+h ht i 
+q 3 coth 0 h  csch 0 h  2  1
+note that h ht i  t 0  q h h0 i where h h0 i is the internal energy of the equilibrium
+thermal state which can be determined from eq 13 using
+h h0 i  
+ln z 
+this expression for h ht i agrees with the result of ref 54 which determined the time
+dependent average energy of the singular oscillator using the scale invariance of the potential
+5 the quantum otto cycle
+the quantum otto cycle like its classical counterpart consists of four strokes 1 isentropic compression 2 isochoric heating 3 isentropic expansion and 4 isochoric cooling
+7 of 15
+for our working medium of two particles confined within a singular oscillator the isentropic
+strokes consist of increasing the oscillator frequency for compression and decreasing it for
+expansion during an isentropic stroke the state of the working medium evolves unitarily
+with constant von neumann entropy thus fulfilling the isentropic condition this is notably
+different from the classical otto cycle in which the isentropic strokes are thermodynamically
+adiabatic and reversible for the quantum cycle the finite time unitary strokes are not generally adiabatic ie in accordance with the quantum adiabatic theorem and thus subject to
+quantum friction in the form of nonadiabatic excitations to other energy states 2
+the isochoric strokes consist of coupling the working medium to a hot cold bath to
+increase decrease the energy of the system while holding the oscillator frequency constant
+we make the standard assumption that the thermalization time is sufficiently short such that
+the working medium has achieved a state of thermal equilibrium with the bath by the end of
+each isochoric strokes which removes the need to explicitly model the systembath interaction
+121524293241567879 the cycle is illustrated graphically in fig 1
+hhi
+latexit sha1base64jqpf2cmy3wiidmpk9a1bvlt0qgaaacbxicbva9swnben3zm8avqkuwi0gwcnciabm0srnbfeauhl3nxljkbynrpckcbgv2jjoyit8hofpmkkithwy8fwgnxlbiovb112vlbx1jc2c1vf7z3dvf3swwhtxknm0ocxjhu7yaakunbagrlaiqywbrjaweh26rceqbsrq3scj9cn2ecjuhcgvuqvtnwjifqsqyeewqofomhjp90pltlmomvem5mymapek335zinesjkkhnt8dweuxntkliesdfpdssmj9gaopyqfohpzvkve3pmlt4ny21lic3v3xmzi4wzr4htjbgozai3ffzoimg191mqcrfuhz2uzhkijgdrkl7qgnhobaecs3srpqpmwycbxbfg4k3epiyav5uplfi3v2wqzfzoarkmjysckrk1ilnvindclji3kmrtnexjenhfny9a64sxnjsgfoj8ttcycalatexit
+sha1base64hp6lruf2d3tzaldqaqqvekmxywaaab2xicbzdnsgmxfixv1l86vq1rn8eiucozbnqpuhfzwbzco5rm5k4bmskmyr2hdh0bf25efc93vo3pz0jbdwqzknivscullqubn9ebwd3bgfugfnfzjk9nmo2fz0gjsilzl5jnmfpxu2cvjcp8lgzylffbj6f0i77gstlxtzqrmmr4wmtuck7o6oyaraadlmw2ivxdc9yanbgss7kddujxa0dhefbucunsafw7g9liwuxuz7ggupnm7rrtrxzzi6dk7a0n5oykv394ukz9bostjdzdhn7ga2mplbiwlt1eldvesarh6kc0vo5wtdmajnchizrxwyasblykjn1yqa8z3hysbg29d77odbu3wmya6nmmfxeein3ahd9cblghi4bxevyn35n2suqp569lo4i8zx84xio4latexit
+sha1base640fsg5llq8jn43ogu1rcaxmchqaaabnicbzblswmxfixvky1anwri2arxjuzn7ou3hrzwt6gu0omvdogzjjdckcoprs3hu3lhtxh7jz35gftp6ihbytkjyvyht0plvf3sbm1vbo7ufvej6edwqhxcato0nwibilwpaufcopiagyrjytszyjniyssa3c361imak1p9qommuwkfabllwclfvfjzqdcmuhe9umhqldrymktqzpe9cswvnoxdrmstqwwqvfkx2efxmcmoti1nycp6puhbusqug0goywmy5gfiadzzvp0hyn8ymm7milfranxi1nbj7vjhhibxjjhine05du9rnwv6tk7xtxcidzytarf4km4vo5tnklcnchijz3hwkj3vyag3hbbdlzrqqhwr143zatq4fedex8kcarncakbxmmt1kaodrdwbcwbuesfqfsxwbxhlbifwr97nd8fvlwalatexit
+sha1base64np6kl8l6hivywbmxzyczqdx9aw8aaacbxicbvc7sgnbfj2nrxhfuustbongfxzttazapixghpbdwuzk7mbi7owyc1ciiy2nv2jjoyit2dn3zh5fjp44mkzc5l7j1hjovb112cmvrg5tbxe3szu7ekh58khl0lxzapjuprotmgnskgiiqamdtanlqgntchg79dspoi1i1t2omggsfisrcc7qsr3yqs8hql8yfuugdepreqq17n3r1xxq4mdjv4c1ihczr65sni8ayvcmmo6npthmgyabzcwkfm5gyzxiyuha6liczhgpltiqst0qdrqm0ppdp198syjcamktb2jgwhztmbiv953ryj62asvjyjkd7kmolxzroi6f9oygjhfncubz2v8ohtdoonrisdcfbpnmvtc6rnlv17txk7wyrr5gckdnyqtxyrwqkthqksth5jmklbw5t86l858zfslzmlmmpyb8kdtzcybalatexit
+latexit sha1base64f9vhlsqpxmtf6o6tsyludf61y0aaab73icbvdlsgnbeoynrxhfuy9ebopgkeykomegf48rzaosjcxoepmhmzvrzkwqqn7ciwdfvpo73vwbj8kenlggoajqprsrsgu31vevclasbmvng7tlo7t39qpjxqgpvphg2mhnltiboupmgg5vzgo9vizsswfy1uz37rcbxhknmw4xrdsqcjjzmj1kntrpi4ol2gv674vx8oskqcnfqgr71xur2fcskjpyjakwn8fmbtqi2namclrqzwzsyer1gx9gesjthzh7vljw5pu9ipv0llszv3xmtko0zy8h1smqhztmbif95nczg1gej2lmmwglrxemifvk9jzpc43mirejlgnubivssdvl1kvucieeyyvkuzfnfcrwf1lpxatx1geezifcwjgcmpwb3voaambzakb96j9k9exl1okxzxzdh3ifp7mhj78latexit
+latexit sha1base64qug8ixi01zudf6doeaeqggcgj1caaab7xicbvdlsgnbeoynrxhfuy9efopgkeykomegf48rzaosjcxoepmx81hmzouq8g9epcji1fx5t84sfagiqunrvu33v1xypmxqfdtfdbwnza3itulnd29ypy4vhtqextbfdflw7hxcbnehuwwy7tvcmrmcdwplqda0n1iypwdhkuacdcrlgcxwsc2uejggvxilqazzkskzekfctr75a9ux9fmolsue2m6yzdaaek0zztjtntndkaejsgao45kitbekm1umkx0udqvtp5ct0xickysyhdpyb2aja9mfif18lsch1nmewzi5iufiuz963yz67faarwj52hfdn3k0hrjnqhublvwi4fllq6r5uq2danhwand5heu4qro4rxcuiia3eedgkdhez7hfd485b14797horxg5tph8afe5wqmy8blatexit
+latexit
+latexit sha1base645lhhplsuybcl7q088nmkaynxtnoaaab73icbvdlsgnbeoz1gemr6thlyba8hd0g6dhoxwme84bkcbot3mtizm46myuekjw4kerr6ongsbihtsxokkq66e6kusgn9f1vb219y3nru7bt3n3bpzgshr03jco0wwztqul2ra0knmddciuwnwqkmhlyika3m71hnpwltzycyqhpioex5xr66r2v0kc0f61vyr7fx8oskqcnjqhr71xur2fcskjpyjakwn8fmbtqi2namcfruzwzsyer1gx9gesjthzh7vljw7pu9ipv0llszv3xmtko0zy8h1smqhztmbif95nczg1gej2lmmwglrxemifvk9jzpc43mirejlgnubivssdvl1kvudceeyyvkma1eviv4p6yxlvj4yjakzzbbqrwbtw4gzo0gigaz3ifnrehevy9f65qxz5zah3ifp7slj8alatexit
+figure 1 energyfrequency diagram of a quantum otto cycle
+we consider a linear driving protocol for duration  such that the time dependence of
+the frequency is given by
+t 12
+t  02  
+for the compression stroke and
+for the expansion stroke note that for this driving protocol eq 23 can be solved analytically
+and yields solutions in terms of the airy functions 75
+to determine the average heat and work exchanged during each stroke we use the
+following method we determine the internal energy at the beginning of the compression
+stroke point a in the cycle from a thermal equilibrium state with the cold bath then using
+eq 32 we determine the internal energy at the end of the compression stroke point b the
+change in internal energy between a and b gives the average work done on the system w1 
+we can find the the internal energy at point c using the thermal equilibrium state with the
+hot bath the change in internal energy between c and b gives the average heat exchanged
+with the hot bath q2  again applying eq 32 we find the internal energy at the end of
+8 of 15
+the expansion stroke point d the change in internal energy between c and d gives the
+average work done by the system w2  finally we can then use the difference in internal
+energy between points d and a to find the average heat exchanged with the cold bath q4 
+with the average work and heat for each stroke in hand we can then calculate the
+efficiency from the ratio of the total work to the heat input and the power from the ratio of
+total work to the cycle time
+hw1 i  hw3 i
+h q2 i
+and
+hw1 i  hw3 i
+cyc
+we consider isentropic strokes of equal duration 1  3   as we do not explicitly
+model the systembath interaction we represent the duration of the isochoric strokes as a
+multiplicative factor of the isentropic stroke duration thus we can represent the total cycle
+time as cyc  2 the full expressions for the efficiency and power are cumbersome and
+detailed in appendix b
+in fig 2 we plot the engine efficiency as a function of the ratio of bath temperatures
+confirming the results of ref 56 we see that the efficiency is greatest in the noninteracting
+bosonic limit of   0 and least in the noninteracting fermionic limit of   1 between these
+limits we observe that increasing the interaction strength from zero to one interpolates the
+efficiency smoothly between the bosonic and fermionic bounds in fig 3 we plot the engine
+efficiency as a function of the stroke time  again we see that   0 provides the greatest
+efficiency and   1 the worst with intermediate values of  falling between these limits we
+see that increasing the stroke time results in increasing efficiency approaching the bound of
+  1  0  achieved in the limit of perfectly adiabatic strokes q  1 we note that in
+the limit of long stroke times the efficiency converges to this limit for all values of  this
+indicates that the influence of the interaction on the engine performance is a fundamentally
+nonequilibrium effect the oscillatory behavior of the efficiency arises from the form of q for
+the linear protocol
+030
+025
+020
+015
+010
+005
+thottcold
+figure 2 efficiency as a function of the bath temperature ratio for   0 blue dashed   12 red
+solid and   1 green dotdashed parameters are 0      1
+next we examine the power output of the engine as a function of the ratio of bath
+temperatures as shown in fig 4 as with the efficiency we see that the bosonic limit   0
+gives the greatest power output and the fermionic limit   1 gives the least intermediate
+values of  fall between these bounds in fig 5 we plot the power as a function of the stroke
+time as in the case of the efficiency we see that the shift in the power output arising from the
+interaction vanishes as the stroke time increases
+9 of 15
+figure 3 efficiency as a function of the stroke time for   0 blue dashed   12 red solid and
+  1 green dotdashed parameters are 0  tc  1 th  4   3
+thottcold
+figure 4 power as a function of the bath temperature ratio for   0 blue dashed   12 red solid
+and   1 green dotdashed parameters are 0      1
+examining both efficiency and power plots we observe that the zeroes for efficiency and
+power all occur at finite values of the bath temperature ratio or stroke time these zeroes mark
+the transition to the parameter regimes where the cycle no longer satisfies the conditions
+h q2 i  0
+h q4 i  0
+and
+hw1 i  hw3 i  hwtot i  0
+where we use the convention that work or heat flowing into the system is positive these
+are known as the positive work conditions and must be met for the cycle to function as an
+engine in the parameter regimes where the positive work conditions are not satisfied
+efficiency and power are no longer meaningful metrics of performance in these regimes
+the cycle functions instead as a heater accelerator or refrigerator in a heater work is put
+into the system to induce heat flow into both baths h q2 i  0 h q4 i  0 hwtot i  0 in an
+accelerator work is put into the system to enhance the flow of heat from the hot to the cold
+bath h q2 i  0 h q4 i  0 hwtot i  0 lastly in a refrigerator work is put into the system to
+induce heat flow from the cold to the hot bath h q2 i  0 h q4 i  0 hwtot i  0
+we note that the values of the bath temperature ratio and stroke time for which the
+system transitions out of the engine regime vary for different values of  to further explore
+this relationship in fig 6 we show the parameter space under which the cycle functions as
+10 of 15
+thottcold
+thottcold
+thottcold
+figure 6 parameter regimes where the cycle functions as a refrigerator dark blue top heater light blue upper middle accelerator tan
+lower middle and engine orange bottom for a   0 b   05 and c   1 parameters are 0    1
+figure 5 power as a function of the stroke time for   0 blue dashed   12 red solid and   1
+green dotdashed parameters are 0  tc  1 th  4   3
+each type of thermal machine for different interaction strengths we see that for short stroke
+times   0 displays the smallest heater and accelerator regimes and the largest engine
+regime while   0 displays the largest heater and accelerator regimes and the smallest
+engine regime intermediate values of  fall between these limits in general we see that as
+cycle time increases the heater and accelerator regimes vanish as do the differences in the
+parameter space for the different values of 
+6 discussion
+in this work we have analyzed the performance of a quantum otto engine with a
+working medium of two particles in a singular oscillator potential including the efficiency
+power output and parameter regimes where the cycle functions as different types of thermal
+machines we have determined the full timedependent dynamics using the framework of
+statistical anyons and shown that by changing the strength of the interparticle interaction we
+can interpolate between the performance of bosonic and fermionic working mediums we see
+that impact of the singular interaction on the engine performance vanishes for long stroke
+times as the engine approaches fully adiabatic performance indicating that the performance
+differences are a fundamentally nonequilibrium phenomena introducing a timedependent
+interaction strength would open up the possibility of optimizing performance by varying
+11 of 15
+the behavior of the particles between that of bosons and fermions during the engine cycle
+however we leave this as a topic to be explored in future work
+the calogerosutherland model described by eq 1 has received extensive study in
+the context of generalized exclusion statistics and due to its direct connection to spinchain
+models such as the haldaneshastry chain 8083 which provide a promising route for
+experimental realization in trapped atom systems 8487 such systems may provide a means
+of experimentally implementing a singular quantum heat engine furthermore generalized
+exclusion statistics anyons can be used to replicate the thermodynamic behavior of fractional
+exchange statistics anyons that manifest in twodimensional systems 24 such anyons
+are highly sought after due to their close relationship to nonableian anyons which may
+be used to implement faulttolerant topological quantum computers 88 using the wellestablished framework of heat engines to understand the thermodynamic behavior of systems
+that display intermediate statistics may lead to better methods of detection and control for
+fractional exchange statistics anyons
+author contributions conceptualization sd methodology nm and sd formal analysis nm and
+jm writingoriginal draft preparation nm writing  review and editing nm and sd supervision sd funding acquisition sd all authors have read and agreed to the published version of the
+manuscript
+funding sd acknowledges support from the us national science foundation under grant no
+dmr2010127
+acknowledgments this work was conducted as part of the undergraduate research program jm in
+the department of physics at umbc
+conflicts of interest the authors declare no conflict of interest
+appendix a
+in this appendix we provide the full expressions for the time dependent density operators for two bosons and two
+fermions in a harmonic potential the density operator for bosons is
+har  x1  x2  y1  y2  t 
+2hwt2  zt2  2 
+2 2 i  x1  x2  y1  y2 wt t  zt t     x1  x2  y1  y2 coth h 2  x1 y1  x2 y2 csch h  
+ e 2hwt zt  
+2 2 i  x1  x2  y1  y2 wt t  zt t     x1  x2  y1  y2 coth h 2  x2 y1  x1 y2 csch h  
+ e 2hwt zt  
+the density operator for fermions is
+har  x1  x2  y1  y2  t 
+2 2
+ e 2hwt zt 
+2 2
+ e 2hwt zt 
+2hwt  zt  2 
+ix12  x22 y21 y22 wt t zt t 2  x12  x22 y21 y22 coth h 2 x1 y1  x2 y2 csch h 
+ix12  x22 y21 y22 wt t zt t 2  x12  x22 y21 y22 coth h 2 x2 y1  x1 y2 csch h 
+note that zt and wt are the same as in eq 23
+12 of 15
+appendix b
+in this appendix we provide the full expressions for the engine efficiency and power output the efficiency is
+0 q3 3 coth  h h   csch  h h   2  1  3 coth  c h0   csch  c h0   2  1
+  1
+ q1 3 coth  c h0   csch  c h0   2  1  3 coth  h h   csch  h h   2  1
+where q1 is the adiabaticity parameter for stroke 1 compression and q3 is the adiabaticity parameter for stroke 3 expansion
+the power output is
+0 3 coth  c h0   csch  c h0   2  1    q1 3 coth  c h0   csch  c h0   2  1
+ 3 coth  h h   csch  h h   2  1  q3 0 3 coth  h h   csch  h h   2  1 
+references
+kondepudi d prigogine i modern thermodynamics wiley new york 1998 doi1010029781118698723
+deffner s campbell s quantum thermodynamics morgan and claypool bristol 2019 doi10108820532571ab21c6
+scully mo zubairy ms agarwal gs walther h extracting work from a single heat bath via vanishing quantum coherence
+science 2003 299 862 doi101126science1078955
+scully mo chapin kr dorfman ke kim mb svidzinsky a quantum heat engine power can be increased by noiseinduced
+coherence proc natl acad sci 2011 108 15097 doi101073pnas1110234108
+uzdin r coherenceinduced reversibility and collective operation of quantum heat machines via coherence recycling phys rev
+applied 2016 6 024004 doi101103physrevapplied6024004
+watanabe g venkatesh bp talkner p del campo a quantum performance of thermal machines over many cycles phys rev
+lett 2017 118 050601 doi101103physrevlett118050601
+dann r kosloff r quantum signatures in the quantum carnot cycle new j phys 2020 22 013055 doi10108813672630ab6876
+feldmann t kosloff r
+short time cycles of purely quantum refrigerators
+phys rev e 2012 85 051114
+doi101103physreve85051114
+hardal auc mstecaplioglu oe superradiant quantum heat engine sci rep 2015 5 12953 doi101038srep12953
+hammam k hassouni y fazio r manzano g optimizing autonomous thermal machines powered by energetic coherence new
+j phys 2021 23 043024 doi10108813672630abeb47
+barrios ga albarrnarriagada f pea fj solano e retamal jc lightmatter quantum otto engine in finite time 2021
+arxivquantph210210559
+beau m jaramillo j del campo a scalingup quantum heat engines efficiently via shortcuts to adiabaticity entropy 2016
+18 168 doi103390e18050168
+li j fogarty t campbell s chen x busch t an efficient nonlinear feshbach engine new j phys 2018 20 015005
+doi10108813672630aa9cd8
+chen yy watanabe g yu yc guan xw del campo a an interactiondriven manyparticle quantum heat engine and its
+universal behavior npj quantum info 2019 5 88 doi101038s4153401902045
+watanabe g venkatesh bp talkner p hwang mj del campo a quantum statistical enhancement of the collective performance
+of multiple bosonic engines phys rev lett 2020 124 210603 doi101103physrevlett124210603
+timo kerremans peter samuelsson ppp probabilistically violating the first law of thermodynamics in a quantum heat engine
+2021 arxivquantph210201395
+muoz e pea fj quantum heat engine in the relativistic limit the case of a dirac particle phys rev e 2012 86 061108
+doi101103physreve86061108
+pea fj ferr m orellana pa rojas rg vargas p optimization of a relativistic quantum mechanical engine phys rev e
+2016 94 022109 doi101103physreve94022109
+papadatos n the quantum otto heat engine with a relativistically moving thermal bath 2021 arxivquantph210406611
+pea fj gonzlez a nunez a orellana p rojas r vargas p magnetic engine for the singleparticle landau problem entropy
+2017 19 639 doi103390e19120639
+barrios g pea fj albarrnarriagada f vargas p retamal j quantum mechanical engine for the quantum rabi model
+entropy 2018 20 767 doi103390e20100767
+deffner s efficiency of harmonic quantum otto engines at maximal power entropy 2018 20 875 doi103390e20110875
+13 of 15
+smith z pal ps deffner s endoreversible otto engines at maximal power j nonequilib thermodyn 2020 45 305
+doidoi101515jnet20200039
+myers nm deffner s thermodynamics of statistical anyons 2021 arxivcondmatstatmech210202181
+cavina v mari a giovannetti v slow dynamics and thermodynamics of open quantum systems phys rev lett 2017
+119 050601 doi101103physrevlett119050601
+zheng y hnggi p poletti d occurrence of discontinuities in the performance of finitetime quantum otto cycles phys rev e
+2016 94 012137 doi101103physreve94012137
+raja sh maniscalco s paraoanu gs pekola jp gullo nl finitetime quantum stirling heat engine 2020 arxivquantph200910038
+singh s abah o energy optimization of twolevel quantum otto machines 2020 arxivcondmatstatmech200805002
+abah o lutz e energy efficient quantum machines europhys lett 2017 118 40005 doi1012090295507511840005
+abah o lutz e
+performance of shortcuttoadiabaticity quantum engines
+phys
+rev
+e 2018 98 032121
+doi101103physreve98032121
+abah o paternostro m shortcuttoadiabaticity otto engine a twist to finitetime thermodynamics phys rev e 2019 99 022110
+doi101103physreve99022110
+campo ad goold j paternostro m more bang for your buck superadiabatic quantum engines sci rep 2014 4 6208
+doi101038srep06208
+funo k lambert n karimi b pekola jp masuyama y nori f speeding up a quantum refrigerator via counterdiabatic driving
+phys rev b 2019 100 035407 doi101103physrevb100035407
+bonana mvs approaching carnot efficiency at maximum power in linear response regime j stat mech theory exp 2019
+2019 123203 doi10108817425468ab4e92
+denzler t lutz e efficiency large deviation function of quantum heat engines 2020 arxivquantph200800778
+denzler t lutz e power fluctuations in a finitetime quantum carnot engine 2020 arxivcondmatstatmech200701034
+denzler t lutz e
+efficiency fluctuations of a quantum heat engine
+phys
+rev
+research 2020 2 032062
+doi101103physrevresearch2032062
+quan ht liu y sun cp nori f quantum thermodynamic cycles and quantum heat engines phys rev e 2007 76 031105
+doi101103physreve76031105
+gardas b deffner s thermodynamic universality of quantum carnot engines
+phys rev e 2015 92 042126
+doi101103physreve92042126
+friedenberger a lutz e when is a quantum heat engine quantum europhys lett 2017 120 10002 doi1012090295507512010002
+abah o rossnagel j jacob g deffner s schmidtkaler f singer k lutz e singleion heat engine at maximum power phys
+rev lett 2012 109 203006 doi101103physrevlett109203006
+pea fj muoz e magnetostraindriven quantum engine on a graphene flake
+phys rev e 2015 91 052152
+doi101103physreve91052152
+niedenzu w mazets i kurizki g jendrzejewski f quantized refrigerator for an atomic cloud quantum 2019 3 155
+doi1022331q20190628155
+cherubim c brito f deffner s nonthermal quantum engine in transmon qubits entropy 2019 21 545 doi103390e21060545
+zhang k bariani f meystre p quantum optomechanical heat engine
+phys rev lett 2014 112 150602
+doi101103physrevlett112150602
+dechant a kiesel n lutz e alloptical nanomechanical heat engine
+phys rev lett 2015 114 183602
+doi101103physrevlett114183602
+pea fj negrete o alvarado barrios g zambrano d gonzlez a nunez as orellana pa vargas p magnetic otto engine
+for an electron in a quantum dot classical and quantum approach entropy 2019 21 512 doi103390e21050512
+pea fj zambrano d negrete o de chiara g orellana pa vargas p quasistatic and quantumadiabatic otto engine for a
+twodimensional material the case of a graphene quantum dot phys rev e 2020 101 012116 doi101103physreve101012116
+klaers j faelt s imamoglu a togan e squeezed thermal reservoirs as a resource for a nanomechanical engine beyond the
+carnot limit phys rev x 2017 7 031044 doi101103physrevx7031044
+bouton q nettersheim j burgardt s adam d lutz e widera a a quantum heat engine driven by atomic collisions nat
+commun 2021 12 doi101038s4146702122222z
+van horne n yum d dutta t hnggi p gong j poletti d mukherjee m singleatom energyconversion device with a
+quantum load npj quantum information 2020 6 37 doi101038s4153402002646
+griffiths dj introduction to quantum mechanics cambridge university press new york 2017
+yadin b morris b adesso g mixing indistinguishable systems leads to a quantum gibbs paradox nat commun 2021 12 1471
+doi101038s41467021216207
+14 of 15
+jaramillo j beau m del campo a quantum supremacy of manyparticle thermal machines new j phys 2016 18 075019
+doi10108813672630187075019
+huang xl guo dy wu sl yi xx multilevel quantum otto heat engines with identical particles quantum inf process 2017
+17 27 doi101007s1112801717954
+myers nm deffner s bosons outperform fermions the thermodynamic advantage of symmetry phys rev e 2020 101 012110
+doi101103physreve101012110
+nogueira phf de castro as from the generalized morse potential to a unified treatment of the ddimensional singular harmonic
+oscillator and singular coulomb potentials j math chem 2016 54 1783 doi101007s1091001606356
+weissman y jortner j the isotonic oscillator phys lett a 1979 70 177 doi101016037596017990197x
+calogero f solution of a threebody problem in one dimension journal of mathematical physics 1969 10 2191 doi10106311664820
+sutherland b exact solution of a lattice band problem related to an exactly soluble manybody problem the missingstates problem
+phys rev b 1988 38 6689 doi101103physrevb386689
+haldane fdm fractional statistics in arbitrary dimensions a generalization of the pauli principle phys rev lett 1991 67 937
+doi101103physrevlett67937
+murthy mvn shankar r thermodynamics of a onedimensional ideal gas with fractional exclusion statistics phys rev lett
+1994 73 3331 doi101103physrevlett733331
+ballhausen c a note on the v  ax2  bx2 potential chem phys lett 1988 146 449 doi1010160009261488874761
+goldstein h classical mechanics pearson 2001
+ballhausen c stepup and stepdown operators for the pseudoharmonic potential v  12r2  b2r2 in one and two dimensions
+chem phys lett 1988 151 428 doi1010160009261488851625
+abramowitz m stegun i handbook of mathematical functions with formulas graphs and mathematical tables applied mathematics
+series us government printing office 1964
+szeg g orthogonal polynomials american mathematical society 1939 doi101090coll023
+greiner w neise l stcker h thermodynamics and statistical mechanics springer new york 1995 doi1010079781461208273
+bateman h erdelyi a magnus w oberhettinger f tricomi fg higher transcendental functions volume i mcgrawhill book
+company new york 1953
+husimi k miscellanea in elementary quantum mechanics ii prog theor phys 1953 9 381 doi101143ptp94381
+dodonov v malkin i manko v green function and excitation of a singular oscillator phys lett a 1972 39 377 doi1010160375960172901028
+dodonov vv malkin ia manko vi integrals of the motion green functions and coherent states of dynamical systems int j
+theor phys 1975 14 37 doi101007bf01807990
+khandekar d lawande s feynman path integrals some exact results and applications phys rep 1986 137 115 doi1010160370157386900293
+dodonov v manko v nikonov d exact propagators for timedependent coulomb delta and other potentials physics letters a
+1992 162 359 doi101016037596019290054p
+deffner s lutz e nonequilibrium work distribution of a quantum harmonic oscillator phys rev e 2008 77 021128
+doi101103physreve77021128
+deffner s abah o lutz e quantum work statistics of linear and nonlinear parametric oscillators chem phys 2010 375 200208
+stochastic processes in physics and chemistry in honor of peter hnggi doi101016jchemphys201004042
+deffner s lutz e thermodynamic length for farfromequilibrium quantum systems phys rev e 2013 87 022143
+doi101103physreve87022143
+kosloff r a quantum mechanical open system as a model of a heat engine j chem phys 1984 80 1625 doi1010631446862
+rezek y kosloff r irreversible performance of a quantum harmonic heat engine new j phys 2006 8 83 doi1010881367263085083
+haldane fdm exact jastrowgutzwiller resonatingvalencebond ground state of the spin 12 antiferromagnetic heisenberg chain
+with 1r2 exchange phys rev lett 1988 60 635 doi101103physrevlett60635
+shastry bs exact solution of an s12 heisenberg antiferromagnetic chain with longranged interactions phys rev lett 1988
+60 639 doi101103physrevlett60639
+polychronakos ap
+lattice integrable systems of haldaneshastry type
+phys
+rev
+lett
+1993 70 2329
+doi101103physrevlett702329
+haldane fdm physics of the ideal semion gas spinons and quantum symmetries of the integrable haldaneshastry spin
+chain correlation effects in lowdimensional electron systems okiji a kawakami n eds springer berlin heidelberg berlin
+heidelberg 1994 p 3
+grass t lewenstein m trappedion quantum simulation of tunablerange heisenberg chains epj quantum technology 2014 1 8
+doi101140epjqt8
+15 of 15
+britton jw sawyer bc keith ac wang ccj freericks jk uys h biercuk mj bollinger jj engineered twodimensional
+ising interactions in a trappedion quantum simulator with hundreds of spins nature 2012 484 489492 doi101038nature10981
+bohnet jg sawyer bc britton jw wall ml rey am fossfeig m bollinger jj quantum spin dynamics and entanglement
+generation with hundreds of trapped ions science 2016 352 1297 doi101126scienceaad9958
+labuhn h creating arbitrary 2d arrays of single atoms for the simulation of spin systems with rydberg states eur phys j spec
+top 2016 225 2817 doi101140epjste2015503365
+moore g read n nonabelions in the fractional quantum hall effect nucl phys b 1991 360 362 doi101016055032139190407o

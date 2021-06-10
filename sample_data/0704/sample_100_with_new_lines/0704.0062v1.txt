@@ -1,0 +1,404 @@
+online viterbi algorithm and its relationship to random walks
+rastislav rmek1  broa brejov2  and tom vina2
+arxiv07040062v1 csds 31 mar 2007
+department of computer science comenius university
+842 48 bratislava slovakia email rastokspsk
+department of biological statistics and computational biology cornell university
+ithaca ny 14853 usa email bb248tv35cornelledu
+abstract in this paper we introduce the online viterbi algorithm for decoding hidden markov
+models hmms in much smaller than linear space our analysis on twostate hmms suggests that the
+expected maximum memory used to decode sequence of length n with mstate hmm can be as low
+as m log n without a significant slowdown compared to the classical viterbi algorithm classical
+viterbi algorithm requires omn space which is impractical for analysis of long dna sequences such
+as complete human genome chromosomes and for continuous data streams we also experimentally
+demonstrate the performance of the online viterbi algorithm on a simple hmm for gene finding on
+both simulated and real dna sequences
+keywords hidden markov models online algorithms viterbi algorithm gene finding
+introduction
+hidden markov models hmms are generative probabilistic models that have been succesfuly
+used for annotation of sequence data such as dna and protein sequences natural langauge texts
+and sequences of observations or measurements their numerous applications include gene finding
+1 protein secondary structure prediction 2 and speech recognition 3 the lineartime viterbi
+algorithm 4 is the most commonly used algorithm for these tasks unfortunately the space required
+by the viterbi algorithm grows linearly with the length of the sequence with a high constant factor
+which makes it unsuitable for analysis of continuous or very long sequences for example dna
+sequence of a single chromosome can be hundreds of megabases long in this paper we address this
+problem by proposing an online viterbi algorithm that on average requires much less memory and
+that can annotate continuous streams of data online without reading the complete input sequence
+first
+an hmm composed of states and transitions is a probabilistic model that generates sequences
+over a given alphabet in each step of this generative process the current state generates one symbol
+of the sequence according to the emission probabilities associated with that state then an outgoing
+transition is randomly chosen according to the transition probability table and this transition is
+followed to the new state this process is repeated until the whole sequence is generated
+the states in the hmm represent distinct features of the observed sequences such as protein
+coding and noncoding sequences in a genome and the emission probabilities in each state represent
+statistical properties of these features the hmm thus defines a joint probability prx s over all
+possible sequences x and all state paths s through the hmm that could generate these sequences
+to annotate a given sequence x we want to recover the state path s that maximizes this joint
+probability for example in an hmm with one state for proteincoding sequences and one state
+for noncoding sequences the most probable state path marks each symbol of the input sequence
+x as either protein coding or noncoding
+to compute the most probable state path we use the viterbi dynamic programming algorithm
+4 for every prefix x1    xi of the given sequence x and for every state j we compute the most
+probable state path generating this prefix ending in state j we store the probability of this path
+in table p i j and its second last state in table bi j these values can be computed from left to
+right using the recurrence p i j  maxk p i  1 k  tk j  ej xi  where tk j is the transition
+probability from state k to state j and ej xi  is the emission probability of the ith symbol
+of x in state j back pointer bi j is the value of k that maximizes p i j after computing
+these values we can recover the most probable state path s  s1      sn by setting the last state
+as sn  arg maxk p n k and then following the back pointers bi j from right to left ie
+si  bi  1 si1  for an hmm with m states and a sequence x of length n the running time
+of the viterbi algorithm is nm2  and the space is nm
+this algorithm is well suited for sequences and models of moderate size however to annotate
+all 250 million symbols of the human chromosome 1 with a gene finding hmm consisting of hundred
+states we would require 25 gb of memory just to store the back pointers bi j this is clearly
+impractical on most computational platforms
+several solutions are used in practice to overcome this problem for example most practical
+gene finding programs process only sequences of limited size the long input sequence is split into
+several shorter sequences which are processed separately afterwards the results are merged and
+conflicts are resolved heuristically this approach leads to suboptimal solutions especially if the
+genes we are looking for cross the boundaries of the split
+grice et al 5 proposed a practical checkpointing algorithm that trades running time for space
+we divide the input sequence into k blocks of l symbols and during the forward pass we only
+keep the first column of each block to obtain the most probable state path we recompute the last
+block of l columns and use back pointers to recover the last l states of the most probable path as
+well as the last state of the previous block the information about this last state can now be used to
+recompute the most probable state path within the previous block in the same way and the process
+is repeated for all blocks since every value of p i j will be computed twice this means twofold
+slowdown compared to the viterbi algorithm but if we set k  l  n this algorithm only
+requires  nm memory checkpointing can be further generalized to trade lfold slowdown for
+memory of  l nm 6 7
+in this paper we propose and analyze an online viterbi algorithm that does not use fixed
+amount of memory for a given sequence instead the amount of memory varies depending on
+the properties of the hmm and the input sequence in the worst case our algorithm still requires
+nm memory however in practice the requirements are much lower we prove by demonstrating
+analogy to random walks and using results from the theory of extreme values that in simple cases
+the expected space for a sequence of length n is as low as m log n we also experimentally
+demonstrate that the memory requirements are low for more complex hmms
+online viterbi algorithm
+in our algorithm we represent the back pointer matrix b in the viterbi algorithm by a tree structure
+see 4 with node i j for each sequence position i and each state j parent of node i j is the
+node i  1 bi j in this data structure the most probable state path is a path from the leaf
+node n j with the highest probability p n j to the root of the tree see figure 1
+this tree is built as the viterbi algorithm progresses from left to right after processing sequence
+position i all edges that do not lie on one of the paths ending in a level i node can be removed
+states
+sequence positions
+fig 1 example of the back pointer tree structure dashed lines mark the edges that cannot be part of the
+most probable state path the square node marks the coalescence point of the remaining paths
+these edges will not be used in the most probable path 8 the remaining m paths represent all
+possible initial segments of the most probable state path these paths are not necessarily edge
+disjoint in fact often all the paths share the same prefix up to some node called coalescence point
+see figure 1
+left of the coalescence point there is only a single candidate for the initial segment of the most
+probable state path therefore we can output this segment and remove all edges and nodes of the
+tree up to the coalescence point forney 4 describes an algorithm that after processing d symbols
+of the input sequence checks whether a coalescence point has been reached in such case the initial
+segment of the most probable state path is outputted if the coalescence point was not reached
+one potential initial segment is chosen heuristicaly several studies 9 10 suggest how to choose d
+to limit the expected error caused by such heuristic steps in the context of convolution codes
+here we show how to detect the existence of a coalescence point dynamically without introducing
+significant overhead to the whole computation we maintain a compressed version of the back
+pointer tree where we omit all internal nodes that have less than two children any path consisting
+of such nodes will be contracted to a single edge this compressed tree has m leaves and at most
+m  1 internal nodes each node stores the number of its children and a pointer to its parent node
+we also keep a linked list of all the nodes of the compressed tree ordered by the sequence position
+finally we also keep the list of pointers to all the leaves
+when processing the kth sequence position in the viterbi algorithm we update the compressed
+tree as follows first we create a new leaf for each node at position i link it to its parent one of
+the former leaves and insert it into the linked list once these new leaves are created we remove
+all the former leaves that have no children and recursively all of their ancestors that would not
+have any children
+finally we need to compress the new tree we examine all the nodes in the linked list in order
+of decreasing sequence position if the node has zero or one child and is not a current leaf we
+simply delete it for each leaf or node that has at least two children we follow the parent links
+until we find its first ancestor if any that has at least two children and link the current node
+directly to that ancestor a node l j that does not have an ancestor with at least two children
+is the coalescence point it will become a new root we can output the most probable state path
+for all sequence positions up to l and remove all results of computation for these positions from
+memory
+the running time of this update is om per sequence position and the representation of the
+compressed tree takes om space thus the asymptotic running time of the viterbi algorithm is
+not increased by the maintanance of the compressed tree moreover we have implemented both
+the standard viterbi algorithm and our new online extension and the time measurements suggest
+that the overhead required for the compressed tree updates is less than 5
+the worstcase space required by this algorithm is still onm however this is rarely the case
+for realistic data required space changes dynamically depending on the input in the next section
+we show that for simple hmms the expected maximum space required for processing sequence of
+length n is m log n this is much better than checkpointing which requires space of m n
+with a significant increase in running time we conjecture that this trend extends to more complex
+cases we also present experimental results on a gene finding hmm and real dna sequences showing
+that the online viterbi algorithm leads to significant savings in memory
+another advantage of our algorithm is that it can construct initial segments of the most probable
+state path before the whole input sequence is read this feature makes it ideal for online processing
+of signal streams such as sensor readings
+memory requirements of the online viterbi algorithm
+in this section we analyze the memory requirements of the online viterbi algorithm the memory
+used by the algorithm is variable throughout the execution of the algorithm but of special interest
+are asymptotic bounds on the expected maximum amount of memory used by the algorithm while
+decoding a sequence of length n
+we use analogy to random walks and results in extreme value theory to argue that for a symmetric twostate hmms the expected maximum memory is m log n we also conduct experiments
+on an hmm for gene finding and both real and simulated dna sequences
+symmetric twostate hmms
+consider a twostate hmm over a binary alphabet as shown in figure 2a for simplicity we assume
+t  12 and e  12 the back pointers between the sequence positions i and i  1 can form one of
+the configurations iiii shown in figure 2b denote pa  log p i a and pb  log p i b where
+p i j is the table of probabilities from the viterbi algorithm the recurrence used in the viterbi
+algorithm implies that the configuration i occurs when log tlog1t  pa pb  log1tlog t
+configuration ii occurs when pa pb  log1tlog t and configuration iii occurs when pa pb 
+log t  log1  t configuration iv never happens for t  12
+note that for a twostate hmm a coalescence point occurs whenever one of the configurations
+ii or iii occur thus the memory used by the hmm is proportional to the length of continuous
+sequence of configurations i we will call such a sequence of configurations a run
+first we analyze the length distribution of runs under the assumption that the input sequence
+x is a sequence of uniform iid binary random variables in such case we represent the run by a
+pa pb
+symmetric random walk corresponding to a random variable x  log1elog
+e  log t  log1  t
+log1tlogt
+whenever this variable is within the interval 0 k where k  2 log1eloge
+ the configuration
+i occurs and the quantity pa pb is updated by log1elog e if the symbol at the corresponding
+sequence position is 0 or log e  log1  e if this symbol is 1 these shifts correspond to updating
+the value of x by 1 or 1
+when x reaches 0 we have a coalescence point in configuration iii and the pa pb is initialized
+to log t  log1  t  log e  log 1  e which either means initialization of x to 1 or another
+configuration i
+configuration ii
+configuration iii
+configuration iv
+0 e
+1 1e
+0 1e
+1 e
+fig 2 a symmetric twostate hmm with two parameters e for emission probabilities and t for transitions
+probabilities b possible backpointer configurations for the twostate hmm
+coalescence point depending on the symbol at the corresponding sequence position the other case
+when x reaches k and we have a coalescence point in configuration ii is symmetric
+we can now apply the classical results from the theory of random walks see 11 ch143145
+to analyze the expected length of runs
+lemma 1 assuming that the input sequence is uniformly iid the expected length of a run of a
+symmetrical twostate hmm is k  1
+therefore the larger is k the more memory is required to decode the hmm the worst case is
+achieved as e approaches 12 in such case the two states are indistinguishable and being in state
+a is equivalent to being in state b using the theory of random walks we can also characterize the
+distribution of length of runs
+lemma 2 let rl be the event that the length of a run of a symmetrical twostate hmm is either
+2l  1 or 2l  2 then assuming that the input sequence is uniformly iid for some constants
+b c  0
+b  cos2l
+ prrl   c  cos2l
+proof for a symmetric random walk on interval 0 k with absorbing barriers and with starting
+point z the probability of event wzn that this random walk ends in point 0 after n steps is zero
+if n  z is odd and the following quantity if n  z is even 11 ch145
+prwzn  
+cosn1
+0vk2
+sin
+sin
+using symmetry note that the probability of the same random walk ending after n steps at barrier
+k is the same as probability of wkzn thus if k is odd we can state
+prrl   prw12l1   prwk12l1 
+cos2l
+sin
+ 1v1 sin
+sin
+k 0vk2
+0vk2
+cos2l
+v odd
+sin2
+there are at most k4 terms in the sum and they can all be bounded from above by cos2l v
+thus we can give both upper and lower bounds on prrl  using only the first term of the sum as
+follows
+sin2
+cos2l
+ prrl   cos2l
+similarly if k is even we can state
+prrl   prw12l1   prwk12l2 
+sin2
+cos2l
+1  1v1 cos
+k 0vk2
+and thus we have a similar bound
+sin2
+1  cos
+cos2l
+ prrl   2 cos2l
+the previous lemma characterizes the length distribution of a single run however to analyze
+memory requirements for a sequence of length n we need to consider maximum over several runs
+whose total length is n similar problem was studied for the runs of heads in a sequence of n coin
+tosses 12 13 for coin tosses the length distribution of runs is geometric while in our case the
+runs are only bounded by geometricaly decaying functions still we can prove that the expected
+length of the longest run grows logarithmically with the length of the sequence as is the case for
+the coin tosses
+lemma 3 let x1  x2     be a sequence of iid random variables drawn from a geometrically
+decaying distribution over positive integers ie there exist constants a b c a  0 1 0  b  c
+such that for all integers k  1 bak  prxi  k  cak 
+let nn be the largest index such that i1nn xi  n and let yn be maxx1  x2      xnn  n 
+p nn
+i1 xi  then
+eyn   log1a n  olog n
+proof let zn  maxi1n xn be the maximum of the first n runs clearly przn  k  prxi 
+kn  and therefore 1  cak n  przn  k  1  bak n for all integers k  log1a c
+lower bound let tn  log1a n  ln n if yn  tn  we need at least ntn runs to reach the sum n
+ie nn  ntn  1 discounting the last incomplete run therefore
+tn atn  n 1
+pryn  tn   prz tn 1  tn   1  batn  tn 1  1  batn a
+since limn atn ntn  1   and limx0 1  bx1x  eb  we get limn pryn  tn   0
+note that eyn   tn 1  pryn  tn  and thus we get the desired bound
+upper bound clearly yn  zn and so eyn   ezn  let zn be the maximum of n iid geometric
+random variables x1      xn such that prxi  k  1  ak 
+we will compare ezn  to the expected value of variable zn  without loss of generality c  1
+for any real x  log1a c  1 we have
+przn  x  1  cax n
+ 1  axlog1a c
+ 1  axlog1a c1
+ przn  x  log1a c  1
+ przn  log1a c  1  x
+this inequality holds even for x  log1a c  1 since the righthand side is zero in such case
+therefore ezn   ezn log1a c1  ezn o1 expected value of zn is log1a nolog n
+14 which proves our claim
+using results of lemma 3 together with the characterization of run length distributions by
+lemma 2 we can conclude that for symmetric twostate hmms the expected maximum memory
+required to process a uniform iid input sequence of length n is 1 ln1 coskln nolog n
+3 using the taylor expansion of the constant term as k grows to infinity 1 ln1 cosk 
+2k 2  2  o1 we obtain that the maximum memory grows approximately as 2k 2  2  ln n
+the asymptotic bound log n can be easily extended to the sequences that are generated by
+the symmetric hmm instead of uniform iid the underlying process can be described as a random
+walk with approximately 2k states on two 0 k lines each line corresponding to sequence symbols
+generated by one of the two states the distribution of run lengths still decays geometrically as
+required by lemma 3 the base of the exponent is the largest eigenvalue of the transition matrix
+with absorbing states omitted see eg 15 claim 2
+the situation is more complicated in the case of nonsymmetric twostate hmms here our
+random walks proceed in steps that are arbitrary real numbers different in each direction we are
+not aware of any results that would help us to directly analyze distributions of runs in these models
+however we conjecture that the size of the longest run is still log n perhaps to obtain bounds
+on the length distribution of runs one can approximate the behaviour of such nondiscrete random
+walks by a different model for example 16 ch7
+multistate hmms
+our analysis technique cannot be easily extended to hmms with many states in twostate hmms
+each new coalescence event clears the memory and thus the execution of the algorithm can be
+divided into more or less independent runs a coalescent event in a multistate hmm results in a
+nontrivial tree left in memory sometimes with a substantial depth thus the sizes of consecutive
+runs are no longer independent see figure 3a
+we omitted the first run which has a different starting point and thus does not follow the distribution outlined in
+lemma 2 however the expected length of this run does not depend on n and thus contributes only a lowerorder
+term we also omitted the runs of length one that start outside the interval 0 k these runs again contribute
+only to lower order terms of the lower bound
+40k
+average maximum memory
+100k
+actual memory
+30k
+20k
+10k
+152m
+80k
+human genome 35
+hmm generated 100
+random iid 35
+60k
+40k
+20k
+153m
+154m
+155m
+section of chromosome 1
+10m
+15m
+20m
+sequence length
+fig 3 memory requirements of a gene finding hmm a actual length of table used on a segment of human
+chromosome 1 b average maximum table length needed for prefixes of 20 mb sequences
+to evaluate the memory requirements of our algorithm for multistate hmms we have implemented the algorithm and performed several experiments on both simulated and biological sequences first we generalized the symmetric hmms from the previous section to multiple states
+the symmetric hmm with m states emits symbols over mletter alphabet where each state
+emits one symbol with higher probability than the other symbols the transition probabilities
+are equiprobable except for selftransitions we have tested the algorithm for m  6 and sequences
+generated both by a uniform iid process and by the hmm itself observed data are consistent
+with the logarithmic growth of average maximum memory needed to decode a sequence of length
+n data not shown
+we have also evaluated the algorithm using a simplified hmm for gene finding with 265 states
+the emission probabilities of the states are defined using at most 4th order markov chains and
+the structure of the hmm reflects known properties of genes similar to the structure shown in
+17 the hmm was trained on refseq annotations of human chromosomes 1 and 22
+in gene finding we segment the input dna sequence into exons proteincoding sequence intervals introns noncoding sequence separating exons within a gene and intergenic regions sequence separating genes common measure of accuracy is exon sensitivity how many of real exons
+we have succesfuly and exactly predicted the implementation used here has exon sensitivity 37
+on testing set of genes by guigo et al 18 a realistic gene finder such as exonhunter 19 trained
+on the same data set achieves sensitivity of 53 this difference is due to additional features that
+are not implemented in our test namely gc content levels nongeometric length distributions and
+sophisticated signal models
+we have tested the algorithm on 20 mb long sequences regions from the human genome
+simulated sequences generated by the hmm and iid sequences regions of the human genome
+were chosen from hg18 assembly so that they do not contain sequencing gaps the distribution for
+the iid sequences mirrors the distribution of bases in the human chromosome 1
+the results are shown in figure 3b the average maximum length of the table over several
+samples appears to grow faster than logarithmically with the length of the sequence though it
+seems to be bounded by a polylogarithmic function it is not clear whether the faster growth is an
+artifact that would disapear with longer sequences or higher number of samples
+the hmm for gene finding has a special structure with three copies of the state for introns
+that have the same emission probabilities and the same selftransition probability in twostate
+symmetric hmms similar emission probabilities of the two states lead to increase in the length of
+individual runs intron states of a gene finder are an extreme example of this phenomenon
+nonetheless on average a table of length roughly 100000 is sufficient to to process sequences
+of length 20 mb which is a 200fold improvement compared to the trivial viterbi algorithm in
+addition the length of the table did not exceed 222000 on any of the 20mb human segments as
+we can see in figure 3a most of the time the program keeps only relatively short table the average
+length on the human segments is 11000 the low average length can be of a significant advantage
+if multiple processes share the same memory
+conclusion
+in this paper we introduced the online viterbi algorithm our algorithm is based on efficient detection of coalescence points in trees representing the statepaths under consideration of the dynamic
+programming algorithm the algorithm requires variable space that depends on the hmm and
+on the local properties of the analyzed sequence for twostate symmetric hmms we have shown
+that the expected maximum memory used for analysis of sequence of length n is approximately
+only 2k 2  2  ln n our experiments on both simulated and real data suggest that the asymptotic
+bound m ln n also extend to multistate hmms and in fact for most of the time throughout
+the execution of the algorithm much less memory is used
+further advantage of our algorithm is that it can be used for online processing of streamed
+sequences all previous algorithms that are guaranteed to produce the optimal state path require
+the whole sequence to be read before the output can be started
+there are still many open problems we have only been able to analyze the algorithm for twostate hmms though trends predicted by our analysis seem to generalize even to more complex cases
+can our analysis be extended to multistate hmms apparently design of the hmm affects the
+memory needed for the decoding algorithm for example presence of states with similar emission
+probabilities tends to increase memory requirements is it possible to characterize hmms that
+require large amounts of memory to decode can we characterize the states that are likely to serve
+as coalescence points
+acknowledgments authors would like to thank richard durrett for useful discussions recently we
+have found out that parallel work on this problem is also performed by another research group 20
+focus of their work is on implementation of an algorithm similar to our online viterbi algorithm
+in their gene finder and possible applications to parallelization while we focus on the expected
+space analysis
+references
+1 burge c karlin s prediction of complete gene structures in human genomic dna journal of molecular
+biology 2681 1997 7894
+2 krogh a larsson b von heijne g sonnhammer el predicting transmembrane protein topology with a
+hidden markov model application to complete genomes journal of molecular biology 3053 2001 567570
+3 rabiner lr a tutorial on hidden markov models and selected applications in speech recognition proceedings
+of the ieee 772 1989 257286
+4 forney jr gd the viterbi algorithm proceedings of the ieee 613 1973 268278
+5 grice ja hughey r speck d reduced space sequence alignment computer applications in the biosciences
+131 1997 4553
+6 tarnas c hughey r reduced space hidden markov model training bioinformatics 145 1998 401406
+7 wheeler r hughey r optimizing reducedspace sequence analysis bioinformatics 1612 2000 10821090
+8 henderson j salzberg s fasman kh finding genes in dna with a hidden markov model journal of
+computational biology 42 1997 127131
+9 hemmati f costello d j truncation error probability in viterbi decoding ieee transactions on communications 255 1977 530532
+10 onyszchuk i truncation length for viterbi decoding ieee transactions on communications 397 1991
+10231026
+11 feller w an introduction to probability theory and its applications third edition volume 1 wiley 1968
+12 guibas lj odlyzko am long repetitive patterns in random sequences probability theory and related
+fields 53 1980 241262
+13 gordon l schilling mf waterman ms an extreme value theory for long head runs probability theory
+and related fields 72 1986 279287
+14 schuster ef on overwhelming numerical evidence in the settling of kinneys waitingtime conjecture siam
+journal on scientific and statistical computing 64 1985 977982
+15 buhler j keich u sun y designing seeds for similarity search in genomic dna journal of computer and
+system sciences 703 2005 342363
+16 durrett r probability theory and examples duxbury press 1996
+17 brejova b brown dg vinar t advances in hidden markov models for sequence annotation in mandoiu
+i zelikovski a eds bioinformatics algorithms techniques and applications wiley 2007 to appear
+18 guigo r et al egasp the human encode genome annotation assessment project genome biology
+7s1 2006 131
+19 brejova b brown dg li m vinar t exonhunter a comprehensive approach to gene finding bioinformatics 21s1 2005 i5765
+20 keibler e brent m personal communication 2006

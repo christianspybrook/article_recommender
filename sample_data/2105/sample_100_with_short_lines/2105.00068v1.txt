@@ -1,0 +1,4131 @@
+astronomy  astrophysics manuscript no madcows
+may 4 2021
+
+eso 2021
+
+atacama cosmology telescope measurements of a large sample of
+candidates from the massive and distant clusters of wise survey
+
+arxiv210500068v1 astrophga 30 apr 2021
+
+sunyaevzeldovich effect confirmation of madcows candidates using act
+john orlowskischerer1  luca di mascolo2 3 4 5  tanay bhandarkar1  alex manduca1  tony mroczkowski6  stefania
+amodeo7  nick battaglia7  mark brodwin8  steve k choi7 9 mark devlin1  simon dicker1  jo dunkley10 11  anthony
+h gonzalez12  dongwon han13  matt hilton14 15  kevin huffenberger16 john p hughes17  amanda macinnis13 
+kenda knowles18  brian j koopman19  ian lowe1  kavilan moodley14 15  federico nati20  michael d niemack7 9 21
+lyman a page11 bruce partridge22  charles romero1  maria salatino23 24 alessandro schillaci25  neelima sehgal14 
+cristbal sifn26 suzanne staggs11  s a stanford27  robert thornton1 28  eve m vavagiakis7  edward j wollack29 
+zhilei xu1 30  and ningfeng zhu1
+affiliations can be found after the references
+received april 28 2021 accepted 
+abstract
+context galaxy clusters are an important tool for cosmology and their detection and characterization are key goals for current and future surveys
+
+using data from the widefield infrared survey explorer wise the massive and distant clusters of wise survey madcows located 2839
+significant galaxy overdensities at redshifts 07  z  15 which included extensive followup imaging from the spitzer space telescope to
+determine cluster richnesses concurrently the atacama cosmology telescope act has produced large area mmwave maps in three frequency
+bands along with a large catalog of sunyaevzeldovich sz selected clusters as part of its data release 5 dr5
+aims we aim to verify and characterize madcows clusters using measurements of or limits on their thermal sz tsz effect signatures we
+also use these detections to establish the scaling relation between sz mass and the madcowsdefined richness
+methods using the maps and cluster catalog from dr5 we explore the scaling between sz mass and cluster richness we do this by comparing
+cataloged detections and extracting individual and stacked sz signals from the madcows cluster locations we use complementary radio survey
+data from the very large array submillimeter data from herschel and act 224 ghz data to assess the impact of contaminating sources on the
+sz signals from both act and madcows clusters we use a hierarchical bayesian model to fit the massrichness scaling relation allowing for
+clusters to be drawn from two populations one a gaussian centered on the massrichness relation and the other a gaussian centered on zero sz
+signal
+results we find that madcows clusters have submillimeter contamination which is consistent with a graybody spectrum while the act
+clusters are consistent with no submillimeter emission on average additionally the intrinsic radio intensities of act clusters are lower than those
+of madcows clusters even when the act clusters are restricted to the same redshift range as the madcows clusters we find the best fit act
+015
+sz mass vs madcows richness scaling relation has a slope of   184014
+ where the slope is defined as m  15 where 15 is the richness we
+also find that the act sz signals for a significant fraction  57of the madcows sample can statistically be described as being drawn from a
+noiselike distribution indicating that the candidates are possibly dominated by lowmass and unvirialized systems that are below the mass limit
+of the act sample further we note that a large portion of the opticallyconfirmed act clusters located in the same volume of the sky as the
+madcows survey are not selected by madcows indicating the madcows sample is not complete with respect to sz selection finally we
+find that the radio loud fraction rlf of madcows clusters increases with richness while we find no evidence that the submillimeter emission
+of the madcows clusters evolves with richness
+conclusions we conclude that the original madcows surveys selection function is not well defined and as such reiterate the madcows
+collaborations recommendation that the sample is suited for probing cluster and galaxy evolution but not cosmological analyses we find a best
+fit massrichness relation slope that agrees with the published madcows preliminary results additionally we find that while the approximate
+level of infill of the act and madcows cluster sz signals 1  2 is subdominant to other sources of uncertainty for current generation
+experiments characterizing and removing this bias will be critical for next generation experiments hoping to constrain cluster masses at the
+subpercent level finally we also find evidence that the madcows and act clusters are drawn from different underlying populations
+key words galaxies clusters  galaxies clusters intracluster medium  cosmic background radiation
+
+1 introduction
+astronomers have long sought an efficient and effective way to
+identify galaxy clusters as well as a convenient observational
+proxy for their mass abell 1958 rykoff et al 2012 andreon
+2015 saro et al 2015 geach  peacock 2017 simet et al
+2017 rettura et al 2018 gonzalez et al 2019a chiu et al
+2020 particularly at high redshift where their formation and
+distribution are sensitive probes of cosmology
+
+recently the sunyaevzeldovich effect sz effect see sunyaev  zeldovich 1970 1972 as well as birkinshaw 1999 carlstrom et al 2002 mroczkowski et al 2019 for reviews has been
+used to uncover large populations of distant clusters in particular the thermal sz tsz effect allows redshift independent detection of clusters due to inversecompton scattering of cmb
+photons as they pass through hot gas in the clusters1 cluster
+1
+throughout the paper we use sz effect to refer exclusively to the tsz
+effect as opposed to the kinetic sz effect
+
+article number page 1 of 25
+
+aa proofs manuscript no madcows
+
+masses can be then estimated from the amplitude of the sz signals under the assumption of a universal pressure profile eg
+arnaud et al 2010 we refer to such estimates as sz masses
+the planck satellite which provides the only allsky sz survey
+to date was limited by both sensitivity and angular resolution
+100 at 100 ghz and has identified clusters with z  1 planck
+collaboration et al 2016a groundbased surveys such as the
+atacama cosmology telescope act fowler et al 2007 swetz
+et al 2011 thornton et al 2016 and the south pole telescope
+spt carlstrom et al 2011 benson et al 2014 have achieved
+1  20 resolution and are sensitive to highredshift clusters but
+until recently only surveyed a small fraction of the sky these
+surveys are also now more sensitive than planck over large portions of the sky see eg naess et al 2020
+meanwhile opticalinfrared ir surveys and analysis methods have progressed offering new data selection techniques
+eg weak lensing shear and more advanced richness selection criteria one such survey the massive and distant clusters of wise survey madcows gonzalez et al 2019a relies
+on data from the widefield infrared survey explorer wise
+madcows provides an infraredselected sample of candidate
+clusters at redshifts 07  z  15 the madcows sample aims
+to extend richness selection to a higher average redshift than previous surveys
+act has observed roughly 40 of the sky in the fifth data release hereafter referred to as dr52  which includes cluster data
+taken through the 2018 observing season hilton et al 2021
+this data release enables large statistical comparisons between
+cluster richness as measured by optical or ir surveys and their
+sz mass dr5 provides sz measurements for a large fraction of
+the madcows candidates well beyond the handful of systems
+targeted for individual sz followup in gonzalez et al 2019a
+dicker et al 2020 di mascolo et al 2020 and ruppin et al
+2020 for example
+in this work we use data from act dr5 to establish how
+sz mass scales with the madcows definition of richness for a
+large sample of madcows cluster candidates the work presented here complements the recent work by madhavacheril
+et al 2020 who report the mean mass determined through
+stacked cmb lensing of the madcows candidates located
+within the act survey region and above a richness of 20 section 21 additionally this work probes the massrichness scaling relation and hence cluster abundance at a higher redshift
+than previous studies eg sehgal et al 2013
+the paper is structured as follows an overview of the act
+dr5 and madcows samples as well as the ancillary data we
+use to test for radio and submillimeter source infill is provided
+in section 2 in section 3 we detail the process used to identify
+clusters detected in both act and madcows samples and
+from this estimate the completeness of the madcows sample
+in section 4 we describe the forced photometry process used
+to obtain masses for the madcows clusters from the act
+maps in section 5 we review the corrections performed on the
+forced photometry mass estimates including contamination by
+active galactic nuclei agn and dusty submillimeter galaxies
+via ancillary radio and submillimeter data in section 6 we
+describe the process used to infer the massrichness scaling
+relation in section 7 we discuss the inferred scaling relations
+and completeness of the madcows catalog as well as the
+impact of contamination by ir and submm sources on the sz
+mass in section 8 we provide conclusions and give an outlook
+
+the madcows galaxy cluster catalog comprises 2839 cluster
+candidates spanning redshifts 07  z  15 selected using
+wise wright et al 2010 allsky survey data gonzalez et al
+2019a3 to reduce contamination by lower redshift galaxies
+madcows uses optical data from the panoramic survey telescope and rapid response system panstarrs chambers 
+panstarrs team 2018 at declination   30  and supercosmos hambly et al 2001abc at   30 to reject low
+redshift interlopers madcows also uses data from the sloan
+digital sky survey york et al 2000 sdss for the same purpose over sections of the sdss footprint in total 2433 cluster
+candidates were identified by the wisepanstarrs search
+and 250 by the wisesupercosmos search the madcows
+catalog includes photometric redshifts for 1869 of its candidates
+derived from spitzer imaging spectroscopic measurements of a
+limited subsample of the madcows cluster candidates indicate
+that the photometric uncertainty is z 1  z  0036 in addition to photometric redshifts the spitzer followup also enabled
+an estimate of cluster richness 15  see section 63 of gonzalez
+et al 2019a briefly the madcows richness parameter 15 is
+the number of galaxies within a comoving 1 mpc radius aperture for the candidates redshift having a flux density  15 jy
+after applying the color selection criteria described in wylezalek
+et al 2013 and subtracting the expected number of field galaxies the color selection was designed to select only high redshift
+clusters within the madcows catalog 1869 of the 2839 cluster
+candidates have both richness and redshift estimates for the purposes of determining a massrichness scaling relationship this
+subset was further restricted to those madcows cluster candidates lying in the act footprint which totaled 1035 additionally 70 clusters lie in regions that are masked due to point
+source contamination this leaves 965 madcows cluster candidates that were used in the analysis to determine the radio and
+submm properties of both the act and madcows clusters
+we consider the full act and madcows cluster catalogs necessarily restricted to those clusters for which we have radiosubmm data finally in section 4 we stacked on the madcows
+cluster locations to verify that the madcows cluster candidates
+did on average produce an sz signal in order to ensure that
+known act clusters did not dominate this stacked signal we excluded madcows clusters that were also detected in act from
+the stacking analysis we did however include clusters without
+
+2
+httpslambdagsfcnasagovproductactactpolprod
+tablecfm
+
+3
+the madcows catalog is available as a supplement on vizier gonzalez et al 2019b
+
+article number page 2 of 25
+
+for further extensions to this work
+throughout this work we assume a flat cdm cosmology
+with m  0307   0693 and h0  677 km s1 mpc1
+from planck collaboration et al 2016b
+
+2 data
+in this work we primarily use the madcows cluster catalog
+gonzalez et al 2019b and the catalog and maps from act
+hilton et al 2021 additionally we use data from the herschel
+space observatory valiante et al 2016 smith et al 2017 and
+the very large array vla condon et al 1998 lacy et al
+2020 to constrain dust and radio infill of the sz signal respectively we also use the act 224 ghz maps to assess and
+constrain the impact of dust infill
+21 madcows
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+
+a redshift measurement resulting in the stacking analysis using a slightly different number of clusters 948 from the massrichness fit
+22 act
+
+act is a 6meter offaxis gregorian telescope located in the
+atacama desert in chile that has been operating since 2007
+fowler et al 2007 the advanced actpol advact receiver
+which was deployed in 2016 is its latest camera henderson
+et al 2016 thornton et al 2016 it performs polarization sensitive observations centered at 98 150 and 224 ghz corresponding to a diffractionlimited resolution of 220  140  and 100  respectively throughout we use f090 f150 and f220 to refer to
+the maps made at those frequencies and 98 150 and 224 ghz
+when refering specifically to the frequencies act has undertaken a number of large area unbiased cluster surveys using the
+sz effect menanteau et al 2010 marriage et al 2011 sehgal
+et al 2011 hasselfield et al 2013 menanteau et al 2013 hilton
+et al 2018 2021 in this work we use the dr5 cluster catalog
+hilton et al 2021 which we refer to as the act cluster catalog and whose members we call act clusters as well as maps
+of the central comptonization parameter 20  often referred to as
+sz maps in this work see section 23 of hilton et al 2021 to
+construct these sz maps we use the act maps filtered at the reference 240 scale to perform forced photometry at the locations
+of clusters reported in the madcows catalog this matched filtering essentially reduces the sz detection of given cluster candidate to a single quantity 20  the sz map is constructed such
+that each pixel records the 20 value that a cluster would have if it
+were detected at a given location in the map therefore we simply extract 20 and snr24 the signaltonoise measured in this
+240 scale map values at the coordinates of each madcows
+cluster to produce a forced photometry catalog subpixel interpolation is performed using a bivariate 3rdorder spline method
+we warn that following section 42 of hilton et al 2021 the
+sz masses estimated here from these maps may be underestimated by  5  10 and as such caution should be exercised
+when comparing the reported masses here to other cluster catalogs the dr5 catalog contains 4195 szselected optically confirmed clusters with signaltonoise  4 and with redshifts in the
+range 004  z  191 over 13211 deg2 of the sky the catalog
+has a 90 completeness mass limit of 38  1014 m at z  05
+while the act cluster search was conducted using matched
+filters with a number of different scales a fixed reference scale
+with 500c  r500c da  240 was used for characterizing the sz
+signal and its relation to mass this scale is equivalent to a cluster with m500c  2  1014 m at z  04 assuming the arnaud
+et al 2010 pressure profile and associated scaling relation in
+this work we use the map of the central comptonization parameter 20 at this reference scale and the associated signaltonoise
+map to estimate the masses of madcows clusters using forced
+photometry see section 4
+in addition to the 20 maps we also used the individual frequency maps f090 and f150 as well as 20 maps made with each
+frequency 98 and 150 ghz individually we also used the f220
+maps constructed from observations at 224 ghz while the f220
+maps are noisier 50  60 karcmin than the f090 and f150
+data   30 karcmin typical see naess et al 2020 the band
+is centered near the null in the sz effect providing a clean band
+for quantifying the dust emission in the act and madcows
+clusters as is discussed in section 52 for all these maps the
+pixel size is 050 
+
+23 herschel
+
+we used the herschel astrophysical terahertz large area survey hatlas dr1 valiante et al 2016 and dr2 smith
+et al 2017 to measure the thermal emission from dust in the
+act and madcows clusters within the hatlas footprint
+hatlas covers 660 deg2 at 100 160 250 350 and 500 m
+using the pacs and spire cameras we used only the 250 350
+and 500 m bands all from the spire camera the spire resolution is 18200  25200  and 36300 at 250 350 and 500 m respectively with pixel size equal to the resolution due to the relatively small size of the hatlas field only 34 act and 66
+madcows clusters have herschel coverage
+24 very large array
+
+in order to determine if radio source infill impacts the sz signals from madcows candidates we examine data from the national radio astronomy observatory nrao vla sky survey
+nvss condon et al 1998 and the very large array sky survey vlass lacy et al 2020
+nvss is a 14 ghz survey with 4500 fwhm angular resolution 1500 pixels that covers approximately 82 of the sky at
+declinations   40  the nvss catalog includes a set of 2326
+continuum images made with a large restoring beam to provide
+the sensitivity needed for completeness
+vlass is an ongoing 3 ghz radio survey producing stokes
+i q and u maps with an angular resolution  2500 100 pixel
+size like nvss before it the survey covers the entire sky
+visible to the vla a 34000 deg2   40  area the surveys first observations began in september 2017 vlass is expected to detect by the projects completion in 2024 5000000
+sources and record data with a continuum image rms of 70
+jybeam combined and 120 jybeam perepoch the first
+epoch survey of the entire vlass footprint has been completed
+and data products are available4 quicklook 2d stokes i images covering the entire survey were used to conduct our investigations into madcows radio source infill
+
+3 codetections in the madcows and act
+catalogs
+in order to understand the completeness of the madcows survey we identify actselected clusters that we consider to be
+matches with madcows candidates which we refer to as codetections we consider a madcows candidate and an act
+cluster to be a codetection ie the same cluster if the positional difference between the act entry and madcows entry
+was less than or equal to 250  the criterion of a 250 matching
+scale was chosen as it is approximately the resolution limit given
+the act catalog filter reference scale 240  note that hilton
+et al 2021 find that 997 of the act cluster centers are within
+190 of the optical centers using this criterion we identified 96
+codetections we report these 96 cluster codetections in appendix c1 restricting our search to only include matches to
+madcows clusters in the panstarrs footprint that number
+is reduced to 80
+we explored codetections with larger positional difference
+values as well increasing the accepted positional difference from
+250 to 50  however doing so only resulted in an additional 7
+4
+
+the vlass data are available on the canadian astronomy data centre site httpwwwcadcccdahiaihanrccnrcgccaensearchcollectionvlassnoexectrueresulttabletab
+article number page 3 of 25
+
+aa proofs manuscript no madcows
+
+14
+
+100
+
+  
+
+10
+0
+
+08
+06
+
+50
+
+act redshift
+
+12
+50
+
+04
+100
+150
+
+100
+
+50
+
+0
+
+50
+
+100
+
+150
+
+  
+
+fig 1 offsets in the right ascension and declination of act
+clusters hilton et al 2021 and their codetected madcows
+counterparts gonzalez et al 2019b the color bar indicates the
+redshift of the codetection as recorded by act in the dr5 cluster catalog the blackdotted circle is the radius 120  that includes 89 95 of codetections
+codetection candidates which we deemed to be only chance
+superpositions in figure 1 we show the typical offsets between
+the codetections indicating the match is generally within 070 
+given the act cluster catalog the number of codetections
+sets an upper limit on the completeness with respect to the act
+catalog of the madcows cluster catalog and informs our understanding as to what extent these two surveys probe the same
+population of clusters we first consider whether madcows detected all act clusters restricting the act catalog to match
+the madcows catalog in redshift 07  z  15 and footprint
+  30  corresponding to the panstarrs followup region
+yields 712 act clusters compared to 80 codetections restricted
+to the panstarrs region relaxing the footprint constraint to
+include areas of supercosmos followup yields 1102 act
+clusters compared to 96 codetections while this does not put
+a hard constraint on the completeness of the madcows survey it does suggest that it is  10 a primary reason for this
+low completeness is expected to be the large nongaussian scatter between the mass and detection significance in the madcows search madcows clusters were detected as galaxy excesses traced by the bright tip of the luminosity function with
+the strength of the signal significantly affected by both poisson
+statistics and blending of galaxies at the resolution of wise
+as discussed in section 21 after restricting the madcows
+cluster catalog to the act footprint masking point sources and
+removing clusters without measured richnesses or redshifts a
+total of 965 madcows clusters remain which are used for the
+mass richness scaling relation we note that discrepancies in the
+redshift determinations existed for several of the codetections
+wherever these occurred we used the redshift reported in hilton
+et al 2021 since these generally included newer and more complete data and correspondingly smaller uncertainties
+we highlight in figure 2 a few prominent codetections additionally we compare the sz masses for a number of act
+clusters to those from the literature in appendix b overall the
+masses inferred from these targeted observations agree within
+1 with the actinferred mass estimates one noteworthy exception is that of moo j11421527 where the mass estimates
+article number page 4 of 25
+
+using combined array for research in millimeterwave astronomy carma gonzalez et al 2019a new iram kids arrays nika2carma ruppin et al 2020 act and mustang2 dicker et al 2020 differ at approximately the 2 level
+we note that moravec et al 2020 report this cluster as an ongoing merger and that it may require multiple sz components to
+describe in figure 3 we show the data used to infer scaling relations using carma and mustang2 gonzalez et al 2019a
+dicker et al 2020 respectively a notable feature evident in
+this figure is that for the act codetections as well as the clusters from the previous sz followup campaigns there appears
+to be a bimodal split in the sz mass of the high 15 systems
+the effect may be in part due to merging and premerger systems which can have low sz signals for their richness dicker
+et al 2020 the suggestion of bimodal behavior in figure 3 becomes more evident in figure 4 in which the sz signals of the
+entire madcows catalog as measured with act are plotted
+the masses of the high richness 15  55 systems cluster into
+two branches one higher 20 and higher slope and one lower 20
+and lower slope high resolution followup observations of these
+clusters could provide insight into whether the bimodality is in
+fact due to merger history
+
+4 forced photometry at madcows cluster
+candidate locations
+as discussed in section 22 to form the forced photometry catalog we simply record the 20 value in the sz map at a madcows candidate location the resulting distribution of 20 versus 15  for the 965 candidates that have reported richness values is shown in figure 4 the forced photometry catalog has no
+snr limit ie it includes all 965 madcows cluster candidates
+that fall within the act survey footprint excluding those that
+fall within masked regions eg due to the dust mask or point
+sources see hilton et al 2021 this means that the catalog is
+free from szselection bias and by fitting the 20 values at the
+madcows cluster locations through a bayesian approach we
+are able to infer the massrichness relation see section 6 while
+addressing sample impurity and sources of contamination due
+to noise in the map as well as radio or dusty sources in or near
+clusters the madcows clusters may have negative 20 values
+we account for this in sections 52 53 and 61
+conversion from 20 to mass was done following hilton et al
+2021 we note that there is a small calibration difference between our masses and those of gonzalez et al 2019a they used
+the andersson et al 2011 scaling relation while our work uses
+the arnaud et al 2010 scaling relation the difference between
+these two should be  5 andersson et al 2011 which is
+subdominant to other sources of uncertainty in our main results
+section 63
+we verified the presence of sz signal on average by stacking the act sz maps on the madcows candidate locations
+for this we used the pixell software suite5 we removed candidates outside the act footprint or lacking a richness estimate
+as well as codetections to ensure that the signal would not be
+dominated by known act clusters after which 984 clusters remained for stacking we divided these clusters into richness bins
+as shown in figure 5 starting at a richness of 15  10 there
+are only 28 clusters in the remaining 984 with 15  10 and the
+signal in this stack is consistent with 0 to within 1 in each bin
+we then stacked 200  200 cutout maps centered on the madcows cluster positions the results are shown in figure 5 we
+5
+
+httpsgithubcomsimonsobspixell
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+200
+4
+
+arcminutes
+
+2
+175
+
+0
+2
+4
+
+150
+
+4
+
+arcminutes
+
+2
+125
+0
+2
+100
+
+4
+
+4
+
+arcminutes
+
+2
+
+75
+
+0
+2
+50
+4
+
+4
+25
+
+arcminutes
+
+2
+0
+2
+
+00
+
+4
+4
+
+2
+
+0
+arcminutes
+
+2
+
+4
+
+4
+
+2
+
+0
+
+2
+
+arcminutes
+
+4
+
+4
+
+2
+
+0
+
+2
+
+4
+
+arcminutes
+
+fig 2 act snr maps of the dozen highest significance codetections where the snr is with respect to 20  each panel notes the
+act cluster name and redshift from hilton et al 2021 some of these clusters do not have a measured madcows richness and
+as such none is reported the 3 clusters lacking richness measures were found to be lower redshift clusters red crosses denote the
+act identified cluster center color bar scale is in units of 20 
+computed the average 20 over the central 120 radius in the stacks
+in each richness bin uncertainties on this figure were evaluated
+via bootstrapping see appendix a the lowest richness bin
+10    20 contains 191 cluster candidates the stack on
+this bin is consistent with zero signal in each of the remaining
+bins there is a clear detection at  3 see table 1 for the exact
+20 signals
+
+5 mass estimate biases and corrections
+the targeted sz followup in eg gonzalez et al 2019a di
+mascolo et al 2020 and dicker et al 2020 mainly probes
+the highrichness tail in the distribution and hence may present
+both malmquist and eddington biases see eg malmquist 1922
+kelly 2007 in the richness selection moreover the carma
+sample exhibits a malmquist bias in its sz flux measurements
+as noted in gonzalez et al 2019a the carma sample was
+article number page 5 of 25
+
+aa proofs manuscript no madcows
+
+15low
+10
+20
+30
+40
+50
+60
+
+7
+
+m500 1014m 
+
+6
+5
+4
+3
+
+ in bin
+191
+401
+251
+94
+34
+13
+
+20 104 
+0  1  102
+30  8  103
+54  9  103
+20  3  102
+40  8  102
+53  9  102
+
+table 1 20 of stacks on the madcows cluster candidates less
+the codetections as discussed in section 4 and shown in figure 4 15low is the left bin edge exclusive and 15high is the
+right bin edge inclusive the uncertainty on 20 is calculated
+via bootstrapping
+
+2
+1
+20
+
+30
+
+40
+
+50
+
+60
+15
+
+70
+
+80
+
+90
+
+100
+
+fig 3 mass vs richness relation for a selection of madcows
+clusters with sz mass estimates the purple circles correspond
+to the carma madcows cluster sample from gonzalez et al
+2019a the vaca loca points from di mascolo et al 2020
+are shown in red and the mustang2 measurements from
+dicker et al 2020 are shown in orange the black data points
+are chandra observations of madcows clusters points that are
+open are known active mergers and points that are represented
+with triangles are consistent with no signal
+
+25
+
+15
+
+20
+
+14
+
+15
+
+13
+
+10
+
+12
+
+05
+
+11
+
+00
+
+10
+
+05
+
+09
+
+10
+
+08
+
+15 0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+z
+
+y010 4
+
+15high
+20
+30
+40
+50
+60
+100
+
+07
+
+15
+
+fig 4 the 20 15 relation for the forced photometry
+actmadcows catalog the color bar on the right indicates
+the redshift of each candidate the black points indicate the average 20 in bins of richness note that these are not quite the same
+as those computed from stacking in figure 5 as those do not include the codetections see section 4 for a discussion of why
+they were not included the binned 20 uncertainties were computed via bootstrapping while the 15 error bars simply show
+the bin width the redshift given is the act catalog redshift for
+those clusters detected in act otherwise it is the madcows
+reported redshift
+constructed by performing shallower observations of the higher
+richness objects based on the expectation that the integration
+times should be shorter and only reported the results for robust
+detections correcting for these biases was one of the prime motivations of this paper since the madcows clusters were not
+sz selected it is unnecessary to deboost our 20 or mass estimates however three primary effects still need to be corrected
+in the forced photometry mass estimates
+article number page 6 of 25
+
+firstly the cluster locations that madcows reports are the
+peaks of a smoothed galaxy density map the identified cluster
+location can be offset from the center of the cluster mass and
+hence the center of the sz signal george et al 2012 sehgal
+et al 2013 viola et al 2015 which leads to a suppression of
+the sz signal this scatter can be due to measurement uncertainty of the clusters madcows centroid  1500 in each of ra
+and dec gonzalez et al 2019a section 53 or sz peak 150
+total hilton et al 2021 or it can be due to astrophysical reasons
+ie the hot virialized gas which is responsible for the sz signal
+may not have the same spatial distribution as the galaxy number
+density used to determine the madcows centroid george et al
+2012 sehgal et al 2013 viola et al 2015 either way the result
+is that for a set of clusters stacking on the optical centroids produces a signal which is suppressed as compared to stacking on
+their sz peak locations which ge et al 2019 have found to be
+around the  10 level this agrees with the typical suppression
+that we find in section 51
+secondly the matched filter used in the forced photometry
+method as described in section 4 cannot account for compact
+sources at cluster locations if emission from compact sources
+such as radio sources or dust reduces the 98 andor the 150 ghz
+emission the effect will be to bias the 20 estimate low the emission infills the sz decrement causing the mass estimate from
+forced photometry to be biased low the significantly negative
+20 clusters see figure 4 suggest that this might be occurring
+further stacking the f220 maps on the madcows candidate locations produces a significant positive signal which is not present
+when stacking on the act cluster locations we ascribe this
+excess to dusty submm emission spatially correlated with the
+madcows cluster locations stacks on act and madcows
+cluster locations at radio frequencies show that the act clusters have higher observed radio flux density on average section 53 as such the source of the excess madcows 224 ghz
+emission is likely not radio from the f220 stacks and similar
+stacks on the hatlas maps we find that the madcows candidates have more significant infill at submm wavelengths than
+the general population of act clusters further we find that the
+spectral form of the submm emission in the madcows cluster
+stacks is well described by a graybody equation 5 such infill is typically due to dusty submillimeter galaxies eg casey
+et al 2014 we combined the stacks on the f220 and hatlas
+data set to estimate this contamination and remove it from the
+massrichness scaling relation see section 52
+thirdly and finally in section 53 we consider the effect of
+contamination at radio wavelengths on the madcows cluster
+candidates bright radio contamination while declining at mm
+wavelengths could potentially remain relatively significant at 98
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+
+10 
+
+10
+
+15
+
+20
+
+5
+0e00
+
+5
+
+2e06
+10
+
+10
+
+30
+
+5
+
+40 
+
+0
+15
+
+5
+
+2e06
+
+50
+
+5
+
+0
+
+1e05
+
+0
+
+5
+
+0e00
+
+5
+
+5
+
+0
+
+5
+
+10
+
+10
+
+15
+
+40
+
+8e06
+
+5
+
+4e06
+
+0
+
+0e00
+
+5
+10
+
+10
+2e05
+
+10
+
+0e00
+
+5
+10
+
+10
+
+30 
+
+10
+
+0
+
+5
+
+10
+
+15
+
+5
+
+0
+
+10
+
+20 
+
+2e06 10
+
+5
+
+50 
+
+0
+
+5
+
+15
+
+60
+
+10
+
+2e06 10
+
+10
+
+5e05 10
+
+5
+
+60 
+
+0
+15
+
+5
+
+100
+
+10
+6e05
+
+5
+3e05
+0e00
+10
+
+5
+
+0
+
+5
+
+0e00
+
+5
+10
+
+10
+
+3e05
+
+0
+
+10
+
+5
+
+0
+
+5
+
+10
+
+fig 5 stacks on madcows cluster positions in bins of richness on the act 20 maps the color bar scale is in units of 20  due
+to the order of magnitude difference in scale maximum between bins the scaling is not consistent between plots while there is no
+detection in the 10  15  20 bin there is a clear signal in all the other bins the red circle indicates the central 240 in diameter
+the xaxis shows the offset in ra in arcminutes while the yaxis shows the offset in declination in arcminutes the text in the top
+left is the number of madcows cluster candidates in the stack and the snr
+and 150 ghz once again infilling the measured 20 toward lower
+values we describe our correction for this effect in section 53
+
+100
+095
+
+to correct for suppression of the sz signals due to positional offsets in madcowsdetermined cluster centroids as compared to
+the act determined centroids we stacked the 20 maps on the 96
+actmadcows codetections twice once on the act identified cluster locations and once on the madcows identified location at each cluster location we created a 200 square submap of
+the 20 map centered on the cluster location we normalized each
+submap to have unity amplitude so that the suppression was not
+dominated by the particular scatter of the brightest clusters we
+performed this stacking analysis on clusters with measured richness greater than 20 divided into 5 bins of even richness range
+this left only about 15 clusters in each bin leading to relatively
+large uncertainties as shown in figure 6
+to compute the suppression for each of the stacks above we
+computed the aperture t cmb within a 120 radius of the stack
+center for a given richness bin the ratio of this statistic for the
+madcows centered stacks to the act centered ones sets the
+suppression we computed the variance via bootstrapping we
+then fit the richnesssuppression relation to a sigmoid model of
+1
+by maximizing the likelihood functhe form f x  1expbx
+tion
+1 x yn  f xn 2
+ log2n 
+2 n
+2n
+
+1
+
+where yn is the ratio of the act to madcows signal in the nth
+richness bin and n is the uncertainty in the nth that data point
+
+suppression
+
+51 centroid offset
+
+
+
+b  00450015
+0009
+
+090
+085
+080
+075
+070
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+15
+
+fig 6 the madcows to act 20 suppression ratio due to miscentering based on the 96 codetections the position of data
+points on the x axis shows the center of the richness bin the y
+axis is the ratio of the aperture t cmb in the central 120 radius
+of the madcows centered stacks to that of the act centered
+stacks where t cmb is the fluctuation in cmb temperature from
+the mean the data have been fit to a one parameter sigmoid
+1
+model of the form f x  1expbx
+ the dashed red line shows
+this fit and the legend reports b
+
+the results are shown in figure 6 in our massrichness fitting
+routine we include a parameter to account for this suppression
+effect we do not directly adjust the measured fluxes using this
+model rather the model developed above enters into the fit as
+article number page 7 of 25
+
+aa proofs manuscript no madcows
+
+10
+
+50
+
+20
+
+30
+
+40
+
+15
+
+40
+madcows
+act
+
+50
+
+60
+
+tcmb  k
+
+30
+20
+10
+0
+10
+20
+30
+
+1
+
+2
+
+3
+
+4
+5
+mass 1014m 
+
+6
+
+7
+
+8
+
+fig 7 average 224 ghz emission for madcows blue and
+act orange clusters madcows clusters were binned in richness while the act clusters were binned in mass richness is
+plotted on the lower xaxis while mass is plotted on the upper
+the two scales are not equivalent and are simply coplotted for
+convenience error bars were estimated via bootstrapping the
+madcows clusters show a statistically significant excess emission at 224 ghz on the whole while the act clusters show a
+small decrement in neither the act nor the madcows clusters
+is there a trend with mass or richness the dashed lines indicate
+the average 224 ghz emission across all madcows blue and
+act orange clusters we attribute the signal from the madcows cluster candidates at 224 ghz to ir emission and follow
+up with herschel data section 52
+a richness dependent prior on that suppression parameter section 62
+52 submm emission
+
+since the sz effect at the frequencies of interest 98 and
+150 ghz manifests as a decrement of the cmb temperature
+there is the potential that dusty submm sources could fill in
+or partially suppress the sz signal it is also known that dusty
+submm galaxies eg erler et al 2018 as well as radio agn
+considered in the next section frequently reside within the centers of clusters where feedback processes are strongest see eg
+coble et al 2007 sayers et al 2013 gralla et al 2014 zakamska et al 2019 gralla et al 2020
+to determine if the sz signals of the madcows candidates
+are suppressed by a dusty contribution we stacked the f220 maps
+on the madcows centers the f220 map was matched filtered in
+the same way as the 20 map to remove point sources maintaining
+consistency we then stacked the f220 maps on both the act all
+4195 and madcows all 1572 in the act footprint cluster
+positions and computed the aperture flux density in units of t cmb
+within the 120 radius of the stack center corresponding to the
+act cluster finder reference filter scale of 240 
+we used bootstrapping to estimate the uncertainty in this
+measure we found that for the madcows clusters the signal
+was 89  12 k while for the stack on act clusters the signal was 23  06 k where the units are t cmb  additionally
+we binned both the madcows and act data into 6 bins for
+the madcows clusters we binned them in richness while for
+the act we binned them in cluster mass we then repeated the
+analysis using these bins the results are shown in figure 7 for
+article number page 8 of 25
+
+both the madcows and act clusters there is no obvious trend
+in 224 ghz flux density with richness or mass respectively the
+excess emission in the madcows clusters we attribute to dust
+emission the decrement in 224 ghz emission from the act
+clusters may be due to a small bias in the cluster finder algorithm since the cmb serves as a source of noise when searching
+for the sz signal the algorithm preferentially finds clusters in
+regions of lower primary cmb signal ie cold spots therefore when stacking on the f220 maps the result is a preferential
+stack on regions of low 224 ghz emission leading to a decrement
+to quantify the dust emission we stacked on the madcows
+cluster locations in the hatlas maps valiante et al 2016
+smith et al 2017 for comparison we also stacked the maps
+on act cluster locations and a sample of random locations generated by offsetting each madcows cluster location by 50 in a
+random direction due to the small size of the hatlas survey
+we were only able to perform this analysis for 34 act clusters and 66 madcows cluster candidates limiting our ability
+to determine if the infill has a richness or mass dependence in
+order to compare with the emission at 224 ghz we first converted each of the 250 350 and 500 m maps to mjypixel and
+then smoothed to 100 ie the act 220 ghz resolution using
+a gaussian kernel with the integral normalized to unity we then
+stacked these maps on the madcows and act cluster locations using inversenoise weighting and calculated the aperture
+flux density within 120 of the stack center ie in the central
+240 diameter corresponding to the reference filter scale used in
+hilton et al 2021 we computed the uncertainty in each stack
+via bootstrapping for the act and randoms stack the signal
+was consistent with zero for the madcows there was a statistically significant excess see figure 8 we converted the average fluctuation of t cmb in the 224 ghz stack described above
+to emission in mjy sr1  using the derivative of the blackbody
+function see eg mroczkowski et al 2019
+i
+i0
+x4 e x
+
+
+t cmb t cmb e x  12
+
+2
+
+where t cmb  27255 k is the monopole temperature of
+the primary cmb i is the change in intensity above background t cmb is the fluctuation in temperature about the cmb
+monopole and x  hkb t cmb   568 ghz is the dimensionless frequency the normalization factor of the primary
+cmb spectrum is
+i0 
+
+ t
+3
+2kb t cmb 3
+cmb
+
+27033
+mjysr
+27255 k
+hc2
+
+3
+
+
+
+i can then be converted to surface brightness s  jybm via
+z
+s  
+i d  hi ibeam 
+4
+for all three stacks we estimate uncertainties via bootstrapping
+given the excess submm emission detected in the madcows
+clusters we then performed a maximum likelihood fit to the resulting surface brightnesses of the madcows stacks to a graybody model of the form
+h
+i
+
+s   a b t  1  e0  
+5
+where a is an amplitude normalization 0  3000 ghz is a
+reference frequency draine 2006  is the dust emissivity spectral index t is the dust temperature and b t  is the planck
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+7
+
+8
+
+4
+
+catalog
+madcows
+act
+randoms
+
+3
+2
+
+catalog
+madcows
+act
+randoms
+
+4
+2
+
+1
+00
+
+01
+02
+03
+04
+central brightness mjysr over 24
+
+a 250 m
+
+05
+
+0
+
+density
+
+6
+density
+
+density
+
+5
+
+0 01
+
+10
+
+8
+
+6
+
+catalog
+madcows
+act
+randoms
+
+6
+4
+2
+
+01
+
+00
+01
+02
+03
+central brightness mjysr over 24
+
+04
+
+b 350 m
+
+0
+
+010 005 000 005 010 015 020 025
+central brightness mjysr over 24
+
+c 500 m
+
+fig 8 histograms of average surface brightness in herschel submm observations corresponding to a 120 radius aperture flux
+centered on act madcows and random cluster locations the dashed lines show the average brightness for a given frequency
+and catalog at 250 m the average surface brightness is 010  008 015  010 and 022  011 mjysr for the randoms
+act and madcows samples respectively at 350 m those surface brightnesses are respectively 005  005 008  008
+and 016  009 mjysr for the randoms act and madcows samples finally at 500 m they are 001  004 003  007 and
+009006 mjysr for the randoms act and madcows the statistically higher madcows emission at each herschel frequency
+along with the higher emission in the act 224 ghz channel figure 7 indicates the madcows clusters may be contaminated by
+dusty sources
+blackbody function to account for the effect of redshift we fit
+using the rest frame frequencies which we converted from the
+observed frequencies by multiplying by 1  hzi  208 with
+hzi the average z for the subsample of madcows clusters in the
+hatlas region for which there are photometric redshifts we
+assumed a gaussian function for the likelihood and estimated the
+uncertainties in our fit parameters using a markov chain monte
+carlo mcmc method implemented in the emcee foremanmackey et al 2013 package we placed flat uninformative priors on t  a and  enforcing 0 k  t  200 k 1  a  1
+and 5    10 results of the fit are presented in figure 9
+subfigure 9a shows the data with error bars in black the best fit
+in blue and the 68 and 95 confidence limits in subfigure 9b
+we show constraints on the fit parameters t rest   and a
+we find that for the madcows clusters in the hatlas
+footprint the best fit temperature is t  284
+3 k this is in
+good agreement with other measurements of the dust properties
+of iroptical selected clusters see eg smith et al 2013 erler
+et al 2018 amodeo et al 2021 fuzia et al 2021 vavagiakis
+et al 2021 our constraint on the dust emission spectral index
+03
+  1902
+is somewhat higher than other measurements but
+does agree within uncertainties see eg magnelli et al 2012
+smith et al 2013 sayers et al 2019
+when performing the massrichness scaling relation fit we
+repeated the analysis above by including the dust model in the
+full joint probability distribution this allowed for accounting
+of degeneracies between the dust model parameters and other
+parameters see section 61
+to get an estimate of the level of bias due to dusty emission infilling the sz signal in madcows cluster candidates
+we converted the modeled emission at 98 ghz 77  3 jy and
+150 ghz 370  50 jy to compton y via
+
+
+1
+x
+x4 e x
+y  i  i0
+
+6
+4
+tanh 05x
+e x  12
+we then weighted the computed 20 at 98 and 150 ghz by their
+average relative contributions to 20  66 and 33 respectively
+and compared that weighted average to the 20 signal for a 2 
+1014 m cluster at redshift of 1 following hilton et al 2021
+we find that the infill is 15  05 for the average madcows
+
+cluster candidate the above computation ignores the effects of
+the matched filter which will in general suppress the infill for a
+source not centered on the cluster and should be considered an
+approximation only
+53 radio emission
+
+in order to assess and quantify low frequency radio source infill strong enough to impact our 98 and 150 ghz measurements
+of the sz signal we require constraints on the radio flux density and spectral indices of the source population using both
+nvss 14 ghz and vlass nominally 3 ghz allows us to
+estimate both from these surveys section 24 we evaluate the
+distribution of radio infill associated with members of the act
+and madcows samples for each cluster there are two statistics with which we are concerned 1 the intrinsic luminosity of
+sources within the cluster in its frame of reference and 2 the observed flux density in our frame of reference we are concerned
+with the intrinsic radio luminosities as they tell us whether the
+act and madcows clusters were drawn from populations with
+the same intrinsic radio properties we must also consider the observed fluxes as they set the level of radio infill in the cluster
+for clarity whenever we refer to fluxes or surface brightness or
+use units of flux density or surface brightness jy or jysr we
+are referring to the observed flux density or surface brightness in
+our frame of reference whenever we refer to radio luminosities or use units of luminosity whz we are referring to the
+intrinsic radio luminosity our process is to first compute the observed flux density for each cluster and then convert that into
+intrinsic radio luminosity
+to compute the radio flux for each cluster we produced a
+cutout image postage stamp of the nvss map centered at the
+cluster position and smoothed it to 10 to match the act 224 ghz
+beam scale in order to account for the effect of smoothing by the
+act beam on the f220 maps we then calculate the aperture flux
+density in the central 120 radius of the smoothed stamps additionally for each stamp we estimate the local background flux
+density by computing the 120 radius aperture flux density at 20
+random locations in the stamp lying outside the central aperture
+and taking the median we then subtracted the background flux
+density from the central flux density to form an estimate of the
+article number page 9 of 25
+
+aa proofs manuscript no madcows
+
+10
+
+00
+
+best fit
+95 uncertainty
+68 uncertainty
+data
+
+1
+
+41
+
+percentage infill at 90ghz
+82
+123
+164
+
+204
+
+245
+
+005
+
+010
+
+020
+
+025
+
+030
+
+a act 14 ghz fluxes
+percentage infill at 90ghz
+52
+105
+157
+209
+
+261
+
+314
+
+005
+
+025
+
+030
+
+103
+
+102
+
+10
+
+count
+
+surface brightness mjysr
+
+100
+
+2
+
+101
+
+10 3 2
+3  10 4  102
+
+103
+6  102
+frequency ghz
+
+2  103
+
+3  103
+100
+000
+
+a maximum likelihood best fit of the form equation 5 to the
+mean emission from stacks on the madcows clusters at 224
+act 600 857 and 1200 ghz herschel the total number of
+clusters in the stack is the 66 clusters in the hatlas footprint
+for the three herschel bands and 1572 for the act 224 ghz band
+the blue dashed line is the best fit and the light and dark blue
+bands represent the 68 and 95 confidence limit respectively
+the yaxis is the surface brightness averaged over a 120 radius
+aperture at the center of the stack error bars were estimated via
+bootstrapping
+
+00
+
+015
+flux jy
+
+103
+
+count
+
+102
+
+a x10 4
+
+101
+
+100
+000
+
+006
+004
+
+010
+
+015
+flux jy
+
+020
+
+b madcows 14 ghz fluxes
+
+002
+
+100
+
+000
+
+act
+madcows
+
+30
+20
+15
+20
+
+t
+
+40
+
+000
+
+005
+
+a x10 4
+
+1
+
+2
+
+3
+
+b constraints on the dust temperature t  284
+3 k the dust
+spectral index   1903
+
+and
+the
+normalization
+constant a 
+02
+6
+1301
+
+10
+
+the
+light
+and
+dark
+blue
+contours
+show
+the 68 and
+01
+95 confidence intervals respectively for the twodimensional
+projections of the posterior probability the onedimensional posterior probabilities are shown on the diagonal
+
+fig 9 graybody fit constraints
+radio flux density for that cluster see figure 10 for histograms
+of the act and madcows radio fluxes in nvss for act we
+found a median flux density at 14 ghz of 61  04 mjy for the
+3341 clusters in the nvss footprint for madcows we found
+a median flux density of 39  04 mjy for the 1780 clusters in
+the nvss footprint where the uncertainties were estimated via
+bootstrapping the stack
+we use an identical method to measure the background subtracted fluxes for the clusters in the vlass data for each cluster
+with background subtracted flux density greater than the nvss
+article number page 10 of 25
+
+flux jy
+
+25
+
+10
+
+1
+
+10
+
+2
+
+10
+
+3
+
+00
+
+02
+
+04
+
+06
+
+percentile
+
+08
+
+10
+
+c 14 ghz cumulative histogram
+
+fig 10 histograms of the 14 ghz aperture flux density of the
+act figure 10a and madcows figure 10b cluster catalogs
+figure 10c shows the normalized cumulative histogram of the
+same data cut at the aperture noise of 03 mjy to better illustrate the difference in infill between the two samples the fluxes
+shown are all for a 120 radius aperture while the percentage infill is the approximate infill of the sz signal as described in section 712 note that due to differences in average redshift and
+spectral index of the act and madcows clusters the same
+measured flux density at 14 ghz does not correspond to the
+same percentage infill the act clusters show on average significantly more radio infill at 14 ghz than their madcows
+analogues
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+
+confusion limit of 25 mjy in both data sets we proceed to compute a spectral index  however in order to compute  one
+requires more precise knowledge of the fluxweighted band center vlass for the wide bandwidth 24 ghz vlass data for
+example if the measured flux density in vlass is lower than
+the flux density one would find by assuming a fiducial spectral
+index the resulting  is steeper and vlass will shift lower than
+that initially assumed if the flux density is higher  is flatter and
+vlass shifts higher this leads us to rely on a recursive or iterative
+approach when estimating vlass and the resulting  assuming a
+flat instrument passband from 24 ghz and emission of the form
+s   c0  for c0 the amplitude and  the spectral index we
+compute the fluxweighted band average as
+r 4 ghz
+
+
+c0 1 d
+  1 42  22
+2 ghz
+vlass  r 4 ghz
+
+7
+  2 41  21
+c0  d
+2 ghz
+
+note that we assume the passband to be flat for simplicity
+for a given cluster with a measured radio flux density in both
+the nvss and vlass surveys we first computed the spectral
+index using the nominal vlass band center of 3 ghz6 using
+that spectral index and equation 7 we computed a new vlass
+band center we then calculated a new spectral index using this
+band center and repeated the process until the difference between consecutive spectral indices was  01 the uncertainty
+on the spectral index was computed from the fluxes s  and uncertainties  following for example zajaek et al 2019 as
+ 
+
+1
+ log nvss vlass 
+
+p
+
+nvss s nvss 2  vlass s vlass 2 
+
+8
+
+the population of spectral indices and fluxes that was generated
+in this manner was then used to correct the massrichness
+scaling relation as described in section 62 for both the act
+and madcows clusters we find a fairly broad distribution
+of spectral indices computed between 14 and 3 ghz with
+mean for the madcows candidates of hmadcows i  09 and
+standard deviation   07 and mean for the act clusters of
+hact i  12 and standard deviation   08 these mean
+spectral indices are broadly consistent with values typically
+found for radio agn coble et al 2007 sayers et al 2013
+though we note our spectral index is also consistent with that
+found for starforming regions typically   06 see calistro
+rivera et al 2017 so we cannot conclude whether agn or star
+formation dominates the observed radio spectra
+similarly to section 52 we computed the bias in the measured sz signal due to radio infill of the act and madcows
+clusters we computed the infill percentage twice once assuming our measured average spectral index of meas  091 and the
+other assuming a typical radio spectra of typ  07 we refer to
+the infill percentages assuming their respective spectral indices
+as smeas and styp  respectively the high uncertainty on this number and strong dependence of the 98 and 150 ghz flux density
+on  mean that the bias for a specific cluster can vary quite a bit
+depending on its spectral index for example a 100 mjy source
+at 14 ghz with a spectral index of 091 produces a decrement
+of about 10 while one with a spectral index of 12 produces
+only about 3 and one with a spectral index of 07 produces
+6
+
+here we define spectral index such that negative values for  show
+the typical behavior of declining at higher frequencies ie the flux density s   0  
+
+a 26 infill assuming m  2  1014 m  z  1 for the madcows clusters we continue to use the reference cluster with
+m  2  1014 m  z  1 to compute the infill for the act
+clusters we use their individual measured masses and redshifts
+extrapolating flux density using spectral indices derived at 14
+and 30 ghz out to 98 and 150 ghz can be risky not only due
+to the uncertainty in the spectral index but also because it is not
+assured that the index is consistent between those two frequency
+ranges sayers et al 2013 found that spectral indices for radio
+galaxies in large clusters were generally consistent when computed between 14 and 30 ghz and 30 and 140 ghz so that as
+an estimate it is justified to use the measured spectral indices to
+extrapolate our flux densities from 14 to 98 and 150 ghz for
+precise determination of the radio infill multifrequency observations near 98 and 150 ghz will be required to determine the
+effective spectral index of sources near the sz frequencies
+the average infill for an act cluster is smeas  08  003
+and styp  20  01 while for the madcows cluster candidates the average infill is smeas  045  005 and styp 
+083  005 however while the average bias is quite low for
+an appreciable number of the clusters the bias is nonnegligible
+for the 95th percentile of act clusters smeas  70  05 and
+styp  181 we note that of the nine madcows clusters with
+20  05 5 had significant radio infill flux density  20 mjy
+at 14 ghz including five of the top six with most negative 20 
+suggesting that the significantly negative 20 measurements could
+be due to radio infill for example one such cluster with very
+negative 20  moo j22470507 has a flux density at 14 ghz of
+160  1 mjy and   061  08 its measured  and z  102
+assuming it has a mass of 2  1014 m  the bias at 98 ghz is
+sj2247  70  17 where the uncertainties have been propagated
+from the flux density uncertainty only
+we emphasize that we have not included the effect of the
+matched filter so the numbers presented above represent only an
+approximation of the effect of the infill further since our radio
+fluxes were computed using aperture photometry the measured
+fluxes and spectral indices are averages for all compact sources
+in the cluster high resolution multifrequency followup of
+cluster candidates would be required to precisely remove this
+infill
+consistent with the above we computed the intrinsic radio
+luminosities to do so we assumed a simple power law of the
+form s   c0   this then leads to the usual kcorrection
+kz  1  z1 for redshift z the intrinsic luminosity at
+frequency 1 can then be computed from the observed flux density s 2 at frequency 2 using the luminosity distance dl z
+
+4dl z
+1
+l1 
+s 2
+9
+1  z1 2
+for convenience we select 1 to be 14 ghz for each cluster then we calculated its intrinsic luminosity using the nvss
+measured flux its measured redshift and the spectral index for
+that cluster as computed above all the act clusters have measured redshifts for the madcows candidates which do not have
+redshifts we used the mean of the sample hzi  101 for
+clusters which did not have measured spectral indices we used
+the average spectral index of that clusters catalog either act
+hact i  121 or madcows hmadcows i  091 the results are shown in figure 11 the average luminosity for act
+clusters is 54  03  1024 w hz1  while for the madcows
+clusters it is 91  10  1024 w hz1  where the statistical uncertainties have been computed via bootstrapping restricting
+article number page 11 of 25
+
+aa proofs manuscript no madcows
+
+1027
+
+logl14 whz 1
+
+1026
+
+source
+act
+madcows
+
+1025
+1024
+1023
+1022 000 025 050 075 100 125 150 175 200
+z
+
+fig 11 intrinsic radio luminosities at 14 ghz for act blue
+3341 clusters and madcows orange 1780 clusters the red
+line shows a 03 mjy flux density at 14 ghz in the observed
+frame of reference converted to 14 ghz in the emitted frame of
+reference for the given z according to equation 9 and assuming
+a spectral index of 091 the choice of 03 mjy corresponds to
+the variance of the background aperture flux density in the nvss
+maps for a 120 radius aperture and thus roughly corresponds to
+the noise floor for our background subtracted fluxes therefore
+the red line should guide the eye as to which radio luminosities
+are above the noise note that many clusters are not shown as
+they have very low or negative values for their radio fluxes due
+to subtraction of the background
+the act clusters to the same redshift range as the madcows
+07  z  15 raises the average luminosity of act clusters
+to 65  07  1024 w hz1  suggesting that even accounting for
+redshift the madcows clusters are on average more radio loud
+than their act counterparts although the average redshift of the
+act clusters after this restriction hzi  089 is still lower than
+that of the madcows sample hzi  101
+
+6 the sz massrichness scaling
+given the results above we attempt to investigate the madcows massrichness scaling relation in doing so we hope to
+understand if richness provides a good proxy for mass in the
+madcows cluster catalog additionally we address whether
+the preliminary massrichness scaling relation found in gonzalez et al 2019a is consistent with the scaling relation of the
+entire madcows catalog and whether the full scaling relation
+follows selfsimilarity
+61 regression technique
+
+we adopt a hierarchical bayesian approach that builds upon the
+work of kelly 2007 and sereno 2016 to which we refer for a
+thorough discussion of the fitting technique here we provide a
+summary of key details central to our analysis
+at each step of the modeling process and for each of the clusters within the considered sample we consider an independent
+variable  drawn from a mixture of gaussian probability distributions kelly 2007 this corresponds to the true value of the
+logarithm of the cluster richness ln  we therefore fit richness
+article number page 12 of 25
+
+as ln  which is related to the observed richness obs through a
+poisson probability distribution pobs   pe 
+in a similar manner to richness we fit the mass as ln m we
+define the dependent quantity  as the true value of the logarithm
+of the cluster mass ln m which we assume to be connected to
+the independent variable  through a normal probability distribution p with mean
+hi  p0  p1 
+
+10
+
+and variance corresponding to the intrinsic scatter of the true
+quantities about the mean scaling relation given the definition
+of the variables  and  our choice of probability distribution
+is equivalent to using a lognormal model for describing the relation between the true mass and richness for a given cluster
+following eg evrard et al 2014 and simet et al 2017 it is
+hence possible to express the variance due to intrinsic scatter as
+varln m  2int 
+
+p21
+ 2ln m 
+
+
+11
+
+here the first term on the righthand side accounts for the contribution to the total scatter due to poisson noise on richness
+while the second term describes the scatter inherent to the independent variable   ln m this is introduced to account for any
+additional deviation from the reconstructed scaling that is not
+accounted for in the observational uncertainties or intrinsic variable properties eg due to unknown biases in the considered
+observables
+in principle it should be possible to define a relation between the measured masses and the scattered dependent variable
+ through a normal distribution centered on e and with variance
+equal to the observational uncertainties on the measured mass
+mobs 
+pmobs   ne  2m 
+
+12
+
+however figure 12 shows that multiple data points from the
+compiled forced photometry catalog manifest negative values for
+the central compton 20  corresponding to an unphysical negative
+cluster mass in the case of lowmass clusters with sz signal
+below the sensitivity threshold of the act maps noise fluctuations can cause this negative 20  however as discussed in previous sections radio sources as well as dust are found to contaminate the sz signal of the clusters leading to clusters with
+significantly negative 20  further in section 51 we show that
+miscentering effects may provide a significant suppression of the
+measured central compton 20 with respect to the true value in
+order to properly account for such contributions we compare the
+true scattered quantities  to the central compton parameter 20
+computed separately from the f090 and f150 maps in particular
+we assume the joint probability distribution to be described by a
+bivariate normal distribution
+p2f090  2f150   radio  dust   n 2d  ff090  ff150  
+
+13
+
+where 2f090 and 2f150 are 20 derived exclusively from the f090
+and f150 maps respectively here the covariance matrix  is
+expressed as
+
+2f090
+f090 f150
+
+14
+f090 f150
+2f150
+with f090 and f150 equal to the uncertainties on the 20 measured from the f090 and f150 maps while   021 is the pearson productmoment correlation coefficient for the two flattened
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+
+2
+
+100
+
+compton y  0 104 
+
+6
+m500 1014 m 
+
+m500 1014 m 
+
+8
+
+4
+
+101
+
+2
+
+102
+
+100
+
+101
+ 15
+
+102
+
+0
+
+1
+0
+
+1
+25
+
+50
+ 15
+
+75
+
+100
+
+03 05 07
+25
+
+50
+ 15
+
+75
+
+100
+
+fig 12 the massrichness diagram displayed three ways the left and center panels are respectively loglog and linear plots of
+20 converted to mass versus richness while the right panel is a linear plot of unconverted 20 versus richness on left and center
+the bestfit scaling relation is shown as computed when including blue and excluding yelloworange the weight parameter of
+equation 16 corresponding to noiselike data points for each band the solid line corresponds to the bestfit scaling while the bands
+correspond to the 68 credible interval the lighter blue band denotes the confidence interval ln m due to the intrinsic scatter
+around the mean scaling relation obtained when considering the mixed model of equation 16 the dotdashed line denotes the
+scaling reported by gonzalez et al 2019a with the solid section marking the range of richness employed to derive the relation
+the green points correspond to the masses or 20 values without any correction for the steepness of the halo mass function hilton
+et al 2021 these are colorcoded according to their weight w color bar in the bottom right corner of the right panel in red are
+the masses or 20 values computed per richness bin for comparison we include as a yellow diamond the average mass estimate
+computed by madhavacheril et al 2020 from cmb lensing shown at the mean value of 15 used in that work note that the left
+and center plots do not show the negative 20 points but those points are included in all fits shown
+frequency maps after filtering the mean term is given by
+f  f   radio  dust 
+ c  m   g d dust   r radio  
+
+15
+
+the first term on the right hand side is the product of the miscentering suppression factor c section 51 and the masstocompton 2 conversion m  in equation 5 of hilton et al
+2021 all the factors entering equation 15 ie the relativistic
+sz correction and the filter mismatch factor are computed from
+the specific sets of cluster masses at each step of the modeling
+process the terms in parentheses d dust  a  t rest  and
+r radio  c0   provide the estimates of the level of dust and
+radio infill at the considered frequency based on the respective
+spectral properties discussed in section 52 and section 53 the
+function g is the nonrelativistic spectral dependence of the sz
+effect sunyaev  zeldovich 1970 mroczkowski et al 2019
+which we adopt to convert the radio and dust surface brightness
+values to units of compton 2 we note that in order to compute
+the infill components as in equation 15 shown above we are
+assuming the radio and dust sources to be described by pointlike
+signals centered on the cluster centroids
+finally we account for possible elements of the madcows
+cluster sample which are not well described by a massrichness
+scaling relation ie for which richness is not a good proxy
+for mass by integrating the probability term described in equation 13 into a mixture model aimed at evaluating how likely
+well each point is to be drawn from a gaussian centered on
+the massrichness scaling relation versus a gaussian centered on
+zero for each given point the total posterior probability distribution can then be written as
+pobs  w  ptrue  1  w  pnoise 
+
+16
+
+where the weight w is the probability that a data point is drawn
+by the massrichness scaling relation versus the noiselike population and ptrue  p2f090  2f150   radio  dust  is the joint probability distribution introduced in equation 14 for a data point that
+follows the massrichness scaling relation we instead assume
+the noiselike measurements to be drawn from pnoise  for which
+we assume a normal distribution centered around zero and with
+standard deviation equal to the observational uncertainty associated with the c value of the considered measurement
+62 parameter priors
+
+overall our model comprises 9651233 free parameters
+specifically corresponding to
+ the weight for each of the 965 data points entering the mixed
+probability distribution of equation 16
+ twelve parameters associated with three gaussian kernels
+used for building the probability mixture discussed at the beginning of section 61 see kelly 2007 and sereno 2016 for
+details
+ slope intercept and intrinsic scatter of the massrichness
+scaling relation
+ parameters of the graybody spectrum discussed in section 52
+in addition for every data point we marginalize over a set of four
+additional parameters governing the effects due to miscentering
+see section 51 and radio and dust contamination the regression is performed by means of the hamiltonian monte carlo algorithm provided in the numpyro bingham et al 2018 phan
+et al 2019 python package the implementation of the gaussian mixture model follows the same prescriptions adopted in
+kelly 2007 we use uninformative uniform priors on all the
+article number page 13 of 25
+
+aa proofs manuscript no madcows
+
+parameters of the scaling relation except for the slope p1  for
+which we consider a studentt distribution with one degree of
+freedom following andreon  hurn 2010 and sereno 2016
+as the studentt does not bias the slope to high values we then
+assume the probability weight w to be distributed uniformly in
+the range 0 1
+the suppression factor due to miscentering for each of the
+considered clusters is modeled as a truncated normal distribution bound between
+p 0 and 1 with mode equal to 1 and standard
+deviation   2 c0  c1 e  the parameters c0 and c1 correspond to thepbestfit parameters derived in section 51 while the
+prefactor 2 is introduced so that the mean of the prior distribution equals the average suppression c0  c1 e for a given true
+richness e  
+for the clusters with a clear identification of radio sources
+in the nvss and vlass fields we employ normal priors on
+the estimated normalization c0 and spectral index  parameters
+with mean and standard deviation set to the values derived for the
+specific cluster otherwise we draw for each cluster a realization
+of c0 from an exponential distribution with mean equal to the
+average flux density measured from all the sources in the nvss
+catalog an analogous approach is considered for  but used a
+normal prior with mean and standard deviations measured from
+the distribution of spectral indices estimated in section 53
+instead of introducing priors on the single parameters of the
+dust spectrum section 52 which would have neglected information on their degeneracy we reanalyze the act 224 ghz
+and herschel stacked measurements jointly with the mass and
+richness data for full consistency we consider exactly the same
+priors employed in section 52
+
+64 cluster weights
+
+from the results of the massrichness fit including the probability term it is clear that an appreciable fraction of the madcows candidates are not well described by the massrichness
+scaling relation figure 13 in other words for a large subset of
+the madcows catalog richness is not a good proxy for mass
+of the 965 candidates used in the fitting only 419 had a weight
+greater than 50 only 131 have a weight greater than 65 the
+mean weight is 502 since we do not have an estimate of the
+uncertainties on individual weights we do not place an uncertainty on these statistics moreover while the mean does not
+fully encapsulate the bimodal distribution of the cluster probabilities it does indicate that the madcows sample is likely
+comprised largely of cluster candidates which are well below
+the sz detection limit of the act survey examining the distribution of the probabilities we see a clearly bimodal distribution figure 13 one population containing the majority of the
+clusters is roughly normally distributed centered on a probability of  50 the other is centered at a higher probability of
+ 70 with a much narrower distribution in general clusters
+with high significance 20  and richness are given higher probabilities while those with lower 20  and specifically high richness
+and low 20  are given lower probabilities further examining figure 13 it is evident that the madcows sample is well described
+by a massrichness scaling relation above 15  55 with 50
+of such clusters having a weight w  07 and an average weight
+for clusters above that richness of 063 additionally all the
+high weight w  70 clusters have 15  27 interestingly examining the probabilities of individual cluster candidates reveals
+that the fitter identifies a number of the very negative 20 clusters
+seen in the right hand panel of figure 12 as having high weight
+these clusters have significant  25 mjy flux density at 14 or
+30 ghz
+
+63 scaling relation results
+
+in figure 12 we show the massrichness scaling relation reconstructed from the actmadcows sample as the selection of
+the clusters is unbiased with respect to the eddington bias we
+consider here the cluster masses without any correction for the
+steepness of the halo mass function we note that in this case
+the reported masses represent an upper limit for the actual distribution as the correction would deboost the highmass end of
+the sample
+for the model including the weight parameter from equation 16 we find that the best fit slope to be   184015
+014  where
+m  15  this slope is consistent with gonzalez et al 2019a
+although with an overall offset towards lower masses setting
+all the weights to unity that is assuming all clusters are drawn
+from the massrichness scaling relation leads to a slightly higher
+slope estimate 195017
+016  as well as a greater overall offset as
+compared to gonzalez et al 2019a
+regarding the intrinsic scatter of the forced photometry data
+points see equation 11 and related description we estimate
+ln m  021008
+011 when including the weight parameter of equation 16 to account for sample contamination although already
+evident from the distribution of the act data points in the massrichness distribution in relation to the scaling relation by gonzalez et al 2019a such a large scatter provides a quantitative
+view of the limited capabilities of the madcows richness to
+provide a robust proxy for cluster masses a similar scatter of
+031003
+003 is found even when removing the negative compton 20
+measurements from the fit
+article number page 14 of 25
+
+7 discussion
+71 population differences
+
+the madcows sample comprises 2839 candidate highz clusters while the act dr5 sample comprises a nearly masslimited opticallyconfirmed sample of 4195 clusters from across
+all redshifts as noted in section 3 our crossmatching criteria
+leads to a catalog of 96 codetected clusters at the intersection of
+the act and madcows samples reported in table c1
+we compared both richness and m500 measurements at different redshift ranges between the act and madcows populations in figure 14 we plot the distribution of codetections and
+madcows across four redshift ranges we can see that there
+is no preferred redshift for the codetected clusters with high
+richness figure 15 shows that act clusters are mostly found
+at z  09 regardless of mass we also see that madcows clusters as a whole tend to be lower in richness and hence mass
+than codetected clusters but are found more frequently at higher
+redshifts than act clusters this is not unexpected as the lower
+average mass of clusters at higher redshifts means that they are
+detected relatively less frequently the madcows masses are
+from forced photometry and we have cut off clusters with 20
+ 0
+the low rate by act of codetections of madcows cluster
+candidates is due to the low sz signal of many of those candidates which is reflected in their correspondingly low weight we
+discuss possible sources of this low weight in section 731 as
+for the low rate by madcows of codetections of act clus
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+
+100
+
+07  z  09
+
+04
+
+02
+
+0
+
+02
+
+07
+
+00
+
+weight
+
+05
+
+m500
+
+13  z  175
+
+0025
+00
+
+20
+
+40
+
+15
+
+60
+
+80
+
+0
+
+100
+
+fig 13 a 2d histogram of weight and richness 15  the
+weight is the probability that a madcows cluster data point
+is well described by a massrichness scaling relation as opposed
+to being drawn from the noise higher probabilities mean more
+likely to be real the bimodal distribution is clear with a large
+population of low probability clusters centered around 50 and
+a population of high probability clusters at  70
+07  z  09
+
+0075
+
+09  z  11
+
+015
+
+codetection
+madcows
+
+010
+
+0050
+
+005
+
+0025
+0000
+
+000
+
+richness
+11  z  13
+
+006
+
+richness
+13  z  175
+
+002
+
+004
+
+001
+
+002
+0
+
+25
+
+50
+
+richness
+
+75
+
+000
+
+0
+
+25
+
+0
+
+5
+
+10
+
+m500
+
+0
+
+0
+
+0050
+
+01
+
+5
+
+04
+
+000
+
+00
+
+m500
+11  z  13
+
+10
+
+act
+madcows
+
+01
+
+06
+
+03
+
+09  z  11
+
+50
+
+richness
+
+75
+
+fig 14 comparisons of richness populations for the codetected
+madcows and the remaining madcows in four redshift bins
+at higher richness 15  60 there is no preferred redshift for
+the codetections this indicates that the disparity between the
+number of madcows in the act region and the number of codetections is not a product of survey biases
+ters it is likely that the madcows catalog is missing them simply due to the madcows selection function by construction
+the madcows selection function does not precisely trace the
+spitzer measured richness the madcows cluster candidates are
+first selected from smoothed galaxy density maps created using
+wise data and then their madcows richnesses are measured
+using spitzer followup as such the catalog is not richness lim
+
+0000
+
+0
+
+5
+
+10
+
+m500
+
+fig 15 m500 of act clusters vs madcows in the same redshift ranges these distributions suggest that act clusters are
+skewed towards lower redshifts while the madcows distribution is even across higher redshifts in addition madcows clusters tend to be less massive than act clusters at a given redshift
+ited meaning that even under the assumption of some relation
+between mass and richness the madcows cluster catalog cannot strictly be masslimited in any case the madcows cluster
+catalog while astrophysically interesting should be approached
+with caution for computing cosmological parameters
+711 ir and dusty emission
+
+the herschel data in combination with the act 224 ghz data
+suggest that the act and madcows cluster catalogs comprise
+clusters with different properties and are potentially drawn from
+different populations one dustier population is preferentially
+sampled by the madcows survey and the other more virialized is preferentially sampled by act as described below as
+was discussed in section 52 the stacked hatlas data on
+madcows clusters show a clear signal in each frequency band
+whereas there is no obvious signal when stacking on the act
+clusters see figure 16 in addition to the stacked emission we
+also considered the emission for individual clusters for each
+cluster in the hatlas footprint in each of the act 34 clusters in the hatlas footprint madcows 66 clusters and
+randoms 66 clusters catalog see section 52 we calculated
+emission within 120 radius of the cluster location at each of 250
+350 and 500 m a histogram of those values is shown in figure 8
+a twosample kolmogorovsmirnov ks test was applied
+to determine whether the central emission of act and madcows data sets was consistent with the central emission at random points and with each other at all herschel frequencies the
+distribution of madcows cluster central emissions is statistically inconsistent with that of the randomly offset central emissions and with that of the act clusters the distribution of act
+cluster central emissions is statistically consistent with the randomly offset central emissions at 500 m while it is inconsistent
+at a pvalue of 0018 and 0016 at 250 and 350 m respectively
+the average central emission of the madcows cluster samples
+is more than one standard deviation higher than the average central emission of the randomly offset clusters at all frequencies
+for the act clusters at all wavelengths the central emission is
+statistically consistent with the randomly offset clusters as evidenced by the goodnessoffit of the graybody model as shown
+article number page 15 of 25
+
+aa proofs manuscript no madcows
+
+10
+
+1035  10
+
+4
+
+10  10
+35
+
+4
+
+35  10
+
+4
+
+4
+
+30  10
+5
+25  10
+
+4
+
+30  10
+
+4
+
+5
+
+30  10
+5
+25  10
+
+4
+
+25  10
+
+4
+
+20  10
+0
+15  10
+
+4
+
+20  10
+0
+15  10
+
+4
+
+20  10
+
+4
+
+0
+
+4
+
+15  10
+
+4
+
+5
+
+10
+5  10
+
+4
+
+105  10
+
+4
+
+10  10
+
+4
+
+50  10
+
+5
+
+50  10
+
+5
+
+50  10
+
+5
+
+4
+
+35  10
+
+4
+
+30  10
+5
+25  10
+
+4
+
+30  10
+
+4
+
+4
+
+25  10
+
+4
+
+20  10
+0
+15  10
+
+4
+
+20  10
+
+4
+
+4
+
+15  10
+
+4
+
+10
+
+10
+
+5
+
+0
+
+5
+
+10
+
+10
+
+4
+
+4
+
+10
+
+10
+1035  10
+
+5
+
+0
+
+5
+
+10
+
+4
+
+10
+
+10
+10  10
+35
+
+5
+
+0
+
+5
+
+10
+
+4
+
+5
+
+30  10
+5
+25  10
+20  10
+0
+15  10
+
+4
+
+0
+5
+
+10
+5  10
+
+4
+
+105  10
+
+4
+
+10  10
+
+4
+
+50  10
+
+5
+
+50  10
+
+5
+
+50  10
+
+5
+
+4
+
+35  10
+
+4
+
+30  10
+5
+25  10
+
+4
+
+30  10
+
+4
+
+4
+
+25  10
+
+4
+
+20  10
+0
+15  10
+
+4
+
+20  10
+
+4
+
+4
+
+15  10
+
+4
+
+10
+
+10
+
+5
+
+0
+
+5
+
+10
+
+10
+
+4
+
+4
+
+10
+
+10
+1035  10
+
+5
+
+0
+
+5
+
+10
+
+4
+
+10
+
+10
+10  10
+35
+
+5
+
+0
+
+5
+
+10
+
+4
+
+5
+
+30  10
+5
+25  10
+20  10
+0
+15  10
+
+4
+
+0
+5
+
+10
+5  10
+
+4
+
+105  10
+
+4
+
+10  10
+
+4
+
+50  10
+
+5
+
+50  10
+
+5
+
+50  10
+
+5
+
+10
+
+10
+
+5
+
+0
+
+5
+
+10
+
+10
+
+10
+
+4
+
+4
+
+5
+
+0
+
+5
+
+10
+
+10
+
+10
+
+5
+
+0
+
+5
+
+10
+
+fig 16 stacks at 250 350 and 500 m from left to right on madcows a b c and act cluster locations d e f as well as a
+set of random locations g h i in the hatlas data set see section 52 for details the x axis of each plot is aligned with ra
+while the y axis is aligned with declination both are in units of arcmin the color bars are in units of mjy sr1  the red circles are
+120 in radius the scale inside which we assigned excess flux density as being due to the cluster stack
+in section 52 we attribute this emission to the madcows clusters being dustier on average than the act clusters and identify
+two causes for this effect firstly in general clusters at high redshift have a greater proportion of blue galaxies in their cores than
+those at low redshift butcher  oemler 1978 dressler 1980
+brodwin et al 2013 as blue galaxies tend to be dustier casey
+et al 2014 and the mean redshift of the act clusters is lower
+than that of the madcows  05 vs  101 the madcows
+clusters should be dustier on average secondly at a given redshift act preferentially finds clusters that contain more virialized gas as virialized gas contributes most strongly to the integrated sz effect signal motl et al 2005 poole et al 2006 2007
+wik et al 2008 krause et al 2012
+712 radio emission
+
+the radio data provides additional evidence that the act and
+madcows cluster catalogs preferentially sample from two difarticle number page 16 of 25
+
+ferent populations as discussed in section 53 the madcows
+clusters have higher intrinsic radio luminosity at 14 ghz as
+compared to the act clusters even when the act clusters are
+restricted to the same redshift range as the madcows candidates moreover performing a twosample ks test on the act
+and madcows radio fluxes at 14 ghz confirms that they are
+drawn from different populations to compare the populations
+we first cut the act catalog to the same redshift range as the
+madcows catalog 07  z  15 we then restricted both cluster catalogs to an intrinsic luminosity corresponding to the standard deviation of the background aperture fluxes 03 mjy using equation 9 which roughly represents the noise floor for our
+background subtracted fluxes since the fluxes for both catalogs
+are taken from the same survey they should have on average
+the same noise properties so that if the non detections are not
+removed they will bias the ks test towards high pvalues ie
+towards determining that the two samples were drawn from the
+same underlying population when we perform the twosample
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+
+ncluster radio
+ntotal radio  ncontaminant radio
+
+ 65
+ncluster
+ntotal  ncontaminant
+which is not significantly different from the percentage found for
+act
+finally we briefly consider the richness evolution of radio
+luminosity fraction following mo et al 2020 we define a
+cluster to be radio loud if the intrinsic luminosity associated with
+the cluster is l14 ghz  1025 w hz1  and the radio loud fraction
+rlf as the fraction of total clusters that are radio loud for
+simplicity we continue to use our 120 radial aperture which corresponds to about 530 to 625 kpc compared to 500kpc used in
+mo et al 2020 the effect of this will generally be to raise the
+rlf as field radio sources are associated to clusters when they
+lie along the lineofsight of that cluster which will in turn flatten the richnessrlf relation we binned the cluster radio luminosities into 8 bins of richness and calculated the rlf in those
+bins with the uncertainties calculated via bootstrapping we fit
+the resulting data to a linear model using a maximum likelihood
+method with the uncertainties in the parameters estimated via an
+mcmc method implemented in emcee foremanmackey et al
+2013 the results of that fit are shown in figure 17 we find the
+3
+best fit slope to be m  4107
+and the best fit intercept
+07  10
+18
+3
+to be b  2619  10  and the reduced chisquared of the fit
+r  045 the best fit slope is somewhat higher than mo et al
+2020 although only inconsistent at 12 we are inconsistent
+with the null hypothesis of no slope at 59
+72 infill
+
+while the average bias from radio emission detected in the act
+smeas  08003 and styp  2001 and madcows cluster candidates smeas  045  005 and styp  083  005
+
+best fit
+95 uncertainty
+68 uncertainty
+data
+rlf
+
+ks test on the act and madcows catalogs with the flux density cut we obtain pvalue of 0025 which suggests that the
+madcows and act clusters with radio sources represent different underlying populations the above analysis ignores what
+proportion of clusters host radio sources we also consider the
+intrinsic luminosities of the act and madcows clusters we
+simply consider the percentage of clusters still restricted to
+07  z  15 which have intrinsic luminosities greater than the
+reference aperture flux density 03 mjy converted to luminosity
+as described above we used bootstrapping to estimate the uncertainties on this number which is 672  17 for the act
+catalog and 586  10 for the madcows catalog
+in summary this analysis suggests that restricting the act
+catalog optical photoredshifts to match those of the madcows
+clusters the act clusters host radio sources slightly more frequently than the madcows clusters while the radio sources
+hosted by the madcows clusters are stronger by a factor of
+ 2 we again note that the mean redshift of the act clusters
+is still somewhat lower than that of the madcows z  089 vs
+z  101 further any contamination of the madcows catalog section 64 would in principle bias both the number density of radio sources and accordingly also the average inferred
+intrinsic luminosity to lower values as radio sources are preferentially found in clusters as opposed to the field coble et al
+2007 assuming an unrealistically high contamination of 10
+to set an upper bound on the percentage of clusters with contamination and that contaminating candidates have radio sources at
+the rate of the field which we take to be 10 the rate of the true
+candidates we calculate the corrected percentage of madcows
+clusters with aperture flux density  03 mjy as
+
+10
+
+1
+
+m  42070710 3
+b  23191910 3
+
+0
+
+10
+
+20
+
+30
+40
+50
+richness  15
+
+60
+
+70
+
+80
+
+fig 17 best fit of a linear model to the radio loud fraction rlf
+of the madcows clusters determined using nvss 14 ghz
+fluxes section 53 vs richness the best fit is inconsistent with
+the null hypothesis of no evolution of the rlf with richness
+at 59 in comparison to mo et al 2020 we favor a higher
+slope for the relation at 12 although see the discussion in section 712
+is at a low level in both cases the samples include high infill
+tails for example 94 act clusters show radio emission consistent with a greater than 5 bias interestingly that number of
+clusters 28 of the 3 335 act clusters with nvss fluxes is
+consistent with the best fit differential source counts near clusters found in coble et al 2007 25 of course the level
+of infill of the act identified clusters is a biased measure of
+the true infill as clusters with less infill are more likely to meet
+the act detection threshold for a given intrinsic mass 20  for
+example gupta et al 2017 estimated that 05 and 14 of
+clusters with mass 3  1014 m at redshift of 025 had their sz
+signal completely suppressed by infill at 150 and 98 ghz respectively moreover accurately computing the infill correction
+is difficult propagating the flux density from lower frequencies
+means accepting the uncertainty of extrapolating the spectral index across wide frequency ranges while cmb measurements at
+90 and 150 ghz frequently lack the spacial resolution to distinguish point sources in clusters from the sz signal of that cluster
+high resolution measurements of the point source flux densities
+at or near 90 and 150 ghz offer the best path forward dicker
+et al in prep undertook such a measurement using the mustang2 instrument dicker et al 2014 on the 100meter green
+bank telescope to perform 900 resolution imaging of the sz effect for a sample of galaxy clusters this high resolution also
+allowed them to identify compact sources in the clusters which
+would not be resolved by act and to measure their flux density contributions at 90 ghz in order to assess the impact on sz
+measurements they found a similar distribution of infill with
+85 of clusters showing a change in the integrated sz flux less
+than 5 but 10 of the sample had very high  10 infill
+further the level of dust infill of the madcows cluster candidates may be biasing their measured sz signal from the model
+we developed in section 52 we predict that the average dust infill of the sz signal is 15  05 this result is limited by the
+limited ir followup available for the madcows cluster candidates with herschel data for only 66 candidates while the
+distribution of the 66 candidates appears normal we do not have
+enough data to rule out deviations from that distribution eg a
+article number page 17 of 25
+
+aa proofs manuscript no madcows
+
+high flux density tail while the effect is subdominant to other
+sources of uncertainty in this work future large optical and ir
+surveys eg the vera c rubin observatory ivezi et al 2019
+and the euclid telescope euclid collaboration et al 2020 as
+well as next generation cmb experiments which aim to place
+subpercent constraints on cosmology from cluster abundance
+counts will need to use methods that either address or are insensitive to this infill in the near term higher resolution measurements both of the point source flux densities and of their
+spectral indices in the frequency ranges of interest using eg
+mustang2 nika2 toltec and atacama large millimeter
+array alma would enable improved constraints on the infill
+of the sz signal by submm and radio sources
+73 massrichness scaling
+
+as noted in section 63 our massrichness scaling relation differs significantly from selfsimilarity although it is consistent
+with the previous measurement from gonzalez et al 2019a we
+identify several issues which may bias the massrichness scaling relation to higher slopes firstly at low richness a portion of
+the madcows sample is not well described by a massrichness
+scaling relation if some number of low richness candidates are
+either unvirilialized systems with low sz signal or lineofsight
+chance superpositions with no intrinsic sz signal then the effect
+would be to bias the massrichness relation to higher slopes as
+these candidates would tilt the lower end of the relation downward see section 63 in a similar vein if the richness measure is systematically biased to higher values due to lineofsight
+interlopers then the effect would also be to steepen the massrichness relation this effect would be especially apparent as a
+constant bias in richness is a larger relative effect at lower values for the richness again having the effect of tilting the scaling
+relation slope to steeper values
+we also assessed the impact of infill from submm and radio sources on the massrichness scaling relation as discussed
+in section 52 we did not have enough herschel submm data to
+infer if infill scales with richness or mass therefore it is possible that the proportionate infill of the sz signal is higher at low
+richness than at high richness we do however have 224 ghz
+data of many madcows clusters which was used to quantify
+the submmmm source infill we binned the madcows clusters in richness and stacked the f220 maps in these bins there
+was no trend with richness in the 224 ghz emission which suggests that the level of submmmm source infill is not strongly
+correlated with richness
+finally the higher ir emission of the madcows cluster
+candidates is consistent with a graybody dusty emission profile
+and in general correlates with higher star formation rates sfr
+see eg devlin et al 2009these high sfr clusters may deviate from selfsimilarity and as such we would not a priori expect
+the slope of the massrichness scaling relation to be unity
+731 weights
+
+as discussed in section 64 the weights for the madcows candidates are split into two populations with a few high weight
+clusters 73 with weight  07 and a large number 544 of candidates with low weights  05 the high weight clusters are
+well characterized by a massrichness scaling relation the low
+weight clusters are not at very low richness 15  20 some of
+these candidates may be structures smaller than clusters such as
+groups or lineofsight superpositions
+article number page 18 of 25
+
+additionally at higher richness low weight candidates may
+be mergers or premergers or otherwise unvirialized but massive systems unvirialized gas in these mergers has been shown
+to suppress the sz signal from these clusters both in simulations
+ eg wik et al 2008 battaglia et al 2012 nelson et al 2014
+and observations eg hilton et al 2018 while the merger can
+briefly enhance the sz signal the period during which it suppresses it is in general longer than that in which it enhances
+it during the merger process the sz signal in a merging system can be suppressed  40 dicker et al 2020 compared
+to a virialized cluster of the same total mass this has the effect of making the observed sz mass of the candidate less consistent with the massrichness scaling relation and more consistent with noise ie the effect is to reduce the weight of the
+cluster in dicker et al 2020 which reports on sz followup
+of high richness madcows candidates  25 of the madcows clusters observed were determined to be mergers this ratio is significantly affected by malmquist bias however as nonmergers have higher sz brightness than merging systems further dicker et al 2020 clusters are generally higher richness
+systems 15  50 and it is not clear how the fraction of systems
+that are undergoing a merger or are premerger changes with
+richness targeted follow up is warranted to investigate further
+additionally stacked measurements of the weak lensing of the
+cmb in the vein of madhavacheril et al 2020 are indifferent
+to clusters that are undergoing mergers as such comparing the
+lensing inferred masses of low and high weight clusters would
+allow one to put constraints on the fraction of low weight clusters
+that are undergoing mergers similarly the agreement between
+the average mass of the madcows cluster sample above richness of 20 as determined using the massrichness scaling relation
+derived in this paper and in madhavacheril et al 2020 suggests
+that mergers and premergers do not dominate the madcows
+cluster sample
+it is also possible that some fraction of the madcows clusters have very low fractional gas mass and as such are undetectable via the sz effect such clusters have occasionally been
+reported in the literature see castellano et al 2011 andreon 
+moretti 2011 trejoalonso et al 2014 with xray luminosities about 1020 times lower than would be expected for their
+masses castellano et al 2011 however low gasfraction is
+not the only explanation for their low xray luminosity instead
+these clusters may be embedded in filaments aligned with our
+lineofsight and galaxies situated along that lineofsight could
+be contaminating the measurements which was the case for the
+underluminous cluster in castellano et al 2011 such a scenario was proposed in bower et al 1997 and favored by more
+recent evidence giles et al 2015 even if such low gas mass
+fraction clusters do exist the relative fraction of these clusters is
+likely low andreon  moretti 2011 reports only about 11 of
+their sample were xray underluminous the redshift range of
+andreon  moretti 2011 01  z  03 is far from that of this
+work and moreover the fraction of underluminous clusters is of
+course sensitive to the selection function of the larger sample
+so andreon  moretti 2011 may not be directly comparable
+to our work however andreon  moretti 2011 does suggest
+that the issue of sz nondetections of madcows clusters can
+not be entirely resolved by a large population of gaspoor or
+low gas mass clusters ge et al 2019 also found evidence that
+the number of xray underluminous clusters is not significant at
+high richness although again their redshift range 01  z  03
+is significantly lower than that of the madcows sample
+finally at low richnesses chance superpositions of galaxies
+may be causing spurious detections such spurious objects are
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+
+hard to differentiate from low mass groups in this analysis in any
+case caution must be exercised when using the low weight clusters for cosmology inaccurate cluster masses from both spurious
+clusters and clusters with low sz signal for their mass either due
+to merger history lowgas fraction or unvirialized components
+along the lineofsight will bias cosmological parameters
+
+8 conclusions
+in this work we identified codetections of the act and madcows cluster catalogs we note the very low rate of codetections both with respect to the size of the act and the madcows cluster catalogs we used forced photometry to evaluate the massrichness scaling relation of the madcows cluster
+catalog we quantified infill of the sample by radio and submm emission we find that the best fit scaling relation has slope
+184015
+014  higher than the unitary value one would expect for selfsimilar clusters andreon  hurn 2010 but comparable to the
+preliminary work of gonzalez et al 2019a we offer some possible reasons for this deviation in section 73 these include
+potentially a bias in the richness measure and some amount
+of sample impurity with respect to mass instead of mass the
+madcows selection function may preferentially include starforming systems leading to deviations from selfsimilarity as
+part of the massrichness scaling relation we fit a weight to
+each cluster which describes the relative probability that the
+sz measurement associated with that cluster was drawn from
+a normal distribution centered on the massrichness scaling relation vs a normal distribution centered on zero we found that a
+large fraction of the madcows cluster candidates had weights
+lower than 50 we ascribe the low weight of these clusters and
+correspondingly their nondetection in the act cluster catalog
+to a variety of factors including suppression of the sz signal
+by merger history and other unvirialized components along the
+lineofsight as well as to the madcows catalog containing
+very small clusters with sz signals too low to detect as for the
+madcows nondetections of act clusters we conclude that
+the madcows selection function is not mass limited and thus
+the overlap of the madcows catalog with a catalog like act
+can be very incomplete
+additionally by investigating their submm and radio properties we find evidence that the madcows candidates have
+higher average submm flux density and higher average intrinsic radio luminosity than their act counterparts even when the
+act clusters are restricted to the same redshift range as the
+madcows cluster candidates although the madcows clusters
+do have lower average radio flux density in the observed frame
+of reference so that the act clusters have high radio infill on
+average we interpret this as the systems selected by madcows
+being on average dustier while act clusters are less dusty and
+radio loud we find no evidence that the submm flux density of
+madcows clusters evolves with richness although due to the
+paucity of herschel data this is only based on 220 ghz stacks
+we find that the rlf of the madcows clusters does increase
+with increasing richness and we find that the relation agrees with
+prior studies mo et al 2020
+looking to the future the next generation of madcows
+madcows2 will use the deeper catwise2020 eisenhardt
+et al 2020 wise photometry in combination with deeper optical imaging madcows2 is designed to extend from z  05  2
+with an improved selection function at all redshifts more indepth studies of the radio and submm properties of the madcows clusters in the short term will allow us to better understand the population differences between ir and sz selected
+
+clusters and will allow us to better correct the massrichness
+scaling relations continuing act operations and further data
+releases will increase the depth of sz observations allowing the
+survey to probe to lower masses and over larger regions
+looking further in the first half of the decade data from simons observatory so zhu et al 2021 the simons observatory collaboration et al 2019 ade et al 2019 and the cmbs4
+experiment abitbol et al 2017 abazajian et al 2016 2019 and
+the cerro chajnantor atacama telescopeprime ccatprime
+vavagiakis et al 2018 aravena et al 2019 choi et al 2020
+will provide deeper and higher resolution sz and submm maps
+over a larger portion of the sky additionally the vera c rubin
+observatory ivezi et al 2019 spectrophotometer for the history of the universe epoch of reionization and ices explorer
+spherex bock  spherex science team 2018 cooray
+ spherex science team 2018 crill et al 2020 and euclid
+telescopes euclid collaboration et al 2019 will provide larger
+and more accurate ir and optically selected cluster catalogs
+in the 2030s the next generation cmbs4 experiment
+abazajian et al 2016 abitbol et al 2017 cmbhd experiment sehgal et al 2019 2020 and the atacama large aperture submillimeter telescope atlast klaassen et al 2020
+will potentially provide orders of magnitude increases in sz map
+depth over significant fractions of the extragalactic sky with the
+latter two providing a transformative leap in subarcminute resolution sz and submm studies at a significantly lower confusion
+limit
+acknowledgements this work was supported by the us national science
+foundation through awards ast1440226 ast0965625 and ast0408698 for
+the act project as well as awards phy1214379 and phy0855887 funding
+was also provided by princeton university the university of pennsylvania and a
+canada foundation for innovation cfi award to ubc act operates in the parque astronmico atacama in northern chile under the auspices of the comisin
+nacional de investigacin cientfica y tecnolgica de chile conicyt now
+la agencia nacional de investigacin y desarrollo anid computations were
+performed on the gpc and niagara supercomputers at the scinet hpc consortium scinet is funded by the cfi under the auspices of compute canada the
+government of ontario the ontario research fund  research excellence and
+the university of toronto the development of multichroic detectors and lenses
+was supported by nasa grants nnx13ae56g and nnx14ab58g colleagues
+at astronorte and radiosky provide logistical support and keep operations in
+chile running smoothly we also thank the mishrahi fund and the wilkinson
+fund for their generous support of the project zhilei xu is supported by the gordon and betty moore foundation kavilan moodley acknowledges support from
+the national research foundation of south africa john p hughes acknowledges funding for sz cluster studies from nsf grant number ast1615657
+dongwon han amanda macinnis and neelima sehgal acknowledge support
+from nsf grant number ast1907657 cristbal sifn acknowledges support
+from the anid under fondecyt grant no 11191125
+herschel is an esa space observatory with science instruments provided by
+europeanled principal investigator consortia and with important participation
+from nasa
+
+references
+abazajian k addison g adshead p et al 2019 arxiv eprints
+arxiv190704473
+abazajian k n adshead p ahmed z et al 2016 arxiv eprints
+arxiv161002743
+abell g o 1958 apjs 3 211
+abitbol m h ahmed z barron d et al 2017 cmbs4 technology book
+first edition
+ade p aguirre j ahmed z et al 2019 journal of cosmology and astroparticle physics 2019 056056
+amodeo s battaglia n schaan e et al 2021 in american astronomical
+society meeting abstracts vol 53 american astronomical society meeting
+abstracts 41104
+andersson k benson b a ade p a r et al 2011 apj 738 48
+andreon s 2015 aa 582 a100
+andreon s  hurn m a 2010 mnras 404 1922
+
+article number page 19 of 25
+
+aa proofs manuscript no madcows
+andreon s  moretti a 2011 astronomy  astrophysics 536 a37
+aravena m austermann j basu k et al 2019 the ccatprime submillimeter observatory
+arnaud m et al 2010 aa 517 a92
+battaglia n bond j r pfrommer c  sievers j l 2012 apj 758 74
+benson b a ade p a r ahmed z et al 2014 in society of photooptical
+instrumentation engineers spie conference series vol 9153 millimeter
+submillimeter and farinfrared detectors and instrumentation for astronomy vii ed w s holland  j zmuidzinas 91531p
+bingham e chen j p jankowiak m et al 2018 arxiv preprint
+arxiv181009538
+birkinshaw m 1999 phys rep 310 97
+bock j  spherex science team 2018 in american astronomical society
+meeting abstracts vol 231 american astronomical society meeting abstracts 231 35421
+bower r g castander f j ellis r s couch w j  boehringer h 1997
+mnras 291 353
+brodwin m stanford s a gonzalez a h et al 2013 apj 779 138
+butcher h  oemler a j 1978 apj 219 18
+calistro rivera g williams w l hardcastle m j et al 2017 mnras
+469 3468
+carlstrom j e ade p a r aird k a et al 2011 pasp 123 568
+carlstrom j e holder g p  reese e d 2002 araa 40 643
+casey c m scoville n z sanders d b et al 2014 apj 796 95
+castellano m pentericci l menci n et al 2011 aa 530 a27
+chambers k  panstarrs team 2018 in american astronomical society
+meeting abstracts vol 231 american astronomical society meeting abstracts 231 10201
+chiu i n okumura t oguri m et al 2020 mnras 498 2030
+choi s k austermann j basu k et al 2020 journal of low temperature
+physics 199 1089
+coble k bonamente m carlstrom j e et al 2007 aj 134 897
+condon j j cotton w d greisen e w et al 1998 aj 115 1693
+cooray a  spherex science team 2018 in american astronomical society meeting abstracts vol 231 american astronomical society meeting
+abstracts 231 35427
+crill b p werner m akeson r et al 2020 in society of photooptical
+instrumentation engineers spie conference series vol 11443 society of
+photooptical instrumentation engineers spie conference series 114430i
+devlin m j ade p a r aretxaga i et al 2009 nature 458 737
+di mascolo l mroczkowski t churazov e et al 2020 aa 638 a70
+dicker s r ade p a r aguirre j et al 2014 journal of low temperature
+physics 176 808
+dicker s r romero c e di mascolo l et al 2020 apj 902 144
+draine b t 2006 the astrophysical journal 636 1114
+dressler a 1980 apj 236 351
+eisenhardt p r m marocco f fowler j w et al 2020 apjs 247 69
+erler j basu k chluba j  bertoldi f 2018 mnras 476 3360
+euclid collaboration adam r vannier m et al 2019 aa 627 a23
+euclid collaboration blanchard a camera s et al 2020 aa 642 a191
+evrard a e arnault p huterer d  farahi a 2014 mnras 441 3562
+foremanmackey d hogg d w lang d  goodman j 2013 pasp 125
+306
+fowler j w niemack m d dicker s r et al 2007 applied optics 46
+3444
+fuzia b j kawinwanichakij l mehrtens n et al 2021 mnras 502 4026
+ge c sun m rozo e et al 2019 mnras 484 1946
+geach j e  peacock j a 2017 nature astronomy 1 795
+george m r leauthaud a bundy k et al 2012 the astrophysical journal
+757 2
+giles p a maughan b j hamana t et al 2015 mnras 447 3044
+gonzalez a h gettings d p brodwin m et al 2019a apjs 240 33
+gonzalez a h gettings d p brodwin m et al 2019b vizier online data
+catalog japjs24033
+gralla m b crichton d marriage t a et al 2014 mnras 445 460
+gralla m b marriage t a addison g et al 2020 apj 893 104
+gupta n saro a mohr j j et al 2017 mnras 467 3737
+hambly n davenhall a irwin m  macgillivray h 2001a monthly notices of the royal astronomical society 326 13151327
+hambly n irwin m  macgillivray h 2001b monthly notices of the royal
+astronomical society 326 12951314
+hambly n macgillivray h read m et al 2001c monthly notices of the
+royal astronomical society 326 12791294
+hasselfield m hilton m marriage t a et al 2013 j cosmology astropart
+phys 2013 008
+henderson s w allison r austermann j et al 2016 journal of low temperature physics 184 772
+hilton m hasselfield m sifn c et al 2018 apjs 235 20
+hilton m sifn c naess s et al 2021 apjs 253 3
+ivezi  kahn s m tyson j a et al 2019 apj 873 111
+
+article number page 20 of 25
+
+kelly b c 2007 apj 665 1489
+klaassen p d mroczkowski t k cicone c et al 2020 in society of photooptical instrumentation engineers spie conference series vol 11445 society of photooptical instrumentation engineers spie conference series
+114452f
+krause e pierpaoli e dolag k  borgani s 2012 mnras 419 1766
+lacy m baum s a chandler c j et al 2020 pasp 132 035001
+madhavacheril m s sifn c battaglia n et al 2020 apj 903 l13
+magnelli b lutz d santini p et al 2012 aa 539 a155
+malmquist k g 1922 meddelanden fran lunds astronomiska observatorium
+serie i 100 1
+marriage t a acquaviva v ade p a r et al 2011 apj 737 61
+menanteau f gonzlez j juin jb et al 2010 apj 723 1523
+menanteau f sifn c barrientos l f et al 2013 apj 765 67
+mo w gonzalez a brodwin m et al 2020 apj 901 131
+moravec e gonzalez a h stern d et al 2020 apj 888 74
+motl p m hallman e j burns j o  norman m l 2005 apj 623 l63
+mroczkowski t nagai d basu k et al 2019 space sci rev 215 17
+naess s aiola s austermann j e et al 2020 journal of cosmology and
+astroparticle physics 2020 046046
+nelson k lau e t nagai d rudd d h  yu l 2014 apj 782 107
+phan d pradhan n  jankowiak m 2019 arxiv preprint arxiv191211554
+planck collaboration ade p a r aghanim n et al 2016a aa 594 a27
+planck collaboration ade p a r aghanim n et al 2016b aa 594 a13
+poole g b babul a mccarthy i g et al 2007 mnras 380 437
+poole g b fardal m a babul a et al 2006 mnras 373 881
+rettura a chary r krick j  ettori s 2018 apj 867 12
+ruppin f mcdonald m brodwin m et al 2020 apj 893 74
+rykoff e s koester b p rozo e et al 2012 apj 746 178
+saro a bocquet s rozo e et al 2015 mnras 454 2305
+sayers j montaa a mroczkowski t et al 2019 the astrophysical journal
+880 45
+sayers j mroczkowski t czakon n g et al 2013 apj 764 152
+sehgal n addison g battaglia n et al 2013 apj 767 38
+sehgal n aiola s akrami y et al 2019 in bulletin of the american astronomical society vol 51 6
+sehgal n aiola s akrami y et al 2020 arxiv eprints arxiv200212714
+sehgal n trac h acquaviva v et al 2011 apj 732 44
+sereno m 2016 mnras 455 2149
+simet m mcclintock t mandelbaum r et al 2017 mnras 466 3103
+smith d j b hardcastle m j jarvis m j et al 2013 monthly notices of
+the royal astronomical society 436 24352453
+smith m w l ibar e maddox s j et al 2017 the astrophysical journal
+supplement series 233 26
+sunyaev r a  zeldovich y b 1970 comments on astrophysics and space
+physics 2 66
+sunyaev r a  zeldovich y b 1972 comments on astrophysics and space
+physics 4 173
+swetz d s ade p a r amiri m et al 2011 the astrophysical journal
+supplement series 194 41
+the simons observatory collaboration lee a abitbol m h et al 2019 in
+bulletin of the american astronomical society vol 51 147
+thornton r j ade p a r aiola s et al 2016 apjs 227 21
+trejoalonso j j caretta c a lagan t f et al 2014 monthly notices of
+the royal astronomical society 441 776783
+valiante e smith m w l eales s et al 2016 monthly notices of the royal
+astronomical society 462 31463179
+vavagiakis e ahmed z ali a et al 2018 millimeter submillimeter and
+farinfrared detectors and instrumentation for astronomy ix
+vavagiakis e m gallardo p a calafut v et al 2021 arxiv eprints
+arxiv210108373
+viola m cacciato m brouwer m et al 2015 monthly notices of the royal
+astronomical society 452 35293550
+wik d r sarazin c l ricker p m  rand all s w 2008 apj 680 17
+wright e l eisenhardt p r m mainzer a k et al 2010 aj 140 1868
+wylezalek d galametz a stern d et al 2013 apj 769 79
+york d g adelman j anderson jr j e et al 2000 the astronomical
+journal 120 15791587
+zajaek m busch g valencias m et al 2019 astronomy  astrophysics
+630 a83
+zakamska n l sun al strauss m a et al 2019 mnras 489 497
+zhu n bhandarkar t coppi g et al 2021 arxiv eprints arxiv210302747
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+
+department of physics and astronomy university of pennsylvania
+209 south 33rd street philadelphia pa 19104 usa
+maxplanckinstitut fr astrophysik mpa karlschwarzschildstrasse 1 garching 85741 germany
+astronomy unit department of physics university of trieste via
+tiepolo 11 trieste 34131 italy
+inaf  osservatorio astronomico di trieste via tiepolo 11 trieste
+34131 italy
+ifpu  institute for fundamental physics of the universe via beirut
+2 34014 trieste italy
+european southern observatory eso karlschwarzschildstrasse
+2 garching 85748 germany
+department of astronomy cornell university ithaca ny 14853
+usa
+department of physics and astronomy university of missouri
+kansas city mo 64110
+department of physics cornell university ithaca ny 14853 usa
+department of astrophysical sciences peyton hall princeton university princeton new jersey 08544 usa
+joseph henry laboratories of physics jadwin hall princeton university princeton nj 08544 usa
+department of astronomy university of florida gainesville fl
+usa 32611
+physics and astronomy department stony brook university stony
+brook ny 11794
+astrophysics research centre university of kwazulunatal westville campus durban 4041 south africa
+school of mathematics statistics  computer science university
+of kwazulunatal westville campus durban 4041 south africa
+department of physics florida state university tallahassee fl
+usa 32306
+department of physics and astronomy rutgers the state university
+of new jersey piscataway nj 08854 usa
+centre for radio astronomy techniques and technologies department of physics and electronics rhodes university drosty rd
+grahamstown 6139 south africa
+department of physics yale university new haven ct 06520
+usa
+department of physics university of milanobicocca piazza della
+scienza 3 20126 milano mi italy
+kavli institute at cornell for nanoscale science cornell university
+ithaca ny 14853 usa
+department of physics and astronomy haverford college 370 lancaster ave haverford pa 19041 usa
+department of physics stanford university stanford 94305 ca
+usa
+kavli institute for particle astrophysics and cosmology stanford
+ca 94305 us
+department of physics california institute of technology
+pasadena ca 91125 usa
+instituto de fsica pontificia universidad catlica de valparaso
+casilla 4059 valparaso chile
+department of physics and astronomy university of california
+davis ca 95616 usa
+department of physics west chester university of pennsylvania
+west chester pa 19383 usa
+nasa goddard space flight center 8800 greenbelt road greenbelt md 20771 usa
+mit kavli institute for astrophysics and space research massachusetts institute of technology 77 massachusetts avenue cambridge ma 02139 usa
+
+article number page 21 of 25
+
+aa proofs manuscript no madcows
+
+appendix a bootstrapping
+throughout the paper we are presented with a situation in which
+we have a data set d which we are interested in computing some
+statistic on and for which we would like to estimate the uncertainty in that statistic we use the boostrapping method to do
+so given d we resample from that data set with replacement k
+times resulting in a superset of data sets d1  di  dk  where
+the di are the resampled data sets for each di  we compute a
+statistic on di  which we will call i  generally the mean or in
+the case where the data are maps the central emission we then
+have a set of statistics   1  i  k  we then take the average and standard deviation of  as the average and standard
+deviation of that statistic on d
+
+appendix b act sz masses vs carma aca
+mustang2 and nika2
+appendix c madcowsact codetections
+
+article number page 22 of 25
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+
+table b1 comparison of the masses inferred using act data to those from sz observations with carma gonzalez et al 2019a
+aca di mascolo et al 2020 mustang2 dicker et al 2020 and nika2 ruppin et al 2020
+cluster id
+moo j01051324
+moo j01291640
+moo j03190025
+moo j10140038
+moo j11421527
+moo j13220228
+moo j13541329
+moo j14140227
+moo j15141346
+moo j15210452
+moo j21460320
+moo j22060906
+moo j22311130
+
+m500act
+1014 m 
+353065
+055
+314070
+057
+238056
+045
+353057
+050
+500078
+067
+330066
+055
+205035
+030
+304056
+040
+254043
+037
+368057
+050
+316060
+050
+434083
+070
+354075
+062
+
+m500aca a
+1014 m 
+257030
+030
+
+275032
+032
+390054
+076
+
+m500carma b
+1014 m 
+
+m500mustang2 c
+1014 m 
+
+403048
+045
+
+383038
+037
+
+311053
+047
+326032
+030
+545058
+051
+
+312030
+030
+352034
+033
+307048
+058
+246032
+035
+
+m500nika2 d
+1014 m 
+
+606  347
+
+189068
+079
+365103
+094
+266093
+074
+438151
+137
+
+notes a di mascolo et al 2020 b gonzalez et al 2019a c dicker et al 2020 a full treatment of the uncertainty is available in the publication
+d
+the nika2 measurement as reported in ruppin et al 2020 relied on a strong informative prior on the integrated sz signal from carma
+gonzalez et al 2019a and hence should likely not be regarded as an independent constraint we include it for completeness and note they
+include a large 56 systematic uncertainty all three surveys assumed the arnaud et al 2010 scaling relation
+
+article number page 23 of 25
+
+aa proofs manuscript no madcows
+
+act name
+actcl j001900000
+actcl j001980210
+actcl j002390945
+actcl j002811005
+actcl j004841757
+actcl j010170030
+actcl j010260201
+actcl j010551323
+actcl j010581839
+actcl j012070305
+actcl j012530802
+actcl j012921641
+actcl j013190329
+actcl j020810935
+actcl j021220746
+actcl j022101755
+actcl j023450107
+actcl j023961036
+actcl j024840925
+actcl j025650006
+actcl j030020125
+actcl j030361857
+actcl j030812915
+actcl j035330832
+actcl j044841705
+actcl j093441751
+actcl j100871147
+actcl j101410038
+actcl j102990016
+actcl j104870743
+actcl j105321052
+actcl j111020030
+actcl j113930154
+actcl j114211345
+actcl j114271527
+actcl j114940921
+actcl j115231652
+actcl j120501525
+actcl j120530245
+actcl j120830501
+actcl j124100010
+actcl j125490947
+actcl j131061707
+actcl j132290227
+actcl j134620142
+actcl j135481329
+actcl j135581607
+actcl j141450227
+actcl j141820723
+actcl j142490141
+actcl j145460628
+actcl j145550439
+actcl j151471346
+actcl j152110451
+actcl j152581540
+actcl j153650954
+actcl j162011340
+actcl j212180040
+actcl j214660321
+actcl j220492955
+article number page 24 of 25
+
+act z
+0862
+0856
+104 003
+099 003
+0737
+094 002
+102 008
+1143
+0930 0019
+112 003
+106 003
+105 003
+099 003
+107 003
+047 002
+101 003
+0535
+0889 0017
+104 003
+0362
+127 003
+121 007
+100 003
+116 007
+096 005
+087 003
+0259
+123
+135 005
+087 003
+089 003
+0995 0016
+1052 0017
+114 003
+119
+091 003
+119 003
+120 003
+098 003
+090 003
+0790 0015
+080 003
+104 003
+0793
+119 004
+148 007
+097 003
+104 003
+126 003
+0948 0016
+131 007
+086 003
+1059
+1312
+102 005
+0770
+092 003
+0516
+116 005
+131 006
+
+act z type
+
+m500sz 1014 m 
+
+madcows name
+
+madcows z
+
+15
+
+spec
+spec
+phot
+phot
+spec
+phot
+phot
+spec
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+spec
+phot
+phot
+spec
+phot
+phot
+phot
+phot
+phot
+phot
+spec
+spec
+phot
+phot
+phot
+phot
+phot
+phot
+spec
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+spec
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+spec
+spec
+phot
+spec
+phot
+spec
+phot
+phot
+
+168037
+030
+233042
+035
+234049
+041
+377067
+057
+203046
+037
+229042
+035
+211039
+033
+309054
+046
+440075
+064
+174035
+029
+356055
+048
+265056
+046
+170035
+029
+202046
+037
+563102
+087
+189042
+035
+204042
+035
+258057
+047
+226051
+041
+394075
+063
+284047
+040
+323053
+046
+301056
+047
+241050
+041
+322063
+052
+286050
+042
+452092
+077
+313049
+043
+222041
+034
+236048
+039
+441071
+061
+230046
+038
+313053
+045
+186036
+030
+441065
+057
+204041
+034
+238039
+034
+159032
+027
+211046
+038
+178039
+032
+219049
+040
+149034
+027
+148032
+026
+290055
+046
+240045
+037
+183030
+025
+269043
+037
+268047
+040
+206034
+029
+190045
+036
+128028
+023
+191037
+031
+229037
+032
+327049
+042
+325051
+044
+151033
+027
+173035
+029
+251063
+050
+315060
+050
+372061
+053
+
+moo j00180000
+moo j00190209
+moo j00240944
+moo j00281005
+moo j00481757
+moo j01010030
+moo j01020201
+moo j01051324
+moo j01051839
+moo j01200304
+moo j01250802
+moo j01291640
+moo j01320329
+moo j02080935
+moo j02120746
+moo j02211755
+moo j02340107
+moo j02391035
+moo j02480925
+moo j02560006
+moo j03000124
+moo j03031857
+moo j03082915
+moo j03530832
+moo j04481705
+moo j09341751
+moo j10081148
+moo j10140038
+moo j10290017
+moo j10480743
+moo j10531052
+moo j11100030
+moo j11390154
+moo j11421346
+moo j11421527
+moo j11490921
+moo j11521652
+moo j12041525
+moo j12050244
+moo j12080501
+moo j12410011
+moo j12540948
+moo j13101707
+moo j13220228
+moo j13460142
+moo j13541329
+moo j13551606
+moo j14140227
+moo j14180723
+moo j14240141
+moo j14540628
+moo j14550439
+moo j15141346
+moo j15210452
+moo j15251541
+moo j15360953
+moo j16201340
+moo j21210040
+moo j21460320
+moo j22052955
+
+088
+083
+
+097
+082
+097
+117
+113
+091
+124
+103
+105
+114
+11
+
+
+119
+094
+
+
+133
+121
+101
+116
+096
+096
+
+121
+146
+094
+099
+
+
+124
+112
+096
+
+108
+
+09
+084
+081
+101
+082
+124
+148
+103
+102
+131
+088
+131
+088
+109
+128
+102
+102
+094
+114
+116
+131
+
+19 5
+29 6
+
+57 8
+58 8
+42 7
+20 5
+87 9
+65 8
+40 6
+65 8
+49 7
+35 6
+24 5
+
+
+27 5
+22 5
+
+
+37 6
+45 7
+53 7
+34 6
+79 9
+53 7
+
+43 6
+31 5
+37 6
+43 7
+
+
+33 6
+57 7
+30 6
+
+39 6
+
+43 7
+34 6
+39 7
+49 7
+83 9
+74 8
+44 6
+48 7
+41 7
+44 6
+41 7
+27 5
+36 6
+73 8
+46 7
+52 7
+39 6
+33 6
+
+50 7
+52 7
+
+orlowskischerer sz effect confirmation of madcows candidates using act
+
+actcl j223191131
+actcl j223501321
+actcl j231620920
+actcl j231981856
+actcl j232620030
+actcl j233260014
+actcl j235881836
+actcl j002894449
+actcl j015134300
+actcl j015145954
+actcl j020073106
+actcl j024463011
+actcl j024834931
+actcl j033913952
+actcl j043463723
+actcl j224135339
+actcl j231204844
+actcl j233273813
+actcl j233424324
+actcl j233533256
+actcl j020431918
+actcl j031940025
+actcl j084230033
+actcl j085641736
+actcl j100451203
+actcl j110680737
+actcl j122151604
+actcl j130321733
+actcl j142671740
+actcl j214050248
+actcl j220650906
+actcl j232020621
+actcl j010370119
+actcl j125490947
+actcl j233273813
+actcl j214050248
+
+081 003
+086 003
+079 003
+093 005
+118 004
+099 003
+140 005
+094 003
+124 003
+095 003
+102 003
+101 009
+096 002
+124 007
+0916 0017
+094 002
+0677 0014
+121 003
+0574 0008
+051 004
+101 003
+1194
+1028 0016
+081 003
+093 003
+109 008
+082 003
+081 003
+091 003
+102 003
+084 003
+0923
+0213 0017
+080 003
+121 003
+102 003
+
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+spec
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+phot
+spec
+phot
+phot
+phot
+phot
+
+310062
+052
+581094
+080
+226054
+044
+284059
+049
+178035
+029
+185036
+030
+202039
+032
+149034
+027
+188037
+031
+265050
+042
+323054
+046
+218048
+039
+173037
+031
+240042
+036
+277054
+045
+220048
+039
+269050
+042
+227040
+034
+230046
+038
+332061
+051
+342061
+052
+199044
+036
+194043
+035
+337057
+049
+237047
+039
+230045
+037
+180038
+031
+287048
+041
+290047
+040
+295061
+050
+382069
+058
+186042
+034
+
+
+
+
+
+moo j22311130
+moo j22351320
+moo j23160920
+moo j23191856
+moo j23260030
+moo j23320014
+moo j23581836
+moo j00284449
+moo j01514300
+moo j01515954
+moo j02003106
+moo j02443011
+moo j02484930
+moo j03393951
+moo j04343723
+moo j22415338
+moo j23124844
+moo j23323813
+moo j23344324
+moo j23353256
+moo j02041918
+moo j03190025
+moo j08420033
+moo j08561736
+moo j10041203
+moo j11060737
+moo j12211603
+moo j13031733
+moo j14261741
+moo j21400248
+moo j22060906
+moo j23200620
+moo j01030117
+moo j12540948
+moo j23323813
+moo j21400248
+
+08
+084
+086
+093
+
+
+14
+0930
+
+
+
+1370
+
+1240
+0850
+
+0800
+
+
+
+1100
+1210
+0980
+0800
+0980
+1090
+0910
+0860
+0930
+1049
+0930
+0980
+
+081
+
+1049
+
+48 7
+58 8
+49 7
+47 7
+
+
+36 6
+29 6
+
+
+
+36 6
+
+43 7
+51 8
+
+41 7
+
+
+
+47 7
+33 6
+47 7
+50 7
+35 6
+52 7
+70 9
+49 7
+65 8
+59 8
+53 7
+37 6
+
+39 7
+
+59 8
+
+table c1 madcows clusters found in the act dr5 sample hilton et al 2021 at an sz detection significance s n  4 these
+cluster codetections were made following the analysis described in section 3 richness 15  values are those reported by gonzalez
+et al 2019a note that some clusters do not have a 15 value associated with them as gonzalez et al 2019a did not report
+richness values for clusters with for clusters with low partial irac data
+
+article number page 25 of 25
+

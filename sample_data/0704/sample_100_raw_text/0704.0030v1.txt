@@ -1,0 +1,795 @@
+arXiv:0704.0030v1 [cond-mat.str-el] 31 Mar 2007
+
+Tuning correlation effects with electron-phonon
+interactions
+J.P.Hague and N.d'Ambrumenil
+Department of Physics, University of Warwick, CV4 7AL, U.K.
+
+We investigate the effect of tuning the phonon energy on the correlation effects in models of electron-phonon interactions using DMFT. In the regime
+where itinerant electrons, instantaneous electron-phonon driven correlations
+and static distortions compete on similar energy scales, we find several interesting results including (1) A crossover from band to Mott behavior in the
+spectral function, leading to hybrid band/Mott features in the spectral function for phonon frequencies slightly larger than the band width. (2) Since the
+optical conductivity depends sensitively on the form of the spectral function,
+we show that such a regime should be observable through the low frequency
+form of the optical conductivity. (3) The resistivity has a double kondo peak
+arrangement [Published as J. Low. Temp. Phys. 140 pp77-89 (2005)].
+PACS numbers: 71.10.Fd, 71.27.+a, 71.38.-k
+
+1.
+
+Introduction
+
+Mounting experimental evidence from high-Tc cuprates 1 , nickelates 2 ,
+manganites 3,4 and other interesting materials suggests that large electronphonon interactions may play a more important role in the physics of strongly
+correlated electron systems than previously thought. Migdal-Eliashberg and
+BCS theories have proved extremely successful in describing the effects of
+phonons in many materials. However, if the coupling between electrons and
+the underlying lattice is large, and/or the phonons can not be treated within
+an adiabatic approximation, conventional approaches fail.
+The Holstein model contains most of the fundamental physics of the
+electron-phonon problem 5 . Tight-binding electrons are coupled to the lattice through a local interaction with Einstein modes. For large phonon
+frequencies, electrons interact with a strongly correlated Hubbard-like attraction, while for small phonon frequencies the lattice gives rise to a static
+
+potential which is essentially uncorrelated. Between these two extreme limits of correlated and uncorrelated behavior, levels of correlation are tuned
+by the size of the phonon frequency and novel physics is expected. In particular, it is normally the strength of interaction which is said to tune the
+correlation in e.g. the Hubbard model, whereas in the Holstein model, it can
+be seen that both interaction strength and phonon frequency may compete
+with each other to play this role.
+The dynamical mean-field theory (DMFT) approach has proved successful in treating the Holstein and other models 6,7,8 . DMFT treats the
+self-energy as a momentum-independent quantity and is accurate as long as
+the variation across the Brillouin zone is small. For many aspects of the
+electron-phonon problem in 3D, correlations are short ranged and DMFT
+can be successfully applied. The weak coupling phase diagram was studied
+by Ciuchi et al. where competing charge-order (CO) and superconducting
+states were found 7 . Freericks et al. developed a quantum Monte-Carlo
+(QMC) algorithm 8,9 and examined the applicability of several perturbation theory based techniques to the electron-phonon problem 10,11,12 . The
+prediction of measurable quantities away from certain well-defined limits is
+severely restricted owing to difficulties inherent in the analytic continuation.
+Dynamic properties such as spectral functions can be computed in the case
+of static phonons 13 , and close to the static limit 14 . Alternatively, the limit
+of high phonon frequency (attractive Hubbard model) has been studied with
+a QMC algorithm 15 .
+In the current study we are concerned with the behavior of dynamical
+properties that could be measured directly with experiment. We use the iterated perturbation theory approximation, which has been demonstrated to be
+accurate for the Hubbard model, and use maximum entropy to analytically
+continue the results. We compare the resulting single-particle spectral functions over a wide range of electron-phonon coupling strengths and phonon
+frequencies. The results obtained using iterated perturbation theory (IPT)
+are promising and capture generic weak and strong coupling behavior for
+all phonon frequencies. At intermediate phonon frequencies, we find that
+electron-phonon interactions produce a spectral function which is simultaneously characteristic of both uncorrelated band (static) and strongly correlated Mott/Hubbard regimes. We also find that the competition between
+band-like and correlated states causes unusual structures in the optical conductivity and resistivity. Provided a material with high enough phonon
+frequency can be identified, it is possible that such a state could be observed
+experimentally.
+This paper is organized as follows. First, we introduce the Holstein
+model, the dynamical mean-field theory and analytic continuation techniques
+
+(1a)
+
+(2a)
+
+(2b)
+
+(2c)
+
+Fig. 1. Second order contributions to the self-energy. Straight lines represent electron Green's functions of the host and wavy lines phonon Green's
+functions.
+(section 2.). In section 3., we use IPT to determine the spectral functions of
+the Holstein model. We compare IPT with exactly known results in the static
+limit. This, in conjunction with the conclusions of Ref. 11 leads us to argue
+that IPT is a reasonable approximation for the calculation of dynamical
+properties in the intermediate phonon frequency regime. We compute the
+density of states, optical conductivity and resistivity, and give a heuristic
+explanation for their behavior.
+
+2.
+
+Formalism
+
+The Holstein Hamiltonian is written as,
+H = −t
+
+X
+
+<ij>σ
+
+c†iσ cjσ
+
++
+
+X
+iσ
+
+(gxi − μ)niσ +
+
+X
+i
+
+p2
+M ω02 x2i
++ i
+2
+2M
+
+!
+
+(1)
+
+The first term in this Hamiltonian represents a tight binding model with
+hopping parameter t. The second term couples the local ion displacement,
+xi to the local electron density. The final term can be identified as the
+non-interacting phonon Hamiltonian. c†i (ci ) create (annihilate) electrons at
+site i, pi is the ion momentum, M the ion mass, μ the chemical potential
+and g the electron-phonon coupling. The phonons are dispersionless with
+frequency ω0 .
+The perturbation theory of this model may be written down in terms
+
+of electrons interacting via phonons with the effective interaction,
+U (iωs ) = −
+
+g2
+M (ωs2 + ω02 )
+
+(2)
+
+Here, ωs = 2πsT are the Matsubara frequencies for bosons and s is an
+integer. Taking the limit ω0 → ∞, g → ∞, while keeping the ratio g/ω0
+finite, leads to an attractive Hubbard model with a non-retarded on-site
+interaction U = −g2 /M ω02 . Iterated-perturbation theory (IPT) is known to
+be a reasonable approximation to the half-filled Hubbard model 16,17 . Taking
+the opposite limit (ω0 → 0, M → ∞, keeping M ω02 ≡ κ finite) the phonon
+kinetic energy term vanishes, and the phonons depend on a static variable
+xi . As such, the model may be considered as uncorrelated.
+We solve the Holstein model using dynamical mean-field theory (DMFT).
+DMFT freezes spatial fluctuations, leading to a theory which is completely
+momentum independent, while fully including dynamical effects of excitations. In spite of this simplification, DMFT predicts non-trivial (correlated)
+physics and may be used as an approximation to 3D models 18 . As discussed
+in Ref. 6, DMFT involves the solution of a set of coupled equations which
+are solved self-consistently. The Green's function for the single site problem,
+G(iωn ) can be written in terms of the self-energy Σ(iωn ) as,
+G−1 (iωn ) = G0−1 (iωn ) − Σ(iωn ),
+
+(3)
+
+where Σ is a functional of G0 , the Green's function for the host of a single
+impurity model. Here ωn = 2πT (n + 1/2) are the usual Matsubara frequencies. The assumptions of DMFT are equivalent to taking the self-energy of
+the original lattice problem to be local, hence G is also given by,
+G(iωn ) =
+
+Z
+
+dǫ D(ǫk )
+iωn + μ − Σ(iωn ) − ǫk
+
+(4)
+
+where D(ǫ) the density of states (DOS) of the non-interacting problem (in
+our case g = 0). We work with a Gaussian DOS
+which corresponds to a
+√
+18
+2
+2
+hypercubic lattice , D(ǫ) = exp(−ǫ /2t )/t 2π. Equations (3) and (4)
+are solved according to the following self-consistent procedure: Compute
+the Green's function from equation (4) and the host Green's function of the
+effective impurity problem, G0 , from equation (3); then calculate a new selfenergy from the host or full Green's functions. In the following we will take
+the hopping parameter t = 0.5, which sets the energy scale.
+Once the algorithm has converged, and after analytically continuing to
+the real axis, response functions can be computed. We use the MAXENT
+method for the determination of spectral functions from Matsubara axis
+
+data. MAXENT treats the analytic continuation as an inverse problem
+The Green's function, G(z), is given by the integral transform,
+Z
+
+G(z) =
+
+ρ(x)
+dx
+z−x
+
+19 .
+
+(5)
+
+where ρ(x) is the spectral function (ρ(ω) = Im[G(ω + iη)]/π). The problem
+of finding ρ is therefore one of inverting the integral transform. Since the
+data for Gn are incomplete and noisy for any finite set of Matsubara frequencies, the inversion of the kernel of the discretised problem is ill-defined.
+The MAXENT method selects the distribution ρ(x) which assumes the least
+structure consistent with the calculated or measured data. These methods
+have been extensively reviewed in the context of the inversion of the kernel
+in Refs. 19,20. The applicability to the current problem has been thoroughly
+tested, and is found to be accurate.
+Within the DMFT formalism, many response functions follow directly
+from the one-electron spectral function and the electron self-energy (essentially because of the neglect of all connected higher point functions apart
+from G0 ). Here we will be interested in the conductivity 6 :
+π2
+Re[σ(ω)] =
+ω
+
+Z
+
+∞
+
+dǫD(ǫ)
+
+−∞
+
+Z
+
+∞
+
+−∞
+
+dν ρ(ǫ, ν)ρ(ǫ, ν + ω)[f (ν) − f (ν + ω)] (6)
+
+where f (x) is the Fermi-Dirac distribution. Taking the limit, ω → 0, leads
+to the DC conductivity. (The conductivity is in units of e2 V /ha2 , where a
+is the lattice spacing, V the volume of the unit cell and e and h are the
+electron charge and Planck's constant respectively.)
+
+3.
+
+Results
+
+In this section, we examine the validity of an approximation to the selfenergy constructed from only first and second order terms with respect to the
+spectral functions calculated at very high and very low phonon frequencies.
+Finally, we calculate the optical conductivity and resistivity.
+Spectral functions are shown in figures 2 and 3. The perturbation theory
+is carried out in the host Green's function (i.e. both electrons and phonons
+are bare). All diagrams in fig. 1 are considered,
+Σ1a (iωn ) = −U T
+Σ2a (iωn ) = −2U 2 T 2
+
+X
+s,m
+
+X
+s
+
+G0 (iωn − iωs )D0 (iωs )
+
+D02 (iωn−m )G0 (iωm )G0 (iωs )G0 (iωn−m+s )
+
+(7)
+(8)
+
+Σ2b (iωn ) = U 2 T 2
+
+X
+
+D0 (iωm−s )D0 (iωn−m )G0 (iωm )G0 (iωs )G0 (iωn−m+s )
+
+s,m
+
+Σ2c (iωn ) = U 2 T 2
+
+X
+
+D0 (iωn−m )D0 (iωm−s )G02 (iωm )G0 (iωs )
+
+(9)
+(10)
+
+s,m
+
+This also gives the correct weak coupling limit for the electronic Green's
+function.
+We consider first the calculation of spectral functions close to the static
+and Hubbard limits. In the instantaneous limit the perturbation theories
+for the Holstein and Hubbard models are equivalent. It is well known that
+second order perturbation theory in the host Green's function provides a
+good approximation to the Hubbard model 21 . In the static limit, the exact
+solution can easily be calculated 13 . Figure 2 shows spectral functions from
+the exact solution, computed for a hypercubic lattice and spectral functions,
+computed using 2nd order perturbation theory at a temperature of T = 0.08.
+The phonon frequency ω0 = T /20 was chosen so that the effects of the
+phonon kinetic energy are negligible compared to thermal fluctuations. This
+allows a direct comparison to be made between the exact and approximate
+results. The comparison shows that the widths and positions of the major
+features are closely related.
+The results in Figure 2 for the static limit (ω0 → 0), together with the
+fact that second order IPT is known to give reasonable results in the instantaneous limit (ω0 → ∞), suggest that the calculation of spectral functions
+should also be reliable at intermediate frequencies. We note that Freericks et
+al. also find a reasonable agreement between the IPT and QMC self-energies
+at half-filling, and that this should lead to a good agreement in the Matsubara axis Green's function. We have therefore solved the IPT equations for
+the spectral functions at intermediate frequencies. We show the results in
+Fig 3.
+The results of the IPT calculations in the regime of intermediate coupling (Fig 3) are consistent with known results for the limiting cases. For
+frequencies ω ≫ ω0 , the system has the qualitative behavior of the static
+limit: The original unperturbed density of states splits into two sub-bands
+centered around ±U/2. For small frequencies (ω ≪ U, ω0 ) and interaction
+strength, U , less than some critical value, the system behaves as an interacting electron (Hubbard) model, since the retarded interaction between
+particles U (iωs ) (see equation 2) is effectively constant for ωs ≪ ω0 . There is
+then a narrow quasiparticle band at the Fermi energy with density of states
+at the Fermi energy pinned at its non-interacting value 6 . We also note that
+the results for small coupling and small frequencies are in good agreement
+with those calculated using ME theory in the metallic phase 22 .
+The recent renormalization group (NRG) calculations of Meyer et al.
+
+23,24
+
+also report the spectral function in the intermediate regime. The NRG
+is in principle an exact method for solving the impurity problem onto which
+the DMFT equations map. Our results are largely consistent with theirs
+adding further support to the use of IPT in the intermediate regime. When
+comparing with the results of Meyer et al 23 , one should note that the Hamiltonian
+exactly the one considered in Ref. 23 but with the quantity
+√ (1) is p
+g/ 2M ω0 = U ω0 /2 denoted by g in Ref. 23 and with energies measured
+in terms of the full bandwidth (instead of the half-bandwidth used here).
+In this paper, we work with the Gaussian density of states for the noninteracting electron DOS, whereas reference 23 uses the semi-elliptic DOS.
+In general, we would expect the critical values for the opening of a gap to
+be larger for the Gaussian case than for the semi-elliptic case. The critical
+coupling for the parameters in Figure 3(c) lies just above U = 2.0, corresponding in the units used in Ref. 23 to g = 1, compared with the critical
+value found for the semi-elliptic DOS of g = 0.69 (note that because of the
+different energy scales ω0 = 2 in our results corresponds to ω0 = 1 in the
+units of 23). However, the shapes of the spectral functions are similar in
+both cases, with a five-peaked structure below and four peaked structure
+above the transition. The peaks are narrower in the IPT results than in the
+NRG results and there is less weight in the high energy peaks. This may
+reflect the different DOS, or inaccuracies in the NRG method at frequencies
+far from the Fermi energy resulting from the logarithmic discretisation, but
+more likely the limitations of the IPT method.
+Using the method outlined in section 2. it is possible to calculate the
+real-axis self-energy. The temperature evolution of the imaginary part of the
+self-energy may be seen in figure 4 for U = 2 and ω0 = 2 The self-energy
+at low temperatures and small frequencies shows a quadratic (Fermi-liquid
+like) behavior consistent with the narrow quasiparticle peak seen in the spectral function (Fig 3) and develops to a broad central peak at higher temperatures. There are also peaks corresponding to the Hubbard sub-bands.
+With increasing temperature these phonon-induced peaks move together and
+merge into the single central maximum associated with incoherent on-site
+scattering. This peak is naturally characterized within the framework of
+the self-consistent impurity model formulation of the DMFT equations 6 in
+terms of a Kondo resonance. In this formulation, the dynamical mean field
+G0 (ω) is written in terms of a hybridization ∆(ω) between the site orbital and
+a bath of conduction electrons and is therefore equivalent to an Anderson
+impurity model with the added complication that ∆ is frequency-dependent
+and needs to be computed self-consistently. However, many of the properties
+in the metallic state are similar to those of the Anderson impurity model.
+In particular the central peak in the spectral function can be viewed as the
+
+Kondo resonance of the impurity model.
+As all connected point-functions with order higher than G0 are neglected
+within DMFT, the computation of q = 0 response functions is straightforward. As an example we show in fig 5 the (real part of the) optical conductivity for various temperatures with U = 2 and ω0 = 2. The structure
+seen in the curves reflects the structure of the density of states. There is a
+strong response at low frequencies as particle-hole pairs are excited within
+the 'Kondo-like' quasiparticle resonance at the Fermi energy. The second
+peak at frequencies ω ∼ 1 arises from excitations between the quasiparticle resonance and the large satellite (Hubbard band), while the third peak
+around ω ∼ 5.0 involves excitations between the satellites. The first dip
+at ω = 0.5 is the signature of the small Mott bands close to the Kondo
+resonance and is the feature most likely to be observable experimentally.
+Also calculated is the resistivity as a function of temperature (figure 6).
+The curves reflect the structure of the self-energy shown in Figure 4: At low
+temperatures the resistivity rises quadratically as expected for interacting
+electrons. The temperature scale is given by the quasiparticle bandwidth
+('Kondo temperature'). Above this temperature the resistivity drops as the
+on-site (Kondo) scattering amplitude for electrons reduces. There is a slight
+second peak at higher temperatures. The structures in ρ can be traced back
+to the behavior seen in the self-energy. This second peak is the result of an
+increase in scattering off the phonons: these soften slowly with increasing
+temperature and, around the second peak in the resistivity curve, outweigh
+the reduction in Kondo-like scattering as the temperature increases. This
+effect clearly involves a partial cancellation between two effects and hence
+may be sensitive to the accuracy of the analytic continuation, which at higher
+temperatures starts from reduced information (since the majority of Matsubara points simply show asymptotic behaviour).
+
+4.
+
+Summary
+
+We have discussed the result of changing the ratio of electron and
+phonon energies as a method for tuning the amount of correlation in a model
+of electron-phonon interactions. We use approximate schemes to solve for
+the spectral functions of the Holstein model. On the basis that second-order
+iterated perturbation theory predicts the correct qualitative behavior at a
+range of couplings in the static limit as well as describing correctly the limit
+of infinite phonon frequency, we have computed the spectral function at intermediate frequencies and couplings. We have used an adaptation of the
+standard maximum entropy scheme to obtain the spectral function, the self-
+
+energy and the conductivity of the model by analytic continuation. These
+quantities had not previously been studied.
+The results for the intermediate frequency regime are consistent with
+what might be expected on the basis of the limiting cases (high and low
+frequencies). At energy scales smaller than ω0 , the system shows behavior similar to that of the Hubbard model found in the instantaneous limit
+ω0 → ∞: there is a narrow central 'Kondo-resonance' or quasiparticle band.
+At large energies the model behaves as it does in the static regime with a
+well-defined band splitting. At intermediate frequencies the picture is complicated by the interplay of the loss of coherence in the quasiparticle band
+and the effective renormalization of the phonon frequency as a function of
+coupling and temperature. We suggest that if systems with anomalously
+large phonon frequencies and couplings exist, then the optical conductivity
+should bear the hallmark of the correlation tuned regime.
+
+5.
+
+Acknowledgements
+
+The authors would like to thank F.Essler and F.Gebhard for useful
+discussions.
+
+REFERENCES
+1. A.Lanzara, P.V.Bogdanov, X.J.Zhou, S.A.Kellar, D.L.Feng, E.D.Lu,
+T.Yoshida, H.Eisaki, A.Fujimori, K.Kishio, J.-I.Shimoyama, T.Noda, S.Uchida,
+Z.Hussa, and Z.-X.Shen. Nature, 412:6846, 2001.
+2. J.M.Tranquada, K.Nakajima, M.Braden, L.Pintschovius, and R.J.McQueeney.
+Bond-stretching-phonon anomalies in stripe-ordered la1.69sr0.31nio4. Phys.
+Rev. Lett., 88:075505, 2002.
+3. G.M.Zhao, K.Conder, H.Keller, and K.A.Müller. Nature, 381:676, 1996.
+4. A.J.Millis, R.Mueller, and B.I.Shraiman. Phys. Rev. B, 54:5405–5417, 1996.
+5. T.Holstein. Ann. Phys., 8:325–342, 1959.
+6. A.Georges, G.Kotliar, W.Krauth, and M.Rozenburg. Rev. Mod. Phys., 68:13,
+1996.
+7. S. Ciuchi, F.de Pasquale, C.Masciovecchio, and D.Feinberg. Europhys. Lett.,
+24:575–580, 1993.
+8. J.K.Freericks, M.Jarrell, and D.J.Scalapino. Phys. Rev. B, 48:6302–6314, 1993.
+9. J.K.Freericks, M.Jarrell, and D.J.Scalapino. Europhys. Lett., 25:37–42, 1994.
+10. J.K.Freericks. Phys. Rev. B, 50:403–417, 1994.
+11. J.K.Freericks and M.Jarrell. Phys. Rev. B, 50:6939–6952, 1994.
+12. J.K.Freericks, V.Zlatić, W.Chung, and M.Jarrell. Phys. Rev. B, 58:11613–
+11623, 1998.
+
+13. A.J.Millis, R.Mueller, and B.I.Shraiman. Phys. Rev. B, 54:5389–5404, 1996.
+14. P.Benedetti and R.Zeyher. Phys. Rev. B, 58:14320–14334, 1998.
+15. M.Keller, W.Metzner, and U.Schollwock. Dynamical mean-field theory for the
+normal phase of the attractive hubbard model. J. Low. Temp. Phys, 126:961,
+2002.
+16. A.Georges and G.Kotliar. Phys. Rev. B, 45:6479, 1992.
+17. M.J.Rozenberg, X.Y.Zhang, and G.Kotliar. Phys. Rev. Lett., 69:1236, 1992.
+18. W.Metzner and D.Vollhardt. Phys. Rev. Lett., 62:324, 1989.
+19. J.E.Gubernatis, M.Jarrell, R.N.Silver, and D.S.Sivia. Phys. Rev. B, 44:6011,
+1991.
+20. H.Touchette and D.Poulin. Aspects numériques des simulations du modèle de
+hubbard – monte carlo quantique et méthode d'entropie maximum. Technical
+report, Université de Sherbrooke, 2000.
+21. X.Y.Zhang, M.J.Rozenberg, and G.Kotliar. Phys. Rev. Lett., 70:1666, 1993.
+22. J.P.Hague and N.d'Ambrumenil. cond-mat/0106355, 2001.
+23. D.Meyer, A.C.Hewson, and R.Bulla. Gap formation and soft phonon mode in
+the holstein model. Phys. Rev. Lett., 89:196401, 2002.
+24. A.C.Hewson and D.Meyer. Numerical renormalization group study of the
+anderson-holstein impurity model. J. Phys. Condens. Matt, 14(3):427, 2002.
+
+0.8
+0.7
+
+U=0.33
+U=1.17
+U=2.00
+U=4.50
+
+(a) Static
+
+0.6
+
+ρ(ω)
+
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+-6
+
+-4
+
+-2
+
+0
+ω
+
+0.8
+0.7
+
+2
+
+4
+
+6
+
+4
+
+6
+
+U=0.33
+U=1.17
+U=2.00
+U=4.50
+
+(b) IPT
+
+0.6
+
+ρ(ω)
+
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+-6
+
+-4
+
+-2
+
+0
+ω
+
+0.8
+0.7
+
+2
+
+U=0.33
+U=1.17
+U=2.00
+U=4.50
+
+(c) Conserving
+
+0.6
+
+ρ(ω)
+
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+-6
+
+-4
+
+-2
+
+0
+ω
+
+2
+
+4
+
+6
+
+Fig. 2. The spectral function in the static limit of the half-filled Holstein
+model computed at temperature T = 0.08 (a) using the exact solution and
+(b) using 2nd order IPT at a low frequency, ω0 = 0.004. The IPT solution
+at this small non-zero frequency is quite close to the exact solution in the
+static limit. In particular, the band splitting and the positions of the maxima
+agree. To contrast, panel (c) shows the results of the approximation using
+the full Green's function (Diagram 2c from figure 1 is not included to avoid
+overcounting)
+
+0.8
+
+U=0.33
+U=1.17
+U=2.00
+U=4.50
+
+(a) ω0=0.056
+
+0.7
+0.6
+
+ρ(ω)
+
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+-6
+
+-4
+
+-2
+
+0
+
+2
+
+4
+
+6
+
+4
+
+6
+
+4
+
+6
+
+ω
+0.8
+
+U=0.33
+U=2.00
+U=4.50
+
+(b) ω0=0.500
+
+0.7
+0.6
+
+ρ(ω)
+
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+-6
+
+-4
+
+-2
+
+0
+
+2
+
+ω
+0.8
+
+U=0.33
+U=2.00
+U=4.50
+
+(c) ω0=2.000
+
+0.7
+0.6
+
+ρ(ω)
+
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+-6
+
+-4
+
+-2
+
+0
+
+2
+
+ω
+
+Fig. 3. Spectral functions of the half-filled Holstein model for various
+electron-phonon couplings U , approximated using 2nd order perturbation
+theory at T = 0.02 and ω0 = 0.056 (top), ω0 = 0.5 (center) and ω0 = 2
+(bottom). In the low frequency limit (ω0 = 0.125), the spectral functions
+are similar to those in the static limit shown in Fig. 2, with only a small
+effect from the non-zero phonon frequency. As the temperature is lower than
+the phonon frequency, the central quasiparticle peak is clearly resolved for
+U ≤ 2. For the intermediate frequencies (central panel) the peak around
+ω = 0 is again clear and has a width ∼ ω0 at low coupling. In the gapped
+phase at large couplings two band-splittings are visible. For ω ≫ ω0 the
+band splits just as in the static limit, while for ω ≪ U there is a peak at
+a renormalized phonon frequency (which is less than the bare phonon frequency). In the ungapped phases for ω0 = 0.5 and 2, the low energy behavior
+is similar to that found in the Hubbard model with a narrow quasiparticle
+band forming near the Fermi energy with the value at the Fermi energy
+pinned to its value in the non-interacting case.
+
+T=0.08
+T=0.16
+T=0.32
+
+7
+6
+-Im[Σ(ω)]
+
+5
+4
+3
+2
+1
+0
+-6
+
+-4
+
+-2
+
+0
+
+2
+
+4
+
+6
+
+ω
+
+Fig. 4. Imaginary part of the self-energy of the half-filled Holstein model
+when U = 2 and ω0 = 2 computed using IPT and analytically continued
+using MAXENT. At low temperatures the low frequency behavior is Fermiliquid like (quadratic dependence on ω) down to quite low frequencies (at
+very low frequencies and low temperatures there are some inaccuracies associated with the truncation in Matsubara frequencies). There are peaks at
+the frequencies associated with the phonon energy and with U. As the temperature increases the minimum at the Fermi energy (ω = 0) increases as
+incoherent on-site scattering in the corresponding local impurity increases
+(see text). At temperatures above the characteristic (Kondo-like) energy
+scale the central peak subsides and disappears.
+
+0.6
+
+T=0.08
+T=0.16
+T=0.32
+
+0.5
+
+σ(ω)
+
+0.4
+0.3
+0.2
+0.1
+0
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+ω
+
+Fig. 5. The real part of the optical conductivity for a system with U = 2.0
+and ω0 = 2.0 for a range of temperatures. The structure of the spectrum
+reflects that in the density of states (see fig 3. At low frequencies, electrons
+may be excited within the quasiparticle resonance. The second peak at
+ω ∼ 2.0 represents excitations from the Kondo resonance to the large satellite
+(Hubbard band), and the peak at ω ∼ 5.0 represents excitations between the
+satellites.
+
+U=2.00
+U=2.13
+U=2.28
+
+10
+
+ρ(T)
+
+8
+6
+4
+2
+0
+0
+
+0.05 0.1 0.15 0.2 0.25 0.3 0.35 0.4 0.45
+T
+
+Fig. 6. The resistivity as a function of temperature for the Holstein model
+for ω0 = 2 for varying electron-phonon coupling strengths. The resistivity is
+in units of e2 V /ha2 with V the unit cell volume and a the lattice cell spacing.
+The behavior reflects what is seen in the self-energy. At low temperatures
+the behavior is similar to that in a Kondo lattice. The resistivity rises
+sharply with temperature for temperatures smaller than the quasiparticle
+bandwidth. The resistivity then drops for temperatures larger than this
+lattice coherence temperature. A simple logarithmic decay with temperature
+is not visible because, in addition to the Kondo-like scattering processes,
+the electrons are scattered from thermally excited phonons whose spectral
+weight broadens and shifts towards lower frequencies as the temperature
+rises. This leads to a second peak. In contrast, the second peak is not
+visible for the Hubbard model, and indicates the presence of two energy
+scales in the Holstein model.
+
+

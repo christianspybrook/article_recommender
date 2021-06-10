@@ -1,0 +1,1186 @@
+journal of latex class files vol xx no xx may 4 2021
+scattering properties of spherical timevarying
+conductive shells
+arxiv210500058v1 physicsoptics 30 apr 2021
+kurt schab member ieee bradley shirley student member ieee and kc kerbypatel senior member ieee
+abstractharmonic generation in the scattered fields produced by a dielectric sphere coated with a timevarying conductive shell is studied using a mie theory approach hybridized
+with conversion matrix methods analytic results are derived for
+plane wave incidence as well as in a more general transition
+matrix setting an equivalent transmission line approach is also
+discussed numerical examples validate the derived expressions
+through comparison with purely numerical methods and convergence characteristics are explored several additional examples
+illustrate unique trends in far and nearfield scattering
+index termstimevarying systems mie theory scattering
+analysis electromagnetic theory
+i i ntroduction
+imevarying electromagnetic devices exhibit frequency conversion ie the generation of spectral content
+not existing in an applied excitation historically timevarying
+elements have been commonplace within circuit systems used
+to perform up or downconversion more recently spatiotemporally spacetime modulated materials have been applied
+to bring about similar frequency conversion phenomena in
+distributed systems the analytic study of spacetime materials
+has so far been largely driven by methods involving homogeneous media 13 the polarizability of single particles
+4 guided wave systems 5 planar structures 615 or
+systems with inherent cylindrical symmetry 16 17
+many of these analytic studies explicitly or implicitly
+apply conversion matrix techniques 18 commonly used in the
+study of timevarying circuits to analyze harmonic generation
+within this framework linear timevarying components or
+materials act as coupling elements between otherwise decoupled linear timeinvariant physical problems at multiple
+frequencies recently this approach was integrated with the
+method of moments as an alternative to the finite difference
+time domain fdtd method for the analysis of arbitrary
+timevarying electromagnetic systems 19 20 despite the
+flexibility of fdtd and other numerical methods as computational tools for studying timevarying systems analytic
+or quasianalytic methods remain attractive due to their low
+computational cost and their ability to accurately model many
+problems based on canonical geometries
+in this work we develop an analytic solution for the fields
+scattered by a dielectric sphere coated with a thin shell of
+manuscript received may 4 2021 revised may 4 2021
+k schab and b shirley are with the department of electrical and
+computer engineering santa clara university santa clara ca usa email kschabscuedu
+k c kerbypatel is with the engineering department university of
+massachusetts boston boston ma usa email kckerbypatelumbedu
+timevarying conductivity this study is motivated by the possible implementation of timevarying surfaces through dense
+networks of lumped timevarying components eg switches
+or through the modulation of inherently surfacebased materials eg carbon nanostructures 11 the solution leverages
+aspects of both classical mie scattering theory 21 as well
+as conversion matrix 18 methodologies it shares many
+features with the solution of analogous problems involving
+static impedance boundary conditions 22 23 timevarying
+planar and cylindrical structures 16 17 24 timevarying
+dielectric spheres 25 and spheres constructed from nonlinear media 26 27 though the formulation and examples
+studied here are unique to the spherical shell configuration
+in an effort to establish connections between the timevarying shell geometry and other scattering problems both
+simpler and more complex we carry out this analysis by
+several means each with a unique engineering perspective
+generality and adaptability to other problems we begin by
+approaching the problem via classical mie theory for the
+special case of plane wave incidence using explicit forms
+of all field components we then generalize the approach
+to arbitrary external excitation to arrive at a transition t
+matrix formulation compatible with general external excitation
+and multiscatterer systems 28 finally we adapt the tmatrix formulation into a transmission line problem giving
+rise to a conversion matrix form of the reflection coefficient
+observed at an impedance interface several examples are then
+discussed and validated against numerical methods namely
+conversion matrix method of moments cmmom trends
+in farfield scattering and nearfield focusing behavior are
+explored through supplementary examples
+ii s cattering due to a plane wave
+throughout this work we consider a sphere of radius a
+containing a core of homogeneous material with permittivity
+d  r 0 and permeability d  r 0  the surface of
+this sphere has a timevarying surface conductivity t with
+ as shown in fig 1 we begin
+fourier representation 
+by considering a situation where the sphere is illuminated by
+a multifrequency incident plane wave ei t and hi t with
+fourier components of the form
+e i   xeejkz 
+h i    1 eejkz 
+where k is the free space wavenumber at frequency  and
+ is the free space wave impedance at each frequency this
+journal of latex class files vol xx no xx may 4 2021
+es t
+ei t
+hs   
+p1n cos 
+dp1n cos 
+an 2
+sin 
+e0 sin  x
+kr n1
+hs   
+fig 1 a sphere of radius a contains a static nondispersive material with
+permittivity and permeability d  r 0 and d  r 0  respectively the
+surface of the sphere is coated with a timevarying surface conductivity t
+e0 cos  x
+kr n1
+dp1n cos 
+p1n cos 
+ bn jn kr
+an n kr
+sin 
+and for the internal field we have
+wave may be expanded into spherical harmonics leading to
+the tangential field components 21 743
+e0 g cos  x n 2n  1
+nn  1
+dpn cos 
+p1n cos 
+ jn kr
+ n kr
+sin 
+ed  
+ei  
+hi 
+e0 g sin  x n 2n  1
+nn  1
+p1 cos 
+dp1 cos 
+ n kr n
+ j0n kr n
+sin 
+e0 g cos  x n 2n  1
+nn  1
+dpn cos 
+p1n cos 
+ n kr
+ jn kr
+sin 
+hd   
+hd   
+p1n cos 
+bn 2
+sin 
+e0 sin  x
+es  
+kr n1
+p1n cos 
+dp1n cos 
+an jn kr
+ bn n kr
+sin 
+e0 cos  x
+d kd r n1
+dp1n cos 
+p1n cos 
+cn n kd r
+ dn jn kd r
+ 13
+sin 
+e0 cos  x
+dp1n cos 
+an j20
+e0 sin  x
+d kd r n1
+p1 cos 
+dp1 cos 
+cn n kd r n
+ dn j0n kd r n
+sin 
+where n are spherical riccatibessel functions and p1n are
+associated legendre polynomials here e0 represents a reference field magnitude while the unitless factor g indicates
+spectral weighting
+we may also expand the unknown scattered and internal
+fields at each frequency into similar spherical harmonics
+matching the form of terms in the spherical wave expansion of
+the incident plane wave for the scattered field this expansion
+reads
+e0 sin  x
+kd r n1
+dp1n cos 
+p1n cos 
+ dn n kd r
+cn jn kd r
+sin 
+hi   
+es   
+e0 cos  x
+kd r n1
+dp1n cos 
+p1n cos 
+cn jn kd r
+ dn n kd r
+sin 
+ei   
+e0 g sin  x n 2n  1
+nn  1
+pn cos 
+dp1n cos 
+ jn kr
+ n kr
+sin 
+ed   
+in the above expressions kd and d denote the wavenumber
+and characteristic impedance of the core material respectively
+the coefficients an  and cn  are associated with transverse
+magnetic tm modes while bn  and dn  correspond to
+transverse electric te modes
+tangential field continuity at the boundary of the sphere
+gives rise to four boundary conditions that must hold for all
+times t specifically
+ei t  es t  ed t
+ei t  es t  ed t
+hi t  hs t  hd t  ted t
+hi t  hs t  hd t  ted t
+within the magnetic field boundary conditions 16 and 17
+terms of the form tedx t represent a surface current density
+temporal phase matching gives analogous conditions on each
+fourier component of the fields applying the series forms of
+journal of latex class files vol xx no xx may 4 2021
+ 1 h
+gn  j1 1
+  r r
+incident internal and scattered fields in the frequency domain
+and matching terms of like tangential dependence the first pair
+of boundary conditions 14 and 15 gives
+gn 0n ka  an 20
+n ka 
+cn 0n kd a
+gn n ka  bn 2
+n ka 
+dn n kd a
+where
+gn  gjn
+2n  1
+nn  1
+gn n ka  an 2
+cn n kd a
+n ka 
+ jk
+kd1     cn   0n kd ad   21
+dn 0n kd a
+gn 0n ka  bn 20
+n ka 
+ jk
+kd1     dn   n kd ad   22
+here is used to mark integration variables as 0 is already
+used to denote differentiation of a function with respect
+to its argument considering the functions gn  an  bn  cn 
+and dn described by a basis of monochromatic signals we
+may interpret all terms in the above boundary conditions as
+diagonal operators with the exception of the convolution terms
+which naturally give rise to cross frequency coupling as
+expected we see that the te and tm excitation coefficients
+are fully decoupled
+we first consider the system of equations governing the tm
+coefficients solving 18 for the external coefficients an gives
+cn n kd a  gn n ka 
+an  20
+n ka kd
+using this expression to eliminate the external coefficients
+from 21 and collecting terms leads to 24 where the riccatibessel function wronskian identity 29
+n z20
+n z  n zn z  j
+ 1     cn   0n kd ad   24
+and
+bn x   r r 20
+n ka
+ 1     x  0n kd ad 
+gn  an  bn  cn 
+again with respect to a basis of monochromatic signals
+the operator an is always diagonal whereas the operator
+bn associated with the surface conductivity is in general
+not diagonal from this reduced operator expression we
+immediately recognize simplifications arising from several
+important special cases first when the surface conductivity is
+identically zero the operator bn vanishes yielding the classical
+tm scattering coefficients for a dielectric sphere similarly if
+the surface conductivity is purely static not varying in time
+the operator bn becomes diagonal 22 additionally if the
+inner medium has the same material properties as the external
+medium ie r  r  1 then an becomes the identity
+operator two special cases reduce the above system to one of
+a pec sphere either t   for all time or r  j
+repeating the above analysis for te modes we find the
+external coefficients to be
+bn  2
+dn n kd a  gn n ka
+n ka kd
+and the internal coefficients given by
+gn  cn  dn dn
+where
+cn x  j1 1
+r 2
+r 20
+n kan kd a 
+n kan kd a x 31
+and
+dn x   r r 2
+n ka
+ 1     x  n kd ad   32
+iii f ourier series expansion of surface
+parameters
+has been used defining the operators
+an x  j1 1
+r n ka0n kd a  r 20
+n kan kd a x
+n ka
+allows for a condensed form of 24 to be written as
+and the frequency dependence of gn  an  bn  cn  and dn
+has been suppressed due to multiplication in time mapping
+to convolution in frequency the second set of boundary
+conditions in 16 and 17 is more complex reading
+the preceding formulation involves integral operators
+whose kernels depend on the frequency domain representation
+of the surface conductivity  in order to systematically
+solve these equations we consider the special case in which
+the timevariation of the surface conductivity is periodic the
+aim of this simplification is to recast 28 and 30 as matrix
+journal of latex class files vol xx no xx may 4 2021
+k n k k a
+k1 n k k1 a 0
+bn   r r 
+0 k n k k a
+  1 0 k
+k n kd a
+ 2k
+2k1  
+  1
+k1 n kd
+2k1
+k n k ac
+k1 n k1 ac 0
+dn   r r 
+0 k n k ac
+  1
+k n kdk a
+ 2k
+2k1
+k1 n kd
+2k1
+equations similar to the construction of conversion matrices
+in timevarying circuit analysis 18
+let the surface conductivity be expressible in terms of a
+fourier series with fundamental frequency   ie
+ q   q 
+bn x   r r
+apn
+bnpq
+gnp  apn cpn 
+bnpq cpq
+1 0
+n kdk a
+n kdk a
+r 2
+n k an kd a
+ 37
+r 20
+n k an kd a
+q 0
+apq
+ p  r r 20
+n k a n kd
+gn  an  bn  cn
+where
+an  
+ank1
+and the matrix bn is given in factored form in 41
+similarly for the te coefficients we may write
+gn  cn  dn  dn
+using these assumptions 28 evaluated at frequency p 
+0  p may be written
+ 41
+where k p and kdp are the wavenumbers at frequency p in
+the exterior and core materials respectively a set of 2k  1
+equations of this form may be collected into the system
+where c and cd are the speed of light in vacuum and the
+dielectric core respectively further assume that the excitation
+has a center frequency 0 and a baseband representation that
+is periodic in the fundamental frequency   ie
+gnp   0  p 
+j1 1
+ q   q 1 0n   q acd x  q 
+gn  
+and
+n ac
+with cpn  cn p 
+substitution into the operator bn gives via the sifting property
+of the dirac delta
+where
+cn  
+cnk1
+cnk
+journal of latex class files vol xx no xx may 4 2021
+and the matrix dn is given in 43 the form of the inner
+matrix
+ 2k
+  1
+    2k1 
+ 2k  2k1   
+closely resembles that of the conversion matrix describing
+multiharmonic coupling in timevarying circuit analysis 18
+or method of moments problems involving timevarying loads
+and materials 20 interpretation of this quantity as the
+conversion matrix representation of a timevarying admittance
+is discussed further in sec vi
+together 39 and 41 allow for the calculation of the
+internal fourier components cn and dn  from which the
+external terms an and bn are obtained via 23 and 29
+respectively adopting the alternative modal normalization of
+bohren and huffman 30 we define new sets of external
+coefficients
+nn  1
+nn  1
+n  an n
+ bn  bn n
+ 45
+j 2n  1
+j 2n  1
+assuming a monochromatic incident wave of power density s0
+at frequency 0  this renormalization leads to a familiar form
+for the normalized net scattered power scattering efficiency
+at each frequency
+psc
+2c2 x
+p 2
+p 2
+qsc 
+ 46
+s0 a2
+p2 a2 n1
+the normalized extinction power extinction efficiency takes
+on a similar form
+2c2 x
+q0ext  ext 2  2 2
+2n  1re 0n  b0n  47
+s0 a
+0 a n1
+by assuming monochromatic incidence the extinction efficiency is only defined for the p  0 harmonic because the
+timevarying scattering processes considered here are linear
+extended definitions of polychromatic scattering and extinction
+efficiencies may be constructed similarly to those used to
+describe polarization conversion processes in scattering cross
+section analyses
+the timevariation of the surface conductivity t may be
+alternatively described using surface resistance rt  t1 
+note that simple timevariations in one parameter may be
+problematic or illdefined in terms of the other for example
+the simple timevarying surface resistance
+where
+are vector spherical harmonics associated with
+riccatibessel functions of the first kind see app a by the
+addition theorem for vector spherical waves this expansion is
+capable of representing any incident field produced by sources
+at locations r 0 outside of the region of interest ie r  r0 21
+eq 7514 in a similar manner the scattered and internal
+fields may be expanded as
+e s  r 
+ krf
+e d  r 
+ kd rh
+where u are vector spherical harmonics associated with
+riccatihankel functions of the second kind the property 31
+eq 724
+  u
+  ku
+relates two classes of spherical vector waves with dual superindices  and  32 by virtue of this property the
+magnetic fields associated with incident scattered and internal
+electric fields are given by
+x 1
+h i  r  j 1
+u krg
+h  r  j 1
+u krf
+h d  r  jd1
+u kd rh 
+tangential electric field continuity in 14 and 15 at the
+spheres boundary leads to
+g r1
+ ka  f r ka  h r kd a
+iv s urface resistance and conductivity
+rt  r0 1   cos  t 
+v t ransition matrix formulation
+in preceding sections we explicitly considered incident
+fields of the form of plane waves the formulation may
+be extended to more general illuminations through the use
+of transition t matrix formalism 28 31 consider an
+incident field of the form
+e i  r 
+ krg
+where r describe the radial dependence of spherical waves
+u  see app a similarly the magnetic field boundary
+conditions in 16 and 17 lead to
+has a wellbehaved fourier spectrum however the associated
+surface conductivity tends toward a train of dirac delta functions as   1 and r0   this in turn necessitates the use
+of extreme numbers of frequencies in the solution of scattered
+fields which may lead to nonconvergent results throughout
+this paper we consider examples using conductance and resistance of the above form to examine this behavior
+h r kd a
+ j   h r1
+g r ka  f r ka 
+where the identity
+r  r  u r  r   u
+  1
+has been employed to relate tangential field components of
+harmonics with dual superindices eliminating the external
+coefficients f gives
+g  p  q h
+journal of latex class files vol xx no xx may 4 2021
+q  j 
+wk1
+ 2k
+1  4 k
+r k a
+r k k1 a 0
+0  
+0 r k k a
+  1 k
+r kd a
+ 2k
+1 k1
+2k1  
+   
+r kd
+a 0
+2k1
+where the operators p and q have the forms
+p x 
+r kar kd a  r kar kd a x
+q x 
+jw1  r4
+w x  r kar4
+kar
+with
+adopting the fourier series representations used in sec iii
+we may convert the continuous operator equation in 59 into
+a matrix equation of the form
+g  p  q  h
+where the matrix p is diagonal with elements
+pp  wp1
+ 4 p
+r k ar kdp a  r k p ar1
+f  t g
+t  r1
+ r1
+4 r1d p  q 
+where
+with
+r k k a
+r kdk a
+here we consider an alternative transmission line perspective of the scattering problem presented in secs ii iii
+and v in general we may consider the free space around
+the sphere as a spherical waveguide in which each mode
+has an associated characteristic impedance or admittance 33
+the wave admittance y of a spherical wave defined by an
+electric field of the form u relates the magnitudes of the
+tangential electric and magnetic fields via
+tan
+h tan
+  y r  e  
+ym  j m
+rm rm 1 
+where following the notation of 68 and 69 the subscript
+m may be either  for waves of the th kind in free space or
+d for waves in the dielectric core similarly the impedance
+m is either that of free space or the dielectric core the
+sign constant  is 1 as given in 58 which produces an
+appropriate sign for te and tm modes
+the electric field continuity equation of 56 may be written
+in terms of incident reflected and transmitted voltages at
+each frequency as
+where the incident voltages are
+vi  g r1
+ ka
+r kdk a
+the transition matrix in 66 fully describes the scattering
+of multiharmonic incident fields originating from sources
+exterior to the sphere under consideration hence it is suitable through proper application of the addition theorem to
+adaptation toward the scattering analysis of collections of nonoverlapping spherical structures
+vi  vr  vt 
+and
+1 k
+r kd a
+using 49 and 53 50 and 54 or 51 and 55 for the
+incident scattered or internal fields respectively we define a
+diagonal multifrequency wave admittance matrix
+and the matrix q is given in factored form in 65 here
+the term wp corresponds to the coefficient in 62 evaluated
+at frequency p  after some manipulations this leads to a
+transition matrix system
+r k k a
+vi s pherical waveguide perspective
+    x  r1
+ kd ad
+and similar forms are used for the reflected and transmitted
+terms collecting equations of this kind at all frequencies we
+obtain the system of equations
+journal of latex class files vol xx no xx may 4 2021
+y14
+y1d
+yin
+fig 2 schematic of transmission line scattering model the left and right
+transmission lines represent the exterior and interior regions respectively
+while the shunt conductance represents the surface conductivity
+admittance matrix has off diagonal elements which account
+for frequency conversion due to the timevarying conductivity
+additionally since the incident wave is represented by a
+standing bessel wave whose nominal propagation direction is
+chosen outward the sign of the magnetic field is the same for
+all wave components so the numerator and denominator
+both appear as subtractions lengthy manipulations outlined
+in app b demonstrate an equivalence between the result in
+79 and that obtained via transition matrix formulation in 67
+the intuitive construction of the equivalent circuit in fig 2
+suggests that the study of more complex systems eg layered
+media or shells may be facilitated through the use of similar
+transmission line methods
+using the same voltage definitions along with admittance
+matrices of the form of 71 the magnetic field continuity
+equation of 57 may be written as
+y1 v
+ y4 v
+ y1d v
+ vt  
+where the convolution term in 57 is represented by crossfrequency offdiagonal terms in the conversion matrix 
+interpreting 56 and 75 as the voltage and current boundary conditions at a transmission line junction it is clear that the
+surface of the sphere appears as a timevarying conductance
+in parallel with the input admittance looking into the core
+this configuration is depicted in fig 2 where a compressed
+notation is used to depict wave impedances in each region
+because of the orthogonality of vector spherical harmonics
+no mode conversion occurs at the surface of the sphere but
+the timevarying boundary condition does result in frequency
+conversion thus while each harmonic frequency satisfies
+72 independently 75 relates multiple harmonic frequencies
+simultaneously and cannot be separated into an independent
+equation for each frequency
+we now set out to derive the scattered modal voltage v
+using classical transmission line techniques let
+  v
+where  is a multifrequency reflection coefficient matrix
+that relates the incident and scattered wave amplitudes in the
+ mode at all frequencies by combining 56 75 and 76
+and eliminating v
+ we obtain
+yin 1     y1  y4  
+where the input admittance conversion matrix looking into the
+combined coreshell structure at each frequency is
+yin  y1d  
+collecting terms and solving for the reflection coefficient
+matrix  we obtain
+  y4  yin 1 yin  y1 
+the expression for the multifrequency reflection coefficient
+matrix in 79 has the same form as that arising from an lti
+transmission line interface with the major distinction that 79
+represents a multiharmonic system with conversion between
+frequencies again we note that the incident and outwardgoing wave admittances are diagonal matrices while the input
+vii c onvergence and comparison to other
+methods
+here we consider two sets of examples aimed at examining
+the accuracy and convergence of the methods presented in this
+work for brevity we restrict our analyses to those based on
+the special case of plane wave incidence outlined in sec ii
+a comparison to numerical methods aircore shell
+when the dielectric core material is assigned to be the same
+as the exterior medium the plane wave scattering problem
+in sec ii is readily evaluated using a hybridized conversion
+matrix method of moments cmmom technique 20 developed for the study of conducting structures loaded with
+timevarying lumped elements or materials here we compare
+these purely numerical results with those obtained using the
+analytical formulation presented in this work
+as an example problem we consider an aircore conducting
+shell with conductivity of the form
+t  0 1   cos  t
+where 0  1 1    05 and   0110  the
+incident field is a monochromatic plane wave whose frequency
+0 is swept to cover a broad range of electrical sizes ka
+scattering and extinction efficiencies are calculated via the
+method presented in sec ii and via cmmom where the
+sphere is represented by 900 rwg basis functions and the
+timevarying conductivity is modeled as a distributed timevarying surface resistance in the cmmom implementation all
+impedance and gram matrices are generated using atom 34
+cmmom scattering and extinction efficiencies are calculated
+via
+psc
+p rp ip
+qpsc 
+s0 a2
+2s0 a2
+and
+qpext 
+re ih
+pext
+p vp 
+s0 a
+2s0 a2
+where ip  vp  and rp are the induced current excitation field
+and radiation operator at the pth harmonic represented in the
+mom basis
+results obtained by the method presented in sec ii denoted
+mie and cmmom are shown in fig 3 where qualitative
+agreement is observed at all frequencies scattering in the
+journal of latex class files vol xx no xx may 4 2021
+102
+q0ext
+q0ext
+mie
+mom
+q0sca
+q0sca
+k60
+qsca mie
+mie
+qk6sca
+mom
+ka  005
+102
+mom
+101
+ka  5
+106
+ka  05
+p 6 0
+104
+1010
+107
+1014
+1010 2
+101
+100
+101
+1018
+100
+120
+fig 3 comparison of scattering and extinction efficiencies calculated by
+mie this paper and cmmom formulations with r  r  1 and t
+of the form of 80 where 0  1 1 and   05 at all frequencies
+  011
+fig 4 convergence properties of scattering efficiencies with respect to
+increasing number of harmonics k using a aircore sphere surrounded by
+a shell with surface conductivity or resistivity the electrical size ka is given
+relative to the frequency of the incident plane wave
+excitation p  0 harmonic far outweighs scattering in upand downconverted p 6 0 harmonics both methods agree
+to within 4 in all reported quantities for small electrical
+sizes ka  5 more significant discrepancies appear for larger
+electrical sizes where the number of cmmom basis functions
+limits the ability to accurately represent intricate higherorder
+mode shapes particularly in upconverted harmonics
+more k  100 harmonics are required to reach numerical
+precision
+these examples illustrate the basic convergence properties
+of scattering from timevarying shells with simple resistance
+and conductance properties more importantly however they
+demonstrate the increase in complexity and computational cost
+when certain classes of surface conductivity fourier spectra
+are used for analytical methods such as those presented
+in this paper the increase in computational complexity is
+manageable however this rapid scaling may quickly outpace computational resources in numerical methods such as
+cmmom where multifrequency n port impedance matrices
+with dimensions scaling linearly with both the number of
+harmonics and number of ports must be computed stored
+and inverted
+b convergence characteristics
+as in circuit applications of conversion matrix methods the
+number of temporal harmonics must be sufficiently high to
+ensure accurate field and efficiency calculations we expect
+the required number of temporal harmonics 2k  1 to depend on many factors and here we examine a few of these
+dependencies using two simple test cases
+as an example of a system with relatively few harmonic
+components in the matrix  we consider an aircore sphere
+with surface conductivity of the form of 80 where 0 
+1 1    0110  and   099 the resulting matrix  is
+tridiagonal the electrical size of the sphere is swept over the
+values ka  005 05 5 and the multiharmonic scattering
+efficiencies qpsc are recorded using increasing numbers of
+temporal harmonics k for all electrical sizes a relative
+convergence error
+qpsc k  qpsc k  1
+qpsc k  1
+is calculated for each harmonic scattering efficiency errors for
+all three electrical sizes are collected at each value of k and
+plotted for the p  2  2 harmonics in fig 4 labeled by
+a circle annotated with t these results indicate that for
+all electrical sizes this particular example converges rapidly
+to numerical precision for k  15
+to model a system with much richer harmonic content we
+additionally examine a sphere with surface resistance of the
+form of 48 with   099 r0  500  and   011
+convergence results from this analysis are also shown on
+fig 4 labelled by a circle annotated with rt in this case
+the fourier spectrum of the corresponding surface conductivity
+truncated to k harmonics is no longer sparse and many
+viii s cattering behavior
+in sec vii examples were selected to demonstrate the
+accuracy or convergence of the method developed in this
+paper we now deviate from measures of accuracy and instead
+leverage the speed of these analytic methods to examine in
+detail the unique capabilities of scatterers with strong timevarying behavior
+a study of surface and core characteristics
+harmonic generation in the spherical system studied in this
+paper depends on many system parameters here we maintain
+the simple surface resistance time dependence in 48 with
+  09   150  and ka  2 to examine the effect of
+material parameters namely the core relative permittivity r
+and surface resistance r0  on harmonic scattering in fig 5
+we plot the scattering efficiencies qpsc for p  2  2 as
+functions of these two material parameters for reference the
+limiting cases when the core is constructed of air r  1
+the shell is pec t   and the shell is nonexistent
+t  0 are indicated by zigzag boundaries in the top
+panel of fig 5
+from this study we observe that harmonic generation is
+maximized near r0   for all core permittivities comparing
+journal of latex class files vol xx no xx may 4 2021
+qpsc qpscmax
+log10 r0 
+025
+t  0 no shell
+075
+scmax  00157
+r  1 air core
+t   pec shell
+p  2
+log10 r0 
+scmax  00169
+p  1
+log10 r0 
+q0scmax  395
+log10 r0 
+q1scmax  00535
+log10 r0 
+q2scmax  00142
+fig 5 scattering efficiencies qpsc for a dielectric core with relative permittivity r coated with a shell with timevarying resistance given by 48 with
+  09   15 and ka  2
+scattering efficiencies in the aircore case as a function of
+resistivity r0  we observe very similar trends as obtained in the
+study of an electrically small rectangular plate constructed of a
+similar timevarying conductor 20 with harmonic scattering
+efficiencies maximized near values of resistivity r0 producing
+maximum net absorption
+two particular sets of material parameters are labelled as
+points a and b within the middle panel of fig 5 the scattered
+electric field in each of the p  2  2 harmonics at these
+points are shown in fig 6 there up and downconversion
+is clearly visible through the modification of standing wave
+spatial frequency along with unique scattering behavior eg
+directivity and overall intensity within each harmonic note
+that only the scattered field is shown in the p  0 excitation
+frequency this is not the total field and as expected there
+exists a field discontinuity at the boundary of the sphere for
+p 6 0 harmonics the scattered field is the total field and no
+such discontinuity exists
+b harmonic nearfield generation
+moving away from the study of scattering crosssections we
+now turn our attention toward harmonic nearfield generation
+we consider a sphere of electrical size ka  2 coated with a
+resistive shell governed by 48 with   09 and   150 
+defining an observation point r obs  a2 within the
+core see fig 8 for schematic of observation location we
+compute the normalized electric field magnitude esc
+within each harmonic again as a function of core relative
+permittivity r and surface resistivity r0  this field magnitude
+for the first upconverted harmonic p  1 is shown in
+fig 7 where three distinct classes of behavior are apparent
+first when the surface resistance r0 is very low the system
+behaves approximately as a pec sphere with slight coupling
+between internal and external fields in this regime we observe
+that the p  1 harmonic field magnitudes are maximized
+at the observation location over extremely narrow ranges of
+core permittivity corresponding to internal resonances of the
+sphere hence the name resonant coupling used to define this
+mode of operation as the surface resistance increases the
+qfactor of these resonances decreases eventually leading to
+strong coupling of multimode field distributions in the range
+01  r0   10 here the harmonics generated by the timevarying shell exist both inside the sphere and as outward
+propagating scattered fields as the resistance r0 becomes
+very large no currents are induced on the shell making it
+effectively transparent and harmonic fields tend toward zero
+though not visible in fig 7 in this weak coupling regime
+internal fields are maximized when the harmonic frequency of
+interest coincides approximately with the external resonances
+of the dielectric sphere in isolation
+in fig 8 field distributions at the excitation p  0 and
+first harmonic p  1 frequencies are shown for a selection of
+resistance and core permittivity values labeled as points ae in
+fig 7 selected for their high internal field magnitude and low
+values of resistance r0  cases a c and d represent resonant
+coupling between the excitation field and the first harmonic
+internal fields in these cases the first harmonic internal
+field distributions are effectively those corresponding to the
+internal resonances of a dielectricfilled pec shell because it
+is unlikely and not the case in any of these examples that the
+sphere has internal resonances at both the excitation and first
+harmonic frequencies we observe that the internal fields at the
+excitation frequency are effectively zero in contrast cases b
+and e exist in the strong coupling regime where the conductive
+shell is semitransparent and significant internal and external
+fields exist at both excitation and harmonic frequencies
+c trends in harmonic detuning
+here we study the effective detuning of a spheres natural
+internal and external resonances due to upconversion pro
+journal of latex class files vol xx no xx may 4 2021
+p  1
+075
+p  2
+p  1
+esc
+p  2
+025
+s magnitude produced by a sphere of radius ka  2 with core relative permittivity  and surface resistance
+fig 6 normalized scattered electric field e
+defined by rt  r0 1   cos  t with   150 and   09 results for two pairs of parameters r  r0  are shown corresponding to the labeled
+points a top r  1 r0   2 and b bottom r  245 r0   2 in fig 5 scale bars in the bottom row indicate the freespace wavelength at
+each harmonic valid for both rows of data
+weak coupling
+log10 r0 
+strong coupling
+e psc r obs e0
+e 1sc e0
+c resonant coupling
+025
+075
+r obs
+fig 7 electric near field magnitude at 0 0 a2 in the p  1 harmonic
+as a function of surface resistance magnitude r0 and core relative permittivity
+r for a sphere of electrical size ka  2 at the excitation frequency with
+  09 and   15
+cesses enabled by a timevarying conductive shell following
+the nomenclature of 25 we begin by defining external
+resonances of an uncoated dielectric sphere as the set of
+ producing maximal scattering efficiency
+frequencies ext
+in the weak coupling regime where surface currents can
+be considered as a perturbation on an otherwise uncoated
+dielectric sphere we anticipate that if energy is coupled
+into the harmonic p  the scattering efficiency qpsc will be
+maximized when that frequency corresponds to one of the
+external resonances of the dielectric core ie when
+ext
+ p  0  p
+is satisfied in fig 9 we plot the scattering efficiency of the
+first p  1 and second p  2 upconverted harmonics
+as a function of excitation frequency  and shell variation
+frequency  using a dielectric core with relative permittivity
+r  625 and timevarying resistance following 48 with
+r0   102 and   025 the external resonance frequencies
+ext
+ are plotted as vertical dashed lines while combinations
+of excitation and shell frequencies satisfying 84 are drawn
+as diagonal dashed lines we observe that the maximum
+scattering efficiencies typically align with the condition in
+fig 8 scattered fields in the excitation p  0 and first upconverted
+frequency p  1 corresponding to the annotated positions in fig 7 all
+fields are normalized to the incident field magnitude
+journal of latex class files vol xx no xx may 4 2021
+84 though harmonic generation is enhanced particularly for
+cases with   0 where both the harmonic frequency and
+the excitation frequencies are near an external resonance
+similarly in the resonant coupling regime we expect that
+internal field magnitudes will be maximized for the harmonic
+frequency p when that frequency corresponds to one of the
+internal resonances int
+ of the peccoated dielectric core
+ie when
+int
+ p  0  p
+is satisfied in fig 10 we plot the normalized field magnitude
+sampled at r obs  a2 in the first upconverted p  1
+harmonic and the first downconverted p  1 harmonic
+using the same setup as in fig 9 with the exception that
+now the resistance is assigned as r0   102 and the
+diagonal dashed lines correspond to the condition prescribed
+in 85 for both the p  1 and the p  1 cases it is
+clear that maximization of internal fields is governed by the
+condition described in 85 with little dependence on the
+electrical size at the excitation frequency the opposing slopes
+of the p  1 case further show that maximization of the
+internal field magnitudes also occurs when the downconverted
+harmonic corresponds to the internal resonance of the system
+ix c onclusions
+in this work we develop a quasianalytic solution to scattering problems involving spheres coated with timevarying
+conductive or resistive shells implementation of the method
+requires only the evaluation of special functions and the
+inversion of relatively small matrices this simplicity allows
+for rapid exploration of highdimensional parameterizations
+as demonstrated by the selected examples though the problem being studied is simple in nature it represents a class
+of likely realizations of timevarying structures ie timevarying surface impedances implemented through the use of
+densely patterned timevarying lumped components should
+it be feasible to construct such a structure through the use
+102
+ka  ac
+ka  ac
+fig 9 scattering efficiency in the p  1 top and p  2 bottom harmonics
+from a sphere with relative core permittivity r  625 and timevarying shell
+resistance given by 48 with r0   102 and   025
+int
+ ac
+q2sc
+ ac
+ext
+p  1
+i xt
+106
+int
+e 1int r obs e0
+ ac
+q1sc
+int
+ ac
+ext
+ int
+ ext
+102
+e 1
+int r obs e0
+105
+fig 10 internal electric field magnitude in the p  1 top and p  1
+bottom harmonics from a sphere with relative core permittivity r  625
+and timevarying shell resistance given by 48 with r0   102 and  
+025
+of switches or other elements the results from the examples
+presented here indicate that several interesting behaviors
+particularly up and downconversion in radiation and nearfields could be engineered through careful choice of system
+parameters additional behaviors may be uncovered through
+further exploration of multisphere systems using the proposed
+tmatrix formulation
+several assumptions limit the proposed method to simple
+homogeneous media and we hypothesize that some of these
+assumptions may be lifted by more general treatments of the
+problem specifically the use of inhomogeneous or anisotropic
+conductive shells inclusion of layered media adaptation to
+timevarying reactive surfaces or impedance boundary conditions and combination with methods derived for timevarying
+dielectrics all stand as tasks for future work in this area we
+expect that the study of these generalizations will be aided
+by a combination of the field transmission line and tmatrix
+formulations presented in this work
+a ppendix a
+s pecial function notation
+throughout this work we adopt the notation of 32 to
+describe spherical vector harmonics here we clarify two
+critical points regarding this notation
+the radial dependence of spherical harmonics tangential
+field components are defined via the functions r   where 
+and  are two components of the superindex    m
+for purposes of this work we require only harmonics with
+values of   1 2 these functions are given by
+r1  z kr 
+r2 
+n kr
+krz kr0
+ kr
+journal of latex class files vol xx no xx may 4 2021
+where z denotes spherical bessel and hankel functions of
+varying kinds most notably z  j and z  h  the
+use of  denotes the ricattibessel and ricattihankel form of
+these functions the use of dual superindices  and  indicates
+a toggling of the value of  between 1 and 2 ie
+  1m
+  2m
+  2m
+  1m
+and
+as suggested in by the appearance of these forms in expansions for electric and magnetic fields in sec v the choice
+of  corresponds to a given spherical harmonic u being of
+transverse electric te or transverse magnetic tm type
+a ppendix b
+r econciling t matrix and transmission line
+approaches
+here we outline the procedure for establishing equivalence
+between the transition matrix and transmission line approaches
+of secs v and vi a change of variables in 66 from
+modal coefficients to modal voltages relates the transition and
+reflection matrices via
+t  r1
+4 r1 
+rearranging the above expression and substituting 67 yields
+  r1d p  q  r1
+1  1 
+from the definition of the wave admittances in 71 we have
+y4  y1d  j  1 w r1
+4 p r1d 
+additionally from the definition of the operator q in 65
+we may write
+q  j w
+r4 r1d 
+from the above expressions we may construct the first term
+on the righthand side of 91 as
+r1d p  q 
+ j  1 w y4  yin 1 r1
+4 r1
+substituting this into the definition of  and rearranging gives
+  y4  yin 1
+ j  1 w r1
+4 r1  y4  yin
+expanding two of the central terms above using the definition
+of the operator w in 60 several cancellations lead to
+j  1 w r1
+4 r1  y4  y1 
+which when substituted into 95 yields the expected form of
+the reflection matrix in 79
+r eferences
+1 a g hayrapetyan j b gtte k k grigoryan s fritzsche and r g
+petrosyan electromagnetic wave propagation in spatially homogeneous
+yet smoothly timevarying dielectric media journal of quantitative
+spectroscopy and radiative transfer vol 178 pp 158166 2016
+2 c caloz and zl decklger spacetime metamaterialspart i
+general concepts ieee transactions on antennas and propagation
+vol 68 no 3 pp 15691582 2019
+3 t t koutserimpas and r fleury electromagnetic fields in a timevarying medium exceptional points and operator symmetries ieee
+transactions on antennas and propagation vol 68 no 9 pp 6717
+6724 2020
+4 m mirmoosa t koutserimpas g ptitcyn s tretyakov and
+r fleury dipole polarizability of timevarying particles arxiv
+preprint arxiv200212297 2020
+5 y hadad and a shlivinski soft temporal switching of transmission
+line parameters wavefield energy balance and applications ieee
+transactions on antennas and propagation vol 68 no 3 pp 1643
+1654 2020
+6 f morgenthaler velocity modulation of electromagnetic waves ire
+transactions on microwave theory and techniques vol 6 no 2 pp
+167172 1958
+7 d holberg and k kunz parametric properties of fields in a slab
+of timevarying permittivity ieee transactions on antennas and
+propagation vol 14 no 2 pp 183194 1966
+8 r fante on the propagation of electromagnetic waves through a timevarying dielectric layer flow turbulence and combustion vol 27 pp
+341354 1973
+9 f harfoush and a taflove scattering of electromagnetic waves by
+a material halfspace with a timevarying conductivity ieee transactions on antennas and propagation vol 39 no 7 pp 898906 1991
+10 z wu and a grbic serrodyne frequency translation using timemodulated metasurfaces ieee transactions on antennas and propagation vol 68 no 3 pp 15991606 2019
+11 m m salary s jafarzanjani and h mosallaei electrically tunable
+harmonics in timemodulated metasurfaces for wavefront engineering
+new journal of physics vol 20 no 12 p 123023 2018
+12 s inampudi m m salary s jafarzanjani and h mosallaei rigorous spacetime coupledwave analysis for patterned surfaces with
+temporal permittivity modulation opt mater express vol 9 no 1
+pp 162182 jan 2019
+13 p a pantazopoulos and n stefanou layered optomagnonic structures
+time floquet scatteringmatrix approach phys rev b vol 99 p
+144415 apr 2019
+14 s taravati and a a kishk spacetime modulation principles and
+applications ieee microwave magazine vol 21 no 4 pp 3056
+2020
+15 h li and a al temporal switching to extend the bandwidth of thin
+absorbers optica vol 8 no 1 pp 2429 2021
+16 d w wright and r s c cobbold twodimensional phononic crystals
+with timevarying properties a multiple scattering analysis smart
+materials and structures vol 19 no 4 p 045006 feb 2010
+17 m m salary s jafarzanjani and h mosallaei timevarying
+metamaterials based on graphenewrapped microwires modeling and
+potential applications phys rev b vol 97 p 115421 mar 2018
+18 s a maas nonlinear microwave and rf circuits artech house
+2003
+19 a palmer investigation of a generalized frequency domain method for
+modeling timevarying loads on antennas masters thesis university
+of oklahoma 2019
+20 s bass a palmer k schab k kerbypatel and j ruyle conversion
+matrix method of moments for timevarying electromagnetic analysis
+arxiv preprint arxiv210306135 2021
+21 jm jin theory and computation of electromagnetic fields john wiley
+ sons 2011
+22 j r wait and c m jackson calculations of the bistatic scattering
+cross section of a sphere with an impedance boundary condition radio
+sci j res vol 69 pp 299315 1965
+23 a sihvola d c tzarouchis p yloijala h walln and b kong
+resonances in small scatterers with impedance boundary physical
+review b vol 98 no 23 p 235417 2018
+24 d censor nonrelativistic scattering by timevarying bodies and
+media progress in electromagnetics research vol 48 pp 249278
+2004
+journal of latex class files vol xx no xx may 4 2021
+25 i stefanou p a pantazopoulos and n stefanou light scattering by a
+spherical particle with a timeperiodic refractive index josa b vol 38
+no 2 pp 407414 2021
+26 j dewitz w hbner and k bennemann theory for nonlinear miescattering from spherical metal clusters zeitschrift fr physik d atoms
+molecules and clusters vol 37 no 1 pp 7584 1996
+27 y pavlyukh and w hbner nonlinear mie scattering from spherical
+particles phys rev b vol 70 p 245434 dec 2004
+28 p c waterman matrix formulation of electromagnetic scattering
+proceedings of the ieee vol 53 no 8 pp 805812 1965
+29 m abramowitz and i a stegun handbook of mathematical functions
+with formulas graphs and mathematical tables
+us government
+printing office 1948 vol 55
+30 c f bohren and d r huffman absorption and scattering of light by
+small particles john wiley  sons 2008
+31 w c chew waves and fields in inhomogeneous media van nostrand
+reinhold 1990
+32 v losenicky l jelinek m capek and m gustafsson method of
+moments and tmatrix hybrid arxiv preprint arxiv201204303 2020
+33 r harrington timeharmonic electromagnetic fields ser ieee press
+series on electromagnetic wave theory ieee press 2001
+34 antenna toolbox for matlab atom czech technical university in
+prague czech technical university in prague 2017 online available
+wwwantennatoolboxcom

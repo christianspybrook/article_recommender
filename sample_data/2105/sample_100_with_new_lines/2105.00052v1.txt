@@ -1,0 +1,796 @@
+long runs imply big separators in vector
+addition systems
+wojciech czerwiski
+university of warsaw
+adam jdrych
+university of warsaw
+arxiv210500052v1 csfl 30 apr 2021
+abstract
+despite a very recent progress which settled the complexity of the reachability problem for vector
+addition systems with states vasses to be ackermanncomplete we still lack of lot of understanding
+for that problem a striking example is the reachability problem for threedimensional vasses
+3vasses it is only known to be pspacehard and not known to be elementary one possible
+approach which turned out to be successful for many vass subclasses is to prove that to check
+reachability it suffices to inspect only runs of some bounded length this approach however has
+its limitations it is usually hard to design an algorithm substantially faster than the possible size
+of finite reachability sets in that vass subclass in 2010 leroux has proven that nonreachability
+between two configurations implies separability of the source from target by some semilinear set
+which is an inductive invariant there can be a reasonable hope that it suffices to look for separators
+of bounded size which would deliver an efficient algorithm for vass reachability in the paper
+we show that in vasses fulfilling certain conditions existence of only long runs between some
+configurations implies existence of only big separators between some other configurations and in a
+slightly modified vass additionally we prove that a few known examples of hard vasses fulfil
+the mentioned conditions therefore improving the complexity of the reachability problem for any
+subclass using the separators approach can meet serious obstacles
+2012 acm subject classification theory of computation  parallel computing models
+keywords and phrases vector addition systems reachability problem separators semilinear sets
+digital object identifier 104230lipicscvit201623
+funding wojciech czerwiski supported by the erc grant infsys agreement no 950398
+introduction
+the complexity of the reachability problem for vector addition systems vases was a
+challenging and natural problem for a few decades of research first result about its
+complexity was expspacehardness by lipton in 1976 15 decidability was shown by mayr
+in 1981 16 later the construction of mayr was further simplified and presented in a bit
+different light by kosaraju 9 and lambert 10 and currently is known under the name
+klm decomposition after the three main inventors first complexity upper bound was
+obtained by leroux and schmitz as recent as in 2016 13 where the reachability problem
+was shown to be solvable in cubicackermann time a few years later the same authors have
+shown that the problem can be solved in ackermann time and actually in primitive recursive
+time when the dimension is fixed 14 in the same time a lower bound of towerhardness
+was established for the reachability problem 4 this year very recently two independent
+papers have shown ackermannhardness of the reachability problem 12 6 thus settling the
+complexity of the problem to be ackermanncomplete
+however despite this recent huge progress we still lack of lot of understanding about the
+reachability problem in vasses the most striking example is the problem for dimension
+three the best known lower bound for the reachability problem for 3vasses is pspace wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 2312316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+hardness inherited from the hardness result for 2vasses 1 while the best known upper
+bound is much bigger then tower concretely speaking the problem can be solved in time
+f7 14 where f is the hierarchy of fastgrowing complexity classes see 18 recall that
+tower  f3  similarly for other low dimensional vasses the situation is unclear currently
+the smallest dimension d for which an expspacehardness was published for dvasses is
+d  14 4 therefore for any d  3 13 the problem can be in pspace and is not known to be
+elementary for some of those dimensions one can expect to get expspacehardness but we
+conjecture that for 3vasses and 4vasses the reachability problem actually is elementary
+and the challenge is to find this algorithm this complexity gap is just one witness of our lack
+of understanding of the structure of vasses one can hope that in the future we will be able
+to design efficient algorithms for the reachability problem even for vasses in high dimensions
+under the condition that they belong to some subclass for example they avoid some hard
+patterns this can be quite important from a practical point of view understanding for
+which classes efficient say pspace algorithms are possible may be thus another future goal
+therefore we think that the quest for better understanding the reachability problem is still
+valid even though the complexity of the reachability problem for general vasses is settled
+a common and very often successful approach to the reachability problems is proving a
+short run property namely showing that in order to decide reachability it suffices to inspect
+only runs of some bounded length this technique was exploited a lot in the area of vasses
+rackoff proved his expspace upper bound on the complexity of coverability problem 17
+using this approach he has shown that if there exist a covering run then there exist also
+a covering run of at most doublyexponential length recently there was a lot of research
+about low dimensional vasses and the technique of bounded run length was also used
+there in 1 authors established complexity of the reachability problem for 2vasses to
+pspacecompleteness by proving that in order to decide reachability it suffices to inspect
+runs of at most exponential length similarly in the next paper in this line of research 7 it
+was shown that in 2vasses with unary transition representation it suffices to consider runs
+of polynomial length which proves nlcompleteness of the reachability problem
+this approach however meets a subtle obstacle when one tries to prove some upper bound
+on the complexity of the reachability problem in say dvasses in order to show a bounded
+length property it is natural to try to unpump long runs in some way unpumping however
+can be very tricky when the run is close to some of the axes as only a small modification of
+the run may cause some counters to become negative a common approach to that problem
+is to modify a run when all its counters are high and therefore local run modifications cannot
+cause any problem such an approach is used for example in 2vasses 1 and in the klm
+decomposition 9 10 16 however not all the runs may have a configuration with all counter
+values high therefore it is very convenient to have a cycle which increases all the counters
+simultaneously observe that existence of such a cycle implies that the set of reachable
+configurations is infinite thus using this approach is hard in the case when the reachability
+set is finite for finite set in turn it is hard to design algorithm substantially faster than
+the size of the reachability set it is well known that in dvasses finite reachability sets
+can be as large as fd1 n where n is the vass size and f is the hierarchy of very fast
+growing functions see 18 therefore designing an algorithm breaking fd1 n time for the
+reachability problem in dvasses if such exist may need some other approach breaking
+the barrier of the size of finite reachability set is possible in general but probably usually
+very challenging to the best of our knowledge the only nontrivial algorithm breaking it
+is the one in 7 doing a sophisticated analysis of possible behaviours of runs in 2vasses
+this motivates a search for other techniques which may be more suitable for designing fast
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 2322316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+algorithms
+leroux in his work 11 provided an algorithm for the reachability problem which follows
+a completely different direction he has shown that if there is no run from a configuration
+s  nd to a configuration t  nd in a vas v then there exist a semilinear set s called a
+separator which 1 contains s 2 does not contain t and 3 is an inductive invariant
+namely if v  s then also v  t  s for any transition t of v such that v  t  nd  notice
+that existence of a separator clearly implies nonreachability between s and t so by lerouxs
+work nonreachability and existence of separator are equivalent then the following simple
+algorithm decides whether t is reachable from s run two semiprocedures one looks for
+possible runs between s and t longer and longer another one looks for possible separators
+between s and t bigger and bigger clearly either there exist a run or there exist a separator
+so at some point algorithm will find it and terminate from this perspective one can view
+runs and separators as a dual objects if bounding the length of a run is nontrivial maybe
+bounding the size of a separator can be another promising approach notice that providing
+for example an fd n upper bound on the size of separators would provide an algorithm
+solving reachability problem and working in time around fd n
+our contribution our main contribution are two theorems stating that in vasses fulfilling
+certain conditions if there are only long runs between some its two configurations then
+in a small modification of this vass there are only big separators for some other two
+configurations we designed theorem 4 to have relatively simple statement but also to be
+sufficiently strong for our applications theorem 9 needs more sophisticated notions and
+more advanced tools to be proven but it has potentially a broader spectrum of applications
+additionally we have shown that two nontrivial constructions of hard vasses namely
+the 4vass from 5 and vass used in the towerhardness construction from 4 fulfil the
+conditions proposed by us in theorem 4 this indicates that for each vass subclass f
+for example 3vasses either 1 in order to prove better upper complexity bound for the
+reachability problem in f one should focus more on proving short run property than small
+separator property or 2 there is a possibility of finding a vass in f with very long shortest
+runs and much smaller separators however in the latter case the mentioned vass has to
+be constructed by the use of rather a different techniques than currently known as it needs
+to violate conditions of theorems 4 and 9
+we have not considered vasses occurring in the most recent papers proving the ackermannhardness 12 6 but it seems to us that these techniques are promising at least with
+respect to vasses occurring in 6
+organisation of the paper in section 2 we introduce necessary notions and recall standard
+facts then in section 3 we state and prove our two main results theorems 4 and 9 in
+section 4 we provide two applications of theorem 4 in section 41 to the 4vass described
+in 5 and in section 42 to vasses occurring in the paper 4 proving the towerhardness of
+the reachability problem
+preliminaries
+basic notions we denote by n the set of nonnegative integers and by n the set of positive
+integers for a b  n by a b we denote the set a a  1     b  1 b for a set s we
+write s to denote its size ie the number of its elements for two sets a b we define
+a  b  a  b  a  a b  a and ab  a  b  a  a b  b in that context we often
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 2332316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+simplify the notation and write x instead of the singleton set x for example x  ny denotes
+the set x  ny the description size of an irreducible fraction pq is maxp q for
+r  q its description size is the description size of its irreducible form
+for a ddimensional vector x  x1      xd   rd and index i  1 d we write xi
+for xi  for s  1 d we write projs x to denote the sdimensional vector obtained
+from x by removing all the coordinates outside s the norm of a vector x  nd is
+normx  maxi1d xi for i  1 d the elementary vector ei is the unique vector such
+that ei j  0 for j  i and ei i  1 by 0d  nd we denote the ddimensional vector with
+all the coordinates being zero
+vector addition systems a ddimensional vector addition system with states shortly
+dvass or just a vass consists of finite set of states q and finite set of transitions
+t  q  zd  q configuration of a dvass v  q t  is a pair q v  q  nd  we often
+write qv instead of q v for a configuration c  qv we write statec  q for a set of
+vectors s  nd and state q  q we write qs  qv  v  s transition t  p u q can be
+fired in configuration r v  qnd if p  r and uv  nd  then we write pv  quv
+the triple pu t qu  v is called an anchored transition a run is a sequence of anchored
+transitions   c1  t1  c2      cn  tn  cn1  such a run  is then a run from configuration
+c1 to configuration cn1 and traverses through configurations ci for i  2 n we also say
+that  is from statec1  to statecn1  if there is a run from configuration c to configuration
+c we also say that c is reachable from c or c reaches c and write c  c  otherwise we
+write c 
+c  the configuration c is the source of  while configuration c is the target
+of  for a configuration c  q  nd we denote postv c  c  c  c  the set of all
+the configurations reachable from c and prev c  c  c  c the set of all the the
+configurations which reach c the reachability problem for vasses given a vass v and
+two its configurations s and t asks whether s reaches t in v  for a vass v by its size we
+denote the total number of bits needed to represent its states and transitions a vass is
+said to be binary if numbers in its transitions are encoded in binary effect of a transition
+c t c   q  zd  q is the vector t  nd  we extend this notion naturally to anchored
+transitions and runs effect of the run   c1  t1  c2      cn  tn  cn1  is equal to t1      tn 
+vector addition systems vases are vasses with just one state which therefore can be
+ignored it is well known and simple to show that the reachability problems for vases and
+for vasses are polynomially interreducible in this work we focus wlog on the reachability
+problem for vasses
+semilinear sets for any vectors b v1      vk  nd the set l  b  nv1      nvk is called
+a linear set then vector b is the base of l and vectors p1      pk are periods of l set
+of vectors is semilinear if it is a finite union of linear sets set of vass configurations
+s  q  nd is semilinear if it is a finite union of sets of the form qi si   q  nd  where si
+are semilinear as sets of vectors the size of a representation of a linear set is the sum of
+norms of its base and periods the size of a representation of a semilinear set i li is the
+sum of sizes of representations of the sets li  the size of a semilinear set is the size of its
+smallest representation
+for a dvass v  q t  and two its configurations s t  q  nd a set s  q  nd
+of configurations is a separator for v s t if it fulfils the following conditions 1 s  s
+2 t  s 3 s is invariant under transitions of v  namely for any c  s such that c  c
+for some t  t we also have c  s in our work we usually do not exploit by condition 3
+by itself but use the facts which are implied by all the conditions 1 2 and 3 together
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 2342316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+posts  s and pret  s  
+well quasiorder on runs we say that an order x  is a wellquasi order wqo if in
+every infinite sequence x1  x2     of elements of x there is a domination ie there exist
+i  j such that xi  xj 
+fix a dvass v  q t  we define here a very useful order on runs which turns
+out to be a wqo a weaker version was originally introduced in 8 for two configurations
+pu qv  q  nd we write pu  qv if p  q and ui  vi for each i  1 d for
+two anchored transitions in c1  t c2  c1  t  c2  we write c1  t c2   c1  t  c2  if t  t 
+c1  c1 and c2  c2 notice that the last condition is actually implied by the previous
+two for two runs   m1    mk and   m1    ml  where all mi for i  1 k and mi
+for i  1 l are anchored transitions we write    if there exists a sequence of indices
+i1  i2      ik1  ik  l such that for each j  1 k we have mj  mij  notice there
+that setting ik  l implies that trg  trg  all the subsequent considerations can be
+analogously applied in the case when i1  1 but ik does not necessarily equal k which
+enforces that src  src  the following claim is a folklore for a proof see proposition
+19 in 3
+ claim 1 order  is a wqo on runs
+the order  has a nice property that runs bigger than a fixed one are additive in a
+certain sense the following claim is also a folklore for a proof see lemma 23 in 2 arxiv
+version of 3
+ claim 2 let  1 and 2 be runs of vass v such that   1  2  trg1   trg  1
+and trg2   trg  2 for some 1  2  nd  then there exist a run  such that   
+and trg   trg  1  2 
+the following corollary can be easily shown by induction on n
+ corollary 3 let    be runs of vass v such that trg   trg   for some   nd 
+then for any n  n there exists a run n of v such that trgn   trg  n
+the above notions will be useful in the proof of theorem 9
+separators
+in this section we state and prove two main results the first one is simpler both in the
+formulation and in the proof and sufficient to show applications in section 4 the aim of the
+second one is to show a potentially more general scope of the applications and to formulate
+assumptions in a bit more canonical way
+applied theorem
+ theorem 4 let v be a dvass s t  q  nd be two its configurations q  q be a state
+and a line   a  n for vectors a   nd be such that
+1   1 2 0d2   nd 
+2 there is no run from s to t
+3 q  postv s
+4 q  n e2   prev t
+then each separator for v s t contains a period r   for some r  q
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 2352316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+proof consider an arbitrary separator s for v s t let sq  v  qv  s v  nd  be
+its part devoted to the state q and let sq  ii li  where li are linear sets as the line 
+contains infinitely many points and   sq then some of the linear sets li has to contain
+infinitely many points of  denote this li by l let l  b  np1      npk  we know that
+for arbitrarily big n we have a  n  b  n1 p1      nk pk for some ni  n wlog we can
+assume that ni  0 we just do not write the periods pi with coefficient ni  0 notice first
+that for each coordinate j  3 d we have a  nj  norma therefore for pi such that
+pi j  0 for some j  3 d we have ni  norma let p0 be the set of periods pi such that
+pi j  0 for all j  3 d and p0 be the set of the other periods pi  we thus have
+a  b 
+ni pi   n 
+pi p0
+ni pi 
+pi p0
+where the sum v  a  b  pi p0 ni pi  has a norm bounded by b  norma  normb 
+k  norma  maxpi p0 normpi  which is independent of n if we restrict the equation to
+the first two coordinates of the considered vectors we have
+v1 v2  n1 2 
+ni pi 1 pi 2
+pi p0
+we aim at showing that one of pi is equal to r   for some r  q recall that for each
+j  3 d we have j  pi j  0 so it is enough to show that pi 1 pi 2  r  1 2
+we first show the following claim
+ claim 5 for each period p  p0 we have 1  p2  2  p1
+proof the intuitive meaning of 1  p2  2  p1 is that
+p2 
+however we cannot
+write the fraction
+as it might happen that p2  0 assume towards a contradiction
+that for some p  p0 we have 1  p2  2  p1 let   1  p2  2  p1  0
+recall that b  n  l for some n  n therefore also b  n  1  p  l as p  p0 is a
+period of l then however
+1  p  1  p1 p2 0d2   1  p1 1  p2 0d2 
+ 1  p1 2  p1   0d2   p1      e2  n  n e2 
+therefore b  n  1  p  b  n  n e2 and it means that qb  n  1  p  prev t
+however we know that qb  n  1  p  qsq   s and therefore separator s nonempty
+intersects the set prev t this is a contradiction with the definition of separator
+in order to show that p  r   for some p  p0 it is sufficient to show that 1  p2 
+2  p1 assume towards a contradiction that for all p  p0 we have 1  p2  2  p1
+by claim 5 we know that actually for all p  p0 we have that 1  p2  2  p1 thus
+p1  0 and we can equivalently write that for all p  p0 we have that 2
+1  p1  let f be
+the maximal value of
+for p  p0  clearly
+ f  so
+2  f  1
+by 1 we know that
+v  n2
+v  n1
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 2362316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+as v  n is a positive linear combination of vectors p  p0 and for each p  p0 we have
+p1  f  therefore it holds
+v2  n2  f v1  n1
+and equivalently
+n2  f 1  f v1  v2
+by 2 we have that 2  f 1  0 therefore
+f v1  v2
+2  f 1
+this is in contradiction with the assumption that n can be arbitrarily big and finishes the
+proof
+ remark 6 in theorem 4 instead of separator for v s t one can consider a separator
+for v   s t where v  is obtained from v by adding a loop in state q with the effect of
+decreasing the second counter indeed it is easy to observe that all the points 14 in the
+theorem statement remain true after substitution of v by v   such a version of theorem 4
+is a bit more convenient for some of the applications
+generalised theorem
+before we start introducing the notions needed for theorem 9 we motivate the need of a
+generalisation of theorem 4 formulation of theorem 4 is rather simple and it is sufficient
+for our applications but it may seem a bit arbitrary sometimes in a vass we have a
+ratio between some two counters x and y being a fraction with big description size then
+theorem 4 is applicable and intuitively speaking it aims at proving that separators are big
+because of big description size of the fraction xy  we can however very easily imagine that
+in some other but related vass a value of x is kept on some two counters as 2x1  3x2
+and value of y is kept as a sum of three counters y1  y2  y3  in that case we would like to
+1 3x2
+reason about the description size of the fraction y2x
+and from it derive lower bounds
+1 y2 y3
+on the size of separators this motivates introduction of the linear functions defined below
+when we deal with more than two counters we cannot easily speak about lines which were
+natural in theorem 4 this is the reason why we are forced to use a more abstract language
+in order to be prepared for the above mentioned simple applications
+greatest common divisors we state here a fact about greatest common divisors which is
+helpful in the sequel by gcda1      ak  we denote the greatest common divisor of all the
+numbers a1      ak 
+ claim 7 for all natural numbers a1      ak  m and for each s  m 2  m which
+is divisible by gcda1      ak  there exist nonnegative coefficients b1      bk  n such that
+s  a1 b1      ak bk 
+proof it is a folklore and can be easily proved by induction on k that there exist some
+coefficients b1      bk  z such that gcda1      ak   i1 ai bi  let us take such a solution
+which minimises the sum ibi 0 bi  we show that in this solution actually all the bi are
+nonnegative assume otherwise and let bi  0 for some i  1 k as s  m 2  m then for
+some bj  1 k we have bj  m  then substituting bj by bj  ai and bi by bi  aj we obtain
+a solution with smaller ibi 0 bi  contradiction
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 2372316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+linear functions let a linear function lin  nd  n be of a form linx1      xd  
+i1 ni xi  with all the coefficients ni  n  we call a linear function reduced if gcdn1      nd  
+1 let us assume that lin is reduced notice that each linear function is a reduced linear
+function multiplied by some natural number let m  maxi1d ni  the support of a linear
+function supplin  1 d is the set of coordinates for which coefficient ni is nonzero let the
+set of vectors zerolin  zd contain all the vectors nj ei  ni ej for i j  supplin clearly
+for any v  zerolin and any u  nd such that u  v  nd we have linu  v  linu
+the following claim tells that set zerolin in some way spans the set of vectors with the
+same value of lin in case it is big
+ claim 8 for any u v  nd such that linu  linv  d  m 3 there is a sequence of
+vectors u  x0  x1      xk  v  nd such that for all i  1 k we have xi  xi1  zerolin
+proof we prove the claim by induction on d for d  1 clearly u  v and there is nothing
+to show let us assume that claim holds for d  1 our aim is to prove it for d adding a
+vector y  zerolin to xi1 in order to obtain xi  xi1  y  nd we call a step clearly it
+is enough find a sequence of steps from u to v the plan is to apply first such a sequence of
+steps from u to some u such that u i  vi for some i  1 d and then show by induction
+assumption that a sequence of steps from u to v exists as well
+for a subset of coordinates i  1 d and x  nd by lini x we denote ii ni xi as
+linv  d  m 3 there exists some j  1 d such that lin1dj v  d  1m 3  assume
+wlog that j  d so
+lin1d1 v  d  1m 3 
+we first aim to reach u such that u d  vd  m 2  clearly until for some i  d we
+have ui  m we can apply the step ni ed  nd ei to u and increase value of ud we
+pd1
+continue this until we reach some u with i1 u i  d  1m  this is indeed possible as
+pd1 
+i1 u i  d  1m implies that for some i  d we have u i  m  then we have that
+lin1d1 u   d  1m 2 as m  maxi1d ni  so nd u d  dm 3  d  1m 2  by 3 we
+have nd vd  dm 3 d1m 3  m 3  therefore nd u dvd  d1m 3 m 2  and thus
+pd1
+u dvd  d1m 2 m   m 2 m  by claim 7 we have that u dvd  i1 ni xi
+for some xi  n therefore in order to obtain u such that u d  vd for each i  1 d  1
+we apply for each i  1 d  1 exactly xi number of times the step nd ei  ni ed to u  notice
+that all the other coordinates beside the dth one increase so these steps indeed lead to
+vectors with nonnegative coordinates as lini1d1 u   lini1d1 v  d  1m 3 we
+apply the induction assumption to show that indeed starting from u one can reach v by a
+sequence of steps this finishes the proof
+modification of a vass for two linear functions lin1  lin2  nd  n and a vass v with
+state q we define vass vlin
+as v with additional transitions those aim is to be able to
+1 lin2
+lin1 
+increase the ratio lin2   but never decrease it let lin1 x1      xd   i1 ni1 xi and let
+lin2 x1      xd   i1 ni2 xi  the set of states of vlin
+is inherited from v similarly
+1 lin2
+as the set of transitions of v  we additionally add to v transitions of the form q v q
+which are loops in the state q  q of the following form
+1 for each coordinate i  supplin2  add a loop which decreases coordinate i by one
+2 for each coordinate i  supplin1   supplin2  add two loops one which increases and
+one which decreases coordinate i by one
+3 for each v  zerolin1  and each v  zerolin2  add a loop with effect v
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 2382316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+notice that condition 2 means that we can freely modify in vlin
+the coordinates
+1 lin2
+outside supplin1   supplin2  we are ready to state the theorem
+ theorem 9 let lin1  lin2  nd  n be two reduced linear functions with disjoint supports
+let v  q t  be a dvass q  q be its state s t  q  nd be two its configurations and
+r  q be a rational number assume that
+1 for each v  nd if s  qv then lin1 v  r  lin2 v
+2 for each u v  nd if qv  t  u then lin1 v  u  r  lin2 v  u
+3 each run from states to statet traverses through a configuration c with statec  q
+4 the set proji v  s  qv  t is infinite where i  supplin1   supplin2 
+then for any i  supplin2  there is no run from s to t  ei in v   vlin
+and each
+1 lin2
+separator for v   s tei  contains a period p such that proji p  0 and lin1 p  rlin2 p
+proof due to condition 4 in the theorem statement there exists an infinite sequence of
+vectors vi  nd with proji vi  pairwise different such that s  qvi   t let 1i be the
+corresponding runs from s to qvi  and 2i be the corresponding runs from qvi  to t recall
+that  is a wellquasi order and its modified version denoted here   with comparison on
+sources instead of targets is also a wellquasi order therefore there exist i  j such that
+1i  1j and 2i  2j  let   vj  vi  nd  clearly proji   0 as proji vi   proji vj 
+let a  vi  by corollary 3 we get that for any n  n there is a run of v from s to a  n an
+analogous reasoning with targets changed to sources shows that for any n  n there is a run
+in v from a  n to t therefore for any n  n we have s  qa  n  t by conditions
+1 and 2 in the theorem statement we get that lin1 a  n  r  lin2 a  n for any
+n  n in consequence lin1   r  lin2  notice that both lin1  lin2   0
+because proji   0
+we first show that s 
+ t  ei in v   assume towards a contradiction that s  t  ei 
+by condition 3 we know that s  qv  t  ei for some v  nd  observe first that
+conditions 1 and 2 still hold for reachability relation defined in v   as the added loops in
+state q do not invalidate them notice that by condition 2 setting u  ei we have
+lin1 v  lin1 v  ei   r  lin2 v  ei   r  lin2 v
+where the first equation follows from the fact that lin1 ei   0 on the other hand s  qv
+so by condition 1 we have lin1 v  r  lin2 v which is in contradiction with the above
+inequality thus indeed s 
+ t  ei 
+now we show that every separator for v   s t  ei  contains an appropriate period p
+this proof is quite similar to the proof of theorem 4 but we need to deal with some more
+technicalities consider a separator s  qq qsq  for v   s t  ei  clearly sq  jj lj 
+where lj are linear sets needs to contain all the vectors an for n  n let l be one of the
+finitely many linear sets lj  which contains infinitely many vectors among a  n  n  n
+let l  b  np1      npk and p be the set of periods p1      pk  we aim at showing
+that l contains a period p such that proji p  0 and lin1 p  r  lin2 p namely
+lin1 p  lin2   lin2 p  lin1  as r  lin
+lin2  
+we first prove a claim analogous to claim 5 this one is however much more challenging
+to prove for its purpose we have defined v  so intricately with the additional loops and in
+the proof we use a nontrivial claim 8
+ claim 10 for each period p  p we have lin1   lin2 p  lin2   lin1 p
+proof similarly as in claim 5 we intuitively mean to show that for all p  p we have
+lin1 
+lin1 p
+lin2   lin2 p  but this is not a formally correct statement as it may be that lin2 p  0
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 2392316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+assume towards a contradiction that there is a period p such that lin1   lin2 p 
+lin2   lin1 p clearly a  l therefore also a  mp  l for any m  n we aim at
+showing that a  mp  a  n  ei in v  for some m n  n this would lead to a
+contradiction as we know that a  n  t so also a  n  ei  t  ei  therefore
+we would have that a  mp  l and also a  mp  a  n  ei  t  ei  which is a
+contradiction with the definition of the separator
+let lin2 x1      xd   i1 ni2 xi and let m be the maximal coefficient in lin2  namely
+m  maxi1d ni2  we set m  dm 3  lin1  and n  dm 3  lin1 p observe now that
+lin1 a  mp  lin1 a  n  ei  indeed
+lin1 a  mp  lin1 v  m  lin1 p  lin1 v  dm 3  lin1   lin1 p
+ lin1 v  n  lin1   lin1 a  n  ei 
+as i  supplin1  so lin1 ei   0 let p  p1  p2  ptrash and   1  2  trash 
+where p1  1 are positive only on supplin1  p2  2 are positive only on supplin2  and
+ptrash  trash are positive only outside supplin1   supplin2  first notice that thanks
+to transitions in v   which can freely modify coordinates outside supplin1   supplin2 
+we can assume wlog that ptrash  trash  0 therefore by claim 8 and because lin1
+is reduced there is a run in v  from a  mp  a  mp1  mp2 to a  n1  mp2  as
+lin1 a  mp1   lin1 a  n1   dm 3  supplin1   m 3  we claim now that
+lin2 mp2   lin2 n2  ei  vtrash   dm 3  supplin2   m 3
+for some vtrash positive only on supplin2  this would finalise the argument as then
+a  n1  mp2  a  n1  n2  ei  vtrash  a  n1  n2  ei  a  n  ei 
+where the first relation  follows from claim 8 and fact that lin2 is reduced and the second
+one follows from existence of transitions in v  which arbitrarily decrease any coordinate in
+supplin2 
+recall first that lin1   lin2 p  lin2   lin1 p so
+lin1   lin2 p  lin2   lin1 p  1
+and that we set m  dm 3  lin1  and n  dm 3  lin1 p therefore
+lin2 mp2   lin2 n2   dm 3  lin1   lin2 p  dm 3  lin2   lin1 p  dm 3 
+so lin2 mp2   lin2 n2  ei   dm 3  m  m 2  m  thus by claim 7 there exist some
+b1      bd  n such that j1 nj2 bj  lin2 mp2   lin2 n2  ei  hence lin2 mp2  
+lin2 n2  ei  j1 bj ej   dm 3 and we can set vtrash  j1 bj ej thus satisfying 4
+and finishing the proof of the claim
+now we exactly follow the lines of the proof of claim 5 let p be the set of all periods
+in p for which proji p   and p  p  p  recall that we want to show existence
+of a period p  p fulfilling lin1 p  lin2   lin2 p  lin1  assume towards a
+contradiction that there is no such period therefore by claim 10 each period p  p
+satisfies lin1   lin2 p  lin2   lin1 p in particular for each period p  p we have
+lin1 p  0 thus we can equivalently write that for all p  p it holds
+lin2 p
+lin2 
+lin1 p
+lin1 
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 23102316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+let f be the maximal value of
+lin2 p
+lin1 p
+for p  p  clearly
+lin2 
+lin1 
+ f  so
+lin2   f  lin1 
+recall now that for arbitrary big n we have that a  n  b  np1      npk  thus
+a  b  n  np1      npk  let v  a  b we have then that
+lin1 v  n lin2 v  n 
+ni lin1 p lin2 p
+pi p
+by the above we know that
+lin2 v  n
+lin1 v  n
+as v  n is a positive linear combination of periods from p  for each p  p we have
+2 p
+lin1 p  lin2 p  0 and for each p  p we have lin
+lin1 p  f  therefore
+lin2 v  nlin2   f lin1 v  nlin1 
+and equivalently
+nlin2   f  lin1   f  lin1 v  lin2 v
+by 5 we have that lin2   f  lin1   0 therefore
+f  lin1 v  lin2 v
+lin2   f  lin1 
+this is in contradiction with the fact that n can be arbitrarily big and finishes the proof
+we remark one more time that theorem 9 is not needed for our applications the
+motivation behind stating and proving this theorem is to prepare for possible future applications and explore limits of our approach in the proof of theorem 9 one needs to use two
+additional techniques which were not needed to prove theorem 4 well quasiorder on runs
+and construction of modified vass with auxiliary transitions moreover we believe that the
+statement of theorem 9 is more robust and looks more natural than theorem 4
+applications
+in this section we show how theorem 4 can be used to obtain lower bounds on the separator
+size in section 41 we prove that using a construction from 5 one can obtain a 4vass
+with separators of at least doublyexponential size in section 42 we show that there exist
+vasses with separators of arbitrary high elementary size of a special shape existence of
+separators of arbitrary high elementary size is an easy consequence of towerhardness of
+vass reachability problem we provide in theorem 13 a concrete instance of such a separator
+it is not a big contribution but the aim of proving theorem 13 is rather to illustrate that
+our techniques can be quite easily applied to many existing vass examples
+doublyexponential separator in a 4vass
+the aim of this section is to show the following theorem
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 23112316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+ theorem 11 there exists a family of binary 4vasses vn nn of size on3  such that
+for some configurations sn  tn of vn with normsn  normtn   1 such that sn does not reach
+tn the smallest separator for vn  sn  tn  is of doublyexponential size wrt n
+the rest of this section is devoted to the proof of theorem 11 our construction is
+based on the construction of a family of binary 4vasses un nn with shortest run of
+doublyexponential length which is described in section 5 in 5 the proof follows a very
+natural line and is not a big challenge it boils down to performing a small modification
+to 4vasses from 5 in order to assure conditions of theorem 4 and then checking that
+indeed these conditions are satisfied we sketch here the idea behind the construction of the
+mentioned family of 4vasses only into such an extend that we can explain the proof of
+theorem 11 for details we refer to 5 the whole construction is based on the following
+lemma lemma 12 in 5
+ lemma 12 for each n  1 there are n rational numbers
+1  f1      fn  1 
+of description size bounded by 4n
+f  fn 2      f2 2  f1 2
+is bounded by 42n
+ such that the description size of f defined as
+the vasses un are constructed as follows valuation of the four counters x1  x2  x3  x4 
+in the distinguished initial state is initially 04  the run is accepting if it finishes in the
+distinguished final state also with valuation 04  each run of un consists of n  2 phases the
+initial phase n phases corresponding to fractions fn  fn1      f2  f1  respectively and the
+final phase in each run after the initial phase the counter valuation is equal to n n 0 0
+for some nondeterministically guessed value n  n in every accepting run the phase
+corresponding to the fraction fi results only in multiplying the second counter x2 by a value
+fi2  therefore in such an accepting run counter valuation after phases corresponding to
+fractions fn      fi is the following
+x1  x2  x3  x4   n n  fn2      fi2  0 0
+in particular after all the n phases corresponding to fractions the second counter is equal to
+n  fn2      f12  n  f
+where the equality follows from lemma 12 let qi be the state of un after the initial phase
+n  i phases corresponding to fractions fn      fi1 and just before the phase corresponding
+to fraction fi in the case when i  0 it is important that due to claim 15 in 5 any
+reachable configuration of the form qi x1  x2  x3  x4  satisfies x2  fn2      fi2  x1  in
+particular for any reachable configuration q0 x1  x2  x3  x4  we have that x2  f  x1  as
+f  fn2      f12  let f  ab  in the final phase the transition with the effect b a 0 0
+is applied in a loop one can easily see that in order to reach counter values 04 after the
+final phase we need to have in the state q0 values satisfying the equality x2  f  x1  similarly
+any configuration qn1 x1  x2  x3  x4  on an accepting run needs to satisfy x2  fn2  x1 
+let fi  abii for all i  1 n then in any accepting run x1 needs to be divisible by b2n 
+which is a doublyexponential number wrt n this forces any accepting run of un to be
+doublyexponential
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 23122316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+we slightly modify 4vasses un in order to obtain 4vasses vn  which fulfil conditions
+of theorem 4 vass vn is obtained from un by adding at the end of un two instructions
+1 decrease of x2 by 1 and then 2 a loop which decreases x2 by an arbitrary nonnegative
+number we first show that vn indeed satisfies conditions of theorem 4 and then we argue
+how this finishes the proof of theorem 11 let qin be the initial state of vass un  qout
+be its final state and qlast be the state after the final phase but before applying the above
+mentioned decreases of x2  we set sn  qin 04  and tn  qout 04  let n  i1 bi2  we set
+  n n  fn2  0 0  n4 and fix state q  qn1  we claim that vass vn together with
+two configurations sn and tn  state q and vector  satisfies conditions of theorem 4
+condition 1 is satisfied trivially as   n n  fn2  0 0 in order to see that 2 is
+satisfied recall that if vn reaches q0 x1  x2  x3  x4  then we have that x2  ab x1  in the final
+phase we subtract in the loop vector b a 0 0 but it does not change this inequality finally
+subtracting at least 1 at x2 implies that any reachable configuration qout x1  x2  x3  x4  satisfies
+x2  1  ab  x1  this is not true for x1  x2  0 which shows that condition 2 is indeed
+satisfied observe now that for each k  n configuration qn kn kn 0 0 after the initial
+phase is reachable from sn  thus also configuration qn1 kn kn  fn2  0 0 is reachable
+from sn if we multiply the second counter by fn2  which proves condition 3 observe also
+that starting in a configuration qn1 kn kn  fn2  0 0 one can reach valuation qlast 04 
+before the decreases of x2  therefore after adding e2  0 1 0 0 to both sides we get that
+qn1 kn kn  fn2  1 0 0  qlast 0 1 0 0  tn for any k  n because of an option
+of decreasing x2 many times in qlast we get that qn1 kn kn  fn2  l 0 0  tn for any
+k l  1 which equivalent to the condition 4
+therefore by theorem 4 we have that each separator for vn  sn  tn  contains a period
+  2n
+  r  n4 for some r  q let   r  x1  x2  0 0  n4  we know that x2  x1  abnn
+so in order for x2  n we need to have b2n  x1  this implies that x1 is doublyexponential
+with respect to n therefore size of the period   r and thus size of the separator is
+doublyexponential with respect to n
+tower size separators
+in this section we show the following result
+ theorem 13 there exists a family of vasses vn nn of size polynomial wrt n such
+that for some configurations sn  tn of vn with normsn   normtn   0 the following is true
+sn  tn  but the shortest run is nfold exponential
+sn 
+ tn  e for some elementary vector e and each separator for vn  sn  tn  e is of at
+least nfold exponential size
+the rest of this section is dedicated to prove theorem 13 construction of vasses vn
+is based on constructions in 4 but we do not follow exactly 4 in order to avoid some
+technicalities and simplify the construction as the construction 4 is pretty involved we
+decided only to sketch the intuition behind the constructed vasses and use many of its
+properties without a detailed explanation the main goal of this section is to provide an
+intuition why theorem 4 is indeed applicable to that case for details of the construction
+we refer to the original paper 4 essentially speaking theorem 4 is applicable to vasses
+in which the configurations on the accepting run are distinguished from the others once by
+keeping some specific ratio of counter values the bigger the description size of the ratio the
+bigger is the separator in vasses from 4 the description size is nfold exponential which
+implies the lower bound on the size of separators
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 23132316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+we say that a counter is bbounded if its value is upper bounded by b along the whole
+run in 4 counters are assured to be bbounded for various values of b in the following
+way in order to guarantee that counter x initially equal to 0 is bbounded we introduce
+another counter x which is initialised to b and an invariant a    b is kept throughout
+the whole run the construction of 4 strongly relies on the fact that having a triple
+x y z  b c bc one can simulate c2 zerotests for a bbounded counter one zerotest
+for counter a is realised as follows we decrease y by 2 then we enter two loops the first one
+with the effect 1 1 1 on counters a  z and the second one with the effect 1 1 1
+on the same counters it is easy to see that for a bbounded counter a the maximal possible
+decrease on z after these two loops is equal to 2b and it can only be realised if before and
+after the loops we have a   0 b
+let 3n be the number 3 followed by n applications of the factorial function for
+example 31  3 32  6 and 33  720 roughly speaking vass in 4 consists of a
+sequence of n gadgets such that in every accepting run they compute triples of the form
+3i  ki  3i  ki  for some nondeterministically guessed values ki  n the first gadget b
+computes triple 3 k1  3  k1  in a very easy way after increasing its counters by 3 0 0 it
+fires a nondeterministically guessed number k1 of times a loop with the effect equal to 0 1 3
+next we have a sequence of n  1 gadgets f the ith one inputing a triple 3i  ki  3i  ki 
+and outputting a triple 3i1  ki1  3i1  ki1  on some other set of three counters it is
+important to mention that correct value of the output triple requires that after the run values
+of the input triple are all zero the last triple 3n  kn  3i  kn  is used in 4 to simulate
+3n bounded counters of a counter automaton here however we modify this construction in
+order to obtain vasses vn  which fulfil the conditions of theorem 13 as all the triples use
+different counters the presented vass has at least dimension 3n in the original construction
+of 4 some of the counters were actually reused in order to decrease the dimension here we
+allow for a wasteful use of counters this however do not change the idea of the construction
+the family of vasses vn is defined as follows we distinguish an initial state qin of vn
+and a final state qout of vn  for i  1 n let qi be the state after the ith gadget from
+the above description we get that in state qi valuation of some three counters is equal to
+3i  ki  3i  ki  let us denote these counters xi  yi  zi  thus in qn we reach counter values
+xn  yn  zn   3n  kn  3n  kn  for some kn  0 then after state qn we define a state qdec in
+which we decrease values of yn and zn by applying some nonzero number of zerotests for
+3n bounded counters this operation can be seen as a loop decreasing counters xn  yn  zn 
+by 0 1 3n  but of course subtracting 0 1 3n  is not realised by a single transition but by
+some smaller subgadget of our vass then we go to a state qout in which we can decrease
+in a loop the counter xn and as well the counter yn  we define sn  qin 0d  and tn  qout 0d 
+for an appropriate dimension d we set a vector e to be zero on all the coordinates beside yn
+on which it is set to be one we claim that vn with configurations sn  tn and an elementary
+vector e satisfy conditions theorem 13 it is easy to see assuming all the above remarks about
+the construction of 4 that all the accepting runs need to traverse through a configuration
+qn 3n  k 3n  k for some k  1 which implies that all the accepting runs have at least nfold
+exponential length it therefore remains to show the second point of theorem 13 we apply
+theorem 4 for that purpose
+as counters xn  yn and zn are important let us assume wlog that they correspond to the
+first three coordinates in our notation respectively let   0 1 3n  0d3   nd  namely
+i  0 for all i  yn  zn  yn   1 and zn   3n  properties of vn can be summarised
+in the following claim which can be derived from 4
+ claim 14 if sn  qdec x y z 0d3  then x  3n and y  3n z moreover for any y  n
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 23142316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+we have sn  qdec 3n  y 3n  y 0d3 
+now we aim at showing that vass vn together with configurations sn  tn  e vector
+ and state qdec fulfils conditions of theorem 4 it is immediate to see that condition 1
+is satisfied as only second and third coordinates in  are nonzero we allow for reordering
+the coordinates in theorem 4 without loss of generality in order to show 2 we rely
+on claim 14 we have tn  e  qout 0 1 0 0d3  thus if sn  tn  e we need to have
+sn  qdec x y 0 0d3   tn  e for some y  0 this is however a contradiction with
+claim 14 as then y  3n  0 by claim 14 we also immediately derive condition 3 to
+show condition 4 notice that because of the loop in qdec of effect 0 1 3n  on counters
+xn  yn  zn  we have
+qdec 0 kl k3n  0d3   qdec 0 l 0d2   qout 0 l1 0d2   qout 0 1 0d2   tn e
+for any k l  1 this shows that indeed theorem 4 can be applied to vn  thus each
+separator for vn  sn  tn  e contains a period of a form r r  3n  0 0d3   n as r  n
+the number r  3n is nfold exponential and thus the size of any separator for vn  sn  tn  e
+is nfold exponential which finishes the proof of theorem 13
+acknowledgements
+we thank sawomir lasota and micha pilipczuk for inspiring discussions
+references
+michael blondin alain finkel stefan gller christoph haase and pierre mckenzie reachability in twodimensional vector addition systems with states is pspacecomplete in proceedings
+of lics 2015 pages 3243 2015
+lorenzo clemente wojciech czerwinski slawomir lasota and charles paperman separability
+of reachability sets of vector addition systems corr 2016
+lorenzo clemente wojciech czerwinski slawomir lasota and charles paperman separability
+of reachability sets of vector addition systems in proceedings of stacs 2017 pages 2412414
+2017
+wojciech czerwinski slawomir lasota ranko lazic jrme leroux and filip mazowiecki
+the reachability problem for petri nets is not elementary in proceedings of stoc 2019 pages
+2433 2019
+wojciech czerwinski slawomir lasota ranko lazic jrme leroux and filip mazowiecki
+reachability in fixed dimension vector addition systems with states in proceedings of concur
+2020 pages 4814821 2020
+wojciech czerwiski and ukasz orlikowski reachability in vector addition systems is
+ackermanncomplete corr abs210413866 2021
+matthias englert ranko lazic and patrick totzke reachability in twodimensional unary
+vector addition systems with states is nlcomplete in proceedings of lics 16 pages 477484
+2016
+petr jancar decidability of a temporal logic problem for petri nets theor comput sci
+7417193 1990
+s rao kosaraju decidability of reachability in vector addition systems preliminary version
+in proceedings of stoc 82 pages 267281 1982
+jeanluc lambert a structure to decide reachability in petri nets theor comput sci
+99179104 1992
+jrme leroux the general vector addition system reachability problem by presburger
+inductive invariants in proceedings of lics 09 pages 413 2009
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 23152316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany
+jrme leroux the reachability problem for petri nets is not primitive recursive corr
+abs210412695 2021
+jrme leroux and sylvain schmitz demystifying reachability in vector addition systems in
+proceedings of lics 2015 pages 5667 2015
+jrme leroux and sylvain schmitz reachability in vector addition systems is primitiverecursive in fixed dimension in proceedings of lics 2019 pages 113 2019
+richard j lipton the reachability problem requires exponential space technical report
+yale university 1976
+ernst w mayr an algorithm for the general petri net reachability problem in proceedings
+of stoc81 pages 238246 1981
+charles rackoff the covering and boundedness problems for vector addition systems theor
+comput sci 6223231 1978
+sylvain schmitz complexity hierarchies beyond elementary acm trans comput theory
+8131336 2016
+ wojciech czerwiski adam jdrych
+licensed under creative commons license ccby 40
+42nd conference on very important topics cvit 2016
+editors john q open and joan r access article no 23 pp 23162316
+leibniz international proceedings in informatics
+schloss dagstuhl  leibnizzentrum fr informatik dagstuhl publishing germany

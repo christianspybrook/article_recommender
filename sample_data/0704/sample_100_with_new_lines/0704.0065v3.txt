@@ -1,0 +1,662 @@
+littlewoodrichardson polynomials
+arxiv07040065v3 mathag 16 jul 2007
+a i molev
+school of mathematics and statistics
+university of sydney nsw 2006 australia
+alexm mathsusydeduau
+abstract
+we introduce a family of rings of symmetric functions depending on an infinite sequence of parameters a distinguished basis of such a ring is comprised
+by analogues of the schur functions the corresponding structure coefficients
+are polynomials in the parameters which we call the littlewoodrichardson
+polynomials we give a combinatorial rule for their calculation by modifying
+an earlier result of b sagan and the author the new rule provides a formula
+for these polynomials which is manifestly positive in the sense of w graham
+we apply this formula for the calculation of the product of equivariant schubert classes on grassmannians which implies a stability property of the structure coefficients the first manifestly positive formula for such an expansion
+was given by a knutson and t tao by using combinatorics of puzzles while
+the stability property was not apparent from that formula we also use the
+littlewoodrichardson polynomials to describe the multiplication rule in the
+algebra of the casimir elements for the general linear lie algebra in the basis
+of the quantum immanants constructed by a okounkov and g olshanski
+introduction
+let a  ai  i  z be a sequence of variables consider the ring of polynomials
+za in the variables ai with integer coefficients introduce another infinite set of
+variables x  x1  x2      and for each nonnegative integer n denote by n the ring
+of symmetric polynomials in x1      xn with coefficients in za the ring n is
+filtered by the usual degrees of polynomials in x1      xn with the ai considered to
+have the zero degree the evaluation map
+n  n  n1 
+p x1      xn  7 p x1      xn1  an 
+is a homomorphism of filtered rings so that we can define the inverse limit ring  by
+  lim n 
+n  
+where the limit is taken with respect to the homomorphisms 11 in the category of
+filtered rings when a is specialized to the sequence of zeros this reduces to the usual
+definition of the ring of symmetric functions see eg macdonald 14 in that case
+a distinguished basis of  is comprised by the schur functions s x parameterized
+by all partitions  the respective analogues of the s x in the general case are the
+double schur functions s xa which form a basis of  over za we introduce the
+littlewoodrichardson polynomials c a as the structure coefficients of the ring 
+in the basis of double schur functions
+s xa s xa 
+c a s xa
+in the specialization a  0 the polynomials c a become the classical littlewood
+richardson coefficients c  see 12 these are remarkable nonnegative integers which
+occupy a prominent place in combinatorics representation theory and geometry see
+eg fulton 5 macdonald 14 and sagan 21
+the main result of this paper is a combinatorial rule for the calculation of the
+littlewoodrichardson polynomials which provides a manifestly positive formula in
+the sense that c a is written as a polynomial in the differences ai  aj  i  j with
+positive integer coefficients
+we consider two applications of the rule the results of knutson and tao 9
+imply that under an appropriate specialization the polynomials c a describe the
+multiplication rule for the equivariant schubert classes on grassmannians see also
+fulton 6 for a more direct argument let n and n be nonnegative integers with
+n 6 n and let grn n denote the grassmannian of the ndimensional vector subspaces of c n  the torus t  c  n acts naturally on grn n the equivariant
+cohomology ring ht grn n is a module over the polynomial ring zt1      tn 
+which can be identified with ht pt the equivariant cohomology ring of a point
+this module has a basis of the equivariant schubert classes  parameterized by all
+diagrams  contained in the n  m rectangle m  n  n see eg 5 6 then
+where d
+a with the sequence a specialized by
+am1  t1  am2  t2 
+an  tn 
+while the remaining parameters ai are set to zero the ti should be replaced with
+yi in the notation of 9 the coefficients d
+are given explicitly as polynomials
+in the ti  tj  i  j with positive integer coefficients this positivity property was
+established by graham 8 in the general context of the equivariant schubert calculus
+the first manifestly positive formula for the coefficients in the expansion 14 was
+obtained by knutson and tao 9 by using combinatorics of puzzles an earlier rule
+of molev and sagan 17 also calculates d
+but lacks the explicit positivity property
+our new rule implies a stability property of the coefficients d
+see corollary 31
+below even though this property was not pointed out in 9 it can be derived
+directly from the puzzle rule see also fulton 6 for its geometrical interpretation and
+an extension to the equivariant schubert calculus on the flag variety
+as another application we obtain a rule for the positive integer expansion of the
+product of two virtual quantum immanants or the corresponding higher capelli
+operators of okounkov and olshanski 18 19 cf 17 the quantum immanants
+s n are elements of the center zgln  of the universal enveloping algebra ugln 
+parameterized by partitions  with at most n parts see 18 the elements s n form
+a basis of zgln  so that we can define the coefficients f
+by the expansion
+s n s n 
+s n 
+a for the specialization ai  i for i  z as n   this yields
+then f
+a multiplication rule for the virtual quantum immanants s   see section 32 for the
+definitions
+we define the double schur function s xa as the sequence of the double schur
+polynomials
+s x1      xn a
+n  1 2    
+which are compatible with respect to the homomorphisms 11
+n  s x1      xn a 7 s x1      xn1 a
+the polynomials 16 are closely related to the factorial or double schur polynomials s xu with x  x1      xn  the latter were introduced by goulden and
+greene 7 and macdonald 13 as a generalization of the factorial schur polynomials
+of biedenharn and louck 1 2 and they are also a special case of the double schubert polynomials of lascoux and schtzenberger see lascoux 11 we follow chen
+li and louck 4 and fulton 6 and use the name double schur polynomials for
+the related polynomials s xa as well
+in a more detail consider a partition  which is a sequence   1      n 
+of integers i such that 1      n  0 we will identify  with its diagram
+represented graphically as the array of left justified rows of unit boxes with 1 boxes
+in the top row 2 boxes in the second row etc the total number of boxes in  will
+be denoted by  the transposed diagram   1      p  is obtained from  by
+applying the symmetry with respect to the main diagonal so that j is the number
+of boxes in the jth column of 
+let u  u1  u2      be a sequence of variables the polynomials s xu can be
+defined by
+xt   ut c 
+s xu 
+where t runs over all semistandard columnstrict tableaux of shape  with entries
+in 1     n t  is the entry of t in the box    and c  j  i is the content
+of the box   i j in row i and column j
+by a reverse tableau t we will mean the tableau obtained by filling in the boxes
+of  with the numbers 1 2     n in such a way that the entries weakly decrease along
+the rows and strictly decrease down the columns if   i j is a box of  we let
+t   t i j denote the entry of t in the box  we define the double schur
+polynomials s xa by
+s xa 
+xt   at c 
+summed over the reverse tableaux t  then we have
+s xa  s xu
+110
+for the sequences a and u related by ani1  ui with i  1 2     in particular the
+polynomial s xa only depends on the variables ai with i 6 n i  z the relation
+110 is verified easily by replacing xi with xni1 in 18 for all i  1     n and using
+the fact that s xu is a symmetric polynomial in x the property 17 of the double
+schur polynomials is immediate from their definition in the specialization of the
+sequence a with ai  i i  z formula 19 defines the shifted schur polynomials
+of okounkov and olshanski 18 19 in the variables yi  xi  i the use of the reverse
+tableaux was significant in their study of the vanishing and stability properties of
+these polynomials and associated central elements of the universal enveloping algebra
+for the lie algebra gln  see also section 32 below
+note that the stability property 17 extends to the double schubert polynomials
+and to the equivariant schubert calculus on the flag manifold this follows easily
+from the cauchy formula for the schubert polynomials eg put x1  y1 in 15
+formula in 255 in a more general context this was also pointed out in 3
+the double schur polynomials s xa parameterized by the diagrams  with at
+most n rows form a basis of the ring n  due to the stability property 17 the
+littlewoodrichardson polynomials c a can be defined by the expansion 13
+where x is understood as the set of variables x  x1      xn  for any positive integer
+n such that the diagrams   and  have at most n rows this allows us to work
+with a finite set of variables for the determination of the polynomials c a for
+the proof of the main theorem theorem 21 we follow the general approach of 17
+using the techniques of barred tableaux and modify the corresponding arguments
+in order to obtain manifestly positive polynomials this is achieved by imposing a
+boundness condition on the barred tableaux
+it was observed by goulden and greene 7 and macdonald 13 that s xu
+regarded as a formal power series in the infinite sets of variables x and u admits
+a supertableaux representation we show that this representation has its finite
+counterpart where x is a finite set of variables we derive the corresponding formula
+by choosing a certain specialization of the 9th variation in 13 this representation leads to a supertableau expression for the littlewoodrichardson polynomials
+c a although that expression is neither manifestly positive nor stable
+after the first version of this paper was completed we have learned of an independent work of v kreiman 10 where a positive equivariant littlewoodrichardson
+rule was given that rule is equivalent to our theorem 21 although the proof in 10
+is different moreover kreimans paper also provides a weightpreserving bijection
+between the knutsontao puzzles and the barred tableaux used in theorem 21
+this work was inspired by bill fultons lectures 6 i am grateful to bill for
+stimulating discussions
+multiplication rule
+let r denote a sequence of diagrams
+  0  1      l1  l  
+where    means that  is obtained from  by adding one box let ri denote
+the row number of the box added to the diagram i1  the sequence r1 r2    rl is
+called the yamanouchi symbol of r introduce the ordering on the set of boxes of
+a diagram  by reading them by columns from left to right and from bottom to top
+in each column we call this the column order  we shall write    if  strictly
+precedes  with respect to the column order given a sequence r construct the
+set t  r of barred reverse tableaux t with entries from 1 2     such that t
+contains boxes 1      l with
+1      l
+and
+t i   ri 
+1 6 i 6 l
+we will distinguish the entries in 1      l by barring each of them so an element
+of t  r is a pair consisting of a reverse tableau and a chosen sequence of barred
+entries compatible with r we shall keep the notation t for such a pair for example
+let r be the sequence
+3 1  3 2  3 2 1  3 3 1  4 3 1
+so that the yamanouchi symbol is 2 3 2 1 then for   5 5 3 the following barred
+tableau belongs to t  r
+5 5 4 2 2
+4 3 2 1 1
+2 1 1
+for each box  with i    i1  0 6 i 6 l set   i  the barred entries
+r 1      rl divide the tableau into regions marked by the elements of the sequence r
+as illustrated
+finally a reverse tableau t will be called bounded if
+t 1 j 6 j
+for all j  1     1 
+note that bounded tableaux exist only if   
+we are now in a position to state a rule for the calculation of the littlewoodrichardson polynomials c a defined by 13
+theorem 21 the polynomial c a is zero unless    if    then
+a t 
+ a t c 
+c a 
+t  unbarred
+summed over all sequences r of the form 21 and all bounded reverse tableaux
+t  t  r moreover for each factor occurring in the formula 22 we have
+t   c
+before proving the theorem let us point out some properties of the littlewoodrichardson polynomials which are immediate from the rule and consider some examples the polynomial c a is zero unless both diagrams  and  are contained in
+ and      in this case c a is a homogeneous polynomial in the ai of
+degree      if       0 then the theorem reproduces a version
+of the classical littlewoodrichardson rule see corollary 29 below note also that
+by the definition the polynomials have the symmetry c a  c a which is not
+apparent from the rule
+example 22 for the product of the double schur functions s2 xa and s21 xa
+we have
+s2 xa s21 xa  s41 xa  s32 xa  s311 xa  s221 xa
+ a1  a2  a2  a0 s31 xa  a1  a2 s22 xa
+ a1  a0 s211 xa  a1  a2 a1  a0 s21 xa
+for instance the coefficient of s31 xa is calculated by the following barred 2tableaux
+1 1
+1 1
+2 1
+compatible with the sequence 2 1  3 1 they contribute respectively a1  a1 
+a2  a0  a1  a2 which sums up to the coefficient a1  a2  a2  a0  alternatively
+using the symmetry c a  c a we can calculate the coefficient of s31 xa by
+considering the barred 2 1tableaux
+2 1
+2 1
+compatible with the sequences 2  3  3 1 and 2  2 1  3 1 respectively their contributions to the coefficient are a2  a0 and a1  a2 
+522
+example 23 for the calculation of c421 22 a take   4 2 1   2 2 and
+  5 2 2 we have ten sequences r of the form 21 but the set t  r contains
+bounded tableaux only for three of them for the sequence r1 with the yamanouchi
+symbol 1 3 3 1 1 the set t  r1  contains two bounded barred tableaux
+3 3 1 1
+2 2
+3 3 1 1
+2 1
+whose contributions to the littlewoodrichardson polynomial are a0  a3 a0  a2 
+and a0  a3 a2  a1  respectively for the sequence r2 with the yamanouchi
+symbol 1 3 1 3 1 the set t  r2  contains the bounded tableaux
+3 3 1 1
+2 1
+3 3 1 1
+2 1
+with the respective contributions a0  a3 a4  a2  and a0  a3 a3  a1  for
+the sequence r3 with the yamanouchi symbol 3 1 3 1 1 the set t  r3  contains the
+only bounded tableau
+3 3 1 1
+2 1
+with the contribution a1  a3 a0  a3  hence
+522
+c421 22 a  a0  a3  a4  a3  a0  a1  a2  a3 
+taking   2 2   4 2 1 and   5 2 2 we get two sequences with the
+yamanouchi symbols 1 3 and 3 1 the corresponding sets t  r consist of five
+and four bounded barred tableaux respectively thus leading to a slightly longer
+calculation
+proof of theorem 21 we present the proof as a sequence of lemmas due to the
+stability property 17 we may and will work with a finite set of variables x 
+x1      xn  accordingly possible entries of the tableaux are now elements of the set
+1     n introduce another sequence of variables b  bi  i  z and define the
+littlewoodrichardson type coefficients c a b by the expansion
+s xb s xa 
+c a b s xa
+lemma 24 the coefficient c a b is zero unless    if    then
+a t 
+ b t c 
+c a b 
+t  unbarred
+summed over all sequences r of the form 21 and all reverse tableaux t  t  r
+proof this is essentially a reformulation of the main result of 17 theorem 31
+note that the summation in 24 is taken over all barred tableaux t  t  r not
+just over the bounded ones as in 22 rather than repeating the whole argument
+of 17 we only sketch the main steps of the proof and indicate the necessary changes
+to be made we refer the reader to 17 for the details
+we assume that all diagrams here have at most n rows if   1      n  is a
+such diagram we set
+a  a11      ann 
+and
+a   a11      ann 
+under the correspondence 110 we have a  u  u1 n      un 1  the latter
+notation was used in 17
+the starting point is the vanishing theorem of 18 whose proof was also reproduced in 17 by that theorem
+s a a  0
+and
+s a a 
+unless   
+aii  aj j1 
+the first claim of the lemma follows from the vanishing theorem which also implies
+c a b  s a b
+this proves 24 for the case    now we suppose that     1 and proceed
+by induction on    the induction step is based on the recurrence relation
+c a b 
+c a b
+c a b 
+a   a 
+which was proved in 17 proposition 34 see also 9 suppose that the diagram 
+is obtained from  by adding one box in row r then
+c a b 
+s a b  s a b
+a r  a r
+now use the definition 19 of the double schur polynomials since the ntuples a
+and a only differ at the rth component the ratio on the right hand side of 26
+can be expanded by taking into account the entries r of the reverse tableaux t 
+we need the following formula where we are thinking of y  a r  z  a r and
+mi  bt c as  runs over the boxes of t with t   r in column order
+i1 y
+ mi   ki1 z  mi  x
+z  m1     z  mj1 y  mj1     y  mk 
+the right hand side of 26 can now be interpreted as the right hand side of 24
+where r is the only sequence    and the sum is taken over the reverse tableaux
+t with one barred entry r as illustrated
+here    for all boxes  preceding the box occupied by the barred r and
+   for all boxes  which follow that box in column order note that the
+variables y and z are now swapped on the right hand side of the above expansion
+as compared to 17 this does not change the polynomial due to the symmetry in y
+and z consequently the column order used in 17 is the opposite to the order on
+the boxes of  we use here
+we can represent the above calculation of c a by the diagrammatic relation
+a   a 
+consider now the next case where     2 and apply the recurrence relation
+25 we have three subcases the diagram  is obtained from  by adding two boxes
+in different rows and columns by adding two boxes in the same row or by adding
+two boxes in the same column the first two subcases are dealt with in a way similar
+to the case     1 an additional care is needed for the third subcase where we
+suppose that  is obtained from  by adding the boxes in rows r and r  1 denote
+by  the diagram obtained from  by adding the box in row r then 25 gives
+c a b 
+c a b  c a b
+a   a 
+set s  r 1 exactly as in the case   1 we have the following diagrammatic
+relations
+a   a 
+a   a 
+and
+hence the desired formula for c a b will follow if we prove the relation
+we construct a weightpreserving bijection between the barred reverse tableaux
+which are represented by the left and right hand sides of this diagrammatic relation
+here the weight is the product on the right hand side of 24 corresponding to a
+barred tableau let such a tableau with a barred entry r in the box i j be given
+suppose first that the box i  1 j belongs to the diagram and it is occupied by
+s  r  1 then the image of the tableau under the map is the same tableau but the
+entry t i j  r is now unbarred while t i  1 j  r  1 is barred since
+a r1  a r
+and
+t i  1 j  ci  1 j  t i j  ci j
+the weights of the tableaux are preserved under the map
+suppose now that the entry in the box i  1 j is greater than r  1 or this
+box is outside the diagram consider all entries r in the row i to the left of the box
+i j and suppose that they occupy the boxes i j  m i j  m  1     i j  1
+then the image of the tableau under the map is the tableau obtained by replacing
+the entries in each of the boxes i j  m     i j with s  r  1 and barring the
+entry in the box i j  m the weights of the tableaux are again preserved
+the inverse map is described in a similar way this gives the desired weightpreserving bijection the general argument uses similar calculations with the barred
+diagrams and a similar bijection described in 17
+remark 25 i a cohomological interpretation of the coefficients c a b and their
+puzzle computation can be found in 9
+ii the definition 23 of the coefficients c a b can be extended to the case
+where  is a skew diagram lemma 24 and its proof remain valid see 17
+iii in contrast with the littlewoodrichardson polynomials c a the coefficients c a b do not have the stability property as they depend on n
+lemma 24 implies that the littlewoodrichardson polynomials can be calculated by 24 with b  a that is c a  c a a our strategy now is to show
+that unlike the formula of theorem 31 in 17 the formula 24 with b  a is
+nonnegative in the sense that all nonzero products which occur in the formula are
+polynomials in the ai  aj with i  j then we demonstrate that the boundness
+condition serves to eliminate the unwanted zero terms
+lemma 26 let r be a sequence of the form 21 and let t  t  r suppose
+that
+a t 
+ a t c 6 0
+t  unbarred
+then t   c for all    with unbarred t 
+proof suppose on the contrary that there exists a box   i j with an unbarred
+t i j and the condition i jt ij  j  i the equality i jt ij  j  i is
+excluded since this would violate 27 choose such a box with the minimum possible
+value of j if all the entries t i 1     t i j  1 of t are barred then i j is
+obtained from  by adding boxes in rows t i 1      t i j  1 and possibly
+by adding other boxes since t i j  1  t i j we have i jt ij  j  1 a
+contradiction so at least one of the entries t i 1     t i j  1 must be unbarred
+take such an unbarred entry t i k which is the closest to t i j that is all entries
+t i k  1     t i j  1 are barred then i j is obtained from i k by adding
+boxes in rows t i k  1      t i j  1 and possibly by adding other boxes
+hence
+i jt ij  i kt ik  j  k  1
+which implies i kt ik  k  i  1 however if i kt ik  k  i then the
+factor in 27 corresponding to   i k is zero which is impossible therefore
+i kt ik  k  i which contradicts the choice of j
+lemma 27 suppose that r is a sequence of the form 21 and t  t  r if
+27 holds then t is bounded
+proof by lemma 26 for all unbarred entries t 1 k of the first row of the tableau
+t we have 1 kt 1k  k this implies t 1k  k if the entry t 1 j is barred
+then 1 kt 1k  k for the nearest unbarred entry t 1 k on its left if it exists
+then  is obtained from 1 k by adding boxes in rows t 1 k  1      t 1 j
+and possibly by adding other boxes this implies t 1j  j thus this inequality
+holds for all j  1     1  this is equivalent to the boundness of t 
+lemma 28 suppose that r is a sequence of the form 21 and t  t  r is
+bounded then t   c for all    with unbarred t 
+proof we argue by contradiction taking into account lemma 26 we find that for
+some   i j with unbarred t  we have i jt ij  j  i set t  t i j
+and consider all barred entries of t assuming for now they exist which are equal
+to t and occur to the right of the column j since t is a reverse tableau these
+entries t can only occur in rows 1 2     i let r k be the box with the maximum
+column number k containing t then the total number of such entries t does not
+exceed k  j this implies that the number of boxes t in row t of  does not exceed
+i jt  k  j  k  i hence k 6 t  1 on the other hand by the boundness
+of t we have t  t r k 6 t 1 k 6 k  a contradiction
+if none of the boxes to the right of the column j contains t then t  i jt  ji
+however by the assumption t  t 1j  j a contradiction
+this completes the proof of the theorem
+by the column word of a tableau t we will mean the sequence of all entries of t
+written in the column order
+corollary 29 suppose that      the littlewoodrichardson coefficient
+c equals the number of bounded reverse tableaux t whose column word coincides
+with the yamanouchi symbol of a certain sequence r of the form 21
+this can be shown to be equivalent to a wellknown version of the littlewood
+richardson rule corollary 29 also holds with the boundness condition dropped
+see lemma 27 by the corollary c counts the cardinality of the intersection of two
+finite sets the set of column words of bounded reverse tableaux and the set of
+yamanouchi symbols of the sequences of the form 21
+remark 210 due to 110 the multiplication rule for the polynomials s xu is
+obtained from theorem 21 by replacing ai with uni1 for each i the corresponding
+coefficients are polynomials in the ui uj  i  j with positive integer coefficients
+corollary 211 suppose that the polynomials c a are defined by the expansion
+13 with x  x1      xn  then c a is independent of n as soon as n  1 
+moreover if n  1 then c a  0
+proof this follows from the boundness condition on the reverse tableaux
+applications
+equivariant schubert calculus on the grassmannian
+as in the introduction consider the equivariant cohomology ring ht grn n as
+a module over zt1      tn  let x1      xn denote the chern roots of the dual s 
+of the tautological subbundle s of the trivial bundle c n
+gr nn  so that for the total
+equivariant chern class of s we have
+c s 
+1  xi 
+then due to 6 lecture 8 proposition 11 see also 16 the equivariant schubert
+classes  can be expressed by
+  s xu
+u  tn      t1  0    
+hence theorem 21 yields a multiplication rule for the equivariant schubert classes
+the corresponding stability property is implied by corollary 211
+corollary 31 we have
+where
+t  unbarred
+t mt c  t mt 
+summed over all sequences r of the form 21 and all bounded reverse tableaux
+t  t  r in particular the d
+are polynomials in the ti  tj  i  j with positive
+integer coefficients moreover the coefficients d
+ regarded as polynomials in the
+variables ai defined in 15 are independent of n and m as soon as the inequalities
+n  1  1 and m  1  1 hold
+example 32 for any n  3 and m  4 we have
+2 21  41  32  311  221
+ tm2  tm1  tm  tm2  31  tm2  tm1  22
+ tm  tm1  211  tm2  tm1  tm  tm1  21 
+this follows from example 22
+the first manifestly positive rule for the expansion of   was given by knutson
+and tao 9 by using combinatorics of puzzles although the stability property was not
+pointed out in 9 it can be deduced directly from the puzzle rule or by applying the
+weightpreserving bijection between the puzzles and the barred tableaux constructed
+by kreiman 10
+quantum immanants and higher capelli operators
+let gln denote the general linear lie algebra over c consider the center zgln  of
+the universal enveloping algebra ugln  the algebra ugln  is equipped with the
+natural filtration for all n we identify gln1 as a subalgebra of gln in a usual way
+and denote by gl the corresponding inductive limit
+gln 
+gl 
+due to olshanski 20 there exist filtrationpreserving homomorphisms
+on  zgln   zgln1 
+n  1
+which allow one to define the algebra z of the virtual casimir elements for the lie
+algebra gl as the inverse limit
+z  lim zgln 
+n  
+in the category of filtered algebras
+the quantum immanants s n are elements of the center zgln  of the universal
+enveloping algebra ugln  parameterized by the diagrams  with at most n rows
+see 18 the elements s n form a basis of zgln  and they are consistent with the
+olshanski homomorphisms 32 so that
+on  s n 7 s n1 
+where we assume s n  0 if the number of rows of  exceeds n for any diagram 
+the corresponding virtual quantum immanant s  is then defined as the sequence
+s    s n  n  0
+the elements s  parameterized by all diagrams  form a basis of the algebra z so
+that we can define the coefficients f
+by the expansion
+s s 
+note that the same coefficients f
+determine the multiplication rule for the higher
+capelli operators   which are defined as the sequences of the images of the quantum
+immanants s n  where each image is taken under a natural representation of gln by
+differential operators see 18 19
+corollary 33 the coefficient f
+is zero unless    if    then
+t  unbarred
+t   c 
+summed over all sequences r of the form 21 and all bounded reverse tableaux
+t  t  r in particular the f
+are nonnegative integers
+proof due to the stability property 33 of the quantum immanants it suffices to
+calculate the corresponding coefficients for the expansion of the products s n s n 
+the images of the quantum immanants s n under the harishchandra isomorphism
+can be identified with the double schur polynomials s xa where the sequence a is
+specialized to ai  i see 18 therefore the coefficients in question coincide with
+the corresponding specializations of the littlewoodrichardson polynomials c a
+example 34 using example 22 we get
+s 2 s 21  s 41  s 32  s 311  s 221  5 s 31  3 s 22  s 211  3 s 21 
+in the course of the proof of corollary 33 we also calculated the coefficients
+for the expansion of the products s n s n for any n some other formulas for these
+coefficients were obtained in 17 in particular it was shown that the f
+are integers
+although their positivity property was not established there
+note also that the algebra of virtual casimir elements z is isomorphic to the
+algebra of shifted symmetric functions   see 19 the latter can be regarded as the
+specialization of  or rather its extension over c at ai  i for all i  z
+supertableau formulas for sxa and c a
+here we obtain one more rule for the calculation of the littlewoodrichardson polynomials c a it relies on a supertableau representation of the double schur polynomials s xa which is implied by the results of 13 this representation provides
+a finite version of the supertableau formulas of 7 and 13 cf 4
+fix a positive integer n for r  1 set ur  u1      ur  and use the 9th variation
+in 13 with the indeterminates hrs specialized by
+hrs  hr unrs1 
+if r  s 6 n
+and 0 otherwise where hr denotes the rth complete symmetric polynomial let us
+write sb u for the corresponding schur functions then 82 and 91 in 13 give
+x y
+sb u 
+ut  
+summed over semistandard tableaux t of shape  such that the entries of the ith
+row do not exceed n  i  i furthermore using 6181 and 96   in 13 we get
+s x b
+s  u
+s xu 
+equivalently this can be interpreted as a combinatorial expression for the polynomials
+s xu in terms of supertableaux identify the indices of u with the symbols
+1  2      a supertableau t is obtained by filling in the diagram of  with the indices
+1     n 1 2     in such a way that in each row resp column each primed index is
+to the right resp below of each unprimed index unprimed indices weakly increase
+along the rows and strictly increase down the columns primed indices strictly increase
+along the rows and weakly increase down the columns primed indices in column j
+do not exceed n  j  j relation 45 implies the following
+proposition 41 we have
+s xu 
+xt 
+t  unprimed
+ut  
+t  primed
+summed over all supertableaux t 
+using 110 we get an analogous representation for the double schur polynomials
+s xa a reverse supertableau t is obtained by filling in the diagram of  with
+this formula in 13 should be corrected by replacing aj nj with ai ni 
+the indices 1     n n  n  1     including nonpositive primed indices in such
+a way that in each row resp column each primed index is to the right resp
+below of each unprimed index unprimed indices weakly decrease along the rows and
+strictly decrease down the columns primed indices strictly decrease along the rows
+and weakly decrease down the columns primed indices in column j are not less than
+j  j  1 the following supertableau representation of the polynomials s xa
+follows from proposition 41
+corollary 42 we have
+s xa 
+xt 
+t  unprimed
+at  
+t  primed
+summed over all reverse supertableaux t 
+example 43 let n  2 and   2 1 by the definition 19
+s21 xa  x2  a2 x1  a0 x1  a2   x2  a2 x2  a1 x1  a2 
+on the other hand the reverse 2 1supertableaux are
+2 1
+2 2
+2 1
+2 2
+1 1
+2 0
+2 1
+2 2
+2 0
+2 1
+2 2
+1 0
+1 1
+1 2
+2 0
+2 1
+which yield
+s21 xa  x21 x2  x1 x22  x1 x2 a2  x22 a2  x21 a2  x1 x2 a0  x1 x2 a1  x1 x2 a2
+ x2 a0 a2  x2 a1 a2  x2 a22  x1 a0 a2  x1 a1 a2  x1 a22  a0 a22  a1 a22 
+formula 45 implies a supertableau representation of the coefficients c a b
+and hence of the littlewoodrichardson polynomials c a the representation
+for the latter is neither manifestly positive nor stable it provides an expression for
+c a as an alternating sum of monomials in the ai  given a sequence r of the form
+21 construct the set s r of barred reverse supertableaux by analogy with
+t  r a tableau t  s r must contain boxes 1      l occupied by unprimed
+indices r1  r2      rl listed in the column order which is restricted to the subtableau of
+t formed by the unprimed indices as before we distinguish the entries in 1      l
+by barring each of them for each box  with i    i1  0 6 i 6 l which is
+occupied by an unprimed index set   i 
+corollary 44 the coefficients c a b defined in 23 can be given by
+c a b 
+a t 
+bt  
+t  primed
+t  unprimed unbarred
+summed over sequences r of the form 21 and reverse supertableaux t  s r
+proof applying formula 45 we can reduce the calculation of c a b to the particular case of the sequence b  0 now 48 follows from lemma 24
+example 45 in order to calculate the littlewoodrichardson polynomial c21 2 a
+we may take n  2 see corollary 211 the barred reverse supertableaux compatible
+with the sequence 2  2 1 are
+so that
+2 1
+2 2
+2 2
+2 1
+2 2
+2 2
+2 0
+2 1
+2 2
+2 0
+2 1
+2 2
+c21 2 a  a21  a1 a1  a1 a2  a1 a2  a1 a2  a22
+ a1 a0  a1 a1  a1 a2  a0 a2  a1 a2  a22
+ a21  a1 a0  a1 a2  a0 a2 
+which agrees with example 22
+references
+1 l c biedenharn and j d louck a new class of symmetric polynomials defined
+in terms of tableaux advances in appl math 10 1989 396438
+2 l c biedenharn and j d louck inhomogeneous basis set of symmetric polynomials defined by tableaux proc nat acad sci usa 87 1990 14411445
+3 a s buch and r rimnyi specializations of grothendieck polynomials c r
+acad sci paris ser i 339 2004 14
+4 w y c chen b li and j d louck the flagged double schur function j
+alg comb 15 2002 726
+5 w fulton young tableaux with applications to representation theory and geometry london mathematical society student texts 35 cambridge university
+press cambridge 1997
+6 w fulton equivariant cohomology in algebraic geometry eilenberg lectures
+columbia university spring 2007 available at
+httpwwwmathlsaumichedudandersneilenberg
+7 i goulden and c greene a new tableau representation for supersymmetric
+schur functions j algebra 170 1994 687703
+8 w graham positivity in equivariant schubert calculus duke math j 109
+2001 599614
+9 a knutson and t tao puzzles and equivariant cohomology of grassmannians duke math j 119 2003 221260
+10 v kreiman equivariant littlewoodrichardson tableaux preprint
+arxiv07063738
+11 a lascoux interpolation lectures at tianjin university june 1996 available
+at httpwwwigmunivmlvfralpub englhtml
+12 d e littlewood and a r richardson group characters and algebra philos
+trans roy soc london ser a 233 1934 49141
+13 i g macdonald schur functions theme and variations in actes 28e
+sminaire lotharingien pp 539 publ irma strasbourg 1992 498s27
+14 i g macdonald symmetric functions and hall polynomials oxford university
+press oxford 1995
+15 l manivel symmetric functions schubert polynomials and degeneracy loci
+smfams texts and monographs vol 6 1998
+16 l c mihalcea giambelli formulae for the equivariant quantum cohomology of
+the grassmannian preprint mathco0506335
+17 a i molev and b e sagan a littlewoodrichardson rule for factorial schur
+functions trans amer math soc 351 1999 44294443
+18 a okounkov quantum immanants and higher capelli identities transform
+groups 1 1996 99126
+19 a okounkov and g olshanski shifted schur functions st petersburg math
+j 9 1998 239300
+20 g i olshanski representations of infinitedimensional classical groups limits
+of enveloping algebras and yangians in topics in representation theory
+advances in soviet math 2 amer math soc providence ri 1991 pp 166
+21 b e sagan the symmetric group representations combinatorial algorithms
+and symmetric functions 2nd edition grad texts in math 203 springerverlag new york 2001

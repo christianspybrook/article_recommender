@@ -1,0 +1,274 @@
+optimized utilization of comb3 reactive potentials in lammps
+robert slapikas1 ismaila dabo123 and susan b sinnott124
+department of materials science and engineering the pennsylvania state university
+university park pennsylvania 16801
+materials research institute the pennsylvania state university university park pennsylvania
+16801
+institutes of energy and the environment the pennsylvania state university university park
+pennsylvania 16801
+department of chemistry the pennsylvania state university university park pennsylvania
+16801
+corresponding author
+email sinnottmatsepsuedu
+an investigation to optimize the application of the thirdgeneration charge optimized manybody
+comb3 interatomic potential and associated input parameters was carried out through the study
+of solidliquid interactions in classical molecular dynamics md simulations the rates of these
+molecular interactions are understood though the wetting rates of water nano droplets on a bare
+copper 111 surface implementing the langevin thermostat the influence of simulation time step
+the number of atoms in the system the frequency at which charge equilibration is performed and
+the temperature relaxation rate are all examined the results indicate that time steps of 04 fs are
+possible when using longer relaxation times for the system temperature which is almost double
+the typical time step used for reactive potentials the use of the qeq charge equilibration allows
+for a fewer atomic layers to be used in the cu slab in addition charge equilibrium schemes do not
+need to be performed every time step to ensure accurate charge transfer interestingly the rate of
+wetting for the nanodroplets is dominantly dependent on the temperature relaxation time which
+are predicted to significantly change the viscosity of the water droplets this work provides a
+pathway for optimizing simulations using the comb3 reactive interatomic potential
+introduction
+the recent push for renewable energy alternatives has placed an immense focus on
+understanding the fundamentals of electrochemical processes12 computational modeling enables
+investigation of the thermodynamics and kinetics associated with processes that affect the atomic
+configurations and properties of materials in electrochemical systems35 one key modeling
+technique is molecular dynamics md where newtons second law of motion is integrated to
+predict individual atomic positions and momentums at future points in time3 some of the most
+critical considerations in the application of classical md simulations are the accuracy and
+computational cost both of which depend on the interatomic potential also called a force field
+used to predict the atomic trajectories6
+interatomic potential development is an art form that is not widely practiced because of the
+challenges associated with capturing the chemistry and physics needed to obtain accurate models
+while omitting negligible aspects to decrease the computational cost7 an analysis by plimpton et
+al reveals that every two years the computational cost of new potentials developed almost doubles
+and is roughly equivalent to moores law for electronics7 thus plausible optimization of
+computational methods is perpetually a critical process that is further complicated by the fact that
+the choice of interatomic potentials for a given simulation is highly dependent upon the
+composition of the system being modeled67
+some of the most significant and extensively observed electrochemical processes occur at
+solidliquid interfaces1 at a molecular level surface science research aims to illustrate the
+fundamental thermodynamic and kinetic effects in this electrochemical phenomenon810 dynamic
+wetting of a liquid droplet on a solid surface provides an experimental probe of fundamental solid
+liquid properties such as surface tension of the liquid viscosity of liquids solid surface wettability
+and the kinetic rates of wetting1113 when a liquid droplet interacts with a solid surface
+intermolecular interactions between the surfaces occur bringing the system to equilibrium and
+causing partial wetting1213
+previous md simulations of the solidliquid interface to determine the molecularkinetic
+theory for water droplets on a solid surface indicate that diffusion of the water droplet and its
+governing mechanism are complex1215 however in these simulations the interactions between
+the water droplet and the solid surface were modeled using the lennardjones 126 pair potential
+which is ideal for describing van der waals interactions but is unable to capture electrostatic
+contributions to interatomic interactions at the solidliquid interface1617 electrochemical or
+electrostatic interactions at the solidliquid interface may be modeled using a variable charge bond
+order reactive potential such as reaxff or comb361819 recently comb3 was used in md
+simulations to investigate solidliquid interfaces by examining the selfdiffusion of water
+nanodroplets on clean cu and pt surfaces as well as cu surfaces with oxygen and hydroxyl
+absorbates1618 the results indicate that the water molecule interactions in the nanodroplets on the
+different surfaces change due to the chemical reactions of the unique solidliquid molecular
+structures that are formed by examining the molecular structures of these interfaces it was
+determined that the rate of wetting is dependent on the strength and nature of the interactions
+between the water molecules and the surface1617
+a significant amount of surface chemistry was found to be important at these particular
+interfaces and electrostatic effects are predicted to play a crucial role in the metalliquid
+interface417 these simulations can be performed using the open source classical molecular
+dynamics code largescale atomicmolecular massively parallel simulator lammps and the
+already incorporated comb3 interatomic potential20 however simulations of complex systems
+are extremely computationally expensive and take days to weeks to run the objective of this work
+is to optimize the comb3 potential within the lammps software to reduce the computational
+cost while maintaining physical and accurate simulation conditions this work is accomplished
+through the study of molecularkinetic theory as applied to solidliquid interfaces and the
+optimization of the input parameters including the time step rate of charge equilibration relaxation
+time and the number of atoms chosen to represent systems of interest it is expected that this work
+will enable more efficient and realistic md simulations using a reactive potential particularly
+pertaining to solidliquid interfaces
+computational details
+in md simulations the computational cost depends on the system that is modeled and the
+input parameters such as interatomic potential type of ensemble time step and initial conditions
+in previous md simulations an nvt ensemble and the dynamic charge interatomic potential
+comb3 was used to model electrochemical phenomena at metalwater interfaces41617
+consequently the input parameters that will be examined to increase the speed of the simulation
+are the time step t the number of atoms in the simulation the rate of charge equilibration qeq
+and the rate at which the temperature of the system is relaxed in brownian dynamics damp2123
+all dynamic wetting md simulations are performed using the newly parameterized cuoh potentials developed by anthony et al1724 in the simulations a water droplet containing 576
+h2o molecules is considered that is interacting with 142   142  cu 111 slabs of different
+thickness ranging from three atomic layers to nine atomic layers the water nanodroplet is first
+obtained by performing npt md simulations of iceih at 300 k for 200 the system is controlled
+with two different nvt thermostats a langevin thermostat with a simulation input temperature
+of 370 k is used for the water to obtain an output temperature of 300 k and a nosehoover
+thermostat with an input temperature of 300 k is used for the cu slabs to obtain an output
+temperature of 300 k21222526 in each of the cu slabs the bottom layer of atoms is held rigid time
+steps of 01 02 025 and 04 fs were used and a range of relaxation rates were tested from 0002
+to 10 ps a single qeq charge equilibration scheme is performed for all the atoms in the
+simulations at rates of every 1 5 10 25 50 and 100 time step iterations2327
+the simulations are carried out using periodic boundary conditions where the coulombic
+energy of the system is calculated through the summation of ion pairs to allow charge transfer
+between atoms18 in comb3 the wolf summation method is used for coulombic electrostatic
+interactions and a set cutoff range of 111  is used1828 which requires the simulation box size to
+be larger than 111  in all directions to ensuring that none of the atoms interact with themselves
+spreading rates are determined by calculating the radii of the absorbed water molecules on the
+different cu slabs
+iii
+results and discussion
+the most obvious parameter to change in order to speed up a computational simulation is
+the time step in md simulations a typical time step for variable charge bond order potentials is
+025 fs47 however due to a change in other input parameters such as damp it is seen that the time
+step used in the simulations can be increased and longer simulation times can be achieved for the
+same number of time steps without affecting the spreading rates significantly figure 1 contrary
+to prior observations a larger time step of 04 fs which has previously been associated with
+unstable simulations can be used when a lower damp parameter is used47
+fig 1 water nanodroplet spreading rate for different time steps t in femtoseconds fs and
+different damp rates on a cu surface with 3 cu layers as a function of simulation time an analytical
+equation is used as a reference point for water molecules spreading on a cu 111 surface16
+another important consideration in running md simulations is the size of the simulation
+and optimizing it to observe the desired physical processes this is particularly relevant for the
+comb3 interatomic potential which has a coulombic cutoff distance of 111  which means the
+physical size of the simulation needs to be larger than this when periodic boundary conditions are
+enforced so the atom is not allowed to interact with itself18 however by increasing the number of
+atoms in the simulation the computational cost increases due to the higher number of calculations
+also because coulombic interactions are the driving force for the rate of wetting of the water
+nanodroplets it is crucial to determine the way in which the number of cu atomic layers in the
+substrate impact the speed of wetting since in previous work the substrate was only three atomic
+layers thick and below the 111  cutoff distance the effects of the substrate thickness were
+considered by running the same md simulations with the same conditions but varying the number
+of atomic layers from three to nine1617 from these simulations figure 2 it was determined that
+the wetting rate of the nanodroplet remains constant and does not depend on the number of atomic
+layers thus decreasing the number of atomic layers decreases simulation time by having fewer
+atoms to integrate over but maintains the same kinetic process of surface diffusion while the most
+realistic charge neutrality of the system is not captured due to size and cost of the simulation the
+error is small enough to be considered negligible it is determined that this is an effect of using the
+electronegativity equilibration scheme qeq which enforces charge neutrality423 it is seen that for
+all the different layers the coulombic energy convergence occurs at the same rate and closely
+reflects the spreading rate of the nanodroplet on the cu surface
+fig 2 spreading rate of water nanodroplet for different number of cu layers as a function of
+simulation time insets snapshots of the simulation for 3 cu layers an analytical equation is
+used as a reference point for water molecules spreading on a cu 111 surface16
+in the md simulations performed for this work two nvt ensembles are used to examine
+the solidliquid interfaces and the temperature of the water nano droplet is held constant using the
+langevin thermostat2122 by using this thermostat newtons equations of motion are altered and
+the force on an atom is described with equation 1 where fc is the conservative force from the
+interatomic potential ff is the frictional force given by equation 2 and fr is the random force
+white noise whose time autocorrelation is given by equation 32122 in these equations m is the
+mass of an atom v is the velocity of the particle t is the temperature of the system kb is the
+boltzmann constant and t is the time step
+f  fc  ff  fr
+ff   
+fr t  fr t   
+damp
+mkb t
+damp
+t t  
+by adjusting damp it is seen that it is loosely related to the viscosity of a liquid through an
+inverse relationship between the selfdiffusion coefficient and the viscosity of a liquid described
+by the stokeseinstein equation29 therefore a small damp will increase the viscosity of a liquid
+and decrease the rate of wetting this is depicted in table i where the selfdiffusion rates of the
+nanodroplets are listed and obtained from the mean squared displacement msd graph figure 3
+where the linear portions of each graph are taken as the selfdiffusion coefficient of the stokeseinstein equation1729 however if the dampening parameter damp is too large the system will
+never reach thermodynamic equilibrium and the temperature of the system will drop to 0 k
+conversely a small damp causes the average temperature of the simulation to increase which
+causes the viscosity of the liquid to increase a phenomenon that does not occur in water1330 it is
+also observed that damp affects the rate at which coulombic energy convergences occur figure
+4 in all three simulations the same physical responses are observed at different rates when damp
+is adjusted and thermodynamic equilibrium is reached thus by increasing damp to the point right
+before thermodynamic equilibrium can no longer be reached the kinetic reaction rates increase in
+the system and maintain the accuracy of realistic models this in turn causes the computational
+cost of the simulations to decrease
+table i showing effects of damp on temperature and selfdiffusion rates of the water nano
+droplets
+damp ps
+avg water temp k
+selfdiffusion 2 ns1
+333
+448
+001
+367
+0002
+370
+fig 3 msd of water nanodroplet for different values of damp in the inplane direction of the cu
+surface with 3 cu layers as a function of simulation time
+fig 4 coulombic energy as a function of simulation time for water nanodroplet spreading on cu
+surface with 3 cu layers as a function of simulation time
+another input parameter that was considered to optimize comb3 potential was the
+frequency of charge equilibration for the system which is an important parameter for the accurate
+simulation of dynamical processes47 charge equilibration is a complex calculation since it is an
+iterative process dependent on an atoms local environment that should be performed at every time
+step to obtain the most realistic physical event making it a rigorous process to implement4623 in
+this work decreasing the simulation time for coulombic charge convergence to occur was
+evaluated by performing charge equilibration at different time step iterations however when
+comparing different charge equilibration rates of every time step every 10th time step and every
+50th time step it is observed in figure 5 that the amount of simulation time it takes for the
+coulombic charge to converge does not change therefore it was determined that the best way to
+decrease computational cost is to reduce the charge equilibration frequency while maintaining the
+accuracy of the physical processes in these simulations it was determined that performing charge
+equilibration every 50 steps vs every time step causes the computational burden to decrease by
+more than five times while still providing accurate spreading rates it is also observed from figures
+5 and 6 that the damp parameter is still more influential in the kinetic rates of the simulations since
+a large damp achieves a quicker rate of wetting of the nano droplet and a quicker rate of coulombic
+charge convergence
+fig 5 water nanodroplet spreading coulombic energy as a function of simulation time for
+different charge equilibration per number of md time steps qeq and different damp rates on a
+cu surface with 3 cu layers as a function of simulation time
+fig 6 water nanodroplet spreading rate for different charge equilibration per number of md
+time steps qeq and different damp rates on a cu surface with 3 cu layers as a function of
+simulation time an analytical equation is used as a reference point for water molecules spreading
+on a cu 111 surface16
+conclusions
+we have used the comb3 interatomic potential to model solidliquid interactions
+focusing on the spreading rates of water nanodroplets on bare cu 111 slabs to reduce the
+computational complexity of comb3 simulations we have carried out a systematic analysis of
+the different numerical parameters that affect the accuracy and efficiency of the time integration
+with the implementation of the qeq charge equilibration scheme in comb3 and the
+system being driven to charge neutrality the number of atomic layers in a substrate surface can be
+reduced in the direction out of plane to the surface to reduce the total number of atoms in the
+simulation it was also determined that the charge equilibration calculations of the system does not
+need to occur every time step in order to achieve the same spreading rates lastly changing how
+fast the temperature of the system is relaxed can either increase or decrease the rate at which the
+kinetic reactions occur and is considered to be the most influential input parameter with this
+information the scientific community can optimize the comb3 potential while still maintaining
+realistic results to further the understanding of electrochemical processes at the atomic level
+acknowledgments
+the authors acknowledge helpful discussions with andrew c antony and tao liang on
+their previous work with the comb3 potential and the associated parameterization we
+acknowledge financial support from the us department of energy office of science basic
+energy sciences cpims program under award no desc0018646 computer simulations for
+this work were performed on the pennsylvania state universitys institute for cyberscience
+advanced cyberinfrastructure icsaci
+aip publishing data sharing policy
+the data that support the findings of this study are available from the corresponding author
+upon reasonable request
+references
+h li j gazzarri k tsay s wu h wang j zhang s wessel r abouatallah n joos and
+j schrooten electrochim acta 55 5823 2010
+t yoshida and k kojima electrochem soc interface 24 45 2015
+mp allen and dj tidesley computer simulation of liquids  michael p allen and dominic
+j tildesley  version details  trove 2017
+t liang ac antony sa akhade mj janik and sb sinnott j phys chem a 122 631
+2018
+m patra and m karttunen j comput chem 25 678 2004
+ja harrison jd schall s maskey pt mikulski mt knippenberg and bh morrow
+appl phys rev 5 031104 2018
+sj plimpton and ap thompson mrs bull 37 513 2012
+a verdaguer gm sacha h bluhm and m salmeron chem rev 106 1478 2006
+ma henderson surf sci rep 46 1 2002
+a hodgson and s haq surf sci rep 64 381 2009
+rg cox j fluid mech 168 169 1986
+mj de ruijter td blake and j de coninck langmuir 15 7836 1999
+l chen and e bonaccurso phys rev e  stat nonlinear soft matter phys 90 022401 2014
+n sedighi s murad and sk aggarwal fluid dyn res 43 2011
+c wu t qian and p sheng j phys condens matter 22 2010
+ac antony t liang and sb sinnott 2018
+ac antony t liang sa akhade mj janik sr phillpot and sb sinnott langmuir 32
+8061 2016
+t liang tr shan yt cheng bd devine m noordhoek y li z lu sr phillpot and
+sb sinnott mater sci eng r reports 74 255 2013
+act van duin s dasgupta f lorant and wa goddard j phys chem a 105 9396
+2001
+s plimpton fast parallel algorithms for shortrange molecular dynamics 1995
+b dnweg and w paul int j mod phys c 02 817 1991
+t schneider and e stoll phys rev b 17 1302 1978
+ak rapp and wa goddard j phys chem 95 3358 1991
+ac antony sa akhade z lu t liang mj janik sr phillpot and sb sinnott j phys
+condens matter 29 2017
+s nos j chem phys 81 511 1984
+wg hoover phys rev a 31 1695 1985
+sw rick sj stuart and bj berne dynamical fluctuating charge force fields application
+to liquid water nd
+d wolf p keblinski sr phillpot and j eggebrecht 8254 2012
+s chandrasekhar rev mod phys 15 1 1943
+l korson w drosthansen and fj millero j phys chem 73 34 1969

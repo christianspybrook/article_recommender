@@ -1,0 +1,1086 @@
+arxiv210500020v1 cscv 30 apr 2021
+
+continuous face aging via selfestimated residual age embedding
+zeqi li
+modiface
+
+ruowei jiang
+modiface
+
+parham aarabi
+modiface
+
+lizeqicstorontoedu
+
+irenemodifacecom
+
+parhammodifacecom
+
+abstract
+
+such as 30 3040 4050 50 and can only generate images within a target age group due to the limited amount
+of data at each age another important problem is how to
+maintain personal traits in age progression as aging patterns may differ for each individual
+
+face synthesis including face aging in particular has
+been one of the major topics that witnessed a substantial improvement in image fidelity by using generative adversarial
+networks gans most existing face aging approaches divide the dataset into several age groups and leverage groupbased training strategies which lacks the ability to provide
+finecontrolled continuous aging synthesis in nature in this
+work we propose a unified network structure that embeds
+a linear age estimator into a ganbased model where the
+embedded age estimator is trained jointly with the encoder
+and decoder to estimate the age of a face image and provide a personalized target age embedding for age progressionregression the personalized target age embedding
+is synthesized by incorporating both personalized residual
+age embedding of the current age and exemplarface aging
+basis of the target age where all preceding aging bases are
+derived from the learned weights of the linear age estimator
+this formulation brings the unified perspective of estimating the age and generating personalized aged face where
+selfestimated age embeddings can be learned for every single age the qualitative and quantitative evaluations on different datasets further demonstrate the significant improvement in the continuous face aging aspect over the stateoftheart
+
+traditional face aging contains mainly two approaches
+physical modelbased 3 45 and prototypebased 39 16
+the physical modelbased methods often consist of complex physical modeling considering skin wrinkles face
+shape muscle changes and hair color etc this type of
+method typically requires a tremendous amount of data and
+is very expensive computationally prototypebased methods firstly explore groupbased designs by computing an average face within the predefined age groups which fails
+to retain personalized aging information further all those
+methods are not applicable to continuous face aging
+following the success of recent generative models such
+as variational autoencoders vaes and generative adversarial networks gans 9 on the image translation tasks
+researchers have dedicated efforts in adapting those methods to face synthesis ipcgan 44 has shown significant
+progress in generating face images with evident aging effects by enforcing an age estimation loss later variation
+46 creates a pyramid structure for the discriminator to improve face aging understanding at multiple scales continuous aging was not explored among these methods he et
+al 10 introduced a multibranch generator for the groupbased training and proposed the idea to approximate continuous aging via linear interpolation of latent representations
+between two adjacent age groups the authors of 25 also
+tackle the problem using a similar linear interpolation approach which is performed on the learned age latent code
+between two neighboring groups instead these types of
+methods make an assumption that the age progression is linear between the two adjacent groups and the learned group
+embedding can be used directly as the median age embedding consequently this may result in a shift of target age
+in the generated images intuitively this nonlinearity can be
+interpreted as people do not age at the same speed for different stages moreover such interpolationbased methods
+may alter personal traits when disentanglement is imperfect
+
+1 introduction
+face aging also known as age progression aims to aesthetically render input face images with natural aging and
+rejuvenating effects while preserving identity information
+of the individual with recent advances in deep learning
+face synthesis has also shown substantial improvement on
+image fidelity and the age precision in the simulated face
+images 10 44 25 a major challenge to solve a variety
+of remaining problems eg continuous aging is the lack
+of data for example many research works of face aging
+20 44 46 10 need to group images into 45 age groups
+ this work is done during zeqi lis fulltime employment at modiface
+
+1
+
+to address the aforementioned problems we propose a
+novel approach to achieve continuous aging by a unified
+network where a simple age estimator is embedded into a
+regular encoderdecoder architecture this allows the network to learn selfestimated age embeddings of all ages
+thus representing the continuous aging information without
+manual efforts in selecting proper anchor age groups given
+a target age we derive a personalized age embedding which
+considers two aspects of face aging 1 a personalized residual age embedding at the current age which preserves the
+individuals aging information 2 exemplarface aging basis at the target age which encodes the shared aging patterns among the entire population we describe the detailed
+calculation and training mechanism in method the calculated target age embedding is then used for final image
+generation we experiment extensively on ffhq 15 and
+cacd2000 5 datasets our results both qualitatively and
+quantitatively show significant improvement over the stateoftheart in various aspects our main contributions are
+
+of the aging mechanism the prototypebased approaches
+32 39 4 explore face progression problem using groupbased learning where an average face is estimated within
+each age group however personalized aging patterns and
+identity information are not wellpreserved in such strategies in 43 47 35 sparse representation of the input image have been utilized to express personalized face transformation patterns though the personalized aging patterns
+are preserved to some extent by such approaches the synthesized images suffer from quality issues
+recently deep learning approaches have been adopted to
+model personalized aging transformations wang et al 42
+proposed a recurrent neural network model leveraging a series of recurrent forward passes for a more smooth transition
+from young to old later ganbased works 18 44 46
+have shown superior breakthroughs on the fidelity of images li et al 18 designed three subnets for local patches
+and fused local and global features to obtain a smooth synthesized image ipcgan 44 enforces an age estimation
+loss on the generated image and an identity loss to achieve
+good face aging effects more efforts have also been made
+to address age accuracy and identity permanence yang et
+al46 and liu et al 20 introduce a modification of discriminator losses to guide a more accurate age of the output
+images authors of 21 improved image quality of synthesized images by using a wavelet packet transformation and
+multiple facial attribute encoding however these methods
+44 46 20 condition the output image by concatenating
+onehot vector representing the target age groups to obtain
+a continuous aging condition the vector will be extended
+to a much larger dimension which makes training unstable
+and more complicated furthermore it requires a tremendous amount of training images
+though some works 49 1 34 which aim to interpolate
+features in the latent space provided a direction to support
+continuous aging they have limited ability to produce highquality images while preserving the identity in 10 the
+authors proposed to linear interpolate feature vectors from
+adjacent age groups upon groupbased training to achieve
+continuous aging progression similarly 25 linearly interpolates between two adjacent anchor age embeddings
+these methods follow the assumption that the embeddings
+are aligned linearly between anchors which makes the decision of anchor ages crucial in this work we present continuous selfestimated age embeddings free of manual efforts
+while achieving better continuous age modeling
+
+ we propose a novel method to selfestimate continuous age embeddings and derive personalized age embeddings for face aging task by jointly training an age
+estimator with the generator we quantitatively and
+qualitatively demonstrate that the generated images
+better preserve the personalized information achieve
+more accurate aging control and present more finegrained aging details
+ we show that our continuous aging approach generates
+images with more wellaligned target ages and better
+preserves detailed personal traits without manual efforts to define proper age groups
+ our proposed idea to selfestimate personalized age
+embedding from a related discriminative model can
+be easily applied to other conditional imagetoimage
+translation tasks without introducing extra complexity in particular tasks involving a continuous condition and modeling eg nonsmile to smile can benefit from this setup
+
+2 related work
+21 face aging model
+traditional methods can be categorized as physical
+modelbased approaches 3 45 36 and prototypebased
+approaches 32 39 16 17 the physical modelbased
+methods focuses on creating models to address specific subeffects of aging such as skin wrinkles 45 2 3 craniofacial growth 40 28 muscle structure 36 29 and face
+components 37 38 these methods are often very complicated which typically require a sequence of face images
+of the same person at different ages and expert knowledge
+
+22 generative adversarial networks
+generative adversarial networks 9 have been a popular choice on imagetoimage translations tasks cyclegan
+50 and pix2pix 14 explored image translations between
+two domains using unpaired and paired training samples
+respectively more recent works 6 19 proposed training
+2
+
+3 method
+31 formulation
+as shown in fig 1 our model consists of four components 1 identity encoding module e 2 age estimation
+module c 3 personalized age embedding transformation
+module pat 4 aged face generation module g during
+inference we apply an encoder network e to extract the
+identity information from the given image xi  where the encoding is denoted as ei  exi  then an embedded age
+estimator c is used to obtain the age probability distribution of the identity encoding based on the selfestimated
+age distribution and the target age t we apply a personalized age embedding transformation pat on the identity
+encoding ei  lastly the synthesized face is decoded from
+the transformed identity encoding patei  t by the generator g all modules are optimized jointly endtoend under three objectives including the meanvariance age loss
+26 for accurate aging the l1 reconstruction loss for identity preservation and the adversarial loss for image realism unlike many prior face aging works 44 10 in which
+require a pretrained age classifier to guide the face aging
+training our model directly obtains a selfestimated age embedding by utilizing a unified framework for achieving face
+aging and age estimation at the same time more favorably
+the embedded age estimator not only enables personalized
+continuous age transformation in a more accurate manner
+compared to the interpolationbased approach but also provides the guidance for face image generation
+identity age estimation module c in prior works
+44 10 face aging and face age estimation are treated as
+two independent tasks where an age estimation model usually a classifier is pretrained separately and then used to
+guide the generator to realize natural aging effects as the
+two mentioned tasks are intrinsically related both goals can
+be achieved with one unified structure by sharing an encoder e the age estimator c in our case containing a
+global average pooling layer and a fullyconnected layer is
+branched off from e finally the age probability distribution pi  rk can be obtained by performing the softmax
+function where k denotes the number of age classes without introducing too much extra complexity such unified design also provides three advantages firstly it eliminates
+the need to acquire a welltrained age estimator model beforehand secondly age estimation on the identity encoding helps the model to establish a more agespecific identity representation thirdly the weight wc in the fullyconnected layer is also used as the age embedding bases
+bias terms are set to zero which encodes the exemplarface
+information from a metric learning perspective in notation
+
+figure 1 model architecture an age estimator is jointly trained
+with an image generator where e is the shared encoder and c
+is branched off for the age estimation task the personalized age
+embedding transformation pat eq 2 is based on two components 1 residual aging basis at the current age 2 exemplarface aging basis at the target age then the transformed identity
+encoding is decoded by g the whole model is learned with the
+age losses identity loss and the adversarial loss
+
+techniques to enable multidomain translation in 22 24
+authors firstly explored conditional image generation as extensions to basic gans later works 7 27 have further
+shown superiority on many conditional image translation
+tasks by transforming and injecting the condition into the
+model in a more effective manner
+
+23 face age estimation
+the task to predict apparent age refers to the regression
+problem that estimates a continuous numerical value for
+each given face image deep expectation of apparent age
+dex 31 proposed a method to achieve a mae of 325
+on morph ii 30 by combining classification loss and regression loss pan et al 26 proposed to use meanvariance
+loss on the probability distribution to further improve the
+mae to 216 on morph ii
+
+aj  wc j
+where wc  r
+3
+
+kd
+
+d
+
+1
+
+aj  r and d equals to the channel
+
+meanvariance age loss the age loss plays two roles
+in our network 1 it helps the estimator learn good aging bases for all ages 2 it guides the generator by estimating the age of the generated fake images to achieve
+both goals we adopt the meanvariance age loss proposed
+by 26 given an input image xi and an age label yi  the
+meanvariance loss is defined as below
+
+dimension of the identity encoding
+personalized age embedding transformation pat
+face aging is a challenging and ambiguous task in nature
+as different facial signssymptoms ages differently for different people at different stages thus personalization is
+desired in performing face aging in our design we characterize this personalization by a residual age embedding calculated from the age probability distribution pi  rk and
+the exemplarface aging basis aj  rd where i denotes the
+sample i and j  1 2     k denotes the age pij  r
+is the probability at age j for sample i to obtain the personalized aging basis for any target age ti  we formulate the
+process as the following operation
+iti
+
+k
+x
+
+pij aj  ajmi    ajti 
+
+lmv  ls  mv1 lm  mv2 lv
+n
+1
+1 x
+logpiyi  mi  yi 2  2 vi 
+
+n i1
+2
+
+pk
+where mi  j1 jpij is the mean of the distribution
+pk
+and vi  j1 pij  j  mi 2 is the variance of the distribution
+in addition to being more effective than other losses on
+the age estimation task meanvariance loss also satisfies
+our needs to learn a relatively concentrated age distribution
+while capturing the age continuity for the adjacent aging
+bases the supervised age loss is formulated as below
+
+2
+
+j1
+
+pk
+the j1 pij aj term represents the personalized aging
+basis of the identity by taking the expected value of the aging basis based on the age probability distribution then
+we can obtain the residual age embedding by subtracting
+the exemplarface aging basis at the current selfestimated
+age ajmi  from the personalized aging basis the residual age embedding preserves the identitys personalized factors while removing the prevailing aging factors at the selfestimated age the final personalized target age embedding
+iti is obtained by adding the exemplarface aging basis
+at the target aging basis ajti  which encodes the shared
+aging factors at the target age among the entire population with the personalized target age embedding iti  we
+then apply an affine projection transformation to derive the
+scale and shift coefficients for the original identity encoding
+exi   ei  similar to conditional bn 8 and adain 13
+
+patei  ti   eiti   iti ei   iti 
+
+4
+
+lreal  lmv cex y
+
+5
+
+for guiding face aging we apply the embedded age estimator at both the transformed identity encoding level and
+the generated image level as shown in fig 1
+lf ake  f ake1 lmv p at ex t t
+f ake2 lmv gp at ex t t
+
+6
+
+when the age estimator  and encoder  are used on
+the transformed identity encodings and fake images their
+weights are not updated during backpropagation
+l1 reconstruction loss another important aspect is to
+preserve the identity of the individual we apply l1 pixelwise reconstruction loss on the synthesized face by setting
+the target age to its selfestimated age specifically it is
+formulated as below
+
+3
+
+in our experiments we do not observe significant performance difference wwo  iti 
+continuous aging as the aging bases from the fullyconnected layer encode every single age any integer target age is naturally supported while some previous groupbased approaches only model a few anchor age groups and
+achieving continuous aging via linear interpolation in the latent space our proposed method however explicitly models a finecontrolled age progression for each age and also
+supports float target age via a weighted sum of 2 neighboring integer age embedding bases
+
+lidt 
+
+n
+1 x
+gp at exi  mi   xi 1 
+n i
+
+7
+
+we have also experimented with a cycleconsistency loss
+as proposed in stargan 6 to enforce the identity criteria
+but found that the pixelwise l1 reconstruction loss is sufficient to achieve the goal without extensive efforts in tuning
+the hyperparameters
+adversarial loss to produce high fidelity images we
+apply gan loss in the unconditional adversarial training
+
+32 objective
+the design of the objectives ensures the synthesized face
+image reflects accurate age progressionregression preserves the identity and looks realistic
+4
+
+figure 2 comparisons on ffhq 15 among lifespan25 ours and ours 512x512 lifespan does not have an explicit age group at 1130
+and 4150 so images for these 2 groups are generated using linear interpolation between 2 neighboring anchor classes as shown our
+generated images provide more aging details such as skin wrinkles and color of the beard on different parts of the face in the example f
+in particular both of our models well preserve her personal traits a mole comparing to the lifespan model
+
+figure 3 comparisons on cacd2000 5 among caae49 ipcgan 44 s2 gan 10 and ours the input images are wrapped in red
+boxes
+
+figure 4 continuous aging from 21 to 65 the age gap is chosen as 4 due to the limited space as shown the linear interpolationbased
+method used by lifespan 25 some personal traits are altered such as mouth shape beard hats further our method generates more
+realistic aging effects with minimal artifacts continuous aging of 1year incremental change in supplementary
+
+5
+
+manner more specifically we adopt patchgan 14 discriminator and optimize on the hinge loss formulated as
+the following
+ladvd  ezpdata z max1  dz 0
+extpdata x max1  dgp at ex t 0
+8
+where we denote the data distribution as x  pdata x and
+z  pdata z
+
+in the experiment we observe that sampling real examples of the age equal or close to the target age ti for training
+the discriminator helps to stabilize the learning process
+all objectives are optimized jointly with different balancing coefficients as the following
+
+age lreal  lf ake   idt lidt  adv ladvg 
+
+ecp atg
+
+10
+minladvd 
+d
+
+41 qualitative evaluation
+face aging we present our test results on ffhq comparing with results from 25 images for 25 are generated using their provided code3  to illustrate the model performance across different ages we show 6 input examples
+from 4 representative age groups 30 3040 4050 50
+and generate the results for each group the target ages for
+our model are chosen as 25 35 45 and 55 respectively as
+can be seen in fig 2 the images generated by our model
+result in fewer artifacts and exhibit more clear aging details
+such as beard color change example ac and wrinkles on
+different parts of the face see example bcde a convincing detail in example f shows that the personal traits a
+mole are well preserved using our models
+we also directly generates images on cacd2000 using
+the models trained on ffhq in the resolution of 256x256
+to compare with caae49 ipcgan 44 and s2 gan
+10 in fig 3 the demonstrated images are the presented examples in 11 which is the stateoftheart work
+on cacd2000 for all age groups our model presents more
+evident and finegrained aging effects comparing with all
+previous works
+continuous aging in fig 4 we illustrate some examples of continuous aging results comparing with 25 we
+choose an age step of 4 to present due to the limited space
+a gradual and smooth natural aging process eg wrinkle depth change beard pigmentation on face can be observed from our images while retaining personal traits the
+interpolationbased method in lifespan however lacks the
+ability to generate images of wellaligned target ages and
+does not preserve certain personalized information
+aging details here we show that the generated images
+express a significant level of aging details on different parts
+of the face in fig 5 we demonstrate three enlarged face
+crops from the generated images which give a clear and
+detailed view of enhanced wrinkles skin smoothness color
+change of beard and eyebrow
+
+ladvg  extpdata x dgp at ex t 9
+
+min
+
+on the ffhq dataset for both 256x256 and 512x512 resolutions model architecture is modified based on cyclegan 50 please refer to the supplementary for the detailed model architecture and optimization settings mv1
+and mv2 are set to 005 and 0005 in eq 4 f ake1 and
+f ake2 are set to 04 and 1 in eq 6 in eq 10 age 
+idt  and adv are set to 005 1 and 1 respectively
+
+11
+
+4 experiments
+datasets we evaluated our model on ffhq 15 and
+cacd2000 5 ffhq includes 70000 images with
+1024x1024 resolution following the data preprocessing
+procedures as 25 we take images with id 068999 as the
+training set and 6900069999 for testing and filter out images with low confidence in differentiating the gender low
+confidence in estimating the age wearing dark glasses extreme pose and angle based on the facial attributes annotated by face1  as the annotation from 25 only includes the age group label we acquire the age label information from 48 to reconcile both age group labels
+and age labels we further filter out images in which the
+age label disagrees with the age group label this results
+in 12488 male and 13563 female images for training and
+279 male and 379 female images for testing cacd2000
+consists of 163446 images where age ranges from 14 to 62
+years old we randomly take 10 of data for evaluation
+we use face to separate the images into male and female
+and extract the facial landmarks using dlib2 
+implementation since aging patterns are different between males and females we train two separate models
+
+42 quantitative evaluation
+identity preservation to evaluate identity preservation
+we adopt the face verification rate metric specifically we
+followed the evaluation protocol of 10 on an age group
+basis for a fair comparison with prior works we calculate
+
+1 face facial attribute annotation api https    www 
+facepluspluscom
+2 dlib toolkit httpdlibnet
+
+3 lifespan official code https    github  com  royorel 
+lifespanagetransformationsynthesis
+
+6
+
+1029
+
+3039
+
+4049
+
+50
+
+caae 49
+s2 gan 10
+ipcgan 44
+
+296
+240
+274
+
+336
+360
+362
+
+379
+457
+447
+
+419
+553
+525
+
+ipcgan 44 face
+lifespan 25 face
+ours face
+
+424
+305
+
+471
+402
+387
+
+519
+469
+
+560
+643
+600
+
+table 3 comparison of the mean age of generated images in each
+age group evaluated using face on cacd2000 5
+
+lifespan 25
+ours
+
+1029
+
+3039
+
+4049
+
+50
+
+307
+
+384
+384
+
+477
+
+638
+621
+
+table 4 comparison of the mean age of generated images in each
+age group evaluated using face on ffhq 15
+
+based methods on cacd2000 we generate our images
+aligning with their age group settings in which we adaptively incrementdecrement by a factor of 10 age group
+size from input images real age as the target age for generation ie target age 33 is used for generating an image of
+age group 3040 given current age of 23 as we neither have
+the access to 10s evaluation age estimator nor their pretrained model for assessing our model and doing a direct
+comparison we instead use faces age estimation results
+on our model and one of accessible prior work ipcgan
+44 which is also evaluated in 10 to show relative comparison evaluation of ffhq follows the same procedure
+as cacd2000 the evaluation results are shown in table 3
+and 4 for cacd2000 and ffhq respectively as the results
+suggest our model evaluated using face has a more reasonable mean age at each age group than ipcgan 44 and
+lifespan 25 on cacd2000 and has a similar performance
+as lifespan on ffhq
+image fidelity considering the image fidelity we adopt
+the frchet inception distance fid 12 metric to evaluate our model similar to the image generation settings as
+before we calculated the fid on the generated images corresponding to the same age group as theirs on cacd2000
+for comparing with 25 on ffhq we calculate the fid on
+the generated images that share the same age group range
+the results are shown in the table 5 on both datasets
+our model achieves the lowest fid which quantitatively
+demonstrates superiority in the image quality aspect
+
+figure 5 aging details enlarged face crops to show details for
+beard wrinkle and skin smoothness input images are in red
+boxes
+
+the face verification rate between all combination of image
+pairs ie test 1029 test 3039 3039 4049 4049 5059 face verification score is obtained from face
+and the threshold is set as 765 far1e5 the complete results are presented in table 1 and 2 for cacd2000
+and ffhq respectively as the results suggest our model
+achieves the highest face verification rate for both datasets
+among all candidates which indicates it best meets the identity preservation requirement of the task
+average of all pairs
+caae 49
+ipcgan 44
+s2 gan 10
+lifespan 25
+ours
+
+6088
+9140
+9891
+9325
+9997
+
+table 1 evaluation of identity preservation in terms of face verification rates on cacd2000 5 pairwise results are presented in
+supplementary
+
+average of all pairs
+lifespan 25
+ours
+
+8711
+9998
+
+43 model interpretability and ablation study
+
+table 2 evaluation of identity preservation in terms of face verification rates on ffhq 15 pairwise results are presented in
+supplementary
+
+continuous aging to evaluate how well our model generates synthesized images in a continuous setting we use an
+age estimator to predict age on the generated fake images
+from 25 to 65 of our approach and the linear interpolation
+approach performed between anchor aging bases the an
+
+aging accuracy in terms of assessing aging accuracy
+we use an unbiased age estimator to infer the age of the
+generated images to be able to compare with prior group7
+
+figure 6 linear interpolation between transformed identity encodings real images are in red boxes from left to right we linearly
+interpolate between two images transformed identity encodings at the same target age 65 personal traits such as eye color and teeth
+shape smoothly change from one person to the other
+
+caae 49
+ipcgan 44
+s2 gan 10
+lifespan 25
+ours
+
+cacd2000
+
+ffhq
+
+442
+91
+84
+117
+67
+
+262
+185
+
+personalized aging features of the individual and shared aging effects among the entire population to better illustrate
+and understand the effectiveness of the design we train a
+model without adding the residual embedding ie directly
+applying the target ages exemplarface aging basis aijti 
+and compare with the proposed method
+in fig 8 we display a few examples with highlightedenlarged regions comparing results wwo residual
+embeddings noticeably more unnatural artifacts and a tendency to examplarface modification are observed in the images generated without residual embeddings
+
+table 5 fid evaluation lower is better
+
+figure 7 confusion matrices of continuous face aging left age
+estimation on the selfestimated aging embeddings proposed
+right age estimation on the linear interpolated aging embeddings
+the age step is chosen as 3 based on the mae of the estimator
+
+figure 8 enlarged ablation examples toprow target age 1130
+the nose shape and beard were not preserved in the wo residual
+example top artifacts in eyes are commonly seen in older age
+groups wo residual bottom
+
+chor basis is generated by taking the mean of every aging
+bases within an age group we calculate a confusion matrix
+in terms of aging accuracy for each approach using the age
+estimator jointly trained on the ffhq dataset fig 7 indicates that our generated fake images express a more evident
+continuous aging trend with much higher aging accuracy
+than the linear interpolation approach
+interpolation between two identities in latent space
+in fig 6 we further illustrate that our proposed model also
+learns a disentangled representation of age and identity in
+latent space we linearly interpolate between the two transformed identity encodings of the same age and different
+identities and then generate images for the interpolated encodings as shown in the figure the identity changes gradually while maintaining the respective age
+use of the residual embedding one of the key innovative design of our model architecture is the formulation of
+the personalized age embedding which incorporates both
+
+5 conclusions
+in this work we introduce a novel approach to the task
+of face aging with a specific focus on the continuous aging
+aspect we propose a unified framework to learn continuous aging bases via introducing an age estimation module
+to a ganbased generator the designed pat module further enhances the personalization of the exemplarface aging bases which results in more natural and realistic generated face images overall the experiments qualitatively
+and quantitatively show superior performance on the aging
+accuracy identity preservation and image fidelity on two
+datasets compared to prior works furthermore the proposed network structure can also be applied to other multiclass domain transfer tasks to avoid groupbased training
+and achieve a more accurate continuous modeling
+8
+
+references
+
+13 xun huang and serge belongie arbitrary style transfer in
+realtime with adaptive instance normalization in iccv
+2017 4
+14 phillip isola junyan zhu tinghui zhou and alexei a
+efros imagetoimage translation with conditional adversarial networks cvpr 2017 2 6
+15 tero karras samuli laine and timo aila a stylebased
+generator architecture for generative adversarial networks in
+proceedings of the ieee conference on computer vision and
+pattern recognition pages 44014410 2019 2 5 6 7 11
+14
+16 ira kemelmachershlizerman supasorn suwajanakorn and
+steven m seitz illuminationaware age progression in proceedings of the ieee conference on computer vision and pattern recognition pages 33343341 2014 1 2
+17 andreas lanitis christopher j taylor and timothy f
+cootes toward automatic simulation of aging effects on face
+images ieee transactions on pattern analysis and machine
+intelligence 244442455 2002 2
+18 peipei li yibo hu qi li ran he and zhenan sun global
+and local consistent age generative adversarial networks in
+2018 24th international conference on pattern recognition
+icpr pages 10731078 ieee 2018 2
+19 ming liu yukang ding min xia xiao liu errui ding
+wangmeng zuo and shilei wen stgan a unified selective transfer network for arbitrary image attribute editing in
+proceedings of the ieee conference on computer vision and
+pattern recognition pages 36733682 2019 2
+20 si liu yao sun defa zhu renda bao wei wang xiangbo
+shu and shuicheng yan face aging with contextual generative adversarial nets in proceedings of the 25th acm
+international conference on multimedia pages 8290 2017
+1 2
+21 yunfan liu qi li and zhenan sun attributeaware face
+aging with waveletbased generative adversarial networks
+in proceedings of the ieee conference on computer vision
+and pattern recognition pages 1187711886 2019 2
+22 mehdi mirza and simon osindero conditional generative
+adversarial nets arxiv preprint arxiv14111784 2014 3
+23 takeru miyato toshiki kataoka masanori koyama and
+yuichi yoshida spectral normalization for generative adversarial networks in international conference on learning
+representations 2018 11
+24 augustus odena christopher olah and jonathon shlens
+conditional image synthesis with auxiliary classifier gans in
+international conference on machine learning pages 2642
+2651 2017 3
+25 roy orel soumyadip sengupta ohad fried eli shechtman and ira kemelmachershlizerman lifespan age transformation synthesis in proceedings of the european conference on computer vision eccv 2020 1 2 5 6 7 8
+14
+26 hongyu pan hu han shiguang shan and xilin chen
+meanvariance loss for deep age estimation from a face in
+proceedings of the ieee conference on computer vision
+and pattern recognition pages 52855294 2018 3 4
+
+1 grigory antipov moez baccouche and jeanluc dugelay
+face aging with conditional generative adversarial networks
+in 2017 ieee international conference on image processing
+icip pages 20892093 ieee 2017 2
+2 yosuke bando takaaki kuratate and tomoyuki nishita a
+simple method for modeling wrinkles on human skin in
+pacific conference on computer graphics and applications
+pages 166175 citeseer 2002 2
+3 laurence boissieux gergo kiss nadia magnenat thalmann and prem kalra simulation of skin aging and wrinkles with cosmetics insight in computer animation and
+simulation 2000 pages 1527 springer 2000 1 2
+4 d michael burt and david i perrett perception of age
+in adult caucasian male faces computer graphic manipulation of shape and colour information proceedings of
+the royal society of london series b biological sciences
+2591355137143 1995 2
+5 borchun chen chusong chen and winston h hsu
+crossage reference coding for ageinvariant face recognition and retrieval in european conference on computer vision pages 768783 springer 2014 2 5 6 7 11 14
+6 yunjey choi minje choi munyoung kim jungwoo ha
+sunghun kim and jaegul choo stargan unified generative adversarial networks for multidomain imagetoimage
+translation in proceedings of the ieee conference on
+computer vision and pattern recognition pages 87898797
+2018 2 4
+7 yunjey choi youngjung uh jaejun yoo and jungwoo ha
+stargan v2 diverse image synthesis for multiple domains
+in proceedings of the ieeecvf conference on computer
+vision and pattern recognition pages 81888197 2020 3
+8 harm de vries florian strub jeremie mary hugo
+larochelle olivier pietquin and aaron c courville modulating early visual processing by language in i guyon
+u v luxburg s bengio h wallach r fergus s vishwanathan and r garnett editors advances in neural information processing systems 30 pages 65946604 curran
+associates inc 2017 4
+9 ian j goodfellow jean pougetabadie mehdi mirza bing
+xu david wardefarley sherjil ozair aaron courville and
+yoshua bengio generative adversarial networks advances
+in neural information processing systems 306 2014 1 2
+10 zhenliang he meina kan shiguang shan and xilin chen
+s2gan share aging factors across ages and share aging
+trends among individuals in proceedings of the ieee international conference on computer vision pages 94409449
+2019 1 2 3 5 6 7 8 14
+11 zhenliang he wangmeng zuo meina kan shiguang shan
+and xilin chen attgan facial attribute editing by only
+changing what you want ieee transactions on image processing 281154645478 2019 6
+12 martin heusel hubert ramsauer thomas unterthiner
+bernhard nessler and sepp hochreiter gans trained by a
+two timescale update rule converge to a local nash equilibrium in advances in neural information processing systems
+pages 66266637 2017 7
+
+9
+
+42 wei wang zhen cui yan yan jiashi feng shuicheng yan
+xiangbo shu and nicu sebe recurrent face aging in proceedings of the ieee conference on computer vision and
+pattern recognition pages 23782386 2016 2
+43 wei wang yan yan stefan winkler and nicu sebe category specific dictionary learning for attribute specific feature selection ieee transactions on image processing
+25314651478 2016 2
+44 zongwei wang xu tang weixin luo and shenghua gao
+face aging with identitypreserved conditional generative
+adversarial networks in proceedings of the ieee conference
+on computer vision and pattern recognition pages 7939
+7947 2018 1 2 3 5 6 7 8 14
+45 yin wu nadia magnenat thalmann and daniel thalmann
+a plasticviscoelastic model for wrinkles in facial animation and skin aging in fundamentals of computer graphics
+pages 201213 world scientific 1994 1 2
+46 hongyu yang di huang yunhong wang and anil k jain
+learning face age progression a pyramid architecture of
+gans in proceedings of the ieee conference on computer
+vision and pattern recognition pages 3139 2018 1 2
+47 hongyu yang di huang yunhong wang heng wang and
+yuanyan tang face aging effect simulation using hidden
+factor analysis joint sparse representation ieee transactions on image processing 25624932507 2016 2
+48 xu yao gilles puy alasdair newson yann gousseau and
+pierre hellier high resolution face age editing arxiv
+preprint arxiv200504410 2020 6
+49 zhifei zhang yang song and hairong qi age progressionregression by conditional adversarial autoencoder in
+proceedings of the ieee conference on computer vision and
+pattern recognition pages 58105818 2017 2 5 6 7 8 14
+50 junyan zhu taesung park phillip isola and alexei a
+efros unpaired imagetoimage translation using cycleconsistent adversarial networks in proceedings of the ieee
+international conference on computer vision pages 2223
+2232 2017 2 6
+
+27 taesung park mingyu liu tingchun wang and junyan
+zhu gaugan semantic image synthesis with spatially adaptive normalization in acm siggraph 2019 realtime
+live 2019 3
+28 narayanan ramanathan and rama chellappa modeling age
+progression in young faces in 2006 ieee computer society conference on computer vision and pattern recognition
+cvpr06 volume 1 pages 387394 ieee 2006 2
+29 narayanan ramanathan and rama chellappa modeling
+shape and textural variations in aging faces in 2008 8th
+ieee international conference on automatic face  gesture recognition pages 18 ieee 2008 2
+30 karl ricanek and tamirat tesafaye morph a longitudinal
+image database of normal adult ageprogression in 7th international conference on automatic face and gesture recognition fgr06 pages 341345 ieee 2006 3
+31 rasmus rothe radu timofte and luc van gool dex deep
+expectation of apparent age from a single image in proceedings of the ieee international conference on computer vision
+workshops pages 1015 2015 3
+32 duncan a rowland and david i perrett manipulating facial
+appearance through shape and color ieee computer graphics and applications 1557076 1995 2
+33 tim salimans and durk p kingma weight normalization a
+simple reparameterization to accelerate training of deep neural networks in advances in neural information processing
+systems pages 901909 2016 11
+34 yujun shen jinjin gu xiaoou tang and bolei zhou interpreting the latent space of gans for semantic face editing
+in proceedings of the ieeecvf conference on computer
+vision and pattern recognition pages 92439252 2020 2
+35 xiangbo shu jinhui tang hanjiang lai luoqi liu and
+shuicheng yan personalized age progression with aging dictionary in proceedings of the ieee international conference
+on computer vision pages 39703978 2015 2
+36 jinli suo xilin chen shiguang shan wen gao and qionghai dai a concatenational graph evolution aging model
+ieee transactions on pattern analysis and machine intelligence 341120832096 2012 2
+37 jinli suo feng min songchun zhu shiguang shan and
+xilin chen a multiresolution dynamic model for face aging simulation in 2007 ieee conference on computer vision and pattern recognition pages 18 ieee 2007 2
+38 jinli suo songchun zhu shiguang shan and xilin chen
+a compositional and dynamic model for face aging ieee
+transactions on pattern analysis and machine intelligence
+323385401 2009 2
+39 bernard tiddeman michael burt and david perrett prototyping and transforming facial textures for perception research ieee computer graphics and applications 21542
+50 2001 1 2
+40 james t todd leonard s mark robert e shaw and john b
+pittenger the perception of human growth scientific american 2422132145 1980 2
+41 dmitry ulyanov andrea vedaldi and victor lempitsky instance normalization the missing ingredient for fast stylization arxiv preprint arxiv160708022 2016 11
+
+10
+
+6 supplementary
+
+62 pairwise identity preservation results
+
+61 network architecture and optimization settings
+
+here we provide the complete pairwise identity preservation comparison using face in table 9 and 10 for
+cacd2000 5 and ffhq 15 respectively as can be
+seen our model achieves the highest verification rate in every aspects compared to prior works
+
+during training we use adam optimizer with the learning rate of 00002 and batch size of 20 and 5 for 256 and 512
+model respectively the model is trained for 200 epochs and
+learning rate is linearly decayed over last 100 epochs
+layer
+
+stride
+
+act
+
+norm
+
+output shape
+
+input
+
+
+
+
+
+
+
+256x256x3
+
+conv 7 x 7
+conv 3 x 3
+conv 3 x 3
+
+1
+2
+2
+
+relu
+relu
+relu
+
+spectral
+spectral
+spectral
+
+256x256x64
+128x128x128
+64x64x256
+
+res
+res
+res
+res
+res
+res
+
+1
+1
+1
+1
+1
+1
+
+relu
+relu
+relu
+relu
+relu
+relu
+
+spectral
+spectral
+spectral
+spectral
+spectral
+spectral
+
+64x64x256
+64x64x256
+64x64x256
+64x64x256
+64x64x256
+64x64x256
+
+block
+block
+block
+block
+block
+block
+
+63 more aging results
+continuous aging we generate the complete continuous aging results of a person from age 20 to age 69 and the
+results are displayed in fig 11 as shown aging proceeds
+in a natural and gradual manner
+enlarged comparison of group 50 in fig 9 we
+show the enlarged generated images of age group 50 our
+model is able to generate fine aging details aligned with the
+target age group
+
+64 limitations
+while our work can generate natural face aging we also
+observe some failure cases when generating outputs for input image with hats and glasses or faces with heavy makeups in fig 10 the model also does not work well for
+extreme target age like 95yearold where the corresponding exemplarface aging basis is hardly trained due to lack
+of data for those minority classes
+
+table 6 identity encoder e specification spectral means spectral
+normalization 23 is applied after each convolutional layer
+
+layer
+
+stride
+
+act
+
+norm
+
+output shape
+
+encoding
+
+
+
+
+
+
+
+64x64x256
+
+res block
+res block
+res block
+
+1
+1
+1
+
+relu
+relu
+relu
+
+instance
+instance
+instance
+
+64x64x256
+64x64x256
+64x64x256
+
+deconv 3 x 3
+deconv 3 x 3
+
+2
+2
+
+relu
+relu
+
+instance
+instance
+
+128x128x128
+256x256x64
+
+conv 7 x 7
+
+1
+
+tanh
+
+
+
+256x256x3
+
+table 7 generator g specification instance means instance normalization 41 is applied after each convolutional layer
+
+layer
+
+norm
+
+output shape
+
+encoding
+
+
+
+64x64x256
+
+gap
+flatten
+linear
+
+weight
+
+1x1x256
+256
+100
+
+table 8 age estimator c specification gap means global average pooling weight means weight normalization 33 is applied
+to linear layer bias term are set to zero
+
+detailed network architectures for e g and c are presented in table 6 7 and 8 respectively
+11
+
+figure 9 enlarged examples of generated age 50 our model demonstrate better details in aging effects such as wrinkles and beard
+change
+
+figure 10 failure cases heavy makeup with hat glasses with bad lighting our model could not best capture the personalized information
+such as skin texture in these cases
+
+12
+
+figure 11 complete continuous aging results from age 20 to 69 input is at the top left corner of each image grid generated image of real
+age is in the red box
+
+13
+
+caae 49
+ipcgan 44
+s2 gan 10
+lifespan 25
+ours
+
+average of all pairs
+
+hardest pair
+
+easiest pair
+
+6088
+9140
+9891
+9325
+9997
+
+test 50 20
+1029 50 6298
+1029 4049 9408
+test 5069 8094
+test 4049 9996
+
+4049 50 9997
+4049 50 9998
+4049 50 9996
+3039 5069 9975
+test 3039 10000
+
+table 9 complete evaluation of identity preservation in terms of face verification rates on cacd2000 5
+
+lifespan 25
+ours
+
+average of all pairs
+
+hardest pair
+
+easiest pair
+
+8711
+9998
+
+test 5069 7232
+test 60 9996
+
+3039 5069 9885
+test 3039 10000
+
+table 10 complete evaluation of identity preservation in terms of face verification rates on ffhq 15
+
+14
+

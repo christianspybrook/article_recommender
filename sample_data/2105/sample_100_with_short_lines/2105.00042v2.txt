@@ -1,0 +1,4785 @@
+draft version may 6 2021
+typeset using latex twocolumn style in aastex631
+
+revealing the physical conditions around sgr a using bayesian inference  i observations and
+radiative transfer
+tomas a james
+
+1 serena viti
+
+2 1 farhad yusefzadeh3 marc royster3 and mark wardle
+
+4
+
+1 department
+
+of physics and astronomy university college london gower street london wc1e 6bt uk
+observatory leiden university po box 9513 nl2300ra leiden the netherlands
+3 department of physics and astronomy and ciera northwestern university evanston il 60208 usa
+4 department of physics and astronomy and research centre for astronomy astrophysics and astrophotonics macquarie university
+sydney nsw 2109 australia
+
+arxiv210500042v2 astrophga 5 may 2021
+
+2 leiden
+
+abstract
+we report subarcsecond alma observations between 272  375 ghz towards sgr as circumnuclear
+disk cnd our data comprises 8 individual pointings with significant sio 8 7  7 6 and so 7  6
+emission detected towards 98 positions within these pointings additionally we identify h2 cs 9 19 
+8 18 ocs 25  24 and ch3 oh 2 11  2 02 towards a smaller subset of positions by using the
+observed peak line flux density together with a bayesian inference technique informed by radiative
+transfer models we systematically recover the physical gas conditions towards each of these positions
+we estimate that the bulk of the surveyed gas has temperature tkin  500 k and density nh 
+106 cm3  consistent with previous studies of similar positions as traced by hcn clumps however
+we identify an uncharacteristically hot tkin  600 k and dense nh  106 cm3  source in the
+northeastern arm this position is found to be approximately consistent with a gravitationally bound
+region dominated by turbulence we also identify a nearby cold tkin  60 k and extremely dense
+nh  107 cm3  position that is again potentially bound and dominated by turbulence we also
+determine that the total gas mass contained within the cnd is mcnd  4  104 m  furthermore
+we qualitatively note that the observed chemical enrichment across large scales within the cnd is
+consistent with bulk grain processing though multiple desorption mechanisms are plausibly responsible
+further chemical modelling is required to identify the physical origin of the grainprocessing as well
+as the localised h2 cs and ocs emission
+
+keywords astrochemistry galaxies ism ism clouds ism kinematics and dynamics methods observational methods statistical
+1 introduction
+
+the galactic center and within it the central molecular zone has long been identified as a uniquely extreme environment within the milky way owing to the
+41540014106 m supermassive black hole known
+as sgr a that resides there gillessen et al 2009
+abuter et al 2019 such an environment has important consequences for theories of galactic evolution and
+dynamics as the galactic center can be used as a highresolution laboratory for studying the nuclei of external
+galaxies however it also has a profound impact on thecorresponding author tomas a james
+tjamesstaruclacuk
+
+ories of both ism physics and chemistry under extreme
+conditions especially when considering dense molecular
+gas as precursors to star formation
+morphologically the inner few pc of the galactic center is chaotic and multifaceted centrally sgr a is situated within a trifecta of ionised gas streams known as the
+galactic center mini spiral or gcms lacy et al 1980
+ekers et al 1983 surrounding the gcms is an extensive torus or ring like structure of turbulent molecular
+gas known as the circumnuclear ring or circumnuclear
+disk herein referred to as the cnd eg christopher
+et al 2005 the diffuse region between sgr a and
+the cnd  known as the central cavity  is home to a
+collection of young and evolved stellar objects including
+ 100 ob stars eckart et al 2004 paumard et al 2006
+
+2
+
+james et al
+
+lu et al 2008 mauerhan et al 2010 that are thought
+to considerably increase the photoionisation rate within
+and around sgr a genzel et al 1996 paumard et al
+2006
+studies of the cnd are complicated by a degree of
+uncertainty surrounding its exact morphology and kinematics the extent of the cnd is easily identified in
+low jtransitions of molecules such as cs h2 co and
+sio martin et al 2012 tsuboi et al 2018 as well as
+dust continuum emission lau et al 2013 and high jtransitions of molecules like 12co goto et al 2013
+such observations identify the cnd as extending radially from 16 pc outwards to 57 pc from sgr a
+smith  mac low 2014 rotating at 110 km s1 between 25 pc ghez et al 2005 genzel et al 2010
+however the cnd is not continuous or indeed uniform as occasional regions devoid of emission known
+as gaps are observed in turn indicating that different molecules are mapping different regions of the cnd
+notable amongst these gaps is that seen in hcn 10
+towards the north of sgr a wright et al 2001 propose that this gap is caused by an infalling arm of the
+galactic center mini spiral pushing through the cnd
+as it falls towards sgr a proper producing oh maser
+emission yusefzadeh et al 1999 in the process it is
+therefore clear that the gas conditions within the cnd
+are highly nonuniform and position dependent
+in addition the interior of the cnd is highly irregular
+and inhomogeneous exhibiting clump like structures of
+size 014  043 pc distributed throughout when viewed
+in the nearir hcn 10 transition guesten et al 1987
+jackson et al 1993 christopher et al 2005 a number
+of theories regarding the physical conditions within these
+clumps exist and genzel et al 2010 extensively summarises the two prevailing theories as the transient and
+virial scenarios in summary the transient scenario
+suggests that the clumps are typically warm  100 k
+less dense  106 cm3  and tidally unstable with transient lifetimes  105 yrs conversely the virial scenario
+states that these clumps are cooler  100 k dense
+107  108 cm3  and tidally stable with lifetimes  107
+yrs crucially this stability affords these clumps the
+opportunity to begin insitu star formation the tidal
+instability and therefore shorter lifetime estimate in the
+transient scenario would not permit any gravitationally
+bound object formation
+within the detected clumps tsuboi et al 2018 estimate that some of the relatively low density regions have
+gas densities in the range 09  6  104 cm3  smith 
+wardle 2014 estimate denser hcn bright cores to have
+densities in the range 012106 cm3  smith  wardle
+2014 and independently mills et al 2013 find that
+
+the hcn clumps have conditions consistent with that
+outlined in the transient scenario crucially such studies have not explored kinetic gas temperatures  250 k
+and thus could fail to highlight hot and dense embedded
+sources however smith  wardle 2014 theorise that
+the cnd is subject to such large tidal shear that local
+star formation is unlikely to occur within the cnd in
+the absence of some triggering event this tidal shear
+condition could be overcome should selfgravity dominate according to  107 rpc3 cm3 yusefzadeh
+et al 2017 assuming that the bulk of the cnd is
+found between 15  2 pc from sgr a as traced by hcn
+christopher et al 2005 then exceeding the tidal shear
+condition would require gas density between  2  106
+cm3 at r  15 pc dropping to  2105 cm3 at r  2
+pc satisfying this criterion is essential for insitu star
+formation to occur within these clumps
+ctype shocks originating from clumpclump collisions
+have been proposed as an efficient heating mechanism
+within the cnd owing to the high observed temperatures of tkin  200 k bradford et al 2005 harada
+et al 2015 however star formation as a process also
+presents multiple opportunities to drive ctype shocks
+in to the surrounding gas in turn chemically enriching the surrounding ism in a similar manner to clumpclump collisions sio and so  as well as other sbearing species such as h2 s  are all known shock tracers martinpintado et al 1992 des forts et al 1993
+as a result of shockdriven evaporation of grain surface
+andor mantle subsequent reaction of the evaporated
+species in the gasphase for example si and s with o
+can produce molecules such as sio and so previous
+simulations martinpintado et al 1992 flower et al
+2003 holdship et al 2017 james et al 2020 have used
+these molecules to great effect when tracing star formation related shocks under standard interstellar conditions however as already demonstrated the cnd
+and its surroundings represent extreme departures from
+standard interstellar conditions for example the ob
+star population in the central cavity could increase the
+photoionisation rate substantially in addition to this
+the cosmicray ionisation rate within the central molecular zone is much larger than in other regions of the
+galaxy both yusefzadeh et al 2007 and goto et al
+2013 estimate this could extend to an upper limit of
+between 10  104  s1 assuming a standard galactic ionisation rate of   3  1017 s1 
+additionally the central molecular zone and its immediate surroundings are known to exhibit large scale
+distributions of molecules such as ch3 oh gottlieb
+et al 1979 as well as hcn hnc and hco emission jones et al 2011 detection of these molecules
+
+3
+
+i observations and radiative transfer
+specifically ch3 oh in abundance is again typical of regions that have undergone grain processing as noted
+by turner 1998 the gasphase formation routes and efficiencies of ch3 oh in particular cannot account for its
+measured abundance within the ism instead turner
+1998 found that ch3 oh forms readily via successive hydrogenation of co on the grain surface subsequent desorption  uv photodesorption being the dominant mechanism in translucent clouds  then releases
+ch3 oh in to the gasphase turner 1998 crucially
+these formation and desorption pathways are consistent
+with measured gasphase abundances of ch3 oh yusefzadeh et al 2013 also investigated this phenomenon
+by comparing chemical models to ch3 oh observations
+to constrain the mechanism responsible for its gasphase
+existence as molinari et al 2011 highlight the dust
+temperature tdust  40 k within the central molecular
+zone is too low for thermal desorption to be significant
+they therefore conclude that cosmicray desorption represents the dominant desorption mechanism of ch3 oh
+within the central molecular zone however on smaller
+scales applied to the cnd both latvakoski et al 1999
+and lau et al 2013 find that the dust temperature
+can vary positionally from 40 k  200 k in turn showing that thermal desorption could become significant in
+subregions of the cnd where the dust temperature exceeds  100 k consequently detections of molecules
+such as sio so and ch3 oh are direct tracers of underlying physical events such as shocks andor regions
+that have undergone grain processing
+broadly the detected emission intensity of these
+molecules is a function of the regions physical gas conditions which are in turn a function of the physical
+processes occurring within the gas one may derive
+estimates of the kinetic gas temperature tkin  hydrogen number density nh and molecular column densities
+nspec using radiative transfer codes such as radex
+van der tak et al 2007 in order to understand these
+processes in more detail crucially repeating this procedure for each position within and throughout a sample
+of beam pointings allows mapping of the gas conditions
+across those pointings permitting a larger scale understanding of the physics and chemistry driving an objects
+evolution
+within this paper we present 038  031 spectral
+observations of sgr as circumnuclear disk and apply the aforementioned radiative transfer methodology
+to this data we present these observations in section
+2 before discussing their implications in section 3 in
+section 4 we outline our statistical process coupled to
+radiative transfer that infers the physical gas conditions
+towards each position sections 5 and 6 presents the
+
+table 1 details of the observational pointings used to collect
+data for this study shown are the field id for each pointing
+alongside its central ra and dec and the associated sensitivity
+to assist future reference field ids are prepended to numerical
+positions where molecular emission is identified eg n1 n2 etc
+each pointing has size  2100 at 300 ghz spatial coverage for
+each pointing is shown in figure 1
+field
+id
+n
+g
+d
+h
+j
+k
+l
+m
+
+pointing center
+  j2000
+17h 45m 4060s 
+17h 45m 4380s 
+17h 45m 4175s 
+17h 45m 3949s 
+17h 45m 3800s 
+17h 45m 3830s 
+17h 45m 3995s 
+17h 45m 4132s 
+
+sensitivity
+mjy beam1 chan1 
+
+29 000 200000
+29 000 200000
+28 590 476900
+28 590 510200
+29 000 010000
+29 000 400000
+29 010 035000
+29 010 016300
+
+498
+524
+534
+502
+524
+535
+546
+539
+
+results of our modelling for each considered parameter
+before section 7 discusses the possible emission mechanisms responsible for the observed complexity as well as
+our mass estimates
+
+2 observations
+
+alma cycle 2 band 7 272  375 ghz observations
+project code 2013101242s that target various sio
+transitions towards the cnd are utilized for this investigation the data presented in figure 1 and table 1 was
+obtained on 2015 june 8 and consists of 8 pointings with
+the 12m array each pointing has a total field of view of
+1960800 and a synthesized beam of 03800  03100 with
+pa 72 corresponding to an on sky spatial scale of
+approximately 00140012 pc we thus assume a beam
+filling factor of unity the total integration time for each
+source is 151 s with the relevant baseline tuned at the
+rest frequency of sio 7  6 303926809 ghz along
+with a total bandwidth of 9375 mhz corresponding to
+ 900 km s1  the raw data product has a velocity
+resolution of  05 km s1 3840 channels
+the data was calibrated with the assistance of standard observatory scripts using casa 470 mcmullin
+et al 2007 casa was also used to image the data
+with a 00500 pixel size and 2 km s1 203 hz channel
+width a briggs robustness parameter of 05 was utilized the result achieved a sensitivity of 5 mjy as
+shown in table 1 integrated and peak intensity maps
+were used to visually identify molecular line emission in
+
+4
+
+james et al
+
+28590
+
+d
+
+h
+
+29000
+declination j2000
+
+j
+
+n
+
+g
+
+k
+
+010
+
+m
+
+l
+
+020
+
+17h45m44s
+
+2
+
+42s
+40s
+38s
+right ascension j2000
+0
+
+2
+
+4
+
+6
+
+36s
+
+8
+
+flux density jybeam kms
+
+figure 1 the 8 alma pointings of size 2100 at 300 ghz that comprise our data overplotted on an hcn emission map of sgr
+a and its surrounding circumnuclear disk cnd details of the individual pointings can be found in table 1 we follow the
+naming convention in christopher et al 2005 as well as figure 2 of monterocastao et al 2009 for referring to regions
+within and around the cnd eg pointing g targets the northeastern arm whilst pointings m and l target the southern
+extension note the g pointing is distinct and separate from the dust enshrouded sources of g1 and g2 in ciurlo et al 2020
+
+i observations and radiative transfer
+the data cubes and these identified lines are listed in
+table 3 within appendix b
+21 cnd spectra
+spatial representations of the 8 pointings that comprise our observations are shown in figure 1 the spectra for each of the 99 positions is shown in appendix
+a whilst the spectra derived quantities are shown in
+table 3 of appendix b the circular regions shown in
+figure 1 represent the approximate field of view of each
+pointing corresponding to 2100 at 300 ghz within this
+we follow the naming convention adopted in christopher
+et al 2005 as well as monterocastao et al 2009 for
+surveying regions of the cnd as such the g pointing
+surveys the northeastern arm of sgr a whilst all other
+pointings survey the interior of the cnd we note that
+the gpointing and its sources within are distinct and
+separate from the dust enshrouded sources g1 and g2
+highlighted by ciurlo et al 2020 within these pointings each position contains at least either an sio 7 
+6 or so 8 7  7 6 line only 2 observations  n3 irs7
+ contain only sio 7  6 and so 8 7  7 6 respectively
+96 observations within the data contain both sio 7 
+6 and so 8 7  7 6 transitions the exception is the
+m4 source in which we do not detect sio 7  6 but
+do detect both so 8 7  7 6 and ch3 oh 2 11  1 02
+transitions
+whilst sio and so are the most commonly detected
+molecules ch3 oh forms the third most commonly detected species being present towards 16 different positions ch3 oh 2 11  1 02 is not detected in any
+l pointing in fact it is most commonly observed
+within the n pointing additionally our detections of
+h2 cs 9 19  8 18 are only found within a small grouping of observations within the g pointing furthermore
+we find ocs 25  24 to have even further localisation
+being present in only two sources g2 and k13a curiously g2 and k13a are located in two opposite distinct
+regions within the cnd and do not appear to be causally
+or spatially related to one another
+3 qualitative gas characteristics
+
+given the commonality of sio and so emission the
+ratio isio iso is a useful diagnostic of the most intense
+emission regions figure 2 shows this ratio as a function of each positions location and extent each aperture within this plot represents the onsky location of
+a detection described in section 2 with the size of the
+aperture being approximately equivalent to the total extent in beams as given in appendix b the colour scale
+employed to fill these apertures is representative of the
+isio iso ratio as indicated by the vertical colour bar
+
+5
+
+the underlying image represents hcn emission of the
+cnd its flux density is defined according to the horizontal colour bar
+within panel 1 the observations g1 g2 g3a and
+g3b sit along a filament of hcn emission whilst g4
+and g5 are situated outside of this structure as noted
+previously we highlight that these positions and separate and distinct from the g1 and g2 sources identified
+in ciurlo et al 2020 however the presence of the filament appears to have negligible effect on the isio iso
+ratio as all sources  1 g1 is found to have a low
+isio iso ratio of  08 whilst g2 is observed to be
+slightly lower at  075 the ratio at g3a is consistent
+with g1 whilst g3b is found to be slightly lower again
+at  07 however g4 has a ratio approximately consistent with g2 whilst g5 has ratio consistent with that
+of g1 nevertheless the isio iso ratio implies that the
+gas in this region has marginally greater so emission
+than sio in turn indicating a higher density of so than
+sio within this region
+when considering panel 2 it is immediately evident
+that there is again very little variation in the isio iso
+ratio across the area covered with the exception of
+k15a and k17 every other observation in this inset plot
+shows isio iso  1 interestingly k12 k13a and k13b
+sit along a ridge that demarcates a bright hcn emission
+cloud from its surrounding background it is this region
+that is subject to close interaction between the galactic
+center mini spiral and the molecular gas within the
+cnd from the isio iso ratio it would appear that this
+ridge shows stronger so emission than sio emission
+panel 3 much like panel 2 shows very little variation
+in ratio the only exception to this uniformity is the
+multicomponent gas at l19 and l30 l19s surrounding
+gas shows only single component behaviour making the
+multicomponent nature of l19 puzzling unfortunately
+l30 does not have any nearby observation to compare
+with though it is worth noting than the isio iso ratio
+for the second component here is the largest ratio seen
+in the data at  12 this stands in stark contrast to
+the rest of the observations in panel 3 whose ratios are
+significantly lower and much more uniform at  1
+moreover in addition to l19 and l30 we find 2 further
+sources in our observations  d3 and k8b  that exhibit
+multicomponent behaviour curiously each of these
+sources contains only sio and so lines
+broadly figure 2 seemingly indicates that the energetics of the cnd do not vary significantly throughout
+its extent or from region to region however isio iso
+is inherently degenerate as the ratio when iso  1 can
+also be the same as when isio  1 we therefore utilise
+
+6
+
+james et al
+
+panel 1
+
+panel 2
+
+g5
+
+k20
+
+k21b
+k21a
+
+k22
+
+k23
+k24
+
+g2
+
+k1
+
+k19
+k18
+2859
+g4
+
+g3a
+g3b
+g1
+
+30
+
+k2
+k3
+k4 k5bk5a
+k5c k6ak6b
+k7a
+k9
+k7b
+k10
+k15a
+k14
+k11 k15b k8a
+k12
+k8bc2
+k8bc1
+k13a
+k13b k16
+k17
+
+25
+
+2900
+
+panel 3
+l28
+
+l30c2
+l30c1
+
+isioiso
+
+declination j2000
+
+20
+
+15
+01
+
+l27
+l26
+l25l21
+l24l22
+l23l20
+l19c2
+l19c1
+l17
+l18
+l16
+l15l14
+l29
+l13
+
+10
+l1
+l3l2
+
+l5
+l6
+l9 l7 l8
+l10a
+l10b
+l12
+
+02
+05
+
+42s
+
+17h45m44s
+2
+
+40s
+
+38s
+
+36s
+
+right ascension j2000
+0
+
+2
+
+4
+
+flux density jybeam kms
+
+6
+
+8
+
+figure 2 the ratio of observed sio to so flux densities isio iso for each position within the 8 pointings where sio and
+so are conclusively identified each circle represents the extent of each position in approximate synthesised beam sizes and
+its colour denotes the ratio isio iso towards that region as per the vertical colour bar inset plots are labelled as panel 1  3
+and show groupings of observations and their observational designations key here is the uniformity in isio iso throughout the
+dataset most positions show isio iso  15
+
+i observations and radiative transfer
+a quantitative approach to deriving the gas conditions
+within each observation
+4 gas condition inference procedure
+
+both the physics and chemistry of interstellar gas are
+entangled and thus form a system that is extremely
+nonlinear and nontrivial to model we simplify this
+modelling challenge by approaching the problem with
+nonlte radiative transfer in radex van der tak
+et al 2007 coupled to a bayesian inference procedure
+within this scheme we may inform the radiative transfer
+with a set of independent random variables that define
+the physical gas conditions monte carlo methods can
+then be used to explore the physical condition parameter space in turn converging on the most likely gas
+conditions for each region additionally this approach
+minimises the number of variables required to model the
+cnd gas in turn allowing us to determine the physical
+gas conditions with a minimal number of assumptions
+a key assumption for applying radex is however that
+the transitions under consideration are optically thin as
+is likely the case
+41 radiative transfer
+using this approach we utilise the radiative transfer
+code radex van der tak et al 2007 to compute
+the emitted line flux density of the relevant transition
+for a parcel of gas with physical conditions described
+by the set of parameters s  tkin  nh  nspec  tkin
+is the gas temperature nh is the molecular hydrogen
+gas number density and nspec is the column density
+of the relevant species under consideration owing to
+the strong uv heating supplied by the ob star population as well as the high temperatures inf erred in
+the cnd from previous observations we explore temperatures up to 1000 k we used radex owing to
+its nonlte molecular excitation capabilities as well
+as its widespread use in studies that model interstellar spectra eg beuther et al 2008 lique et al 2009
+van dishoeck et al 2021 including towards the galactic center eg wirstrm et al 2010 amobaladrn
+et al 2011 armijosabendao et al 2020 we intend
+to apply more detailed chemical modelling to these regions in future in order to further understand their phenomenology all species within this study utilise temperature dependent collisional data from the lamda
+database schier et al 2010 for temperatures outside of the calculated temperature range that lamda
+reports radex fixes the collisional rate constant to the
+rate constant at the nearest temperature for sio the
+collisional data has been calculated up to and including collisional temperatures of 1000 k inspecting the
+
+7
+
+rate constants for sio 8 7  7 6 reveals relatively uniform within a factor of 2 behaviour across the apriori
+temperature range considering a similar process for
+so 7  6 we note that the collisional rates have been
+determined up to 300 k much like sio the collisional
+data for so is similarly constant within the calculated
+temperature range we therefore assume that given
+the similar chemical compositions and masses of sio
+and so the same uniformity in collisional rates is evident beyond 300 k we note similar behaviour within
+the collisional data for the other molecular transitions
+detected in our data and we therefore apply the same
+assumption to all molecules and transitions detected in
+our observations
+additionally each observation presented in section 2
+has been normalised to units of mjybeam and thus assumes that each observation fills the beam this renders
+radex computed flux densities as radex assumes a
+beam filling factor of 1 directly comparable to the observational flux densities presented the assumption of
+a beam filling factor of unity is further justified as the
+linear scale of our observations is sufficient to guarantee that the only emission within the beam is from the
+targeted gas each source is also fully resolved in turn
+ensuring they fill each beam
+repeating this procedure for each species and each
+transition in a given observation allows us to construct a
+model  that represents the synthetic flux density emitted from a region of gas at temperature tkin and gas
+density nh comprising species column densities nspec 
+constructing the model in this manner assumes that
+all emission lines contained within it originate from the
+same thermal component as section 2 showed our
+observations are consistent with a single component
+where not it is clear and distinct that 2 components are
+present either through distinctly different linewidths or
+bimodal line profiles and they are thus treated as essentially two separate sources in turn being analysed
+with 2 distinct models
+however given the complexity of the underlying
+physics and chemistry and indeed their associated degeneracy it is useful to statistically survey the entire parameter space across each dimension in order to better
+understand and identify the probable conditions within
+each observation an ideal process with which to do this
+utilises bayesian inference
+
+42 bayesian inference
+bayesian inference is a method of using conditional
+probability to build statistical parameter distributions
+
+8
+
+james et al
+
+for multidimensional data unsurprisingly it utilises
+bayes theorem defined in equation 1
+p d 
+
+p dp 
+p d
+
+1
+
+p d is defined as the probability of the model 
+fitting the data d given that the data is correct known
+as the posterior probability p d is the probability
+of having obtained the data d given a particular model
+ known as the likelihood p  is defined as the
+probability of the model  being correct the prior
+and p d is the probability that the data is correct the
+evidence we define the data as being the observed
+flux densities whilst the model is the equivalent line flux
+density determined from radex as defined in section
+41
+we assume flat priors in log space such that within
+each dimension any value is equally as likely as any
+other providing that such a value falls within the nonzero prior range the nonzero ranges used for these
+priors and in turn the extent of parameter spaces explored are shown in table 2
+table 2 the preconstrained parameter spaces surveyed in this
+preliminary study for each explored dimension tkin represents
+the gas kinetic temperature nh
+is the hydrogen gas number density and nspec is the species column density corresponding to the
+species spec
+parameter
+tkin
+nh
+nsio
+nso
+nch3 oh
+nh2 cs
+nocs
+
+range
+
+unit
+
+601000
+103 107
+1012 1016
+1012 1016
+1014 1017
+1012 1015
+1012 1015
+
+k
+cm3
+cm2
+cm2
+cm2
+cm2
+cm2
+
+we constrain the upper and lower limits of column
+density for each molecule to explore by estimating the
+lte derived column density for the upper and lower
+limits of temperature shown in table 2 this makes
+use of molecular data provided by splatalogue remijan
+et al 2007
+
+we compute the likelihood using the likelihood function defined in equation 2
+
+1 x di  i 2
+2
+p d  exp 
+2 i
+i2
+where the summation term represents the chisquared statistic within equation 2 di is the ith value
+of the data i is the ith value of the model corresponding
+to di and i is the error associated with di 
+by implementing this bayesian procedure we sample
+from the underlying posterior distribution using randomly sampled variables that define the gas condition
+these variables thus form the set s to perform this
+sampling we use the affineinvariant mcmc sampler
+emcee foremanmackey et al 2013 emcee uses a numbers of walkers to systematically sample the parameter space across a number of steps in turn constructing a series of markov chains all walkers therefore
+define a representation of the underlying posterior distribution allowing us to identify statistically informed
+estimates of the most likely gas condition towards each
+observation we use an ensemble of 500 walkers and
+we run each walker for a maximum of 1  104 steps
+every 100 steps we assess convergence in each dimension using the gelmanrubin statistic gelman  rubin 1991 we halt our sampling if convergence is judged
+to have been achieved across all dimensions we follow
+brooks  gelman 1998 in judging successful convergence when the gelmanrubin diagnostic for each dimension  12 for additional confidence we select a
+cutoff of 115 for achieving sample convergence in addition and where relevant we also visualise our chains
+using chainconsumer hinton 2016
+this approach has a number of distinct advantages
+when deriving physical gas conditions firstly the number of variables required to define the gas is limited
+to those required by radex resulting in a relatively
+low number of dimensions overall additionally within
+this scheme each dimension is entirely free and is not
+causally related to any other as such we derive the
+gas conditions with almost no apriori knowledge of the
+local chemistry the affineinvariant nature of the emcee
+sampler thus allows convergence to be achieved independently of the underlying physics andor chemistry beyond radiative transfer thus reducing uncertainty and
+bias
+5 inference results corner plots for
+
+individual sources
+figure 3 shows an example of the corner plot for the
+g2 source g2 contains the largest number of lines in
+our sample that our detected towards one region
+
+i observations and radiative transfer
+
+9
+
+figure 3 an example corner plot for the g2 source that shows the sampled distributions for each parameter known as
+dimensions in the model each dimension is shown on the x axis the distributions on the diagonal represents the posterior
+distributions for the relevant dimension eg the posterior on the top left is the t posterior all other plots in the matrix show
+the joint distributions of parameters as per their x and y axes that contribute to the associated posterior tight constraints
+are observed in the joint distributions within all dimensions except t which exhibits broad behaviour along its domain and
+highlights the broad errors associated with this dimension
+
+10
+
+james et al
+
+within this matrix the marginalised posterior distributions for each parameter are found on the diagonal
+the peak of each of these distributions represents the
+point of highest posterior density hpd and it this
+value that is taken to be the most likely model given the
+data the plots found within the remaining cells represent the joint distributions for the parameters defined by
+their relevant x and y axes any pair of parameters that
+are bounded by a dark blue region is within 2 of the
+hpd whilst everything bounded within the light blue
+region is within 3 of the hpd
+considering the marginalised posterior distributions
+we see that each dimension peaks to a maximum though
+not without a degree of skewness in the case of t inspecting the joint distributions of all dimensions except
+t shows roughly symmetrical tight groupings that in
+general extend to 05 orders of magnitude this produces posteriors that peak strongly though both sio
+and ocs peak towards the lower boundary of the distributions in this case
+whilst estimates of t are broad its hpd is reliably
+constrained in the case of g2 however the skewness in
+this distribution does serve to highlight the assymetrical
+errors that we find are often associated with this dimension in this instance the possible values t  350 k
+become exponentially less likely at t  350 k we observe a small plateau of equal likelihood until t  600 k
+whereby an approximately linear decrease in likelihood
+until t  1000 k is encountered
+unfortunately the large errors and associated systematic uncertainties in temperature are a consequence of
+the limited number of spectral lines detected and used in
+this analysis in the majority of cases within this study
+we require fitting for at least 4 different dimensions using just 2 spectral lines an example corner plot for this
+scheme is shown in figure 4 which exhibits only sio
+and so lines as a result figure 4 shows broader constraints in all dimensions and less symmetry in the posterior distributions therein though t does peak despite
+3 errors spanning the entire parameter space subsequent inspection of the temperature column of table 4 shows wide asymmetrical errors on almost every constrained temperature serving to highlight the
+challenge in drawing a discrete conclusion from a continuous asymmetrical and weakly peaked distribution
+the errors on each parameter become both smaller and
+more symmetrical in nature when afforded more line
+detections though the effect on constraining t is slight
+additionally the broad temperature distributions may
+be reflective of the weak temperature dependence that is
+observed in the lamda collisional data for the detected
+molecular transitions further constraints could be ap
+
+plied if additional observations of molecular transitions
+that exhibit strong temperature dependent behaviour
+are incorporated
+6 inference results gas conditions in
+
+the cnd
+the derived hpd of the physical parameters for each
+position are shown in figures 5  8 these plots are
+similar to that in figure 2 however the colour scale
+employed to fill the apertures here is indicative of the
+hpd of the relevant dimension under consideration as
+computed from our inference routine for instance figure 5 shows the hpd of gas temperature tkin towards
+each observation similarly figures 6 7 and 8 show
+the hpds of nh  nsio and nso respectively semitransparent hatched apertures represent sources that
+have not achieved reliable convergence within the maximum number of steps available we define nonreliable
+convergence as any source that has converged to an hpd
+but without an associated 1 error range table 4 within
+appendix c shows the hpd for each source and each
+dimension therein together with their associated error
+ranges thus considering each image allows the dataset
+wide distribution of physical conditions to be investigated and quantified
+61 temperature
+the distribution of hpd temperatures thpd across
+the entirety of figure 5 shows minor correlation on a local level as expected sources in close proximity to one
+another have broadly similar temperatures in general
+this behaviour manifests as 50 k between neighbouring
+sources an example of this is found in panel 1 which
+shows that g3a and g3b are almost identical in temperature of  100 k both g3a and g3b as well as g1
+and g2 are found within a long filamentary structure of
+hcn emission that extends along the left vertical edge
+of panel 1 this structure can be regarded as sitting
+outside of the main cnd structure and represents the
+50 km s1 molecular cloud identified in previous studies however both g1 and g2 are warmer than g3a
+and g3b with tg1  350 k and tg2  600 k additionally panel 1 also shows g5 which is external to the
+hcn filament g5 is similar in temperature to g3a and
+g3b with tg5  100 k there is also an unconstrained
+source on the boundary of the filament that is of similar
+temperature to g3a g3b and g5 though this sources
+temperature estimate is likely unreliable nevertheless
+it would appear that the g3a and g3b observations capture the same gas component whilst g1 and g2 capture
+colder and warmer extremes of the filament respectively
+when considering panel 2 we see that the main
+grouping of observations in the centre of the panel are
+
+i observations and radiative transfer
+
+11
+
+figure 4 corner plot for the k1 source as per figure 3 this shows much broader spread in all dimensions owing to the
+limited number of data points available
+
+consistent with temperatures 400  thpd  700 k
+though there is a significant number of positions that
+have not achieved reliable temperature convergence
+additionally 5 of the converged positions are identified
+as having thpd  500 k interestingly this is consistent with the bulk of the gas being close to the upper
+limit of the cnd clump temperature as identified by
+requenatorres et al 2012 there are however 2
+constrained hot sources within panel 2 that exceed
+this limit k15b and k24 of these k24 is the hottest
+at tk24  800 k whilst k15b is moderately cooler at
+tk15b  700 k k24 is isolated and much further north
+than k15b and does not appear to correlate with the
+underlying hcn emission conversely k15b sits embedded within the cnd and is much closer to cooler
+sources this therefore indicates that in general the gas
+temperature is increasing towards the south of panel
+2 and in turn to the south of the cnd this is also
+consistent with the underlying hcn emission becoming
+brighter towards the south of panel 2
+panel 3 shows a similar trend to that observed in
+the main grouping of panel 2 in that almost every
+
+source in panel 3 has temperature within the range
+350  thpd  550 k in this instance there are only 2
+sources  l15 and l25  that deviate significantly from
+ 550 k l25 sits at the furthest extremity of the observation grouping whilst l15 sits centrally within that
+grouping however we observe that thpd increases
+from l15 along and down the line of observations towards l6 with l3 and l6 being of comparable temperature the 2 sources either side of l6  l10a and l1
+ are again of comparable temperatures to l3 and l6
+continuing along and up from l15 towards l20 shows
+that the tight grouping of observations in l20 l21 and
+l24 are all of similar temperature again thpd  550 k
+however l25s temperature of thpd  350 k stands in
+contrast to its warmer surroundings
+additionally l19 is the observation that showed the
+largest isio iso ratio in panel 3 as well as globally across
+all observations panel 3 shows that its temperature
+is unconstrained though if we consider the estimate in
+relation to its surroundings then we see no significant
+deviation from the average thpd of its surrounding observations
+
+12
+
+james et al
+
+panel 1
+
+panel 2
+
+g5
+
+k21b
+k24
+
+g2
+
+k1
+
+900
+
+k2
+k6a
+
+k4
+
+2859
+g3a
+g3b
+g1
+
+k14 k15a
+k15b
+
+800
+
+k8a
+
+700
+2900
+
+panel 3
+l28
+
+l30c2
+l30c1
+
+thpd k
+
+declination j2000
+
+600
+
+500
+
+01
+
+l27
+l26
+l25l21
+l24 l20
+l19c1
+l17
+l16
+l15l14
+l13
+
+400
+
+300
+l1
+
+200
+
+02
+
+l3
+l6
+
+100
+
+l10a
+42s
+
+17h45m44s
+2
+
+40s
+
+38s
+
+36s
+
+right ascension j2000
+0
+
+2
+
+4
+
+flux density jybeam kms
+
+6
+
+8
+
+figure 5 the points of highest posterior density hpd of the kinetic gas temperature thpd towards each position outlined in
+section 2 semitransparent hatched circular regions indicate a position whose chain has not reliably converged g2 in panel
+1 is noticeably warmer than its surroundings which are much lower in their recovered temperatures panels 2 and 3 show more
+agreement between neighbouring positions
+
+i observations and radiative transfer
+62 gas density
+when considering the distribution of hpd densities
+nhpd in figure 6 we see a similar local trend to that
+observed in temperature in figure 5 such that neighbouring sources are within 02 orders of magnitude of
+one another additionally we also observe far fewer unconstrained sources than were noted in figure 5 however more uniformity is seen in the determined values
+of nhpd throughout the cnd as a whole with less than
+2 orders of magnitude variation throughout
+panel 1 shows that in general colder sources are
+found to be at higher density for example g5 was
+identified as being  100 k and is in turn here noted
+to have density ng5  107 cm3  the most dense of any
+position in our sample whilst g1 and g2 were noted for
+their different temperatures g1 becoming cooler than
+g2 panel 1 shows that they are broadly similar in density within their associated error ranges furthermore
+the same density behaviour is seen in g3a g3b and g4
+which were all identified as having similar temperatures
+when considering panel 2 almost every source sits
+within the range 1056  nhpd  1062 cm3  even
+those outside of the main grouping identified in panel
+2 of figure 5 the main grouping is found within an
+hcn bright region that defines the southern extent of
+the cnd we note that the density range derived here
+is consistent with the density of hcn bright cores estimated by smith  wardle 2014 additionally the hot
+sources identified in k15b and k24 sit within this range
+and have densities nk15b  1062 cm3 and nk24  1058
+cm3 respectively k13a is identified as having a density
+towards the upper limit ie nhpd  1062 cm3  though
+its surroundings are of lesser density when considered
+in conjunction with k9 and k10 it would appear that
+this region is tracing the dense innermost ridge of the
+cnd
+outside of this grouping we identify that k18 exhibits
+a large density of nhpd  1064 cm3  this is not consistent with the underlying hcn emission and is not reflected in the density of its nearest neighbour k19 whose
+density is nhpd  1058 cm3  k18 is therefore regarding as an anomalous position
+within panel 3 we observe that the l16 source acts as
+a dividing boundary such that everything north of l16
+ and thus the northernmost cluster of observations all exist at almost exactly the same density of nhpd 
+1060 cm3  south of l16 we note that the sources show
+slightly more variety with l3 being more dense than
+the average of nhpd  1058 cm3 and l16 being less
+dense at nhpd  1055 cm3  l12 is a unique outlier
+in that its density is significantly larger than any other
+source in panel 3 at nhpd  1064 cm3  within figure
+
+13
+
+5 l12 does not have a reliable temperature estimate
+however if we consider the temperature identified we
+observe that it is  800 k thus potentially forming
+another nonquiescent region
+additionally observations that sit within hcn regions or filaments are found to broadly exhibit higher
+densities than those observations outside of these locations given that hcn emission traces dense gas this
+is unsurprising though it does lend additional weight
+to the hot dense sources being embedded nonquiescent
+regions such as a yso
+63 column density
+much like figure 6 the sio column density in figure 7
+shows little variance across the dataset figure 7 shows
+just over an order of magnitudes variation the effects
+of temperature and density also appear to be negligible
+in this case as the regional and local variation seen in
+figures 5 and 6 are not observed or indeed reflected
+here for example panel 1 in figure 7 shows almost
+uniform nsio in the range 10134  nsio  10138 cm2
+despite the temperature and density varying widely a
+noticeable feature of panel 1 is the additional uniformity
+in nsio for sources within the hcn filament sources
+outside of this filament eg g5 are found to exhibit a
+different larger column density
+notable features within panel 2 show that a tentative trend indicating the brighter the underlying hcn
+emission then the larger the sio column density for example the upper half of the panel where hcn emission
+is less intense showing marginally lower column densities than the lower half where hcn emission is more
+intense curiously k5a k5b and k5c are observed to
+have lower column density of nsio  10133 cm2 than
+their surrounding observations this could indicate that
+the surrounding gas acts to shield the k5 sources and
+thereby inhibit the emission of sio this is further confirmed when noting that the gas density of k5a k5b and
+k5c are consistent with their surroundings the lower
+half of panel 2 is much more uniform of nsio  10136
+cm2 with the exception of k8a which has column density nsio  10140 cm2  the inner cnd ridge k9 to
+k13b all show uniform and consistent column density
+of nsio  10136 cm2 with this agreement extending
+behind the ridge until k8a uniquely the previously
+identified ridge indicated by k12 k13a and k13b shows
+no distinct sio behaviour relative to its surroundings
+thus indicating that any interaction between the galactic centre mini spiral and the cnd towards this region
+is not having an effect on the sio chemistry
+panel 3 is not dissimilar in broad trend to panel 2 in
+that it shows the same agreement trends the larger
+
+14
+
+james et al
+
+panel 1
+
+panel 2
+
+g5
+
+k20
+
+k23
+k24
+
+g2
+
+k1
+
+k19
+k18
+
+k3
+k6b
+k4 k5bk5a
+k5c k6ak6b
+k5c
+
+2859
+g3a
+g3b
+g1
+
+k21b
+k21a
+
+g4
+
+k7a
+k9
+k10 k15a k7b
+k11 k15b k8a
+k8bc2
+k8bc1
+k13a
+k16
+
+68
+
+66
+
+2900
+
+panel 3
+l28
+
+l30c1
+
+nhpd cm 3
+
+declination j2000
+
+64
+
+62
+01
+
+l27
+l26
+l25l21
+l24l22
+l23l20
+l19c2
+l19c1
+l17
+l18
+l16
+l15l14
+l29
+l13
+
+60
+
+58
+l1
+l3l2
+
+l6
+l9 l7 l8
+l10a
+l10b
+l12
+
+02
+56
+
+42s
+
+17h45m44s
+2
+
+40s
+
+38s
+
+36s
+
+right ascension j2000
+0
+
+2
+
+4
+
+flux density jybeam kms
+
+6
+
+8
+
+figure 6 as per figure 5 but here the colour of the circular regions represents hydrogen gas density nh towards each position
+outlined in section 2 again semitransparent hatched circular regions indicate a source whose chain has not reliably converged
+
+15
+
+i observations and radiative transfer
+
+panel 1
+
+panel 2
+
+g5
+
+k20
+
+k22
+
+k23
+k24
+
+g2
+
+k1
+
+k19
+k18
+
+142
+
+k2
+k3
+k6b
+k4 k5bk5a
+k5c k6ak6b
+k5c
+k7a
+k9
+k7b
+k10
+k15a
+k14
+k8a
+k11
+k12 k15b k8bc1
+k8bc2
+k13a
+k13b k16
+k17
+
+2859
+g3a
+g3b
+g1
+
+k21b
+k21a
+
+g4
+
+140
+
+138
+
+panel 3
+l28
+
+l30c2
+l30c1
+
+nsio hpd cm 2
+
+declination j2000
+
+2900
+
+136
+
+134
+
+01
+
+l27
+l26
+l25l21
+l24l22
+l23l20
+l19c2
+l19c1
+l17
+l18
+l16
+l15l14
+l29
+l13
+
+132
+l1
+l3l2
+
+l5
+l6
+l9 l7 l8
+l10a
+l10b
+l12
+
+02
+
+130
+
+42s
+
+17h45m44s
+2
+
+40s
+
+38s
+
+36s
+
+right ascension j2000
+0
+
+2
+
+4
+
+flux density jybeam kms
+
+6
+
+8
+
+figure 7 as per figure 6 but here the colour of the circular regions represents sio column density nsio towards each
+observation outlined in section 2
+
+16
+
+james et al
+
+nsio is located towards the observations northernmost
+tip with the column density decreasing towards the
+south of this complex interestingly this region of relatively large nsio sits within an hcn dark region by
+application hcn traces dense molecular gas and thus
+shows that at least in this region that regions of large
+sio column density are found in dense regions of gas
+directly north of panel 2 is another grouping of observations that houses the largest derived value of nsio
+at  10142 cm2  the surrounding observations are
+also observed to have nsio towards the upperhalf of
+the derived scale though these observations are consistent with the values of nsio derived towards the series of
+observations in panels 2 and 3 this is again consistent
+with the underlying hcn emission tracing dense regions
+within the cnd ergo grainprocessing as described in
+section 1
+figure 8 shows that almost all sources can be considered to have nso  1014 cm2  a grouping of 3 observations immediately south of sgr a houses the lowest
+value of nso within our data at  1014 cm2 
+panel 1 echoes a similar trend to its sio column densities with the largest column density in this panel  g5
+ residing outside of the main hcn filament interestingly g3b is here shown to be nso  1015 cm2  larger
+than its surroundings in g1 and g2 that show consistent column densities of nso  10145 cm2  g3a and
+g4 are also consistent with nso  10147 cm2 
+panel 2 again shows a number of interesting trends
+specifically a degree of nonuniformity throughout the
+derived values in the main grouping we observe that
+whilst the local agreement between neighbouring observations is again evident here it is more evident in the
+upper half of the panel than in the lower half for
+instance the collection of sources from k1 to k6b all
+show nso  10148 cm2  to the south of this complex
+we find that the observations along the inner boundary ridge k9 to k13b of the cnd show large column
+densities towards k9 and k13b with the column density in general decreasing towards the centre of this line
+towards k11 k8a also stands out as a high column
+density source especially in relation to its lesser column
+density neighbours however the derived column densities for these sources span around 1 order of magnitude
+making the individual variation from observation to observation slight this is also true when applied to the
+interaction ridge which is here observed to be less uniform than in sio however this behaviour is consistent
+with the isio iso ratio being consistent across the ridge
+panel 3 again exhibits a similar trend to that seen
+in figure 7 though there is even less variation in nso
+throughout this region the hcn dark region towards
+
+the northernmost tip of this grouping may again be considered to house the largest values of nso  1015 cm2 
+the dense nsio observation to the north of panel 2
+in figure 7 now shows almost unanimous agreement in
+nso with its neighbours indicating that whatever mechanism is driving its excess sio chemistry  relative to its
+surroundings  is not reflected in its so chemistry
+when considering the trends in both figures 7 and 8
+we see variation in both nsio and nso throughout the
+data though this variation is slight in both dimensions
+and likely not large enough to indicate any localised energetic events acting as vectors for excess emission in the
+vast majority of cases importantly the derived sio and
+so column densities are larger than the expected quiescent column densities the cnd wide nature of this
+enhancement suggests that the mechanism driving this
+excess is universal and likely grainprocessing andor
+desorption
+7 formation mechanisms
+
+it is clear that all sources in our data show enhancement of so and sio as already discussed each of these
+molecules is a known tracer of grainprocessing activity
+owing to both si and s being far more abundant on
+the grain surfaces than they are in the gasphase indeed sio and so do not form readily in the gasphase
+without si or s trapped inon the grains being released
+in to the gas phase for subsequent reaction with o eg
+si  o  sio conversely ch3 oh is thought to
+form readily on grain surfaces via successive hydrogenation of co where it is subsequently desorbed in to the
+gasphase by an energetic mechanism such as shock activity eg james et al 2020 or photodesorption eg
+bertin et al 2016
+previous studies of the galactic center on large scales
+such as those by molinari et al 2011 and yusefzadeh
+et al 2013 have shown that the gas and dust are uncoupled and that the dust temperature tdust  40 k well
+below the temperature at which thermal desorption becomes significant when considering smaller scales such
+as the cnd latvakoski et al 1999 theorise that the
+dust temperature varies positionally from 40 k to 200
+k with the variation likely a result of heating by the
+ob star population furthermore our analysis has also
+shown that the density of the most dense clumps to be
+nh  107 cm3  a density at which the gas and dust are
+likely coupled either fully or partially goldsmith 2001
+as a result thermal desorption could also be dominant
+within subregions of the cnd this naturally poses the
+question what physical events are dominant in driving this grainprocessing and are these events associated
+with specific events such as star formation or is it in
+
+17
+
+i observations and radiative transfer
+
+panel 1
+
+panel 2
+
+g5
+
+k20
+
+k22
+
+k23
+k24
+
+g2
+
+k1
+
+k19
+k18
+
+k2
+k3
+k6b
+k4 k5bk5a
+k5c k6ak6b
+k5c
+k7a
+k9
+k7b
+k10
+k15a
+k14
+k8a
+k11
+k12 k15b k8bc1
+k8bc2
+k13a
+k13b k16
+k17
+
+2859
+g3a
+g3b
+g1
+
+k21b
+k21a
+
+g4
+
+150
+
+148
+
+panel 3
+l28
+
+l30c1
+
+nso hpd cm 2
+
+declination j2000
+
+2900
+
+146
+
+01
+
+l27
+l26
+l25l21
+l24l22
+l23l20
+l19c2
+l19c1
+l17
+l18
+l16
+l15l14
+l29
+l13
+
+144
+
+l1
+l3l2
+
+l5
+l6
+l9 l7 l8
+l10a
+l10b
+l12
+
+142
+
+02
+
+42s
+
+17h45m44s
+2
+
+40s
+
+38s
+
+36s
+
+right ascension j2000
+0
+
+2
+
+4
+
+flux density jybeam kms
+
+6
+
+8
+
+figure 8 as per figure 7 but here the colour of the circular regions represents so column density nso towards each
+observation outlined in section 2
+
+18
+
+james et al
+
+stead energetic activity associated with sgr a and its
+surroundings
+in the context of star formation driven shock action is
+an efficient and ubiquitous processor of grains so much
+so that molecules like sio and so are often used exclusively as tracers of shocks in star forming regions
+martinpintado et al 1992 des forts et al 1993 as
+already noted the ob star population in the central
+cavity could raise the photoionisation rate towards the
+inner edge of the disc making photodesorption of grain
+mantle species an efficient desorption mechanism here
+dense regions further in to the disc may also be subject
+to photodesorption via secondary photons crucially
+such widespread desorption activity could act to preprocess the grain mantles rendering molecules such as
+sio and so unreliable shock tracers in the cnd
+furthermore the uniform enhancement of sio and so
+observed throughout our observations is indicative of a
+large scale process driving this desorption star formation would be expected to occur in a structured manner
+to the extent that its signatures would be concentrated
+to relatively small regions of the cnd these signatures
+are dependent on the evolutionary state of the object
+they could manifest as cold and dense selfgravitating
+regions or hot and dense gas swept up in outflows
+k13a is however one of only 2 observations in our
+sample that shows significant ocs emission k13as surroundings do not exhibit similar ocs lines indicating
+highly localised phenomena to the k13a locale the only
+other ocs positive source is g2 which unlike k13a exhibits ch3 oh and h2 cs emission within k13a we
+note that the measured linewidth of the ocs line is a
+factor of 2 less than the measured linewidths of the sio
+and so lines this is in spite of all lines towards k13a
+having consistent measured velocities such behaviour
+could indicate that the sio and so lines are tracing a
+different thermal component to the ocs line hence we
+disregard the ocs line towards the position when fitting
+for k13a as a result the assumption of lte should be
+cautioned towards this region
+interestingly when considering the gpointing we find
+that g2 does not exhibit similar behaviour though there
+is minor variation in measured linewidth across the detected lines ch3 oh and h2 cs emission are widespread
+throughout the g pointing creating a unique subset of
+observations within our sample unfortunately the temperature towards k13a remains unconstrained however if we consider the point of highest posterior density towards k13a as absolute then tk13a  500 k g2
+has temperature tg2  600 k as such the presence of
+ocs could indicate hightemperature chemistry occurring within these regions the nondetections of ch3 oh
+
+and h2 cs in k13a is puzzling though k13a is known to
+sit along the galactic center mini spiral  cnd ridge
+and thus could be indicative of locally different chemistry conversely ocs tracing a separate thermal component towards k13a and the absence of this towards
+g2 potentially alludes to this interaction nevertheless
+both of these regions require further chemical follow up
+study to confirm
+one may broadly estimate whether the derived conditions towards the positions in this study are indicative of star formation by considering density mass and
+pressure estimates considering g2 we note that the
+roche density chandrasekhar 1987 assuming an approximate distance from sgr a of 30 pc is  6  106
+cm3  which is marginally smaller than the derived gas
+density towards g2 thus implying tidal stability considering an estimate of the mass assuming that g2 is
+spherical and uniform with average density nh  106
+cm3 and radius equivalent to  3 beams we find its
+mass muniform  22  103 m  for g2 to be gravitationally bound with linewidth v  20 km s1 then its
+mass would need to exceed the virial mass mvir  using the same process as christopher et al 2005 we
+find that mvir towards g2 is mvir  40  103 m  only
+marginally larger than muniform  as a result g2 could
+very well be gravitationally bound within the limits of
+the assumptions applied additionally another potentially bound source is l28 within the l pointing l28 has
+uniform mass muniform  40  103 m and virial mass
+mvir  48  103 m  and shows the closest agreement
+between uniform and virial masses within our sample
+for g5 we note muniform  1  103 m and virial mass
+mvir  4  103 m  however the recovered gas density
+for g5 of nh  107 cm3 is therefore larger than the
+equivalent roche density at 30 pc implying that g5
+could be able to overcome the tidal barrier to bind itself
+gravitationally this assumes that g5 is one discrete
+monolithic clump given that g5s physical conditions
+render it such an outlier amongst our observed regions
+it is possible that this region is actually multiple clumps
+along the line of sight whose spectra sum to produce a
+single spectra in turn creating the illusion of a spectra
+consistent with one unified clump
+we apply a similar process in order to estimate the total molecular gas mass contained within the cnd this
+2
+2
+can be expressed as mcnd  rout
+ rin
+h where h
+represents the height of the cnd based on the underlying hcn maps in figure 2 we assume that this is on
+average  05 pc for comparison we utilise the same
+cnd radii reported in tsuboi et al 2018 rin  15
+pc and rout  20 pc additionally we assume that the
+average cnd density is equivalent to the modal density
+
+i observations and radiative transfer
+determined previously  5  105 cm3  this yields a
+total mass of mcnd  4  104 m  tsuboi et al 2018
+estimate the molecular gas mass of the cnd based on
+lte assumptions to be 3  104 m  marginally smaller
+than our estimate however we caution that our observations do not sample the full extent of the cnd especially towards hcn faint regions such as those to the
+north of sgr a in this instance the use of the modal
+density derived from our observations  which deliberately target dense gas  could result in us overestimating
+the mean density of the cnd in turn biasing our mass
+estimate
+when considering both thermal and turbulent pressure one may express the thermal pressure as
+ptherm kb  nt and the turbulent pressure as
+pturb kb  v 2 kb  for t  600 k nh  106 cm3
+and v  20 km s1 then ptherm kb  109 cm3 k and
+pturb kb  1011 cm3 k therefore for g2 the turbulent pressure dominates over the thermal pressure in
+spite of the high estimated temperature towards this region in fact all positions within the g k and l pointings are dominated by turbulence despite their wide
+range of estimated temperatures additionally this is
+seemingly independent of their potentially bound states
+though a more rigorous determination of mass based on
+lte assumptions and chemical abundances is required
+to identify more accurate clump masses to compare to
+their virial counterparts
+8 conclusions
+
+in this paper we have presented subarcsecond observations from 8 alma band 7 272  375 ghz
+pointings towards the circumnuclear disk cnd of
+sgr a we detect clear and distinct sio 8 7  7 6
+and so 7  6 emission towards 98 positions within
+these pointings additionally we observe widespread
+ch3 oh 2 11  2 02 emission as well as more localised
+emission of h2 cs 9 19  8 18 and ocs 25  24 towards a subset of these 98 positions
+we have used a bayesian inference routine coupled
+to radiative transfer to infer the physical conditions towards each observation based on the detected line fluxes
+based on these results we find the following
+ the temperature of the regions probed by the observations is in general t  500 k approximately
+consistent with that derived previously towards
+similar clumps most of the estimated densities
+within this work are in good agreement with the
+previously reported values towards clumps within
+the cnd at nh  106 cm3 
+
+19
+
+ the ubiquity of sio and so detections including their large derived column densities is consistent with large scale grainprocessing occurring
+within the cnd however we find that multiple
+desorption mechanisms both thermal and nonthermal eg uv or cosmicray photodesorption
+are plausible engines with which to drive grainprocessing in the cnd further chemical modelling is required to identify which processes are
+efficient towards the cnd
+ the g2 source within the northeastern arm is
+identified as being hot tkin  600 k and
+dense nh  106 cm3  sio 8 7  7 6 and
+so 7  6 emission is identified towards it as
+well as ch3 oh 2 11  2 02 h2 cs 9 19  8 18
+and ocs 25  24 lines basic calculations indicate that this region is potentially gravitationally
+bound and is turbulent pressure dominated it is
+therefore a source of immense interest for follow
+up observations and study
+ l28 is identified as having mass almost exactly
+consistent with that required for binding to occur
+though turbulence dominates here as well l28
+does not show any outstanding feature in terms of
+its line detections or its recovered physical quantities rendering it somewhat of an outlier amongst
+the potentially bound sources identified nevertheless more accurate mass estimates in follow up
+studies based on complex chemistry can help constrain whether this region is indeed bound or not
+ similarly g5 is found to have the largest recovered density within our data of nh  107 cm3
+whilst also exhibiting one of the lowest recovered
+temperatures at tkin  60 k g5s high density
+is sufficient to overcome tidal effects prohibiting
+the object from being gravitational bound basic
+mass estimates also support this finding
+ another position of chemical interest is k13a
+k13a shows detections of sio 8 7  7 6 and
+so 7  6 as well as ocs 25  24  the only other
+position other than g2 to exhibit the ocs line
+k13a is located along a ridge of the cnd that is
+interacting with the galactic centre mini spiral
+further follow up study is required to understand
+the role that the ionised gas within the galactic
+centre mini spiral plays in the chemistry of this
+ridge
+ using a similar mass derivation approach we find
+that the total molecular gas mass contained within
+
+20
+
+james et al
+the cnd between 15  20 pc is mcnd  4  104
+m 
+acknowledgments
+
+taj is funded by an stfc studentship and thanks
+the stfc accordingly sv acknowledges the european
+research council erc advanced grant moppex
+833460 as well as the european unions horizon 2020
+research and innovation program under the marie
+skodowskacurie grant agreement no 811312 for the
+project astrochemical origins aco we thank j
+holdship for their discussion opinions and associated
+improvements on aspects of this work we also thank
+the anonymous referee and editors for their comments
+
+suggestions and improvements that have enriched and
+clarified this work this paper makes use of the following alma data adsjaoalma2013101242s
+alma is a partnership of eso representing its member states nsf usa and nins japan together
+with nrc canada most and asiaa taiwan and
+kasi republic of korea in cooperation with the republic of chile the joint alma observatory is operated by eso auinrao and naoj
+
+software emcee foremanmackey et al 2013
+chainconsumer hinton 2016 radex van der tak
+et al 2007 casa 470 mcmullin et al 2007
+
+references
+abuter r amorim a baubck m et al 2019
+astronomy  astrophysics 625 l10
+doi 10105100046361201935656
+amobaladrn m a martnpintado j  martn s
+2011 aa 526 54 doi 10105100046361200913545
+armijosabendao j bandabarragn w e
+martnpintado j et al 2020 monthly notices of the
+royal astronomical society
+bertin m romanzin c doronin m et al 2016 the
+astrophysical journal letters 817 l12
+doi 103847204182058172l12
+beuther h zhang q bergin e a  sridharan t k
+2008 the astronomical journal 137 406
+doi 101088000462561371406
+bradford c m stacey g j nikola t et al 2005 the
+astrophysical journal 623 866
+brooks s p  gelman a 1998 journal of
+computational and graphical statistics 7 434
+chandrasekhar s 1987 ellipsoidal figures of equilibrium
+new york  dover 1987 https
+uiadsabsharvardeduabs1987efebookcabstract
+christopher m h scoville n z stolovy s r  yun
+m s 2005 the astrophysical journal 622 346
+doi 101086427911
+ciurlo a campbell r d morris m r et al 2020
+nature 337
+httpswwwnaturecomarticless415860191883y
+des forts g roueff e schilke p  flower d r
+1993 monthly notices of the royal astronomical
+society 262 915 doi 101093mnras2624915
+eckart a moultaka j viehmann t straubmeier c 
+mouawad n 2004 the astrophysical journal 602 760
+ekers r d van gorkom j h schwarz u j  goss
+w m 1983 astronomy  astrophysics 122 143
+
+flower d r le bourlot j pineau g et al 2003
+astrophysics and space science 287 183
+doi 101023bastr00000062211840318
+foremanmackey d hogg d w lang d  goodman
+j 2013 publications of the astronomical society of the
+pacific 125 306 httpdanielfmemcee
+gelman a  rubin d b 1991 in fourth valencia
+international meeting on bayesian statistics
+genzel r eisenhauer f  gillessen s 2010 the
+galactic center massive black hole and nuclear star
+cluster tech rep maxplanck institut fr
+extraterrestrische physik garching
+genzel r thatte n krabbe a kroker h 
+tacconigarman l e 1996 the astrophysical journal
+472 153 doi 101086178051
+ghez a m salim s hornstein s d et al 2005 the
+astrophysical journal 620 744
+gillessen s eisenhauer f trippe s et al 2009 the
+astrophysical journal 692 1075
+doi 1010880004637x69221075
+goldsmith p f 2001 the astrophysical
+journal 557 736
+goto m indriolo n geballe t r  usuda t 2013
+journal of physical chemistry a 117 9919
+doi 101021jp400017s
+gottlieb c a ball j a gottlieb e w  dickinson
+d f 1979 the astrophysical journal 227 422
+guesten r genzel r wright m c h et al 1987 the
+astrophysical journal 318 124 doi 101086165355
+harada n riquelme d viti s et al 2015 aa 584
+102 doi 10105100046361201526994
+hinton s r 2016 the journal of open source software
+1 45 doi 1021105joss00045
+
+i observations and radiative transfer
+holdship j viti s jimnezserra i makrymallis a 
+priestley f 2017 the astronomical journal
+doi 10384715383881aa773f
+jackson j m geis n genzel r et al 1993 the
+astrophysical journal 402  doi 101086172120
+james t a viti s holdship j  jimnezserra i
+2020 astronomy and astrophysics 634
+doi 10105100046361201936536
+jones p a burton m g cunningham m r et al
+2011 mon not r astron soc 000 1
+httpwwwatnfcsiroaupeoplemcalabrelivedatahtml
+lacy j h townes c h geballe t r  hollenbach
+d j 1980 the astrophysical journal 241 132
+doi 101086158324
+latvakoski h m stacey g j gull g e  hayward
+t l 1999 the astrophysical journal 511
+761
+lau r m herter t l morris m r becklin e e 
+adams j d 2013 the astrophysical journal 775 37
+doi 1010880004637x775137
+lique f van der tak f f s klos j bulthuis j 
+alexander m h 2009 aa 493 557
+doi 10105100046361200810453
+lu j r ghez a m hornstein s d et al 2008 the
+astrophysical journal 690 1463
+doi 101088000463769021463
+martin s martinpintado j monterocastao m ho
+p t p  blundell r 2012 aap 539 a29
+doi 10105100046361201117268
+martinpintado j bachiller r  fuente a 1992
+astronomy  astrophysics 254 315
+mauerhan j c cotera a dong h et al 2010 the
+astrophysical journal 725 188
+doi 1010880004637x7251188
+mcmullin j p waters b schiebel d young w 
+golap k 2007 astronomical data analysis software
+and systems xvi asp conference series 376 127
+httpcasanraoedu
+mills e a c gsten r requenatorres m a 
+morris m r 2013 the astrophysical journal 779 47
+doi 1010880004637x779147
+molinari s bally j noriegacrespo a et al 2011
+astrophysical journal letters 735
+doi 101088204182057352l33
+monterocastao m herrnstein r m  ho p t p
+2009 the astrophysical journal
+
+21
+
+paumard t genzel r martins f et al 2006 the
+astrophysical journal 643 1011 doi 101086503273
+remijan a j markwickkemper a  alma working
+group on spectral line frequencies 2007 in american
+astronomical society meeting abstracts vol 211
+american astronomical society meeting abstracts
+13211
+requenatorres m a gsten r weiss a et al 2012
+astronomy  astrophysics
+httpwwwiramfriramfrgildas
+schier f van der tak f van dishoeck e  black j
+2010 lamda leiden atomic and molecular database
+smith i l  wardle m 2014 monthly notices of the
+royal astronomical society 437 3159
+doi 101093mnrasstt2092
+smith m d  mac low mm 2014 astronomy
+and astrophysics
+httpsarxivorgabs9703171v1
+tsuboi m kitamura y uehara k et al 2018
+publications of the astronomical society of japan 70
+doi 101093pasjpsy080
+turner b e 1998 the astrophysical journal 501 731
+doi 101086305859
+van der tak f f s black j h schier f l jansen
+d j  van dishoeck e f 2007 aa 468 627
+doi 1010510004636120066820
+van dishoeck e f kristensen l e mottram j c
+et al 2021 astronomy  astrophysics
+wirstrm e s bergman p black j h et al 2010
+aa 522 19 doi 10105100046361200913766
+wright m c h coil a l mcgary r s ho p t p
+ harris a i 2001 apj 551 254 doi 101086320089
+yusefzadeh f cotton w viti s wardle m 
+royster m 2013 the astrophysical journal letters
+764 19 doi 101088204182057642l19
+yusefzadeh f muno m wardle m  lis d c 2007
+the astrophysical journal 656 847 doi 101086510663
+yusefzadeh f roberts d a goss w m frail d a
+ green a j 1999 the astrophysical journal 512
+230 doi 101086306769
+yusefzadeh f wardle m kunneriath d et al 2017
+the astrophysical journal 850 l30
+doi 10384720418213aa96a2
+
+22
+
+james et al
+
+40
+
+src d1
+v  107 km s1
+
+so 8776
+
+flux density mjy beam1
+
+30
+
+20
+sio 76
+10
+
+0
+
+3036
+
+3037
+
+3038
+
+3039
+3040
+frequency ghz
+
+3041
+
+3042
+
+3043
+
+figure 9 an example individual spectra for position d1 spectra for each position in which at least one line was identified
+are available in the online journal
+
+appendix
+
+a individual spectra
+
+fig set 9 individual spectra
+
+23
+
+i observations and radiative transfer
+b tabulated spectral data
+
+table 3 tabulated summary of observations including the source designation its ra and dec extent in beam sizes the emission
+line detected its peak line flux density the local standard of rest velocity the linewidth and the ratio of sio to so flux densities
+where relevant
+source
+
+
+j2000
+
+
+j2000
+
+extent
+beam
+
+emission
+line
+
+flux density
+mjybeam
+
+v
+km s1 
+
+v
+km s1 
+
+n3
+irs7
+n8
+
+17h 45m 4062s
+17h 45m 4004s
+17h 45m 4085s
+
+29 000 240500
+29 000 227600
+29 000 128800
+
+100
+100
+100
+
+n7a
+
+17h 45m 4088s
+
+29 000 122300
+
+1065
+
+n7b
+
+17h 45m 4104s
+
+29 000 132400
+
+1959
+
+c1
+
+17h 45m 4135s
+
+29 000 432300
+
+3303
+
+g1
+
+17h 45m 4392s
+
+29 000 280700
+
+148
+
+g2
+
+17h 45m 4377s
+
+29 000 161900
+
+736
+
+g3a
+
+17h 45m 4382s
+
+29 000 254300
+
+159
+
+g3b
+
+17h 45m 4387s
+
+29 000 260500
+
+224
+
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+ch3 oh 211202
+sio 76
+so 8776
+sio 76
+so 8776
+ch3 oh 211202
+sio 76
+so 8776
+ch3 oh 211202
+h2 cs 919818
+ocs 2524
+sio 76
+so 8776
+ch3 oh 211202
+h2 cs 919818
+sio 76
+so 8776
+ch3 oh 211202
+h2 cs 919818
+
+586  36
+834  26
+114  53
+205  41
+431  047
+766  040
+37  022
+553  020
+243  036
+813  035
+170  047
+584  042
+777  05
+449  047
+953  010
+167  013
+957  012
+66  019
+172  016
+322  38
+392  43
+291  39
+212  44
+351  35
+486  33
+225  30
+164  37
+
+2556
+3280
+3952
+3873
+4123
+401649
+3933
+411081
+3768
+427327
+425732
+6747
+6458
+5929
+5684
+5564
+5614
+5466
+5434
+5365
+5277
+5401
+5324
+5666
+5698
+5715
+5551
+
+276
+209
+118
+150
+139
+162
+139
+155
+868
+248
+186
+354
+303
+317
+197
+150
+156
+999
+125
+986
+882
+97
+842
+106
+112
+122
+101
+
+isio iso
+
+056  028
+056  007
+067  005
+
+048  003
+088  008
+
+075  001
+
+092  015
+
+068  008
+
+24
+
+james et al
+
+source
+
+
+j2000
+
+
+j2000
+
+extent
+beam
+
+emission
+line
+
+flux density
+mjybeam
+
+v
+km s1 
+
+v
+km s1 
+
+isio iso
+
+g4
+
+17h 45m 4341s
+
+29 000 245100
+
+285
+
+17h 45m 4232s
+
+29 000 85500
+
+116
+
+d1
+
+17h 45m 4228s
+
+28 590 471100
+
+369
+
+d2
+
+17h 45m 4190s
+
+28 590 477600
+
+552
+
+d3c1
+
+17h 45m 4194s
+
+28 590 494100
+
+42
+
+203  31
+257  28
+145  27
+390  47
+361  40
+399  49
+176  53
+145  14
+332  22
+144  07
+254  08
+461  058
+451  06
+112  077
+955  059
+163  13
+233  12
+653  14
+475  074
+121  063
+155  31
+129  18
+109  22
+195  26
+184  11
+256  13
+496  088
+223  11
+182  11
+649  13
+175  17
+126  22
+142  17
+103  22
+135  097
+724  11
+143  29
+185  36
+842  24
+657  19
+
+5259
+5318
+5237
+5518
+5619
+5499
+5548
+1071
+1075
+1063
+1060
+1098
+7589
+1080
+7610
+10731
+10634
+107233
+7792
+7681
+1220
+1401
+9344
+9369
+3510
+3495
+3574
+3053
+3061
+2836
+3715
+3692
+5301
+4821
+7359
+7022
+6228
+6090
+6049
+6076
+
+112
+123
+130
+155
+181
+149
+138
+196
+122
+173
+151
+213
+205
+158
+211
+117
+132
+110 
+188
+221
+944
+159
+133
+111
+147
+127
+193
+217
+214
+172
+156
+117
+282
+219
+329
+301
+113
+923
+137
+175
+
+072  013
+
+g5
+
+sio 76
+so 8776
+ch3 oh 211202
+sio 76
+so 8776
+ch3 oh 211202
+h2 cs 919818
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+
+d4
+
+17h 45m 4180s
+
+28 590 474400
+
+33
+
+d5
+
+17h 45m 4188s
+
+28 590 510000
+
+404
+
+d6
+
+17h 45m 4172s
+
+28 590 487800
+
+163
+
+d7
+
+17h 45m 4177s
+
+28 590 441000
+
+165
+
+h1a
+
+17h 45m 3938s
+
+28 590 511800
+
+31
+
+h1b
+
+17h 45m 3939s
+
+28 590 503600
+
+23
+
+h2
+
+17h 45m 3960s
+
+28 590 513300
+
+26
+
+h3
+
+17h 45m 3970s
+
+28 590 512600
+
+11
+
+h4
+
+17h 45m 3976s
+
+28 590 460300
+
+211
+
+j1
+
+17h 45m 3814s
+
+29 000 16500
+
+13
+
+sio 76
+so 8776
+ch3 oh 211202
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+ch3 oh 211202
+sio 76
+so 8776
+ch3 oh 211202
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+ch3 oh 211202
+h2 cs 919818
+
+093  015
+
+07  008
+065  004
+055  0008
+046  007
+
+062  006
+
+033  005
+071  017
+067  016
+083  007
+
+124  01
+
+185  037
+178  043
+204  034
+095  027
+
+25
+
+i observations and radiative transfer
+source
+
+
+j2000
+
+
+j2000
+
+extent
+beam
+
+emission
+line
+
+flux density
+mjybeam
+
+v
+km s1 
+
+v
+km s1 
+
+isio iso
+
+j2
+
+17h 45m 3815s
+
+29 000 00100
+
+22
+
+17h 45m 3810s
+
+29 000 28200
+
+52
+
+j4
+
+17h 45m 3825s
+
+28 590 594400
+
+206
+
+k1
+
+17h 45m 3834s
+
+29 000 383800
+
+261
+
+k2
+
+17h 45m 3823s
+
+29 000 403000
+
+303
+
+k3
+
+17h 45m 3826s
+
+29 000 413900
+
+183
+
+k4
+
+17h 45m 3840s
+
+29 000 423200
+
+335
+
+k5a
+
+17h 45m 3823s
+
+29 000 420600
+
+335
+
+k5b
+
+17h 45m 3831s
+
+29 000 429000
+
+294
+
+k5c
+
+17h 45m 3822s
+
+29 000 428000
+
+211
+
+k6a
+
+17h 45m 3809s
+
+29 000 421200
+
+363
+
+k6b
+
+17h 45m 3801s
+
+29 000 421700
+
+244
+
+k7a
+
+17h 45m 3812s
+
+29 000 446600
+
+720
+
+k7b
+
+17h 45m 3809s
+
+29 000 455200
+
+250
+
+k8a
+
+17h 45m 3798s
+
+29 000 470100
+
+500
+
+k8b
+
+17h 45m 3802s
+
+29 000 479700
+
+610
+
+469  10
+250  12
+146  081
+255  094
+102  087
+613  16
+103  22
+146  28
+108  44
+166  18
+216  16
+175  21
+214  18
+114  18
+187  17
+146  12
+227  12
+971  15
+137  089
+855  13
+163  15
+855  13
+163  15
+116  11
+194  11
+103  16
+190  17
+214  11
+355  11
+499  094
+123  30
+183  32
+256  15
+419  17
+239  17
+131  21
+131  21
+237  23
+124  16
+246  17
+
+6716
+6570
+7519
+7450
+7331
+7500
+6863
+6891
+6794
+585
+627
+906
+760
+486
+245
+1753
+1835
+1530
+1031
+2032
+2030
+2032
+2030
+167
+304
+1341
+1271
+4207
+4193
+3919
+5034
+4576
+4372
+4499
+4048
+1080
+4107
+999
+319
+523
+
+275
+228
+143
+123
+133
+743
+127
+102
+646
+126
+144
+103
+119
+149
+165
+139
+137
+117
+200
+148
+131
+148
+131
+207
+201
+198
+186
+137
+135
+154
+153
+147
+259
+230
+219
+178
+210
+162
+266
+244
+
+226  012
+
+j3
+
+sio 76
+so 8776
+sio 76
+so 8776
+ch3 oh 211202
+h2 cs 919818
+sio 76
+so 8776
+ch3 oh 211202
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+ch3 oh 211202
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+
+k9
+
+17h 45m 3841s
+
+29 000 453900
+
+183
+
+sio 76
+so 8776
+
+067  004
+
+088  025
+
+067  009
+071  01
+055  01
+065  006
+041  007
+059  011
+059  011
+062  007
+058  01
+061  004
+
+07  021
+069  005
+190  033
+061  011
+
+055  008
+
+26
+
+james et al
+source
+
+
+j2000
+
+
+j2000
+
+extent
+beam
+
+emission
+line
+
+flux density
+mjybeam
+
+v
+km s1 
+
+v
+km s1 
+
+isio iso
+
+k10
+
+17h 45m 3848s
+
+29 000 461400
+
+294
+
+17h 45m 3851s
+
+29 000 470700
+
+113
+
+k12
+
+17h 45m 3856s
+
+29 000 475200
+
+158
+
+k13a
+
+17h 45m 3860s
+
+29 000 486800
+
+585
+
+k13b
+
+17h 45m 3858s
+
+29 000 495000
+
+209
+
+k14
+
+17h 45m 3842s
+
+29 000 464600
+
+181
+
+k15a
+
+17h 45m 3829s
+
+29 000 461800
+
+450
+
+k15b
+
+17h 45m 3830s
+
+29 000 472700
+
+285
+
+k16
+
+17h 45m 3826s
+
+29 000 498700
+
+415
+
+k17
+
+17h 45m 3795s
+
+29 000 503600
+
+294
+
+k18
+
+17h 45m 3881s
+
+29 000 405200
+
+751
+
+k19
+
+17h 45m 3870s
+
+29 000 385100
+
+437
+
+k20
+
+17h 45m 3858s
+
+29 000 312900
+
+993
+
+k21a
+
+17h 45m 3815s
+
+29 000 328200
+
+203
+
+k21b
+
+17h 45m 3813s
+
+29 000 320900
+
+233
+
+k22
+
+17h 45m 3785s
+
+29 000 310200
+
+383
+
+k23
+
+17h 45m 3799s
+
+29 000 355700
+
+545
+
+k24
+
+17h 45m 3797s
+
+29 000 361900
+
+249
+
+l1
+
+17h 45m 3960s
+
+29 010 042900
+
+367
+
+l2
+
+17h 45m 3974s
+
+29 010 054100
+
+225
+
+130  16
+185  18
+118  37
+238  44
+135  52
+291  53
+163  27
+3237  25
+111  55
+180  74
+414  86
+139  38
+175  35
+195  23
+177  21
+157  33
+227  34
+183  54
+315  47
+292  83
+269  80
+605  11
+954  10
+746  073
+854  076
+103  13
+160  11
+175  23
+251  24
+184  42
+286  44
+134  57
+187  53
+686  18
+150  18
+911  22
+126  24
+161  11
+291  16
+172  20
+317  22
+
+2471
+2393
+1619
+2011
+2822
+2869
+9239
+9518
+9299
+8393
+8368
+2631
+2383
+954
+882
+205
+117
+3622
+3598
+3632
+3758
+1492
+1635
+2925
+2755
+282
+592
+3231
+3128
+2253
+2108
+865
+983
+5119
+5166
+1710
+1690
+5868
+5891
+3533
+3560
+
+210
+184
+227
+190
+154
+150
+145
+143
+715
+164
+140
+141
+153
+975
+106
+137
+133
+105
+122
+162
+168
+147
+156
+294
+282
+197
+240
+271
+254
+131
+123
+145
+157
+104
+101
+152
+139
+208
+142
+168
+158
+
+08  013
+
+k11
+
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+ocs 2524
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+
+059  022
+048  02
+050  018
+
+051  023
+073  025
+101  017
+071  018
+05  017
+105  043
+06  013
+091  012
+053  008
+074  012
+069  019
+066  034
+047  014
+079  024
+081  007
+058  008
+
+27
+
+i observations and radiative transfer
+source
+
+
+j2000
+
+
+j2000
+
+extent
+beam
+
+emission
+line
+
+flux density
+mjybeam
+
+v
+km s1 
+
+v
+km s1 
+
+isio iso
+
+l3
+
+17h 45m 3979s
+
+29 010 55700
+
+102
+
+17h 45m 3880s
+
+29 010 068400
+
+218
+
+l5
+
+17h 45m 3966s
+
+29 010 061500
+
+199
+
+l6
+
+17h 45m 3970s
+
+29 010 071000
+
+511
+
+l7
+
+17h 45m 3975s
+
+29 010 077900
+
+320
+
+l8
+
+17h 45m 3968s
+
+29 010 079300
+
+658
+
+l9
+
+17h 45m 3981s
+
+29 010 78200
+
+225
+
+l10a
+
+17h 45m 3981s
+
+29 010 86800
+
+220
+
+l10b
+
+17h 45m 3978s
+
+29 010 087500
+
+280
+
+l11
+
+17h 45m 3080s
+
+29 010 096600
+
+350
+
+l12
+
+17h 45m 3988s
+
+29 010 99300
+
+178
+
+l13
+
+17h 45m 3988s
+
+29 010 46700
+
+574
+
+l14
+
+17h 45m 3991s
+
+29 010 40600
+
+439
+
+l15
+
+17h 45m 3996s
+
+29 010 36200
+
+178
+
+l16
+
+17h 45m 4000s
+
+29 010 33800
+
+170
+
+l17
+
+17h 45m 4005s
+
+29 010 23300
+
+453
+
+l18
+
+17h 45m 4009s
+
+29 010 26000
+
+297
+
+l19
+
+17h 45m 4012s
+
+29 010 17800
+
+407
+
+795  33
+224  34
+103  12
+282  16
+167  21
+224  15
+130  071
+266  087
+189  17
+512  19
+101  099
+342  13
+618  16
+284  18
+121  24
+289  19
+146  16
+391  20
+847  38
+173  15
+732  23
+150  28
+762  031
+181  038
+101  059
+155  055
+182  23
+308  19
+103  14
+269  18
+309  099
+351  083
+141  086
+259  092
+937  13
+283  092
+180  12
+358  092
+
+6266
+6195
+4840
+5113
+4929
+5123
+5502
+5488
+6144
+6267
+6348
+6493
+5791
+6078
+6044
+5995
+6480
+6458
+6430
+6977
+3475
+3523
+4678
+4609
+5836
+5507
+5976
+5814
+5246
+5129
+6543
+6485
+4959
+4922
+4500
+6900
+4616
+6897
+
+156
+151
+231
+180
+172
+240
+245
+200
+179
+155
+174
+130
+175
+153
+152
+186
+211
+172
+715
+177
+198
+163
+366
+300
+242
+256
+145
+177
+229
+175
+182
+216
+236
+219
+138
+202
+152
+200
+
+037  016
+
+l4
+
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+
+047  006
+053  008
+06  004
+043  004
+04  004
+025  007
+034  007
+046  006
+02  009
+059  022
+051  002
+062  004
+048  007
+05  008
+074  003
+059  004
+047  007
+080  003
+
+28
+
+james et al
+
+source
+
+
+j2000
+
+
+j2000
+
+extent
+beam
+
+emission
+line
+
+flux density
+mjybeam
+
+v
+km s1 
+
+v
+km s1 
+
+isio iso
+
+l20
+
+17h 45m 4014s
+
+29 010 11300
+
+273
+
+17h 45m 4015s
+
+29 010 004400
+
+322
+
+l22
+
+17h 45m 40181s
+
+29 010 008900
+
+252
+
+l23
+
+17h 45m 4019s
+
+29 010 14700
+
+288
+
+l24
+
+17h 45m 4025s
+
+29 010 009400
+
+402
+
+l25
+
+17h 45m 4020s
+
+29 010 001400
+
+294
+
+l26
+
+17h 45m 4027s
+
+29 000 595900
+
+335
+
+l27
+
+17h 45m 4028s
+
+29 000 588100
+
+169
+
+l28
+
+17h 45m 4046s
+
+29 000 596700
+
+8940
+
+l29
+
+17h 45m 4019s
+
+29 010 38300
+
+309
+
+l30
+
+17h 45m 4047s
+
+29 010 81000
+
+352
+
+245  13
+484  17
+169  12
+314  11
+264  14
+445  13
+152  094
+326  11
+171  11
+371  11
+175  092
+287  10
+124  12
+226  12
+177  28
+265  23
+127  084
+187  077
+754  099
+122  088
+140  31
+618  42
+216  20
+127  27
+867  10
+138  11
+298  063
+822  066
+639  19
+923  12
+108  32
+819  22
+
+4849
+4864
+5105
+5257
+4716
+4760
+4815
+4862
+6284
+6244
+6157
+5858
+5284
+5151
+3047
+2915
+6086
+5957
+4950
+5333
+2648
+5243
+3001
+6394
+4525
+4442
+5017
+5428
+4264
+4463
+2310
+2139
+
+202
+158
+178
+204
+195
+213
+294
+262
+221
+220
+296
+272
+227
+233
+188
+226
+195
+212
+216
+242
+149
+109
+109
+0394
+144
+140
+182
+172
+154
+248
+821
+120
+
+065  004
+
+l21
+
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+
+m1
+
+17h 45m 4131s
+
+29 000 588400
+
+450
+
+m2
+
+17h 45m 4141s
+
+29 000 599300
+
+100
+
+m3
+
+17h 45m 4138s
+
+29 000 581600
+
+202
+
+m4
+
+17h 45m 4123s
+
+29 000 577700
+
+227
+
+sio 76
+so 8776
+sio 76
+so 8776
+sio 76
+so 8776
+so 8776
+ch3 oh 211202
+
+047  004
+054  003
+052  004
+046  003
+066  004
+053  006
+056  01
+062  005
+055  008
+089  021
+1346  969
+
+065  009
+038  009
+043  014
+
+i observations and radiative transfer
+c inferred conditions
+
+29
+
+30
+
+james et al
+table 4 the points of highest posterior density hpd of the
+physical conditions towards each observational source sources
+with parameter entries marked with  represent an unconstrained
+value in that dimension
+source
+
+tkin
+k
+
+log nh
+cm3 
+
+log nsio
+cm2 
+
+log nso
+cm2 
+
+n8
+n7a
+n7b
+c1
+g1
+g2
+g3a
+g3b
+g4
+g5
+d1
+d2
+d3c1
+d3c2
+d4
+d5
+d6
+d7
+h1a
+h1b
+h2
+h3
+h4
+j1
+j2
+j3
+j4
+k1
+k2
+k3
+k4
+k5a
+k5b
+k5c
+k6a
+k6b
+k7a
+k7b
+k8a
+k8bc1
+k8bc2
+
+
+
+
+440300
+240
+310490
+110
+610140
+180
+81159
+18
+108182
+45
+
+6322
+0
+
+300450
+100
+
+520320
+310
+297509
+98
+340410
+210
+
+
+
+
+
+
+
+
+
+
+
+480380
+240
+450370
+260
+
+460290
+310
+
+
+
+360400
+200
+
+
+
+590210
+340
+
+
+
+
+673026
+170
+570080
+072
+574062
+031
+569065
+051
+588016
+018
+656  029
+642045
+027
+621056
+031
+699000
+031
+
+576049
+044
+599061
+075
+581057
+060
+572056
+052
+578067
+063
+583116
+076
+640059
+126
+574069
+050
+590065
+051
+595090
+134
+684015
+183
+663036
+148
+567105
+027
+
+569085
+014
+
+593068
+056
+
+567132
+043
+584046
+068
+561116
+029
+587112
+056
+587085
+060
+573076
+047
+582099
+079
+565085
+032
+59  10
+578046
+045
+620079
+120
+584115
+046
+
+1330085
+068
+1292061
+013
+128300378
+0073
+134160142
+0053
+1345022
+012
+133920058
+0064
+136480106
+0095
+137100114
+0087
+1350020
+013
+13981  0090
+1359040
+012
+1353019
+011
+1313031
+013
+1311024
+014
+134080199
+0083
+1310031
+015
+1333056
+020
+1332055
+021
+135580225
+0076
+138090180
+0069
+1357074
+013
+1375062
+013
+137740556
+0095
+1336030
+017
+142390316
+0052
+134480187
+0088
+1329045
+022
+1346023
+012
+1339042
+013
+1337048
+016
+1345024
+011
+1320034
+016
+1324041
+015
+1325034
+017
+1351027
+012
+1346047
+014
+135940188
+0072
+1344061
+024
+1397017
+011
+138480595
+0097
+1352034
+016
+
+1465056
+023
+142020421
+0071
+140270258
+0049
+145930144
+0051
+144890161
+0100
+145000075
+0058
+147170115
+0080
+149050126
+0062
+146390199
+0081
+149850055
+0058
+147250275
+0069
+147040115
+0090
+1437022
+010
+144170178
+0096
+145940131
+0057
+1455019
+010
+1445039
+016
+1447037
+012
+146350152
+0089
+147130154
+0094
+1431049
+020
+1452043
+023
+1447037
+012
+1438021
+016
+148590276
+0051
+145930175
+0046
+1433029
+018
+1461019
+010
+145320280
+0099
+146140321
+0095
+1463015
+010
+1457025
+011
+144460303
+0081
+1447024
+012
+1472018
+010
+146680294
+0089
+147840151
+0042
+1458044
+020
+151080127
+0097
+1458039
+015
+147030254
+0086
+
+i observations and radiative transfer
+source
+
+tkin
+k
+
+log nh
+cm3 
+
+log nsio
+cm2 
+
+log nso
+cm2 
+
+k9
+k10
+k11
+k12
+k13a
+k13b
+k14
+k15a
+k15b
+k16
+k17
+k18
+k19
+k20
+k21a
+k21b
+k22
+k23
+k24
+l1
+l2
+l3
+l4
+l5
+l6
+l7
+l8
+l9
+l10a
+l10b
+l11
+l12
+l13
+l14
+l15
+l16
+l17
+l18
+l19c1
+l19c2
+l20
+l21
+l22
+l23
+l24
+
+
+
+
+
+
+
+580360
+290
+470400
+240
+720280
+360
+
+
+
+
+
+
+610270
+380
+
+
+91781
+574
+610190
+420
+
+480360
+320
+580230
+410
+
+560220
+330
+
+
+
+580310
+340
+
+
+
+510260
+270
+420340
+240
+350410
+190
+480390
+240
+500300
+230
+
+680320
+290
+
+500290
+260
+560190
+410
+
+
+590140
+370
+
+609053
+077
+593106
+063
+577122
+077
+
+601082
+086
+
+
+585114
+065
+616083
+105
+566133
+060
+
+632068
+111
+581117
+055
+543098
+045
+582117
+047
+604092
+108
+
+588107
+066
+574125
+093
+565067
+045
+575063
+052
+585100
+091
+568080
+047
+
+577058
+031
+569063
+053
+576066
+042
+563108
+042
+546107
+041
+578058
+059
+
+620079
+126
+572050
+037
+579065
+042
+571078
+052
+579093
+039
+578050
+033
+583052
+046
+581062
+077
+588047
+041
+588046
+044
+580055
+053
+575062
+032
+577061
+038
+582047
+043
+
+1365030
+012
+1358044
+013
+1361062
+032
+1349073
+047
+1353036
+018
+1368073
+051
+1348068
+031
+1343044
+014
+1350051
+021
+1347057
+030
+1387079
+031
+1311048
+019
+1347041
+011
+1346037
+014
+1382038
+013
+1354059
+022
+1350086
+058
+1301051
+025
+1331075
+025
+1366025
+011
+1361025
+014
+1329067
+052
+1352026
+013
+1360037
+012
+136310156
+0093
+1368024
+013
+1338020
+012
+1320038
+024
+1341035
+018
+1364025
+013
+1297054
+051
+1335064
+035
+1358017
+010
+135130200
+0090
+1356027
+014
+1351028
+013
+138760135
+0075
+1366017
+010
+1326031
+016
+138860146
+0082
+138280147
+0094
+1361021
+010
+138450172
+0093
+137810162
+0090
+137060180
+0098
+
+149070215
+0097
+146540301
+0088
+1483038
+020
+1481042
+021
+147870263
+0072
+1495043
+022
+1459050
+024
+1441031
+014
+1463035
+015
+1473036
+014
+1484063
+035
+1430033
+010
+144940286
+0084
+1471023
+012
+149310263
+0086
+1470039
+017
+1465063
+033
+1431035
+013
+1440053
+024
+147390160
+0096
+1484016
+012
+1468041
+017
+148280189
+0095
+148430271
+0063
+1485013
+010
+150290160
+0095
+1478015
+011
+1478025
+012
+1486024
+010
+1496016
+010
+146040324
+0076
+1455044
+021
+148470112
+0085
+147210148
+0095
+148630195
+0096
+1481021
+011
+149980113
+0083
+148690144
+0092
+145590230
+0097
+149790118
+0088
+150020137
+0083
+149280145
+0086
+150950137
+0083
+150520134
+0089
+150400119
+0099
+
+31
+
+32
+
+james et al
+source
+
+tkin
+k
+
+log nh
+cm3 
+
+log nsio
+cm2 
+
+log nso
+cm2 
+
+l25
+l26
+l27
+l28
+l29
+l30c1
+l30c2
+m1
+m2
+m3
+
+300420
+130
+580260
+350
+360430
+210
+350460
+150
+
+490410
+240
+450410
+270
+400460
+170
+510370
+290
+
+
+574045
+051
+586067
+056
+582068
+057
+589055
+054
+579072
+055
+599089
+068
+
+565087
+058
+
+678017
+149
+
+1385023
+011
+1358024
+011
+1367028
+017
+1354019
+011
+1335026
+015
+1348043
+021
+1302062
+101
+1323036
+014
+1289039
+019
+1317051
+027
+
+150160122
+0094
+1485018
+011
+1492018
+013
+147190152
+0097
+1459020
+011
+1450030
+011
+1442023
+012
+1427028
+010
+1450035
+013
+

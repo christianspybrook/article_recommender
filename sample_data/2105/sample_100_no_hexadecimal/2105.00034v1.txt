@@ -1,0 +1,1370 @@
+Draft version May 4, 2021
+Typeset using LATEX preprint style in AASTeX63
+
+Exomoons in Systems with a Strong Perturber: Applications to α Cen AB
+Billy Quarles,1 Siegfried Eggl,2, 3, 4 Marialis Rosario-Franco,5, 6 and Gongjie Li1
+
+arXiv:2105.00034v1 [astro-ph.EP] 30 Apr 2021
+
+1
+
+Center for Relativistic Astrophysics, School of Physics, Georgia Institute of Technology, Atlanta, GA 30332 USA
+2
+Department of Astronomy, University of Washington, Seattle, WA 98195, USA
+3
+Department of Aerospace Engineering, University of Illinois at Urbana-Champaign, Urbana, IL 61801, USA
+4
+IMCCE, Observatoire de Paris, Paris, France
+5
+National Radio Astronomy Observatory, Socorro, New Mexico, USA
+6
+University of Texas at Arlington, Department of Physics, Arlington, Texas, USA
+
+(Received May 4, 2021; Revised May 4, 2021; Accepted May 4, 2021)
+
+Submitted to AJ
+ABSTRACT
+The presence of a stellar companion can place constraints on occurrence and orbital evolution
+of satellites orbiting exoplanets, i.e., exomoons. In this work we revise earlier orbital stability
+limits for retrograde orbits in the case of a three body system consisting of star-planet-satellite.
+The latter reads acrit
+sat ≈ 0.668(1−1.236ep ) for ep ≤ 0.8 in units of the Hill Radius and represents
+the lower critical orbit as a function of the planetary eccentricity ep . A similar formula is
+determined for exomoons hosted by planets in binary star systems, where ep is replaced with
+the components of free and forced eccentricity from secular orbit evolution theory. By exploring
+the dynamics of putative exomoons in α Centauri AB we find that the outer stability limit can
+be much less than half the Hill Radius due to oscillations in the planetary orbital eccentricity
+caused by the gravitational interaction with the binary star. We show, furthermore, how the
+resulting truncation of the outer stability limit can affect the outward tidal migration and
+potential observability of exomoons through transit timing variations (TTVs). Typical TTV
+(RMS) amplitudes induced by exomoons in binary systems are .10 min and appear more
+likely for planets orbiting the less massive stellar component.
+1. INTRODUCTION
+
+The detection of the first exoplanets (Wolszczan & Frail 1992; Mayor & Queloz 1995) established
+unequivocally that planets like those in the solar system can form around other stars and be detected
+using existing technology. However, there are more moons (satellites) within the solar system than
+planets and if planets are abundant, then moons should be as well. The detection of exomoons is
+the next frontier. After the first planets, the method of transits was identified as a viable detection
+method for them (Sartoretti & Schneider 1999). Later, Holman & Murray (2005) and Agol et al.
+Corresponding author: Billy Quarles
+billylquarles@gmail.com
+
+2
+
+Quarles et al.
+
+(2005) showed the detection of Earth-like planets was possible using transit-timing methods, which
+implied that the era of exomoon detection could also be forthcoming (Cabrera & Schneider 2007).
+Kipping (2009a,b) showed the architectures of planet-moon pairs that would produce the strongest
+observational signatures through transit timing and duration variations. Recently, Kipping & Teachey
+(2020) and Kipping (2021) detailed the expected limitations on observational signatures using transit
+timing variations. Finding such signatures would theoretically be possible through observations with
+the Kepler Space Telescope, but an extensive analysis of its data did not readily confirm any exomoons
+(Kipping et al. 2012, 2013b,a, 2014, 2015b). Careful analysis did rule out several false positives,
+including one candidate for Kepler-90g (Kipping et al. 2015a). Alternative methods from transit
+timing were also proposed for the detection of exomoons, including using the averaged light curves
+(Simon et al. 2012), optimizing with respect to the orbital sampling effect (Heller 2014; Heller et al.
+2016; Hippke 2015), Doppler monitoring of directly imaged exoplanets (Agol et al. 2015; Vanderburg
+et al. 2018), or examining the radio emissions from giant exoplanets (Noyola et al. 2014, 2016).
+The stability of exomoons is also a major concern when prescribing the various means of detection.
+Although largely unconstrained, tidal interactions play a significant role in determining the lifetimes
+of solar system moons and those orbiting exoplanets (Barnes & O'Brien 2002; Lainey et al. 2020).
+However, Sasaki et al. (2012); Sasaki & Barnes (2014) placed constraints on the long-term evolution
+of exomoons by exploring a wide range of tidal parameters (e.g,. tidal Love number and tidal
+quality factors). Moreover, Namouni (2010) and Trani et al. (2020) tracked the fates of exomoons
+that could have formed prior to substantial inward migration of their host planets and found the
+shrinking planetary Hill radius RH to cause such moons to become unstable. Spalding et al. (2016)
+expanded this analysis to identify a mechanism within the evection resonance that causes significant
+eccentricity growth, where collisions can occur with the host planet or eventual tidal breakup due to
+crossings inside the Roche limit. Eccentricity growth can also be induced through interactions with
+neighboring planets, where the strength of the interactions can be scaled by the host planet's Hill
+radius (Payne et al. 2013). Furthermore, Lidov-Kozai oscillations with a tilted exomoon orbit can
+promote eccentricity growth of the host planet, where the precession rate from short range forces must
+greatly exceed the precession from the Lidov-Kozai interaction to ensure exomoon stability (Grishin
+et al. 2018). Sucerquia et al. (2019) showed that exomoons can be captured by the host star as a
+'ploonet', where the moons can escape instead of collapsing onto their host planet during migration
+and can complicate the detection of exoplanets. Domingos et al. (2006) produced estimates for the
+outer stability boundary for prograde and retrograde exomoons based upon numerical simulations
+and scaled their results relative to the planetary Hill radius RH , but those results overestimate the
+outer stability boundary by ∼20% for prograde orbits (Rosario-Franco et al. 2020) and represent the
+upper boundary of a transition region for stability (Dvorak 1986).
+Exoplanet searches have also uncovered planets that orbit two stars in either a circumstellar (e.g.,
+γ Cep (Campbell et al. 1988; Hatzes et al. 2003) or circumbinary configuration (i.e., Kepler-16 (Doyle
+et al. 2011), Kepler-34 & 35 (Welsh et al. 2012), Kepler-38 Orosz et al. (2012a), Kepler-47 (Orosz
+et al. 2012b, 2019), Kepler-64 (Schwamb et al. 2013), Kepler-413 (Kostov et al. 2013), Kepler-453
+(Welsh et al. 2012), Kepler-1647 (Kostov et al. 2016), Kepler-1661 (Socia et al. 2020), TOI-1338
+(Kostov et al. 2020)). Each of these systems hosts a giant planet. In terms of its bulk composition
+(i.e., planetary mass and radius) those planets range from Neptune-like to Jupiter-like. Quarles et al.
+(2012) and Hamers et al. (2018) showed the potential for the circumbinary giant planets to host
+
+3
+moons. However, an equivalent studied has not been performed for circumstellar systems, which is
+the focus of this work.
+The formation of exomoons around circumstellar planets in binaries could proceed through similar
+processes put forward for the solar system (i.e., Canup & Ward 2006) or potentially through tidal
+capture as has been proposed for the exomoon candidate Kepler-1625b-I (Hamers & Portegies Zwart
+2018). The stability of the circumstellar host planets can also be influenced on the secular forcing
+from the secondary star (Andrade-Ines & Eggl 2017) or mean motion resonances that can eject the
+planet from the system (Quarles et al. 2020a). Due to the formation scenarios and constraints for
+orbital stability, the exomoons orbiting these giant planets can do so in a prograde or retrograde
+direction relative to the orbital direction of the host planet. Jupiter has captured many moons and
+their retrograde orbits are taken as a tell-tale sign of this evolution (Jewitt & Haghighipour 2007).
+In this work, we apply an analytic framework for the stability of exomoons that orbit planets in
+binary star systems using the secular forced eccentricity and overlap of mean motion resonances in
+Section 2. In Section 3 we present the results of N-body simulations of a hypothetical planet-moon
+system in α Centauri AB and compare the numerical result to the predictions of the theoretical
+framework. In addition, we test whether the outward tidal migration is affected by the stellar
+companion in Section 3.4. Section 4 explores the observational signature of exomoons through transit
+timing variations for exomoons in binary systems and estimates the number of potential systems using
+the statistics for the stellar binary population. Section 5 summarizes the key findings of our work.
+2. ANALYTIC CRITERIA FOR EXOMOON STABILITY WITH A STRONG PERTURBER
+
+2.1. Secular Forced Eccentricity
+The secular forced eccentricity from the three body problem can provide a simple analytical estimate
+on the region of stability around a planet orbiting one star of a binary star system. In such a system,
+the exomoon exists in a three body hierarchy, where it orbits a planet that in turn orbits its host
+star. In addition, a secondary star orbits the center of mass of three body system at such a distance
+so that the planetary orbit remains stable to produce a hierarchical four body configuration.
+Various aspects of the stability of hierarchical four body configurations have been investigated in
+some detail (e.g. Milani & Nobili 1983; Liu & Gong 2019, and references therein.). Most approaches
+are based on Jacobi (quasi) integrals, c2 E, where c is the angular momentum and E the total energy
+of the system (i.e., Marchal & Bozis 1982). Jacobi integrals are constants of motion in the circular
+restricted three body problem related to zero velocity curves. In order for a three body configuration
+to be Hill stable, the value of c2 E must be less than the critical value at the Lagrange point L1.
+If that is the case, the zero velocity surface prevents a (massless) exomoon from escaping its orbit
+around the planet. Although this concept can be shown to yield rigorous and sufficient criteria,
+derived expressions for stability limits are often lengthy and cumbersome to use, especially in the
+general three and four body problems where the Jacobi integrals are not constant.
+We consider the hierarchical four body problem as two coupled three body problems: 1) planetmoon-host star and 2) planet-moon barycenter-host star-stellar companion. In the first three body
+hierarchy, the planetary semimajor axis ap relative to the host star is much larger than the moon's
+semimajor axis asat relative to the host planet (i.e., ap fl asat ). Then, the radius of the Hill sphere
+around the planet depends on the planetary semimajor axis and masses through,
+
+1/3
+Mp + Msat
+RH = ap
+,
+(1)
+3M?
+
+4
+
+Quarles et al.
+
+where Mp , Msat , and M? are the masses of the host planet, moon and host star, respectively. The
+above definition corresponds to the Hill radius for a circular planetary orbit. In a more general
+formula ap is replaced by rp which also includes the planetary eccentricity ep . As a consequence, RH
+depends on the position of the planet on its orbit with a minimum at
+0
+RH
+= (1 − ep )RH .
+
+(2)
+
+Since the planet, moon and host star form a hierarchical triple, the semimajor axis of the moon
+around the planet remains approximately constant over time. To guarantee Hill stability of a moon
+around the planet, we have to identify pathways for the moon to escape the Hill sphere around the
+planet, which typically occurs when the planet is at periastron.
+0
+Under an external perturbation, the Hill radius RH
+is modified as the planetary eccentricity evolves
+(Georgakarakos 2003), where a simple model for the planetary orbital eccentricity evolution in a
+hierarchical system dates back to Heppenheimer (1978). In essence, the eccentricity of the planetary
+orbit can be decomposed into forced () and free (η) components (Andrade-Ines & Eggl 2017). The
+former is determined by system parameters, such as the ratio of semimajor axes and the eccentricity
+of the stellar binary, and can be derived from initial conditions. In their simplest form the equations
+for the forced and free amplitudes of the eccentricity vector read as:
+p ≈
+
+5 ap ebin
+,
+4 abin 1 − e2bin
+
+(3)
+
+and
+ηp ≈ |ep,o − p |,
+
+(4)
+
+where ep,o and ap are the initial eccentricity and semimajor axis of the planet p. The semimajor
+axis and eccentricity of the stellar binary are denoted by abin and ebin , respectively. The maximum
+planetary eccentricity (ep,max ) can be estimated by adding the amplitudes of the forced and free
+components of the respective eccentricity vector,
+ep,max ≈ ηp + p .
+
+(5)
+
+In our four body configuration, the influence of the secondary star induces variations in the planetary eccentricity as the the system evolves. As a result, we determine the smallest extent of the
+planet's Hill radius as
+1/3
+
+Mp + Msat
+0
+.
+(6)
+RH,min = ap (1 − ep,max )
+3M?
+To become unbound, a moon's orbital energy h must exceed the gravitational potential U , where
+0
+this can occur when rsat ≥ RH,min
+/2. We ignore the moon's eccentricity esat because the amplitude of
+its forced eccentricity is small, sat ∝ asat /ap fi 1. Thus, we can construct a simple stability criterion
+for moons around planets that orbit one star of a binary star system, namely
+1 0
+1
+acrit
+(1 − p − ηp ) RH ,
+(7)
+sat = RH,min ≈
+2
+2
+where p and ηp are the forced and free eccentricities of the planet (see equations 3 and 4), and RH
+is the Hill radius for a circular planetary orbit. Moons on stable orbits would have semimajor axes
+crit
+asat < acrit
+sat . Note that in Equation 7 asat is given in units of distance. For the remained of this article
+we will measure acrit
+sat in units of RH .
+
+5
+2.2. Stability Limitations from Mean Motion Resonances
+For moderate planetary eccentricity (ep & 0.3) N:1 mean motion resonances (MMRs) between
+the planetary and satellite orbits add an additional component to the eccentricity evolution of the
+satellite. For example, the 8:1 MMR occurs for asat ∼ 0.36 RH and the 9:1 MMR occurs for asat ∼ 0.3̄
+2 1/3
+RH (Kipping 2009a; Rosario-Franco et al. 2020). The libration width
+RH following aN
+sat = (3/N )
+of MMRs grows with the perturber's eccentricity (i.e., ep ), which can allow for the overlap of MMRs
+to destabilize a significant range in asat (Murray & Dermott 1999; Mudryk & Wu 2006; Morais &
+Giuppone 2012). From Mardling (2013), we calculate the libration width ∆σN of the N:1 MMRs
+using the following:
+1/2
+
+6H22
+∆σN =
+(2π)1/4
+
+s
+
+r
+√
+e
+M?
+M
+M
+13
+sat
+p
+sat
++ N 2/3 2/3
+1 − e2sat (1 − e2p )3/8 N 3/4 e−N ξ(ep )/2 ,
+MT
+24
+MT (Mp + Msat )4/3 ep
+
+(8)
+
+where H22 = 0.71 is a scale factor from the spherical harmonic expansion of a pendulum model for
+resonance, M? is the mass ofpthe host star, MT is the total mass of the star-planet-satellite system,
+and ξ(ep ) = cosh−1 (1/ep ) − 1 − e2p . Note that ∆σN = 0 for esat = 0, which implies that circular
+satellite orbits are always stable in this model, and this is not the case, as noted by Mardling (2013).
+When calculating ∆σN for circular orbits, we use esat = 10−3 or ep = 10−3 to avoid the complication
+noted by Mardling or the singularity for ep → 0, respectively.
+Using an Earth-mass moon on a circular orbit around a Jupiter-mass planet, we produce Figure 1
+to illustrate the locations of the N:1 MMRs for such exomoons. The host star is assumed to equal
+α Cen A in terms of its mass (1.133 M ) and luminosity (1.519 L ). The white curves in Fig. 1
+are determined through aN
+sat ± ∆σN and the color-code denotes the order N of the MMR. The black
+regions represent configurations between the MMRs and the light green (solid) curve in Figure 1
+traces the first intersection points between adjacent MMRs and can be calculated numerically using
+N +1
+a root finding function for aN
+sat − ∆σN = asat + ∆σN +1 . An initial condition to the right of the light
+green curve becomes unstable due to the overlap in the MMRs and this process can be slow due to the
+eccentricity growth timescale of the satellite. However, in our four body configuration the planetary
+eccentricity undergoes oscillations due to secular forcing by the secondary stellar companion. As a
+result, the light green curve can shift leftward and more efficiently destabilize prograde satellites.
+Retrograde satellites are less affected and can survive for a longer timescale at a much larger satellite
+separation (Henon 1970), but chaotic diffusion within the MMR overlap can lead to instabilities on
+longer timescales.
+3. NUMERICAL DETERMINATION OF EXOMOON STABILITY
+
+In this section, we numerically investigate the limits for the stability of satellites in a hierarchical
+four body problem. The general setup of our simulation is detailed in Section 3.1. The retrograde
+satellite stability limit (Domingos et al. 2006) is revisited in Section 3.2 to identify the lower critical
+orbit boundary that was previously overlooked. Section 3.3 examines the limits to exomoon orbital
+stability using the α Cen AB system. Finally, the effects of the planetary and stellar tides on EarthMoon analogs are explored in Section 3.4.
+3.1. Simulation Setup & Initial Conditions
+
+6
+
+Quarles et al.
+
+N-body simulations provide a direct test of exomoon stability and we use the orbital integration
+package Rebound (Rein & Liu 2012; Rein & Spiegel 2015) because it is a versatile tool for the evolution
+of complex N-body systems. We use the WHFAST and IAS15 integration schemes within Rebound
+to evaluate the stability of exomoons (i.e., Rosario-Franco et al. 2020) on 105 or 106 year timescales
+using an initial timestep that is 2.5% of the exomoon's initial orbital period. Since our initial timestep
+is very small compared to the period of stellar binary, the WHFAST integration scheme maintains
+sufficient accuracy. We verified this using the IAS15 adaptive integration scheme at high planetary
+eccentricity. The 105 year timescale is sufficient for the most cases because the typical orbital timescale
+for an exomoon is much shorter (∼0.1 yr) and the secular timescale for perturbations from the stellar
+companion is ∼104 years (e.g., α Centauri AB; Quarles et al. 2018a; Quarles & Lissauer 2018; Quarles
+et al. 2019). Perturbations from the stellar companion on retrograde-orbiting exomoons are weaker,
+especially in the habitable zone of each star, and require the longer 106 year integrations. Our
+definition of stability is for an exomoon that begins on a circular, coplanar orbit to survive for the
+full integration time. Unstable conditions are those that cause the exomoon separation rsat to exceed
+the host planet's Hill radius (rsat > RH ) or crash into the host planet (rsat < Rp ).
+Our simulations use the α Centauri AB (α Cen AB) binary to identify the extent of exomoon
+stability because the stellar masses, separation, and eccentricity are well-known, which is important
+for our criteria in Section 2. Pourbaix & Boffin (2016) provide values for α Cen AB based on analysis
+of archival data from HARPS, the High Accuracy Radial velocity Planet Searcher at the ESO La
+Silla 3.6 m telescope. Pourbaix & Boffin find the masses of star A and B are 1.133 M and 0.972
+M , respectively, while the binary orbital semimajor axis and eccentricity are 23.7 au (17.66 arcsec)
+and 0.524, respectively. These values update the previous analysis Pourbaix et al. (2002) and find
+good agreement with estimates from asteroseismology (Lundkvist et al. 2014). In our simulations,
+the binary companion is coplanar, begins at periastron, and is nodally aligned (see Table 1). Our
+choice for the binary initial phase affects the stability of planetary orbits sufficiently near the stability
+limit (Quarles et al. 2018b, 2020a), where the initial separation of the host planets in this work are
+in a regime that is long-term stable considering a wide range of initial phases for both the binary
+and planetary orbit (Quarles et al. 2020a).
+Since the existence of planets in α Cen AB is currently unknown (much less their atmospheric
+composition), we choose an initial condition close to the inner edge of the conservative habitable
+zone (Eggl et al. 2020). The habitable zone (HZ) is commonly defined as the region where liquid
+water could potentially exist on the surface of a rocky planet and depends, among other things, on
+the properties of the incident radiation and composition of the planet's atmosphere (Kasting et al.
+1993; Kopparapu et al. 2014; Eggl et al. 2020). We place the planet at 1.232 au around star A
+and 0.707 au around star B. Terrestrial planets on circular orbits at these semimajor axes receive
+one solar constant's worth of radiative flux annually. For a planet orbiting α Cen A, the planet's
+semimajor axis ap is sampled at 1.232 au, 2 au, 2.25 au, or 2.5 au as star A has a greater chance to
+host planets as far out as ∼2–2.5 au (Quarles & Lissauer 2016). For a planet orbiting α Cen B, the
+planet's semimajor axis begins at 0.707 au or at 2 au, respectively. In both cases, the planetary orbit
+starts coplanar (ip = 0◦ ) with the binary orbit, with zero obliquity ψp = 0◦ , and is nodally aligned
+(ωp = Ωp = 0◦ ). Most of the observed circumstellar planets in binary systems are Jupiter-like giants
+(Schwarz et al. 2016). For the planetary mass Mp and radius Rp , we use values identical to Jupiter's
+in our orbital stability simulations. Prior studies of the satellites in the solar system (Estrada &
+
+7
+Table 1. Parameters used for the masses, luminosities, and orbit of α Cen AB in a reference plane aligned
+with the eccentricity and angular momentum vectors of the binary.
+MA (M ) LA (L ) MB (M ) LB (L ) abin (au) ebin ibin (◦ ) ωbin (◦ ) Ωbin (◦ ) fbin (◦ )
+1.133
+1.519
+0.972
+0.500
+23.78
+0.524
+0
+0
+0
+0
+
+Mosqueira 2006; Canup & Ward 2006) developed formation pathways akin to the terrestrial planets,
+but for a circumplanetary disk. Canup & Ward (2006) suggested that in-situ formation of moons
+from circumplanetary disks around giant planets are limited to ∼10−4 Mp due to the estimated flux
+of infall material from the circumstellar disk, but this prediction awaits confirmation from exoplanet
+observations. We use an Earth-mass exomoon Msat in our simulations due to the potential of tidal
+capture through scattering events and the flux of smaller infall material could be larger than was
+for the solar system due to the formation environment of the binary stars. However, we switch to
+an Earth-Moon analog for the planet-moon system when considering the possible effects of tidal
+evolution (see Section 3.4). This is motivated by observational constraints for α Cen AB (Zhao et al.
+2018) and the comparisons that we make with the solar system.
+For the exomoons, we explore prograde and retrograde orbits because both are ubiquitous within
+the solar system (Jewitt & Haghighipour 2007), where there could be a higher incidence of scattering
+during the early stages of planet formation (Quintana et al. 2002, 2007; Haghighipour & Raymond
+2007). Since we are investigating long-lived exomoons, we expect that the tidal dissipation in the
+host planet to efficiently align the exomoon's orbit with the planetary equator (i.e., coplanar with the
+planetary and binary orbits) and circularize the exomoon's orbit. As a result, our numerical model
+begins the exomoons on circular (esat = 0) orbits that are nodally aligned ωsat = Ωsat = 0◦ with the
+planet and binary orbits. We vary the planet-satellite separation asat as a fraction of the planet's
+Hill radius starting at 0.25 RH and up to 0.7 RH in 0.01 RH steps, where the 0.25 RH is just interior
+to planet-satellite MMRs and 0.7 RH is the theoretical limit for stability for retrograde small bodies
+in the circular restricted three body problem (Quarles et al. 2020a).
+Following Rosario-Franco et al. (2020), we evaluate 20 initial phases fsat that are randomly drawn
+between 0◦ –180◦ from a uniform distribution for each exomoon semimajor axis asat . When constructing our initial conditions, we use the above prescribed orbital elements and convert pairwise (e.g.,
+[A,(p,sat),B]) to the Cartesian positions and velocities. The center of mass between the planet and
+satellite typically resides within the planet and thus our results are indistinguishable from a Jacobian
+construction of initial conditions. Table 2 summarizes the parameter ranges that we explore for the
+orbital stability simulations.
+3.2. Revised Retrograde Stability Limit
+Previous studies (Henon 1970; Innanen 1979; Hamilton & Burns 1991; Domingos et al. 2006)
+show that the extent of stable orbits for retrograde-orbiting moons is substantially larger than for a
+prograde moon. Domingos et al. (2006) explored how the stability limit for retrograde satellites varied
+with the planet and satellite eccentricity. However, the simulations by Domingos et al. evaluated
+only a single initial phase (fsat = 0◦ ) to formulate the stability boundary. As a result, the empirically
+determined retrograde stability limit was actually the upper critical orbit (Dvorak 1986). This
+distinction to their study was discussed recently for the case of prograde-orbiting satellites (RosarioFranco et al. 2020). Moreover, Quarles et al. (2020a) numerically expanded the Jacobi constant
+
+8
+
+Quarles et al.
+Table 2. Parameter ranges used in orbital stability simulations.
+parameter unit
+range/value
+Mp
+M⊕
+318
+√
+ap
+au
+L? , 2, 2.25, 2.5
+ep
+0.00 – 0.60
+Msat
+M⊕
+1
+asat
+RH
+0.25 – 0.70
+◦
+0, 180
+isat
+◦
+0 – 180
+fsat
+
+stability criterion (Eberle et al. 2008) to retrograde orbits and determined that the retrograde stability
+limit ac ≈ 0.7 RH for the μ = 10−3 case studied by Domingos et al. (2006).
+We perform simulations of retrograde Earth-mass exomoons hosted by Jupiter-mass planet that
+orbits 1 au from its Solar-mass host star (see Section 3.1). The exomoon begins on a circular orbit,
+where the host planet's eccentricity is varied from 0–0.6 in 0.01 steps. We test initial exomoon
+semimajor axis values starting within 0.25–0.70 RH , where the outer limit is the determined from the
+Jacobi constant criterion (Eberle et al. 2008; Quarles et al. 2020a). The planet and satellite orbits
+begin nodally aligned, where we evaluate 20 random values for the initial satellite orbital phase
+fsat . Figure 2 illustrates the relation between the initial satellite separation asat and the planetary
+eccentricity ep using a color-code for the fraction of initial phases fstab that are stable for the full
+integration timescale of 105 years. Since these simulations lack a stellar companion the longer 106
+timescale described in Section 3.1 is unnecessary, but will be used for retrograde systems in Section
+3.3.
+The white cells in Figure 2 mark when all 20 trials either collide with or are stripped from the
+host planet. The black cells mark when all 20 trials are stable, where the colored cells show the
+transition. The black (dashed) curve marks the prediction from the fitting formula by Domingos
+et al. (2006), where the red (solid) curve denotes our fitted stability boundary using a linear function
+in the planetary eccentricity in units of the Hill radius RH ,
+acrit
+sat = C1 (1 − C2 ep )
+
+(9)
+
+and the gray curves show the uncertainty in our estimate. Equation 9 has a similar structure as
+Equation 7 where the planetary eccentricity is used directly (instead of the maximum eccentricity)
+because the planetary eccentricity is nearly constant in time for these Sun-Jupiter-satellite systems
+with negligible tidal interactions. Figure 2 demonstrates that the boundary from Domingos et al.
+(2006) and our boundary represents the upper and lower critical orbits (Dvorak 1986), respectively.
+Our stability boundary recovers the limit set by the Jacobi constant criterion (Eberle et al. 2008;
+Quarles et al. 2020a) for circular planetary orbits. The red (solid) curve is fit by the coefficients:
+C1 = 0.668 ± 0.006RH and C2 = 1.236 ± 0.019. Using our outer stability limit coefficient C1 is
+13/2
+important because it significantly affects the limiting satellite mass (Msat ∝ C1 ) through tidal
+migration (Barnes & O'Brien 2002).
+3.3. Orbital stability in α Centauri AB
+
+9
+Table 3. Stability Coefficients Csat to determine the Upper and Lower Critical Orbits for Exomoons in α
+Cen AB.
+prograde retrograde
+LCO
+0.4
+0.65
+UCO
+0.5
+0.95
+
+Planets orbiting either component in a stellar binary experience strong perturbations, but the perturbation strength scales with the pericenter distance of the secondary star and the initial semimajor
+axis of the planet (e.g., David et al. 2003; Quarles et al. 2018b). We perform numerical simulations
+(see §3.1) of prograde and retrograde orbiting satellites using the α Cen AB binary and consider host
+planets whose orbits begin at the inner edge of their respective HZs (1.232 au or 0.707 au) or closer
+to their respective stability limits (ap ∼2–2.5 au). α Cen AB is representative of moderately wide
+binary systems (Raghavan et al. 2010; Moe & Di Stefano 2017) in terms of its eccentricity and binary
+orbital period, which makes it important as a case study. The distribution of binary eccentricity and
+orbital period is quite broad and we explore the possible impacts on our results in Section 4.2.
+Starting with planets and moons in the respective HZ of their host star in α Cen AB, we numerically
+determine the outer stability boundary for satellites (Figure 3). We also plot two gray curves that
+represent the upper or lower critical orbit using the formalism derived in Section 2 in units of the
+planetary Hill radius relative to the host star (Table 2),
+acrit
+sat = Csat (1 − p − ηp )RH
+
+(10)
+
+where Csat is a scale factor for RH in Equation 7. The coefficient Csat corresponds to values determined
+for exomoons in single star systems (Domingos et al. 2006; Rosario-Franco et al. 2020) for prograde
+and retrograde orbits. For the solid gray curve representing the upper critical orbit, Csat is 0.5
+(prograde) or 0.95 (retrograde). For the dashed gray curve representing the lower critical orbit, Csat is
+0.4 (prograde) or 0.65 (retrograde). Due to the absolute value imposed in Equation 3, the gray curves
+have a peak at the forced eccentricity, p . Similar to Figure 2, the color-code in Figure 3 illustrates the
+transition between stable and unstable orbits. In each panel, the solid curve encapsulates nearly all
+the potentially stable cells, while the dashed curve marks the more conservative inner boundary. The
+curves fit reasonably well because the eccentricity growth of the satellite, which is the main driver
+for instabilities, grows secularly in this regime. Moderately eccentric planets (ep ≥ 0.3) undergo
+eccentricity oscillations and MMR overlap causes significant eccentricity growth for the satellite.
+The light green (solid) curves in Figure 3 (lower panels) mark the boundary where MMR overlap
+begins in the host star-planet-satellite system. Those curves shift left and right as the system evolves.
+There are a handful of stellar binaries with a separation of ∼20 au that are known to host Jovian
+exoplanets near the stability limit (e.g., HD 196885AB, Chauvin et al. (2007); Correia et al. (2008);
+Fischer et al. (2009); Chauvin et al. (2011); γ Cephei AB Hatzes et al. (2003); Torres (2007)) with
+extensive dynamical studies focusing on the stability of the planet Thebault (2011); Giuppone et al.
+(2011, 2012); Satyal et al. (2013, 2014). We perform numerical simulations of similar conditions for
+a putative Jupiter-like exoplanet orbiting either star in α Cen AB at 2, 2.25, or 2.5 au from the
+host star to investigate the stability of moons under more significant perturbations from the stellar
+companion. Zhao et al. (2018) may have already excluded Jupiter-sized planets at these distances
+
+10
+
+Quarles et al.
+
+using archival radial velocity measurements, but our results are scaled by the planetary Hill radius
+and would still be applicable for lower mass planet-satellite pairs as long as Msat fi Mp .
+Figure 4 illustrates our results for prograde orbiting satellites and is similar to Figure 3 (top row).
+Satellites can be stable at larger separations when the host planet orbits its star at the forced
+eccentricity p (see §2) and is apsidally aligned (ωp = ωbin ) with the binary orbit (Andrade-Ines
+& Eggl 2017; Quarles et al. 2018b). Apsidal alignment is important because it limits the degree
+of precession for the planetary orbit and minimizes the planet's eccentricity oscillations, where the
+maximum planetary eccentricity ep can reach ∼0.2 when starting from a circular orbit (Quarles et al.
+2018b). For an eccentric planetary orbit in the HZ of α Cen AB, ep can also vary by ∼0.2 over
+a secular cycle (Quarles et al. 2018b), but the magnitude depends on the proximity to the forced
+eccentricity. At the maximum of the planetary eccentricity oscillation, the truncation of the planetary
+Hill radius is more significant and significant overlap with MMRs can occur, where an ejection of the
+satellite becomes more probable.
+Figure 4 demonstrates this effect through: 1) the gray curves marking the upper and lower critical
+satellite orbits and 2) the light green curves denoting the boundary for overlapping MMRs. The
+dashed (light green) curves represent a shift of the MMR based curves (solid) to smaller initial
+planetary eccentricities by about ∼0.2, which is representative of the maximum oscillation of the
+planetary eccentricity that permits planetary stability from previous studies (Quarles & Lissauer
+2016; Quarles et al. 2018b). Figure 5 illustrates the planetary eccentricity oscillations (Fig. 5a–c) for
+three different initial values of ep , where the remaining initial conditions are drawn from Fig. 4c and
+asat begins at 0.3 RH . Figs. 5a & 5c show a higher variation due to their relative distance from the
+planetary forced eccentricity (p ∼ 0.08 when ap = 2.25 au). Figure 5d–f demonstrate the evolution
+of the satellite's apocenter Qsat (black dots) in response to the planet's eccentricity variation, where
+the gray (dashed) curve marks the lower critical orbit boundary, light green (solid) curve denotes the
+boundary for MMR overlap when esat = 0, and the magenta (dashed) shows the shift of the MMR
+overlap boundary at the maximum satellite eccentricity. The boundary for MMR overlap depends
+on ep and esat (see Eqn. 8), where increases in esat lead to shifts in the MMR overlap boundary
+to lower ep values and increases in ep (relative to p ) correlates with a higher likelihood of reaching
+the new boundary. Instability can then ensue once the satellite enters the MMR overlap region, but
+this process is chaotic (Mudryk & Wu 2006). Figure 6 illustrates similar calculations as Fig. 4, but
+for retrograde orbiting satellites. The overall area is greater due to the enhancement to stability
+from retrograde orbits and the possible truncation due to planetary eccentricity oscillations is less
+severe. Even though more of the parameter space is stable for retrograde satellites, the maximum
+satellite eccentricity is also larger and the possible existence of multiple satellites would constrain the
+parameter space further (Giuppone et al. 2013).
+3.4. Tidal migration lifetimes in α Centauri AB
+In our solar system, the lifetime of moons is significantly constrained by tidal interactions (Barnes
+& O'Brien 2002; Sucerquia et al. 2019; Lainey et al. 2020). While constraints have been placed on the
+long-term tidal evolution of exomoons in single stellar systems (Sasaki et al. 2012; Sasaki & Barnes
+2014), this has yet to be established for exomoons in stellar binary systems. To obtain a full picture
+of orbital stability of exomoons in stellar binary systems, it is necessary to consider the contribution
+of planetary and stellar tides. In this section, we apply a secular constant time lag (CTL) tidal model
+
+11
+and evaluate the migration lifetimes of exomoons within the HZs of each stellar binary component
+in α Cen AB.
+Analyses of observational surveys (Zhao et al. 2018) have largely excluded Jupiter-mass exoplanets
+from the HZs of α Cen AB, where the detection thresholds are 53 M⊕ and 8.4 M⊕ for star A and
+B, respectively. Additionally, the low tidal time lag in Jupiter-like planets (k2,J ∆tJ ∼ 10−2 s or
+QJ ∼ 106 ; see Leconte et al. (2010)) greatly reduces the outward migration of satellites and prevents
+us from placing a strong constraint using tidal migration on possible exomoons, although recent
+results for Saturn suggest substantially faster migration rates could be possible (Lainey et al. 2020).
+More complicated models for the tidal dissipation in gas dominated exoplanets could be employed
+(e.g., Guenel et al. 2014; Alvarado-Montes et al. 2017), but such considerations are beyond the scope
+of this work. As a consequence we use an Earth-Moon analog in our tidal model instead, due to its
+potential to place meaningful constraints on exomoons in α Cen AB, and because the Earth-Moon
+system has tidal parameters that are better understood. Similar to section 3.3, the planetary orbits
+are sampled from the inner edge of their HZ, but values for exomoon's semimajor axis begin at 8.64
+R⊕ (three times the Roche radius of an Earth-Moon analog).
+We implement a constant time lag secular model (Leconte et al. 2010; Hut 1981) and evaluate the
+tidal evolution up to 10 Gyrs. This model calculates the secular changes to the semimajor axes (ap
+and asat ), eccentricities (ep and esat ), and mean motion (np and nsat ) averaged over an orbit. The
+model is scaled by the tidal Love number k2 and the time lag ∆t, where the latter is proportional
+to (nQ)−1 in the constant phase lag (i.e., constant Q) tidal models (Leconte et al. 2010; Piro 2018).
+A reasonable time lag for the Earth-Moon system is ∼100 s, and we assume ∆tp = 100 s, unless
+stated otherwise. The initial rotation period of the host planet is 5 hours, which is consistent with
+expectations from terrestrial planet formation (Kokubo & Ida 2007). The external perturbations from
+the secondary star on the exomoon are weak compared to the planetary gravitational interactions
+and a tidal model considering the interactions between the host star-planet-moon are sufficient. We
+use a new module called tides_constant_time_lag from reboundx (Baronett et al. 2021) to test
+this assumption, which is based upon the well-established code mercury-T (Bolmont et al. 2015).
+Our implementation of the tides_constant_time_lag module evaluates the instantaneous torques at
+each timestep using the ias15 integrator and the N-body simulations are evolved for 10 Myrs, which
+is an appropriate timescale to see the effects on the satellite orbit due to tides. At the time of this
+writing, the tides_constant_time_lag module does not evolve the changes to primary body's spin
+due to outward tidal migration of a secondary body. Therefore, we update the spin rate of the primary
+body periodically using interpolated values of the host planet's spin rate from the afore mentioned
+secular model. Figure 7 illustrates the results from reboundx (solid black) and the corresponding
+secular model (dashed red), where the two approaches are in agreement to a high degree. In both
+models, the exomoon's eccentricity grows at similar rates and orbital energy exchanges between the
+planet and moon become possible. Since the N-body method is more computationally expensive (12
+CPU-days), we use the secular model for the remainder of this section.
+The outward migration of a satellite varies with both the assumed time lag and with the mass of
+the satellite. We evaluate the outward tidal migration using a broad range in the time lag (10–600
+s) and the satellite mass (0.001–0.05 Mp ) over a 1010 year timescale (i.e., main sequence lifetime of a
+G dwarf). Figure 8 shows variation in outcomes due to these parameters for an Earth-Moon analog
+orbiting either stellar host in α Cen AB. The color-code delineates the assumed parameter in each
+
+12
+
+Quarles et al.
+
+panel. Figures 8a and 8b evolve a Moon-like satellite (0.0123 M⊕ ). Satellites are stable for the full
+range of time lags considered for α Cen A. But, exomoons can escape after 1 Gyr when their host
+planet orbits α Cen B for a time lag &100 s. For α Cen B, the inner edge of the HZ is closer to
+the host star and the tidal de-spinning of the host planet is faster, which can accelerate the outward
+migration. Figures 8c and 8d consider a range of satellite masses, where the time lag is held fixed at
+100 s. There is a smaller range of outcomes when the satellite mass is varied, where larger planetsatellite mass fractions (&0.02 Msat /Mp ) shorten the de-spinning timescale for the host planet. Once
+the host planet is de-spun, the migration changes direction and the satellite begins to fall towards
+the planet. In this case, the stellar tide on the host planet is weak enough so that the infall rate is
+slow as is shown by the flattening of the 0.05 M⊕ curves in Figures 8c and 8d. If the host planet's
+orbit was ∼0.5× smaller, then a putative satellite would collide with the host planet within 10 Gyrs
+(e.g., Sasaki et al. 2012; Sasaki & Barnes 2014).
+Previous studies have historically used tidal migration to place upper limits on satellite masses using
+a constant phase lag (i.e., constant Qp ) tidal model (Goldreich & Soter 1966; Barnes & O'Brien 2002;
+Domingos et al. 2006). However, these efforts are usually limited to cases where the satellite mass
+is much smaller than the planet (i.e., Msat /Mrmp fi 1) so that the satellite mass is neglected in the
+formulation of the satellite's mean motion nsat . Additionally, the final expression is determined in
+terms of a fraction of the planet's Hill radius f (see their Equation 8 Barnes & O'Brien 2002). In
+the constant phase lag model, the satellite's semimajor axis changes via the following differential
+equation (Murray & Dermott 1999):
+s
+r
+
+5
+3k2,p GMp Msat
+Msat Rp
+ȧsat =
+1+
+,
+(11)
+Qp
+asat Mp
+Mp asat
+where G is the Gravitational constant, Rp is the planetary radius, k2,p is the planetary Love number,
+and Qp is the tidal quality factor. When the initial planetary rotation period is sufficiently short
+(Piro 2018), the satellite migrates past the stability limit (Equation 10) on a timescale T that is
+determined through the integral of Equation 11 resulting in:
+ Q
+2  13/2
+p
+T =
+af − a13/2
+o
+13
+3k2,p Rp5
+
+!−1
+
+
+Msat Msat
+GMp 1 +
+Mp Mp
+
+s
+
+(12)
+
+where af and ao are the final and initial semimajor axes of the satellite, respectively. For moons
+that form close to the host planet, the term proportional to ao can be neglected because af fl ao .
+To determine the limiting mass ratio, we make the substitution xm = Msat /Mp and set af equal
+to f RH , where f = Csat (1 − p − ηp ) from Equation 10. Rewriting RH in terms of xm as RH =
+ap [(1 + xm )Mp /(3M? )]1/3 and inserting af into Equation 12 yields the following expression after
+straight forward algebraic manipulation:
+"
+
+1/3 #13/2
+xm
+Qp
+2
+Mp
+p
+≤
+f ap
+.
+5/3
+(1 + xm )
+13
+3M?
+3k2,p T Rp5 GMp
+
+(13)
+
+Equation 13 represents the upper limit in the mass ratio xm between the satellite and the planet for a
+given configuration after a set time T . For the range of parameters considered in this work Equation
+
+13
+13 has only one real root which is most easily found numerically using a root-finding algorithm, such
+as the root_scalar function in numpy (Harris et al. 2020). Equation 13 reduces to Equation 8 from
+Barnes & O'Brien (2002) in the low mass ratio limit (i.e., xm fi 1). As pointed out by Piro (2018),
+Equation 13 will hold as long as sufficient spin angular momentum in the host planet is available for
+the outward migration. Once the planetary rotation synchronizes with the satellite's mean motion,
+the outward migration stops and inward migration towards the Roche limit can occur.
+We test the validity of this Equation 13 using an Earth-mass host planet in α Cen AB over 10
+Gyr in a constant time lag model (∆tp = 100 s) following the system setup in Fig. 8, where the
+outer stability limit acrit
+sat is truncated by the planetary eccentricity ep . In addition, we evaluate a
+comparable constant Q tidal model for a more direct comparison. Figure 9 shows that Equation 13
+(black curve) fits the boundary between stable (colored cells) and unstable (gray cells) for planetsatellite mass ratios . 10−2 , where the assumption for only outward migration remains valid. Above
+this curve, there are solutions where the infall timescale (after synchronization) is longer than 10
+Gyrs. The color-code denotes how far the satellite migrates outward over 10 Gyrs relative to the
+respective critical semimajor axis and the ⊕ symbol denotes parameters for an Earth-Moon analog at
+the planet's forced eccentricity. The constant time lag models (Figs. 9a and 9b) allow for a smoother
+transition when the migration direction changes (outward to inward migration) as compared to the
+respective constant Q models (Figs. 9c and 9d). We find that Equation 13 is more applicable for
+planets orbiting α Cen B because its HZ is closer to the host star and when the planet-satellite
+mass ratio is .2-3%. Different assumptions on the dissipation parameter (∆tp or Qp ) can affect the
+outcome, but those also run into limits for plausibility since we are considering Earth-like values
+estimated from the terrestrial planets in the solar system (Quarles et al. 2020b).
+4. OBSERVATIONAL CONSEQUENCES FOR PLANETS IN BINARY SYSTEMS
+
+4.1. Potentially Observing Exomoons in α Centauri through TTVs
+The presence of exomoons for single star systems can be deduced using transit timing variations
+(TTVs) and transit duration variations of the planet as it crosses its host star (Kipping 2009a,b),
+where these measurements also depend on the planet-satellite mass ratio msat /mp and separation
+asat . These factors affect the maximum TTV (RMS) amplitude through the displacement of the
+host planet from the center of mass (Sartoretti & Schneider 1999), where the larger planet-satellite
+separations increase the TTV magnitude for a given Msat /Mp . We examine a hypothetical case of
+an Earth-analog near the inner edge of the conservative HZ of each star in α Cen (see Fig. 3 and
+how the presence of the stellar companion affects the maximum TTV amplitude for the putative
+transiting planet due to a prograde orbiting satellite. The Earth-analog is assumed to be at its
+forced eccentricity to set the outer stability limit.
+The binary companion primarily affects potential exomoons through the truncation of the outer
+stability limit. Planetary tides could also limit the allowed parameters, but the tidal dissipation could
+be plausibly adjusted to allow for long-lived exomoons and thus cannot place a meaningful constraint
+for Earth-analogs in α Cen AB. However, satellites of Earth-analogs in other binary systems with
+less luminous secondary stars can be meaningfully constrained (Sasaki et al. 2012; Quarles et al.
+2020b). Figure 10 shows the parameters that can produce 1, 2, 5, 10, 20, and 40 min TTVs (colorcoded) induced by prograde or retrograde satellites. An analog of the current Earth-Moon system
+in terms of mass ratio and separation is denoted by the ⊕ symbol, which would produce a &2 min
+
+14
+
+Quarles et al.
+
+TTV. Much larger TTVs (.40 min) are possible for retrograde orbiting satellites because the outer
+stability limit is farther from the host planet. An instrument similar to the Kepler Space Telescope
+is ideal for observing circumstellar planets and measuring potential TTVs (Ford et al. 2011). The
+Transiting Exoplanet Survey Satellite (Ricker et al. 2016) has already detected a transiting planet
+within a stellar triple consisting of M-stars (LTT 1445ABC; Winters et al. (2019)), however the
+planet is likely already tidally locked which may limit its chances to host long-lived moons (Sasaki
+et al. 2012).
+4.2. Exomoons in Other Binary Systems
+Although an Earth-analog in α Cen AB is a good case study, results based on the latter may not
+translate to other populations of binary star systems. In this section we, therefore, examine the
+frequency of Earth-analogs hosting moons in binary systems more generally through a Monte Carlo
+experiment1 . In our previous work (Quarles et al. 2019, 2020a), we used empirically derived probability density functions (PDFs) from surveys of binary stars with a Solar-Type primary (Raghavan
+et al. 2010; Moe & Di Stefano 2017). The PDF for the binary period distribution is a log-normal
+2
+2
+distribution for the binary period P in days, plogP ∝ e−(logP−ξ) /2σ where ξ = 5.03, σ = 2.28, and
+4 ≤ logP ≤ 7. For the mass ratio q = MB /MA , we use a broken power law PDF pq ∝ q γn , where
+γ1 = 0.3 for q ≤ 0.3 and γ2 = −0.5 for q > 0.3. Following Moe & Di Stefano (2017), we add to
+the PDF an excess twin fraction of 0.1 for q ≥ 0.95 to account for the observed stellar twins. An
+additional power law PDF pe ∝ e0.4
+bin is included to account for the binary eccentricity. Coefficients
+R
+for these PDFs are numerically determined so that the total probability is equal to unity, px dp = 1.
+In contrast to our previous work, we ignore the uncertainty in power law exponents as they do not
+substantially alter the results.
+To generate random binary system parameters, we numerically determine the cumulative distribution function (CDF) for each of the PDFs described above, use a draw from a uniform distribution
+U(0, 1), and then numerically determine the random variate by parallel array matching. The planetary semimajor axis ap is calculated at 1 Earth Flux (S⊕ = 1L /(1au)2 ) and can vary depending
+on which star is hosting the planet. As the PDF for the binary mass ratio varies, we adjust the secondary star's luminosity using the common power law approximation of the mass-luminosity relation
+for main sequence stars. We also assume that the planet begins at its forced eccentricity (see Equation 3). Our final results use the semimajor axis ratio ap /abin , where the planetary semimajor axis
+max
+is normalized by the binary semimajor axis abin . We calculate the maximum satellite mass (Msat
+)
+assuming an Earth-Moon analog for tides with a 10 Gyr lifetime (see Section 3.4) and normalize by
+the planetary mass Mp = M⊕ . We choose 50 random values for the satellite mass and semimajor axis
+max
+using uniform distributions within the ranges −3 ≤ log Msat ≤ log[Msat
+] and 0.05RH ≤ asat ≤ acrit
+sat .
+We then use the interpolation map technique (Quarles et al. 2020a) to verify that the generated host
+planet orbit is stable and our formalism from Section 2 to determine the outer stability boundary for
+the exomoon acrit
+sat . Once the stability of the planetary and exomoon orbits are validated, the TTV
+(RMS) amplitude is calculated (Kipping 2009a, see their Eqn. A27).
+Overall, we perform 10,000 draws from the PDFs representing the binary system parameters and
+50 draws of the exomoon parameters (mass and separation) assuming an Earth-analog orbiting the
+1
+
+Processed data and python scripts underlying this article are available on GitHub. The raw data underlying this
+article will be shared on reasonable request to the corresponding author.
+
+15
+primary star with a prograde orbiting satellite. The corresponding results are shown in the top
+left panel of Figure 11. The process is repeated under the same condition, but with a retrograde
+orbiting satellite and prograde/retrograde satellites for an Earth-analog orbiting the secondary star
+to generate the results presented in the other three panels. Figure 11 illustrates the estimated number
+of Earth-mass planets that could host satellites for a given TTV assuming a Solar-mass primary star.
+The highest number of systems occurs for widely separated binary systems (ap /abin ∼ 0.001) and
+low TTV amplitudes (∼0.3 min). Higher TTV amplitudes are possible, but a large survey would
+likely be necessary to ensure a detection. A retrograde orbiting exomoon around the primary star
+could produce a larger TTV amplitude (∼30 min) due to the a larger outer stability limit, while the
+maximum TTV amplitude in the other cases is .10 min. Counter-intuitively, planets orbiting the
+secondary star (B) have a slightly better chance of hosting exomoons because a distance of 1 Earth
+Flux is closer to the host star and less likely to be significantly perturbed by the more massive star
+A. These results scale with the primary star mass, where more massive primaries (1.2 M ) allow
+for larger TTV amplitudes and less massive primaries (0.8 M ) restrict the parameter space due to
+more significant tidal interactions between the exomoon and host star. The primary star of α Cen
+AB would be a good candidate for searching for TTV inducing exomoons if transiting Earth-analogs
+were present. However, surveys of α Cen AB for planets are difficult because of pixel saturation in
+photometric observations (Demory et al. 2015) and astrophysical noise in radial velocity observations
+(Zhao et al. 2018).
+5. CONCLUSIONS
+
+Moons are ubiquitous within our solar system, where we expect similar bodies to exist in other
+planetary systems including those with stellar companions. An exomoon is influenced by a strong
+perturber through free and forced eccentricity of its host planet. At the minimum of the host planet's
+eccentricity oscillation, the planet's gravitational range of influence is truncated, which restricts the
+largest stable semimajor axis for the exomoon. Additionally overlap in the MMRs between the
+satellite and planetary orbits allow for putative satellites to escape on relatively short timescales.
+Other studies (Domingos et al. 2006; Rosario-Franco et al. 2020) deduced the outer stability limit for
+prograde exomoons in single star systems. We revise the stability formula for retrograde satellites
+as acrit
+sat = 0.6684(1 − 1.236ep ) in units of Hill radii to represent the lower critical orbit. We augment
+previous findings (Domingos et al. 2006; Rosario-Franco et al. 2020) to include a correction using the
+forced eccentricity (see Equation 10) determined from secular perturbation theory (Andrade-Ines &
+Eggl 2017) and thus, increase the applicability to planets in binary star systems.
+Constant time lag (Hut 1981) and phase lag (Goldreich & Soter 1966) models predict that tidal
+dissipation can cause outward migration to free a satellite from its host planet. We apply these
+models to hypothetical Earth-Moon analogs in α Cen AB. The eccentricity forcing from α Cen A on
+moons hosted by an Earth-analog orbiting α Cen B can destabilize moons on a 10 Gyr timescale that
+have moderate to strong tidal dissipation (∆tp & 100 s). In the opposite case, moons can maintain
+stable orbits despite strong tidal dissipation (∆tp ∼ 600 s). Although we examine coplanar orbits,
+Grishin et al. (2018) showed that tilted exomoon orbits can persist if the short range interactions
+are stronger than those from the Lidov-Kozai mechanism. We revise the analytic limit for planetsatellite mass fractions (see Equation 13) in a constant phase lag (i.e., constant Q) and compare its
+validity with an equivalent constant time lag model. The maximum planet-satellite mass fraction is
+most applicable to systems where the host planet's semimajor axis is more strongly influenced by
+
+16
+
+Quarles et al.
+
+the host star. In α Cen AB, the conservative HZs are distant enough from the host star so that a
+tidal constraint is less meaningful and the formalism would be more useful for considering exomoons
+orbiting Proxima b (Anglada-Escudé et al. 2016).
+The truncation of the Hill radius through secular eccentricity oscillations and outward tidal migration can influence potential observations of exomoons through TTVs (Kipping 2009a,b). The TTV
+(RMS) amplitude is largest when satellites are close to their outer stability boundaries. These mechanisms limit the outer stability limit and can constrain the range of tidal dissipation allowed. The
+maximum TTV amplitude in a system like α Cen AB is ∼40 min, where we find that an Earth-Moon
+analog would exhibit ∼2 min TTV signature. In other binary systems, TTVs .1 min appear to be
+the most common due to trends in the underlying stellar binary population (Raghavan et al. 2010;
+Moe & Di Stefano 2017). The Kepler Mission has uncovered small TTV amplitudes (∼ 1 min) for
+many planetary systems but the significance of the TTV varies widely. The astrophysical noise in
+transit photometry for circumstellar planets is expected to be similar to planets orbiting single stars
+as dilution from the stellar companion is less of an issue. Current space missions like the Transiting Exoplanet Survey Satellite (TESS) focus on short period planets, which have likely already lost
+their moons due to the stellar tides. Future space missions similar to Kepler (e.g., European Space
+Agency's PLATO mission) that target longer period planets will be ideal in the search for exomoons.
+The search for exoplanets in binary star systems is an active field, where many targeted efforts
+have been applied to α Cen AB (Endl et al. 2001, 2015; Bergmann et al. 2015) using the radial
+velocity method. New technologies are currently in development that use direct imaging either from
+a coronagraph (Belikov et al. 2015; Bendek et al. 2015; Thomas et al. 2015; Sirbu et al. 2017b; Belikov
+et al. 2017; Beichman et al. 2020), a starshade (Sirbu et al. 2017a; Bellotti et al. 2020), or even high
+precision astrometry (Bendek et al. 2018). Observations of α Cen AB with the Very Large Telescope
+(VLT) have suggested that any exoplanets there need to be .20 M⊕ (Kasper et al. 2019), which bodes
+well for the potential for terrestrial planets. The first results of the New Earths in the α Centauri
+Region (NEAR) experiment on VLT uncovered a direct imaging signature of a roughly Neptune-sized
+planet orbiting α Centauri A (Wagner et al. 2021), but these early results still await confirmation.
+Detecting exoplanets in binary star systems is a crucial step in the search for exomoons, where a
+wide array of methods (including TTVs) can be employed.
+ACKNOWLEDGMENTS
+The authors thank the anonymous reviewer whose comments greatly clarified and improved the
+quality of the manuscript B.Q. thanks Maryame El-Moutamid and Rebekah Dawson for many stimulating discussions concerning tidal models. M.R.F acknowledges support from the NRAO Gröte
+Reber Fellowship and the Louis Stokes Alliance for Minority Participation Bridge Program at the
+University of Texas at Arlington. This research was supported in part through research cyberinfrastructure resources and services provided by the Partnership for an Advanced Computing Environment
+(PACE) at the Georgia Institute of Technology.
+
+Software: rebound (Rein & Liu 2012; Rein & Spiegel 2015); reboundx (Tamayo et al. 2020; Baronett
+et al. 2021); numpy Harris et al. (2020)
+REFERENCES
+
+17
+Agol, E., Jansen, T., Lacy, B., Robinson, T. D., &
+Meadows, V. 2015, ApJ, 812, 5,
+doi: 10.1088/0004-637X/812/1/5
+Agol, E., Steffen, J., Sari, R., & Clarkson, W.
+2005, MNRAS, 359, 567,
+doi: 10.1111/j.1365-2966.2005.08922.x
+Alvarado-Montes, J. A., Zuluaga, J. I., &
+Sucerquia, M. 2017, MNRAS, 471, 3019,
+doi: 10.1093/mnras/stx1745
+Andrade-Ines, E., & Eggl, S. 2017, The
+Astronomical Journal, 153, 148
+Anglada-Escudé, G., Amado, P. J., Barnes, J.,
+et al. 2016, Nature, 536, 437,
+doi: 10.1038/nature19106
+Barnes, J. W., & O'Brien, D. P. 2002, ApJ, 575,
+1087, doi: 10.1086/341477
+Baronett, S. A., Ferich, N., Tamayo, D., & Steffen,
+J. H. 2021, arXiv e-prints, arXiv:2101.12277.
+https://arxiv.org/abs/2101.12277
+Beichman, C., Ygouf, M., Llop Sayson, J., et al.
+2020, PASP, 132, 015002,
+doi: 10.1088/1538-3873/ab5066
+Belikov, R., Bendek, E., Thomas, S., Males, J., &
+Lozi, J. 2015, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference
+Series, Vol. 9605, Techniques and
+Instrumentation for Detection of Exoplanets
+VII, ed. S. Shaklan, 960517,
+doi: 10.1117/12.2188732
+Belikov, R., Pluzhnik, E., Bendek, E., & Sirbu, D.
+2017, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference
+Series, Vol. 10400, Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference
+Series, 104000W, doi: 10.1117/12.2274558
+Bellotti, S., Zabludoff, A. I., Belikov, R., Guyon,
+O., & Rathi, C. 2020, AJ, 160, 131,
+doi: 10.3847/1538-3881/aba7c6
+Bendek, E., Tuthill, P., Guyon, O., et al. 2018, in
+Society of Photo-Optical Instrumentation
+Engineers (SPIE) Conference Series, Vol. 10698,
+Space Telescopes and Instrumentation 2018:
+Optical, Infrared, and Millimeter Wave, ed.
+M. Lystrup, H. A. MacEwen, G. G. Fazio,
+N. Batalha, N. Siegler, & E. C. Tong, 106980G,
+doi: 10.1117/12.2313919
+
+Bendek, E. A., Belikov, R., Lozi, J., et al. 2015, in
+Society of Photo-Optical Instrumentation
+Engineers (SPIE) Conference Series, Vol. 9605,
+Techniques and Instrumentation for Detection
+of Exoplanets VII, ed. S. Shaklan, 960516,
+doi: 10.1117/12.2188999
+Bergmann, C., Endl, M., Hearnshaw, J. B.,
+Wittenmyer, R. A., & Wright, D. J. 2015,
+International Journal of Astrobiology, 14, 173,
+doi: 10.1017/S1473550414000317
+Bolmont, E., Raymond, S. N., Leconte, J.,
+Hersant, F., & Correia, A. C. M. 2015, A&A,
+583, A116, doi: 10.1051/0004-6361/201525909
+Cabrera, J., & Schneider, J. 2007, A&A, 464,
+1133, doi: 10.1051/0004-6361:20066111
+Campbell, B., Walker, G. A. H., & Yang, S. 1988,
+ApJ, 331, 902, doi: 10.1086/166608
+Canup, R. M., & Ward, W. R. 2006, Nature, 441,
+834, doi: 10.1038/nature04860
+Chauvin, G., Beust, H., Lagrange, A. M., &
+Eggenberger, A. 2011, A&A, 528, A8,
+doi: 10.1051/0004-6361/201015433
+Chauvin, G., Lagrange, A. M., Udry, S., & Mayor,
+M. 2007, A&A, 475, 723,
+doi: 10.1051/0004-6361:20067046
+Correia, A. C. M., Udry, S., Mayor, M., et al.
+2008, A&A, 479, 271,
+doi: 10.1051/0004-6361:20078908
+David, E.-M., Quintana, E. V., Fatuzzo, M., &
+Adams, F. C. 2003, PASP, 115, 825,
+doi: 10.1086/376395
+Demory, B.-O., Ehrenreich, D., Queloz, D., et al.
+2015, MNRAS, 450, 2043,
+doi: 10.1093/mnras/stv673
+Domingos, R. C., Winter, O. C., & Yokoyama, T.
+2006, MNRAS, 373, 1227,
+doi: 10.1111/j.1365-2966.2006.11104.x
+Doyle, L. R., Carter, J. A., Fabrycky, D. C., et al.
+2011, Science, 333, 1602,
+doi: 10.1126/science.1210923
+Dvorak, R. 1986, A&A, 167, 379
+Eberle, J., Cuntz, M., & Musielak, Z. E. 2008,
+A&A, 489, 1329,
+doi: 10.1051/0004-6361:200809758
+Eggl, S., Georgakarakos, N., & Pilat-Lohinger, E.
+2020, Galaxies, 8, 65
+Endl, M., Kürster, M., Els, S., Hatzes, A. P., &
+Cochran, W. D. 2001, A&A, 374, 675,
+doi: 10.1051/0004-6361:20010723
+
+18
+
+Quarles et al.
+
+Endl, M., Bergmann, C., Hearnshaw, J., et al.
+2015, International Journal of Astrobiology, 14,
+305, doi: 10.1017/S1473550414000081
+Estrada, P. R., & Mosqueira, I. 2006, Icarus, 181,
+486, doi: 10.1016/j.icarus.2005.11.006
+Fischer, D., Driscoll, P., Isaacson, H., et al. 2009,
+ApJ, 703, 1545,
+doi: 10.1088/0004-637X/703/2/1545
+Ford, E. B., Rowe, J. F., Fabrycky, D. C., et al.
+2011, ApJS, 197, 2,
+doi: 10.1088/0067-0049/197/1/2
+Georgakarakos, N. 2003, Monthly Notices of the
+Royal Astronomical Society, 345, 340
+Giuppone, C. A., Leiva, A. M., Correa-Otto, J., &
+Beaugé, C. 2011, A&A, 530, A103,
+doi: 10.1051/0004-6361/201016375
+Giuppone, C. A., Morais, M. H. M., Boué, G., &
+Correia, A. C. M. 2012, A&A, 541, A151,
+doi: 10.1051/0004-6361/201118356
+Giuppone, C. A., Morais, M. H. M., & Correia,
+A. C. M. 2013, MNRAS, 436, 3547,
+doi: 10.1093/mnras/stt1831
+Goldreich, P., & Soter, S. 1966, Icarus, 5, 375,
+doi: 10.1016/0019-1035(66)90051-0
+Grishin, E., Lai, D., & Perets, H. B. 2018,
+MNRAS, 474, 3547, doi: 10.1093/mnras/stx3005
+Guenel, M., Mathis, S., & Remus, F. 2014, A&A,
+566, L9, doi: 10.1051/0004-6361/201424010
+Haghighipour, N., & Raymond, S. N. 2007, ApJ,
+666, 436, doi: 10.1086/520501
+Hamers, A. S., Cai, M. X., Roa, J., & Leigh, N.
+2018, MNRAS, 480, 3800,
+doi: 10.1093/mnras/sty2117
+Hamers, A. S., & Portegies Zwart, S. F. 2018,
+ApJL, 869, L27, doi: 10.3847/2041-8213/aaf3a7
+Hamilton, D. P., & Burns, J. A. 1991, Icarus, 92,
+118, doi: 10.1016/0019-1035(91)90039-V
+Harris, C. R., Millman, K. J., van der Walt, S. J.,
+et al. 2020, Nature, 585, 357,
+doi: 10.1038/s41586-020-2649-2
+Hatzes, A. P., Cochran, W. D., Endl, M., et al.
+2003, ApJ, 599, 1383, doi: 10.1086/379281
+Heller, R. 2014, ApJ, 787, 14,
+doi: 10.1088/0004-637X/787/1/14
+Heller, R., Hippke, M., & Jackson, B. 2016, ApJ,
+820, 88, doi: 10.3847/0004-637X/820/2/88
+Henon, M. 1970, Astronomy and Astrophysics, 9,
+24
+Heppenheimer, T. A. 1978, A&A, 65, 421
+
+Hippke, M. 2015, ApJ, 806, 51,
+doi: 10.1088/0004-637X/806/1/51
+Holman, M. J., & Murray, N. W. 2005, Science,
+307, 1288, doi: 10.1126/science.1107822
+Hut, P. 1981, A&A, 99, 126
+Innanen, K. A. 1979, AJ, 84, 960,
+doi: 10.1086/112499
+Jewitt, D., & Haghighipour, N. 2007, ARA&A,
+45, 261,
+doi: 10.1146/annurev.astro.44.051905.092459
+Kasper, M., Arsenault, R., Käufl, U., et al. 2019,
+The Messenger, 178, 5,
+doi: 10.18727/0722-6691/5163
+Kasting, J. F., Whitmire, D. P., & Reynolds,
+R. T. 1993, Icarus, 101, 108,
+doi: 10.1006/icar.1993.1010
+Kipping, D. 2021, MNRAS, 500, 1851,
+doi: 10.1093/mnras/staa3398
+Kipping, D., & Teachey, A. 2020, Serbian
+Astronomical Journal, 201, 25,
+doi: 10.2298/SAJ2001025K
+Kipping, D. M. 2009a, MNRAS, 392, 181,
+doi: 10.1111/j.1365-2966.2008.13999.x
+-. 2009b, MNRAS, 396, 1797,
+doi: 10.1111/j.1365-2966.2009.14869.x
+Kipping, D. M., Bakos, G. Á., Buchhave, L.,
+Nesvorný, D., & Schmitt, A. 2012, ApJ, 750,
+115, doi: 10.1088/0004-637X/750/2/115
+Kipping, D. M., Forgan, D., Hartman, J., et al.
+2013a, ApJ, 777, 134,
+doi: 10.1088/0004-637X/777/2/134
+Kipping, D. M., Hartman, J., Buchhave, L. A.,
+et al. 2013b, ApJ, 770, 101,
+doi: 10.1088/0004-637X/770/2/101
+Kipping, D. M., Huang, X., Nesvorný, D., et al.
+2015a, ApJL, 799, L14,
+doi: 10.1088/2041-8205/799/1/L14
+Kipping, D. M., Nesvorný, D., Buchhave, L. A.,
+et al. 2014, ApJ, 784, 28,
+doi: 10.1088/0004-637X/784/1/28
+Kipping, D. M., Schmitt, A. R., Huang, X., et al.
+2015b, ApJ, 813, 14,
+doi: 10.1088/0004-637X/813/1/14
+Kokubo, E., & Ida, S. 2007, ApJ, 671, 2082,
+doi: 10.1086/522364
+Kopparapu, R. K., Ramirez, R. M., SchottelKotte,
+J., et al. 2014, ApJL, 787, L29,
+doi: 10.1088/2041-8205/787/2/L29
+
+19
+Kostov, V. B., McCullough, P. R., Hinse, T. C.,
+et al. 2013, ApJ, 770, 52,
+doi: 10.1088/0004-637X/770/1/52
+Kostov, V. B., Orosz, J. A., Welsh, W. F., et al.
+2016, ApJ, 827, 86,
+doi: 10.3847/0004-637X/827/1/86
+Kostov, V. B., Orosz, J. A., Feinstein, A. D., et al.
+2020, AJ, 159, 253,
+doi: 10.3847/1538-3881/ab8a48
+Lainey, V., Casajus, L. G., Fuller, J., et al. 2020,
+Nature Astronomy, 1
+Leconte, J., Chabrier, G., Baraffe, I., & Levrard,
+B. 2010, A&A, 516, A64,
+doi: 10.1051/0004-6361/201014337
+Liu, C., & Gong, S. 2019, Astrophysics and Space
+Science, 364, 155,
+doi: 10.1007/s10509-019-3644-7
+Lundkvist, M., Kjeldsen, H., & Silva Aguirre, V.
+2014, A&A, 566, A82,
+doi: 10.1051/0004-6361/201423408
+Marchal, C., & Bozis, G. 1982, Celestial
+Mechanics, 26, 311, doi: 10.1007/BF01230725
+Mardling, R. A. 2013, MNRAS, 435, 2187,
+doi: 10.1093/mnras/stt1438
+Mayor, M., & Queloz, D. 1995, Nature, 378, 355,
+doi: 10.1038/378355a0
+Milani, A., & Nobili, A. M. 1983, Celestial
+mechanics, 31, 241, doi: 10.1007/BF01844227
+Moe, M., & Di Stefano, R. 2017, ApJS, 230, 15,
+doi: 10.3847/1538-4365/aa6fb6
+Morais, M. H. M., & Giuppone, C. A. 2012,
+MNRAS, 424, 52,
+doi: 10.1111/j.1365-2966.2012.21151.x
+Mudryk, L. R., & Wu, Y. 2006, ApJ, 639, 423,
+doi: 10.1086/499347
+Murray, C. D., & Dermott, S. F. 1999, Solar
+system dynamics (Cambridge University Press)
+Namouni, F. 2010, ApJL, 719, L145,
+doi: 10.1088/2041-8205/719/2/L145
+Noyola, J. P., Satyal, S., & Musielak, Z. E. 2014,
+ApJ, 791, 25, doi: 10.1088/0004-637X/791/1/25
+-. 2016, ApJ, 821, 97,
+doi: 10.3847/0004-637X/821/2/97
+Orosz, J. A., Welsh, W. F., Carter, J. A., et al.
+2012a, ApJ, 758, 87,
+doi: 10.1088/0004-637X/758/2/87
+-. 2012b, Science, 337, 1511,
+doi: 10.1126/science.1228380
+
+Orosz, J. A., Welsh, W. F., Haghighipour, N.,
+et al. 2019, AJ, 157, 174,
+doi: 10.3847/1538-3881/ab0ca0
+Payne, M. J., Deck, K. M., Holman, M. J., &
+Perets, H. B. 2013, ApJL, 775, L44,
+doi: 10.1088/2041-8205/775/2/L44
+Piro, A. L. 2018, AJ, 156, 54,
+doi: 10.3847/1538-3881/aaca38
+Pourbaix, D., & Boffin, H. M. J. 2016, A&A, 586,
+A90, doi: 10.1051/0004-6361/201527859
+Pourbaix, D., Nidever, D., McCarthy, C., et al.
+2002, A&A, 386, 280,
+doi: 10.1051/0004-6361:20020287
+Quarles, B., Li, G., Kostov, V., & Haghighipour,
+N. 2020a, AJ, 159, 80,
+doi: 10.3847/1538-3881/ab64fa
+Quarles, B., Li, G., & Lissauer, J. J. 2019, ApJ,
+886, 56, doi: 10.3847/1538-4357/ab46b5
+Quarles, B., Li, G., & Rosario-Franco, M. 2020b,
+ApJL, 902, L20, doi: 10.3847/2041-8213/abba36
+Quarles, B., & Lissauer, J. J. 2016, AJ, 151, 111,
+doi: 10.3847/0004-6256/151/5/111
+-. 2018, AJ, 155, 130,
+doi: 10.3847/1538-3881/aaa966
+Quarles, B., Lissauer, J. J., & Kaib, N. 2018a, AJ,
+155, 64, doi: 10.3847/1538-3881/aaa197
+-. 2018b, AJ, 155, 64,
+doi: 10.3847/1538-3881/aaa197
+Quarles, B., Musielak, Z. E., & Cuntz, M. 2012,
+ApJ, 750, 14, doi: 10.1088/0004-637X/750/1/14
+Quintana, E. V., Adams, F. C., Lissauer, J. J., &
+Chambers, J. E. 2007, ApJ, 660, 807,
+doi: 10.1086/512542
+Quintana, E. V., Lissauer, J. J., Chambers, J. E.,
+& Duncan, M. J. 2002, ApJ, 576, 982,
+doi: 10.1086/341808
+Raghavan, D., McAlister, H. A., Henry, T. J.,
+et al. 2010, ApJS, 190, 1,
+doi: 10.1088/0067-0049/190/1/1
+Rein, H., & Liu, S. F. 2012, A&A, 537, A128,
+doi: 10.1051/0004-6361/201118085
+Rein, H., & Spiegel, D. S. 2015, MNRAS, 446,
+1424, doi: 10.1093/mnras/stu2164
+Ricker, G. R., Vanderspek, R., Winn, J., et al.
+2016, in Proc. SPIE, Vol. 9904, Space
+Telescopes and Instrumentation 2016: Optical,
+Infrared, and Millimeter Wave, 99042B,
+doi: 10.1117/12.2232071
+
+20
+
+Quarles et al.
+
+Rosario-Franco, M., Quarles, B., Musielak, Z. E.,
+& Cuntz, M. 2020, AJ, 159, 260,
+doi: 10.3847/1538-3881/ab89a7
+Sartoretti, P., & Schneider, J. 1999, A&AS, 134,
+553, doi: 10.1051/aas:1999148
+Sasaki, T., & Barnes, J. W. 2014, International
+Journal of Astrobiology, 13, 324,
+doi: 10.1017/S1473550414000184
+Sasaki, T., Barnes, J. W., & O'Brien, D. P. 2012,
+ApJ, 754, 51, doi: 10.1088/0004-637X/754/1/51
+Satyal, S., Hinse, T. C., Quarles, B., & Noyola,
+J. P. 2014, MNRAS, 443, 1310,
+doi: 10.1093/mnras/stu1221
+Satyal, S., Quarles, B., & Hinse, T. C. 2013,
+MNRAS, 433, 2215, doi: 10.1093/mnras/stt888
+Schwamb, M. E., Orosz, J. A., Carter, J. A., et al.
+2013, ApJ, 768, 127,
+doi: 10.1088/0004-637X/768/2/127
+Schwarz, R., Funk, B., Zechner, R., & Bazsó, Á.
+2016, MNRAS, 460, 3598,
+doi: 10.1093/mnras/stw1218
+Simon, A. E., Szabó, G. M., Kiss, L. L., &
+Szatmáry, K. 2012, MNRAS, 419, 164,
+doi: 10.1111/j.1365-2966.2011.19682.x
+Sirbu, D., Belikov, R., Bendek, E., et al. 2017a, in
+Society of Photo-Optical Instrumentation
+Engineers (SPIE) Conference Series, Vol. 10400,
+Society of Photo-Optical Instrumentation
+Engineers (SPIE) Conference Series, 104001D,
+doi: 10.1117/12.2274267
+Sirbu, D., Thomas, S., Belikov, R., & Bendek, E.
+2017b, ApJ, 849, 142,
+doi: 10.3847/1538-4357/aa8e02
+Socia, Q. J., Welsh, W. F., Orosz, J. A., et al.
+2020, AJ, 159, 94,
+doi: 10.3847/1538-3881/ab665b
+Spalding, C., Batygin, K., & Adams, F. C. 2016,
+ApJ, 817, 18, doi: 10.3847/0004-637X/817/1/18
+
+Sucerquia, M., Alvarado-Montes, J. A., Zuluaga,
+J. I., Cuello, N., & Giuppone, C. 2019,
+MNRAS, 489, 2313, doi: 10.1093/mnras/stz2110
+Tamayo, D., Rein, H., Shi, P., & Hernand ez,
+D. M. 2020, MNRAS, 491, 2885,
+doi: 10.1093/mnras/stz2870
+Thebault, P. 2011, Celestial Mechanics and
+Dynamical Astronomy, 111, 29,
+doi: 10.1007/s10569-011-9346-2
+Thomas, S. J., Belikov, R., & Bendek, E. 2015, in
+Society of Photo-Optical Instrumentation
+Engineers (SPIE) Conference Series, Vol. 9605,
+Techniques and Instrumentation for Detection
+of Exoplanets VII, ed. S. Shaklan, 96052G,
+doi: 10.1117/12.2188637
+Torres, G. 2007, ApJ, 654, 1095,
+doi: 10.1086/509715
+Trani, A. A., Hamers, A. S., Geller, A., & Spera,
+M. 2020, MNRAS, 499, 4195,
+doi: 10.1093/mnras/staa3098
+Vanderburg, A., Rappaport, S. A., & Mayo, A. W.
+2018, AJ, 156, 184,
+doi: 10.3847/1538-3881/aae0fc
+Wagner, K., Boehle, A., Pathak, P., et al. 2021,
+Nature Communications, 12, 922,
+doi: 10.1038/s41467-021-21176-6
+Welsh, W. F., Orosz, J. A., Carter, J. A., et al.
+2012, Nature, 481, 475,
+doi: 10.1038/nature10768
+Winters, J. G., Medina, A. A., Irwin, J. M., et al.
+2019, AJ, 158, 152,
+doi: 10.3847/1538-3881/ab364d
+Wolszczan, A., & Frail, D. A. 1992, Nature, 355,
+145, doi: 10.1038/355145a0
+Zhao, L., Fischer, D. A., Brewer, J., Giguere, M.,
+& Rojas-Ayala, B. 2018, AJ, 155, 24,
+doi: 10.3847/1538-3881/aa9bea
+
+21
+
+Figure 1. Map of the N:1 mean motion resonances (MMRs), where the color-code denotes the value of
+N for each MMR. The regions between MMRs are colored black and could allow for stable satellite orbits
+under optimal conditions. The light green curve connects the first point of intersection between adjacent
+MMRs and marks a stability boundary within the three body problem.
+
+22
+
+Quarles et al.
+
+Figure 2. Numerical estimates of the stability for retrograde orbiting exomoons in single star systems in
+terms of the stability fraction fstab (color-coded), initial host planet eccentricity ep , and exomoon separation
+asat in units of the planetary Hill radius RH . The white cells denote unstable initial conditions, where all 20
+trials terminated before 105 yrs. The black (dashed) curve marks the upper critical orbit (Domingos et al.
+2006, ; DWY06) and the red (solid) curve is the lower critical orbit determined by this work, where the
+gray (solid) curves show the uncertainty. The light green (solid) curve illustrates the boundary from Fig. 1,
+where MMR overlap can occur.
+
+23
+
+Figure 3. Similar to Figure 2, but the Jupiter-mass planet orbits either star in α Cen AB at the inner
+edge of its respective HZ with an Earth-mass moon. The gray (solid and dashed) curves mark the upper
+and lower critical orbit boundaries (see Equation 10). The light green (solid) curve illustrates the boundary
+from Fig. 1, where MMR overlap can occur.
+
+24
+
+Quarles et al.
+
+Figure 4. Similar to Figure 3, but the Jupiter-mass planet orbits either star in α Cen AB closer to its
+stability limit and its Earth-mass moon begins on a prograde orbit. Specifically, the initial host planet
+semimajor axis is indicated in each of the respective panels. The gray (solid and dashed) curves mark
+the upper and lower critical orbit boundaries (see Equation 10). The light green (solid) curve illustrates
+the boundary from Fig. 1, where MMR overlap can occur and the light green (dashed) curve denotes the
+constraint on stability due to the evolution of the planet and moon eccentricity that alters the location of
+the MMR overlap region (see Eqn. 8).
+
+25
+
+Figure 5. Short-term evolution of the eccentricity of the planetary orbit (top) and the apocenter distance
+of the moon (bottom) using initial conditions sampled from Fig. 4c, where the initial semimajor axis for
+each moon is 0.3 RH and initially circular. Panels a–c demonstrate the secular evolution of the host planet's
+eccentricity ep over 20 kyr. Panels d–f illustrate the evolution of the moon's apocenter distance Qsat in
+response to the planetary eccentricity evolution (panels a–c, respectively). The gray (dashed) curve marks
+lower critical orbit boundary, where the light green (solid) and magenta (dashed) curves denote the boundary
+for MMR overlap for the minimum and maximum satellite eccentricity, respectively. In panels d & f the
+moon eventually becomes unstable as a result of entering the MMR overlap region, whereas the moon can
+remain stable in panel e due to a lower amplitude of variation in the host planet's eccentricity (panel b).
+
+26
+
+Quarles et al.
+
+Figure 6. Similar to Figure 4, but the Earth-mass moon begins in retrograde relative to the orbit of the
+host planet. The gray (solid and dashed) curves mark the upper and lower critical orbit boundaries (see
+Equation 10). The light green (solid) curve illustrates the boundary from Fig. 1, where MMR overlap can
+occur.
+
+27
+
+Figure 7. Tidal evolution for 10 Myr of an Earth-Moon analog near the inner edge of the conservative HZ
+of each star in α Cen AB using a constant time lag tidal model (Hut 1981). The N-body approach (solid
+black) calculates the tidal evolution due to the instantaneous torques (using the tides_constant_time_lag
+module (Baronett et al. 2021) in reboundx) and the secular (dotted red) method approximates the evolution
+averaged over an orbit. The satellite begins at 0.03–0.05 RH or 3× the Roche limit (dash-dot cyan).
+
+28
+
+Quarles et al.
+
+Figure 8. Evolution of tidal models for an Earth-analog planet and putative satellites in α Cen AB varying
+the time lag (a & b; Msat = 0.0123 M⊕ ) or the satellite mass (c & d; ∆tp = 100 s). The host planet begins
+near the inner edge of the conservative HZ at its forced eccentricity (see Equation 3), where the satellite
+starts on a low eccentricity (esat = 10−3 ) orbit at 3× the Roche limit. The gray region marks the unstable
+region for prograde orbits (see Figure 3).
+
+29
+
+Figure 9. Tidal migration simulations over 10 Gyr using either a constant time lag (a & b) or a constant
+Q (c & d) model, assuming an initially rapidly rotating (Prot = 5 hr) Earth-analog host planet with a
+dissipation factor ∆tp = 100s or Qp = 33, respectively. The color-code denotes the final satellite semimajor
+axis af relative to the critical exomoon semimajor axis acrit
+sat adjusted for the host planet's eccentricity (upper
+x-axis). The gray region denotes parameters that allow for the satellite to escape, where the black curves
+mark the potential upper mass limit (see Equation 13). The ⊕ symbol denotes an Earth-Moon like mass
+ratio and the critical exomoon semimajor axis adjusted for the host planet's forced eccentricity (see Equation
+3).
+
+30
+
+Quarles et al.
+
+Figure 10. Potential transit timing variations (color-coded), or TTVs, for a satellite orbiting an Earthmass planet near the inner edge of the conservative HZ of either star in α Cen AB. The maximum satellite
+separation asat is truncated to account for the planet's eccentricity oscillation induced from the stellar
+companion, where the gray region is not likely to host stable exomoons. The ⊕ symbol denotes a mass ratio
+and modern separation for the Earth-Moon system for comparison. The upper x-axis marks the exomoon
+semimajor axis asat in units of planetary radius Rp , where the bottom x-axis denotes asat in units of Hill
+radius RH .
+
+31
+
+Figure 11. Monte Carlo estimation for the number of moon-hosting systems in stellar binaries with respect
+to the potential observables, semimajor axis ratio ap /abin and TTV (RMS) amplitude. The moon-hosting
+planet (Earth-analog) is assumed to orbit near the inner edge of the host star's conservative HZ, while
+the maximum putative satellite is 0.1 M⊕ . Star A is a Solar-analog, where Star B is determined from the
+empirical mass ratio distribution for stellar binaries (Moe & Di Stefano 2017). The conservative HZs of
+binaries similar to α Cen AB begin at ap /abin ∼ 0.03–0.05, where potential exomoons can produce a 1-10
+min TTV signature.
+

@@ -1,0 +1,265 @@
+Real Options for Project Schedules (ROPS)
+Lester Ingber
+Lester Ingber Research
+Ashland Oregon
+ingber@ingber.com, ingber@alumni.caltech.edu
+http://www.ingber.com/
+Abstract
+Real Options for Project Schedules (ROPS) has three recursive sampling/optimization shells. An outer
+Adaptive Simulated Annealing (ASA) optimization shell optimizes parameters of strategic Plans
+containing multiple Projects containing ordered Tasks. A middle shell samples probability distributions
+of durations of Tasks. An inner shell samples probability distributions of costs of Tasks. PATHTREE is
+used to develop options on schedules. Algorithms used for Trading in Risk Dimensions (TRD) are
+applied to develop a relative risk analysis among projects.
+KEYWORDS: options; simulated annealing; risk management; copula; nonlinear; statistical
+
+† L. Ingber, "Real Options for Project Schedules (ROPS)", Report 2007:ROPS, Lester Ingber Research,
+Ashland, OR, 2007. URL http://www.ingber.com/markets07_rops.pdf.
+$Id: markets07_rops,v 1.22 2007/04/01 14:32:24 ingber Exp ingber $
+
+Lester Ingber
+
+-2-
+
+Real Options for Project Schedules (ROPS)
+
+1. Introduction
+This paper is a brief description of a methodology of developing options (in the sense of financial options,
+e.g., with all Greeks), to be applied in collaboration with Michael Bowman, as a first example to
+scheduling a massive US Army project, Future Combat Systems (FCS) [1].
+The major focus is to develop Real Options for non-financial projects, as discussed in other earlier
+papers [3,4,12]. Data and some guidance on its use has been reported in a previous study of FCS [2,5].
+The need for tools for fairly scheduling and pricing such a complex project has been emphasized in
+Recommendations for Executive Action in a report by the U.S. General Accounting Office (GAO) on
+FCS [14], and they also emphasize the need for management of FCS business plans [13].
+2. Goals
+A given Plan results in S(t), money allocated by the client/government is defined in terms of Projects
+S i(t),
+S(t) = Σ S i(t)
+i
+
+where ai(t) may be some scheduled constraints. PATHTREE processes a probability tree developed over
+the life of the plan T , divided into N nodes at times {t n }, each with mean epoch length dt [11]. Options,
+including all Greeks, familiar to financial markets, are calculated for quite arbitrary nonlinear means and
+variances of multiplicative noise [6,9]. This ability to process nonlinear functions in probability
+distributions is essential for real-world applications.
+Each Task has a range of durations, with nonzero Ai , with a disbursement of funds used, defining S i(t n ).
+Any Task dependent on a Task completion is slaved to its precursor(s).
+We develop the Plan conditional probability density (CPD) in terms of differenced costs, dS,
+P(S ± dS; t n + dt|S; t n)
+P is modeled/cast/fit into the functional form
+−
+
+P(S ± dS; t n + dt|S; t n ) = (2π g2 dt)
+L=
+
+1
+2
+
+exp(−Ldt)
+
+(dS − fdt)2
+(2g2 dt 2)
+
+where f and g are nonlinear function of cost S and time t. The g2 variance function absorbs the multiple
+Task cost and schedule statistical spreads, to determine P(dS, t), giving rise to the stochastic nature of
+dollars spent on the Plan.
+A given Project i with Task k has a mean duration i ik , with a a mean cost S ik . The spread in dS has two
+components arising from: (1) a stochastic duration around the mean duration, and (2) a stochastic spread
+of mean dollars around a deterministic disbursement at a given time. Different finite-width asymmetric
+distributions are used for durations and costs. For example, the distribution created for Adaptive
+Simulated Annealing (ASA) [8], originally called Very Fast Simulated Re-annealing [7], is a finite-ranged
+distribution with shape determined by a parameter "temperature" q. For each state (whether duration or
+cost): (a) A random binary choice can be made to be higher or lower than the mean, using any ratio of
+probabilities selected by the client. (b) Then, an ASA distribution is used on the chosen side. Each side
+has a different q, each falling off from the mean. This is illustrated and further described in Fig. 1.
+At the end of the tree at a time T (T also can be a parameter), there is a total cost at each node S(T ),
+called a final "strike" in financial language. (A final strike might also appear at any node before T due to
+cancellation of the Project using a particular kind of schedule alternative.) Working backwards, options
+are calculated at time t0 . Greeks (functional derivatives of the option) assess sensitivity to various
+variables, e.g., like those discussed in previous papers [12], but here we deliver precise numbers based on
+as much real-world information available.
+
+Lester Ingber
+
+-3-
+
+2
+
+Real Options for Project Schedules (ROPS)
+
+1/(2 * (abs(y) + q) * log(1 + 1/q))
+
+1.8
+
+1.6
+
+1.4
+
+1.2
+
+1
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+ASA (q = 0.1)
+0
+-1
+
+-0.5
+
+0
+
+0.5
+
+1
+
+Fig. 1. The ASA distribution can be used to develop finite-range asymmetric distributions
+from which a value can be chosen for a given state of duration or cost. (a) A random binary
+distribution is selected for a lower-than or higher-than mean, using any ratio of probabilities
+selected by the client. Each side of the mean has its own temperature q. Here an ASA distribution is given for q = 0.1. The range can be scaled to any finite interval and the mean
+placed within this range. (b) A uniform random distribution selects a value from [-1,1], and
+a normalized ASA value is read off for the given state.
+3. Data
+The following data are used to develop Plan CPD. Each Task i has
+(a) a Projected allocated cost, C i
+(b) a Projected time schedule, T i
+(c) a CPD with a statistical width of funds spent, SW S i
+(d) a distribution with a statistical width of duration, SW T i
+(e) a range of durations, RT i
+(f) a range of costs, R S i
+Expert guesses need to be provided for (c)-(f) for the prototype study.
+A given Plan must be constructed among all Tasks, specified the ordering of Tasks, e.g., obeying any
+sequential constraints among Tasks.
+4. Three Recursive Shell
+4.1. Outer Shell
+There may be several parameters in the Project, e.g., as coefficients of variables in means and variances of
+different CPD. These are optimized in an outer shell using ASA [8]. This end product, including
+MULTI_MIN states returned by ASA, gives the client flexibility to apply during a full Project [12]. We
+may wish to minimize Cost/T , or (CostOverrun - CostInitial)/T , etc.
+
+Lester Ingber
+
+-4-
+
+Real Options for Project Schedules (ROPS)
+
+4.2. Middle Shell
+To obtain the Plan CPD, an middle shell of Monte Carlo (MC) states are generated from recursive
+calculations. A Weibull or some other asymmetric finite distribution might be used for Task durations.
+For a given state in the outer middle, a MC state has durations and mean cost disbursements defined for
+each Task.
+4.3. Inner Shell
+At each time, for each Task, the differenced cost ( S ik (t + dt) − S ik (t))) is subjected to a inner shell
+stochastic variation, e.g., some asymmetric finite distribution. The net costs dS ik (t) for each Project i and
+Task k are added to define dS(t) for the Plan. The inner shell cost CPD is re-applied many times to get a
+set of {dS} at each time.
+5. Real Options
+5.1. Plan Options
+After the Outer MC sampling is completed, there are histograms generated of the Plan's dS(t) and
+dS(t)/S(t − dt) at each time t. The histograms are normalized at each time to give P(dS, t). At each time
+t, the data representing P is "curve-fit" to the form of Eq. (0), where f and g are functions needed to get
+good fits, e.g., fitting coefficients of parameters {x}
+f = x f 0 + x f 1 S + x f 2 S 2 + ...
+g = x g0 + x g1 S + x g2 S 2 + ...
+At each time t, the functions f and g are fit to the function ln(( P(dS, t)), which includes the prefactor
+containing g and the function L which may be viewed as a Padé approximate of these polynomials.
+Complex constraints as functions of S ik (t) can be easily incorporated in this approach, e.g., due to regular
+reviews by funding agencies or executives. These P's are input into PATHTREE to calculate options for a
+given strategy or Plan.
+5.2. Risk Management of Project Options
+If some measure of risk among Projects is desired, then during the MC calculations developed for the toplevel Plan, sets of differenced costs for each Project, dS i(t) and dS i(t)/S i(t − dt), stored from each of the
+Project's Tasks. Then, histograms and Project CPDs are developed, similar to the development of the
+Plan CPD. A copula analysis, coded in TRD for risk management of financial markets, are applied to
+develop a relative risk analysis among these projects [10]. In such an analysis, the Project marginal CPDs
+are all transformed to Gaussian spaces, where it makes sense to calculate covariances and correlations.
+An audit trail back the original Project spaces permits analysis of risk dependent on the tails of the Project
+CPDs.
+6. Generic Applications
+ROPS can be applied to any complex scheduling of tasks similar to the FCS project. The need for
+government agencies to plan and monitor such large projects is becoming increasingly difficult and
+necessary [15]. Many large businesses have similar projects and similar requirements to manage their
+complex projects.
+
+Lester Ingber
+
+-5-
+
+Real Options for Project Schedules (ROPS)
+
+References
+[1]
+[2]
+
+[3]
+[4]
+
+[5]
+
+[6]
+[7]
+[8]
+[9]
+[10]
+[11]
+
+[12]
+[13]
+
+[14]
+
+[15]
+
+M. Bowman and L. Ingber, ''Real Options for US Army Future Combat Systems,'' Report
+2007:ROFCS, Lester Ingber Research, Ashland, OR, 2007.
+G.G. Brown, R.T. Grose, and R.A. Koyak, ''Estimating total program cost of a long-term, hightechnology, high-risk project with task durations and costs that may increase over time,'' Military
+Operations
+Research
+11,
+41-62
+(2006).
+[URL
+http://www.nps.navy.mil/orfacpag/resumePages/papers/Brownpa/Estimating_total_
+program_cost.pdf]
+T.E. Copeland and P.T. Keenan, ''Making real options real,'' McKinsey Quarterly 128-141 (1998).
+[URL http://faculty.fuqua.duke.edu/ ̃charvey/Teaching/BA456_2006/McK98_3.pdf]
+G. Glaros, ''Real options for defense,'' Transformation Trends June, 1-11 (2003). [URL
+http://www.oft.osd.mil/library/library_files/trends_205_transformation_trends_9_june%202003_issue.pdf]
+R. Grose, ''Cost-constrained project scheduling with task durations and costs that may increase
+over time: Demonstrated with the U.S. Army future combat systems,'' Thesis, Naval Postgraduate
+School, Monterey, CA, 2004. [URL http://www.stormingmedia.us/75/7594/A759424.html]
+J.C. Hull, Options, Futures, and Other Derivatives, 4th Edition (Prentice Hall, Upper Saddle River,
+NJ, 2000).
+L. Ingber, ''Very fast simulated re-annealing,'' Mathl. Comput. Modelling 12, 967-973 (1989).
+[URL http://www.ingber.com/asa89_vfsr.pdf]
+L. Ingber, ''Adaptive Simulated Annealing (ASA),'' Global optimization C-code, Caltech Alumni
+Association, Pasadena, CA, 1993. [URL http://www.ingber.com/#ASA-CODE]
+L. Ingber, ''Statistical mechanics of portfolios of options,'' Report 2002:SMPO, Lester Ingber
+Research, Chicago, IL, 2002. [URL http://www.ingber.com/markets02_portfolio.pdf]
+L. Ingber, ''Trading in Risk Dimensions (TRD),'' Report 2005:TRD, Lester Ingber Research,
+Ashland, OR, 2005.
+L. Ingber, C. Chen, R.P. Mondescu, D. Muzzall, and M. Renedo, ''Probability tree algorithm for
+general diffusion processes,'' Phys. Rev. E 64, 056702-056707 (2001).
+[URL
+http://www.ingber.com/path01_pathtree.pdf]
+K.J. Leslie and M.P. Michaels, ''The real power of real options,'' McKinsey Quarterly 4-22 (1997).
+[http://faculty.fuqua.duke.edu/ ̃charvey/Teaching/BA456_2006/McK97_3.pdf]
+General Accounting Office, ''Future Combat System Risks Underscore the Importance of
+Oversight,'' Report GAO-07-672T, GAO, Washington DC, 2007. [URL http://www.gao.gov/cgibin/getrpt?GAO-07-672T]
+General Accounting Office, ''Key Decisions to Be Made on Future Combat System,'' Report
+GAO-07-376,
+GAO,
+Washington
+DC,
+2007.
+[URL
+http://www.gao.gov/cgibin/getrpt?GAO-07-376]
+B. Wysocki, Jr, ''Is U.S. Government 'Outsourcing Its Brain'?,'' Wall Street Journal March 30, 1
+(2007).
+
+

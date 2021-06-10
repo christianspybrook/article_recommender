@@ -1,0 +1,3576 @@
+isolation without taxation
+near zero cost transitions for sfi
+matthew kolosick shravan narayan conrad watt
+michael lemay deepak garg ranjit jhala deian stefan
+
+arxiv210500033v1 cscr 30 apr 2021
+
+
+
+uc san diego
+
+
+
+university of cambridge
+
+
+
+intel labs
+
+
+
+max planck institute for software systems
+
+and thus require frequent domain crossings similarly sfi
+allows fastly to service thousands of tenants per second per
+core each of which calls into the runtime multiple times when
+handling a request  all within fractions of a millisecond 19
+while there have been significant strides on sfi enforcement
+eg on x86 2 9 14 20 x8664 21 sparc 22 and
+arm 21 23 24 context switching in sfi systems remains largely unexplored since wahbe et als original work 1
+almost all sfi systems have used heavyweight transitions for
+context switching these transitions switch domains by tying
+into the underlying sfi enforcement mechanism for example
+when transitioning into a sandbox they might set segment
+registers 9 or memory protection keys 25 26 to ensure
+the sandbox code is memory isolated they also save scrub
+and restore machine state eg the stack pointer program
+counter and calleesave registers to ensure confidentiality
+and integrity this code is not only hard to get right eg it
+must account for different architectures platforms and their
+quirks 27 but also has significant overheads vi
+i i ntroduction
+in this paper we revisit context switching in sfi systems and
+softwarebased fault isolation sfi is a lightweight alterna realize the 90s vision of reducing the cost a context switch to
+tive to processbased isolation which isolates untrusted code roughly that of a function call through five contributions we
+with runtime checks that restrict sandbox the code to a specific show how to design sfi systems with near zerocost transitions
+region of the address space 1 2 though sfi runtime
+checks typically slow down the code running in the sandbox 1 formal model of secure transitions iii simply rein application domains where sandboxed components are moving heavyweight transitions for many sfi systems is
+tightly coupled and require frequent domain crossings the unsafe without transitions an attacker can easily escape the
+low overhead of sfi transitions more than makes up for the sfi sandbox thus our first contribution is the first formal
+added cost 3 for example sfi has been used to isolate code declarative and highlevel model that elucidates the role of
+in os kernels 47 browsers 810 runtime systems 11 transitions in making sfi secure ii intuitively secure
+transitions protect the integrity and confidentiality of machine
+13 and storage systems 1 14 15
+more recently mozilla started using webassembly wasm state across the domain transition and provide wellbracketed
+based sfi to sandbox thirdparty c libraries in firefox 16 control flow ie that returns actually return to their call sites
+
+abstractalmost all sfi systems use heavyweight transitions
+that incur significant performance overhead from saving and
+restoring registers when context switching between application
+and sandbox code we identify a set of zerocost conditions that
+characterize when sandboxed code is wellstructured enough
+so that security can be guaranteed via lightweight zerocost
+transitions we show that using webassembly wasm as an
+intermediate representation for lowlevel code naturally results
+in a sfi system with zerocost transitions and modify the lucet
+wasm compiler and its runtime to use zerocost transitions our
+modifications speed up image and font rendering in firefox by
+up to 297 and 10 respectively we also describe a new
+purposebuilt fast sfi system segmentzero32 that uses x86
+segmentation and llvm with mostly offtheshelf passes to
+enforce our zerocost conditions while this enforcement incurs
+some runtime cost within the sandboxed code we find that on
+firefox image and font rendering benchmarks the time saved
+per transition allows segmentzero32 to outperform even an
+idealized hardware isolation system where memory isolation
+incurs zero performance overhead but the use of heavyweight
+transitions is required
+
+17 and companies like fastly are using wasm to isolate tenant 2 zerocost conditions for sfi iv heavyweight transicode on their edge clouds 18 sfi allows mozilla to isolate tions provide security by wrapping calls and returns to ensure
+libraries like libgraphite font shaping libexpat that sandboxed code cannot for example read secret registers
+xml parsing and hunspell spell checking that are or tamper with the stack pointer these transitions are necessary
+tightly coupled and process content in a streaming fashion  when the code running in the sandbox is arbitrary native
+code in practice though most sfi systems enforce some
+this work was supported in part by gifts from cisco by the nsf under structure on sandboxed code for example nacl uses controlgrant number cns1514435 ccf1918573 career cns2048262 and
+by the conix research center one of six centers in jump a semiconductor flow integrity cfi to restrict the sandboxs control flow to its
+research corporation src program sponsored by darpa conrad watt was own code region and requires dynamic checks on reads and
+supported by the epsrc grant rems rigorous engineering for mainstream writes 3 9 10 this structure simplifies sfi enforcement
+systems epk0085281 a google phd fellowship in programming technology and software engineering and a research fellowship from peterhouse and verification that the enforcement is correct our insight
+university of cambridge
+is that imposing structure on sandboxed code also allows us
+
+1
+
+to replace heavyweight transitions with zerocost transitions
+which are close to bare function calls
+this insight is inspired by work on languagebased isolation 2833 languagebased systems like singularity 32
+use highlevel type and memorysafe languages eg sing
+to isolate code at the language level the compositional
+structure of such languages allow these systems to use
+simple function calls as secure crossdomain transitions the
+language enforces wellbracketed control flow and local state
+encapsulation ie confidentiality and integrity of machine
+state we cannot realistically rewrite huge systems like firefox
+or even the thirdparty libraries in firefox in a highlevel
+language 3 so we instead capture the essence of what makes
+it possible for languagebased systems to safely use zero cost
+transitions and adapt this to the sfi setting
+our second contribution precisely defines the zerocost
+conditions that sandbox code must satisfy to safely use zerocost transitions sandboxed code must follow a typedirected
+cfi discipline have wellbracketed control flow enforce local
+state stack and register encapsulation and ensure registers
+and stack slots are initialized before use these conditions are
+only slightly more onerous than the structure some sfi systems
+already require of sandboxed code eg compared to nacl we
+rely on typebased cfi instead of coarsegrained cfi and use
+a safe stack instead of a separate stack we state the zerocost
+conditions in terms of a dynamic overlay semantics which we
+can instantiate to model different sfi systems
+3 instantiating the zerocost model v our third contribution is an instantiation of our zerocost model to two sfi
+systems wasm and segmentzero32
+wasm is a lowlevel bytecode with a sound static type
+system designed to be targeted by compilers for languages such
+as c 10 we study wasm as an intermediate representation
+ir for sfi 16 3436 ie compiling untrusted cc
+libraries to native binaries using wasm as an ir that are
+then linked against an application like firefox which is not
+compiled through wasm we show that wasm satisfies our
+zerocost conditions  and replace the heavyweight transitions
+used by existing wasm sfi compilers with zerocost transitions
+we design the segmentzero32 sfi system to 1 use
+32bit x86 segmentation hardware to enforce heap memory
+isolation and 2 restrict the structure of code according to
+our zerocost conditions unlike previous sfi systems that use
+segmentation 2 9 14 we use a set of mostly offtheshelf
+llvm compilation passes and one custom compilation pass
+section vb to enforce our zerocost conditions including
+typebased cfi and ensure that segmentzero32 can safely
+use zerocost transitions while the prevalence of 32bit x86
+systems is declining it nevertheless still constitutes over 20
+of the firefox web browsers user base around 45 million
+users1  segmentzero32 would allow for high performance
+library sandboxing on these machines
+4 proofs of security our fourth contribution is a set of proofs
+of security we prove that nacls heavyweight transitions
+1 see
+
+are secure b and that when the zerocost conditions are
+met zerocost transitions are secure c we also prove that
+wasm meets the zerocost conditions and can therefore safely
+elide heavyweight transitions while maintaining integrity and
+confidentiality d
+5 implementation and evaluation vi our last contribution is an implementation and evaluation of wasm and
+segmentzero32 with zerocost transitions we integrate the
+two sfi systems into the rlbox sandboxing framework 16
+and evaluate the performance of zerocost transitions on
+several microbenchmarks and two macrobenchmarks  image
+decoding and font rendering in firefox which are currently
+sandboxed using wasmbased sfi we find that zerocost
+transitions speed up wasmsandboxed image decoding by up
+to 297 and font rendering by 10 segmentzero32
+imposes an overhead of at most 24 on image decoding and
+225 on font rendering relative to unsandboxed native code
+these overheads are significantly lower than even an idealized
+hardware isolation system where memory isolation adds zero
+overhead but the use of heavyweight transitions is required
+open source and data our code and data will be made
+available under an open source license
+ii overview
+in this section we describe the role of transitions in
+making sfi secure give an overview of existing heavyweight
+transitions and introduce our zerocost model which makes
+it possible for sfi systems to replace heavyweight transitions
+with simple function calls
+a the need for secure transitions
+consider sandboxing an untrusted font rendering library
+eg libgraphite as used in a browser like firefox
+1
+2
+3
+4
+5
+6
+7
+8
+
+void onpageloadint text 
+
+int screen    stored in r12
+int tempbuf  
+grgetpixelbuffertext tempbuf
+memcpyscreen tempbuf 100
+
+
+
+this code calls the libgraphite grgetpixelbuffer
+function to render text into a temporary buffer and then copies
+the temporary buffer to the variable screen to be rendered
+using sfi to sandbox this library ensures that the browsers
+memory is isolated from libgraphite  memory isolation
+ensures that grgetpixelbuffer cannot access the memory of onpageload or any other parts of the browser stack and
+heap unfortunately memory isolation alone is not enough if
+transitions are simply function calls eg as in 25 attackers
+can violate the calling convention at the applicationlibrary
+boundary eg the grgetpixelbuffer call and its return
+to break isolation below we describe the different ways a
+compromised libgraphite can do this
+clobbering calleesave registers suppose the screen variable in the above onpageload snippet is compiled down to
+
+httpsdatafirefoxcomdashboardhardware last visited march 2021
+
+2
+
+the cost of wrappers heavyweight springboards and trampolines guarantee secure transitions but have two significant
+drawbacks first they impose an overhead on sfi  calls into
+the sandboxed library become significantly more expensive
+than simple application function calls vi heavyweight
+transitions conservatively save and clear more state than
+might be necessary essentially reimplementing aspects of
+an os process switch and duplicating work done by wellbehaved libraries second springboards and trampolines must
+be customized to different platforms ie different processors
+and calling conventions implementation mistakes can  and
+have 4045  resulted in sandbox escape attacks
+
+the register r12 in the system v calling convention r12 is
+a calleesaved register 37 so if grgetpixelbuffer
+clobbers r12 then it is also supposed to restore it to its original value before returning to onpageload a compromised
+libgraphite doesnt have to do this instead the attacker
+can poison the register
+1
+2
+
+mov r12 h
+ret
+
+since r12 screen is the used by firefox on line 6 to
+memcpy the tempbuf from the sandbox memory this gives
+the attacker a write gadget that they can use to hijack firefoxs
+control flow to prevent such attacks we need calleesave
+register integrity ie we must ensure that sandboxed code
+restores calleesave registers upon returning to the application
+
+c zerocost transitions
+
+heavyweight transitions are conservative because they make
+few
+assumptions about the structure or possible behavior of
+leaking scratch registers dually scratch registers can
+the
+code
+running in the sandbox sfi systems like nacl and
+potentially leak sensitive information into the sandbox suppose
+wasm
+do
+however impose structure on sandboxed code to
+that firefox keeps a secret eg an encryption key in a scratch
+enforce
+memory
+isolation in this section we show that by
+register memory isolation alone would not prevent an attackerimposing
+structure
+on sandboxed code we can make transitions
+controlled libgraphite from using uninitialized registers
+less
+conservative
+specifically we describe a set of zeroand thus reading this secret to prevent such leaks we need
+cost
+conditions
+that
+impose just enough internal structure on
+scratch register confidentiality
+sandboxed code to ensure that it will behave like a highreading and corrupting stack frames finally if the applilevel compositional language while maintaining sfis high
+cation and sandboxed library share a stack eg as in 25
+performance sfi systems that meet these conditions can
+the attacker can read and corrupt data and pointers stored
+safely elide almost all the extra work done by heavyweight
+on the stack to prevent such attacks we need stack frame
+springboards and trampolines thus moving toward the ideal
+encapsulation ie we need to ensure that sandboxed code
+of sfi transitions as simple fast and portable function calls
+cannot access application stack frames
+zerocost conditions we assume that the sandboxed library
+code is split into functions and that each function has an
+b heavyweight transitions
+expected number of arguments of known types we formalize
+sfi toolchains  from nacl 9 to wasm native compilers
+the internal structure required of library code via a safety
+like lucet 38 and wamr 39  use heavyweight transitions
+monitor that checks the zerocost conditions ie the local
+to wrap calls and returns and prevent the aforementioned attacks
+requirements necessary to ensure that callsinto and returnsheavyweight transitions are secure transitions they provide
+from the untrusted library functions are wellbehaved and
+1 calleesave register integrity the springboard  the hence that they satisfy the secure transition requirements
+transition code which wraps calls  saves calleesave registers 1 typedirected forwardedge cfi first our monitor reto a separate stack stored in the protected application memory quires that the library code enforces typedirected forwardwhen returning from the library to the application the edge cfi that is for every call instruction encountered during
+trampoline  the code which wraps returns  restores the execution the jump target address is the start of one of the
+registers
+library functions and the number and types of arguments
+2 scratch register confidentiality since any scratch register
+may contain secrets the springboard clears all scratch registers
+before transitioning into the sandbox
+
+expected by that function match what are actually passed
+this provides two main properties that are critical for security
+first it ensures that each function starts from a statically
+3 stack frame encapsulation most but not all sfi systems known stack shape preventing a class of attack where a benign
+provision separate stacks for trusted and sandboxed code and function can be tricked into overwriting other stack frames
+ensure that the trusted stack is not accessible from the sandbox or hijacking control flow because it is passed too few or too
+the springboard and trampoline account for this in three ways many arguments second it provides the structure needed
+first they track the separate stack pointers at each transition to define a property capturing proper restoring of calleesave
+in order to switch stacks second the springboard copies registers discussed in point three below
+arguments passed on the stack to the sandbox stack since 2 wellbracketed controlflow second our monitor requires
+the sandboxed code cannot access arguments stored on the that the library code adheres to wellbracketed return edges
+application stack finally the trampoline tracks the actual return abstractly calls and returns should be wellbracketed when
+address to return on transition by keeping it in the protected f calls g and then g calls h h ought to return to g and then
+memory so that the sandboxed library cannot tamper with it g ought to return to f however untrusted functions may
+
+3
+
+subvert the control stack to implement arbitrary control flow
+between functions unrestricted control flow is at odds with
+compositional reasoning it also makes it difficult to define
+correct restoration of calleesave registers since it is unclear
+what returning from a function call means accordingly we
+require two properties of the library to ensure that calls and
+returns are wellbracketed first each jump must stay within
+the same function this limits interfunction control flow to
+function calls and returns second the specification monitor
+maintains a logical call stack which is used to ensure that
+returns go only to the preceding caller
+3 calleesave registers restoration building on wellbracketed control flow and in particular the resulting definition
+of the beginning and end of a function call we define functionlevel adherence to calleesave register conventions our monitor
+tracks calleesave state and checks that it has been correctly
+restored at every return importantly satisfying the monitor
+means that application calls to a wellbehaved library function
+do not require a transition which separately saves and restores
+calleesave registers since the function is known to obey the
+standard calling convention
+4 local state encapsulation our monitor establishes local
+state encapsulation by checking that all stack reads and writes
+are within the current stack frame this check allows us to
+locally ie by checking each function in isolation ensure that a
+library function correctly saves and restores calleesave registers
+upon entry and exit to see why local state encapsulation is
+needed consider the following idealized assembly function
+libraryfunc
+1
+2
+3
+4
+5
+6
+7
+8
+
+priv
+val
+reg
+region
+immediate
+command
+
+3
+3
+3
+3
+3
+3
+
+n
+p
+v
+r
+k
+i
+c
+
+
+
+
+
+
+
+
+
+code
+regvals
+memory
+state
+
+3
+3
+3
+3
+
+c
+r
+m
+
+
+
+
+
+
+
+n
+app  lib
+hn pi
+rn  sp  pc
+nn
+r v ii
+r  popp  pushp i  jmpk i 
+r  loadk i  storek i  i 
+gatecalln i  gateret
+r  mov i  callk i  retk
+gatecalln i  storelabelp i
+n  priv  command
+reg  val
+n  val
+error 
+pc  n sp  n r  regvals
+m  memory c  code
+
+figure 1 syntax
+
+system is strict enough to ensure that a wasm compiler
+generates native code that meets these conditions finally in
+section vb we demonstrate how the zerocost conditions can
+be used to design a new sfi scheme by combining hardwarebacked memory isolation with existing llvm compiler passes
+iii a g ated a ssembly l anguage
+we formalize zerocost transitions via an assembly language
+sfiasm that captures key notions of an application interacting
+with a sandboxed library focusing on capturing properties of
+the transitions between the application and sandboxed library
+
+libraryfunc
+libraryhelper
+push r12
+store sp  1  h
+mov r12  1
+ret
+load r1  sp  1
+add r1  r12
+call libraryhelper
+pop r12
+ret
+
+code figure 1 summarizes the syntax of sfiasm a r iscstyle language with natural numbers n as the sole data type
+code c and memory m  are separated and to capture the
+separation of application code from sandboxed library code c
+is an immutable partial map from n to pairs of a privilege
+p app or lib and a command c where app and lib are
+our security domains
+
+if libraryhelper is called it will overwrite the stack slot
+where libraryfunc saved r12 and libraryfunc will
+then restore r12 to the attackers desired value our monitor states memory is a total map from n to values v we
+prohibits such crossfunction tampering thus ensuring that all assume that the memory is subdivided into disjoint regions
+subsequent reasoning about calleesave integrity can be carried mp  so that the application and library have separate memory
+each of these regions is further divided into a disjoint heap
+out locally in each function
+5 confidentiality finally our monitor uses dynamic informa hp and stack sp  we write  to denote the states or machine
+tion flow control ifc tracking to define the confidentiality of configurations which comprise code memory and a fixed
+scratch registers the monitor tracks how secret application finite set of registers mapping register names rn  to values
+values stored in scratch registers flow through the sandboxed with a distinguished stack pointer sp and program counter
+code and checks that the library code does not leak this pc register we write lcmp for cpc  p c that is
+information concretely our implementations enforce this by that the current instruction is c in security domain p we write
+ensuring that within each functions localized control flow all 0  program to mean that 0 is a valid initial program
+state the definition of validity varies between different sfi
+register and local stack variables are initialized before use
+we prove that these five zerocost conditions characterize techniques eg heavyweight transitions make assumptions
+libraries that can be securely isolated with zerocost transitions about the initial state of the separate stack
+using the combination of memory isolation and function calls gated calls and returns we capture the transitions between
+without the overhead of springboards and trampolines see the application and the library by defining a pair of instructions
+theorem 1 in section va we show that the wasm type gatecalln i and gateret that serve as the only way to switch
+
+4
+
+between the two security domains the first gatecalln i
+represents a call from the application into the sandbox or
+a callback from the sandbox to the application with the n
+annotation representing the number of arguments to be passed
+the second gateret represents the corresponding return from
+sandbox to application or viceversa we leave the reduction
+rule for both implementation specific in order to capture the
+details of a given sfi systems trampolines and springboards
+
+1  2
+2 lc2 mp2
+
+1 lc1 mp1
+p1  p2  p
+
+p
+
+  0
+
+
+
+
+ 0
+
+
+ 0
+
+p
+
+
+ 0
+
+1 
+ 2
+
+wb
+
+
+
+
+  1 
+ 2  0
+lgatecalln im
+2 lgateretm
+wb
+
+  0
+memory isolation sfiasm provides abstract mechanisms for
+enforcing sfi memory isolation by equipping the standard
+figure 2 wellbracketed transitions
+load store push and pop with optional statically annotated checks to capture different styles of enforcement we
+model these checks as partial functions that map a pointer
+to its new value or are undefined when a particular address systems that enable zerocost transitions and for exploring
+is invalid this lets us for instance capture nacls coarse the correctness of particular implementations of springboards
+grained dynamically enforced isolation sandboxed code may and trampolines as a baseline we prove that naclstyle
+read and write anywhere in the sandbox memory by requiring heavyweight transitions satisfy the highlevel properties
+that all loads and stores are annotated with f nnmlib  n wellbracketed gated calls sfi systems may allow arbitrary
+controlflow integrity sfiasm also provides abstract control nesting of calls into and callbacks out of the sandbox thus
+flow integrity enforcement via annotations on jmp call and it is insufficient to define that calleesave registers have
+ret these are also enforced dynamically however we require been properly restored by simply equating register state upon
+that the standard control flow operations remain within their entering and exiting the sandbox instead we make the notion
+own security domain so that gatecall and gateret remain of an entry and its corresponding exit precise by using
+sfiasms gatecall and gateret to define a notion of wellthe only way to switch security domains
+bracketed gated calls that serve as the backbone of transition
+operational semantics we capture the dynamic behavior via
+integrity properties a wellbracketed gated call which we
+0
+a deterministic small step operational semantics    
+wb
+write
+  0 figure 2 captures the idea that  is a gated
+the rules are standard we show the rule for load here
+call from one security domain to another followed by running
+haddri  v i
+addr0  kaddr
+in the new security domain and then 0 is the result of a gated
+0
+0
+v  m addr 
+r  rr 7 v
+return that balances the gated call from  this can include
+potentially recursive but balanced gated calls wellbracketed
+lr  loadk im   r  r0 
+gated calls let us relate the state before a gated call with the
+v i evaluates the immediate value based on the register file state after the corresponding gated return capturing when the
+and  increments pc checking that it remains within the library has fully returned to the application
+same security domain if the function kaddr is undefined
+addr is not within bounds the program will step to a integrity relations between the states before calling into the
+distinguished terminal state error lcm is simply shorthand sandbox and then after the corresponding return capture sfi
+for lcmp when we do not care about the security domain transition system integrity properties we identify two key
+lastly we do not include a specific halt command instead integrity properties that sfi transitions must maintain
+1 calleesave register integrity requires that calleesave
+halting when pc is not in the domain of c
+registers are restored after returning from a gated call into
+a secure transitions
+the library this ensures that an attacker cannot unexpectedly
+our goal is to specify when sandboxed code has enough modify the internal state of an application function
+2 return address integrity requires that the sandbox 1 restructure to elide springboards and trampolines while mainturns
+to the instruction after the gatecall 2 does not tamper
+taining the same security guarantees one way to do so is by
+with
+the
+stack pointer and 3 does not modify the call stack
+stipulating that zerocost sandboxed code is equivalent with or
+itself
+together
+these ensure that an attacker cannot tamper
+without springboards and trampolines unfortunately such a
+with
+the
+application
+control flow
+specification would be unpleasantly operational first it would
+these integrity properties are crucial to ensure that the
+be hard to get right springboards and trampolines are tricky
+and involve a significant amount of lowlevel implementation sandboxed library cannot break application invariants to
+detail second such a specification would be platformspecific capture them formally we first define an abstract notion of
+as each architecture and callingconventions requires different an integrity property across a wellbracketed gated call this
+not only allows us to cleanly define the above properties but
+springboards and trampolines
+instead we use sfiasm to declaratively specify highlevel also provides a general framework that can capture integrity
+properties that capture the intended security goals of transition properties for different architectures
+systems this lets us use sfiasm both as a setting for studying
+specifically we define an integrity property by a predicate
+
+5
+
+i  trace  state  state  p that captures when integrity is
+preserved across a call p is the type of propositions the first
+argument is a trace a sequence of steps that our program has
+taken before making the gated call the next two arguments
+are the states before and after the wellbracketed gated call i
+defines when these two states are properly related this leads
+to the following definition of iintegrity
+
+then a pair of a n and a label p we also extend our instruction
+set with r  movlabelp and storelabelp i that allow the
+application to dynamically assign the label p to the value stored
+in register r or pointed to by i respectively
+
+definition 2 calleesave register integrity let csr be
+the calleesave registers and define csr 1  2  
+2 rcsr  1 rcsr if an sfi transition system has
+csrintegrity then we say it has calleesave register integrity
+
+a further consideration that we must account for in defining
+a noninterference property is that during a callback to the
+application the application may choose to declassify additional
+information for instance a sandboxed image decoding library
+might after parsing the file header make a callback requesting
+the appropriate data to decode the rest of the image this
+application callback will then transfer that data which was
+previously confidential application data over to the sandboxed
+memory declassifying it in the transfer
+
+next we ask what comprises a public output that is what
+should be considered as leaking the secret applabeled data
+in these lowlevel systems leaks occur when secret data could
+definition 1 iintegrity let i  trace  state  state  p be written to a file or exfiltrated over the network however
+then if 0  program   0  1  1 lmapp  and sandboxed libraries arent given direct access to system calls
+wb
+1  2 imply that i 1  2  we say that an sfi that would enable such exfiltration and are only given indirect
+access through callbacks provided by the host application we
+transition system has iintegrity
+thus overapproximate the public outputs as the set of values
+we instantiate this to define our two integrity properties
+returned to the application this includes all the values that
+calleesave register integrity we define calleesave register could be leaked the returned values include all arguments to
+integrity as an iintegrity property that ignores the trace a gatecall callback the return value when doing a gateret
+argument but requires the calleesave registers values to be to the application and all values stored in the sandboxed heap
+equal in both states
+hlib  which may be referenced by other returned values
+
+return address integrity we specify that the library returns
+to the expected instruction as a relation between 1 and 2 
+namely that 2 pc  1 pc1 restoration of the stack pointer
+can similarly be specified as 2 sp  1 sp specifying call
+stack integrity is more involved as 1 lacks information on
+where return addresses are saved they look like any other
+data on the stack instead return addresses are defined by
+the history of calls and returns leading up to 1  which we
+capture with the trace argument  we thus define a function
+returnaddress details in the appendix see figure 16 that
+computes the set of locations of return addresses based on a
+trace the third clause of return address integrity is then that
+these locations values are preserved from 1 to 2  yielding
+
+due to the possibility of intentional declassification we
+choose to follow 46 and define confidentiality as disjoint
+noninterference as follows we use  lib 0 to mean that 
+and 0 agree on all values with label lib representing varying
+secret inputs we further use  call m 0 for when  and
+0 agree on all sandboxed heap values the program counter
+and the m arguments passed to a callback and  ret 0
+for when  and 0 agree on all sandboxed heap values the
+program counter and the value in the return register written
+rret 3 this lets us define noninterference as follows
+
+definition 3 return address integrity
+ra 1  2   2 pc  1 pc  1  2 sp  1 sp 
+
+definition 4 disjoint noninterference
+
+2 m returnaddress  1 m returnaddress
+
+if for all 0  program 1 lmlib  3 lmapp  0 
+lib
+1 n 2  3  and for all 01 such that 1 lib 01 
+lib
+we have that 01 n 02  03  03 lmapp  3 pc 
+confidentiality sfi systems must make sure that secrets 0 pc and 1  lgatecall im 0 lgatecall im and
+2
+3
+2
+m
+m
+cannot be leaked to the untrusted library that is they must  
+0
+0
+3
+call m 3 or 2 2 lgateretm 2 lgateretm and
+provide confidentiality we specify confidentiality as non   0  then we say that the sfi transition system has
+3
+ret
+3
+interference changing secret inputs does not affect public the disjoint noninterference property
+outputs in the context of library sandboxing we associate
+secret with application data and nonsecret with library data
+this definition states that for any consecutive sequence of
+as the purpose of library sandboxing is isolating untrusted
+executing exactly n steps within the sandbox then returning
+2
+components we thus augment values with labels app or
+control to the application varying confidential inputs does not
+lib where lib v app nonsecret can flow to secret and
+influence the public outputs and the library returns control to the
+app 6v lib secret cannot flow to nonsecret values are
+application in the same number of steps thus an sfi transition
+system satisfying disjoint noninterference is guaranteed to not
+2 this could also be extended to a setting with mutually distrusting
+components
+declassify new data while running within the sandbox
+if an sfi transition system has raintegrity then we say the
+system has return address integrity
+
+6
+
+ n
+frame 3 sf   base
+retaddr loc  n
+ reg  n 
+csr vals
+function 3 f   instrs  n  command
+entry  n
+type  n
+
+ostate 3   oerror
+ state
+  
+funcs  n  function
+stack  frame
+
+
+o c all
+
+hn libi  v i
+n0  kn
+sp0  sp  1
+0
+0
+m  m sp 7 pc  1
+stack  sf   stack
+sf  newframe n0  sp0 
+typechecks n0  sp0 
+0
+0
+0
+  stack  stack  pc  n  sp  sp0  m  m 0 
+lcallk imlib
+0
+0
+
+o r et
+
+isretaddr sp
+hni  m sp
+n0  kn
+0
+csrrestored
+  popframe
+lretk mlib
+0 pc  n0  sp  sp  1
+
+figure 3 osfiasm extended syntax
+
+o j mp
+
+hn libi  v i
+n0  kn
+insamefunc pc n0 
+ljmpk imlib
+pc  n0 
+
+iv z ero c ost t ransition c onditions
+we define our zerocost conditions as a safety monitor with
+a language osfiasm overlaid on top of sfiasm this language
+extends sfiasm with additional structure and dynamic type
+checks that ensure the invariants needed for zerocost transitions
+are maintained upon returning from library functions providing
+both an inductive structure for proofs of security for zerocost
+implementations and providing a top level guarantee that our
+integrity and confidentiality properties are maintained
+
+o s tore
+
+hn libi  v i
+v  h pi0 i  v i0 
+0
+0
+m  m n 7 v
+writeable n0 
+0
+n  kn
+pi0  app  n0 
+ hlib
+
+0
+lstorek i  i mlib
+ m  m 0 
+
+syntax of osfiasm figure 3 shows the extended syntax of
+figure 4 osfiasm operational semantics excerpt
+osfiasm overlay state written  wraps the state of sfiasm
+extending it with two extra pieces of data first osfiasm
+f  funcstarget
+f entry  target
+sp  sp
+requires the sandboxed code be organized into functions
+sf     stack
+sp  sf retaddr  f type
+funcs funcs maps each command in the sandboxed
+library to its parent function functions f  also store the
+typechecks target sp
+code indices of their commands as the field f instrs store the
+entry point f entry and track the number of arguments the
+sf     stack
+f  codfuncs
+function expects f type this partitioning of sandboxed code
+retaddr  sf retaddr
+n n0  f instrs
+into functions is static second the overlay state dynamically
+isretaddr retaddr 
+insamefunc n n0 
+tracks a list of overlay stack frames stack  these stack
+frames sf  are solely logical and inaccessible to instructions
+sf     stack
+they instead serve as bookkeeping to implement the dynamic
+r n  sf csr vals rr  n
+type checks of osfiasm by tracking the base address of each
+csrrestored
+stack frame sf base the stack location of the return address
+sf retaddr  and the values of the callee save registers upon
+sf     stack
+entry to the function sf csr vals we are concerned with
+n  sp  n  sf base  n 6 sf retaddr
+the behavior of the untrusted library so the logical stack does
+writeable n
+not finely track application stack frames but keeps a single
+large stack frame for all nested application stack frames
+figure 5 osfiasm semantics auxiliary predicates
+when code fails the overlays dynamic checks it will result
+in the state oerror our definition of monitor safety which
+will ensure that zerocost transitions are secure is then simply
+with auxiliary definitions shown in figure 5 shows an excerpt
+that a program does not step to an oerror
+of the checks which we describe below full definitions can
+be found in appendix c
+a overlay monitor
+osfiasm enforces our zerocost conditions by extending the call in the overlay the reduction rule for library call instrucoperational semantics of sfiasm with additional checks in the tions o c all checks type safe execution with typechecks
+overlays small step operational semantics written 
+0  a predicate over the state  call target target and stack
+each of these steps is a refinement of the underlying sfiasm pointer sp that checks that 1 the address we are jumping to
+step that is   0  whenever 0 is not oerror figure 4 is the entry instruction of one of the functions 2 the stack
+pointer remains within the stack sp  sp  and 3 the number
+3 full definitions are in appendix a definition 8 and definition 9
+of arguments expected by the callee have been pushed to the
+
+7
+
+stack on top of this check call also creates a new logical
+stack frame recording the base of the new frame location of
+the return address and the current calleesave register values
+pushing the new frame onto the overlay stack to ensure ifc
+we require that i has the label lib to ensure that control flow
+is not influenced by confidential values a similar check is done
+when jumping within library code obviating the need for a
+program counter label further because the overlay captures
+zerocost transitions gatecall behaves in the exact same way
+except there is an additional ifc check that the arguments are
+not influenced by confidential values
+
+b overlay semantics enforce security
+the goal of the overlay semantics and our zerocost conditions is to capture the essential behavior necessary to ensure
+that individual wellbehaved library functions can be composed
+together into a sandboxed library call that enforces sfi integrity
+and confidentiality properties thus library code that is wellbehaved under the dynamic overlay type system will behave
+equivalently to library code with springboard and trampoline
+wrappers and therefore wellbehaved library code can safely
+elide those wrappers and their overhead we prove theorems
+showing that the overlay semantics is sound with respect to
+each of our security properties we show the statement for
+calleesave register integrity below
+
+jmp our zerocost conditions rely on preventing invariants
+internal to a function from being interfered with by other
+functions a key protection enabling this is illustrated by the theorem 1 overlay calleesave register soundness if 0 
+
+
+1  1 p  app and 1
+2 such
+reduction for jmp o j mp which enforces that the only inter program 0
+wb
+function control flow is via call and ret the insamefunc that 2 6 oerror and 1   2  then 2 rcsr 
+predicate checks that the current n and target n0  instructions 1 rcsr
+are within the same overlay function the same check is added
+v i nstantiating z ero c ost
+to the program counter increment operation   these checks
+we describe two isolation systems that securely support
+ensure that the logical call stack corresponds to the actual
+zerocost
+transitions they meet the overlay monitor zerocost
+control flow of the program enabling the overlay stacks use
+conditions
+the first is an sfi system using webassembly
+in maintaining invariants at the level of function calls
+as an ir before compiling to native code using the lucet
+store the reduction rule for store o s tore demonstrates toolchain 38 here we rely on the languagelevel invariants
+the other key protection enabling function local reasoning with of wasm to satisfy our zerocost requirements the second
+the check that the address n is writeable given the current segmentzero32 is our novel sfi system combining the x86
+state of the overlay stack writeable guarantees that if the segmented memory model for memory isolation with several
+operation is writing to the stack then that write must be within securityhardening llvm compiler passes to enforce our zerothe current frame and cannot be the location of the stored return cost conditions
+address this allows reasoning to be localized to each function
+a webassembly
+they do not need to worry about their callees tampering with
+webassembly wasm is a lowlevel bytecode with a sound
+their local variables protecting the stored return address is
+static
+type system wasms abstract state includes global
+crucial for ensuring wellbracketing which guarantees that each
+variables
+and heap memory which are zeroinitialized at startfunction returns to its caller
+up all heap accesses are explicitly bounds checked meaning
+to guarantee ifc o s tore first requires that the pointer have that compiled wasm programs inherently implement heap
+the label lib ensuring that the location we write to is not isolation beyond this wasm programs enjoy several languagebased on confidential data second the check pi0  app  level properties which in combination with a trusted compiler
+n0 
+ hlib enforces that confidential values cannot be written produce binaries satisfying the conditions required to support
+to the library heap similar checks based on standard ifc secure zerocost transitions we describe these below
+techniques are implemented for all other instructions
+control flow there are no arbitrary jump instructions in wasm
+ret with control flow checks and memory write checks in only structured intrafunction control flow functions may only
+place we guarantee that when we reach a ret instruction the be entered through a call instruction and may only be exited by
+logical call frame will correspond to the actual call frame executing a return instruction functions also have an associated
+ret is then responsible for guaranteeing wellbracketing and type direct calls are type checked at compile time while indirect
+ensuring calleesave registers are restored this is handled calls are subject to a runtime type check this ensures that
+by two extra conditions on ret instructions isretaddr and compiled wasm meets our typedirected forwardedge cfi
+csrrestored csrrestored checks that callee save registers condition
+have been properly restored by comparing against the values protecting the stack a wasm functions type precisely
+that were saved in the logical stack frame by call isretaddr describes the space required to allocate the functions stack
+checks that the value pointed to by the stack pointer retaddr  frame including spilled registers all accesses to local
+corresponds to the location of the return address saved in the variables and arguments are performed through statically known
+logical stack frame memory writes were checked to enforce offsets from the current stack base it is therefore impossible for
+that the return address cannot be overwritten so this guarantees a wasm operation to access other stack frames or alter the saved
+the function will return to the expected program location
+return address this ensures that compiled wasm meets our
+
+8
+
+local state encapsulation condition and in combination with theorem of a logical relation for a whole wasm library
+type checking function calls guarantees that wasms controltheorem 2 fundamental theorem for wasm libraries for
+flow is wellbracketed we therefore know that compiled wasm
+any number of steps n  n and compiled wasm library l
+functions will always execute the registersaving preamble and
+n l  l
+upon termination will execute the registerrestoring epilogue
+further the function body will not alter the values of any this theorem states that every function in a compiled wasm
+registers saved to the stack thereby ensuring the proper library when making calls to other wasm functions or
+restoration of calleesave registers
+application callbacks is wellbehaved with respect to the zeroconfidentiality wasm code may store values into function cost conditions the number of steps is a technical detail related
+local variables or a functionlocal value stack similar to that to stepindexing zerocost security then follows by adequacy
+of the java virtual machine 47 the wasm spec requires of the logical relation and theorem 1
+that compilers initialize functionlocal variables either with a theorem 3 adequacy of wasm logical relation for any
+function argument or with a default value further accesses to number of steps n  n library l such that n l  l
+the wasm value stack are governed by a coarsegrained data program 0  program using l and n0  n if 0 n0 0
+flow type system with explicit annotations at control flow joins then 0 6 oerror
+these are used to check at compiletime that an instruction
+cannot pop a value from the stack unless a corresponding value details of the logical relation and proofs are in appendix d
+was pushed earlier in the same function this guarantees that b segmentzero32
+local variable and value stack accesses can be compiled to
+segmentzero32 is our novel design of a 32bit sfi
+register accesses or accesses to a staticallyknown offset in the
+scheme
+developed using the zerocost conditions as a design
+stack frame
+guide
+segmentzero32
+leverages clangllvm compiler
+when executing a compiled wasm function without heavypasses
+to
+directly
+enforce
+the
+structure required for zerocost
+weight transitions confidential values from prior computations
+transitions
+on
+c
+code
+rather
+than relying on wasm as an
+may linger in these spilled registers or parts of the stack
+ir
+similar
+to
+nacl
+9
+and
+vx32
+14 segmentzero32
+however the above checks ensure that these locations will
+takes
+advantage
+of
+the
+x86
+segmented
+memory model 48 for
+only be read if they have been previously overwritten during
+memory
+isolation
+segmentation
+allows
+programs to demarcate
+execution of the same function by a lowconfidentiality wasm
+the
+memory
+regions
+that
+are
+used
+as
+the
+stack data heap and
+library value
+code regions with hardware support for range checks however
+proving wasm secure we prove that compiled wasm libraries both nacl and vx32 employ only a single memory range that
+can safely elide springboards and trampolines while maintaining is shared by the sandbox stack and heap segmentzero32
+integrity and confidentiality by showing that the compiled code instead separates these two and then leverages existing exploit
+would not violate the safety monitor this allows us to apply mitigation passes along with a pass of our design to provide
+theorem 1 and its analogues it is relatively straightforward isolation while supporting zerocost transitions we describe
+with one exception to verify that the properties of wasm these passes and how we use them below
+as described above satisfy the necessary safety conditions by
+protecting the stack simply using separate stack and nonshowing that the linear instructions of each basic block within
+stack segments does not protect the return addresses and context
+a function are safe and that each basic block properly initializes
+saved on the stack from a standard buffer overflow attack we
+the local state for any block it jumps to typesafe execution
+solve this issue by applying the safestack 49 50 compiler
+of calls is guaranteed by wasms required type checking and
+pass an llvm pass designed to protect against stack corruption
+confidentiality is preserved by the language invariant that all
+the pass splits the sandboxed stack into a safe and unsafe
+registers and stack slots are either written before use or zerostack the safe stack contains only data that the compiler can
+initialized
+statically verify is always accessed safely eg return addresses
+the crucial exception in the proof is function calls to other
+spilled registers and allocations that are only accessed locally
+wasm functions we must inductively assume that the called
+using verifiably safe offsets within the function that allocates
+function is safe ie doesnt change any variables in our stack
+them4 all other stack values else are moved to the heap
+frame restores calleesave registers etc unfortunately a naive
+while the above modifications are sufficient for stack safety
+attempt does not lead to an inductively wellfounded argument
+in practice we ran into a compatibility challenge when using the
+instead we use the overlay monitors notion of a wellbehaved
+stack segment to access the safe stack code emitted by llvm
+function to define a stepindexed logical relation detailed in
+may use the data segment when accessing the safe stack because
+appendix da that captures a semantic notion of wellbehaved
+the compiler assumes a flat nonsegmented memory model to
+functions as a relation f and then lift this to a relation over
+correct this we develop an additional llvm pass that annotates
+an entire wasm library as a relation l this gives a basis for
+instructions with stack and data segment override prefixes as
+an inductively wellfounded argument where we can locally
+prove that each wasm function is semantically wellbehaved
+4 we also employ llvms existing stackheap clash detection flag fstackis in f and then use this to prove the standard fundamental clashprotection to prevent the stack growing into the heap
+
+9
+
+needed the pass assumes that only esp points to the safe
+stack at the start of each function we then track the flow
+of addresses derived from esp to other registers throughout
+the function to determine whether any given memory operand
+refers to the safe stack if a memory operand references the
+incorrect segment the pass emits a segment override prefix
+with this issue patched all heap and global loads and stores
+are statically assigned a nonstack segment register in our
+model this appears as a guard f n with codomain hlib  and
+all stack operations use verifiably safe offsets and thus can
+remain unguarded this guarantees both local state isolation and
+protects saved register values the stack pointer and the return
+address notably we achieve these properties deterministically
+as the segmentation based memory isolation ensures that even
+if an attacker guesses the stack location they cannot dereference
+a pointer to the stack
+control flow the above protects the calleesave registers
+and the return address saved in each sandbox call frame
+guaranteeing the restoration of calleesave registers and wellbracketing iff forward control flow is enforced fortunately
+enforcing forward edge cfi has been widely studied 51
+we use a cfi pass as implemented in clangllvm 52
+53 including flags to dynamically protect indirect function calls ensuring forward control flow integrity further
+segmentzero32 conservatively bans nonstructured control
+flow including setjmplongjmp in the c source code
+a more permissive approach is possible in principle akin to
+the fixirreduciblecontrolflow llvm pass already used in
+webassembly compilation but we leave this for future work
+confidentiality to guarantee confidentiality we employ an
+existing experimental clang pass that ensures all local
+variables ie stack slots or registers are auto initialized 54
+this ensures that scratch registers cannot leak secrets as all
+sandbox values are written before use this demonstrates
+how our zerocost transition scheme enables a more platform
+agnostic defense we do not need to account for the details of
+what scratch registers a processor has as no application values
+can flow to sandbox variables
+we do not include an explicit proof of security for
+segmentzero32 as it closely follows the proof of wasm
+security the main differences are administrative changes to the
+logical relation definitions and a different controlflow graph
+for the blocks within each compiled function
+vi e valuation
+we evaluate zerocost transitions by asking three questions
+i what is the performance overhead of zerocost and
+heavyweight transitions in different sfi systems via
+i do zerocost transitions improve the endtoend performance of applications that use webassembly sfi vib
+i can our segmentzero32 isolation scheme outperform
+isolation schemes which require heavyweight transitions
+eg native client in real workloads vic
+
+10
+
+implementation to answer these questions we study the
+performance of native unsandboxed code and seven isolation
+scheme implementations
+the first four isolation builds vary the transition models
+for a webassembly sfi system based on the lucet 38
+compiler this lets us understand the benefits of zerocost
+transitions in webassemblybased sfi systems we investigate
+the following builds the wasmlucet build uses the original
+heavyweight springboards and trampolines shipped with the
+lucet runtime written in rust wasmheavy adopts techniques
+from nacls implementations and uses optimized assembly
+instructions to save and restore application context during
+transitions wasmzero implements our zerocost transition
+system meaning transitions are simple function calls that do
+not perform any additional register savingrestoring or stack
+switching library and application code execute on the same
+stack in order to distinguish between the overhead of register
+savingrestoring and stack switching we also test a wasmreg
+build which savesrestores registers similar to wasmheavy
+but shares the library and application stack like wasmzero
+the next three builds use different hardware based isolation schemes to measure whether a purposebuilt zerocost
+isolation scheme segmentzero32 can outperform stateoftheart isolation schemes that do not support zerocost
+transitions since segmentzero32 uses segmentationa
+hardware feature supported only in 32bit x86 programs
+the next three builds are all run in 32bit mode for a fair
+comparison segmentzero32 is the zerocost segmentation
+scheme described in vb nacl32 is the native client 32bit isolation scheme 9 as modified by narayan et al 16
+to support library isolation this scheme also leverages segmentation but employs transitions similar to wasmheavy we
+also compare against idealheavy32 an optimal hardware
+isolation scheme that is not zerocost compatible this scheme
+incurs no slowdowns to enforce enable or disable isolation
+to simulate the performance of idealheavy32 we simply
+measure the performance of native code with heavyweight
+trampolines
+we integrate each sfi scheme into firefox using the rlbox
+framework 16 rlbox already provides plugins for the
+wasmlucet and nacl32 builds we implement the plugins
+for the remaining builds above5
+machine  software setup we run all benchmarks on a
+machine with intel coretm i76700k with four 4ghz cores
+64gb ram running ubuntu 20041 lts kernel version 54058 benchmarks are run with a shielded isolated cpuset 55
+consisting of one core with hyperthreading disabled and the
+clock frequency pinned to 22ghz wasm sandboxed code is
+generated with a twopart toolchaincc is first compiled
+to the wasm format with clang11 and then to native code
+using the fork of the lucet used by rlbox snapshot from dec
+9th 2020 nacl sandboxed code is generated with a modified
+5 while the segmentzero32 plugin accurately model transition costs
+we emphasize that this is not production ready in particular we relax the
+restrictions on accessible address ranges as we need to allow access to static
+data sections in elf binaries
+
+wasm build
+
+direct call
+
+indirect call
+
+callback
+
+syscall
+
+func in c
+wasmlucet
+wasmheavy
+wasmreg
+wasmzero
+
+1ns
+na
+120ns
+120ns
+7ns
+
+56ns
+1137ns
+209ns
+210ns
+66ns
+
+56ns
+na
+172ns
+172ns
+67ns
+
+24ns
+na
+192ns
+192ns
+60ns
+
+than idealheavy32 and nacl32 transitions and only
+23ns slower than func for direct calls segmentzero32
+incurs some overhead over wasmzero as hardware isolation
+schemes like segmentzero32 and nacl32 must invoke
+extra instructions to enable or disable the hardware based
+memory isolation in their transitions
+
+32bit hardware
+isolation build
+
+direct call
+
+indirect call
+
+callback
+
+syscall
+
+b zerocost transitions for webassembly sfi
+
+func in c 32bit
+idealheavy32
+nacl32
+segmentzero32
+
+1ns
+324ns
+na
+24ns
+
+74ns
+179ns
+714ns
+108ns
+
+74ns
+154ns
+373ns
+80ns
+
+37ns
+181ns
+356 ns
+88ns
+
+figure 6 costs of transitions in different isolation models
+zerocost transitions are shown in boldface func is the
+performance of vanilla unsandboxed c to serve as a baseline
+
+version of clang4 all other cc source code including
+segmentzero32 sandboxed code as well as the benchmarks
+applications are compiled with clang11 we implement our
+firefox benchmarks on a top of firefox nightly from august
+22 2020
+
+we evaluate the endtoend performance impact of the different transition models using two libraries currently sandboxed
+in firefox font rendering with libgraphite and image
+rendering with libjpeg the performance of these sandboxed
+libraries was previously observed by narayan et al 16 to be
+particularly affected due to the highnumber of transitions
+font rendering we evaluate the performance of
+libgraphite isolated with wasmbased schemes using
+kews benchmark6  which was also used by narayan et al the
+benchmark reflows the text on a page ten times adjusting the
+size of the fonts each time to negate the effects of font caches
+we run this benchmark 100 times and report the median
+execution time below all values have standard deviations
+within 1
+
+a transition microbenchmarks
+we measure the cost of different uses of transitions  direct
+and indirect calls into the sandbox callbacks from the sandbox
+and syscall invocations from the sandbox  for the different
+isolation builds described to expose overheads fully we choose
+extremely fast payloadseither a function that just adds two
+numbers or the gettimeofday syscall which relies on
+linuxs vdso to avoid cpu ring changes the results are
+shown in figure 6 all numbers are averages of one million
+repetitions and repeated runs have negligible standard deviation
+note that lucets and nacls existing implementations do not
+support direct sandbox calls and lucet also does not support
+custom callbacks or invocation of syscalls so we do not report
+these numbers
+among wasmbased sfi schemes zerocost transitions
+wasmzero are significantly faster than even optimized
+assembly instructions implementing heavyweight transitions
+wasmheavy lucets existing indirect calls written in rust
+wasmlucet are significantly slower than both stack switching the difference of wasmheavy and wasmreg adds
+a very small overhead for transitions the performance of
+func and wasmzero should be identical but is not this is
+not because our transitions have a hidden cost rather it is
+because we are comparing code produced by two different
+compilers func is native code produced by clang while
+wasmzero is code produced by lucet and lucets code
+generation is not yet highly optimized 56 for example in
+the benchmark that adds two numbers clang eliminates the
+function prologue and epilogue that save and restores the frame
+pointer while lucet does not for hardwarebased isolation
+we compare our zerocost transitions in segmentzero32
+to heavyweight transitions in nacl32 and idealheavy32
+we find that segmentzero32 transitions are much faster
+
+11
+
+font render
+
+wasmlucet wasmheavy
+
+wasmreg wasmzero
+
+8173ms
+
+2230ms
+
+2246ms
+
+2032ms
+
+as expected zerocost transitions wasmzero result in the
+best performance compared to wasmzero lucets existing
+transitions slow down rendering by over 4 even when using
+the optimized transitions of wasmheavy performance is over
+10 slower than wasmzero stack switching accounts for
+about 08 of wasmheavys extra cost
+image rendering firefox renders images in streaming mode
+calling libjpeg to decode every row of an image hence
+the amount of work done in our wasmsandboxed libjpeg
+per call is proportional to the width of the image and the
+complexity of the rendering a row of the image we expect the
+effect of pertransition overhead to decrease with increasing
+image width and increasing image complexity our benchmark
+thus varies the width and image complexity
+figure 7 shows the costs of rendering three kinds of
+jpeg imagesa simple image consisting of a single color
+simpleimage a stock image from the image compression
+benchmark suite7 stockimage and an image of random
+pixels randomimage each image is rendered 500 times
+we report the median decoding time standard deviations are all
+under 1 the costs are normalized to wasmzero to highlight
+the relative overheads of different transitions as compared to our
+zerocost transitions the results of wasmlucet are included
+in the appendix figure 26 because the rendering times are
+up to 92 longer than the other builds and skews our graphs
+we instead focus on evaluating the overheads of optimized
+heavy transitions the wasmlucet performance numbers do
+highlight the fact that care is needed in implementing optimized
+6 available
+7 online
+
+at httpsjfkthamegithubiotestudhrurdhtml
+httpsimagecompressioninfotestimages visited dec 9 2020
+
+normalized overhead
+
+13
+
+110
+
+wasmzero
+wasmheavy
+wasmreg
+
+12
+
+110
+wasmzero
+wasmheavy
+wasmreg
+
+105
+
+wasmzero
+wasmheavy
+wasmreg
+
+105
+
+11
+100
+
+10
+
+100
+
+095
+
+09
+500
+
+1000
+image width pixels
+
+095
+500
+
+1500
+
+1000
+image width pixels
+
+1500
+
+500
+
+b stockimage
+
+a simpleimage
+
+1000
+image width pixels
+
+1500
+
+c randomimage
+
+95
+48
+
+19
+20
+
+
+
+19
+20
+
+14
+40
+14
+40
+
+to
+
+96
+0
+96
+0
+
+to
+
+48
+0
+to
+
+to
+48
+0
+
+24
+0
+
+to
+
+24
+0
+
+12
+0
+12
+0
+
+to
+60
+
+30
+
+to
+30
+
+to
+
+to
+15
+
+0
+
+60
+
+0
+
+15
+
+cumulative
+image percent
+
+figure 7 performance of different wasm transitions on rendering of a a simple image with one color b a stock image and
+c a complex image with random pixels normalized to wasmzero wasmzero transitions outperform other transitions the
+difference diminishes with width but narrower images are more common on the web
+
+image width pixelslog scale
+
+figure 8 cumulative distribution of image widths on the
+landing pages of the alexa top 500 websites over 80 of the
+images have widths under 480 pixels narrower images have a
+higher transition rate and thus higher relative overheads when
+using expensive transitions
+
+heavyweight transitions and that the transitions available in
+current tools may not be fully optimized
+as expected wasmzero significantly outperforms other
+transitions when images are narrower and simpler on
+simpleimage wasmheavy and wasmlucet can take as
+much as 297 and 92 longer to render the image as with
+wasmzero transitions however this performance difference
+diminishes as image width increases for stockimage and
+randomimage the wasmheavy trends are similar but the
+rendering time differences start at about 45 however lucets
+existing transitions wasmlucet are still significantly slower
+than zerocost transitions wasmzero even on wide images
+though the differences between the transitions are smaller
+as the image width increases we find that most images on
+the web are narrow figure 8 shows the distribution of images
+on the landing pages of the alexa top 500 websites of the
+106k images 86k over 80 have widths between 1 and
+480 pixels a range in which zerocost transitions noticeably
+outperform the other kinds of transitions
+c zerocost transitions for native isolation
+in this section we compare the performance of native code
+against code isolated with segmentzero32 with zerocost
+transitions against code isolated with nacl nacl32 which
+does not support zerocost transitions segmentzero32
+and nacl32 isolate nativecompiled libraries without going
+through wasm and use hardware support to enforce isolation
+additionally we also compare against a hypothetical isolation
+
+12
+
+with no isolation enforcement overhead idealheavy32
+with heavyweight transitions this simulates the performance
+of isolation schemes using hardware such as mpk 25 which
+have negligible overhead but require heavyweight transitions
+the idealheavy32 performance is simulated by running
+native unsandboxed code with heavyweight transitions
+to measure performance we rerun our libgraphite
+and libjpeg benchmarks from the previous section
+but isolate the libraries using segmentzero32 nacl32
+and idealheavy32 since both segmentzero32 and
+nacl32 use segmentation which is supported only in 32bit mode we implement these three isolation builds in
+32bit mode and compare it to native 32bit unsandboxed
+code we find that for these benchmarks segmentzero32
+with zerocost transitions outperforms nacl32 as well as
+the hypothetical idealheavy32 isolation we describe the
+individual benchmarks next
+font rendering the impact of these isolation schemes on
+font rendering is shown below standard deviations under 1
+unsandboxed idealheavy32 nacl32 segment
+32bit code
+zero32
+font render
+
+1441ms
+
+2399ms
+
+2769ms
+
+1765ms
+
+we observe that nacl32 and idealheavy32 incur overhead of 92 and 66 respectively compared to unsandboxed
+code in contrast segmentzero32 only has an overhead of
+225 as it does not have to save and restore registers or switch
+stacks the overhead of segmentzero32 over native code
+itself is due to a few different factors first segmentzero32
+must change segments to enabledisable isolation during
+function calls second it uses indirect function calls for
+invocation a choice that simplifies engineering but is not
+fundamental and finally there is a small slowdown imposed
+by code structure enforced to allow zerocost transitions
+image rendering the impact of the above sandboxing
+schemes on image rendering is compared in figure 9 standard deviations under 1 for narrow images of width 10
+pixels segmentzero32 overheads relative to the native
+unsandboxed code are 24 1 and 65 for simpleimage
+stockimage and randomimage respectively this is lower
+than the corresponding overheads for nacl32 which are 312
+29 and 66 respectively as well as idealheavy32 which
+are 208 28 and 45 respectively as observed in wasm
+
+normalized overhead
+
+4
+
+unsandboxed 32bit code
+segmentzero32
+idealheavy32
+nacl32
+
+3
+2
+1
+
+16
+
+unsandboxed 32bit code
+segmentzero32
+idealheavy32reg
+nacl32
+
+14
+12
+10
+
+500
+
+1000
+image width pixels
+
+a simpleimage
+
+1500
+
+16
+
+unsandboxed 32bit code
+segmentzero32
+idealheavy32
+nacl32
+
+14
+12
+10
+
+500
+
+1000
+image width pixels
+
+b stockimage
+
+1500
+
+500
+
+1000
+image width pixels
+
+1500
+
+c randomimage
+
+figure 9 performance of image rendering with libjpeg sandboxed with segmentzero32 and nacl32 and idealheavy32
+times are relative to unsandboxed code nacl32 and idealheavy32 relative overheads are as high as 312 and 208
+respectively while segmentzero32 relative overheads do not exceed 24
+
+workloads these overheads reduce as image width increases
+and the complexity of the image increases additionally we
+observe that the overheads are negligible for images wider than
+480 pixels but as we have seen earlier such images constitute
+less than 20 of all images on the alexa top 500 websites
+
+reading uninitialized scratch registers and therefore cannot
+ensure confidentiality without heavyweight springboards that
+clear scratch registers they also do not specify the cfg
+granularity so it is not clear if is strong enough to satisfy the
+zerocost type safe cfi requirement
+
+conclusion from our evaluation we conclude that the perfor webassembly based isolation wasmboxc 35 sandboxes c
+mance of an isolation scheme that supports zerocost transitions code through compilation to wasm followed by decompilation
+can be significantly lower for certain workloads especially back to c ensuring that the sandboxed c code will inherit
+those with a large number of transitions additionally for isolation properties from wasm the sandboxed library code
+workloads that do not transition frequently eg rendering can be safely linked with c applications enabling a form
+wide images the additional runtime overheads imposed by of zerocost transition the zerocost wasm sfi system
+zerocost condition enforcement do not result in significant described by this paper was designed and released prior to and
+performance overheads
+independently of wasmboxc as the creators of wasmboxc
+acknowledge moreover we believe that the theory developed
+vii r elated work
+in this paper provides a foundation for analyzing and proving
+a considerable amount of research has gone into efficient the security of wasmboxc though such analysis would need
+implementations of memory isolation and cfi techniques to to account for possible undefined behavior introduced in
+provide sfi across many platforms 2 3 58 11 compiling wasm to c
+12 14 2022 38 5760 however these systems
+sledge 13 describes a wasm runtime for edge computing
+either implement or require the user to implement heavyweight that relies on wasm properties to enable efficient isolation of
+springboards and trampolines to guarantee security
+serverless components however sledge focuses on function
+sfi systems wahbe et al 1 suggest two ways to optimize scheduling including preempting running wasm programs and
+transitions 1 partitioning the registers used by the application its needs for context saving differ from library sandboxing as
+and the sandboxed component and 2 performing link time contexts must be saved even in the middle of function calls
+optimizations lto that conservatively eliminates register
+sfi verification our work includes the compiler in the tcb
+saves that are never used in the entire sandboxed component
+previous work on sfi eg 2 4 9 62 instead uses
+not just the callee register partitioning would cause slowa verifier a small verified trusted program or a theorem
+downs due to increased spilling native client 9 optimized
+prover 23 63 to validate the relevant sfi properties
+transitions by clearing and saving contexts using machine
+of compiled sandbox code however these verifiers do not
+specific mechanisms like the intel fxrstor instruction
+currently establish sufficient properties for zerocost transitions
+which clears floating point state and simd registers we show
+our safety monitor definition provides the appropriate context
+vi that such transitions still impose significant overhead
+for extending existing sfi verification work to validate that
+while cpu makers continue to add optimized context switching
+compiled code meets both sfi and zerocost conditions
+instructions such instructions do not yet eliminate all overhead
+zeng et al 61 combine an sfi scheme with a rich cfi hardware based isolation hardware features such as memory
+scheme enforcing structure on executing code while a similar protection keys 25 26 extended page tables 64 virtuapproach their goal is to safely perform optimizations to elide alization instructions 64 65 or even dedicated hardware
+sfi and cfi bounds checks and they do not impose sufficient designs 66 can be used to speed up memory isolation these
+structure to enforce wellbracketing a necessary property for works focus on the efficiency of memory isolation as well
+zerocost transitions xfi 4 also combines an sfi scheme as switching between protected memory domains but require
+with a rich cfi scheme and adopts a safe stack model while heavyweight transitions idealheavy32 in section vi studmeeting many of the zerocost conditions it does not prevent ies an idealized version of such a scheme
+
+13
+
+capabilities 67 and 68 both look at protecting interacting components on systems that provide hardware enforced
+capabilities 67 specifically looks at how register saving and
+restoration can be optimized based on different levels of trust
+between components however their analysis does not offer any
+formal security guarantees 68 investigate a callingconvention
+based on capabilities such as those of cheri 69 that
+allows safe sharing of a stack between distrusting components
+their definition of wellbracketed control flow and local state
+encapsulation via an overlay system inspired our work and
+our logical relation is also based on their work however their
+technique does not yet ensure an equivalent notion to our
+confidentiality property and further is tied to machine support
+for hardware capabilities
+
+lto we show that zerocost transitions applied to wasm
+reduce transitions to a simple function call this then allows
+lto to optimize code across calls across the applicationwasm
+boundary we dont use lto across the application sandbox
+boundary in our benchmarks however lto speedups for wasm
+sandboxed code have been examined by zakai 35
+
+type safety for isolation there has also been work on using
+stronglytyped languages to provide similar security benefits
+singularityos 32 70 71 explored using sing to build
+an os with cheap transitions between mutually untrusting
+processes unlike the work on sfi techniques that zerocost
+transitions extend tools like singularityos require engineering
+effort to rewrite unsafe components in new safe languages
+at a lower level typed assembly language tal 33
+72 73 is a type safe compilation target for highlevel type
+safe languages its type system enables proofs that assembly
+programs follow calling conventions and enables an elegant
+definition of stack safety through polymorphism unfortunately
+sfi is designed with unsafe code in mind so cannot generally
+be compiled to meet tals static checks to handle this our
+zerocost and security conditions instead capture the behavior
+that tals type system is designed to ensure
+
+1 r wahbe s lucco t e anderson and s l graham efficient
+softwarebased fault isolation in proceedings of the fourteenth
+acm symposium on operating systems principles ser sosp 93
+association for computing machinery 1993 pp 203216 online
+available httpsdoiorg101145168619168635
+2 s mccamant and g morrisett evaluating sfi for a cisc architecture 2006 online available httpswwwusenixorgconference
+15thusenixsecuritysymposiumevaluatingsficiscarchitecture
+3 g tan et al principles and implementation techniques of softwarebased
+fault isolation now publishers 2017
+4  erlingsson m abadi m vrable m budiu and g c necula xfi
+software guards for system address spaces in osdi 2006
+5 m castro m costa jp martin m peinado p akritidis a donnelly
+p barham and r black fast bytegranularity software fault isolation
+in osdi 2009
+6 j n herder h bos b gras p homburg and a s tanenbaum fault
+isolation for device drivers in dsn ieee 2009
+7 m i seltzer y endo c small and k a smith dealing with disaster
+surviving misbehaved kernel extensions in osdi vol 96 no 56 1996
+8 s lucco o sharp and r wahbe omniware a universal substrate
+for web programming in www 1995
+9 b yee d sehr g dardyk j b chen r muth t ormandy s okasaka
+n narula and n fullagar native client a sandbox for portable
+untrusted x86 native code in 2009 30th ieee symposium on security
+and privacy 2009 pp 7993 issn 23751207
+10 a haas a rossberg d l schuff b l titzer m holman
+d gohman l wagner a zakai and j bastien bringing the web up
+to speed with webassembly in proceedings of the 38th acm sigplan
+conference on programming language design and implementation
+association for computing machinery 2017 pp 185200 online
+available httpdlacmorgcitationcfmdoid30623413062363
+11 j siefers g tan and g morrisett robusta taming the native beast
+of the jvm in ccs 2010
+12 b niu and g tan rockjit securing justintime compilation using
+modular controlflow integrity in ccs 2014
+13 p k gadepalli s mcbride g peach l cherkasova and g parmer
+sledge a serverlessfirst lightweight wasm runtime for the edge in
+middleware 2020
+14 b ford and r cox vx32 lightweight userlevel sandboxing on the
+x86 in usenix atc 2008
+15 b ford vxa a virtual architecture for durable compressed archives
+in fast vol 5 2005
+16 s narayan c disselkoen t garfinkel n froyd e rahm s lerner
+h shacham and d stefan retrofitting fine grain isolation in the
+firefox renderer in usenix sec 2020
+17 1566288  rlbox  port libgraphite usage code to use the rlbox
+api online available httpsbugzillamozillaorgshowbugcgiid
+1566288
+18 pat hickey announcing lucet fastlys native webassembly
+compiler
+and
+runtime
+httpswwwfastlycomblog
+announcinglucetfastlynativewebassemblycompilerruntime 2019
+19 t mcmullen lucet a compiler and runtime for highconcurrency
+lowlatency sandboxing in prisc 2020
+20 m payer and t r gross finegrained userspace security through
+virtualization 2011
+
+viii d iscussion
+zerocost transitions significantly simplify the transitions
+between application and sandbox and as shown in section vi
+improve the performance of real workloads additionally they
+may also offer benefits in performance and clarity in designing
+isolation schemes we discuss these briefly
+multithreading and separate stacks we believe that stack
+switching can incur larger overheads than shown in section vi
+when running workloads where multiple application threads can
+invoke sandboxed code in parallel here the application must
+maintain an nton stack mapping ie a corresponding sandbox
+stack for each application thread that invokes a sandboxed
+function in large applications like browsers it is not clear
+which threads invoke sandboxed code ahead of time thus
+existing tools 16 maintain and check the mapping lazily as
+part of the heavyweight trampoline thereby adding additional
+latency to heavyweight transitions
+alternate abis we measure transition overhead with the
+system v 32bit and 64bit calling however other conventions
+such as the one used in windows 74 requires saving and
+restoring 10 additional floating point registers and may incur
+large overhead further heavyweight trampolines get more
+complicated and expensive with any isa extensions that
+introduce more registers
+
+14
+
+zerocost transition compatible hardware as we have
+demonstrated hardware support for memory isolation can be
+used for zerocost transitions if it can separate heap and stack
+operations this simple observation provides a blueprint for how
+future isolation hardware including any hardware extensions
+for 64bit cpus could support zerocost schemes
+r eferences
+
+21 d sehr r muth k schimpf c biffle v khimenko b yee b chen
+and e pasko adapting software fault isolation to contemporary cpu
+architectures in usenix sec 2010
+22 ar adltabatabai g langdale s lucco and r wahbe efficient
+and languageindependent mobile programs in pldi 1996
+23 l zhao g li b de sutter and j regehr armor fully verified
+software fault isolation in emsoft 2011
+24 y zhou x wang y chen and z wang armlock hardwarebased
+fault isolation for arm in proceedings of the 2014 acm sigsac
+conference on computer and communications security 2014 pp 558
+569
+25 a vahldiekoberwagner e elnikety n o duarte m sammler
+p druschel and d garg erim secure efficient inprocess isolation
+with protection keys mpk in 28th usenix security symposium
+usenix security 19 usenix association 2019 pp 12211238
+26 m hedayati s gravani e johnson j criswell m l scott k shen
+and m marty hodor intraprocess isolation for highthroughput data
+plane libraries in usenix atc 2019
+27 f alder j van bulck d oswald and f piessens faulty point unit
+abi poisoning attacks on intel sgx in acsac 2020
+28 s maffeis j c mitchell and a taly object capabilities and isolation
+of untrusted web applications in ieee sp 2010
+29 a mettler d a wagner and t close joee a securityoriented
+subset of java in network and distributed system security symposium
+ndss 2010
+30 m grimmer r schatz c seaton t wrthinger and h mssenbck memorysafe execution of c on a java vm in workshop on
+programming languages and analysis for security plas 2015
+31 m miller m samuel b laurie i awad and m stay caja safe
+active content in sanitized javascript httpgooglecajagooglecodecom
+filescajaspec20080607pdf june 2008
+32 g c hunt and j r larus singularity rethinking the software stack
+sigops operating systems review vol 41 no 2 2007
+33 g morrisett k crary n glew d grossman r samuels f smith
+d walker s weirich and s zdancewic talx86 a realistic typed
+assembly language acm sigplan workshop on compiler support
+for system software pp 2535 1999
+34 j bosamiya b lim and b parno webassembly as an intermediate
+language for provablysafe software sandboxing prisc 2020
+35 a zakai wasmboxc simple easy and fast vmless sandboxing https
+kripkengithubioblogwasm20200727wasmboxchtml 2020
+36 s narayan t garfinkel s lerner h shacham and d stefan gobi
+webassembly as a practical path to library sandboxing 2019
+37 h lu m matz m girkar j hubika a jaeger and m mitchell
+system v application binary interfaceamd64 architecture processor
+supplementwith lp64 and ilp32 programming models tech rep
+2018 online available httpssoftwareintelcomcontentdamdevelop
+externalusendocumentsintrotointelavx183287pdf
+38 lucet online available httpsgithubcombytecodealliancelucet
+39 webassembly micro runtime online available httpsgithubcom
+bytecodealliancewasmmicroruntime
+40 native client team native client security contest archive https
+developerchromecomdocsnativeclientcommunitysecuritycontest
+2009
+41 issue 2919 security naclswitch leaks naclthreadcontext pointer to
+x8632 untrusted code httpsbugschromiumorgpnativeclientissues
+detailid2919 2012
+42 issue 775 uninitialized sendmsg syscall arguments in selldr https
+bugschromiumorgpnativeclientissuesdetailid775 2010
+43 issue 1607 signal handling change allows inner sandbox escape on
+x8632 linux in chrome httpsbugschromiumorgpnativeclientissues
+detailid1607 2011
+44 issue 1633 inner sandbox escape on 64bit windows via kiuserexceptiondispatcher httpsbugschromiumorgpnativeclientissuesdetailid
+1633 2011
+45 a bartel and j doe twenty years of escaping the java sandbox in
+phrack 2018
+46 a matos and g boudol on declassification and the nondisclosure policy in 18th ieee computer security foundations workshop csfw05
+2005 pp 226240
+47 java platform standard edition java virtual machine guide tech
+rep 2019 online available httpsdocsoraclecomenjavajavase
+13vmjavavirtualmachineguidepdf
+48 intel 64 and ia32 architectures software developers manual 2020
+
+15
+
+49 v kuznetsov l szekeres m payer g candea r sekar and
+d song codepointer integrity in 11th usenix symposium on
+operating systems design and implementation osdi 14 2014 pp
+147163 online available httpswwwusenixorgconferenceosdi14
+technicalsessionspresentationkuznetsov
+50 safestack clang 12 documentation online available https
+clangllvmorgdocssafestackhtml
+51 n burow s a carr j nash p larsen m franz s brunthaler and
+m payer controlflow integrity precision security and performance
+acm computing surveys vol 50 pp 1611633 apr 2017 online
+available httpsdoiorg1011453054924
+52 control flow integrity clang 12 documentation online available
+httpsclangllvmorgdocscontrolflowintegrityhtml
+53 c tice t roeder p collingbourne s checkoway  erlingsson
+l lozano and g pike enforcing forwardedge controlflow integrity in
+gcc  llvm in proceedings of the 23rd usenix security symposium
+k fu and j jung eds 2014 pp 941955
+54 automatic variable initialization online available httpsreviews
+llvmorgrl349442
+55 shielding
+linux
+resourcesintroduction
+online
+available httpsdocumentationsusecomslert15sp1htmlslertall
+chashieldingintrohtml
+56 l t hansen cranelift performance parity with baldr on x8664
+httpsbugzillamozillaorgshowbugcgiid1539399 2019
+57 n goonasekera w caelli and c fidge libvm an architecture
+for shared library sandboxing vol 45 no 12 pp 15971617 2015
+online available httpsonlinelibrarywileycomdoiabs101002spe
+2294
+58 a bittau p marchenko m handley and b karp wedge splitting
+applications into reducedprivilege compartments in 5th usenix
+symposium on networked systems design  implementation nsdi
+2008 april 1618 2008 san francisco ca usa proceedings
+j crowcroft and m dahlin eds usenix association 2008 pp
+309322 online available httpwwwusenixorgeventsnsdi08tech
+fullpapersbittaubittaupdf
+59 j litton a vahldiekoberwagner e elnikety d garg b bhattacharjee
+and p druschel lightweight contexts an os abstraction for safety
+and performance in proceedings of the 12th usenix conference on
+operating systems design and implementation ser osdi16 usenix
+association 2016 p 4964
+60 y chen s reymondjohnson z sun and l lu shreds finegrained
+execution units with private memory in 2016 ieee symposium on
+security and privacy sp 2016 pp 5671
+61 b zeng g tan and g morrisett combining controlflow integrity
+and static analysis for efficient and validated data sandboxing
+in proceedings of the 18th acm conference on computer and
+communications security ser ccs 11 new york ny usa
+association for computing machinery 2011 p 2940 online
+available httpsdoiorg10114520467072046713
+62 e johnson d thien y alhessi s narayan f brown s lerner
+t mcmullen s savage and d stefan trust but verify sfi safety
+for nativecompiled wasm in network and distributed system security
+symposium ndss internet society february 2021
+63 j a kroll g stewart and a w appel portable software fault
+isolation in 2014 ieee 27th computer security foundations symposium
+ieee 2014 pp 1832
+64 w qiang y cao w dai d zou h jin and b liu libsec
+a hardware virtualizationbased isolation for shared library in 2017
+ieee 19th international conference on high performance computing
+and communications ieee 15th international conference on smart
+city ieee 3rd international conference on data science and systems
+hpccsmartcitydss 2017 pp 3441
+65 a belay a bittau a mashtizadeh d terei d mazires and
+c kozyrakis dune safe userlevel access to privileged cpu features
+in proceedings of the 10th usenix conference on operating systems
+design and implementation ser osdi12 usa usenix association
+2012 p 335348
+66 d schrammel s weiser s steinegger m schwarzl m schwarz
+s mangard and d gruss donky domain keys  efficient
+inprocess isolation for riscv and x86 in 29th usenix security
+symposium usenix security 20 usenix association aug 2020
+pp 16771694 online available httpswwwusenixorgconference
+usenixsecurity20presentationschrammel
+
+67 p a karger using registers to optimize crossdomain call
+performance in proceedings of the third international conference
+on architectural support for programming languages and operating
+systems ser asplos iii new york ny usa association
+for computing machinery 1989 p 194204 online available
+httpsdoiorg1011457008268201
+68 l skorstengaard d devriese and l birkedal stktokens enforcing
+wellbracketed control flow and stack encapsulation using linear
+capabilities proceedings of the acm on programming languages
+vol 3 no popl pp 128 jan 2019 online available
+httpdlacmorgcitationcfmdoid33025153290332
+69 r n m watson j woodruff p g neumann s w moore j anderson
+d chisnall n dave b davis k gudka b laurie s j murdoch
+r norton m roe s son and m vadera cheri a hybrid capabilitysystem architecture for scalable software compartmentalization in 2015
+ieee symposium on security and privacy 2015 pp 2037
+70 m aiken m fhndrich c hawblitzel g hunt and j larus
+deconstructing process isolation in workshop on memory system
+performance and correctness 2006
+71 m fhndrich m aiken c hawblitzel o hodson g hunt j r
+larus and s levi language support for fast and reliable messagebased communication in singularity os in eurosys acm 2006
+72 g morrisett d walker k crary and n glew from system f
+to typed assembly language acm transactions on programming
+languages and systems vol 21 pp 527568 may 1999 online
+available httpsdoiorg101145319301319345
+73 g morrisett k crary n glew and d walker stackbased typed assembly language journal of functional
+programming vol 12 pp 4388 jan 2002 publisher
+cambridge
+university
+press
+online
+available
+https
+wwwcambridgeorgcorejournalsjournaloffunctionalprogramming
+articleabsstackbasedtypedassemblylanguage
+faa86c307845c6e28b88f57ee64c6f3b
+74 x64 calling convention tech rep 2020 online available httpsdocsmicrosoftcomenuscppbuildx64callingconvention
+viewmsvc160
+
+16
+
+a ppendix a
+l anguage d efinitions
+
+figure 10 presents the syntax of our sandbox language model for all programs we define the regions m  mp  hp  sp  cp 
+and i m  n and represents the whole memory space mp  hp  and sp are the memory heap and stack of the application or
+library where the heap and stack sit disjointly inside the memory cp is set of instruction indices such that cn  p  i is
+the set of import indices the beginnings of application functions that the library is allowed to jump to
+a note on calling convention arguments are passed on the stack and the return address is placed above the arguments when
+the application passes arguments to the library it marks their integrity as lib
+
+priv
+val
+reg
+check
+immediate
+command
+
+3
+3
+3
+3
+3
+3
+
+pc sp n 
+p
+v
+r
+k
+i
+c
+
+code
+regvals
+memory
+state
+
+3
+3
+3
+3
+
+c
+r
+m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+n
+app  lib
+hn pi
+rn  sp  pc
+nn
+r v ii
+r  popp
+pushp i
+r  loadk i
+storek i  i
+r  mov i
+callk i
+retk
+jmpk i
+r  movlabelp
+storelabelp i
+gatecalln i
+gateret
+n  priv  command
+reg  val
+n  val
+error
+ pc  n
+sp  n
+r  regvals
+m  memory
+c  code
+
+
+figure 10 syntax
+
+figure 11 and figure 13 define the base small step operational semantics we separate this into transitions lcm  0 and
+error transitions lcm  error
+
+17
+
+lcm  0
+v  v i
+sp0  sp  1
+0
+m  m sp 7 v
+sp0  sps
+ps v p
+
+lpushp im   sp  sp0  m  m 0 
+
+sp  sps
+ps v p
+v  m sp
+r0  rr 7 v
+lr  popp m   sp  sp  1 r  r0 
+hni  v i
+n0  kn
+0
+0
+v  m n 
+r  rr 7 v
+lr  loadk im   r  r0 
+
+0
+
+hni  v i
+v  v i0 
+0
+n  kn
+m  m n0 7 v
+lstorek i  i0 m   m  m 0 
+0
+
+m 0  m n  hm pi
+hni  v i
+hmi  m n
+lstorelabelp im   m  m 0 
+hni  v i
+n0  kn
+ljmpk im  pc  n0 
+
+v  v i
+r0  rr 7 v
+lr  mov im   r  r0 
+
+hni  v i
+n0  kn
+sp0  sp  1
+0
+0
+m  m sp 7 hpc  1 libi
+sp0  sps
+lcallk im  pc  n0  sp  sp0  m  m 0 
+
+hni  m sp
+n0  kn
+sp  sps
+lretk m  pc  n0  sp  sp  1
+
+hni  rr
+r0  rr  hn pi
+lr  movlabelp m   r  r0 
+
+hvi  v i
+lsp  mov im   sp  v
+figure 11 operational semantics
+lcm  error
+sp  sps
+ps 6v p
+lr  popp m  error
+hni  v i
+kn undefined
+lstorek i  i0 m  error
+
+sp  1  sps
+ps 6v p
+lpushp im  error
+sp  1 
+ sps
+lcallk im  error
+
+hni  v i
+kn undefined
+lr  loadk im  error
+
+hni  v i
+kn undefined
+lcallk im  error
+
+sp 
+ sps
+lretk m  error
+
+hni  v i
+kn undefined
+ljmpk im  error
+
+hni  m sp
+kn undefined
+lretk m  error
+
+figure 12 operational semantics
+
+cpc   c
+lcm
+
+   0
+    00
+0 6 error
+  0
+00
+
+cpc  p c
+lcmp
+v v
+v r
+v sp
+v pc
+v i  i0 
+
+
+
+
+
+
+
+0
+
+v
+rr
+hsp libi
+hpc libi
+hv  v 0  p u p0 i
+where hv pi  v i
+hv 0  p0 i  v i0 
+
+hni  hn i
+  pc  pc  1
+figure 13 operational semantics auxiliary definitions
+
+18
+
+lib v app
+
+figure 14 defines unguarded derived forms for memory operations
+
+r  pop
+push i
+r  load i
+store i  i0
+jmp i
+call i
+ret
+
+
+
+
+
+
+
+
+
+r  pop
+push i
+r  loadid i
+storeid i  i0
+jmpid i
+callid i
+retid
+
+figure 14 derived forms
+a sandbox properties
+
+1  2
+2 lc2 mp2
+
+
+
+1 lc1 mp1
+p1  p2  p
+
+p
+
+  
+
+
+ 0
+
+
+ 0
+
+
+
+
+p
+
+
+
+1 
+ 2
+
+wb
+
+0
+
+
+
+0
+
+  1 
+ 2  0
+lgatecalln im
+2 lgateretm
+wb
+
+  0
+
+figure 15 wellbracketed transitions
+1 integrity integrity is all about maintaining application invariants across calls into the sandbox these invariants vary
+significantly from program to program so to capture this generality we define iintegrity and then instantiate it in several
+specific instances
+definition 5 iintegrity
+wb
+let i  trace  state  state  p then if 0  program   0  1  1 p  app and 1  2 imply that
+i 1  2  we say that an sfi transition system has iintegrity
+informally calleesave register integrity says that the values of calleesave registers are restored by gated calls into the
+sandbox
+definition 6 calleesave register integrity
+let csr be the list of calleesave registers and define
+csr 1  2   1 rcsr  2 rcsr
+if an sfi transition system has csrintegrity then we say the system has calleesave register integrity
+
+returnaddressp  trace  n
+
+
+returnaddressp 0  lcallk imp  0   returnaddressp 0    sp  1
+returnaddressp 0  lretk mp  0   returnaddressp 0    sp
+
+returnaddressp 0  lgatecalln imp  0   returnaddressp 0    sp  1
+returnaddressp 0  lgateretmp  0   returnaddressp 0    sp
+returnaddressp 0  lcm  0   returnaddressp 0  
+returnaddressp 0 0 0   
+figure 16 call stack return address calculation
+definition 7 return address integrity define
+ra 1  2   1 m returnaddressapp   2 m returnaddressapp   2 sp  1 sp  2 pc  1 pc  1
+if an sfi transition system has raintegrity then we say the system has return address integrity
+
+19
+
+2 confidentiality let v be a map from some type a to val  we then define v lib as the following restriction of v 
+
+n
+when v a  hn libi
+v lib a 
+undefined otherwise
+we then say that  lib 0 if rlib  0 rlib and m lib  m lib where equality of partial functions requires that
+they have the same domain we then define two notions of observational equivalence
+definition 8 we say  call n 0 if
+1 m hlib   0 m hlib 
+2 pc  0 pc
+3 sp  0 sp
+4 for all i  1 n there exists some n0 such that hn0  libi  m sp  i  0 m sp  i
+second let rret be the calling convention return register
+definition 9 we say  ret 0 if
+1 m hlib   0 m hlib 
+2 pc  0 pc
+3 there exists some n such that hn libi  rrret   0 rrret 
+definition 10 disjoint noninterference
+lib
+if for all 0  program 1 lmlib  3 lmapp  0  1 n 2  3  and for all 01 such that 1 lib 01  we have
+lib
+that 01 n 02  03  03 lmapp  3 pc  03 pc and
+1 2 lgatecalln0 im 02 lgatecalln0 im and 3 call n0 03 or
+2 2 lgateretm 02 lgateretm and 3 ret 03 
+then we say that the sfi transition system has the disjoint noninterference property
+a ppendix b
+n ac l
+nacl context in application
+ctx  0
+library stack pointer
+
+ctx
+ctx
+nacl context in library
+ctx  0
+application stack pointer
+ctx  1
+csr0
+csr1
+ctx  2
+
+
+ctx  lencsr
+csrlencsr1
+
+ctx
+ctx
+figure 17 transition context layout
+naclspringboardn i 
+r0  load ctx
+r1  load r0
+j  lencsr 0 store r0  csrj  r0  r0  1
+r1  r1  n
+sp  sp  1
+j  0 n r2  pop storemlib r1  r2  r1  r1  1
+r2  sp  n  1 store r0  r2
+sp  r1  n
+store ctx  r0
+r  r r  mov h0 libi
+jmp i
+
+20
+
+
+
+
+
+
+
+
+
+
+
+r1 holds the library stack pointer
+save callee save registers
+set r1 to the new top of the library stack
+move the stack pointer to the first argument
+copy arguments to library stack
+save stack pointer
+set new stack pointer
+update ctx
+clear registers
+
+nacltrampoline 
+j  0 lencsr
+
+r0  load ctx
+r0  r0  1 csrj  load r0
+r0  load ctx
+r1  load r0
+r0  r0  lencsr store r0  sp
+store ctx  r0
+sp  mov r1
+ret
+
+naclcbspringboardn i 
+r0  load ctx
+r1  load r0
+r0  r0  1 store r0  sp
+store ctx  r0
+sp  sp  1
+r1  r1  n
+j  0 n r2  popmlib  store r1  r2  r1  r1  1
+sp  r1  n
+jmpi i
+naclcbtrampoline 
+r0  load ctx
+r1  load r0
+r0  r0  1 store ctx  r0
+sp  mov r1
+r  r r  mov h0 libi
+retclib
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ restore callee save registers
+
+
+
+
+
+r1 holds the application stack pointer
+save library stack pointer
+update ctx
+switch to application stack
+
+r1 holds the application stack pointer
+save stack pointer
+update ctx
+move the stack pointer to the first argument
+set r1 to the new top of the library stack
+copy arguments to application stack
+set new stack pointer
+
+r1 holds the library stack pointer
+update ctx
+switch to library stack
+clear registers
+
+a programs
+a nacl program  is defined by the following conditions
+1 all memory operations in the sandboxed library are guarded
+ncn  lib r  popp   p  lib
+cn  lib pushp i  p  lib
+cn  lib r  loadchk i  chk  mlib
+cn  lib storechk i  i  chk  mlib 
+2 the application does not write app data to the sandbox memory
+3 gated calls are the only way to move between application and library code
+ncn  p callchk i  chk  cp
+cn  p retchk   chk  cp
+cn  p jmpchk i  chk  cp
+4 the sandboxed library cannot change integrity labels
+ncn 6 lib r  movlabelp 
+cn 6 lib storelabelp i
+5 the program starts in the application pc  0 and c0  app 
+6 ctx and ctx start initialized to the library stack
+ctx  happ
+hctxi  m ctx   happ
+m ctx  slib 0  1
+
+21
+
+b properties
+throughout the following we will use the shorthand ctx  m ctx 
+proposition 1 nacl has the disjoint noninterference property
+proof follows immediately from the fact that all reads and writes are guarded to be within mlib  all values in mlib have
+label lib and all jumps remain within the library code
+lemma 1 the trampoline context is in happ 
+lemma 2 ctx  ctx0 
+p
+
+lemma 3 if 1 lcmlib and 1 
+ 2  then 00 mapp  0 mapp 
+
+proof there are two cases for p p  app and p  lib if p  app then 2  1 and therefore trivially 2 mapp  1 mapp 
+if p  lib then for all  such that 1    2  cpc  lib  by the structure of a nacl program this
+ensures that 2 mapp  1 mapp 
+p
+
+lemma 4 if  
+ 0 then p  0 p
+wb
+
+lemma 5 if   0 where   00  0  then 00 p 6 p and 0 p  p
+wb
+
+wb
+
+proof we proceed by simultaneous induction on the wellbracketed transition   0 and the length of 0    0 
+case no callbacks
+p
+we have that lgatecalln im and there exist 1  2  and p such that   1 
+ 2  0 where 2 lgateretm
+00
+here   2  by inspection of the reduction for gatecalln i we know that 1 p 6 p and therefore by lemma 4
+00 p 6 p by inspection of the reduction for gateret 0 p  p
+case callbacks
+ 
+we have that lgatecalln im and there exist 1  2 such that   1 
+ 2  0 where 2 lgateretm here
+00
+  2  by inspection of the reduction for gatecalln i we know that 1 p 6 p we now show by induction on
+ 
+1 
+ 2  that 2 p  1 p 6 p
+
+
+
+
+proof if there are no steps then clearly 2 p  1 p 6 p there are two possible cases for 1 
+ 3 
+ 4  when
+p
+wb
+3 
+ 4  lemma 4 gives us that 4 p  3 p  1 p 6 p when 3  4  our outer inductive hypothesis gives us
+that 4 p  3 p  1 p 6 p
+
+0
+lastly by inspection of the reduction for gateret  p  p
+
+
+lemma 6 if  
+ 0  then 0 p  p
+proof by induction lemma 4 and lemma 5
+wb
+
+lemma 7 context integrity let 0  program 0   and   0  then
+1 if p  app then m ctx0  ctx   0 m ctx0  ctx0  and ctx  ctx0 
+2 if p  lib then m ctx0  ctx   0 m ctx0  ctx0  and ctx  ctx0 
+wb
+
+proof we proceed by mutual simultaneous induction on the wellbracketed transition 1  2 and the length of 0 
+wb
+  0 
+first we consider the case where lcmapp 
+case no callbacks
+p
+we have that lgatecalln im and there exist 1  2  and p such that   1 
+ 2  0 where 2 lgateretm
+by lemma 3 we have that 1 mapp  2 mapp  by assumption we have that lgatecalln imapp and therefore by
+lemma 5 we have that 2 lgateretmlib  by lemma 1 lemma 2 and inspection of the reduction rules for gatecalln i
+and gateret we have that m ctx0  ctx   0 m ctx0  ctx0  and ctx  ctx0 
+case callbacks
+ 
+we have that lgatecalln im and there exist 1  2 such that   1 
+ 2  0 where 2 lgateretm by
+inspection of the reduction rule for gatecalln i we have that ctx1  ctx  lencsr we now show by induction on
+ 
+1 
+ 2  that ctx2  ctx1 and 1 m ctx0  ctx1   2 m ctx0  ctx2 
+proof if there are no steps then clearly ctx2  ctx1 and all of 1 mapp  2 mapp  there are two possible cases
+p
+ 
+
+for 1 
+ 3 
+ 4  and notice that in both 3 p  1 p  lib by lemma 6 when 3 
+ 4  lemma 3 gives
+
+22
+
+wb
+
+us that 3 mapp  4 mapp and then lemma 1 gives us that ctx4  ctx3  ctx1  when 3  4  case 2
+of our inductive hypothesis gives us that 1 m ctx0  ctx1   3 m ctx0  ctx3   4 m ctx0  ctx4  and
+ctx4  ctx3  ctx1 
+
+finally by lemma 6 we get that 2  lib and then inspection of the reduction rule for gateret gives us that
+m ctx0  ctx   0 m ctx0  ctx0  and ctx  ctx0 
+second we consider the case where lcmlib 
+case no callbacks
+p
+we have that lgatecalln im and there exist 1  2  and p such that   1 
+ 2  0 where 2 lgateretm by
+the structure of a nacl program we have that ctx1  ctx2 and 1 m ctx0  ctx1   2 m ctx0  ctx2  by
+assumption we have that lgatecalln imlib and therefore by lemma 5 we have that 2 lgateretmapp  by lemma 2 and
+inspection of the reduction rules for gatecalln i and gateret we have that m ctx0  ctx   0 m ctx0  ctx0 
+and ctx  ctx0 
+case callbacks
+ 
+we have that lgatecalln im and there exist 1  2 such that   1 
+ 2  0 where 2 lgateretm by
+inspection of the reduction rule for gatecalln i we have that ctx1  ctx  1 we now show by induction on
+ 
+1 
+ 2  that ctx2  ctx1 and 1 m ctx0  ctx1   2 m ctx0  ctx2 
+proof if there are no steps then clearly ctx2  ctx1 and all of 1 mapp  2 mapp  there are two possible cases
+p
+ 
+
+for 1 
+ 3 
+ 4  and notice that in both 3 p  1 p  app by lemma 6 when 3 
+ 4  the structure of a
+wb
+nacl program gives us that ctx1  ctx2 and 1 m ctx0  ctx1   2 m ctx0  ctx2  when 3  4  case
+1 of our inductive hypothesis gives us that 1 m ctx0  ctx1   3 m ctx0  ctx3   4 m ctx0  ctx4  and
+ctx4  ctx3  ctx1 
+
+finally by lemma 6 we get that 2  app and then inspection of the reduction rule for gateret gives us that
+m ctx0  ctx   0 m ctx0  ctx0  and ctx  ctx0 
+proposition 2 nacl has calleesave register integrity
+proof follows from lemma 7 lemma 5 and inspection of the reduction rules for gatecalln i and gateret
+lemma 8 let 0  program 
+m returnaddressapp 
+
+
+
+0
+
+
+
+ and 
+
+wb
+
+
+
+0  then 0 m returnaddressapp 
+
+
+
+proof first we consider the case where lcmapp 
+case no callbacks
+p
+we have that lgatecalln im and there exist 1  2  and p such that   1 
+ 2  0 where 2 lgateretm by
+inspection of the reduction rule for gatecalln i we see that 1 m sp  1  pc  1 this is adding to the top of the
+stack so by the structure of a nacl program we have that 1 m returnaddressapp   m returnaddressapp 
+by lemma 3 we have that 1 mapp  2 mapp and therefore lemma 1 gives us that ctx2  ctx1 and
+2 m returnaddressapp   1 m returnaddressapp  if we inspect the trampoline code we see that right
+before we execute the ret we have set sp to 2 m ctx2   1 m ctx1   sp  1 thus after returning the
+only part of the application stack that we modify is sp  1 this and the fact that 2 m returnaddressapp  
+m returnaddressapp  gives us that m returnaddressapp   0 m returnaddressapp 
+case callbacks
+ 
+we have that lgatecalln im and there exist 1  2 such that   1 
+ 2  0 where 2 lgateretm by
+inspection of the reduction rule for gatecalln i we see that 1 m sp  1  pc  1 this is adding to the top of the
+stack so by the structure of a nacl program we have that 1 m returnaddressapp   m returnaddressapp 
+ 
+we now show by induction on 1 
+ 2 that 2 m ctx2   sp  1 and 2 m returnaddressapp  
+1 m returnaddressapp 
+
+
+proof if there are no steps then 2  1 and both goals hold immediately there are two possible cases for 1 
+
+p
+
+3 
+ 4 and notice that in both 3 p  1 p  lib by lemma 6 if 3 
+ 4 then lemma 3 gives us that
+wb
+4 mapp  3 mapp and our goal holds as all of returnaddressapp  is in sapp  if 3  4  then lemma 7
+gives us that ctx3  ctx4 and 3 m ctx0  ctx3   4 m ctx0  ctx4  and therefore that 4 m ctx4  
+sp  1 returnaddressapp 0  3   returnaddressapp   sp  1 so our inductive hypothesis gives us that
+4 m returnaddressapp   3 m returnaddressapp 
+
+second we consider the case where lcmlib 
+
+23
+
+case no callbacks
+p
+we have that lgatecalln im and there exist 1  2  and p such that   1 
+ 2  0 where 2 lgateretm by
+inspection of the reduction rule for gatecalln i we see that 1 m returnaddressapp   m returnaddressapp 
+by the structure of a nacl program we have that any call stack elements that are added during the callback will
+be popped before the gateret thus 2 m returnaddressapp   1 m returnaddressapp  inspection of
+the reduction rule for gateret then gives us that 0 m returnaddressapp   2 m returnaddressapp  
+m returnaddressapp 
+case callbacks
+ 
+we have that lgatecalln im and there exist 1  2 such that   1 
+ 2  0 where 2 lgateretm by inspection
+of the reduction rule for gatecalln i we see that 1 m returnaddressapp   m returnaddressapp  we now
+ 
+show by induction on 1 
+ 2 that 2 m returnaddressapp   1 m returnaddressapp 
+
+
+
+
+ 3 
+
+proof if there are no steps then 2  1 and the goal holds immediately there are two possible cases for 1 
+p
+ 4 then the structure of a nacl program gives
+4 and notice that in both 3 p  1 p  app by lemma 6 if 3 
+us that any call stack elements that are added during the callback will be popped before the gateret and therefore our
+wb
+inductive invariant is maintained if 3  4  then notice that returnaddressapp 0  3   returnaddressapp 
+so our inductive hypothesis gives us that 4 m returnaddressapp   3 m returnaddressapp 
+
+inspection of the reduction rule for gateret then
+2 m returnaddressapp   m returnaddressapp 
+
+gives
+
+us
+
+that
+
+0 m returnaddressapp 
+
+
+
+proposition 3 nacl has return address integrity
+wb
+
+proof we have that 0  program   0   p  app and   0 and wish to show that
+m returnaddressapp   0 m returnaddressapp  0 sp  sp and 0 pc  pc  1
+lemma 8 gives us that m returnaddressapp   0 m returnaddressapp  we proceed by simultaneous induction
+wb
+wb
+on the wellbracketed transition   0 and the length of 0    0 to show that 0 sp  sp and 0 pc  pc  1
+case no callbacks
+p
+we have that lgatecalln im and there exist 1  2  and p such that   1 
+ 2  0 where 2 lgateretm by
+inspection of the reduction rule for gatecalln i we see that 1 m sp  1  pc  1 and 1 m ctx1   sp  1
+by lemma 3 we have that 1 mapp  2 mapp and therefore lemma 1 gives us that ctx2  ctx1  if we inspect the
+trampoline code we see that right before we execute the ret we have set sp to 2 m ctx2   1 m ctx1   sp1
+thus after returning we have that 0 pc  pc  1 0 sp  sp
+case callbacks
+ 
+we have that lgatecalln im and there exist 1  2 such that   1 
+ 2  0 where 2 lgateretm by
+inspection of the reduction rule for gatecalln i we see that 1 m sp  1  pc  1 and 1 m ctx1   sp  1
+ 
+we now show by induction on 1 
+ 2 that 2 m sp  1  pc  1 and 2 m ctx2   sp  1
+
+
+
+
+proof if there are no steps then 2  1 and both hold immediately there are two possible cases for 1 
+ 3 
+ 4
+p
+and notice that in both 3 p  1 p  lib by lemma 6 if 3 
+ 4 then lemma 3 gives us that 4 mapp 
+wb
+3 mapp and both hold as the invariants are on mapp  if 3  4  then lemma 7 gives us that ctx3  ctx4 and
+3 m ctx0  ctx3   4 m ctx0  ctx4  and therefore that 4 m ctx4   sp  1 returnaddressapp 0 
+3   returnaddressapp   sp  1 so lemma 8 gives us that 4 m sp  1  3 m sp  1  pc  1 
+finally if we inspect the trampoline code we see that right before we execute the ret we have set sp to 2 m ctx2  
+sp  1 thus after returning we have that 0 pc  pc  1 0 sp  sp
+
+a ppendix c
+overlay s emantics
+figure 19 figure 20 and figure 21 define the overlay monitor operational semantics
+
+24
+
+frame
+
+3
+
+sf
+
+
+
+function
+
+3
+
+f
+
+
+
+ostate
+
+3
+
+
+
+
+
+
+
+
+ n
+base
+retaddr loc  n
+ reg  n 
+csr vals
+ instrs  n  command
+entry  n
+ n
+type
+
+oerror
+ state
+ 
+funcs  n  function
+stack  frame
+
+
+figure 18 overlay extended syntax
+lcm
+
+hn pi i  v i
+n0  kn
+sp0  sp  1
+m 0  m sp0 7 pc  1
+0
+0
+typechecks n  sp 
+sf  newframe n0  sp0 
+pi v lib
+0
+lcallk imlib
+stack  sf   stack  pc  n  sp  sp0  m  m 0 
+isretaddrloc sp
+hni  m sp
+n0  kn
+0
+csrrestored
+  popframe
+0
+lretk mlib
+ pc  n0  sp  sp  1
+hn0 i  v i
+sp0  sp  1
+m 0  m sp0 7 pc  1
+0
+0
+n i
+typechecks n  sp 
+argssecure sp0  n
+sf  newframe n0  sp0 
+lgatecalln imlib
+stack  sf   stack  pc  n0  sp  sp0  m  m 0 
+0
+
+hn0 i  v i
+sp0  sp  1
+0
+m  m sp 7 pc  1
+sf  newframe n0  sp0 
+lgatecalln imapp
+stack  sf   stack  pc  n0  sp  sp0  m  m 0 
+0
+
+0
+
+lretm
+0
+p0 v p
+0
+hn p i  rrret 
+lgateretmp
+0
+
+hn pi i  v i
+v  h pi0 i  v i0 
+0
+0
+m  m n 7 v
+writeable n0 
+0
+n  kn
+pi v p
+pi0 6v p  n0 
+ hlib
+
+0
+lstorek i  i mp
+ m  m 0 
+
+0
+
+v  v i
+sp  sp  1
+sp  sp
+m 0  m sp0 7 v
+writeable sp0 
+lpushp im
+ sp  sp0  m  m 0 
+hn pi i  v i
+n0  kn
+pi v p
+0
+v  h pn0 i  m n 
+r0  rr 7 v
+lr  loadk imp
+ r  r0 
+
+hv pi i  v i
+lsp  mov imp
+
+
+
+vp
+sp  v
+
+pi
+
+
+pr 6v p0  pr v p
+hn pr i  rr
+r0  rr  hn p0 i
+lr  movlabelp0 mp
+ r  r0 
+
+hn pi i  v i
+n0  kn
+pi v p
+insamefunc pc n0 
+ljmpk imp
+pc  n0 
+
+hn pi i  v i
+hm pm i  m n
+pi v p
+m 0  m n  hm p0 i
+pm 6v p0  pm v p
+lstorelabelp0 imp
+ m  m 0 
+
+lcm  0
+insamefunc pc 0 pc
+lcm
+  0 
+
+figure 19 overlay operational semantics
+
+25
+
+0
+
+f  funcstarget
+fentry  target
+sp  sp
+sf     stack
+sp  sf retaddr loc  f type
+typechecks target sp
+
+sf     stack
+n  sp  n  sf base  n 6 sf retaddr loc
+writeable n
+sf     stack
+retaddr loc  sf retaddr loc
+isretaddrloc retaddr loc
+
+sf     stack
+r n  sf csr vals rr  n
+csrrestored
+
+f  codfuncs n 
+ domf instrs
+insamefunc n n0 
+
+f  codfuncs
+n n0  domf instrs
+insamefunc n n0 
+
+i  1 n m sp  i  h libi
+argssecure sp n
+
+figure 20 overlay operational semantics auxiliary judgments
+
+newframe target retaddr loc 
+
+popframe 
+
+
+
+
+
+
+ retaddr loc  funcstargettype
+ retaddr loc
+ r rrrcsr
+
+base
+retaddr loc
+csr vals
+
+
+
+stack  s where sf   s  stack
+
+   
+error
+
+insamefunc pc pc  1
+otherwise
+
+figure 21 overlay operational semantics auxiliary definitions
+lemma 9 overlay is a refinement for any 
+
+0  if 0 6 oerror then   0 
+app
+
+lemma 10 overlay is equivalent on application reduction for any  if   0  then 
+funcs stack  stack 
+theorem 4 overlay integrity soundness if 0  program 0
+with   0  n 1  then
+1 csr 1  2 
+2 ra 1  2 
+
+n
+
+1  1 lmapp  and 1
+
+
+
+  0  funcs 
+wb
+
+2 such that 1   2 
+
+proof by induction over the definition of a wellbracketed step and nested induction over the logical call stack the last step
+follows by the fact that 2 6 oerror and therefore the restoration checks in the overlay monitor passed
+lib
+
+theorem 5 overlay confidentiality soundness if 0  program 1 lmlib  3 lmapp  0   1  n 2   3 
+lib
+1 n1 3  and 1 lib 01  then 01  n 02   03  01 n1 03 03 lmapp  3 pc  03 pc and
+1 2 lgatecalln0 im 02 lgatecalln0 im and 3 call n0 03 or
+2 2 lgateretm 02 lgateretm and 3 ret 03 
+proof proof is standard for an ifc enforcement system
+
+a ppendix d
+w eba ssembly
+
+0
+
+lcall im  
+lgatecalln imapp  0 p  lib
+
+0
+
+lcalli im  
+lgatecalln imlib  0 p  app
+
+figure 22 webassembly trampoline and springboard
+
+26
+
+lretm  0
+p  lib  p  app
+lgateretmp  0 p  app
+0
+
+sp 
+
+current block spill slots
+
+function locals
+
+saved csr
+
+return address
+arguments
+
+
+figure 23 webassembly stack frame
+
+webassemblyfunction
+
+wf
+
+
+
+block
+
+b
+
+
+
+indirect block
+
+ib
+
+
+
+
+
+
+args
+locals 
+
+entry
+
+exits
+blocks 
+ start
+end
+slots
+inputs
+indirects
+
+ start
+
+end
+parent 
+
+n
+n
+block
+block
+block 
+ n
+ n
+ n
+ n  reg
+ ib
+
+n
+n
+block 
+
+figure 24 webassembly structure
+a compiled webassembly library is divided into disjoint functions f which have a fixed number of arguments and locals each
+function is composed of a set of disjoint blocks b where the blocks code is cbstart bend with a distinguished entry
+block and set of exit blocks there are a fixed number of stack slots associated to each block along with a subset of the slots
+or registers assigned as the inputs to the block each nonexit block is terminated cbend by a branch or jump the exit
+blocks in a function are uniformly terminated by a retclib or gateret to simplify things we will assume that webassembly
+functions cannot call a function whose exit blocks terminate in gateret and the application code always calls such a function
+branches and jumps cannot appear anywhere except at the end of a block
+call instructions only appear in a block within one of two sequences of instructions the first correspond to direct calls in
+webassembly
+sp  sp  flocals  bslots
+push arg1      push argf 0 args 
+call f 0 entrystart
+sp  sp  flocals  bslots  f 0 args
+the second correspond to indirect calls each of which have an associated expected type of the callee
+typecheckr expectedargs
+sp  sp  flocals  bslots
+push arg1      push argexpectedargs 
+callt r
+sp  sp  flocals  bslots  expectedargs
+t is the set of entry points to functions corresponding to the webassembly table used by this indirect call and typecheck is
+implementation specific code that checks that the function at the address in register r expects expectedargs
+in both cases the call instruction can be replaced with a gated call instruction
+
+27
+
+sp  sp  flocals  bslots
+
+typecheckr n
+
+push arg1      push argn 
+
+sp  sp  flocals  bslots
+
+gatecalln v
+
+push arg1      push argn 
+
+sp  sp  flocals  bslots  n
+
+gatecalln r
+sp  sp  flocals  bslots  n
+
+v is an address in i that expects n arguments
+there are three kinds of memory accesses allowed within a block firstly heap accesses which are guarded to be in the
+sandboxed heap r  loadhlib i and storehlib i  i0  secondly argument local or variable accesses which are addressed by
+constant offsets from the stack pointer r  load sp  x or store sp  x  i where x  csrf  fargs csrf  
+1 flocals  bslots lastly initializing a blocks inputs before jumping these immediately precede a constant branch
+or jump instruction to some b 0 start store sp  x  i where x  flocals  b 0 inputs any reads from stack slots or
+registers are preceded by writes to that stack slot or register within the block or the stack slot or register is in the blocks input
+set binputs
+webassemblys indirect branches are compiled to an indirect jump to an indirect block ib these blocks are terminated by
+a constant jump instruction to a block b and consist entirely of initializing the inputs to b an indirect block ib may read
+variables according to the rules of its parent block ibparent as such an indirect jump at the end of a block b is guarded
+jmpbindirectsstart r
+lastly a webassembly function f s entry block begins by pushing the subset of the calleesave registers in fblocks written
+csrf  and each exit block pops these back into their corresponding register
+
+a logical relation
+
+l
+
+
+
+
+
+interface
+library
+code
+
+world 
+
+ nn
+ n  wasmfunction
+ code
+
+
+
+n  n  n  n  n
+
+  world  world
+0 fi  fl   0 fi  fl 
+n fi  fl   n  1 fi  fl 
+c f2  f3  w
+
+ for i  1 2 
+fi entry  domi w 
+fi  fi  fi type  i w fi entry
+fi  fi  w fi  cfi instrs   f
+
+28
+
+f
+
+l
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  frame retaddr  a  n sp r m c fi  fl 
+let 0    base  sp  a retaddr loc  sp csr vals  rcsr
+a  f type
+sp  topretaddr loc  a
+sp 7 retaddr  sp  a  i 7 ai i0a   m
+c fi  fl  w
+cc
+domc  f instrs
+w f  c
+
+
+  domm   mlib  hn libi  m 
+
+
+
+
+let   pc  f entry sp  sp r  r m  m c  c
+
+
+
+
+let
+     stack  0  funcs  f 0 entry 7 f 0 f 0 fi fl 
+
+
+
+
+
+
+
+
+0 0
+
+
+n0  wn  n 0  0 6 oerror
+
+
+0 0
+
+
+or n0  wn  n 1 0
+00
+
+
+
+0
+0
+where  lretm   lgateretm  0 stack  0  00 6 oerror
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+n l
+
+i  domllibrary
+let wf  llibraryi
+let w  n linterface
+i  llibraryiargs
+u
+let instrs  bwfblocks bstart bend
+let f  instrs  instrs entry  wfentrystart type  wfargs
+w f  lcodeinstrs   f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+figure 25 function and library relations
+lemma 11 ftlr for functions let w  world and c be the code for a compiled webassembly function wf such that wf
+expects application functions
+in the interface with locations and types 2 w  and in the library with locations and types 3 w 
+u
+further let instrs  bwfblocks bstart bend and f  instrs  instrs entry  wfentrystart type  wfargs
+then w f  c  f
+proof we first unroll the assumptions of w f  c  f reusing the variable names defined there we will maintain that any
+steps do not step to oerror so wolog
+we will continually assume n0  wn such that n0 greater than the number of steps
+ 0 n0
+we have taken otherwise the case 
+0  0 6 oerror holds
+by the structure of a compiled webassembly function and assumption we have that the stack and stack pointer represent
+wfargs arguments the structure of an entry block means that we begin by pushing csr  rc where rc is all registers
+mentioned in c after this we generalize over which block in wfblocks we are in adding the antecedent that we do not touch
+the return address or calleesave registers and then continue with our proof the structure of a compiled webassembly block
+then lets us proceed until we reach one of 1 a function call to a library function wf0 such that wf0 entrystart  fl entry
+2 an application function f 0 such that f 0 entry  fi entry 3 or the end of the block
+1 we have by assumption that we have pushed wf0 args  3 w wf0 entrystart arguments or failed a dynamic
+type check and terminated thus stepping to a terminal state that is not an oerror we thus set 2  0 and see that
+we have constructed 02  2  base  sp  wf0 args retaddr loc  sp csr vals  rcsr we further set
+retaddr  pc  1 a  wf0 args sp  sp r  r m  m  c  c fi  fi  and fl  fl  by the structure of
+compiled webassembly we have that all of the remaining checks in f pass and that the instantiated  is equal to our
+current state we therefore instantiate fl  cfl instrs   f if this uses the remaining steps then we are done otherwise
+we get that we return to pc  1 with all values restored and no new app values written to the library memory and our
+walk through the block may continue
+2 identical to the case for 1
+3 the end of a block is followed by a direct jump to another block b 0  an indirect block ib  or we are at an exit block in
+the case of another block b 0 we have by the structure of compiled webassembly code that we have instantiated b 0 inputs
+we thus jump to the block and follow the same proof structure as detailed here the same is true of an intermediate block
+ib except with the extra steps of setting up the inputs jumping to another block b 00  lastly if we have reached the end of
+an exit block then we have not touched the pushed return address or calleesave registers and the stack pointer is in the
+expected location we thus execute ret or gateret and pass the overlay monitor checks
+
+29
+
+lemma 12 ftlr for libraries for any number of steps n  n and compiled webassembly library l n l  l
+proof by unrolling the definition of l and lemma 11
+theorem 6 adequacy of l for any number of steps n  n library l such that n l  l program 0  program using
+0
+l and n0  n if 0 n 0 then 0 6 oerror
+proof straightforward by assumption for steps in the application and by assumption about application code properly calling
+the library code and the unrolling of l and f
+
+normalized overhead
+
+a ppendix e
+l ucet i mage b enchmarks
+wasmlucet simple
+wasmlucet stock
+wasmlucet random
+
+8
+6
+4
+2
+500
+
+1000
+image width pixels
+
+1500
+
+figure 26 performance of the wasmlucet heavyweight transitions included in the lucet runtime on the image benchmarks
+in section vi performance when rendering a a simple image with one color b a stock image and c a complex image with
+random pixels the performance is the overhead compared to wasmzero
+
+30
+

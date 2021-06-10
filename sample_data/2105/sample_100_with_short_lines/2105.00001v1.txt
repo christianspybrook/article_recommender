@@ -1,0 +1,2304 @@
+selfdimensioning and planning of small cell
+capacity in multitenant 5g networks
+p muoz o sallent j prezromero
+universitat politcnica de catalunya upc
+pablomunoz sallent jorpereztscupcedu
+abstractan important concept in the 5th generation of
+mobile networks is multitenancy which allows diverse operators
+sharing the same wireless infrastructure to support this feature
+in conjunction with the challenging performance requirements of
+future networks more automated and faster planning of the
+required radio capacity is needed likewise installing s mall cells
+is an effective resource to provide greater performance and
+capacity to both indoor and outdoor places this paper proposes
+a new framework for automated cell planning in multitenant
+s mall cell networks in particular taking advantage of the
+available network data a set of detailed planning specifications
+over time and space domains are generated in order to meet the
+contracted capacity by each tenant then the network
+infrastructure and configuration are updated according to an
+algorithm that considers different actions such as
+addingremoving channels and adding or relocating small cells
+the simulation results show the effectiveness of various methods
+to derive the planning specifications depending on the correlation
+between the tenants and networks traffic demands
+keywordscapacity planning dimensioning 5g networks
+multitenancy small cells son
+
+i
+
+int roduct ion
+
+cellular data traffic has grown exponentially in the last few
+years due to the increasing popularity of new mobile devices
+and application services a promising solution to satisfy this
+demand in the forthcoming fifth generation 5g is based on
+small cell sc deployments 1 scs which are more
+economically attractive than macrocells provide additional
+capacity to the macrocell layer offering overlay coverage over
+the area of interest the dense deployment of scs has proven
+to be a costeffective way to offer more capacity and more
+spectrum reuse because of their smaller cell radius 23
+the future 5g radio access networks rans will support
+multitenancy so that multiple mobile operators service
+providers overthetop companies and vertical sectors can be
+served over the same infrastructure in this respect the
+dynamic resource provisioning between tenants has been
+studied in 45 where a central entity is responsible for
+allocating resources via resource slicing this kind of solutions
+are intended for operating in shortterm time scales from a
+perspective of larger time scales multitenancy poses
+unprecedented challenges to the owner of the shared ran in
+relation to radio network planning rnp for example each
+this work has been accepted for publication in the ieee transactions
+on vehicular technology citation information doi 101109
+tvt20182793418 copyright c 2018 ieee personal use of this
+material is permitted however permission to use this material for
+any other purposes must be obtained from the ieee by
+sending a request to pubspermissionsieeeorg this work has
+been supported by the eu funded h2020 5gppp project 5g
+essence under the grant agreement 761592 by the spanish
+research council and feder funds under ramses grant ref
+tec201341698r and by the spanish ministry of economy and
+competitiveness ref fjci201419815
+
+tenant has specific characteristics on its geographic andor
+population coverage 6 which may also change frequently
+over the time to ensure speedy and efficient deployment of
+services traditional rnp has to be evolved toward new
+models where scs are considered as a key element to increase
+capacity
+thanks to the selforganizing network son concept
+introduced by the 3rd generation partnership project 3gpp
+7 traditional management tasks in cellular networks have
+been transformed into a set of automated functions selfplanning is defined in 8 as the process of identifying the
+parameter settings of new network elements including site
+locations and hardware configuration it was included within
+the son use cases defined by the next generation mobile
+networks ngmn alliance 9 to meet the envisioned
+capacity of 5g networks the concept of self has to be
+applied to the dimensioning planning and deployment of scs
+by making these activities more dynamic faster and automatic
+capital and operational expenditures can be reduced and
+network performance improved thus the new rnp functions
+will operate at shorter time scales than today involving a set of
+decisionmaking processes that can be triggered by various
+events the diversity of these events will also be much greater
+in the future 5g networks ranging from call traces and cell
+counters crossing a given threshold to the arrival of new
+tenants in addition the decisionmaking processes will
+manage a wider range of costefficient solutions taking
+advantage of the flexibility of scs and being integrated with
+the optimization tasks to avoid suboptimal network
+configuration and inconsistencies
+taking into account the gaps in the open literature in this
+paper a novel framework that applies the son principles to the
+rnp problem is proposed to meet the challenging requirements
+of 5g in particular this work tackles the rnp problem in the
+context of 5g considering the following i capacity
+provisioning will be one of the most challenging issues for
+network equipment providers  ii the multitenancy feature
+will introduce additional complexity to the planning process
+since multiple capacity conformance specifications over the
+spatial and temporal domains will be defined and iii scs will
+be considered as the main driver to satisfy the traffic demand
+because they are a less expensive and easytodeploy
+alternative to macrocells deploying scs entails strong
+implications in the way that the spectrum planning or channel
+allocation is carried out since the newly deployed scs will
+interfere other cochannel scs nevertheless the spectrum
+planning problem can be solved in a more localized fashion
+than in macrocell deployments because of the smaller size of
+scs and the usage of high carrier frequencies which facilitate
+
+extensive spatial reuse thus the proposed framework
+advocates a more systematic and efficient way of rnp without
+requiring vast computational resources in this respect when
+network measurements call traces andor geolocated data are
+available the models to characterize network performance and
+traffic estimation can exploit them the framework also
+reduces the gap between planning and optimization work by
+defining a unified approach where the potential solutions are
+intended to satisfy the traffic demand while minimizing
+capacity overprovisioning in the network
+the remainder of this paper is organized as follows in
+section ii the literature related to rnp is discussed in section
+iii the system model is presented section iv describes the
+proposed architecture and analyzes the multitenancy feature
+from a planning perspective results are discussed in section
+v finally section vi provides some concluding remarks
+ii
+
+relat ed w ork
+
+the rnp problem has been widely investigated in
+macrocell scenarios 1011 with the arrival of scs the rnp
+problem has been addressed in the context of heterogeneous
+networks where the crosstier interference between macrocells
+and scs has been crucial for an efficient deployment 1217
+however focusing on the sclayer there is a lack of studies on
+the joint optimization of sc location planning and spectrum
+planning in general spectrum planning or channel allocation
+is seen as a separate issue that is solved only when the location
+of the scs is already known
+rnp as an optimization problem has commonly been
+approached as a twophase process where the first phase also
+referred to as dimensioning has to determine the minimum
+number of cells to satisfy signal coverage system capacity and
+cost constraints while the second phase tries to find the
+optimal cell locations 10121819 eliminating redundant
+base stations can be considered in the method as a third phase
+11 or it can be the fundamental basis of the planning method
+16 another approach is based on iteratively adding a cell
+which has the highest increment of an utility function among
+the set of candidate locations until network capacity reaches a
+target value 2021 note that in this case the a priori
+dimensioning phase is not required in general the number of
+cells to deploy is estimated as the total traffic demand of the
+considered area divided by the average capacity of a cell in sc
+networks the scs can use different number and different set of
+channels which also may change over time consequently the
+estimation of cell capacity is not as simple as in macrocell
+networks where the frequency reuse is typically one this
+issue obviously affects the accuracy of the estimation of the
+number of cells thus to avoid relying on this number in this
+paper the iterative approach of adding scs has been selected
+the success of rnp depends to some extent on the model
+that is used to characterize the network performance typically
+montecarlo simulations 1022 or stochastic processes 2325 these models can be utilized to develop either proactive or
+reactive planning strategies recently the energy consumption
+of base stations has also been modeled to provide energy efficient planning solutions 20232627 from a more
+practical perspective existing commercial planning tools such
+as those mentioned in 19 provide operators with multitude of
+capabilities for efficient rnp including realistic traffic maps
+
+and accurate propagation models however there is very little
+open information about methodology and principles due to the
+confidential and proprietary nature of these solutions  lastly
+the rnp of multitenant networks has received little attention
+in the literature 28
+from the perspective of 5g network slicing represents a
+fundamental feature to accommodate traffic demands in multitenant networks without significantly increas ing operational
+and infrastructure costs 29 specifically network slicing
+consists of partitioning a common physical infrastructure into
+multiple logical networks the challenges that arise from
+introducing this feature in 5g networks have been addressed in
+several works 2930 the architectural issues for enforcing
+slices in mobile networks have been studied in 3132 while
+the algorithmic aspects have been investigated in 33 in that
+work an algorithm for dynamic resource sharing across slices
+taking into account user association decisions has been
+proposed to enable network slicing in mobile networks
+various technologies such as network function virtualization
+nfv softwaredefined networks sdn and cloud
+computing have been considered 34 in this respect the
+allocation of virtualized network functions the network
+programmability and the centralized coordination are key
+aspects for the adoption of network slicing and the diverse
+requirements of 5g mobile networks
+with network slicing a much more efficient utilization of
+network resources is achieved in multitenant networks
+however when traffic volumes increase and the current
+infrastructure is not enough to meet the required capacity
+investing on new resources remains as the only solution to this
+issue while the above references focus on network slicing to
+optimize the resource usage during the network operation this
+paper proposes a framework to update the network
+infrastructure during the replanning phase such a
+framework was initially introduced in 35 where the sc
+location problem and spectrum planning were approached as a
+joint problem this paper further develops this initial work
+introducing the following contributions and novelties 
+ a novel implementation of the sc planning and spectrum
+allocation processes is considered specifically when a new
+sc has to be deployed the channel allocation process is
+performed through an iterative process to try a variable
+number of allocated channels
+ new scenarios are adopted to evaluate a greater variety of
+planning actions such as removing a channel in a sc
+ an exhaustive temporal analysis of the proposed planning
+strategies is performed to evaluate the replanning phase
+this phase takes place after deploying a new tenant and it is
+especially effective when the tenants demand is a priori
+unknown
+
+
+the proposed capacity planning method is evaluated
+against the stateoftheart where the spectrum allocation is
+commonly seen as an independent function that is executed
+only when the location of the scs is already known
+iii
+
+syst em m odel
+
+let us assume a scenario where a certain infrastructure
+provider owns a ran comprised of scs the scs are intended
+to meet the high capacity requirements in localized areas the
+
+provider offers at time t such a ran to a certain number m  t 
+of tenants so that the tenants customers can get access to the
+tenants service let denote as ditm the traffic demand in
+mbps of tenant m in sc i at time t  calculated as the sum of
+the traffic from all the users attached to sc i the tenants
+traffic ditm can be aggregated into a new variable di t  
+which provides the total traffic demand in sc i ie
+m t 
+
+d   ditm 
+t 
+i
+
+1
+
+m 1
+
+let also d u t m be the traffic demand in mbps of tenant m in
+the u th pixel of the scenario  u u  the metric du t  is
+computed in a similar way to 1 in order to determine the total
+traffic at the pixellevel
+the geographical area of interest is divided into a set u of
+grid points called pixels a subset u c  u of these locations
+are candidate site locations for scs a typical placement of a
+sc site is below rooftops however in many cases the
+selection of potential sites depends on how easily they can be
+acquired and backhauled eg if there exists line of sight to a
+nearby hub in this respect an adequate filter of unaffordable
+site locations to determine the subset uc will reduce
+computational complexity of the later planning process
+finally let u s t   u c be the subset of site locations with
+deployed scs at time t 
+the transmit power and the allocated bandwidth of the ith
+sc are denoted by pi t  and bit   respectively the transmit
+power is configured such that it provides a certain signaltointerferenceplusnoise ratio sinr at the targeted coverage
+range 36 with respect to the carrier frequency scs are
+assumed to be deployed in higher frequencies than the 12
+ghz such as eg the 5 ghz considered by the 3gpp as a
+feasible solution 36 the frequency band is partitioned into a
+set f   f1  f k  of k orthogonal channels of bandwidth b
+
+in a similar way bit  represents the required bandwidth on a
+cell basis
+iv funct ional a rchit ect ure
+this section focuses on elaborating a reference framework
+for multitenant management from the perspective of network
+planning the proposed model is depicted in fig 1 the
+network represented in the bottom of the figure is
+characterized by the network configuration which is given by
+u s t  and fi  t   the network performance can be seen as a
+source of relevant information for the planning process in
+particular it provides a collection of metrics related to the past
+and actual traffic demand and also to the quality of the offered
+services the information can be given at either the sclevel or
+pixellevel in the former case the metrics are derived from cell
+counters and they are typically known as key performance
+indicators kpis in the latter case the information is derived
+from call traces which contain geolocated measurements from
+users
+the functional architecture of fig 1 includes two main
+entities described in the following these entities can be part of
+the management systems such as the element manager em
+or the network manager nm 37
+a multitenancy management entity
+the multitenancy management entity acts as an interface
+between the tenants and the network planning tool of the
+network provider from the perspective of planning the sla
+defines the contracted capacity a m in mbps that tenant m
+demands to the network provider normally it is expressed in
+terms of aggregate or average values over relatively coarse
+time and space scales the sla may also include some other
+
+the subset of channels allocated to sc i at time t is given by
+fi t   f  therefore the total bandwidth allocated to sc i is
+expressed as bit   fi t   b  where  denotes cardinality
+the capacity of sc i is given by
+t 
+
+cit   bit   se i 
+
+2
+
+t 
+
+where se i
+represents the average spectral efficiency
+achievable at sc i in general the spectral efficiency depends
+on the radio access technology and the sinr conditions
+to determine areas in the network with a lack of capacity
+and areas with spare capacity the required bandwidth becomes
+a key metric in the planning process specifically this metric at
+the pixellevel can be determined from the traffic demand and
+the spectral efficiency as follows
+
+biut  
+
+dut 
+
+seit  u 
+
+3
+fig 1 functional architecture
+
+guarantees eg related to qos metrics
+for network planning purposes the sla has to be
+expressed in smaller time and space scales that can be more
+easily used when taking planning decisions  in particular the
+
+other tenants traffic demand as follows
+
+contracted capacity a m is translated into a set of detailed
+
+regarding the spatial variations of the traffic demand the
+contracted capacity at the busy hour am tb  is distributed among
+
+planning specifications am ti that depend on sc i and time t 
+to do this the current or predicted traffic demand in the
+network can be employed this process which ensures that the
+contracted capacity is provided depends exclusively on the
+network providers side as a consequence the sla is
+simplified and tenants are excluded from gaining a detailed
+picture of the network infrastructure
+each time a set of detailed planning specifications are
+generated the multitenancy management entity sends this
+information to the selfplanning entity which will use them to
+determine whether the infrastructure needs to be updated or
+not this situation typically occurs when a new tenant is
+aggregated or an ongoing tenant updates the sla in the
+former case the traffic demand of the tenant is unknown while
+in the latter case it depends on the geographical area where the
+contracted capacity is modified for example if an ongoing
+tenant extends its service coverage eg according to business
+plans to a new geographical area that is owned by the
+infrastructure provider the traffic demand of the tenant in this
+area is unknown on the contrary if the tenant modifies the
+contracted capacity ie due to an increase in traffic demand
+within the limits of the current service coverage area the
+temporal and spatial distributions of the traffic demand are
+already known in this case
+depending on whether the traffic demand of the tenant is
+unknown or not the detailed planning specifications are
+generated in a different way
+t 
+
+in the first case ie traffic demand is unknown am i is
+calculated based on the temporal and spatial variations of the
+traffic demand from other tenants specifically the temporal
+variation of the traffic demand is mainly given by the traffic
+fluctuations that take place over one days time such a
+temporal pattern is typically repeated over different days an
+example sequence of total tenants traffic demand d  t  during
+several days is illustrated in fig 2 where t stands for the
+oneday period and tb is the busy hour based on this let am tb 
+be the detailed planning specification at the busy hour which
+can be estimated from a m and from the time variations of the
+
+ tb 
+
+d
+amtb   a m 
+
+d
+
+4
+
+the number u st  of deployed scs taking into account the
+following condition
+
+amtb  
+
+
+
+amtbi  
+
+5
+
+iu s t 
+
+where am tbi  is the contribution of the contracted capacity in sc
+i depending on the spatial correlation that can be expected
+between the tenants traffic demand and the actual networks
+traffic demand the detailed planning specifications per cell for
+tenant m can be formulated in different ways
+ uniform distribution in case that the spatial traffic
+demand of the new tenant is unknown an even
+distribution of traffic is assumed estimation can be
+conducted at the sclevel 6 or pixellevel 7
+
+amtbi  
+
+amtb 
+
+u st 
+
+6
+
+am tbu 
+
+am tb 
+
+u
+
+7
+
+where am tbu stands for the contracted capacity at the u th
+pixel and u is the total number of pixels in the area if
+uniform distribution at the sclevel is adopted the values
+of am tbu at pixel u are obtained considering a uniform
+distribution of traffic within the service area of the
+corresponding sc on the other hand when estimation is
+at the pixellevel the value of am tbi  in sc i is obtained
+from aggregating the values of am tbu only for pixels
+served by sc i note that this value may be different to
+that obtained from using 6
+ correlated distribution in case that the correlation
+between the traffic demand for the new tenant and the
+already existing tenants is expected areas with higher
+traffic demand of other tenants will receive a greater
+contribution of am tb   such an estimation can also be
+conducted at either sc or pixellevel in the former case
+using the information on kpis that measure di tb  in sc i
+as an estimation of the spatial traffic demand of tenant m
+the detailed planning specification is given by
+
+amtbi   am tb  
+
+ditb 
+
+ dptb 
+
+8
+
+pu s t 
+
+fig 2 example of normalized traffic demand over three days
+
+in the latter case the traffic measurements at the pixellevel are taken from call traces that provide geolocated
+information for each user in an automatic way thus the
+specification is calculated as
+
+am tbu  am tb  
+
+du tb 
+
+ dvtb 
+
+9
+
+vu  t 
+ tb 
+u
+
+where d
+is the total traffic demand in the u th pixel of
+the scenario
+in the second case ie traffic demand is known the
+temporal and spatial variations of the traffic demand of tenant
+m are considered for the generation of the detailed planning
+specifications over such domains in particular if the traffic
+demand is given at the sclevel di tb  is replaced by ditmb  in
+8 if on the contrary the traffic demand is given at the pixellevel du tb  is replaced by d u tbm in 9
+b selfplanning entity
+according to fig 1 the detailed planning specifications
+am ti  are used by the selfplanning entity whose aim is
+twofold the first objective is to check whether or not the
+deployed network capacity fits the tenants demand the
+second is to provide the required changes in the network layout
+and channel allocation given by u s t 1 and fi  t 1
+respectively in case there is a lack of capacity the selfplanning entity follows an automated approach characterized
+by running an iterative process that is executed during the
+network operation assuming that a set of scs have already
+been deployed thus the currently deployed infrastructure is
+incrementally adapted to the evolving tenants requirements to
+make capacity expansion smoother less costly and faster the
+proposed approach is applied to smaller regions that are
+covered by a subset or cluster of scs so that dimensioning
+and planning tasks are accelerated and simplified as a result
+dimensioning and planning can be regarded as an automated
+function that can be easily integrated into the son framework
+this approach contrasts with the traditional planning which
+employs longer timescales to accommodate larger capacity
+needs over the whole networks geographical area
+nevertheless both traditional and sonbased planning are
+complementary approaches to drive network expansion at
+different time scales
+1 capacity conformance monitoring
+this module watches over the network to determine when
+the network infrastructure has to be reconfigured in order t o
+meet the tenants traffic demand while minimizing overprovisioning the required bandwidth in the scs can vary due
+to high tenants actual traffic demand ditm  the addition or
+t 
+
+removal of new tenants ie variations in m  or changes in
+the planning specification am ti  also if the process is executed
+proactively the predicted traffic demand can be considered to
+this end the traffic forecasting entity provides the predicted
+traffic demand in time t at the sclevel which can be
+computed from historical data using statistical models  as input
+in the selfplanning entity the proactive response is key as
+long as the deployment of new infrastructure may require
+substantial time compared to the evolution of the traffic
+demand thus the traffic forecasting entity predicts the traffic
+growths on a relatively longterm time scale eg weeks
+
+months as a result the system is able to anticipate the need
+for more scs andor spectrum
+the capacity conformance is conducted in terms of the
+t 
+required bandwidth b
+by sc i which can be estimated as
+i
+m t 
+
+ min  d
+
+1
+
+t 
+b
+
+i
+
+
+
+10
+se
+in case of working with variables at the pixellevel the
+translation to the sclevel is a simple aggregation of data per
+cell if the traffic demand of tenant m at sc i is below the
+slas planning specification ditm is used to provide costt 
+i m
+
+t 
+m 1
+i
+
+ am ti 
+
+effective dimensioning since the scs bandwidth would fit the
+actual required bandwidth if on the contrary the traffic
+demand exceeds the slas planning specification the required
+t 
+bandwidth is then limited by am ti  to compute b
+in
+i
+t 
+
+practice variable se i can be estimated from the transmitted
+data volume vi t  measured in bits under fullbuffer
+conditions and the amount of resource elements ni t  measured
+in s  hz  that have been used for transmission in sc i ie
+t 
+
+se i 
+
+vi t 
+
+nit 
+
+11
+
+t 
+
+with respect to variable di  m  it can be estimated as follows
+t 
+i m
+
+d
+
+
+
+vitm
+t
+
+
+
+12
+
+t 
+
+where vi  m is the total data volume in bits transferred in sc i
+during time t see fig 2 for tenant m
+the bandwidth of sc i bit   is dimensioned so that the
+t 
+required bandwidth b
+is satisfied at the busy hour t b 
+i
+
+which is calculated as
+
+
+
+
+
+ 
+t b  arg max b
+   t  t  1 t
+i
+
+
+
+13
+
+according to this the capacity conformance monitoring
+module triggers the capacity dimensioning and planning
+module if the following condition is fulfilled for any of the
+deployed scs in l consecutive periods of t duration
+14
+btb     f tb   b
+i
+
+i
+
+where   01 is an adjustable parameter that determines the
+ability to support some variations in the traffic demand with
+ tb 
+respect to the estimated value note that an increase in b
+i
+does not always trigger the condition in 14 since there can be
+spare capacity in the scs this situation can occur when i the
+network capacity has been intentionally overprovisioned ii
+the traffic demand has been overestimated when planning
+tenants for the first time iii the traffic demand of any tenant
+has decreased over time or iv a certain sla has been
+modified
+lastly note that if the total traffic demand of any tenant
+exceeds the contracted capacity the capacity conformance
+
+monitoring module should communicate the multitenancy
+management entity the need of reviewing or negotiating the
+sla in order to meet the traffic demand
+2 capacity dimensioning and planning
+this module aims to determine the optimal solution ie an
+updated ran to cope with the varying traffic demand a
+candidate solution is represented by u s t  and fi  t   which
+represent a modified version of the actual network deployment
+and spectrum allocation respectively the required bandwidth
+of the candidate solution bi t   is obtained from the network
+performance model which emulates the behavior of the
+network with a certain layout and configuration unlike the sc
+bandwidth measured in steps of
+
+b mhz bit 
+
+algorithm 1 capacity dimensioning and planning
+1
+ adding a channel
+2
+3
+4
+
+the area of interest k max is the maximum number of channels
+that can be allocated in a sc and     01 are adjustable
+parameters in detail in steps 120 the planning process
+focuses on extending the capacity in areas with a lack of
+capacity while in steps 21 to 31 this process aims at
+minimizing the capacity overprovisioning note that actions
+such as removing channels or scs where traffic has decreased
+significantly may result in reduced interference increased
+quality andor capacity during the execution of this process a
+certain planning action eg adding a channel can be canceled
+due to the execution of the opposite action eg removing a
+channel depending on the actions carried out between the two
+eg a channel added in steps 16 may no longer be needed if a
+sc is later on added in steps 720 the channel selection in a
+sc is performed so that the sctosc distance between the
+given sc and the closest neighboring sc using the same
+channel is the maximum possible this process is summarized
+in algorithm 2 in addition when a planning action is selected
+the network performance model is launched to obtain the value
+
+set f jt   f jt   1 
+
+5
+
+ tb 
+i
+
+ 
+
+networkperformancemodel u s t   fi t  
+
+i  u
+
+t 
+s 
+
+6
+7
+
+end
+ deploying a sc
+
+8
+
+while  j  b tb   b 
+j
+
+9
+10
+11
+12
+
+ 
+
+t 
+f j t   channelselection u s  fi t   j 
+
+b
+
+is a continuous
+
+variable that depends on the traffic demand and the spectral
+efficiency
+the dimensioning and planning is modeled as an iterative
+process initiated after satisfying 14 where a set of conditions
+are sequentially checked at each time step in order to trigger
+specific planning actions ie addingremoving a channel and
+deployingrelocating a sc such actions are accumulated
+during the planning process and after that the infrastructure
+provider is notified about the changes in the network to be
+implemented the execution of planning actions depends on
+the limited budget of possible network changes that can be
+taken in a specific period this means that the infrastructure
+provider is responsible for deciding when communicating the
+changes to the infrastructure deployment team according to
+other regulation and economic factors such a problem has
+been studied in 28
+the planning process is summarized in algorithm 1 where
+sc
+is the maximum number of scs that can be deployed in
+n max
+
+while  j  b jtb     f jt   b and f jt   kmax
+
+u st
+
+n  k max
+k  0   k number of allocated channels
+do
+set k  k  1 
+for all x  u c t  do
+set u s
+
+t 
+
+13
+
+ u st   x 
+
+ 
+
+t 
+fx t   channelselection u s  fi t   x 
+
+14
+
+bi
+
+ tb 
+
+ networkperformancemodel u s
+
+f   f   
+
+15
+
+t 
+
+i
+
+t 
+
+x
+
+17
+
+select x with objective min
+
+ b 
+
+iu s t 
+
+ tb 
+
+i
+
+
+
+while b x tb     k  b and k  k max 
+t 
+t 
+t 
+t 
+set u s  u s  x   u c  u c  x  
+
+t 
+t 
+fxt   fx t   bi b  bi b i  u s t 
+
+20
+21
+
+end
+ removing a channel
+
+22
+
+while  j  b jtb     fjt   1  b and f jt   1
+
+23
+24
+
+
+
+set f jt   f jt   1 
+
+26
+27
+28
+
+t 
+of required bandwidth bi  corresponding to the new network
+
+29
+
+configuration in case a new sc has to be deployed bi is
+calculated for each candidate site in the area of interest then
+the site with the lowest required bandwidth is selected
+
+30
+
+t 
+
+31
+
+
+
+ 
+
+t 
+f j t   channelselection u s  fi t   j 
+
+b
+25
+
+
+
+i  u  
+
+end for
+
+19
+
+t 
+
+t 
+s
+
+16
+
+18
+
+sc
+u st  n max
+
+and
+
+sc
+max
+
+ tb 
+i
+
+ 
+
+t 
+networkperformancemodel u s  fi t  
+
+i  u
+
+t 
+s 
+
+end
+ removing a sc
+while  j  b jtb     b
+t 
+t 
+t 
+t 
+set u s  u s   j  u c  u c   j 
+
+b i t b  networkperformancemodel u s t  fi t   
+
+i  u s t  
+end
+
+32
+
+set u s t   u s t   u c t   u c t   fi  t   fi  t  
+
+i  u s t 
+
+algorithm 1 is designed such that the deployment of new
+scs is carried out gradually as the traffic demand grows and
+new channels are allocated according to this as the number of
+deployed scs gets closer to the saturation point given by
+sc
+ the threshold in the first condition of step 8 that
+u st  n max
+
+is used to deploy new scs approaches the value of maximum
+amount of allocable bandwidth in a sc ie k max  b 
+regarding the computational complexity of algorithm 1 it
+is worth highlighting that as long as the dimensioning and
+planning are rather longterm processes computational
+complexity is not a firstorder requirement to consider
+however to limit the complexity when the number of scs
+increases the considered geographical area could be divided
+into smaller regions so that algorithm 1 is applied to each of
+them independently
+from an economic perspective each kind of planning
+action entails a different cost for the infrastructure provider in
+particular adding or removing channels represents the cheapest
+solution since it can be executed remotely on the opposite side
+is the deployment of new scs which requires investing on new
+infrastructure the infrastructure provider can be interested in
+balancing the priority of these two planning actions according
+to its financial objectives  this can be done in the proposed
+sc
+
+algorithm by tuning n max  which is the parameter that has a
+direct impact on the deployment costs
+
+ 
+
+inputs u s t   fi t   x targeted sc
+
+2
+
+initialize fx t    
+
+3
+
+
+
+5
+
+t 
+t 
+
+ s x y  if f j  fx  fy
+s j  x y   
+otherwise
+
+  inf
+
+6
+
+s j  x  min s j  x y 
+
+7
+
+i  arg max s j  x 
+
+8
+
+set fxt   fxt    fi  
+
+y
+
+
+
+ fj f 
+
+j
+
+9
+
+i
+
+candidate solution is determined by
+t 
+pi t   pn  gpli uedge
+  fi t   sinredge
+
+15
+
+where pn is the noise power measured in one channel
+t 
+t 
+t 
+is the path gain loss from sc i to pixel uedge
+gpl
+i uedge 
+
+located at the celledge and sinredge represents the target
+value at such a distance the range of pi t  is limited by the
+maximum allowed transmit power pmax  the celledge is a
+
+t 
+the received power prx
+at pixel u when served by sc
+i u 
+i using a single channel is given by
+
+do
+calculate s  x y    s distance between x and y
+
+4
+
+3 network performance model
+to evaluate the candidate solutions a network performance
+model is required the objective of this model is to compute
+the required bandwidth in the network to satisfy a certain
+traffic demand as observed in fig 1 the inputs of the model
+are the traffic demand either actual or predicted the average
+spectral efficiency and the candidate network configuration
+in the model the transmit power p  t  for each sc of the
+
+function of the intersite distance isd which is given by the
+distance to the closest adjacent sc
+
+algorithm 2 channel selection
+1
+
+too low value of this parameter should be avoided since it
+entails a waste of spectrum and an increased cost due to a faster
+deployment of scs
+the parameters  and  determine the amount of spare
+capacity that is retained by the infrastructure provider in the
+scs eg to absorb eventual peaks of traffic demand they are
+jointly configured to avoid recursive channel allocations and
+releases in the scs
+lastly the parameter  establishes the sensitivity of the
+planning action related to relocation of scs that support
+marginal amount of traffic this situation happens for
+example when a tenants contract expires leaving a large
+amount of spare capacity in the scs
+
+f  f   fi  
+
+while fxt   k 
+
+the parameter k max is also adjustable and it determines the
+interference levels that are allowed in the network for
+example by setting the maximum value all the scs can use all
+the channels however a high value of this parameter may not
+be recommended as it would result in excessive interference
+levels making the solution spectrally inefficient likewise a
+
+t 
+ t   g u
+prx
+i u   pi
+i
+
+16
+
+where gi u  is the overall gain between sc i and pixel u
+expressed as the sum of individual gains losses including the
+antenna gain and the path loss
+the users are served by the sc from which they receive the
+strongest received power in this way the function   t  u 
+returns the sc that serves the users in pixel u ie it defines the
+service area of every sc formally it is defined as
+17
+ t  u   arg max p  t  u 
+rx i
+
+i
+
+such a function facilitates the conversion between the sc and
+pixel domains in the model
+the sinritk u  at pixel u when served by sc i using
+channel k is expressed as
+
+sinritk u  
+
+t 
+prx
+i u 
+
+
+
+t 
+t 
+t 
+   j   j k   prx  j u    pn
+ ju s i
+
+
+
+
+18
+
+where  jt   k  indicates whether channel k is allocated to sc j
+with value 1 or not 0 and  j t  is the average load
+computing the sinr requires to solve a system of non linear
+equations due to the loadcoupling ie the load of a cell is a
+function of the load levels of other cells 38 to simplify this
+procedure the average load  j t  in sc j is approximated by
+ djt  
+1 
+ c jt 1 
+
+
+
+19
+
+fig 3 traffic demand and network deployment in the initial situation before
+new tenants arrival
+
+where c j t 1 is the capacity of sc j at the previous time step
+
+isd 36 the spectral efficiency function sesinr used to
+
+ j t   min 
+
+the average sinri u  at pixel u when served by sc i is given
+by
+
+sinrit  u  
+
+1
+f t 
+i
+
+ sinr
+
+kfi t 
+
+t 
+i k
+
+20
+
+u 
+
+then the spectral efficiency sei t  u  at pixel u is obtained
+by
+
+seit  u   f rat  sinrit  u 
+
+21
+
+where f rat  is a function that depends on the radio access
+technology eg lte from the spectral efficiency and the
+traffic demand at the pixellevel the required bandwidth biut 
+is calculated based on 3 lastly this information can be
+aggregated on a cell basis using the function   t  u  as
+follows
+
+bit  
+v
+
+
+
+ui   t   u 
+
+biut  
+
+22
+
+performance evaluat ion
+
+a simulation scenario
+an urban sc scenario with dimensions 04 km  04 km
+and a grid resolution of 5 m has been considered to represent
+the areas where deploying scs is possible eg no backhaul and
+site acquisition constraints 2 of the points or pixels in the
+scenario have been randomly selected as candidate site
+locations the actual network layout and the traffic demand at
+the busy hour in the situation before the consideration of the
+new tenant are represented in fig 3 where the triangles
+represent the location of the three deployed scs and the values
+in brackets are the number of allocated channels color scale
+indicates the traffic demand density which is nonuniformly
+distributed over the considered area the traffic demands
+supported by scs 13 are 88 56 and 50 mbps respectively
+the network performance model has been implemented
+according to section ivb table i summarizes the main
+parameters of this model the transmit power pi t  is
+configured for each sc to have sinredge  9 db at
+
+3
+2
+
+of the
+
+t 
+
+compute the average spectral efficiency se i
+at sc i
+depending on the sinr at each pixel is obtained from section
+a1 in 39 with semax  44 bshz
+parameter
+deployment scenario
+operating frequency
+channel bandwidth
+cell bandwidth
+propagation path loss
+sc antenna directivity
+sc antenna height
+ue antenna height
+sc antenna gain
+ue thermal noise
+ue noise figure
+ue minimum sinr
+sc t x power range
+
+configuration
+urban small cells 04km x 04km
+5 ghz
+20 mhz
+4 channels
+it u inh model 40
+omnidirectional
+6m
+15 m
+2 dbi
+174 dbmhz
+9 db
+10 db
+1024 dbm
+
+t able i simulation p arameters
+
+from a network planning perspective the parameters used
+in the capacity conformance monitoring module to trigger the
+planning actions are configured as    095    07 and
+  005  parameter  is configured assuming moderate
+traffic variations over the expected values however
+depending on the providers deployment policies this
+parameter can be configured with a lower value in order to
+provide higher levels of spare capacity in the scs and thus
+leaving some room for coping with unexpected traffic
+variations regarding parameters  and   a reasonable
+configuration of such parameters has been considered in this
+work to react to traffic variations while at the same time
+limiting the number of replanning actions and targeting an
+efficient resource utilization in addition the maximum number
+of allocated channels per sc is set to k max  3  while the
+maximum number of scs that can be deployed in the
+sc
+considered area is set to n max
+ 10 
+b analysis of the network planning solutions
+let assume that the sla of the new tenant is translated to a
+specification at the busy hour of am tb   100 mbps at this
+initial stage the new tenants spatial traffic demand distribution
+is assumed to be unknown so the planning is carried out using
+
+methods additional scs are not required in the service area of
+sc 3 because a lower traffic density is assumed in this region
+
+fig 4 network deployment and estimated traffic demand using the detailed
+planning specifications a based on uniform distribution at the sclevel
+b based on correlated distribution at the sclevel c based on uniform
+distribution at the pixellevel and d based on correlated distribution at
+the pixellevel
+
+the detailed planning specifications from the methods
+explained in section iva thus the total traffic demand is
+calculated as the actual traffic demand from existing tenants
+plus the estimated new tenants demand after generating the
+detailed planning specifications it is observed that in the
+capacity conformance monitoring module condition 14 is
+satisfied for the three deployed scs so that the capacity
+dimensioning and planning module is launched
+fig 4ad show the results of the planning process for
+different sets of detailed planning specifications corresponding
+to the methods of section iva
+for the uniform distribution at the sclevel method fig
+4a shows that given that sc 2 has the smallest service area
+the traffic demand per pixel in this sc is estimated to be
+slightly higher than in sc 1 and 3 then the capacity
+dimensioning and planning module adds 6 new scs three of
+which are located in the right upper corner of the scenario
+where the traffic density is higher
+the correlated distribution at the sclevel method is
+represented in fig 4b this method estimates that sc 3
+which initially carried less traffic ie 50 mbps is the cell that
+receives proportionally less traffic from the new tenant
+therefore compared to the method of fig 4a additional scs
+such as sc 9 are not required in the service area of sc 3
+instead the number of channels allocated to sc 3 is increased
+by one
+for the method based on uniform distribution at the pixellevel illustrated in fig 4c the results are quite similar to the
+first method since both methods approximate the uniform
+distribution the only difference is that sc 4 is placed a bit
+more to the right
+the last method see fig 4d based on correlated
+distribution at the pixellevel produces the largest variations in
+the traffic demand per pixel consequently scs 5 and 7 are
+placed in or close to the area with high traffic density so that
+part of the traffic is offloaded from sc 1 having this cell three
+channels allocated after the planning besides unlike other
+
+c analysis of the network operation with the new tenant
+this section evaluates the solutions of the planning
+algorithm when the new tenants service is operative and the
+actual traffic demand at the busy hour of the new tenant is
+spatially distributed as illustrated in fig 5 where two cases are
+distinguished in the former fig 5a the new tenants spatial
+traffic demand exhibits quite high correlation with already
+existing tenants whose spatial traffic distribution is represented
+in fig 3 specifically using pearsons coefficient both traffic
+distributions are 90 correlated in the latter case fig 5b
+the distributions are only 15 correlated
+let assume now that the network has been deployed as
+dictated by the planning ie with the real network layouts as
+illustrated in fig 4ad and let consider the real traffic
+demand of the new tenant shown in fig 5 in that case table
+t 
+ii shows the required bandwidth b
+and the cell bandwidth
+i
+
+b in each sc considering the actual traffic demand for the two
+levels of correlation with the different planning methods  the
+last row in the table shows values aggregated over all the scs
+the notation in the table is xy where x represents the
+required bandwidth and y the cell bandwidth as a reference
+for comparison with the methods discussed in fig 4 the table
+also includes the result of the network planning taking as input
+the real traffic of the new tenant shown in fig 5 the
+deployments for this case are shown in fig 6
+in general the method that fits better the traffic demand in
+this case the reference approach will minimize the required
+resources without generating a loss of traffic however
+according to table ii this does not necessarily mean a lower
+value of total required bandwidth for example the methods
+based on uniform distribution provide the lowest values
+however this happens because these methods deploy a greater
+number of scs in the scenario as reflected in fig 4a and c
+given the minimum number of deployed scs ie 8 the
+reference case obtains the lowest value of total required
+bandwidth with respect to the methods based on correlated
+distribution the method with sclevel resolution results in a
+lower total required bandwidth since its network layout is more
+similar to the reference case as previously stated regarding
+the two methods based on uniform distribution the results in
+terms of required bandwidth are very close to each other
+because of the similarity of their network layouts
+another aspect from table ii see numbers highlighted in
+bold is that the required bandwidth in some scs exceeds or
+nearly exceeds the cell bandwidth meaning that some traffic
+
+fig 5 traffic demand of the new tenant a 90 correlated with networks
+traffic demand b 15 correlated with networks traffic demand
+
+fig 6 network deployment with real tenants traffic demand for a 90
+correlated traffic b 15 correlated traffic
+
+might be lost these cases are more evident in the case of 15
+correlated traffic due to the poorer match between the network
+layout and the spatial distribution of traffic demand in the case
+of 90 correlated traffic only the methods based on correlated
+distribution provide insufficient bandwidth or they are close to
+it however this lack of bandwidth about 1 mhz is marginal
+compared to the channel bandwidth in addition the
+deployment has been carried out with only 8 scs so that the
+cost of the solution is cheaper than other methods
+
+cor
+
+
+90
+
+15
+
+sc
+
+reference
+actual
+traffic
+known
+
+uniform
+sclevel
+
+corr
+sclevel
+
+uniform
+pxlevel
+
+corr
+pxlevel
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+tot
+1
+2
+3
+4
+5
+6
+7
+8
+9
+tot
+
+3060
+1840
+4360
+2860
+3560
+1640
+3640
+920
+215380
+2440
+2240
+4260
+2860
+1440
+3060
+2740
+1940
+206380
+
+3240
+2340
+2540
+2360
+1740
+2440
+3640
+1020
+1040
+200360
+2140
+2040
+3140
+2160
+1940
+2340
+4840
+720
+940
+199360
+
+3040
+2840
+4860
+2360
+2940
+2240
+3940
+1020
+229340
+1940
+2440
+5360
+2060
+3540
+2040
+5540
+720
+233340
+
+2940
+1940
+2440
+3260
+1940
+2240
+3640
+1020
+1040
+201360
+1940
+1640
+3340
+3060
+2240
+2240
+4940
+720
+940
+207360
+
+3860
+1420
+5360
+2440
+4140
+3760
+2840
+820
+243340
+3860
+1520
+6660
+3040
+6940
+3660
+3840
+620
+298340
+
+it by one
+with respect to the methods based on correlated
+distribution fig 7 shows the network layout after the replanning process for 90 and 15 correlated traffic as
+observed both the network layout and bandwidth assignment
+have changed in case of 90 correlated traffic fig 7a and
+b a new sc ie sc9 is deployed in the left upper side of
+the scenario to relieve traffic from congested scs this new sc
+also produces changes in the bandwidth assignment which can
+be observed by comparing the numbers in parentheses in fig
+4b and d with those of fig 7a and b respectively in
+total there are three changes ie adding or removing a
+channel in each case
+in case of 15 correlated traffic fig 7c and d a new
+sc ie sc9 is deployed in the center of the scenario where
+the traffic density is higher with respect to the channel
+assignment the changes can be observed by comparing fig
+4b and d with fig 7c and d respectively
+table iii shows a comparative analysis between the
+network layouts before and after the replanning process for
+each analyzed method for a high level of correlated traffic
+90 the best methods without considering the reference are
+the two based on correlated distribution since they utilize the
+lowest number of channels ie 15 and 17 provided that the
+number of deployed scs is 9 for all methods note that these
+two solutions are achieved through a twostep process that
+comprises planning and replanning where an additional sc is
+deployed if the method employs pixellevel resolution there
+is also a bandwidth shortage about 1 mhz which might lead
+to a small loss of traffic for this reason the method based on
+correlated distribution at the sclevel is a better solution when
+the new tenants traffic is not fully correlated with already
+existing tenants
+for a low level of correlated traffic 15 it is observed
+that all the methods result in bandwidth shortage before the replanning stage since the network layouts do not fit properly the
+traffic demand such an effect is more pronounced for the
+methods based on correlated distribution especially when
+
+t able ii actual req  bw mhz and cell bw mhz for 90 and 15
+correlated traffic
+
+d replanning the new tenant during tenants operation
+once the new tenants service is operative condition 14 is
+evaluated again to determine whether there exists a lack of
+capacity or not if so the capacity dimensioning and planning
+module is relaunched to provide a new network configuration
+in our experiment this happens for the scs whose statistics in
+table ii are represented in bold
+for the methods based on uniform distribution it is noted
+that in case of 90 correlated traffic there is no lack of
+capacity however in case of 15 correlated traffic sc 7
+satisfies condition 14 and therefore a new planning stage is
+launched as a result of the replanning process it is obtained
+that the network layout is not modified but scs 4 and 7
+increase the number of channels by one while sc 9 decreases
+
+fig 7 network deployment with real tenants traffic demand for a 90
+correlated traffic method based on correlated distribution at the sclevel
+b 90 correlated traffic method based on correlated distribution at the
+pixellevel c 15 correlated traffic method based on correlated
+distribution at the sclevel d 15 correlated traffic method based on
+correlated distribution at the pixellevel
+
+pixellevel resolution is used in this latter case because of the
+bad traffic estimation the number of channels assigned after
+replanning represents the worst case ie 20 in case of the
+sclevel resolution there is a bandwidth shortage of 15 mhz
+however this method eliminates the lack of bandwidth by
+adding a new sc in an optimal location during the replanning
+phase while the other methods that previously deployed more
+scs are unable to improve the solution
+it is clear that the pixellevel methods do not leverage the
+higher spatial resolution when the traffic correlation is low as
+they have to employ the greatest number of channels thus the
+best methods excluding the reference in terms of minimum
+number of channels are the two methods with sclevel
+resolution an important difference between them is the
+amount of traffic that could be lost before the replanning
+stage thus although one method requires less amount of
+resources it might lead to higher traffic losses
+scs
+cor
+
+
+90
+
+15
+
+channels
+
+method
+reference
+uniform
+sclevel
+corr
+sclevel
+uniform
+pxlevel
+corr
+pxlevel
+reference
+uniform
+sclevel
+corr
+sclevel
+uniform
+pxlevel
+corr
+pxlevel
+
+req bw
+mhz
+
+bw
+shortage
+mhz
+bef
+aft
+
+bef
+
+aft
+
+bef
+
+aft
+
+bef
+
+aft
+
+8
+9
+
+8
+9
+
+19
+18
+
+19
+18
+
+215
+200
+
+215
+200
+
+0
+0
+
+0
+0
+
+8
+
+9
+
+17
+
+15
+
+229
+
+210
+
+0
+
+0
+
+9
+
+9
+
+18
+
+18
+
+201
+
+201
+
+0
+
+0
+
+8
+
+9
+
+17
+
+17
+
+243
+
+215
+
+1
+
+0
+
+8
+9
+
+8
+9
+
+19
+18
+
+19
+17
+
+206
+199
+
+206
+205
+
+0
+8
+
+0
+0
+
+8
+
+9
+
+17
+
+16
+
+233
+
+215
+
+15
+
+0
+
+9
+
+9
+
+18
+
+18
+
+207
+
+198
+
+9
+
+0
+
+8
+
+9
+
+17
+
+20
+
+298
+
+228
+
+35
+
+0
+
+t able iii network dep loyment before and after re  p lanning
+
+e comparison with the stateoftheart
+as explained in section ii various approaches to solve the
+rnp problem have been proposed in the literature in this
+paper the selected approach summarized in algorithm 1 is
+based on an iterative approach where a certain planning action
+such as deploying a new sc or adding a channel is executed
+at each step previous works based on iterative approach 2021 reduce the set of planning actions at each step to
+determining the location of the sc 20 and optionally in
+heterogeneous networks selecting the optimal bandwidth
+allocation with respect to the macrocell layer 21 however
+the problem of bandwidth allocation in the sc layer ie with
+respect other scs has not been addressed in those works
+based on the above considerations a stateoftheart
+sota method has been developed to compare the
+performance with the proposed algorithm 1 specifically the
+sota method implements the iterative approach in 2021
+unlike algorithm 1 this method only comprises the planning
+action of deploying a new sc since the actions of adding or
+removing a channel are not available during the planning
+process the number of allocated channels per sc must be
+constant lastly channel selection is performed according to
+algorithm 2
+
+the sota method has been evaluated under two distinct
+contexts one takes as input the real traffic of the new tenant in
+the same way that algorithm 1 was evaluated as a reference in
+section vc see table ii the other combines algorithm 1
+with the best planning method of section iva used to derive
+the detailed planning specifications according to the
+evaluations in section vad the best solution corresponds to
+the method based on correlated distribution at the sclevel
+since it employed the least amount of network resources the
+study has been performed with two different values of the
+number of channels per sc ie 2 and 3 channels this
+constraint is only applied to the newly deployed scs in the
+scenario because the sota method does not consider the
+possibility of changing the number of allocated channels in
+existing scs in addition evaluations are carried out for the
+two levels of traffic correlation 90 and 15 used in previous
+sections
+table iv shows the required bandwidth and the cell
+bandwidth in each sc for the sota method under the aboveexplained conditions the notation is the same as in table ii
+the values in the table correspond to the situation when the
+updated network is operative and carries actual traffic from the
+new tenant compared to algorithm 1 see table ii it is
+observed that in general the number of scs is larger with the
+sota method in addition since the same constant
+bandwidth is allocated for all the newly deployed scs the total
+number of allocated channels is also larger this highlights that
+the possibility of changing the number of channels per sc eg
+by considering a larger set of possible planning actions to
+choose from as in algorithm 1 is much more effective than
+limiting the cell bandwidth to a constant value and just
+considering the addition of new scs as in the sota method  a
+closer look at table iv reveals that when three channels per
+sc are allocated the sota method based on correlated
+distribution at the sclevel employs as expected a larger
+amount of resources 10 scs than if the actual traffic is known
+89 scs however when the cell bandwidth is limited to two
+channels the amount of resources in both cases is the same 10
+scs in turn the method proposed in this paper is able to
+support the traffic with only 8 scs see table ii thus
+outperforming the sota method with both 2 and 3 channels
+vi
+
+conclusion
+
+in this paper the cell planning problem for small cell multitenant networks has been studied from the perspective of
+infrastructure providers the automation of procedures is a key
+consideration due to the complexity of managing diverse
+tenants capacity requirements in the proposed scheme these
+requirements are translated into a set of detailed planning
+specifications over the spatialtemporal domains  then the
+planning process is modeled following a son approach where
+a condition to detect capacity issues is periodically checked in
+order to trigger particular planning actions such as
+addingremoving a channel or deployingrelocating a sc
+the proposed framework has been evaluated in a scenario
+in which a new tenant is added in the network to derive the
+set of planning specifications of the new tenant different
+methods are considered depending on the expected correlation
+with the actual traffic demand in the network and the spatial
+resolution of the traffic measurements the evaluation has been
+
+carried out for two different traffic correlation levels results
+show that the detailed planning specifications based on
+correlated distribution with a spatial resolution at the sclevel
+employ the least amount of network resources this is because
+the differences between the estimated and actual traffic demand
+make the use of higher spatial resolutions less effective the
+specifications based on uniform distribution require a larger
+amount of resources to meet the traffic demand even if the new
+tenants traffic and networks traffic are poorly correlated in
+addition the proposed capacity and dimens ioning scheme
+algorithm 1 has been compared with existing planning
+solutions which do not consider the spectrum planning in the
+sclayer results show that the existing solutions require a
+larger number of deployed scs for serving the same traffic
+than the proposed approach
+
+cor
+
+
+90
+
+15
+
+sc
+
+sota2ch
+actual
+traffic
+known
+
+sota3ch
+actual
+traffic
+known
+
+sota2ch
+ corr
+sclevel
+
+sota3ch
+ corr
+sclevel
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+tot
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+tot
+
+2740
+1340
+2040
+1640
+4540
+2840
+940
+840
+840
+1940
+193400
+2240
+840
+2340
+3140
+4540
+1740
+740
+840
+1440
+1240
+187400
+
+3040
+2240
+2240
+1660
+3460
+2260
+2260
+1460
+1660
+198480
+3140
+3840
+2540
+4060
+2260
+3560
+1660
+860
+215420
+
+2040
+2640
+1240
+1940
+2340
+2540
+3340
+840
+840
+1040
+184400
+1340
+2340
+1740
+1540
+2640
+2440
+4440
+640
+1040
+1040
+188400
+
+2340
+2440
+1440
+1660
+1760
+1860
+2760
+660
+960
+860
+162540
+1540
+2040
+1940
+1360
+2060
+1760
+3560
+460
+1260
+860
+163540
+
+t able iv actual req  bw mhz and cell bw mhz for sot a
+method
+
+as future work it is planned to further analyze the
+proposed planning methodology for ongoing tenants whose
+traffic demand varies significantly over time in particular
+when the traffic demand of a certain tenant decreases planning
+actions such as channel releases and sc relocations become
+effective solutions to minimize capacity overprovisioning in
+the network in addition more sophisticated combinatory
+optimization will be investigated for solving the problem
+1
+2
+
+3
+
+4
+
+references
+small cell forum  capacity planning for hetnets document
+1740701 january 2016
+i hwang b song and s s soliman a holistic view on hyperdense
+heterogeneous and small cell networks in ieee communications
+magazine vol 51 no 6 pp 2027 june 2013
+s chen xiang ji c xing z fei and hualei wang system level
+performance evaluation of ultradense networks for 5g t encon
+2015  2015 ieee region 10 conference pp 14 2015
+p c garces x c perez k samdanis and a banchs rmsc a cell
+slicing controller for virtualized multit enant mobile networks in
+proc of ieee 81st vehicular technology conference vtc spring pp
+16 may 2015
+
+5
+
+6
+7
+8
+
+9
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+g t seliou f adelantado cv verikoukis scalable ran
+virtualization in multit enant lt ea heterogeneous networks
+extended version in corr abs150603929 august 2015
+5gppp 5g empowering vertical industries white paper february
+2016
+3gpp selforganizing networks son concepts and requirements
+version 1300 t s 32500 january 2016
+j ramiro k hamied selforganizing networks selfplanning selfoptimization and selfhealing for gsm umts and lte john wiley 
+sons 2012
+ngmn alliance ngmn use cases related to self organising
+network overall description may 2007
+u challita z dawy g t urkiyyah j naoumsawaya  a chance
+constrained approach for lt e cellular network planning under
+uncertainty in computer communications vol 73 part a pp 3445
+january 2016
+h ghazzai e yaacoub m s alouini z dawy and a abudayya
+optimized lt e cell planning with varying spatial and t emporal
+user densities in ieee transactions on vehicular technology vol
+65 no 3 pp 15751589 march 2016
+e yaacoub and z dawy lt e radio network planning with hetnets
+bs placement optimization using simulated annealing in proc of 17th
+ieee mediterranean electrotechnical conference melecon 2014
+pp 327333 april 2014
+x liang h liu and q wang 4g heterogeneous networks base
+station planning using evolutionary multiobjective algorithm in
+proc of 11th international conference on computational intelligence
+and security cis pp 248252 december 2015
+s wang w zhao and c wang budgeted cell planning for cellular
+networks with small cells in ieee transactions on vehicular
+technology vol 64 no 10 pp 47974806 oct 2015
+s a banani a w eckford and r s adve required number of
+smallcells in heterogenous networks with nonuniform traffic
+distribution in proc of 48th annual conference on information
+sciences and systems ciss pp 16 march 2014
+w elbeaino a m elhajj and z dawy on radio network planning
+for next generation 5g networks a case study in proc of
+international conference on communications signal processing and
+their applications iccspa pp 16 february 2015
+f h t seng l d chou h c chao and j wang ultradense small cell
+planning using cognitive radio network toward 5g in ieee wireless
+communications vol 22 no 6 pp 7683 december 2015
+c ran s wang c wang  cellular networks planning a workload
+balancing perspective in computer networks vol 84 pp 6475 june
+2015
+h k rath knrsv prasad v revoori and a simha a joint
+localglobal technique for wireless mobile network planning and
+optimization in proc of ieee 24th annual international symposium
+on personal indoor and mobile radio communications pimrc pp
+30893094 september 2013
+k son e oh b krishnamachari  energyefficient design of
+heterogeneous cellular networks from deployment to operation in
+computer networks vol 78 pp 95106 february 2015
+h ren m zhao w zhou p dong and j kong trafficaware micro
+base station planning in wireless cellular networks in proc of ieee
+78th vehicular technology conference vtc fall pp 15 september
+2013
+x gelabert p legg and c qvarfordt small cell densification
+requirements in high capacity future cellular networks in proc of
+ieee international conference on communications workshops icc
+pp 11121116 june 2013
+l zhou z sheng l wei x hu h zhao j wei vcm leung
+ green cell planning and deployment for small cell networks in smart
+cities in ad hoc networks vol 43 pp 3042 june 2016
+u challita l alkanj and z dawy on lt e cellular network
+planning under demand uncertainty in proc of ieee wireless
+communications and networking conference wcnc pp 20792084
+april 2014
+
+25 h el sawy e hossain and m haenggi stochastic geometry for
+modeling analysis and design of multitier and cognitive cellular
+wireless networks a survey in ieee commun surveys tuts vol 15
+no 3 pp 9961019 june 2013
+26 x li x zhang and w wang an energyefficient cell planning
+strategy for heterogeneous network based on realistic traffic data in
+proc of international conference on computing management and
+telecommunications commantel pp 122127 april 2014
+27 s boiardi a capone b sans  radio planning of energyaware
+cellular networks in computer networks vol 57 no 13 pp 25642577 september 2013
+28 p di francesco f malandrino t  k forde and l a dasilva a
+sharing and competitionaware framework for cellular network
+evolution planning in ieee t ransactions on cognitive
+communications and networking vol 1 no 2 pp 230243 june 2015
+29 p rost et al network slicing to enable scalability and flexibility in
+5g mobile networks in ieee communications magazine vol 55 no
+5 pp 7279 may 2017
+30 x foukas g patounas a elmokashfi and m k marina network
+slicing in 5g survey and challenges in ieee communications
+magazine vol 55 no 5 pp 94100 may 2017
+31 a ksentini and n nikaein t oward enforcing network slicing on
+ran flexibility and resources abstraction in ieee communications
+magazine vol 55 no 6 pp 102108 2017
+32 k samdanis x costaperez and v sciancalepore from network
+sharing to multitenancy t he 5g network slice broker in ieee
+communications magazine vol 54 no 7 pp 3239 july 2016
+33 p caballero a banchs g de veciana and x costaprez multit enant radio access network slicing statistical multiplexing of
+spatial loads in ieeeacm transactions on networking vol 25 no
+5 pp 30443058 oct 2017
+34 o narmanlioglu and e zeydan new era in shared cran and core
+network a case study for efficient rrh usage in proc of ieee
+international conference on communications icc pp 17 may
+2017
+35 p muoz o sallent and j prezromero capacity selfplanning in
+small cell multit enant 5g networks in proc of 2nd ifipieee
+international workshop on management of 5g networks 5gman
+2017 may 2017
+36 d lpezprez m ding h claussen and a h jafari t owards 1
+gbpsue in cellular systems understanding ultradense small cell
+deployments in ieee communications surveys  tutorials vol 17
+no 4 pp 20782101 fourthquarter 2015
+37 3gpp t s 32101 telecommunication management principles and high
+level requirements release 12 september 2014 
+38 i siomina and d yuan  analysis of cell load coupling for lt e
+network planning and optimization ieee t ransactions on wireless
+communications vol 11 no 6 pp 2287 2297 2012
+39 3gpp  radio frequency rf system scenarios version 1200 201409 t r 36942
+40 3gpp  further advancements for eut ra physical layer aspects
+version 900 201003 t r 36814
+
+pablo muoz received his msc and phd
+degrees in telecommunication engineering from the
+university of mlaga in 2008 and 2013
+respectively from 2009 to 2013 he was a phd
+fellow in selfoptimization of mobile radio access
+networks upon completing his phd he worked as
+a research assistant within an rd contract with
+optimiericsson since 2016 he is the recipient of a
+spanish competitive grant juan de la cierva at the
+polytechnic university of catalonia
+
+view publication stats
+
+o riol sallent is a professor at the universitat
+politcnica de catalunya upc in barcelona he
+has participated in a wide range of european and
+national projects with diverse responsibilities as
+principal
+investigator
+coordinator
+and
+workpackage leader he regularly serves as a
+consultant for a number of private companies he
+has been involved in the organization of many
+different scientific activities such as conferences
+workshops special issues in renowed international
+journals etc he has contributed to standardisation
+bodies such as 3gpp ieee and et si
+he is coauthor of 13 books and has published 200 papers mostly in high impact ieee journals and renowed international conferences his research
+interests include 5g ran radio access network planning and
+management artificial intelligencebased radio resource management
+virtualisation of wireless networks cognitive management in cognitive radio
+networks and dynamic spectrum access and management among others
+
+jordi prezromero s98m04 is associate
+professor at the dept of signal t heory and
+communications of the universitat politcnica de
+catalunya upc in barcelona spain he received
+the t elecommunications engineering degree and
+the phd from the same university in 1997 and
+2001 respectively his research interests are in the
+field of mobile communication systems with a
+main focus of 5g covering radio resource and
+qos management selforganizing networks
+network slicing multitenancy and application of
+data analytics and artificial intelligence tools in the
+management of 5g networks he has been involved in different european
+projects as well as in projects for private companies he has published more
+than 200 papers in international journals and conferences and has coauthored
+two books on mobile communications he is associate editor of ieee
+vehicular t echnology magazine and eurasip journal on wireless
+communications networks
+

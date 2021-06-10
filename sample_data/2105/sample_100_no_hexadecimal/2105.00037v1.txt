@@ -1,0 +1,4802 @@
+Draft version May 4, 2021
+Typeset using LATEX twocolumn style in AASTeX631
+
+Unexpected Short-Period Variability in Dwarf Carbon Stars from the Zwicky Transient Facility
+Benjamin R. Roulston
+
+,1, 2, ∗ Paul J. Green
+
+,1 Silvia Toonen
+
+,3 and J. J. Hermes
+
+2
+
+1 Center
+
+for Astrophysics | Harvard & Smithsonian, 60 Garden Street, Cambridge, MA 02138, USA
+of Astronomy, Boston University, 725 Commonwealth Avenue, Boston, MA 02215, USA
+3 Anton Pannekoek Institute, University of Amsterdam, Science Park 904, 1098 XH Amsterdam, Netherlands
+
+arXiv:2105.00037v1 [astro-ph.SR] 30 Apr 2021
+
+2 Department
+
+(Received April 29, 2021)
+
+Submitted to ApJ
+ABSTRACT
+Dwarf carbon (dC) stars, main sequence stars showing carbon molecular bands, are enriched by
+mass transfer from a previous asymptotic-giant-branch (AGB) companion, which has since evolved to
+a white dwarf. While previous studies have found radial-velocity variations for large samples of dCs,
+there are still relatively few dC orbital periods in the literature and no dC eclipsing binaries have yet
+been found. Here, we analyze photometric light curves from the Zwicky Transient Facility for a sample
+of 944 dC stars. From these light curves, we identify 24 periodically variable dC stars. Remarkably, of
+the periodic dCs, 80% have periods less than a day. We also provide spectroscopic follow-up for four
+of these periodic systems, measuring radial velocity variations in three of them. Short-period dCs are
+almost certainly post-common-envelope binary systems, since the periodicity is most likely related to
+the orbital period, with tidally locked rotation and photometric modulation on the dC either from spots
+or from ellipsoidal variations. We discuss evolutionary scenarios that these binaries may have taken
+to accrete sufficient C-rich material while avoiding truncation of the thermally pulsing AGB phase
+needed to provide such material in the first place. We compare these dCs to common-envelope models
+to show that dC stars probably cannot accrete enough C-rich material during the common-envelope
+phase, suggesting another mechanism like wind-Roche lobe overflow is necessary. The periodic dCs in
+this paper represent a prime sample for spectroscopic follow-up and for comparison to future models
+of wind-Roche lobe overflow mass transfer.
+
+Keywords: Carbon stars (199), Chemically peculiar stars(226), Close binary stars (254), Common
+envelope evolution (2154), Spectroscopy (1558), Period search (1955)
+1. INTRODUCTION
+
+Carbon (C) stars are those that show molecular absorption bands of C, such as C2 , CN and CH, in their
+optical spectra (Secchi 1869). Intrinsic C stars have experienced C enrichment via dredge-up of fusion products from their cores. During the thermally pulsing
+(TP) phase of the asymptotic giant branch (AGB), shell
+He flashes cause strong convection in the shell regions
+bringing C into the atmosphere - the third dredge-up.
+Corresponding author: Benjamin Roulston
+broulston@cfa.harvard.edu
+∗
+
+SAO Predoctoral Fellow
+
+If the C/O ratio increases above unity, a giant C star
+is formed, since C preferentially binds with oxygen to
+form CO, leaving excess C to form the C molecules of
+C2 , CN and CH. Thus, it was long thought that all C
+stars were giants on the TP-AGB.
+This made it quite surprising when Dahn et al. (1977)
+found the first main-sequence C star, G77-61. This
+dwarf carbon (dC) star cannot have yet experienced fusion to create C enhancement, or the third dredge-up, as
+it is a main-sequence star. Dahn et al. (1977) put forth
+a few explanations of this C enhancement on the mainsequence, with the favored being that G77-61 was in a
+binary system and had experienced C enhanced mass
+transfer from a previous AGB companion. This former AGB companion would since have become a white
+
+2
+
+Roulston et al.
+
+dwarf (WD) and cooled until no longer detectable alongside the dC. Indeed this seemed to have been confirmed
+when Dearborn et al. (1986) found G77-61 to be a radial
+velocity (RV) binary with an orbital period of 245.5 d.
+Today, G77-61 is no longer the only known dC, with
+close to 1000 known in the literature. The majority of
+these dCs come from the Green (2013) and Si et al.
+(2014) samples which were found from all-sky spectroscopic surveys. This has included almost a dozen "smoking gun" systems in which the WD companion is sufficiently hot to be visible in the optical spectra as a spectroscopic composite (Heber et al. 1993; Liebert et al.
+1994; Green 2013; Si et al. 2014). These samples have
+shown that the dC stars are actually the most common
+type of C star in the Galaxy.
+Their carbon-enriched atmospheres make dCs the
+most likely progenitors of the carbon-enhanced metalpoor, CH, and possibly the Ba II stars, all showing carbon and s-process enhancements (Jorissen et al. 2016;
+De Marco & Izzard 2017). These stars, being more luminous than dCs, have been studied via RV campaigns,
+which have shown increased binarity compared to normal O-rich stars, indicating they have likely also experienced mass transfer from an unseen companion (Sperauskas et al. 2016). Barium dwarfs and CH subgiants
+show periods from RV analysis of 1–20 years (Escorza
+et al. 2019).
+Blue straggler stars are another class similar to dCs
+in that they may have experienced mass transfer from a
+previous AGB companion. As discussed by Gosnell et al.
+(2019), blue straggler stars in a cluster color-magnitude
+diagram are more luminous and bluer than the main sequence turnoff. While some are likely formed in mergers
+or collisions, most blue straggler stars are thought, like
+dC stars, to be the result of mass transfer from a giant to a main sequence dwarf. Most blue straggler stars
+are found in wide binaries with periods of order 1000
+days, consistent with expectations of mass transfer from
+an AGB star onto a main-sequence companion (Chen &
+Han 2008; Gosnell et al. 2014), which leaves a CO-core
+WD remnant (Paczyński 1971). Those blue straggler
+stars that form after mass transfer from an red giant
+branch star, yields a blue straggler in a shorter binary
+period (of order 100 days; Chen & Han 2008) leaving a
+He-core WD companion. The salient point relevant to
+dC stars is that significant mass is typically gained in
+these encounters.
+While dC stars are now known to be numerous, details of their properties remains sparse. This is especially true of their orbital properties. Currently, there
+are only six orbital periods for dCs in the literature.
+The first is of the dC prototype G77-61, found to be a
+
+single-line spectroscopic binary with an orbital period
+of 245.5 d (Dearborn et al. 1986). The central source of
+the Necklace Nebula was found to be a binary with a
+dC, which has a photometric period of 1.16 d (Corradi
+et al. 2011; Miszalski et al. 2013). The three longest
+period dCs in the literature are those from Harris et al.
+(2018) who found astrometric binaries with periods of
+1.23 yr, 3.21 yr, and 11.35 yr. The most recent dC period to be found was from Margon et al. (2018), who
+found a photometric period of 2.92 d and confirmed this
+as the orbital period with spectroscopic follow-up.
+There have also been large sample few-epoch spectroscopy campaigns of dCs. Whitehouse et al. (2018)
+conducted a few-epoch survey of 28 dCs finding RV variability in 21 of them, implying a high binary fraction.
+Roulston et al. (2019) conducted a larger survey of 240
+dCs using few-epoch spectroscopy from the Sloan Digital Sky Survey (SDSS; Blanton et al. 2017). They found
+that dCs are consistent with 100% binarity, with separations of order 1 au and periods of order 1 yr. Both
+the Whitehouse et al. (2018) and Roulston et al. (2019)
+surveys lacked enough spectral epochs to fit individual
+orbits and instead relied on statistical analysis to describe the dC population as a whole.
+de Kool & Green (1995) modeled the space density
+of dCs, and they predicted the dC period to be bimodal with peaks near 102 –103 d and 103 –105 d, consistent with the known periods listed above. de Kool &
+Green (1995) also found that the production of dCs is
+strongly dependent on metallicity, finding no dCs should
+be formed in systems with initial metallicity greater than
+half of solar (i.e. [Fe/H]> −0.3). This is in agreement
+with metallicity measurements of G77-61, where Plez &
+Cohen (2005) found [Fe/H] = −4.0, making G77-61 one
+of the lowest metallicity stars known. This also has been
+supported by Farihi et al. (2018) who found 30–60% of
+dCs to be halo objects, which are metal poor.
+The known dC periods span from ∼ 1 d to ∼ 4100 d,
+likely indicating different formation pathways. The
+longest dC periods that are of order 10s of years likely
+experienced only standard Roche-lobe overflow (RLOF)
+or wind-RLOF (WRLOF). These periods are consistent
+with other types of post-mass-transfer systems, such as
+the blue straggler stars.
+The dCs with periods . 1 d would have likely experienced common-envelope (CE) evolution (Paczynski
+1976; Ivanova et al. 2013), since the TP-AGB envelope
+expands to several 100s of solar radii. Of interest is how
+CE evolution affects dC formation. From the known dC
+periods, it is very likely that dCs with periods near a
+few days or less will experience some form of CE during
+the AGB phase of the evolved companion.
+
+ZTF Variability in Dwarf Carbon Stars
+Once the CE phase has started, the plunge-in of the
+lower-mass companion (in our case, the future dC) could
+truncate the evolution of the AGB by ejection of its envelope. If this happens before the TP-AGB phase and
+the third dredge-up, it is likely that the C enhancement
+needed for dC formation will not occur. However, if
+the CE begins after the AGB companion has already
+become a C-giant, then it may be possible for the mainsequence companion to accrete enough C-rich material
+from the CE to become a dC (depending on the accretion efficiency). If the accretion efficiency is not high
+enough, however, the main-sequence companion will not
+accrete enough material from the CE alone, requiring
+some combination of CE evolution with efficient mass
+transfer before the CE phase that is sufficient to transform an O-rich main-sequence star into a C-rich dC.
+Significant accretion of mass and angular momentum
+from the AGB companion could result in significant
+spin-up and subsequent activity in some dCs (Green
+et al. 2019). If there are dCs left in very tight orbits
+with the WD remnant, they may show tidally locked
+rotation periods (synchronous rotation), as well as tidal
+distortions causing ellipsoidal variations. A search for
+periodicity in photometrically variable dCs could reveal
+some systems useful for constraining their evolution.
+Another motivation to study variability in dCs is that
+no dC masses have yet been measured, because there
+are no known eclipsing dC systems. We can estimate
+dC masses from optical or infrared (IR) colors (see Section 6.2), but these estimates have uncharacterized systematics, due to differences between normal O-rich stars
+and C stars in the optical and IR regions.
+This lack of eclipsing dC systems highlights the importance of photometric surveys to search for the first
+well-characterized eclipsing dC systems. These systems
+could, when combined with RV follow-up, provide the
+first reliable dC mass measurements, and help us understand more about the amount, and composition, of
+accreted mass needed to form a dC.
+Margon et al. (2018) conducted a search for periodic
+dCs using the Palomar Transient Factory (PTF; Law
+et al. 2009; Rau et al. 2009), finding just one periodic dC.
+However, they clearly highlighted the potential for large
+photometric surveys to find periodic dCs, particularly
+dCs with short periods that should have experienced
+the strongest phases of CE mass transfer.
+In this paper we report on a unique sample of close
+binary dCs - implicating them as post-common envelope binaries (PCEBs) and likely pre-CVs - discovered
+from their periodic photometric variability in the Zwicky
+Transient Facility. In Section 2 we describe the sample
+of dCs we selected to search and in Section 3 we de-
+
+3
+
+tail our process for cleaning and preparing the raw light
+curves. In Section 4 we describe our process for finding
+which dCs have detected periodic signals. In Section 5
+we present spectroscopic follow-up for four of the periodic dCs in this paper. Finally, in Section 6 we present
+comparisons of these short period dCs to binary population synthesis models to understand how a commonenvelope phase relates to dC formation.
+2. SAMPLE SELECTION
+
+To search for variability in as many dCs as possible,
+we compiled a list of all dCs from the current literature. The largest contributor is the Green (2013) sample of carbon stars from the SDSS. We also selected
+a smaller number of dCs from Si et al. (2014) (who
+found dCs using a label propagation algorithm from
+SDSS DR8, yielding 96 new dC stars) and from Li et al.
+(2018) (who selected carbon stars from the Large Sky
+Area Multi-Object Fiber Spectroscopic Telescope survey (LAMOST; Cui et al. 2012) using a machine learning approach). Our resulting final sample consists of 944
+dCs.
+With our compiled sample, to ensure that any periodic candidate was indeed a dwarf carbon star, we used
+Gaia DR2 parallaxes, proper motions (Gaia Collaboration et al. 2018) and distances (Bailer-Jones et al. 2018).
+We required that each periodic C star had MG > 5 mag
+from Gaia DR2 based either on (1) significant parallax
+$/$err > 5 (18/24 periodic dCs) or (2) a significant
+proper motion (μ/σμ > 5) which sets an upper limit on
+the dC distance by limiting its transverse velocity to be
+less than an assumed Galactic escape velocity (Smith
+et al. 2007) of about 600 km/s (6/24 periodic dCs).
+3. LIGHT CURVE PROCESSING
+
+Using our list of dCs, we cross-matched our sample to
+the Zwicky Transient Facility DR3 (ZTF; Bellm et al.
+2019; Masci et al. 2019; Graham et al. 2019). We required a match to be within 200 of our target coordinates
+and each star having ≥ 10 epochs in the available ZTF
+filters.
+From the resulting matches, we grouped all sources
+detected within the match distance to our dC sample to
+ensure all epochs for each dC were included. The final
+sample of light curves resulted in 668 dCs with ZTF g
+light curves, 712 dCs with ZTF r light curves, and 406
+dCs with ZTF i light curves. We summarize the light
+curve sample for each filter in Table 1.
+For each light curve, we only used epochs for which
+the ZTF flag catflags == 0 (no ZTF flags), ensuring
+every epoch is of a high quality.
+We checked for any epochs which appear to be discrepant by performing an outlier removal on all the
+
+4
+
+Roulston et al.
+Table 1. Light Curve Statistics
+
+ZTF Filter
+
+Nstars
+
+ZTF g
+ZTF r
+ZTF i
+
+668
+712
+406
+
+N epochs
+111
+151
+19
+
+σNepochs
+118
+144
+8
+
+mag
+
+magerr
+
+19.36
+18.46
+18.15
+
+0.10
+0.06
+0.06
+
+Note-Statistics of the light curves in the three ZTF filters.
+For each filter we report the number of stars, the mean
+number of epochs, the standard deviation of the number
+of epochs, the mean magnitude, and the mean magnitude
+error.
+
+light curves. We first select from the raw light curve
+the brightest and faintest 5% of epochs. Within these
+brightest and faintest 5%, we calculate the median magnitude of each (i.e. the median of the 5% brightest and
+5% faintest) and the mean error of that same brightest and faintest 5%. We then removed any outliers that
+were 2σ brighter than the median of the brightest 5%,
+and removed those 2σ fainter than the median of the
+faintest 5%. If this selection dropped the number of
+epochs below 10, we removed that light curve from our
+analysis. This treament rejects most artifacts without
+removing genuine astrophysical variability.
+We checked the light curves for each dC, in each filter, to determine if each dC had detected variability by
+examining how the mean magnitude changed across the
+observed light curve time span. A number of dCs which
+show no periodic variability in our analysis in Section 4
+(and a few periodic dCs) show signs of non-periodic variability, as well as secular, long-term trends. These nonperiodic but variable dCs are of interest and may be
+signs of flaring, variable obscuration, or perhaps accretion onto the WD companion. They warrant further
+investigation, but we do not discuss them further in this
+paper.
+The light curves that show long-term trends of brightening or dimming on 100s of days timescales cause the
+mean magnitude to vary over the entire time span of the
+light curve. This variable mean magnitude can cause
+issues with our period search. Therefore, we removed
+these long term trends by fitting out a third-order polynomial to the raw light curve.
+4. PERIODIC VARIABILITY
+
+For each light curve, we searched for periodic signals
+down to a minimum period of 0.1 d using the the LombScargle periodogram (Lomb 1976; Scargle 1982). We
+selected the highest peak, and if this peak corresponds
+to an instrumental alias (1d, 29.5d, 1yr, etc.) or a harmonic of one of these aliases (1/2, 1/3, 1/4, 1/5, 2, 3, 4,
+5), we removed that signal from the light curve and re-
+
+calculated the periodogram until the highest-power frequency was not an alias (we counted a frequency not
+as an alias if it was more than 150 frequency bins away
+from the pure alias frequency, i.e. more than 0.005 d−1
+away from an alias).
+For the highest remaining peak, we calculated the
+false-alarm probability (VanderPlas 2018). We required
+that log (FAP) ≤ −5 in at least one filter for us to select
+a specific dC as a periodic candidate, more conservative
+than e.g., the log (FAP) ≤ −3 used in the recent ZTF
+periodic variable catalog of Chen et al. (2020).
+For the dCs which have light curves selected as periodic candidates, we checked for any possible harmonic
+confusion in the found period. For each dC, in each
+filter, we plot a power spectrum from the LS analysis.
+This is used to determine how strong the highest-power
+frequency is compared to the log (FAP) limit and the
+background peaks. Figure 1 shows an example power
+spectrum for an object with a very strong periodic signal and shows clear peaks (with 1-d aliasing) above the
+background.
+In some cases, the strongest peaks were aliases, typically harmonics of 1 month, that overwhelmed the power
+spectrum. For these dCs, we inspected each power spectrum in conjunction with phased light curves. If another non-alias peak (i.e., with a frequency more than
+0.005 d−1 away from an alias) was found in the power
+spectrum meeting our FAP limit, that new peak was selected as the period for that dC. If no non-alias peaks
+could be found, the dC candidate was removed from our
+sample.
+Some dCs show strong periodic signals in one filter,
+but do not reach our FAP limit in the other available
+filters. For these dCs, if one filter has a period that
+meets our FAP limit and that period is visible in the
+other filter, we include that second filter even if its FAP
+does not meet our limit. This makes it possible for some
+dCs to have a log (FAP) ≥ −5 in a filter if they have
+log (FAP) ≤ −5 in another filter.
+For all periodic dC candidates selected after inspection
+of their power spectra, we plotted phased light curves
+folded on the highest selected peak period. In addition,
+we plotted 8 different harmonics of that period (1/2,
+1/3, 1/4, 1/5, 2, 3, 4, 5) to check for aliases caused
+by gaps in the observational coverage. Using this plot,
+we calculated model-fit statistics (e.g., χ2 ) and selected
+which period harmonic has the best model fit. We used
+the best period to phase the light curve, to which we fit
+the final periodic model.
+Figure A1 (Appendix) shows the phased light curves
+for all of the periodic dC candidates. Each light curve is
+plotted twice in phase to clearly show the periodic vari-
+
+5
+
+17.3
+17.4
+
+Residual
+
+r mag
+
+ZTF Variability in Dwarf Carbon Stars
+
+0.1
+0.0
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+Power
+
+0.6
+0.4
+0.2
+log(FAP) = -5.0
+0.0
+1
+
+2
+
+3
+
+4
+
+5
+6
+Frequency [d−1 ]
+
+7
+
+8
+
+9
+
+10
+
+Figure 1. Example light curve and power spectrum for the dC SDSS J151905.96+500702.9. This dC shows a clear and strong
+signal at 3.3 d−1 (with 1-d aliasing) that stands out above the low noise background in the power spectrum. The red horizontal
+line represents the peak height needed for a signal to meet our log (FAP) ≤ −5 criterion. Grey vertical dashed lines mark the 1-d
+aliases caused by gaps in data collection, and the best period from our analysis is marked by an arrow. The highest significance
+peak is used to fold the observed light curve, yielding the phase-folded light curve in the top panel. The best fitting model (see
+Section 4) is marked by the red solid line.
+
+ability. The red line in each plot represents the best-fit
+model (as described below) and the residuals are shown
+below each light curve.
+Our best-fit models were computed using the automatic Fourier decomposition (AFD) method, as detailed in Torrealba et al. (2015). We set an upper limit on the number of Fourier series terms of
+nmax = 6 to reduce over-fitting. No significant nonharmonic terms were included; though one dC, LAMOST J062558.33+023019.4, showed different peaks in
+its power spectrum between the g and r filters with the
+second highest peak in each filter being the highest peak
+in the other. The best AFD model was used to calculate
+the amplitude and epoch of brightest time (t0 ) for each
+light curve. We removed any dC for which the folded
+light curve shows no clear periodic signal or for which
+the amplitude of the variability was less than 0.005 mag.
+Table 2 contains the properties for this final periodic
+dC sample. We estimated errors for the best found
+period using a Markov-Chain Monte Carlo (MCMC)
+method. For each dC, in each filter with a detected period, we started 50 MCMC walkers in a Gaussian around
+the detected period. We sampled the walkers for 10,000
+steps each, at each step using the phase dispersion minimization technique (Stellingwerf 1978) to calculate the
+likelihood at each walker position. We used the 1σ of
+the marginalized period distribution as the photometric
+period error for that dC. However this is only a statis-
+
+tical error, and does not account for the possibility that
+we have selected an alias rather than the true period.
+Our final dC sample contains 24 individual dCs that
+are periodic in at least one ZTF filter. Given the wide
+initial orbits necessary for progenitor dC systems to
+avoid truncation of the TP-AGB phase before enough
+C-rich material can be transferred, it is remarkable that
+19 (80%) of these dCs have periods < 1 d, indicating
+they should have experienced a common-envelope (CE)
+phase. The likely origins of the variability in these dCs
+include spot rotation on the dC or tidal distortion of the
+dC atmosphere from being in a close orbit with a WD.
+Since many of these dCs have short periods, we assume
+that these systems would have experienced a CE phase
+and have circularized and synchronized (Hurley et al.
+2002). However, if the light curve variability is from the
+dC being tidally distorted, our detected period would be
+half the orbital period (even with 2× longer true orbital
+periods, these systems should still have experienced a
+CE phase). Tidal distortion should introduce a nonsinusoidal shape to the light curves. However, there is
+little evidence of this in our sample, lending some evidence that most of the detected variability is probably
+from spot rotation. Therefore, the origin of the variability in these dCs is not yet fully known without comparison to spectroscopic RV follow-up.
+
+01h31m19.05s
+
+02h35m30.65s
+
+02h35m30.65s
+
+04h16m05.11s
+
+05h02m40.82s
+
+06h25m58.34s
+
+06h25m58.34s
+
+12h23m57.63s
+
+12h30m45.52s
+
+12h30m45.52s
+
+12h58m29.52s
+
+13h03m59.18s
+
+13h12m42.28s
+
+13h12m42.28s
+
+13h20m00.23s
+
+14h22m06.55s
+
+15h04m30.01s
+
+15h19m05.93s
+
+15h19m05.93s
+
+15h24m10.64s
+
+15h24m34.12s
+
+15h32m42.01s
+
+15h32m42.01s
+
+15h36m55.72s
+
+16h00m38.48s
+
+16h04m18.38s
+
+18h47m35.72s
+
+19h23m55.93s
+
+22h08m10.01s
+
+22h08m10.01s
+
+23h41m30.74s
+
+23h41m30.74s
+
+23h41m30.74s
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
++15d19m43.21s
+
++15d19m43.21s
+
++15d19m43.21s
+
++25d17m30.16s
+
++25d17m30.16s
+
++44d58m32.23s
+
++40d59m43.56s
+
++52d31m13.71s
+
++36d14m51.26s
+
++41d04m45.94s
+
++55d16m38.50s
+
++55d16m38.50s
+
++44d49m55.86s
+
++45d36m56.94s
+
++50d07m03.13s
+
++50d07m03.13s
+
++56d16m03.60s
+
++34d09m49.18s
+
++50d35m25.74s
+
++55d55m54.82s
+
++55d55m54.82s
+
++05d09m38.62s
+
++44d52m06.48s
+
++41d09m43.47s
+
++41d09m43.47s
+
++55d01m51.45s
+
++02d30m19.43s
+
++02d30m19.43s
+
++40d23m23.59s
+
++50d28m28.52s
+
++02d25m18.58s
+
++02d25m18.58s
+
++37d20m25.30s
+
+Decl (J2015.5)
+
+r
+
+i
+
+g
+
+r
+
+g
+
+r
+
+g
+
+g
+
+g
+
+r
+
+r
+
+g
+
+g
+
+g
+
+r
+
+g
+
+g
+
+g
+
+g
+
+r
+
+g
+
+r
+
+g
+
+r
+
+g
+
+r
+
+r
+
+g
+
+r
+
+g
+
+r
+
+g
+
+r
+
+Filter
+
+300
+
+49
+
+262
+
+158
+
+149
+
+858
+
+507
+
+887
+
+94
+
+398
+
+462
+
+424
+
+174
+
+88
+
+740
+
+712
+
+254
+
+123
+
+244
+
+202
+
+222
+
+81
+
+153
+
+308
+
+298
+
+590
+
+94
+
+94
+
+154
+
+178
+
+121
+
+100
+
+164
+
+Ngood
+
+1
+
+0
+
+4
+
+3
+
+2
+
+2
+
+7
+
+2
+
+1
+
+1
+
+2
+
+0
+
+1
+
+1
+
+0
+
+1
+
+0
+
+0
+
+1
+
+1
+
+2
+
+0
+
+1
+
+0
+
+1
+
+4
+
+2
+
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+
+Nrejects
+
+17.686
+
+17.503
+
+18.331
+
+14.570
+
+15.739
+
+16.286
+
+17.457
+
+16.839
+
+21.37
+
+13.224
+
+15.878
+
+16.896
+
+20.84
+
+21.48
+
+17.333
+
+17.606
+
+20.13
+
+21.13
+
+20.37
+
+14.120
+
+15.843
+
+17.101
+
+19.77
+
+16.567
+
+18.362
+
+17.404
+
+13.877
+
+14.586
+
+17.126
+
+14.378
+
+16.678
+
+17.995
+
+0.025
+
+0.027
+
+0.036
+
+0.011
+
+0.014
+
+0.013
+
+0.019
+
+0.017
+
+0.24
+
+0.012
+
+0.012
+
+0.019
+
+0.18
+
+0.23
+
+0.018
+
+0.024
+
+0.14
+
+0.21
+
+0.17
+
+0.012
+
+0.014
+
+0.020
+
+0.11
+
+0.019
+
+0.042
+
+0.022
+
+0.013
+
+0.016
+
+0.020
+
+0.014
+
+0.015
+
+0.030
+
+0.018
+
+[mag]
+
+[mag]
+17.273
+
+μmagerr
+
+μmag
+
+0.1343
+
+0.1343
+
+0.1343
+
+0.4225
+
+0.4224
+
+0.1109
+
+0.3290
+
+0.3421
+
+0.1351
+
+0.3327
+
+0.3273
+
+0.3316
+
+0.3365
+
+0.3365
+
+0.30237
+
+0.30236
+
+0.3286
+
+0.2012
+
+0.3413
+
+0.83817
+
+0.83867
+
+0.6473
+
+0.1986
+
+0.8826
+
+0.8825
+
+0.16817
+
+7.5942
+
+7.5942
+
+4.3999
+
+6.8176
+
+0.62409
+
+0.62419
+
+1.3768
+
+[d]
+
+P
+
+0.0038
+
+0.0065
+
+0.0071
+
+0.0016
+
+0.0015
+
+0.0031
+
+0.0024
+
+0.0059
+
+0.0042
+
+0.0051
+
+0.0027
+
+0.0014
+
+0.0025
+
+0.0023
+
+0.00030
+
+0.00070
+
+0.0031
+
+0.0039
+
+0.0025
+
+0.00092
+
+0.00066
+
+0.0016
+
+0.0023
+
+0.0014
+
+0.0013
+
+0.00123
+
+0.0028
+
+0.0070
+
+0.0074
+
+0.0047
+
+0.00049
+
+0.00056
+
+0.0013
+
+[d]
+
+σP
+
+-52.12
+
+-6.47
+
+-42.72
+
+-17.47
+
+-11.05
+
+-12.40
+
+-6.51
+
+-6.59
+
+-6.26
+
+-6.49
+
+-1.08
+
+-7.28
+
+-5.26
+
+-8.13
+
+-176.30
+
+-6.67
+
+-6.25
+
+-6.22
+
+-8.11
+
+-13.09
+
+-8.67
+
+-12.13
+
+-5.77
+
+-20.64
+
+-4.74
+
+-10.57
+
+-5.26
+
+-7.23
+
+-21.88
+
+-5.13
+
+-7.76
+
+-5.72
+
+-14.29
+
+logProb
+
+0.1113
+
+0.1047
+
+0.1392
+
+0.0477
+
+0.0590
+
+0.0150
+
+0.0353
+
+0.0124
+
+0.43
+
+0.0162
+
+0.0086
+
+0.0247
+
+0.42
+
+1.07
+
+0.118
+
+0.0189
+
+0.186
+
+0.43
+
+0.166
+
+0.0316
+
+0.0523
+
+0.0741
+
+0.217
+
+0.0371
+
+0.096
+
+0.040
+
+0.058
+
+0.0653
+
+0.0740
+
+0.0234
+
+0.0471
+
+0.087
+
+0.0548
+
+[mag]
+
+Amp
+
+0.0083
+
+0.022
+
+0.017
+
+0.0050
+
+0.0092
+
+0.0039
+
+0.0048
+
+0.0033
+
+0.15
+
+0.0043
+
+0.0031
+
+0.0051
+
+0.14
+
+0.27
+
+0.010
+
+0.0049
+
+0.052
+
+0.11
+
+0.061
+
+0.0048
+
+0.0055
+
+0.013
+
+0.070
+
+0.0060
+
+0.031
+
+0.012
+
+0.010
+
+0.0097
+
+0.0093
+
+0.0059
+
+0.0079
+
+0.018
+
+0.0079
+
+[mag]
+
+σAmp
+
+58838.0935
+
+58434.1315
+
+58846.0300
+
+58836.8913
+
+58836.0530
+
+58829.0031
+
+58811.8830
+
+58831.3190
+
+58727.1146
+
+58836.2825
+
+58836.3992
+
+58831.3312
+
+58669.1575
+
+58707.8545
+
+58836.2916
+
+58831.430
+
+58757.8375
+
+58846.3853
+
+58846.4287
+
+58835.2132
+
+58846.3943
+
+58685.6129
+
+58846.5600
+
+58846.4359
+
+58846.5215
+
+58846.4770
+
+58832.0195
+
+58838.899
+
+58845.2718
+
+58840.82322
+
+58845.67436
+
+58835.76302
+
+58845.8269
+
+[d]
+
+t0
+
+0.0038
+
+0.0064
+
+0.0071
+
+0.0016
+
+0.0015
+
+0.0031
+
+0.0024
+
+0.0059
+
+0.0042
+
+0.0051
+
+0.0027
+
+0.0014
+
+0.0025
+
+0.0023
+
+0.0013
+
+0.017
+
+0.0031
+
+0.0039
+
+0.0025
+
+0.0012
+
+0.0011
+
+0.0017
+
+0.0023
+
+0.0017
+
+0.0016
+
+0.0013
+
+0.0081
+
+0.010
+
+0.0086
+
+0.00827
+
+0.00080
+
+0.00086
+
+0.0019
+
+[d]
+
+σt0
+
+Note-Periodic properties of dwarf carbon stars found in this paper. For each dC, we list light curve properties of the observed ZTF filter, the
+mean magnitude and mean magnitude error. We include the selected best period, the logarithm of the false-alarm-probability for that period,
+the amplitude of variability from the best fit model at that period, and the time of light curve maximum brightness. Finally, we include a few
+diagnostics including the number of terms in our model fit and the resulting reduced χ2 of the model.
+
+R.A. (J2015.5)
+
+Index
+
+Table 2. Periodic dC Light Curve Properties
+
+1
+
+1
+
+2
+
+1
+
+2
+
+2
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+3
+
+4
+
+6
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+2
+
+1
+
+5
+
+5
+
+2
+
+1
+
+1
+
+1
+
+1
+
+1
+
+1
+
+Nterms
+
+1.80
+
+1.37
+
+2.30
+
+2.57
+
+3.49
+
+1.83
+
+4.15
+
+1.57
+
+2.35
+
+1.16
+
+1.32
+
+1.70
+
+1.14
+
+1.79
+
+1.40
+
+1.14
+
+1.04
+
+1.27
+
+1.54
+
+2.48
+
+5.34
+
+1.23
+
+1.68
+
+1.17
+
+1.75
+
+1.35
+
+5.84
+
+3.00
+
+1.41
+
+1.50
+
+2.24
+
+1.93
+
+1.89
+
+χ2ν,fit
+
+6
+Roulston et al.
+
+ZTF Variability in Dwarf Carbon Stars
+5. SPECTROSCOPIC FOLLOW-UP
+
+To constrain the origins of the photometric variability
+we have begun spectroscopic follow-up of the periodic
+dCs discovered here. We report spectroscopic follow-up
+for four of these dCs: SDSS J151905.96+500702.9, SDSS
+J123045.53+410943.8, LAMOST J062558.33+023019.4
+(referenced further on as J1519, J1230, J0625 respectively) and SBSS 1310+561.
+5.1. Spectroscopic Set-Up
+The dCs J1519 and J1230 were observed with the Binospec spectrograph on the MMT telescope (Fabricant
+et al. 2019). For all observations, we used the 0.8500 slit
+with the 600 l mm−1 grating centered on 7250 Å, giving
+coverage from 6000 Å to 8000 Å covering Hα and the
+CN bands. The reduced spectra have a dispersion of
+0.61 Å pix−1 with R≈3590. All Binospec data were reduced using the standard Binospec reduction pipeline1
+(Kansky et al. 2019).
+The dC J0625 was observed with the Magellan Echellette (MagE; Marshall et al. 2008) spectrograph on the
+Magellan Baade Telescope. All observations used the
+0.8500 slit and were reduced using the MagE reduction pipeline2 (Chilingarian 2020). The reduced spectra
+cover from about 3200 Å to 10000 Å with R≈4500.
+Observations for SBSS 1310+561 were acquired at
+the 1.5m Fred Lawrence Whipple Observatory (FLWO)
+telescope with the FAST spectrograph (Fabricant et al.
+1998) using the 600 l mm−1 grating and the 1.500 slit,
+which provides wavelength coverage from 6000 Å to
+8000 Å at 1.5 Å spectral resolution.
+5.2. SDSS J151905.96+500702.9
+One of the more interesting dCs in our periodic sample, with photometric periodicity detected with highest
+significance, is SDSS J151905.96+500702.9 (also known
+as CBS 311; we use J1519 in the rest of this paper), a
+dC+DA spectroscopic composite binary. J1519 was discovered by Liebert et al. (1994) and has been studied
+on numerous occasions (Farihi et al. 2010; Green 2013;
+Whitehouse et al. 2018; Ashley et al. 2019; Roulston
+et al. 2019; Green et al. 2019). However, this is the first
+reporting of its periodic variability.
+J1519 (r = 17.3 mag) has four epochs of optical spectra in the SDSS, with the most recent spectrum shown in
+the top panel of Figure 2. The spectrum of J1519 shows
+a dC with a hot DA WD companion, as well as Hα emission. Whitehouse et al. (2018) and Roulston et al. (2019)
+1
+2
+
+https://bitbucket.org/chil sai/binospec/wiki/Home
+https://bitbucket.org/chil sai/mage-pipeline/src/master/
+
+7
+
+found RV variability using few-epoch spectroscopy with
+∆RVmax of 46.8 ± 15.8 km s−1 and 44 ± 20 km s−1 ,
+respectively. Farihi et al. (2010) conducted a study of
+WD–red dwarf systems, including J1519, using the Hubble Space Telescope. They found J1519 to be unresolved,
+placing the constraint on its separation of < 10 au.
+5.2.1. J1519 WD Model Fits
+Since J1519 is a spectroscopic dC+DA composite, we
+can fit WD model atmospheres to the WD component
+to fit Teff and log(g) using the SDSS spectra. Bédard
+et al. (2020) fit WD models and found fit values of
+31233±213 K and 7.97±0.05 respectively.
+Farihi et al. (2010) found that spectroscopically fit
+WD parameters are often biased due to a cool companion. To update the fits of Bédard et al. (2020), we
+performed our own model atmosphere fits to the DA
+component of J1519 using the synthetic WD model atmospheres of Levenhagen et al. (2017). We first fit the
+late type dC (dCM) template of Roulston et al. (2020)
+to the SDSS spectrum of J1519 by finding the best-fit
+velocity, shifting the template, and then scaling it to the
+flux near Hα. We then removed the dC spectrum from
+the total spectrum, leaving just the WD component. We
+then fit the visible Balmer lines from Hβ and blue-ward
+to the entire grid of WD model spectra. We interpolated the grid of WD model spectra to include half-steps
+in the model space. Our best-fitting model parameters
+for Teff and log(g) were 31000±500 K and 7.85±0.05, respectively, and can be seen in Figure 2. The black line is
+the single SDSS spectrum with the highest S/N shifted
+to the rest-frame, and the blue line is the best fit WD
+model spectrum. We did not use Hα for the WD fit as
+the dC component contributes most to the spectrum in
+emission. In addition, we did not use the H9 line, as
+only half of the line is visible in the SDSS spectrum.
+The WD temperature of our fit is in good agreement
+with that of Bédard et al. (2020). However, our log(g) is
+0.12 dex lower, resulting in both our WD mass and cooling age being lower than those in Bédard et al. (2020).
+For the purposes of this paper, we adopt our fit values
+of log(g) and Teff . The WD properties we use can be
+found in Table 3, with the mass, radius, and cooling age
+coming from the models of Fontaine et al. (2001).
+
+5.2.2. J1519 Radial Velocities
+Although RV variability has been detected in J1519,
+there are no published RV orbital fits for this system.
+Based on our photometric analysis, we found a period
+of 0.30237 ± 0.00070 d (∼ 7 hr) for J1519. Therefore,
+we conducted a spectroscopic monitoring of J1519 using
+
+8
+
+Roulston et al.
+Table 3. J1519 WD Properties
+Parameter
+
+Value
+
+Error
+
+Source
+
+Teff [K]
+log g [dex]
+M [M ]
+R [R ]
+Tcool [Myr]
+
+31000
+7.85
+0.57
+0.015
+7.7
+
+500
+0.05
+0.02
+0.001
+0.2
+
+(1)
+(1)
+(2)
+(2)
+(2)
+
+Note-Best
+fit
+model
+parameters
+for the DA component of SDSS
+J151905.96+500702.9. Each parameter
+lists the source used: (1) this paper (2)
+from evolutionary models of Fontaine
+et al. (2001)
+
+the MMT spectroscopic setup as was described in Section 5.1. On the nights of 2020 August 19 and 20, we
+observed a sequence of 21×200 s exposures, on the night
+of 2020 August 22 we observed 27×200 s exposures, and
+on the nights 2021 April 21 and 23 we observed 24×230 s
+exposures. The exposures on each night were then coadded in threes, resulting in seven final epochs on the
+first two nights, nine epochs on the third night, and eight
+on each of the last two nights for a combined total of 39
+epochs (with about 600 s total exposure each), with an
+average S/N ≈ 5 for all epochs in the continuum region
+near Hα.
+Since the full spectrum includes both stellar components, we measured the RV from the Hα emission line,
+presumed to come from the dC atmosphere alone. First,
+for each epoch, we re-scaled the late-type (dCM) dC
+template of Roulston et al. (2020) to the flux in our
+MMT spectrum in the region of 6300–6500 Å. We then
+used this as the model for the dC continuum level of that
+epoch, which was used to calculate the Hα emission line
+center, equivalent width and associated errors. The RV
+measurements have an average error of approximately
+5 km s−1 , and the equivalent width measurements have
+an average error of approximately 0.18 Å.
+Figure 2 shows the measured RV (middle) and Hα
+equivalent widths (bottom) for J1519. To fit the RV
+curve, we used the rvfit program which uses a simulated adaptive annealing procedure, the details of which
+can be found in Iglesias-Marzoa et al. (2015). We left
+all parameters free to be fit, with the solution quickly
+converging to a circular orbit. We therefore refit the RV
+curve leaving all parameters free again except for the
+eccentricity, which we fix to e = 0.0. The resulting bestfit model can be seen in Figure 2 (red curve) and the fit
+parameters can be found in Table 4.
+The best fitting orbital period from the RVs
+(0.327526 ± 0.000012 d) is longer than the best photometric period by 0.02516 ± 0.00070 d (about 36 minutes). Fixing the period in the RV fitting procedure
+
+to that of the photometric period results in a poorer
+model fit, with the longer period model being a better fit at the 3.2σ level. The best-fit semi-amplitude of
+K2 = 33.3±1.4 km s−1 (∆RVmax = 2K = 66.6 km s−1 )
+is in agreement with the RV variations found by Whitehouse et al. (2018) and Roulston et al. (2019), as their
+random epochs likely did not catch the true RV amplitude. However, the low measured semi-amplitude suggests an extremely low inclination of this system, with
+i ≈ 10◦ if we take our estimated dC mass of 0.4 M from
+Section 6.2.
+One possible explanation for a longer orbital period
+than photometric period is that J1519 was spun up by
+the accretion that it experienced, and has not yet synchronized the rotation and orbital periods in the approximate 8 Myr since mass transfer stopped (assuming the
+mass transfer ceased at the same time the WD formed).
+Green et al. (2019) analyzed Chandra observations of
+J1519 (as well as five other Hα emission dCs) and found
+it to show X-ray emission consistent with having a short
+rotation period, which would lend support to the accretion spin-up scenario. Deeper photometric imaging and
+RV follow-up, particularly of the WD component, could
+even better characterize this system. It is clear, however,
+that this dC has both photometric and RV variability
+on a <0.33-d timescale, indicating it most likely has a
+short orbital period and formed through a CE event.
+5.3. SDSS J123045.53+410943.8
+Another interesting dC is SDSS J123045.53+410943.8
+(J1230), whose SDSS spectrum is shown in Figure 3.
+J1230 shows the C2 and CN lines typical of late type
+dC stars, but also shows strong absorption lines of K
+and a strong CaH band near 6800 Å. Additionally, this
+dC shows strong emission lines of Hα, Hβ, Hγ, Hδ, and
+Ca H and K. Unlike J1519, there is no visible WD component in the spectrum of J1230.
+We observed J1230 (r = 16.6 mag) with the Binospec
+spectrograph on the 6.5m MMT using the setup described in Section 5.1. We took 6×266 s spectra on the
+nights of 2021 February 3, 5, 7, 8, 9, 11 and 15. This
+resulted in a total of 42 spectra, with an average S/N
+of 13 in the continuum region near Hα. We measured
+the line center and equivalent widths of the Hα line, as
+well as for the two K lines visible in our MMT spectra of
+J1230. The emission and absorption lines have the same
+velocities, indicating the are coming from the same region. We average these velocities to measure the RV for
+each of the 42 epochs.
+In the same method as J1519, we used the rvfit program to fit the RV curve of J1230. For this dC, we left
+all parameters free for fitting, with the resulting best
+
+9
+
+H8
+H
+Hδ
+
+Hα
+
+C2
+
+5000
+
+CN CN
+CN
+
+C2
+
+6000
+7000
+Wavelength [Å]
+
+2.0
+1.5
+
+Hγ
+Hβ
+
+Hβ
+C2
+
+H9
+
+1.0
+
+CNCNCN
+
+8000
+
+9000
+
+10000 −150 −75
+
+0
+75
+∆λ [Å]
+
+Normalized Flux
+
+125
+100
+75
+H8
+50 H
+Hδ
+25
+Hγ
+0
+−25
+4000
+
+0.5
+150
+
+30
+0
+−30
+−60
+−4
+
+WHα
+[Å]
+
+Vr
+[km s−1 ]
+
+Flux Density
+[10−17 erg s−1 cm−2 Å−1 ]
+
+ZTF Variability in Dwarf Carbon Stars
+
+−2
+0
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+Figure 2. TOP: SDSS spectrum for the dC+DA SDSS J151905.96+500702.9, in black. The hot WD is visible, as are the
+carbon bands of C2 and CN. The spectrum also shows Hα emission. The best fitting model atmosphere to the DA component
+of the dC+WD composite J1519 is shown in blue, with the inset to the right showing a zoomed-in, stacked view of the Balmer
+lines used in the model fit (the black lines are the normalized flux of the WD component, and the blue lines are the best fitting
+model atmosphere, dashed grey lines means that that Balmer line was not used in the fit due to poor quality). The resulting
+dC component - simply the observed spectrum with the WD model subtracted - is shown in red. MIDDLE: RV as measured
+from the Hα line for J1519, phased on the time of periastron passage from the RV fit, and the fit RV period of 0.327526 d. The
+red solid line represents the best fitting model. BOTTOM: Equivalent widths measured from the Hα line, phased on the fit RV
+period of 0.327526 d. The blue curve is the best-fit model to the data of a single sinusoid. The y-axis has been inverted so that
+smaller equivalent width values (more emission) are up.
+
+period fit matching that of the photometric light curve
+(P = 0.8826 ± 0.0014 d). We, therefore, fix the period
+to the photometric period and the eccentricity to 0.0,
+and refit the RVs. The resulting best fit can be found
+in Table 4 and the phased RV curve in Figure 3. As
+with J1519, we find the parameter errors using a MCMC
+method centered around the best fit parameters.
+The best fit gives a circular orbit with a semiamplitude of K2 = 123.0 ± 0.7 km s−1 . If we use our
+estimated dC mass from Section 6.2 (0.25 M ) and an
+assumed WD mass of 0.6 M the implied inclination of
+this system is around i = 55◦ .
+The presence of multiple emission lines of H and Ca
+may suggest that the photometric variability of J1230
+may be coming from re-processing of the WD flux on
+the surface of the dC. Even though the WD companion to J1230 is not hot enough to be seen in the optical
+spectrum, it may be warm enough to still heat the surface of the dC. If this is true, we could expect the dC to
+be at maximum brightness when the WD-facing side is
+pointed toward us maximally, i.e. when the dC is moving transversely on the sky, between the ascending and
+
+descending nodes. Comparing the light curve of J1230
+to the RVs however shows this is not the case, as if it
+were, we would expect the RV to be moving to the descending node after the photometric maximum, which
+the RV curve for J1230 is 0.33 out of phase with. This
+suggests that the photometric variability may not be
+coming from re-processing, but rather from spot rotation on an active dC (with the emission lines indicating
+chromospheric activity). We do note that the uncertainties on our epoch of maximum brightness and period
+make it difficult for such precise comparison so many
+cycles after our light curve t0 , which could cause us to
+incorrectly predict the phase when our spectroscopy was
+collected in 2021 February by up to 0.75 cycles. Followup photometry should improve the ephemeris and allow
+a more confident comparison.
+5.4. SBSS 1310+561
+We observed SBSS 1310+561 (r = 14.1 mag) using the
+FAST spectrograph on the 1.5m telescope at FLWO using the setup described in Section 5.1. We took 3×300 s
+spectra during the nights of 2021 February 10 and 11,
+
+10
+Flux Density
+[10−17 erg s−1 cm−2 Å−1 ]
+
+Roulston et al.
+180
+150
+120
+90
+60
+30
+0
+−30
+
+Hα
+Ca K
+Ca H
+Hδ Hγ
+C2
+4000
+
+Hβ
+
+C2
+MgH
+
+C2
+5000
+
+C2
+
+NaD
+
+Ca CaH
+
+CN CN
+CN
+CaH
+
+6000
+
+7000
+
+K
+
+CN CN CN
+
+8000
+
+9000
+
+100
+0
+−100
+−4
+
+WHα
+[Å]
+
+Vr
+[km s−1 ]
+
+Wavelength [Å]
+
+−2
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+Figure 3. TOP: SDSS spectrum for the dC SDSS J123045.53+410943.8. The typical carbon bands of C2 and CN for late
+type dCs are labeled. Additionally, clear and strong emission of Hα, Hβ, Hγ, Hδ, and Ca H and K are visible. Middle: RV
+as measured from the Hα and K I lines for SDSS J123045.53+410943.8, folded at the photometric period of 0.8826 d. The red
+dashed line represents the best fitting model. Bottom: Equivalent widths measured from the Hα line, phased on the photometric
+period. The blue curve is the best fit single sinusoid model to the data, while the grey dotted line is the average equivalent
+width value. The y-axis has been inverted so that smaller equivalent width values (more emission) are up. We do not detect
+any significant variation in phase for the equivalent width, to a limit of <1.50 Å.
+
+and 6×300 s spectra on the night of 2021 February 12
+for a total of 12 spectra with an average S/N of 32 in
+the continuum region near Hα.
+Unlike with our MMT and Magellan observations,
+because of observing time constraints on our awarded
+FAST time, these spectra were only observed close to
+the quadrature phases based on the ZTF photometry
+(P = 0.83867 ± 0.00066 d). We assumed that the photometric period corresponds to the orbital period, and
+used t0 from the light curve to calculate the expected
+times that SBSS 1310+561 should be at the quadrature
+phases (φ = 0.25 and φ = 0.75). Our actual observations
+were taken at phases φ = 0.59±0.02 and φ = 0.83±0.01
+(these uncertainties only take into account the span of
+phases the spectra were taken and not the uncertainty
+from the light curve t0 , which may be substantial - up to
+0.5 in phase after the approximately 460 orbits between
+the light curve observations and the spectroscopy).
+From these spectra, we measured the RV at φ = 0.59
+to be Vr = 31.9 ± 7.5 km s−1 and the RV at φ = 0.83
+to be Vr = −83 ± 11 km s−1 . Taking the difference
+in these two velocities for this system (∆RV = 115 ±
+13 km s−1 ) can place a lower limit on the semi-amplitude
+of K2 > 57 ± 7 km s−1 . Using our estimated mass
+
+from Section 6.2 (0.34M ) and an assumed WD mass
+of 0.6 M , this constrains the inclination to i ≥ 24◦ (if
+i = 60◦ , then we would expect K2 = 122 km s−1 ). Since
+the phase difference between our two epochs is quite
+small, this ∆RV suggests that SBSS 1310+561 is in a
+tight orbit and is very likely a PCEB.
+5.5. LAMOST J062558.33+023019.4
+The dC LAMOST J062558.33+023019.4 (hereafter
+J0625, r = 13.9 mag) was observed on the nights of 2021
+January 11 and 12 using the Magellan MagE instrument
+setup described in Section 5.1. Each night, we observed
+15×300 s exposures. The final reduced spectra consists
+of 30 epochs with an average S/N of 22 each in the continuum region near Hα.
+Using the Hα emission line, we measured the RV of
+J0625 for each epoch. We found no evidence for RV
+variability, nor any variability in Hα equivalent width.
+We found the RV to vary with only a standard deviation
+of 3.9 km s−1 , and with a maximum ∆RV = 12.1 ± 3.2
+km s−1 . In addition, cross-correlation of the spectra
+across epochs resulted in no significant measured RV
+variations. Using our estimated mass from Section 6.2
+(0.84 M ) and an assumed WD mass of 0.6 M , this
+
+ZTF Variability in Dwarf Carbon Stars
+Table 4. Radial Velocity Fits
+Parameter
+
+J1519
+
+P [d]
+Tp [MJD]
+e
+ω [deg]
+γ [km s−1 ]
+K2 [km s−1 ]
+a2 sin i [R ]
+f (m1 , m2 ) [M ]
+χ2ν
+Nobs
+Time span [d]
+rms2 [km s−1 ]
+
+0.327526 ± 0.000012
+59080.2085 ± 0.0053
+a
+0.0
+a
+90.0
+-1.7 ± 2.3
+33.3 ± 1.4
+0.2153 ± 0.0090
+0.00125 ± 0.00016
+2.6
+39
+247.2
+11.6
+
+J1230
+a
+0.883
+59265.07955 ± 0.00059
+a
+0.0
+a
+90.0
+-2.9 ± 0.5
+123.0 ± 0.7
+2.15 ± 0.01
+0.170 ± 0.003
+0.97
+42
+12.15
+2.5
+
+a Parameter fixed during fitting.
+Note-Fit parameters from the radial velocity follow-up. The value
+for each parameter is given as the median of the marginalized distribution of the MCMC samples. The errors for each parameter are
+the 1σ values from the marginalized distribution of the MCMC samples. Additionally, derived values for the orbital separation (a sin i)
+and mass function (f (m1 , m2 )) are given.
+
+places a constraint on the inclination of i ≤ 7◦ (if
+i = 60◦ , then we would expect K2 = 44 km s−1 ). This
+may suggest that the photometric variability is not related to the orbital period in this system since such a
+low inclination (and low semi-amplitude) is unlikely if
+the photometric period of 7.5942 d represents the orbital
+period. Hence, this system adds weight to the evidence
+that the photometric variability in dCs may often be
+due to spot rotation.
+6. COMMON ENVELOPE CONNECTION
+
+For the progenitor of the dC companion to become a
+C giant, it must enter the third-dredge up phase (Iben
+1974). AGB stars have a degenerate CO core with a
+double-shell (moving outward from the core) of helium
+and hydrogen. As the hydrogen shell (which produces
+most of the energy) continues to fuse H into He, the
+helium shell surrounding the core continues to grow.
+Eventually, the helium shell experiences runaway fusion,
+driving expansion of the envelope material above. This
+He-shell "flash" and expansion means the star is now
+in the thermally pulsing AGB (TP-AGB) phase. Helium shell fusion causes the inter-shell region to become
+strongly convective, dredging helium fusion products to
+the surface, i.e., the third dredge-up. As the expansion
+continues, the pressure in the helium shell will drop,
+eventually stopping its energy production. The layers
+contract again with hydrogen shell fusion resuming, and
+the cycle repeats.
+Each successive thermal pulse becomes stronger,
+reaching deeper into the intershell zone, and the stellar radius increases (Iben & Renzini 1983). As helium
+
+11
+
+shell fusion products are brought to the surface, it is
+possible that the envelope carbon abundance increases
+until C/O > 1. Since C preferentially binds with O, C2
+and CN bands only appear when C/O> 1, forming a C
+giant star.
+AGB stars going through the TP-AGB phase can
+reach radii of 800 R (3.7 au) as they experience successively stronger thermal pulses (Marigo et al. 2017). Assuming an AGB mass of 2.5 M , AGB radius of 800 R ,
+and a dC mass of 0.4 M , this system would experience
+the beginning of a common-envelope (CE) with an initial period of ≈ 4.2 yr (if the dC mass is 1.0 M instead,
+then P≈ 3.8 yr). Therefore, dCs with initial periods
+≈ 4 yr (1500 d) or less will very likely have experienced
+a CE phase, corresponding to the shorter-period peak
+modeled by de Kool & Green (1995). The dCs in this
+paper with P< 1 d are most certainly the result of a CE
+spiral-in. Of the six dC periods in the current literature,
+two of them have P< 3 d, so have likely experienced a
+CE. It seems then that many dCs may have experienced
+a CE phase.
+Dell'Agli et al. (2021) recently studied the extreme
+AGB stars (those AGB stars which have extremely red
+mid-IR colors, e.g. Gruendl et al. 2008) and showed that
+the the excess dust and outflow densities of these stars
+may be explained by envelope stripping in a CE event.
+Their models suggest that these extreme AGB stars are
+actually post-common-envelope binaries (PCEBs) with
+orbital periods of order 1 d, matching the periods for dCs
+in our sample. Dell'Agli et al. (2021) also found that
+the CE in their models starts after the rapid growth
+of the AGB radius, once the C/O ratio increases past
+unity, which corresponds well with the requirements for
+producing the short-period dCs we find. This makes
+these extreme AGB stars potential progenitors systems
+of the dCs that are in the CE phase currently.
+However, is mass accretion during a CE phase the
+most likely mass transfer mechanism to form dCs? We
+can address this question by looking at our periodic dC
+sample in the context of models that simulate expected
+binary populations.
+6.1. Binary Population Synthesis Models
+We used the binary population synthesis (BPS) models of Toonen & Nelemans (2013) to see if the observed
+population of dCs can be reproduced by theory. The
+full details of the BPS models can be found in Toonen
+& Nelemans (2013) and are briefly described here.
+These BPS models were created using the SeBa
+(Portegies Zwart & Verbunt 1996; Nelemans et al. 2001;
+Toonen et al. 2012; Toonen & Nelemans 2013) population synthesis code. This code generates an initial pop-
+
+12
+
+Roulston et al.
+
+ulation of binaries and simulates their evolution, taking
+into account processes such as stellar winds, magnetic
+breaking, mass transfer, common-envelope, and angular
+momentum loss. The initial stellar population is generated from the classical BPS distributions found in Toonen & Nelemans (2013) via a Monte Carlo method. The
+resulting binaries are then convolved with a Galactic
+model including a star formation history that depends
+on time and location in the Milky Way based on Boissier
+& Prantzos (1999) so that the simulated binaries can be
+compared to our observed sample.
+For the synthetic populations used here, the commonenvelope phase is modeled on the basis of the energy
+budget i.e. the classical α-formalism of Tutukov & Yungelson (1979). We discuss the results of two different
+models here that account for two different CE efficiencies: model αα and αα2 which have αλ of 2 and 0.25,
+respectively. The parameter λ is the structure parameter of the envelope to calculate the envelope binding
+energy (Paczynski 1976; Webbink 1984; de Kool et al.
+1987; Livio & Soker 1988; de Kool 1990; Xu & Li 2010).
+The α parameter describes the efficiency with which orbital energy is consumed to unbind the CE. A smaller
+value of α implies less efficient usage of orbital energy,
+and therefore a stronger shrinkage of the orbital period
+during the CE-phase. We do not consider the orbital
+angular momentum method of Nelemans et al. (2000),
+as this model does not reproduce the observed characteristics of the general PCEB (WD/main sequence) population (Toonen & Nelemans 2013).
+Furthermore, the BPS models here allow for accretion during the common-envelope phase. The accretion
+rate is limited by the thermal timescale of the accretor
+times a factor that is dependent on the stellar radius and
+the corresponding Roche lobe (Portegies Zwart & Verbunt 1996; Toonen et al. 2012) following Kippenhahn
+& Meyer-Hofmeister (1977); Neo et al. (1977); Packet
+& De Greve (1979); Pols & Marinus (1994). The total
+accreted mass is then given by the integral of the accretion rate times the timescale of the CE event, which
+here is taken to be 100 yr. This timescale is consistent
+with hydrodynamical simulations (Ricker & Taam 2008;
+Ivanova et al. 2013) and observations of hot subdwarf
+binaries (Igoshev et al. 2020), although cataclysmic variables may suggest a longer CE timescale, up to 104 yr
+(Michaely & Perets 2019; Igoshev et al. 2020).
+6.2. BPS Comparison to Observed dC Sample
+We use the resulting model population for a direct
+comparison to our observed sample of short-period dCs,
+assuming the photometric period is the current orbital
+period. To do this, we estimated dC masses based on
+
+their infrared absolute magnitude MK in the K band.
+Comparisons of M dwarf spectra (Ivanov et al. 2004)
+to C star spectra (Tanaka et al. 2007) reveal them to
+be much more similar in the infrared than in the optical region. We used Ks band (2.159 μm) magnitudes
+from the Two Micron All-Sky Survey (2MASS; Skrutskie et al. 2006). Six of our periodic dCs do not have Ks
+band magnitudes. For these, we first fit Gaia absolute
+G band (MG ) to the dCs that do have Ks band magnitudes. This fit was then used to convert the Gaia MG
+into MKs for the dCs lacking Ks band magnitudes. We
+then fit MKs for our dCs to stellar masses using data
+from Kraus & Hillenbrand (2007). This fitting also provides us with bolometric luminosities for the dCs in our
+sample. Comparing our bolometric luminosities to those
+provided in Green et al. (2019) (who used a spectral energy distribution method fitting 0.35 − 12.5 μm) for the
+four dCs that overlap, we find our luminosities agree
+within 3%, indicating our dC mass estimates should be
+reliable.
+Our mass estimates can be found in Table 5. We find
+that none of our dCs are fit with masses > 1 M or
+< 0.2 M , in agreement with the range for which detectable C2 , CN, and CH bands are expected. We note
+that some of the lowest mass dCs may have been brown
+dwarfs or even planets before they accreted significant
+C-enriched material from their former AGB companion.
+Using the mass-radius relationship for main-sequence
+stars of Eker et al. (2018), we estimate the radius for
+these periodic dCs as well, which are included in Table 5.
+Using these estimated radii we calculate the Roche-lobe
+filling factor (RLFF), using the equation of Eggleton
+(1983) to find the Roche radii. Three out of 24 of our
+periodic dCs may be experiencing RLOF back onto the
+WD (all have a RLFF > 1 in Table 5). However, we
+caution that physical parameters are derived from Orich main-sequence models, which may not accurately
+represent all dCs. For example, (1) we do not know
+the mass of the unseen WD companion and assume it
+is 0.6 M (2) we assume these mass-radius and MK mass relations hold for dCs, as they do for normal Orich stars (3) dCs are thought to be of a lower metallicity
+population and studies have found that low metallicity
+M dwarfs may have smaller radii (Kesseli et al. 2019) and
+(4) since dCs may have increased activity and magnetic
+fields due to their mass accretion, their radii may be
+inflated (Kesseli et al. 2018). We see no obvious evidence
+of flickering or accretion outbursts in any of our ZTF
+light curves that might indicate current RLOF back onto
+the WD.
+
+13
+
+ZTF Variability in Dwarf Carbon Stars
+Table 5. Periodic dC Parallaxes, Distances, and Estimated Physical Parameters
+R.A. (J2015.5)
+
+01h31m19.05s
+02h35m30.65s
+04h16m05.11s
+05h02m40.82s
+06h25m58.34s
+12h23m57.63s
+12h30m45.52s
+12h58m29.52s
+13h03m59.18s
+13h12m42.28s
+13h20m00.23s
+14h22m06.55s
+15h04m30.01s
+15h19m05.93s
+15h24m10.64s
+15h24m34.12s
+15h32m42.01s
+15h36m55.72s
+16h00m38.48s
+16h04m18.38s
+18h47m35.72s
+19h23m55.93s
+22h08m10.01s
+23h41m30.74s
+
+Decl. (J2015.5)
+
++37d20m25.30s
++02d25m18.58s
++50d28m28.52s
++40d23m23.59s
++02d30m19.43s
++55d01m51.45s
++41d09m43.47s
++44d52m06.48s
++05d09m38.62s
++55d55m54.82s
++50d35m25.74s
++34d09m49.18s
++56d16m03.60s
++50d07m03.13s
++45d36m56.94s
++44d49m55.86s
++55d16m38.50s
++41d04m45.94s
++36d14m51.26s
++52d31m13.71s
++40d59m43.56s
++44d58m32.23s
++25d17m30.16s
++15d19m43.21s
+
+a
+σ$
+
+b
+d
+
+b
+σd
+
+[mas]
+
+[mas]
+
+[pc]
+
+[pc]
+
+1.12
+1.678
+2.946
+1.237
+2.410
+1.911
+5.736
+2.564
+1.44
+9.538
+1.45
+0.99
+0.54
+2.274
+1.11
+0.96
+1.490
+2.76
+0.53
+0.997
+11.404
+1.238
+4.121
+0.27
+
+0.11
+0.085
+0.015
+0.086
+0.024
+0.079
+0.056
+0.097
+0.10
+0.023
+0.16
+0.42
+0.23
+0.064
+0.33
+0.20
+0.030
+0.12
+0.40
+0.046
+0.025
+0.048
+0.053
+0.12
+
+944
+590
+335
+840
+409
+521
+173
+394
+722
+105
+726
+3133
+2660
+437
+2004
+1236
+666
+357
+3460
+975
+87
+802
+241
+2685
+
+88
+30
+2
+62
+3
+21
+1
+14
+58
+1
+74
+549
+418
+14
+440
+211
+16
+14
+595
+41
+1
+28
+3
+482
+
+$
+
+a
+
+a
+BP - RP
+[mag]
+1.60
+1.61
+1.19
+1.61
+1.10
+1.79
+2.14
+1.95
+1.53
+1.91
+1.82
+1.53
+1.38
+0.77
+1.78
+2.00
+1.34
+1.00
+1.53
+1.11
+2.26
+1.36
+1.56
+1.04
+
+a
+MG
+
+MK
+
+MdC
+
+[mag]
+
+[mag]
+
+[M ]
+
+7.63
+7.93
+6.04
+7.58
+5.94
+9.03
+10.38
+10.09
+7.96
+9.10
+9.52
+7.58
+7.10
+9.08
+8.48
+8.89
+6.91
+5.57
+7.48
+6.26
+10.80
+6.90
+7.75
+5.67
+
+5.03
+5.21
+4.16
+5.00
+4.11
+5.89
+6.79
+6.59
+5.23
+5.93
+6.20
+c
+5.01
+c
+4.74
+5.92
+c
+5.54
+c
+5.80
+4.63
+3.93
+c
+4.95
+4.28
+7.08
+4.62
+5.10
+3.97
+
+0.61
+0.57
+0.83
+0.62
+0.84
+0.42
+0.25
+0.29
+0.57
+0.41
+0.36
+0.62
+0.68
+0.41
+0.49
+0.44
+0.71
+0.89
+0.63
+0.80
+0.21
+0.71
+0.60
+0.88
+
+log10 (Lbol /L )
+[erg s−1 ]
+−1.02
+−1.12
+−0.50
+−1.00
+−0.47
+−1.50
+−1.94
+−1.85
+−1.13
+−1.52
+−1.66
+−1.00
+−0.85
+−1.51
+−1.31
+−1.45
+−0.78
+−0.36
+−0.97
+−0.57
+−2.07
+−0.78
+−1.06
+−0.39
+
+RdC
+
+RLFF
+
+[R ]
+0.53
+0.49
+0.77
+0.54
+0.79
+0.35
+0.23
+0.25
+0.49
+0.34
+0.30
+0.54
+0.61
+0.35
+0.42
+0.37
+0.64
+0.85
+0.55
+0.74
+0.20
+0.64
+0.52
+0.83
+
+0.25
+0.40
+0.11
+0.12
+0.11
+0.78
+0.20
+0.57
+0.39
+0.27
+0.44
+0.92
+0.72
+0.52
+0.55
+0.51
+0.73
+0.89
+1.22
+0.79
+0.36
+1.53
+0.54
+1.61
+
+a From Gaia Collaboration et al. (2020)
+b From Bailer-Jones et al. (2021)
+cM
+
+K interpolated from MG
+
+Note-Distances and magnitudes for the periodic dCs in our sample. We use the Gaia distances, colors, and magnitudes, as well as the 2MASS absolute
+K magnitudes to estimate masses and bolometric luminosities for our dCs. For the solar bolometric luminosity, we adopt the value log10 L = 33.58.
+We also calculate the Roche-lobe filling factor (RLFF) under the assumption of a 0.6 M WD companion. We calculate the mass errors to be of order
+0.05 M , the log10 (Lbol /L ) errors to be of order 0.1, and the radius errors to be of order 0.05 R . However, we caution that physical parameters
+are derived from O-rich main-sequence models, which may not accurately represent all dCs.
+
+To compare the BPS models directly to our observed
+dC sample, we applied a series of cuts and selection effects to the models, as follows: (1) P < 100 d (2) r mag
+< 19.5 (3) MdC ≤ 1 M (4) 1.0 <MZAMS < 4 M (5)
+the initial primary must be a TP-AGB star at the onset of the CE phase. Here, MdC is the current mass of
+the main sequence companion in the BPS models, and
+MZAMS is the initial mass of the primary at the beginning of the models (which will become the AGB donor).
+We show the resulting BPS models in Figure 4 and
+Figure 5 - models αα2 and αα, respectively. In both
+figures, the BPS models are shown as the colored 2D
+histogram in mass and period (note that the histogram
+color scale is logarithmic and its range is different for
+each plot), and the periodic dC stars from this paper
+represented as the red scatter points (with KDE contours). The dashed black line represents the RLOF
+boundary, with systems occupying the region to the left
+
+(shaded in grey) filling their Roche lobes, under the assumption of a 0.6 M WD companion. Both figures also
+show a histogram of the estimated mass accreted during
+the CE phase (assumed to last 100 yr).
+Figure 4 shows model αα2 (αλ = 0.25) and includes
+three different magnetic braking prescriptions. Panel (a)
+uses the magnetic braking of Rappaport et al. (1983),
+panel (b) that of Ivanova & Taam (2003) and panel (c)
+that of Knigge et al. (2011). Again, the color scale is
+logarithmic and its range is different for each sub-figure.
+Model αα2, however, does not reproduce the mass distribution of our dCs very well, generating low mass systems than observed (still under the assumption that our
+physical parameters derived from O-rich main-sequence
+models apply to dCs). While it may be that model αα2
+does not produce low mass dCs, we have not considered
+our sample selection effects in this comparison. Our observed sample is likely biased toward lower mass dCs as
+
+14
+
+Roulston et al.
+1.0
+
+1.0
+10
+
+0.8
+
+0.4
+
+101
+
+M [M ]
+
+0.6
+
+102
+
+0.5
+0.4
+
+0.3
+
+0.1
+−1.5
+
+10
+−1.0
+
+−0.5
+
+0.0
+log(P) [d]
+
+0.5
+
+1.0
+
+10
+−1.0
+
+−0.5
+
+0.0
+log(P) [d]
+
+0.5
+
+1.0
+
+0
+
+0.1
+−1.5
+
+1.5
+
+101
+10−1
+
+Number of Objects
+
+Number of Objects
+
+103
+
+103
+101
+10−1
+
+0.0000 0.0005 0.0010 0.0015 0.0020 0.0025 0.0030
+Accreted Mass [M ]
+
+100
+−1.0
+
+−0.5
+
+0.0
+log(P) [d]
+
+0.5
+
+1.0
+
+1.5
+
+105
+
+105
+
+105
+
+101
+
+0.2
+
+0.1
+−1.5
+
+1.5
+
+0.5
+
+0.3
+
+0.2
+0
+
+102
+
+0.6
+
+0.4
+
+101
+
+0.3
+
+0.2
+
+0.7
+
+103
+101
+10−1
+
+0.0000
+
+0.0001
+
+(a)
+
+0.0002
+0.0003
+Accreted Mass [M ]
+
+(b)
+
+0.0004
+
+0.0000
+
+0.0001
+
+0.0002
+0.0003
+Accreted Mass [M ]
+
+0.0004
+
+(c)
+
+Figure 4. Binary population syntheses results for model αα2, which is the model with lower common-envelope efficiency
+(αλ = 0.25) in which less orbital energy goes to unbinding the CE. The background heat map shows the number of systems
+(colored on a log scale) in model αα2 going through a CE phase while the primary is in the TP-AGB phase. The plotted masses
+are for the secondary (i.e. the dC) and periods are for the currently observed system. Each panel uses a different magnetic
+braking formalism: (a) magnetic braking from Rappaport et al. (1983) (b) magnetic braking from Ivanova & Taam (2003) (c)
+magnetic braking from Knigge et al. (2011). The red plus scatter markers are our observed short period dC sample without
+Hα emission, while the purple triangles are dCs which show Hα emission. The red contours are a KDE contour for the entire
+periodic dC sample. The dashed black curve represents the boundary for current dC systems to be experiencing RLOF, where
+systems to the left in the grey shaded region may be experiencing RLOF. The bottom panel shows a histogram of the estimated
+mass accreted by the secondary during the CE phase. While this model (αα2) reproduces the period distribution better than
+model αα (see Figure 5), the estimated accreted mass is even lower than that of αα because of the lower CE efficiency. Since
+>0.03 M of mass transfer is likely required to create a dC, a CE is not likely to be the primary mechanism for accretion to
+form a dC.
+
+(1) they have stronger C2 and CN bands, and (2) their
+variability is fractionally larger and so easier to detect.
+Model αα (Figure 5) uses a higher CE efficiency (αλ =
+2) similar to classical BPS studies and includes the standard magnetic braking of Rappaport et al. (1983). From
+Figure 5, it is seen that this model is unable to reproduce the short periods of our observed dC sample. This
+is in agreement with the conclusions based on the SDSS
+PCEBs (WD+MS systems; Zorotovic et al. 2010; Toonen & Nelemans 2013; Camacho et al. 2014), where Toonen & Nelemans (2013) found that standard efficiency
+(αλ = 2) CE was also unable to reproduce the observed
+periods, as it generated too many long-period PCEBs.
+A crucial shortfall is that the estimated mass accreted
+for all models is too small to convert a main-sequence
+star into a dC (see Section 7 for a discussion). Miszalski et al. (2013) suggest that to shift the secondary
+envelope from approximately solar (C/O)i ∼ 1/3 to the
+observed (C/O)f > 1 requires ∆M2 = 0.03–0.35 M for
+M2 = 1.0–0.4 M . The predicted mass accretion in our
+BPS models is lower than this by 2−3 orders of magni-
+
+tude. Together with the strong mismatch between the
+modeled and observed dC period-mass distributions, it
+seems clear that there must be further mass accretion
+outside the brief CE phase.
+Qualitatively it is also possible to argue that accretion during CE evolution is rarely significant for nondegenerate companions. The common envelope itself
+typically possesses much higher specific entropy than
+the surface of the accretor, with the consequence that
+matter accreted by the companion star reaches pressure
+equilibrium at the surface of that star with much higher
+temperature, and vastly lower density, than the accretors initial surface layer. A temperature inversion or
+roughly isothermal layer is expected to bridge this entropy jump with the result that, over the duration of
+the CE evolution (which is much shorter than the thermal time scale of the accretor), the accretor is thermally
+isolated from the common envelope, while the common
+envelope itself becomes increasingly tenuous.
+A solution to the under-prediction of accreted mass
+may be that more mass accretion may take place be-
+
+Number of systems
+
+0.5
+
+0.7
+
+103
+
+0.8
+Number of systems
+
+102
+
+0.6
+
+Number of systems
+
+M [M ]
+
+0.9
+103
+
+0.8
+
+0.7
+
+Number of Objects
+
+1.0
+
+0.9
+
+3
+
+M [M ]
+
+0.9
+
+15
+
+ZTF Variability in Dwarf Carbon Stars
+1.0
+0.9
+103
+
+0.8
+
+M [M ]
+
+0.6
+
+102
+
+0.5
+0.4
+
+Number of systems
+
+0.7
+
+101
+0.3
+0.2
+
+Number of Objects
+
+0.1
+−1.5
+
+100
+−1.0
+
+−0.5
+
+0.0
+log(P) [d]
+
+0.5
+
+1.0
+
+1.5
+
+105
+103
+101
+10−1
+0.0000 0.0025 0.0050 0.0075 0.0100 0.0125 0.0150
+Accreted Mass [M ]
+
+Figure 5. Binary population synthesis results for model
+αα, which is the model with higher CE efficiency (αλ = 2).
+The background heat map shows the number of systems (colored on a log scale) in model αα going through a commonenvelope phase while the primary is on the TP-AGB phase.
+The plotted masses are for the secondary (i.e. the dC) and
+periods are for the currently observed system, including standard magnetic braking from Rappaport et al. (1983). The
+red plus scatter markers are our observed short period dC
+sample without Hα emission, while the purple triangles are
+dCs which show Hα emission. The red contours are a KDE
+contour for the entire observed dC sample. The dashed black
+curve represents the boundary for current dC systems to be
+experiencing RLOF, where systems to the left in the grey
+shaded region may be experiencing RLOF. The bottom panel
+shows a histogram of the estimated mass accreted onto the
+secondary during the CE phase. This model (αα) does not
+reproduce our observed dC period distribution, as it does not
+produce periods below 1d, as well as not being able to accrete enough mass (>0.03 M ) we expect necessary to form
+dCs.
+
+fore the CE phase, but during the TP-AGB phase, by
+wind accretion during wind-RLOF (WRLOF; Mohamed
+& Podsiadlowski 2007). WRLOF is a mass transfer
+state that lies between standard wind mass transfer and
+standard RLOF, where the wind of the primary star
+is focused toward the secondary star. This results in
+increased mass transfer efficiency as compared to the
+
+standard Bondi-Hoyle-Lyttleton case (Hoyle & Lyttleton 1939; Bondi & Hoyle 1944).
+In the WRLOF regime, the primary is technically not
+filling its Roche lobe. However, low-velocity wind matter is funneled through the Roche lobe to the companion,
+allowing for mass transfer to take place in binaries with
+wider orbits than the classical RLOF case. WRLOF
+would boost dC formation since, if the initial orbital
+separation is too small, the expanding AGB atmosphere
+can cause a CE before the third dredge-up can turn the
+AGB into a C star.
+A variety of simulations (Abate et al. 2013; Saladino
+et al. 2018, 2019; Saladino & Pols 2019) have shown
+that WRLOF in binaries with AGB primaries can have
+mass-transfer efficiencies of 40-50%. For an average
+AGB wind mass loss rate of 10−7 –10−4 M yr−1 (Höfner
+2015), a main sequence companion could accrete enough
+material (∼ 0.35M ) in only 103 –106 yr, within the time
+an AGB star is expected to stay a C star (106 yr; Marigo
+et al. 2017). WRLOF has also been shown to efficiently
+tighten the orbit (Saladino et al. 2018; Chen et al. 2018)
+so that more systems could be driven towards orbits
+with the periods we find.
+Indeed, it appears the WRLOF may be the dominant
+mass transfer mechanism for many chemically peculiar
+stars. Abate et al. (2013) showed that simulations of
+AGB binaries with WRLOF were better able to reproduce the observed formation rates of the CEMP-s
+stars. Saladino et al. (2019) and Saladino & Pols (2019)
+also performed simulations finding AGB binaries with
+WRLOF were consistent with the observed properties of
+the CEMP-s, CH, and Ba stars. This further strengthens the connection between dCs, WRLOF, and the other
+chemically peculiar stars.
+However, detailed modeling of the WRLOF in the specific case of the TP-AGB phase with a C star is needed to
+understand how the larger stellar radii of AGB-C stars
+and the increased dust formation often found in their
+winds affect the WRLOF mass transfer efficiencies. The
+periodic dCs in this paper represent a prime sample that
+is ready for spectroscopic follow-up and for comparison
+to future models of WRLOF mass transfer.
+7. SUMMARY
+
+We searched ZTF light curves of a sample of 944 dCs
+for signs of periodic signals. We found 24 dCs with signs
+of significant photometric variability, with 80% having
+P< 1 d. The most likely origins of this periodicity is
+either from spot rotation or surface heating of the dC
+from the close WD companion. Even if the detected
+ZTF periods arise from ellipsoidal variations and represent half the orbital period, such short periods are sur-
+
+16
+
+Roulston et al.
+
+prising for dC stars, which require significant accretion
+to turn them into the C-enriched dwarfs we see today.
+Spectroscopic follow-up is needed to determine the
+source of the variability in each of these periodic dCs,
+especially to ensure for the case of spot rotation that
+the system is circularized and tidally locked so that the
+rotation period can be assumed to equal the orbital period (i.e. that our reported photometric periods correspond to both rotational and orbital periods). The
+periodic dCs in this paper provide a rich new sample to
+target for spectroscopic follow-up, as well as to study
+dC formation and properties. We have confirmed the
+photometric period as the orbital period for one dC for
+which we have obtained spectroscopic follow-up. In two
+other dCs we have confirmed that they must have short
+orbital periods from their RVs (not confirming the photometric period as the orbital period however). In all
+three cases, these short (P< 1 d) orbits indicate these
+dCs have indeed experienced a CE phase.
+These short periods indicate that at least some dCs
+will experience a CE at some point in their formation,
+with the dCs having P< 1 d experiencing substantial
+plunge-in. We used binary population synthesis models to show that the observed sample of dCs is not
+well-reconstructed by mass transfer during the commonenvelope phase alone, since the dCs in our sample require at least 0.03 M of mass accretion but our models predict 2–3 orders of magnitude less transfer during the CE phase, suggesting mass accretion before the
+CE phase. However, some systems such as cataclysmic
+variables indicate CE timescales an order or two longer
+(Michaely & Perets 2019; Igoshev et al. 2020) than our
+assumed 100 yr (based on Ricker & Taam 2008; Igoshev et al. 2020), which may substantially increase the
+amount of accreted material to the point that the CE
+alone could provide enough mass to form a dC.
+Hydrodynamical simulations of CE evolution typically
+find that accretion onto a non-degenerate companion is
+not common, because of the entropy barrier between the
+companion and the surrounding material (e.g. Ivanova
+et al. 2013, for a review). In fact, even in the case of neutron star companions, which can accrete more efficiently
+due to neutrino cooling, accretion is limited to . 0.1M
+(MacLeod & Ramirez-Ruiz 2015). Further modeling of
+the CE phase involving C-AGBs may provide further
+insight.
+dC systems that begin as very wide binaries would
+experience stable mass transfer and a widening of the
+orbit. Systems that initially are close would begin a
+CE phase either during the red giant branch or during
+the AGB before the TP-AGB and, without experiencing the third dredge-up during the TP-AGB, would not
+
+produce dCs. Therefore, it seems that the most likely
+mass transfer mechanism to form dCs is WRLOF.
+Further modeling of WRLOF in binaries with a TPAGB star are needed to fully test this formation pathway
+of dCs. Additionally, further work is needed to understand the relationship between initial dC metallicity and
+mass to constrain the amount (and composition) of material that needs to be accreted to form a dC. This would
+be an important step in constraining the mass-transfer
+efficiency in the WRLOF case.
+
+Facilities: FLWO:1.5m (FAST), Magellan:Baade
+(MagE), MMT (Binospec)
+Software:
+
+Astropy (Astropy Collaboration et al.
+2013, 2018), Corner (Foreman-Mackey 2016), Matplotlib
+(Hunter 2007), Numpy (Harris et al. 2020), Scipy (Virtanen et al. 2020), Scikit-learn (Pedregosa et al. 2011),
+TOPCAT (Taylor 2005)
+We gratefully acknowledge useful discussions with
+Jeremy Drake. ST acknowledges support from the
+Netherlands Research Council NWO (VENI 639.041.645
+grants).
+Spectroscopic observations reported here were obtained
+at the MMT Observatory, a joint facility of the Smithsonian Institution and the University of Arizona.
+Photometric light curves used herein are based on observations obtained with the Samuel Oschin 48-inch
+Telescope at the Palomar Observatory as part of the
+Zwicky Transient Facility project. ZTF is supported
+by the National Science Foundation under Grant No.
+AST-1440341 and a collaboration including Caltech,
+IPAC, the Weizmann Institute for Science, the Oskar
+Klein Center at Stockholm University, the University
+of Maryland, the University of Washington, Deutsches
+Elektronen-Synchrotron and Humboldt University, Los
+Alamos National Laboratories, the TANGO Consortium
+of Taiwan, the University of Wisconsin at Milwaukee,
+and Lawrence Berkeley National Laboratories. Operations are conducted by COO, IPAC, and UW.
+
+ZTF Variability in Dwarf Carbon Stars
+Funding for the Sloan Digital Sky Survey IV has been
+provided by the Alfred P. Sloan Foundation, the U.S.
+Department of Energy Office of Science, and the Participating Institutions.
+SDSS-IV acknowledges support and resources from
+the Center for High Performance Computing at the University of Utah. The SDSS website is www.sdss.org.
+SDSS-IV is managed by the Astrophysical Research
+Consortium for the Participating Institutions of the
+SDSS Collaboration including the Brazilian Participation Group, the Carnegie Institution for Science,
+Carnegie Mellon University, Center for Astrophysics
+| Harvard & Smithsonian, the Chilean Participation
+Group, the French Participation Group, Instituto de
+Astrofı́sica de Canarias, The Johns Hopkins University, Kavli Institute for the Physics and Mathematics
+of the Universe (IPMU) / University of Tokyo, the Korean Participation Group, Lawrence Berkeley National
+Laboratory, Leibniz Institut für Astrophysik Potsdam
+(AIP), Max-Planck-Institut für Astronomie (MPIA Heidelberg), Max-Planck-Institut für Astrophysik (MPA
+Garching), Max-Planck-Institut für Extraterrestrische
+Physik (MPE), National Astronomical Observatories of
+China, New Mexico State University, New York University, University of Notre Dame, Observatário Nacional / MCTI, The Ohio State University, Pennsylvania State University, Shanghai Astronomical Observatory, United Kingdom Participation Group, Universidad
+Nacional Autónoma de México, University of Arizona,
+University of Colorado Boulder, University of Oxford,
+University of Portsmouth, University of Utah, University of Virginia, University of Washington, University of
+Wisconsin, Vanderbilt University, and Yale University.
+
+17
+
+18
+
+Roulston et al.
+REFERENCES
+
+Abate, C., Pols, O. R., Izzard, R. G., Mohamed, S. S., & de
+Mink, S. E. 2013, A&A, 552, A26,
+doi: 10.1051/0004-6361/201220007
+Ashley, R. P., Farihi, J., Marsh, T. R., Wilson, D. J., &
+Gänsicke, B. T. 2019, MNRAS, 484, 5362,
+doi: 10.1093/mnras/stz298
+Astropy Collaboration, Robitaille, T. P., Tollerud, E. J.,
+et al. 2013, A&A, 558, A33,
+doi: 10.1051/0004-6361/201322068
+Astropy Collaboration, Price-Whelan, A. M., Sipőcz, B. M.,
+et al. 2018, AJ, 156, 123, doi: 10.3847/1538-3881/aabc4f
+Bailer-Jones, C. A. L., Rybizki, J., Fouesneau, M.,
+Demleitner, M., & Andrae, R. 2021, AJ, 161, 147,
+doi: 10.3847/1538-3881/abd806
+Bailer-Jones, C. A. L., Rybizki, J., Fouesneau, M.,
+Mantelet, G., & Andrae, R. 2018, AJ, 156, 58,
+doi: 10.3847/1538-3881/aacb21
+Bédard, A., Bergeron, P., Brassard, P., & Fontaine, G.
+2020, ApJ, 901, 93, doi: 10.3847/1538-4357/abafbe
+Bellm, E. C., Kulkarni, S. R., Graham, M. J., et al. 2019,
+PASP, 131, 018002, doi: 10.1088/1538-3873/aaecbe
+Blanton, M. R., Bershady, M. A., Abolfathi, B., et al. 2017,
+AJ, 154, 28, doi: 10.3847/1538-3881/aa7567
+Boissier, S., & Prantzos, N. 1999, MNRAS, 307, 857,
+doi: 10.1046/j.1365-8711.1999.02699.x
+Bondi, H., & Hoyle, F. 1944, MNRAS, 104, 273,
+doi: 10.1093/mnras/104.5.273
+Camacho, J., Torres, S., Garcı́a-Berro, E., et al. 2014,
+A&A, 566, A86, doi: 10.1051/0004-6361/201323052
+Chen, X., & Han, Z. 2008, MNRAS, 387, 1416,
+doi: 10.1111/j.1365-2966.2008.13334.x
+Chen, X., Wang, S., Deng, L., et al. 2020, ApJS, 249, 18,
+doi: 10.3847/1538-4365/ab9cae
+Chen, Z., Blackman, E. G., Nordhaus, J., Frank, A., &
+Carroll-Nellenback, J. 2018, MNRAS, 473, 747,
+doi: 10.1093/mnras/stx2335
+Chilingarian, I. 2020, in Astronomical Society of the Pacific
+Conference Series, Vol. 522, Astronomical Data Analysis
+Software and Systems XXVII, ed. P. Ballester, J. Ibsen,
+M. Solar, & K. Shortridge, 623
+Corradi, R. L. M., Sabin, L., Miszalski, B., et al. 2011,
+MNRAS, 410, 1349,
+doi: 10.1111/j.1365-2966.2010.17523.x
+Cui, X.-Q., Zhao, Y.-H., Chu, Y.-Q., et al. 2012, Research
+in Astronomy and Astrophysics, 12, 1197,
+doi: 10.1088/1674-4527/12/9/003
+Dahn, C. C., Liebert, J., Kron, R. G., Spinrad, H., &
+Hintzen, P. M. 1977, ApJ, 216, 757, doi: 10.1086/155518
+de Kool, M. 1990, ApJ, 358, 189, doi: 10.1086/168974
+
+de Kool, M., & Green, P. J. 1995, ApJ, 449, 236,
+doi: 10.1086/176051
+de Kool, M., van den Heuvel, E. P. J., & Pylyser, E. 1987,
+A&A, 183, 47
+De Marco, O., & Izzard, R. G. 2017, PASA, 34, e001,
+doi: 10.1017/pasa.2016.52
+Dearborn, D. S. P., Liebert, J., Aaronson, M., et al. 1986,
+ApJ, 300, 314, doi: 10.1086/163805
+Dell'Agli, F., Marini, E., D'Antona, F., et al. 2021,
+MNRAS, 502, L35, doi: 10.1093/mnrasl/slaa204
+Eggleton, P. P. 1983, ApJ, 268, 368, doi: 10.1086/160960
+Eker, Z., Bakış, V., Bilir, S., et al. 2018, MNRAS, 479,
+5491, doi: 10.1093/mnras/sty1834
+Escorza, A., Karinkuzhi, D., Jorissen, A., et al. 2019, A&A,
+626, A128, doi: 10.1051/0004-6361/201935390
+Fabricant, D., Cheimets, P., Caldwell, N., & Geary, J. 1998,
+PASP, 110, 79, doi: 10.1086/316111
+Fabricant, D., Fata, R., Epps, H., et al. 2019, PASP, 131,
+075004, doi: 10.1088/1538-3873/ab1d78
+Farihi, J., Arendt, A. R., Machado, H. S., & Whitehouse,
+L. J. 2018, MNRAS, 477, 3801,
+doi: 10.1093/mnras/sty890
+Farihi, J., Hoard, D. W., & Wachter, S. 2010, ApJS, 190,
+275, doi: 10.1088/0067-0049/190/2/275
+Fontaine, G., Brassard, P., & Bergeron, P. 2001, PASP,
+113, 409, doi: 10.1086/319535
+Foreman-Mackey, D. 2016, The Journal of Open Source
+Software, 1, 24, doi: 10.21105/joss.00024
+Gaia Collaboration, Brown, A. G. A., Vallenari, A., et al.
+2020, arXiv e-prints, arXiv:2012.01533.
+https://arxiv.org/abs/2012.01533
+-. 2018, A&A, 616, A1, doi: 10.1051/0004-6361/201833051
+Gosnell, N. M., Leiner, E. M., Mathieu, R. D., et al. 2019,
+ApJ, 885, 45, doi: 10.3847/1538-4357/ab4273
+Gosnell, N. M., Mathieu, R. D., Geller, A. M., et al. 2014,
+ApJL, 783, L8, doi: 10.1088/2041-8205/783/1/L8
+Graham, M. J., Kulkarni, S. R., Bellm, E. C., et al. 2019,
+PASP, 131, 078001, doi: 10.1088/1538-3873/ab006c
+Green, P. 2013, ApJ, 765, 12,
+doi: 10.1088/0004-637X/765/1/12
+Green, P. J., Montez, R., Mazzoni, F., et al. 2019, ApJ,
+881, 49, doi: 10.3847/1538-4357/ab2bf4
+Gruendl, R. A., Chu, Y. H., Seale, J. P., et al. 2008, ApJL,
+688, L9, doi: 10.1086/593979
+Harris, C. R., Millman, K. J., van der Walt, S. J., et al.
+2020, Array programming with NumPy,
+doi: 10.1038/s41586-020-2649-2
+Harris, H. C., Dahn, C. C., Subasavage, J. P., et al. 2018,
+AJ, 155, 252, doi: 10.3847/1538-3881/aac100
+
+ZTF Variability in Dwarf Carbon Stars
+Heber, U., Bade, N., Jordan, S., & Voges, W. 1993, A&A,
+267, L31
+
+Liebert, J., Schmidt, G. D., Lesser, M., et al. 1994, ApJ,
+421, 733, doi: 10.1086/173685
+
+Höfner, S. 2015, in Astronomical Society of the Pacific
+Conference Series, Vol. 497, Why Galaxies Care about
+AGB Stars III: A Closer Look in Space and Time, ed.
+F. Kerschbaum, R. F. Wing, & J. Hron, 333.
+https://arxiv.org/abs/1505.07425
+
+Livio, M., & Soker, N. 1988, ApJ, 329, 764,
+doi: 10.1086/166419
+
+Hoyle, F., & Lyttleton, R. A. 1939, Nature, 144, 1019,
+doi: 10.1038/1441019a0
+Hunter, J. D. 2007, Computing in Science & Engineering, 9,
+90, doi: 10.1109/MCSE.2007.55
+Hurley, J. R., Tout, C. A., & Pols, O. R. 2002, MNRAS,
+329, 897, doi: 10.1046/j.1365-8711.2002.05038.x
+
+19
+
+Lomb, N. R. 1976, Ap&SS, 39, 447,
+doi: 10.1007/BF00648343
+MacLeod, M., & Ramirez-Ruiz, E. 2015, ApJL, 798, L19,
+doi: 10.1088/2041-8205/798/1/L19
+Margon, B., Kupfer, T., Burdge, K., et al. 2018, ApJL, 856,
+L2, doi: 10.3847/2041-8213/aab42a
+Marigo, P., Girardi, L., Bressan, A., et al. 2017, ApJ, 835,
+77, doi: 10.3847/1538-4357/835/1/77
+
+Iben, I., J., & Renzini, A. 1983, ARA&A, 21, 271,
+doi: 10.1146/annurev.aa.21.090183.001415
+
+Marshall, J. L., Burles, S., Thompson, I. B., et al. 2008, in
+Society of Photo-Optical Instrumentation Engineers
+(SPIE) Conference Series, Vol. 7014, Ground-based and
+Airborne Instrumentation for Astronomy II, ed. I. S.
+McLean & M. M. Casali, 701454, doi: 10.1117/12.789972
+
+Iglesias-Marzoa, R., López-Morales, M., & Jesús Arévalo
+Morales, M. 2015, PASP, 127, 567, doi: 10.1086/682056
+
+Masci, F. J., Laher, R. R., Rusholme, B., et al. 2019,
+PASP, 131, 018003, doi: 10.1088/1538-3873/aae8ac
+
+Igoshev, A. P., Perets, H. B., & Michaely, E. 2020,
+MNRAS, 494, 1448, doi: 10.1093/mnras/staa833
+
+Michaely, E., & Perets, H. B. 2019, MNRAS, 484, 4711,
+doi: 10.1093/mnras/stz352
+
+Ivanov, V. D., Rieke, M. J., Engelbracht, C. W., et al. 2004,
+ApJS, 151, 387, doi: 10.1086/381752
+
+Miszalski, B., Boffin, H. M. J., & Corradi, R. L. M. 2013,
+MNRAS, 428, L39, doi: 10.1093/mnrasl/sls011
+
+Ivanova, N., & Taam, R. E. 2003, ApJ, 599, 516,
+doi: 10.1086/379192
+
+Mohamed, S., & Podsiadlowski, P. 2007, in Astronomical
+Society of the Pacific Conference Series, Vol. 372, 15th
+European Workshop on White Dwarfs, ed. R. Napiwotzki
+& M. R. Burleigh, 397
+
+Iben, I., J. 1974, ARA&A, 12, 215,
+doi: 10.1146/annurev.aa.12.090174.001243
+
+Ivanova, N., Justham, S., Chen, X., et al. 2013, A&A Rv,
+21, 59, doi: 10.1007/s00159-013-0059-2
+Jorissen, A., Van Eck, S., Van Winckel, H., et al. 2016,
+A&A, 586, A158, doi: 10.1051/0004-6361/201526992
+Kansky, J., Chilingarian, I., Fabricant, D., et al. 2019,
+Binospec: Data reduction pipeline for the Binospec
+imaging spectrograph. http://ascl.net/1905.004
+Kesseli, A. Y., Muirhead, P. S., Mann, A. W., & Mace, G.
+2018, AJ, 155, 225, doi: 10.3847/1538-3881/aabccb
+Kesseli, A. Y., Kirkpatrick, J. D., Fajardo-Acosta, S. B.,
+et al. 2019, AJ, 157, 63, doi: 10.3847/1538-3881/aae982
+
+Nelemans, G., Portegies Zwart, S. F., Verbunt, F., &
+Yungelson, L. R. 2001, A&A, 368, 939,
+doi: 10.1051/0004-6361:20010049
+Nelemans, G., Verbunt, F., Yungelson, L. R., & Portegies
+Zwart, S. F. 2000, A&A, 360, 1011.
+https://arxiv.org/abs/astro-ph/0006216
+Neo, S., Miyaji, S., Nomoto, K., & Sugimoto, D. 1977,
+PASJ, 29, 249
+Packet, W., & De Greve, J. P. 1979, A&A, 75, 255
+
+Kippenhahn, R., & Meyer-Hofmeister, E. 1977, A&A, 54,
+539
+
+Paczyński, B. 1971, ARA&A, 9, 183,
+doi: 10.1146/annurev.aa.09.090171.001151
+
+Knigge, C., Baraffe, I., & Patterson, J. 2011, ApJS, 194, 28,
+doi: 10.1088/0067-0049/194/2/28
+
+Paczynski, B. 1976, in Structure and Evolution of Close
+Binary Systems, ed. P. Eggleton, S. Mitton, &
+J. Whelan, Vol. 73, 75
+
+Kraus, A. L., & Hillenbrand, L. A. 2007, AJ, 134, 2340,
+doi: 10.1086/522831
+Law, N. M., Kulkarni, S. R., Dekany, R. G., et al. 2009,
+PASP, 121, 1395, doi: 10.1086/648598
+Levenhagen, R. S., Diaz, M. P., Coelho, P. R. T., &
+Hubeny, I. 2017, ApJS, 231, 1,
+doi: 10.3847/1538-4365/aa7681
+Li, Y.-B., Luo, A. L., Du, C.-D., et al. 2018, ApJS, 234, 31,
+doi: 10.3847/1538-4365/aaa415
+
+Pedregosa, F., Varoquaux, G., Gramfort, A., et al. 2011,
+Journal of Machine Learning Research, 12, 2825
+Plez, B., & Cohen, J. G. 2005, A&A, 434, 1117,
+doi: 10.1051/0004-6361:20042082
+Pols, O. R., & Marinus, M. 1994, A&A, 288, 475
+Portegies Zwart, S. F., & Verbunt, F. 1996, A&A, 309, 179
+Rappaport, S., Verbunt, F., & Joss, P. C. 1983, ApJ, 275,
+713, doi: 10.1086/161569
+
+20
+
+Roulston et al.
+
+Rau, A., Kulkarni, S. R., Law, N. M., et al. 2009, PASP,
+121, 1334, doi: 10.1086/605911
+Ricker, P. M., & Taam, R. E. 2008, ApJL, 672, L41,
+doi: 10.1086/526343
+Roulston, B. R., Green, P. J., & Kesseli, A. Y. 2020, ApJS,
+249, 34, doi: 10.3847/1538-4365/aba1e7
+Roulston, B. R., Green, P. J., Ruan, J. J., et al. 2019, ApJ,
+877, 44, doi: 10.3847/1538-4357/ab1a3e
+Saladino, M. I., & Pols, O. R. 2019, A&A, 629, A103,
+doi: 10.1051/0004-6361/201935625
+Saladino, M. I., Pols, O. R., & Abate, C. 2019, A&A, 626,
+A68, doi: 10.1051/0004-6361/201834598
+Saladino, M. I., Pols, O. R., van der Helm, E., Pelupessy,
+I., & Portegies Zwart, S. 2018, A&A, 618, A50,
+doi: 10.1051/0004-6361/201832967
+Scargle, J. D. 1982, ApJ, 263, 835, doi: 10.1086/160554
+Secchi, A. 1869, Astronomische Nachrichten, 73, 129
+Si, J., Luo, A., Li, Y., et al. 2014, Science China Physics,
+Mechanics, and Astronomy, 57, 176,
+doi: 10.1007/s11433-013-5374-0
+Skrutskie, M. F., Cutri, R. M., Stiening, R., et al. 2006, AJ,
+131, 1163, doi: 10.1086/498708
+Smith, M. C., Ruchti, G. R., Helmi, A., & Wyse, R. F. G.
+2007, in Galaxy Evolution across the Hubble Time, ed.
+F. Combes & J. Palouš, Vol. 235, 137–137,
+doi: 10.1017/S1743921306005692
+Sperauskas, J., Začs, L., Schuster, W. J., & Deveikis, V.
+2016, ApJ, 826, 85, doi: 10.3847/0004-637X/826/1/85
+Stellingwerf, R. F. 1978, ApJ, 224, 953, doi: 10.1086/156444
+
+Tanaka, M., Letip, A., Nishimaki, Y., et al. 2007, PASJ, 59,
+939, doi: 10.1093/pasj/59.5.939
+Taylor, M. B. 2005, in Astronomical Society of the Pacific
+Conference Series, Vol. 347, Astronomical Data Analysis
+Software and Systems XIV, ed. P. Shopbell, M. Britton,
+& R. Ebert, 29
+Toonen, S., & Nelemans, G. 2013, A&A, 557, A87,
+doi: 10.1051/0004-6361/201321753
+Toonen, S., Nelemans, G., & Portegies Zwart, S. 2012,
+A&A, 546, A70, doi: 10.1051/0004-6361/201218966
+Torrealba, G., Catelan, M., Drake, A. J., et al. 2015,
+MNRAS, 446, 2251, doi: 10.1093/mnras/stu2274
+Tutukov, A., & Yungelson, L. 1979, in Mass Loss and
+Evolution of O-Type Stars, ed. P. S. Conti & C. W. H.
+De Loore, Vol. 83, 401–406
+VanderPlas, J. T. 2018, ApJS, 236, 16,
+doi: 10.3847/1538-4365/aab766
+Virtanen, P., Gommers, R., Oliphant, T. E., et al. 2020,
+Nature Methods, 17, 261, doi: 10.1038/s41592-019-0686-2
+Webbink, R. F. 1984, ApJ, 277, 355, doi: 10.1086/161701
+Whitehouse, L. J., Farihi, J., Green, P. J., Wilson, T. G., &
+Subasavage, J. P. 2018, MNRAS, 479, 3873,
+doi: 10.1093/mnras/sty1622
+Xu, X.-J., & Li, X.-D. 2010, ApJ, 716, 114,
+doi: 10.1088/0004-637X/716/1/114
+Zorotovic, M., Schreiber, M. R., Gänsicke, B. T., & Nebot
+Gómez-Morán, A. 2010, A&A, 520, A86,
+doi: 10.1051/0004-6361/200913658
+
+21
+
+ZTF Variability in Dwarf Carbon Stars
+APPENDIX
+
+A. PERIODIC DC LIGHT CURVES
+
+RA: 01h31m19.05s DEC: +37d20m25.30s | P = 1.3768 d | Amp = 0.0548
+
+RA: 02h35m30.65s DEC: +02d25m18.58s | P = 0.62419d | Amp = 0.087
+17.9
+g mag
+
+r mag
+
+17.20
+17.25
+
+18.0
+18.1
+
+17.35
+0.05
+0.00
+−0.05
+0.00
+
+Residual
+
+Residual
+
+17.30
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.1
+0.0
+−0.1
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(1)
+
+16.60
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+(2)
+
+RA: 02h35m30.65s DEC: +02d25m18.58s | P = 0.62409d | Amp = 0.0471
+
+RA: 04h16m05.11s DEC: +50d28m28.52s | P = 6.8176 d | Amp = 0.0234
+14.35
+g mag
+
+r mag
+
+16.65
+
+16.75
+0.05
+
+14.45
+0.05
+
+0.00
+−0.05
+0.00
+
+14.40
+
+Residual
+
+Residual
+
+16.70
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+0.00
+
+2.00
+
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(3)
+
+17.10
+
+14.55
+
+17.15
+17.20
+
+1.75
+
+2.00
+
+14.60
+14.65
+
+Residual
+
+Residual
+
+1.50
+
+RA: 06h25m58.34s DEC: +02d30m19.43s | P = 7.5942 d | Amp = 0.0653
+14.50
+g mag
+
+r mag
+
+RA: 05h02m40.82s DEC: +40d23m23.59s | P = 4.3999 d | Amp = 0.0740
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.05
+0.00
+−0.05
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(5)
+
+13.80
+
+1.25
+
+(4)
+
+17.05
+
+0.05
+0.00
+−0.05
+0.00
+
+1.00
+Phase
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+(6)
+
+RA: 06h25m58.34s DEC: +02d30m19.43s | P = 7.5942 d | Amp = 0.058
+
+17.30
+
+RA: 12h23m57.63s DEC: +55d01m51.45s | P = 0.16817d | Amp = 0.040
+
+r mag
+
+r mag
+
+17.35
+13.85
+
+13.90
+
+17.45
+17.50
+Residual
+
+Residual
+
+13.95
+0.05
+0.00
+0.00
+
+17.40
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+(7)
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.05
+0.00
+−0.05
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+(8)
+
+Figure A1. Light curves for the periodic dCs in this paper. Each panel is the light curve in one filter for each dC; therefore
+one particular dC may appear in more than one panel if detected in more than one ZTF band. For each light curve we plot the
+magnitude, with errors, phased on the best found period. The red line in each shows the best fit model, described in Section 4.
+Below each phased light curve are the residuals of the light curve and the model. Each light curve is shown twice in phase for
+clarity.
+
+22
+
+Roulston et al.
+RA: 12h30m45.52s DEC: +41d09m43.47s | P = 0.8825 d | Amp = 0.096
+
+18.2
+
+RA: 12h30m45.52s DEC: +41d09m43.47s | P = 0.8826 d | Amp = 0.0371
+16.50
+16.55
+
+r mag
+
+g mag
+
+18.3
+18.4
+
+16.60
+
+18.5
+
+16.65
+Residual
+
+Residual
+
+18.6
+0.2
+0.0
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.05
+0.00
+−0.05
+
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(9)
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+(10)
+
+RA: 12h58m29.52s DEC: +44d52m06.48s | P = 0.1986 d | Amp = 0.217
+
+RA: 13h03m59.18s DEC: +05d09m38.62s | P = 0.6473 d | Amp = 0.0741
+
+19.50
+
+17.05
+
+19.75
+
+r mag
+
+g mag
+
+1.00
+Phase
+
+20.00
+
+17.10
+17.15
+
+0.25
+0.00
+−0.25
+0.00
+
+Residual
+
+Residual
+
+20.25
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+17.20
+0.025
+0.000
+−0.025
+
+2.00
+
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(11)
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+(12)
+
+RA: 13h12m42.28s DEC: +55d55m54.82s | P = 0.83867d | Amp = 0.0523
+
+RA: 13h12m42.28s DEC: +55d55m54.82s | P = 0.83817d | Amp = 0.0316
+
+15.75
+14.10
+r mag
+
+g mag
+
+15.80
+15.85
+
+14.15
+
+15.90
+
+0.05
+0.00
+−0.05
+
+0.00
+
+Residual
+
+Residual
+
+15.95
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.05
+0.00
+−0.05
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(13)
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+1.75
+
+2.00
+
+(14)
+
+RA: 13h20m00.23s DEC: +50d35m25.74s | P = 0.3413 d | Amp = 0.166
+
+RA: 14h22m06.55s DEC: +34d09m49.18s | P = 0.2012 d | Amp = 0.43
+20.5
+g mag
+
+20.0
+g mag
+
+1.00
+Phase
+
+20.5
+
+21.0
+
+Residual
+
+Residual
+
+21.5
+21.0
+0.5
+0.0
+−0.5
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+(15)
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.5
+0.0
+−0.5
+
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+(16)
+
+Figure A1. Light curves for the periodic dCs in this paper. Each panel is the light curve in one filter for each dC; therefore
+one particular dC may appear in more than one panel if detected in more than one ZTF band. For each light curve we plot the
+magnitude, with errors, phased on the best found period. The red line in each shows the best fit model, described in Section 4.
+Below each phased light curve are the residuals of the light curve and the model. Each light curve is shown twice in phase for
+clarity.
+
+23
+
+ZTF Variability in Dwarf Carbon Stars
+RA: 15h04m30.01s DEC: +56d16m03.60s | P = 0.3286 d | Amp = 0.186
+
+RA: 15h19m05.93s DEC: +50d07m03.13s | P = 0.30236d | Amp = 0.0189
+17.5
+
+19.75
+g mag
+
+g mag
+
+20.00
+20.25
+
+17.7
+Residual
+
+Residual
+
+20.50
+
+17.6
+
+0.25
+0.00
+−0.25
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.1
+0.0
+−0.1
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(17)
+
+1.50
+
+1.75
+
+2.00
+
+1.75
+
+2.00
+
+RA: 15h24m10.64s DEC: +45d36m56.94s | P = 0.3365 d | Amp = 1.07
+
+20.5
+21.0
+
+r mag
+
+g mag
+
+17.3
+
+17.4
+
+21.5
+22.0
+
+0.1
+
+Residual
+
+Residual
+
+1.25
+
+(18)
+
+RA: 15h19m05.93s DEC: +50d07m03.13s | P = 0.30237d | Amp = 0.118
+
+0.0
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.0
+−0.5
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(19)
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+(20)
+
+RA: 15h24m34.12s DEC: +44d49m55.86s | P = 0.3365 d | Amp = 0.42
+
+RA: 15h32m42.01s DEC: +55d16m38.50s | P = 0.3316 d | Amp = 0.0247
+
+16.80
+
+20.5
+
+16.85
+g mag
+
+g mag
+
+1.00
+Phase
+
+21.0
+
+16.90
+16.95
+
+Residual
+
+Residual
+
+21.5
+0.5
+0.0
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+17.00
+0.05
+0.00
+−0.05
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(21)
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+(22)
+
+RA: 15h32m42.01s DEC: +55d16m38.50s | P = 0.3273 d | Amp = 0.0086
+
+RA: 15h36m55.72s DEC: +41d04m45.94s | P = 0.3327 d | Amp = 0.0162
+13.175
+13.200
+r mag
+
+r mag
+
+15.85
+
+15.90
+
+13.225
+13.250
+
+Residual
+
+Residual
+
+13.275
+0.05
+0.00
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+(23)
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.025
+0.000
+−0.025
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+(24)
+
+Figure A1. Light curves for the periodic dCs in this paper. Each panel is the light curve in one filter for each dC; therefore
+one particular dC may appear in more than one panel if detected in more than one ZTF band. For each light curve we plot the
+magnitude, with errors, phased on the best found period. The red line in each shows the best fit model, described in Section 4.
+Below each phased light curve are the residuals of the light curve and the model. Each light curve is shown twice in phase for
+clarity.
+
+24
+
+Roulston et al.
+RA: 16h00m38.48s DEC: +36d14m51.26s | P = 0.1351 d | Amp = 0.43
+
+16.75
+
+RA: 16h04m18.38s DEC: +52d31m13.71s | P = 0.3421 d | Amp = 0.0124
+
+20.5
+16.80
+g mag
+
+g mag
+
+21.0
+21.5
+
+16.85
+16.90
+
+22.5
+0.5
+0.0
+−0.5
+
+Residual
+
+Residual
+
+22.0
+
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.05
+0.00
+−0.05
+
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(25)
+
+r mag
+
+g mag
+
+17.6
+0.1
+0.0
+−0.1
+
+Residual
+
+Residual
+
+2.00
+
+16.30
+
+17.5
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+16.35
+0.05
+0.00
+−0.05
+
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(27)
+
+r mag
+
+15.75
+15.80
+
+1.50
+
+1.75
+
+2.00
+
+14.55
+14.60
+14.65
+0.05
+
+Residual
+
+0.05
+0.00
+−0.05
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.00
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+(29)
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+(30)
+
+RA: 23h41m30.74s DEC: +15d19m43.21s | P = 0.1343 d | Amp = 0.1392
+
+RA: 23h41m30.74s DEC: +15d19m43.21s | P = 0.1343 d | Amp = 0.1047
+17.4
+
+18.2
+
+i mag
+
+18.3
+18.4
+
+17.5
+
+17.6
+
+0.2
+
+0.05
+0.00
+−0.05
+
+Residual
+
+18.5
+
+0.0
+0.00
+
+1.25
+
+RA: 22h08m10.01s DEC: +25d17m30.16s | P = 0.4225 d | Amp = 0.0477
+
+14.50
+
+15.70
+
+0.00
+
+1.00
+Phase
+
+(28)
+
+RA: 22h08m10.01s DEC: +25d17m30.16s | P = 0.4224 d | Amp = 0.0590
+
+15.65
+
+g mag
+
+1.75
+
+16.25
+
+0.00
+
+Residual
+
+1.50
+
+RA: 19h23m55.93s DEC: +44d58m32.23s | P = 0.1109 d | Amp = 0.0150
+
+17.4
+
+g mag
+
+1.25
+
+(26)
+
+RA: 18h47m35.72s DEC: +40d59m43.56s | P = 0.3290 d | Amp = 0.0353
+
+Residual
+
+1.00
+Phase
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+(31)
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+(32)
+
+Figure A1. Light curves for the periodic dCs in this paper. Each panel is the light curve in one filter for each dC; therefore
+one particular dC may appear in more than one panel if detected in more than one ZTF band. For each light curve we plot the
+magnitude, with errors, phased on the best found period. The red line in each shows the best fit model, described in Section 4.
+Below each phased light curve are the residuals of the light curve and the model. Each light curve is shown twice in phase for
+clarity.
+
+25
+
+ZTF Variability in Dwarf Carbon Stars
+RA: 23h41m30.74s DEC: +15d19m43.21s | P = 0.1343 d | Amp = 0.1113
+
+r mag
+
+17.6
+17.7
+
+Residual
+
+17.8
+0.1
+0.0
+−0.1
+0.00
+
+0.25
+
+0.50
+
+0.75
+
+1.00
+Phase
+
+1.25
+
+1.50
+
+1.75
+
+2.00
+
+(33)
+
+Figure A1. Light curves for the periodic dCs in this paper. Each panel is the light curve in one filter for each dC; therefore
+one particular dC may appear in more than one panel if detected in more than one ZTF band. For each light curve we plot the
+magnitude, with errors, phased on the best found period. The red line in each shows the best fit model, described in Section 4.
+Below each phased light curve are the residuals of the light curve and the model. Each light curve is shown twice in phase for
+clarity.
+

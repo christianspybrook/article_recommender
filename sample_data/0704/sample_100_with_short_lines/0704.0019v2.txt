@@ -1,0 +1,274 @@
+arxiv07040019v2 mathpr 23 jun 2007
+
+approximation for extinction probability of
+the contact process based on the grbner basis
+norio konno
+department of applied mathematics
+yokohama national university
+
+abstract in this note we give a new method for getting a series of approximations for the extinction probability of the onedimensional contact process by
+using the grbner basis
+
+1
+
+introduction
+d
+
+let x  0 1z denote a configuration space where zd is the ddimensional
+integer lattices the contact process t  t  0 is an xvalued continuoustime markov process the model was introduced by harris in 1974 1 and
+is considered as a simple model for the spread of a disease with the infection
+rate  in this setting an individual at x  zd for a configuration   x is
+infected if x  1 and healthy if x  0 the formal generator is given
+by
+x
+f  
+cx f  x   f 
+xzd
+
+where  x  x is defined by  x y  y y 6 x and  x x  1  x here
+for each x  zd and   x the transition rate is
+x
+cx   1  x  
+y  x
+yyx1
+
+1
+
+with x  x1       xd  in particular the onedimensional contact process
+is
+001  011
+100  110
+101  111
+1  0
+
+at
+at
+at
+at
+
+rate
+rate
+rate
+rate
+
+
+
+2
+1
+
+let y  a  zd  a   where a is the number of elements in a
+let ta  zd  denote the state at time t of the contact process with 0a  a
+there is a onetoone correspondence between ta  zd  and t  x such
+that x  ta if and only if t x  1 for any a  y  we define the extinction
+probability of a by limt p ta   define  a     x  0
+for any x  a where  is an invariant measure of the process starting
+from a configuration x  1 x  zd  and is called the upper invariant
+measure in other words let 1 st denote the probability measure at time t
+for initial probability measure i which is the pointmass   ii  0 1 then
+  limt 1 st then selfduality of the process implies that  a 
+limt p ta   the correlation identities for  a can be obtained as
+follows
+theorem 11 for any a  y 
+i
+i xh
+x x h
+ a  x   a  0
+
+ a  y   a 
+xa yyx1
+
+xa
+
+from now on we consider the onedimensional case we introduce the following notation
+    0     0 1       0 2    
+by theorem 11 we obtain
+corollary 12
+1
+2
+3
+4
+
+2   2  1   1  0
+       1      0
+2          2  3     2   0
+     2  1             0
+2
+
+the detailed discussion concerning results in this section can be seen in
+konno 2 3 if we regard            as variables then
+the left hand sides of the correlation identities by theorem 11 are polynomials of degree at most two in the next section we give a new procedure
+for getting a series of approximations for extinction probabilities based on
+the grbner basis by using corollary 12 as for the grbner basis see 4
+for example
+
+2
+
+our results
+
+put x    y    z      w      s    
+ u      let  denote the lexicographic order with   x 
+y  w  z  u  s for m  1 2 3 let im be the ideals of a polynomial
+ring rx1  x2      xnm  over r as defined below here x1   x2  x x3 
+y x4  z x5  w x6  s x7  u and n1  3 n2  4 n3  7
+
+21
+
+first approximation
+
+we consider the following ideal based on corollary 12 1
+5
+
+i1  h 2y  2x  x  1 y  x2 i  r x y
+1
+
+here y x2 corresponds to the first or meanfield approximation   
+1
+ 2  then
+6
+
+g1  x  12x  1 y  x2 
+
+is the reduced grbner basis for i1 with respect to  therefore the solution
+1
+except a trivial one x y  1 is x     12 remark that the
+trivial solution means that the invariant measure is 0  from this we obtain
+the first approximation of the density of the particle   e x as
+follows
+2  1
+1
+1
+  1    
+7
+
+2
+1
+
+for any   12 this result gives the first lower bound c of the critical
+1
+value c of the onedimensional contact process that is c  12  c 
+however it should be noted that the inequality is not proved in our approach
+the estimated value of c is about 1649
+3
+
+22
+
+second approximation
+
+consider the following ideal based on corollary 12 1 and 2
+i2  h 2y  2x  x  1 z  y  y  x xz  y 2 i  r x y z
+2
+
+2
+
+here xzy 2 corresponds to the second or pair approximation   
+2
+   2  then
+g2  x  12  1x  1 1  2y  x  x
+y  yx  2x2  z  y2  y  4x2 
+is the reduced grbner basis for i2 with respect to  therefore the solution
+2
+except a trivial one x y  z  1 is x     12  1 as in a
+similar way of the first approxaimation we get the second approximation of
+the density of the particle
+2
+
+ 
+
+2  1
+
+2  1
+2
+
+for any   1 this result implies the second lower bound c
+should remark that if we take
+
+ 1 we
+
+i2  h 2y  2x  x  1 z  y  y  x y  x2  z  x3 i  r x y z
+then we have
+g2  z  1 y  1 x  1
+is the reduced grbner basis for i2 with respect to  here y  x2 and z  x3
+2 
+2 
+2 
+correspond to an approximation     2 and     
+2 
+ 3  respectively then we have only trivial solution x  y  z  1
+
+23
+
+third approximation
+
+consider the following ideal based on corollary 12 14
+i3  h 2y  2x  x  1 z  y  y  x
+2s  w  2  3z  2y u  2  1w  z  x
+ys  z 2  xu  yw i  r x y z w s u
+4
+
+3
+
+3
+
+here ysz 2 and xuyw correspond to the third approximation   
+3
+3
+3
+3
+3
+     2 and            respectively
+then
+g3  x  1123  5  1x2  22  3x    1   
+is the reduced grbner basis for i3 with respect to  therefore
+the solution
+
+3
+except a trivial one x  1 is x     2  3  d123  5  1
+where d  164  42  4  1 then we obtain the third approximation of
+the density of the particle
+3
+
+8
+
+ 
+
+432    3
+ 
+123  22  8  1  d
+
+
+for any   1  376 this result corresponds to the third lower bound
+
+3
+c  1  376  1180
+
+3
+
+summary
+
+we obtain the first second and third approximations for the extinction
+probability the density of the particle and the lower bound of the onedimensional contact process by using the grbner basis with respect to a
+suitable term order these results coincide with results given by the harris
+lemma more precisely the katorikonno method see 3 or the bfkl
+inequality 5 see also 3 as we saw the generators of im in section 2
+have degree at most two in x1  x2     such as 2y  2x  x  1 ys  z 2 in
+the case of i3  we expect that this property will lead to get the higher order
+approximations of the process and other interacting particle systems having
+a similar property effectively
+acknowledgment the author thanks takeshi kajiwara for valuable discussions and comments
+
+references
+1 t e harris contact interactions on a lattice ann probab 2 969988
+1974
+5
+
+2 n konno phase transitions on interacting particle systems world
+scientific singapore 1994
+3 n konno lecture notes on interacting particle systems
+rokko lectures in mathematics kobe university no3 1997
+httpwwwmathkobeuacjppublicationsrlm03pdf
+4 d a cox j b little and d oshea ideals varieties and algorithms an introduction to computational algebraic geometry and
+commutative algebra 3rd edition undergraduate texts in mathematics springer verlag 2007
+5 v belitsky p a ferrari n konno and t m liggett a strong correlation inequality for contact processes and oriented percolation stochastic process appl 67 213225 1997
+
+6
+

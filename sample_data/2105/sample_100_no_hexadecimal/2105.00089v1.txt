@@ -1,0 +1,3782 @@
+LA 00 (2014) 000
+
+Available online at www.sciencedirect.com
+
+Journal homepage: www.elsevier.com/locate/rgo
+
+Real-Time Detection and Classification of Astronomical
+Transient Events: The State-of-the-Art
+Gianmario Broccia*
+*M.Sc. in Energy Engineering, Graduated at University of Cagliari, Cagliari 09123, Italy
+
+ARTICLE INFO
+
+ABSTRACT
+
+Article history:
+Received 00 December 00
+Received in revised form 00 January 00
+Accepted 00 February 00
+Keywords:
+Astronomical Transients Events, RealTime Detection, Data Reduction, Time-
+
+In the last years, the need for automated real-time detection and classification of astronomical
+transients began to be more impelling. Better technologies involve a higher number of detected
+candidates and an automated classification will allow dealing with this amount of data, every night.
+The desired state-of-the-art in detection and classification will be presented in its key features and
+different practical approaches will be introduced, as well. Several ongoing and future surveys will
+be presented, showing the current situation of Time-Domain Astronomy, and eventually compared
+with the desired state-of-the-art. The final purpose of this paper is to highlight the general
+technology readiness level with respect to the level yet to be achieved.
+
+Domain Astronomy
+
+1. Introduction
+
+1609, the astronomers were finally able to better
+
+The modern study of astronomical transient events
+
+approach these events.
+
+started within the '800 although such kind of
+
+Improvements in optics and the space age led to an
+
+phenomena was already known, especially in the
+
+extraordinary increase in the number of detections per
+
+form of Supernovae. Among the most famous events
+
+night, up to hundreds of transients in the current
+
+in this sense are SN1572, observed by Tycho Brahe in
+
+period and thanks to the constantly improving
+
+the Cassiopeia Constellation, and SN1604, the last
+
+technology, the number of transients detected per
+
+known Supernova exploded inside the Milky Way
+
+night is estimated to rise to millions (1).
+
+and studied by Johannes Kepler in 1604. With the
+
+Astronomical transient events are one of the most
+
+birth of the telescope, owed to Galileo Galilei in
+
+interesting
+Astronomy.
+
+* Corresponding author. Linkedin: https://www.linkedin.com/in/gianmario-broccia-827737165/
+E-mail address: gianmario.broccia@gmail.com
+
+topics
+
+studied
+
+by
+
+Time-Domain
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+To explore the subject, this article will show, in the
+
+visible in the optical band) and visible from
+
+first instance, the nature of astronomical transients by
+
+cosmological distances.
+
+presenting the most representative classes. Secondly,
+
+In the following paragraphs, the most known classes
+
+the features that an optimal data reduction pipeline
+
+of transients will be briefly introduced.
+
+should have will be also presented, to give a reference
+
+2.1 Novae, Kilonovae, Supernovae, Hypernovae
+
+for comparison with ongoing projects. Several
+surveys
+
+will
+
+be
+
+presented
+
+and
+
+characterized,
+
+especially about data processing: Catalina Real-Time
+Sky Survey, TESS, Antarctic Survey Telescopes,
+LSST, Pan-STARRS, Spitzer Space Telescope,
+Zwicky Transient Factory, Colorado Ultraviolet
+Transit Experiment, Sardinia Radio Telescope,
+AGILE, ROTSE, James Webb Space Telescope, Very
+
+Novae. The definition of Nova is owed to Tycho
+Brahe
+
+who
+
+observed
+
+the
+
+Supernova
+
+SN1572
+
+mentioned before, in 1572. The article derived from
+those observations was indeed named "De Nova
+Stella" (2), to indicate a star that appeared apparently
+from nowhere. Ironically, the process that triggers a
+Nova originates in a binary system that involves a
+White Dwarf (WD), the remnant of a Sun-like star,
+
+Large Array, WFIRST and EUCLID.
+Finally, in the "Discussion" paragraph, conclusions
+will be drawn regarding the readiness of the current
+
+and a Red Giant (RG), which is a Sun-like star in its
+final stages (3).
+
+and coming technology, in comparison with the
+
+The older WD collects material (mostly Hydrogen)
+
+desired state of the art. The surveys will be first
+
+from the companion, creating a layer of stolen gas on
+
+presented in their features and only then a comparison
+
+its surface. This process is usually allowed by the
+
+will be made, calling into question each survey again.
+
+close distance between the stars, which implies an
+
+Any reference lacking DOI has been provided with a
+
+orbital period in the order of hours (4). When the
+
+bibcode, ISBN code, or tagged as "Unpublished"
+
+temperature reaches 20 million Kelvin, new fusion
+
+either to indicate that its nature did not need any peer-
+
+reactions take place, and ∼3-33 M⊕ worth of material
+
+review publication (ex: handbooks) or the final draft
+
+is expelled at thousands of kilometers per second out
+
+was available only on ArXiv.
+
+of the system (3). The resulting increase in the
+magnitude makes the star appear like a new object
+
+2. Astronomical Transient Events
+An
+
+astronomical
+
+transient
+
+and it can last several weeks. This happens in a cycle
+
+event
+
+(hereafter
+
+which is usually regular and characteristic of each
+
+"transient") is commonly defined as a natural
+
+system.
+
+phenomenon
+
+from
+
+Kilonovae. A Kilonova is an event in which two
+
+milliseconds up to months. Their detection is owed to
+
+supermassive objects merge. Such objects can usually
+
+the emission of either electromagnetic or gravitational
+
+be neutron stars or even black holes and the resulting
+
+waves, which makes them particularly bright (when
+
+luminosity is 1000 times a classical nova, but still no
+
+with
+
+a
+
+duration
+
+ranging
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+more than 1/10 of a supernova (5). After the event
+
+known star, with a mass at least 100 times the mass of
+
+GW170817, which
+
+the Sun, and it is the strongest candidate to be a
+
+allowed
+
+LIGO
+
+and
+
+Virgo
+
+observatories to detect gravitational waves for the
+first time, Kilonovae became one of the suspected
+
+Hypernova in the near future (10).
+2.2 Tidal Disruption Events
+
+sources of Gamma-Ray Bursts (6).
+A Tidal Disruption Event (TDE) is a phenomenon
+Supernovae. A Supernova is commonly intended as
+
+that occurs when a star passes so close to a massive
+
+the explosion of a massive star. Although a
+
+Black Hole to cross its Roche Limit, suffering from
+
+Supernova can belong to several classes, only the
+
+intense forces that eventually lead to its destruction
+
+most known is presented: the Type II Supernova.
+
+(11).
+
+A star with a mass at least 9 times the mass of the Sun
+
+In 1975 a first proposition suggested that any galaxy
+
+(7), arrived at the end of its life, is no longer able to
+
+with a supermassive black hole at its center would be
+
+burn, having converted all the hydrogen in helium. In
+
+subject to tidal disruption events and the consequent
+
+this case, the gravitational force is no longer
+
+flares from the stellar remnants would be a clear
+
+countered by fusion reactions and the nucleus begins
+
+indicator (12).
+
+to contract under its own weight, starting a cycle in
+
+2.3 Transits
+
+which the contraction triggers new fusions of
+increasingly heavy elements. When the iron-56 forms,
+
+In astronomy, a transit is commonly intended as the
+
+no new reaction can take place, and nothing can stop
+
+event in which a body of interest passes between a
+
+the final contraction of the ferrous nucleus of the star
+
+star and the observer (13). Inside our solar system,
+
+(8). If the nucleus overtakes the Chandrasekar Limit
+
+only the Moon, Venus, and Mercury are capable to
+
+(1,44 Solar Masses), an intense explosion takes place
+
+create this phenomenon.
+
+and the surrounding material is jettisoned to
+
+Outside the solar system, the transits are a valuable
+
+relativistic speeds from the star, creating a shock
+
+tool to verify the presence of exoplanets around a
+
+wave and a Type II Supernova (9).
+
+known star. By Transit Photometry it is possible to
+
+During this event, the dying star emits in an instant as
+much energy as it would emit the sun in all its entire
+life.
+
+measure the dimming of the host star during the
+transit itself and obtain a value for the radius of the
+planet, while the mass can be obtained by Transit
+Spectroscopy (14). The density is then obtained and
+
+Hypernovae. Hypernovae may be generated by
+
+several hypotheses on the nature of the planet can be
+
+exceptionally massive stars (> 30 M☉) and the
+
+made.
+
+consequent explosion is expected to be 100 times
+
+Transits can also happen when two stars in a binary
+
+more powerful than a regular Supernova. Eta Carinae
+
+system occult each other or when a Jovian satellite
+
+in the Constellation Carina is the most massive
+
+produced an equivalent shadow zone on Jupiter. As a
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+matter of example, along with the period 1985-1990,
+
+(20). They usually appear as a flash of energy that
+
+a series of occultations occurred between Pluto and its
+
+runs out in milliseconds without showing any change
+
+major satellite Charon allowed to precisely deduce
+
+in intensity. Moreover, they do not appear to come
+
+the physical parameters of the two bodies for the first
+
+from a specific region, being instead widespread all
+
+time (15).
+
+over the sky. As of 2019, no explanation is commonly
+
+2.4 Gamma-Ray Bursts
+
+accepted even though many hypotheses are being
+considered.
+
+The first detection ever of Gamma-Ray Bursts
+(GRBs) dates back to 1967 when the U.S. Vela
+
+2.6 Gravitational Microlensing
+
+satellites, purposed to monitor the use of Soviet
+
+Gravitational Lensing, initially foreseen by Einstein
+
+nuclear weapons, discovered instead strange gamma
+
+in 1912 and predicted by the general theory of
+
+beams from the deep space (16).
+
+relativity, is represented by the bending of a light
+
+These events last from milliseconds to minutes and
+
+beam in presence of a massive object (for example, a
+
+are known to be the most energetic ever observed,
+
+galaxy) between the target object and the observer.
+
+although their origin is still not clear. Many theories
+
+Such bending allows the observer to see an object that
+
+were proposed, implying black holes evaporation,
+
+is covered by another one.
+
+exotic types of supernovae, accretion of neutron stars,
+
+Microlensing is a sub-class of gravitational lensing
+
+etc (17).
+
+and it occurs when a far less massive object similarly
+
+The light curve of a GRB does not show any
+
+bends the light. In this case, the observer is not able to
+
+particular pattern and appears to be aleatory and
+
+see the objects behind the lens without difficulties.
+
+under no circumstances, two GRB will produce a
+
+Instead, the object triggering the microlensing would
+
+similar light curve (18).
+
+appear with increased luminosity for a period
+
+2.5 Fast Radio Bursts
+
+between seconds and years, depending on the
+
+Fast Radio Bursts (FRBs) extremely rare high-energy
+
+duration of the alignment (21).
+
+phenomena that manifest with transient radio
+impulses of a very short duration (19).
+
+3. Target State-of-the-Art
+
+The first detection happened in 2007 (FRB 010724)
+
+This section is largely based on the exemplary
+
+and, until now, only a fistful of new events was
+
+research brought on in (22) (23) (24) (25) and here in
+
+detected.
+
+short reported.
+
+FRBs appear to be point source-like and are
+
+As introduced before, an automated real-time
+
+characterized by a wide range of radio frequencies,
+
+approach in detecting and classifying transients is
+
+usually around 1400 MHz, though some were
+
+highly desirable, given the rate at which the
+
+detected at frequencies in the range of 400-800 MHz
+
+detections per night are raising.
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+A fully automated real-time classification of those
+
+the most representative of this topic since the Authors
+
+events is desirable for two reasons: first, the need of
+
+repeatedly insist on it.
+
+collecting and processing a huge amount of data;
+second, the need to discerning what events deserve a
+
+Real-Time. Since transients are usually characterized
+
+proper follow-up for further characterization respect
+
+by a very short duration, a human "manual"
+
+the ones that do not.
+
+interevent might not be fast enough to ensure proper
+
+A second point derives from the fact that all transients
+changing their magnitude might represent a wide
+class of phenomena, the reason why it is important to
+automatically decide what events are worthy of
+further investigation (which implies time and costs
+allocation). Another important problem is represented
+by the typology of the data, sometimes heterogeneous
+and incomplete and usually evolving in time (26).
+
+classification and prioritization, as well as the
+activation of a proper follow-up for an event initially
+unknown (of which we also do not know the duration,
+until it runs out). Real-time action is, of course, an
+ideal concept but the practical target is to close the
+distance between real and ideal case as much as
+possible until we reach a state of the art in which the
+system is capable of reacting in a matter of fractions
+of seconds.
+
+Most of the characterizing information is derived
+from archival resources and contextualization of other
+
+Reliability. The more a system is a complex the
+
+features of the candidate transient (such as its location
+
+higher is the probability of errors and malfunctions
+
+in the host galaxy). In this case becomes vital that the
+
+mostly determined by the failure of its weakest
+
+automated pipeline can discern between noise and
+
+element. Such eventuality must be mitigated at
+
+artifacts and real events, so as not to miss any
+
+maximum to develop a system with a low failure rate.
+
+important candidate. Such pipeline must have a low
+rate of false alarm and high completeness, also taking
+
+Robustness. Transients belong to a world of the
+
+advantage of archives with data from previous
+
+unknown. Inputs might be very different from
+
+(known) events (27).
+
+expected ones and the system must be able to cope
+with situations that deviate even much from
+
+3.1 Data Reduction Pipeline: key features
+
+accounted ones.
+
+An ideal system should be able to respect severe
+
+Low rate of false positives. Incoming data are
+
+requirements, listed hereafter and based on (26).
+
+known to be sparse and heterogeneous. Yet,
+
+Automation. The system must be able to process
+Gigabytes of data every night and yet allow minimal
+human intervention. The concept of automated
+classification and decision-making is probably one of
+
+detections are bound to be contaminated by artifacts
+and/or already known sources. The system must apply
+the first filter to discard unwanted inputs and reduce
+false positives as much as possible.
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+Learning. A system able to act in real-time should be
+
+along with archival and contextual information (one
+
+also able to constantly improve its performance by
+
+above all, the spatial location of a given event). As
+
+learning over time. This goal can be achieved by
+
+mentioned before, these two inputs are directed to an
+
+creating a proper archive with data from past surveys
+
+intermediary Event Portfolio which modifies, time by
+
+and other ongoing projects.
+
+time, all the data regarding a particular class of
+
+Follow-up. After the event is detected, little of it is
+probably known, except basic information such as the
+Light Curve. In this phase, providing that the event is
+considered interesting enough, the follow-up is
+supposed to take over and the system would trigger it
+in full autonomy. The follow-up (photometric,
+spectroscopic, multiwavelength) is intended to enrich
+what is known of the source and by observing key
+
+transients. After this first step is the Event
+Classification Engine which compares the fresh data
+with inputs from a library that gives back a set of
+probabilities that a given feature manifests, provided
+that the event belongs to a given class of transients.
+The final result obtained from the classification
+engine is a set of evolving probabilities of the
+candidate transient belonging to various classes. The
+treated data are now ready to be fed in the Follow-up
+
+features.
+
+Prioritization and Decision Engine which will assign
+3.2 Steps in the Classification Process
+
+a
+
+priority
+
+level
+
+to
+
+every
+
+possible
+
+follow-up
+
+Generally speaking, the classification process can be
+
+measurement among all the possible ones, on account
+
+summarized in the following steps (22):
+
+of a cost function. The new data are finally fed back
+
+1) Obtain contextual information from a pre-existing
+
+to the Event Portfolio where a new comparison with
+
+archive (point introduced before) and make a
+
+new fresh data will be made.
+
+comparison with the measured data for the given
+
+The physiognomy here showed is thus of a system
+
+transient candidate.
+
+capable of learning, survey by survey, how to better
+discern a class of events from another.
+
+2) Asses what are the probabilities that the event
+belongs to a given class of transients.
+3) Run
+
+follow-up
+
+characterization
+
+observations
+to
+
+better
+
+help
+
+3.3 Bayesian Network and Light Curve based
+
+for
+a
+
+further
+proper
+
+classification.
+4) Store the data obtained from the follow-up in the
+archive for the next detection.
+
+approach
+Given the large amount of data it is supposed to deal
+with, its heterogeneity and sparsity, methods based on
+a Bayesian Network appear to be the perfect
+candidate
+
+to
+
+solve
+
+the
+
+problem
+
+of
+
+Event
+
+In (26), an ideal data reduction pipeline is well shown
+
+Classification, as reported by (27) and (26) which this
+
+and explained. The telescopes are represented as a
+
+paragraph is mostly based on and whose reading is
+
+source of incoming heterogeneous and sparse data,
+
+strongly recommended for further deepening. Points
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+derived from different sources will be accompanied
+
+Putting the data from the first detection aside, the
+
+by a proper citation.
+
+context, as mentioned in the first paragraphs, is also
+
+In order to assign a probability to an event belonging
+
+paramount. As introduced before, the light curve of a
+
+to a given class of transient, it is necessary to exploit
+
+certain shape might be consistent with several
+
+all the data gained from the observation, be them
+
+different events, such as Supernovae o variable stars
+
+fluxes measured at different wavelengths, light
+
+but, as a matter of example, the presence of a galaxy
+
+curves, etc.
+
+in the proximity of an event makes a Supernova
+
+The authors present an interesting demonstration
+
+scenario becomes more plausible.
+
+carried out at the Catalina Real-time Survey in which
+
+In this sense, it is proposed the use of classifiers to be
+
+the priors (related to possible classes which a
+
+deployed along a hierarchical path. Some of those
+
+candidate can belong to) are referred to six
+
+classifiers are liable to be more effective if used for a
+
+Cataclysmic Variables (CV), Supernovae, Blazars,
+
+certain event rather than others and key features are
+
+Active Galactic Nuclei (AGN), UV Ceti stars and a
+
+used as "filters" in order to exclude that a candidate
+
+final class of miscellaneous object among the first
+
+belongs to a certain class of transients.
+
+five named "Rest". They point out that Light Curves
+
+An event is filtered through multiple classifiers step
+
+might be a good enough source of data in case they
+
+by step (from here the definition of "hierarchical"
+
+are related to classifiable objects (ex. SNe). In this
+
+approach).
+
+sense, they report that the Gaussian Process
+Regression (23), used for an automatic classification
+algorithm, is a valuable tool to gain useful
+information from the LC of the candidate. In
+particular, data of interest to be derived are Galactic
+Latitude, the color of the object in the r-i band,
+proximity to other objects, and so on.
+Another possibility is presented as an LC-based
+approach. Mahabal and colleagues propose to collect
+LCs for several objects belonging to a known class
+and building a probability density function (PDF) to
+represent its probabilistic structure. This way not only
+
+To better understand the purpose of classifiers,
+Mahabal et. al. propose a Supernova event as an
+example. An exploding star can undergo this process
+only once in its life and a transient candidate with a
+light curve showing a previous activity before the
+"main" event could indeed not be a Supernova.
+Different bits of information called into question
+different classifiers and even more, than one classifier
+is liable to be used in the same filtering step (24). The
+possibility of combining more than one classifier at
+the same time is presented as a non-trivial possibility,
+however still under development.
+
+allows to compare LCs from new events with the
+available PDF but also to enrich the existing archive
+
+3.5 Follow-up
+
+over several observations of several events.
+
+Providing that preliminary observation was made, and
+
+3.4 Contextual information and Classifiers
+
+that available time and costs are finite, it comes to the
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+issue of identifying the fittest follow-up for the given
+
+enough available telescopes MAB would be used to
+
+event. Time, costs, and scientific return are indeed
+
+improve the classification, also improving the
+
+important, but follow-up should also be chosen
+
+background of data working as an archive (27). The
+
+considering the gain in classification accuracy that a
+
+return would be represented by the capability of the
+
+given event could deliver to the system itself.
+
+telescope to assess the class to which any candidate
+
+One way to "set a guideline" in this sense is proposed
+
+belongs to.
+
+by (28), who considers the Shannon Entropy as a
+judgment parameter. The entropy drop related to each
+possible follow-up would be calculated and an
+automatic request for the most appropriate choice
+would be sent to the operator of the available
+telescopes (be it robotic or human).
+
+4. Catalina Real-Time Sky Survey (CRTS)
+The Catalina Real-Time Sky Survey (CRTS) (29) is a
+synoptic sky survey that takes advantage of 3
+widefield telescopes: the 0,68 m Catalina Schmidt on
+Mount Bigelow (Arizona), the 0,5 m Uppsala
+
+Another approach involves human action. The
+
+Schmidt (Siding Spring Survey) in New South Wales
+
+algorithm could be instructed to simply display a list
+
+(Australia) and the 1,5 m Mt. Lemmon Survey. The
+
+of possible follow-ups to an astronomer, instead of
+
+CRTS can cover 30.000 deg2 and obtain images of
+
+automatically ranking them. The astronomer itself
+
+objects down to 21,5 mag over 23 days/lunation, but
+
+would supply feedback about the most interesting or
+
+only at galactic latitudes above 10° not to generate
+
+feasible options so that the algorithm obtains useful
+
+confusion given by objects in the galactic plane,
+
+information to learn to choose on its own. Mahabal
+
+especially in the bulge (30).
+
+and colleagues specify that this option could be
+modeled
+
+with
+
+Multi-Armed
+
+Bandit
+
+algorithms
+
+4.1 Data Reduction Pipeline
+
+(MAB), devised by the American mathematician
+
+The Data Reduction Pipeline exploited by CRTS is in
+
+Herbert Robbins in 1952 (25), which can be
+
+truth largely based on a previous version run in the
+
+represented with a slot machine with N levers each
+
+Palomar-Quest survey.
+
+characterized by a different return (unknown to the
+
+The approach of CRTS to data reduction and
+
+operator). Both are the applicable solutions: exploit
+
+distribution is represented by an open data philosophy
+
+the lever that seems to give the highest return; explore
+
+since all the transients (and related data like images,
+
+different combinations in order to gather information
+
+LCs, etc) are published within minutes (31). These
+
+about any possible scheme, initially sacrificing the
+
+data
+
+gain. In MAB the necessity is to find the balance
+
+http://www.skyalert.org/ and, representing the first
+
+between exploration and exploitation, i.e., maximize
+
+testbed for a practice that will be brought on in future
+
+the return while minimizing the losses. Practically
+
+surveys. This choice implies that external teams are
+
+projecting this example, it is claimed that having
+
+encouraged to further study the gathered data so that
+
+can
+
+be
+
+found
+
+available
+
+at
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+the follow-up is largely left to human operators. As
+
+assessed to be a real event, in a process ranging from
+
+expectable, the volume of follow-ups activated is only
+
+minutes to hours.
+
+a small part concerning the number of transient
+candidates detected (31) and this problem is bound to
+
+5. Transiting Exoplanet Survey Satellite (TESS)
+
+become more insistent as new surveys will come.
+However, it is highlighted that the data streams from
+CRTS were, on the other hand, actively used as a test
+to experiment with new solutions toward an
+automated data reduction pipeline.
+Describing the data reduction more deeply can be
+firstly outlined the use of the SExtractor photometry
+software, by the Catalina Sky Survey Telescopes
+(CSS) in Arizona (32) (33). Transients are identified
+by comparing the fresh images with source catalogs
+in order to exclude artifacts and thus false positives.
+The objects taken from the catalogs are co-added
+images resulting from the median combination of not
+less than 20 other images.
+Another way the CRTS adopts to find transients is the
+
+Launched in April 2018, atop of a Falcon 9, TESS is
+a space telescope devised to reveal the presence of
+exoplanets by the transit method. According to (34)
+its primary duty is to explore a sky area 400 times
+greater than KEPLER's, monitoring about 200.000
+main sequence dwarf stars, waiting to detect drops in
+luminosity.
+TESS will observe the southern and northern
+hemispheres 1 year each, dividing each of them into
+13 sectors partially overlapped to ensure the presence
+of constantly monitored regions at the ecliptic poles
+(Continuous Viewing Zone or CVZ).
+These 26 sectors will allow TESS to keep an eye on
+about 90% of the sky with a temporal cadence of 2
+min respect 29,4 min in the case of Kepler (35).
+
+image subtractions which consists of matching new
+observations with a high signal-to-noise ratio
+
+5.1 Data Reduction Pipeline: Overview
+
+reference image and subtracting them and the utility
+
+This paragraph is entirely based on (36), which
+
+of which is highlighted especially for dense stellar
+
+provides a perfect overview, perfectly in line with the
+
+fields, i.e., in presence of significant fluxes from
+
+goal of this paper.
+
+mixed sources (30).
+
+It should be noted that the pipeline processes not only
+
+As mentioned at the beginning of this paragraph, in
+
+scientific data but also engineering data related to the
+
+order to approach the real-time response, all the
+
+spacecraft itself and only the functions related to the
+
+candidate transients are processed in loco and sent to
+
+first ones will be considered here.
+
+the Virtual Observatory (VO) website VOEvent.net,
+
+TESS' Data reduction pipeline is currently in
+
+now IVOA.net, and associated with an alert within 5
+
+development at the Science Processing Operations
+
+minutes from the 4th image in a sequence is obtained.
+
+Center (SPOC) and largely based on software
+
+It is showed that ~1/200.000 sources are selected as a
+
+previously devised for Kepler which included pixel-
+
+candidate transient and about 50% of them are then
+
+level calibration, background subtraction, aperture
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+photometry, and identification and removal of
+
+Compute
+
+systematic errors. All the data products generated by
+
+photometric measurements are gained from selected
+
+SPOC are archived in the Mikulski Archive for
+
+pixels, about each target star passing through the
+
+Space Telescopes (MAST) (37).
+
+SPOC pipeline.
+
+Another facility, the Payload Operations Center
+
+Photometric Analysis (PA). Each image in each
+
+(POC) at MIT, gains all the raw science data via
+
+frame of the given target star is analyzed and the
+
+Deep Space Network, sending them to the SPOC
+
+brightness is measured, also removing flux owed to
+
+which has the goal to analyze light curves searching
+
+stars in the background, cosmic rays and performing
+
+for transiting exoplanets and assess the probability of
+
+measures the photocenter of each target star frame.
+
+whether a given candidate is likely to be a real planet
+or false detection.
+
+Optimal
+
+Apertures
+
+(COA).
+
+Here
+
+Transiting Planet Search (TPS). Here signatures of
+transiting planets are detected by putting together the
+
+POC and SPOC form together with the TESS Science
+
+light curves of stars observed over a lunation and in
+
+Operation Center (SOC).
+
+consecutive sectors.
+
+Pixels, light curves, and transit search data are sent
+back to the POC which transmits them to the MAST
+and the TESS Science Office (TSO) (a catalog with
+various celestial parameters of up to 1010 stars).
+5.2 SPOC: The Science Analysis Pipeline
+
+Data Validation (DV). When the TPS identifies a
+planet signature, the DV runs a series of diagnostics
+to either consolidate or not the confidence that the
+observed transit candidate is after all a planet. The
+DV also orders the TPS to run another search for
+further light curves, in search of pieces of evidence
+
+Based again on (36), another element of interest is the
+SPOC and among all the components which it is
+
+for other planets, running a loop until the TPS cannot
+find any other signature.
+
+composed of we will focus on the Science Analysis
+Pipeline which builds diagnostics with the end of
+
+6. Antarctic Survey Telescopes (AST3)
+
+ranking in order of priority the candidates for followup observation.
+
+The Antarctic Survey Telescopes is a project born
+
+SPOC's main components are briefly summarized
+
+from
+
+hereafter in the same order they work.
+
+the
+
+collaboration
+
+between
+
+Texas
+
+A&M
+
+University and the Beijing Astronomical Observatory.
+Three twin 50cm telescopes (first of which built-in
+
+Calibration (CAL). Its main function is to remove
+
+2012) at the Antarctic Kunlun Station, near Dome A
+
+artifacts and effects owed to the instrument
+
+in Antarctica (80°25′S - 77°07′E) (38).
+
+themselves. A traditional CCD data reduction is
+
+Those telescopes are intended to be fully robotic
+
+performed along with pixel-level calibration and
+
+installation, born to enable efficient sky surveys and
+
+correction owed to the absence of a camera shutter.
+
+to provide a fast response in case of transient
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+detection. The reason for such effort is mainly owed
+
+those cases in which fast response is needed, i.e.
+
+to the fact that the base can spend long periods
+
+follow-up of Gamma-Ray Bursts or Supernovae.
+
+without human presence and the telescopes must be
+
+When the mode is triggered by an alarm, the
+
+able to conduct automatic surveys.
+
+scheduler records the position being observed until
+
+Instead of human operators, the main operator of the
+
+that moment, putting that survey in stand by, and
+
+telescopes is a software called ast2suite, developed by
+
+quickly points to the "special" event source. Once all
+
+(39) which orchestrates every aspect of the survey,
+
+special targets are observed, the scheduler returns to
+
+from telescope pointing to data reduction and
+
+the previous survey.
+
+archiving.
+
+The scheduler works together with the survey system
+
+A strength of the project consists in taking advantage
+
+to give a new target each time there is the necessity of
+
+of prolonged periods of dark, during which it is
+
+pointing a new field. This means that the scheduler is
+
+possible to exploit at maximum telescopes with a
+
+fully autonomous in deciding which target will be the
+
+contained aperture. During polar nights it is possible
+
+next when to put the survey on standby or operate
+
+to set 3-4 months long observations with a cadence
+
+calibrations. The special mode is the one with the
+
+that can range from seconds to months.
+
+highest priority and the related files ("special files")
+
+Information about a data reduction pipeline for
+
+will be the first to be checked. A proper list is
+
+exoplanets detection can be found in (40) but this
+
+dedicated to these special files and only in case, this
+
+case was chosen not to be reported here since it was
+
+is empty the system would switch to the "standard"
+
+considered too specific and not applicable to a paper
+
+survey mode. In case the list is not empty the system
+
+treating all types of transients.
+
+checks what targets are available to carry out
+observations, giving higher priority to the nearest
+
+6.1 Scheduler
+
+target.
+
+The Authors of this paper wants to specify that this
+
+As expectable, the telescope spends most of its time
+
+paragraph is entirely based on (41) which represents
+
+in Survey Mode. Similarly, concerning the special
+
+the only source regarding this aspect.
+
+mode, the system checks a survey list that contains
+
+To efficiently plan a sky survey the scheduler must
+
+information about all the fields under control. Fields
+
+take into account several parameters, such as airmass,
+
+with the highest priority (according to pre-set criteria)
+
+observing cadence, survey area, etc, making decisions
+
+are checked first and the priority level is possibly
+
+depending on the observing requirements. For this
+
+changed. Information on the observed field is
+
+reason, three different modes (Supernova, Exoplanet,
+
+recorded (exposure time, airmass, phase of the moon,
+
+and Special survey mode), each one with its own set
+
+coordinates in the equatorial system, etc.) and the
+
+of scientific requirements, are created. It is worth
+
+survey system goes on stand-by, waiting for a new
+
+mentioning that the Special Mode is intended for
+
+target or call.
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+Level 2. Level 1 data are reprocessed every year for
+7. Large Synoptic Survey Telescope (LSST)
+
+photometric and astrometric calibration and released
+
+The Large Synoptic Survey Telescope is a facility
+currently under construction, characterized by an
+8,4m primary mirror and located on the El Peñón
+peak of Cerro Pachón, in northern Chile (42). It will
+have the capability of overlapping images for a total
+
+with full characterization of objects of interest
+(fluxes, shapes, orbital parameters, light curves,
+images, list of detected objects, etc.), creating a Dara
+Release. These data are planned to be stored for the
+whole lifetime of the LSST.
+
+of 20.000 deg2 in six optical bands (in the range of
+
+Level 3. LSST's Data management system will
+
+320-1050 nm) with an effective system Etendue (also
+
+dedicate 10% of its capability to user-dedicated
+
+called
+
+System
+
+processing and storage. This is will allow science
+
+Throughput") of 300 m2 deg2 which is one order of
+
+teams to use the database infrastructure and store their
+
+magnitude more than any other existing observatory.
+
+results inside of it. Proper software will be also put at
+
+Each sky location is estimated to be visited 100
+
+disposal to facilitate the creation of level 3 data,
+
+times/year with a 30 sec exposure for each
+
+taking advantage of more than 15 years of efforts put
+
+observation (43).
+
+on the LSST.
+
+"Optical
+
+Extent" or
+
+"Effective
+
+Among the main science, goals are the exploration of
+the Transient Optical Sky, with an expected detection
+of several types of transients, among SNe, GRBs,
+black hole binaries, etc, also paving the path in the
+detection of a whole new type of transients such as
+binary mergers and stellar disruption owed to black
+holes. Microlensing events are also expected to be
+detected in large quantity especially within the Local
+Group (44).
+7.1 Data Products
+Regarding the LSST, the very first point worth
+presenting is represented by the three categories of
+data products (45).
+Level 1. Data generated and published continuously
+every night (within 60 sec from observation),
+including alerts of an object which brightness or
+position changed.
+
+All Level 1 data and 50% of Level 2 (data release)
+processing will take place at the Archive Facility at
+the National Center for Supercomputing Applications
+(NCSA) in Champaign, which will also serve as a
+data access center for the US community. The
+remaining 50% of data processing will be left to the
+satellite centre (Centre de Calcul de l'Institut National
+de Physique Nucléaire et de Physique des Particules)
+in Lyon.
+The Base Facility in La Serena has instead the task of
+serving as a retransmission hub for data uploads to
+North America and data access centre for the Chilean
+community.
+7.2 Data Reduction Pipeline
+LSST Pipeline can be represented as a dense group of
+small pipelines working all together to form a largescale Data Management System. The available
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+material reports a full characterization of the pipeline
+
+image readout, as seen for the Alert Production
+
+which will be not thoroughly reported here, for the
+
+Pipeline (48).
+
+sake of brevity. However, an exhaustive description
+
+The LSST is expected to produce several hundreds of
+
+can be found in the second chapter of the LSST
+
+Petabytes after the 11th planned Data Release.
+
+Science Book (46).
+
+Authors highlight that it will be an important
+
+At the very first level is the Alert Production.
+
+difficulty to overcome processing such amount of
+
+Astronomers need to search for objects whose flux
+
+data to transform raw imaged into highly valuable
+
+clearly changes over time and this should be ideally
+
+data, also implementing automated data quality
+
+made in the shortest possible time, since field image
+
+assessment and automated discovery of moving or
+
+acquisition. Level 1 data find their place in these first
+
+transient sources and making it possible to archive all
+
+steps where alerts are triggered by the output data
+
+these data for the community.
+
+stream exiting the Camera Science Acquisition
+System (SDS) during observations. Images are sent to
+
+8. Panoramic Survey Telescope and Rapid
+
+the Archive Center and examined in search of
+
+Response System (Pan-STARRS)
+
+transients within 60 seconds from the shutter closure,
+by image subtraction (based on (47)). Authors point
+
+Pan-STARRS is a survey currently operated by the
+
+out how the community manifested a strong interest
+
+Institute for Astronomy at the University of Hawaii
+
+in avoiding filtering alerts before the public
+
+that runs through two twin telescopes, PS1 and PS2,
+
+distribution so that human operators can fully sift
+
+first of which provides the quasi-totality of the
+
+them.
+
+available data and will thus be the main object of the
+
+As introduced before, every year a Data Release is
+
+section dedicated to Pan-STARRS.
+
+organized for the community. The Data Release
+
+All the relevant information about the Pan-STARRS
+
+Pipeline works to generate highly analyzed data
+
+survey is easily available at the dedicated homepage
+
+products, especially in the case of very faint objects,
+
+(49). PS1 is a 1,8m Ritchey-Chrétien telescope with a
+
+also covering long time scales. Every year each new
+
+7 deg2 Field of View located in Maui, Hawaii. It is
+
+run will process the entire survey data set, improving
+
+equipped with the largest digital camera ever built,
+
+the completeness of the available data. To make a
+
+capable of recording 1.4 billion pixels/image and the
+
+comparison, night (real-time) pipelines are instead
+
+focal plane is composed of 60 packed CCDs arranged
+
+based on image subtraction, which highlights the
+
+in an 8 × 8 array. More information is available
+
+differences between two exposures of the same field
+
+thanks to Denneau et.al. which reports that each
+
+and are designed to rapidly detect interesting transient
+
+image is taken with an exposure time of 30-60 sec
+
+events in the image stream and send out alerts to the
+
+(enough to see objects down to 22 mag), requiring ~ 2
+
+community within 60 seconds of completing the
+
+Gigabytes of storage. Each night the telescope can
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+observe 6000 deg2 of the 30.000 visible from Hawaii,
+
+Moving
+
+meaning that the entire visible sky can be observed in
+
+Detections from inside the Solar System are linked
+
+a matter of 40 hours (50).
+
+together, and related orbits are determined.
+
+It is worth noting that, as well as TESS, the Pan-
+
+Published Science Products Subsystem (PSPS). IPP
+
+STARRS takes advantage of the Mikulski Archive for
+
+and MOPS that calibrate measurements are sent to
+
+Space Telescope (MAST) of the Space Telescope
+
+PSPS which creates a high-availability database for
+
+Science Institute (STScI), to ensure a broad public
+
+the community.
+
+Object
+
+Processing
+
+System
+
+(MOPS).
+
+diffusion of science data (51).
+Among the objectives are a series of studies in the
+Time-Domain of astrophysics including explosive
+transients, the search of exoplanets, and surveys for
+microlensing events in the Andromeda Galaxy.
+
+Institute of Astronomy in Maui (IfA) coordinates
+the steps above. In the related paper it is possible to
+find a full panoramic of the complex system behind
+data reduction for Pan-STARRS, with a particular
+emphasis on analysis, calibration and database ingest
+stages.
+
+8.1 Data Reduction Pipeline
+
+From a more dynamic point of view, two responses
+The following paragraph is based on an article by
+Chambers et.al (52), which reports with great
+
+can be deployed by the system during nightly science
+operations:
+
+precision how the Pan-STARRS Pipeline is composed
+and works. The paper is the only article that describes
+the Data Pipeline and, albeit fully exhaustive, the
+
+1) Rapid Detection of transient sources, in order to
+allow a follow-up with other telescopes.
+
+amount of material would make this article too long.
+
+2) Regular Analysis with the purpose of monitoring
+
+It was thus decided to only introduce all the main
+
+data quality and for use in longer science projects.
+
+components with few lines each to describe their
+
+Each image is passed through a processing line to
+
+purpose.
+
+correct instrumental signatures and mainly detect the
+event sources, by the block CHIP. Astrometric and
+
+Summit
+
+Processing.
+
+Camera
+
+and
+
+observatory
+
+systems run data analysis necessary to support
+ongoing observations.
+Image Processing Pipeline (IPP). In this subsystem,
+raw pixels are processed to obtain calibrated
+measurements of objects in an internal databasing
+system. Each image is processed in 30-60 seconds.
+
+photometric calibrations are executed by CAMERA.
+Finally, images are transformed into pixels by
+WARP. Images of given fields are stacked together,
+and different images are generated for the nightly
+stack images or individual warp images. If we are in
+the second case, warp images can be differenced
+against another warp of the same night or a reference
+stack from the given part of the sky.
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+Pan-STARRS also performed several large-scale
+
+9. Spitzer Space Telescope
+
+reprocessing of data for completed surveys to perform
+a more detailed photometric analysis on the stack,
+including morphological analysis appropriate to
+galaxies.
+
+The Spitzer Space Telescope, named after Leyman
+Spitzer, was launched in 2003 with a planned mission
+of 2,5 years.
+The (53) holds several interesting information about
+
+8.2 Post Processing
+
+the telescope, starting with the primary 85 cm mirror,
+
+A brief overview of the post-processing phase seems
+
+which allows the telescope to detect events in the
+
+to be appropriate as well and again (52) represents an
+
+infrared band. Three are the main instruments:
+
+exhaustive source.
+
+•
+
+IRAC (InfraRed Array Camera). It is an IR
+
+Inside the IPP sub-pipeline is an internal database
+
+camera
+
+system called "Desktop Virtual Observatory" or DVO
+
+photometric measurements in 4 bands around the
+
+which purpose is to associate multiple detections of
+
+infrared (3,6, 5,8, 4,5, and 8,0 microns).
+
+(256×256
+
+pixel)
+
+useful
+
+to
+
+obtain
+
+the same object, within the context of the photometric
+and astrometric calibration process.
+
+•
+
+images from which the measurement comes from.
+To represent the simplest way the DVO works it is
+possible to imagine a collection of measurements for
+
+Spectrograph).
+
+It
+
+is
+
+a
+
+spectral resolution between 5,2 and 38 microns.
+
+average properties of astronomical objects, the "raw
+
+averages are obtained), and the properties of the
+
+(InfraRed
+
+spectrograph able to work in medium or low
+
+DVO refers to three main parameters which are the
+measurements" of the same objects (from which the
+
+IRS
+
+•
+
+MIPS (Multiband Imaging Photometer for
+Spitzer). It is a photometer capable of obtaining
+images and photometric measurements in 3 bands
+of the medium and far-infrared (24, 70, and 160
+μm).
+
+detections from a set of images loaded inside the
+DVO itself as well as the metadata describing the
+
+According to its Handbook (54), Spitzer is mostly
+
+images (airmass, exposure time, etc.). The DVO
+
+committed to executing observations on behalf of the
+
+builds astronomical objects based on the uploaded
+
+institutes that led its construction, but it also possible
+
+detections with a final goal of creating a database
+
+for the scientific community to propose a particular
+
+where images and measurements are in relation to one
+
+survey. The general purposes of the mission are the
+
+another according to a "one-to-many" relationship
+
+study of planetology, stellar formation, interstellar
+
+and where the same measurements and the derived
+
+medium, Milky Way, and other galaxies, not to
+
+astronomical objects are related according to a "one-
+
+mention the study of astronomical transient events.
+
+to-many" relationship.
+9.1 Data Reduction Pipeline
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+Plenty of information about the Data Reduction
+
+Unfortunately, Spitzer difference imaging is subject
+
+Pipeline of Spitzer is provided by Kasliwal et.al. (55)
+
+to a high rate of false positives and the candidate
+
+and it will be presented with the study of an unusual
+
+needs to be detected at least twice (in different filters
+
+class of transients, named SPRITEs, within the
+
+or epochs) to rule out a false positive visually
+
+SPIRITS (Spitzer InfraRed Intensive Transients
+
+verifying.
+
+Survey).
+
+Forced Photometry.
+
+Having made difference
+
+Such events have no optical counterpart and show an
+
+images available, a transient candidate is identified
+
+IR luminosity between novae and supernovae with
+
+assuming a zero flux in the reference image and
+
+absolute magnitudes ranging from -11 and -14.
+
+executing
+
+forced
+
+aperture
+
+photometry
+
+on
+
+the
+
+subtracted image. The sky background is measured
+The general profile for SPRITEs can be defined
+
+within a circular halo (8-16 pixels) around the source
+
+accordingly to the following features observed in 14
+
+and subtracted from the total flux.
+
+events with no optical counterpart.
+Database and Dynamic Web Portal. As well as
+The major components of the data reduction pipeline
+
+other surveys, data are passed through a web portal
+
+are presented here below:
+
+and released within few days.
+Despite the capability of the pipeline to select
+
+Image Subtraction. Kasliwal does not lack to
+
+candidates on its own, the action of human operators
+
+highlight that the image differencing code here used
+
+is still needed, and different galaxies are assigned to
+
+was originally developed for the Palomar Transient
+
+different team members so that the number of
+
+Factory with few changes which include: the ability
+
+candidates can be restricted. Within one day from the
+
+to work on co-adds of individual IRAC exposures;
+
+release, team members are assigned with a galaxy and
+
+masking of regions where the depths are <5, to avoid
+
+the task to flag interesting candidates. The human
+
+cosmic rays and detector glitches; the use of
+
+action brings to have 1/100 of the objects initially
+
+SExtractor (valuable tool already used in many other
+
+selected by the pipeline itself. After one last step in
+
+surveys) to select transient candidates from difference
+
+which
+
+images; omission of dynamic photometric-gain
+
+interesting
+
+matching between reference and science images co-
+
+Astronomers Telegrams.
+
+contextual
+
+information
+
+transients
+
+are
+
+then
+
+is
+
+considered,
+
+announced
+
+by
+
+adds.
+Reference images come from the archival data,
+
+10. Zwicky Transient Facility
+
+including Super Mosaics (Spitzer Enhanced Imaging
+
+Mount Palomar hosts one of the most famous and
+
+Products through the NASA/IPAC Infrared Science
+
+productive observatories ever created and its mention
+
+Archive) or by stacking prior images in the archive.
+
+seemed a must for this paper. In the following, it is
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+presented the latest survey brought on in this facility:
+
+running surveys for long periods. Human operators
+
+the Zwicky Transient Facility (ZTF).
+
+remain able to control the system (also keep tracking
+
+This survey started in 2017 as the successor of the
+
+of its performance) and modify some parameters,
+
+Intermediate
+
+when necessary. Data (images, catalogs, light curves,
+
+Palomar
+
+Transient
+
+Factory
+
+takes
+
+advantage of the 48-inch Palomar Schmidt telescope.
+
+etc.) are sent to the IPAC by microwave link, but the
+
+Despite using the same telescope, the ZTF achieved a
+
+system is provided with its 2-weeks worth storage, in
+
+more than one order of magnitude better volumetric
+
+case of need.
+
+survey speed (spatial volume in which it can detect a
+
+10.2 Data Reduction Pipeline
+
+transient of given magnitude divided the exposure
+The general requirement in the conception of the Data
+
+time) respect the Palomar Transient Factory (56).
+
+Reduction Pipeline was the necessity of a quasi-real10.1 Observing Strategy and Robotic Observing
+
+time response (common goal of many other surveys,
+
+Software
+
+after all) of no more than 20 minutes between the data
+
+This paragraph is entirely described from another
+
+transfer to IPAC and its processing. It should be noted
+
+publication by Bellm (57), who is currently working
+
+that the main pipelines are 9 but, for the sake of
+
+as Survey Scientist at the ZTF.
+
+brevity, only a brief will be proposed. The material to
+
+The observing strategy is divided into three main
+programs
+
+which
+
+are
+
+a
+
+public
+
+survey,
+
+ZTF
+
+collaboration surveys, and CalTech surveys which
+
+thoroughly describe the main points of the Data
+Pipeline have been crossed between the paper
+previously cited and (58).
+
+require respectively 40, 40, and 20% of the surveying
+
+An alert system also provides human operators with
+
+time. It is also possible that Targets of Opportunity
+
+several contextual information about a detected event
+
+are observed as a response to external triggers.
+
+(along with the basic measurements, of course) in
+
+During the public survey mode, two are the main
+
+order to assess whether the candidate is astrophysical
+
+surveys: a Northern Sky Survey during which the
+
+or not. This contextual information includes a score
+
+observations are focused, with a 3-days cadence, on
+
+from the Real-Bogus machine learning algorithm, a
+
+all the fields whose center is north of -31° of
+
+light curve of previous detections, and cross-matches
+
+declination; a Galactic Plane Survey which is focused
+
+with the Pan-STARRS1 catalog.
+
+on all the visible fields comprised between -7° and 7°
+
+In general, the information about such candidates is
+
+of galactic latitude. Regardless of the survey being
+
+obtained from positive or negative images (output of
+
+run, each field is observed twice with a 30 minutes
+
+the image differencing) and associated with a flux-
+
+pause, respectively in g-band and r-band. The totality
+
+transient or recurring flux-variable, or a moving
+
+of the surveys is managed by the Robotic Observing
+
+object, which represents a set of potential triggers for
+
+Software (ROS), which is capable of automatically
+
+the alarm. These events pass a first light filter to
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+eliminate any clear false positive, but the rest is left to
+
+that can be inflated up to 3 planet radii. The expected
+
+human judgment.
+
+duration is 7 months but, depending on the health
+
+11. Colorado Ultraviolet Transit Experiment
+
+state of the instruments, it will be liable for further
+
+(CUTE)
+
+extension. The exoplanets will be observed around 12
+
+The role of CubeSats in Time-Domain Astronomy is
+becoming more and more present over the years. One
+of the most evident pros is given by the fact that small
+
+target stars with 10 transits expect for each system
+(61).
+11.2 Data Reduction Pipeline
+
+CubeSats can focus on a single target for long
+periods, despite bigger multi-purpose satellites, such
+
+Since many parts are yet to be completed, the data
+
+as the Hubble Space Telescope, usually divided
+
+reduction pipeline is only briefly presented in (62)
+
+between different surveys and teams.
+
+and will be here in short summarized.
+
+Despite a few projects already operational, a thorough
+
+The main tasks of the data reduction pipeline will be
+
+analysis would require a proper space that cannot be
+
+dark and bias subtraction, corrections for bad/hot
+
+dedicated here. For this reason, only one project of
+
+pixels, cosmic-ray correction, flat-field removal,
+
+particular interest will be presented hereafter, leaving
+
+spectral
+
+the rest to another paper to be drafted in future work.
+
+wavelength calibration, and flux calibration.
+
+The chosen project is called the Colorado Ultraviolet
+
+It is already assessed that some functions will be
+
+Transit Experiment (CUTE) which is a 4-year NASA-
+
+achieved directly into orbit, as for the case of master
+
+funded project which is led by the University of
+
+dark and bias frames to be assembled on board. Most
+
+Colorado, Boulder. The chosen spacecraft is a 6U
+
+of the steps will be however carried out on the
+
+CubeSat (6 Units = 30cm x 20cm x 10cm) with an
+
+ground, such as wavelength and flux calibration.
+
+expected lifespan of 1 year after being launched in
+
+In general, the data reduction pipeline is expected to
+
+2020 (60).
+
+be flexible enough to be able to account for the
+
+extraction,
+
+background
+
+subtraction,
+
+effects of possible inflight complications.
+11.1 Science Goals
+CUTE will perform investigations of multiple Hot
+Jupiters in the Near-UV band ranging from 255 to
+330 nm, because of the low optical depth of the
+escaping gas in the planetary upper atmosphere that
+can be best studied at ultraviolet wavelengths. The
+main task is to provide important observations about
+the atmosphere loss by transit method which allows to
+"see" the upper layers of an exoplanet's atmosphere
+
+12. Sardinia Radio Telescope (SRT)
+The Sardinia Radio Telescope is a recent and
+advanced installation with a fully steerable 64-meter
+single-dish, located in San Basilio in Sardinia (Italy),
+inaugurated in 2013.
+Its capability allows high efficiencies at frequencies
+up to 115 GHz, but the most exploited range is
+usually between 0,3 and 100 GHz (63).
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+Along with the other installations forming the
+
+characterized by high radio interference, the pipeline
+
+European Pulsar Timing Array (EPTA), the SRT will
+
+will also be optimized for Radio Frequency
+
+provide coverage for pulsars, and yet it investigates
+
+Interference excision while the machine learning
+
+several other transients. Among these, it is possible to
+
+algorithm will take care of an automatic selection of
+
+mention Active Galactic Nuclei and Gamma-Ray
+
+candidates.
+
+Bursts,
+
+not
+
+to
+
+mention
+
+the
+
+investigation
+
+of
+
+Gravitational Waves.
+An interesting peculiarity is given by the presence of
+1116 actuators whose duty is to correct deformations
+in the main mirror owed to gravity and errors owed to
+wind-related effect and temperature (64).
+12.1 Data Reduction Pipeline
+
+Gamma-Ray Pipeline. This pipeline has its input
+from online archives that harvest data from AGILE
+and FERMI orbiting telescopes. Those data are used
+to trigger a follow-up of the source and, thanks to a
+Bayesian and machine learning-based approach, a
+galactic progenitor will be identified as a candidate
+source.
+X-ray Pipeline. Similarly, this pipeline downloads
+
+First, the SRT takes advantage of software named
+
+data from Nasa's NuSTAR telescope. It must be
+
+ScheduleCreator whose function is to set a schedule
+
+highlighted that Imaging X-ray Polarimetry Explorer
+
+for including all the possible modes the SRT can
+
+(IXPE) will take the place of NuSTAR itself, being a
+
+exploit.
+
+very similar project and being the team involved in it.
+
+The telescope is mainly directed by the SRT
+ExpAnded Data Acquisition System (SEADAS)
+
+13. Gamma- Ray Light Detector (AGILE)
+
+which works for antenna pointing and configuration
+
+Launched in 2007, AGILE is an Italian observatory
+
+and data acquisition. The last point, in particular, is
+
+deputed to the observation of high-energy events,
+
+managed by communication with other software tools
+
+being able to detect and image particles between 30
+
+left running in the backend' server (65).
+
+MeV and 50 GeV and 10-40 keV.
+
+The most recent concept for the SRT pipeline, strictly
+speaking, can be found in (66). Such an article shows
+more than one pipeline, the reason why a list will be
+exposed hereafter.
+
+Every useful information about AGILE is reported in
+its Handbook (68). It is mainly addressed to
+observing GRBs, Active Galactic Nuclei, Galactic
+Sources,
+
+Pulsars,
+
+Binary
+
+Systems,
+
+Supernova
+
+Radio Pipeline. This pipeline will be able to observe
+
+Remnants, and others.
+
+pulsars in all the bands the SRT can exploit (P, L, C,
+
+Among several instruments, observations will be
+
+K, and S-band) by the intervention of software named
+
+operated by: Gamma-Ray Imaging Detector (GRID),
+
+presto (67) which will be aided by a python program
+
+devised to obtain a large field of view and work in the
+
+developed by the team itself. Being the location
+
+30 MeV-50Gev energy range; Super-AGILE detector,
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+intended for observation of sources both in the
+
+matrix. Another interesting point, proposed in (71), is
+
+Gamma and X-ray bands.
+
+the automated data acquisition software. The ROTSE
+
+13.1 Data Reduction Pipeline
+
+can work on its own thank to a fully automated
+system created for ROTSE-I and managed by several
+
+The Data Analysis pipeline is reported in the sixth
+
+daemons (automatic programs working in the
+
+chapter of the handbook.
+
+background):
+
+The chapter shows how science data are sent to the
+
+managing the aperture and closure of the clamshell;
+
+ground facility in Malindi, allowing the production of
+
+the camera daemon (camerad) which manages the
+
+Level 1 data (science data passed through minor
+
+CCD camera; the weather daemon (weathd) which
+
+corrections, such as background rejection, attitude,
+
+monitors the weather and can command the closing of
+
+etc.). Level 2 data will be then ready to be treated
+
+the clamshell in case of bad conditions; the mount
+
+with proper software, allowing the personnel to
+
+daemon (schierd) which manages to point and
+
+operate a full science analysis for each point-like
+
+tracking; the astronomical scheduler daemon (astrod)
+
+candidate source of interest.
+
+which schedules observations, system startup, and
+
+The goals of the data analysis by AGILE can be
+
+shutdown, also managing the queue and alerts for
+
+summarized as: analyzing gamma and x-ray data
+
+GRBs; the alert daemon (alertd) which manages and
+
+within 1 hour from detection; making results
+
+triggers alerts about sudden events.
+
+available for the public via the web; creating alerts of
+
+the
+
+clamshell
+
+daemon
+
+(clamd)
+
+14.1 Data Reduction Pipeline
+
+GRB in 2 minutes maximum; allowing other teams to
+analyze specific gamma-ray sources.
+
+Information about the data reduction is retrieved from
+
+Another important point is the capability of AGILE of
+
+(72) in chapter 8.
+
+observing sources both in the gamma and x-ray band.
+
+The first concept of a pipeline for ROTSE-III
+
+As a matter of example, the gamma-ray outburst from
+
+involves the acquisition of hundreds of images per
+
+the binary V404 Cygni (69).
+
+night in a fully automatic regime. The general idea is
+to create a closed-loop cycle.
+
+14. Robotic Optical Transient Search Experiment
+(ROTSE)
+
+When an event is detected, the Camera Server
+Daemon (camserverd), acting as the server on the
+
+The ROTSE is a project composed of four telescopes
+
+camera computer itself, records a new image to the
+
+designed to observe the optical afterglow of gamma-
+
+archive. Consequently, a script called sexpacman.pl
+
+ray bursts (70).
+
+wait for new image-related links, and when a new one
+
+After two predecessors, ROTSE-I and ROTSE-II, the
+
+appears it operates dark and flat fields correction on
+
+ROTSE-III system went online and started working
+
+the given image, also taking advantage of SExtractor
+
+with a CCD camera composed of a 2048 x 2048 pixel
+
+to produce a list of objects from the image itself. In
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+the case of a GRB, the image acquires a higher
+
+Little is found in literature about the future data
+
+priority and the newest outbursts outrank the older
+
+reduction pipeline of the mission and the main source
+
+ones.
+
+about the following information is represented by
+
+The list of objects created by SExtractor is then
+
+(74).
+
+passed to a script called idlpacman.pro which reads
+
+The JWST pipeline is expected to fully involve the
+
+the first file, calibrating it against the United States
+
+science community, and to improve over time thanks
+
+Naval Observatory (USNO) catalog to generate a list
+
+to lessons learned and new best practices. The science
+
+of R-band magnitudes and locations for the candidate
+
+community will be put in condition to download large
+
+sources. Up to this point, 45 seconds are usually
+
+amounts of data from JWST observations and to track
+
+passed.
+
+the health condition of the instruments over a long
+
+Advancing with the hypothesis of a GRB, data
+
+period.
+
+structures
+
+first
+
+Once the spacecraft is into orbit, a series of null-tests
+
+identification of few objects. At this point, variable
+
+will be carried out, also on the proposal of the
+
+objects easily appear in the images and can be flagged
+
+community itself and with the goal of testing
+
+with no further steps. If it is not the case and the
+
+telescope capabilities and to find an agreement on
+
+candidate is a real transient the image is divided into a
+
+how to get rid of known problems (for example, ramp
+
+grid. Magnitudes related to stars are obtained that's to
+
+effect).
+
+such grid which allows recognizing an array of
+
+A first release called Early Release Observation
+
+magnitude offsets by which all magnitudes are
+
+(ERO) will be made so that the community can be
+
+adjusted.
+
+encouraged and involved in working with the
+
+of
+
+calibrated
+
+lists
+
+allow
+
+the
+
+telescope, also having the possibility to deal with real
+data from real transit detections and learn how to
+
+15. James Webb Space Telescope (JWST)
+
+work with them.
+The JWST is usually presented as Hubble's successor
+and, scheduled to be launched in 2021, is a large
+infrared
+
+telescope
+
+with
+
+a
+
+6,5
+
+m
+
+primary
+
+mirror. Named after the former Nasa administrator
+James Webb, the telescope will operate to achieve
+
+Another, not yet defined, release (Early Release
+Science or ERS) will be complementary to the ERO
+and its main goal will be to allow the community to
+understand the performances of the telescope before
+the submission of the first proposals for the mission.
+
+many goals, transients study included. In particular, it
+will be able to study exoplanets by transit and even
+gather information on their atmospheres (73).
+15.1 Data Reduction Pipeline
+
+16. Very Large Array (VLA)
+The Very Large Array is an interferometer completed
+in 1980 dedicated to a broad range of studies.
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+Its website (75) contains all the relevant information,
+
+Hierarchical Decision making allows a reduced data
+
+starting from the main features. The installation is
+
+rate yet maintaining an ideal sensitivity and
+
+composed of 27 antennas with a diameter of 25
+
+computational efficiency. Constant sources are early
+
+meters, located to form a "Y" which lines are 21 km
+
+subtracted by subtracting early visibility in time on
+
+long. Thanks to the principles of interferometry, the
+
+timescales lower than the VLA fringe rate (which
+
+whole complex can act as a giant antenna of 40 km in
+
+results in about 1 s). This way allows to recognize
+
+diameter.
+
+transient candidates by thresholding all the images,
+
+Among the main scientific goals is the study of
+
+also eliminating the need for a source catalogue.
+
+quasars, pulsars, radio galaxies, black holes, gamma-
+
+Candidates are saved to a database.
+
+ray bursts, and transients in general.
+
+All in all, the Realfast will be required to generate
+
+16.1 Data Reduction Pipeline
+
+structured data for few tens of events a day, also
+expecting some false positives. The "winning"
+
+For this part, it will be presented an interesting system
+
+candidates will be directly sent to the National Radio
+
+proposed by Law et. al. in 2018 and called Realfast
+
+Astronomy Observatory (NRAO) archive.
+
+(76).
+
+Transient of interest will be shared with the
+
+The main reason that led to the birth of Realfast is the
+
+community and distributes by the FRB VOEvent
+
+volume of data coming from data collection with a
+
+protocol.
+
+millisecond cadence. This novel system would
+instead operate only during a few moments, when the
+
+17. Wide-Field Infrared Survey Telescope
+
+transient manifest, reducing the volume of data by a
+
+(WFIRST)
+
+factor of 1000 (according to what the Authors claim).
+
+The WFIRST is a Hubble-sized space telescope with
+
+The authors provide a full description of the whole
+
+a mass of 4166 kg and its 300 MPixels Wide Field
+
+system (algorithm, hardware, software, etc.), but in
+
+Instrument (WFI) camera will have a field of view
+
+this paragraph, only the main features of the pipeline
+
+100 times larger than Hubble's itself.
+
+are reported. For further details, the reading of the
+
+NASA will implement the WFIRST program on a
+
+original article is strongly recommended.
+
+2.4-meter AFTA (Astrophysics-Focused Telescope
+
+The first two great actors of the pipeline are the
+
+Assets) telescope, donated to NASA by another
+
+WIDAR and the Correlator BackEnd (CBE). The first
+
+agency.
+
+one manages the 1st level correlation and the second
+
+To be launched in the mid-2020s, this telescope will
+
+one manages the 2
+
+nd
+
+level, forming together the
+
+be able to conduct surveys in the optical and infrared
+
+correlator of the VLA. Both the blocks allow the
+
+bands, providing new important hints about three
+
+generation of visibility data (meaningful, structured
+
+main topics: Supernovae, Exoplanets habitability, and
+
+data).
+
+Dark Matter.
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+A spearhead of the mission will be the Coronagraph
+
+The data reduction is widely based on a pipeline
+
+Instrument (CGI) which will consist of a technology
+
+created for the Gemini Planet Imager, the main
+
+demonstration for possible future missions aimed at
+
+instrument of the Gemini South Telescope (Cerro
+
+detecting signs of life in the atmospheres of Earth-like
+
+Pachón, Chile) and called "GPI Pipeline" (79). By
+
+exoplanets. It will also be capable of directly imaging
+
+choosing different algorithms, among the available
+
+planets similar to those in our Solar System,
+
+ones, it is possible to obtain different variants of the
+
+measuring for the first time the photometric
+
+data reduction.
+
+properties of the mini-Neptune or super-Earth planets.
+
+The
+
+The instrument will be able to suppress the starlight
+
+computationally
+
+by a factor of 1 billion, far better than current state-
+
+simulations demonstrated high accuracy in the
+
+of-the-art ground or space-based capabilities.
+
+extraction itself.
+
+final
+
+performance
+fast
+
+is
+
+represented
+
+spectra
+
+extraction
+
+by
+
+a
+and
+
+All the information above and other relevant features
+can be retrieved from the WFIRST official Website
+(77).
+
+18. EUCLID
+Euclid is a mission proposed by the European Space
+Agency, scheduled for launch in 2022.
+
+17.1 Data Reduction: PISCES Spectrograph
+Its capability of surveying the visible and nearThe newest concept for a data reduction pipeline is
+
+infrared band will allow the mission to better
+
+strictly related to a proposed instrument for the CGI:
+
+understand what is behind dark matter and dark
+
+Prototype Imaging Spectrograph for Coronagraphic
+
+energy by measuring the acceleration of the universe
+
+Exoplanet Studies (PISCES) (78).
+
+(redshift).
+
+This particular instrument was proposed according to
+
+astronomical transients, especially SNe, exoplanets,
+
+the WFIRST CGI requirements and to allow
+
+and gravitational lensing (80).
+
+spectroscopy from direct imaging of exoplanets to
+
+Euclid will be equipped with a 1.2 m diameter and
+
+analyze the atmospheres of Earth-sized rocky planets.
+
+two main instruments: a photometer in the visible
+
+The
+
+mission
+
+will
+
+also
+
+investigate
+
+domain (VIS), and a photometer/spectrometer in
+The first step is the calibration process in which
+centroids of detected images are found. The idea is to
+create a "global wavelength calibration map" to allow
+the creation of 3D wavelength-dependent cubes using
+the detected data. It is highlighted how managing the
+size of wavelength intervals it is possible to control
+
+near-infrared (NISP, 900-2000 nm). The spacecraft
+will operate in the Lagrange-2 point and the mission
+will nominally last 6 years. The extragalactic survey
+will cover 15.000 deg2 and around 15 billion galaxies,
+the deep survey will cover 40 deg2 (80 times the
+moon) and about 10.000 galaxies (81).
+
+the precision of the calibration as the maps become
+more accurate as the intervals become smaller.
+
+18.1 Data Reduction Pipeline
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+Laureijs et.al. (82) provides a first explanation of
+
+the product for the Euclid Catalogue with source
+
+what concerns the data reduction pipeline. The main
+
+identifications, calibrated flux measurements, and
+
+body of the pipeline will be the Science Ground
+
+spectra. Authors spend few lines to highlight the
+
+Segment (SGS) which works with raw data
+
+possible eventuality that a source can be especially
+
+processing up to the final data products. VIS and
+
+active in one photometric band. In this case, the final
+
+NISP data will be merged with the ground-based data
+
+source detection can indeed happen only at MER
+
+to derive interesting surveys whose final purpose will
+
+level, during this comparison.
+
+be indeed the accomplishment of mission objectives.
+
+Level 3 data are produced by the other three
+
+The SGS will be backed by a distributed Euclid
+
+functions: SPE, PHZ, and SHE. The first two derive
+
+Archive System (EAS) and will be requested to work
+
+the spectroscopic and the photometric redshift
+
+with large amounts of data, also providing a quality
+
+measurements, and SHE works in galaxy shape
+
+check at each step of the processing. Mission
+
+determination. Another function called SIM backs the
+
+management and science operations will be left to
+
+whole process, by creating simulated data to be
+
+ESA, while the Euclid Consortium (which would
+
+compared, in parallel, with real outputs.
+
+represent the Principal Investigator) will care about
+covering science-related components and sharing data
+
+18.2 Joining forces with LSST
+
+products with the scientific community. Another
+
+A paper by Rhodes et.al. (84) proposes interesting
+
+important
+
+the
+
+teamwork between the LSST and Euclid. This paper
+
+Operational Units (OUs), i.e. groups of scientists who
+
+bases the confrontation respect several types of
+
+will be in charge of developing data processing
+
+astronomical objects but, to this paper, only the
+
+algorithms.
+
+transients-related parts were noteworthy. This topic is
+
+As the first step, the Science Operation Center (SOC)
+
+indeed interesting but only a few points will be
+
+in Madrid (ESAC) receives telemetry and various raw
+
+reported here, as an example, and to give the reader a
+
+data (Level 1 data), sending them to first processing
+
+first hint of what the common advantages would be.
+
+and then storing them in the EAS. Dubath et.al. (83)
+
+Recalling that the LSST provides Time-Domain
+
+better explore this step, explaining how cleaning and
+
+imaging in the southern hemisphere in six bands (u, g,
+
+corrections such as bias subtraction, flat fielding,
+
+r, I, z, y), the Authors see the two telescopes as
+
+cosmic ray removal are operated by processing
+
+complementary assets, and the cooperation between
+
+functions named VIS, NIR, SIR, and EXT. Such
+
+this ground facility and the Euclid in orbit is seen as a
+
+functions take care of visible images, near-infrared
+
+winning choice.
+
+images, near-infrared spectra, and frames acquired
+
+As a matter of example, the LSST would work to
+
+from the ground, in this order. A further function, the
+
+confirm transient sources that lay beyond the limits of
+
+MER, is entitled to merging all these outputs, creating
+
+Euclid, also countering problems given by the
+
+factor
+
+will
+
+be
+
+represented
+
+by
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+presence of bogus and not interesting objects. Forced
+
+predominant, not to mention that the whole
+
+photometry would also be interesting to be carried out
+
+processing may take minutes as well as hours. Near
+
+in both surveys, providing that the flux measured by
+
+Real-Time processing is supposed to take not more
+
+one is obtained thanks to the aperture of a source
+
+than a fistful of minutes. On the other hand, the open
+
+detected by the other survey.
+
+data philosophy allows several teams to work in
+
+Another strength of this proposal lies in the Euclid
+
+parallel at the same time and guarantee an efficient
+
+Wide Survey, which can be carried out only with a
+
+transient detection over a (potentially) short period. In
+
+single visit at the time. For transient detection, this is
+
+this sense is clear how automation is given a lower
+
+not the best approach (and yet transients remain
+
+priority.
+
+objects of interest for Euclid), but Euclid could
+provide additional data to the LSST survey, such as
+spectroscopic redshifts (by NISP) for a fraction of Iatype SNe detected by LSST itself. This would be, for
+example, a way to improve the elimination of
+systematic biases when using photometric redshifts
+alone.
+
+19. Discussion
+After presenting the desired state of the art and some
+of the most active and famous surveys, we finally
+arrive at the necessity of comparing those two
+realities. Before starting the comparison, the Authors
+of this paper want to highlight that in many cases all
+the information necessary to expose a given survey
+was available only thanks to those who are actively
+involved in the surveys themselves. For this reason,
+
+Transiting Exoplanet Survey Satellite. TESS brings
+KEPLER's performance to a new level and
+introduces a new dimension of automation in
+exoplanets survey, being able to orchestrate a
+complex data pipeline. This is of course made
+possible by a strong union between in-flight and onground operations.
+Antarctic Survey Telescopes. This is a particularly
+noteworthy survey, in which the necessity for
+automation in an isolated, infrequently crowded
+facility, led to an interesting product. Prolonged
+periods of dark are exploited at best with a fully
+automatic telescope and related pipeline, from the
+survey
+
+scheduling
+
+up
+
+to
+
+the
+
+final
+
+product.
+
+Unfortunately, no data were found about the response
+time in case of a sudden fast event.
+
+the typical spirit of an article review will manifest in
+
+LSST. The LSST is the spearhead of its kind. Its level
+
+this section.
+
+1 data products are generated within 60 seconds from
+
+For the sake of readability and order, the comparison
+
+the event itself and in this case, alerts are included as
+
+will be carried out by survey.
+
+well. The automatic operations carried out by the data
+
+Catalina Real-Time Sky Survey. The effort in this
+
+pipeline are associated with a further level of analysis
+
+survey is largely based on previous ones (See
+
+that can be carried out by human teams to further
+
+Palomar-Quest) and the human component is still
+
+filtering or reconsidering the created data products.
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+Also, yearly data releases will allow recovering
+
+automatically detected candidates and confirmed
+
+missed events, even though no alarm is triggered due
+
+candidates, which highlights the limits of this survey.
+
+to, for example, faint events. This thick net of data
+
+Zwicky Transient Facility. The presence of the
+
+processing represents a promising tool for future
+
+Robotic Observing Software allows long surveys
+
+surveys for which the LSST will be a precursor.
+
+fully conducted in automatic. No human intervention
+
+Pan-STARRS. This survey is characterized by a
+highly automatic data pipeline, strongly orientated to
+public
+
+diffusion
+
+of
+
+the
+
+data
+
+product.
+
+Data
+
+reprocessing (already seen in the LSST) is also
+important for ensuring not to miss any transient
+candidate not promptly recognised at the right time. It
+
+is needed, except for monitoring and parameters
+modification. Its autonomy in terms of storage is also
+praiseworthy and allows the facility to function in
+isolation for up to 2 weeks. Its near-real-time
+response capability is to be considered one of the
+highest levels in the currently ongoing surveys.
+
+is however clear that the Pan-STARRS still relies on
+
+Sardinia Radio Telescope. The existence of different
+
+a high presence of man-work, but it is also clear that
+
+pipelines optimized for specific observations is
+
+is capable of keeping up with other similar surveys,
+
+indeed intriguing. Also, the versatility of the
+
+with a response time below the minute. The Pan-
+
+telescope allows it to operate in several fields but,
+
+STARRS is thus a Near Real-Time facility with a
+
+unfortunately, little material was found about any
+
+right, but a milliseconds-response is still far from the
+
+connection with the scientific community.
+
+current level.
+AGILE. A strength of AGILE that stands out is the
+Spitzer Space Telescope. Along with the more
+
+response of 2 minutes for GRB alerts. The scientific
+
+famous Hubble Space Telescope, the Compton
+
+community will benefit from an important service,
+
+Gamma-Ray, and Chandra, Spitzer is one of the four
+
+being able to promptly steer ongoing surveys on the
+
+Nasa's Great Observatories. An important problem
+
+gamma source in a very reduced time. Also, the
+
+comes to attention: the high rate of false-positive and
+
+capability of conducting X and Gamma-Ray surveys
+
+the necessity of multiple detections of the same object
+
+at the same time is not a common feature and it
+
+which, of course, affects the real-time response
+
+represents an important tool to make exciting science.
+
+capability of the observatory. It also requires a
+manual (visual) check of the images to rule out false
+positives, so that the pipeline still needs a human
+"step" to complete its data processing and production.
+Within one day from public data release, human
+teams are indeed vital to rule out false candidates,
+leading to an almost 1:100 proportion between
+
+ROTSE. As well as the Antarctic Survey Telescopes,
+ROTSE combines a fully automatic response to
+sudden events with fast data processing which
+happens in a matter of minutes. The inheritance from
+ROTSE-I helped to create a good example of fastresponse transient detection and classification survey.
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+James Webb Space Telescope. As Hubble's
+
+Its potential coupling with the LSST seems also to be
+
+successor, James Webb will be almost fully dedicated
+
+the perfect receipt for a prolific science program.
+
+to the scientific community. Several teams will be
+able to benefit from its great capabilities and a large
+
+20. Conclusions
+
+number of papers and contributions, in general, is
+bound to see the light from the early years. The study
+
+In this paper, a review mapping of the state-of-the-art
+
+of rocky exoplanet atmospheres will probably be one
+
+of Time-Domain Astronomy Surveys (both on the
+
+of the most important contributions of the telescope.
+
+ground and in orbit) is proposed. Astronomical
+
+It would have been interesting to characterize the
+
+Transient Events were introduced, listing some of the
+
+expected response time of the telescope in case of fast
+
+most representative and well-known types. Based on
+
+transient, but no information was found about this
+
+the literature available, it was also showed what are
+
+point.
+
+the desirable features of the ideal real-time detection
+and classification system and those that could be the
+
+Very Large Array. Despite its longevity, the VLA is
+
+most indicated approaches to the problem.
+
+still able to deliver valuable science to the
+
+In the second instance, several surveys were
+
+community. In particular, the Realfast pipeline would
+
+presented to outline the respective data reduction
+
+allow fast response and a fast data-sharing with the
+
+pipelines in their main features.
+
+community, as well as other younger surveys.
+
+Finally, a comparison between the presented surveys
+
+WFIRST and EUCLID. Those two telescopes have
+yet to demonstrate their capabilities on a mission and
+to little was found about their data processing.
+
+and the expected level for the state of the art was
+made to show the gap, if any, between the current
+level and the desirable one. It is eventually clear that
+the human component is still dominant in the majority
+
+WFIRST showed a preliminary high accuracy in
+
+of the pipelines since no system cannot be separated
+
+creating final data products and this will probably
+
+from proper monitoring. On the other hand, several
+
+ensure a low rate of false-positive without any further
+
+promising surveys (such as the LSST and the Zwicky
+
+human intervention.
+
+Transient
+
+EUCLID, on the other hand, shows an interesting
+
+concerning the previous generation of and it is
+
+concept in which characterized by parallel functions
+
+reasonable to expect even more automated systems
+
+working at the same time on different features of the
+
+for the times to come. Another challenge will be
+
+acquired raw data. This will probably ensure fast
+
+closing the distance between the current near-real-
+
+processing and data production for the scientific
+
+time capability and real-time capability (milliseconds-
+
+community, not to mention the use of simulated data
+
+response).
+
+to constantly provide a comparison in the processing.
+
+Facility)
+
+show
+
+great
+
+improvement
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+REFERENCES
+[1] Crawford, C. "The Transient Universe" (Transcript). 2014. Museum
+of London, 26 November 2014, https://www.gresham.ac.uk/lecturesand-events/the-transient-universe.
+[2] Sparavigna, A. C. "Supernova 1572 and other newly observed stars in
+the literature of the time". Politecnico di Torino. 2017.
+arXiv:1712.04532 [physics.hist-ph]. DOI: 10.2139/ssrn.3056221.
+[3] M. J. Darnley, V. Ribeiro, M. F. Bode, R. A. Hounsell, R. P. Williams.
+"ON THE PROGENITORS OF GALACTIC NOVAE". Astrophysics
+Research Institute, Liverpool John Moores University. s.l. : The
+Astrophysical Journal, 2012, 746.1., 2012. p. 61. DOI:
+https://doi.org/10.1088/0004-637X/746/1/61.
+[4] Bode, M., & Evans, A. Classical Novae. Liverpool John Moores
+University & Keele University. s.l. : Cambridge University Press,
+2009. ISBN: 9780511536168. DOI: 10.1017/CBO9780511536168.
+[5] N. R. Tanvir, A. J. Levan, A. S. Fruchter, et.al. "A 'kilonova'
+associated with the short-duration γ-ray burst GRB 130603B". s.l. :
+Nature, 500(7464)., 2013. pp. 547–549. DOI:
+https://doi.org/10.1038/nature12505.
+[6] B. P. Abbott, R. Abbott, T. D. Abbott et.al. "Multi-messenger
+Observations of a Binary Neutron Star Merger". s.l. : Astrophys. J.
+
+Notices of the Royal Astronomical Society, 2015, 447.3, 2015. pp.
+2445-2458. DOI: https://doi.org/10.1093/mnras/stu2614.
+[11] E. Golightly, E. Coughlin, C. Nixon. "Tidal disruption events: the
+role of stellar spin". University of Leicester & Columbia University.
+s.l. : The Astrophysical Journal, 2019, 872.2., 2019. p. 163. DOI:
+https://doi.org/10.3847/1538-4357/aafd2f.
+[12] Gezari, S. "Tidal Disruption Events". AA(Department of Astronomy,
+University of Maryland). s.l. : Brazilian Journal of Physics, 2013,
+43.5-6. , 2013. pp. 351–355. DOI: 10.1007/s13538-013-0136-z.
+[13] Website, Nasa Eclipse. Planetary Transits Across the Sun. [Online]
+https://eclipse.gsfc.nasa.gov/transit/transit.html.
+[14] (Nasa), Kepler and K2 Page. About Transits. [Online] 2017.
+https://www.nasa.gov/kepler/overview/abouttransits#photometry.
+[15] Tholen, D. J., et al. "Improved Orbital and Physical Parameters for
+the Pluto-Charon System". University of Hawaii & University of
+Texas. s.l. : Science, 1987, 237.4814., 1987. pp. 512–514. DOI:
+10.1126/science.237.4814.512.
+[16] I. Arosio, S. Sandrelli. "I lampi di raggi gamma". Brera Astronomical
+Observatory (INAF). [Online]
+http://www.brera.inaf.it/ricercapertutti/GRB/storia_grb.html.
+[17] Ruderman, M. "Theories of gamma-ray bursts". s.l. : Annals of the
+
+Lett, 848(2). , 2017. p. L12. DOI: https://doi.org/10.3847/2041-
+
+New York Academy of Sciences, 1975, 262.1., 1975. pp. 164-180.
+
+8213/aa91c9.
+
+DOI: https://doi.org/10.1111/j.1749-6632.1975.tb31430.x.
+
+[7] Gilmore, G. "The Short Spectacular Life of a Superstar". s.l. : Science,
+
+[18] Marani, G. F., et al. "On Similarities among GRBs". s.l. : Bulletin of
+
+2004, 304.5679., 2004. pp. 1915–1916. DOI:
+
+the American Astronomical Society. 1997., 1997. p. 839. Bibcode:
+
+10.1126/science.1100370.
+
+1997AAS...190.4311M.
+
+[8] S. Woosley, T. Janka. "The Physics of Core-Collapse Supernovae".
+
+[19] Bignami, Luigi. Fast radio burst: nuove ipotesi sull'origine dei lampi
+
+s.l. : Nature Physics, 2005, 1.3., 2005. p. 147. DOI:
+
+radio veloci. Focus. [Online] 2018.
+
+https://doi.org/10.1038/nphys172.
+
+https://www.focus.it/scienza/spazio/fast-radio-burst-nuove-ipotesi-
+
+[9] NasaGoddard/SAO. "Introduction to Supernova Remnants". [Online]
+https://heasarc.gsfc.nasa.gov/docs/objects/snrs/snrstext.html.
+[10] N. Clementel, T. I. Madura, C. Kruip, J. P. Paardekooper, T. R. Gull.
+
+per-i-lampi-radio-veloci.
+[20] Wall, Mike. "Scientists Find 13 Mysterious Deep-Space Flashes,
+Including 2nd Known 'Repeater'". Space.com. [Online] 2019.
+
+"3D radiative transfer simulations of Eta Carinae's inner colliding
+
+https://www.space.com/42943-fast-radio-burst-repeater-new-
+
+winds - I. Ionization structure of helium at apastron". s.l. : Monthly
+
+discovery.html.
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+[21] Paczynski, B. "Gravitational microlensing by the galactic halo". s.l. :
+
+[31] S. G. Djorgovski., A. J. Drake, A. A. Mahabal, et.al. "The Catalina
+
+The Astrophysical Journal, 1986, 304., 1986. pp. 1-5. DOI:
+
+Real-Time Transient Survey (CRTS)". s.l. : Unpublished, 2011. arXiv
+
+doi:10.1086/164140.
+
+preprint arXiv:1102.5004.
+
+[22] A. A. Mahabal, C. Donalek, S. G. Djorgovski, et.al. "Real Time
+Classification of Transients Events in Synoptic Sky Surveys". s.l. :
+Proceedings of the International Astronomical Union, 2011, 7.S285.,
+
+[32] SExtractor Documentation. [Online]
+https://www.astromatic.net/software/sextractor.
+[33] E. Bertin, S. Arnouts. "SExtractor: software for source extraction".
+
+2011. pp. 355-357. DOI:
+
+Institut Astrophysique de Paris (IAP) & ESO. s.l. : Astronomy and
+
+https://doi.org/10.1017/S1743921312001056.
+
+Astrophysics Supplement Series, 1996, 117.2., 1996. pp. 393-404.
+
+[23] Williams, C. Rasmussen and C. "Gaussian Processes for Machine
+Learning". University of Edinburg. s.l. : MIT Press, 2006, 2006.
+ISBN: 026218253X.
+[24] M. J. Graham, S. G. Djorgovski, A. A. Mahabal, et.al. "Data
+challenges of time domain astronomy". s.l. : Distributed and Parallel
+
+DOI: https://doi.org/10.1051/aas:1996164.
+[34] Schliegel, J. "TESS Guest Investigator Program: Tess Observatory
+Guide Version 1.1". NASA Goddard Space Flight Center. s.l. : TESS
+Science Support Center , 2017. Bibcode: 2017tog..book.....S.
+[35] George R. Ricker, Joshua N. Winn, Roland Vanderspek, et.al.
+
+Databases, 2012, 30.5-6., 2012. pp. 371-384. DOI:
+
+"Transiting Exoplanet Survey Satellite". s.l. : Journal of
+
+https://doi.org/10.1007/s10619-012-7101-7.
+
+Astronomical Telescopes, Instruments, and Systems, 2014, 1.1.,
+
+[25] Robbins, H. "Some Aspects of the Sequential Design of Experiments".
+s.l. : Bulletin of the American Mathematical Society, 1952, 58.5,
+1952. pp. 527‐535.
+[26] S. G. Djorgovski, C. Donalek, A. A. Mahabal. et.al. "Towards an
+
+2014. p. 014003. DOI: 10.1117/1.JATIS.1.1.014003.
+[36] Jon M. Jenkins, Joseph D. Twicken, Sean McCauliff, et.al. "The
+TESS Processing Operation Center". Edinburgh, United Kingdom, :
+Software and Cyberinfrastructure for Astronomy IV. International
+
+automated classification of transient events in synoptic sky surveys".
+
+Society for Optics and Photonics, 2016., 2016. p. 99133E. DOI:
+
+s.l. : Unpublished, 2011. arXiv preprint arXiv:1110.4655, 2011.
+
+10.1117/12.2233418.
+
+[27] S. G. Djorgovski, A. A. Mahabal, C. Donalek, et.al. "Flashes in a
+Star Stream: Automated Classification of Astronomical Transient
+Events". s.l. : Unpublished, 2012. arXiv preprint arXiv:1209.1681,
+2012.
+[28] Loredo, T. J. "Bayesian Adaptive Exploration, Statistical Challenges
+in Modern Astronomy". Cornell University. s.l. : AIP Conference
+Proceedings. AIP, 2004., 2004. pp. 330-346. DOI:
+https://doi.org/10.1063/1.1751377.
+
+[37] Mikulski Archive for Space Telescopes (MAST) Website. [Online]
+http://archive.stsci.edu/.
+[38] Agency Xinhua News. "China to build stronger telescope network in
+South Pole". [Online] July 24, 2009.
+http://www.china.org.cn/china/news/200907/24/content_18194380.htm.
+[39] Yi Hu, Zhaohui Shang, Bin Ma, Keliang Hu. "The AST3 Controlling
+and Operating Software Suite for Automatic Sky Survey". s.l. :
+
+[29] CRTS website. [Online] http://crts.caltech.edu/Research.html.
+
+Software and Cyberinfrastructure for Astronomy IV. International
+
+[30] A.J. Drake, S. G. Djorgovski, A. Mahabal, et.al. "First Results from
+
+Society for Optics and Photonics, 2016., 2016. p. 99130M. DOI:
+
+the Catalina Real-time Transient Survey". s.l. : The Astrophysical
+Journal, 696(1)., 2009. p. 870. DOI: https://doi.org/10.1088/0004637X/696/1/870.
+
+10.1117/12.2231851.
+[40] H. Zhang, Z. Yu, E. Liang, et.al. "ZHANG, Hui, et al. Exoplanets in
+the Antarctic Sky. I. The First Data Release of AST3-II (CHESPA)
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+and New Found Variables within the Southern CVZ of TESS". s.l. :
+The Astrophysical Journal Supplement Series, 2019, 240.2., 2019. p.
+16. DOI: https://doi.org/10.3847/1538-4365/aaec0c.
+[41] Q. Liu, P. Wei, Z.-H. Shang, et.al. "Research on scheduling of
+robotic transient survey for Antarctic Survey Telescopes (AST3)".
+
+2019. https://panstarrs.stsci.edu/.
+[50] L. Denneau, J. Kubica, R. Jedicke. "The Pan-STARRS moving Object
+Pipeline". s.l. : Astronomical Data Analysis Software and Systems
+XVI (Vol. 376)., 2007. p. 257. Bibcode: 2007ASPC..376..257D.
+[51] K. C. Chambers, E. A. Magnier, N. Metcalfe, et.al. "The Pan-
+
+Chinese Academy of Sciences & Tianjin Normal University. s.l. :
+
+STARRS1 Surveys". s.l. : Unpublished, 2019. Last revised 29 Jan
+
+Research in Astronomy and Astrophysics, 2018, 18.1., 2017. p. 005.
+
+2019 (this version, v4) - arXiv:1612.05560v4 [astro-ph.IM].
+
+DOI: 10.1088/1674-4527/18/1/5.
+[42] J. A. Tyson, D. Sweeney. "Site in Northern Chile Selected for Large
+
+[52] E. A. Magnier, K. C. Chambers, H. A. Flewelling, et.al. "The PanSTARRS Data Processing System". s.l. : Unpublished, 2019. Last
+
+Synoptic Survey Telescope". s.l. : Unpublished, 2006. Press Release
+
+revised 26 Jan 2019 (this version, v3), arXiv:1612.05240v3 [astro-
+
+LSSTC-04 -
+
+ph.IM].
+
+https://www.lsst.org/sites/default/files/docs/Site%20Selection%2050
+6%201%20FINAL%20w.pics.pdf.
+[43] Collaboration, Ivezic Zeljko and the LSST Science. "The LSST
+
+[53] Spitzer Science Center Website. [Online]
+http://ssc.spitzer.caltech.edu/.
+[54] S. Van Dyk, M. Werner, N. Silbermann. "Spitzer Space Telescope
+
+System Science Requirements Document". s.l. : Unpublished,
+
+Handbook" Version 2.1. s.l. : S. Van Dyk & N. Silbermann, 2013.
+
+LatestRevision 2018-01-30. From the LSST website:
+
+Available at NASA/IPAC Infrared Science Archive:
+
+https://www.lsst.org/scientists/publications/science-requirements-
+
+https://irsa.ipac.caltech.edu/data/SPITZER/docs/spitzermission/missi
+
+document.
+
+onoverview/spitzertelescopehandbook/.
+
+[44] A. Albrecht, G. Bernstein, R. Cahn, et.al. "Report of the Dark Energy
+
+[55] M. M. Kasliwal, J. Bally, F. Masci, et.al. "SPIRITS: Uncovering
+
+Task Force". s.l. : Report of the dark energy task force, 2006. , 2006.
+
+unusual infrared transients with Spitzer". s.l. : The Astrophysical
+
+arXiv preprint astro-ph/0609591. DOI: 10.2172/897600.
+
+Journal, Volume 839, Number 2., 2017. p. 88. DOI:
+
+[45] Juric M., Kantor J., Lim K., et.al. "The LSST Data Management
+System". s.l. : Unpublished, 2015. arXiv preprint arXiv:1512.07914,
+2015.
+[46] P. A. Abell, J. Allison, S. F. Anderson, et.al. "LSST Science Book",
+
+https://doi.org/10.3847/1538-4357/aa6978.
+[56] Bellm, Eric C. "Life Beyond PTF". s.l. : Unpublished, 2018. arXiv
+preprint arXiv:1802.10218, 2018.
+[57] E.C. Bellm, S.R. Kulkarni, M.J. Graham, et.al. "The Zwicky
+
+Version 2.0. 933 North Cherry AvenueTucson, AZ 85721-000 :
+
+Transient Facility: System Overview, Performance, and First
+
+Unpublished, 2009. LSST Corporation, arXiv:0912.0201 [astro-
+
+Results". s.l. : Publications of the Astronomical Society of the
+
+ph.IM].
+
+Pacific, 2018, 131.995., 2018. p. 018002. DOI:
+
+[47] C. Alard, R. H. Lupton. "A METHOD FOR OPTIMAL IMAGE
+SUBTRACTION". s.l. : The Astrophysical Journal, 1998, 503.1,
+1997. p. 325. DOI: https://doi.org/10.1086/305984.
+[48] LSST website. LSST Data Management. [Online]
+https://www.lsst.org/about/dm.
+[49] Pan-STARRS data archive home page. [Online] Last Update 8 Feb
+
+https://doi.org/10.1088/1538-3873/aaecbe.
+[58] F.J. Masci, R.R. Laher, B. Rusholme, et.al. "The Zwicky Transient
+Facility: Data Processing, Products, and Archive". s.l. : Publications
+of the Astronomical Society of the Pacific, 2018, 131.995., 2018. p.
+018003. DOI: https://doi.org/10.1088/1538-3873/aae8ac.
+[59] B Zackay, E. O. Ofek, A. Gal-Yam. "Proper image subtraction-
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+optimal transient detection, photometry, and hypothesis testing".
+
+2015 June outburst. s.l. : The Astrophysical Journal, 2017, 839.2.,
+
+s.l. : The Astrophysical Journal, 2016, 830.1. , 2016. p. 27. DOI:
+
+2017. p. 84. DOI: https://doi.org/10.3847/1538-4357/aa6796.
+
+https://doi.org/10.3847/0004-637X/830/1/27.
+[60] CUTE Website. [Online] http://lasp.colorado.edu/home/cute/.
+[61] A.G. Sreejith, L. Fossati, B.T. Fleming, et.al. "Colorado Ultraviolet
+
+[70] ROTSE Website. [Online] http://rotse.net/.
+[71] C. W. Akerlof, R. L. Kehoe, T. A. McKay, et.al. The ROTSE‐III
+Robotic Telescope System. s.l. : Astronomical Society of the Pacific,
+
+Transit Experiment Data Simulator". s.l. : Journal of Astronomical
+
+2003, 115.803, 2003. p. 132. DOI: https://doi.org/10.1086/345490.
+
+Telescopes, Instruments, and Systems, 2019, 5.1., 2019. p. 018004.
+
+[72] E. Rykoff, D. Smith. Components and Operation of the ROTSE-III
+
+DOI: https://doi.org/10.1117/1.JATIS.5.1.018004.
+[62] A.G. Sreejith, L. Fossati, M. Steller, et.al. "CUTE Data Simulator
+and Reduction Pipeline". s.l. : Space Telescopes and Instrumentation
+
+Telescope System. University of Michigan. s.l. : Publications of the
+Astronomical Society of the Pacific, Volume 115, Number 803.,
+2003. DOI: https://doi.org/10.1086/345490.
+
+2018: Ultraviolet to Gamma Ray. International Society for Optics
+
+[73] JWST Website. [Online] https://www.jwst.nasa.gov/.
+
+and Photonics, 2018., 2018. p. 1069932. DOI:
+
+[74] C. Beichman, B. Benneke, H. Knutson, et.al. Observations of
+
+https://doi.org/10.1117/12.2309922.
+[63] Website, Sardinia Radio Telescope. [Online]
+http://www.srt.inaf.it/project/introduction/.
+[64] P. Bolli, A. Orlati, L. Stringhetti, et.al. Sardinia Radio Telescope:
+General Description, Technical Commissioning and First Light.
+
+transiting exoplanets with the James Webb Space Telescope (JWST).
+s.l. : Astronomical Society of the Pacific, 2014, 126.946, 2014. p.
+1134. DOI: https://doi.org/10.1086/679566.
+[75] VLA Website. [Online] http://www.vla.nrao.edu/genpub/overview/.
+[76] C. J. Law, G. C. Bower, S. Burke-Spolaor, et.al. Realfast: Real-time,
+
+INAF (OAA, IRAB, IASFCM, OAC). s.l. : Journal of Astronomical
+
+commensal fast transient surveys with the Very Large Array. s.l. :
+
+Instrumentation, Vol. 4, Nos. 3 & 4 (2015)., 2015. p. 1550008. DOI:
+
+Astrophysical Journal Supplement Series, 2018, 236.1, 2018. p. 8.
+
+10.1142/S2251171715500087.
+
+DOI: https://doi.org/10.3847/1538-4365/aab77b.
+
+[65] I. Prandoni, M. Murgia, A. Tarchi, et.al. The Sardinia Radio
+Telescope, From a technological project to a radio observatory. s.l. :
+
+[77] WFIRST Website. [Online] http://www.stsci.edu/wfirst.
+[78] P. Saxena, M. J. Rizzo, C. M. Prada, et.al. Commissioning and
+
+Astronomy & Astrophysics, 2017, 608., 2017. p. A40. DOI:
+
+performance results of the WFIRST/PISCES integral field
+
+10.1051/0004-6361/201630243.
+
+spectrograph. s.l. : Techniques and Instrumentation for Detection of
+
+[66] M. Pilia, A. Trois, M. Bachetti, et.al. A multi-wavelength pipeline for
+pulsar searches. s.l. : Rendiconti Lincei. Scienze Fisiche e Naturali.,
+2019. pp. 1-3. DOI: 10.1007/s12210-019-00768-x.
+[67] Ransom, S. M. New search techniques for binary pulsars. Harvard,
+USA: Harvard University. s.l. : Unpublished, 2001. Ph.D. thesis.
+[68] M. Tavani, G. Barbiellini, A. Argan, et al. Science with AGILE. s.l. :
+AIP Conference Proceedings 587, 2001., 2001. pp. 729-738. DOI:
+https://doi.org/10.1063/1.1419490.
+[69] G. Piano, P. Munar-Adrover, F. Verrecchia, et.al. High-energy
+gamma-ray activity from V404 Cygni detected by AGILE during the
+
+Exoplanets VIII. International Society for Optics and Photonics,
+2017., 2017. p. 104001P. DOI: https://doi.org/10.1117/12.2272653.
+[79] M. D. Perrin, J. Maire, P. Ingraham, et.al. Gemini Planet Imager
+observational calibrations I: Overview of the GPI data reduction
+pipeline. s.l. : Proceedings Volume 9147, Ground-based and
+Airborne Instrumentation for Astronomy V., 2014. p. 91473J. DOI:
+https://doi.org/10.1117/12.2055246.
+[80] Euclid Consortium Website. [Online] https://www.euclid-ec.org/.
+[81] F. Pasian, C. Dabin, M. Sauvage, et.al. Organization of the Euclid
+Data Processing: dealing with complexity. INAF-OAT, CNES,
+
+LA REVUE GESTION ET ORGANISATION 00 (2014) 000–000
+
+CEA, University of Trieste. s.l. : Astronomical Data Analysis
+Software an Systems XXIV (ADASS XXIV) Conference.
+Astronomical Society of the Pacific, 2015. , 2015. pp. 207-210. ISI
+CODE: WOS:000371098000039. ISBN code: 9781583818749;
+9781583818756.
+[82] R. Laureijs, J. Hoar, F. Pasian, et.al. The Euclid Mission: Cosmology
+Data Processing and Much More. ESTEC, ESAC, IAP, INAF-OAT,
+CNES, CNRS/INSU. s.l. : N. Manset and P. Forshay, eds.
+Astronomical Data Analysis Software and Systems XXIII. 2014.,
+2014. p. 495. Bibcode: 2014ASPC..485..495L.
+[83] P. Dubath, N. Apostolakos, A. Bonchi, et.al. The euclid data
+processing challenges. s.l. : Proceedings of the International
+Astronomical Union, 2016, 12.S325., 2016. pp. 73-82. DOI:
+https://doi.org/10.1017/S1743921317001521.
+[84] J. Rhodes, R. C. Nichol, E. Aubourg, et.al. Scientific synergy between
+LSST and Euclid. s.l. : The Astrophysical Journal Supplement Series,
+Volume 233, Number 2., 2017. DOI: https://doi.org/10.3847/15384365/aa96b0.
+

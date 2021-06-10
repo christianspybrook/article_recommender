@@ -1,0 +1,687 @@
+coupling purposes with statusfunctions in
+artificial institutions
+rafhael r cunha10000000332335158  jomi f hbner1000000019355822x 
+and maiquel de brito20000000346507416
+arxiv210500090v1 csma 30 apr 2021
+automation and systems department federal university of santa catarina
+florianpolis brazil
+rafhaelcunhaposgradufscbr
+jomihubnerufscbr
+control automation and computation engineering department federal
+university of santa catarina blumenau brazil
+maiquelbufscbr
+abstract in multiagent systems the agents may have goals that depend on a social shared interpretation about the facts occurring in the
+system these are the socalled social goals artificial institutions provide such a social interpretation by assigning statuses to the concrete
+elements that compose the system these statuses are supposed to enable the assignee element to perform functions that are not exclusively
+inherent to their design features however the enabled functions are not
+explicit in the existing models of artificial institutions as a consequence
+i agents may have difficulties to reasoning about how to achieve their
+own social goals with the help of artificial institutions and ii these institutions are not well instrumented to receive incoming agents in the
+case of open systems considering those problems this paper proposes
+a model to express the functions  or the purposes  associated with
+the statusfunctions helping the agents to reason about their social goals
+and the institution we evaluate the model by using it in some scenarios
+showing how the agents can use purposes to reason about the satisfaction
+of their social goals in institutional contexts and how the institution can
+be flexible enough to support new agents operating in the system
+keywords purposes  statusfunctions  artificial institutions  multiagent systems
+introduction
+multiagent systems mas are systems composed of autonomous computational
+entities henceforth referred to as agents that can interact within a dynamic
+environment to achieve their common and individual goals 38 the interaction
+among the agents is in the very core of mas making it a useful approach to
+supported by federal institute of education science and technology of rio grande
+do sul ifrs
+cunha rafhael r et al
+handle computational problems involving social aspects 36 one of these aspects
+is a shared interpretation about the facts occurring in the system for example
+consider a scenario where i the agent bob has the goal of having a book and
+ii the agent tom desires to sell a book to this end i bob needs to execute
+an action that means giving a value and in return receive a good and ii tom
+waits for such action to then deliver the book in this scenario both goals are
+social goals because they can not be achieved alone and depend on a common
+interpretation involving certain facts without such common interpretation bob
+might not know which action to perform to give a value in exchange for the book
+even this would not be the case tom might not acknowledge the action of bob
+refusing thus to deliver the book the highlighted problem therefore involves
+social aspects
+inspired by human societies some works propose models and tools to provide
+this kind of interpretation to computer systems and in particular to mas 18
+they usually consider that the elements involved in the interaction among the
+agents constitute or count as institutional concepts that are the common interpretation of those concrete elements 87613 for example agents acting in
+an ecommerce scenario may constitute or count as buyers while some of their
+actions may count as payments these institutional concepts are referred in the
+literature as statusfunctions they are status that assign functions to the concrete elements 3130 for example the status buyer assigns to an agent some
+functions such as perform payments take loans etc artificial institutions are
+the component of the mas that is responsible for defining the conditions for an
+agent to become a buyer or an action to become a payment 3130
+the existing works on artificial institutions are more concerned with specifying and managing the constitution of statusfunctions however they focus
+more on the status than the function while the status is explicit the function
+is implicit in other words the works described in the literature as far as we
+know do not provide the means for the institution to express the functions associated with the status explicitly the main drawbacks of this limitation are i
+the agents cannot reason about the functions performed by the elements that
+carry the status and ii the institutions may be incompatible 3 with the agents
+specification
+the limitations discussed earlier have some implications first different agents
+may have problems to achieve similar social goals if their goals are internally
+identified by different terms even if they are acting in the same environment
+and institution it is especially critical in open mas where the agents can be
+designed and implemented by different parties and it is not possible to predict
+in design time neither the number nor the behaviour nor the way the agent
+compatibility in this work refers to the situation in which the vocabulary used in the
+specification of the agents works properly with the vocabulary of the institutional
+specification compatibility can occur in several ways including i if the vocabulary
+present in the agents specification is identical to the institutional vocabulary or ii
+if the programmer encodes compatibility with the institutional specification within
+the agent
+coupling purposes with statusfunctions in artificial institutions
+shall interact among themselves and explore the available resources 1725 for
+example in the book store scenario the payment statusfunction can have the
+function of leading the system to a state where the agent that executes an action
+that counts as payment has the book in this case have a book is the function of
+the payment statusfunction interpreted from the agents perspective it is also
+the bobs social goal consider that alice joins the book store scenario alice
+has the social goal of acquiring a book both bob and alices have similar social goals however if the functions associated to the statusfunctions are not
+explicit alice will only reach her social goal if her code includes the goal of
+having a book similar to bob second the same agent may not reach his social goal if it moves itself to a new environment and institution similar to the
+previous with the same goal for example consider a new scenario in the system called a library in it have a book is the function of a statusfunction other
+than payment when entering this system bob will not achieve his social goal
+because there is no payment statusfunction there and he was coded for that
+very statusfunction of the book store then bob will only reach his social goal
+if he performs the action with the statusfunctions associated with his social
+goal in that institution third the same institution may not be compatible with
+different agents with similar social objectives but coded with other terms this
+is the same limitation as to the previous example but seen from the institutions
+perspective the institution needs to add new statusfunctions compatible with
+agents specifications to its specification to get around this problem however
+some statusfunctions can make it inconsistent for example it is not possible
+to specify the payment statusfunction in a library that only lends books
+although the work on artificial institutions focus on supporting the regulation of the system institutions also need to help agents through constitutive
+rules statusfunctions etc to achieve their social goals 29 these examples
+show that the institutions as they are currently conceived do not specify the
+functions associated with the statusfunctions they do not support the reasoning of agents 29 concerning the satisfaction of their own social objectives and
+are not prepared to receive agents designed by different developers thus the
+main contribution of this paper is a model based on the notion of purpose to
+explicitly represent the functions of the statusfunctions and to relate them to
+the social goals of the agents it is inspired by the construction of the social
+reality by john searle 3130 and documentality by maurizio ferraris 11
+both philosophers theories that seem to be fundamental for comprehend the
+social reality
+this paper is organized as follows sect 2 introduces the main background
+concepts necessary to understanding our proposal and its position in the literature it includes philosophical theories and related works sect 3 presents the
+proposed model and its required interfaces sect 4 evaluates the proposal based
+on some examples that allow us to identify some limitations and advantages
+that the model offers on the agent and institutional perspective finally sect 5
+presents some conclusions about this work and suggests future works
+cunha rafhael r et al
+background
+this section presents the main concepts used in our approach subsection 21
+presents the philosophical concepts that support our contribution subsection 22
+briefly describes the state of the art on artificial institutions with respect of the
+explicit representation of the functions associated to the institutional concepts
+institutions according to philosophical theories
+an institution is composed of institutional facts 3130 these are based on
+statusfunctions and constitutive rules statusfunctions are statuses that have
+associated functions these statuses enable concrete elements to perform functions associated with the statuses that cannot be explained through their physical virtues constitutive rules specify the assignment of statusfunctions to concrete elements with the following formula x countas y in c for example
+a piece of paper countas money in a bank where x represents the concrete
+element y the statusfunction and c the context where that attribute is valid
+statuses are imposed on objects when the statusrelated functions meet some
+purpose the functions are called agentive functions because they are assigned
+from practical interests of the agents 31 p20 these practical interests of agents
+are called purposes since the institution is formed by people ie agents and
+their collective agreements 31 it is possible to say that the agents themselves
+through their purposes assign meaning to the statusfunctions in other words
+a purpose is the interpretation of a function performed by an element that carries a status from the agents perspective for example someone has the purpose
+of winning a chess game when it leads the chessboard to a circumstance that
+countas a checkmate this purpose does not occur naturally it is attributed
+through the practical interests of the agents playing the game ie under that
+context fundamentally both agents involved in the game must have the same
+understanding of these facts ie about the function and their purpose otherwise none of them achieve their social goal searle asserts that someone must
+be capable of understanding what the thing is for or the function could never be
+assigned 31 p22 understanding a function requires to understand for what it
+serves ie its purpose in the case of chess game the purpose of moving the
+piece to a checkmating position is to win the game this purpose is in line with
+the interests of the agents who are playing the game ie its is understood by
+the people involved in the institution
+while searle suggests that statusfunctions are a consequence of collective
+intentionality their origin remains at least in part unexplained for example
+throughout history human societies agreed on assigning the function of money
+to a piece of paper a shell or a portion of salt however the function seems
+not having a genesis it is hard to establish when money or any other social
+objects were invented it is also even more difficult to explain the nature of the
+collective intentionality that motivates people to act in different ways when they
+have contact with a concrete element constituted with a status indeed searle
+considers statusfunctions as a unique abstraction whose function depends on
+coupling purposes with statusfunctions in artificial institutions
+the individual interpretation of each individual without worrying about how
+these functions are represented and shared
+to address the mentioned issues ferraris 1011 proposes to ground the social
+reality on structures called documentality these structures of documents store
+informations that not only describe or prescribe but they actually build social
+objects such a structure makes it possible to explain the staying and persistence
+of functions and his purposes associated with status over time the speech acts
+that gave origin to functions and status were written and stored in documents
+that run through time these documents allow people to learn theses structures
+through study perception etc for example the money exercise its functions in
+the individual intentions only based in the memory and consequently in the set
+of functions that the social objects recover of the individuals with the base on
+the recording
+to summarize social objects are used to externalize the set of recordings that
+allow that individuals to remember the functionalities that a status eg money
+makes available by being assigned to a social object eg paper note from
+these theories it is possible to conclude that an additional system of elements
+is required so that functions and status can persist and have value recognized
+over time within the social reality 10 a similar system can be applied to mas
+to make explicit the functionalities of the statusfunctions that compose the
+institutions it will permit to improve the agents reasoning about the satisfaction
+of their goals and overcome the difficulties that motivate the realization of this
+work
+institutions in mas
+the main idea of using artificial institutions as a counterpart of human institutions in computer systems has inspired work in mas in different ways these
+works use the countas relationship established through the constitutive rules
+proposed by searle to support the regulation of the system 5 this work considers that the constitutive relation as well as the related concepts eg statusfunctions provide functions to be exploited by the agents to achieve their goals
+the purpose of this section is to review state of the art on artificial institutions
+with respect of the explicit representation of the functions associated to the
+institutional concepts
+works on artificial institutions are usually inspired by the theory of john
+searle 3130 some works present functional approaches relating brute facts to
+normative states eg a given action counts as a violation of a norm these
+works do not address ontological issues and therefore it becomes even more
+difficult to support the meaning of abstract concepts present in the institutional
+reality other works have ontological approaches where brute facts are related
+to concepts used in the specification of norms eg sending a message counts
+as a bid in an auction however these works have some limitations that are
+discussed below
+some approaches allow the agents to reason about the constitutive rules 91367351
+however generally the statusfunction y  is just a label assigned to the concrete
+cunha rafhael r et al
+element x  and used in the specification of the regulative norms therefore y
+does not seem to have any other purpose than to serve as a basis for the specification of stable regulative norms 341 some exceptions are i in the works
+of 14151316 where y represents a class formed with some properties as roles
+responsible for executing actions time to execute them condition for execution
+etc ii in 34 where y is a general concept and x is a subconcept that can
+be used to explain y although the exceptions contain more information than
+just a label in the y element these data are somehow associated with regulative
+norms there are no models that make explicit what the constituted elements
+ie the statusfunctions perform in the institution thus the agents may not
+understand that the actions performed can also satisfy their social objectives
+for example the agents goal have a book is a purpose of the payment statusfunction considering the previously described example of selling books there is
+currently no way for bob and tom to understand that the actions performed if
+interpreted through their purposes can also satisfy their objectives it occurs because there is not work that made explicit the purposes of the statusfunctions if
+the purposes of statusfunctions were made explicit the statusfunctions name
+would be less relevant to the systems correct functioning also new agents could
+enter the system and understand the purposes of carrying out some functions
+that have institutional interpretation and thus resolve themselves to satisfy their
+objectives
+the limitation discussed above indicates the need to develop a model that explains the purposes of statusfunctions belonging to institutional reality aguilar
+et al 28 corroborate this conclusion by stating that institutions have not yet
+considered how to help agents in decisionmaking helping them to achieve their
+own goals the modeling of purposes of statusfunctions described in the next
+section is a step to fill this open gap
+the purpose of statusfunctions
+inspired by the document structures suggested by ferraris cf section 21 this
+section describes a model to specify the purposes associated with the statusfunctions in artificial institutions the focus is on the main concepts and their
+relations the practical implementation of this model is beyond the scope of this
+paper
+the model proposed in this work is composed of agents institutions and
+purposes agents are autonomous entities that pursue their goals in the system 38 through mas definition cf section 1 we can see that goal is a
+fundamental concept to understand and program mas the literature presents
+several definitions of goal that are different but complementary to each other see
+more in 33719272022 in this work goals are something that agents aim to
+achieve eg the holding of a certain state the performance of an action etc
+institutions provide the social interpretation of the environmental elements
+of the system the several models of artificial institutions are usually inspired by
+the theory of searle considering that constitutive rules specify the assignment of
+coupling purposes with statusfunctions in artificial institutions
+system
+change
+institution
+constitutive rule
+statusfunction
+function
+purpose
+data
+goal
+goal
+agent
+data
+fig 1 overview of the model
+status to those elements enabling them to perform functions in a certain social
+context these statuses with their associated functions are then called statusfunctions the assignment of statusfunctions to the environmental elements is
+specified through constitutive rules these rules are generally expressed as x
+countas y in c where x represents an environmental element ie a brute
+fact y represents a statusfunction to be assigned to x and c represents
+the context under which the constitution takes place it is beyond the scope of
+this paper to propose a model of artificial institution rather it considers this
+general notion of institution as the entity that constitutes statusfunctions that
+is adopted by several models in the field of mas
+while agents and institutions are known concepts purposes are introduced
+in the proposed model the purposes are the practical interests of the agents that
+can be satisfied by the functions associated with the statusfunctions cf section 21 if a goal is something desirable by the agent and a purpose of a
+statusfunction expresses practical interests of the agents then we propose to
+link them in this work it is assumed that agents have goals that are satisfied
+by the purposes of the statusfunctions in other words a purpose is the social
+interpretation of a function linked to a status aligned with the agents social
+goal therefore the difference between a purpose and an agent goal is the social
+characteristic collective acceptance etc that a purpose requires without this
+social interpretation a purpose and consequently a social goal aligned with that
+purpose cannot be achieved in addition it is considered that the purposes are
+detailed through a knowledge base according to borst 4 a knowledge base is
+an adequate abstraction to represent a shared conceptualization within a context therefore detailing through knowledge bases is essential for the model
+to be flexible enough and represent the purpose of statusfunctions in different
+contexts
+shortly we are stipulating a relationship between functions of statusfunctions
+and purposes and between these purposes and goals of agents thus if i an
+cunha rafhael r et al
+agent has a goal that satisfies a purpose ii this purpose is associated to a
+statusfunction and iii a constitutive rule specifies how a statusfunction is
+constituted then it is explicit how the agent should act to achieve its goal ie
+acting to constitute the statusfunction that is associated to the same purpose as
+the goal in the previous example bob can know that he satisfies his social goal
+consulting the purpose of payment statusfunction and subsequently consulting
+the institutional specification to understand what concrete action is constituting
+the payment statusfunction
+evaluation
+to illustrate the scenario of using institutions in multiagent systems consider an
+open multiagent system where the agents bob alice franois and joo aim
+to have a book different programmers have developed the different agents
+specifications that are slightly different from each other the agent bob has
+the goal of have a book alice has the goal of get a book franois has the goal
+of obtenir a book and joo has the goal of ter a book this example is used
+in the next subsections to illustrate the limitations of not having an explicit
+representation of the purposes of the statusfunctions subsection 41 describes
+the disadvantages of not using the model from the perspective of the agents
+subsection 42 shows how the model overcomes the disadvantages described in
+the previous section the subsection 43 describes the disadvantages of not using
+the model from the institutions perspective finally the subsection 44 discusses
+the advantages that the model offers when used from an institutional perspective
+limitations from the agents perspective of not using the model
+proposed in this work
+in the section we consider a scenario where all agents described in the introduction are located in a book store figure 2 this system is instrumented with
+an institution that contains a constitutive rule stating that the concrete action
+transfer countas pay such a system could include other statusfunctions and
+constitutive rules but for simplicity we focus only on this case to illustrate the
+main features of the model proposed cf section 3
+the first problem observed is the incompatibility of the specification of the
+agents with the institutional vocabulary for example consider that bob has a
+plan to achieve his goal and this plan requires him to take a concrete action x
+that is institutionally interpreted as pay in this case both specifications bob
+and institution are compatible because there is a constitutive rule stating that
+a concrete action x counts as pay by reading the book stores institutional specification bob discovers the action that fills his plan ie that x is transfer in the
+institution however the problem occurs when other agents have plans considering other words for pay as afford replay and remit their specifications are
+not compatible with that of the institution this is because the statusfunction
+is just a label if the label specified in the agents plans eg afford repay and
+coupling purposes with statusfunctions in artificial institutions
+goal
+have a book
+pay satisfies have a book
+action x countas pay
+institutional specification
+goal
+obtenir a
+book
+transfer countas pay
+action x countas repay
+bob
+franois
+get a book
+action x countas afford
+alice
+ter a book
+action x countas remit
+joo
+fig 2 agents with the same objective operating in the same institution
+remit is different from the label described in the institutional specification the
+agents cannot resolve themselves which are the proper action to perform an
+adhoc solution for this problem is to modify the agents code so that they are
+compatible with the institution however in a scenario where there are many
+agents this solution may be impractical
+another problem observed is that the agents are unable to reason4 about
+the satisfaction of their objectives for example the constitutive rule transfer
+countas pay does not make it explicit that the function of the statusfunction
+pay can lead to a state of the world where the agents have achieved their goals
+therefore the agents cannot understand that the transfer action  institutionally interpreted as pay  takes them to a state of the world where they have
+achieved their objectives institutions as they are currently conceived do not
+provide instruments for agents to reason about actions based on their institutional meaning and therefore conclude that they satisfy their social objectives
+the solutions to solve this problem transfer the responsibility of checking if the
+agents social objective has been satisfied to the system however these solutions
+decrease the agents autonomy they need to follow regulatory rules perform actions that do not know the consequences etc
+advantages from the agents perspective of using the model
+proposed in this work
+to illustrate how the proposed model solves the limitations from the agents
+perspective consider again the example involving bob alice franois and joo
+and the common social goal of having a book figure 3 however the purposes
+related to the statusfunction pay are now explicit
+first the agents specification and institutional vocabulary become compatible this is due to the agents plans being specified considering the purposes
+reasoning about the satisfaction of their social goals in the context of this work
+means that agents consult the purposes ie the consequences of executing a concrete action that has an institutional interpretation in order to realize that these
+consequences are analogous to their objectives
+cunha rafhael r et al
+related to the statusfunctions instead of the nomenclature used in the specifications for example in the subsection 41 alices plan requires her to perform
+an action that counts as pay this could bring some incompatibilities as already
+discussed the existence of purposes related to statusfunctions allows alice to
+perform an action that has the purpose of getting a book the main difference
+with this proposal is that the institutional nomenclature of statusfunctions ie
+pay is irrelevant as long as the agent has access to the statusfunctions purposes in other words the agents plan will not look to the status but to the
+purposes associated with it agents can act in the institution according their
+purposes without requiring changes in their code
+institutional purpose specification
+extends
+goal
+have a book
+pay haspurpose of have a book
+pay haspurpose of get a book
+pay haspurpose of obtenir a book
+pay haspurpose of ter a book
+institutional specification
+goal
+obtenir a
+book
+transfer countas pay
+action x satisfies have a book
+action x satisfies obtenir a book
+bob
+franois
+get a book
+action x satisfies get a book
+alice
+ter a book
+action x satisfies ter a book
+joo
+fig 3 use of the proposed model in an institutional specification
+another advantage is the improvement in the agents reasoning about the
+satisfaction of their goals by adding purposes related to statusfunctions agents
+can reason about the purposes ie the consequences of carrying out actions
+constituting statusfunctions from this the agents can check which actions are
+aligned to their social goals and if performed these actions can satisfy them for
+example the statusfunctions pay has some associated purposes among them
+that of having a book if bob looks for this own social goal of having a book
+in the purposes he can infer that the statusfunction pay is of his interest
+and moreover that the concrete action of transfer is counting as pay in this
+institution the very x action for his plan in this institution is thus transfer
+this solution allows the agent himself to check if his social objective can be
+satisfied this solution seems to be appropriate because it prevents the agent
+from following unnecessary regulative rules or performing actions he does not
+know the consequences
+coupling purposes with statusfunctions in artificial institutions
+limitations from the institution perspective of not using the
+model proposed in this work
+consider that bob alice franois and joo still have the same social goals but
+can move through four different institutions they are i a book store ii a
+library iii a bookshelf at a friends house and iv a hostel shelf figure 4 the
+first institution contains a constitutive rule stating that the action transfer countas pay rent donation and replace the second institution contains a constitutive
+rule stating that signing a loan countas pay rent donation and replace the
+third institution contains a constitutive rule stating that receiving the book from
+a friend countas pay rent donation and replace finally the fourth institution
+contains a constitutive rule stating that putting a book on a shelf countas pay
+rent donation and replace all these scenarios are part of a similar context that
+is it involves obtaining books
+book store
+institutional specification
+transfer countas pay
+transfer countas rent
+transfer countas donation
+transfer countas replace
+goal
+goal
+have a book
+action x countas pay
+bob
+sign loan countas pay
+sign loan countas rent
+sign loan countas donation
+sign loan countas replace
+action x countas donation
+franois
+friend s house
+institutional specification
+get a book
+action x countas rent
+alice
+obtenir a
+book
+library
+institutional specification
+receive a book countas pay
+receive a book countas rent
+receive a book countas donation
+receive a book countas replace
+hostel
+institutional specification
+ter a book
+action x countas replace
+joo
+put book on shelf countas pay
+put book on shelf countas rent
+put book on shelf countas donation
+put book on shelf countas replace
+fig 4 the institution prepared for different agents
+the problem from an institutional perspective is that institutions have to be
+specified for every possible incoming agent in the example they have to have
+four constitutive rules one for each agent for every new different agent a new
+constitutive rule have to be added in each institution the institutional specification is thus quite dependent of how agents are programmed the institutional
+developer has to be worried about the agents internals instead of specifying a
+good institution independent of the incoming agents
+in fact there are some solutions to work around this problem the first
+one is to change the institutions specification by adding new constitutive rules
+however it cannot be guaranteed that the new constitutive rule makes sense in
+that system or institution which sometimes makes this solution unfeasible a
+cunha rafhael r et al
+second possible solution is to change the agents code however as already mentioned in 41 subsection this solution becomes impractical if many agents are
+operating on the system furthermore if a new system is available for agents or
+new agents to join different systems new changes need to happen as it is currently conceived the institution is not open enough to support the performance
+of different agents designed with different but similar plans and objectives
+advantages from the institution perspective of using the model
+proposed in this work
+to illustrate the proposed model this models use from the institution perspective consider again the example involving bob alice franois and joo still
+have the same goals but can move through four institutions containing four different institutional specification figure 5 in addition there are purposes related
+to the statusfunctions each institution contains its own institutional specification that is extended by adding purposes related to the statusfunctions these
+purposes represent the interests of agents possibly operating in the institution
+pay haspurpose of have a book
+pay haspurpose of get a book
+pay haspurpose of obtenir a book
+pay haspurpose of ter a book
+rent haspurpose of have a book
+rent haspurpose of get a book
+rent haspurpose of obtenir a book
+rent haspurpose of ter a book
+extends
+extends
+book store
+institutional specification
+goal
+have a book
+action x satisfies have a book
+donation haspurpose of have a book
+donation haspurpose of get a book
+donation haspurpose of obtenir a book
+donation haspurpose of ter a book
+replace haspurpose of have a book
+replace haspurpose of get a book
+replace haspurpose of obtenir a book
+replace haspurpose of ter a book
+extends
+extends
+goal
+obtenir a
+book
+transfer countas pay
+library
+institutional specification
+action x satisfies obtenir a book
+sign loan countas rent
+franois
+bob
+get a book
+receive a book countas donation
+action x satisfies get a book
+alice
+ter a book
+friend s house
+institutional specification
+hostel
+institutional specification
+action x satisfies ter a book
+joo
+put book on shelf countas
+replace
+fig 5 use of the proposed model in some institutional specifications
+we can notice that the institutional specification in particular the constitutive rules is not conceived for the different possible incoming agent the link between the statusfunctions and agents goals is done in a new document properly
+conceived for that if a new agent is considered to be participant of the institution only this document has to be adapted the constitution is kept unchanged
+for example the book store specification contains an associated document that
+describe the purposes of the pay statusfunction in this case pay is related to
+the social goals ie has the purposes of bob alice franois and joo
+coupling purposes with statusfunctions in artificial institutions
+results and discussions
+the problem motivating this paper is the impossibility of the agents to reason about the functions associated with statusfunctions representing the institutional interpretation of certain facts that occur in the environment this
+problem is partially solved by computational models that implement artificial
+institutions however these models do not represent the purpose of this interpretation from an agent perspective agents have to be hardcoded to know
+which statusfunctions can be useful for them to achieve their social goals and
+institutions must be recoded to receive new agents specified by different parties
+considering this problem we propose a model to express the purposes associated
+with the statusfunctions that compose the artificial institutions the conception of our model is an adaptation from a particular point of view of searles
+and ferrariss theories 31301110 which claims that the purposes are specified
+by practical interests of the individuals that can be satisfied by the functions
+associated to the statusfunctions cf section 21 we assume that the purposes
+are defined based on the interests of the agents however they are specified by
+a party involved in the development of the system in other words it is not the
+agents themselves who define the purposes based on collective agreements etc
+there are some advantages of such conception that we discuss below the
+first one is related to the flexibility of the agents that can achieve their social
+goals even being developed by different programmers for example the subsection 41 illustrates a scenario where all agents are located in the same institution
+eg book store in this example specified agents with vocabularies other than
+the institutional vocabulary may have difficulties to i execute their plans and
+ii understand when their social goals are reached the solution to this problem
+is described in subsection 42 where the agents plans can be specified considering
+the purposes related to the statusfunctions rather than the status nomenclature the advantages are a the agents can reason about these functions and
+adapt in different scenarios to satisfy their plans and b by reasoning about the
+functions of the statusfunctions the agent can perceive that these functions are
+similar to their interests and therefore they can help the agents to reach their
+social goals the agents capability to reason about the functions and adapt to
+different scenarios is an important advance in open systems flexibility 239
+the agents understanding of what makes his social objective satisfied is also
+an important advance in his autonomy 28 in this case the agent can reason
+about the actions in the plans and the regulative rules that govern the system in
+both cases the agent has greater autonomy and flexibility in deciding whether
+a particular action will help him reach his social goal
+the second advantage is related to the institutions flexibility in being prepared to receive different agents designed by different developers for example
+the subsection 43 illustrates a scenario where all agents can enter and leave
+different institutions in this example institutions are not prepared to receive
+different agents then the developer needs to modify the institutional specifications however in open systems it is not possible to predict which agents will
+enter or leave the institution 1725 the solution to the problem is described in
+cunha rafhael r et al
+subsection 44 an the explicit link between statusfunctions and purposes that
+allows us to prepare the institution for new agents
+the advantages can also be seen in the concepts of cohesion and coupling
+present in software engineering the cohesion of a module corresponds to the
+degree to which the module is dedicated to implementing only one responsibility
+of the system 24 cohesive modules are those that have few responsibilities this
+way maintenance is simpler and avoids side effects it is easier to change one part
+of the application without affecting other parts the coupling means how much
+a module depends on the other module to work 26 when there is low coupling
+the application becomes more flexible reusable and more organized therefore
+the ideal for a system to be flexible and understandable are modules with high
+cohesion and low coupling 26 the proposed model has both properties high
+cohesion occurs because the model proposes to extend only the statusfunctions
+present in the institutional reality through the introduction of the concept of
+purposes related to these functions the low coupling is guaranteed because the
+model does not depend on the other system modules environment institution
+agents etc to function correctly this separation of responsibilities also ensures
+that the model is flexible and requires less effort to perform maintenance
+according to 12 human societies usually have a representation i internal
+of the social reality ie the individuals do not necessarily reason in terms of
+statusfunctions norms purposes etc and ii implicit as it is built on top of
+peoples mental states that believe for instance that a certain man is the king
+in the proposed model purposes compose a system i explicit as it is properly
+specified through institutional concepts and ii external as it is persisted outside the agents mind such conception is in agreement with some authors that
+point that institutions can or perhaps even should be used for purposes that
+are beyond the normative ones 281332332123 in summary our work proposes an interface to make different couplings in different institutions without
+changing the institutional specification or the coding of the agents in other
+words agents and institutions remain unchanged because the purpose is the
+link between agents interests and the institutions from this the change from
+one scenario to another occurs only in the mapping between the institutional
+specification and the purposes that reflect the agents interests
+as future work we plan to explore additional theoretical aspects related to
+the model such as i investigations about how other proposed institutional
+abstractions fit on the model ii the verification of the consistency among
+statusfunctions purposes and agents social goals and iii check if the functions related to status must be further detailed we plan to also address more
+practical points such as i the modeling of a statusfunctions purposes based
+on a real scenario ii the implementation of this model in a computer system
+and iii the integration this model in an computational model that implements
+the constitution of statusfunctions and after in an mas platform
+coupling purposes with statusfunctions in artificial institutions
+references
+1 aldewereld h lvareznapagao s dignum f vzquezsalceda j making norms concrete in proceedings of the 9th international conference on autonomous agents and multiagent systems volume 1volume 1 pp 807814 international foundation for autonomous agents and multiagent systems 2010
+2 aldewereld h dignum v operetta organizationoriented development environment in international workshop on languages methodologies and development tools for multiagent systems pp 118 springer 2010
+3 boissier o bordini rh hubner j ricci a multiagent oriented programming programming multiagent systems using jacamo mit press 2020
+4 borst wn construction of engineering ontologies for knowledge sharing and
+reuse 1999
+5 brito mde thvin l garbay c boissier o hbner jf supporting flexible regulation of crisis management by means of situated artificial institution 174
+309324 2016
+6 brito md et al a model of institucional reality supporting the regulation in
+artificial institutions phd thesis universidade federal de santa catarina 2016
+7 cardoso hl oliveira e institutional reality and norms specifying and monitoring agent organizations international journal of cooperative information systems 1601 6795 2007 httpsdoiorg101142s0218843007001573
+8 cliffe o de vos m padget j answer set programming for representing and
+reasoning about virtual institutions in international workshop on computational
+logic in multiagent systems pp 6079 springer 2006
+9 cliffe o de vos m padget j specifying and reasoning about multiple institutions in international workshop on coordination organizations institutions
+and norms in agent systems pp 6785 springer 2006
+10 condello a two questions on the ontology of money ardeth 03 181191 2018
+11 condello a ferraris m searle jr money social ontology and law routledge 2019
+12 de brito m hubner jf a conceptual model for situated artificial institutions lecture notes in computer science including subseries lecture notes in
+artificial intelligence and lecture notes in bioinformatics 8624 lnaimarch
+2016 2014 httpsdoiorg1010079783319097640
+13 fornara n specifying and monitoring obligations in open multiagent systems
+using semantic web technology in semantic agent systems pp 2545 springer
+2011
+14 fornara n colombetti m ontology and time evolution of obligations and prohibitions using semantic web technology in international workshop on declarative
+agent languages and technologies pp 101118 springer 2009
+15 fornara n colombetti m representation and monitoring of commitments and
+norms using owl ai communications 234 341356 2010
+16 fornara n tampitsikas c using owl artificial institutions for dynamically creating open spaces of interaction in at pp 281295 2012
+17 fornara n vigan f colombetti m agent communication and institutional
+reality in international workshop on agent communication pp 117 springer
+2004
+18 fornara n vigan f colombetti m agent communication and artificial institutions autonomous agents and multiagent systems 142 121142 2007
+httpsdoiorg101007s1045800600178
+cunha rafhael r et al
+19 hindriks kv de boer fs van der hoek w meyer jjc agent programming with declarative goals in international workshop on agent theories architectures and languages pp 228243 springer 2000
+20 hbner jf bordini rh wooldridge m declarative goal patterns for agentspeak in proceedings of the fifth international joint conference on autonomous
+agents and multiagent systems aamas06 2006
+21 murrayrust d papapanagiotou p robertson d softening electronic institutions to support natural interaction human computation 22 2015
+httpsdoiorg1015346hcv2i23
+22 nigam v leite j a dynamic logic programming based system for agents with
+declarative goals in international workshop on declarative agent languages and
+technologies pp 174190 springer 2006
+23 padget j de vos m page ca deontic sensors ijcai international joint
+conference on artificial intelligence 2018julysection 5 475481 2018
+24 pfleeger sl atlee jm software engineering theory and practice pearson education india 2010
+25 piunti m situating agents and organisations in artifactbased work environment
+phd thesis univerist di bologna 2009
+26 pressman rs software engineering a practitioners approach palgrave macmillan 2005
+27 van riemsdijk b van der hoek w meyer jjc agent programming in dribble
+from beliefs to goals using plans in proceedings of the second international joint
+conference on autonomous agents and multiagent systems pp 393400 2003
+28 rodriguezaguilar ja sierra c arcos jl lopezsanchez m rodriguez
+i towards next generation coordination infrastructures knowledge engineering
+review 304 435453 2015 httpsdoiorg101017s0269888915000090
+29 rodriguezaguilar ja sierra c arcos jl lpez snchez m rodrguez santiago i towards next generation coordination infrastructures knowledge engineering review 2015 vol 30 num 4 p 119 2015
+30 searle j making the social world the structure of human civilization oxford
+university press 2010
+31 searle jr the construction of social reality simon and schuster 1995
+32 telang pr singh mp yorkesmith n a coupled operational semantics for
+goals and commitments journal of artificial intelligence research 65 3185 2019
+33 tomic s pecora f saffiotti a norms institutions and robots 148 114
+2018 httparxivorgabs180711456
+34 vzquezsalceda j aldewereld h grossi d dignum f from human regulations to regulated software agents behavior artificial intelligence and law 161
+7387 2008
+35 vigan f colombetti m model checking norms and sanctions in institutions
+ii 316329 2008
+36 winikoff m challenges and directions for engineering multiagent systems arxiv
+preprint arxiv12091428 2012
+37 winikoff m padgham l harland j thangarajah j declarative and procedural goals in intelligent agent systems in international conference on principles
+of knowledge representation and reasoning morgan kaufman 2002
+38 wooldridge m an introduction to multiagent systems john wiley  sons 2009
+39 zambonelli f jennings nr wooldridge m organisational abstractions for
+the analysis and design of multiagent systems in international workshop on
+agentoriented software engineering pp 235251 springer 2000

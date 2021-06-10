@@ -1,0 +1,909 @@
+arxiv07040098v5 csit 30 apr 2008
+sparselyspread cdma  a statistical mechanics
+based analysis
+jack raymond and david saad
+neural computation research group aston university aston triangle birmingham
+b4 7ej
+email jackraymondphysicsorg
+abstract
+sparse code division multiple access cdma a variation on the standard cdma
+method in which the spreading signature matrix contains only a relatively small number
+of nonzero elements is presented and analysed using methods of statistical physics the
+analysis provides results on the performance of maximum likelihood decoding for sparse
+spreading codes in the large system limit we present results for both cases of regular
+and irregular spreading matrices for the binary additive white gaussian noise channel
+biawgn with a comparison to the canonical dense random spreading code
+pacs numbers 6460cn 7510nr 8440ua 8970c
+ams classification scheme numbers 68p3082b4494a1294a14
+sparselyspread cdma  a statistical mechanics based analysis
+1 background
+the area of multiuser communications is one of great interest from both theoretical and
+engineering perspectives 1 code division multiple access cdma is a particular
+method for allowing multiple users to access channel resources in an efficient and robust
+manner and plays an important role in the current preferred standards for allocating
+channel resources in wireless communications cdma utilises channel resources highly
+efficiently by allowing many users to transmit on much of the bandwidth simultaneously
+each transmission being encoded with a user specific signature code disentangling the
+information in the channel is possible by using the properties of these codes and much of
+the focus in cdma research is on developing efficient codes and decoding methods
+in this paper we study a variant of the original method sparse cdma where the
+spreading matrix contains only a relatively small number of nonzero elements as was
+originally studied and motivated in 2 while the straightforward application of sparse
+cdma techniques to uplink multiple access communication is rather limited as it is
+difficult to synchronise the sparse transmissions from the various users the method can be
+highly useful for frequency and time hopping in frequencyhopping code division multiple
+access fhcdma one repeatedly switches frequencies during radio transmission often
+to minimize the effectiveness of interception or jamming of telecommunications at
+any given time step each user occupies a small finite number of the infinite mary
+frequencyshiftkeying mfsk chipcarrier pairs with gain g the total number of chipfrequency pairs is mg hops between available frequencies can be either random or
+preplanned and take place after the transmission of data on a narrow frequency band in
+timehopping thcdma a pseudonoise sequence defines the transmission moment for
+the various users which can be viewed as sparse cdma when used in an ultrawideband
+impulse communication system in this case the sparse timehopping sequences reduces
+collisions between transmissions
+this study follows the seminal paper of tanaka 3 and other recent extensions 4
+in utilising the replica analysis for randomly spread cdma with discrete inputs which
+established many of the properties of random denselyspread cdma with respect to
+several different detectors including maximum a posteriori map marginal posterior
+maximiser mpm and minimum mean squareerror mmse sparselyspread cdma
+differs from the conventional cdma based on dense spreading sequences in that any
+user only transmits to a small number of chips by comparison to transmission on all chips
+in the case of dense cdma the sparse nature of this model facilitates the use of methods
+from statistical physics of dilute disordered systems 5 6 for studying the properties of
+typical cases
+the feasibility of sparse cdma for transmitting information was recently
+demonstrated 2 for the case of real gaussian distributed input symbols by employing a
+gaussian effective medium approximation several results have been reported for the case of
+random transmission patterns in a separate recent study based on the belief propagation
+inference algorithm and a binary input prior distribution sparse cdma has also been
+sparselyspread cdma  a statistical mechanics based analysis
+considered as a route to proving results in the densely spread cdma 7 in addition this
+study demonstrated the existence of a waterfall phenomenon comparable to the dense code
+for a subset of ensembles the waterfall phenomenon is observed in decoding techniques
+where there is a dynamical transition between two statistically distinct solutions as the
+noise parameter is varied finally we note a number of pertinent studies concerning the
+effectiveness of belief propagation as an mpm decoding method 8 9 10 11 and in
+combining sparse encoding ldpc methods with cdma 12 many of these papers
+however consider the extreme dilution regime  in which the number of chip contributions
+is large but not on
+the theoretical work regarding sparsely spread cdma remained lacking in certain
+respects as pointed out in 2 spreading codes with poisson distributed number of nonzero elements per chip and across users are systematically failing in that each user
+has some probability of not contributing to any chips transmitting no information
+even in the partly regular code 7 ensemble where each user transmits on the same
+number of chips some chips have no contributors owing to the poisson distribution in
+chip connectivity consequently the bandwidth is not effectively utilised we circumvent
+this problem by introducing constraints to prevent this namely taking regular signature
+codes constrained such that both the number of users per chip and chips per user take
+fixed integer values furthermore we present analytic and numerical analysis without
+resort to gaussian approximations of any quantities using new tools from statistical
+mechanics we are able to cast greater light on the nature of the binary prior transmission
+process notably the nature of the decoding state space and relative performance of sparse
+ensembles versus dense ones across a range of noise levels and importantly the question
+of how the coexistence of solutions found by tanaka 3 extends to sparse ensembles
+especially close to the transition points determined for the dense ensemble
+in this paper we demonstrate the superiority of regular sparsely spread cdma code
+over densely spread codes in certain respects for example the anticipated bit error rate
+arising in decoding is improved in the high noise regime and the solution coexistence
+behaviour is less pervasive furthermore to utilise belief propagation for such an ensemble
+is certain to be significantly faster and less computationally demanding 13 this also has
+powerconsumption implications which may be important in some applications other
+practical issues of implementation the most basic being nonsynchronisation and power
+control require detailed study and may make fully harnessing these advantages more
+complex and application dependent
+the paper is organised as follows in section 2 we will introduce the general framework
+and notation used while the methodology used for the various codes will be presented in
+section 3 the main results for the various codes will be presented in section 4 followed
+by concluding remarks in section 5
+sparselyspread cdma  a statistical mechanics based analysis
+figure 1 a bipartite graph is useful for visually realising a problem a user node i at
+the bottom interacts with other variables through its set of neighbouring factor nodes i
+to which it connects the factor nodes are determined through a similar neighborhood
+the interaction at each factor  is conditioned on neighbouring gain factors  the
+nonzero components of s and y which is an implicit function of the noise   and
+neighbouring input bits b and gain factors    assuming a uniform prior on the bits
+the statistical mechanics reconstruction problem associates dynamical variables  to the
+user nodes that interact through the factors the thermodynamical equilibrium state of
+this system then describes the theoretical performance of optimal detectors
+2 the model
+we consider a standard model of cdma consisting of k users transmitting in a bit
+interval of n chips we assume a model with perfect power control and synchronisation
+and consider only the single bit interval in our case the received signal y is described by
+sk bk    
+where the vector components describe the values for distinct chips sk is the spreading
+code for user k bk  1 is the bit sent by user k binary input symbols and  the noise
+vector appropriate normalisation of the power is through the definition of the signature
+matrix s it is possible to include a user or chip specific amplitude variation which may
+be due to fading or imperfect power control we consider a model without these effects
+the spreading codes are sparse so that in expectation only c of the elements in vector sk
+are nonzero if with knowledge of the signature matrix in use we assume the signal has
+been subject to additive white gaussian channel noise of variance 02  where 02 is the
+variance of the true channel noise h 2 i we can write the posterior for the transmitted bits
+ unknowns given the particular instance using bayes theorem
+   exp  
+sk bk  k     p   
+p  y 
+and from this define bit error rate mutual information and other quantities the
+statistical mechanics approach from here is to define a hamiltonian and partition
+sparselyspread cdma  a statistical mechanics based analysis
+function from which the various statistics relating to this probability distribution may
+be determined  and hence all the usual information theory measures a suitable choice
+for the hamiltonian is
+sk bk  k    
+hk k 
+h  
+we can here identify  as the dynamical variables in the inference problem dependence
+shown explicitly the other quenched variables parameters describing the instance of
+the disorder are the signature matrix s noise  and the inputs b the variables
+hk describe our prior beliefs about the inputs the specific user bias and we can assume
+some simple distribution for this such as all users having the same bias hk  h maximal
+rate transmission corresponds to unbiased bits h  0 and this is considered throughout
+the paper the properties of such a system may be reflected in a factor tanner graph
+a bipartite graph in which users and chips are represented by nodes see figure 1
+the calculation we undertake is specific to the case of the thermodynamic limit in
+which the number of chips n   whilst the load   kn is fixed note that  is
+termed  in many cdma papers here we reserve  to mean the inverse temperature
+in a statistical mechanics sense which defines our prior belief for the noise level and give
+rise to the corresponding map detector
+in all ensembles we may identify the parameter l as the mean number of contributions
+to each chip and c as the mean number of contributions per user as such the following
+also holds
+the case in which  is greater than 1 will be called oversaturated since more than one
+bit is being transmitted per chip
+the calculations presented henceforth are specific to the case of memoryless noise
+drawn from a single distribution of mean zero and mean square 02
+  p    
+defining normalised spreading codes such that k sk sk  n  we can identify the power
+spectral density p sd over a chip interval as a measure of the system noise 1202  
+the factor two being connected with physical considerations in implementing the model
+21 code ensembles
+we consider several code ensembles we call irregular partly regular and regular which
+differ in the constraints placed on the factor and variable degree constraints of the signature
+matrix s the probability distribution
+y l x
+sk 6 0  l
+p s  n 
+p l
+sparselyspread cdma  a statistical mechanics based analysis
+y c x
+sk 6 0  c
+p sk  
+c c
+p c
+where n is a normalising constant p l is the factor degree probability distribution of
+mean l p c is the variable degree probability distribution of mean c and p sk  is the
+marginal probability distribution which is common to all ensembles
+sk   sk   
+p sk   1 
+the form of 6 is then sufficient for the sparse distributions we consider in the large system
+limit and makes explicit the chip and user connectivity properties of the ensembles the
+gain factor  is drawn randomly from a single distribution with zero measure at   0
+and finite moments in any instance of a code
+  p sk  sk 6 0 
+unlike the dense case the details of this distribution will effect results but only in a small
+way for reasonable choices 2 we here investigate the case of binary phase shift keying
+bpsk which corresponds to a uniform distribution on  1l  1l  though the analytic
+results presented are applicable to any distribution of mean 
+square  1l note that
+disorder in the gain factors is not a necessity the case   1 l also allows decoding in
+sparse ensembles
+the case where p l and p c are poissonian distributed identifies the irregular
+ensemble  where the connections between chips and users are independently distributed
+the second distribution called partly regular has p c  cc  in which the chip
+connectivity is again poisson distributed with mean l but each user contributes to exactly
+c chips this prevents the systematic failure inherent in the irregular ensemble since
+therein an extensive number of users fail to transmit on any chips if in addition to
+the aforementioned constraint all chips receive exactly l contributions p l  ll 
+the ensemble is called regular regular chip connectivity amongst other things prevents
+the systematic inefficiency due to leaving some chips unaccessed by any of the users
+the case of poissonian distributions is that in which there is no global control in
+many engineering applications constraining users individually nonpoissonian p c is
+practical whereas coordination between users nonpoissonian p l is difficult the
+practicalities of implementing the different ensembles we consider are application specific
+the advantages inherent in distributing channel resources more evenly amongst users may
+be lost to practical implentation problems
+3 methodology
+31 spectral efficiency lower bound
+the inferiority of codes with poissonian user connectivity has been pointed out previously
+eg in 2 based on the understanding that codes which leave a portion of the users
+sparselyspread cdma  a statistical mechanics based analysis
+disconnected cannot be optimal analogously we argue that codes with irregular chip
+connectivity must also be inferior in that they leave a fraction of the chips bandwidth
+unutilised thus providing a motivation for considering fully regular codes
+in this section we show a particular case in which the regular codes are expected
+to outperform any other ensemble by analysing the amount of information that can be
+extracted on the sent bits by consideration of only one chip in isolation of the other chips
+this corresponds to a detector reconstructing bits based only on the value of a single chip
+and is independent of the user connectivity
+the spectral efficiency is defined as the mutual information between the received
+signal and reconstructed bits per chip in considering only a single chip  we have
+p  y 
+i  y   log2
+p   p0  y 
+where the subscript zero indicates that the true generative rather than model 2
+probability distribution for brevity we consider the simplest case that the generative
+and model probability distributions are the same with unbiased bits and a gaussian noise
+distribution in which case after some rearrangement
+exph   
+i  y   l  log2 p
+  exph   p0   y 
+where   are the bits connected to chip  and the chip hamiltonian is
+i i  y  
+h     2 
+labelling each interacting nonzero component on the chip by i l being the chip
+connectivity
+working from this description we wish to compare the performance of ensembles
+with different chip connectivities to do this we consider the ensemble average mutual
+information by averaging the mutual information over the connectivities l load factors
+and transmitted bits this average is complicated however it is possible to calculate the
+dominant terms in the low and high p sd limits
+in the case of low noise p sd   we find the asymptotically dominant terms
+come first from the numerator
+fi 2fl
+ log2 
+hlog2 exp h i 
+2 log2
+which is an average over the ground state energy and also the logarithm of the denominator
+which is
+exp
+i bi  i 
+exp h    log2
+log2
+where y has been decomposed into its bit bi  and noise  parts and the averages are
+now over the ensembles as well as y  the first part of 13 gives an energy contribution
+cancelling 12 we call the remaining part the average over the chip entropy by
+sparselyspread cdma  a statistical mechanics based analysis
+comparison with 10 this determines the amount of information lost in decoding the
+chip entropy term contains an indicator function counting the ground states  the average
+chip entropy is zero when    b is the only solution for the case of bp sk however
+there may be some degeneracy in ground states with two terms in the sum being nonzero
+but cancelling one another this degeneracy has a dependence on the distribution p l
+for given l averaging over load factors and transmitted bits we find that in the zero
+noise limit
+ibi  i 
+log2
+i  y   l 
+22l  
+p l
+minplp 
+x 1 l
+l  p p 
+ln 
+l p
+p l
+by numerical evaluation of this function see results section 42 we find that the optimal
+ensemble is in fact the regular ensemble this is because chip entropy when averaged over
+load factors and bits is a concave function in l so that the information loss is minimised
+when p l  ll  this dependency on l may be a peculiarity of the detector considered
+but many other aspects of the calculation may be generalised to give a similar result
+it is possible to consider the opposite limit 02   perturbatively we found that
+the leading four orders in 10 were identical for all code ensembles of the same mean chip
+connectivity we would anticipate the behaviour at nonextreme p sd to fall somewhere
+between these two regimes and thus for the chip regular ensemble to be atleast as good as
+the chip irregular ensembles
+we note here that another reason for considering the regular code optimal amongst
+sparse random codes is to consider the field term when the hamiltonian 11 is written
+in canonical form with a set of couplings jhiji  and user specific external fields hi 
+in this representation the set of external fields are in expectation aligned with the sent
+bit sequence but subject to fluctuations for each code instance the variance of these
+fluctuations may be shown to be proportional to the excess chip connectivity over the
+true chip connectivity 14 which amongst all ensembles is minimised by the regular chip
+ensemble the multiuser interference is larger in irregular codes and hence information
+recovery is weaker as predicted in this section
+32 replica method outline
+we determine the static properties of our model defined in section 2 including correlations
+due to the full interaction structure we use the replica method from the expression of
+the hamiltonian 3 we may identify a free energy and partition function as
+ln z
+z  tr exp h  
+ this argument is added since published version
+sparselyspread cdma  a statistical mechanics based analysis
+to progress we make use of the anticipated selfaveraging properties of the system
+the assumption being that in the large system limit any two randomly selected instances
+will with high probability have indistinguishable statistical properties this assumption
+has firm foundation in several related problems 15 and is furthermore intuitive after
+some reflection if this assumption is true then the statists of any particular instance can
+be described completely by the free energy averaged over all instances of the disorder we
+are thus interested in the quantity
+hln zii 
+f  hf i   lim
+n  n
+where the angled brackets represent the weighted averages over i the instances the
+entropy density may be calculated from the free energy density by use of the relation
+s  e  f  
+where e is the energy density
+to determine the free energy we must average over disorder in 16 which is a difficult
+problem except in special cases this is why we make use of the replica identity
+hz n ii 
+hln zii  lim
+n0 n
+we can model the system now as one of interacting replicas where z n is decomposed as a
+product of an integer number of partition functions with conditionally independent given
+the instance of the disorder dynamical variables the discreteness of replicas is essential
+in the first part of the calculation but a continuation to the real numbers is required
+in taking n  0  this is a notorious assumption which rigorous mathematics can not
+yet justify for the general case in spite of the progress made in recent years 16 17 18
+however we shall assume validity and since the methodology for the sparse structures is
+well established 19 20 15 we omit our particular details the final functional form for
+the free energy is determlained from
+z yh
+dp b dp b  expln n  ng1 n  g2 n  g3 n 
+19a
+hz i 
+z  y
+exp 
+2 2
+exp
+g1 n  ln
+i  x
+19b
+ b   
+p b  exp
+p l
+p b p b  
+19c
+g2 n 
+c fl
+g3 n   ln
+exp h
+p b  
+19d
+p c p0 b
+where n is a constant due to normalising the ensembles 6 this expression may be
+evaluated at the saddle point to give an expression for the free energy in the term 19d
+sparselyspread cdma  a statistical mechanics based analysis
+we account for the cases in which the marginalised probability distribution p0 b and
+assumed marginal probability distribution described by h are asymmetric in the case
+of maximal rate which we will consider the b average is trivial and h  0 provided
+that in addition the gain factor distribution is symmetric then it is possible to remove
+the b dependence in the order parameters since the symmetry p b   p b  and
+p b   p b  leaves the free energy invariant
+33 replica symmetric equations
+the concise form for our equations is attained using the assumption of replica symmetry
+rs this amounts to the assumption that the correlations amongst replicas are all
+identical and determined by a unique shared distribution the validity of this assumption
+may be self consistently tested section 35 this assumption differs from that used
+by yoshida and tanaka 2 where the correlations are described by only a handful of
+parameters rather than a distribution once rs is assumed  this approach may therefore
+miss some of the detailed structure although it is easier to handle numerically the order
+parameter in our case is given by
+y 1
+1  b x 
+20a
+p b   
+p b    q dx
+1  b x 
+20b
+where q is a variational normalisation constant and   are normalised distributions on
+the interval 1 1 from here onwards we may consider the case in which the bit variables
+ and gain factors  are gauged to b  b    b  
+using laplaces method this gives the following expression for the rs free energy
+at the saddle point
+g1rs ln  g2rs n  g3rs cn
+frs   extrb
+where
+g1rs n   l ln 2
+n n0
+z l
+ 22a
+dxl  ln trl 1 l     x 
+p l
+l     x  exp  2  
+1  l l
+1  l xl  
+g2rs n   l dxc dxc  ln1  xxc  
+n n0
+z c
+g3rs n  
+dxc  ln  1  xc  
+1  xc 
+n n0
+22b
+22c
+p c
+22d
+sparselyspread cdma  a statistical mechanics based analysis
+and the saddle point value for   l has been introduced the averages over l and c
+encapsulate the differences amongst the ensembles
+equation 22b describes the interaction at a single chip in the factor graph figure 1
+of connectivity l the parameter l and variable  are the gain factors and reconstructed
+bits respectively both gauged to the transmitted bit while  is the instance of the chip
+noise
+the order variational distributions   are chosen so as to extremise 21 the self
+consistent equations attained by the saddle point method are
+z l
+fi 
+trl 1 l1 l    x
+23a
+dxl   x
+trl 1 l     x
+ p l
+l     x  exp  2  
+1  l l
+1  l xl 
+23b
+z c
+ 23c
+dxc   x  qc1
+p c
+the variables p l and p c are here the excess degree distributions of the particular
+ensemble 6 for regularly constrained ensembles the chip and user excesses are l  1
+and c  1 respectively for poissonian distributions the excess degree distribution is the
+full degree distribution
+aside from entropy the other quantities of interest may be determined from the
+probability distribution for the overlap of reconstructed and sent variables mk  hk i
+1 x
+mk m
+p m  lim
+k k
+z c
+dxc   m qc1
+ 25
+p c
+we note finally that equivalent expressions to these found with the rs assumption
+may be obtained by using the cavity method 6 with the assumption of a single pure state
+this approach is a probabilistic one and hence more intuitive on some levels
+34 population dynamics
+analysis of these equations is primarily constrained by the nature of equations 23a23c no exact solutions are apparent and perturbative regimes about the ferromagnetic
+solution which is only a solution for zero noise are difficult to handle consequently
+we use population dynamics 21  representing the distributions x x by finite
+populations histograms and iterating this distribution until convergence it is hoped
+and observed that each histogram captures sufficient detail to describe the continuous
+sparselyspread cdma  a statistical mechanics based analysis
+function and the dynamics described below allow convergence towards a true solution
+distribution with only small corrections due to finite size effects
+to solve the equations 23a23c with population dynamics finite histograms
+constucted from m undirected cavity magnetisations are used histograms approximating
+each function are formed
+x  w  x1      xi      xm  
+27a
+x    x1      xa      xm  
+27b
+with m sufficiently large to provide good resolution in the desired performance measures
+the discrete minimisation dynamics of the histograms is derived from 23a23c
+histogram updates are undertaken alternately with all magnetisation in the histogram
+being updated sequentially in the update of field xa the quenched parameters l  
+are sampled l being the chip excess degree and l magnetisations are randomly chosen
+from w  defining through 23a the update
+trl 1 l1 l     x
+xa 
+trl 1 l      x
+the update of the other histogram follows dynamics in which c is sampled c being
+the user excess degree along with c randomly chosen magnetisations from   defining
+through 23c the update
+c1 1  xc 
+xi  qc1
+there is a strong analogy between the population dynamics algorithm and that of
+message passing on a particular instance of the graph the iteration of the histograms
+implicit in 2829 is analogous to the propagation of a population of cavity magnetisations
+between factor a and user i nodes which may be written as the self consistent equations
+1  l al 
+xai 
+trl 1 i exp  2 a 
+lari
+1  l xla  
+30a
+lari
+xia
+1  xci 
+cira
+1  xci
+cira
+30b
+where nxx are the relevant normalisations and the abbreviation y indicates the set
+of nodes connected to y in population dynamics the notion of a particular graph
+with labelled edges is absent however and the only the distribution of the two types
+of magnetisations are relevant
+35 stability analysis
+to test the stability of the obtained solutions we consider both the appearance of
+nonnegative entropy and a stability parameter defined through a consideration of the
+sparselyspread cdma  a statistical mechanics based analysis
+fluctuation dissipation theorem the first criteria that the entropy be nonnegative is
+based on the fact that physically viable solutions in discrete systems must have nonnegative entropy so that any solution found not meeting this criteria must be based on
+bad premises replica symmetry is a likely source
+the stability parameter  is defined in connection with the cavity method for spin
+glasses 22 and tests local stability of the solutions it is equivalent to testing the local
+stability of belief propagation equations as proposed in 23 a necessary condition for
+the stability of the rs solution is that the corresponding susceptibility does not diverge
+this condition ensures that fields are not strongly correlated the spin glass susceptibility
+when averaged over instances may be defined
+x d h0 d i2c 
+where d is the distance between two nodes in the factor graph the inner average denotes
+the connected correlation function between these nodes x d describes the typical number
+of variables at distance d and the outer average is over instances of the disorder selfaveraging part this quantity is not divergent provided that
+  ln lim x h0 d i2c d
+is negative since this indicates an asympoptically exponential decrease in the terms of 31
+and hence convergence of the sum in the thermodynamic limit the connected correlation
+function is dominated by a single direct path which may be decomposed as a chain of local
+linear susceptibilities
+y xia  xbi
+h0 d ic 
+ xbi xjb
+where ij indicate the set of variables on the shortest path between nodes 0 and d in a
+particular instance of the graph 30a
+this representation allows us to construct an estimation for  numerically based
+on principles similar to population dynamics 24  the directedness and fixed structure
+implicit in a particular problem is removed with the selfaveraging assumption leaving a
+functional description similar to 23a23c which may be iterated in order to approximate
+the stability parameter  one introduces additional positive numbers in the population
+dynamics histograms 27b27a xi  xi  vi  and xa  xa  va  respectively these new
+values represent the relative sizes of perturbations in each magnetisation and are updated
+in parallel to 2829 as
+ xa
+va 
+and with similar assignments for the field update of w
+vi 
+sparselyspread cdma  a statistical mechanics based analysis
+the partial derivatives are calculated from 2829 and evaluated at the corresponding
+values in the sampled population if the final fixed point is stable against small
+perturbations in the initial field then these values v v must decay exponentially on
+average renormalisation of vi  and va  such that the mean is 1 after each update is
+necessary the numerical renormalisation constant for each population yields dependent
+estimations of  which can be sampled at a suitable convergence time end of the w  
+minimisation process
+like population dynamics we expect behaviour to be sensitive to initialisation
+conditions and finite size effects in some circumstances in addition the estimation requires
+good resolution in the histograms w and  
+4 results
+results are presented here for the canonical case of binary phase shift keying bpsk
+where l  1 1 with equal probability furthermore we assume an awgn model for
+the true noise  of variance 02  for evaluation purposes we assume the channel noise
+level is known precisely so that   1 employing the nishimori temperature 5 this
+guarantees that the rs solution is thermodynamically dominant furthermore the energy
+takes a constant value at the nishimori temperature and hence the entropy is affine to
+the free energy where of interest we plot the comparable statistics for the single user
+gaussian channel sug and the densely spread ensemble each with mpm detectors 
+equivalent to maximum likelihood for individual bits
+for population dynamics two parallel populations 27a27b are initialised either
+uniformly at random or in the ferromagnetic state these two populations are known
+to converge towards the unique solution where one exists from opposite directions and
+so we can use their convergence as a criteria for halting the algorithm and testing for the
+appearance of multiple solutions in the case where they converge to different solutions
+we can usually identify the solution converged to from the ferromagnetic initial state as
+a good solution  in the sense that it reconstructs well and that arrived at from random
+initial state as a bad solution in the equivalent belief propagation algorithm one cannot
+choose initial conditions equivalent to ferromagnetic  knowing the exact solution would
+of course makes the decoding redundant we therefore expect the properties of the bad
+solution to be those realisable by belief propagation though clever algorithms may be
+able to escape to the good solution under some circumstances the stability variables
+v v were initialised independently each as the square of a value drawn from a gaussian
+distribution  and tests indicated other reasonable distributions produced similar results
+computer resources restrict the cases studied in detail to an intermediate p sd
+regime and small l in particular the problem at low p sd is the gaussian noise
+average which is poorly estimated while at high p sd a majority of the histogram is
+concentrated at magnetisations x x  1 not allowing sufficient resolution in the rest of
+the histogram
+several different measures are calculated from the converged order parameter
+sparselyspread cdma  a statistical mechanics based analysis
+indicating the performance of sparselyspread cdma using the converged histograms
+for the fields we are able to determine the following quantities free energy energy and a
+histogram for the probability distribution from discretisations of the previously presented
+equations 23a23c using the probability distribution we are also able to approximate
+the decoding bit error rate
+1  signm
+pb  dp m
+multiuser efficiency
+erfc1 pb  
+mue 
+snr
+and mutual information between sent and reconstructed bits per chip ib  n taking
+a factorised form given the rs assumption
+x 1  m
+1  m
+mi   1  dp m
+log2
+the spectral efficiency is the capacity i  y per chip which is affine to the entropy and
+the free energy at the nishimori temperature
+    s ln 2 
+negative entropy can be identified when the measured spectral efficiency exceeds the load
+and thermodynamic transition points correspond to points of coincident spectral efficiency
+figure 2 demonstrates some general properties of the regular ensemble in which the
+variable and factor degree connectivities are c  l  3  3 respectively equations 23a23c were iterated using population dynamics and the relevant properties were calculated
+using the obtained solutions the data presented is averaged over 100 runs and errorbars
+which are typically small are omitted for brevity figure 2a shows the bit error rate
+in regular and poissonian codes the inset focuses on the range where the sparseregular
+and dense cases crossover the sparse codes demonstrate similar trends to the dense case
+except the irregular code which show weaker performance in general and in particular at
+high p sd detailed trends can be seen in figure 2b that shows the multiuser efficiency
+codes with regular user connectivity show superior performance with respect to the dense
+case at low p sd figure 2c shows similar trends in the spectral efficiency and mutual
+information shown in the inset the effect of the disconnected user component is clear
+in the fact that the irregular code fails to reach capacity at high noise levels in general
+it appears the chip connectivity distribution is not critical in changing the trends present
+unlike the user connectivity distribution it was found in these cases and all cases with
+unique solutions for given p sd that the algorithm converged to nonnegative entropy
+values and to a stability measure fluctuating about a value less than 0 as shown in
+figure 2d these points would indicate the suitability of the rs assumption
+ this figure has been modified from the published version the difference being that the poissonian chip
+connectivity codes have everywhere weaker performance than the dense and sparse regular code ensemble
+sparselyspread cdma  a statistical mechanics based analysis
+the outperformance of dense codes by sparse ensembles with regular user connectivity
+in the low p sd regime is new to our knowledge although poissonian chip connectivity
+is everywhere inferior to both the dense and regular sparse codes the difference between
+codes disappears rapidly with increasing connection density at fixed  figure 3 this
+is inline with our prediction of the regular code being a high performance ensemble in
+preceeding sections
+figure 3 indicates the effect of increasing density at fixed  in the case of the
+regular code as density is increased the statistics of the sparse codes approach that
+of the dense channel in all ensembles tested for the irregular ensemble performance
+increases monotonically with density at all p sd the rapid convergence to the dense
+case performance was elsewhere observed for partly regular ensembles and ensembles
+based on a gaussian prior input 2 7 at all densities for which single solutions were
+found the rs assumption appeared validated in the stability parameter and entropy
+figure 4 indicates the effect of channel load  on performance we first explain results
+for codes in which only a single solution was found no solution coexistence for small
+values of the load a monotonic increase in the bit error rate and capacity are observed as 
+is increased with c constant as shown in figures 4a and 4b respectively this matches
+the trend in the dense case the dense code becoming superior in performance to the sparse
+codes as p sd increases we found that for all sparse ensembles there existed regimes with
+  149 for which only a single stable solution existed although the equivalent dense
+systems are known to have two stable solutions in some range of p sd 3 in all single
+valued regimes we observed positive entropy and a negative stability parameter however
+in cases of large  many features became more pronounced close to the dense case solution
+coexistence regime notably the cusp in the stability parameter gap between mi and 
+and the gradient in pb 
+41 solution coexistence regimes
+as in the case of dense cdma 3 also here we observe a regime where two solutions of
+quite different performance coexist in order to investigate the regime where two solutions
+coexist we investigated the states arrived at from random and ferromagnetic initial
+conditions giving bad and good solutions respectively separate heuristic convergence
+criteria were found for the histograms and these seemed to work well for the good
+solution for the bad solution we simply present results after a fixed number of histogram
+updates 500 as all convergence criteria tested appeared either too stringent to require
+experimentally inaccessible timescales or did not capture the asymptotic values for
+important quantities like entropy we believe 500 updates to be sufficiently conservative
+to capture the properties of these solutions however
+figure 4a shows the dependence of the bit error rate on the load which is also
+equivalent to lc there is a monotonic increase in bit error rate with the load and the
+emergence and coexistence of two separate solutions above a certain point in the case
+of the 6  3 code the point above which the two solutions coexist is p sd  1023db as
+sparselyspread cdma  a statistical mechanics based analysis
+multiuser efficiency
+probability of bit error
+reg
+irreg
+p reg
+sug
+dense
+spectral power density db
+spectral power density db
+spectral power density db
+reg
+irreg
+p reg
+reg type 1
+reg type 2
+reg
+irreg
+p reg
+dense
+spectral efficiency bits
+reg
+irreg
+p reg
+dense
+095
+085
+075
+spectral power density db
+figure 2 performance of the sparse cdma configuration of variable and factor degree
+connectivities c  l  3  3 respectively all data presented on the basis of 100 runs error
+bars are omitted and are typically small in subfigures ac the smoothness of the curves
+being characteristic of this level numerical accuracy was excellent only at intermediate
+p sds a the bit error rate is limited by the disconnected component in the case of
+irregular codes otherwise trends match the dense case lower bounded by the sug inset
+ the range where the sparseregular and dense cases crossoverb multiuser efficiency
+indicates the regular user connectivity codes outperform the dense case below some p sd
+c the spectral efficiency  demonstrates similar trends the entropy being positive
+the gap between the mutual information       and spectral efficiency shown in the
+inset is everywhere small and especially so at small and large p sd indicating little
+information loss in the decoding process d the two markers show the mean results
+for the two different stability estimates in the algorithm for the regular code there are
+systematic errors at small p sd and convergence is good only at intermediate p sd
+the lines represent the average of these quantities for each ensemble  all ensembles show
+a cusp at some p sd for 3  3 codes the various ensembles shows very similar trends
+indicating local stability everywhere
+sparselyspread cdma  a statistical mechanics based analysis
+dense
+095
+spectral efficiency bits
+085
+multiuser efficiency
+dense
+075
+065
+055
+spectral power density db
+spectral power density db
+figure 3 the effect of increasing density for the regular ensemble a multiuser
+efficiency b spectral efficiency  and mutual information    data presented on
+the basis of 10 runs error bars are omitted but of a size comparable with the smoothness
+of the curves the performance of sparse codes rapidly approaches that of the dense code
+everywhere the p sd threshold beyond which the dense code outperforms the sparse
+code is fairly stable
+indicated by the vertical dotted line
+we use the regular code 6  3 to demonstrate the solution coexistence found above
+some p sd in various codes the onset of the bimodal distribution can be identified by
+the divergence in the convergence time in the single solution regime the time for the
+ferromagnetic and random histograms to converge to a common distribution the time
+for this to occur in a heuristically chosen statistic and accuracy is plotted in figure 4b
+by a naive linear regression across 3 decades we found a power law exponent of 059 and
+a transition point of p sd  1023db but cannot provide a goodness of fit measure to
+this data this would represent the point at which at least two stable solutions coexist
+beyond p sd  12db only one stable solution is found from both random and
+ferromagnetic initial conditions corresponding statistically to a continuation of the good
+solution a solution which statistically resembles a continuation of the bad solution is
+occasionally arrived at from both initial conditions this solution had a positive stability
+parameter and negative entropy  so is not a viable solution thus we predict a second
+dynamical transition in the region of 12db as might be guessed by comparison with the
+dense case and observation of the trend in the stability parameter see figure 4c
+the stability results are presented in figure 4c only two stable solutions were found
+in the region beyond this critical point and upto 12db which we infer to be viable rs
+solutions where entropy is positive the bad solution upto 12db has a well resolved
+negative value the good solution has a negative value in its mean but like other near
+ferromagnetic solutions investigated results are very noisy due to numerical issues relating
+to histogram resolution
+both capacity and spectral efficiency monotonically increase with the load as shown in
+figure 4d for the 6  3 code we see a separation of the two solutions at p sd  1023db
+sparselyspread cdma  a statistical mechanics based analysis
+data mean
+linear fit
+bounds
+histogram updates to convergence
+probability of bit error
+63 bad
+63 good
+spectral power density db
+psd  psd
+63 bad
+63 good
+spectral efficiency bits
+63 bad
+63 good
+spectral power density db
+spectral power density db
+figure 4 the effect of channel load  on performance for the regular ensemble data
+presented on the basis of 10 runs error bars omitted but characterised by the smoothness
+of curves dashed lines indicate the dense code analogues the vertical dotted line
+indicates the point beyond which 6  3 random and ferromagnetic initial conditions failed
+to converge to the same solution both dynamically stable solutions are shown beyond
+this point a there is a monotonic increase in bit error rate with the increasing load
+b investigation of the 6  3 code   2 indicates a divergence in convergence time as
+p sd  1023db with exponent 059 based on a simple linear regression of 15 points each
+point is the mean of 10 independent runs beyond this point different initial conditions
+give rise to one of two solutions c the stability parameter was found to be negative
+for all convergent solutions indicating the suitability of rs where the solution is near
+ferromagnetic the stability measure becomes quickly very noisy as shown for the 5  3
+and 6  3 codes d as load  is increased there is a monotonic increase in capacity
+the spectral efficiency for the bad solution exceeds 2 in a small interval equivalent to
+negative entropy similar to the behaviour reported for the dense case
+sparselyspread cdma  a statistical mechanics based analysis
+vertical dotted line the dashed lines correspond to a similar behaviour observed in the
+dense case the range of interest is magnified in the inset a cross over in the entropy of the
+two distinct solutions near p sd  11db is indicative of a second order phase transition
+as in the dense case only the solution of smallest spectral efficiency is thermodynamically
+relevant at a given p sd although the other is likely to be important in decoding dynamics
+the trends in the sparse case follow the dense case qualitatively with the good solution
+having performance only slightly worse than the corresponding solution in the dense case
+and vice versa for the bad solution
+the entropy of the bad solution becomes negative in a small interval spectral
+efficiency exceeds 2 although no local instability is observed the static and dynamic
+properties of the histograms appear to be well resolved in this region however the
+negative entropy indicates an instability towards either a type of solution not captured
+within the rs assumption or towards some metastable configuration we will not
+speculate further the bad solution is in any case thermodynamically subdominant in
+its low and negative entropy form
+our hypothesis is therefore that the trends in the sparse ensembles match those in
+the dense ensembles within the coexistence region and rs continues to be valid for each
+of two distinct positive entropy solutions the coexistence region for the sparse codes is
+however smaller than in the corresponding dense ensembles since our histogram updates
+mirror the properties of a belief propagation algorithm on a random graph we can suspect
+that the bad solution may have implications for the performance of belief propagation
+decoding in the coexistence region and that convergence problems will appear near this
+region in the user regular codes investigated the bad solution of the sparse ensemble
+outperforms the bad solution of the dense ensemble and viceversa for the good solution
+thus regardless of whether sparse decoding performance is good or bad the dynamical
+transition point for the dense ensemble would corresponds to a p sd beyond which dense
+cdma outperforms sparse cdma at a particular load
+42 spectral efficiency lower bound numerical results
+finally we present figure 5 which shows the the mutual information between a single
+chip and transmitted bits for sparse ensembles of differing chip connectivity in the infinite
+p sd zero noise limit 15 this shows that in expectation a chip drawn from the
+regular ensemble contains more information on the transmitted bits than a chip drawn
+from any other ensemble including the poissonian ensemble the difference between the
+regular and poissonian ensembles becomes relatively smaller as l increases this appears
+consistent with the replica method results found at high p sd although regular chip
+connectivity under performed by comparison with poisson distributed chip connectivity
+in the low p sd regime which was not anticipated by the single chip approximation
+sparselyspread cdma  a statistical mechanics based analysis
+reg
+poissonian
+i  y
+10 1
+mean chip connectivity l
+figure 5 a p sd   limit to the expected mutual information between a single chip
+and the transmitted bits mutual information is highest for regular chip connectivities
+with the poissonian chip connectivity result also shown the discrepancy becoming
+relatively small as l increases the inset shows the mutual informationbit decoded
+hi  y i l on a loglog plot to demonstrate an asymptotic power law behaviour and
+show more detail in the cases of small l
+5 concluding remarks
+our results demonstrate the feasibility of sparse regular codes for use in cdma at
+moderate p sd it seems the performance of sparse regular codes may be very good with
+the replica symmetric assumption apparently valid at practical p sd it is likely that fast
+algorithms based on belief propagation may be very successful in achieving the theoretical
+results furthermore for lower density sparse codes the problem of the coexistence regime
+which limits the performance of practical decoding methods seems to be less pervasive
+than for dense ensembles in the over saturated regime
+a direct evaluation of the properties of belief propagation may prove similar results
+to those shown here in the absence of replica symmetry breaking states it is normally
+true that belief propagation performs very well however to make best use of the channel
+resources it may be preferable to implement high load regimes in cases of high p sd and
+so overcoming the algorithmic problems arising from the solution coexistence is a challenge
+of practical importance in this case
+other practical issues in implementation are certainly significant similar to the case
+of dense cdma there are considerable problems relating to multipath fading and power
+control in fact it is known that these effects are more disruptive for the sparse codes
+especially regular codes however certain situations such as broadcasting one to many
+channels and downlink cdma where synchronisation can be assumed may be practical
+points for future implementation there are practical advantages of the sparse case over
+dense and orthogonal codes in some regimes the sparse cdma method is likely to be
+particularly useful in frequencyhopping and timehopping code division multiple access
+fh and th cdma applications where the effect of these practical limitations is less
+sparselyspread cdma  a statistical mechanics based analysis
+emphasised
+extensions based on our method to cases without power control or synchronisation
+have been attempted and are quite difficult a consideration of priors on the inputs in
+particular the effects when sparse cdma is combined with some encoding method may
+also be interesting
+acknowledgments
+support from evergrow ip no 1935 in fp6 of the eu is gratefully acknowledged
+ds would like to thank ido kanter for helpful discussions
+bibliography
+1 s verdu multiuser detection cambridge university press new york ny usa 1998
+2 m yoshida and t tanaka analysis of sparselyspread cdma via statistical mechanics in proceedings
+ ieee international symposium on information theory 2006 pages 23782382 2006
+3 t tanaka a statisticalmechanics approach to largesystem analysis of cdma multiuser detectors
+information theory ieee transactions on 481128882910 nov 2002
+4 d guo and s verdu communications information and network security chapter multiuser
+detection and statistical mechanics pages 229277 kluwer academic publishers 2002
+5 h nishimori statistical physics of spin glasses and information processing oxford science
+publications oxford uk 2001
+6 m mezard g parisi and ma virasoro spin glass theory and beyond world scientific
+singapore 1987
+7 a montanari and d tse analysis of belief propagation for nonlinear problems the example
+of cdma or how to prove tanakas formula in proceedings ieee workshop on information
+theory 2006
+8 y kabashima a statisticalmechanical approach to cdma multiuser detection propagating beliefs
+in a densely connected graph condmat0210535 2002
+9 jp neirotti and d saad improved message passing for inference in densely connected systems
+europhys lett 715866872 2005
+10 a montanari b prabhakar and d tse belief propagation based multiuser detection in
+proceedings of the allerton conference on communication control and computing monticello
+usa 2006
+11 d guo and c wang multiuser detection of sparsely spread cdma unpublished 2007
+12 t tanaka and d saad a statisticalmechanical analysis of coded cdma with regular ldpc codes
+in proceedings  ieee international symposium on information theory 2003 page 444 2003
+13 dj mackay information theory inference and learning algorithms cambridge university press
+2004
+14 j raymond and d saad randomness and metastability in cdma paradigms arxiv07114380
+2007
+15 r vicente d saad and y kabashima advances in imaging and electron physics volume 125
+chapter low density parity check codes  a statistical physics perspective pages 231353
+academic press 2002
+16 m talagrand the generalized parisi formula comptes rendus mathematique 3372111114 2003
+17 s franz m leone and fl toninelli replica bounds for diluted nonpoissonian spin systems
+journal of physics a mathematical and general 36431096710985 2003
+18 f guerra broken replica symmetry bounds in the mean field spin glass model communications
+in mathematical physics 233112 2003
+sparselyspread cdma  a statistical mechanics based analysis
+19 r monasson optimization problems and replica symmetry breaking in finite connectivity spin
+glasses j phys a 312513529 1998
+20 kym wong and d sherrington graph bipartitioning and spinglasses on a random network of
+fixed finite valence j phys a 20l79399 1987
+21 m mezard and g parisi the bethe lattice spin glass revisited euro phys jour b 202217233
+2001
+22 o rivoire g biroli oc martin and m mzard glass models on bethe lattices euro phys j
+b 375578 2004
+23 y kapashima propagating beliefs in spin glass models j phys soc jpn 7216451649 2003
+24 j raymond a sportiello and l zdeborov the phase diagram of random 1in3 satisfiability
+problem phys rev e 761011101 2007

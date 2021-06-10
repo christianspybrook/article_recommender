@@ -1,0 +1,675 @@
+accepted in icassp 2021  2021 ieee international conference on acoustics speech and signal processing icassp
+
+positnn training deep neural networks with mixed lowprecision posit
+gonalo raposo
+
+pedro toms
+
+nuno roma
+
+inescid instituto superior tcnico universidade de lisboa portugal
+
+arxiv210500053v2 cslg 4 may 2021
+
+abstract
+lowprecision formats have proven to be an efficient way to
+reduce not only the memory footprint but also the hardware
+resources and power consumption of deep learning computations under this premise the posit numerical format appears
+to be a highly viable substitute for the ieee floatingpoint but
+its application to neural networks training still requires further research some preliminary results have shown that 8bit
+and even smaller posits may be used for inference and 16bit
+for training while maintaining the model accuracy the presented research aims to evaluate the feasibility to train deep
+convolutional neural networks using posits for such purpose a software framework was developed to use simulated
+posits and quires in endtoend training and inference this
+implementation allows using any bit size configuration and
+even mixed precision suitable for different precision requirements in various stages the obtained results suggest that 8bit posits can substitute 32bit floats during training with no
+negative impact on the resulting loss and accuracy
+index terms posit numerical format lowprecision
+arithmetic deep neural networks training inference
+1 introduction
+deep learning dl is nowadays one of the hottest topics
+in signal processing research spanning across multiple applications this is a highly demanding computational field
+since in many cases better performance and generality result
+in increased complexity and deeper models 1 for example the recently published language model gpt3 the largest
+ever trained network with 175 billion parameters would require 355 years and 46m to train on a tesla v100 cloud instance 2 therefore it is increasingly important to optimize
+the energy consumption required by the training process although algorithmic approaches may contribute to these goals
+computing architectures advances are also fundamental 3
+the computations involved in dl mostly use the ieee
+754 singleprecision sp floatingpoint fp format 4 with
+32 bits however recent research has achieved comparable
+precision with smaller numerical formats the novel posit
+format 5 designed as a direct dropin replacement for float
+ie ieee sp fp provides a wider dynamic range higher
+accuracy and simpler hardware moreover each posit format
+
+has a corresponding exact accumulator named quire which
+is particularly useful for the frequent dot products in dl
+contrasting with the ieee 754 fp the posit numerical format may be used with any size and has been shown to be
+able to provide more accurate operations than floats while
+using fewer bits posits may even use sizes that are not multiples of 8 which could be exploited in field programmable
+gate arrays fpga or application specific integrated circuits asic to obtain optimal efficiency and performance
+however most published studies regarding the application of the posit format to deep neural networks dnns
+rely on the inference stage 612 the models are trained
+using floats and are later quantized to posits to be used for
+inference nevertheless the inference phase tends to be less
+sensitive to errors than the training phase making it easier to
+achieve good performance using 58bit posits
+in contrast exploiting the use of posits during the training
+phase is a more compelling topic since this is the most computationally demanding stage the first time posits were used in
+this context was in 13 by training a fully connected neural network fcnn for a binary classification problem using
+8 10 12 16 32bit posits later in 14 15 a fcnn was
+trained for mnist and fashion mnist using 16 32bit
+posits in 16 17 convolutional neural networks cnns
+were trained using a mix of 8 16bit posits but still relying on floats for the first epoch and layer computations more
+recently in 18 a cnn was trained for cifar10 but using
+only 16 32bit posits
+under the premise of these previous works the research
+that is now presented goes a step further by extending the implementation of dnns in a more general and featurerich approach hence the original contributions of this paper are
+ opensource framework1 to natively perform inference
+and training with posits of any precision number of bits
+and exponent size and quires it was developed in c and
+adopts a similar api as pytorch with multithread support
+ adaptation of the framework to support mixedprecision
+with different stages forward backward gradient optimizer and loss operating under different posit formats
+ training cnns with only 8 to 12bit posits without impacting on the achieved model accuracy
+1 available
+
+at httpsgithubcomhpculisboapositneuralnet
+
+ 2021 ieee personal use of this material is permitted permission from ieee must be obtained for all other uses in any current or future media including
+reprintingrepublishing this material for advertising or promotional purposes creating new collective works for resale or redistribution to servers or lists or
+reuse of any copyrighted component of this work in other works
+
+2 posit numbering system
+
+table 1 main properties of posit formats according to 20
+nbits
+
+among the several different numbering formats that have
+been proposed to represent real numbers 19 the ieee
+754 singleprecision floatingpoint float is the most widely
+adopted it decomposes a number into a sign 1bit exponent
+8bits and mantissa 23bits
+1
+
+however it has also been observed that many application domains do not need nor make use of the total accuracy and
+wide dynamic range that is made available by ieee 754 often
+compromising the resulting system optimization in terms of
+hardware resources performance and energy efficiency one
+of such domains is dnn training where most of the computations are zerocentered
+to overcome these issues the posit numbering system 5
+was recently proposed as a new alternative to ieee 754 posit
+is characterized by a fixed sizenumber of bits nbits and an
+exponent size es being composed by the following fields
+sign 1bit regime variable bits exponent 0esbits and
+fraction remaining bits 20 it is decoded as in eq 2
+p  1
+
+sign
+
+es
+
+ 22
+
+k
+
+ 2exponent  1  fraction 
+
+2
+
+when the number is negative the twos complement has
+to be applied before decoding the other fields the regime bits
+are decoded by measuring k determined by their runlength
+a particular characteristic of posit and perhaps the most
+interesting aspect for dnn applications refers to the distribution of its values resembling a lognormal distribution see
+fig 1 which is similar to the normal distribution of the values commonly found in dnns another interesting point
+is the definition of the quire a kulischlike large accumulator 21 designed to contain exact sums of products of posits
+table 1 shows the recommended posit and quire configurations
+3 deep learning posit framework
+current dnn frameworks such as pytorch and tensorflowkeras do not natively support the posit data type as
+a result the whole set of functions and operators would need
+to be reimplemented in order to take advantage of this new
+numbering system as such it was decided to develop an entirely new framework from scratch in order to ensure better
+control of its inner operations and exploit them for the posit
+data format
+31 positnn framework
+the developed framework named positnn was based on the
+pytorch api for c libtorch thus inheriting its program
+functions and data flow as a result any user familiar with pytorch may easily port their networks and models to positnn
+
+16
+
+32
+
+64
+
+0
+26
+32
+127
+
+1
+228
+128
+32767
+
+2
+2120
+512
+231  1
+
+3
+2496
+2048
+263  1
+
+posit8 0
+log distribution p  0 and p 6 nar
+
+posit8 0
+distribution
+75
+100
+
+ entries
+
+ 2exponent127  mantissa
+
+ entries
+
+sign
+
+f  1
+
+es
+dynamic range
+quire bits
+dot product limit
+
+8
+
+50
+0
+20
+
+0
+
+value
+
+20
+
+50
+25
+00
+
+102
+
+101
+
+100
+
+101
+
+102
+
+value
+
+fig 1 distribution of posit8 0 in linear and log scale
+as an example a comparison between pytorch and the proposed framework regarding the declaration of a 1layer model
+is shown in fig 2 left and center the overall structure and
+functions are very similar the only difference being the declaration of the backward function since the proposed framework does not currently support automatic differentiation
+despite being compared against a fullfledged framework
+like pytorch the proposed framework is also capable of performing dnn inference and training with the most common
+models and functions a complete list of the supported functionalities is shown in fig 2 right which allow implementing all the stages illustrated in fig 3 thus common cnns
+such as lenet5 cifarnet alexnet and others are fully supported moreover the framework allows the user to extend it
+with custom functions or combine it with existing ones eg
+from pytorch
+32 posit variables
+among the several libraries already available to implement
+posit operators in software 22 the universal2 library was selected thanks to its comprehensive support for any posit configuration and quires furthermore c classes and function
+templates are generically used to implement different posits
+therefore declaring a posit8 0 variable p equal to 1 is as
+simple as
+ include  universal  posit  posit 
+sw  unum  posit 8  0 p  1
+
+moreover all the main operations specified in the posit standard 20 are fully supported and implemented furthermore
+the proposed framework adopts bitwise operations whenever
+possible thus avoiding operating with intermediate float representations since this could introduce errors regarding a native implementation
+2 available
+
+at httpsgithubcomstillwaterscuniversal
+
+ include  torch  torch h 
+
+ include  positnn  positnn 
+
+struct floatnetimpl  torch  nn  module 
+floatnetimpl   linear 10  2
+registermodule   linear   linear 
+
+
+template  typename p 
+struct positnet  layer p 
+positnet   linear 10  2
+this   registermodule  linear 
+
+
+torch  tensor forward  torch  tensor x 
+x  linear x 
+return torch  sigmoid  x 
+
+
+ activation functions
+relu sigmoid tanh
+
+stdtensor p  forward  stdtensor p  x 
+x  linear  forward  x 
+return sigmoid  forward  x 
+
+stdtensor p  backward  stdtensor p  x 
+x  sigmoid  backward  x 
+return linear  backward  x 
+
+
+torch  nn  linear linear 
+
+torchmodule  floatnet 
+
+ layers
+linear convolutional
+average and maximum pooling
+batch normalization dropout
+ loss functions
+cross entropy
+mean squared error mse
+ optimizer
+stochastic gradient descent sgd
+ utilities
+stdtensor convert pytorch tensors
+mixed precision tensor save and load
+model scaled gradients
+
+linear p  linear 
+sigmoid p  sigmoid 
+
+
+fig 2 comparison of pytorch left and the proposed framework center implemented functionalities of positnn right
+training
+inference
+
+dataset
+
+p1
+
+forward
+propagation
+
+p1
+
+output
+
+p1
+optimizer
+
+model
+
+p5
+
+p3
+
+p4
+gradients
+
+p3
+
+backward
+propagation
+
+loss
+
+target
+
+to splitting the left operand by rows performing the computation and then concatenating the results the threads were
+implemented using stdthread
+the proposed framework could also be adapted to support
+other data types since most functions are independent of the
+posit format except those that use the quire to accumulate
+4 experimental evaluation
+
+p2
+
+fig 3 dnn training diagram starting at the dataset the
+various pi  with i  15 represent the different posit precisions that may be used throughout the proposed framework
+33 implementation
+posit tensors are stored as stdtensors a class implemented
+using only the c standard library data is internally stored
+in a onedimensional dynamic vector and the multidimensional strides are automatically accounted for
+given that some stages are more sensitive to numerical
+errors the proposed framework supports different precisions
+per stage as depicted in the arrows of fig 3 although not
+illustrated it even allows the model to use different precisions
+per layer to accomplish that the weights are stored in a class
+where members are copies with different posit configurations
+hence each layer and stage converts its posit tensors to the
+appropriate precisions and seamlessly updates the copies after every change it also has the option to use quires for the
+accumulations significantly improving the accuracy of matrix multiplications convolutions etc
+in order to take the maximum advantage of the cpu most
+functions were conveniently parallelized and implemented
+with multithread support thus dividing each minibatch by
+different workers in matrix multiplication this corresponds
+
+by making use of the developed framework the presented
+research started by studying how much can the posit precision
+be decreased without penalizing the dnn model accuracy
+then the best configuration was used to train a deeper model
+on a more complex dataset in this evaluation small accuracy
+differences  1 were assumed to be caused solely by the
+randomness of the training process and not exactly by lack of
+precision of the numerical format
+for the initial evaluation the 5layer cnn lenet5 was
+trained on fashion mnist a more complex dataset than
+the ordinary mnist during 10 epochs just as in 15 18
+posit16 1 was first used everywhere and decreased until
+posit8 0 see table 2
+as expected posit16 1 achieves a floatlike accuracy
+and narrower precisions such as posit12 1 and posit10
+1 are also usable for training the latter incurring in some
+accuracy loss however when trained using posit8 0 the
+model accuracy does not improve and fixes at 10  equivalent to randomly classifying a 10class dataset probably due
+to the narrow dynamic range as seen in fig 1 this hypothesis was subsequently evaluated by using a different exponent
+size es and using quires for the accumulations see table 3
+table 2 accuracy of lenet5 trained on fashion mnist
+using posit and without quire using float for reference
+posit
+
+float
+
+16 1
+
+12 1
+
+10 1
+
+8 0
+
+accuracy 
+
+9042
+
+9087
+
+9015
+
+8815
+
+1000
+
+table 3 accuracy of lenet5 trained on fashion mnist
+using posit and quire posit8 is tested with different es
+posit with quire
+
+float
+
+10 1
+
+8 0
+
+8 1
+
+8 2
+
+accuracy 
+
+9042
+
+8840
+
+1384
+
+1286
+
+1939
+
+table 5 accuracy of cnns trained on mnist fashion
+mnist and cifar10 using float and posit8 2
+dataset
+cnn
+float 
+posit8 2 
+
+table 4 accuracy of lenet5 trained on fashion mnist using posit quire and mixed precision configuration oxly
+means optimizer o with positx 2 and loss l with
+posity 2 and everything else with posit8 2
+float
+
+o12l8
+
+o12l12
+
+o12l10
+
+o10l10
+
+accuracy 
+
+9042
+
+8840
+
+9007
+
+9025
+
+8808
+
+fashion mnist
+lenet5
+
+cifar10
+cifarnet
+
+9919
+9917
+
+9042
+9025
+
+7029
+6865
+
+training loss
+
+6
+
+loss
+
+configuration
+
+mnist
+lenet5
+
+4
+2
+0
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+epoch
+fp32
+
+posit16 1
+
+posit10 1
+
+posit8 0
+
+posit8 2
+
+testing accuracy
+accuracy
+
+the obtained results confirmed the hypothesis showing that
+the precision of the 8bit model slightly increases when using
+quires especially when the posit exponent size is es  2
+another common problem that is particularly noted while
+using 8bit posit precisions is the vanishing gradient problem  the gradients become smaller and smaller as the model
+converges this is particularly problematic when the model
+weights are updated with lowprecision posits since they do
+not have enough resolution for small numbers as suggested
+in 17 using 16bit posits for the optimizer and loss is usually enough to allow models to train with lowprecision posits
+with this observation in mind this model was trained with
+a different precision for the optimizer and loss while using
+posit8 2 everywhere else see table 4 the posit exponent
+size es was fixed at 2 since it gave the best results and simplified the conversion between posits with different nbits
+the obtained results showcase the feasibility of using 8bit posits achieving an accuracy very close to 32bits ieee
+754 in particular while solely computing the optimizer with
+posit12 2 is not enough to achieve a floatlike accuracy
+when the loss precision is also increased the model is able
+to train without any accuracy penalization and using at most
+12bit posits conversely if posit10 2 is used for both
+the optimizer and loss the final accuracy slightly decreases
+therefore the configuration with 12 bits for optimizer and 10
+bits for loss o12l10 in table 4 offers the best compromise
+in terms of lowprecision and overall model accuracy this
+configuration will be referred to as posit8 2 since the loss
+function and weight update both computed with higher precision only represent about 15  of the operations that are
+performed while training the considered models
+given the promising results for the fashion mnist
+dataset the posit8 2 configuration was also used to train
+lenet5 on mnist and cifarnet on cifar10 validating
+the proposed mixed configuration the resulting accuracies
+are compared against float in table 5 moreover a plot of the
+training progress of lenet5 on fashion mnist is shown in
+fig 4 comparing different posit configurations and float
+
+090
+085
+080
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+epoch
+
+fig 4 training loss and testing accuracy of lenet5 trained
+on fashion mnist using float and different posit precisions
+posit8 2 corresponds to configuration o12l10 of table 4
+5 conclusion
+a new dnn framework positnn supporting both training
+and inference using any posit precision is proposed the
+mixed precision feature allows adjusting the posit precision
+used in each stage of the training network thus achieving
+results similar to float common cnns were trained with the
+majority of the operations performed using posit8 2 and
+showed no significant loss of accuracy on datasets such as
+mnist fashion mnist and cifar10
+future work shall make use of this knowledge and framework to devise adaptable hardware implementations of posit
+units that may exploit this feasibility to implement lowresource and lowpower dnn implementations while keeping the same model accuracy
+
+acknowledgments
+work supported by national funds through fundao para a
+cincia e a tecnologia fct under the projects
+uidb500212020 and ptdceeihac304852017 and
+student merit scholarship funded by fundao calouste gulbenkian fcg
+
+6 references
+1 neil c thompson kristjan greenewald keeheon lee and
+gabriel f manso the computational limits of deep learning july 2020 arxiv 200705558
+2 chuan li openais gpt3 language model a technical overview june 2020 httpslambdalabscomblog
+demystifyinggpt3 accessed on 20201013
+3 jrgen schmidhuber deep learning in neural networks an
+overview neural networks vol 61 pp 85117 jan 2015
+arxiv 14047828
+4 ieee standard for floatingpoint arithmetic ieee std
+7542019 revision of ieee 7542008 pp 184 2019 doi
+101109ieeestd20198766229
+5 john l gustafson and isaac yonemoto beating floating
+point at its own game posit arithmetic supercomputing
+frontiers and innovations vol 4 no 2 pp 7186 june 2017
+doi 1014529jsfi170206
+6 marco cococcioni emanuele ruffaldi and sergio saponara
+exploiting posit arithmetic for deep neural networks in
+autonomous driving applications in 2018 international
+conference of electrical and electronic technologies for
+automotive july 2018 number november ieee
+doi
+1023919eeta20188493233
+7 jeff johnson rethinking floating point for deep learning
+nov 2018 arxiv 181101721
+8 seyed hamed fatemi langroudi tej pandit and dhireesha
+kudithipudi deep learning inference on embedded devices
+fixedpoint vs posit in 2018 1st workshop on energy efficient machine learning and cognitive computing for embedded applications emc2 mar 2018 pp 1923 ieee arxiv
+180508624 doi 101109emc2201800012
+9 zachariah carmichael hamed f langroudi char khazanov
+jeffrey lillie john l gustafson and dhireesha kudithipudi
+deep positron a deep neural network using the posit number system in 2019 design automation  test in europe
+conference  exhibition date mar 2019 pp 14211426
+ieee arxiv 181201762 doi 1023919date20198715262
+10 zachariah carmichael hamed f langroudi char khazanov
+jeffrey lillie john l gustafson and dhireesha kudithipudi
+performanceefficiency tradeoff of lowprecision numerical formats in deep neural networks in proceedings of the
+conference for next generation arithmetic 2019 new york
+ny usa mar 2019 vol part f1477 pp 19 acm arxiv
+190310584 doi 10114533162793316282
+11 hamed f langroudi zachariah carmichael john l
+gustafson and dhireesha kudithipudi positnn framework tapered precision deep learning inference for the
+edge proceedings  2019 ieee space computing conference scc 2019 pp 5359 july 2019 doi 101109spacecomp201900011
+12 hamed f langroudi vedant karia john l gustafson and
+dhireesha kudithipudi adaptive posit parameter aware numerical format for deep learning inference on the edge in
+2020 ieeecvf conference on computer vision and pattern
+recognition workshops cvprw june 2020 pp 726727
+ieee doi 101109cvprw50498202000371
+
+13 ral murillo montero alberto a del barrio and guillermo
+botella templatebased posit multiplication for training and inferring in neural networks july 2019 arxiv
+190704091
+14 hamed f langroudi zachariah carmichael and dhireesha
+kudithipudi deep learning training on the edge with lowprecision posits july 2019 arxiv 190713216v1
+15 hamed f langroudi zachariah carmichael david pastuch
+and dhireesha kudithipudi cheetah mixed lowprecision
+hardware  software codesign framework for dnns on the
+edge pp 113 aug 2019 arxiv 190802386
+16 jinming lu siyuan lu zhisheng wang chao fang jun lin
+zhongfeng wang and li du training deep neural networks
+using posit number system sept 2019 arxiv 190903831
+17 jinming lu chao fang mingyang xu jun lin and
+zhongfeng wang evaluations on deep neural networks
+training using posit number system
+ieee transactions on computers vol 14 no 8 pp 11 2020 doi
+101109tc20202985971
+18 raul murillo alberto a del barrio and guillermo botella
+deep pensieve a deep learning framework based on the
+posit number system digital signal processing vol 102
+pp 102762 jul 2020 doi 101016jdsp2020102762
+19 leonel sousa nonconventional computer arithmetic circuits
+systems and applications ieee circuits and systems magazine vol 20 no 4 pp 126 oct 2020
+20 posit working group posit standard documentation release 32draft 2018 httpsposithuborgdocsposit
+standardpdf accessed on 20200924
+21 ulrich kulisch computer arithmetic and validity de gruyter
+berlin boston jan 2012 doi 1015159783110301793
+22 nga team
+survey of posit hardware and software
+development efforts unum  posit  next generation
+arithmetic july 2019 httpsposithuborgdocspds
+positeffortssurveyhtml accessed on 20201016
+

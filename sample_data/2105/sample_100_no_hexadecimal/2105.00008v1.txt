@@ -1,0 +1,1750 @@
+LCTP-21-09
+
+Islands and Page curves in 4d from Type IIB
+Christoph F. Uhlemann∗
+
+arXiv:2105.00008v1 [hep-th] 30 Apr 2021
+
+Leinweber Center for Theoretical Physics, Department of Physics
+University of Michigan, Ann Arbor, MI 48109-1040, USA
+Variants of the black hole information paradox are studied in Type IIB string theory
+setups that realize four-dimensional gravity coupled to a bath. The setups are string theory
+versions of doubly-holographic Karch/Randall brane worlds, with black holes coupled to nongravitating and gravitating baths. The 10d versions are based on fully backreacted solutions
+for configurations of D3, D5 and NS5 branes, and admit dual descriptions as N = 4 SYM on
+a half space and 3d Tρσ [SU (N )] SCFTs. Island contributions to the entanglement entropy
+of black hole radiation regions are identified through Ryu/Takayanagi surfaces and lead to
+Page curves. Analogs of the critical angles found in the Karch/Randall models are identified
+in 10d, as critical parameters in the brane configurations and dual field theories.
+
+CONTENTS
+
+I. Introduction and Summary
+II. Type IIB supergravity solutions
+A. Finite temperature
+
+1
+6
+9
+
+III. Extremal surfaces
+A. Island surfaces
+B. Boundary conditions
+C. Near-pole behavior
+D. HM surfaces
+
+9
+9
+10
+11
+12
+
+IV. Solving for minimal surfaces
+
+13
+
+V. Islands with non-gravitating baths
+A. Island vs. HM surfaces
+B. Critical brane setups
+VI. Islands with gravitating baths
+VII. Outlook
+
+14
+15
+17
+18
+22
+
+References
+
+23
+
+I.
+
+INTRODUCTION AND SUMMARY
+
+A recent advance in the understanding of black holes are the computations [1, 2] of the time evolution of the entanglement entropy between a holographic black hole system and an external bath
+∗
+
+uhlemann@umich.edu
+
+2
+to which the black hole is coupled. A crucial ingredient in these computations are entanglement
+islands – contributions to the entanglement entropy (EE) from regions that are disconnected and
+can be far away from the bath [3–7]. These contributions become dominant at late times and lead
+to a Page curve for the time evolution of the entropy, in line with expectations based on unitarity.
+The discussions so far are largely based on bottom-up models and on low-dimensional theories
+where the features of gravity are qualitatively different. The special case of a Karch/Randall model
+with a tensionless end-of-the-world brane, discussed in [8], can be embedded into Type IIB as an
+orbifold of AdS5 × S 5 . But that case is somewhat peculiar in that the 4d graviton has a mass that
+can not be separated from the UV cut-off in the 4d gravitational description.
+The aim of the present work is to demonstrate in a UV-complete string theory setting the
+emergence of entanglement islands and Page curves for black holes in four-dimensional theories of
+gravity in which the graviton mass can be controlled, including theories with massless gravitons.
+Starting point are the discussions of islands and Page curves in general 5d Karch/Randall models
+[8–12], which can be used to model gravitating systems coupled to non-gravitating and gravitating
+baths. These models have the appealing feature that the quantum extremal surfaces [13, 14]
+exhibiting island contributions are entirely geometrized, due to the doubly-holographic nature of
+these models [15, 16]. This allows for the identification of entanglement islands through classical
+Ryu/Takayanagi surfaces [17]. We will uplift the discussions in these bottom-up models to Type
+IIB string theory, to provide UV completions and concrete holographically dual QFTs.
+The string theory constructions are based on holographic duals for 4d boundary CFTs and for
+3d SCFTs engineered by configurations of D3, D5 and NS5 branes [18–20]. Holographic duals for
+large classes of such theories were constructed in [21–24], and they provide natural string theory
+realizations of the Karch/Randall models with non-gravitating and gravitating baths. We will
+study quantum extremal/minimal surfaces in these solutions and identify quantities that exhibit
+Page curve behavior. The key findings of [8, 11], such as the existence of critical brane angles
+separating different phases of minimal surfaces, will find string theory realizations. We will also
+identify 10d versions of the "left/right EE" that was found to exhibit Page curve behavior in the
+5d models with gravitating bath, where the usual notion of geometric EE becomes subtle.
+In the following we will first review relevant aspects of the discussion in the Karch/Randall
+models to set the stage and then summarize the main results of this paper.
+Islands and Page curves in Karch/Randall models: The Karch/Randall models for 4d
+gravity coupled to a non-gravitating bath are based on a part of AdS5 cut off by an end-of-the-world
+(ETW) brane extending along an AdS4 slice (fig. 1(a)). The conformal boundary is cut off at the
+point where it is intersected by the ETW brane, so that these models are holographically dual to
+boundary conformal field theories (BCFTs). The advantage of these setups from the entanglement
+islands perspective is that they have 3 holographically related descriptions:
+(a) Einstein gravity on (asymptotically) AdS5 + ETW brane
+(b) a 4d CFT with UV cut-off + gravity on (asymptotically) AdS4 , coupled via transparent
+boundary conditions at the boundary of AdS4 to a 4d CFT on half of R1,3
+(c) a non-gravitational 4d CFT on half of R1,3 coupled to 3d boundary degrees of freedom
+These descriptions can be understood to arise from applying AdS/CFT twice: description (b) is
+obtained by converting the 3d boundary degrees of freedom in (c) to a gravitational theory on
+AdS4 , and description (a) geometrizes the entire BCFT.
+Description (b) is the one of interest for the black hole information paradox. To pose the
+paradox, the AdS4 slices are replaced by AdS4 black holes. This realizes a black hole on the ETW
+brane and on the remaining half of the conformal boundary of AdS5 , which serves as bath. It can be
+
+3
+R
+θ1
+
+θ
+
+I
+
+θ2
+
+I
+
+(a)
+
+(b)
+
+FIG. 1. Left: Karch/Randall model for non-gravitating bath. The figure shows part of AdS5 with the ETW
+brane cutting off the shaded region. The dashed curve is the black hole horizon and R is the radiation region
+(blue). The green curve ending on the horizon represents the HM surface; the green curve extending from
+the boundary of R to the ETW brane is the island surface. I is the island (red). Right: For a gravitating
+bath a second ETW brane is introduced, leaving only a 3-dimensional part of the conformal boundary.
+
+interpreted as coupling the gravity system on the ETW brane to a bath at the same temperature
+as the black hole. To quantify the entropy of the radiation one picks a region far in the bath
+system and computes its EE. One type of surface relevant for computing the EE holographically
+are Hartman-Maldacena (HM) surfaces [25], which connect the boundary of the radiation region to
+the corresponding point in the thermofield double. Due to the stretching of the space behind the
+horizon the area of these surfaces grows in time, suggesting an unbounded growth of the entropy
+which is a version of the information paradox [4]. The paradox is resolved by the existence of "island
+minimal surfaces" that stretch from the bath into the gravity system (fig. 1(a)). The part of the
+ETW brane near the black hole that is captured by the surface constitutes the island contribution.
+Its computation is entirely geometrized through the existence of the 5d bulk. The area of the island
+surfaces is constant in time, which limits the growth of the entropy and leads to Page curves. As
+emphasized in [8], the graviton is generically massive in models with a non-gravitating bath.
+A gravitating bath can be realized by introducing a second ETW brane as bath (fig. 1(b))
+[11]. This modifies description (b) to now comprise two CFTs coupled to gravity on distinct AdS4
+spaces, and coupled to each other at the conformal boundaries. Description (c) is reduced to a 3d
+CFT. Since both ETW branes have dynamical gravity, a conventional geometric EE can not be
+defined on the second ETW brane. If one allows the end points of minimal surfaces on both ETW
+branes to be chosen dynamically, the surfaces can settle on the horizon and lead to a flat entropy
+curve, in line with the general arguments of [26]. The quantity that was found to exhibit Page
+curve behavior in [11] instead corresponds to minimal surfaces anchored at the remaining point of
+the conformal boundary of AdS5 , and was interpreted as EE between defect degrees of freedom
+represented by the left and right ETW branes. The form of the entropy curve was found to have
+interesting dependence on the ETW brane angles, as will be discussed in more detail below.
+Islands and Page curves in Type IIB: In this work we will study 10d string theory versions
+of the Karch/Randall models and show that the qualitative features captured by the bottom-up
+models are realized in a UV-complete theory of quantum gravity. We will discuss black holes
+coupled to non-gravitating and to gravitating baths, realized through 10d black hole solutions
+based on the AdS4 × S 2 × S 2 × Σ solutions of Type IIB constructed in [21–24].
+We start the discussion with non-gravitating baths. The solutions constructed in [21–23] can
+be used to describe semi-infinite D3-branes terminating on a system of D5 and NS5 branes with
+additional D3-branes suspended between the 5-branes. The brane configurations engineer N = 4
+SYM on a half space, corresponding to the semi-infinite D3-branes, coupled to a 3d SCFT on
+the boundary, corresponding to the D3-branes suspended between the D5 and NS5 branes. The
+structure of the supergravity solutions and brane setups is illustrated in fig. 2. At each point of Σ
+there is an AdS4 and two 2-spheres, with independently varying radii. The region x → ∞ where
+
+4
+NS5
+y=
+
+π
+2
+
+D5
+
+Σ
+
+AdS5
+×
+S5
+
+***
+D3
+
+y=0
+x → −∞
+
+D5
+
+x → +∞
+
+NS5
+
+FIG. 2. Left: Geometry of AdS4 ×S 2 ×S 2 ×Σ solutions with Σ = {x+iy ∈ C| 0 ≤ y ≤ π2 } for non-gravitating
+baths. On each boundary component an S 2 collapses, so the 10d geometry is closed. D5/NS5 brane sources
+are located on the y = 0/y = π2 boundaries. The limit x → −∞ is a regular point of the internal space.
+For x → ∞ the solutions approach locally AdS5 × S 5 ; this region corresponds to the conformal boundary in
+fig. 1(a). The ETW brane in fig. 1(a) can be seen as effective description for the remaining 10d geometry.
+Right: Associated configuration of D5, NS5 and D3 branes, with D3-branes suspended between 5-branes and
+semi-infinite D3-branes emerging in one direction. The distribution of 5-brane sources in the supergravity
+solution encodes how many D5/NS5 branes there are and how the D3-branes end on them.
+
+the geometry becomes AdS5 × S 5 is modeled in the Karch/Randall models in fig. 1(a) by the
+AdS5 region far away from the ETW brane. The ETW brane itself can be understood as effective
+description for the remaining part of the 10d solution, i.e. the region around the 5-brane sources
+in fig. 2. We will modify these solutions by introducing black holes on the AdS4 spaces, which
+leads to non-supersymmetric solutions of Type IIB that are asymptotic to the supersymmetric seed
+solutions and describe the dual QFTs at finite temperature.
+The radiation region R will be defined in the asymptotic AdS5 × S 5 region at x → ∞ in fig. 2,
+while the "physical black hole" corresponds to the region around the 5-brane sources. The surfaces
+computing the entanglement entropy of the radiation region wrap both S 2 's and are anchored in
+the AdS5 × S 5 region at a fixed value of the AdS4 radial coordinate. For the non-gravitating baths
+we construct the HM surfaces explicitly at the time t = 0 when their area is smallest. The minimal
+surfaces can be described by specifying the AdS4 radial coordinate r as function of the coordinates
+on the Riemann surface x and y. The surfaces extend along the Riemann surface Σ, and either drop
+into the horizon in AdS4 along a curve xh (y) (HM surfaces), or extend all the way to x → −∞,
+where they can close off smoothly before reaching the horizon in AdS4 (island surfaces).
+The extremality condition is a non-linear PDE on Σ. The boundary conditions will be derived
+from regularity of the induced metric on the minimal surface, which will give a string theory
+justification for the use of Neumann boundary conditions at the ETW brane in the Karch/Randall
+models (other boundary conditions in 5d were discussed in [27]). Solutions to the PDE are obtained
+numerically. The class of AdS4 ×S 2 ×S 2 ×Σ solutions is very broad, reflecting the breadth of brane
+configurations that can be realized with D3, D5 and NS5 branes. We will choose representative
+solutions with N5 D5-branes at (x, y) = (0, 0), N5 NS5-branes at (x, y) = (0, π2 ) and 2N5 K semiinfinite D3-branes. Studying more general solutions will be left for the future.
+The 8d minimal surfaces can be visualized as 2d surfaces in the 3d space spanned by Σ and
+the AdS4 radial direction r, with the horizon at some finite rh . The conformal boundary of AdS4
+at r → ∞ corresponds to the defect in fig. 1(a). A sample of island and HM surfaces is shown in
+figs. 5, 6. The island surfaces show distinct behavior near the 5-brane sources, which is discussed
+in sec. III C. The area differences between island surfaces and HM surfaces at t = 0 are shown in
+fig. 7. The results show that for radiation regions starting far in the bath (small r), the HM surface
+dominates at t = 0. The area of the HM surface grows in time and sets the initial growth of the
+entropy, but the entropy growth is bounded by the constant area of the island surface. This evades
+an information paradox and shows that the entropy follows a Page curve.
+
+5
+NS5
+y=
+
+π
+2
+
+D5
+
+Σ
+
+***
+
+D3
+
+y=0
+x → −∞
+
+D5
+
+x → +∞
+
+NS5
+
+FIG. 3. Left: AdS4 × S 2 × S 2 × Σ solutions for gravitating baths. The AdS5 × S 5 region is closed off; the
+limits x → ±∞ both lead to regular points in the internal space. This leaves the 3d conformal boundary of
+AdS4 , corresponding to the remaining point of the conformal boundary in fig. 1(b). Right: The associated
+brane configurations have no semi-infinite D3-branes, only D3-branes suspended between 5-branes.
+
+Critical angle: The analysis of [11] found a critical value for the tension/angle of the ETW
+brane (θ in fig. 1), where the behavior of the island surfaces changes qualitatively. The critical
+angle θc can be defined as follows: At zero temperature, for an island surface anchored at a fixed
+point in the bath system, one can ask for the end point on the ETW brane as function of θ. For
+θ > θc this is a finite point. As θc is approached, the end point on the ETW brane diverges towards
+the Poincaré horizon and below θc there are no more island minimal surfaces.
+Remarkably, a similar phenomenon can be identified in 10d. The angle θ in 5d is set by the
+tension of the ETW brane, which can be understood as a measure for the number of degrees of
+freedom represented by the ETW brane. The relevant parameters in the 10d solutions considered
+here are the radius of the asymptotic AdS5 × S 5 region, which is set by the number of semi-infinite
+D3-branes, and the number of D5 and NS5 branes on which the D3-branes terminate. The latter
+determines the 3d SCFT that N = 4 SYM is coupled to at the boundary of the half space. One
+may expect that the brane angle in 5d captures the ratio of the number of D3-branes suspended
+between 5-branes and the number of semi-infinite D3-branes. This is indeed the case: For island
+surfaces at zero temperature, with fixed anchor point in the AdS5 × S 5 region, the end point at
+x = −∞ is shown as function of N5 /K, which controls the ratio of suspended and semi-infinite
+D3-branes, in fig. 8. The results indicate that there is a critical ratio at which the end point at
+x = −∞ runs off towards the Poincaré horizon. For black hole solutions with finite temperature
+this behavior is regulated (fig. 9), and island surfaces can be found beyond the critical ratio.
+Gravitating baths: For the description of a gravitating bath the asymptotic AdS5 × S 5 region
+in fig. 2 is closed off. This corresponds to removing the semi-infinite D3-branes from the brane
+setup, leaving only D3-branes suspended between D5 and NS5 branes (fig. 3). This is captured
+in the 5d Karch/Randall models by the introduction of a second ETW brane. The 10d solutions
+are holographic duals for 3d Tρσ [SU (N )] SCFTs [24] and have massless 4d gravitons. Closing off
+the AdS5 × S 5 region removes the part in which the radiation region was defined, and a minimal
+surface stretching from x = −∞ to x = +∞ now has to satisfy Neumann boundary conditions
+on both ends. This allows it to settle onto the black hole horizon and leads to a constant entropy
+identical to the thermal entropy of the bath, in line with the general arguments of [26, 28].
+One can instead consider minimal surfaces splitting the internal space, which are expected to
+compute non-geometric entanglement entropies (whose holographic interpretation was initiated in
+[29, 30]). In the Karch/Randall models a "left/right EE", represented by surfaces ending on the
+point where the two ETW branes meet in fig. 1(b), was found to exhibit Page curve behavior,
+and was interpreted as an internal entanglement entropy in [11]. The Type IIB solutions realize
+the dual of the defect as full 10d geometry, making them an ideal setting for studies of minimal
+surfaces separating degrees of freedom according to their representation in the internal space.
+
+6
+We consider surfaces wrapping the spatial part of AdS4 , both S 2 's, and a curve in Σ which
+depends on the AdS4 radial coordinate. The surfaces are anchored at the conformal boundary of
+AdS4 along a curve x(y) in Σ which separates the 5-brane sources and defines a split into black hole
+system and bath. Such surfaces may be expected to compute EEs associated with decompositions
+of the quiver diagram in the UV description of the dual 3d SCFT. One again has to consider HM
+surfaces, extending through the horizon in AdS4 into the thermofield double, and island surfaces
+which close off in one of the x → ±∞ regions before reaching the horizon in AdS4 . These are
+10d versions of the surfaces in fig. 1(b). The class of AdS4 × S 2 × S 2 × Σ solutions that could be
+considered is again broad, and we focus on simple representatives. We include two groups of D5branes and two groups of NS5 branes, placed symmetrically at x = ±δ on the boundary components
+of Σ. The separation of the 5-brane sources determines how the D3-branes in the associated brane
+configuration are suspended between the 5-branes. Comparing to the Karch/Randall models in
+fig. 1(b), these particular 10d solutions correspond to two equal ETW brane angles.
+Some 10d island surfaces are shown in fig. 10. The corresponding HM surface is described by
+x = 0 and a time-dependent embedding in the AdS4 part of the geometry. The difference in areas
+between island and HM surfaces at t = 0 is shown in fig. 11(b). We find that for δ above a "Page
+value" δP the HM surface initially dominates at t = 0. The entropy growth indicated by the HM
+surfaces is bounded by the constant area of the island surfaces, leading again to Page curves, shown
+in fig. 12(b). A second distinguished value for δ can be seen in fig. 11(a): at a critical value δc
+the cap-off point of the island surface at x = −∞ diverges towards the conformal boundary of
+AdS4 , and no island minimal surfaces are found for δ < δc . The numerical results suggest that δc
+is slightly smaller than δP , though we leave the possibility that the difference could be a numerical
+artifact. In the small (and possibly empty) range δc < δ < δP the island surfaces are found to
+dominate already at t = 0, leading to a flat entropy curve. These results bear striking resemblance
+with critical and Page angles found in the Karch/Randall models in [11], suggesting that the ETW
+brane angles capture aspects of how the 5-brane sources are distributed on Σ in 10d.
+In the regime where no island minimal surfaces were found in the 5d Karch/Randall models in
+[11], "tiny island" limiting surfaces, which degenerate to an infinitesimal segment at the defect in
+fig. 1(b), were found to dominate and limit the entropy growth indicated by the HM surface. In
+10d we find that similar tiny island surfaces connecting the x = 0 locus to x = ±∞ arise for δ < δc .
+Outline: The main part is organized as follows. The 10d supergravity solutions are introduced
+in sec. II. In sec. III the ansatz for extremal surfaces is discussed along with the extremality and
+boundary conditions and the behavior near the 5-branes. The method for constructing minimal
+surfaces is summarized in sec. IV. Island surfaces and Page curves are discussed for non-gravitating
+baths in sec. V and for gravitating baths in sec. VI. We close with a brief outlook in sec. VII.
+II.
+
+TYPE IIB SUPERGRAVITY SOLUTIONS
+
+The general local form of the AdS4 ×S 2 ×S 2 ×Σ solutions that will be used here was constructed
+in [21, 22]. For the study of minimal surfaces we will only need the geometry, which is a warped
+product of AdS4 and two 2-spheres, S12 and S22 , over a Riemann surface Σ. For the solutions of
+interest here Σ can be taken as a strip,
+Σ = {z ∈ C | 0 ≤ Im(z) ≤ π/2} .
+
+(1)
+
+On each of the boundary components of the strip one of the S 2 's closes off smoothly, so that the
+10d geometry has no boundary. Depending on the nature of the points at infinity, solutions for
+different types of field theories can be constructed: Janus solutions, dual to interface CFTs, can be
+
+7
+realized if the points Re(z) → ±∞ both correspond to asymptotic AdS5 × S 5 regions. Solutions
+with one asymptotic region closed off were constructed in [23] and are dual to BCFTs. Duals for
+3d SCFTs were constructed in [24] by closing both asymptotic AdS5 × S 5 regions.
+The solutions are generally parametrized by two harmonic functions h1 , h2 on Σ. The Einsteinframe metric takes the form
+ds2 = f42 ds24 + f12 ds2S 2 + f22 ds2S 2 + 4ρ2 |dz|2 ,
+1
+
+(2)
+
+2
+
+where ds24 and ds2S 2 are line elements of unit-radius AdS4 and S 2 , respectively. The coefficient
+i
+functions are given by
+f48 = 16
+
+N1 N2
+,
+W2
+
+f18 = 16h81
+
+N2 W 2
+,
+N13
+
+f28 = 16h82
+
+N1 W 2
+,
+N23
+
+ρ8 =
+
+N1 N2 W 2
+,
+h41 h42
+
+(3)
+
+where
+ ̄ 1 h2 ) ,
+W = ∂ ∂(h
+
+Ni = 2h1 h2 |∂hi |2 − h2i W .
+
+(4)
+
+The expressions for the fluxes and dilaton will not be needed here; they can be found in [21–24].
+Based on this local form broad classes of supergravity solutions can be constructed which
+describe D3-branes intersecting, ending on, or suspended between D5 and NS5 branes. For the
+realization of Karch/Randall models with gravitating and non-gravitating baths we will employ
+representative solutions dual to BCFTs and 3d SCFTs, noting that more general solutions could
+be considered. The form of the harmonic functions h1 , h2 is
+
+
+πα0
+α0 X (a)
+z − δa
+z
+h1 =
+Ke −
+N ln tanh
++ c.c.
+4
+4 a D5
+2
+
+
+iπα0
+α0 X (b)
+iπ z − δb
+z
+h2 = −
+Ke −
+NNS5 ln tanh
+−
++ c.c.
+(5)
+4
+4
+4
+2
+b
+
+The solutions describe semi-infinite D3-branes ending on D5-branes and NS5-branes which have
+additional D3-branes suspended between them. The number of semi-infinite D3-branes is controlled
+by K; for K = 0 the solutions describe D3-branes suspended between D5 and NS5 branes. Groups
+of D5/NS5 branes are represented by the poles of ∂h1 /∂h2 on the boundary of Σ. The specific
+brane configuration can be characterized in terms of linking numbers, which are encoded in the
+distribution of the 5-brane sources on Σ [23, 24]. For K 6= 0 an AdS5 × S 5 region emerges at
+Re(z) → +∞, with Re(z) becoming the radial coordinate of AdS5 in AdS4 slicing and Im(z)
+becoming an angular coordinate on S 5 . For K = 0 the limit Re(z) → ∞ leads to a regular point
+in the internal space. The limit Re(z) → −∞ leads to a regular point in both cases.
+We discuss the concrete solutions that will be used below first and briefly comment on the more
+general picture and dual field theories afterwards. The solutions we will study for non-gravitating
+baths are dual to N = 4 SYM on a half space coupled to 3d Tρσ [SU (N )] theories on the boundary.
+They are given by h1/2 of the form
+z 
+πα0
+α0
+Kez − N5 ln tanh
++ c.c.
+4
+4
+2
+
+iπα0
+α0
+iπ z
+z
+h2 = −
+Ke − N5 ln tanh
+−
++ c.c.
+4
+4
+4
+2
+
+h1 =
+
+(6)
+
+The radii of AdS5 and S 5 in the AdS5 × S 5 region at Re(z) → ∞ are set by L4 = 8πα0 2 N5 K.
+These solutions are string theory realizations of the Karch/Randall models with one ETW brane
+
+8
+
+N5
+2
+
+N5 D5
+N5 K +
+
+N52
+
+N52
+∆
+4
+
+N52
+2
+
+2
+
+D5
+
+N5
+2
+
+D5
+
+N52
+∆
+4
+
+2N5 K
+N5
+2
+
+N5 NS5
+(a)
+
+NS5
+
+N5
+2
+
+NS5
+(b)
+
+FIG. 4. Brane configurations for representative non-gravitating bath solutions (left) and gravitating bath solutions (right). Hanany-Witten transitions can be used to make the 3d quiver gauge theories more apparent,
+as in figs. 2, 3. The numbers of D3-branes on the right are controlled by δ through ∆ = 12 + π2 arctan e2δ .
+
+(fig. 1(a)): the asymptotic region at Re(z) → ∞ corresponds to the AdS5 part, while the region with
+the NS5/D5 sources is the string theory version of the ETW brane itself. The brane configuration
+involves 2N5 K semi-infinite D3-branes ending on a combination of N5 D5-branes and N5 NS5branes (fig. 4(a)). N5 K D3-branes end on the D5 branes and N5 K D3-branes end on the NS5branes, and there are in addition N52 /2 D3-branes suspended between the D5 and NS5 branes.
+The solutions for gravitating baths that will be considered below are holographic duals for 3d
+σ
+Tρ [SU (N )] SCFTs. The functions h1 and h2 are given by
+
+
+
+
+
+α 0 N5
+z−δ
+z+δ
+h1 = −
+ln tanh
++ ln tanh
++ c.c.
+4 2
+2
+2
+
+
+
+
+
+iπ z − δ
+iπ z + δ
+α 0 N5
+ln tanh
+−
++ ln tanh
+−
++ c.c.
+(7)
+h2 = −
+4 2
+4
+2
+4
+2
+These solutions describe N52 /2 D3-branes suspended between two groups of D5-branes and two
+groups of NS5-branes, with N5 /2 5-branes in each group. There are no semi-infinite D3-branes
+and the asymptotic AdS5 × S 5 region at Re(z) → ∞ is closed off. The limits Re(z) → ±∞ both
+correspond to regular points in the internal space. The 5-brane groups are represented in the
+supergravity solutions by sources with N5 /2 D5 and N5 /2 NS5-branes, respectively, at z = ±δ and
+z = ±δ + iπ/2. The parameter δ determines how the D3-branes terminate on the D5 and NS5
+branes (fig. 4(b)). For δ = 0 the numbers of D3-branes terminating on each group of 5-branes are
+equal. Comparing to the 5d Karch/Randall models, the closing off of the asymptotic AdS5 × S 5
+region corresponds to the introduction of the second ETW brane in fig. 1(b). The entire 10d
+solution corresponds to the remaining wedge of AdS5 in fig. 1(b).
+The solutions (6) and (7) are invariant under S-duality (exchange of h1 and h2 ) combined with
+z → iπ
+2 − z, reflecting that the associated brane configurations are invariant under S-duality (in
+fig. 4(a) up to Hanany-Witten transitions). This will be useful below. From now on we set α0 = 1.
+Solutions with more general arrangements of 5-brane sources (poles in ∂h1/2 ) and no asymptotic
+AdS5 × S 5 region describe configurations of D3-branes suspended between D5 and NS5 branes that
+can be characterized by two Young tableaux ρ and σ, which determine how precisely the D3-branes
+terminate on the 5-branes. The general relation between the distribution of the 5-brane sources on
+the boundary of Σ and the Young tableaux ρ and σ can be found in [24]. The brane configurations
+engineer 3d N = 4 quiver gauge theories, and the supergravity solutions are dual to their IR fixed
+points. For solutions with AdS5 × S 5 region and semi-infinite D3-branes the dual field theory is
+N = 4 SYM on a half space coupled to a 3d Tρσ [SU (N )] SCFT on the boundary [23]. The free
+energies obtained holographically were matched to field theory computations using supersymmetric
+localization for the former in [31, 32] and for the latter in [33].
+
+9
+A.
+
+Finite temperature
+
+For each AdS4 × S 2 × S 2 × Σ solution one may replace AdS4 by a finite temperature black hole
+and still obtain a solution to the Type IIB supergravity field equations: To verify the field equations
+one only needs that the 4d space is Einstein with negative curvature. This is true for the AdS4
+black hole metrics we will use, so that replacing AdS4 by a black hole yields non-supersymmetric
+solutions which asymptotically approach the supersymmetric seed solution. From a more general
+perspective, the AdS4 × S 2 × S 2 × Σ solutions are in the class for which [34] conjecture that a
+consistent truncation exists. Having a consistent truncation to 4d gauged supergravity would allow
+to uplift more general 4d solutions to 10d, but this is not needed for our purposes here.
+To introduce finite temperature, we replace the AdS4 metric in (2) by the AdS4 black hole
+metric
+ds24 =
+
+
+dr2
++ e2r −b(r)dt2 + ds2R2 ,
+b(r)
+
+b(r) = 1 − e3(rh −r) .
+
+(8)
+
+The horizon is at r = rh , the conformal boundary at r → ∞. It will be convenient to also introduce
+the tortoise coordinate u by
+ 3
+
+2
+dr
+,
+u = cosh−1 e 2 (r−rh ) .
+(9)
+du = p
+3
+b(r)
+The range u ∈ R+ corresponds to the exterior region covered by the original coordinate r, with
+the horizon at u = 0. The metric becomes
+ 
+
+ 
+2 3u
+2
+2
+2
+2
+2rh
+4/3 3u
+− tanh
+dt + dsR2 .
+(10)
+ds4 = du + e cosh
+2
+2
+From the CFT perspective replacing AdS4 by a planar black hole corresponds to adding a finite
+temperature for N = 4 SYM on AdS4 for solutions with an AdS5 × S 5 region. The black hole
+solutions without AdS5 × S 5 region are dual to 3d Tρσ [SU (N )] SCFTs at finite temperature.
+III.
+
+EXTREMAL SURFACES
+
+In this section we discuss the embedding ansatz for the surfaces that will be used for the
+entanglement entropy computations, the extremality and boundary conditions, and the behavior
+near the 5-brane sources.
+A.
+
+Island surfaces
+
+The surfaces of interest are 8d minimal surfaces in the 10d geometry (2) that wrap both S 2 's,
+(part of) the Riemann surface Σ, and a part of the AdS4 black hole geometry. For the AdS4 black
+hole we choose coordinates (8), such that the 10d metric is given by (2) with
+ds24 =
+
+
+dr2
++ e2r −b(r)dt2 + ds2R2 .
+b(r)
+
+(11)
+
+The surfaces can be described by specifying the AdS4 radial coordinate r for any given point of Σ.
+On Σ we introduce real coordinates
+z = x + iy ,
+
+(12)
+
+10
+with x ∈ R and 0 ≤ y ≤ π2 . The embeddings are thus described by a single embedding function
+r = r(x, y) .
+
+(13)
+
+The induced metric on the surface reads
+ds2γ = e2r f42 ds2R2 + f12 ds2S 2 + f22 ds2S 2 + 4ρ2 (dx2 + dy 2 ) +
+1
+
+2
+
+f42
+(dx ∂x r + dy∂y r)2 .
+b(r)
+
+(14)
+
+The area of a general surface of this form is given by A = VR2 VS12 ×S22 Sγ , with
+Z
+Sγ = 4
+
+s
+dxdy e2r f42 f12 f22 ρ2
+
+f42
+((∂x r)2 + (∂y r)2 ) .
+4b(r)ρ2
+
+1+
+
+(15)
+
+The combinations of metric functions appearing in this expression are given by
+h1 h2
+f42
+.
+=2
+2
+ρ
+W
+
+f42 f12 f22 ρ2 = 8 |h1 h2 W | ,
+
+(16)
+
+With these expressions the area simplifies to
+Z
+Sγ = 32
+
+s
+dxdy e2r |h1 h2 W |
+
+1+
+
+1
+h1 h2
+(∇r)2 .
+2b(r) W
+
+(17)
+
+Since 4W = ∆(h1 h2 ), the area depends on h1 and h2 only through the combination h1 h2 .
+R
+The extremality condition resulting from variation of Sγ (with Sγ = Lγ ) can be written as
+
+
+
+δLγ
+1
+1
+1 + g(∇r)2 )
+=
+2 − ∇(g∇r) + g∇r * ∇ ln
+,
+0=
+Lγ
+1 + g(∇r)2
+2
+b(r)f 2
+!
+
+(18)
+
+where ∇ is the covariant derivative with respect to the metric on Σ and
+f = |h1 h2 W | ,
+
+g=
+
+1
+h1 h2
+.
+2b(r) W
+
+(19)
+
+The dependence on r itself drops out for zero temperature, i.e. when b(r) = 1. If r(x, y) is a
+solution to the extremality condition at zero temperature then so is r(x, y) + c with a constant c,
+with different asymptotic values at x → ±∞; this reflects the defect conformal symmetry.
+
+B.
+
+Boundary conditions
+
+We now discuss the boundary conditions for surfaces extending along Σ, starting with the two
+boundary components of the strip at y = 0 and y = π2 . Near y = 0 the sphere S12 , collapses, with
+f12 ∼ 4y 2 ρ2 so that the background has no conical singularity in the space parametrized by y and
+S12 . The induced metric (14) near y = 0 consequently takes the form
+
+
+f2
+ds2γ ≈ e2r f42 ds2R2 + f22 ds2S 2 + 4ρ2 dx2 + dy 2 + y 2 ds2S 2 + 4 (dx ∂x r + dy∂y r)2 .
+2
+1
+b(r)
+
+(20)
+
+The contribution proportional to (∂y r)2 dy 2 threatens to introduce a conical singularity in the
+(y, S12 ) part of the induced metric on the surface. A smooth metric is obtained with the Neumann
+
+11
+boundary condition ∂y r|y=0 = 0. The reasoning for the second boundary component, where S22
+collapses, is analogous. We conclude
+∂y r(x, y)
+
+y=0
+
+=0,
+
+∂y r(x, y)
+
+y= π2
+
+=0.
+
+(21)
+
+For x → −∞ the space closes off smoothly; the limit corresponds to a single regular point on
+the boundary of Σ. For the surface to be smooth, limx→−∞ r(x, y) should be independent of y.
+The asymptotic behavior of the metric functions, with coordinate v = 2ex and v → 0, is given by
+(see (3.15) of [24])
+f42 ≈ L2 ,
+
+f12 ≈ 4 sin2 y ρ2 ,
+
+f22 ≈ 4 cos2 y ρ2 ,
+
+4ρ2 ≈ L2 v 2 .
+
+The induced metric on the minimal surface becomes (noting that ∂y r → 0)
+
+
+
+
+2
+2 dv
+2
+2
+2
+2
+2
+2
+2
+2r 2
+2
+2
+dsγ ≈ L e dsR2 + dv + v dy + sin y dsS 2 + cos y dsS 2 + (∂x r) 2 .
+2
+1
+v
+
+(22)
+
+(23)
+
+The part in the round bracket is the line element for S 5 , and a smooth R8 with no conical singularity
+is obtained if
+lim e−x ∂x r(x, y) = 0 .
+
+(24)
+
+x→−∞
+
+The conditions (21) and (24) are the 10d analog of the Neumann boundary conditions imposed at
+the ETW brane in the 5d Karch/Randall models.
+The nature of the limit x → +∞ is different for the solutions in (6) for a non-gravitating bath,
+where an AdS5 × S 5 region emerges in this limit, compared to the solution (7) for a gravitating
+bath. For the latter the limits x → ±∞ both lead to regular boundary points, and the boundary
+condition at x → +∞ is given by (24) with x → −x. For the former, with the emerging AdS5 × S 5
+region, a Dirichlet condition anchoring the surface is imposed instead. The general form is
+lim r(x, y) = r0 (y) .
+
+(25)
+
+x→+∞
+
+The form of r0 (y) can be determined by considering global AdS5 × S 5 , corresponding to h1 =
+cosh z + c.c. and h2 = −i sinh z + c.c. In that case |h1 h2 /W | = 2 cosh2 (x), which is independent
+of y. As a result one can find extremal surfaces with no dependence on y, which is an angular
+coordinate on S 5 . For more general solutions the boundary condition in the asymptotic AdS5 × S 5
+region at x → ∞ therefore is that r(x, y) should become independent of y and satisfy a Dirichlet
+condition with r0 (y) = rR . In summary,
+lim r(x, y) = rR
+
+x→+∞
+
+for (6),
+
+C.
+
+lim e+x ∂x r(x, y) = 0
+
+x→+∞
+
+for (7).
+
+(26)
+
+Near-pole behavior
+
+At zero temperature the minimal surfaces will show distinct behavior near the 5-brane sources,
+and cap off there.1 In this section we will discuss this behavior analytically, using the form of
+the supergravity solutions near the 5-brane sources. At finite temperature the behavior near the
+5-brane sources will be regulated by the horizon.
+1
+
+This differs from the behavior of the spherical entangling surface centered on the defect studied in [33], which has
+a simple universal embedding which is insensitive to the 5-brane sources.
+
+12
+To discuss the behavior near a pole at z = z0 it is convenient to introduce coordinates centered
+on the pole, z = z0 + Reiφ for z0 on the real line and z = z0 − Reiφ for Im(z0 ) = π/2. The
+combinations that appear in the area functional (17) behave at zero temperature as follows,
+f = |h1 h2 W | ≈ f0 sin2 (φ)(− ln R) ,
+
+g=
+
+1 h1 h2
+≈ −R2 ln R ,
+2 W
+
+(27)
+
+where f0 is a constant which depends on the solution under consideration. The value of f0 will not
+be relevant, since the extremality condition (18) is invariant under constant rescalings of f .
+To discuss the near-pole behavior it is convenient to drop the overall factor in the extremality
+condition (18) and use the condition in the form
+
+
+1 + g(∇r)2
+1
+.
+(28)
+0 = 2 − ∇ (g∇r) + g∇r * ∇ ln
+2
+f2
+The two non-trivial terms on the right hand side are generically of the same order, noting that
+∇ ln(. . .) = O(1/R). A scaling analysis suggests to take ∇r = O(1/(R ln R)) and make an ansatz
+r(R, φ) = r0 ln(− ln R) +
+
+r1 (φ)
++ ...
+ln R
+
+(29)
+
+where the ellipsis denotes regular and subleading terms. The leading non-trivial order in the
+extremality condition (28) then is its finite part. The near-pole solution without divergences in φ
+is given by r0 = −1 and r1 constant. In summary, the behavior of the embedding near a 5-brane
+source at z = z0 is given by
+r(z, z̄) = − ln(− ln |z − z0 |) + . . . .
+
+(30)
+
+Since limz→z0 r(z, z̄) = −∞, the minimal surface drops into the Poincaré horizon at the source.
+At the point z0 the background geometry is singular, as appropriate for a solution near a 5-brane
+source, and we do not impose additional regularity conditions for the minimal surface.
+D.
+
+HM surfaces
+
+We will focus on the non-gravitating bath solutions (6) for the discussion of HM surfaces; those
+for the gravitating bath solutions will be discussed in sec. VI. We use the tortoise coordinate u
+defined in (9) and parametrize the embedding at t = 0 in terms of x(u, y) instead of r(x, y). The
+minimal surfaces range in u from the value enforced by the Dirichlet boundary condition (26)
+through the horizon into the thermofield double. We focus on surfaces anchored at the same point
+rR in the thermofield double, which are symmetric with respect to reflection across u = 0 at t = 0.
+So we can restrict to u ≥ 0 to find the embeddings. From that perspective the HM surfaces end
+on the horizon at u = 0 along a curve xh (y) which is determined by the extremality condition.
+The induced metric with the tortoise coordinate u and the parametrization x(u, y) becomes
+ 
+
+
+3u
+ds2 = e2rh cosh4/3
+f42 ds2R2 + f12 ds2S 2 + f22 ds2S 2 + f42 + 4ρ2 (∂u x)2 du2
+1
+2
+2
+ 2
+
+
+2
+2
++ 4ρ dy 1 + (∂y x) + (∂u x)(∂y x)(du dy + dy du) .
+(31)
+The area evaluated using (16) becomes
+Z
+S = 32
+
+dudy e2rh cosh4/3
+
+
+
+3u
+2
+
+
+
+s
+|h1 h2 W |
+
+1 h1 h2
+(1 + (∂y x)2 ) + (∂u x)2 .
+2 W
+
+(32)
+
+13
+For the boundary conditions we start with the boundaries of Σ at y = 0 and y = π2 . Having no
+conical singularities at y = 0, π2 leads to the Neumann boundary conditions
+∂y x(u, y)
+
+y=0
+
+=0,
+
+∂y x(u, y)
+
+y= π2
+
+=0,
+
+(33)
+
+analogously to the arguments for (21) before. The Dirichlet condition which anchors the surface,
+given in (26) for the parametrization r(x, y), here becomes
+x(u, y) = ∞ .
+
+lim
+
+(34)
+
+u→u(rR )
+
+On the other end the surface should intersect the horizon and end from the one-sided perspective
+at u = 0. The symmetry under reflection across u = 0 leads to the Neumann condition
+∂u x(u, y)|u=0 = 0 .
+
+(35)
+
+This condition also ensures that boundary terms in the variation of the area at u = 0 vanish.
+IV.
+
+SOLVING FOR MINIMAL SURFACES
+
+To summarize, the extremality conditions are non-linear second-order PDEs on the strip Σ =
+{x + iy|x ∈ R, 0 ≤ y ≤ π2 }, with Neumann boundary conditions at y = 0 and y = π2 . The domain
+and boundary conditions in the x direction depend on the background solution and type of surface
+under consideration. The solutions are expected to be smooth, except for the locations on the two
+boundary components at y ∈ {0, π2 } where the D5/NS5 sources are in (6) and (7).
+To solve these PDEs numerically we start with a trial surface satisfying the boundary conditions
+and let it dynamically settle on a minimal area configuration. To this end an auxiliary external
+time parameter τ is introduced, and the embedding, say for island surfaces, is described by a
+τ -dependent function r(x, y, τ ). The τ -evolution for r(x, y, τ ) is chosen as
+∂τ r(x, y, τ ) = −L−1
+γ
+
+δLγ
+,
+δr(x, y, τ )
+
+(36)
+
+where Lγ is the volume element of the surface in (17). This exerts a force on the embedding in the
+direction in which the area decreases. The right hand side is given by (18) with r(x, y) replaced
+by r(x, y, τ ).
+To numerically implement the relaxation the embedding function r(x, y, τ ) is discretized in x
+and y, and eq. (36) is replaced by a set of ODEs for the values of r at the lattice points, rij (τ ).
+We use x̃ = tanh(x) to obtain a finite domain and a rectangular lattice with equidistant points.
+The derivatives are discretized using second-order finite differences and the boundary conditions are
+implemented such that they are compatible with the second-order accuracy of the finite differences.2
+The resulting set of ODEs is integrated numerically using Mathematica.
+Asymptotically the evolution of the rij (τ ) is expected to settle on an equilibrium configuration
+? , which is a discretized solution to the extremality condition for the minimal surface. Letting
+rij
+the evolution (36) run for a large time τmax fl 1 will yield an approximation to this equilibrium
+configuration. The quality of the final configuration rij (τmax ) can be assessed from the residuals
+Rij = L−1
+γ
+2
+
+δLγ
+δr(x, y, τ )
+
+.
+
+(37)
+
+τ =τmax
+
+For Neumann boundary conditions the lattice is extended by one row beyond the actual domain. The Neumann
+boundary conditions in the y direction, (21), apply for regular points of ∂Σ, not at the locations of the 5-brane
+sources. This has to be taken into account in the discretization.
+
+14
+
+FIG. 5. Island surfaces from top left to bottom right anchored at rR ∈ {5, 3, 2.1, 1}. The horizon is at
+rh = 0 and N5 /K = 2. The AdS5 × S 5 region emerges at tanh x = 1, the 5-brane sources are at tanh x = 0
+and tanh x = −1 is a regular point in the internal space. For smaller rR (smaller radiation region) the
+surfaces stay closer to the horizon. Near the 5-brane sources the surfaces reach to the horizon for all rR .
+
+We typically use a lattice with O(100) nodes in the x̃ and y directions, though coarser lattices
+already capture the qualitative form of the surfaces well. For the surfaces and data shown below
+the residuals have decreased to O(10−6 ) or less. A limitation of this method is that it is unlikely to
+capture extremal surfaces for which the area functional does not take a local minimum (i.e. saddle
+points). However, the interest here is primarily in actual minimal surfaces.
+Due to the symmetry of the D5/NS5 brane sources in the supergravity solutions (6) and (7)
+under S-duality combined with z → iπ/2−z, the Einstein-frame metric is invariant under y → π2 −y.
+For the minimal surfaces discussed here the boundary conditions respect this symmetry, so that
+the surfaces themselves are symmetric. The PDEs thus only have to be solved on the half of the
+strip Σ with 0 ≤ y ≤ π4 , with a Neumann boundary condition at y = π4 to enforce the symmetry.
+
+V.
+
+ISLANDS WITH NON-GRAVITATING BATHS
+
+In this section we discuss minimal surfaces, island contributions and the emergence of Page
+curves in the 10d solutions for non-gravitating baths, given in (6). The general structure of the
+supergravity solutions is illustrated in fig. 2, and we have D5 and NS5-brane sources, respectively,
+at (x, y) = (0, 0) and (x, y) = (0, π/2). The 8d minimal surfaces can be visualized as 2d surfaces in
+the 3d space spanned by the x and y coordinates parametrizing Σ and the AdS4 radial direction.
+They are obtained using the relaxation method of sec. IV. We will start with a discussion of general
+features, before moving on to comparing the areas of island and HM surfaces.
+
+15
+
+FIG. 6. HM surfaces at t = 0 for rR = 1 (left) and rR = 2.1 (right), with rh = 0 and N5 /K = 2. The plots
+show the tortoise radial coordinate u, in which the horizon is intersected orthogonally. The further the HM
+surfaces are anchored from the horizon at rh = 0, the further they reach towards negative x.
+A.
+
+Island vs. HM surfaces
+
+A sample of island surfaces with varying anchor points rR = limx→∞ r(x, y) in the AdS5 × S 5
+region, for supergravity solutions (6), with temperature rh = 0 and N5 /K = 2, is shown in fig. 5.
+Simultaneous rescalings of N5 and K lead to an overall rescaling of the metric functions in (2), so
+the form of the minimal surfaces only depends on the ratio N5 /K. The ratio N5 /K controls the
+ratio of the number of D3-branes suspended between the 5-branes and the number of semi-infinite
+D3-branes. For N5 /K = 2 these numbers are equal (fig. 4(a)). For surfaces with large rR , anchored
+far from the horizon, the impact of the 5-brane sources is clearly visible in fig. 5, in line with the
+behavior discussed in sec. III C. The relaxation method works with the zero temperature case as
+well (see fig. 8(b)). As the anchor point rR is decreased, moving towards the horizon, the entire
+surface moves towards the horizon and the near-pole behavior becomes less pronounced.
+For the surfaces in fig. 5 a discretization with (200, 100) points in (tanh x, y) was used, and
+the residuals (37) at τ = 103 are reduced to O(10−10 ). The quality of the solutions can also
+be investigated using the undiscretized extremality condition (18): From a discretized solution
+one can construct a twice differentiable interpolating function r̃(x, y). The interpolation should
+not necessarily be expected to capture the true solution accurately away from the lattice points,
+especially near the D5/NS5 sources where the true solution is not smooth. Evaluating (18) on the
+interpolation nevertheless only produces small errors near the poles, which decrease further with
+increased lattice resolution, suggesting that they are benign and not systematic.
+Examples of t = 0 HM surfaces for N5 /K = 2 are shown in fig. 6. For radiation regions that
+start far in the bath system, the surfaces are anchored close to the horizon at tanh x = 1, i.e. with
+rR close to rh . These surfaces drop into the horizon along a curve xh (y) which is located well
+before reaching the D5/NS5 sources at x = 0.3 Upon moderately increasing rR , the surfaces reach
+further towards smaller values of x. The curve xh (y) starts to bulge out towards negative values
+in the interior of Σ, i.e. for y 6= {0, π/2}, while the boundary values xh (0) and xh (π/2) remain at
+larger values and stay shy of reaching the 5-brane sources at x = 0. The behavior upon further
+increasing rR depends on N5 /K, and will be discussed below.
+With the surfaces in hand we can compare the areas between island and t = 0 HM surfaces
+anchored at the same rR and discuss the time evolution of the entropy. The areas have the usual
+divergences associated with entanglement entropies in 4d. Rather than isolating the divergences
+3
+
+If the initial trial surface reaches beyond the 5-brane sources, the relaxation transitions it into the x > 0 region.
+
+16
+∆S
+800
+
+600
+
+400
+
+200
+
+0.5
+
+1.0
+
+1.5
+
+2.0
+
+2.5
+
+rR
+
+FIG. 7. Area difference ∆S = Sisland − SHM as function of the anchor point rR in the asymptotic AdS5 × S 5
+region. The defect is at r = ∞, the horizon at rh = 0. For ∆S > 0 the HM surface dominates at t = 0. The
+radius of the AdS5 × S 5 region is controlled by N5 K, the number of defect degrees of freedom by N52 . The
+color-coded dots are, from top to bottom, for N5 /K ∈ {1.2, 1.6, 2.0, 2.4} with K = 1.
+
+separately for island and HM surfaces, we directly compute the finite area difference between
+island and HM surfaces anchored at the same rR . For numerical stability it is desirable to take the
+difference at the level of the integrands, at least in the region of large x. Since the HM surface is
+obtained with a different parametrization, we transform the HM surface described by xHM (r, y) to
+a parametrization in terms of rHM (x, y), by inverting xHM (r, y) with respect to the first argument.
+The derivatives of rHM can be expressed in terms of xHM ,
+∂x rHM (x, y) =
+
+1
+∂r xHM (r, y)
+
+r=rHM (x,y)
+
+,
+
+∂y r(x, y) = −
+
+∂y xHM (r, y)
+∂r xHM (r, y)
+
+r=rHM (x,y)
+
+.
+
+(38)
+
+This is used to replace the derivatives in the area functional (17) before replacing rHM (x, y) itself
+by the inverse of xHM , to avoid taking derivatives of the inverted function and improve numerical
+stability. The area integrands obtained this way are numerically smooth, and are used to compute
+the area differences with a cut-off tanh x ≤ 1 − . The dependence on the cut-off is very mild, with
+percent level variation between  = 10−2 and  = 10−3 , and the latter is used for the plots.
+The results are shown in fig. 7. They show that the island surface has larger area than the t = 0
+HM surface when rR is not too far from the horizon rh . This leads to Page curves: The radiation
+region is identified far from the location where the gravity and bath systems meet (r = ∞), as the
+part of the AdS5 × S 5 region at x → ∞ with AdS4 radial coordinate r ≤ rR , with rR close to rh .
+The results in fig. 7 show that for these regions the area of the HM surface at t = 0 is smaller than
+the area of the island surface. The area of the HM surface grows with time, but the entropy is
+bounded by the constant area of the island surface, leading to a Page curve.
+The results in fig. 7 show that the area difference between the island and t = 0 HM surfaces
+is larger for larger N5 /K. One may compare this to expectations based on the Karch/Randall
+models: Larger N5 /K corresponds to a BCFT with more 3d defect degrees of freedom relative to
+4d bulk degrees of freedom, which in the 5d models amounts to larger tension of the ETW brane.
+Larger tension bends the ETW brane towards the conformal boundary of AdS5 in fig. 1 (i.e. smaller
+θ; a tensionless brane has θ = π/2). From this 5d perspective one would expect the island surface
+to have larger area relative to the t = 0 HM surface for smaller θ, since the ETW brane is further
+from the bath. This is the 5d version of the area difference being larger for larger N5 /K in 10d.
+The curves in fig. 7 further show transition points r̂R at which the areas of the island and
+HM surfaces are equal at t = 0, suggesting constant entropies for rR > r̂R . Near the end points
+of the curves, which for small N5 /K are close to r̂R , the evolution of trial HM surfaces via (36)
+? near the end points, the relaxation extends the trial surface all the
+changes: beyond values rR
+
+17
+
+rR -rL
+14
+12
+10
+8
+6
+4
+2
+
+1
+
+2
+
+3
+
+4
+
+N5 /K
+
+(a)
+
+(b)
+
+FIG. 8. Left: rR −rL , where rR = limx→+∞ r(x, y) is the anchor of the minimal surface in the non-gravitating
+bath and rL = limx→−∞ r(x, y), as function of N5 /K at zero temperature. Right: island surfaces, from top
+to bottom for N5 /K ∈ {1.2, 1.6, 2.0, 2.4}. At zero temperature rR − rL is independent of rR .
+
+way to x = −∞ and ceases to settle on an equilibrium configuration. The HM surface could turn
+from a minimum to a saddle point, which the relaxation could transition over towards the island
+surface. One may also suspect that HM surfaces extending to negative x also on the boundary of
+Σ become relevant (those would reach to the horizon along a curve xh (y) and in a disconnected
+region around the 5-brane sources, and can not be parametrized globally by x(u, y)). The value of
+? starts small for small N /K, increases to r ? ≈ 2.1 for N /K = 2 (the surface on the right in
+rR
+5
+5
+R
+? ), and appears to diverge towards N /K ≈ 4. For N /K & 4 HM surfaces can
+fig. 6 is close to rR
+5
+5
+? and r̂ appears
+be found explicitly with no noticeable bound on rR . The separation between rR
+R
+to grow with N5 /K. For radiation regions far in the bath (small rR ) we find Page curves. For
+rR > r̂R fig. 7 suggests that the island surfaces lead to constant entropies, though if new types of
+HM surfaces become relevant the entropy curve may remain non-trivial. In either case, the entropy
+is bounded by the area of the island surfaces, which we find explicitly for small and large rR .
+B.
+
+Critical brane setups
+
+The ratio N5 /K plays a prominent role also at zero temperature. A sample of island minimal
+surfaces for different values of N5 /K at zero temperature is shown in fig. 8(b). For fixed anchor
+point in the asymptotic AdS5 × S 5 region, the point where the surfaces close off at x → −∞ moves
+towards the Poincaré horizon as N5 /K is increased. This is shown more quantitatively in fig. 8(a),
+which shows the difference between rR = limx→+∞ r(x, y) and rL = limx→−∞ r(x, y) as function
+of N5 /K. For small N5 /K the difference rR − rL grows linearly, but for larger N5 /K it starts to
+grow rapidly (faster than exponential). The plot suggests the existence of a critical value,
+ 
+N5
+≈ 4.0 ,
+(39)
+K crit
+at which rR −rL diverges. For the surfaces from which the data in fig. 8(a) is extracted the residuals
+(37) are reduced to at most O(10−7 ). Increasing N5 /K beyond the critical value appears to lead
+to irreducible residuals (37), which remain finite and keep driving the anchors rL and rR further
+apart with increasing runtime in τ , rather than settling on an equilibrium configuration. This is
+consistent with rR − rL diverging when N5 /K approaches (39), and there being no island minimal
+surfaces beyond the critical value at zero temperature.
+
+18
+rR -rL
+14
+12
+10
+8
+6
+4
+2
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+rR
+
+FIG. 9. Difference rR − rL between the end points at x → ±∞ at finite temperature, with rh = 0, from
+bottom to top for N5 /K ∈ {2.25, 2.75, 3.25, 3.75, 4.25}. The solid black line shows rL = 0.
+
+These results line up well with the observations in the Karch/Randall models: As noted before,
+the angle θ of the ETW brane in 5d is expected to be an effective description for the number of
+defect degrees of freedom relative to the number of 4d degrees of freedom, which in this particular
+example of a 10d solution is determined by the ratio N5 /K. The discussion in [11] found that, as
+the angle is decreased, the point where the island minimal surface with fixed anchor on the bath
+brane hits the ETW brane moves towards the infrared, and diverges towards the Poincaré horizon
+at a critical angle. This is consistent with the behavior of the 10d solutions considered here if 1/θ
+is identified with N5 /K. It would be interesting to investigate more general 10d solutions, e.g. with
+multiple 5-brane sources, in which one may expect a more complicated phase structure.
+At finite temperature the runaway behavior of the cap-off point rL at the critical N5 /K is
+regulated by the black hole horizon, and island surfaces can be found beyond the critical N5 /K.
+The behavior can again be diagnosed by the difference rR − rL . At zero temperature and below the
+critical N5 /K this difference is finite and independent of rR , with its value growing rapidly towards
+the critical N5 /K. At finite temperature and below the critical value of N5 /K, the difference rR −rL
+is not constant, but it approaches a constant for large rR . This behavior can be seen in fig. 9 as
+the curves that saturate towards a constant. The constant is set by the zero temperature value of
+rR − rL . As N5 /K approaches the critical value, the point where the growth of rR − rL saturates
+increases rapidly. The results are consistent with rR − rL staying linear without bound for N5 /K
+beyond the critical value. The end point rL appears stuck below a critical value, similar to the
+behavior found in the 5d models in [11].
+
+VI.
+
+ISLANDS WITH GRAVITATING BATHS
+
+We now turn to the gravitating bath solutions (7), in which the AdS5 × S 5 region at x → ∞ is
+reduced to a regular point of the internal space (fig. 3). These solutions have massless 4d gravitons
+(theR 4d Newton constant is related to the free energy of the dual 3d SCFTs and proportional
+to Σ h1 h2 W ). Without the AdS5 × S 5 region there is no natural place to geometrically define
+radiation regions (compatible with diffeomorphism invariance) at x = ∞, or to anchor minimal
+surfaces. Minimal surfaces stretching from x = −∞ to x = +∞ instead satisfy Neumann boundary
+conditions on both ends, as discussed in sec. III B, and are found to settle onto the horizon. This
+leads to a flat entropy curve, in line with the arguments of [26] for gravitating baths.
+As suggested in [26, 28], a Page curve may still arise for other quantities in situations with
+gravitating baths. An alternative is to consider surfaces that divide the internal space, which may
+be expected to compute non-geometric EE's. Though the general interpretation of such surfaces
+
+19
+
+FIG. 10. Island surfaces in gravitating bath solutions, from left to right for δ ∈ {0.5, 0.4, 0.3}. The vertical
+axis shows the tortoise AdS4 radial coordinate u. The surfaces are anchored at the conformal boundary of
+AdS4 (u → ∞) on the curve x(y) = 0 in Σ. The plots only cover the x ≤ 0 part of Σ. Near the 5-brane
+sources the surface caps off close to the horizon. The cap-off point at x = −∞ increases as δ decreases.
+
+may not be entirely understood, one can view some of them in the current context as limiting cases
+of surfaces computing geometric EE's, as suggested in [11] (an earlier example where geometric
+EE's turn non-geometric in the IR can be found in [35]). The proposal of [11] can be made precise
+in 10d: Consider brane configurations where D3-branes suspended between 5-branes are kept
+finite in extent, to realize N = 4 SYM on an interval. One may compute conventional geometric
+EE's on that interval. Though holographic duals for N = 4 SYM on an interval are not explicitly
+known, these geometric EE's would be represented by conventional Ryu/Takayanagi surfaces in the
+putative holographic duals. As IR fixed points one obtains 3d Tρσ [SU (N )] SCFTs, with holographic
+duals of the form discussed here. At the IR fixed point the geometric EE's on the interval become
+non-geometric EE's, and the Ryu/Takayanagi surfaces become minimal surfaces in the internal
+space. We thus expect at least certain minimal surfaces separating regions in the internal space to
+compute non-geometric EE's. In lower-dimensional examples such EE's are discussed in [36].
+There are numerous ways to separate regions in the internal space in the 10d Type IIB solutions.
+One may for example divide one of the S 2 's, which should be related to a split of the Hilbert space
+based on the R-symmetry [30]. The surfaces which arise from geometric EE's as outlined above
+are expected to split the Riemann surface Σ instead, where they can separate the 5-brane sources.
+As shown in [37], minimal surfaces dividing the internal space end, when reaching the conformal
+boundary of the AdS part, on an extremal sub-surface in the internal space. Boundary conditions
+can be imposed to fix the subleading behavior as the conformal boundary in the AdS part is
+approached, instead of the leading behavior (e.g. for surfaces splitting the S 5 in AdS5 × S 5 the
+slipping mode away from the equator). In the solutions (7) there is a natural candidate extremal
+surface in Σ: due to the reflection symmetry of the solution under x → −x, the locus x(y) = 0 is
+extremal in Σ and can serve as an anchor point for 8d minimal surfaces wrapping the spatial part
+of AdS4 , both S 2 's and a curve in Σ which depends on the AdS4 radial coordinate u.
+A symmetric HM surface which is anchored at x(y) = 0 also in the thermofield double is given
+by x(u, y) = 0. This entire surface is extremal thanks to the reflection symmetry in x → −x. More
+general surfaces may be obtained by specifying non-trivial subleading behavior in the AdS4 radial
+coordinate as the x = 0 locus is approached.4 We only impose that the surface be anchored at
+x(y) = 0 for u → ∞ and in the thermofield double, and then let the relaxation method settle on a
+surface. This procedure selects the x(u, y) = 0 HM surface at t = 0. Since x(y) = 0 is an extremal
+curve in Σ, finding the HM surfaces for t 6= 0 reduces to a problem within the AdS4 part of the
+geometry, which is identical to the discussion in appendix A of [11].
+For the island surfaces we impose that they are similarly anchored for u → ∞ along the x(y) = 0
+4
+
+Admissible choices for the fall-off behavior near the boundary of AdS4 can be determined by linearizing the
+extremality condition around the x(u, y) = 0 surface and performing a mode expansion in the y direction.
+
+20
+tanh uL
+
+∆S/N 4
+
+1.0
+
+0.2
+
+0.8
+
+0.6
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+δ
+
+0.4
+-0.2
+
+0.2
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+δ
+
+-0.4
+
+(a)
+
+(b)
+
+FIG. 11. Left: Cap-off point uL = limx→−∞ u(x, y) at x = −∞ as function of the separation of brane
+sources δ. For large δ, uL approaches the horizon at u = 0 exponentially; the dashed line shows uL =
+1.17 exp(−4.28 δ). At a finite δc , uL diverges towards the conformal boundary (at tanh u = 1 in the plot).
+Right: Area difference ∆S = Sisland − SHM , as colored curves for different choices of cut-off on the AdS4
+radial coordinate. The dashed black curve shows an extrapolation to zero cut-off.
+
+curve. They should reach one of the x = ±∞ regions with the Neumann boundary condition (24)
+for some value uL > 0, which is determined dynamically. Since the supergravity solution is invariant
+under x → −x the surfaces ending at x = +∞ and x = −∞ are symmetry-related, and we only
+construct the ones ending at x = −∞ explicitly.
+A sample of island surfaces for different values of the 5-brane source locations δ on Σ is shown
+in fig. 10 (the plots show only half the range of x). For larger δ the surfaces more rapidly approach
+the horizon and then stay close to it. This behavior is captured more quantitatively in fig. 11(a),
+which shows the end point at x = −∞ in the tortoise coordinate u as function of δ. The cap-off
+points uL show an exponential fall-off towards large δ, which is shown as the fitted dashed line.
+Towards small δ the cap-off points start to grow more rapidly. The data is consistent with uL
+diverging towards the conformal boundary for a critical value
+δc ≈ 0.28 .
+
+(40)
+
+In line with this interpretation, the relaxation method does not settle on equilibrium minimal
+surfaces below δc . Instead, the trial surfaces keep approaching the conformal boundary of AdS4 at
+generic points of Σ, while staying close to the horizon at the 5-brane sources (in line with behavior
+derived in sec. III C). This will be discussed further below.
+The area differences between the island and t = 0 HM surfaces are computed similarly to the
+non-gravitating bath case. To implement the subtraction at the integrand level, the embedding
+for the island surface, uisland (x, y), has to be inverted with respect to the first argument to match
+the parametrization of the HM surface. The embeddings are not invertible on the entire domain,
+so the subtraction is implemented at the integrand level in a patch around x = 0 and at the
+integral level for the remaining parts. The resulting area differences are shown in fig. 11(b), as
+colored curves for different choices of cut-off on the AdS4 radial coordinate. The cut-off on the
+radial coordinate is imposed in Fefferman-Graham gauge, e−u ≥ , with  varied between 0.005
+and 0.05. The curves are indistinguishable for generic values of δ. They only spread in a narrow
+region around δc , where the island surfaces approach the conformal boundary of AdS4 and residual
+cut-off dependence can be seen. The residual cut-off dependence is smooth, and is fitted for each
+δ to obtain an extrapolation to zero cut-off. The result is shown as dashed black curve.
+The area differences in fig. 11 show that generically for large δ the HM surface at t = 0 has
+smaller area than the island surface. The area of the HM surface grows in time, and when it equals
+
+21
+
+ΔS /C
+
+4GN SEE/C
+
+2.5
+2.0
+
+2.0
+
+1.5
+
+1.5
+
+1.0
+1.0
+
+0.5
+
+1/δ
+1.0
+
+1.5
+
+2.0
+
+2.5
+
+3.0
+
+t
+
+3.5
+
+0.5
+
+(a)
+
+1.0
+
+1.5
+
+(b)
+
+FIG. 12. Left: Area differences ∆S = Sisland − SHM normalized to the constant in (42). The plot shows the
+extrapolated curve of fig. 11(b). Right: Page curves. The solid line shows the time-dependent finite part of
+the area of the HM surface. The corresponding constant areas of island surfaces are shown as dashed lines,
+from bottom to top for δ ∈ {0.29, 0.32, 0.4, 0.5, 0.6}. The Page time increases monotonically with δ.
+
+that of the island surface the island surface becomes dominant, leading to a Page curve. The curves
+in fig. 11 suggest a second distinguished value for δ, a "Page value" δP where ∆S at t = 0 vanishes.
+The value of δP obtained from the numerical data,
+δP ≈ 0.29 ,
+
+(41)
+
+is close to but slightly larger than the critical δc in (40). Since the difference between δc and δP is
+small and the island surfaces become numerically challenging for δ ≈ δc , as evidenced in the spread
+of the curves in fig. 11, the possibility remains that the true area difference may be non-negative
+for all δ > δc . In the (possibly empty) range δc < δ < δP , the island surface dominates already at
+t = 0 and leads to a flat entropy curve. Regardless of the relation between δc and δP , for δ > δc the
+entropy growth indicated by the HM surface is limited by island surfaces whose area is constant.
+As noted before, finding time-dependent HM surfaces reduces to a problem within the AdS4
+part of the geometry, since x = 0 is an extremal curve in Σ. Up to an overall factor, the area as
+function of time can then be determined as in appendix A of [11], to which we refer for details
+on that part of the computation. The overall factor arises from the parts of the internal space
+wrapped by the 8d minimal surfaces in the 10d solutions. It can be determined by integrating the
+area functional in (32) evaluated on the x = 0 embedding over y. This leads to the factor
+Z π r
+1 3 3
+C = 32
+dy
+.
+(42)
+h h W
+2 1 2
+0
+x=0
+
+It will be convenient to discuss the time-dependent entropy curves normalized to this factor, so
+that the area of the HM surface is universal. The area differences between island and HM surfaces
+at t = 0 normalized to C are shown in fig. 12(a) as function of 1/δ. The normalized area differences
+are monotonically increasing with δ. The time-dependent entropy curves, up to factors of C and the
+10d Newton constant, are shown in fig. 12(b). To obtain the curves a time-independent divergent
+part has been minimally subtracted, and a factor 2 has been included to account for the parts of
+the surfaces in the thermofield double. Fig 12(b) shows the transition from the HM surface to the
+island surfaces for various δ. The Page time, at which the transition occurs, increases monotonically
+with δ: though the t = 0 area differences in fig. 11(b) are not monotonic, the Page time depends
+also on the growth rate of the HM surface, which decreases with δ. The Page time vanishes at δP .
+The 10d results are remarkably consistent with the phase structure found in 5d Karch/Randall
+models if the inverse brane angle θ in 5d is seen as effective description for the brane stack separation
+
+22
+δ on Σ: the analysis of [11] identified critical angles and Page angles, with a phase structure of
+minimal surfaces that, with the aforementioned identification, qualitatively matches the results
+found here (compare e.g. fig. 5 of [11] to fig. 12(a)). The symmetry of the 10d solutions (7) under
+x → −x suggests that they give rise to Karch/Randall models with two equal ETW brane angles.
+The range δ < δc , where no island minimal surfaces are found, corresponds to the regime
+above the critical ETW brane angle in 5d. The dominant contribution in 5d was identified as
+"tiny islands", which arise as limiting surfaces that connect the defect to one of the ETW branes
+infinitesimally close to the conformal boundary. In 10d the behavior of the island surfaces for
+δ → δc and of the trial island surfaces below δc , summarized around (40), both indicate that
+similar tiny island limiting surfaces arise for δ < δc . The evolution of trial island surfaces for δ < δc
+indicates that the 10d tiny islands approach the conformal boundary of AdS4 almost everywhere
+on Σ, except for narrow throats around the 5-brane sources where they reach to the horizon. In 5d
+the tiny islands were further motivated in [11] through a deformation in which the ETW branes
+are separated and the tiny islands arise as limits of extremal surfaces computing geometric EE's.
+This deformation has a clear analog in 10d, as keeping some D3 branes finite in extent to describe
+N = 4 SYM on an interval. It would be interesting to study this deformation also in 10d, which
+would require as a first step the corresponding supergravity solutions.
+
+VII.
+
+OUTLOOK
+
+The results presented here demonstrate in a UV-complete string theory setting the emergence of
+entanglement islands and Page curves for black holes in four-dimensional theories of gravity. The
+gravity theories certainly differ from the one we experience in nature. But they have dynamical
+gravitons, with a mass that can be controlled, and show versions of the information paradox whose
+resolution can be analyzed via AdS/CFT using a variety of methods. We close with some brief
+thoughts on avenues for future exploration:
+The discussions were based on representative Type IIB supergravity solutions that realize 5d
+Karch/Randall braneworlds with non-gravitating and gravitating baths in 10d. These solutions
+are members of a broad class of solutions corresponding to more general configurations of D3,
+D5 and NS5 branes. It would be interesting to study further examples. The brane angles that
+play a crucial role in the phenomenology of the Karch/Randall models were given analogs in the
+representative 10d solutions, where the entanglement entropies exhibit a similar phase structure.
+One may suspect more complicated phase structures to emerge for more general 10d solutions.
+It would be desirable to understand the time evolution of the entanglement entropies from the
+perspective of the dual QFTs. The (critical) parameters in the supergravity solutions translate in
+a precise way to brane configurations and in turn to parameters in N = 4 SYM on a half space
+and 3d Tρσ [SU (N )] SCFTs. This should provide a concrete starting point for investigating the
+resolution of information paradoxes through entanglement islands in 4d using QFT methods.
+A key holographic aspect appears to be a better understanding of minimal surfaces in the
+internal space. These are apparently quantities which exhibit Page curve behavior in systems with
+a gravitating bath, both in the 5d Karch/Randall models and in the string theory versions. Yet the
+holographic understanding of these surfaces and their associated field theory quantities leaves much
+to be desired. The 10d setups, with the full internal space present, should be a viable starting
+point for more detailed investigations of Page curve behavior in surfaces bisecting the internal
+space. The surfaces studied in sec. VI are natural candidates for computing EEs associated with
+decompositions of the quiver diagram in the UV description of the dual 3d SCFTs.
+
+23
+ACKNOWLEDGMENTS
+
+I am grateful to Andreas Karch, Hao Geng, Carlos Perez-Pardavila, Suvrat Raju, Lisa Randall, Marcos Riojas, and Sanjit Shashi for very interesting and useful discussions. This work is
+supported, in part, by the US Department of Energy under Grant No. DE-SC0007859 and by the
+Leinweber Center for Theoretical Physics.
+
+[1] Geoffrey Penington, "Entanglement Wedge Reconstruction and the Information Paradox," JHEP 09,
+002 (2020), arXiv:1905.08255 [hep-th].
+[2] Ahmed Almheiri, Netta Engelhardt, Donald Marolf, and Henry Maxfield, "The entropy of bulk
+quantum fields and the entanglement wedge of an evaporating black hole," JHEP 12, 063 (2019),
+arXiv:1905.08762 [hep-th].
+[3] Ahmed Almheiri, Raghu Mahajan, Juan Maldacena, and Ying Zhao, "The Page curve of Hawking
+radiation from semiclassical geometry," JHEP 03, 149 (2020), arXiv:1908.10996 [hep-th].
+[4] Ahmed Almheiri, Raghu Mahajan, and Juan Maldacena, "Islands outside the horizon," (2019),
+arXiv:1910.11077 [hep-th].
+[5] Ahmed Almheiri, Raghu Mahajan, and Jorge E. Santos, "Entanglement islands in higher dimensions,"
+SciPost Phys. 9, 001 (2020), arXiv:1911.09666 [hep-th].
+[6] Ahmed Almheiri, Thomas Hartman, Juan Maldacena, Edgar Shaghoulian, and Amirhossein Tajdini,
+"Replica Wormholes and the Entropy of Hawking Radiation," JHEP 05, 013 (2020), arXiv:1911.12333
+[hep-th].
+[7] Geoff Penington, Stephen H. Shenker, Douglas Stanford, and Zhenbin Yang, "Replica wormholes and
+the black hole interior," (2019), arXiv:1911.11977 [hep-th].
+[8] Hao Geng and Andreas Karch, "Massive islands," JHEP 09, 121 (2020), arXiv:2006.02438 [hep-th].
+[9] Hong Zhe Chen, Robert C. Myers, Dominik Neuenfeld, Ignacio A. Reyes, and Joshua Sandor,
+"Quantum Extremal Islands Made Easy, Part I: Entanglement on the Brane," JHEP 10, 166 (2020),
+arXiv:2006.04851 [hep-th].
+[10] Hong Zhe Chen, Robert C. Myers, Dominik Neuenfeld, Ignacio A. Reyes, and Joshua Sandor,
+"Quantum Extremal Islands Made Easy, Part II: Black Holes on the Brane," JHEP 12, 025 (2020),
+arXiv:2010.00018 [hep-th].
+[11] Hao Geng, Andreas Karch, Carlos Perez-Pardavila, Suvrat Raju, Lisa Randall, Marcos Riojas, and
+Sanjit Shashi, "Information Transfer with a Gravitating Bath," (2020), arXiv:2012.04671 [hep-th].
+[12] Moshe Rozali, James Sully, Mark Van Raamsdonk, Christopher Waddell, and David Wakeham, "Information radiation in BCFT models of black holes," JHEP 05, 004 (2020), arXiv:1910.12836 [hep-th].
+[13] Netta Engelhardt and Aron C. Wall, "Quantum Extremal Surfaces: Holographic Entanglement Entropy
+beyond the Classical Regime," JHEP 01, 073 (2015), arXiv:1408.3203 [hep-th].
+[14] Thomas Faulkner, Aitor Lewkowycz, and Juan Maldacena, "Quantum corrections to holographic
+entanglement entropy," JHEP 11, 074 (2013), arXiv:1307.2892 [hep-th].
+[15] Andreas Karch and Lisa Randall, "Locally localized gravity," JHEP 05, 008 (2001), arXiv:hepth/0011156.
+[16] Andreas Karch and Lisa Randall, "Open and closed string interpretation of SUSY CFT's on branes
+with boundaries," JHEP 06, 063 (2001), arXiv:hep-th/0105132.
+[17] Shinsei Ryu and Tadashi Takayanagi, "Holographic derivation of entanglement entropy from
+AdS/CFT," Phys. Rev. Lett. 96, 181602 (2006), arXiv:hep-th/0603001.
+[18] Davide Gaiotto and Edward Witten, "Supersymmetric Boundary Conditions in N=4 Super Yang-Mills
+Theory," J. Statist. Phys. 135, 789–855 (2009), arXiv:0804.2902 [hep-th].
+[19] Davide Gaiotto and Edward Witten, "Janus Configurations, Chern-Simons Couplings, And The thetaAngle in N=4 Super Yang-Mills Theory," JHEP 06, 097 (2010), arXiv:0804.2907 [hep-th].
+[20] Davide Gaiotto and Edward Witten, "S-Duality of Boundary Conditions In N=4 Super Yang-Mills
+Theory," Adv. Theor. Math. Phys. 13, 721–896 (2009), arXiv:0807.3720 [hep-th].
+[21] Eric D'Hoker, John Estes, and Michael Gutperle, "Exact half-BPS Type IIB interface solutions. I.
+
+24
+Local solution and supersymmetric Janus," JHEP 06, 021 (2007), arXiv:0705.0022 [hep-th].
+[22] Eric D'Hoker, John Estes, and Michael Gutperle, "Exact half-BPS Type IIB interface solutions. II.
+Flux solutions and multi-Janus," JHEP 06, 022 (2007), arXiv:0705.0024 [hep-th].
+[23] Ofer Aharony, Leon Berdichevsky, Micha Berkooz, and Itamar Shamir, "Near-horizon solutions for
+D3-branes ending on 5-branes," Phys. Rev. D 84, 126003 (2011), arXiv:1106.1870 [hep-th].
+[24] Benjamin Assel, Costas Bachas, John Estes, and Jaume Gomis, "Holographic Duals of D=3 N=4
+Superconformal Field Theories," JHEP 08, 087 (2011), arXiv:1106.4253 [hep-th].
+[25] Thomas Hartman and Juan Maldacena, "Time Evolution of Entanglement Entropy from Black Hole
+Interiors," JHEP 05, 014 (2013), arXiv:1303.1080 [hep-th].
+[26] Alok Laddha, Siddharth G. Prabhu, Suvrat Raju, and Pushkal Shrivastava, "The Holographic Nature
+of Null Infinity," SciPost Phys. 10, 041 (2021), arXiv:2002.02448 [hep-th].
+[27] Kausik Ghosh and Chethan Krishnan, "Dirichlet Baths and the Not-so-Fine-Grained Page Curve,"
+(2021), arXiv:2103.17253 [hep-th].
+[28] Suvrat Raju, "Lessons from the Information Paradox," (2020), arXiv:2012.05770 [hep-th].
+[29] Ali Mollabashi, Noburo Shiba, and Tadashi Takayanagi, "Entanglement between Two Interacting
+CFTs and Generalized Holographic Entanglement Entropy," JHEP 04, 185 (2014), arXiv:1403.1393
+[hep-th].
+[30] Andreas Karch and Christoph F. Uhlemann, "Holographic entanglement entropy and the internal
+space," Phys. Rev. D 91, 086005 (2015), arXiv:1501.00003 [hep-th].
+[31] Benjamin Assel, John Estes, and Masahito Yamazaki, "Large N Free Energy of 3d N=4 SCFTs and
+AdS4 /CF T3 ," JHEP 09, 074 (2012), arXiv:1206.2920 [hep-th].
+[32] Lorenzo Coccia and Christoph F. Uhlemann, "On the planar limit of 3d Tρσ [SU (N )]," (2020),
+arXiv:2011.10050 [hep-th].
+[33] Mark Van Raamsdonk and Christopher Waddell, "Holographic and localization calculations of boundary F for N = 4 SUSY Yang-Mills theory," JHEP 02, 222 (2021), arXiv:2010.14520 [hep-th].
+[34] Jerome P. Gauntlett and Oscar Varela, "Consistent Kaluza-Klein reductions for general supersymmetric
+AdS solutions," Phys. Rev. D 76, 126007 (2007), arXiv:0707.2315 [hep-th].
+[35] Vijay Balasubramanian, Albion Lawrence, Andrew Rolph, and Simon Ross, "Entanglement shadows
+in LLM geometries," JHEP 11, 159 (2017), arXiv:1704.03448 [hep-th].
+[36] Hao Geng, Severin Lüst, Rashmish K. Mishra, and David Wakeham, "Holographic BCFTs and Communicating Black Holes," (2021), arXiv:2104.07039 [hep-th].
+[37] C. Robin Graham and Andreas Karch, "Minimal area submanifolds in AdS x compact," JHEP 04, 168
+(2014), arXiv:1401.7692 [hep-th].
+

@@ -1,0 +1,946 @@
+An algorithm for the classification of smooth Fano
+polytopes
+
+arXiv:0704.0049v1 [math.CO] 2 Apr 2007
+
+Mikkel Øbro
+June 18, 2013
+
+Abstract
+We present an algorithm that produces the classification list of
+smooth Fano d-polytopes for any given d ≥ 1. The input of the algorithm is a single number, namely the positive integer d. The algorithm
+has been used to classify smooth Fano d-polytopes for d ≤ 7. There
+are 7622 isomorphism classes of smooth Fano 6-polytopes and 72256
+isomorphism classes of smooth Fano 7-polytopes.
+
+1
+
+Introduction
+
+Isomorphism classes of smooth toric Fano varieties of dimension d correspond
+to isomorphism classes of socalled smooth Fano d-polytopes, which are fully
+dimensional convex lattice polytopes in Rd , such that the origin is in the
+interior of the polytopes and the vertices of every facet is a basis of the
+integral lattice Zd ⊂ Rd . Smooth Fano d-polytopes have been intensively
+studied for the last decades. They have been completely classified up to
+isomorphism for d ≤ 4 ([1], [18], [3], [15]). Under additional assumptions
+there are classification results valid in every dimension.
+To our knowledge smooth Fano d-polytopes have been classified in the following cases:
+• When the number of vertices is d + 1, d + 2 or d + 3 ([9],[2]).
+• When the number of vertices is 3d, which turns out to be the upper
+bound on the number of vertices ([6]).
+• When the number of vertices is 3d − 1 ([19]).
+• When the polytopes are centrally symmetric ([17]).
+• When the polytopes are pseudo-symmetric, i.e. there is a facet F ,
+such that −F is also a facet ([8]).
+• When there are many pairs of centrally symmetric vertices ([5]).
+1
+
+2
+
+2 SMOOTH FANO POLYTOPES
+• When the corresponding toric d-folds are equipped with an extremal
+contraction, which contracts a toric divisor to a point ([4]) or a curve
+([16]).
+
+Recently a complete classification of smooth Fano 5-polytopes has been announced ([12]). The approach is to recover smooth Fano d-polytopes from
+their image under the projection along a vertex. This image is a reflexive
+(d − 1)-polytope (see [3]), which is a fully-dimensional lattice polytope containing the origin in the interior, such that the dual polytope is also a lattice
+polytope. Reflexive polytopes have been classified up to dimension 4 using
+the computer program PALP ([10],[11]). Using this classification and PALP
+the authors of [12] succeed in classifying smooth Fano 5-polytopes.
+In this paper we present an algorithm that classifies smooth Fano d-polytopes
+for any given d ≥ 1. We call this algorithm SFP (for Smooth Fano Polytopes). The input is the positive integer d, nothing else is needed. The
+algorithm has been implemented in C++, and used to classify smooth Fano
+d-polytopes for d ≤ 7. For d = 6 and d = 7 our results are new:
+Theorem 1.1. There are 7622 isomorphism classes of smooth Fano 6polytopes and 72256 isomorphism classes of smooth Fano 7-polytopes.
+The classification lists of smooth Fano d-polytopes, d ≤ 7, are available on
+the authors homepage: http://home.imf.au.dk/oebro
+A key idea in the algorithm is the notion of a special facet of a smooth Fano
+d-polytope (defined in section 3.1): A facet F of a smooth Fano d-polytope
+is called special, if the sum of the vertices of the polytope is a non-negative
+linear combination of vertices of F . This allows us to identify a finite subset
+Wd of the lattice Zd , such that any smooth Fano d-polytope is isomorphic to
+one whose vertices are contained in Wd (theorem 3.6). Thus the problem of
+classifying smooth Fano d-polytopes is reduced to the problem of considering
+certain subsets of Wd .
+We then define a total order on finite subsets of Zd and use this to define a
+total order on the set of smooth Fano d-polytopes, which respects isomorphism (section 4). The SFP-algorithm (described in section 5) goes through
+certain finite subsets of Wd in increasing order, and outputs smooth Fano
+d-polytopes in increasing order, such that any smooth Fano d-polytope is
+isomorphic to exactly one in the output list.
+As a consequence of the total order on smooth Fano d-polytopes, the algorithm needs not consult the previous output to check for isomorphism to
+decide whether or not to output a constructed polytope.
+
+2
+
+Smooth Fano polytopes
+
+We fix a notation and prove some simple facts about smooth Fano polytopes.
+
+3
+The convex hull of a set K ∈ Rd is denoted by convK. A polytope is
+the convex hull of finitely many points. The dimension of a polytope P is
+the dimension of the affine hull, affP , of the polytope P . A k-polytope is
+a polytope of dimension k. A face of a polytope is the intersection of a
+supporting hyperplane with the polytope. Faces of polytopes are polytopes.
+Faces of dimension 0 are called vertices, while faces of codimension 1 and 2
+are called facets and ridges, respectively. The set of vertices of a polytope
+P is denoted by V(P ).
+Definition 2.1. A convex lattice polytope P in Rd is called a smooth Fano
+d-polytope, if the origin is contained in the interior of P and the vertices of
+every facet of P is a Z-basis of the lattice Zd ⊂ Rd .
+We consider two smooth Fano d-polytopes P1 , P2 to be isomorphic, if there
+exists a bijective linear map φ : Rd → Rd , such that φ(Zd ) = Zd and
+φ(P1 ) = P2 .
+Whenever F is a (d−1)-simplex in Rd , such that 0 ∈
+/ affF , we let uF ∈ (Rd )∗
+be the unique element determined by huF , F i = {1}. For every w ∈ V(F )
+d ∗
+w
+w
+′
+we define uw
+F ∈ (R ) to be the element where huF , wi = 1 and huF , w i = 0
+′
+′
+w
+for every w ∈ V(F ), w 6= w. Then {uF |w ∈ V(F )} is the basis of (Rd )∗
+dual to the basis V(F ) of Rd .
+When F is a facet of a smooth Fano polytope and v ∈ V(P ), we certainly
+have huF , vi ∈ Z and
+huF , vi = 1 ⇐⇒ v ∈ V(F )
+
+and
+
+huF , vi ≤ 0 ⇐⇒ v ∈
+/ V(F ).
+
+The lemma below concerns the relation between the elements uF and uF ′ ,
+when F and F ′ are adjacent facets.
+Lemma 2.2. Let F be a facet of a smooth Fano polytope P and v ∈ V(F ).
+Let F ′ be the unique facet which intersects F in a ridge R of P , v ∈
+/ V(R).
+Let v ′ = V(F ′ ) \ V(R).
+Then
+1. huvF , v ′ i = −1.
+2. huF , v ′ i = huF ′ , vi.
+3. huF ′ , xi = huF , xi + huvF , xi(huF , v ′ i − 1) for any x ∈ Rd .
+4. In particular,
+• huvF , xi < 0 iff huF ′ , xi > huF , xi.
+• huvF , xi > 0 iff huF ′ , xi < huF , xi.
+• huvF , xi = 0 iff huF ′ , xi = huF , xi.
+for any x ∈ Rd .
+
+4
+
+2 SMOOTH FANO POLYTOPES
+5. Suppose x 6= v ′ is a vertex of P where huvF , xi < 0. Then huF , v ′ i >
+huF , xi.
+
+Proof. The sets V(F ) and V(F ′ ) are both bases of the lattice Zd and the
+first statement follows.
+We have v + v ′ ∈ span(F ∩ F ′ ), and then the second statement follows.
+Use the previous statements to calculate huF ′ , xi.
+X
+huw
+huF ′ , xi = huF ′ ,
+F , xiwi
+w∈V(F )
+
+=
+
+X
+
+v
+huw
+F , xi + huF , xihuF ′ , vi
+
+w∈V(F )\{v}
+
+
+= huF , xi + huvF , xi huF ′ , vi − 1
+
+= huF , xi + huvF , xi huF , v ′ i − 1 .
+
+As huF , v ′ i − 1 < 0 the three equivalences follow directly.
+Suppose there is a vertex x ∈ V(P ), such that huvF , xi < 0 and huF , v ′ i ≤
+huF , xi. Then
+huF ′ , xi = huF , xi + huvF , xi(huF , v ′ i − 1) ≥ huF , xi − (huF , v ′ i − 1) ≥ 1.
+Hence x is on the facet F ′ . But this cannot be the case as V(F ′ ) = {v ′ } ∪
+V(F ) \ {v}. Thus no such x exists.
+And we're done.
+In the next lemma we show a lower bound on the numbers huw
+F , vi, w ∈ V(F ),
+for any facet F and any vertex v of a smooth Fano d-polytope.
+Lemma 2.3. Let F be a facet and v a vertex of a smooth Fano polytope P .
+Then
+
+0
+huF , vi = 1
+
+−1
+hu
+huw
+,
+vi
+≥
+F , vi = 0
+F
+
+huF , vi huF , vi < 0
+
+for every w ∈ V(F ).
+
+Proof. When huF , vi = 1 the statement is obvious.
+′
+Suppose huF , vi = 0 and huw
+F , vi < 0 for some w ∈ V(F ). Let F be the
+unique facet intersecting F in the ridge conv{V(F ) \ {w}}. By lemma 2.2
+huF ′ , vi > 0. As huF ′ , vi ∈ Z we must have huF ′ , vi = 1. This implies
+huF , vi = −1.
+Suppose huF , vi < 0 and huw
+F , vi < huF , vi ≤ −1 for some w ∈ V(F ). Let
+′
+F 6= F be the facet containing the ridge conv{V(F ) \ {w}}, and let w′ be
+the unique vertex in V(F ′ ) \ V(F ). Then by lemma 2.2
+′
+w
+huF ′ , vi = huF , vi + huw
+F , vi(huF , w i − 1) ≥ huF , vi − huF , vi.
+′
+If huF , vi − huw
+F , vi > 0, then v is on the facet F . But this is not the case
+w
+as huw
+F , vi < −1. We conclude that huF , vi ≥ huF , vi.
+
+5
+When F is a facet and v a vertex of a smooth Fano d-polytope P , such that
+huF , vi = 0, we can say something about the face lattice of P .
+Lemma 2.4 ([7] section 2.3 remark 5(2), [13] lemma 5.5). Let F be a facet
+and v be vertex of a smooth Fano polytope P . Suppose huF , vi = 0.
+Then conv{{v} ∪ V(F ) \ {w}} is a facet of P for every w ∈ V(F ) with
+huw
+F , vi = −1.
+Proof. Follows from the proof of lemma 2.3.
+
+3
+
+Special embeddings of smooth Fano polytopes
+
+In this section we find a concrete finite subset Wd of Zd with the nice property that any smooth Fano d-polytope is isomorphic to one whose vertices
+are contained in Wd . The problem of classifying smooth Fano d-polytopes
+is then reduced to considering subsets of Wd .
+
+3.1
+
+Special facets
+
+The following definition is a key concept.
+Definition 3.1. A facet F of a smooth Fano d-polytope P is called special,
+if the sum of the vertices of P is a non-negative linear combination of V(F ),
+that is
+X
+X
+v=
+aw w , aw ≥ 0.
+v∈V(P )
+
+w∈V(F )
+
+Clearly, any smooth Fano d-polytope has at least one special facet.
+Let F be a special facet of a smooth Fano d-polytope P . Then
+X
+X
+0 ≤ huF ,
+vi = d +
+huF , vi,
+v∈V(P )
+
+v∈V(P ),huF ,vi<0
+
+which implies −d ≤ huF , vi ≤ 1 for any vertex v of P . By using the lower
+bound on the numbers huw
+F , vi, w ∈ V(F ) (see lemma 2.3), we can find an
+explicite finite subset of the lattice Zd , such that every v ∈ V(P ) is contained
+in this subset. In the following lemma we generalize this observation to
+subsets of V(P ) containing V(F ).
+Lemma 3.2. Let P be a smooth Fano polytope. Let F be a special facet of
+P and let V be a subset of V(P ) containing V(F ), whose sum is ν.
+X
+ν=
+v.
+v∈V
+
+Then
+huF , νi ≥ 0
+
+6
+
+3 SPECIAL EMBEDDINGS OF SMOOTH FANO POLYTOPES
+
+and
+huw
+F , νi ≤ huF , νi + 1
+for every w ∈ V(F ).
+P
+Proof. For convenience we set U = V(P ) \ V and μ = v∈U v. Since F is a
+special facet we know that
+X
+0 ≤ huF ,
+vi = huF , νi + huF , μi.
+v∈V(P )
+
+The set V(F ) is contained in V so huF , vi ≤ 0 for every v in U , hence
+huF , νi ≥ 0.
+Suppose that for some w ∈ V(F ) we have huw
+F , νi > huF , νi + 1. By lemma
+2.3 we know that
+
+−1
+huF , vi = 0
+w
+huF , vi ≥
+huF , vi huF , vi < 0
+for every vertex v ∈ V(P ) \ V(F ). There is at most one vertex v of P ,
+huF , vi = 0, with negative coefficient huw
+F , vi (lemma 2.4). So
+huw
+F , μi ≥ huF , μi − 1.
+Now, consider huw
+F,
+huw
+F,
+
+X
+
+P
+
+v∈V(P ) vi.
+
+w
+vi = huw
+F , νi + huF , μi > huF , νi + huF , μi = huF ,
+
+v∈V(P )
+
+But this implies that huxF ,
+contradiction.
+
+X
+
+vi.
+
+v∈V(P )
+
+P
+
+v∈V(P ) vi
+
+is negative for some x ∈ V(F ). A
+
+Corollary 3.3. Let F be a special facet and v any vertex of a smooth Fano
+d-polytope. Then −d ≤ huF , vi ≤ 1 and
+
+
+0
+1
+, huF , vi = 1
+
+
+−1
+d
+−
+1
+,
+huF , vi = 0
+≤ huw
+,
+vi
+≤
+F
+
+
+huF , vi
+d + huF , vi , huF , vi < 0
+
+for every w ∈ V(F ).
+
+Proof. For huF , vi = 1 the statement is obvious. When huF , vi = 0 the
+coefficients of v with respect to the basis V(F ) is bounded below by −1
+(lemma 2.3), so no coefficient exceeds d − 1.
+So the case huF , vi < 0 remains. The lower bound is by lemma 2.3. Use
+lemma 3.2 on the subset V = V(F ) ∪ {v} to prove the upper bound.
+
+3.2
+
+3.2
+
+7
+
+Special embeddings
+
+Special embeddings
+
+Let (e1 , . . . , ed ) be a fixed basis of the lattice Zd ⊂ Rd .
+Definition 3.4. Let P be a smooth Fano d-polytope. Any smooth Fano
+d-polytope Q, with conv{e1 , . . . , ed } as a special facet, is called a special
+embedding of P , if P and Q are isomorphic.
+Obviously, for any smooth Fano polytope P , there exists at least one special
+embedding of P . As any polytope has finitely many facets, there exists only
+finitely many special embeddings of P .
+Now we define a subset of Zd which will play an important part in what
+follows.
+Definition 3.5. By Wd we denote the maximal set (with respect to inclusion) of lattice points in Zd such that
+1. The origin is not contained in Wd .
+2. The points in Wd are primitive lattice points.
+3. If a1 e1 + . . . + ad ed ∈ Wd , then −d ≤ a ≤ 1 for a = a1 + . . . + ad and
+
+
+0 
+, a=1
+ 1
+−1
+≤ ai ≤
+d−1 , a=0
+
+
+a
+d+a , a<0
+
+for every i = 1, . . . , d.
+
+The next theorem is one of the key results in this paper. It allows us to
+classify smooth Fano d-polytopes by considering subsets of the explicitely
+given set Wd .
+Theorem 3.6. Let P be an arbitrary smooth Fano d-polytope, and Q any
+special embedding of P . Then V(Q) is contained in the set Wd .
+Proof. Follows directly from corollary 3.3 and the definition of Wd .
+
+4
+
+Total ordering of smooth Fano polytopes
+
+In this section we define a total order on the set of smooth Fano d-polytopes
+for any fixed d ≥ 1.
+Throughout the section (e1 , . . . , ed ) is a fixed basis of the lattice Zd .
+
+8
+
+4.1
+
+4
+
+TOTAL ORDERING OF SMOOTH FANO POLYTOPES
+
+The order of a lattice point
+
+We begin by defining a total order  on Zd .
+Definition 4.1. Let x = x1 e1 + . . . + xd ed , y = y1 e1 + . . . + yd ed be two
+lattice points in Zd . We define x  y if and only if
+(−x1 − . . . − xd , x1 , . . . , xd ) ≤lex (−y1 − . . . − yd , y1 , . . . , yd ),
+where ≤lex is the lexicographical ordering on the product of d + 1 copies of
+the ordered set (Z, ≤).
+The ordering  is a total order on Zd .
+Example. (0, 1) ≺ (−1, 1) ≺ (1, −1) ≺ (−1, 0).
+Let V be any nonempty finite subset of lattice points in Zd . We define max V
+to the maximal element in V with respect to the ordering . Similarly, min V
+is defined to be the minimal element in V .
+A important property of the ordering is shown in the following lemma.
+Lemma 4.2. Let P be a smooth Fano d-polytope, such that conv{e1 , . . . , ed }
+is a facet of P . For every 1 ≤ i ≤ d, let vi 6= ei denote the vertex of P , such
+that conv{e1 , . . . , ei−1 , vi , ei+1 , . . . , ed } is a facet of P .
+Then vi = min{v ∈ V(P ) | hueFi , vi < 0}.
+Proof. By lemma 2.2.(1) the vertex vi is in the set {v ∈ V(P ) | hueFi , vi < 0},
+and by lemma 2.2.(5) and the definition of the ordering , vi is the minimal
+element in this set.
+In fact, we have chosen the ordering  to obtain the property of lemma 4.2,
+and any other total order on Zd having this property can be used in what
+follows.
+
+4.2
+
+The order of a smooth Fano d-polytope
+
+We can now define an ordering on finite subsets of Zd . The ordering is
+defined recursively.
+Definition 4.3. Let X and Y be finite subsets of Zd . We define X  Y if
+and only if X = ∅ or
+Y 6= ∅ ∧ (min X ≺ min Y ∨ (min X = min Y ∧X\{min X}  Y \{min Y })).
+Example. ∅ ≺ {(0, 1)} ≺ {(0, 1), (−1, 1)} ≺ {(0, 1), (1, −1)} ≺ {(−1, 1)}.
+When W is a nonempty finite set of subsets of Zd , we define max W to be the
+maximal element in W with respect to the ordering of subsets . Similarly,
+min W is the minimal element in W .
+Now, we are ready to define the order of a smooth Fano d-polytope.
+
+4.3
+
+Permutation of basisvectors and presubsets
+
+9
+
+Definition 4.4. Let P be a smooth Fano d-polytope. The order of P ,
+ord(P ), is defined as
+ord(P ) := min{V(Q) | Q a special embedding of P }.
+The set is non-empty and finite, so ord(P ) is well-defined.
+Let P1 and P2 be two smooth Fano d-polytopes. We say that P1 ≤ P2 if
+and only if ord(P1 )  ord(P2 ). This is indeed a total order on the set of
+isomorphism classes of smooth Fano d-polytopes.
+
+4.3
+
+Permutation of basisvectors and presubsets
+
+The group Sd of permutations of d elements acts on Zd is the obvious way
+by permuting the basisvectors:
+σ.(a1 e1 + . . . + ad ed ) := a1 eσ(1) + . . . + ad eσ(d) , σ ∈ Sd .
+Similarly, Sd acts on subsets of Zd :
+σ.X := {σ.x | x ∈ X}.
+In this notation we clearly have for any special embedding P of a smooth
+Fano d-polytope
+ord(P )  min{σ.V(P ) | σ ∈ Sd }.
+Let V and W be finite subsets of Zd . We say that V is a presubset of W , if
+V ⊆ W and v ≺ w whenever v ∈ V and w ∈ W \ V .
+Example. {(0, 1), (−1, 1)} is a presubset of {(0, 1), (−1, 1), (1, −1)}, while
+{(0, 1), (1, −1)} is not.
+Lemma 4.5. Let P be a smooth Fano polytope. Then every presubset V of
+ord(P ) is the minimal element in {σ.V | σ ∈ Sd }.
+Proof. Let ord(P ) = {v1 , . . . , vn }, v1 ≺ . . . ≺ vn . Suppose there exists a
+permutation σ and a k, 1 ≤ k ≤ n, such that
+σ.{v1 , . . . , vk } = {w1 , . . . , wk } ≺ {v1 , . . . , vk },
+where w1 ≺ . . . ≺ wk . Then there is a number j, 1 ≤ j ≤ k, such that
+wi = vi for every 1 ≤ i < j and wj ≺ vj .
+Let σ act on {v1 , . . . , vn }.
+σ.{v1 , . . . , vn } = {x1 , . . . , xn } , x1 ≺ . . . ≺ xn .
+Then xi  vi for every 1 ≤ i < j and xj ≺ vj . So σ.ord(P ) ≺ ord(P ), but
+this contradicts the definition of ord(P ).
+
+10
+
+5
+
+5 THE SFP-ALGORITHM
+
+The SFP-algorithm
+
+In this section we describe an algorithm that produces the classification list
+of smooth Fano d-polytopes for any given d ≥ 1. The algorithm works by
+going through certain finite subsets of Wd in increasing order (with respect
+to the ordering defined in the previous section). It will output a subset V
+iff convV is a smooth Fano d-polytope P and ord(P ) = V .
+Throughout the whole section (e1 , . . . , ed ) is a fixed basis of Zd and I denotes
+the (d − 1)-simplex conv{e1 , . . . , ed }.
+
+5.1
+
+The SFP-algorithm
+
+The SFP-algorithm consists of three functions,
+
+SFP, AddPoint and CheckSubset.
+The finite subsets of Wd are constructed by the function AddPoint, which
+takes a subset V , {e1 , . . . , ed } ⊆ V ⊆ Wd , together with a finite set F,
+I ∈ F, of (d − 1)-simplices in Rd as input. It then goes through every v in
+the set
+{v ∈ Wd | max V ≺ v}
+in increasing order, and recursively calls itself with input V ∪ {v} and some
+set F ′ of (d − 1)-simplices of Rd , F ⊆ F ′ . In this way subsets of Wd are
+considered in increasing order.
+Whenever AddPoint is called, it checks if the input set V is the vertex set of
+a special embedding of a smooth Fano d-polytope P such that ord(P ) = V ,
+in which case the polytope P = convV is outputted.
+For any given integer d ≥ 1 the function SFP calls the function AddPoint
+with input {e1 , . . . , ed } and {I}. In this way a call SFP(d) will make the
+algorithm go through every finite subset of Wd containing {e1 , . . . , ed }, and
+smooth Fano d-polytopes are outputted in strictly increasing order.
+It is vital for the effectiveness of the SFP-algorithm, that there is some
+efficient way to check if a subset V ⊆ Wd is a presubset of ord(P ) for some
+smooth Fano d-polytope P . The function AddPoint should perform this
+check before the recursive call AddPoint(V, F ′ ).
+If P is any smooth Fano d-polytope, then any presubset V of ord(P ) is the
+minimal element in the set {σ.V |σ ∈ Sd } (by lemma 4.5). In other words, if
+there exists a permutation σ such that σ.V ≺ V , then the algorithm should
+not make the recursive call AddPoint(V ).
+But this is not the only test we wish to perform on a subset V before the
+recursive call. The function CheckSubset performs another test: It takes
+a subset V , {e1 , . . . , ed } ⊆ V ⊆ Wd as input together with a finite set of
+(d−1)-simplices F, I ∈ F, and returns a set F ′ of (d−1)-simplices containing
+F, if there exists a special embedding P of a smooth Fano d-polytope, such
+that
+
+5.2
+
+An example of the reasoning in CheckSubset
+
+11
+
+1. V is a presubset of V(P )
+2. F is a subset of the facets of P
+This is proved in theorem 5.1. If no such special embedding exists, then
+CheckSubset returns false in many cases, but not always! Only when
+CheckSubset(V, F) returns a set F ′ of simplices, we allow the recursive
+call AddPoint(V, F ′ ).
+Given input V ⊆ Wd and a set F of (d − 1)-simplices of Rd , the function
+CheckSubset works in the following way: Suppose V is a presubset of V(P )
+for some special embedding P of a smooth Fano d-polytope and F is a subset
+of the facets of P . Deduce as much as possible of the face lattice of P and
+look for contradictions to the lemmas stated in section 2. The more facets
+we know of P , the more restrictions we can put on the vertex set V(P ), and
+then on V . If a contradiction arises, return false. Otherwise, return the
+deduced set of facets of P .
+The following example illustrates how the function CheckSubset works.
+
+5.2
+
+An example of the reasoning in CheckSubset
+
+Let d = 5 and V = {v1 , . . . , v8 }, where
+v1 = e1 , v2 = e2 , v3 = e3 , v4 = e4 , v5 = e5
+v6 = −e1 − e2 + e4 + e5 , v7 = e2 − e3 − e4 , v8 = −e4 − e5 .
+Suppose P is a special embedding of a smooth Fano 5-polytope, such that
+V is a presubset of V(P ). Certainly, the simplex I is a facet of P .
+Notice, that V does not violate lemma 3.2.
+v1 + . . . + v8 = e2 + e5 .
+If V did contradict lemma 3.2, then the polytope P could not exist, and
+CheckSubset(V, {I}) should return false.
+For simplicity we denote any k-simplex conv{vi1 , . . . , vik } by {i1 , . . . , ik }.
+Since huI , v6 i = 0, the simplices F1 = {2, 3, 4, 5, 6} and F2 = {1, 3, 4, 5, 6}
+are facets of P (lemma 2.4).
+There are exactly two facets of P containing the ridge {1, 2, 4, 5}. One of
+them is I. Suppose the other one is {1, 2, 4, 5, 9}, where v9 is some lattice
+point not in V , v9 ∈ V(P ). Then huI , v9 i > huI , v7 i by lemma 2.2.(5)
+and then v9 ≺ v7 by the definition of the ordering of lattice points Zd .
+But then V is not a presubset of V(P ). This is the nice property of the
+ordering of Zd , and the reason why we chose it as we did. We conclude that
+F3 = {1, 2, 4, 5, 7} is a facet of P , and by similar reasoning F4 = {1, 2, 3, 5, 8}
+and F5 = {1, 2, 3, 4, 8} are facets of P .
+
+12
+
+5 THE SFP-ALGORITHM
+
+Now, for each of the facets Fi and every point vj ∈ V , we check if huFi , vj i =
+0. If this is the case, then by lemma 2.4 conv({vj } ∪ V(Fi ) \ {w}) is a facet
+of P for every w ∈ V(Fi ) where huw
+Fi , vj i < 0. In this way we get that
+{2, 4, 5, 6, 7} , {1, 4, 5, 6, 7} , {1, 2, 3, 7, 8} , {1, 3, 5, 7, 8}
+are facets of P .
+We continue in this way, until we cannot deduce any new facet of P . Every
+time we find a new facet F we check that v is beneath F (that is huF , vi ≤ 1)
+and that lemma 2.3 holds for any v ∈ V . If not, then CheckSubset(V, {I})
+should return false.
+If no contradiction arises, CheckSubset(V, {I}) returns the set of deduced
+facets.
+
+5.3
+
+The SFP-algorithm in pseudo-code
+
+Input: A positive integer d.
+Output: A list of special embeddings of smooth Fano d-polytopes, such that
+1. Any smooth Fano d-polytope is isomorphic to one and only one polytope in the output list.
+2. If P is a smooth Fano d-polytope in the output list, then V(P ) =
+ord(P ).
+3. If P1 and P2 are two non-isomorphic smooth Fano d-polytopes in the
+output list and P1 preceeds P2 in the output list, then ord(P1 ) ≺
+ord(P2 ).
+
+SFP ( an integer d ≥ 1 )
+1. Construct the set V = {e1 , . . . , ed } and the simplex I = convV .
+2. Call the function AddPoint(V, {I}).
+3. End program.
+
+AddPoint ( a subset V where {e1 , . . . , ed } ⊆ V ⊆ Wd , a set of (d − 1)simplices F in Rd where I ∈ F )
+1. If P = conv(V(V )) is a smooth Fano d-polytope and V(V ) = ord(P ),
+then output P .
+2. Go through every v ∈ Wd , max V(V ) ≺ v, in increasing order with
+respect to the ordering ≺:
+(a) If CheckSubset(V ∪ {v}, F) returns false, then goto (d). Otherwise let F ′ be the returned set of (d − 1)-simplices.
+
+5.4
+
+Justification of the SFP-algorithm
+
+13
+
+(b) If V ∪ {v} =
+6 min{σ.(V ∪ {v}) | σ ∈ Sd }, then goto (d).
+(c) Call the function AddPoint(V ∪ {v}, F ′ ).
+(d) Let v be the next element in Wd and go back to (a).
+3. Return
+
+CheckSubset ( a subset V where {e1 , . . . , ed } ⊆ V ⊆ Wd , a set of (d − 1)simplices F in Rd where I ∈ F )
+P
+1. Let ν = v∈V v.
+
+2. If huI , νi < 0, then return false.
+
+3. If hueIi , νi > 1 + huI , νi for some i, then return false.
+4. Let F ′ = F.
+5. For every i ∈ {1, . . . , d}: If the set {v ∈ V |hueIi , vi < 0} is equal to
+{max V }, then add the simplex conv({max V } ∪ V(I) \ {ei }) to F ′ .
+6. If there exists F ∈ F ′ such that V(F ) is not a Z-basis of Zd , then
+return false.
+7. If there exists F ∈ F ′ and v ∈ V such that huF , vi > 1, then return
+false.
+8. If there exists F ∈ F ′ , v ∈ V and w ∈ V(F ), such that
+
+0
+huF , vi = 1
+
+huw
+,
+vi
+<
+−1
+hu
+F , vi = 0
+F
+
+huF , vi huF , vi < 0
+then return false.
+
+9. If there exists F ∈ F ′ , v ∈ V and w ∈ V(F ), such that huF , vi = 0 and
+′
+huw
+F , vi = −1, then consider the simplex F = conv({v} ∪ V(F ) \ {w}).
+′
+′
+′
+′
+If F ∈
+/ F , then add F to F and go back to step 6.
+10. Return F ′ .
+
+5.4
+
+Justification of the SFP-algorithm
+
+The following theorems justify the SFP-algorithm.
+Theorem 5.1. Let P be a special embedding of a smooth Fano d-polytope
+and V a presubset of V(P ), such that {e1 , . . . , ed } ⊆ V . Let F be a set of
+facets of P .
+Then CheckSubset(V, F) returns a subset F ′ of the facets of P and F ⊆ F ′ .
+
+14
+
+6
+
+CLASSIFICATION RESULTS AND WHERE TO GET THEM
+
+Proof. By lemma 3.2 the subset V will pass the tests in step 2 and 3 in
+CheckSubset.
+The function CheckSubset constructs a set F ′ of (d − 1)-simplices containing the input set F. We now wish to prove that every simplex F in F ′ is a
+facet of P : By the assumptions the subset F ⊆ F ′ consists of facets of P .
+Consider the addition of a simplex Fi , 1 ≤ i ≤ d, in step 5:
+Fi = conv({max V } ∪ V(I) \ {ei }).
+As max V is the only element in the set {v ∈ V |hueIi , vi < 0} and V is a
+presubset of V(P ), Fi is a facet of P by lemma 4.2.
+Consider the addition of simplices in step 9: If F is a facet of P , then by
+lemma 2.4 the simplex conv({v} ∪ V(F ) \ {w}) is a facet of P .
+By induction we conclude, that every simplex in F ′ is a facet of P . Then
+any simplex F ∈ F ′ will pass the tests in steps 6–8 (use lemma 2.3 to see
+that the last test is passed).
+This proves the theorem.
+Theorem 5.2. The SFP-algorithm produces the promised output.
+Proof. Let P be a smooth Fano d-polytope. Clearly, P is isomorphic to at
+most one polytope in the output list.
+Let Q be a special embedding of P such that V(Q) = ord(P ). We need to
+show that Q is in the output list. Let V(Q) = {e1 , . . . , ed , q1 , . . . , qk }, where
+q1 ≺ . . . ≺ qk , and let Vi = {e1 , . . . , ed , q1 , . . . , qi } for every 1 ≤ i ≤ k.
+Certainly the function AddPoint has been called with input {e1 , . . . , ed }
+and {I}.
+By theorem 5.1 the function call CheckSubset(V1 , {I}) returns a set F1 of
+(d − 1)-simplices which are facets of Q, I ⊂ F1 . By lemma 4.5 the set V1
+passes the test in 2b in AddPoint. Then AddPoint is called recursively
+with input V1 and F1 .
+The call CheckSubset(V1 , F1 ) returns a subset F2 of facets of Q, and the
+set V2 passes the test in 2b in AddPoint. So the call AddPoint(V2 , F2 ) is
+made.
+Proceed in this way to see that the call AddPoint(Vk , Fk ) is made, and then
+the polytope Q = convVk is outputted in step 1 in AddPoint.
+
+6
+
+Classification results and where to get them
+
+A modified version of the SFP-algorithm has been implemented in C++,
+and used to classify smooth Fano d-polytopes for d ≤ 7. On an average
+home computer our program needs less than one day (january 2007) to construct the classification list of smooth Fano 7-polytopes. These lists can be
+downloaded from the authors homepage: http://home.imf.au.dk/oebro
+
+15
+
+REFERENCES
+
+An advantage of the SFP-algorithm is that it requires almost no memory:
+When the algorithm has found a smooth Fano d-polytope P , it needs not
+consult the output list to decide whether to output the polytope P or not.
+The construction guarentees that V(P ) = min{σ.V(P ) | σ ∈ Sd } and it
+remains to check if V(P ) = ord(P ). Thus there is no need of storing the
+output list.
+The table below shows the number of isomorphism classes of smooth Fano
+d-polytopes with n vertices.
+n
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+Total
+
+d=1
+
+d=2
+
+d=3
+
+d=4
+
+d=5
+
+d=6
+
+d=7
+
+1
+1
+2
+1
+1
+
+1
+
+5
+
+1
+4
+7
+4
+2
+
+18
+
+1
+9
+28
+47
+27
+10
+1
+1
+
+124
+
+1
+15
+91
+268
+312
+137
+35
+5
+2
+
+866
+
+1
+26
+257
+1318
+2807
+2204
+771
+186
+39
+11
+1
+1
+
+7622
+
+1
+40
+643
+5347
+19516
+26312
+14758
+4362
+1013
+214
+43
+5
+2
+72256
+
+References
+[1] V. V. Batyrev, Toroidal Fano 3-folds, Math. USSR-Izv. 19 (1982), 13–
+25.
+[2] V. V. Batyrev, On the classification of smooth projective toric varieties,
+Tohoku Math. J. 43 (1991), 569–585.
+[3] V. V. Batyrev, On the classification of toric Fano 4-folds, J. Math. Sci.
+(New York) 94 (1999), 1021–1050.
+[4] L. Bonavero, Toric varieties whose blow-up at a point is Fano. Tohoku
+Math. J. 54 (2002), 593–597.
+
+16
+
+REFERENCES
+
+[5] C. Casagrande, Centrally symmetric generators in toric Fano varieties,
+Manuscr. Math. 111 (2003), 471–485.
+[6] C. Casagrande, The number of vertices of a Fano polytope, Ann. Inst.
+Fourier 56 (2006), 121–130.
+[7] O. Debarre, Toric Fano varieties in Higher dimensional varieties and
+rational points, lectures of the summer school and conference, Budapest
+2001, Bolyai Society Mathematical Studies 12, Springer, 2001.
+[8] G. Ewald, On the classification of toric Fano varieties, Discrete Comput. Geom. 3 (1988), 49–54.
+[9] P. Kleinschmidt, A classification of toric varieties with few generators,
+Aequationes Math 35 (1988), no.2-3, 254–266.
+[10] M. Kreuzer & H. Skarke, Classification of reflexive polyhedra in three
+dimensions, Adv. Theor. Math. Phys. 2 (1998), 853–871.
+[11] M. Kreuzer & H. Skarke, Complete classification of reflexive polyhedra
+in four dimensions, Adv. Theor. Math. Phys. 4 (2000), 1209–1230.
+[12] M. Kreuzer & B. Nill, Classification of toric Fano 5-folds, Preprint,
+math.AG/0702890.
+[13] B. Nill, Gorenstein toric Fano varieties, Manuscr. Math. 116 (2005),
+183–210.
+[14] B. Nill. Classification of pseudo-symmetric simplicial reflexive polytopes, Preprint, math.AG/0511294, 2005.
+[15] H. Sato, Toward the classification of higher-dimensional Toric Fano
+varieties,. Tohoku Math. J. 52 (2000), 383–413.
+[16] H. Sato, Toric Fano varieties with divisorial contractions to curves.
+Math. Nachr. 261/262 (2003), 163–170.
+[17] V.E. Voskresenskij & A. Klyachko, Toric Fano varieties and systems of
+roots. Math. USSR-Izv. 24 (1985), 221–244.
+[18] K. Watanabe & M. Watanabe, The classification of Fano 3-folds with
+torus embeddings, Tokyo Math. J. 5 (1982), 37–48.
+[19] M. Øbro, Classification of terminal simplicial reflexive d-polytopes with
+3d − 1 vertices, Preprint, math.CO/0703416.
+
+REFERENCES
+Department of Mathematics
+University of Århus
+8000 Århus C
+Denmark
+E-mail address: oebro@imf.au.dk
+
+17
+
+

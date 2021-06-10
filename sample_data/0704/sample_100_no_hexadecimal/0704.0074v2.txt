@@ -1,0 +1,2418 @@
+arXiv:0704.0074v2 [math.RA] 21 Aug 2007
+
+Injective Morita Contexts (Revisited)
+Dedicated to Prof. Robert Wisbauer
+J. Y. Abuhlail ∗
+Department of Mathematics & Statistics
+King Fahd University of Petroleum
+& Minerals, Box # 5046
+31261 Dhahran (KSA)
+abuhlail@kfupm.edu.sa
+
+S. K. Nauman
+Department of Mathematics
+King AbdulAziz University
+P.O.Box 80203
+21589 Jeddah (KSA)
+synakhaled@hotmail.com
+
+Abstract
+This paper is an exposition of the so-called injective Morita contexts (in which
+the connecting bimodule morphisms are injective) and Morita α-contexts (in which
+the connecting bimodules enjoy some local projectivity in the sense of ZimmermannHuisgen). Motivated by situations in which only one trace ideal is in action, or
+the compatibility between the bimodule morphisms is not needed, we introduce the
+notions of Morita semi-contexts and Morita data, and investigate them. Injective
+Morita data will be used (with the help of static and adstatic modules) to establish
+equivalences between some intersecting subcategories related to subcategories of categories of modules that are localized or colocalized by trace ideals of a Morita datum.
+We end up with applications of Morita α-contexts to ∗-modules and injective right
+wide Morita contexts.
+
+1
+
+Introduction
+
+Morita contexts, in general, and (semi-)strict Morita contexts (with surjective connecting bilinear morphisms), in particular, were extensively studied and developed exponentially during the last few decades (e.g. [AGH-Z1997]). However, we sincerely feel that
+there is a gap in the literature on injective Morita contexts (i.e. those with injective connecting bilinear morphisms). Apart from the results in [Nau1994-a], [Nau1994-b] (where
+the second author initially explored this notion) and from an application to Grothendieck
+groups in the recent paper ([Nau2004]), it seems that injective Morita contexts were not
+studied systematically at all.
+∗
+
+Corresponding Author
+
+1
+
+We noticed that in several results of ([Nau1993], [Nau1994-a] and [Nau1994-b]) that are
+related to Morita contexts, only one trace ideal is used. Observing this fact, we introduce
+the notions of Morita semi-contexts and Morita data and investigate them. Several results
+are proved then for injective Morita semi contexts and/or injective Morita data.
+Consider a Morita datum M = (T, S, P, Q, <, >T , <, >S ), with not necessarily compatible bimodule morphisms <, >T : P ⊗S Q → T and <, >S : Q ⊗T P → S. We say that M is
+injective, iff <, >T and <, >S are injective, and to be a Morita α-datum, iff the associated
+dual pairings Pl := (Q, T P ), Pr := (Q, PS ), Ql := (P, S Q) and Qr := (P, QT ) satisfy
+the α-condition (which is closely related to the notion of local projectivity in the sense of
+Zimmermann-Huisgen [Z-H1976]). The α-condition was introduced in [AG-TL2001] and
+further investigated by the first author in [Abu2005].
+While (semi-)strict unital Morita contexts induce equivalences between the whole module categories of the rings under consideration, we show in this paper how injective Morita
+(semi-)contexts and injective Morita data play an important role in establishing equivalences between suitable intersecting subcategories of module categories (e.g. intersections
+of subcategories that are localized/colocalized by trace ideals of a Morita datum with subcategories of static/adstatic modules, etc.). Our main applications in addition to equivalences related to the Kato-Ohtake-Müller localization-colocalization theory (developed in
+[Kat1978], [KO1979] and [Mül1974]), will be to ∗-modules (introduced by Menini and Orsatti [MO1989]) and to right wide Morita contexts (introduced by F. Castaño Iglesias and
+J. Gómez-Torrecillas [C-IG-T1995]).
+Most of our results will be stated for left modules, while deriving the "dual" versions for
+right modules is left to the interested reader. Moreover, for Morita contexts, some results
+are stated/proved for only one of the Morita semi-contexts, as the ones corresponding to
+the second semi-context can be obtained analogously. For the convenience of the reader, we
+tried to make the paper self-contained, so that it can serve as a reference on injective Morita
+(semi-)contexts and their applications. In this respect, and for the sake of completeness, we
+have included some previous results of the authors that are (in most cases) either provided
+with new shorter proofs, or are obtained under weaker conditions.
+This paper is organized as follows: After this brief introduction, we give in Section 2
+some preliminaries including the basic properties of dual α-pairings, which play a central
+role in rest of the work. The notions of Morita semi-contexts and Morita data are introduced in Section 3, where we clarify their relations with the dual pairings and the so-called
+elementary rngs. Injective Morita (semi-)contexts appear in Section 4, where we study
+their interplay with dual α-pairings and provide some examples and a counter-example.
+In Section 5 we include some observations regarding static and adstatic modules and use
+them to obtain equivalences among suitable intersecting subcategories of modules related
+to a Morita (semi-)context. In the last section, more applications are presented, mainly to
+subcategories of modules that are localized or colocalized by a trace ideal of an injective
+Morita (semi-)context, to ∗-modules and to injective right wide Morita contexts.
+2
+
+2
+
+Preliminaries
+
+Throughout, R denotes a commutative ring with 1R 6= 0R and A, A′ , B, B ′ are unital
+R-algebras. We have reserved the term "ring" for an associative ring with a multiplicative
+unity, and we will use the term "rng" for a general associative ring (not necessarily with
+unity). All modules over rings are assumed to be unitary, and ring morphisms are assumed
+to respect multiplicative unities. If T and S are categories, then we write T ≤ S (T ≤ S)
+to mean that T is a (full) subcategory of S, and T ≈ S to indicate that T and S are
+equivalent.
+
+Rngs and their modules
+2.1. By an A-rng (T, μT ), we mean an (A, A)-bimodule T with an (A, A)-bilinear morphism μT : T ⊗A T → T, such that μT ◦ (μT ⊗A idT ) = μT ◦ (idT ⊗A μT ). We call an A-rng
+(T, μT ) an A-ring, iff there exists in addition an (A, A)-bilinear morphism ηT : A → T,
+called the unity map, such that μT ◦ (ηT ⊗A idT ) = θlT and μT ◦ (idT ⊗A η T ) = θrT (where
+θlT
+
+θrT
+
+A ⊗A T ≃ T and T ⊗A A ≃ T are the canonical isomorphisms). So, an A-ring is a unital
+A-rng; and an A-rng is (roughly speaking) an A-ring not necessarily with unity.
+2.2. A morphism of rngs (ψ : δ) : (T : A) → (T ′ : A′ ) consists of a morphism of R-algebras
+(A,A′ )
+δ : A → A′ and an (A, A)-bilinear morphism ψ : T → T ′ , such that μT ′ ◦χ(T ′ ,T ′ ) ◦(ψ ⊗A ψ) =
+(A,A′ )
+
+ψ ◦ μT (where χ(T ′ ,T ′ ) : T ′ ⊗A T ′ → T ′ ⊗A′ T ′ is the canonical map induced by δ). By RNG
+we denote the category of associative rngs with morphisms being rng morphisms, and
+by URNG < RNG the (non-full) subcategory of unital rings with morphisms being the
+morphisms in RNG which respect multiplicative unities.
+2.3. Let (T, μT ) be an A-rng. By a left T -module we mean a left A-module N with a left
+N
+N
+N
+A-linear morphism φN
+T : T ⊗A N → N, such that φT ◦ (μT ⊗A idN ) = φT ◦ (idT ⊗A φT ). For
+left T -modules M, N, we call a left A-linear morphism f : M → N a T -linear morphism,
+iff f (tm) = tf (m) for all t ∈ T. The category of left T -modules and left T -linear morphisms
+is denoted by T M. The category MT of right T -modules is defined analogously. Let (T : A)
+and (T ′ : A′ ) be rngs. We call an (A, A′ )-bimodule N a (T, T ′ )-bimodule, iff (N, φN
+T ) is
+N
+N
+N
+′
+a left T -module and (N, φT ′ ) is a right T -module, such that φT ′ ◦ (φT ⊗A′ idT ′ ) = φN
+T ◦
+′
+′
+).
+For
+(T,
+T
+)-bimodules
+M,
+N,
+we
+call
+an
+(A,
+A
+)-bilinear
+morphism
+f
+:
+M
+→
+N
+(idT ⊗A φN
+′
+T
+′
+′
+′
+(T, T )-bilinear, provided f is left T -linear and right T -linear. The category of (T, T )bimodules is denoted by T MT ′ . In particular, for any A-rng T, a left (right) T -module
+M has a canonical structure of a unitary right (left) S-module, where S := End(T M)op
+(S := End(MT )); and moreover, with this structure M becomes a (T, S)-bimodule (an
+(S, T )-bimodule).
+Remark 2.4. Similarly, one can define rngs over arbitrary (not-necessarily unital) ground
+rngs and rng morphisms between them. Moreover, one can define (bi)modules over such
+rngs and (bi)linear morphisms between them.
+3
+
+Notation. Let T be an A-rng. We write T U (UT ) to denote that U is a left (right) T module. For a left (right) T -module T U, we consider the set ∗ U := HomT − (U, T ) (U ∗ :=
+Hom−T (U, T )) of all left (right) T -linear morphisms from U to T with the canonical right
+(left) T -module structure.
+
+Generators and cogenerators
+Definition 2.5. Let T be an A-rng. For a left T -module T U consider the following subclasses of T M :
+Gen(T U)
+Cogen(T U)
+Pres(T U)
+Copres(T U)
+
+:=
+:=
+:=
+:=
+
+{T V | ∃ a set Λ and an exact sequence U (Λ) → V → 0};
+{T W | ∃ a set Λ and an exact sequence 0 → W → U Λ };
+{T V | ∃ sets Λ1 , Λ2 and an exact sequence U (Λ2 ) → U (Λ1 ) → V → 0};
+{T W | ∃ sets Λ1 , Λ2 and an exact sequence 0 → W → U Λ1 → U Λ2 };
+
+A left T -module in Gen(T U) (respectively Cogen(T U), Pres(T U), Copres(T U)) is said to be
+U-generated (respectively U-cogenerated, U-presented, U-copresented). Moreover,
+we say that T U is a generator (respectively cogenerator, presentor, copresentor), iff
+Gen(T U) = T M (respectively Cogen(T U) = T M, Pres(T U) = T M, Copres(T U) = T M).
+
+Dual α-pairings
+In what follows we recall the definition and properties of dual α-pairings introduced
+in [AG-TL2001, Definition 2.3.] and studied further in [Abu2005].
+2.6. Let T be an A-rng. A dual left T -pairing Pl = (V, T W ) consists of a left T -module
+W and a right T -module V with a right T -linear morphism κPl : V → ∗ W (equivalently
+a left T -linear morphism χPl : W → V ∗ ). For dual left pairings Pl = (V, T W ), P′l = (V ′ ,
+′
+′
+′
+T ′ W ), a morphism of dual left pairings (ξ, θ) : (V , W ) → (V, W ) consists of a triple
+(ξ, θ : ς) : (V,
+
+TW)
+
+→ (V ′ ,
+
+T′W
+
+′
+
+),
+
+where ξ : V → V ′ and θ : W ′ → W are T -linear and ς : T → T ′ is a morphism of rngs,
+such that considering the induced maps <, >T : V × W → T and <, >T ′ : V ′ × W ′ → T ′ we
+have
+(1)
+< ξ(v), w ′ >T ′ = ς(< v, θ(w ′) >T ) for all v ∈ V and w ′ ∈ W ′ .
+The dual left pairings with the morphisms defined above build a category, which we denote
+by Pl . With Pl (T ) ≤ Pl we denote the full subcategory of dual T -pairings. The category
+Pr of dual right pairings and its full subcategory Pr (T ) ≤ Pr of dual right T -pairings are
+defined analogously.
+4
+
+Remark 2.7. The reader should be warned that (in general) for a non-commutative rng T
+and a dual left T -pairing Pl = (V, T W ), the following map induced by the right T -linear
+morphism κPl : V → ∗ W :
+<, >T : V × W → T, < v, w >T := κPl (v)(w)
+is not necessarily T -balanced, and so does not induce (in general) a map V ⊗T W → T. In
+fact, for all v ∈ V, w ∈ W and t ∈ T we have
+< vt, w >
+< v, tw >
+
+= κPl (vt)(w) = [κPl (v)t](w) = [κPl (v)(w)]t
+= κPl (v)(tw) = t[κPl (v)(w)] = t < v, w >T .
+
+= < v, w >T t;
+
+2.8. Let T be an A-rng, N, W be left T -modules and identify N W with the set of all
+mappings from W to N. Considering N with the discrete topology and N W with the product
+topology, the induced relative topology on HomT − (W, N) ֒→ N W is a linear topology (called
+the finite topology), for which the basis of neighborhoods of 0 is given by the set of
+annihilator submodules:
+Bf (0) := {F ⊥(HomT − (W,N )) | F = {w1 , ..., wk } ⊂ W is a finite subset},
+where
+F ⊥(HomT − (W,N )) := {f ∈ HomT − (W, N)) | f (W ) = 0}.
+2.9. Let T be an A-rng, Pl = (V, T W ) a dual left T -pairing and consider for every right
+T -module UT the following canonical map
+X
+X
+l
+αP
+:
+U
+⊗
+W
+→
+Hom
+(V,
+U),
+u
+⊗
+w
+7
+→
+[v
+→
+7
+ui < v, wi >T ].
+(2)
+T
+−T
+i
+T
+i
+U
+
+We say that Pl = (V, T W ) ∈ Pl (T ) satisfies the left α-condition (or is a dual left αα
+l
+pairing), iff αP
+U is injective for every right T -module UT . By Pl (T ) ≤ Pl (T ) we denote the
+full subcategory of dual left T -pairings satisfying the left α-condition. The full subcategory
+of dual right α-pairings Prα (T ) ≤ Pr (T ) is defined analogously.
+Definition 2.10. Let T be an A-rng, Pl = (V, T W ) be a dual left T -pairing and consider
+l
+κPl : V → ∗ W and αP
+V : V ⊗T W → End(VT ).
+
+We say Pl ∈ Pl (T ) is
+dense, iff κPl (V ) ⊆ ∗ W is dense (w.r.t. the finite topology on ∗ W ֒→ T W );
+l
+injective (resp. semi-strict, strict), iff αP
+V is injective (resp. surjective, bijective);
+χP
+
+κPl
+
+l
+
+non-degenerate, iff V ֒→ ∗ W and W ֒→ V ∗ canonically.
+2.11. Let T be an A-rng. We call a T -module W locally projective (in the sense of B.
+Zimmermann-Huisgen [Z-H1976]), iff for every diagram of T -modules
+0
+
+/
+
+ι
+
+F
+g ′ ◦ι
+
+/
+
+W BB
+g′
+
+
+
+L
+5
+
+BB g
+BB
+BB
+/N
+π
+
+/
+
+0
+
+with exact rows and finitely generated T -submodule F ⊆ W : for every T -linear morphism
+g : W → N, there exists a T -linear morphism g ′ : W → L, such that g ◦ ι = π ◦ g ′ ◦ ι.
+For proofs of the following basic properties of locally projective modules and dual
+α-pairings see [Abu2005] and [Z-H1976]:
+Proposition 2.12. Let T be an A-ring and Pl = (V, T W ) ∈ Pl (T ).
+1. The left T -module T W is locally projective if and only if (∗ W, W ) is an α-pairing.
+2. The left T -module T W is locally projective, iff for any finite subset {w1 , ..., wk } ⊆ W,
+k
+X
+k
+∗
+there exists {(fi , w
+ei )}i=1 ⊂ W × W such that wj =
+fi (wj )w
+ei for all j = 1, ..., k.
+i=1
+
+3. If T W is locally projective, then T W is flat and T -cogenerated.
+
+4. If Pl ∈ Plα (T ), then T W is locally projective.
+5. If T W is locally projective and κP (V ) ⊆ ∗ W is dense, then Pl ∈ Plα (T ).
+6. Assume TT is an injective cogenerator. Then Pl ∈ Plα (T ) if and only if T W is locally
+projective and κPl (V ) ⊆ ∗ W is dense.
+χP
+
+l
+
+7. If T is a QF ring, then Pl ∈ Plα (T ) if and only if T W is projective and W ֒→ V ∗ .
+The following result completes the nice observation [BW2003, 42.13.] about locally
+projective modules:
+Proposition 2.13. Let T be a ring, T W a left T -module, S := End(T W )op and consider
+the canonical (S, S)-bilinear morphism
+[, ]W :
+
+∗
+
+W ⊗T W → End(T W ), f ⊗T w 7→ [w
+e 7→ f (w)w].
+e
+
+1.
+
+TW
+
+is finitely generated projective if and only if [, ]W is surjective.
+
+2.
+
+TW
+
+is locally projective if and only if Im([, ]W ) ⊆ End(T W ) is dense.
+
+Proof.
+
+1. This follows by [Fai1981, 12.8.].
+
+2. Assume T W is locally projective and consider for every left T -module N the canonical
+mapping
+∗
+[, ]W
+e 7→ f (w)n].
+e
+N : W ⊗T N → HomT (W, N), f ⊗T n 7→ [w
+
+It follows then by [BW2003, 42.13.], that Im([, ]W
+N ) ⊆ HomT (W, N) is dense. In
+particular, setting N = W we conclude that Im([, ]W ) ⊆ End(T W ) is dense. On
+6
+
+the other hand, assume Im([, ]W ) ⊆ End(T W ) is dense. Then for every finite subset
+n
+X
+gi ⊗T w
+e
+ei ∈ ∗ W ⊗T W with
+{w1 , ..., wk } ⊆ W, there exists
+i=1
+
+wj = idW (wj ) = [, ]W (
+
+n
+X
+i=1
+
+gi ⊗T w
+e
+ei )(wj ) =
+
+n
+X
+i=1
+
+gi (wj )w
+e
+ei for j = 1, ..., k.
+
+It follows then by Proposition 2.12 "2" that T W is locally projective.
+
+3
+
+Morita (Semi)contexts
+
+We noticed, in the proofs of some results on equivalences between subcategories of
+module categories associated to a given Morita context, that no use is made of the compatibility between the connecting bimodule morphisms (or even that only one trace ideal
+is used and so only one of the two bilinear morphisms is really in action). Some results of
+this type appeared, for example, in [Nau1993], [Nau1994-a] and [Nau1994-b]. Moreover,
+in our considerations some Morita contexts will be formed for arbitrary associative rngs
+(i.e. not necessarily unital rings). These considerations motivate us to make the following
+general definitions:
+3.1. By a Morita semi-context we mean a tuple
+mT = ((T : A), (S : B), P, Q, <, >T , I),
+
+(3)
+
+where T is an A-rng, S is a B-rng, P is a (T, S)-bimodule, Q is an (S, T )-bimodule,
+<, >T : P ⊗S Q → T is a (T, T )-bilinear morphism and I := Im(<, >T ) ⊳ T (called the
+trace ideal associated to mT ). We drop the ground rings A, B and the trace ideal I ⊳ T,
+if they are not explicitly in action. If mT (3) is a Morita semi-context and T, S are unital
+rings, then we call mT a unital Morita semi-context.
+3.2. Let mT = ((T : A), (S : B), P, Q, <, >T ), mT ′ = ((T ′ : A′ ), (S ′ : B ′ ), P ′ , Q′ , <, >T ′ ) be
+Morita semi-contexts. By a morphism of Morita semi-contexts from mT to mT ′ we
+mean a four fold set of morphisms
+((β : δ), (γ : σ), φ, ψ) : ((T : A), (S : B), P, Q) → ((T ′ : A′ ), (S ′ : B ′ ), P ′, Q′ ),
+where (β : δ) : (T : A) → (T ′ : A′ ) and (γ : σ) : (S : B) → (S ′ : B ′ ) are rng morphisms,
+φ : P → P ′ is (T, S)-bilinear and ψ : Q → Q′ is (S, T )-bilinear, such that
+β(< p, q >T ) =< φ(p), ψ(q) >T ′ for all p ∈ P, q ∈ Q .
+Notice that we consider P ′ as a (T, S)-bimodule and Q′ as an (S, T )-bimodule with actions
+induced by the morphism of rngs (β : δ) and (γ : σ). By MSC we denote the category
+of Morita semi-contexts with morphisms defined as above, and by UMSC < MSC the
+(non-full) subcategory of unital Morita semi-contexts.
+7
+
+Morita semi-contexts are closely related to dual pairings in the sense of [Abu2005]:
+3.3. Let (T, S, P, Q, <, >T ) ∈ MSC and consider the canonical isomorphisms of Abelian
+groups
+ξ
+
+ζ
+
+Hom(S,T ) (Q, ∗ P ) ≃ Hom(T,T ) (P ⊗S Q, T ) ≃ Hom(T,S) (P, Q∗ ).
+This means that we have two dual T -pairings Pl := (Q, T P ) ∈ Pl (T ) and Qr := (P, QT ) ∈
+Pr (T ), induced by the canonical T -linear morphisms
+κPl := ξ −1 (<, >T ) : Q → ∗ P and κQr := ζ(<, >T ) : P → Q∗ .
+On the other hand, let (S, T, Q, P, <, >S ) ∈ MSC and consider the canonical isomorphisms
+of Abelian groups
+ζ′
+
+ξ′
+
+Hom(S,T ) (Q, P ∗ ) ≃ Hom(S,S) (Q ⊗T P, S) ≃ Hom(T,S) (P, ∗ Q).
+Then we have two dual S-pairings Pr := (Q, PS ) ∈ Pr (S) and Ql := (P, S Q) ∈ Pl (S),
+induced by the canonical morphisms
+κPr := ξ ′−1 (<, >S ) : Q → P ∗ and κQr := ζ ′ (<, >S ) : P → ∗ Q.
+3.4. By a Morita datum we mean a tuple
+M = ((T : A), (S : B), P, Q, <, >T , <, >S , I, J),
+
+(4)
+
+where the following are Morita semi-contexts.
+MT := ((T : A), (S : B), P, Q, <, >T , I) and MS := ((S : B), (T : A), Q, P, <, >S , J) (5)
+If, moreover, the bilinear morphisms <, >T : P ⊗S Q → T and < −, >S : Q ⊗T P → S are
+compatible, in the sense that
+< q, p >S q ′ = q < p, q ′ >T and p < q, p′ >S =< p, q >T p′ ∀ p, p′ ∈ P, q, q ′ ∈ Q, (6)
+then we call M a Morita context. If T, S in a Morita datum (context) M are unital,
+then we call M a unital Morita datum (context).
+3.5. Let M = ((T : A), (S : B), P, Q, <, >T , <, >S ) and M′ = ((T ′ : A′ ), (S ′ : B ′ ), P ′, Q′ , <
+, >T ′ , <, >S ′ ) be Morita contexts. Extending [Ami1971, Page 275], we mean by a morphism of Morita contexts from M to M′ a four fold set of maps
+((β : δ), (γ : σ), φ, ψ) : ((T : A), (S : B), P, Q) → ((T ′ : A′ ), (S ′ : B ′ ), P ′, Q′ ),
+where (β : δ) : (T : A) → (T ′ : A′ ), (γ : σ) : (S : B) → (S ′ : B ′ ) are rng morphisms,
+φ : P → P ′ is (T, S)-bilinear and ψ : Q → Q′ is (S, T )-bilinear, such that
+β(< p, q >T ) =< φ(p), ψ(q) >T ′ and γ(< q, p >S ) =< ψ(q), φ(p) >S ′ ∀ p ∈ P, q ∈ Q.
+By MC we denote the category of Morita contexts with morphisms defined as above, and
+by UMC < MC the (non-full) subcategory of unital Morita contexts.
+8
+
+Example 3.6. If R is commutative, then any Morita semi-context (R, R, P, Q, <, >R) yields
+<,>R
+a Morita context (R, R, P, Q, <, >R, [, ]R ), where [, ]R := Q ⊗R P ≃ P ⊗R Q −→ R.
+3.7. We call a Morita semi-context mT = (T, S, P, Q, <, >T ) semi-derived (derived),
+iff S := End(T P )op (and Q = ∗ P ). We call a Morita datum, or a Morita context, M =
+(T, S, P, Q, <, >T , <, >S ) semi-derived (derived), iff S = End(T P )op , or T = End(PS )
+(S = End(T P )op and Q = ∗ P, or T = End(PS ) and Q = P ∗ ).
+Remark 3.8. Following [Cae1998, 1.2.] (however, dropping the condition that the bilinear
+map <, >T : P ⊗S Q → T is surjective), Morita semi-contexts (T, S, P, Q, <>T ) in our sense
+were called dual pairs in [Ver2006]. However, we think the terminology we are using is more
+informative and avoids confusion with other notions of dual pairings in the literature (e.g.
+the ones studied by the first author in [Abu2005]). The reason for this specific terminology
+(i.e. Morita semi-contexts) is that every Morita context contains two Morita semi-contexts
+as clear from the definition; and that any Morita semi-context can be extended to a (not
+necessarily unital) Morita context in a natural way as explained below.
+
+Elementary rngs
+In what follows we demonstrate how to build new Morita (semi-)contexts from a given
+Morita semi-context. These constructions are inspired by the notion of elementary rngs in
+[Cae1998, 1.2.] (and [Ver2006, Remark 3.8.]):
+Lemma 3.9. Let mT := ((T : A), (S : B), P, Q, <, >T ) ∈ MSC.
+1. The (T, T )-bimodule T := P ⊗S Q has a structure of a T -rng (A-rng) with multiplication
+(p ⊗S q) *T (p′ ⊗S q ′ ) :=< p, q >T p′ ⊗S q ′ ∀ p, p′ ∈ P, q, q ′ ∈ Q,
+such that <, >T : T → T is a morphism of A-rngs, P is a (T, S)-bimodule and Q is
+an (S, T)-bimodule, where
+(p ⊗S q) ⇀ pe :=< p, q >T pe and qe ↼ (p ⊗S q) := qe < p, q >T .
+
+Moreover, we have morphisms of T -rngs (A-rngs)
+ψ
+φ
+
+:
+:
+
+T → End(PS ),
+T → End(S Q)op ,
+
+p ⊗S q
+p ⊗S q
+
+7→ [e
+p 7→< p, q >T pe];
+7→ [e
+q→
+7 qe < p, q >T ],
+
+((T : A), (S : B), P, Q, idT) ∈ MSC and we have a morphism of Morita semi-contexts
+(<, >T , idS , , idP , idQ ) : (T, S, P, Q, idT) → (T, S, P, Q, <, >T ).
+9
+
+2. The (S, S)-bimodule S := Q ⊗T P has a structure of an S-rng (B-rng) with multiplication
+(q ⊗T p) *S (q ′ ⊗T p′ ) := q < p, q ′ >T ⊗T p′ = q⊗T < p, q ′ >T p′ ∀ p, p′ ∈ P, q, q ′ ∈ Q,
+such that <, >S : S → S is a morphism of B-rngs, P is a (T, S)-bimodule and Q is
+an (S, T )-bimodule, where
+pe ↼ (q ⊗T p) :=< pe, q >T p and (q ⊗T p) ⇀ qe := q < p, qe >T .
+
+Moreover, we have morphisms of S-rngs (B-rngs)
+Ψ
+Φ
+
+: S
+: S
+
+→ End(T P )op ,
+→ End(QT ),
+
+q ⊗T p 7→
+q ⊗T p →
+7
+
+[e
+p 7→< pe, q >T p],
+[e
+q 7→ q < p, qe >T ],
+
+and M := ((T : A), (S : B), P, Q, <, >T , idS ) is a Morita context.
+
+Remarks 3.10.
+1. Given ((S : B), (T : A), Q, P, <, >S ) ∈ MSC, the (S, S)-bimodule
+S := Q ⊗T P becomes an S-rng with multiplication
+(q ⊗T p) *S (q ′ ⊗T p′ ) :=< q, p >S q ′ ⊗T p′ ∀ p, p′ ∈ P, q, q ′ ∈ Q;
+and the (T, T )-bimodule T := P ⊗S Q becomes a T -rng with multiplication
+(p ⊗S q) *T (p′ ⊗S q ′ ) := p < q, p′ >S ⊗S q ′ = p ⊗S < q, p′ >S q ′ ∀ p, p′ ∈ P, q, q ′ ∈ Q.
+Analogous results to those in Lemma 3.9 can be obtained for the S-rng S and the
+T -rng T.
+2. Given a Morita semi-context (T, S, P, Q, <, >T ) several equivalent conditions for the
+T -rng T := P ⊗S Q to be unital and the modules T P, QT to be firm can be found in
+[Ver2006, Theorem 3.3.]. Analogous results can be formulated for the S-rng Q ⊗T P
+and the S-modules PS , S Q corresponding to any (S, T, Q, P, <, >S ) ∈ MSC.
+Proposition 3.11.
+1. Let mT = (T, S, P, Q, <, >T ) ∈ UMSC and assume the A-rng
+T := P ⊗S Q to be unital. If <, >T : T → T respects unities (and mT is injective),
+<,>T
+
+then <, >T is surjective (T ≃ T as A-rings).
+2. Let mS = (S, T, Q, P, <, >S ) ∈ UMSC and assume the B-rng S := Q ⊗S P to
+be unital. If <, >S : S → S respects unities (and mS is injective), then <, >S is
+<,>S
+
+surjective (S ≃ S as B-rings).
+3. Let M = (T, S, P, Q, <, >T , <, >S ) ∈ UMC and assume the rngs T := P ⊗S Q, T,
+S := Q ⊗S P to be unital. If <, >T : P ⊗S Q → T and <, >S : S → S respect unities,
+<,>T
+<,>S
+then T ≃ T as A-ring, S ≃ S as B-rings and we have equivalences of categories
+T M ≈ S M (and MT ≈ MS ).
+10
+
+Xn
+pi ⊗S qi . If <, >T respects unities, then we
+Proof. Assume T is unital with 1T =
+i=1
+Xn
+Xn
+have
+< pi , qi >T = 1T , and so for any t ∈ T we get t = t1T =
+t < pi , qi >T =
+i=1
+i=1
+Xn
+< tpi , qi >T ∈ Im(<, >T ). One can prove "2" analogously. As for "3", it is well
+i=1
+known that a unital Morita context with surjective connecting bimodule morphisms is
+<,>T
+<,>S
+strict (e.g. [Fai1981, 12.7.]), hence T ≃ T, S ≃ S. The equivalences of categories
+T M ≃ T M ≈ S M ≃ S M (and MT ≃ MT ≈ MS ≃ MS ) follow then by classical Morita
+Theory (e.g. [Fai1981, Chapter 12]).
+Definition 3.12. Let T be an A-rng, VT a right T -module and consider for every left
+T -module T L the annihilator
+ann⊗
+L (VT ) := {l ∈ L | V ⊗T l = 0}.
+Following [AF1974, Exercises 19], we say VT is L-faithful, iff ann⊗
+L (VT ) = 0; and to be
+completely faithful, iff VT is L-faithful for every left T -module S L. Similarly, we can
+define completely faithful left T -modules.
+Under suitable conditions, the following result characterizes the Morita data, which
+are Morita contexts:
+Proposition 3.13. Let M = (T, S, P, Q, <, >T , <, >S ) be a Morita datum.
+id
+
+id
+
+1. If M ∈ MC, then S ≃ S and T ≃ T as rngs.
+id
+
+2. Assume T P is Q-faithful and QT is P -faithful. Then M ∈ MC if and only if S ≃ S
+id
+
+and T ≃ T as rngs.
+Proof.
+
+1. Obvious.
+id
+
+id
+
+2. Assume S ≃ S and T ≃ T as rngs. If p ∈ P and q, q ′ ∈ Q are arbitrary, then we have
+for any pe ∈ P :
+
+< q, p >S q ′ ⊗T pe = (q ⊗T p) *S (q ′ ⊗T pe) = (q ⊗T p) *S (q ′ ⊗T pe) = q < p, q ′ >T ⊗T pe,
+
+hence < q, p >S q ′ − q < p, q ′ >T ∈ annQ (P ) = 0 (since T P is Q-faithful), i.e.
+< q, p >S q ′ = q < p, q ′ >T for all p ∈ P and q, q ′ ∈ Q. Assuming QT is P -faithful,
+one can prove analogously that < p, q >T p′ = p < q, p′ >S for all p, p′ ∈ P and
+q ∈ Q. Consequently, M is a Morita context.
+
+4
+
+Injective Morita (Semi-)Contexts
+
+Definition 4.1. We call a Morita semi-context mT = (T, S, P, Q, <, >T , I) :
+injective (resp. semi-strict, strict), iff <, >T : P ⊗S Q → T is injective (resp. surjective, bijective);
+non-degenerate, iff Q ֒→ ∗ P and P ֒→ Q∗ canonically;
+Morita α-semi-context, iff Pl := (Q, T P ) ∈ Plα (T ) and Qr := (P, QT ) ∈ Prα (T ).
+11
+
+Notation. By MSCα ≤ MSC (UMSCα ≤ UMSC) we denote the full subcategory of
+(unital) Morita semi-contexts satisfying the α-condition. Moreover, we denote by IMSC ≤
+MSC (IUMSC ≤ UMSC) the full subcategory of injective (unital) Morita semi-contexts.
+Definition 4.2. We say a Morita datum (context) M = (T, S, P, Q, <, >T , <, >S , I, J) :
+is injective (resp. semi-strict, strict), iff <, >T : P ⊗S Q → T and <, >S : Q⊗T P → S
+are injective (resp. surjective, bijective);
+is non-degenerate, iff Q ֒→ ∗ P, P ֒→ Q∗ , Q ֒→ P ∗ and P ֒→ ∗ Q canonically;
+satisfies the left α-condition, iff Pl := (Q, T P ) ∈ Plα (T ) and Ql := (P, S Q) ∈ Plα (S);
+satisfies the right α-condition, iff Qr := (P, QT ) ∈ Prα (T ) and Pr := (Q, PS ) ∈
+α
+Pr (S);
+satisfies the α-condition, or M is a Morita α-datum (Morita α-context), iff M
+satisfies both the left and the right α-conditions.
+Notation. By MCαl < MC (UMCαl < UMC) we denote the full subcategory of Morita
+contexts satisfying the left α-condition, and by MCαr < MC (UMCαr < UMC) the full
+subcategory of (unital) Morita contexts satisfying the right α-condition. Moreover, we set
+MCα := MCαl ∩ MCαr and UMCα := UMCαl ∩ UMCαr .
+Lemma 4.3. Let M = (T, S, P, Q, <, >T , <, >S , I, J) ∈ MC. Consider the Morita semicontext MS := (S, T, Q, P, <, >S ), the dual pairings Pl := (Q, T P ) ∈ Pl (T ), Qr :=
+(P, QT ) ∈ Pr (T ) and the canonical morphisms of rings
+ρP : S → End(T P )op and λQ : S → End(QT ).
+1. If Qr is injective (semi-strict), then MS is injective (ρP : S → End(T P )op is a
+surjective morphism of B-rngs).
+2. Assume PS is faithful and let Qr be semi-strict. Then S ≃ End(T P )op (an isomorphism of unital B-rings) and MS is strict.
+3. If Pl is injective (semi-strict), then MS is injective (λQ : S → End(QT ) is a surjective morphism of B-rngs).
+4. Assume S Q is faithful and let Pl is semi-strict. Then S ≃ End(QT ) (an isomorphism
+of unital B-rings) and MS is strict.
+Proof. We prove only "1" and "2", as "3" and "4" can be proved analogously.
+12
+
+Consider the following butterfly diagram with canonical morphisms
+Q ⊗T Q∗ lYYYYY
+
+YYYYYY
+κ
+YYid
+YYQY⊗
+YYTYYQYrY
+YYYYYY
+YYYYY
+j
+jjjj
+j
+j
+j
+jjj
+j
+u jjj
+
+eeeee2
+
+κPl ⊗T idPeeeeeeeee
+
+Q ⊗T P
+
+αP
+Q
+
+∗
+
+P ⊗T P
+
+eee
+eeeeee
+e
+e
+e
+e
+e
+eeeeee
+TTTT
+TTTTαQ
+TPTTT
+TTT)
+
+Hom−T (Q∗ , P )
+
+Hom−T (∗ P, Q)
+
+55
+55
+55
+55
+(κPl ,Q)
+55(κQr ,P )
+55
+P
+r
+55
+αQ
+αQl
+
+P
+55
+T
+55
+jj S TTTTT
+j
+j
+j
+TTTT
+55
+jj
+j
+j
+T
+j
+T
+55
+TTTT
+jj
+j
+j
+j
+T
+55
+TTTT
+jj
+j
+j
+j
+T
+TTTT
+55
+jj
+j
+j
+ρ
+j
+T
+P
+λQ
+TTTT
+55
+jj
+j
+j
+j
+T
+TTTT
+55
+jj
+j
+j
+T
+j
+T
+!  
+*
+tjj
+<,>S
+
+[,]rQ
+
+  }
+
+End(QT )
+Let
+
+P
+
+[,]lP
+
+End(T P )op
+(7)
+
+qi ⊗T pi ∈ Q ⊗T P be arbitrary. For every pe ∈ P we have
+[(κQr , P ) ◦ αQ
+P )(
+
+P
+
+qi ⊗T pi )](e
+p)
+
+=
+=
+=
+=
+
+P
+P < pe, qi >T pi
+peP
+< qi , pi >S
+ρP ( < qi , pP
+p)
+i >S )(e
+(ρP ◦ <, >S )( qi ⊗T pi )(e
+p),
+
+Q
+r
+i.e. αQ
+P := (κQr , P ) ◦ αP = ρP ◦ <, >S ; and
+
+P
+[, ]lP ◦ (κPl ⊗T idP ))( qi ⊗T pi )](e
+p) =
+=
+
+=
+=
+=
+
+X
+
+X
+
+X
+
+κPl (qi )(e
+p)pi
+< pe, qi >T pi
+
+pe < q , p >
+X i i S
+ρP (
+< qi , pi >S )(e
+p)
+P
+[(ρP ◦ <, >S )( qi ⊗T pi )](e
+p),
+
+i.e. [, ]lP ◦ (κPl ⊗T idP ) = ρP ◦ <, >S . On the other hand, for every qe ∈ Q we have
+l
+((κPl , Q) ◦ αP
+Q )(
+
+P
+
+qi ⊗T pi )(e
+q)
+
+13
+
+P
+= Pqi < pi , qe >T
+= ( P
+< qi , pi >S )e
+q
+= λQ ( < qi , pP
+>
+q)
+i
+S )(e
+= (λQ ◦ <, >S )( qi ⊗T pi ),
+
+Pl
+l
+i.e. αQ
+:= (κPl , Q) ◦ αP
+Q = λQ ◦ <, >S and
+
+P
+q) =
+([, ]rQ ◦ (idQ ⊗T κQr ))( qi ⊗T pi )](e
+=
+
+=
+=
+=
+
+X
+
+X
+
+X
+
+q)
+qi κQr (pi )(e
+qi < pi , qe >T
+
+< q , p > qe
+Xi i S
+λQ (
+< qi , pi >S )(e
+q)
+P
+[(λQ ◦ <, >S )( qi ⊗T pi )](e
+q ),
+
+i.e. [, ]rQ ◦ (idQ ⊗T κQr ) = λQ ◦ <, >S . Hence Diagram (7) is commutative.
+r
+(1) Follows directly from the assumptions and the equality αQ
+P = ρP ◦ <, >S .
+(2) Let PS be faithful, so that the canonical left S-linear map ρP : S → End(T P )op
+is injective. Assume now that Qr is semi-strict. Then ρP is surjective by "1" , whence
+bijective. Since rings of endomorphisms are unital, we conclude that S ≃ End(T P )op is a
+Qr
+unital B-ring as well (with unity ρ−1
+P (idP )). Moreover, the surjectivity
+X of αP = ρP ◦ <, >S
+implies that <, >S is surjective (since ρP is injective), say 1S =
+< qej , pej >S for some
+j
+X
+{(e
+qj , pej )}J ⊆ Q × P. For any
+qi ⊗T pi ∈ Ker(<, >S ), we have then
+i
+
+X
+
+i
+
+qi ⊗T pi
+
+X
+= (
+qi ⊗T pi ) * 1S
+Xi
+=
+qi ⊗T pi < qej , pej >S
+Xi,j
+=
+qi < pi , qej >T ⊗T pej
+Xi,jX
+=
+(
+< qi , pi >S )e
+qj ⊗T pej
+j
+
+i
+
+=
+
+=
+=
+=
+
+X
+
+Xi
+
+(qi ⊗T pi ) * (
+
+Xi,j
+
+i,j
+
+0,
+
+X
+
+j
+
+< qej , pej >S )
+
+qi ⊗T < pi , qej >T pej
+
+< qi , pi >S qej ⊗T pej
+
+i.e. <, >S is injective, whence an isomorphism.
+
+The following result shows that Morita α-contexts are injective:
+Corollary 4.4. MCαl ∪ MCαr ≤ IMC.
+Example 4.5. Let mT = (T, S, P, Q, <, >T ) be a non-degenerate Morita semi-context. If
+T is a QF ring and the T -modules T P, QT are projective, then by Proposition 2.12 "7"
+Pl := (Q, T P ) ∈ Plα (T ) and Qr := (P, QT ) ∈ Prα (T ) (i.e. mT is a Morita α-semicontext, whence injective). On the other hand, let M = (T, S, P, Q, <, >T , <, >S ) be a
+non-degenerate Morita datum. If T, S are QF rings and the modules T P, QT , PS , S Q are
+projective, then M is an Morita α-datum (whence injective).
+Every semi-strict unital Morita context is injective (whence strict, e.g. [Fai1981, 12.7.]).
+The following example, which is a modification of [Lam1999, Example 18.30]), shows that
+the converse is not necessarily true:
+14
+
+Example
+4.6.
+ Let T = M2 (Z2 ) be the ring of 2 × 2 matrices with entries in Z2 . Notice that
+
+1 0
+∈ T is an idempotent, and that eT e ≃ Z2 as rings. Set
+e=
+0 0
+
+
+a′ 0
+P := T e = { ′
+c 0
+
+
+
+
+
+a b
+| a , c ∈ Z2 } and Q := eT = {
+0 0
+′
+
+′
+
+
+
+| a, b ∈ Z2 }.
+
+Then P = T e is a (T, eT e)-bimodule and Q = eT is an (eT e, T )-bimodule. Moreover, we
+have a Morita context
+Me = (T, eT e, T e, , eT, <, >T , < . >eT e ),
+where the connecting bilinear maps are
+<, >T
+
+:
+
+T e ⊗eT e eT
+
+
+<, >eT e
+
+:
+
+a′ 0
+c′ 0
+
+
+
+→ T,
+
+⊗eT e
+
+
+
+a b
+0 0
+
+eT ⊗T T e
+
+
+a b
+0 0
+
+
+
+⊗T
+
+
+
+7→
+
+
+
+a′ a a′ b
+c′ a c′ b
+
+
+
+→ eT e
+
+
+a′ 0
+c′ 0
+
+
+
+7→
+
+
+
+aa′ + bc′ 0
+0
+0
+
+
+
+.
+
+
+1 1
+∈
+/
+Straightforward computations show that <, >T is injective but not surjective (as
+1 0
+Im(<, >T )) and that <, >eT e is in fact an isomorphism. This means that Me is an injective
+Morita context that is not semi-strict (whence not strict).
+
+
+Definition 4.7. Let T be a rng and I ⊳ T an ideal. For every left T -module T V consider
+the canonical T -linear map
+ζ I,V : V → HomT (I, V ), v 7→ [t 7→ tv].
+We say T I is strongly V -faithful, iff annV (I) := Ker(ζ I,V ) := 0. Moreover, we say I is
+strongly faithful, if T I is V -faithful for every left T -module T V. Strong faithfulness of I
+w.r.t. right T -modules can be defined analogously.
+Remark 4.8. Let T be a rng, I ⊳ T an ideal and T U a left ideal. It's clear that ann⊗
+U (IT ) ⊆
+annU (I) := Ker(ζ I,U ). Hence, if T I is strongly U-faithful, then IT is U-faithful (which
+justifies our terminology). In particular, if T I is strongly faithful, then IT is completely
+faithful.
+Morita α-contexts are injective by Corollary 4.4. The following result gives a
+partial converse:
+15
+
+Lemma 4.9. Let M = (T, S, P, Q, <, >T , <, >S , I, J) ∈ MC and assume the Morita semicontext MS := (S, T, Q, P, <, >S , J) is injective.
+1. If S J is strongly faithful, then Qr := (P, QT ) ∈ Prα (T ).
+2. If JS is strongly faithful, then Pl := (Q, T P ) ∈ Plα (T ).
+Proof. We prove only "1", since "2" can be proved similarly. Assume MS is injective and
+consider for every left T -module U the following diagram
+αQr
+
+U
+/ HomT − (P, U)
+Q ⊗T U Q
+QQQ
+k
+kkk
+QQQ
+kkk
+QQQ
+k
+k
+kk
+ζ J,Q⊗ U QQQ(
+ukkk ψ Q,U
+T
+HomS− (J, Q ⊗T U)
+
+where for all f ∈ HomT − (P, U) and
+ψ Q,U (f )(
+Then we have for every
+r
+(ψ Q,U ◦ αQ
+U )(
+
+X
+
+P
+
+X
+
+X
+
+(8)
+
+< qj , pj >S ∈ J we define
+
+< qj , pj >S ) :=
+
+X
+
+qj ⊗T f (pj ).
+
+qei ⊗T u
+ei ∈ Q ⊗T U and s =
+
+ei ⊗T u
+ei )(s) =
+iq
+=
+
+=
+=
+=
+=
+
+X
+
+X
+
+j
+
+< qj , pj >S ∈ J :
+
+X
+r
+qj ⊗T [αQ
+(
+qei ⊗T u
+ei)](pj )
+U
+i
+Xj
+X
+qj ⊗T
+< pj , qei >T u
+ei ]
+i
+Xj
+qj ⊗T < pj , qei >T u
+ei
+Xi,j
+qj < pj , qei >T ⊗T u
+ei
+Xi,j
+< qj , pj >S qei ⊗T u
+ei
+i,j
+P
+ζ J,Q⊗T U ( i qei ⊗T u
+ei )(s),
+
+i.e. diagram (8) is commutative. If S J is strongly faithful, then Ker(ζ J,Q⊗T U ) = annQ⊗T U (J) =
+r
+0, hence ζ J,Q⊗T U is injective and it follows then that αQ
+U is injective.
+Proposition 4.10. Let M = (T, S, P, Q, <, >T , <, >S , I, J) ∈ IMC. If T I, IT , S J and JS
+are strongly faithful, then M ∈ MCα .
+
+5
+
+Equivalences of Categories
+
+In this section we give some applications of injective Morita (semi-)contexts and injective Morita data to equivalences between suitable subcategories of modules arising in
+the Kato-Müller-Ohtake localization-colocalization theory (as developed in (e.g. [Kat1978],
+[KO1979], [Mül1974]). All rings, hence all Morita (semi-)contexts and data, in this section
+are unital.
+16
+
+Static and Adstatic Modules
+5.1. ([C-IG-TW2003]) Let A and B be two complete cocomplete Abelian categories, R :
+A → B an additive covariant functor with left adjoint L : B → A and let
+ω : LR → 1A and η : 1B → RL
+be the induced natural transformations (called the counit and the unit of the adjunction,
+respectively). Related to the adjoint pair (L, R) are two full subcategories of A and B :
+ηY
+
+ωX
+
+Stat(R) := {X ∈ A | LR(X) ≃ X} and Adstat(R) := {Y ∈ B | Y ≃ RL(Y )},
+whose members are called R-static objects and R-adstatic objects, respectively. It is
+evident (from definition) that we have equivalence of categories Stat(R) ≈ Adstat(R).
+A typical situation, in which static and adstatic objects arise naturally is the
+following:
+5.2. Let T, S be rings, T US a (T, S)-bimodule and consider the covariant functors
+HlU := HomT (U, −) :
+
+TM
+
+→
+
+SM
+
+and TlU := U ⊗S − :
+
+SM
+
+→
+
+T M.
+
+It is well-known that (TlU , HlU ) is an adjoint pair of covariant functors via the natural
+isomorphisms
+HomT (U ⊗S M, N) ≃ HomS (M, HomT (U, N)) for all M ∈
+
+SM
+
+and N ∈
+
+TM
+
+and the natural transformations
+ω lU : U ⊗S HomT (U, −) → 1T M and η lU : 1S M → HomT (U, U ⊗S −)
+yield for every T K and S L the canonical morphisms
+ω lU,K : U ⊗S HomT (U, K) → K and η lU,L : L → HomT (U, U ⊗S L).
+
+(9)
+
+We call the HlU -static modules U-static w.r.t. S and set
+ω lU,K
+
+Statl (T US ) := Stat(HlU ) = {T K | U ⊗S HomT − (U, K) ≃ K};
+and the HlU -adstatic modules U-adstatic w.r.t. S and set
+η lU,L
+
+Adstatl (T US ) := Adstat(HlU ) = {S L | L ≃ HomT − (U, U ⊗S L)}.
+By [Nau1990a] and [Nau1990b], there are equivalences of categories
+Statl (T US ) ≈ Adstatl (T US ).
+17
+
+(10)
+
+On the other hand, one can define the full subcategories Statr (T US ) ≈ Adstatr (T US ) :
+Statr (T US )
+Adstatr (T US )
+
+:=
+:=
+
+{KS | Hom−S (U, K) ⊗T U ≃ K};
+{LT | L ≃ Hom−S (U, L ⊗T U)}.
+
+In particular, setting
+Stat(T U)
+Stat(US )
+
+:=
+:=
+
+Statl (T UEnd(T U )op );
+Statr (End(S U ) US );
+
+Adstat(T U)
+Adstat(US )
+
+:=
+:=
+
+Adstatl (T UEnd(T U )op );
+Adstatr (End(S U ) US ),
+
+there are equivalences of categories:
+Stat(T U) ≃ Adstat(T U) and Stat(US ) ≃ Adstat(US ).
+
+(11)
+
+Remark 5.3. The theory of static and adstatic modules was developed in a series of papers
+by the second author (see the references). They were also considered by several other
+authors (e.g. [Alp1990], [CF2004]). For other terminologies used by different authors, the
+interested reader may refer to a comprehensive treatment of the subject by R. Wisbauer
+in [Wis2000].
+
+Intersecting subcategories
+Several intersecting subcategories related to Morita contexts were introduced in
+the literature (e.g. [Nau1993], [Nau1994-b]). In what follows we introduce more and we
+show that many of these coincide, if one starts with an injective Morita semi-context.
+Moreover, other results on equivalences between some intersecting subcategories related
+to an injective Morita context will be reframed for arbitrary (not necessarily compatible)
+injective Morita data.
+Definition 5.4.
+1. For a right T -module X, a T -submodule X ′ ⊆ X is called K-pure
+for some left T -module T K, iff the following sequence of Abelian groups is exact
+0 → X ′ ⊗T K → X ⊗T K → X/X ′ ⊗T K → 0;
+2. For a left T -module Y, a T -submodule Y ′ ⊆ Y is called L-copure for some left
+T -module T L, iff the following sequence of Abelian groups is exact
+0 → HomT (Y /Y ′ , L) → HomT (Y, L) → HomT (Y ′ , L) → 0.
+Definition 5.5. (Compare [KO1979, Theorems 1.3., 2.3.]) Let T be a ring, I ⊳ T an
+ideal, U a left T -module and consider the canonical T -linear morphisms
+ζ I,U : U → HomT (I, U) and ξ I,U : I ⊗T U → U.
+1. We say T U is I-divisible, iff ξ I,U is surjective (equivalently, iff IU = U).
+18
+
+ζ I,U
+
+2. We say T U is I-localized, iff U ≃ HomT (I, U) canonically (equivalently iff T I is
+strongly U-faithful and T I ⊆ T is U-copure).
+
+ξI,U
+
+3. We say a left T -module U is I-colocalized, iff I ⊗T U ≃ U canonically (equivalently,
+iff T U is I-divisible and IT ⊆ T is U-pure).
+
+Notation. For a ring T, an ideal I ⊳ T, and with morphisms being the canonical ones,
+we set
+ID
+IL
+DI
+LI
+
+:=
+:=
+:=
+:=
+
+{T U | IU = U};
+{T U | U ≃ HomT (I, U};
+{UT | UI = U};
+{UT | U ≃ HomT (I, U};
+
+IF
+IC
+FI
+CI
+
+:=
+:=
+:=
+:=
+
+{T U | U ֒→ HomT − (I, U)};
+{T U | I ⊗T U ≃ U};
+{UT | U ֒→ Hom−T (I, U)};
+{UT | U ⊗T I ≃ U}; .
+
+The following result is due to T. Kato, K. Ohtake and B. Müller (e.g. [Mül1974],
+[Kat1978], [KO1979]):
+
+Proposition 5.6. Let M = (T, S, P, Q, <, >T , <, >S , I, J) ∈ UMC. Then there are equivalences of categories
+IC
+
+≈
+
+J C,
+
+CI ≈ CJ , I L ≈
+
+JL
+
+and LI ≈ LJ .
+
+5.7. Let mT = (T, S, P, Q, <, >T , I) ∈ UMSC and consider the dual pairings Pl := (Q,
+T P ) ∈ Pl (T ) and Qr := (P, QT ) ∈ Pr (T ). For every left (right) T -module U consider the
+canonical S-linear morphism induced by <, >T :
+Pl
+r
+αQ
+U : Q ⊗T U → HomT − (P, U) (αU : U ⊗T P → Hom−T (Q, U)).
+
+We define
+Dl (mT )
+
+r
+αQ
+U
+
+:= {T U | Q ⊗T U ≃ HomT − (P, U)};
+P
+
+Dr (mT )
+
+αU l
+
+:= {UT | U ⊗T P ≃ Hom−T (Q, U)}.
+19
+
+Moreover, set
+Ul (mT )
+
+:=
+
+Statl (T PS ) ∩ Adstatl (S QT );
+
+Ur (mT )
+
+Vl (mT )
+Vl (mT )
+bl (mT )
+V
+
+:=
+:=
+:=
+
+Statl (T PS ) ∩ Dl (mT );
+I C ∩ Dl (mT );
+Vl (mT )∩ I L;
+
+Vr (mT )
+Vr (mT )
+br (mT )
+V
+
+:=
+
+:=
+:=
+:=
+:=
+Wr (mT ) :=
+Wr (mT ) :=
+cr (mT ) :=
+W
+
+Wl (mT ) :=
+Wl (mT ) :=
+cl (mT ) :=
+W
+
+Adstatl (S QT ) ∩ Dl (mT );
+I L ∩ Dl (mT );
+Wl (mT )∩ I C;
+
+Xl (mT )
+Xl (mT )
+
+:=
+:=
+
+Vl (mT ) ∩ Wl (mT );
+Vl (mT ) ∩ Wl (mT );
+
+Xl∗ (mT )
+X∗l (mT )
+
+:=
+:=
+
+{S (Q ⊗T U) | V ∈ Xl (mT )};
+{S (Q ⊗T U) | V ∈ Xl (mT )};
+
+Xr (mT )
+Xr (mT )
+
+:=
+:=
+
+Xr∗ (mT )
+X∗r (mT )
+
+:=
+:=
+
+Statr (S QT ) ∩ Adstatr (T PS );
+Statr (S QT ) ∩ Dr (mT );
+CI ∩ Dr (mT );
+Vr (mT ) ∩ LI ;
+Adstatr (T PS ) ∩ Dr (mT );
+LI ∩ Dr (mT );
+Wr (mT ) ∩ CI ;
+Vr (mT ) ∩ Wr (mT );
+Vr (mT ) ∩ Wr (mT ).
+
+{(U ⊗T P )S | V ∈ Xr (mT )};
+{(U ⊗T P )S | V ∈ Xr (mT )}.
+(12)
+Given mS = (S, T, Q, P, <, >S , J) ∈ UMSC one can define analogously, the corresponding
+intersecting subcategories of S M and MS .
+As an immediate consequence of Proposition 5.6 we get
+Corollary 5.8. Let M = (T, S, P, Q, <, >T , <, >S , I, J) ∈ IUMC and consider the associated Morita semi-contexts MT and MS (5).
+1. If I C ≤ Dl (MT ) and J C ≤ Dl (MS ), then Vl (MT ) ≈ Vl (MS ). Similarly, if CI ≤
+Dr (MT ) and CJ ≤ Dr (MS ), then Vr (MT ) ≈ Vr (MS ).
+2. If I L ≤ Dl (MT ) and J L ≤ Dl (MS ), then Wl (MT ) ≈ Wl (MS ). Similarly, if LI ≤
+Dr (MT ) and LJ ≤ Dr (MS ), then Wr (MT ) ≈ Wr (MS ).
+Starting with a Morita context, the following result was obtained in [Nau1993,
+Theorem 3.2.]. We restate the result for an arbitrary (not necessarily compatible) Morita
+datum and sketch its proof:
+Lemma 5.9. Let M = (T, S, P, Q, <, >T , <, >S , I, J) be a unital Morita datum and consider the associated Morita semi-contexts MT and MS in (5). Then there are equivalences
+of categories
+Xl (MT )
+
+HomT − (P,−)
+
+≈
+
+HomS− (Q,−)
+
+Xl (MS ) and Xr (MT )
+
+Hom−T (Q,−)
+
+≈
+
+Hom−S (P,−)
+HomT (P,−)
+
+Xr (MS ).
+
+Proof. Let T V ∈ Xl (MT ). By the equivalence Statl (T PS )
+≈
+Adstatl (T PS ) in 5.2 we
+l
+have HomT − (P, V ) ∈ Adstat (T PS ). Moreover, V ∈ Dl (M), hence HomT − (P, V ) ≃ Q ⊗T V
+20
+
+Q⊗T −
+
+canonically and it follows then from the equivalence Adstatl (S QT ) ≈ Statl (S QT ) that
+HomT − (P, V ) ∈ Statl (S QT ). Moreover, we have the following natural isomorphisms
+P ⊗S HomT − (P, V ) ≃ V ≃ HomS− (Q, Q ⊗T V ) ≃ HomS− (Q, HomT − (P, V )),
+
+(13)
+
+i.e. HomT − (P, V ) ∈ Dl (MS ). Consequently, HomT − (P, V ) ∈ Xl (MS ). Moreover, (13)
+yields a natural isomorphism V ≃ HomS− (Q, HomT − (P, V )). Analogously, one can show for
+every W ∈ Xl (MS ) that HomS− (Q, W ) ∈ Xl (MT ) and that W ≃ HomT − (P, HomS− (Q, W ))
+naturally. Consequently, Xl (MT ) ≈ Xl (MS ). The equivalences Xr (MT ) ≈ Xr (MS ) can
+be proved analogously.
+Proposition 5.10. Let M = (T, S, P, Q, <, >T , <, >S , I, J) be a unital injective Morita
+datum and consider the associated Morita semi-contexts MT and MS in (5).
+1. There are equivalences of categories
+Statl (T IT )
+Statr (T IT )
+
+≈ Adstatl (T IT );
+≈ Adstatr (T IT );
+
+Statl (S JS ) ≈
+Statr (S JS ) ≈
+
+Adstatl (S JS );
+Adstatr (S JS ).
+
+2. If Statl (T IT ) ≤ Xl∗ (MS ) and Statl (S JS ) ≤ Xl∗ (MT ), then there are equivalences of
+categories
+Statl (T IT ) ≈ Statl (S JS ) and Adstatl (T IT ) ≈ Adstatl (S JS ).
+3. If Statr (T IT ) ≤ Xr∗ (MS ) and Statr (S JS ) ≤ Xr∗ (MT ), then there are equivalences of
+categories
+Statr (T IT ) ≈ Statr (S JS ) and Adstatr (T IT ) ≈ Adstatr (S JS ).
+<,>T
+
+Proof. To prove "1", notice that since M is an injective Morita datum, P ⊗S Q ≃ I
+<,>S
+and Q ⊗T P ≃ J as bimodules and so the four equivalences of categories result from 5.2.
+To prove "2", one can use an argument similar to that in [Nau1994-b, Theorem 3.9.] to
+show that the inclusion Statl (T IT ) = Statl (T (P ⊗S Q)T ) ≤ Xl∗ (MS ) implies Statl (T IT ) =
+Statl (T (P ⊗S Q)T ) = Xl (MT ) and that the inclusion Statl (S JS ) = Statl (S (Q ⊗T P )S ) ≤
+Xl∗ (MT ) implies Statl (S JS ) = Statl (S (Q ⊗T P )S ) = Xl (MS ). The result follows then by
+Lemma 5.9. The proof of "3" is analogous to that of "2".
+For injective Morita semi-contexts, several subcategories in (12) are shown in the
+following result to be equal:
+Theorem 5.11. Let mT = (T, S, P, Q, <, >T , I) ∈ IUMS. Then
+1. Vl (mT ) = Vl (mT ), Wl (mT ) = Wl (mT ), whence
+bl (mT ) = W
+cl (mT ) = Xl (mT ) = Xl (mT ) =
+V
+21
+
+I C∩Dl (mT )∩ I L
+
+and Xl∗ (mT ) = X∗l (mT ).
+
+2. Vr (mT ) = Vr (mT ), Wr (mT ) = Wr (mT ), whence
+br (mT ) = W
+cr (mT ) = Xr (mT ) = Xr (mT ) = CI ∩Dr (mT )∩LI and Xr∗ (mT ) = X∗r (mT ).
+V
+
+Proof. We prove only "1" as "2" can be proved analogously. Assume the Morita semicontext mT = (T, S, P, Q, <, >T , I) is injective. By our assumption we have for every
+V ∈ Dl (mT ) the commutative diagram
+can
+≃
+
+P ⊗S (Q ⊗T V )
+
+/
+
+(P ⊗S Q) ⊗T V
+
+r
+≃
+idP ⊗S (αQ
+V )
+
+≃ <,>T ⊗T idV
+
+
+
+P ⊗S HomT − (P, V )
+
+(14)
+
+ω lP,V
+
+/
+
+V o
+
+
+
+I ⊗T V
+
+ξ I,V
+
+Then it becomes obvious that ω lP,V : P ⊗S HomT (P, V ) → V is an isomorphism if and only
+if ξ I,V : I ⊗T V → V is an isomorphism. Consequently
+V(mT ) = Dl (mT ) ∩ Statl (T PS ) = Dl (mT ) ∩ I C = V(mT ).
+On the other hand, we have for every V ∈ Dl (mT ) the following commutative diagram
+can
+≃
+
+HomS− (Q, HomT − (P, V ))
+O
+
+/ HomT − (P
+
+r
+≃
+(Q,αQ
+V )
+
+HomS− (Q, Q ⊗T V ) o
+
+O
+
+⊗S Q, V )
+
+(15)
+
+≃ (<,>T ,V )
+
+V
+
+ηlP,L
+
+ζ I,V
+
+/
+
+HomT − (I, V )
+
+It follows then that ηlP,L : V → HomS (Q, Q ⊗T P ) is an isomorphism if and only if
+ζ I,V : V → HomT (I, V ) is an isomorphism. Consequently,
+W(mT ) = Dl (mT ) ∩ Adstatl (T PS ) = Dl (mT ) ∩I L = W(mT ).
+Moreover, we have
+bl (mT ) :=
+V
+=
+
+Vl (mT ) ∩ I L
+I C ∩ Wl (mT )
+
+= Vl (mT ) ∩ I L
+= I C ∩ Wl (mT )
+
+On the other hand, we have
+
+= I C ∩ Dl (mT )∩ I L
+cl (mT ).
+= W
+
+Xl (mT ) = Vl (mT ) ∩ Wl (mT ) = Vl (mT ) ∩ Wl (mT ) = Xl (mT )
+bl (mT ) = W
+cl (mT ) = Xl (mT ) = Xl (mT ) and X ∗ (mT ) = X∗ (mT ) are
+and so the equalities V
+l
+l
+established.
+22
+
+In addition to establishing several other equivalences of intersecting subcategories,
+b≈W
+c in [Nau1994-b, Theorem
+the following results reframe the equivalence of categories V
+4.9.] for an arbitrary (not necessarily compatible) injective Morita datum:
+Theorem 5.12. Let M = (T, S, P, Q, <, >T , <, >S , I, J) be an injective Morita datum and
+consider the associated Morita semi-contexts MT and MS (5).
+1. The following subcategories are mutually equivalent:
+bl (MT ) = W
+cl (MT ) = Xl (MT ) = Xl (MT ) ≈ Xl (MS ) = Xl (MS ) = W
+cl (MS ) = V
+bl (MS ).
+V
+(16)
+2. If Vl (MT ) ≤ I L and Wl (MS ) ≤ J C, then Vl (MT ) ≈ Wl (MS ). If Wl (MT ) ≤ I C
+and Vl (MS ) ≤ J L, then Wl (MT ) ≈ Vl (MS ).
+3. The following subcategories are mutually equivalent:
+br (MT ) = W
+cr (MT ) = Xr (MT ) = Xr (MT ) ≈ Xr (MS ) = Xr (MS ) = W
+cr (MS ) = V
+br (MS ).
+V
+(17)
+4. If Vr (MT ) ≤ LI and Wr (MT ) ≤ CJ , then Vr (MT ) ≈ Wr (MS ). If Wr (MT ) ≤ CJ
+and Vr (MS ) ≤ LI , then Vr (MS ) ≈ Wr (MT ).
+Proof. By Lemma 5.9, Xl (MT ) ≈ Xl (MS ) and so "1" follows by Theorem 5.11. If
+Vl (MT ) ≤ I L and Wl (MS ) ≤ J C, then we have
+bl (MT ) ≈ W
+cl (MS ) = Wl (MS ) ∩
+Vl (MT ) = Vl (MT ) ∩ I L = V
+
+On the other hand, if Wl (MT ) ≤ I L and Vl (MS ) ≤
+
+J C,
+
+JC
+
+= Wl (MS ).
+
+then
+
+cl (MT ) ≈ V
+bl (MS ) = Vl (MS ) ∩
+Wl (MT ) = Wl (MT ) ∩ I C = W
+
+JL
+
+= Vl (MS ).
+
+So we have established "2". The results in "3" and "4" can be obtained analogously.
+
+6
+
+More applications
+
+In this final section we give more applications of Morita α-(semi-)contexts and
+injective Morita (semi-)contexts. All rings in this section are unital, whence all Morita
+(semi-)contexts are unital. Moreover, for any ring T we denote with T E an arbitrary, but
+fixed, injective cogenerator in T M.
+Notation. Let T be an A-ring. For any left T -module T V, we set # V := HomT (V, T E). If
+moreover, T VS is a (T, S)-bimodule for some B-ring S, then we consider #
+S V with the left
+S-module structure induced by that of VS .
+23
+
+Lemma 6.1. (Compare [Col1990, Lemma 3.2.], [CF2004, Lemmas 2.1.2., 2.1.3.]) Let T be
+an A-ring, S a B-ring and T VS a (T, S)-bimodule,
+1. A left T -module T K is V -generated if and only if the canonical T -linear morphism
+ω lV,K : V ⊗S HomT (V, K) → K
+
+(18)
+
+is surjective. Moreover, V ⊗S W ⊆ Pres(T V ) ⊆ Gen(T V ) for every left S-module
+S W.
+2. A left S-module S L is #
+S V -cogenerated if and only if the canonical S-linear morphism
+ηlV,L : L → HomT (V, V ⊗S L)
+
+(19)
+
+#
+is injective. Moreover, HomT (V, M) ⊆ Copres(#
+S V ) ⊆ Cogen(S V ) for every left
+T -module T M.
+
+Remark 6.2. Let T be an A-ring, S a B-ring and T VS a (T, S)-bimodule. Notice that for
+any left S-module S L we have
+l
+ann⊗
+L (VS ) := {l ∈ L | V ⊗S l = 0} = Ker(η V,L ),
+
+whence (by Lemma 6.1 "2" ) VS is L-faithful if and only if S L is #
+S V -cogenerated. It follows
+#
+then that VS is completely faithful if and only if S V is a cogenerator.
+
+Localization and colocalization
+In what follows we clarify the relations between static (adstatic) modules and subcategories colocalized (localized) by a trace ideal of a Morita context satisfying the α-condition.
+Recall that for any (T, S)-bimodule T PS we have by Lemma 6.1:
+Statl (T PS ) ⊆ Gen(T P ) and Adstatl (T PS ) ⊆ Cogen(#
+S P ).
+
+(20)
+
+Theorem 6.3. Let M = (T, S, P, Q, <, >T , <, >S , I, J) ∈ UMC. Then we have
+IC
+
+⊆
+
+ID
+
+⊆ Gen(T P ).
+
+Assume Pr := (Q, PS ) ∈ Prα (S). Then
+1. Gen(T P ) = Statl (T PS ) ⊆ I F.
+2. If Gen(T P ) ⊆ I C, then I C = I D = Gen(T P ) = Statl (T PS ).
+3. If Qr := (P, QT ) ∈ Prα (T ), then T I ⊆ T T is pure and I C = I D.
+24
+
+(21)
+
+Proof. For every left T -module T K, consider the following diagram with canonical morphisms and let α2 := ζ I,K ◦ ω lP,K . It is easy to see that both rectangles and the two right
+triangles commutes:
+r
+idP ⊗S αQ
+K
+
+P ⊗S Q ⊗T K
+
+/
+
+P ⊗S HomT (P, K)
+
+r
+αP
+Hom
+
+T (P,K)
+
+8
+
+/
+
+HomS (Q, HomT (P, K)) (22)
+O
+
+≃
+<,>T ⊗T idK
+
+ω lP,K
+
+α1
+
+α2
+
+HomT (P ⊗S Q, K)
+O
+
+(<,>T ,K)
+
+
+
+I ⊗T K
+
+ξ I,K
+
+/
+
+
+
+K
+
+ζ I,K
+
+/
+
+'
+
+HomT (I, K)
+
+It follows directly from the definitions that I C ⊆ I D and Statl (T PS ) ⊆ Gen(T P ). If T K
+r
+l
+is I-divisible, then ξ I,K ◦ <, >T ⊗T idK = ω lP,K ◦ idP ⊗S αQ
+K is surjective, whence ω P,K
+is surjective and we conclude that T K is P -generated by Lemma 6.1 "1". Consequently,
+I D ⊆ Gen(T P ).
+Assume now that Pr ∈ Prα (S). Considering the canonical map ρQ : T → End(S Q)op ,
+r
+the map ρQ ◦ <, >T = αP
+Q is injective and so the bilinear map <, >T is injective (i.e.
+<,>T
+
+r
+−1
+P ⊗S Q ≃ I). Define α1 := (idP ⊗S αQ
+K ) ◦ (<, >T ⊗T idK ) , so that the left triangles
+Pr
+commute. Notice that αHomT (P,K) is injective and the commutativity of the upper right
+triangle in Diagram (22) implies that α2 is injective (whence ω lP,K is injective by the
+commutativity of the lower right triangle).
+
+1. If K ∈ Statl (T PS ), then the commutativity of the lower right triangle (22) and the
+injectivity of α2 show that ζ I,K is injective; hence, Statl (T PS ) ⊆ I F. On the other
+hand, if T K is P -generated, then ω lP,K is surjective by Lemma 6.1 (1), thence bijective,
+i.e. K ∈ Statl (T PS ). Consequently, Gen(T P ) = Statl (T PS ).
+2. This follows directly from the inclusions in (21) and "1".
+3. Assume Qr := (P, QT ) ∈ Prα (T ). Since Pr ∈ Prα (S), it follows by analogy to Propor
+sition 2.12 "3" that PS is flat, hence idP ⊗S αQ
+K is injective. The commutativity of
+the upper left triangle in Diagram (22) implies then that α1 is injective, thence ξ I,K
+is injective by commutativity of the lower left triangle (i.e. T I ⊆ T T is K-pure). If
+TK
+
+ξ I,K
+
+is divisible, then K ⊗T I ≃ K (i.e. K ∈ I C).
+
+Theorem 6.4. Let M = (T, S, P, Q, <, >T , <, >S , I, J) ∈ UMC. Then we have
+JL
+
+⊆
+
+JF
+
+#
+l
+⊆ Cogen(#
+S P ) and Adstat (T PS ) ⊆ Cogen(S P ).
+
+Assume Qr := (P, QT ) ∈ Prα (T ). Then
+1. JS ⊆ SS is pure and J C ⊆ Cogen(#
+S P ).
+25
+
+2. If Pr := (Q, PS ) ∈ Prα (S), then J L ⊆ Adstatl (T PS ) ⊆ Cogen(#
+S P ) ⊆ J F.
+#
+l
+3. If Pr ∈ Prα (S) and Cogen(#
+S P ) ⊆ J L, then J L = Cogen(S P ) = Adstat (T PS ).
+
+Proof. For every right S-module L consider the commutative diagram with canonical
+morphisms and let α3 be so defined, that the left triangles become commutative
+J ⊗O S L
+
+ξ J,L
+
+/
+
+ζ J,L
+
+L
+
+/
+
+HomS (J, L)
+7
+
+(23)
+
+(<,>S ,L)
+(<,>S )⊗S idL
+
+
+
+η lP,L
+
+α3
+
+HomS (Q ⊗T P, L)
+
+α4
+
+≃ can
+
+Q ⊗T P ⊗S L
+
+r
+αQ
+P⊗
+
+/
+
+%
+
+
+
+HomT (P, P ⊗S L)
+
+SL
+
+r
+(P,αP
+L )
+
+/
+
+
+
+HomT (P, HomS (Q, L))
+
+By definition J L ⊆ J F and Adstatl (T PS ) ⊆ Cogen(#
+S P ). If S L ∈ J F, then ζ J,L is injective
+and it follows by commutativity of the right rectangle in Diagram (23) that η lP,L is injective,
+#
+hence S L is #
+S P -cogenerated by Lemma 6.1 "2". Consequently, J F ⊆ Cogen(S P ).
+Assume now that Qr ∈ Prα (T ). Then it follows from Lemma 4.3 that <, >S is injective
+<,>S
+
+r
+(hence Q ⊗T P ≃ J) and so α4 := (can ◦ (<, >S , L))−1 ◦ (P, αP
+L ) is injective.
+
+1. Since α3 is injective, ξ J,L is also injective for every S L, i.e. JS ⊆ SS is pure. If S L ∈
+J C, then it follows from the commutativity of the left rectangle in Diagram (23) that
+η lP,L is injective, hence L ∈ Cogen(#
+S P ) by Lemma 6.1 (2).
+2. Assume that Pr ∈ Prα (S), so that α4 is injective. If S L ∈ J L, then ζ J,L is an
+isomorphism, thence η lP,L is surjective (notice that α4 is injective). Consequently,
+l
+J L ⊆ Adstat (T PS ).
+3. This follows directly from the assumptions and "2".
+
+∗-Modules
+To the end of this section, we fix a unital ring T, a left T -module T P and set S :=
+End(T P )op .
+Definition 6.5. ([MO1989]) We call T P a ∗-module, iff Gen(T P ) ≈ Cogen(#
+S P ).
+Remark 6.6. It was shown by J. Trlifaj [Trl1994] that all ∗-modules are finitely generated.
+By definition, Statl (T PS ) ≤ T M and Adstatl (T PS ) ≤ S M are the largest subcategories between which the adjunction (P ⊗S −, HomT (P, −)) induces an equivalence. On
+the other hand, Lemma 6.1 shows that Gen(T P ) ≤ T M and Cogen(#
+S P ) ≤ S M are the
+largest such subcategories (see [Col1990, Section 3] for more details). This suggests the
+following observation:
+26
+
+Proposition 6.7. ([Xin1999, Lemma 2.3.]) We have
+TP
+
+is a ∗ -module ⇔ Stat(T P ) = Gen(T P ) and Adstat(T P ) = Cogen(#
+S P ).
+
+Definition
+X6.8. A left T -module T U is said
+X to be
+semi- -quasi-projective (abbr. s- -quasi-projective), iff for any left T -module
+T V ∈ Pres(T U) and any U-presentation
+′
+
+U (Λ) → U (Λ ) → V → 0
+of T V (if any), the following induced sequence is exact:
+′
+
+HomT (U, U (Λ) ) → HomT (U, U (Λ ) ) → HomT (U, V ) → 0;
+X
+X
+weakly- -quasi-projective (abbr. w- -quasi-projective), iff for any left T module T V and any short exact sequence
+′
+
+0 → K → U (Λ ) → V → 0
+with K ∈ Gen(T U) (if any), the following induced sequence is exact:
+′
+
+0 → HomT (U, K) → HomT (U, U (Λ ) ) → HomT (U, V ) → 0;
+X
+self-tilting, iff T U is w- -quasi-projective and Gen(T U) = Pres(T U);
+X
+-self-static, iff any direct sum U (Λ) is U-static.
+(self)-small, iff HomT (U, −) commutes with direct sums (of T U);
+Proposition 6.9. Assume M = (T, S, P, Q, <, >T , <, >S ) is a unital Morita context.
+1. If Pr := (Q, PS ) ∈ Prα (S), then:
+(a) Gen(T P ) = Statl (T PS );
+(b) there is an equivalence of categories Gen(T P ) ≈ Cop(#
+S P );
+X
+(c) T P is
+-self-static and Statl (T PS ) is closed under factor modules.
+
+(d) Gen(T P ) = Pres(T P );
+
+2. If M ∈ UMCαr and Cogen(#
+S P ) ⊆ J L, then:
+l
+(a) Gen(T P ) = Statl (T PS ) and Cogen(#
+S P ) = Adstat (T PS );
+
+(b) there is an equivalence of categories Cogen(#
+S P ) ≈ Gen(T P );
+(c)
+
+TP
+
+is a ∗-module;
+
+(d)
+
+TP
+
+is self-tilting and self-small.
+27
+
+Proof.
+1. If Pr ∈ Prα (S), then it follows by Theorem 6.3 that Gen(T P ) = Statl (T PS ),
+which is equivalent to each of "b" and "c" by [Wis2000, 4.4.] and to "d" by [Wis2000,
+4.3.].
+2. It follows by the assumptions, Theorems 6.3, 6.4 and 5.2 that Gen(T P ) = Statl (T PS ) ≈
+#
+Adstatl (T PS ) = Cogen(#
+S P ), whence Gen(T P ) ≈ Cogen(S P ) (which is the definition
+of ∗-modules). Hence "a" ⇔"b" ⇔"c". The equivalence "a" ⇔ "d" is evident by
+[Wis2000, Corollary 4.7.] and we are done.
+
+Wide Morita Contexts
+Wide Morita contexts were introduced by F. Castaño Iglesias and J. Gómez-Torrecillas
+[C-IG-T1995] and [C-IG-T1996] as an extension of classical Morita contexts to Abelian
+categories.
+Definition 6.10. Let A and B be Abelian categories. A right (left) wide Morita
+context between A and B is a datum Wr = (G, A, B, F, η, ρ), where G : A ⇄ B : F are
+right (left) exact covariant functors and η : F ◦ G −→ 1A , ρ : G ◦ F −→ 1B (η : 1A −→
+F ◦ G, ρ : 1B −→ G ◦ F ) are natural transformations, such that for every pair of objects
+(A, B) ∈ A × B the compatibility conditions G(ηA ) = ρG(A) and F (ρB ) = ηF (B) hold.
+Definition 6.11. Let A and B be Abelian categories and W = (G, A, B, F, η, ρ) be a right
+(left) wide Morita context. We call W injective (respectively semi-strict, strict), iff η
+and ρ are monomorphisms (respectively epimorphisms, isomorphisms)
+Remarks 6.12. Let W = (G, A, B, F, η, ρ) be a right (left) wide Morita context.
+1. It follows by [CDN2005, Propositions 1.1., 1.4.] that if either η or ρ is an epimorphism
+(monomorphism), then W is strict, whence A ≈ B.
+2. The resemblance of injective left wide Morita contexts is with the Morita-Takeuchi
+contexts for comodules of coalgebras, i.e. the so called pre-equivalence data for categories of comodules introduced in [Tak1977] (see [C-IG-T1998] for more details).
+Injective Right wide Morita contexts
+In a recent work [CDN2005, 5.1.], Chifan, et. al. clarified (for module categories) the
+relation between classical Morita contexts and right wide Morita contexts. For the convenience of the reader and for later reference, we include in what follows a brief description
+of this relation.
+6.13. Let T, S be rings, A := T M and B := S M. Associated to each Morita context
+M = (T, S, P, Q, <, >T , <, >S ) is a wide Morita context as follows: Define G : A ⇄ B : F
+28
+
+by G(−) = Q ⊗T − and F (−) = P ⊗S −. Then there are natural transformations η :
+F ◦ G −→ 1T M and ρ : G ◦ F −→ 1S M such that for each T V and WS :
+X
+X
+η V : P ⊗S (Q ⊗T V ) → V,
+pi ⊗S (qi ⊗T vi ) 7→
+< pi , qi >T vi ,
+X
+X
+ρW : Q ⊗T (P ⊗S W ) → W,
+qi ⊗T (pi ⊗S wi ) 7→
+< qi , pi >S wi .
+(24)
+Then the datum Wr (M) := (G, T M, S M, F, η, ρ) is a right wide Morita context.
+Conversely, let T ′ , S ′ be two rings and Wr′ = (G′ , T ′ M, S ′ M, F ′, η ′ , ρ′ ) be a right wide
+Morita context between T ′ M and S ′ M such that the right exact functors G′ : T ′ M ⇄
+′
+S ′ M : F commute with direct sums. By Watts' Theorems (e.g. [Gol1979]), there exists a
+(T, S)-bimodule P ′ (e.g. F ′ (S ′ )) such that F ′ ≃ P ′ ⊗S ′ −, an (S, T )-bimodule Q′ such that
+G′ ≃ Q′ ⊗T ′ − and there should exist two bilinear forms
+<, >T ′ : P ′ ⊗S ′ Q′ → T ′ and <, >S ′ : Q′ ⊗T ′ P ′ → S ′ ,
+such that the natural transformations η′ : F ′ ◦ G′ → 1T ′ M , ρ : G′ ◦ F ′ → 1S ′ M are given by
+η ′V ′ (p′ ⊗S ′ q ′ ⊗T ′ v ′ ) =< p′ , q ′ >T ′ v ′ and ρ′W ′ (q ′ ⊗T p′ ⊗S w ′ ) =< q ′ , p′ >S ′ w ′
+for all V ′ ∈ T ′ M, W ′ ∈ S ′ M, p′ ∈ P ′, q ′ ∈ Q′ , v ′ ∈ V ′ and w ′ ∈ W ′ . It can be shown that
+in this way one obtains a Morita context M′ = M′ (Wr′ ) := (T ′ , S ′, P ′ , Q′ , <, >T ′ , <, >S ′ ).
+Moreover, it turns out that given a wide Morita context Wr , we have Wr ≃ Wr (M(Wr )).
+The following result clarifies the relation between injective Morita contexts and
+injective right wide Morita contexts.
+Theorem 6.14. Let M = (T, S, P, Q, <, >T , <, >S ) be a Morita context, A := T M, B :=
+S M and consider the induced right wide Morita context Wr (M) := (G, A, B, F, η, ρ).
+1. If Wr (M) is an injective right wide Morita context, then M is an injective Morita
+context.
+2. If M ∈ UMCαr , then Wr (M) is an injective right wide Morita context.
+Proof.
+1. Let Wr (M) be an injective right wide Morita context. Then in particular,
+<, >T = η T and <, >S = ρS are injective, i.e. M is an injective Morita context.
+2. X
+Assume that M satisfies the right α-condition. Suppose there exists some T V and
+pi ⊗S (qi ⊗T vi ) ∈ Ker(η V ). Then for any q ∈ Q we have
+0
+
+X
+= q ⊗T η V ( (pi ⊗S qi ) ⊗T vi )
+X
+=
+q < pi , qi >T ⊗T vi
+X
+=
+< q, pi >S (qi ⊗T vi )
+29
+
+=
+=
+=
+
+X
+
+X
+
+q⊗T < pi , qi >T vi
+
+< q, pi >S qi ⊗T vi
+X
+r
+(
+pi ⊗S (qi ⊗T vi ))(q).
+αP
+Q⊗T V
+
+X
+r
+is
+injective
+and
+so
+pi ⊗S (qi ⊗T
+Since Pr := (Q, PS ) ∈ Prα (S), the morphism αP
+Q⊗T V
+X
+vi ) = 0, i.e. η V is injective. Analogously, suppose
+qi ⊗T (pi ⊗S wi ) ∈ Ker(ρW ).
+Then for any p ∈ P we have
+X
+X
+0 = p ⊗S ρW (
+qi ⊗T (pi ⊗S wi ) =
+p⊗S < qi , pi >S wi
+X
+X
+=
+p < qi , pi >S ⊗S wi
+=
+< p, qi >T pi ⊗S wi
+X
+X
+r
+(
+qi ⊗T (pi ⊗S wi ))(p).
+=
+< p, qi >T (pi ⊗S wi )
+= αQ
+P ⊗S W
+X
+r
+Since Qr := (P, QT ) ∈ Prα (T ), the morphism αQ
+qi ⊗T
+P ⊗S W is injective and so
+(pi ⊗S wi ) = 0, i.e. ρW is injective. Consequently, the induced right wide Morita
+context Wr (M) is injective.
+
+Acknowledgement: The authors thank the referee for his/her careful reading of
+the paper and for the fruitful suggestions, comments and corrections, which helped in
+improving several parts of the paper. Moreover, they acknowledge the excellent research
+facilities as well as the support of their respective institutions, King Fahd University of
+Petroleum and Minerals and King AbdulAziz University.
+
+References
+[Abr1983] G.D. Abrams, Morita equivalence for rings with local units, Comm. Algebra 11
+(1983), 801-837.
+[Abu2005] J.Y. Abuhlail, On the linear weak topology and dual pairings over rings, Topology Appl. 149 (2005), 161-175.
+[AF1974] F. Anderson and K. Fuller, Rings and Categories of Modules, Springer-Verlag
+(1974).
+[AGH-Z1997] A.V. Arhangeĺskii, K.R. Goodearl and B. Huisgen-Zimmermann, Kiiti
+Morita, (1915-1995 ), Notices Amer. Math. Soc. 44(6) (1997), 680-684.
+[AG-TL2001] J.Y. Abuhlail, J. Gómez-Torrecillas and F. Lobillo, Duality and rational
+modules in Hopf algebras over commutative rings, J. Algebra 240 (2001), 165184.
+[Alp1990] J.L. Alperin, Static modules and nonnormal Clifford theory, J. Austral. Math.
+Soc. Ser. A 49(3) (1990), 347-353.
+[AM1987] P.N. Ánh and L. Márki, Morita equivalence for rings without identity, Tsukuba
+J. Math 11 (1987), 1-16.
+[Ami1971] S.A. Amitsur, Rings of quotients and Morita contexts, J. Algebra 17 (1971),
+273-298.
+30
+
+[Ber2003] I. Berbee, The Morita-Takeuchi theory for quotient categories, Comm. Algebra
+31(2) (2003), 843-858.
+[C-IG-T1995] F. Castaño Iglesias and J. Gomez-Torrecillas, Wide Morita contexts, Comm.
+Algebra 23 (1995), 601-622.
+[C-IG-T1996] F. Castaño Iglesias and J. Gomez-Torrecillas, Wide left Morita contexts and
+equivalences, Rev. Roum. Math. Pures Appl. 4(1-2) (1996), 17-26.
+[C-IG-T1998] F. Castaño Iglesias and J. Gomez-Torrecillas, Wide Morita contexts and
+equivalences of comodule categories, J. Pure Appl. Algebra 131 (1998), 213225.
+[BW2003] T. Brzeziński and R. Wisbauer, Corings and Comodules, Lond. Math. Soc. Lec.
+Not. Ser. 309, Cambridge University Press (2003).
+[Cae1998] S. Caenepeel, Brauer Groups, Hopf Algebras and Galois Theory, Kluwer Academic Publishers (1998).
+[C-IG-TW2003] F. Castaño Iglesias, J. Gómez-Torrecillas and R. Wisbauer, Adjoint functors and equivalence of subcategories, Bull. Sci. Math. 127 (2003), 279-395.
+[CDN2005] N. Chifan, S. Dăscălescu and C. Năstăsescu, Wide Morita contexts, relative
+injectivity and equivalence results, J. Algebra 284 (2005), 705-736.
+[Col1990] R. Colpi, Some remarks on equivalences between categories of modules, Comm.
+Algebra 18 (1990), 1935-1951.
+[CF2004] R. Colby and K. Fuller, Equivalence and Duality for Module Categories. With
+Tilting and Cotilting for Rings, Cambridge University Press (2004).
+[Fai1981] C. Faith, Algebra I, Rings, Modules and Categories, Springer-Verlag (1981).
+[Gol1979] J. Golan, An Introduction to Homological Algebra, Academic Press (1979).
+[HS1998] Z. Hao and K.-P. Shum, The Grothendieck groups of rings of Morita contexts,
+Group theory (Beijing, 1996), 88-97, Springer (1998).
+[Kat1978] T. Kato, Duality between colocalization and localization, J. Algebra 55 (1978),
+351-374.
+[KO1979] T. Kato and K. Ohtake, Morita contexts and equivalences. J. Algebra 61 (1979),
+360-366.
+[Lam1999] T.Y. Lam, Lectures on Modules and Rings, Springer (1999).
+[MO1989] C. Menini and A. Orsatti, Representable equivalences between categories of modules and applications. Rend. Sem. Mat. Univ. Padova 82 (1989), 203-231.
+31
+
+[Mül1974] B.J. Müller, The quotient category of a Morita context, J. Algebra 28 (1974),
+389-407.
+[Nau1990a] S.K. Nauman, Static modules, Morita contexts, and equivalences. J. Algebra
+135 (1990), 192-202.
+[Nau1990b] S.K. Nauman, Static modules and stable Clifford theory, J. Algebra 128(2)
+(1990), 497-509.
+[Nau1993] S.K. Nauman, Intersecting subcategories of static modules and their equivalences, J. Algebra 155(1) (1993), 252-265.
+[Nau1994-a] S.K. Nauman, An alternate criterion of localized modules, J. Algebra 164
+(1994), 256-263.
+[Nau1994-b] S.K. Nauman, Intersecting subcategories of static modules, stable Clifford theory and colocalization-localization, J. Algebra 170(2) (1994), 400-421.
+[Nau2004] S.K. Nauman, Morita similar matrix rings and their Grothendieck groups, Aligarh Bull. Math. 23(1-2) (2004), 49-60.
+[Sat1978] M. Sato, Fuller's Theorem of equivalences, J. Algebra 52 (1978), 274-284.
+[Tak1977] M. Takeuchi, Morita theorems for categories of comodules, J. Fac. Univ. Tokyo
+24 (1977), 629-644.
+[Trl1994] J. Trlifaj, Every ∗-module is finitely generated, J. Algebra 169 (1994), 392-398.
+[Ver2006] J. Vercruysse, Local units versus local dualisations: corings with local structure
+maps, Commun. Algebra 34 (2006), 2079-2103.
+[Wis1991] R. Wisbauer, Foundations of Module and Ring Theory, a Handbook for Study
+and Research, Gordon and Breach Science Publishers (1991).
+[Wis1998] R. Wisbauer, Tilting in module categories, in "Abelian groups, module theory
+and topology", LNPAM 201 (1998), 421-444.
+[Wis2000] R. Wisbauer, Static modules and equivalences, in "Interactions between Ring
+Theory and Representation Theory", Ed. V. Oystaeyen, M. Saorin, Marcel
+Decker (2000), 423-449.
+[Xin1999] Lin Xin, A note on ∗-modules, Algebra Colloq. 6(2) (1999), 231-240.
+[Z-H1976] B. Zimmermann-Huisgen, Pure submodules of direct products of free modules,
+Math. Ann. 224 (1976), 233-245.
+
+32
+

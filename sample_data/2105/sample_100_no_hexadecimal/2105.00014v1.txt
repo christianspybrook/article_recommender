@@ -1,0 +1,674 @@
+Bloch oscillations and the lack of the decay of the false
+vacuum in a one-dimensional quantum spin chain
+O. Pomponio1,2 , M.A. Werner3,4 , G. Zaránd3,4 and G. Takács3
+1
+
+Dipartimento di Fisica e Astronomia dell'Università di Bologna
+
+arXiv:2105.00014v1 [cond-mat.stat-mech] 30 Apr 2021
+
+Via Irnerio 46, 40126 Bologna, Italy
+2
+
+Istituto Nazionale di Fisica Nucleare, Sezione di Bologna
+Via Irnerio 46, 40126 Bologna, Italy
+
+3
+
+BME-MTA Exotic Quantum Phases 'Lendület' Research Group
+
+Budapest University of Technology and Economics, 1111 Budapest, Budafoki út 8, Hungary
+4
+
+MTA-BME Quantum Correlations Group, Department of Theoretical Physics,
+
+Budapest University of Technology and Economics, 1111 Budapest, Budafoki út 8, Hungary
+
+30th April 2021
+Abstract
+We consider the decay of the false vacuum, realised within a quantum quench into
+an anti-confining regime of the Ising spin chain with a magnetic field opposite to the
+initial magnetisation. Although the effective linear potential between the domain walls
+is repulsive, the time evolution of correlations still shows a suppression of the light cone
+and a reduction of vacuum decay. The suppressed decay is a lattice effect, and can be
+assigned to emergent Bloch oscillations.
+
+1
+
+Introduction
+
+Quantum quenches, i.e., sudden changes in a system's Hamiltonian [1,2] provide a paradigmatic
+protocol to study non-equilibrium quantum dynamics and relaxation in by now routinely engineered closed quantum systems [3–10]. In global, translationally invariant quantum quenches,
+the initial state has a finite uniform energy density with respect to the post-quench Hamiltonian, and the system is therefore in a highly excited state. This highly excited configuration
+acts as a source of quasi-particle excitations, which may collide and thermalize with time. Indeed, within a semi-classical picture [1], these quasi-particle excitations drive equilibration by
+spreading correlation and entanglement across the system.
+In a large class of systems, including various spin chains with short-range interactions, or
+interacting bosonic or fermionic systems, quasi-particles have an upper bound on their velocity [11], leading typically to a distinctive light-cone pattern in time dependent correlation
+functions [1, 2, 12–17]. This behavior is, however, not completely generic: confining forces, as a
+remarkable exception, can suppress the light-cone spreading of correlations [18]. The prediction
+of dynamical confinement has indeed been confirmed recently in numerous systems and settings
+exhibiting confinement [19–28].
+Dynamical confinement [18] has originally been observed in the ferromagnetic phase (g < 1)
+
+1
+
+h
+
+true vacuum
+
+false vacuum
+
+true vacuum
+
+(a) Confining quench
+
+h
+
+false vacuum
+
+true vacuum
+
+false vacuum
+
+(b) Anti-confining quench
+
+Figure 1.1: (a) For the longitudinal field h parallel to the initial magnetisation, bubbles
+nucleated during the quench contain the false vacuum. The corresponding attractive forces
+(blue arrows), confine domain walls (indicated by red lines) into 'mesons'. (b) For h opposite
+to the initial magnetisation, the nucleating bubbles contain the true vacuum. The induced
+repulsive force accelerates the domain walls outwards.
+of the quantum Ising spin chain, governed by the Hamiltonian
+HQISC = −J
+
+L−1
+X
+
+
+z
+σiz σi+1
++ gσix + hσiz .
+
+α
+σi+L
+≡ σiα ,
+
+i=0
+
+Dynamical confinement occurs while initializing the system in its g0 < 1 positive (spontaneous)
+magnetisation ground state with m = hσiz i > 0 and h0 = 0, and then quenching to a Hamiltonian with some g < 1 and h > 0. In this case, the quench gives rise to oppositely moving
+domain walls (kink-antikink pairs), with a 'bubble' of negative magnetisation −m stretched
+between them (see Fig. 1.1). With the magnetic field being turned on in the opposite direction,
+these bubbles are filled with the 'false vacuum', and cost therefore a potential energy that is
+proportional to the distance between domain walls. The corresponding confining force [29] inhibits the propagation of particles to large distances, and prevents thermalisation of the system
+within all time scales accessible to numerical simulations.
+It is intriguing to ask what happens if we switch on a field h < 0. In this case, the initial
+state becomes the 'false vacuum', and the interior of the bubble is filled with the 'true vacuum'.
+Therefore, the external field promotes the expansion of bubbles, and generates a repulsive force
+between the domain walls, as illustrated in Fig. 1.1. In quantum field theory, this corresponds to
+a scenario proposed by Coleman, known as the decay of the false vacuum [30,31]: the expansion
+of the bubbles should rapidly accelerate to a maximal velocity, and the true vacuum should
+fill the entire space. Coleman's scenario would thus imply in our case that the bubbles should
+extend to the whole spin chain, which should rapidly relax to an equilibrium or steady state
+around the true vacuum.
+Here we show that Coleman's scenario is violated in the Ising spin chain. The dynamics of
+spin-spin correlation function clearly indicate that bubbles do not expand infinitely. Rather, the
+repulsive force leads to an oscillatory motion of the domain walls, known as Bloch oscillations.
+These findings are corroborated by recent numerical studies of the order parameter statistics
+in the quantum Ising spin chain [32].
+
+2
+
+g = 0.4, h = 0.1
+
+0.30
+
+g = 0.4, h = 0.1
+
+l
+
+10
+0
+
+0.15
+
+10
+0.00
+g = 0.4, h = 0.2
+
+0.20
+
+g = 0.4, h = 0.2
+
+l
+
+10
+0
+
+0.10
+
+10
+0
+
+20
+
+t
+
+40
+
+60 0
+
+20
+
+t
+
+40
+
+60
+
+0.00
+
+Figure 2.1:
+Time evolution of the connected spin-spin correlation function Cz (l, t) ≡
+hσ0z (t)σlz (t)ic for g = 0.4 and for values h < 0 (left panel) and h > 0 (right panel). The red vs.
+white lines show the average bubble sizes estimated as in eqn. (2.9) and (2.10) respectively.
+
+2
+2.1
+
+Dynamics in the anti-confining regime
+Quench setup and subsequent time evolution
+
+As discussed in the introduction, we consider quantum quenches in the ferromagnetic phase.
+For simplicity, we start the quench from a fully aligned, positively polarised state, i.e. from the
+ground state with g0 = 0 and h0 = 0. We then quench to a finite transverse field, g < 1, and
+an "anti-confining" longitudinal field h < 0. Turning on a finite g0 → g > 0 creates a gas of
+domain wall excitations, which then move in the presence of the field h < 0.
+The time evolution is numerically simulated using the infinite volume time evolving block
+decimation (iTEBD) method [33], which we also use to compute the time evolution of the
+connected two-point equal time spin correlation function
+Cz (l, t) ≡ hσ0z (t)σlz (t)ic = hσ0z (t)σlz (t)i − hσ0z (t)i hσlz (t)i .
+
+(2.1)
+
+As shown in Fig. 2.1, at a first sight, the time evolution of Cz (l, t) is remarkably similar for
+an anti-confining field, h < 0, to the one obtained in the dynamical confinement region, h > 0,
+studied in [18]: in both cases, the light-cone propagation of correlations is suppressed, and
+oscillations are observed.
+Closer examination of the simulation results discerns, however, some important differences
+between the two cases. While correlations have an oscillatory behavior in both cases, the
+corresponding frequencies and amplitudes are quite different. As discussed in Ref. [18], in the
+confining case h > 0 the frequencies of oscillations scale with h2/3 and correspond to bound
+3
+
+0.025
+1.3
+
+0.020
+
+1.2
+
+1.1
+0.015
+
+ρ
+
+1.0
+
+ε
+
+0.010
+0.9
+
+0.005
+
+0.8
+
+ε
+ρ
+
+0.7
+0
+-π
+
+0
+
+π
+
+k
+
+Figure 2.2: The kink dispersion relation (k) for g = 0.3 and the initial density ρ(k) for g0 = 0,
+g = 0.3.
+states of domain walls called"mesons". In contrast, for the anti-confining case the characteristic
+frequency scales with h, as shown explicitly by the quench spectroscopy discussed in Subsection
+2.4.
+
+2.2
+
+Bloch oscillations
+
+As already stated, oscillations observed for h < 0 can be interpreted as Bloch oscillations.
+They are related to the lattice structure of the model, and can be easily understood within
+a semi-classical picture. Consider first a pure transverse field quench with h = 0 and g >
+0. The post-quench state then consists of independent kink-antikink pairs with momenta k
+andp−k. These kinks behave as non-interacting fermions with a dispersion relation, (k) =
+2J 1 + g 2 − 2g cos k, and propagate with the group velocity
+v(k) =
+
+∂(k)
+,
+∂k
+
+(2.2)
+
+limited by the maximum velocity, vmax = 2J g. The initial density of kinks can be determined
+following Refs. [15, 34]. Kink-antikink pairs of momentum ±k are created with a pair creation
+amplitude, K(k) = tan ∆k /2, with
+gg0 − (g + g0 ) cos k + 1
+p
+cos ∆k = p
+.
+2
+1 + g − 2g cos k 1 + g02 − 2g0 cos k
+
+(2.3)
+
+and the density of kink pairs with momentum in the interval [k, k + dk] is given by
+ρ(k) =
+
+|K(k)|2
+1 − cos(∆k )
+= sin2 (∆k /2) ,
+2 =
+2
+1 + |K(k)|
+
+(2.4)
+
+shown in Fig. 2.2. The denominator in this equation simply reflects the fermionic nature of
+kinks, and the spatial bubble density is just the integral of ρ(k),
+Z π
+dk
+ρbubble =
+ρ(k) .
+(2.5)
+0 2π
+Bloch oscillations arise due to the finite longitudinal field, h < 0, ignored so far. To a
+first approximation, we can neglect the correction to the dispersion relation (k), and treat the
+4
+
+dynamics of the bubbles as that of a two-particle system, a kink and an antikink interacting
+via a repulsive potential
+V (r) = −χ r,
+(2.6)
+where r is the distance between the kinks, and χ the coefficient given by the energy gain of
+1/8
+flipping the magnetisation into the external field's direction: χ = 2m|h| = 2|h| (1 − g 2 ) . The
+semi-classical equation of motion of the kinks is then written as
+1 ∂V
+χ
+∂(k)
+,
+k̇ = −
+= ,
+(2.7)
+ṙ = 2
+∂k
+2 ∂r
+2
+with the factors 2 and 1/2 related to having two mobile kinks. The second equation yields
+immediately k(t) = k0 + 12 χt , and can be used to determine the kink-antikink distance as
+4
+[ (k0 + χ t/2) −  (k0 )] + r0 ,
+(2.8)
+χ
+with r0 initial size of the bubble (typically of the order of the lattice spacing), and ±k0 the
+initial momenta of the kinks. Due to the periodicity of (k), the kink velocity reverses sign when
+the momentum k passes the boundary of the Brillouin zone at k = ±π, where the kinks turn
+back. As a result, kinks return to their original position and collide again after a period T (k0 )
+when the bubble re-collapses (r(T (k0 )) ≈ 0). This happens when k0 + χ T (k0 )/2 = 2π − k0 .
+At this point, the kink and the antikink are reflected, and start off again with the whole cycle
+repeating as illustrated in Fig. 2.3, causing the bubbles oscillate in time.
+In contrast to the idealised single-bubble dynamics shown in Fig. 2.3, the observed oscillations shown on the left of Fig. 2.1 result from a large number of bubbles, each having different
+initial momenta and initial sizes. Nevertheless, these Bloch oscillations still have a characteristic time. As obvious from Fig. 2.2, (and can be indeed verified by direct calculation, for an
+initial state with g0 = 0) the kink density is highest around momenta corresponding to vmax ,
+which determines the front line of the bubbles, and thus the overall frequency of oscillations
+via the condition, 12 χ TB = 2k0 ≈ π for small g-s, yielding
+r(t) =
+
+2π
+=χ.
+TB
+The presence of a distribution of domain wall momenta leads, however, to a gradual decay
+of oscillations due to the dependence of the oscillation period and phase on the initial kink
+momentum. Bubble collisions have a similar, degrading effect on coherent oscillations.
+We close this subsection with two interesting observations regarding oscillation decay and
+collisions:
+ω≈
+
+• Kink-antikink pairs collide once during every oscillation period. They could, in principle,
+annihilate into mesons then; however our numerics shows no such effect in the accessible
+time frame, which is consistent with recent findings [35] that the inelastic scattering is
+very ineffective.
+These collisions also give rise to a time delay due to the interaction between kinks. In
+the case of zero longitudinal field, h = 0, however, the kink-antikink scattering amplitude
+is simply −1, and there is no time delay. Therefore any time delay introduced by kink
+collisions is of order h, which we can neglect in the simple semi-classical picture used here.
+• Collisions between different bubbles lead to interactions between bubbles, leading to corrections to the simple motion described above. This effect can be neglected if the average
+spacing between bubbles is larger than their maximum allowed size, which leads to the
+condition ρbubble −1 fl 2(π)/χ. This requires the longitudinal field to be larger than some
+minimum value, which can be computed as a function of g and turns out to be much
+smaller than the fields used in our simulations, where the smallest field was |h| = 0.05.
+5
+
+Figure 2.3: Illustrating the Bloch oscillation of a bubble with a definite initial momentum of
+the kinks forming the bubble walls. Arrows indicate the dominant spin direction as a function
+of the spatial position for selected time slices. Time delays corresponding to kink collisions are
+neglected.
+
+2.3
+
+Verifying average bubble size and scaling
+
+One piece of evidence for the suggested scenario is that it predicts an average bubble size that
+agrees reasonably well with the spatial extension of the correlations. This is demonstrated in
+Figure 2.1, where the red lines depict the estimate for the average bubble size
+Z π
+dk0
+4
+1
+ρ(k0 ) ((π) − (k0 ))
+(2.9)
+hrianti−conf ≈
+ρbubble 0 2π
+χ
+obtained by neglecting the original bubble size d0 . For the standard confining case, a similar
+reasoning gives the average bubble size
+Z π
+1
+dk0
+4
+hriconf ≈
+ρ(k0 ) ((k0 ) − (0))
+(2.10)
+ρbubble 0 2π
+χ
+since, in this latter case, kink momenta oscillate between k0 and 0. Note that these estimates depend both on g and h, and give a very good estimate for the spatial extension of the
+correlations shown in Figure 2.1.
+Another tell-tale signal of Bloch oscillations is that their spatial extension is predicted to
+scale as ∼ 1/h, while their frequency is proportional to h. This is manifest in the numerically
+computed time evolution, as demonstrated in Fig. 2.4, where the space-time bubble contour is
+extracted from the data at h = −0.1 and then superimposed on the time evolution obtained
+for other h values, with time and space rescaled accordingly. Note that the actual distance
+and time scales vary by a factor of 4, while the correlation profiles remain almost identical
+when plotted in terms of the scaled variables, |h|t and |h|l. This scaling works remarkably well
+for the first few oscillations. Later differences can be attributed to deviations from our simple
+semi-classical picture such as the presence of localised spin excitations with frequencies much
+higher than the Bloch oscillations of the bubble walls, as well as distortions due to bubble
+collisions and the contributions from the periodic kink collisions when bubbles shrink to their
+minimal size.
+
+2.4
+
+Quench spectroscopy
+
+'Quench spectroscopy', presented in Fig. 2.5, i.e. the Fourier analysis of the time evolution
+after the quench provides a further tool to assess Bloch oscillations. For small values of |h|, we
+6
+
+Figure 2.4:
+Scaling evidence for Bloch oscillations for the transverse field values g =
+0.20 (left) and g = 0.25 (right), with the longitudinal field taking the values h =
+−0.05, −0.10, −0.15, −0.20 for each. The plot shows hσ0z σlz ic as a function of the scaling variables |h|t and |h|l. The colour scale is defined by normalising the maximum value of the
+correlator to 1, while the red lines show the bubble wall defined by the data with h = −0.10 at
+one tenth of its maximum value.
+
+7
+
+2
+z z
+
+0 0 >|
+
+2
+
+h = 0.05
+
+10
+
+2
+
+h = 0.10
+
+10
+
+2
+
+h = 0.15
+
+10
+
+2
+
+h = 0.20
+
+2.0
+
+2.5
+
+|<
+
+z z
+
+0 0 >|
+
+2
+
+|<
+
+z z
+
+0 0 >|
+
+2
+
+|<
+
+z z
+
+0 0 >|
+
+2
+
+|<
+
+10
+
+3.0
+
+3.5
+
+4.0
+
+4.5
+
+5.0
+
+Figure 2.5: Power spectrum of hσ0z (t)σlz (t)ic for l = 0 and g = 0.25. Green dotted lines show
+meson frequencies (computed following [18]) - note that they become less and less relevant as
+|h| grows. Red dashed lines have a spacing χ = 2|h|m, indicating a regular sequence of higher
+harmonics of the Bloch oscillations, which instead become more prominent for higher values of
+|h|.
+only observe frequency peaks corresponding to mesonic bound states. The energy gap of these
+mesonic excitations is always larger than twice the kink gap, grows with increasing |h|, and can
+also be computed theoretically using a semi-classical method [18, 36]. For small quench fields,
+we do not observe Bloch oscillations. This is not unexpected, since the bubbles are large, and
+collide with each other before their oscillation could be observed.
+For larger field values, however, mesons are harder to create, and bubble collisions become
+less frequent. We therefore expect and indeed find that mesonic contributions to the frequency
+spectrum become less and less pronounced with growing |h|, while at the same time another set
+of regularly spaced frequency peaks emerges well below the threshold of mesonic excitations.
+Due to the dependence of their period on the initial kink momentum k0 , the Bloch oscillations do not in general have a well-defined frequency. Nevertheless, as explained above, we
+still expect to see a strong feature at the characteristic frequency, ω = χ. Furthermore, since
+Bloch oscillations are non-harmonic, the frequency spectrum is expected to contain a regular
+sequence of higher harmonics. Indeed, such a series of peaks is seen to coincide with the red
+lines in Fig. 2.5, with the distance between them equal to χ. Note that the simulation can
+only capture higher harmonics, mostly due to the finite time window of the numerical simulations, but also due to low-frequency background which results from the quench time evolution
+containing frequencies corresponding to all differences between energy levels of the post-quench
+Hamiltonian.
+
+8
+
+3
+
+Conclusions
+
+As we demonstrated in this work within the transverse field Ising model, light-cone time evolution and the decay of the false vacuum can be absent in one-dimensional systems even in
+a deconfined quench regime, where the formation of bubbles would be energetically favorable.
+Rather, quite unexpectedly, we observe in this regime spatially confined correlations, oscillating
+in time. We identify these as Bloch oscillations. These appear due to the underlying lattice
+and the periodicity of the quasiparticles' dispersion relation in the momentum variable. Our
+observations are in agreement with recent results obtained in kinetically constrained Rydberg
+spin systems [37]. However, while in Ref. [37] a special constraint (fine-tuning) was needed
+to generate Bloch oscillations, here they emerge quite generically, without any constraint in
+a regime where quasi-particle excitations would naively be expected to speed up and spread
+correlations over the system.
+Our results are relevant for experimental realisations of the tunneling decay of the false
+vacuum such as put forward in Ref. [38]. We predict that in discrete spin chains, the dynamics
+after bubble nucleation lead to Bloch oscillations in general, in stark contrast to expectations
+from continuum quantum field theories. Our results also demonstrate that simple spin chains
+provide an experimental realisation of Bloch oscillations, which can clearly be identified from the
+scaling of the space-time dependent spin-spin correlation functions with the applied longitudinal
+field.
+
+Acknowledgements
+This work was partially supported by National Research, Development and Innovation Office
+(NKFIH) through the OTKA Grant FK 132146, the Hungarian Quantum Technology National
+Excellence Program, project no. 2017-1.2.1- NKP- 2017-00001, and by the Fund TKP2020 IES
+(Grant No. BME-IE-NAT), under the auspices of the Ministry for Innovation and Technology.
+M.A.W. has also been supported by the ÚNKP-20-4 New National Excellence Program of the
+Ministry for Innovation and Technology from the source of the National Research, Development
+and Innovation Fund.
+
+References
+[1] P. Calabrese and J. Cardy, "Time Dependence of Correlation Functions Following a
+Quantum Quench," Phys. Rev. Lett. 96 (2006) 136801, arXiv:cond-mat/0601225
+[cond-mat.stat-mech].
+[2] P. Calabrese and J. Cardy, "Quantum quenches in extended systems," Journal of
+Statistical Mechanics: Theory and Experiment 2007 (2007) 06008, arXiv:0704.1880
+[cond-mat.stat-mech].
+[3] T. Kinoshita, T. Wenger, and D. S. Weiss, "A quantum Newton's cradle," Nature 440
+(2006) 900–903.
+[4] S. Hofferberth, I. Lesanovsky, B. Fischer, T. Schumm, and J. Schmiedmayer,
+"Non-equilibrium coherence dynamics in one-dimensional Bose gases," Nature 449 (2007)
+324–327, arXiv:0706.2259 [cond-mat.other].
+[5] S. Trotzky, Y. A. Chen, A. Flesch, I. P. McCulloch, U. Schollwöck, J. Eisert, and
+I. Bloch, "Probing the relaxation towards equilibrium in an isolated strongly correlated
+one-dimensional Bose gas," Nature Physics 8 (2012) 325–330, arXiv:1101.2659
+[cond-mat.quant-gas].
+9
+
+[6] M. Cheneau, P. Barmettler, D. Poletti, M. Endres, P. Schauss, T. Fukuhara, C. Gross,
+I. Bloch, C. Kollath, and S. Kuhr, "Light-cone-like spreading of correlations in a
+quantum many-body system," Nature 481 (2012) 484–487, arXiv:1111.0776
+[cond-mat.quant-gas].
+[7] F. Meinert, M. J. Mark, E. Kirilov, K. Lauber, P. Weinmann, A. J. Daley, and H. C.
+Nägerl, "Quantum Quench in an Atomic One-Dimensional Ising Chain," Phys. Rev. Lett.
+111 (2013) 053003, arXiv:1304.2628 [cond-mat.quant-gas].
+[8] T. Langen, R. Geiger, M. Kuhnert, B. Rauer, and J. Schmiedmayer, "Local emergence of
+thermal correlations in an isolated quantum many-body system," Nature Physics 9
+(2013) 640–643, arXiv:1305.3708 [cond-mat.quant-gas].
+[9] T. Langen, S. Erne, R. Geiger, B. Rauer, T. Schweigler, M. Kuhnert, W. Rohringer, I. E.
+Mazets, T. Gasenzer, and J. Schmiedmayer, "Experimental observation of a generalized
+Gibbs ensemble," Science 348 (2015) 207–211, arXiv:1411.7185
+[cond-mat.quant-gas].
+[10] A. M. Kaufman, M. E. Tai, A. Lukin, M. Rispoli, R. Schittko, P. M. Preiss, and
+M. Greiner, "Quantum thermalization through entanglement in an isolated many-body
+system," Science 353 (2016) 794–800, arXiv:1603.04409 [quant-ph].
+[11] E. H. Lieb and D. W. Robinson, "The finite group velocity of quantum spin systems,"
+Communications in Mathematical Physics 28 (1972) 251–257.
+[12] F. Iglói and H. Rieger, "Long-Range Correlations in the Nonequilibrium Quantum
+Relaxation of a Spin Chain," Phys. Rev. Lett. 85 (2000) 3233–3236.
+[13] A. M. Läuchli and C. Kollath, "Spreading of correlations and entanglement after a
+quench in the one-dimensional Bose Hubbard model," Journal of Statistical Mechanics:
+Theory and Experiment 2008 (2008) 05018.
+[14] S. R. Manmana, S. Wessel, R. M. Noack, and A. Muramatsu, "Time evolution of
+correlations in strongly interacting fermions after a quantum quench," Phys. Rev. B 79
+(2009) 155104, arXiv:0812.0561 [cond-mat.str-el].
+[15] P. Calabrese, F. H. L. Essler, and M. Fagotti, "Quantum Quench in the Transverse-Field
+Ising Chain," Phys. Rev. Lett. 106 (2011) 227203, arXiv:1104.0154
+[cond-mat.str-el].
+[16] L. Bonnes, F. H. L. Essler, and A. M. Läuchli, ""Light-Cone" Dynamics After Quantum
+Quenches in Spin Chains," Phys. Rev. Lett. 113 (2014) 187203, arXiv:1404.4062
+[cond-mat.str-el].
+[17] G. Carleo, F. Becca, L. Sanchez-Palencia, S. Sorella, and M. Fabrizio, "Light-cone effect
+and supersonic correlations in one- and two-dimensional bosonic superfluids," Phys. Rev.
+A 89 (2014) 031602.
+[18] M. Kormos, M. Collura, G. Takács, and P. Calabrese, "Real-time confinement following a
+quantum quench to a non-integrable model," Nature Physics 13 (2017) 246–249,
+arXiv:1604.03571 [cond-mat.stat-mech].
+[19] G. Magnifico, M. Dalmonte, P. Facchi, S. Pascazio, F. V. Pepe, and E. Ercolessi, "Real
+Time Dynamics and Confinement in the Zn Schwinger-Weyl lattice model for 1+1
+QED," arXiv e-prints (2019) arXiv:1909.04821, arXiv:1909.04821 [quant-ph].
+10
+
+[20] W. L. Tan, P. Becker, F. Liu, G. Pagano, K. S. Collins, A. De, L. Feng, H. B. Kaplan,
+A. Kyprianidis, R. Lundgren, W. Morong, S. Whitsitt, A. V. Gorshkov, and C. Monroe,
+"Observation of Domain Wall Confinement and Dynamics in a Quantum Simulator,"
+arXiv e-prints (2019) arXiv:1912.11117, arXiv:1912.11117 [quant-ph].
+[21] P. P. Mazza, G. Perfetto, A. Lerose, M. Collura, and A. Gambassi, "Suppression of
+transport in nondisordered quantum spin chains due to confined excitations," Phys. Rev.
+B 99 (2019) 180302, arXiv:1806.09674 [cond-mat.stat-mech].
+[22] N. J. Robinson, A. J. A. James, and R. M. Konik, "Signatures of rare states and
+thermalization in a theory with confinement," Phys. Rev. B 99 (2019) 195108,
+arXiv:1808.10782 [cond-mat.str-el].
+[23] A. J. A. James, R. M. Konik, and N. J. Robinson, "Nonthermal States Arising from
+Confinement in One and Two Dimensions," Phys. Rev. Lett. 122 (2019) 130603,
+arXiv:1804.09990 [cond-mat.stat-mech].
+[24] F. Liu, R. Lundgren, P. Titum, G. Pagano, J. Zhang, C. Monroe, and A. V. Gorshkov,
+"Confined Quasiparticle Dynamics in Long-Range Interacting Quantum Spin Chains,"
+Phys. Rev. Lett. 122 (2019) 150601, arXiv:1810.02365 [cond-mat.quant-gas].
+[25] J. Vovrosh and J. Knolle, "Confinement and Entanglement Dynamics on a Digital
+Quantum Computer," arXiv e-prints (2020) arXiv:2001.03044, arXiv:2001.03044
+[cond-mat.str-el].
+[26] A. Lerose, F. M. Surace, P. P. Mazza, G. Perfetto, M. Collura, and A. Gambassi,
+"Quasilocalized dynamics from confinement of quantum excitations," Phys. Rev. B 102
+(2020) 041118, arXiv:1911.07877 [cond-mat.stat-mech].
+[27] T. Chanda, J. Zakrzewski, M. Lewenstein, and L. Tagliacozzo, "Confinement and Lack of
+Thermalization after Quenches in the Bosonic Schwinger Model," Phys. Rev. Lett. 124
+(2020) 180602, arXiv:1909.12657 [cond-mat.stat-mech].
+[28] Z.-C. Yang, F. Liu, A. V. Gorshkov, and T. Iadecola, "Hilbert-Space Fragmentation from
+Strict Confinement," Phys. Rev. Lett. 124 (2020) 207602, arXiv:1912.04300
+[cond-mat.str-el].
+[29] B. M. McCoy and T. T. Wu, "Two-dimensional Ising field theory in a magnetic field:
+Breakup of the cut in the two-point function," Phys. Rev. D 18 (1978) 1259–1267.
+[30] S. Coleman, "Fate of the false vacuum: Semiclassical theory," Phys. Rev. D 15 (1977)
+2929–2936.
+[31] J. Callan, Curtis G. and S. Coleman, "Fate of the false vacuum. II. First quantum
+corrections," Phys. Rev. D 16 (1977) 1762–1768.
+[32] R. J. V. Tortora, P. Calabrese, and M. Collura, "Relaxation of the order-parameter
+statistics and dynamical confinement," arXiv e-prints (2020) arXiv:2005.01679,
+arXiv:2005.01679 [cond-mat.stat-mech].
+[33] G. Vidal, "Efficient Simulation of One-Dimensional Quantum Many-Body Systems,"
+Phys. Rev. Lett. 93 (2004) 040502, arXiv:quant-ph/0310089 [quant-ph].
+
+11
+
+[34] P. Calabrese, F. H. L. Essler, and M. Fagotti, "Quantum quench in the transverse field
+Ising chain: I. Time evolution of order parameter correlators," Journal of Statistical
+Mechanics: Theory and Experiment 2012 (2012) 07016, arXiv:1204.3911
+[cond-mat.quant-gas].
+[35] A. Milsted, J. Liu, J. Preskill, and G. Vidal, "Collisions of false-vacuum bubble walls in a
+quantum spin chain," arXiv e-prints (2020) arXiv:2012.07243, arXiv:2012.07243
+[quant-ph].
+[36] S. B. Rutkevich, "Large-n Excitations in the Ferromagnetic Ising Field Theory in a Weak
+Magnetic Field: Mass Spectrum and Decay Widths," Phys. Rev. Lett. 95 (2005) 250601,
+arXiv:hep-th/0509149 [hep-th].
+[37] M. Magoni, P. P. Mazza, and I. Lesanovsky, "Emergent Bloch oscillations in a kinetically
+constrained Rydberg spin lattice," Phys. Rev. Lett. 126 (2021) 103002,
+arXiv:2010.07825 [cond-mat.quant-gas].
+[38] S. Abel and M. Spannowsky, "Quantum-field-theoretic simulation platform for observing
+the fate of the false vacuum," PRX Quantum 2 (2021) 010349, arXiv:2006.06003
+[hep-th].
+
+12
+

@@ -1,0 +1,1257 @@
+arxiv07040069v1 mathds 1 apr 2007
+dynamical objects for cohomologically
+expanding maps
+john w robertson
+february 20 2013
+john w robertson1
+wichita state university
+wichita kansas 672600033
+phone 3169783979
+fax 3169783748
+robertsonmathwichitaedu
+abstract
+the goal of this paper is to construct invariant dynamical objects
+for a not necessarily invertible smooth self map of a compact manifold we prove a result that takes advantage of differences in rates of
+expansion in the terms of a sheaf cohomological long exact sequence
+to create unique lifts of finite dimensional invariant subspaces of one
+term of the sequence to invariant subspaces of the preceding term
+this allows us to take invariant cohomological classes and under the
+right circumstances construct unique currents of a given type including unique measures of a given type that represent those classes and
+are invariant under pullback a dynamically interesting self map may
+have a plethora of invariant measures so the uniquess of the constructed currents is important it means that if local growth is not
+too big compared to the growth rate of the cohomological class then
+the expanding cohomological class gives sufficient marching orders
+to the system to prohibit the formation of any other such invariant
+research partially supported by a wichita state university arcs grant
+current of the same type say from some local dynamical subsystem
+because we use subsheaves of the sheaf of currents we give conditions
+under which a subsheaf will have the same cohomology as the sheaf
+containing it using a smoothing argument this allows us to show
+that the sheaf cohomology of the currents under consideration can be
+canonically identified with the derham cohomology groups our main
+theorem can be applied in both the smooth and holomorphic setting
+msc 37c05 32h50 18f20 55n30
+introduction
+our purpose is to construct invariant dynamical objects for a self map f  x 
+x of a compact topological space we make use of sheaf cohomology and
+differences in rates of expansion in different terms of a long exact sequence
+to construct invariant sections of a sheaf we will show that there are invariant degree 1 currents or eigencurrents corresponding to each expanding
+eigenvector of h 1 x r we also show that successive preimages of sufficiently regular degree one currents converge to one of these eigencurrents
+we show that if most of the expansion f  x  x is along an invariant
+cohomological class v  h k x r then there is an invariant current c in that
+cohomology class and other sufficiently regular currents in the same class
+converge to c under successive pullback
+the group cohomology of z acting on a space of functions on x via pullback has been studied in the context of dynamical systems kat03 this
+work seems related to ours but to be pursued in an essentially different direction our map f is not assumed to be invertible so there is not necessarily
+a z action only an n action also we use sheaves rather than functions and
+make substantial use of cohomological tools most importantly we are particularly interested in the construction of invariant currents especially when
+the current is some sense unique
+our results are actually motivated by results in higher dimensional holomorphic dynamics showing the existence of a unique closed positive 1 1 current under a variety of circumstances just about any recent paper on higher
+dimensional holomorphic dynamics either proves such results or makes essential use of such results see eg fs92 hov94 hov95 bs91a bs91b
+bs92 bls93 bs98a bs98b bs99 can01 mcm02 fs94a fs94b
+fs95b fs01 fs95a jw00 fj03 ued94 ued98 ued97 and
+ds05
+while invariant measures have been a focal point in dynamics it seems
+that invariant currents also have an imporant role to play we will show under
+mild conditions that if some degree one cohomological class of a smooth self
+map f of a compact manifold is invariant and expanded there is necessarily
+a invariant degree one current of a certain type representing that class we
+obtain analogous results for higher degree currents given bounds on the local
+growth rates of f  the uniqueness of these classes is significant it seems
+clear that one could modify a map locally near a fixed point to obtain other
+invariant currents of the same type without affecting the topology thus
+our results also say that any local modification that created an invariant
+current of the given type must violate the local growth conditions in other
+words as long as things do not grow too fast compared to the growth rate of
+the cohomology class the expansion of the cohomology class gives sufficient
+marching orders to points that no other invariant cohomological class of the
+given type can be created by purely local dynamical behavior our results
+give explicit conditions under which uniqueness is guaranteed for degree
+one currents no restriction on local growth rates is necessary for our results
+cohomomorphisms
+we will make use of sheaves in this paper there are two standard definitions of sheaves on a topological space x one as a topological space
+bre97gr84 and one as a functor on the category topx satisfying various axioms har77wei97 since we will often want to make use of a
+topology on sections of a sheaf a that differs from the topology these inherit
+using the topological definition of a sheaf we will instead use the functor
+definition of a sheaf
+our sheaves will always be sheaves of k modules over some fixed field k
+we will require that k have an absolute value for which k is complete
+given a continuous map f  x  y and sheaves a and b on x and
+y respectively an f cohomomorphism is a generalized notion of a pullback
+from b to a through f  different types of geometric objects pull back
+differently and this allows us to handle all cases at once
+we take the following facts from from bre97 page 1415
+definition 1 if a and b are sheaves on x and y then an fcohomomorphism
+k  b  a is a collection of homomorphisms ku  bu   a f 1 u  for
+u open in y  compatible with restrictions
+note that if a is a sheaf on x and f  x  y is continuous then there
+is a canonical cohomomorphism f a  a where f a is the direct image of
+a  ie given an open u  y  f a u   a f 1 u 
+remark given a continuous map f  x  y of topological spaces x and
+y and sheaves a and b on x and y respectively all f cohomomorphisms
+f  b  a are given by a composition of the form
+b  f a  a
+where j  b  f a is a sheaf homomorphism and each such composition is
+seen to given an f cohomomorphism
+the usual notion of a morphism of sheaves on x is the same as an idx
+cohomomorphism of sheaves on x
+cohomomorphisms and 
+the functor  returns the global sections of that sheaf given a morphism
+  a  a 0 of sheaves on x  is just the homomorphism a x  a 0 x
+given sheaves a and b on x and y and given f  x  y continuous
+then for a sheaf cohomomorphism f  b  a one defines f to be the
+homomorphism by   a x this extends  to be a functor on the
+category of topological spaces with an associated sheaf where morphisms are
+given by cohomomorphisms
+invariant global sections
+fix a continuous self map f  x  x of a
+be interested in f self cohomomorphisms of
+typically have several sheaves of interest on
+f self cohomomorphism we let fa  a  a
+f cohomomorphism of a 
+assume that x is a manifold and that
+a bc
+topological space x we will
+sheaves a on x as we will
+x each with a corresponding
+be the default notation for an
+is a short exact sequence of sheaves on x let f  x  x be a continuous
+self map of x and assume further that we are given f self cohomomorphisms
+of each of these sheaves and that
+commutes we will say that a commutative diagram as in 1 is an f selfcohomomorphism of the sequence a  b  c 
+applying the functor  to this diagram the rows can be extended in the
+usual long exact sequence the resulting diagram is commutative bre97
+page 62
+ a x
+ a x
+c x
+h 1 x a 
+h1p
+c x
+h 1 fa
+h 1 x a 
+h1p
+one can think of b as providing local potentials for members of c and
+of a as being those potentials which give rise to the zero member of c 
+it will be assumed that the reader is familiar with interpreting h 1 x a 
+as classifying equivalence classes of bundles with transition functions in a 
+we will frequently refer to members of h 1 x a  as bundles sections of
+such bundles will be assumed to be given locally by local sections of b
+so that every member c of c  is given locally by potentials in b and
+these potentials taken together are a section of the corresponding bundle
+c  h 1 x a 
+convention 1 we will frequently refer to a member v of h 1 x a  as a
+bundle to a member c  c  as a divisor and if c  v we will call c a
+divisor of the bundle v we think this substantially adds to the readability of
+the paper
+definition 2 the support of a divisor c  c  is defined to be the complement of the union of all open sets u such that cu  0
+lemma 3 if an open set u lies outside the support of some c  c  then
+f 1 u  lies outside the support of fc c
+proof we note that by the definition of an f cohomomorphism fc  c  c 
+since the cohomomorphism fc on c u  is a homomorphism from c u  to
+c f 1 u  and the induced action of fc on c  restricted to u must agree
+with its action c u   c f 1 u  then if an open set u is outside the
+support of c then f 1 u  is outside the support of of fc c
+the following conditions for a given v  h 1 x a  will be of interest
+definition 4 we will refer to a bundle v  h 1 x a  for which h 1 pv 
+0 as being closed
+note that this notion depends upon the exact sequence a  b  c 
+and not just on v if b is  acyclic then every member of h 1 x a  is closed
+definition 5 we will call a bundle v  h 1 x a  base point free if for every
+x  x there is some divisor c  c  associated to v whose support does
+not contain x
+lemma 6 if b is soft x is a regular topological space and a  h 1 x a 
+is a closed bundle then a is base point free
+proof from the long exact sequence there is some c0  c  with c0   a
+and given any point x  x from the fact that b  c the germ c0x of c0
+at x is the image under qx of some germ b00x of b at x choose an open
+neighborhood u of x on which there is some b0  bu  with b0x  b00x  the
+topological assumption on x implies that there is a neighborhood v b u
+of x the
+ fact that b 0 is soft implies there is some b  b such that
+b v  b v  then c  c  b  c  has c  a and x 6 suppc
+definition 7 we will refer to a bundle a  h 1 x a  such that fa a  a
+for some   c as a  eigenbundle
+we also find it useful to introduce a relevant notion of expansiveness
+of a map f  x  x relative to a base point free closed eigenbundle v 
+h 1 x a 
+definition 8 given a base point free closed eigenbundle v  h 1 x a 
+then we say that f is cohomologically expansive at x for v if for any open
+neighborhood u of x and any divisor c  c  of v the set u intersects the
+support of fck c for all sufficiently large k
+remark it is a corollary of the definition that the set of points at which
+f is cohomologically expansive for v is closed and forward invariant if
+supp fck c  f k suppc for each c  c  then the set of cohomologically expansive points is totally invariant
+the notion of being cohomologically expansive at x for v means roughly
+that under iteration by f small neighborhoods u of x always grow to cover
+enough of x that the pullback of the bundle v to the set f k u  is a nontrivial
+bundle on f k u  whenever k is large
+we show that if b is soft and x is a compact metric space then some
+minimal expansion takes place at points where f is cohomologically expansive
+for a closed eigenbundle a  h 1 x a 
+we use b x to denote the ball of radius  about x
+lemma 9 let x be a compact metric space if b is soft and v is a closed
+eigenbundle then there exists   0 such that for every   0 there exists
+some k  0 such that if f is cohomologically expanding at x then for every
+k  k diam f k b x  
+proof the bundle v is base point free by lemma 6 using compactness we
+can conclude that there is a finite open cover u1      u of x such that for
+each j uj is disjoint from supp cj for some cj  c  with cj   v we
+will prove the lemma by contradiction let  be the lebesgue number of the
+cover u1      u  if the lemma is false there is some   0 and some increasing
+sequence kn and points xn at which f is cohomologically expansive such that
+diam f kn b xn    for each n by going to a subsequence if necessary we
+can assume xn converges to a point x  letting u  b 1  x  we see that
+u  b xn  for all large n and thus there is some one cj of c1      c such that
+f kn u  is disjoint from supp cj for infinitely many values of n consequently
+u is disjoint from supp fckn cj  for infinitely many n contrary to x being
+a point at which f is cohomologically expansive for v
+we included lemma 9 to show that our notion of cohomological expansion
+is genuinely expansive however depending on the nature of a  being cohomologically expansive can imply that neighborhoods grow a great deal under
+iteration indeed in lemma 10 we show that given any closed set k such that
+the pullback of a fixed point free closed eigenbundle a  h 1 x a  to k is a
+trivial bundle then any neighborhood u of a point at which f is cohomologically expanding for a is so expanded under iteration that f k u  6 int k for
+all sufficiently large k the collection of such sets k typically contains very
+large sets about every point so no matter where f k x is the conclusion that
+f k u  does not lie in any int k implies some points of f k u  must lie far away
+from f k x the point is roughly that large iterates of any neighborhood of
+x can not be homotopically contracted to a point in x
+lemma 10 if b is soft then
+ for any closed set k  x such that the image
+of h x a   h k a k  is zero given any divisor c  c  there is
+another divisor c0  c  associated to the same bundle and c0 is supported
+outside the interior of k consequently if f is cohomologically expansive
+at x  x for some base point free closed eigenbundle a  h 1 x a  then
+necessarily for any neighborhood u of x f k u  6 int k for all large k where
+int k is the interior of k
+proof we use the commutative diagram
+h 0 x b
+h 0 k b k 
+h 0 x c 
+h 0 k c k 
+h 1 x a 
+which we have written using h 0 instead of  so it is clear what the ambi
+ent space is in eachcase from exactness there exists some   h 0 k b k
+such that   ck  then since b is soft the map h 0 x b 
+ h 0 k b k 
+is surjective so there is some b  b  h 0 x b such that bk   then
+c0  c  qb has c0   c and c0 k  0 so suppc0  is disjoint from
+the interior of k
+it is easy to see that if f is cohomologically expansive at x  x for some
+fixed point free closed eigenbundle a  h 1 x a  then necessarily for any
+neighborhood u of x f k u   supp c6  for all large k for any c  c  such
+that c  a hence f k u  can not lie in the interior of k for any large
+convention 2 we let k be either r or c although our central theorems
+only require k to be a complete field with an absolute value
+the following theorem takes advantage of the fact that in an exact sequence the eigenvalues of members of nonadjacent members of the sequence
+do not have to agree to give conditions under which one can uniquely lift
+fixed members of one term of the exact sequence to a fixed member of the preceding term interpreted as a statement in the context of sheaf cohomology
+we will be able to use this theorem to make dynamical conclusions
+the theorem shows that each closed eigenbundle of the induced map
+fa  h 1 x a   h 1 x a  with sufficiently large eigenvalue has a unique
+associated invariant divisor c  c 
+definition 11 given any finite dimensional k vector space v along with
+a linear map g  v  v and any positive real number r we let the r chronically expanding subspace of v be the span of the subspaces associated2 to
+eigenvalues of absolute value greater than r we refer to the 1 chronically
+expanding subspace simply as the chronically expanding subspace
+theorem 12 unique invariant subspace theorem we will assume the
+following
+ f  x  x is a continuous self map of a topological space x
+ we are given an f self cohomomorphism of a short exact sequence of
+sheaves on x
+a bc
+ b is a banach space over k and there exists some  d  r0 such
+that kfb k bk  d  k kbk for k  n b  b
+ c  is a topological vector space over k
+ if a sequence ci  c  of divisors converges to another divisor c
+then the support of c is contained in the closure of the union of the
+supports of ci 
+ the maps fc and q are continuous
+ we are given a finite dimensional h 1 fa  invariant subspace w of the
+ chronically expanding subspace of h 1 x a  we also require w to
+be comprised only of closed bundles
+meaning for each eigenvector  we include not just the  eigenspace but also every
+v  v such that g    idv n v  0 for some positive integer n
+then given any k linear map s  w  c  such that s  idw there is a
+k linear map   w  b satisfying
+  lim fc k sg k  s  q
+where g  w  w is the inverse of h 1 fa w  under iterated pullback the
+rescaled pullbacks of any divisor c  c  of a bundle w  w converge
+toward the invariant plane of divisors w   c  the map   w 
+c  is the unique map making the diagram
+w mmm
+mm m
+ c 
+ h 1 x a 
+h 1 fa
+o w mmm 
+mmm
+ c 
+ h 1 x a 
+commute finally for any basepoint free eigenbundle v  w the support of
+the corresponding invariant divisor v  c  is contained in the set of
+points on which f is cohomologically expansive for v
+proof we note that  fc sg s  0 and so there is a map   w  b
+such that q  fc sg  s
+define   homw b  homw b by   fb g 1  we
+will show that the sequence of maps k is exponentially contracting on
+homw b fix a norm k  k on w  the assumption that w lies in
+the  chronically expanding subspace of h 1 x a  implies that there exists
+some    and some c  0 such that kg k wk  c k kwk for k  n
+w  w  this with the assumption on the rate of expansion of fb easily
+implies that
+  k
+kk  kwk
+kk wk  kfb k g k wk  cd
+thus  is an operator of norm no more than cd   where   
+letting k      2       k  then limk k converges
+to some map   it is easily confirmed that qk  fc k sg k  s equation 3 then follows by continuity of q
+the conclusions about the map  are easy consequences of its definition
+for the final conclusion note that if we just let w be the span of v then
+we have already shown that if c is the unique invariant member of c 
+associated to v then for any divisor c0  c  satisfying c0   v letting
+ be the eigenvalue of v we can write c0  v  qb and equation 3
+becomes fc k c0 k  v  qfb k bk where the final term goes to
+zero as k   by our assumptions on growth rates of g 1 and fb  hence
+fc k c0 k converges to c  v if u is any open subset of x and if the
+support of c0 is disjoint from f n u  for arbitrarily large values of n then the
+support of fc n c0  must be disjoint from u for arbitrarily large values of
+n since rescaled these converge to c then u must lie outside the support
+of c
+remark while we have not formally required x to be compact the requirement that b be a banach space makes this the main case in which
+theorem 12 is apt to have interesting applications
+theorem 12 shows that among all members of c  representing a cohomology class in w there is a unique invariant linear subspace which can be
+identified with w and all other such members of c  are contracted to this
+invariant copy of w in c  under rescaled pullback
+corollary 13 assume that the hypothesis of theorem 12 are satisfied and
+that g  w  w is dominated by a single simple real eigenvalue r  0 with
+eigenvector v let c  v be the unique invariant divisor of v then given
+a divisor c0  c  of any w  w the successive rescaled pullbacks fck c0 rk
+converge to a multiple possibly zero of c
+proof this is a direct consequence of equation 3
+the assumption that g  w  w is dominated by a single simple real
+eigenvalue is meant to handle the most typical situation and is not an essential restriction
+remark given that for a fixed f  x  x the category of sc sheaves a
+on x endowed with an f self cohomomorphism f is an abelian category
+with enough injectives then the functor fixed  which gives the fixed global
+sections of a under f will be left exact and its right derived functors should
+be of dynamical interest in the case where a is a sheaf of functions and
+f is invertible this is just group cohomology with the group z acting on
+a  and has been an object of study for some time see eg kat03 we
+anticipate studying the case of more general sheaves a and the right derived
+functors of the composition fixed  in a future paper including the case of
+endomorphisms
+regularity and positivity
+typically our regularity results for the members invariant plane w  will
+be most easily described in terms of b rather than c  we therefore make
+the following definition
+definition 14 given a subsheaf b 0  b we will say a divisor c  c  has
+local b 0 potentials if c  qb 0  this is equivalent to requiring that about
+each point x  x there
+is an open neighborhood u and some b0  b 0 u 
+such that qb   cu 
+the proof of theorem 12 implicitly provides a method to prove regularity
+results for members of the invariant plane w  we make this explicit as a
+corollary of the proof
+corollary 15 assume we are given f  x  x and a short exact sequence
+of sheaves a  b  c satisfying the hypothesis of theorem 12 assume
+that b 0 is a subsheaf of b and that fb b 0   b 0  let c 0 be the image of
+b 0 under q  b  c  let a 0  a be the kernel of q  b  c 0  assume
+that the canonical map h 1 x a 0   h 1 x a  is injective assume that
+there are basis members w1      wk of w with divisors each of which has local
+potentials in b 0  let r be the the inverse of the absolute value of the largest
+eigenvalue of g 1 so for all j  0 g j is an operator of norm no more
+than crj for some c  0 finally assume that for any sequence of numbers
+aj  j  0 1 2    such that aj  is no more than a constant times rj as
+j   then for b  b 0  the exponentially decaying sequence
+a0 b  a1 fb b  a2 fb 2 b    
+converges in the banach space structure on b to a member of b 0 
+then the map   w  c  lands in c 0 
+proof since w lies in the  chronically expanding subspace of w then necessarily r  1 thus the terms of equation 4 have exponentially decreasing
+norms and the series is exponentially decaying
+by the assumption of a divisor in c 0  for each member wj of a basis
+then the map s  w  c  in theorem 12 can be assumed to land in c 0 
+then fc sg 1  s lands in c 0  and satisfies fc sg 1  s  0 since
+h 1 x a 0   h 1 x a  injects it easily follows that for each wj one can
+choose wj  to be a member bj of b0  using the basis w1      wk to write
+g 1 as a matrix a and letting aij be the ij entry of a so for each ij aij is
+bounded by a constant times r  we see that  wj   bj  fb a1j1 b1 
+    akj1 bk   fb 2 a1j2 b2      akj2 bk       fb  a1j b1     
+akj bk  gathering all the b1 terms b2 terms etc from the right hand
+side we see that   limk k is a member of b 0  and thus that  lands
+in c 0  by equation 3
+the following trivial observation will suffice for our needed positivity
+conclusions
+observation assume we have an f self cohomomorphism of a short exact
+sequence of sheaves a  b  c satisfying the hypothesis of theorem 12
+and also a subsheaf c 0  c such that
+1 c 0 is closed under multiplication by r0  note that c 0 is not necessarily
+a sheaf of k modules or even of groups
+2 fc c 0   c 0
+3 c 0  is closed in c 
+then for any closed eigenbundle v  h 1 x a  with eigenvalue in k0 and at
+least one divisor c0  c 0  the unique invariant divisor c  c  of v also
+lies in c 0 
+proof the proof is trivial since c  limk fc k c0 k where   r0 is
+the eigenvalue of v
+subsheaf cohomology
+in applications of theorem 12 it is common that there is a well understood
+exact sequence of sheaves
+s0 0 s1 1 s2 2   
+and that b is a subsheaf of sk for some k a is the kernel of dk b  b 
+sk1 and c is the image of b in sk1  moreover in these cases the self cohomomorphism f on a  b  c is induced by an f self cohomomorphism
+of the sequence 5 in order to apply theorem 12 to these cases we need to
+understand the r module h 1 x a  and its induced self map
+there does not seem to be a computationally useful way to extract an
+injective resolution of a using subsheaves of s0 0 s1 1    even if this
+last sequence is acyclic consider for example the case where for each n
+sn is the sheaf of currents of degree n and b  sk is a subsheaf of mildly
+regular currents it is not clear one could make the regularization method of
+dr84 work to compare h 1 x a  to derham cohomology groups because
+his chain homotopy operator a does not restrict well to b since da does not
+preserve regularity we use a standard sheaf cohomological trick which we
+include here as a proposition which we will need and which we expect to be
+commonly used in conjuction with theorem 12 because of the requirement
+that b be a banach space
+theorem 16 subsheaf cohomology assume we are given an exact sed
+quence of sheaves s0 0 s1 
+ s2    0 and that b is a subsheaf of sk for
+some k  1 let a  ker dk b  and b be the preimage of b under dk1 
+further assume that for each j  1 we have h j x b 0   0 h j x b  0
+and for any m satisfying 0  m  k  1 we have h j x sm   0 for j  1
+then for each n  1 there is a canonical isomorphism
+h n x a  
+ h nk x ker d0 
+proof while this result is essential for us
+ its proof is a standard cohomological trick first one notes that ker dk1 b0  ker dk1 by the definition of
+b 0  one has the short exact sequences of sheaves
+ker dk1  b 0  dk b 0   a 
+and
+ker dj  sj  ker dj1 
+j  0     k  2
+considering the long exact sequences for these shows that the induced maps
+h n x a   h n1 x ker dk1  and h nj x ker dkj   h nj1 x ker dkj1 
+are isomorphisms for j  1     k 1 composing each of these canonical isomorphisms gives a canonical isomorphism from h n x a   h nk x ker d0 
+remark we take it as clear from the functorality of the  map in the long
+exact sequence that given an f self cohomomorphism of s0 0 s1 1 s2 2
+   which maps b to itself that the induced map of h 1 x a  is identified
+with the induced map of h k1 x ker d0  via the above isomorphism
+we will need one more tool be able to make effective use of theorem 16
+for calculating sheaf cohomology of subsheaves of sheaves of currents
+definition 17 by an interval flow h on a bounded open interval i  r we
+will mean the flow obtained by integrating a vector field of the form t t
+where  is positive exactly on i and zero elsewhere we use hx t to denote
+the location of x  r after following the flow for time t
+definition 18 by an nbox in rn we will mean an open subset which is
+a product of n bounded open intervals i1      in  by an nbox in an n
+dimensional manifold we will mean an nbox which is compactly supported
+in some coordinate patch by an nsubbox of an n box u  i1      in we
+will mean an n box of the form i10      in0 where ik0 is a subinterval of ik
+for each k  1     n
+definition 19 by an nbox flow we will mean the rn action h on rn
+which is the product of n interval flows h1 t1      hn tn  on rn  that is
+hx t  h1 x1  t1      hn xn  tn  where x  x1      xn  t  t1      tn 
+and h1      hn are interval flows on i1      in respectively we refer to the
+nbox i1      in as the open support of the nbox flow we will often ht
+to denote the diffeomorphism h t  rn  rn 
+definition 20 let h be an nbox flow on an nbox b let  be a compactly
+supported smooth volume form on rn  with this data we define an operator
+sh on smooth k forms on any n box u containing b by
+sh  
+ht t
+we say sh defines a box smear on u  or smears u  we will omit the
+subscript from sh when the meaning is clear from context it is clear s
+is compactly supported in u if  is
+it is clear from the definition of s that if  is an n  k form on u then
+sh    
+  sh 
+where h is the family ht with the parameter negated from this motivation
+we define a smear of a current
+definition 21 given h  defining a smear on an n box u we define the
+smear sh on currents on u via
+ sh c   c sh   
+lemma 22 given h  defining a smear s on an n box u then d sc 
+sdc for currents c on any open subset of u containing the open support
+of the smear also restricted to the open support of the smear sc is a
+smooth form on v 
+proof we remark that it is clear that d s  sd for forms  and
+consequently for currents  via the definition
+because on the open support of the smear a smear is just convolution
+with a smooth function then we see that if v is an open subset
+ of the open
+support of smear s on u then for any current c on u  scv is a smooth
+form on v 
+proposition 23 let b be a sheaf of degree k currents assume that b
+contains the sheaf of smooth k forms on x and that bu  is closed under
+smears on any nbox u  x let b 0 be the preimage under d of b in the
+sheaf of degree k  1 currents then b 0 is soft and therefore acyclic
+proof to show that b 0 is soft it is sufficient to show that b 0 is locally soft
+bre97 page 69 given an nbox u in x we therefore only need to show
+that if k is a closed subset of x in u and if w is an open neighborhood
+of k then given any member b00 of b 0 w  there is an
+ open neighborhood
+w0  w of k and a member b0  b 0 u  such that b0 w0  b00 w0 
+choose any pair of open sets v1  v2 such that k b v1 b v2 b w  then
+v2  v1 is compact and can therefore be covered by finitely many open nsubboxes y1     yn of u  moreover these subboxes can all be chosen to be
+disjoint from k and to lie inside w  letting s1      sn be smears on u with
+open support y1      yn respectively then let b  s1 s
+2    s0 n
+b0     
+then on each yj  b is given by a smooth k form also bw  b0 w  finally
+we choose a smooth function   u  0 1 which is one on a neighborhood
+of v1 and zero on a neighborhood of u  v2  then the current b0  b
+extends by zero to a current on all of u  then for each yj  b0 yj is a
+smooth function times a smooth form thus db0   is a smooth form and
+figure 1 a current comprised of parallel submanifolds smeared and cropped
+lies in byj  the boxes yj cover v2  v1  outside v2  b0 is identically zero
+we know that db  bw  by lemma 22 we also know
+ that   1 on
+an open neighborhood w1 of v1  thus db w1   dbw1   bw1  we
+thus conclude that b0  b 0 u  since its restriction to each yj  to w1 and to
+u  v2 is a section of b 0  letting w0  v2  y1  y2     yn  then w0 is
+an open neighborhood of k then w0  w1 so b0 w0  bw0  b00 since
+w0 is disjoint from the open support of each of the smears s1      sn  this
+completes the proof that b 0 is soft
+the following gives a broad generalization of the equalivalence of the cohomology of currents with the derham cohomology groups to the authors
+knowledge this result is new
+corollary 24 let b be a sheaf of degree k currents assume that b contains the sheaf of smooth k forms on x and that bu  is closed under
+smears on any nbox u  x letting a be the subsheaf of d closed members
+of b then
+h m x a   h mk x k
+where k is r or c depending on whether or not we allow complex valued
+currents and forms
+proof this is an immediate consequence of proposition 23 and theorem 16
+invariant currents
+notation 1 if g is some sheaf of functions on a smooth orientable manifold
+x we will use f k g  to denote the sheaf of k forms on x with coefficients
+in g  we will let fck g  be the subsheaf of closed in the sense of currents
+members of f k g 
+it will be convenient to use either degree or dimension of a current depending on the context just as dimension and codimension are useful for
+discussing manifolds so we will not stick to just one of these terms we will
+let c k denote the sheaf of degree k currents with the index written above
+as is typical for cohomology since d increases the degree we will similarly
+write ck for the sheaf of dimension k currents with the index written below
+since d decreases dimension as is common for homology we use the following
+convention to realize a form  as a current so that if  is c 1 then d is the
+same whether computed as a current or a form
+definition 25 given an k form  with l1 coefficients on an n manifold x
+we realize  as a degree k current via
+ 7 1 2
+definition 26 given a possibly complex nonzero derham cohomology
+class c  hderham
+x with f  c    c for some scalar   c we will refer
+to a current c in the same cohomology class as  as an eigencurrent for f if
+f  c  c
+currents naturally pushforward rather than pullback because we are
+considering maps which are not necessarily invertible we need to address
+how this pullback is performed if f has critical points it is impossible to
+define a continuous pullback operation f  on all currents in a way that agrees
+with expected cases for instance consider f x  x2 and let ca be the
+dimension one current on r with ca hxdx  ha ie ca is a unit mass
+vector then the pullback f  ca  should be the sum of weighted unit masses
+at the two preimages of this vector just like the pullback of a point mass
+is a sum of point
+ masses each weighted by multiplicity that is f ca  
+ ca  ca  however these pullbacks do not converge to a current as
+2 a
+a  0 so f  c0  is not defined since we want f  to be continuous we are
+forced to work with currents that have some extremely mild regularity we
+address this in the next section
+nimble forms and lenient currents
+finding a good set of currents to use to study smooth finite self maps not
+necessarily invertible of compact manifolds turns out to be rather delicate
+our solution is to first expand our class of forms to include pushforwards in
+the sense of currents of forms through an appropriate class of smooth maps
+then we restrict our attention to currents which act on this extended class
+of forms
+this solution has the very nice property that it can potentially be adapted
+directly to study the dynamics of other various other categories of smooth
+maps by simply changing which forms are considered nimble according
+to the class of maps used it will convenient to first define the natural
+pushforward operator on forms
+definition 27 given a compact orientable manifold x we let sx be the
+category of smooth maps f  x  x of nonzero degree and having the
+property that the critical set has measure zero we use critical set here to
+mean the points at which df is not invertible
+it follows from our definition that the image of any set of positive measure
+under some f  sx has positive measure
+definition 28 given a compact orientable manifold x we define n k to be
+those currents  which are a finite sum of currents of the form p  where
+p  x  x is a map in sx and  is a form of degree k the pushforward
+p  is computed in the sense of currents
+we will later show that nimble forms are also in fact bona fide forms
+definition 29 we topologize n k by saying j   in n k if for sufficiently
+large j there are maps
+p f1      fk and k forms
+p 1j      kj as well as forms
+1      k such that i fi ij   j and i fi i    where pushforwards are taken in the sense of currents and for each i  1     k the forms
+ij converge to i in the strong sense ie all derivatives converge uniformly
+lemma 30 given a compact orientable manifold y  n k y  is a topological
+vector space
+proof this follows easily from our definition of the topology
+we now define the corresponding space of currents
+definition 31 we define the dimension k lenient currents lk y  to be
+the topological dual of n k y  every member of lk y  is a dimension k
+current but with the added structure of its action on all nimble k forms we
+give lk the weak topology ie ci  c in lk iff  ci    c   for
+every   n k  we write l k for the lenient currents of degree k
+we define operations of wedge products with smooth forms as is usual for
+currents it is clear that the lenient dimension k currents give a sheaf on x
+the following properties of nimble forms are also immediately clear
+lemma 32 let f  x  x be a member of sx  the pushforward as
+a current of a nimble k form by f is again a nimble form moreover
+f  n k x  n k x is continuous in the topology of nimble forms also
+the exterior derivative of a nimble form as a current is a nimble form and
+d  n k x  n k1 x is continuous
+the basic necessary facts about pulling back lenient currents are then
+immediate we state them here
+lemma 33 given f  x  x a member of sx the induced map f  on the
+sheaf of lenient degree k currents is an f cohomomorphism of sheaves both
+f   l k x  l k x and d  l k x  l k1 x are continuous lastly
+f  d  df   l k y   l k1 x
+proposition 34 assume that f  x  x is a member of sx  let r be the
+regular set of f  by sards theorem r has full measure since the critical set
+is compact then r is an open subset of x since the preimage of a measure
+zero set has measure zero for sx maps then f 1 r is also a full measure
+open set in x there is a well defined operation f which maps k forms on
+f 1 r to k forms on r given a k form  on x f  is defined on any
+open subset v  r such that each component u1      um of f 1 v  maps
+diffeomorphically onto v by the formula
+1 x 
+f ui 1   i
+f v 
+deg f i
+where i  1 is the oriented degree of f ui  ui  v  the pushforward
+f satisfies
+ f d  df keeping in mind that f returns a current on r
+ f 1  1
+ f f        f 
+ f n  f n 
+ the formula
+f    
+  f 
+holds for any k form  with l
+loc coefficients on y and any smooth nk
+form  on x this justifies using f to pullback currents part of the
+conclusion is that both sides are integrable
+proof each statement is a consequence of formula 7 except the integrability conclusion for equation 8 local charts can be given which are bounded
+subsets of rn and for which df remains uniformly bounded over each of the
+charts and thus f   will be a form with l
+loc coefficients in these charts
+thus the left hand side of 8 is the integral of a bounded function over a
+finite union of bounded charts and is therefore absolutely integrable since
+f f        f  it is sufficient to show that if  is an n form with
+loc coefficients then
+f 1 r
+typicaly f  is unbounded so we need to show that the right hand side of
+9 is integrable about any point x  r we can find an open v such that
+each of the preimages u1      uk of v is mapped diffeomorphically onto v 
+since x is orientable and n dimensional there is a well defined notion of the
+absolute value of an n form then
+ 1  
+1 x
+f  
+ f ui 
+deg f i v
+1 v 
+now r is covered by countably many such sets v and listing them as v0  v1  v2     
+we can let v00  v0  v10  v1  v0  v20  v2  v0  v1      then r is the union
+of the countable collection of disjoint measurable sets vj0 and
+f  
+f  
+f 1 vj 
+f 1 r
+since f 1 r  is finite then f  is an l1 form using precisely the same
+argument but with the absolute
+values rremoved and the inequalities replaced
+with equalities then shows r f   f 1 r 
+since r and f 1 r are open and full measure then f is an operator
+which takes in forms on x and returns forms defined almost everywhere on
+we now show that nimble forms are bona fide forms
+lemma 35 if g  x  x is a map in sx and  is a smooth k form on x
+then the current g  is the current of integration against the form g 
+proof if  is a smooth n  k form then by definition  g   
+k1 r
+k1 r
+ g    1 2  x   g    1 2  x g     g   
+by formula 8 of proposition 34
+as described in fed69 an inner product on a vector space v can be
+viewed as an isomorphism   v  v  satisfying certain properties the
+inverse of  gives the induced inner product on v   the fact that  v w 
+kvk  kwk with equality iff v and w are scalar multiples implies that the inner
+product norm on v  isvthe same
+norm of v  acting onvv 
+vk operator
+vk as the
+v v
+gives an inner product on k v 
+the induced map
+we call this the canonical inner product on k v induced by the inner product on v  hence given a riemannian
+there are canonical
+vk metric onvx
+smoothly varying inner products on
+and
+x x for each x  x
+at any point x v x we v
+define k
+dx f k to be the operatorvnorm of the
+linear function
+dx f 
+tx x  k tf x x we define k k df k to be
+the l
+dx f k also given a k form  we define
+loc norm of the map x 7 k
+the comass kkl
+the
+norm
+the
+function
+x k it
+loc
+loc
+is clear that the k forms with the comass norm is a banach space we now
+show that the k forms with l
+loc coefficients are naturally lenient currents
+we start by defining the action on nimble forms
+definition 36 given an n  k form c with l
+loc coefficients we define
+nk1
+ c p   1
+c  p 
+lemma 37 the space f nk l
+loc  of nk forms with lloc coefficients under
+the comass norm includes p
+continuously into lk x where the action of c 
+lloc  on some   i fi i   n k x with each fi  sx and each
+i  f k c   is given by
+ c  
+fi c  i 
+proof the assumption that x is compact means that any two riemannian metrics on x are comparable choose one so the notion of the comass
+norm makes sense the result is then a straightforward consequence of equation 8 lemma 35 and our definitions
+remark it follows that a current with local f k l
+loc  potentials is also a
+lenient current
+remark given a member c of f k l
+loc  then f c is the same whether
+done as a lenient current or as a form this along with the fact that df  
+f  d justifies the ad hoc pullback of closed positive 1 1 currents used so
+successfully in holomorphic dynamics similarly dc gives the same result
+whether calculated as a lenient current or a form if c  f k c 1 
+hlder lemmas
+we will want to apply corollary 15 to show that each eigencurrent we construct has local d potentials or ddc potentials in the holomorphic case which
+are forms with hlder continuous coefficients in order to do this we will need
+a few facts which we include here in order to avoid having to include regularization results as afterthoughts to our main theorems
+observation let h be the functions with coefficients that are hlder of
+exponent at least equal to some fixed   0 since diffeomorphisms preserve
+hlder exponents and averages of hlder functions are hlder then we take
+it as clear that corollary 24 applies to show that h 1 x a 0   h 1 x a 
+where a 0 is the closed members of f k h  and a is the closed degree k
+currents
+lemma 38 let x be a compact manifold real or complex with a riemannian metric and of real dimension n let f  x  x be a smooth map then
+local coordinate charts ui can be chosen on x each representing a convex
+open subset of rn  so that there is a positive constant 1  m so that for any
+k form  there exist constants c c  0 such that writing each f k  in any
+of the charts ui as
+f k  
+aki dxi
+then each function aki satisfies
+sup aki   c  kf k kcomass
+xui
+and for each j  1     n
+ a 
+ ki 
+sup 
+  c  m k
+xui
+proof equation 10 is a basic fact
+the rest is a straightforward consequence of realizing a self map of a
+manifold as being made up of a bunch of maps between different coordinate
+patches in rn  that is one chooses an open cover of patches ui of x each
+patch is realized in rn as a round ball thinking of each patch as lying in rn
+then we can find explicit maps from between open subsets of rn of the form
+pij  ui  f 1 uj   uj  by shrinking each open ball ui a small amount the
+resulting patches still cover x but the derivatives of the maps pij are all now
+bounded since we are working on relatively compact subsets of the previous
+maps pij 
+then given any x we can keep track of which patch f k x is in at each time
+and can then realize the map f k x as a composition pi1 i2  pi2 i3      pik1 ik 
+since each partial derivative of each pij is uniformly bounded then any partial
+derivative of the composition grows at most exponentially with k and we are
+done
+the following observation will also be useful
+lemma 39 if there are positive constants c c m m with m  1  m
+such that a sequence of smooth functions hk on an open convex set u  rn
+satisfies
+khk ksup  c  mk
+and
+w h w
+w kw
+w  c  mk
+xj sup
+for all k  0 1 2    then h1 h2 h3    converges to a bounded continuous
+logm
+function which is hlder of any exponent   logmm
+proof the proof is elementary
+eigencurrents for cohomologically expanding smooth
+maps
+to be
+we will call a section v of k t x a kvector field we define kv kl
+loc
+the lloc norm of the function x 7 kvx k whether theorem 12 applies to a
+map will depend the size of k k df k replacing f with an iterate does not
+affect the needed estimate so we make the following definition
+definition 40 we define k to be the limit supremum as j   of
+k k df j k j  it follows that 1  e for any lyapunov exponent  and
+that k  k1 fed69 page 33
+we let b be the sheaf f k1 l
+loc  the norm k  k clearly makes b
+into avbanach space given a member b  b since
+vkthe operator norm on
+each
+tx x is equal to the norm already defined on
+tx x for each x  x
+then kbk is equal to supremum of the lloc norm of the function x 7 bvx 
+as v varies over all l
+loc kvector fields of norm no more than one
+theorem 41 given f  x  x an a map in sx for the compact orientable
+manifold x assume that c  hderham
+x is a cohomology class using either real or complex derham cohomology which is an eigenvector for f  with
+eigenvalue  assume also that   k1  then there exists a unique eigencurrent c with local f k1 l
+loc  potentials representing the class c moreover
+c has local f k1 h potentials
+also given any neighborhood u  x of any point in the support of c
+then for every lenient current c0 with local f k1 l
+loc  potentials and which
+represents the cohomology class c then f k u   supp c0 6  for all large k
+assume that the linear map f   hderham
+x  hderham
+x is dominated
+by a single simple real eigenvalue r given c any current which has local
+f k1 l
+loc  potentials and which represents a cohomology class in the 
+chronically expanding subspace of hderham x then the successive rescaled
+pullbacks f k c0 rk of c0 converge to a multiple of c in the sense of lenient
+currents and thus also in the sense of currents
+proof we let b  f k1 l
+loc  a and c be the kernel and image respecd
+tively of b  l  by theorem 24 h 1 x a  can be canonically identified
+with h k x k since b is acyclic then every member of h 1 x a  is a
+closed bundle with respect to the short exact sequence a  b  c 
+from lemma 33 there is an induced f cohomorphism of the short ex
+act sequence a  b  c  also c  is a space of lenient currents by
+lemma 33 and thus has a natural structure as a topological vector
+r space if
+ar sequence bi  b converges to b  b then  dbi    x bi d 
+b  d  db   so the map d  b  c  is continuous
+the cohomomorphism fb is pullback f  of differential forms fixing any
+real  satisfying k1     it isvclear from the definition of k1 that one
+can choose a real d  0 such that k k1 df  k  d for all
+vk  n the 
+pullback f b of b  b satisfies kf bk  supv kb df v k
+where thevsupremum is taken over all kcovector fields v with kv
+vkk  1
+however
+df v  isva kcovector field of norm no more than k
+df k
+so kf  bk  kbk  k df  k  d   kbk 
+given any w in the k1 chronically expanding subspace of h k x k
+we can alter our choice of   k1 so that w also lies in the  chronically
+expanding subspace of h k x k
+we can therefore apply theorem 12 to conclude that there is a unique
+map   w  c  such that f    f   where the first f  is pullback of
+currents and the second is pullback on h k x k
+in fact w  lies in the space of currents with locally hlder potentials
+meaning f k1 h potentials by applying corollary 15 in conjunction with
+observation 52 lemma 38 and lemma 39 the second half of the theorem
+is a consequence of equation 3
+remark theorem 41 gives regular degree one eigencurrents for every eigenvalue of f   h 1 x k  h 1 x k of norm greater one without requiring
+any constraints on the local behavior of f  the degree one eigencurrents
+seem to be in some sense more robust than currents of lower dimension
+including invariant measures moreover since codimension one closed submanifolds are closed currents with local f 0 l
+loc  potentials then successive
+rescaled preimages of such manifolds in the right cohomological class will
+converge to the eigencurrent
+remark the fact that eigencurrents constructed via theorem 41 have local
+potentials which are forms does not imply their support has positive lebesgue
+measure as the classical example of a monotonic nonconstant function which
+is constant on a set of full measure shows
+remark the assumption that f   hderham
+x  hderham
+x is dominated
+by a single simple real eigenvalue r is not essential but just meant to handle
+the simplest case in fact the proof actually shows that if w lies in the
+k1 chronically expanding subspace of h k x k then every current in the
+invariant plane w   c  of currents has local f k1 h potentials and
+any current with cohomological class in w with local f k1 l
+loc  potentials
+is attracted to w  under successive rescaled pullback
+since measures are of particular interest in dynamics we note that h 1 x f n1 l
+loc  
+h x k  k by corollary 24 so there is a unique f eigenvalue and it is
+precisely the topological degree of f  we thus obtain
+corollary 42 given that n1  deg f then there is a unique dimension
+zero eigencurrent c with f k1 l
+loc  potentials and in fact it has f
+potentials and the successive rescaled preimages of any c with f l
+loc 
+potentials converge to c if additionally there is no point x  x about which
+f is locally an orientation reversing diffeomorphism then c and every other
+member of w  is a positive distribution and is therefore a radon measure
+proof since f  pulls back dimension zero currents ie distributions which
+are positive to distributions which are positive then by corollary 31 the
+distribution c is positive it is therefore a radon measure see eg hl99
+page 270
+remark in the case where f is orientation reversing on some parts of x but
+not on all of x some special remarks apply if it happens that successive
+rescaled images of some point converge to a dimension zero eigencurrent then
+since preimages of points are counted with multiplicity then when pulled back
+through a portion of x on which f reverses orientation the sign of a point
+is flipped thus in this case the eigencurrent may not describe so much
+the distribution of preimages as the relative density of preimages counted
+negatively as compared to those counted positively the number of actual
+preimages of a point may grow exponentially faster than the degree of the
+map in such cases so that dividing by the degree does not yield a measure in
+the limit unless some such cancellation takes place in the limit one would
+expect that the corresponding eigencurrents have local potentials which are
+not of bounded variation in such a case
+eigencurrents for smooth covering maps
+we will call a covering map which is locally a diffeomorphism a smooth
+covering map we now consider the special case of smooth self covering
+maps f  x  x of a compact smooth orientable manifold x we show
+that in this case we have a substantially broader collection of currents whose
+successive pullbacks converge to an eigencurrent albeit we need different
+estimates for theorem 12 to apply we will pull back currents by pushing
+forward forms with f  since the regular set of f is all of x then f is a well
+defined operator from smooth forms to smooth forms
+definition 43 for a map satisfying the hypothesis of proposition 34 we
+define the operation f  from currents on x to currents on y by
+ f  c   c f   
+clearly f  preserves the dimension of a current
+let mk1 be the sheaf for which mk1 u  is the banach space of bounded
+linear operations on the topological vector space comprised of f k1 c  u 
+with the k  k norm equivalently mk1 is the sheaf of dimension k  1
+currents of finite mass
+choose a riemannian metric on x if f  x  x is a smooth cover
+then for each x  x and each   n dx f    tx x  tf  x x is invertible
+tx x 
+let
+the
+operator
+norm
+the
+inverse
+tf  x x we define k   supxx k x   we define k  lim sup k 
+the iterated pushforward operation f  f k1 c  x  f k1 c  x
+satisfies kf k  k   kk as is straightforward to verify if f is invertible then k is a bound on the growth of the k th wedge product of the
+derivative under f 1  for noninvertible f  k represents a bound on the
+growth of the k th wedge product of the derivative under any sequence of
+successive branches of f 1 
+theorem 44 given f  x  x a smooth self covering map and that
+c  hderham
+x is a cohomology class using either real or complex derham cohomology which is an eigenvector for f  with eigenvalue  assume
+also that   k1  then there exists a unique eigencurrent c with local
+mk1 potentials representing the class c moreover c has local f k1 c 0 
+potentials consequently c is a current of order one
+also given any neighborhood u  x of any point in the support of c then
+for every lenient current c0 with local mk1 potentials and which represents
+the cohomology class c then f k u   supp c0 6  for all large k
+assume that the linear map f   hderham
+x  hderham
+x is dominated
+by a single simple real eigenvalue r given c any current which has local
+mk1 potentials and which represents a cohomology class in the  k1 chronik
+x then the successive rescaled pullbacks
+cally expanding subspace of hderham
+f c r of c converge a multiple of c
+proof we let a and c be the kernel and image respectively of d  mk1 
+c k  since df  f d then pullback of currents gives an f cohomomorphism
+of the short exact sequence of sheaves a  mk1  c 
+since mk1 is the continuous linear operators on a normed vector space
+then it is a banach space from the observations previous to the statement
+of theorem 44 one concludes that for any   k1 there is a constant d  0
+such that kf  bk  d  k kbk for all   n
+since c  is a space of currents it is naturally a topological vector space
+over k
+the map f   c   c  is continuous since if ci  c in c  then
+ f  ci    ci  f   c f   f  c  
+if pi  p in mk1 using the banach space structure then kpi  pk 
+0 by assumption then kpd  pi dk  kp  pi k  kdk  0 hence
+ dpi    pi d  pd  dp   and so we conclude that the map
+d  mk1  c  is continuous
+given any w in the k1 chronically expanding subspace of h k x k
+we can alter our choice of   k1 so that w also lies in the  chronically
+expanding subspace of h k x k
+we can therefore apply theorem 12 to conclude that there is a unique
+map   w  c  such that f    f   where the first f  is pullback of
+currents and the second is pullback on h k x k
+in fact w  in the currents with locally continuous potentials by applying applying corollary 15 in conjunction with observation 52 lemma 38
+and lemma 39 the second half of the theorem is a consequence of equation 3
+proposition 45 let y be an oriented codimension k submanifold of x if
+the cohomological class of y as a current lies in the k1 chronically expanding subspace of h k x k then the successive rescaled preimages of y converge to the invariant plane of currents w  if f   h k x k  h k x k
+is dominated by a single real eigenvalue r  k1 then the successive rescaled
+preimages of y converge to a multiple possibly zero of the r eigencurrent
+in particular if n1  deg f then the successive rescaled preimages of any
+point converge to the unique invariant measure with mn1 potentials
+proof this follows immediately from theorem 44 if we show that y has
+local potentials in mk1  this is equivalent to showing that locally y  dp
+where  p   a  kk for some a  0 let b be a ball in rn and y0
+a kplane in rn  then there is a k  1 half plane p such that as currents
+in u  p  y0  moreover it is clear that  p   akk for some real
+a  0 there are also local potentials for y which are given by forms with
+l1loc coefficients these can be constructed by choosing a projection  from
+u  y0 to a codimension one cylinder c with axis y0  and choosing a volume
+form  on c the local potential is the pullback   
+remark as with theorem 41 theorem 44 gives regular degree one eigencurrents for every eigenvalue of f   h 1 x k  h 1 x k of norm greater one
+without requiring any constraints on the local behavior of f  in holomorphic
+dynamics much progress has been made in constructing degree one eigencurrents and then constructing dynamically important invariant measures via
+a generalized wedge product see the references cited at the beginning of
+section 6
+remark the proof of proposition 45 could clearly be modified to apply to
+many singular manifolds as well
+holomorphic endomorphisms
+we now restrict our interest to holomorphic dynamics thus all manifolds
+are assumed to be complex manifolds and all maps are assumed to be holomorphic unless stated otherwise
+holomorphic endomorphisms of the riemann sphere have been studied
+in great detail for endomorphisms much of the theory is still in its beginnings much attention has been paid to holomorphic automorphisms of
+c2 fm89 fs92 hov94 hov95 bs91a bs91b bs92 bls93
+bs98a bs98b bs99 or k3 surfaces can01 mcm02 the major developments for endomorphisms have been on pn  fs94a fs94b fs95b
+fs01 fs95a jw00 fj03 ued94 ued98 ued97 recent significant developments have been made for endomorphisms of kahler manifolds
+in ds05 the paper ds05 shows existence of eigencurrents or greens
+currents for endomorphisms of kahler manifolds under a simple condition
+on the comparative rates of growth of volume in two different dimensions
+they also show that a specific weighted sum of an arbitrary closed positive
+smooth current will converge to the greens current and that the greens
+current has a hlder continuous potential in this setting our theorem shows
+that arbitrary rescaled preimages of a broader class of currents will converge to the greens current a wide variety of results have been proven
+in these various circumstances either showing the existence of invariant currents showing convergence of currents to invariant currents or studying the
+properties of these invariant currents we include here results that follow
+from the method of this paper which we are sure substantially overlap with
+existing results presumably our cohomologicaly lifting theorem could be
+used in conjuction with theorem 12 to show existence of higher degree k k
+currents given certain bounds on local growth rates
+ddc cohomology
+let z be a complex manifold and let f  z  z be a holomorphic self map
+of z let h be the sheaf of pluriharmonic functions let l
+loc be the sheaf
+of locally bounded functions and let c be the sheaf of currents with local
+potentials in l
+loc  ie currents locally of the form dd b for b a locally bounded
+function the members of c are closed 1 1 currents on z
+using the usual pullback on functions and the induced pullback on currents with function potentials ie pullback the current by pulling back its
+local potentials then we get a self cohomomorphism of the exact sequence
+of sheaves
+ddc
+h  l
+loc  c 
+we note that h 1 z h  is a finite dimensional r vector space as can be
+seen from the long exact sequence for the short exact sequence r  o  h
+where the first map is inclusion and the second takes the imaginary part the
+terms h 1 z o  h 1 z h   h 2 z r give the finite dimensionality
+since o is a coherent analytic sheaf see eg tay02 page 302
+then from theorem 12 we obtain
+corollary 46 given v any closed eigenbundle of h 1 z h  for f  with
+eigenvalue r  1 there is a unique closed 1 1 current c such that limk f k c0 rk
+converges to c for any divisor c0 of v
+remark we note that the terms closed eigenbundle and divisor in corollary 46 are understood using the long exact sequence for 11
+we can apply corollary 15 to show that
+corollary 47 any such invariant current c so obtained has hlder continuous local potentials
+proof the result follows from lemma 52 lemma 38 the fact that the
+ddc closed hlder continuous functions are the same as the ddc closed l
+loc
+functions and from corollary 15
+also from observation 31
+corollary 48 if v has a plurisubharmonic section the current c is positive
+result via invariant sections
+we stated early on that our construction of invariant members of h 0 c  for
+a self cohomomorphism of a short exact sequence a  b  c of sheaves
+could be done in terms of finding invariant sections of bundles we illustrate
+this here in a specific case where we can take advantage of geometry to make
+further conclusions finding an invariant section of a bundle is equivalent to
+finding an invariant trivialization of the bundle and we will make our initial
+statement in terms of a trivialization
+let z be a compact complex manifold let f  z  z be a holomorphic
+endomorphism let p  h 1 z h  be an eigenvector for f  with real eigenvalue  of norm greater than one if f  were to have complex eigenvalues of
+interest an analogous construction can be made to the one that follows
+we note that there is a canonical bundle map f  f  p  p which gives
+the map f on the base space it is easy to show that there is a map   p  p
+which is the identity on the base space and takes the form r 7 r  b on the
+fibers where b is a constant what is more the map  is easily seen to be
+unique up to the addition of a constant then define the map f p  p to
+be the composition of
+p  f  p  p
+then f is the map f on the base space and takes the form r 7 r  b on
+the fibers
+since every pluriharmonic bundle is trivial as a smooth bundle then we
+can choose a smooth trivialization t  p  r ie ta  r  a  r for any
+a  p r  r where a  r is computed in the fiber containing a
+theorem 49 there is a unique continuous trivialization g  p  r such
+that
+ga  r  ga  r for a  p and r  r
+gfa    ga for a  p
+moreover
+g  lim k  t  fk
+and the limit converges uniformly finally the zero set of g is the image of a
+section g  z  p and is exactly the set of points whose forward image under
+f remains bounded
+proof define a function t  p  r by
+t a  t fa    ta
+note that t descends to a well defined continuous function
+ t  z  r since
+for an arbitrary r  r one has t a  r  t fa  r    ta  r 
+tfa  r    ta  r  t a
+one notes that since the function t is necessarily bounded if z is compact
+then defining
+ga  ta  1  t a  2 t fa  3 t f2 a    
+gives a continuous function g  p  r satisfying the above two properties
+assume g1 and g2 are two such functions then   g1  g2  p  r is a
+function satisfying a  r  a for a  p and r  r so  descends to a
+continuous function   p  r satisfying fa    a however since
+  1 one concludes that this is only possible if   0 since m is compact
+so m  has compact image in r
+it is easy to check using the definition of t that k  t  fk a is exactly
+a partial sum of the first k terms of the above series and this gives the
+convergence result the conclusion about the section g is trivial
+the above construction can be carried through almost without modification for any subspace of h 1 z h  on which f  is expanding this gives
+an alternate way of understanding the convergence of preimages of sections
+the point is that if s is any section of p ie the potential of a current c
+then 1 f  c is a current with potential which is the setwise preimage of s
+under f this is easy to confirm from the construction of f  the greens
+trivialization g shows that f is uniformly repelling away from the image of
+the invariant section g thus as long as s is bounded in p not even necessarily continuous then the successive preimages of s will converge uniformly
+to the section g since uniform convergence of potentials implies convergence
+of currents then the rescaled pullbacks of a current c converge to the current with potential g we already have this as a theorem so we have not
+restated it as such here this is just an alternative approach note that in
+the case where z  p2 fj03 has given far more precise control of when the
+successive rescaled preimages of a current will converge to the eigencurrent
+sections version with an invariant ample bundle
+it is also interesting to consider the special case where there is an invariant
+ample bundle with eigenvalue   2 an integer without loss of generality
+we assume  is very ample the morphism of sheaves log     o  h
+induces a map from holomorphic line bundles to pluriharmonic bundles we
+let p  log  be the corresponding pluriharmonic bundle
+it is easy to see that there is a holomorphic map    which is of the
+form   z 7 az   a  c on each fiber and is the identity on the base
+space there is also a canonical holomorphic map f  f     which is a
+line bundle map and is f on the base space
+one then defines the holomorphic map f     which is the composition
+ k k  f    
+this map is of the form z 7 az k on each fiber and is equal to the map
+f  z  z on the base space let  denote  with its zero section removed
+so that log       p is a well defined continuous map since the preimage
+of the zero section of  under f  is the zero section then f  is a holomorphic
+self map of   it is easy to confirm that f     can be rescaled so that
+the diagram
+   
+log 
+log 
+commutes
+our greens trivialization g  p  r can be pulled back to give a greens
+function g    r on the punctured bundle   it satisfies gf w 
+  gw and gw  gw  log  for w   and   c  since g is
+a trivialization of an r bundle over a compact space g is proper since
+log       p is proper then g is proper thus in this setting one can
+construct a greens function that is exactly analogous to the greens function
+constructed on cn1 for a holomorphic endomorphism of pn  potentially one
+could take advantage of the special geometry of very ample bundles to get
+information about the dynamics in this situation
+bibliography
+references
+bls93 eric bedford mikhail lyubich and john smillie polynomial diffeomorphisms of c2  iv the measure of maximal entropy and laminar currents invent math 112177125 1993
+bre97
+glen e bredon sheaf theory springerverlag 1997
+bs91a eric bedford and john smillie polynomial diffeomorphisms of c2 
+currents equilibrium measure and hyperbolicity invent math
+10316999 1991
+bs91b eric bedford and john smillie polynomial diffeomorphisms of c2 
+ii stable manifolds and recurrence j amer math soc 44657
+679 1991
+bs92
+eric bedford and john smillie polynomial diffeomorphisms of c2 
+iii ergodicity exponents and entropy of the equilibrium measure
+math ann 2943395420 1992
+bs98a eric bedford and john smillie polynomial diffeomorphisms of
+c2  v critical points and lyapunov exponents j geom anal
+83349383 1998
+bs98b eric bedford and john smillie polynomial diffeomorphisms of c2 
+vi connectivity of j ann of math 2 1482695735 1998
+bs99
+eric bedford and john smillie polynomial diffeomorphisms of c2 
+vii hyperbolicity and external rays ann sci cole norm sup
+4 324455497 1999
+can01 serge cantat dynamique des automorphismes des surfaces k3
+acta math 1871157 2001
+dr84
+georges de rham differentiable manifolds springerverlag 1984
+ds05
+tiencuong dinh and nessim sibony green currents for holomorphic automorphisms of compact khler manifolds j amer math
+soc 182291312 2005
+fed69
+herbert federer geometric measure theory springerverlag
+1969
+fj03
+charles favre and mattias jonsson brolins theorem for curves
+in two complex dimensions ann inst fourier 5314611501
+2003
+fm89
+shmuel friedland and john milnor dynamical properties of
+plane polynomial automorphisms ergodic theory dynam systems 916799 1989
+fs92
+john erik fornaess and nessim sibony complex hnon mappings
+in c2 and fatoubieberbach domains duke mathematical journal
+652345380 1992
+fs94a
+john erik fornaess and nessim sibony complex dynamics in
+higher dimension in complex potential theory pages 131186
+1994
+fs94b john erik fornaess and nessim sibony complex dynamics in
+higher dimension i astrisque 222201231 1994
+fs95a
+john erik fornaess and nessim sibony classification of recurrent
+domains for some holomorphic maps math ann 3014813820
+1995
+fs95b john erik fornaess and nessim sibony complex dynamics in
+higher dimension ii in modern methods in complex analysis
+princeton nj 1992 pages 135182 princeton univ press
+princeton nj 1995
+fs01
+john erik fornaess and nessim sibony dynamics of p2 examples
+in laminations and foliations in dynamics geometry and topology
+stony brook ny 1998 pages 4785 amer math soc providence ri 2001
+gr84
+h grauert and r remmert coherent analytic sheaves springerverlag 1984
+har77
+robin hartshorne algebraic geometry springerverlag 1977
+hl99
+francis hirsche and gilles lacombe elements of functional analysis volume 192 of graduate texts in mathematics springerverlag
+1999 translated from the 1997 french original by silvio levy
+hov94 john h hubbard and ralph w oberstevorth hnon mappings
+in the complex domain i the global topology of dynamical space
+inst hautes tudes sci publ math 79546 1994
+hov95 john h hubbard and ralph w oberstevorth hnon mappings
+in the complex domain ii projective and inductive limits of polynomials in real and complex dynamical systems hillerd 1993
+volume 464 of nato adv sci inst ser c math phys sci pages
+89132 kluwer acad publ dordrecht 1995
+jw00
+mattias jonsson and brendan weickert a nonalgebraic attractor
+in p2  proc amer math soc 1281029993002 2000
+kat03
+anatole katok combinatorial constructions in ergodic theory and
+dynamics volume 30 of unversity lecture series american mathematical society providence ri 2003
+mcm02 curtis t mcmullen dynamics on k3 surfaces salem numbers
+and siegel disks j reine angew math 545201233 2002
+tay02
+joseph l taylor several ccomplex variables with connections
+to algebraic geometry and lie groups american mathematical
+society 2002
+ued94
+tetsuo ueda fatou sets in complex dynamics in projective spaces
+j math soc japan 46545555 1994
+ued97
+tetsuo ueda complex dynamics on pn and kobayashi metric
+in complex dynamical systems and related areas pages 188191
+surikaisekikenkyusho kokyuroku no 988 1997 kyoto 1996
+ued98
+tetsuo ueda critical orbits of holomorphic maps on projective
+spaces j geometric analysis 82319334 1998
+wei97
+charles a weibel an introduction to homological algebra cambridge university press 1997

@@ -1,0 +1,2878 @@
+An analysis of full-size Russian complexly NER labelled corpus of
+Internet user reviews on the drugs based on deep learning and
+language neural nets
+AG Sboeva,b,∗ , SG Sboevac , IA Moloshnikova , AV Gryaznova , RB Rybkaa , AV Naumova ,
+AA Selivanova , GV Rylkova and VA Ilyina
+a NRC
+
+"Kurchatov institute", Moscow, Russia
+National Research Nuclear University, Kashirskoye sh., 31, Moscow, 115409, Russia
+c I.M. Sechenov First Moscow State Medical University (Sechenov University), Moscow, Russia
+
+arXiv:2105.00059v1 [cs.CL] 30 Apr 2021
+
+b MEPhI
+
+ARTICLE INFO
+
+Abstract
+
+Keywords:
+Pharmacovigilance
+Annotated corpus
+Adverse drug events
+Social media
+UMLS
+MESHRUS
+Information extraction
+Semantic mapping
+Machine learning
+Neural Networks
+Deep Learning
+
+We present the full-size Russian complexly NER-labeled corpus of Internet user reviews, along with an evaluation of accuracy levels reached on this corpus by a set of
+advanced deep learning neural networks to extract the pharmacologically meaningful
+entities from Russian texts. The corpus annotation includes mentions of the following
+entities: Medication (33005 mentions), Adverse Drug Reaction (1778), Disease (17403),
+and Note (4490). Two of them – Medication and Disease – comprise a set of attributes.
+A part of the corpus has the coreference annotation with 1560 coreference chains in
+300 documents. Special multi-label model based on a language model and the set of
+features is developed, appropriate for presented corpus labeling. The influence of the
+choice of different modifications of the models: word vector representations, types of
+language models pre-trained for Russian, text normalization styles, and other preliminary processing are analyzed. The sufficient size of our corpus allows to study the
+effects of particularities of corpus labeling and balancing entities in the corpus. As a
+result, the state of the art for the pharmacological entity extraction problem for Russian
+is established on a full-size labeled corpus. In case of the adverse drug reaction (ADR)
+recognition, it is 61.1 by the F1-exact metric that, as our analysis shows, is on par with
+the accuracy level for other language corpora with similar characteristics and the ADR
+representativnes. The evaluated baseline precision of coreference relation extraction on
+the corpus is 71, that is higher the results reached on other Russian corpora.
+
+∗ Corresponding
+
+author
+sag111@mail.ru (A. Sboev); sboevasanna@mail.ru (S. Sboeva); ivan-rus@yandex.ru (I. Moloshnikov); artem.official@mail.ru
+(A. Gryaznov); rybkarb@gmail.com (R. Rybka); sanya.naumov@gmail.com (A. Naumov); aaselivanov.10.03@gmail.com (A.
+Selivanov); gvrylkov@mail.ru (G. Rylkov); ilyin0048@gmail.com (V. Ilyin)
+orcid(s): 0000-0002-6921-4133 (A. Sboev)
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+Page 1 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+1. Introduction
+
+2. Related works
+
+Nowadays, a great amount of texts collected in the
+open Internet sources contains a vast variety of socially
+significant information. In particular, such information
+relates to healthcare in general, consumption sphere
+and evaluation of medicines by the population. Due
+to time limitations, clinical researches may not reveal
+the potential adverse effects of a medicine before entering the pharmaceutical market. This is a very serious problem in healthcare. Therefore, after a pharmaceutical product comes to the market, pharmacovigilance (PV) is of great importance. Patient opinions on
+the Internet, in particular in social networks, discussion
+groups, and forums, may contain a considerable amount
+of information that would supplement clinical investigations in evaluating the efficacy of a medicine. Internet posts often describe adverse reactions in real time
+ahead of official reporting, or reveal unique characteristics of undesirable reactions that differ from the data of
+health professionals. Moreover, patients openly discuss
+a variety of uses of various drugs to treat different diseases, including "off-label" applications. This information would be very useful for a PV database where risks
+and advantages of drugs would be registered for the
+purpose of safety monitoring, as well as the possibility
+to form hypotheses of using existing drugs for treating
+other diseases. This leads to an increasing need for the
+analysis of Internet information to assess the quality of
+medical care and drug provision. In this regard, one of
+the main tasks is the development of machine learning
+methods for extracting useful information from social
+media. However, expert assessment of such amount
+of text information is too laborious, therefore special
+methods have to be developed with taking into account
+the presence in these texts the informal vocabulary and
+of reasoning. The quality of these methods directly depends on tagged corpora to train them. In this paper,
+we present the full-size Russian complexly NER-labeled
+corpus of Internet user reviews, named Russian Drug
+Reviews corpus of SagTeam project (RDRS)1 - comprising the part with tagging on coreference relations. Also,
+we present model appropriate to the corpus multi-tag
+labelling developed on base of the combination of XLMRoBERTa-large model with the set of added features.
+In Section 2, we analyse the selected set of corpora
+comprising ADR (Adverse drug reaction) labels, but
+different by fillings, labeling tags, text sizes and styles
+with a goal to analyse their influence on the ADR extraction precision. The materials used to collect the
+corpus are outlined in Section 3, the technique of its
+annotation is described in Section 3.2. The developed
+machine learning complex is presented in Section 4.
+The conducted numerical experiments are presented in
+Section 5 and discussed in Sections 6 and 7 .
+
+In world science, research concerning the abovementioned problems is conducted intensively, resulting in a great diversity of annotated corpora. From
+the linguistic point of view, these corpora can be distinguished into two groups: firstly, the ones of texts
+written by medics (clinical reports with annotations),
+and secondly, those of texts written by non-specialists,
+namely, by the Internet customers who used the drugs.
+The variability of the natural language constructions
+in the speech of Internet users complicates the analysis
+of corpora based on Internet texts, вut there are the
+other distinctive features of any corpus : the number
+of entities, the number of annotated phrases definite
+types, also the number of its mutual uses in phrases,
+and approaches to entity normalization. The diversity
+of these features influences the accuracy of entity recognition on the base of different corpora. Also the tipes
+of entity labelling and used metrics of evaluating results may be various. Not for each corpus a necessary
+information is available.Below we briefly describe 6 corpora: CADEC, n2c2-2018, Twitter annotated corpus,
+PsyTAR, TwiMed corpus, RuDReC.
+
+1 Corpora description is presented on https://sagteam.ru/en/
+med-corpus/
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+2.1. Corpora description
+CADEC (corpus of adverse drug event annotations) [18] is a corpus of medical posts taken from
+the AskaPatient 2 forum and annotated by medical students and computer scientists. It collects ratings and
+reviews of medications from their consumers and contains consumer posts on 13 different drugs. There are
+1253 posts with 7398 sentences. The following entities were annotated: Drug, ADR, Symptom, Disease,
+Findings. The annotation procedure involved 4 medical
+students and 2 computer scientists. In order to coordinate the markup, all annotators jointly marked up
+several texts, and after that the texts were distributed
+among them. All the annotated texts were checked by
+three corpus authors for obvious mistakes, e.g. missing
+letters, misprints, etc.
+
+TwiMed corpus (Twitter and PubMed comparative
+corpus of drugs, diseases, symptoms, and their relations) [1] contains 1000 tweets and 1000 sentences
+from Pubmed 3 for 30 drugs. It was annotated for 3 144
+entities, 2 749 relations, and 5 003 attributes. The resulting corpus was composed of agreed annotations approved by two pharmaceutical experts. The entities
+marked were Drug, Symptom, and Disease.
+
+Twitter annotated corpus [41] consists of randomly
+selected tweets containing drug name mentions: generic
+and brand names of the drugs. The annotator group
+2 Ask a Patient: Medicine Ratings and Health Care Opinions
+- http://www.askapatient.com/
+3 National Center for Biotechnology Information webcite http://www.ncbi.nlm.nih.gov/pubmed/
+
+Page 2 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+comprised pharmaceutical and computer experts. Two
+types of annotations are currently available: Binary
+and Span. The binary annotated part [40] consists
+of 10 822 tweets annotated by the presence or absence
+of ADRs. Out of these, 1 239 (11.4%) tweets contain
+ADR mentions and 9583 (88.6%) do not. The span
+annotated part [41] consists of 2 131 tweets (which include 1 239 tweets containing ADR mention from the
+binary annotated part). The semantic types marked
+are: ADR, beneficial effect, indication, other (medical
+signs or symptoms).
+
+PsyTAR dataset [60] contains 891 reviews on four
+drugs, collected randomly from an online healthcare
+forum 4 . They were split into 6 009 sentences. To prepare the data for annotation, regular expression rules
+were formulated to remove any personal information
+such as emails, phone numbers, and URLs from the
+reviews. The annotator group included pharmaceutical students and experts. They marked the following
+set of entities: ADR, Withdrawal Symptoms (WD),
+Sign, Symptom, Illness (SSI), Drug Indications (DI)
+and other. Sadly, the original corpus doesn't contain
+mentions boundaries in source texts. It complicates the
+NER task. In a paper [2] presented version of the PsyTAR corpus in CoNLL format, where every word has
+corresponding tag of named entity. We use this version
+for comparison purposes.
+n2c2-2018 [14] is a dataset from the National NLP
+Clinical Challenge of the Department of Biomedical
+Informatics (DBMI) at Harvard Medical School. The
+dataset contains clinical narratives, and builds on past
+medication extraction tasks, but examines a broader set
+of patients, diseases, and relations as compared with
+earlier challenges. It was annotated by 4 paramedic
+students and 3 nurses. Label set includes medications
+and associated attributes, such as dosage (Dosage),
+strength of the medication (Strength), administration
+mode (Mode), administration frequency (Frequency),
+administration duration (Duration), reason for administration (Reason), and drug-related adverse reactions
+(ADEs). The number of texts was 505 (274 in training,
+29 in development and 202 in test).
+
+RuDReC [53] Labeled part of RuDReC contains 500
+reviews on drugs from a medical forum OTZOVIK.
+Two step annotation procedure was performed: on
+first step authors used 400 texts labeled according
+formats of site Sagteam [https://sagteam.ru/en/medcorpus/annotation/] by 4 experts of Sechenov First
+Moscow State Medical University - now participants
+of our projects; on second step they simplified labeling by deleting/uniting tags and annotated in addition
+100 reviews. Totally in RuDReC and in proposed cor4 Ask
+
+a Patient: Medicine Ratings and Health Care Opinions
+- http://www.askapatient.com/
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+pus RDRS 467 texts are coincident. An influence of
+differences in labelling of them on the ADR extraction
+accuracy presented in Section 7.
+
+2.2. Target vocabularies in the corpora
+normalization
+The normalization task of internet user texts is more
+difficult because of informal text style and more natural vocabulary. Still, as in the case of clinical texts,
+thesauruses are used. In particular, annotated entities in CADEC were mapped to controlled vocabularies: SNOMED CT, The Australian Medicines Terminology (AMT) [32], and MedDRA. Any span of text
+annotated with any tag was mapped to the corresponding vocabularies. If a concept did not exist in the
+vocabularies, it was assigned the "concept_less" tag.
+In the TwiMed corpus, for Drug entities the SIDER
+database [22] was used, which contains information on
+marketed medicines extracted from public documents,
+while for Symptom and Disease entities the MedDRA
+ontology was used. In addition, the terminology of
+SNOMED CT concepts was used for entities, which
+belong to the Disorder semantic group. In the Twitter dataset [41], when annotating ADR mentions, they
+were set in accordance to their UMLS concept ID. Finally, in PsyTAR corpus, ADRs, WDs, SSIs and DIs entities were matched to UMLS Metathesaurus concepts
+and SNOMED CT concepts. No normalizations was
+applied to n2c2-2018 corpus.
+
+2.3. Number of entities and their breakdown in
+the corpora
+In Table 2, we review the complexity characteristics
+of the selected corpora and evaluate the dependence of
+accuracy of extracting the ADR on them. The overlap
+entities are only in few of considered corpora but their
+parts are relatively small, excluding CADEC, where
+there are the parts of overlap ADR entities, both continuous (5%), and discontinuous (9%). In this sense,
+CADEC, appears, is the most complicated corpus from
+selected, but having the largest numbers of ADR mentions and the largest value of the relation of ADR mention number to symptom mention number. If the first
+factor complicates the ADR identification, both others
+simplify. We could not find in literature the information about the precision of the ADR identification for
+all corpora in view according metrics exact F1. However, on the base of data of Table 2 we suggest the
+parameter of relation of the ADR mention number to
+total number of corpus words is convenient to compare
+the corpora, and we use it further named as "saturation".
+
+2.4. Coreference task
+There is a problem, that some reviews present user
+opinion concerning the mentions of a particular tag
+in relation to more than one entity of real world: a
+Page 3 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+Table 1
+A sample post for "Глицин" (Glycine) from otzovik.com. Original text is quoted, and
+followed by English translation in parentheses.
+Overall impression
+Advantages
+Disadvantages
+Would you recommend it
+to friends?
+Comments
+
+"Помог чересчур!" (Helped too much!)
+"Цена" (Price)
+"отрицательно действует на работоспособность" (It has a negative effect on productivity)
+"Нет" (No)
+"Начала пить недавно. Прочитала отзывы вроде все хорошо отзывались. Стала спокойной
+даже чересчур, на работе стала тупить, коллеги сказали что я какая то заторможенная, все
+время клонит в сон. Буду бросать пить эти таблетки." (I started taking recently. I read the
+reviews, and they all seemed positive. I became calm, even too calm, I started to blunt at work,
+сolleagues said that I somewhat slowed down, feel sleepy all the time. I will stop taking these
+pills.)
+
+drug, or disease, or the other entities. For example,
+some reviews may contain reports about use of multiple
+medications that may have different effects, so coreference annotation may be useful for detection of different
+mentions referred to the same drug. For English language there are few corpora for coreference resolution
+like CoNLL-2012 [35] or GAP [58], and even corpus of
+pharmacovigilance records with adversarial drug reactions annotations that includes coreference annotation
+(PHAEDRA) [49]. The coreference problem in Russian
+texts is slightly highlighted in a literature. Currently,
+there are only two corpora with coreference annotations
+for Russian language: Ru-Cor [50] and corpus from
+shared task AnCor-2019 [17]. The latter is a continuation and extension of the first. As for the methods the
+state-of-the-art approach is based on neural network
+trained end-to-end to solve two task at the same time:
+mention extraction and relations extraction. This approach was firstly introduced in [24] and have been used
+in several papers[25, 16, 59, 15, 52] with some modifications to get higher scores on the coreference corpus
+CoNLL-2012 [35].
+
+3. Corpus collecting
+3.1. Corpus material
+In this section, we report the design of our corpus.
+Its basis were 2 800 reviews from a medical section of
+the forum called OTZOVIK5 , which is dedicated to
+consumer reviews on medications. On that website
+there is a partition where users submit posts by filling special survey forms. The site offers two forms:
+simplified and extended, the latter being optional. In
+this form a user selects a drug name and fills out the
+information about the drug, such as: adverse effects experienced, comments, positive and negative sides, satisfaction rate, and whether they would recommend the
+medicine to friends. In addition, the extended form
+contains prices, frequency, scores on a 5-point scale for
+5 OTZOVIK
+
+- Internet forum from which user reviews were
+taken - http://otzovik.com
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+such parameters as quality, packing, safety, availability. A sample post for "Глицин" (Glycine) is shown in
+Table 1.
+We used information only from the simplified form,
+since the users had rarely filled extended forms in their
+reviews. We considered only the fields Heading, General impression and Comment. Furthermore, some of
+the reviews are written in common language and do
+not follow formal grammar and punctuation rules. The
+consumers described not only their personal experience, but sometimes opinions of their family members,
+friends or others.
+
+3.2. Corpus Annotation
+This section describes the corpus annotation
+methodology, including the markup composition, the
+annotation procedure with guidelines for complex cases,
+and software infrastructure for the annotation.
+
+3.2.1. Annotation process
+The group of 4 annotators annotated review texts
+using a guide developed jointly by machine learning experts and pharmacists. Two annotators were certified
+pharmacists, and the two others were students with
+pharmaceutical education. Reliability was achieved
+through joint work of annotators on the same set of
+documents, subsequently controlled by means of journaling. After the initial annotation round, the annotations were corrected three times with cross-checking by
+different annotators, after which the final decision was
+made by an expert pharmacist. The corpus annotation
+comprised the following steps:
+1. First, a guide was compiled for the annotators. It
+included entities description and examples.
+2. Upon testing on a set of 300 reviews, the guide
+was corrected, addressing complex cases. During
+that, iterative annotation was performed, from 1
+to 5 iterations for a text, while tracking for each
+text and each iteration the annotator questions,
+controller comments, and correction status.
+3. The resulting guide was used for annotating the
+remaining reviews. Two annotators marked up
+Page 4 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+Table 2
+Numerical estimation of the corpora complexity on ADR level saturation.
+Explanation of abbreviations of corpora names: TA – Twitter Annotated Corpus, TT –
+TwiMED Twitter, TP – TwiMED PubMed, N2C2 – n2c2-2018. Following the artcile [12],
+we meant by the ADRs symptoms related to the drugs in TT and TP corps. Explanation of
+abbreviations of metrics: f1-e – f1-exact, f1-am – f1-approximate match, f1-r – f1-relaxed,
+f1-cs f1 - Classification of sentences with ADR, NA - data not available for download and
+analysis
+Corpora
+
+CADEC
+
+TA
+
+TT
+
+TP
+
+N2C2
+
+PSYTAR
+
+RuDRec
+
+total ADR
+
+6318
+
+1122
+
+899
+
+475
+
+1579
+
+3543
+
+720
+
+multiword (%)
+
+72.4
+
+0.47
+
+40
+
+46.7
+
+42
+
+78
+
+54
+
+singleword (%)
+
+27.6
+
+0.53
+
+60
+
+53.3
+
+58
+
+22
+
+46
+
+discontinuous, non-overlapping (%)
+
+1.3
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+continuous, non-overlapping (%)
+
+84
+
+100
+
+98
+
+96.8
+
+95
+
+100
+
+100
+
+discontinuous, overlapping (%)
+
+9.3
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+5.3
+
+0
+
+2
+
+3.2
+
+5
+
+0
+
+0
+
+53.38
+
+NA
+
+NA
+
+16.5
+
+1.35
+
+39.17
+
+10.61
+
+0.69
+
+0.72
+
+0.67
+
+0.47
+
+0.02
+
+0.70
+
+0.41
+
+22.97
+
+7.1
+
+1.91
+
+0.49
+
+0.25
+
+0.70
+
+0.01
+
+70.6 [27]
+
+61.1 [56]
+
+64.8 [13]
+
+73.6 [26]
+
+55.8 [39]
+
+Parameter
+
+continuous, overlapping (%)
+saturation =
+
+T otal ADR
+number of words in corpus
+
+T otal ADR
+T otal entities number
+T otal ADR
+Number of Indication, Reason, etc.
+
+Estimation
+
+3
+
+(∗ 10 )
+
+71.1
+
+60.4 [53]
+
+(see Appendix A)
+Metric of Estimation
+
+f1-e
+
+f1-am
+
+each review, and then a pharmacist checked the
+result. When complex cases were found, they
+were analyzed separately by the whole group of
+experts.
+4. The obtained markup was automatically checked
+for any inaccuracies, such as incomplete fragments of words selected as mentions, terms
+marked differently in different reviews, etc. Texts
+with such inaccuracies were rechecked.
+To estimate an agreement between annotators 14
+we used the metric described by Karimi et al. [18].
+According to this metric we calculated the agreement
+score for every document as the ratio between number
+of matched mentions and maximum number of mentions, annotated by one of the annotators in current
+document. Matched mentions are calculated depending
+on two flags α and β. The first one is the span strictness,
+it can be strict or intersection. If we do a strict spans
+comparison then only mentions with equal borders will
+be counted as matching, otherwise, we count mentions
+as matching if they at least are intersected each other.
+But every mention annotated by each annotator can be
+matched with the only mention annotated by the other
+annotator. β is the tag strictness argument, which can
+be strict or ignored. It defines if we count matched
+mentions only when both annotators labeled them idenSG Sboeva et al.: Preprint submitted to Elsevier
+
+f1-am
+
+f1-cs
+
+f1-r
+
+f1-e
+
+tically, or we count matched mentions only by borders,
+despite of labels. After calculation of agreement scores
+for all documents, we calculate the average score of the
+total agreement between two annotators. The average
+pairwise agreement among annotators is presented in
+table 4.
+match(Ai , Aj , α, β)
+agreement(i, j) = 100
+max(|Ai |, |Aj |)
+Here Ai and Aj are lists of mentions annotated by annotators i and j. |Ai | and |Aj | are numbers of elements
+in these lists.
+The annotation was carried out with the help of
+the WebAnno-based toolkit, which is an open source
+project under the Apache License v2.0. It has a web
+interface and offers a set of annotation layers for different levels of analysis. Annotators proceeded according
+to the guidelines below.
+
+3.2.2. Guidelines applied in the course of
+annotation
+The annotation goal was to get a corpus of reviews
+in which named entities reflecting pharmacotherapeutic
+treatment are labelled, and annotate medication characteristic semantically. With this in mind, the objects
+of annotation were attributes of drugs, diseases (including their symptoms), and undesirable reactions to those
+Page 5 of 23
+
+f1-e
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+Table 3
+Proportions of difficult cases in annotations. Discontinuous mentions are labeled phrases
+separated by words not related to it. A mention is overlapping if some of its words also
+labeled as another mention.
+Entity type
+
+Total
+mentions
+count
+
+multiword
+(%)
+
+singleword
+(%)
+
+discontinuous,
+nonoverlapping
+(%)
+
+continuous,
+nonoverlapping
+(%)
+
+discontinuous,
+overlapping
+(%)
+
+continuous,
+overlapping
+(%)
+
+ADR
+
+1784
+
+63.85
+
+36.15
+
+2.97
+
+80.66
+
+0.62
+
+15.75
+
+Drugname
+
+8236
+
+17.13
+
+82.87
+
+0
+
+38.37
+
+0.01
+
+61.62
+
+DrugBrand
+
+4653
+
+11.95
+
+88.05
+
+0
+
+0
+
+0.02
+
+99.98
+
+Drugform
+
+5994
+
+1.90
+
+98.10
+
+0
+
+83.53
+
+0.02
+
+16.45
+
+Drugclass
+
+3120
+
+4.42
+
+95.58
+
+0
+
+94.33
+
+0
+
+5.67
+
+Dosage
+
+965
+
+92.75
+
+7.25
+
+0.10
+
+54.92
+
+0.21
+
+44.77
+
+MedMaker
+
+1715
+
+32.19
+
+67.81
+
+0
+
+99.71
+
+0
+
+0.29
+
+Route
+
+3617
+
+34.95
+
+65.05
+
+0.53
+
+88.80
+
+0.06
+
+10.62
+
+SourceInfodrug
+
+2566
+
+48.99
+
+51.01
+
+6.16
+
+91.00
+
+0
+
+2.84
+
+Duration
+
+1514
+
+86.53
+
+13.47
+
+0.20
+
+95.44
+
+0
+
+4.36
+
+Frequency
+
+614
+
+98.96
+
+1.14
+
+0.33
+
+88.93
+
+0
+
+10.75
+
+Diseasename
+
+4006
+
+11.48
+
+88.52
+
+0.35
+
+85.97
+
+0.02
+
+13.65
+
+Indication
+
+4606
+
+43.88
+
+56.12
+
+1.13
+
+77.49
+
+0.30
+
+21.08
+
+BNE-Pos
+
+5613
+
+66.06
+
+33.94
+
+1.02
+
+82.91
+
+0.68
+
+15.39
+
+NegatedADE
+
+2798
+
+92.67
+
+7.33
+
+1.36
+
+87.38
+
+0.18
+
+11.08
+
+Worse
+
+224
+
+97.32
+
+2.68
+
+0.89
+
+61.16
+
+1.34
+
+36.61
+
+ADE-Neg
+
+85
+
+89.41
+
+10.59
+
+3.53
+
+54.12
+
+3.53
+
+38.82
+
+Note
+
+4517
+
+90.21
+
+9.79
+
+0.13
+
+77.77
+
+0.15
+
+21.94
+
+Table 4
+Average pair-wise agreement between annotators
+Span strictness, α
+strict
+strict
+intersection
+intersection
+
+Tag strictness, β
+strict
+ignored
+strict
+ignored
+
+Agreement
+61%
+63%
+69%
+71%
+
+drugs. The annotators were to label mentions of these
+three entities with their attributes defined below.
+
+Disease. This entity is associated with diseases or
+symptoms.
+It indicates the reason for taking a
+medicine, the name of the disease, and improvement
+or worsening of the patient state after taking the drug.
+Attributes of this entity are specified in Table 6.
+
+ADR. This entity is associated with adverse drug reactions in the text. For example, one post said: «После
+недели приема Кортексина у ребенка начались
+судороги» (After a week of taking Cortexin, the child
+began to cramp). In this sentence, the word "судороги"
+("cramp") is labeled as an ADR entity.
+
+Medication. This entity includes everything related to
+the mentions of drugs and drugs manufacturers. Selecting a mention of such entity, an annotator had to
+specify an attribute out of those specified in Table 5,
+thereby annotating it, for instance, as a mention of the
+attribute "DrugName" of the entity "Medication" . In
+addition, the attributes "DrugBrand" and "MedFrom"
+were annotated with the help of lookup in an external
+source [38].
+
+Note. We use this entity when the author makes recommendations, tips, and so on, but does not explicitly
+state whether the drug helps or not. These include
+phrases like "I do not advise". For instance, the phrase
+«Нет поддержки для иммунной системы» (No support for the immune system) is annotated as a Note.
+The typical situations that had to be handled during
+the annotation are the following:
+1. A simple markup, when a mention consists of 1 or
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+Page 6 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+Table 5
+Attributes belonging to the Medication entity
+Drugname
+
+DrugBrand
+
+Drugform
+
+Drugclass
+
+MedMaker
+
+MedFrom
+
+Frequency
+
+Dosage
+
+Duration
+Route
+
+SourceInfodrug
+
+Marks a mention of a drug. For example, in the sentence «Препарат Aventis "Трентал" для улучшения
+мозгового кровообращения» (The Aventis "Trental" drug to improve cerebral circulation), the word
+"Trental" (without quotation marks) is marked as a Drugname.
+A drug name is also marked as DrugBrand if it is a registered trademark. For example, in the sentence «Противовирусный и иммунотропный препарат Экофарм "Протефлазид"» (The Ecopharm
+"Proteflazid" antiviral and immunotropic drug), the word "Протефлазид" (Proteflazid) is marked as
+DrugBrand.
+Dosage form of the drug (ointment, tablets, drops, etc.). For example, in the sentence «Эти таблетки
+не плохие, если начать принимать с первых признаков застуды» (These pills are not bad if you
+start taking them since the first signs of a cold), the word "таблетки" (pills) is marked as DrugForm.
+Type of drug (sedative, antiviral agent, sleeping pill, etc.)
+For example, in the sentence
+«Противовирусный и иммунотропный препарат Экофарм "Протефлазид"» (The Ecopharm "Proteflazid" antiviral and immunotropic drug), two mentions marked as Drugclass: "Противовирусный"
+(Antiviral) and "иммунотропный" (immunotropic).
+The drug manufacturer. This attribute has two values: Domestic and Foreign. For example, in the sentence «Седативный препарат Материа медика "Тенотен"» (The Materia Medica "Tenoten" sedative)
+the word combination "Материа медика" (Materia Medica) is marked as MedMaker/Domestic.
+This is an attribute of a Medication entity that takes one of the two values – Domestic and Foreign, characterizing the manufacturer of the drug. For example, in the sentence «Седативные
+таблетки Фармстандарт "Афобазол"» (The Pharmstandard "Afobazol" sedative pills) the drug name
+"Афобазол" (Afobazol) has its MedFrom attribute equal to Domestic.
+The drug usage frequency. For example, in the sentence «Неудобство было в том, что его
+приходилось наносить 2 раза в день» (Its inconvenience was that it had to be applied two times
+a day), the phrase "2 раза в день" (two times a day) is marked as Frequency.
+The drug dosage (including units of measurement, if specified). For example, in the sentence
+«Ректальные суппозитории "Виферон" 15000 МЕ – эффекта ноль» (Rectal suppositories "Viferon"
+150000 IU have zero effect), the mention "15000 МЕ" (150000 IU) is marked as Dosage.
+This entity specifies the duration of use. For example, in the sentence «Время использования: 6 лет»
+(Time of use: 6 years), "6 лет" (6 years) is marked as Duration.
+Application method (how to use the drug). For example, in the sentence «удобно то, что можно
+готовить раствор небольшими порциями» (it is convenient that one can prepare the solution in small
+portions), the mention "можно готовить раствор небольшими порциями" (can prepare a solution in
+small portions) is marked as a Route.
+The source of information about the drug. For example, in the sentence «Этот спрей мне посоветовали
+в аптеке в его состав входят такие составляющие вещества как мята» (This spray was recommended
+to me at a pharmacy, it includes such ingredient as mint), the word combination "посоветовали в
+аптеке" (recommended to me at a pharmacy) is marked as SourceInfoDrug.
+
+Figure 1: Examples of markup. a) "Spray Jadran Aqua Maris",
+b) "Rapid treatment of cold and flu", c) "IRS-19 + drink drops
+of Tonsilgon" d) "Amixin – waste of time and money for treatment", e) "And once were these pills prescribed by my pediatrician"
+
+more words and it related to a single attribute of
+entity. The annotators then just have to select a
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+minimal but meaningful text fragment, excluding
+conjunctions, introductory words, and punctuation marks.
+2. Discontinuous annotation – when mentions separated by words that are not part of it. It is then
+necessary to annotate mention parts and connect
+them. In such cases we use the "concatenation"
+relation. In the example (e) on Fig. 1 the words
+"prescribed" and "pediatrician" are annotated as
+a concatenated parts of mention of the attribute
+"sourceInfoDrug".
+3. Intersecting annotations. Words in a text can belong to mentions of different entities or attributes
+simultaneously. For example, in the sentence
+"Rapid treatment of cold and flu" (see Fig. 1, example (b)), words "cold" and "flu" are mentions of
+attribute "diseasename", but at the same time the
+whole phrase is a mention of attribute "BNE-Pos".
+If a word or a phrase belongs to a mentions of difPage 7 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+Table 6
+Attributes belonging to the Disease entity
+Diseasename
+
+Indication
+
+BNE-Pos
+
+ADE-Neg
+
+NegatedADE
+
+Worse
+
+The name of a disease. If a report author mentions the name of the disease for which they take a
+medicine, it is annotated as a mention of the attribute Diseasename. For example, in the sentence «у
+меня вчера была диарея» (I had diarrhea yesterday) the word "диарея" (diarrhea) will be marked as
+Diseasename. If there are two or more mentions of diseases in one sentence, they are annotated separately. In the sentence «Обычно весной у меня сезон аллергии на пыльцу и депрессия» (In spring
+I usually have season allergy to pollen, and depression), both "аллергия" (allergy) and "депрессия"
+(depression) are independently marked as Diseasename.
+Indications for use (symptoms). In the sentence «У меня постоянный стресс на работе» (I have a
+permanent stress at work), the word "стресс" (stress) is annotated as Indication. Also, in the sentence
+«Я принимаю витамин С для профилактики гриппа и простуды» (I take vitamin C to prevent flu and
+cold), the entity "для профилактики" (to prevent) is annotated as Indication too. For another example,
+in the sentence «У меня температура 39.5» (I have a temperature of 39,5) the words "температура
+39.5" (temperature of 39.5) are marked as Indication.
+This entity specifies positive dynamics after or during taking the drug. In the sentence «препарат
+Тонзилгон Н действительно помогает при ангине» (the Tonsilgon N drug really helps a sore throat),
+the word "помогает" (helps) is the one marked as BNE-Pos.
+Negative dynamics after the start or some period of using the drug. For example, in the sentence
+«Я очень нервничаю, купила пачку "персен", в капсулах, он не помог, а по моему наоборот всё
+усугубил, начала сильнее плакать и расстраиваться» (I am very nervous, I bought a pack of "persen",
+in capsules, it did not help, but in my opinion, on the contrary, everything aggravated, I started crying
+and getting upset more), the words "по моему наоборот всё усугубил, начала сильнее плакать и
+расстраиваться" (in my opinion, on the contrary, everything aggravated, I started crying and getting
+upset more) are marked as ADE-Neg.
+This entity specifies that the drug does not work after taking the course. For example, in the sentence
+«...боль в горле притупляют, но не лечат, временный эффект, хотя цена великовата для 18-ти
+таблеток» (...dulls the sore throat, but does not cure, a temporary effect, although the price is too
+big for 18 pills) the words "не лечат, временный эффект" (does not cure, the effect is temporary) are
+marked as NegatedADE.
+Deterioration after taking a course of the drug. For example, in the sentence «Распыляла его
+в нос течении четырех дней, результата на меня не какого не оказал, слизистая еще больше
+раздражалось» (I sprayed my nose for four days, it didn't have any results on me, the mucosa got
+even more irritated), the words "слизистая еще больше раздражалось" (the mucosa got even more
+irritated) are marked as Worse.
+
+ferent attributes or entities at the same time (for
+example, "drugname" and "drugbrand"), it should
+be annotated with all of them: see, for instance,
+entity "Aqua Maris" in sentence "Spray Jadran
+Aqua Maris" (Fig. 1, example (a)).
+4. Another complex situation is when an analogue
+(or, in some cases, several analogues) of the drugs
+are mentioned in a text, for example, when a customer wrote about a drug and then described an
+alternative that helped them. In this case, the
+"Other" attribute is used (example (c)).
+Moreover, there often were author subjective arguments instead of explicit reports on the outcomes. We
+labeled that as a mention of entity "Note". For example,
+"strange meds", "not impressed", "it is not clear whether
+it worked or not", "ambiguous effect" (example (d) in
+Fig. 1).
+
+3.3. Classification based on categories of the
+ATC, ICD-10 classifiers and MedDRA
+terminology
+After annotation, in order to resolve possible ambiguity in terms we performed normalization and classification by matching the labeled mentions to the information from external official classifiers and registers.
+The external sources for Russian are described below.
+• the 10-th revision of the International Statistical Classification of Diseases and Related Health
+Problems (ICD-10) [33] is an international classification system for diseases which includes 22
+classes of diagnoses, each consisting of up to 100
+categories. The ICD-10 makes it possible to reduce verbal diagnoses of diseases and health problems to unified codes.
+• The
+Anatomical
+Therapeutic
+Chemical
+(ATC) [31] is an international medication
+classification system containing 14 anatomical
+main groups and 4 levels of subgroups. The ICD10 and the ATC have a hierarchical structure,
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+Page 8 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+where "leaves" (terminal elements) are specified
+diseases or medications, and "nodes" are groups
+or categories. Every node has a code, which
+includes the code of its parent node.
+• State
+Register
+of
+Medicinal
+Products
+(SRD)("Государственный
+реестр
+лекарственных средств (ГРЛС)" [38] in
+Russian) is a register of detailed information
+about the medications certified in the Russian
+Federation. It includes possible manufacturers,
+dosages, dosage forms, ATC codes, indications,
+and so on.
+• MedDRA® the Medical Dictionary for Regulatory Activities terminology is the international
+medical terminology developed under the auspices of the International Council for Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH)
+Among the international systems of standardization of concepts, the most complete and large
+metathezaurus is UMLS, which combines most of the
+databases of medical concepts and observations, including MESH (and MESHRUS), ATC, ICD-10, SNOMED
+CT, LOINC and others. Every unique concept in the
+UMLS has an identification code CUI, using which
+one can get information about the concept from all
+the databases. However, within UMLS it is only the
+MESHRUS database that contains Russian language
+and can be used to associate words from our texts with
+CUI codes.
+Classification was carried out by the annotators
+manually. For this purpose, we applied the procedure consisting of the following steps: automatic grouping of mentions, manual verification of mention groups
+(standardization), matching the mention groups to the
+groups from the ATC and the ICD-10 or terms from
+MedDRA.
+Automatic mentions grouping is based on calculating the similarity between two mentions by the
+Ratcliff/Obershelp algorithm [37], which is based on
+searching two strings for matching substrings. In the
+course of the analysis, every new mention is added to
+one of the existing groups G if the mean similarity between the mention and all the group items is more than
+0.8 (value deduced empirically), otherwise a new group
+is created. The G set is empty at the start, and the first
+mention creates a new group with size 1. Each group
+is named by its most frequent mention. Next, the annotators manually check and refine the resulting set,
+creating larger groups or renaming them. Mentions of
+drug names were standardized according to State Register of Medicinal Products. That gave us 550 unique
+drug names mentioned in corpus.
+After that, the group names for attributes "Diseasename", "Drugname" and "Drugclass" are manually
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+matched with ICD-10 and ATC terms to assign term
+codes from the classifiers. As a result, 247 unique ICD10 codes were matched against the 765 unique phrases,
+annotated as attribute "Diseasename"; 226 unique ATC
+codes matched the 550 unique drug names; and 70
+unique ATC codes corresponded to 414 unique phrases,
+annotated as "Drugclass". Some drug classes that were
+mentioned in corpus (such as homeopathy) did not have
+a corresponding ATC code, and were aggregated according to their anatomical and therapeutic classification in the SRD.
+Standardized terms for ADR and Indications were
+manually matched with low level terms (LLT) or prefered terms (PT) from MedDRA. In table 7 we show the
+numbers of Unique PT terms that were matched with
+our mentions.
+
+3.4. Statistics of the collected corpus
+We used UDPipe[46] package to parse the reviews,
+in order to get sentence segmentation, tokenization and
+lemmatization. Given this, we calculated that average
+number of sentences for the reviews is 10, average number of tokens is 152 (with a standard deviation of 44),
+average number of lemmas is 95 (standard deviation
+equals to 23). TTR (type/token ratio) was calculated
+as the ratio of the unique lemmas in a review to the
+amount of tokens in it. Average TTR for all reviews
+equals to 0.64.
+Detailed information about the annotated corpus is
+presented in Table 7 including:
+1. The number of mentions for every attribute
+("Mentions – Annotated" column in the table).
+2. The number of unique classes from classifiers or
+unique normalized terms described in Section 3.3
+matched with our mentions ("Mentions – Classification & normalization").
+3. The number of words belonging to mentions of
+the attribute ("Mentions – Number words in the
+mentions").
+4. The number of reviews containing any mentions
+of the corresponding attribute ("Mentions – Reviews coverage").
+The corpus contains consumer posts on drugs, mentioned 8 236 times and related to 226 ATC codes. The
+most popular 20% of the ATC codes (by the number of reviews with corresponding Drugname mentions)
+include 45 different codes which mentions appears in
+2 614 reviews (93% of all reviews). Among them, 20
+ATC codes were reviewed in more then 50 posts (2511
+posts in total).
+The most popular ATC codes from 2nd level are:
+L03 "Immunostimulants" - 662 reviews (which is 23.6%
+of corpus), J05 "Antivirals for systemic use" - 508
+(18.5%) reviews, N05 "Psycholeptics" - 449 (16.0%),
+N02 "Analgesics" - 310 (11.1%), N06 "Psychoanaleptics"
+
+Page 9 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+Table 7
+General information about the collected corpus.
+Annotated
+
+ADR
+Medication
+Drugname
+
+1784
+32 994
+8 236
+
+DrugBrand
+Drugform
+Drugclass
+MedMaker
+Frequency
+Dosage
+Duration
+Route
+SourceInfodrug
+Disease
+Diseasename
+Indication
+BNE-Pos
+ADE-Neg
+NegatedADE
+Worse
+Note
+
+4 653
+5 994
+3 120
+1 715
+614
+965
+1 514
+3 617
+2 566
+17 332
+4 006
+4 606
+5 613
+85
+2 798
+224
+4 517
+
+Mentions
+Classification & Num. words in
+normalization
+the mentions
+316 (MedDRA)
+4 211
+47 306
+550(SRD),
+9 914
+226(ATC)
+5 296
+6 131
+70 (ATC)
+3 277
+2 423
+2 478
+2 389
+3 137
+7 869
+4 392
+37 863
+247 (ICD-10)
+4 713
+343 (MedDRA)
+7 858
+14 883
+347
+9 028
+1 034
+21 200
+
+- 294 (10.5%). Most popular drugs among immunostimulants by the reviews count are: Anaferon (144 reviews), Viferon (140), Grippferon (71). Most popular
+antivirals for systemic use are following: Ingavirin (99),
+Kagocel (71) and Amixin (58).
+The proportions of reviews about domestic drugs
+and foreign to the total number of reviews are 44.9%
+and 39.7% respectively. The remaining documents
+(15.4%) contains mentions of multiple drugs both domestic and foreign or mentions of drugs which origin the
+annotators could not determine. Among the domestic
+drugs are following: Anaferon (144 reviews), Viferon
+(140), Ingavirin (99) and Glycine (98). Examples of
+mentioned foreign drugs: Aflubin (93), Amison (55),
+Antigrippin (51) and Immunal (42).
+Regarding diseases, the most frequent ICD-10 top
+level categories are "X - Diseases of the respiratory
+system" (1122 reviews); "I - Certain infectious and
+parasitic diseases" (300 reviews); "V - Mental and
+behavioural disorders" (170 reviews); "XIX - Injury,
+poisoning and certain other consequences of external
+causes" (82 reviews). The top 5 low level codes from
+the ICD-10 by the number of reviews are presented in
+Fig. 2.
+Analysing the consumers' motivation to acquire and
+use drugs ("sourceInfoDrug" attribute) showed that review authors mainly mention using drugs based on professional recommendations. 989 reviews contains references of doctor prescriptions, 262 - refers to pharmaceutical specialists recommendations and 252 - doctor
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+Reviews
+coverage
+628
+2 799
+2 793
+1 804
+2 193
+1 687
+1 448
+516
+708
+1 194
+1 737
+1 579
+2 712
+1 621
+1 784
+1 764
+54
+1 104
+134
+1 876
+
+J00-J06
+ICD-10 top level class
+
+Entity type
+
+J11
+B00
+F51.0
+T78.4
+0
+200
+400
+600
+800
+Number of reviews with mentions of corresponding ICD-10 classes
+
+Figure 2: Top 5 low-level disease categories from the ICD-10
+by the number of reviews in our corpus. J00-J06 - Acute upper respiratory infections, J11 - Influenza with other respiratory
+manifestations, virus not identified, B00 - Herpesviral [herpes
+simplex] infections, F51.0 - Nonorganic insomnia, T78.4 - Allergy, unspecified
+
+recommendations. Some reviews reports about using
+drugs recommended by relatives (207 reviews), advertisement (97) or internet (15).
+The heatmap, presented on Fig. 3, shows percentages of reviews where popular drugs were co-occurred
+with different sources (sources were manually merged
+Page 10 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+Figure 3: The distribution heatmap of reviews percentages for different sources of information for the 20 most popular drugs.
+The number in a cell means the percentage of reviews with the drug and particular source to the total number of reviews with
+this drug. If there were several different sources mentioned, it counted as "mixed" source
+
+into 5 groups by annotators). It could be seen that
+most recommendations are coming from professionals. For example Isoprinosine (used in 65.85% cases
+by medical prescription), Aflubun (44.09%), Anaferon
+(47.30%) and others. However, for such drugs as Immunal (11.9%) or Valeriana (9.18%) the rate of usage on
+the advice of patients' acquaintances is close to doctors' recommendations or higher. Amizon (12.73%)
+and Kagocel (11.27%) have the highest percentage for
+mass media (advertisement, internet and other) as the
+source compared to other drugs.
+The distribution of the tonality (positive or negative) for the sources of information is presented in
+Fig. 4. A source is marked as "positive" if positive dynamic is appeared after the use of drug (i.e. review
+includes "BNE-pos" attribute). "Negative" tonality is
+marked if negative dynamic or deterioration in health
+has taken place or drug has had no effect (i.e. "Worse",
+"ADE-Neg" or "NegatedADE" mentions appear). Reviews with both effects were not taken into account.
+It follows from the diagram that drugs recommended
+by doctors or pharmacists are mentioned more often as
+having positive effect, while using drugs based on an
+advertisement often leads to deterioration in health.
+Diagrams in Fig. 5 show parts of reviews where popular drugs were mentioned along with labeled effects.
+The following drugs have largest parts for ADR in reviews: immunomodulator – "Isoprinosine" (48.8% of reviews with this drug contains mentions of ADR), antiviral "Amixin" (40.0%), tranquilizer – "Aphobazolum"
+(37.7%), antiviral – "Amizon" (36.4%), antiviral – "RiSG Sboeva et al.: Preprint submitted to Elsevier
+
+Figure 4: Distribution of the tonality for the different sources.
+Number in brackets shows reviews count with the source of information, including reviews without reported effects or neutral
+reviews (with both good and bad effects)
+
+mantadine" (36.3%).
+Users mention that some drugs causing negative dynamics after start or some period of using it (ADENeg). Examples of such drugs are "Anaferon" (3.5% of
+reviews with this drug mention ADE-Neg effects), "Viferon" (2.1%), "Glycine" (4.1%), "Ergoferon" (3.6%).
+According to reviews some of the drugs causes deterioration in health after taking the course ("Worse"
+label): immunomodulator – "Isoprinosine" (12.2%), anPage 11 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+Figure 5: Distributions of labels of effects reported by reviewers after using drugs. Top 20 drugs by the reviews count are
+presented. The number in brackets is the number of reviews with mentions of a drug. Diagrams show part of reviews mentioning
+a specific type of effect from the total amount of reviews with the drug
+
+tiviral – "Ingavirin" (10.1%), "Ergoferon" (9.1%) and
+other.
+This corpus is used further to get a baseline accuracy estimate for the named entity recognition task.
+
+3.5. Coreference annotation
+To begin with, we used a state-of-the-art neural network model for coreference resolution [16], and
+adapted it to Russian language by training on the corpus AnCor-2019. After this we predicted coreference
+for reviews in our corpus. We chose 91 reviews which
+had more that 2 different drug names and disease names
+(after manual grouping described in 3.3)and more than
+4 coreference clusters and 209 reviews which had more
+that 2 different drug names and more that 2 coreference
+clusters. These 300 reviews we gave to our annotators
+for manual checking of coreference clusters, predicted
+by model.
+The annotators had guideline for coreference and a
+set of examples. According to guidelines they supposed
+to pay attention to mentions annotated with pharmacological types, pronouns and words typical for references
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+(e.g. "such", "former", "latter"). They didn't annotate
+as coreference following things:
+• mentions of reader ("I wouldn't recommend you
+to buy it if you don't want to waste money");
+• split antecedents - when 2 or more mentioned
+entities also mentioned by a common phrase ("I
+tried Coldrex and after a while i decided to buy
+Antigrippin. Both drugs usually help me.");
+• generic mentions - phrases that describe some objects or events(e.g. "Many doctors recommend
+this medication. Since I respect the opinion of
+doctors I decided to buy it." - doctors are not
+coreferent mentions);
+• phrases that gives definitions to other ("Valeriana
+is a good sedative drug that usually helps me" "Valeriana" and "sedative drug" are not coreferent
+mentions).
+The table 8 shows the number of coreference clusters
+and mentions in 300 drug reviews from our corpus comPage 12 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+Table 8
+Number of coreference chains and mentions compared to other
+Russian coreference corpus
+Corpus
+AnCor-2019
+Our corpus
+
+Texts
+count
+522
+300
+
+Mentions
+count
+25159
+6276
+
+Chains
+count
+5678
+1560
+
+Table 9
+Mentions types involved in coreference chains
+Entity type
+
+Attribute type
+
+Drugname
+Drugform
+Drugclass
+MedMaker
+Medication
+Route
+SourceInfodrug
+Dosage
+Frequency
+Diseasename
+Indication
+BNE-Pos
+Disease
+NegatedADE
+Worse
+ADE-Neg
+ADR
+
+Number of mentions
+involved in coreference
+chains
+529
+286
+204
+170
+98
+75
+50
+1
+163
+125
+107
+36
+5
+2
+34
+
+pared to corpus AnCor-2019. It should be noted that
+not all coreference mentions correspond to mentions of
+our main entity annotation, sometimes a single coreference mention can unite multiple medical mentions,or
+connect pronouns that are not involved in medical annotations. The table 9 represents the number of medical mentions of various types that intersect coreference
+mentions. This corpus is used further to get a baseline accuracy estimate for the named entity recognition
+task.
+
+4. Machine learning methods
+4.1. Entities detection problem
+We consider the problem of named entity recognition as a multi-label classification of tokens – words and
+punctuation marks – in sentences. Phrases of different
+entities can intersect, so that one word can have several
+tags.
+The output for each token is a tag in the BIO format: the "B" tag indicates the first word of a phrase of
+the сonsidered entity, the "I" tag is used for subsequent
+words within the mention, and the "O" tag means that
+the word is outside of an entity mention.
+To set the accuracy level of entity recognition in
+our corpora we used two methods. The first (Model A)
+was based on BiLSTM neuralnet topology with different feature representation of input text: dictionaries,
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+part of speech tags and several methods of word level
+representations, incl. FastText [4], ELMo [34], BERT,
+words character LSTM coding, etc. The second (Model
+B) was a multi-model combining the pretrained multilingual language model XLM-RoBERTa [8] and the
+LSTM neural network with several most effective features. Details of the implementation of both methods
+with a description of the used features are presented
+below.
+
+4.2. Used features
+Tokenization and Part-of-Speech tagging. To preprocess the text we used UDPipe [46] tool. After parsing each word get 1 of 17 different parts of speech. They
+are represented as a one-hot vector and used as an input for the neural network model. For model B, the
+text was segregated on phrases using UDPipe version
+2.5. Long phrases splitted up into 45 word chunks.
+
+Common features. They are represented as a binary
+vector of answers to the following questions (1 if yes, 0
+otherwise):
+• Are all letters capital?
+• Are all letters in lowercase?
+• Is the first letter capital?
+• Are there any numbers in the word?
+• Does more than a half of the word consist of numbers?
+• Does the entire word consist of numbers?
+• Are all letters Latin?
+
+Emotion markers. Adding the frequencies of emotional words as extra features is motivated by the positive influence of these features on determining the author's gender [47]. Emotional words are taken from the
+dictionary [57] which contains 37 emotion categories,
+such as «Anxiety», «Inspiration», «Faith», «Attraction», etc. On the basis of the n available dictionaries, an n-dimensional binary vector is formed for each
+word, where each vector component reflects the presence of the word in a certain dictionary.
+In addition, this word feature vector is concatenated
+with emotional features of the whole text. These features are LIWC and psycholinguistic markers.
+The former is a set of specialized English Linguistic Inquiry and Word Count (LIWC) dictionaries [48],
+adapted for the Russian language by linguists [29]. The
+LIWC values are calculated for each document based
+on the occurrence of words in specialized psychosocial
+dictionaries.
+Psycholinguistic text markers [42] reflect the level of
+the emotional intensity of the text. They are calculated
+as the ratio of certain frequencies of parts of speech in
+Page 13 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+the text. We use the following markers: the ratio of the
+number of verbs to the number of adjectives per unit of
+text; the ratio of the number of verbs to the number of
+nouns per unit of text; the ratio of the number of verbs
+and verb forms (participles and adverbs) to the total
+number of all words; the number of question marks,
+exclamation points, and average sentence length. The
+combination of these features are referred to as "ton"
+in Table 11.
+
+Dictionaries. The following dictionaries from open
+databases and registers are used as additional features
+for the neural network model.
+1. Word vectors formed on base of the MESHRUS
+thesaurus as described in Appendix A. The two
+approaches described in that section are referred
+to as MESHRUS and MESHRUS-2. The resulting CUI codes are encoded with one-hot representation.
+2. Vidal. For each word, a binary vector is formed,
+which reflects belonging to categories from the
+Vidal medication handbook [51]: adverse effects,
+drug names in English and Russian, diseases. The
+dataset words are mapped to the words or phrases
+from the Vidal handbook. To establish the categories, the same approach as for MESHRUS is
+used. The difference is that instead of setting indices for every word (as CUI in the UMLS) we
+assign a single index to all words of the same category. That way, words from the dataset are not
+mapped to special terms, but checked for category relations.
+
+4.3. Word vector representations
+It is the representation of word by a vector in
+a special space where words with similar meanings
+are close to each other. The following models were
+used: FastText [4], ELMo (Embeddings from Language
+Model) [34], and BERT (Bidirectional Encoder Representations from Transformer) [9], XLM-RoBERTa [8].
+The approach of the FastText is based on the Word2Vec
+model principles: word distributions are predicted by
+their context, but FastText uses character trigrams as
+a basic vector representation. Each word is represented
+as a sum of trigram vectors that are the base for continuous bag of words or skip-grams algorithms [30]. Such
+a model is simpler to train due to decreased dictionary
+size: the number of character n-grams is less than the
+number of unique words. Another advantage of this approach is that morphology is accounted automatically,
+which is important for the Russian language.
+Instead of using fixed vectors for every word (like
+FastText does), ELMo word vectors are sentencedependent. ELMo is based on The Bidirectional Language Model (BiLM), which learns to predict the next
+word in a word sequence. Vectors obtained with ELMo
+are contextualized by means of grouping the hidden
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+Figure 6: The main architecture of the network. Input data
+goes to bidirectional LSTM, where the hidden states of forward LSTM and backward LSTM get concatenated, and the
+resulting vector goes to fully-connected layer with size 3 and
+SoftMax activation function. The output p1 , p2 , and p3 are
+the probabilities for the word to belong to the classes B, I, and
+O, i. e. to have B, I, or O tag.
+
+states (and initial embedding) in a certain way (concatenation followed by weighed summation). However,
+predicting the next word in a sequence is a directional
+approach and therefore is limited in taking context into
+account. This is a common problem in training NLP
+models, and is addressed in BERT.
+BERT is based on the Transformer mechanism,
+which analyzes contextual relations between words in a
+text. The BERT model consists of an encoder extracting information from a text and a decoder which gives
+output predictions. In order to address the context accounting problem, BERT uses two learning strategies:
+words masking and logic check of the next sentence.
+The first strategy implies replacing 15% of the words
+on a token "MASK" which is later used as a target
+for the neural network to predict actual words. In the
+second learning strategy, the neural network should determine if two input sentences are logically sequenced
+or are just a set of random phrases. In BERT training,
+Page 14 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+both strategies used simultaneously so as to minimize
+their combined loss function. XLM-RoBERTa model
+model a similar to BERT masked language model based
+on Transformers [55]. Main differences between XLMRoBERTa and BERT are following: XLM-RoBERTa
+was trained on larger multilingual corpus from CommonCrawl project which contains 2.5TB of texts. Russian is the second language by texts count in this corpus after English. XLM-RoBERTa was trained only for
+masked token prediction task, it didn't use the next sentence prediction loss. Minibatches during model training included texts in different languages. It used different tokenization algorithm, while BERT used WordPiece [43], this model used SentencePiece [21]. Vocabulary size in XLM-RoBERTa is 250K unique tokens for all languages. There is two versions of model:
+XLM-RoBERTa-base with 270M parameters and XLMRoBERTa-large with 550M.
+
+Figure 7: The scheme of character feature extraction on base
+of char convolution neural network. Each input vector after
+the embedding layer is expanded with two extra padding object
+(white boxes), w(k1) , w(k2) , w(k3) - weights of convolution filter
+k.
+
+4.4. Model architecture
+4.4.1. Model A - BiLSTM neural net
+The topology of Model A is depicted in Fig. 6.
+The set of input features for this model was described
+above. Additionally for word coding we used characters
+convolution based neural network (see Fig. 7), CharCNN [20]. First, each word is represented as a character
+sequence. The number of characters is a hyperparameter, which in this study has chosen empirically with
+the value of 52. If the word has fewer characters than
+this number, the remaining characters are filled with
+the «PADDING» symbol. The training dataset is used
+to make a character vocabulary that also includes special characters «PADDING» and «UNKNOWN», the
+latter allowing for possible future occurrence of characters not present in the training set. For coding each
+character embedding layer [11] is used, which replaces
+every character from vocabulary appeared in a word to
+a corresponding real vector. In the beginning, the real
+vectors are initialized with values from random uniform
+distribution in the range of [-0.5; 0.5]. The size of real
+vectors is 30. Further, the matrix of coded characters of
+word is processed by convolution layer (with 30 filters
+and kernel size = 3) [10] and global maxpooling function that provided maximization function of all values
+for each filter [5].
+At the output of the model, we put either a
+fully connected layer [7] or conditional random fields
+(CRF [23]), which output the probabilities for a token
+to have a B, I, or O tag for the corresponding entity
+(for instance, B-ADR, I-ADR, or O-ADR).
+
+4.4.2. Model B - XLM RoBERTa based
+multi-model
+To improve the model accuracy, we performed
+an additional training XLM-RoBERTa-base on two
+datasets:
+the first we collected from the site
+irecommend.ru and the second was borrowed from unnannotated part of RuDReC [54]. Calculations of
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+two epochs during three days and XLM-RoBERTalarge for one epoch during 5 days were performed using a computer with one Nvidia Tesla v100 and Huggingface Transformers library. Further, we fine-tuned
+these models to solve the NER task. Figure 8 demonstrates an algorithm of fine-tuning language models
+for NER. This is the commonly used fine-tuning algorithm of simple transformers project [36]. The linear
+layer with an activation function softmax was added
+to the model output to classify words. The developed
+multi-tag model implements the concatenation of finetuned language model with the vector of features (Vidal, MESHRUS, ton, and other). The LSTM neural
+net model processes then the resulting vector to implement the multi-tagged labeling. Figures 9, 10 clarify
+a model topology. So the multi-tag model combines
+the above-mentioned fine-tuned language model with
+the simplified variant of Model A(without CRF and
+with the substitution of ELMo word representation by
+the fine-tuned language model's output with class activities). During training the above-mentioned LSTM
+neural net model, this language model was not trained.
+We used the automatic selection of hyperparameters using Weights&Biases [3] – sweeps for the total multi-tag
+model. It took about 24 hours on the computer with
+3 Tesla K80 processing 6 agents. The 5-fold evaluation
+was used.
+
+4.4.3. Coreference model
+For coreference resolution, we chose a state-of-theart neural network architecture from [16]. The core
+feature of this model is the ability to learn the task
+of mentions detection, and the task of mentions linking and forming coreference clusters end to end at the
+same time, without separating these 2 tasks into different processes. The model uses the BERT language
+Page 15 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+Figure 8: Fine tuning of language model for word classification
+task
+
+Figure 9: Model B architecture, fwn – words, encoded with
+features
+
+Figure 10: Model B architecture, words encoding method to
+obtain word representation vectors fwn is presented on the left
+and on the right there is multi-output for words classification
+
+model to get input text word vector representations.
+To adapt network architecture to Russian language we
+used RuBERT - BERT language model trained on the
+Russian part of Wikipedia and news data. We conducted experiments to tune neural network hyperparameters and training options to achive a better results,
+final hyperparameters were as follows: maximum span
+width = 30, maximum antecedents for every mention:
+50, hidden fully connected layers size = 150, numbers
+of sequential hidden layers = 2,maximum epoch training: 200, language model learning rate = 1.0e-05, task
+model learning rate = 0.001,embedding sizes = 20.
+
+5. Experiments
+5.1. Methodology
+In the experiments, we pursued the following objectives:
+1. To select most effective language model among
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+the set: FastText, ELMo, and BERT;
+2. To evaluate the influence of different feature sets
+on the precision of ADR mention extraction;
+3. To compare the level of precision for ADR mentions identification basing on our corpus in relation to one received on available russian language
+data of similar type;
+4. To show the influence of such characteristics of
+corpus texts on the precision of ADR mention extraction, as the proportion between phrases with
+ADR and without it, between ADR mentions and
+INDICATION mentions, the corpus size and etc.
+5. To evaluate the influence of the ADR tagging
+severity on the ADR identification precision.
+We made the accent on ADR because of its importance in practice and the complexity of identification
+given close relation to the context that stipulates this
+selection for model calibrations.
+For models performance estimation, we used the
+chunking metric, which was introduced in the conll2000
+shared task and has been used to compare named entity extraction systems since then. The implementation
+can be found here: https://www.clips.uantwerpen.be/
+conll2000/chunking/. The script receives as its input
+a file where each line contains a token, true tag and
+predicted tag. Tags could be "O" - if token doesn't belong to any mentions, "B-X" if token starts a mention
+of some type X, "I-X" if it continue a mention of type
+X. If tag "I-X" appears after "O", or "I-Y" (mention of
+other type) it's treated as "B-X" and starts a new mention. The script calculates the percentage of detected
+mentions that are correct (precision), the percentage of
+correct mentions that were detected (recall) and an F1
+score:
+2 ∗ precision ∗ recall
+F1 =
+precision + recall
+In our work we use F1-exact score that estimate accuracy of full entity matching.
+
+5.2. Finding the best embedding
+We considered the following embedding models:
+FastText, ELMo, and BERT. Two corpora were used
+to train the FastText model – a corpus of reviews from
+Otzovik.com from the category "medicines" and a corpus of reviews from the category "hospitals" 6 , also
+we used vectors pretrained on the Commoncrawl corpus7 . The ELMo model which had been preliminarily trained on the Russian WMT News [19] was taken
+from the DeepPavlov 8 [6] open-source library. The pretrained multilingual BERT model was taken from the
+Google repository 9 and subsequently fine-tuned on the
+6 Reviews
+were taken from the Otzovik website
+from the categories "hospitals" and "medicines" https://otzovik.com/health/
+7 http://commoncrawl.org/
+8 https://deeppavlov.readthedocs.io/en/master/intro/
+pretrained_vectors.html
+9 https://github.com/google-research/bert/
+
+Page 16 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+Table 10
+Accuracy (%) of recognizing ADR, Medication and Disease entities in our corpus (1600
+reviews) by Model A with different language models.
+Word vector
+representation
+FastText
+ELMo
+BERT
+ELMO||BERT
+
+Vector
+dimension
+300
+1024
+768
+1024||768
+
+ADR
+22.4
+24.3
+22.1
+18.7
+
+above-mentioned corpora of drug and hospital reviews.
+These pretrained models were used as input to our neural network model presented in Fig. 6. The dataset (the
+first version of our corpus contained 1600 reviews) was
+split into 5 folds for cross-validation. On each fold, the
+training set was split into training and validation sets
+in the ratio 9:1. Training was performed for a maximum of 70 epochs, with early stopping by the validation loss. Cross entropy was used as the loss function,
+with nAdam as the optimizer and cyclical learning rate
+mechanism [45]. The results of the test experiments are
+given in Table 10, where the best results according to
+the F1-exact metric demonstrate ELMo. The composition of ELMo with BERT worsens the precision. As
+a result, we used ELMo below to evaluate the influence of different features on ADR mention extraction
+precision.
+
+5.2.1. The influence of different features on ADR
+recognition precision
+To evaluate the influence of using any separated feature from those mentioned above on ADR precision,
+we conducted the series of experiments with Model A
+which results presented in Table 11.
+
+5.2.2. Choosing the best model topology
+Next, we provide a set of experiments with Model
+A on the choice of topology: replacing the last fullyconnected layer with a CRF layer, or changing the number of biLSTM layers. This was studied in combination
+with adding emotion markers, PoS and MESHRUS,
+MESHRUS-2 and Vidal dictionaries, as shown in Table 11. So, this made it possible to assess the accuracy level of Model A. To evaluate the effectiveness of
+XLM-RoBERTa-large, we ran it without features (see
+last row in Table 11). In view of the it's high precision
+exceeding the precision of Model A, we used it as basis
+to create Model B.
+
+5.2.3. The influence of characteristics of corpus
+texts on the precision of ADR recognition
+First of all, we conducted experiments on the corpus 2800 texts extended by texts similar to corpus 1600
+texts to assess the change of precision in ADR identification with the rise of ADR mention number. As
+follows from the data in Table 12, a direct increase
+in the number of reviews in the corpus gives only a
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+±
+±
+±
+±
+
+1.6
+1.7
+2.4
+9.8
+
+Medication
+70.4
+73.4
+71.4
+74.1
+
+±
+±
+±
+±
+
+1.1
+1.5
+3.3
+1.1
+
+Disease
+44.1
+46.4
+45.5
+47.9
+
+±
+±
+±
+±
+
+1.7
+0.6
+3.2
+1.6
+
+small increase in the share of ADR-mentions per review (0.2 versus 0.22). So, its saturation by ADR
+stays lower than in most corpora from Table 2. To
+study the effect of increasing saturation of the corpus
+by ADR mentions, we experimented with sets of different sizes from the corpus with various ADR-mention
+shares per review: of 1250 texts (average 1.4 ADR
+onto review) balanced with ADR and without ADR,
+of 610 texts(average 2.9 ADR onto review), of 1136
+texts(average 1.5 ADR onto review), of 500 texts (average 1.4 ADR onto review). In all experiments, the
+model treated input texts as the set of independent
+phrases.
+
+5.2.4. The influence evaluations of annotation
+style of ADR on its recognition precision
+In this case, we ran two experiments to evaluate a
+difference in ADR mention extractions: the first on the
+base of the set containing pure ADR mentions and the
+second, including the doubtful bordering ADR mentions, annotated both ADR and NOTE.
+
+5.2.5. Evaluations of the precision of coreference
+relations extractions on our corpus by
+models trained on different corpora
+After annotators manually corrected predicted
+coreference relations in our corpus, we splited it to
+train, validation and test subsets. Then we evaluated
+coreference resolution model trained on AnCor-2019
+corpus and tested on our corpus and model trained on
+our corpus. We also did same experiments on AnCor2019 test subset. We also tried to combine both train
+sets.
+
+6. Results
+6.1. Results of Model A in series of embedding
+comparison experiments
+These results are presented in Table 10 and demonstrate the superiority of the ELMo model. BERT leads
+to lower F1 values with larger deviation ranges, and
+with the FastText model the F1 score is the lowest.
+Consequently, in further experiments on adding features and changing the topology we use the ELMo embedding as the basic approach. The composition of
+ELMo with BERT worsens the precision. As a result,
+
+Page 17 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+Table 11
+Entity recognition F1 score on our corpus (1600 reviews) of the models with different
+features and topology.
+Topology and features
+ADR
+Medication
+Model A - Influence of features
+ELMo + PoS
+26.2 ± 3.0
+72.9 ± 0.6
+ELMo + ton
+26.6 ± 3.9
+73.5 ± 0.5
+ELMo + Vidal
+26.8 ± 1.0
+73.2 ± 1.1
+ELMo + MESHRUS
+27.4 ± 2.2
+73.3 ± 1.5
+ELMo + MESHRUS-2
+27.4 ± 0.9
+73.1 ± 0.4
+Model A - Topology modifications
+ELMo, 3-layer LSTM
+28.2 ± 5.1
+74.7 ± 0.7
+ELMo, CRF
+28.8 ± 2.7
+73.2 ± 1.1
+Model A - Best combination
+ELMo, 3-layer LSTM, CRF
+32.4 ± 4.7
+74.6 ± 1.1
+ton, PoS, MESHRUS, MESHRUS-2, Vidal
+Model B - XLM-RoBERTa part only
+XLM-RoBERTa-large
+40.1 ± 2.9 79.6 ± 1.3
+
+Disease
+46.6
+47.3
+45.8
+46.5
+46.7
+
+±
+±
+±
+±
+±
+
+0.9
+1.0
+1.2
+1.2
+1.4
+
+51.5 ± 1.8
+46.9 ± 0.4
+52.3 ± 1.4
+56.9 ± 0.8
+
+Table 12
+Subsets of RDRS corpora with accordance to complexity of ADR level saturation. *Model
+B - XLM-RoBERTa part only score on RuDRec
+Corpora
+RDRS 2800 RDRS 1600 RDRS 1250 RDRS 610 RDRS 1136 RDRS 500
+Parameters
+Number of reviews
+2800
+1659
+1250
+610
+1136
+500
+Number of reviews con625
+339
+610
+610
+610
+177
+tained ADR
+Portion of reviews con0.22
+0.2
+0.49
+1
+0.54
+0.35
+tained ADR
+Number of ADR enti1778
+843
+1752
+1750
+1750
+709
+tites
+Average number of
+0.64
+0.51
+1.4
+2.87
+1.54
+1.42
+ADR per review
+Number of reviews con1783
+955
+670
+59
+154
+297
+tained Indication
+Total entitites number
+52186
+27987
+21807
+3782
+6126
+9495
+Number of Indication
+4627
+2310
+1518
+90
+237
+720
+entitites
+Portion of ADR to Indi0.38
+0.36
+1.15
+19.44
+7.38
+0.98
+cation entities
+F1-exact
+52.8 ± 3.8
+40.1 ± 2.9
+61.1 ± 1.5 71.3 ± 3.4 68.6 ± 3.3 61.6 ± 2.9
+Saturation (∗ 103 )
+4.25
+3.41
+9.77
+72.57
+42.99
+9.08
+
+we used ELMo below to evaluate the influence of different features on ADR mention extraction precision.
+
+6.2. Results of choosing the best model topology
+and input feature set for Model A in
+comparison with XLM-RoBERTa-large
+results
+For our corpus, as shown in Table 11, various
+changes in features and topology were added to the
+basic model with ELMo embedding. First of all, we focused on the metric F1exact , since it reflects the quality
+of the model better. Adding features gave the greatest
+increase in the least-represented class ADR. As a result,
+a combination of dictionary features, emotion markers,
+3-layers LSTM and CRF can achieve the highest quality
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+increase in ADR and Disease entities. For Medication,
+the combination of ELMo and 3-layer LSTM showed
+slightly better results. But results of experiments with
+model A as a whole are worse than the results of XLMRoBERTa-large, which was used as a basis of Model
+B. Therefore, we performed further experiments on the
+base of Model B founded on it, as the best.
+
+6.3. Results of the influence evaluation of corpus
+texts characteristics on the precision of ADR
+mention recognition
+The direct rise of corpus volume up from 1600 to
+2800 mentions results in the ADR identification precision increase on 13% F1, 6% F1 in Disease, 4% F1 in
+Medication. Figure 11 shows a curve of dependence of
+Page 18 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+Figure 11: Dependency of the accuracy on the size of training set for different tags in RDRS 2800
+
+ADR precision increase on the corpus size, which becomes stable out of 80% corpus size. Such behaviour
+for other main subtags demonstrate similar courses (see
+Table 13). The rise of the ADR share by balancing
+the corpus leads to a more significant increase in ADR
+precision on 21% without significant Disease and Medication precision identification changes (see Table 14).
+The higher saturation by these tags, which in practice
+stays unchanged after balancing corpus, explains the
+last fact. Experiments on corpora with the saturation
+more closer to CADEC one showed the further increase
+of the ADR identification precision, up to 71.3% F1 on
+the corpus of 610 texts ADR (average 2.9 ADR onto
+review).
+
+6.4. Results of experiments to evaluate the
+influence of annotation style of ADR
+mentions on ADR recognition precision
+This case results of experiments on the balanced set
+allowed evaluating the effect of the relaxation of ADR
+annotation requirements in about 3% of the precision
+increase as follows figure (see Fig. 12).
+
+Table 13
+F1-scores of the model B for RDRS 1250 and RDRS 2800.
+*Negative – union of tags: Worse, NegatedADE, ADE-Neg.
+Corpora
+Entity type
+BNE-Pos
+Diseasename
+Indication
+MedFromDomestic
+MedFromForeign
+MedMakerDomestic
+MedMakerForeign
+Dosage
+DrugBrand
+Drugclass
+Drugform
+Drugname
+Duration
+Frequency
+MedMaker
+Route
+SourceInfodrug
+Negative*
+
+RDRS 1250
+
+RDRS 2800
+
+51.2
+87.6
+58.8
+61.7
+63.5
+65.1
+74.4
+59.6
+81.5
+89.7
+91.5
+94.2
+75.5
+63.4
+92.5
+58.4
+66.0
+52.2
+
+50.3
+88.3
+62.2
+76.2
+74.4
+87.1
+85.0
+63.2
+83.8
+90.4
+92.4
+95.0
+74.7
+65.0
+93.8
+61.2
+67.3
+52.0
+
+6.5. Results for the coreference model
+Results, presented in table 14, shows that the used
+model trained on the subset of our corpus demonstrates
+a high result on the test subset of our corpus. The
+training on AnCor-2019 corpus or on corpora AnCor2019 with ours gives worse results.
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+7. Discussion
+Currently, there are a significant diversity of fullsized labeled corpora in different languages to analyze
+the safety and effectiveness of drugs. We present the
+first full-size Russian compound NER-labeled corpus RDRS - of Internet user reviews with the labelled coreference relations in part of the corpus. Based on the developed neural net models results, we investigated this
+Page 19 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+RDRS_1136
+
+Table 14
+The difference in accuracy for the 3 main tags depending on
+the size and balance of the corpus
+
+RDRS_610
+
+Medication
+84.1 ± 0.8
+84.2 ± 0.6
+79.6 ± 1.3
+
+CADEC
+
+RDRS_1136
+
+RDRS_610
+65
+RuDREC_our
+RDRS_1250
+60
+
+RDRS_88
+
+RuDREC
+
+RDRS_88
+
+RDRS_1250
+F1 conll
+
+F1 exact
+RDRS subset
+ADR
+Disease
+2800
+52.8 ± 3.4 63.5 ± 0.5
+1250
+61.1 ± 1.5 62.9 ± 1.5
+1600
+40.1 ± 2.7 56.9 ± 0.9
+
+70
+
+55
+RDRS_2800
+
+corpus place in this diversity depending on the corpora
+characteristics. The analysis made on base of the experiment sequence sets of different saturation by the
+definite entity extracted from the corpus allows to give
+the more realistic conclusion about its quality in concerns to this entity. The results of developed model B
+on base of XLM-RoBERTa-large outperforms the results of work [54] on 2.3% for ADR recieved on the corpus of limited size that grounds a quality of developed
+model B and an applicability of its results to establish
+the state of the art precision level of entity extraction
+on the created corpus.
+In general, the results of experiments with sets of
+different sizes and different saturation showed that in
+case of ADR mention, a strong dependence of the ADR
+identification precision on corpus saturation by them
+exists (see Figure 12). So the comparison of our corpus
+with any one of the close types, such as the СADEC,
+is necessary to conduct on the dataset of corpus examples with the close saturation by ADRs. The coreference relation extraction experiments show that despite
+the AnChor-2019 corpus is greater in the number of
+relations than our corpus; both corpora demonstrate
+similar precisions when the training set is from the first
+corpus, the testing set is from the other. But in the case
+of training on the set of examples from both corpora,
+we received worse results-these results directly on the
+essential difference in compositions of the corpora from
+different domains.
+
+8. Conclusion
+The primary basic result of this work is the creation of the Russian full-size NER multi-tag labeled
+corpus of the Internet user reviews, including the part
+of the corpus with annotated coreference relations. The
+multi-labeling model appropriated for presented corpus
+labeling based on combining a language model XLMRoBERTa with the selected set of features is developed.
+The results obtained basing this model showed that the
+accuracy level of ADR extraction on our corpus is comparable to that obtained on corpora of other languages
+with similar characteristics. Thus, this level may be
+seen as state of the art on this task decision on Russian
+texts in view. The presence of the corpus part with
+annotated coreference relations allowed us to evaluate
+the precision of their extraction on texts of the profile
+under consideration.
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+50
+
+45
+
+40
+0.00
+
+RDRS_1600
+0.01
+
+0.02
+
+0.03
+
+0.04
+Saturation
+
+0.05
+
+0.06
+
+0.07
+
+Figure 12: Dependency of ADR recognition precision on their
+saturation in the corpora. Red line - different subsets of our
+corpus (see Table 12) with pure ADR annotation. Blue line different subsets of our corpus with doubtful bordering annotation (annotated both ADR and NOTE), RuDREC - published
+accuracy for RuDREC corpus [54], RuDREC_our - our accuracy for RuDREC corpus, CADEC - published accuracy for
+CADEC corpus [27]
+.
+
+The developed neuronet complex may be used as
+a base for the replenishment of the corpus by ADR.
+This, along with including new entities and relations,
+is a goal of further work.
+
+Acknowledgments
+This work has been supported by the Russian Science Foundation grant 20-11-20246 and carried out using computing resources of the federal collective usage
+center Complex for Simulation and Data Processing for
+Mega-science Facilities at NRC "Kurchatov Institute",
+http://ckp.nrcki.ru/.
+
+References
+[1] Alvaro, N., Miyao, Y., Collier, N., 2017. Twimed: Twitter
+and pubmed comparable corpus of drugs, diseases, symptoms, and their relations.
+[2] Basaldella, M., Collier, N., 2019. Bioreddit: Word embeddings for user-generated biomedical nlp, in: Proceedings of
+the Tenth International Workshop on Health Text Mining
+and Information Analysis (LOUHI 2019), pp. 34–38.
+[3] Biewald, L., 2020. Experiment tracking with weights and
+biases. URL: https://www.wandb.com/. software available
+from wandb.com.
+[4] Bojanowski, P., Grave, E., Joulin, A., Mikolov, T., 2017.
+Enriching word vectors with subword information. Transactions of the Association for Computational Linguistics 5,
+135–146.
+[5] Boureau, Y.L., Ponce, J., LeCun, Y., 2010. A theoretical
+analysis of feature pooling in visual recognition, in: Proceedings of the 27th international conference on machine
+learning (ICML-10), pp. 111–118.
+
+Page 20 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+Table 15
+Results of training coreference resolution model on different corpora
+Training corpus
+AnCor-2019
+AnCor-2019
+Our corpus
+Our corpus
+AnCor-2019
++
+Our corpus
+AnCor-2019
++
+Our corpus
+
+Testing corpus
+RDR
+AnCor-2019
+Our corpus
+AnCor-2019
+Our corpus
+
+avg F1
+58.7
+58.9
+71.0
+28.7
+49.4
+
+B 3 F1
+56.4
+55.6
+69.6
+26.5
+47.6
+
+MUC F1
+61.3
+65.1
+74.2
+33.3
+52.2
+
+CEAFe F1
+58.3
+55.9
+69.3
+26.4
+48.4
+
+AnCor-2019
+
+31.8
+
+31.4
+
+40.7
+
+23.3
+
+[6] Burtsev, M., Seliverstov, A., Airapetyan, R., Arkhipov, M.,
+Baymurzina, D., Bushkov, N., Gureenkova, O., Khakhulin,
+T., Kuratov, Y., Kuznetsov, D., et al., 2018. Deeppavlov:
+open-source library for dialogue systems, in: Proceedings of
+ACL 2018, System Demonstrations, pp. 122–127.
+[7] Chiu, J.P., Nichols, E., 2016. Named entity recognition with
+bidirectional lstm-cnns. Transactions of the Association for
+Computational Linguistics 4, 357–370.
+[8] Conneau, A., Khandelwal, K., Goyal, N., Chaudhary, V.,
+Wenzek, G., Guzmán, F., Grave, E., Ott, M., Zettlemoyer,
+L., Stoyanov, V., 2019. Unsupervised cross-lingual representation learning at scale. arXiv preprint arXiv:1911.02116 .
+[9] Devlin, J., Chang, M.W., Lee, K., Toutanova, K., 2018.
+Bert: Pre-training of deep bidirectional transformers for language understanding. arXiv preprint arXiv:1810.04805 .
+[10] Dumoulin, V., Visin, F., 2016. A guide to convolution arithmetic for deep learning. arXiv preprint arXiv:1603.07285 .
+[11] Gal, Y., Ghahramani, Z., 2016. A theoretically grounded
+application of dropout in recurrent neural networks, in: Advances in neural information processing systems, pp. 1019–
+1027.
+[12] Gupta, S., Gupta, M., Varma, V., Pawar, S., Ramrakhiyani,
+N., Palshikar, G.K., 2018a. Co-training for extraction of
+adverse drug reaction mentions from tweets, in: European
+Conference on Information Retrieval, Springer. pp. 556–562.
+[13] Gupta, S., Gupta, M., Varma, V., Pawar, S., Ramrakhiyani,
+N., Palshikar, G.K., 2018b. Multi-task learning for extraction of adverse drug reaction mentions from tweets, in: European Conference on Information Retrieval, Springer. pp.
+59–71.
+[14] Henry, S., Buchan, K., Filannino, M., Stubbs, A., Uzuner,
+O., 2019. 2018 n2c2 shared task on adverse drug events and
+medication extraction in electronic health records. Journal of the American Medical Informatics Association 27, 3–
+12. URL: https://academic.oup.com/jamia/article-pdf/27/
+1/3/34152182/ocz166.pdf, doi:10.1093/jamia/ocz166.
+[15] Joshi, M., Chen, D., Liu, Y., Weld, D.S., Zettlemoyer, L.,
+Levy, O., 2020. Spanbert: Improving pre-training by representing and predicting spans. Transactions of the Association for Computational Linguistics 8, 64–77.
+[16] Joshi, M., Levy, O., Weld, D.S., Zettlemoyer, L., 2019. Bert
+for coreference resolution: Baselines and analysis. arXiv
+preprint arXiv:1908.09091 .
+[17] Ju, T.S., 2014. Ru-eval-2019: Evaluating anaphora and
+coreference resolution for russian.
+[18] Karimi, S., Metke-Jimenez, A., Kemp, M., Wang, C., 2015.
+Cadec: A corpus of adverse drug event annotations. Journal
+of biomedical informatics 55, 73–81.
+[19] Koehn, P., 2019. Statmt - internet resource about research
+in the field of statistical machine translation. URL: www.
+statmt.org. accessed: 2019-05-24.
+[20] Krizhevsky, A., Sutskever, I., Hinton, G.E., 2012. Imagenet classification with deep convolutional neural networks,
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+[21]
+
+[22]
+
+[23]
+
+[24]
+
+[25]
+
+[26]
+
+[27]
+
+[28]
+
+[29]
+
+[30]
+
+[31]
+
+[32]
+
+[33]
+
+[34]
+
+[35]
+
+in: Advances in neural information processing systems, pp.
+1097–1105.
+Kudo, T., Richardson, J., 2018.
+Sentencepiece: A
+simple and language independent subword tokenizer and
+detokenizer for neural text processing. arXiv preprint
+arXiv:1808.06226 .
+Kuhn, M., Letunic, I., Jensen, L.J., Bork, P., 2015. The sider
+database of drugs and side effects. Nucleic acids research 44,
+D1075–D1079.
+Lafferty, J., McCallum, A., Pereira, F.C., 2001. Conditional
+random fields: Probabilistic models for segmenting and labeling sequence data .
+Lee, K., He, L., Lewis, M., Zettlemoyer, L., 2017.
+End-to-end neural coreference resolution. arXiv preprint
+arXiv:1707.07045 .
+Lee, K., He, L., Zettlemoyer, L., 2018. Higher-order coreference resolution with coarse-to-fine inference. arXiv preprint
+arXiv:1804.05392 .
+Li, Z., Yang, Z., Luo, L., Xiang, Y., Lin, H., 2020a. Exploiting adversarial transfer learning for adverse drug reaction
+detection from texts. Journal of biomedical informatics 106,
+103431.
+Li, Z., Yang, Z., Wang, L., Zhang, Y., Lin, H., Wang, J.,
+2020b. Lexicon knowledge boosted interaction graph network for adverse drug reaction recognition from social media. IEEE Journal of Biomedical and Health Informatics
+.
+Library, S.C.S.M., 2019. Russian translation of the medical
+subject headings. URL: http://www.nlm.nih.gov/research/
+umls/sourcereleasedocs/current/MSHRUS/.
+accessed:
+2019-05-24.
+Litvinova, O., Seredin, P., Litvinova, T., Lyell, J., 2017.
+Deception detection in Russian texts, in: Proceedings of
+the Student Research Workshop at the 15th Conference of
+the European Chapter of the Association for Computational
+Linguistics, pp. 43–52.
+Mikolov, T., Chen, K., Corrado, G., Dean, J., 2013. Efficient
+estimation of word representations in vector space. arXiv
+preprint arXiv:1301.3781 .
+Miller, G., Britt, H., 1995. A new drug classification for
+computer systems: the atc extension code. International
+journal of bio-medical computing 40, 121–124.
+NEHTA, 2014.
+Australian medicines terminology v3
+model–common v1.4, tech. rep. ep-1825:2014, national ehealth transition authority.
+Organization, W.H., et al., 2004. International statistical
+classification of diseases and related health problems: tenth
+revision-version, 2nd ed.
+Peters, M.E., Neumann, M., Iyyer, M., Gardner, M., Clark,
+C., Lee, K., Zettlemoyer, L., 2018. Deep contextualized
+word representations. arXiv preprint arXiv:1802.05365 .
+Pradhan, S., Moschitti, A., Xue, N., Uryupina, O., Zhang,
+Y., 2012. Conll-2012 shared task: Modeling multilingual
+
+Page 21 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+[36]
+[37]
+[38]
+[39]
+
+[40]
+
+[41]
+
+[42]
+
+[43]
+
+[44]
+
+[45]
+
+[46]
+
+[47]
+
+[48]
+
+[49]
+
+[50]
+
+[51]
+[52]
+
+[53]
+
+unrestricted coreference in ontonotes, in: Joint Conference
+on EMNLP and CoNLL-Shared Task, pp. 1–40.
+Rajapakse, T.C., 2019. Simple transformers. https://
+github.com/ThilinaRajapakse/simpletransformers.
+Ratcliff, J.W., Metzener, D.E., 1988. Pattern-matching-the
+gestalt approach. Dr Dobbs Journal 13, 46.
+Rosminzdrav, 2019. State register of drugs. URL: https:
+//grls.rosminzdrav.ru/. accessed: 2019-05-24.
+Rumshisky, A., Roberts, K., Bethard, S., Naumann, T.,
+2020. Proceedings of the 3rd clinical natural language processing workshop, in: Proceedings of the 3rd Clinical Natural Language Processing Workshop.
+Sarker, A., Gonzalez, G., 2015. Portable automatic text
+classification for adverse drug reaction detection via multicorpus training. Journal of biomedical informatics 53, 196–
+207.
+Sarker, A., Nikfarjam, A., Gonzalez, G., 2016. Social media mining shared task workshop, in: Biocomputing 2016:
+Proceedings of the Pacific Symposium, World Scientific. pp.
+581–592.
+Sboev, A., Gudovskikh, D., Rybka, R., Moloshnikov, I.,
+2015. A quantitative method of text emotiveness evaluation
+on base of the psycholinguistic markers founded on morphological features. Procedia Computer Science 66, 307–316.
+Schuster, M., Nakajima, K., 2012. Japanese and korean
+voice search, in: 2012 IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP), IEEE.
+pp. 5149–5152.
+Shelmanov, A., Smirnov, I., Vishneva, E., 2015. Information
+extraction from clinical texts in russian, in: Computational
+Linguistics and Intellectual Technologies: Annual International Conference "Dialog.
+Smith, L.N., 2017. Cyclical learning rates for training neural
+networks, in: 2017 IEEE Winter Conference on Applications
+of Computer Vision (WACV), IEEE. pp. 464–472.
+Straka, M., Hajic, J., Strakov'a, J., 2016. Udpipe: Trainable
+pipeline for processing conll-u files performing tokenization,
+morphological analysis, pos tagging and parsing., in: LREC.
+Suero Montero, C., Munezero, M., Kakkonen, T., 2014. Investigating the role of emotion-based features in author gender classification of text. Lecture Notes in Computer Science
+(including subseries Lecture Notes in Artificial Intelligence
+and Lecture Notes in Bioinformatics) 8404 LNCS, 98–114.
+doi:10.1007/978-3-642-54903-8_9.
+Tausczik, Y.R., Pennebaker, J.W., 2010. The psychological meaning of words: Liwc and computerized text analysis
+methods. Journal of language and social psychology 29, 24–
+54.
+Thompson, P., Daikou, S., Ueno, K., Batista-Navarro, R.,
+Tsujii, J., Ananiadou, S., 2018. Annotation and detection
+of drug effects in text for pharmacovigilance. Journal of
+cheminformatics 10, 1–33.
+Toldova, S., Roytberg, A., Ladygina, A.A., Vasilyeva, M.D.,
+Azerkovich, I.L., Kurzukov, M., Sim, G., Gorshkov, D.V.,
+Ivanova, A., Nedoluzhko, A., Grishina, Y., 2014. Evaluating anaphora and coreference resolution for russian, in:
+Komp'juternaja lingvistika i intellektual'nye tehnologii. Po
+materialam ezhegodnoj Mezhdunarodnoj konferencii ≪Dialog≫, pp. 681–695.
+Tolmachova, E., 2019. Spravochnik Vidal. Lekarstvenie
+preparati v Rossii. Vidal Rus.
+Toshniwal, S., Wiseman, S., Ettinger, A., Livescu, K., Gimpel, K., 2020. Learning to ignore: Long document coreference with bounded memory neural networks. arXiv preprint
+arXiv:2010.02807 .
+Tutubalina, E., Alimova, I., Miftahutdinov, Z., Sakhovskiy,
+A., Malykh, V., Nikolenko, S., 2020a. The russian drug
+reaction corpus and neural models for drug reactions and
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+[54]
+
+[55]
+
+[56]
+
+[57]
+
+[58]
+
+[59]
+
+[60]
+
+effectiveness detection in user reviews. Bioinformatics URL:
+https://academic.oup.com/bioinformatics/article-pdf/doi/
+10.1093/bioinformatics/btaa675/33539752/btaa675.pdf,
+doi:10.1093/bioinformatics/btaa675.
+Tutubalina, E., Alimova, I., Miftahutdinov, Z., Sakhovskiy,
+A., Malykh, V., Nikolenko, S., 2020b. The russian drug
+reaction corpus and neural models for drug reactions and
+effectiveness detection in user reviews. Bioinformatics .
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones,
+L., Gomez, A.N., Kaiser, L., Polosukhin, I., 2017. Attention
+is all you need. arXiv preprint arXiv:1706.03762 .
+Wang, W., 2016. Mining adverse drug reaction mentions
+in twitter with word embeddings, in: Proceedings of the
+Social Media Mining Shared Task Workshop at the Pacific
+Symposium on Biocomputing.
+Website, 2019. Information retrieval system "emotions and
+feelings in lexicographical parameters: Dictionary emotive
+vocabulary of the russian language". URL: http://lexrus.
+ru/default.aspx?p=2876.
+Webster, K., Recasens, M., Axelrod, V., Baldridge, J., 2018.
+Mind the gap: A balanced corpus of gendered ambiguou, in:
+Transactions of the ACL, p. to appear.
+Xu, L., Choi, J.D., 2020. Revealing the myth of higherorder inference in coreference resolution. arXiv preprint
+arXiv:2009.12013 .
+Zolnoori, M., Fung, K.W., Patrick, T.B., Fontelo, P., Kharrazi, H., Faiola, A., Shah, N.D., Wu, Y.S.S., Eldredge, C.E.,
+Luo, J., et al., 2019. The psytar dataset: From patients
+generated narratives to a corpus of adverse drug events and
+effectiveness of psychiatric medications. Data in brief 24,
+103838.
+
+A. Appendix
+ADR recognition on the basis of the PsyTAR
+corpus
+PsyTAR corpus from [2] contains sentences in a
+CoNLL format. This modification of a corpus is publicly available 10 and contains train, development and
+test parts. These parts contain 3535, 431, 1077 entities and 3851, 551, 1192 sentences respectively. We
+used XLM-RoBERTa-large model that had been preliminary trained using text data from CommonCrowl
+project. Fine-tuning of this model provided only for
+ADR tag excluding WD, SSI, SD tags. The result on
+the test part was 71.1% according to the F1 metric
+achieved with script from the CoNLL evaluation.
+
+Features based on MESHRUS concepts
+MeSH Russian (MESHRUS) [28] is a Russian
+version of the Medical Subject Headings (MESH)
+database 11 . MESH is a dictionary designed for indexing biomedical information that contains concepts from
+scientific journal articles and books and is intended for
+their indexing and searching. The MESH database
+is filled from articles in English; however, there exist
+translations of the database to different languages. We
+used the Russian version, MESHRUS. It is a less complete analogue of the English version, for example, it
+10 Available
+
+at https://github.com/basaldella/psytarpreprocessor
+page of the MeSH database site: https://www.nlm.
+nih.gov/mesh/meshhome.html
+11 Home
+
+Page 22 of 23
+
+Russian language corpus with a developed deep learning neuronet complex to analyze it
+
+(
+2. cohesiveness(wi , cj ) = F1
+
+|wis ∩cjs | |wis ∩cjs |
+, |c |
+|wis |
+js
+
+)
+
+3. centrality which is 1 if the word wiparent of the syntax set wis is represented in the syntax set cjs of
+words from the dictionary; 0 otherwise.
+
+Figure 13: The matching scheme between words of corpus and
+concepts of UMLS.
+
+doesn't contain concept definitions. MESHRUS contains a set of tuples (k; v) matching Russian concepts
+k with their relevant CUI codes v from the UMLS thesaurus. A concept k can consist of a word or a sequence
+of words.
+The following preprocessing algorithm is used:
+words are lemmatized, put into a single register and
+filtered by length, frequency and parts of speech. To
+automatically find and map concepts from MESHRUS
+to words from corpus we perform two approaches.
+The first approach is to map the filtered words
+W = {wi }N
+from the corpus to MESHRUS concepts
+i=0
+{kj }. As a criterion for comparing words and concepts,
+we used the cosine similarity between their vector representations obtained using the FastText [4] model (see
+Section 4.2): a word wi is assigned the CUI code vj (see
+Fig. 13) whose corresponding concept kj has the high(
+)
+est similarity measure cos FastText(wi ), FastText(kj ) .
+If this similarity measure is lower than the empirical
+threshold T = 0.55, no CUI code is assigned to wi .
+The second approach is based on the mapping of
+syntactically and lexically related phrases extracted at
+the sentence level. Prepositions, particles and punctuation are not taken. Syntactic features obtained from
+dependency trees achieved with UDpipe v2.5.
+For each word wi ⊂ W , its adjacent words
+[wi−1 , wi+1 ] are selected. Together with the word itself they form a lexical set wil . Then, for the current
+word wi we find the word wiparent that is its parent
+in the dependency tree (if there is no parent, then the
+syntactic set contains only wi ). These wil and wiparent
+in turn form a syntactic set wis .
+Similarly, such lexically and syntactically related
+sets cjl and cjs are formed for each filtered word cj
+of the concept from the MESHRUS dictionary: cjl =
+[cj−1 , cj , cj+1 ], and cjs = [cj , cjparent ].
+Further, for each word wi ⊂ W and word cj ⊂
+conceptk ⊂ MESHRUS, by analogy with the literature [44], the following metrics are calculated:
+1. lexical_involvement(wi , cj )
+(
+)
+|wil ∩cjl | |wil ∩cjl |
+F1
+, |c |
+|w |
+il
+
+Here F1 (x, y) is the harmonic mean of x and y, |N| denotes the length of set N, and M ∩N is the intersection
+of the two sets. The final metric of similarity between
+the word wi and the dictionary concept cj is calculated
+as mean of all three metric values.
+For each word, its corresponding concept is selected
+by the highest similarity value provided that the similarity is greater than the specified threshold 0.6.
+
+=
+
+jl
+
+SG Sboeva et al.: Preprint submitted to Elsevier
+
+Page 23 of 23
+

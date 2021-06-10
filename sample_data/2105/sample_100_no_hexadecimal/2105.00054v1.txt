@@ -1,0 +1,2001 @@
+Probability Premium and Attitude Towards Probability
+Roger J. A. Laeven∗
+
+arXiv:2105.00054v1 [q-fin.RM] 30 Apr 2021
+
+Louis R. Eeckhoudt
+IÉSEG School of Management
+
+Amsterdam School of Economics
+
+Catholic University of Lille
+
+University of Amsterdam, EURANDOM
+
+and CORE
+
+and CentER
+
+Louis.Eeckhoudt@fucam.ac.be
+
+R.J.A.Laeven@uva.nl
+
+This Version: May 4, 2021
+
+Abstract
+Employing a generalized definition of Pratt [28] and Arrow's [2, 3] probability premium,
+we introduce a new concept of attitude towards probability. We illustrate in a problem
+of risk sharing that whether attitude towards probability is a first-order or second-order
+phenomenon has important economic applications. By developing a local approximation
+to the probability premium, we show that the canonical rank-dependent utility model usually exhibits attitude towards probability of first order, whereas under the dual theory with
+smooth probability weighting functions attitude towards probability is a second-order trait.
+Keywords: Probability Premium; Expected Utility; Dual Theory; Rank-Dependent Utility; Local Risk Aversion; Risk Sharing.
+AMS 2010 Classification: Primary: 91B06, 91B16, 91B30; Secondary: 60E15, 62P05.
+JEL Classification: D81, G10, G20.
+
+∗
+Corresponding author. Mailing address: University of Amsterdam, Amsterdam School of Economics, PO
+Box 15867, 1001 NJ Amsterdam, The Netherlands. Phone: +31 20 525 4219/4252.
+
+1
+
+1
+
+Introduction
+
+Under expected utility (EU), there exist various intimately related measures to evaluate the
+degree of risk aversion of a decision-maker (DM). These measures include the risk premium,
+the probability premium and the local index of absolute risk aversion, originally developed
+independently by Pratt [28] and Arrow [2, 3] a little more than 50 years ago.1 Since then they
+have played highly versatile and important roles in the theoretical and experimental analysis
+of risky choices under EU and have seen widespread applications across many fields.
+Among these measures and despite its appealing nature, the probability premium has for
+a long time been by far the least popular. Only in recent years it starts receiving increased
+attention (Jindapon [17], Liu and Meyer [18], Eeckhoudt and Laeven [10], and Liu and Neilson
+[20]). The probability premium, which contrary to the risk premium has been developed only
+for a binary symmetric zero-mean risk, may be given a simple interpretation: it answers the
+question of by how much the probability of the adverse payoff in a binary zero-mean risk needs to
+be reduced-and the probability of the prosperous payoff needs to be increased accordingly-,
+to make the DM indifferent between bearing and not bearing the risk.
+In this paper, we start by generalizing Pratt's [28] definition of the probability premium
+such that it becomes applicable also to mean-preserving risk changes with probability mass less
+than unity, while maintaining its simple interpretation.2 Next, we employ this general definition
+of the probability premium to introduce a new concept of attitude towards probability. We say
+that a DM displays attitude towards probability of order 1 and order 2 if, for risk changes with
+small probability mass, the associated probability premium is linear in the probability mass
+and proportional to the square of the probability mass, respectively. These orders of attitude
+towards probability can be seen to represent the "probability counterparts" of the well-known
+orders of attitude towards risk introduced by Segal and Spivak [37].
+We show that whether attitude towards probability is a first- or second-order phenomenon
+has important economic applications. We illustrate in particular the implications of firstand second-order probability aversion in a problem of risk sharing. We reveal that a first-order
+probability averse DM facing a risk with a small loss probability may opt for risk sharing among
+individuals even when the other individuals' loss probability is larger than the individual's own
+loss probability. By contrast, a second-order probability averse individual facing the same risk
+engages only in actuarially fair risk sharing. Our results on risk sharing can be viewed as
+dual to the well-known Mossin's [25] Theorem on the sub-optimality of full insurance in the
+presence of a positive safety loading. In Mossin's Theorem there is a trade-off between the
+degree of risk aversion and a positive safety loading in the "payoff plane". In our result, there
+1
+See also the early contribution by de Finetti [13] (written in Italian), which already contains the local index
+of absolute risk aversion.
+2
+Liu and Neilson [19, 20] generalize Pratt's definition of the probability premium in another direction, to
+allow for random starting wealth and to risk aversion of higher degrees.
+
+2
+
+is a trade-off between the degree of probability aversion and actuarially unfair loss probabilities
+in the "probability plane".
+Measures of risk aversion have also received much attention outside EU. In particular, in
+the dual theory (DT; Yaari [42]) and under rank-dependent utility (RDU; Quiggin [31]), a rich
+literature has proposed several measures of risk aversion and has established the associated
+results on comparative risk aversion; see Yaari [41, 42], Chew, Karni and Safra [5], Roëll [32],
+Chateauneuf, Cohen and Meilijson [4], Ryan [35] and Eeckhoudt and Laeven [12]. This does,
+however, not apply to the probability premium, which has almost never been considered in
+non-EU.3 As a contribution of independent interest, we provide a local approximation to the
+probability premium under RDU and establish the corresponding global results. As is wellknown, RDU encompasses EU and DT as special cases and is the main building block of
+(cumulative) prospect theory (Tversky and Kahneman [38]).4
+We exploit our local approximation to the probability premium to show that RDU and EU
+DMs usually exhibit first-order attitude towards probability, whereas a DT DM with smooth
+probability weighting function displays second-order probability attitude. Our results apply to
+quite general utility and probability weighting functions under RDU. In particular, we allow
+for inverse s-shaped probability weighting functions such as those in Prelec [30] and Wu and
+Gonzalez [43], which are relevant for descriptive purposes (Abdellaoui [1]). That is, we allow
+for violations of e.g., global risk aversion.
+Our paper is organized as follows. In Section 2 we provide our generalized definition of the
+probability premium. In Section 3 we introduce first- and second-order probability aversion.
+Section 4 applies first- and second-order probability aversion to explore a risk sharing problem.
+In Section 5 we develop our local approximation to the probability premium under RDU,
+analyze the degree of probability aversion under RDU, and establish the corresponding global
+results. Proofs are relegated to Appendix A. Appendix B generalizes the definition of the
+probability premium and our local approximation results to cover non-binary risks.
+
+2
+
+Probability Premium
+
+We start by considering a risk C yielding outcomes −ε2 and ε2 with probabilities p0 and 1 − p0 ,
+
+respectively, as represented in Figure 1:5,6
+
+3
+To our best knowledge, the only exception is the note by Eeckhoudt and Laeven [10] providing graphical
+illustrations.
+4
+See Schmidt and Zank [36] for global measures of risk aversion under prospect theory.
+5
+Henceforth, in all figures, values alongside the arrows represent probabilities, while values at the end of the
+arrows represent outcomes.
+6
+We assume 0 < p0 < 1 and ε2 > 0.
+
+3
+
+Figure 1: Risk C
+
+−ε2
+
+p0
+
+C
+1−
+
+p0
+
+ε2
+
+Risk C is faced by a DM with initial wealth level w0 . We transform risk C into a risk D given
+by Figure 2:7
+Figure 2: Risk D
+
+p0
+
+−
+
+ε1
+
+2ε1
+
+D
+1−
+
+p0
+
+−
+
+−ε2
+0
+
+ε1
+
+ε2
+
+We obtain D from C by moving a probability ε1 from both states of C to a new intermediate
+state with outcome 0. Of course, D is a mean-preserving contraction of C (in the sense of
+Rothschild and Stiglitz [34]), and is thus viewed as an improvement by any (strongly) riskaverse DM.8
+We can adapt the probability of the occurrence of the unfavorable state in C from p0 to
+p0 − μ, and adapt the probability of the occurrence of the favorable state in C from 1 − p0 to
+
+1 − p0 + μ accordingly, such that the DM becomes indifferent between the resulting risk C(μ)
+represented in Figure 3 and the risk D of Figure 2.
+7
+
+We assume 0 < ε1 < min{p0 , 1 − p0 }.
+Conventionally, risk aversion is often defined as a preference for a sure wealth level to a risky wealth position
+with the same expectation. This definition of risk aversion is sometimes referred to as "weak risk aversion". A
+stronger definition of risk aversion consists in requiring a preference for mean-preserving contractions (Rothschild
+and Stiglitz [34]) of payoff distributions, also when the resulting payoff distribution is non-degenerate. Yet
+another, more elementary, definition of risk aversion requires that preferences are payoff (or outcome) convex
+(Yaari [40]). Under EU, all three definitions agree, but this is no longer the case in non-EU; see e.g., Chew and
+Mao [6], Cohen [7], Nau [27] and Machina [23]. We will henceforth adopt the second definition of risk aversion
+that draws upon Rothschild and Stiglitz [34].
+8
+
+4
+
+Figure 3: Risk C(μ)
+
+p0
+
+−ε2
+
+−μ
+
+C(μ)
+1−
+
+p0
+
++μ
+
+ε2
+
+(Of course, C(0) ≡ C.) Naturally the difference, μ, between the initial probability of the
+
+unfavorable state, p0 , and the adapted probability of the unfavorable state, p0 − μ, represents
+the probability premium corresponding to the risk change from C to D. The probability
+
+premium may be positive or negative depending on whether the DM is risk averse or risk
+seeking.
+From the perspective of income inequality, the transformation from C to D may be interpreted to reduce the proportion of rich and poor people, and to increase the proportion of
+middle class people. The probability premium may then be interpreted as the increase in the
+proportion of rich people (and reduction of the proportion of poor people accordingly) in C
+that makes it equivalent to D.
+We note that μ occurs as a natural generalization of Pratt's [28] probability premium to the
+situation of risk changes with probability mass less than unity. Indeed, this becomes readily
+apparent upon omitting the common components of C(μ) and D, yielding C(μ) \ (C(μ) ∩ D)
+and D \ (C(μ) ∩ D) represented in Figures 4 and 5, respectively.
+
+Figure 4: Risk C(μ) after omitting the common components of C(μ) and D
+
+ε1
+ε1
+
+−μ
+
+−ε2
+
++μ
+
+ε2
+
+and
+Figure 5: Risk D after omitting the common components of C(μ) and D
+2ε1
+
+When p0 = ε1 =
+
+1
+2,
+
+0
+
+Pratt's [28] probability premium occurs as a special case: it compares
+5
+
+a binary risk of obtaining +ε2 and −ε2 , initially equally probable, to the sure status quo.
+
+When ε1 <
+
+1
+2
+
+definition.9
+
+We show in Section 5.4 that our definition of the probability premium satisfies
+
+our definition of the probability premium is a natural generalization of Pratt's
+
+the appropriate comparative risk aversion results under RDU, including EU and DT special
+cases. Appendix B further generalizes the definition of the probability premium to apply to
+non-binary risks.
+
+3
+
+First- and Second-Order Probability Aversion
+
+Employing the probability premium thus defined, we state the following definition.
+Definition 3.1 A DM is first-order probability averse (seeking) at the point (w0 , p0 ) if
+∂μ
+∂ε1
+
+ε1 =0+
+
+> (<) 0,
+
+(3.1)
+
+and is second-order probability averse (seeking) at (w0 , p0 ) if
+∂μ
+∂ε1
+
+ε1 =0
+
+= 0,
+
+∂μ2
+∂ε21
+
+and
+
+ε1 =0+
+
+> (<) 0.
+
+(3.2)
+
+In other words, we say that a DM's attitude towards probability is of order 1 if his probability premium μ(ε1 ) is not of smaller order than ε1 , i.e., μ(ε1 ) is not o(ε1 ). Similarly, a DM's
+attitude towards probability is of order 2 if his probability premium is of smaller order than ε1
+but not of smaller order than ε21 , i.e., μ(ε1 ) is o(ε1 ) but not o(ε21 ).
+The (strict) signs of the partial derivatives in (3.1) and (3.2), determining whether attitude
+towards probability is of order 1 or of order 2, have important economic applications; see
+Section 4 where these concepts are applied to analyze risk sharing.
+We state the following theorem, which is instrumental to our results that follow. Recall C,
+D and C(*) defined in Figures 1–3.
+Theorem 3.2 Let m > 0. A second-order probability-averse DM prefers C(mε1 ) to D for
+sufficiently small ε1 . If m > 0 is small enough, a first-order probability-averse DM prefers D
+to C(mε1 ) for sufficiently small ε1 .
+Theorem 3.2 reveals that a first-order probability averter facing risk C may reject to replace
+it by the actuarially more favorable risk C(mε1 ) and opt for the mean-preserving contraction
+D instead, even when the probability mass associated with the contraction is very small.
+9
+
+While the comparison between C and D is a comparison between two risks (like in Ross [33], Machina and
+Schmeidler [26] and Pratt [29]), Figures 4 and 5 show that it is essentially a Pratt-Arrow-comparison between
+a risk and a fixed wealth level with the same probability mass, which we now allow to be less than unity.
+
+6
+
+The orders of probability aversion can be viewed as the probability equivalents of the
+orders of risk aversion. Indeed, in important work, Segal and Spivak [37] introduce firstand second-order risk aversion. They consider the risk premium of Pratt [28] and Arrow
+[2, 3] and analyze its limiting behavior for a zero-mean risk with payoff tending to zero. If
+the risk premium behaves proportionally to the size of the (squared) payoff of the risk, the
+DM exhibits first- (second-)order risk aversion. Whether attitude towards risk is a first- or
+second-order phenomenon, is shown to have important implications for insurance coverage and
+portfolio choice. Indeed, a first-order risk-averse DM may buy full insurance coverage even if
+the insurance premium carries a positive safety loading, contrary to a second-order risk-averse
+DM, who only prefers actuarially fair full insurance coverage. Likewise, under first-order risk
+aversion, an investor may choose not to invest in a risky asset despite its mean being positive,
+contrary to under second-order risk aversion.
+The two measures given by the risk premium and-our generalization of-the probability
+premium both evaluate how to counteract the effect of a mean-preserving contraction. That
+is, both measures capture the intensity of the aversion to mean-preserving spreads. The orders
+of probability aversion introduced in this paper describe how to counteract a mean-preserving
+contraction marginally through the probability lens, i.e., by a shift in probabilities, while the
+orders of risk aversion describe how a mean-preserving contraction can be off-set marginally
+by a change in outcome.
+
+4
+
+Risk Sharing
+
+This section presents an application of first- and second-order probability aversion to a simple
+risk sharing problem. It reveals that a first-order probability-averse individual facing a risk
+with a small loss probability may prefer to share his risk in a pool of individuals instead of
+bearing the risk himself, even when the other individuals' loss probability is larger than the
+probability of occurrence of the individual's own loss. By contrast, a second-order probabilityaverse individual facing this risk only prefers to engage in actuarially fair risk sharing.
+This result may be viewed as a dual version of Mossin's [25] Theorem.10 Indeed, this
+well-known and seminal result entails that a second-order risk-averse individual only prefers
+actuarially fair full insurance, and opts for a partial insurance contract if the insurance premium
+carries a positive safety loading. A first-order risk-averse individual, however, may prefer full
+insurance even in the presence of a small positive safety loading.
+In Mossin's Theorem the trade-off between risk aversion and a positive safety loading occurs
+in the "payoff plane". In our result, the trade-off between probability aversion and actuarially
+unfair loss probabilities occurs in the "probability plane".
+10
+
+We refer to Segal and Spivak [37] and Machina [23] for an insightful exposition of Mossin's Theorem, as well
+as to the textbook treatment in Eeckhoudt, Gollier and Schlesinger [8], Chapter 3.
+
+7
+
+4.1
+
+Actuarially Unfavorable Risk Sharing
+
+Consider an individual who faces a risk A of losing ` > 0 with probability ε1 > 0:
+Figure 6: Risk A
+
+−`
+
+ε1
+
+A
+1−
+
+ε1
+
+0
+
+Throughout this section, ε1 is considered to be "small". Of course, any risk-averse individual
+prefers to replace A by the risk B, which is a mean-preserving contraction of A:
+Figure 7: Risk B
+
+−`/2
+
+2ε 1
+
+B
+1−
+
+2ε
+1
+
+0
+
+Risk B can be interpreted as the result of a risk sharing contract between two individuals both
+facing a mutually exclusive risk of losing ` with probability ε1 . The two individuals form a
+pool and share the possible loss-` with probability of occurrence 2ε1 -equally, each bearing
+`/2.
+Because ε1 is assumed to be small, the same situation occurs up to the leading order in ε1
+when the risks of the two individuals are independent instead of mutually exclusive. Indeed,
+under independence, equal risk sharing leads to an allotted risk
+
+with probability ε21
+= O(ε21 );
+
+ −`,
+−`/2, with probability 2ε1 (1 − ε1 ) = 2ε1 + O(ε21 );
+
+
+0,
+with probability (1 − ε1 )2
+= 1 − 2ε1 + O(ε21 ).
+More generally, any risk-averse DM prefers to replace A by the risk B (n) :
+
+8
+
+Figure 8: Risk B (n)
+
+−`/n
+
+nε 1
+
+B (n)
+1−
+
+nε
+
+0
+
+1
+
+where n ≥ 2. Indeed, while B is a mean-preserving contraction of A, B (n) is a mean-preserving
+
+contraction of both A and B. The preference of B (n) to A can be interpreted as a preference
+for risk sharing among individuals facing risks with the same binary loss distribution, i.e.,
+actuarially fair risk sharing.
+Theorem 3.2 now implies that, for sufficiently small m > 0, a first-order probability-averse
+individual even prefers to replace the risk A∗ represented in Figure 9:
+Figure 9: Risk A∗
+ε1
+m)
+−
+1
+
+(
+
+A∗
+
+1−
+
+(1
+
+−m
+
+)ε
+1
+
+−`
+
+0
+
+which is more favorable when compared to A, by the previous risk sharing contract yielding
+B (n) , n ≥ 2, in Figure 8. The preference of B (n) to A∗ can be given the interpretation of a
+preference for risk sharing among individuals even when other individuals' losses are slightly
+more likely to occur than the individual's own loss.11
+By contrast, a second-order probability-averse individual prefers A∗ to B whenever m > 0.
+In fact, under second-order probability aversion, A∗ is even preferred to B (n) as soon as m > 0.
+That is, when other individuals' losses are more likely to occur than the individual's own loss,
+there is no longer a preference for risk sharing. A second-order probability-averse individual
+will only engage in risk sharing when other individuals' losses have at most the same probability
+of occurrence as the individual's own loss.12
+11
+
+Indeed, the probability of a loss in risk B (n) , which is nε1 , is larger than n times the probability of a loss in
+risk A∗ , which is (1 − m) ε1 , that is, nε1 > n (1 − m) ε1 .
+12
+Formally, this follows from the fact that under second-order probability aversion the probability premium
+that achieves indifference between A(μ) and B (n) is of order O(ε21 ), while the probability shift from A to A∗ is
+of order O(ε1 ).
+
+9
+
+Summarizing, we have shown that under first-order probability aversion a preference for risk
+sharing exists even when other individuals' losses have slightly larger probability of occurrence;
+under second-order probability aversion there is merely a preference for actuarially fair risk
+sharing.
+
+4.2
+
+A Graphical Representation
+
+We now provide a graphical representation of the risk sharing problem. Figure 10 displays
+preferences over changes in probabilities and is an appropriate modification of a MarschakMachina triangle ([24], [21]), better suited for our purposes. It can be viewed as the dual
+counterpart of a classic Hirshleifer-Yaari diagram ([15, 16], [39, 40]) that displays preferences
+over changes in outcomes.
+Figure 10: The Initial Risk Sharing Problem
+
+p = Prob(−`)
+
+p0 • A
+p0 − ε1
+
+•B
+q = Prob(−`/2)
+
+2ε1
+
+A point (q, p) in Figure 10 represents a risk for which outcome −` occurs with probability
+
+p, outcome −`/2 occurs with probability q, and outcome 0 occurs with probability 1 − p − q.
+That is, the point (q, p) represents the risk given in Figure 11:
+
+10
+
+Figure 11: The risk corresponding to a point (q, p) in Figure 10
+
+−`
+
+p
+q
+
+1−
+
+p−
+
+−`/2
+q
+
+0
+
+Of course, the point (0, p0 ) indicated by A in Figure 10 represents the situation of no risk
+sharing, whereas the point (2ε1 , p0 − ε1 ) indicated by B represents risk sharing.13 The solid
+
+chord AB in Figure 10 represents an iso-expected value line. It can be viewed as the DM's
+initial "budget line" when sharing risk.
+We also illustrate in Figure 10 the indifference curves of a first-order probability averter
+(dashed) and a second-order probability averter (dashed-dotted) that touch the no risk sharing
+point (0, p0 ). Such an indifference curve describes the set of points (q, p) that make the DM
+equally well off as the no risk sharing situation.
+To determine these indifference curves without imposing additional assumptions on the
+preference functional, we proceed as follows, exploiting geometric "self-similarity".14 For given
+p0 , ε1 and arbitrary q̄, with 0 < q̄ < 2ε1 , we find p∗∗ , with 0 < p∗∗ < p∗ := p0 + μ∗ (ε1 ), such
+that
+∗
+
+∗
+
+−μ
+
+∗∗
+
+= p − μ (ε1 ) + μ
+
+∗∗
+
+p − μ (ε1 ) = p
+
+∗∗
+
+hence we obtain
+∗∗
+
+p
+
+∗
+
+∗
+
+
+
+
+1
+q̄ ,
+2
+
+
+
+
+1
+q̄ .
+2
+
+The indifference curve is then given by
+1
+p(q̄) = p∗∗ − q̄
+2
+∗
+
+∗
+
+= p − μ (ε1 ) + μ
+13
+
+∗∗
+
+
+
+
+1
+1
+q̄ − q̄.
+2
+2
+
+(4.1)
+
+The exposition and analysis have so far focused on the situation in which p0 ≡ ε1 , hence p0 is small just
+like ε1 . We now consider the more general case in which we allow for arbitrary p0 (with 0 < p0 < 1 and
+0 < ε1 ≤ min{p0 , 1 − p0 }). That is, A and B in Figure 10 are the analogs of risks A and B in Figures 6 and 7,
+but p0 is no longer restricted to equal ε1 .
+14
+If the functional form of the preference representation were known, one could easily compute its total
+differential, by taking the partial derivatives with respect to q and p, and equate it to zero. The slope of the
+indifference curve would then be given by minus the ratio of the representation's partial derivatives with respect
+to q and p.
+
+11
+
+See Figure 12, where this procedure of constructing the indifference curve by geometric selfsimilarity is illustrated for the first-order risk averter. (The analogous figure for the secondorder risk averter is similar.)
+Figure 12: Determining the Indifference Curve
+
+p = Prob(−`)
+
+p∗ = p0 + μ∗ (ε1 )
+p∗∗
+p0 •
+∗
+p − ε1
+p 0 − ε1
+q̄
+
+q = Prob(−`/2)
+
+2ε1
+
+Notes: Starting from the given values of p0 and ε1 , we determine p∗ and the associated probability premium
+μ∗ (ε1 ) such that p∗ − μ∗ (ε1 ) = p0 , and consider the blue solid triangle. Note that, by the definition of the
+probability premium μ∗ (ε1 ), the DM is indifferent between the points (0, p0 ) and (2ε1 , p∗ − ε1 ). Next, for
+
+the arbitrarily given value of q̄, we determine p∗∗ and the associated probability premium μ∗∗ 12 q̄ such that
+
+p∗∗ − μ∗∗ 12 q̄ = p∗ − μ∗ (ε1 ) = p0 . The DM is now indifferent between the points (0, p0 ), (q̄, p∗∗ − 12 q̄) and
+(2ε1 , p∗ − ε1 ). See the blue dotted triangle, which is geometrically self-similar to the blue solid triangle.
+
+From Eqn. (4.1), one readily verifies that the slope of the indifference curve in A, i.e., at
+(0, p0 ), is given by
+∂p(q̄)
+∂ q̄
+
+q̄=0+
+
+1 1 ∂μ∗∗ 21 q̄
+=− +
+2 2
+∂ q̄
+
+
+q̄=0+
+
+.
+
+Hence, when the DM exhibits attitude towards probability of order 2, the indifference curve
+is tangent to the iso-expected value line at (0, p0 ); see the dashed-dotted curve in Figure 10.
+However, when the DM's attitude towards probability is of order 1, the indifference curve at
+(0, p0 ) is not tangent to, but departs faster from, the iso-expected value line; see the dashed
+curve in Figure 10.
+The DM seeks to move the indifference curve southwestward (as indicated by the arrow),
+towards the origin where he is better off, but is subject to the budget restriction. Therefore,
+when the choice menu consists of A and B, both the first- and second-order risk averter prefer
+B; see Figure 13.
+
+12
+
+Figure 13: Actuarially Favorable Risk Sharing
+
+p = Prob(−`)
+
+p0 • A
+p0 − ε1
+
+•B
+q = Prob(−`/2)
+
+2ε1
+
+Now imagine a change in the budget line from AB to A∗ B; see Figure 14. Of course, the
+risk A∗ is more favorable than the risk A. In this new situation, risk A∗ corresponds to no risk
+sharing whereas risk B corresponds to risk sharing with an individual who has a larger loss
+probability. Figure 14 now reveals that a first-order probability averter may still prefer the risk
+sharing contract (2ε1 , p0 − ε1 ) as long as A∗ does not become too favorable.
+Figure 14: Actuarially Unfavorable Risk Sharing
+
+p = Prob(−`)
+
+p0 • A
+A∗ •
+
+p0 − ε1
+
+•B
+q = Prob(−`/2)
+
+2ε1
+
+Indeed, after moving his indifference curve (dashed) southwestward as far as possible in the new
+13
+
+situation, it lies below the new budget line, except at the point (2ε1 , p0 − ε1 ). By contrast, the
+second-order probability averter will always opt to bear the risk himself instead of engaging in
+actuarially unfavorable risk sharing. Indeed, after moving his indifference curve southwestward
+towards the origin, his indifference curve (dashed-dotted) lies below the new budget line except
+in A∗ .
+Thus, even when others have more unfavorable loss probabilities than the individual himself,
+first-order probability aversion may induce a preference for risk sharing when facing a risk with
+a small loss probability. By contrast, a second-order probability averter facing the same risk
+does not engage in actuarially unfavorable risk sharing.
+
+4.3
+
+Risk Sharing Conclusion
+
+Of course, when the probability mass associated with the unfavorable outcome of the risk to be
+shared is sufficiently large, and the discrepancy between the individual's own loss probability
+and that of the other individual(s) is not too large, both a first- and a second-order risk averter
+benefit from actuarially unfavorable risk sharing. The analysis in the section therefore quite
+naturally restricts attention to the case of small loss probabilities, which are also practically
+most relevant.
+Our analysis reveals that in this setting a first-order probability averter may immediately
+start to share his risk whenever the opportunity arises, even when the individual's own loss
+probability is smaller than that of the other individual(s) (as long as the discrepancy between
+the individual's own loss probability and that of the other individual(s) does not become too
+large). By contrast, a second-order probability averter only engages in actuarially fair risk
+sharing.
+
+5
+
+Rank-Dependent Utility
+
+In this section, we analyze the probability premium and attitude towards probability under
+Yaari's [42] dual theory of choice under risk (DT) and, more generally and behaviorally more
+relevant, under the rank-dependent utility model (RDU; Quiggin [31]).
+Under DT, a risk with cumulative distribution function F is evaluated according to
+Z
+x dh (F (x)) ,
+
+(5.1)
+
+where, here and in the sequel, the integral runs over the support of F .15 The probability
+weighting (distortion) function h maps the unit interval onto itself, satisfies h(0) = 0 and
+h(1) = 1, and is supposed to be non-decreasing. For n-state risks with payoffs x1 ≤ * * * ≤ xn
+15
+
+Formally, (5.1) is a Riemann-Stieltjes integral.
+
+14
+
+and associated probabilities p1 , . . . , pn , (5.1) can be expressed as
+n
+X
+
+ 
+h 
+
+i
+X
+
+i=1
+
+with
+
+P0
+
+j=1 pj
+
+j=1
+
+
+
+
+
+pj  − h 
+
+i−1
+X
+
+
+pj  xi ,
+
+j=1
+
+= 0 by convention.
+
+The DT evaluation occurs as a special case of the RDU model which evaluates a risk with
+cumulative distribution function F by the preference functional
+Z
+U (x) dh (F (x)) .
+
+(5.2)
+
+The utility function U is unique up to positive affine transformations and is supposed to be
+non-decreasing, and h is as above.16 Henceforth, unless otherwise stated, we assume U and
+h to be twice continuously differentiable with U 0 > 0 and h0 > 0. Of course, the EU model
+occurs as a special case when h is the identity, while the DT model arises when U is affine.17
+
+5.1
+
+Local Approximation to the Probability Premium
+
+Under DT, the probability premium μ defined in Section 2, Figure 3, occurs as the solution
+to18
+(h(p0 + ε1 ) − h(p0 − ε1 )) w0
+= (h(p0 − μ) − h(p0 − ε1 )) (w0 − 1) + (h(p0 + ε1 ) − h(p0 − μ)) (w0 + 1) ,
+16
+
+For n-state risks with payoffs x1 ≤ * * * ≤ xn and associated probabilities p1 , . . . , pn , (5.2) simplifies to
+!
+!!
+i−1
+i
+n
+X
+X
+X
+pj − h
+pj
+U (xi ).
+h
+i=1
+
+j=1
+
+j=1
+
+17
+
+Equivalently, the RDU evaluation occurs by distorting decumulative probabilities S(*) = 1 − F (*) following
+Yaari [42] rather than cumulative probabilities, as follows:
+Z b
+Z b
+Z b
+
+U (x) dh (F (x)) =
+U (x) d 1 − h̄ (S(x)) =
+h̄ (S(x)) dU (x),
+a
+
+a
+
+a
+
+where h̄(p) = 1 − h(1 − p) and we normalize U (a) = 0. Then, for n-state risks, we have the evaluation
+!
+!!
+i−1
+n
+i
+X
+X
+X
+h̄ 1 −
+pj − h̄ 1 −
+pj
+U (xi ).
+i=1
+
+j=1
+
+j=1
+
+Note that h̄(0) = 0, h̄(1) = 1, that h̄ is non-decreasing, and that h̄00 > 0 is equivalent to h00 < 0. The condition
+h00 < 0, jointly with U 00 < 0, means that the RDU DM is "strongly risk averse" in the sense of aversion to any
+mean-preserving increase in risk à la Rothschild and Stiglitz [34] (Chew, Karni and Safra [5] and Roëll [32]).
+18
+The terms associated with the low and high wealth level states partially cancel. Those terms that cancel
+are suppressed.
+
+15
+
+which reduces to
+0 = h(p0 − ε1 ) − 2h(p0 − μ) + h(p0 + ε1 ).
+
+(5.3)
+
+Eqn. (5.3) does not in general admit an explicit solution. As in the local risk aversion
+approach of Pratt [28] and Arrow [2, 3], a very insightful dissection of the probability premium
+can be obtained by considering "small risks". The resulting local approximation disentangles
+the complex interplay between the probability distribution of the risk change and the DM's
+preferences that the probability premium depends on. Throughout, our designation "small"
+in "small risks" will refer to risks that have small (unconditional) probabilities under DT and
+both small payoffs (i.e., outcomes) and small (unconditional) probabilities under RDU.
+Indeed, from (5.3), a first-order Taylor series expansion of h(p0 − μ) around p0 , and a
+
+second-order Taylor series expansion of h(p0 ± ε1 ) around p0 , yield
+0 ' ε21 h00 (p0 ) + 2μh0 (p0 ),
+hence
+
+1 h00 (p0 )
+μ ' − ε21 0
+.
+2 h (p0 )
+
+(5.4)
+
+Next, we consider the probability premium under RDU, obtained as the solution to
+(h(p0 + ε1 ) − h(p0 − ε1 )) U (w0 )
+= (h(p0 − μ) − h(p0 − ε1 )) U (w0 − ε2 ) + (h(p0 + ε1 ) − h(p0 − μ)) U (w0 + ε2 ).
+
+(5.5)
+
+Just like under DT, we approximate the solution to (5.5) by suitable Taylor series expansions.
+We first invoke a second-order Taylor series expansion of U (w0 ± ε2 ) around w0 to obtain
+1 U 00 (w0 )
+2h(p0 − μ) ' h(p0 − ε1 ) + h(p0 + ε1 ) + (h(p0 + ε1 ) − h(p0 − ε1 )) ε1 0
+.
+2 U (w0 )
+Next, a first-order Taylor series expansion of h(p0 − μ) around p0 , and a second-order Taylor
+series expansion of h(p0 ± ε1 ) around p0 , yields
+
+1
+U 00 (w0 ) 1 2 h00 (p0 )
+μ ' − ε1 ε2 0
+− ε1 0
+.
+2
+U (w0 )
+2 h (p0 )
+
+(5.6)
+
+Eqn. (5.6) reveals that the interplay between the ratios of second and first derivatives of the
+utility function and probability weighting function are central in dictating the local approximation to the probability premium. As we will see in Section 5.4, the local indexes
+h00 (p0 )
+h0 (p0 )
+
+U 00 (w0 )
+U 0 (w0 )
+
+and
+
+are the appropriate measures of the intensity of risk aversion under RDU also from a
+
+global perspective.
+
+16
+
+5.2
+
+Maxiance and Variance
+
+To fully appreciate the local approximations (5.4) and (5.6) to the probability premium under
+the DT and RDU models, we introduce the maxiance or second dual moment about the mean.
+Of course, for a risk ε̃ with cumulative distribution function F , the first (primal and dual)
+moment can be expressed as
+
+Z
+m := E [ε̃] =
+
+x dF (x),
+
+(5.7)
+
+whereas the second primal moment about the mean, or variance, is given by
+h
+i Z
+m2 := E (ε̃ − m)2 = (x − m)2 dF (x).
+
+(5.8)
+
+The second dual moment about the mean, or maxiance, is defined by
+i
+h
+
+m̄2 := E max ε̃(1) , ε̃(2) − E [ε̃] ,
+
+(5.9)
+
+where ε̃(1) and ε̃(2) are two independent copies of ε̃.
+The maxiance represents the expectation of the largest among two independent draws of
+the risk ε̃ beyond the mean. It can be expressed as
+Z
+m̄2 =
+
+(x − m) d (F (x))2 .
+
+(5.10)
+
+Comparing (5.8) and (5.10) shows that the maxiance is a measure of risk in the "probability
+plane", contrary to the variance, which is a measure of risk in the "payoff plane".
+For a zero-mean risk, one may verify that
+i
+h
+
+E min ε̃(1) , ε̃(2) = −m̄2 .
+
+(5.11)
+
+Arguably the miniance in (5.11), i.e., the worst among two independent draws of ε̃, is a more
+natural measure of "risk", but from (5.11) we observe that for zero-mean risks the miniance
+coincides with the maxiance up to a change of sign.
+Dual moments play the same role in inverse (or dual) stochastic dominance as primal
+moments in stochastic dominance; see Muliere and Scarsini [26] and Eeckhoudt, Laeven and
+Schlesinger [11]. We also note that the first and second primal moments are generated by linear
+and quadratic utility functions in EU, while the first and second dual moments correspond to
+linear and quadratic probability weighting functions in DT. We refer to Eeckhoudt and Laeven
+[12] and the references therein for further details about the maxiance.
+Employing the variance and the maxiance we can re-write (5.6) as follows:
+m2
+μ'
+2Py
+
+
+
+U 00 (w0 )
+− 0
+U (w0 )
+
+
+
+17
+
+m̄2
++
+2Py
+
+
+
+h00 (p0 )
+− 0
+h (p0 )
+
+
+,
+
+(5.12)
+
+where m2 and m̄2 are the unconditional variance and maxiance of the risk ε̃12 describing the
+mean-preserving spread from D to C. Unconditionally, the risk ε̃12 assumes the values ±ε2
+
+each with probability ε1 ; see Figure 15 which shows that C is obtained from D by attaching
+the binary zero-mean risk ε̃12 taking the values ±ε2 to the intermediate branch of D.
+Figure 15: D to C: Mean-Preserving Spread.
+
+p0
+
+−
+
+−ε2
+
+ε1
+
+2ε1
+
+1−
+
+p0
+
+−
+
+0 + ε̃12
+ε1
+
+ε2
+
+Furthermore, Py denotes the 1-norm (or absolute-value norm or L1 -norm) of the payoffs of
+ε̃12 .19
+Note that, when ε1 = 21 , the first term in (5.12) agrees with Pratt's [28] local approximation
+to the probability premium in the EU model.20 Furthermore, the second term in (5.12) can be
+recognized as the local approximation to the probability premium in the DT model; see (5.4).
+Thus, the local approximation to the probability premium under the RDU model occurs as the
+(suitably scaled) sum of the EU and DT probability premia, where the variance and maxiance
+are on equal footing.
+In Appendix B, we show that the local approximation to the RDU probability premium in
+(5.12) also generalizes naturally to non-binary risks. Appendix B focuses on the RDU model of
+which both the EU and DT models are special cases. We note that both the local approximation
+in (5.12) and the results in Appendix B are novel already when restricted to the EU model.
+Indeed, Pratt [28] only considers the EU model with p0 = ε1 = 12 .
+
+5.3
+
+Attitude Towards Probability
+
+Under the standing assumption that U and h are twice continuously differentiable with U 0 > 0
+and h0 > 0, we state the following theorem.
+Theorem 5.1 A DT DM has attitude towards probability of second order at the points where
+19
+
+One readily verifies that for ε̃12 , unconditionally, m2 = 2ε1 ε22 , m̄2 = 2ε21 ε2 , and Py = 2ε2 .
+We note that in Pratt [28], the probability premium is originally defined as the ex post difference between the
+probability of the favorable outcome and the probability of the unfavorable outcome, i.e., 2μ. Pratt's convention
+is not followed in the recent literature, where the probability premium is the ex post shift in the probability from
+the unfavorable outcome to the favorable outcome, i.e., μ; see e.g., Liu and Neilson [20].
+20
+
+18
+
+h00 6= 0. An EU and RDU DM has attitude towards probability of first order at the points where
+
+U 00 6= 0 (for almost every ε2 ).
+
+Now consider the DT model and suppose that the probability weighting function h : [0, 1] →
+
+[0, 1] is non-decreasing and not differentiable at p0 , but has left and right derivatives h0− (p0 )
+and h0+ (p0 ), with h0− (p0 ) 6= h0+ (p0 ). Then we state the following result.
+Theorem 5.2 A DT DM has attitude towards probability of first order at the points where the
+probability weighting function is not differentiable but has left and right derivatives.
+An example of such a probability weighting function is given by
+(
+h(p) =
+
+p
+1−p0 ,
+
+1,
+
+0 ≤ p ≤ 1 − p0 ;
+
+1 − p0 < p ≤ 1.
+
+(5.13)
+
+In financial risk management, this probability weighting function gives rise to that AverageValue-at-Risk (AV@R).
+We thus find that RDU and EU maximizers usually exhibit first-order probability aversion, while DT DMs with smooth probability weighting function are second-order probability
+averters. From Segal and Spivak [37] we already know that RDU and DT maximizers usually
+exhibit first-order risk aversion, while EU DMs with smooth utility function are risk averse of
+order 2. That is, under the RDU model, both probability aversion and risk aversion are usually
+first-order phenomena.
+We note also that expected value maximization-popular in operations research (e.g., in
+optimal stopping)-, law-invariant comonotonic coherent risk measures-popular in financial
+risk management (e.g., Föllmer and Schied [14], Chapter 4)-, and linear (or affine) utility
+models-popular in economics especially for small stakes-, usually induce second-order probability aversion.
+
+5.4
+
+Comparative Risk Aversion
+
+In this subsection, we show that the local approximation to the RDU probability premium can
+be naturally linked to global results on comparative risk aversion under RDU. Note first that
+(5.12) reveals that, for small zero-mean risks, the probability premium μ is affine in the primal
+and dual local indexes of absolute risk aversion
+
+
+U 00 (w0 )
+− 0
+and
+U (w0 )
+
+ 00
+
+h (p0 )
+− 0
+.
+h (p0 )
+
+Next, note that the definition of the probability premium in Section 2, Figure 3, applies irrespective of whether ε1 and ε2 are "small" or "large".21
+21
+
+Only 0 < ε1 ≤ min{p0 , 1 − p0 } and ε2 > 0 are required.
+
+19
+
+Theorem 5.3 Consider two RDU maximizers with utility function Ui and probability weighting
+function hi , i = 1, 2. Let μi (p0 , w0 , ε1 , ε2 ) be their respective probability premia, which occur
+as the solutions to (5.5). Then the following statements are equivalent.
+U 00 (x)
+
+U 00 (x)
+
+h00 (p)
+
+h00 (p)
+
+(i) − U20 (x) ≥ − U10 (x) and − h20 (p) ≥ − h10 (p)
+2
+
+1
+
+2
+
+(ii) μ2 (p0 , w0 , ε1 , ε2 ) ≥ μ1 (p0 , w0 , ε1 , ε2 )
+{p0 , 1 − p0 } < 1.
+
+for all x ∈ R and all p ∈ (0, 1).
+
+1
+
+for all w0 ∈ R, all ε2 > 0, and all 0 < ε1 ≤
+
+The statements apply mutatis mutandis when the domain of the utility functions is only a
+subset of R.
+From Pratt [28], Yaari [41] and Eeckhoudt and Laeven [12], statement (i) is known to be
+equivalent to U2 and h2 being concavifications of U1 and h1 , i.e., there exist functions φ and ψ
+with φ0 > 0, φ00 ≤ 0, ψ 0 > 0, ψ 00 ≤ 0, ψ(0) = 0 and ψ(1) = 1 such that
+U2 (x) := φ (U1 (x))
+
+and
+
+h2 (p) := ψ (h1 (p)) ,
+
+for all x ∈ R and all p ∈ [0, 1].
+
+Theorem 5.3 generalizes Pratt's results on the probability premium in two directions: to risk
+
+changes with probability mass less than unity and, more significantly, to RDU. Furthermore,
+as the DT model occurs as a special case of the RDU model, it is also covered by the results
+in Theorem 5.3. The generality of the results in Theorem 5.3, and in particular the joint
+presence of both the utility function and the probability weighting function, makes its proof
+more complex than that in Pratt [28]. The proof of Theorem 5.3 is in Appendix A and relies
+on analyzing the total differential of the RDU functional.
+Global results on comparative risk aversion under RDU are already in Yaari [41], Chew,
+Karni and Safra [5], and Roëll [32]. As D is a mean-preserving contraction of C, these existing
+global results may in principle be invoked to imply (i)⇒(ii), although none of the existing results
+under RDU refers to the probability premium. The implication (ii)⇒(i) is new. It establishes
+the formal connection between a local approach to the probability premium and global risk
+aversion within RDU. An analog of Theorem 5.3 for the risk premium is in Eeckhoudt and
+Laeven [12].
+
+5.5
+
+Comparison to the Risk Premium
+
+As an alternative to the construction of the probability premium in Section 2, Figure 3, we
+could have adapted the outcome of the intermediate state of D from 0 to −λ such that the
+DM becomes indifferent between C and D(λ); see Figure 16.
+
+20
+
+Figure 16: Risk D(λ)
+
+p0
+
+−
+
+ε1
+
+2ε1
+
+D(λ)
+1−
+
+p0
+
+−
+
+−ε2
+−λ
+
+ε1
+
+ε2
+
+(Of course, D(0) ≡ D.) This would naturally gives rise to the risk premium λ associated to
+
+the risk change from C to D; see Eeckhoudt and Laeven [12]. One easily verifies that the risk
+premium of Pratt [28] and Arrow [2, 3] occurs as a special case in the comparison between
+C and D(λ) when p0 = ε1 =
+
+1
+2.
+
+Then, one compares a risk to a sure loss equal to the risk
+
+premium.
+Eeckhoudt and Laeven [12] develop a local approximation to the risk premium λ. Their
+approximation takes the form
+h00 (p0 )
+1 U 00 (w0 ) 1
+λ ' − ε22 0
+− ε1 ε2 0
+2 U (w0 )
+2
+h (p0 )
+
+
+ 00
+
+m2
+U 00 (w0 )
+m̄2
+h (p0 )
+=
+− 0
++
+− 0
+,
+2Pr
+U (w0 )
+2Pr
+h (p0 )
+
+(5.14)
+
+where Pr is the total unconditional probability mass associated to ε̃12 .22 Just like in (5.12), the
+local approximations to the EU and DT risk premia follow as special cases by setting h(p) ≡ p
+for EU and U (x) ≡ x for DT.
+
+Upon comparing (5.12) and (5.14), we obtain the following link between the risk and prob-
+
+ability premia:
+μPy = λPr.
+
+(5.15)
+
+Observe that the units of measurement on both sides of (5.15) agree, as μ and Pr are dimensionless.
+
+6
+
+Conclusion
+
+For many years, and despite its appeal, the probability premium of Pratt [28] has been overshadowed by its more prevalent siblings given by the risk premium and the local index of
+absolute risk aversion.
+22
+
+Observe that, for ε̃12 , Pr = 2ε1 .
+
+21
+
+In this paper, we have generalized Pratt's construction of the probability premium and have
+used it to introduce and analyze attitudes towards probability. By developing a local approximation to the probability premium under rank-dependent utility as a by-product of significant
+interest in its own right, we have shown that rank-dependent and expected utility maximizers
+usually display attitude towards probability of order 1, whereas dual theory maximizers-as
+well as expected value maximizers, investors using law-invariant comonotonic coherent risk
+measures, and economic agents using affine utility models-typically exhibit attitude towards
+probability of order 2.
+We have illustrated the relevance of first- and second-order probability aversion in a problem
+of risk sharing. Our results reveal that for a first-order risk averter facing a risk with a small
+loss probability there are immediately significant benefits to risk sharing opportunities. He may
+therefore opt for risk sharing even when actuarially unfavorable. By contrast, for a secondorder risk averter the initial benefits of risk sharing opportunities are negligible. A second-order
+risk averter likes actuarially fair risk sharing. However, when facing a risk with a small loss
+probability, he always avoids actuarially unfavorable risk sharing. That is, only first-order
+probability averters like to engage in risk sharing if the probability of the occurrence of other
+individuals' losses is more unfavorable than that of the individual's own loss, when faced with
+a risk with a small loss probability.
+We hope that our approach and results contribute to a widespread analysis and use of the
+appealing concept of the probability premium.
+
+22
+
+Appendices
+A
+
+Proofs
+
+Proof of Theorem 3.2. Consider the probability premium μ(ε1 ), which makes the DM
+indifferent in the comparison between C(μ) (Figure 3) and D (Figure 2). In addition, consider
+the probability premium μ(ε1 , m), obtained as the solution that makes the DM indifferent in
+the comparison between the risk C(μ, m):
+Figure 17: Risk C(μ, m)
+
+C(μ, m)1
+
+p0
+
+ε
+−m
+
+−p
+
+0
+
+1
+
+−μ
+
++m
+
+ε1
+
+−ε2
+
++ με2
+
+and D (Figure 2). Of course,
+μ(ε1 ) = mε1 + μ(ε1 , m).
+Hence,
+∂μ(ε1 )
+∂μ(ε1 , m)
+=m+
+.
+∂ε1
+∂ε1
+Furthermore,
+lim
+
+ε1
+
+→0+
+
+∂μ(ε1 , m)
+∂μ(ε1 )
+= m + lim
+.
++
+∂ε1
+∂ε1
+ε1 →0
+
+If the DM is first-order probability averse, then
+lim
+
+ε1 →0+
+
+∂μ(ε1 )
+> 0.
+∂ε1
+
+Thus, for
+m<
+we have
+
+∂μ(ε1 )
+∂ε1
+
+∂μ(ε1 , m)
+∂ε1
+
+ε1 =0+
+
+ε1 =0+
+
+> 0.
+
+If the DM is second-order probability averse, then
+lim
+
+ε1
+
+→0+
+
+∂μ(ε1 )
+=0
+∂ε1
+
+and
+
+lim
+
+ε1
+
+23
+
+→0+
+
+∂μ(ε1 , m)
+= −m < 0,
+∂ε1
+
+2
+
+which proves the stated result.
+
+Proof of Theorem 5.1. From our local approximation to the probability premium under
+DT, we have
+
+1 h00 (p0 )
+μ = − ε21 0
++ o(ε21 ),
+2 h (p0 )
+
+which readily yields the first stated result. Next, from our local approximation to the probability premium under RDU, we have
+1 h00 (p0 ) 1
+U 00 (w0 )
+μ = − ε21 0
+− ε1 ε2 0
++ o(ε21 ) + o(ε2 ),
+2 h (p0 )
+2
+U (w0 )
+2
+
+which yields the second stated result.
+
+Proof of Theorem 5.2. Recall the indifference relation that defines the DT probability
+premium:
+0 = (h(p0 − μ) − h(p0 − ε1 )) (−1) + (h(p0 + ε1 ) − h(p0 − μ)) (1) ,
+hence
+0 = h(p0 − ε1 ) − 2h(p0 − μ) + h(p0 + ε1 ).
+Then, upon differentiating both sides and taking the limit for ε1 ↓ 0, we obtain
+0 = −h0− (p0 ) + 2h0− (p0 )
+
+∂μ
+∂ε1
+
+ε1 =0+
+
++ h0+ (p0 ),
+
+hence
+∂μ
+∂ε1
+
+ε1 =0+
+
+1
+=
+2
+
+
+
+h0+ (p0 )
+1− 0
+h− (p0 )
+
+> (<)0,
+2
+
+if h0− (p0 ) > (<)h0+ (p0 ).
+
+Proof of Theorem 5.3. We first note that, due to Pratt [28], Yaari [41] and Eeckhoudt and
+Laeven [12], statement (i) is equivalent to
+(iii)
+
+U2 (y)−U2 (x)
+U2 (w)−U2 (v)
+
+≤
+
+U1 (y)−U1 (x)
+U1 (w)−U1 (v)
+
+0 < p < q ≤ r < s < 1.
+
+and
+
+h2 (s)−h2 (r)
+h2 (q)−h2 (p)
+
+≤
+
+h1 (s)−h1 (r)
+h1 (q)−h1 (p)
+
+for all v < w ≤ x < y and all
+
+Next, we will prove that the equivalent statements (i) and (iii) imply statement (ii). Consider Eqn. (5.5) and fix an arbitrary ε2 > 0. Clearly, if ε1 → 0 in (5.5), then μi → 0. Define
+
+24
+
+the function
+Wi (μi , ε1 ) := (hi (p0 + ε1 ) − hi (p0 − ε1 )) Ui (w0 )
+− ((hi (p0 − μi ) − hi (p0 − ε1 )) Ui (w0 − ε2 )
++ (hi (p0 + ε1 ) − hi (p0 − μi )) Ui (w0 + ε2 )) ,
+
+i = 1, 2,
+
+and consider its total differential
+dWi =
+
+∂Wi
+∂Wi
+dμi +
+dε1 .
+∂μi
+∂ε1
+
+It takes the form
+dWi = −h0i (p0 − μi ) (Ui (w0 + ε2 ) − Ui (w0 − ε2 )) dμi
+
+
++ h0i (p0 − ε1 ) (Ui (w0 ) − Ui (w0 − ε2 )) − h0i (p0 + ε1 ) (Ui (w0 + ε2 ) − Ui (w0 )) dε1 .
+
+We equate the total differential to zero. We thus obtain
+dμi
+Ui (w0 ) − Ui (w0 − ε2 ) h0i (p0 − ε1 )
+Ui (w0 + ε2 ) − Ui (w0 ) h0i (p0 + ε1 )
+=
+−
+. (A.1)
+dε1
+Ui (w0 + ε2 ) − Ui (w0 − ε2 ) h0i (p0 − μi ) Ui (w0 + ε2 ) − Ui (w0 − ε2 ) h0i (p0 − μi )
+Using statements (i) and (iii) we will show that, for RDU DM i = 2, the first two fractions on
+the right-hand side of (A.1) are larger than or equal to the corresponding fractions for RDU
+DM i = 1, while the last two fractions are weakly smaller for DM i = 2 than for DM i = 1.
+(All four fractions are positive for i = 1, 2.)
+Indeed, first invoking statement (i), we obtain, as in Pratt [28], Eqn. (20),
+U10 (x)
+U20 (x)
+≤
+(≥)
+,
+U20 (w)
+U10 (w)
+
+for w < (>)x,
+
+(A.2)
+
+and we note that the utility function Ui can be replaced by the probability weighting function
+hi in (A.2), with the variables w and x restricted to (0, 1). Next, statement (iii) yields
+U2 (y) − U2 (x)
+U2 (w) − U2 (v)
+U1 (y) − U1 (x)
+U1 (w) − U1 (v)
++
+≤
++
+,
+U2 (w) − U2 (v) U2 (w) − U2 (v)
+U1 (w) − U1 (v) U1 (w) − U1 (v)
+
+for v < w ≤ x < y.
+
+In particular, when w = x this reduces to
+U2 (y) − U2 (v)
+U1 (y) − U1 (v)
+≤
+,
+U2 (w) − U2 (v)
+U1 (w) − U1 (v)
+whence
+
+for v < w < y,
+
+U2 (w) − U2 (v)
+U1 (w) − U1 (v)
+≥
+,
+U2 (y) − U2 (v)
+U1 (y) − U1 (v)
+25
+
+(A.3)
+
+and
+
+U2 (y) − U2 (w)
+U1 (y) − U1 (w)
+≤
+.
+U2 (y) − U2 (v)
+U1 (y) − U1 (v)
+
+(A.4)
+
+Invoking the inequalities in Eqn. (A.2) (with Ui replaced by hi upon restricting the corresponding domains to (0, 1)) and Eqns. (A.3) and (A.4), we find from (A.1) that
+dμ2
+dμ1
+≥
+,
+dε1
+dε1
+
+(A.5)
+
+hence (ii).
+We have thus shown that statement (i) implies statement (ii). It remains to show that (ii)
+also implies (i), or, equivalently, that not (i) implies not (ii). To this end, it suffices to note
+that if statement (i) fails to hold on some interval (of x or p), then, due to the arbitrariness of
+w0 , p0 , ε2 > 0 and ε1 with 0 < ε1 ≤ {p0 , 1 − p0 } < 1, one can always find feasible w0 , p0 , ε2
+
+and ε1 such that (A.5) holds on some interval with the inequality sign strict and reversed, and
+as a consequence statement (ii) fails to hold. This completes the proof.
+
+B
+
+2
+
+Generalization to n-State Risks
+
+Let n ≥ 2 be an integer. Consider an n-state risk with total probability mass equal to 2ε1
+
+assigning a probability of
+0 < ε1 ≤
+
+1
+2.
+
+2ε1
+n
+
+to the payoffs xi , i = 1, . . . , n, with x1 ≤ * * * ≤ xn , where
+
+The increments between the xi 's may equal zero; the risk would then feature
+
+unequal state probabilities. We denote by n1 the number of states with negative payoff and let
+n2 = n − n1 . Note the generality of this setting.
+P
+We suppose that ni=1 xi = 0, so the risk has mean equal to zero. We also suppose that
+P
+|xi | < ε2 for some ε2 > 0, so ni=1 x2i = O(ε22 ).
+One easily verifies that the first and second primal and dual moments are given by
+n
+2ε1 X
+m1 =
+xi = 0,
+n
+
+m2 =
+m̄2 =
+
+2ε1
+n
+
+i=1
+n
+X
+
+x2i ,
+
+i=1
+n
+2
+X
+4ε1
+(2i
+n2
+i=1
+
+(B.1)
+(B.2)
+
+− 1)xi .
+
+(B.3)
+
+Note that m2 = O(ε22 ) and that m̄2 = O(ε21 ).
+In this general setting, we define the probability premium of the zero-mean n-state risk as
+the (uniform) reduction in the probabilities of the unfavorable (i.e., negative payoff) states,
+inducing a (uniform) increase in the probabilities of the favorable states accordingly, such that
+the DM is indifferent between bearing and not bearing the risk. Note that this definition of
+26
+
+the probability premium applies irrespective of whether ε1 and ε2 are "small" or "large".
+Formally, the RDU probability premium, μ, thus solves
+(h(p0 + ε1 ) − h(p0 − ε1 )) U (w0 )
+
+
+
+n1  
+X
+2ε1
+2ε1
+h p 0 − ε1 +
+=
+i − μi − h p0 − ε1 +
+(i − 1) − μ(i − 1)
+U (w0 + xi )
+n
+n
+i=1
+ 
+
+n
+X
+2ε1
+n1
++
+h p0 − ε1 − μn1 +
+i + μ (i − n1 )
+n
+n2
+i=n1 +1
+
+
+n1
+2ε1
+U (w0 + xi ) .
+(i − 1) + μ (i − 1 − n1 )
+−h p0 − ε1 − μn1 +
+n
+n2
+Invoking second-order Taylor series expansions of U around w0 and of h around p0 yields,
+upon rearranging terms,
+n1 
+X
+
+
+2ε1
+0'
+h (p0 )
+−μ
+n
+i=1
+2 
+2 !!
+
+1 00
+2ε1
+2ε1
++ h (p0 )
+i − μi − −ε1 +
+(i − 1) − μ(i − 1)
+−ε1 +
+2
+n
+n
+
+
+1 00
+2
+0
+× U (w0 ) xi + U (w0 ) xi
+2
+
+
+
+n
+X
+n1
+2ε1
+0
++
++μ
+h (p0 )
+n
+n2
+i=n1 +1
+2
+
+1 00
+n1
+2ε1
++ h (p0 )
+i + μ (i − n1 )
+−ε1 − μn1 +
+2
+n
+n2
+
+2 !!
+2ε1
+n1
+− −ε1 − μn1 +
+(i − 1) + μ (i − 1 − n1 )
+n
+n2
+
+
+1
+× U 0 (w0 ) xi + U 00 (w0 ) x2i .
+2
+0
+
+
+
+Hence, upon further rearranging terms and using
+
+Pn
+
+i=1 xi
+
+= 0, we obtain at the leading
+
+orders in ε1 and ε2 , the local approximation
+4ε21 Pn
+2ε1 Pn
+2
+U 00 (w0 ) 1
+h00 (w0 )
+1
+i=1 (2i − 1)xi
+i=1 xi
+n
+n2
+Pn
+P
+P
+−
+μ ' − Pn1
+1
+2 i=1 |xi | + i=n1 +1 nn12 |xi | U 0 (w0 )
+2 ni=1
+|xi | + ni=n1 +1 nn12 |xi | h0 (w0 )
+
+
+
+
+m2
+U 00 (w0 )
+m̄2
+h00 (p0 )
+=
+−
++
+−
+,
+2Py∗
+U 0 (w0 )
+2Py∗
+h0 (p0 )
+
+using (B.2)–(B.3) in the last equality and where Py∗ =
+
+Pn1
+
+1-norm of the payoffs of the n-state risk. Of course, when n1 ≡
+27
+
+Pn
+
+n1
+i=n1 +1 n2 |xi |, the weighted
+P
+n2 , Py∗ = ni=1 |xi | = Py, the
+
+i=1 |xi |+
+
+standard 1-norm.
+
+28
+
+Acknowledgements. We are very grateful to Loı̈c Berger and Christian Gollier for comments and suggestions and to Harris Schlesinger (†) for discussions. This research was funded in
+part by the French Agence Nationale de la Recherche under grant ANR-17-CE03 (Eeckhoudt,
+project Induced) and the Netherlands Organization for Scientific Research under grants NWO
+VIDI 2009 and NWO VICI 2019/2020 (Laeven). Research assistance of Andrei Lalu is gratefully acknowledged. Part of this paper was circulated earlier under the title "Risk Aversion in
+the Small and in the Large under Rank-Dependent Utility".
+
+References
+[1] Abdellaoui, M. (2000). Parameter-free elicitation of utility and probability weighting
+functions. Management Science 46, 1497-1512.
+[2] Arrow, K.J. (1965). Aspects of the Theory of Risk-Bearing. Yrjö Jahnsson Foundation,
+Helsinki.
+[3] Arrow, K.J. (1971). Essays in the Theory of Risk Bearing. North-Holland, Amsterdam.
+[4] Chateauneuf, A., M. Cohen and I. Meilijson (2004). Four notions of mean preserving increase in risk, risk attitudes and applications to the Rank-Dependent Expected
+Utility model. Journal of Mathematical Economics 40, 547-571.
+[5] Chew, S.H., E. Karni and Z. Safra (1987). Risk aversion in the theory of expected
+utility with rank dependent probabilities. Journal of Economic Theory 42, 370-381.
+[6] Chew, S.H. and M.H. Mao (1995). A Schur-concave characterization of risk aversion
+for non-expected utility preferences. Journal of Economic Theory 67, 402-435.
+[7] Cohen, M. (1995). Risk-aversion concepts in expected- and non-expected-utility models.
+Geneva Papers on Risk and Insurance Theory 20, 73-91.
+[8] Eeckhoudt, L.R., C. Gollier and H. Schlesinger (2005). Economic and Financial
+Decisions under Risk. Princeton, Princeton University Press.
+[9] Eeckhoudt, L.R. and H. Schlesinger (2006). Putting risk in its proper place. American Economic Review 96, 280-289.
+[10] Eeckhoudt, L.R. and R.J.A. Laeven (2015). The probability premium: A graphical
+representation. Economics Letters 136, 39-41.
+[11] Eeckhoudt, L.R., R.J.A. Laeven and H. Schlesinger (2020). Risk apportionment:
+The dual story. Journal of Economic Theory 185, 104971.
+[12] Eeckhoudt, L.R. and R.J.A. Laeven (2020). Dual moments and risk attitudes. Operations Research, forthcoming.
+[13] de Finetti, B. (1952). Sulla preferibilita. Giornale degli Economisti e Annali di Economia
+11, 685-709.
+[14] Föllmer, H. and A. Schied (2011). Stochastic Finance. 3rd Ed., De Gruyter, Berlin.
+[15] Hirshleifer, J. (1965). Investment decision under uncertainty: Choice-theoretic approaches. Quarterly Journal of Economics 79, 509-536.
+[16] Hirshleifer, J. (1965). Investment decision under uncertainty: Applications of the statepreference approach. Quarterly Journal of Economics 80, 252-277.
+29
+
+[17] Jindapon, P. (2010). Prudence probability premium. Economics Letters 109, 34-37.
+[18] Liu, L. and J. Meyer (2013). Substituting one risk increase for another: A method for
+measuring risk aversion. Journal of Economic Theory 148, 2706-2718.
+[19] Liu, L. and W.S. Neilson (2015). The probability premium approach to comparative
+risk aversion. Mimeo, Texas A&M University and University of Tennessee.
+[20] Liu, L. and W.S. Neilson (2019). Alternative approaches to comparative nth-degree
+risk aversion. Management Science 65, 3470-3469.
+[21] Machina, M.J. (1982). "Expected utility" analysis without the independence axiom.
+Econometrica 50, 277-323.
+[22] Machina, M.J. and W.S. Neilson (1987). The Ross characterization of risk aversion:
+Strengthening and extension. Econometrica 55, 1139-1149.
+[23] Machina, M.J. (2013). Non-expected utility and the robustness of the classical insurance
+paradigm. In: Dionne, G. (Ed.). Handbook of Insurance, pp. 59-106, 2nd Ed., Springer,
+New York.
+[24] Marschak, J. (1950). Rational behavior, uncertain prospects, and measurable utility.
+Econometrica 18, 111-141.
+[25] Mossin, J. (1968). Aspects of rational insurance purchasing. Journal of Political Economy
+79, 553-568.
+[26] Muliere, P. and M. Scarsini (1989). A note on stochastic dominance and inequality
+measures. Journal of Economic Theory 49, 314-323.
+[27] Nau, R.F. (2003). A generalization of Pratt-Arrow measure to nonexpected-utility preferences and inseparable probability and utility. Management Science 49, 1089-1104.
+[28] Pratt, J.W. (1964). Risk aversion in the small and in the large. Econometrica 32, 122136.
+[29] Pratt, J.W. (1990). The logic of partial-risk aversion: Paradox lost. Journal of Risk and
+Uncertainty 3, 105-113.
+[30] Prelec, D. (1998). The probability weighting function. Econometrica 66, 497-527.
+[31] Quiggin, J. (1982). A theory of anticipated utility. Journal of Economic Behaviour and
+Organization 3, 323-343.
+[32] Roëll, A. (1987). Risk aversion in Quiggin and Yaari's rank-order model of choice under
+uncertainty. The Economic Journal 97, 143-159.
+[33] Ross, S.A. (1981). Some stronger measures of risk aversion in the small and in the large
+with applications. Econometrica 49, 621-638.
+[34] Rothschild, M. and J.E. Stiglitz (1970). Increasing risk: I. A definition. Journal of
+Economic Theory 2, 225-243.
+[35] Ryan, M.J. (2006). Risk aversion in RDEU. Journal of Mathematical Economics 42, 675697.
+[36] Schmidt, U. and H. Zank (2008). Risk aversion in cumulative prospect theory. Management Science 54, 208-216.
+[37] Segal, U. and A. Spivak (1990). First order versus second order risk aversion. Journal
+of Economic Theory 51, 111-125.
+30
+
+[38] Tversky, A. and D. Kahneman (1992). Advances in prospect theory: Cumulative
+representation of uncertainty. Journal of Risk and Uncertainty 5, 297-323.
+[39] Yaari, M.E. (1965). Convexity in the theory of choice under risk. Quarterly Journal of
+Economics 79, 278-290.
+[40] Yaari, M.E. (1969). Some remarks on measures of risk aversion and on their uses. Journal
+of Economic Theory 1, 315-329.
+[41] Yaari, M.E. (1986). Univariate and multivariate comparisons of risk aversion: a new
+approach. In: Heller, W.P., R.M. Starr and D.A. Starrett (Eds.). Uncertainty, Information,
+and Communication. Essays in honor of Kenneth J. Arrow, Volume III, pp. 173-188, 1st
+Ed., Cambridge University Press, Cambridge.
+[42] Yaari, M.E. (1987). The dual theory of choice under risk. Econometrica 55, 95-115.
+[43] Wu, G. and R. Gonzalez (1996). Curvature of the probability weighting function.
+Management Science 42, 1676-1690.
+
+31
+

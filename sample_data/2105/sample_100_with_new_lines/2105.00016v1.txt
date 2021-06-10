@@ -1,0 +1,782 @@
+universality of highstrength tensors
+arxiv210500016v1 mathag 30 apr 2021
+arthur bik alessandro danelon jan draisma and rob eggermont
+abstract a theorem due to kazhdan and ziegler implies that by substituting linear forms for its
+variables a homogeneous polynomial of sufficiently high strength specialises to any given polynomial
+of the same degree in a bounded number of variables using entirely different techniques we extend
+this theorem to arbitrary polynomial functors as a corollary of our work we show that specialisation
+induces a quasiorder on elements in polynomial functors and that among the infinitestrength
+elements there is a unique smallest equivalence class in this quasiorder
+1 introduction and main results
+fix a field k in our main results we will assume that k is algebraically closed and of characteristic
+zero but for now we make no such assumption
+11 strength
+definition 111 let n  1 be an integer and let f  kx1      xn d be a homogeneous polynomial
+of degree d  2 then the strength of f  denoted strf  is the minimal integer k  0 such that there
+exists an expression
+f  g 1  h1      g k  hk
+where gi  kx1      xn di and hi  kx1      xn ddi for some integer 0  di  d for each i  k 
+the strength of polynomials plays a key role in the resolution of stillmans conjecture by ananyanhochster 1 2 the subsequent work by ermansamsnowden 12 13 14 and in kazhdanzieglers
+work 17 18 also see 3 4 5 7 9 10 for other recent papers studying strength
+12 polynomial functors and their maps assume that k is infinite let vec be the category
+of finitedimensional vector spaces over k with klinear maps
+definition 121 a polynomial functor of degree  d over k is a functor p  vec  vec with the
+property that for all u v  vec the map p  homu v   homp u  p v  is a polynomial map of
+degree  d a polynomial functor is a polynomial functor of degree  d for some integer d   
+remark 122 for finite fields k the correct analogue is that of a strict polynomial functor 15 
+any polynomial functor p is a finite direct sum of its homogeneous parts pd  which are the polynomial subfunctors defined by pd v   p  p v   t  k  p t idv p  td p for each integer d  0
+a polynomial functor is called homogeneous of degree d when it equals its degreed part
+example 123 the functor u 7 s d u  is a homogeneous polynomial functor of degree d if u has
+basis x1      xn  then s d u  is canonically isomorphic to kx1      xn d  in this incarnation linear
+maps s d  for   u  v correspond to substitutions of the variables x1      xn by linear forms in
+variables y1      ym representing a basis of v 
+ad is supported by jds vici grant 639033514 from the netherlands organisation for scientific research nwo
+jd is partially supported by vici grant 639033514 from the nwo and by project grant 200021 191981 from the
+swiss national science foundation snsf re was supported by veni grant 016veni192113 from the nwo
+arthur bik alessandro danelon jan draisma and rob eggermont
+polynomial functors are the ambient spaces in current research on infinitedimensional algebraic
+geometry 6 7 8 11 polynomial functors form an abelian category in which a morphism   p  q
+consists of a linear map u  p u   qu  for each u  vec such that for all u v  vec and all
+  homu v  the following diagram commutes
+p u 
+p v 
+ qu 
+ qv 
+in characteristic zero each polynomial functor p is isomorphic in this abelian category to a direct
+sum of schur functors which can be thought of as subobjects or quotients of the polynomial functors
+v 7 v d  for that reason we will informally refer to elements of p v  as tensors
+in addition to the linear morphisms between polynomial functors above we may also allow each u
+to be a polynomial map p u   qu  such that the diagram commutes such an  will be called
+a polynomial transformation from p to q if u is irrelevant or clear from the context we write 
+instead of u 
+ s ddi  and q  s d
+example 124 in the context of definition 111 we set p 
+i1 s
+and define  by
+g1  h1      gk  hk   g1  h1      gk  hk 
+this is a polynomial transformation p  q
+example 125 let q r be polynomial functors and   q  r  p a linear morphism then
+q r 7 q  r defines a bilinear polynomial transformation q  r  p 
+inspired by these examples we propose the following definition of strength for elements of homogeneous polynomial functors we are not sure that this is the best definition in arbitrary characteristic
+so we restrict ourselves to characteristic zero
+definition 126 assume that char k  0 let p be a homogeneous polynomial functor of degree
+d  2 and let v  vec the strength of p  p v  is the minimal integer k  0 such that
+p  1 q1  r1       k qk  rk 
+where for each i  k qi  ri are irreducible polynomial functors with positive degrees adding up
+to d i  qi  ri  p is a bilinear polynomial transformation and qi  qi v  and ri  ri v  are
+tensors
+remark 127 positive degrees of two polynomial functors cannot add up to 1 so nonzero tensors
+p  p v  of homogeneous polynomial functors p of degree 1 cannot have finite strength we say that
+such tensors p have infinite strength note that the strength of 0  p v  always equals 0
+proposition 128 assume that char k  0 for each integer d  2 the strength of a polynomial
+f  s d v  according to definition 111 equals that according to definition 126
+proof the inequality  follows from the fact that i  s di  s ddi  s d  g h 7 g  h is a bilinear
+polynomial transformation for the inequality  suppose that   q  r  s d is a nonzero bilinear
+polynomial transformation where q and r are irreducible of degrees e  d and d  e  d so q
+and r are schur functors corresponding to young diagrams with e and d  e boxes respectively and
+q  r admits a nonzero linear morphism to s d  whose young diagram is a row of d boxes the
+littlewoodrichardson rule then implies that the young diagrams of q and r must be a single row as
+well so that q  s e and r  s de  and also that there is up to scaling a unique morphism q  r 
+s e  s de  s d  namely the one corresponding to the polynomial transformation g h 7 g  h 
+the strength of a tensor in p quickly becomes very difficult when p is not irreducible
+universality of highstrength tensors
+example 129 take p  s d e for some integer e  1 then the strength of a tuple f1      fe  
+p v  is the minimum number k  0 such that
+f1      fe  spang1      gk 
+where g1      gk  s d v  are reducible polynomials
+example 1210 consider p  s 2  2  so that p v   v  v  and assume that k is algebraically closed the only possibilities for q and r are qv   rv   v  the bilinear polynomial
+transformations   q  r  p are of the form
+u v  au  v  bv  u  cu  v  v  u  du  v  v  u
+for certain a b c d  k we note that stra  rka2 when a  s 2 v  and stra  rka2
+when a  2 v  in general we have
+rka2 rka  a 2 rka  a 2  stra  rka rka  a 2  rka  a 2
+for all a  v  v  where each bound can hold with equality for example for the matrix
+0 1
+0 0
+0 1
+0 0
+we have rka  a 2  rka  a 2  stra  rka
+example 1211 again take p  s 2 
+and consider p k 2   k 22  assume k is algebraically
+closed the matrix
+1 x
+0 1
+clearly has strength  2 we will show that a has strength 2 whenever x  2 and strength 1
+otherwise in particular this shows that the subset of p k 2  of matrices of strength  1 is not closed
+suppose a has strength 1 then we can write a as au  v  bv  u with a b  k and v u  k 2 
+let e1  e2 be the standard basis of k 2  without loss of generality we may assume that u  e1  e2
+and v  e1  e2 for some    k we get
+a  b  1
+a  b  x
+a  b  0
+  1
+using   1 and b  1  a we are left with a2  1  a  x and a  1  a2  0 the latter
+gives us  6 1 and a  2 2  1 we get 2  1  x now if x 6 2 then such a  6 1
+exists so in this case a indeed has strength 1 if x  2 the only solution is   1 hence a has
+strength 2 in this case
+13 subsets of polynomial functors
+definition 131 let p be a polynomial functor a subset of p consists of a subset xu   p u 
+for each u  vec such that for all   homu v  we have p xu   xv  it is closed if each
+xu  is zariskiclosed in p u 
+example 132 fix integers d  2 and k  0 the elements in s d v  of strength  k form a subset
+of s d  this set is closed for d  2 3 but not for d  4 see 3
+example 133 take k  r and let xv  be the set of positive semidefinite elements in s 2 v 
+ie those that are sums of squares of elements of v  then xv  is a subset of s 2 
+arthur bik alessandro danelon jan draisma and rob eggermont
+14 kazhdanzieglers theorem universality of strength
+theorem 141 kazhdanziegler 18 theorem 19 let d  2 be an integer assume that k is
+algebraically closed and of characteristic 0 or  d let x be a subset of s d  then either x  s d or
+else there exists an integer k  0 such that each polynomial in each xu  has strength  k
+this theorem is a strengthening of 7 theorem 4 where the additional assumption is that x is
+closed the condition that k be algebraically closed cannot be dropped eg by example 133 there
+is no uniform upper bound on the strength of positive definite quadratic forms the condition on the
+characteristic can also not be dropped but see remark 192
+corollary 142 kazhdanziegler universality of strength with the same assumptions on k for
+every fixed number of variables m  1 and degree d  2 there exists an r  0 such that for any
+number of variables n  1 any polynomial f  kx1      xn d of p
+strength  r and any polynomial
+g  ky1      ym d there exists a linear variable substitution xj 7 i cij yi under which f specialises
+to g
+proof for each u  vec define xu   s d u  as the set of all f such that the map
+homu k m   s d k m 
+ 7 s d f
+is not surjective a straightfoward computation shows that this is a subset of s d  it is not all of s d 
+because if we take u to be of dimension d  dim s d k m  then in s d u  we can construct a sum f of
+dim s d k m  squarefree monomials in distinct variables and specialise each of these monomials to a
+prescribed multiple of a basis monomial in s d k m  hence f 6 xu  by theorem 141 it follows
+that the strength of elements of xu  is uniformly bounded
+15 our generalisation universality for polynomial functors let p q be polynomial functors we say that q is smaller than p  denoted q  p  when p and q are not linearly isomorphic
+and qd is a quotient of pd for the highest degree d where pd and qd are not isomorphic we say that
+a polynomial functor p is pure when p 0  0
+remark 151 let q  p be polynomial functors and suppose that p is homogeneous of degree
+d  0 then qd must be a quotient of pd  so we see that q  r  p for any polynomial functor r
+of degree  d
+the following is our first main result
+theorem 152 main theorem i assume that k is algebraically closed of characteristic zero
+let x be a subset of a pure polynomial functor p over k then either xu   p u  for all u  vec
+or else there exist finitely many polynomial functors q1      qk  p and polynomial transformations
+i  qi  p with xu   i1 imiu  for all u  vec in the latter case x is contained in a
+proper closed subset of p 
+if we assume furthermore that p is irreducible then in the second case there exists a integer k  0
+such that for all u  vec and all p  xu  the strength of p is at most k
+this is a strengthening of a theorem from the upcoming paper 8 also appearing in the first
+authors thesis 6 theorem 425 where the additional assumption is that x be closed
+remark 153 when p is irreducible of degree 1 then p u   u  in this case the subsets of p are
+p and 0 so indeed the elements of a proper subset of p have bounded strength namely 0
+again the condition that k be algebraically closed cannot be dropped and neither can the condition on the characteristic however see remark 192 main theorem i has the same corollary as
+theorem 141
+universality of highstrength tensors
+corollary 154 with the same assumptions as in main theorem i let u  vec be a fixed vector
+space then there exist finitely many polynomial functors q1      qk  p and polynomial transforsk
+mations i  qi  p such that for every v  vec and every f  p v  that is not in i1 imiv 
+the map homv u   p u   7 p f is surjective
+if p is irreducible then the condition that f 6 i1 imiv  can be replaced by the condition that
+f has strength greater than some function of dim u only
+16 limits and dense orbits let p be a pure polynomial functor over k there is another point
+of view on closed subsets of p  which involves limits that we define now
+definition 161 we define p  limn p k n  where the map p k n1   p k n  is p n  with
+n  k n1  k n the projection map forgetting the last coordinate we equip p with the inverse
+limit of the zariski
+topologies on the p k n  which is itself a zariski topology coming from the fact
+that p   n p k n    we also write p n  for the projection map p  p k n  this will
+not lead to confusion a polynomial transformation   p  q naturally yields a continuous map
+p  q also denoted by 
+if p  s d  then the elements of p can be thought of as homogeneous series of degree d in
+infinitely many variables x1  x2     here closed subsets of p are defined by polynomial equations
+in the coefficients of these series s
+on p acts the group gl  n gln  where gln is embedded into gln1 via the map
+g 0
+g 7
+0 1
+indeed with this embedding the map p k n1   p k n  in the definition of p is gln equivariant
+and this yields the action of gl on the projective limit in the case of degreed series an element
+g  gln  gl maps each of the first n variables xi to a linear combination of x1      xn and the
+remaining variables to themselves
+the map that sends a closed subset x of p to the closed subset x  limn xk n  of p is a
+bijection with the collection of closed gl stable subsets of p 6 proposition 1328 hence closed
+subsets of polynomial functors can also be studied in this infinitedimensional setting
+example 162 on degreed forms gl clearly has dense orbits such as that of
+f  x1 x2    xd  xd1 xd2    x2d    
+the reason is that this series can be specialised to any degreed form in finitely many variables by
+linear variable substitutions this implies that the image of gl f in each s d k n  is dense hence
+gl f is dense in s
+for every pure polynomial functor p  the group gl has dense orbits on p in fact uncountably
+many of them see 6 451 they have the following interesting property
+corollary 163 suppose that gl p is dense in p  then for each integer n  1 the image of
+gl p in p k n  is all of p k n 
+proof for v  vec define
+xv   p p n p  n  1   homk n  v   p v 
+which is exactly the image of gl p under the projection p  p k m  followed by an isomorphism
+p  where   k m  v is a linear isomorphism we see that x is a subset of p  for each v  vec
+the subset xv  is dense in p v  since gl p is dense in p  so x  p by main theorem i
+the notion of strength has an obvious generalisation
+definition 164 assume that char k  0 let p be a homogeneous polynomial functor the
+strength of a tensor p  p is the minimal integer k  0 such that
+p  1 q1  r1       k qk  rk 
+arthur bik alessandro danelon jan draisma and rob eggermont
+for some irreducible polynomial functors qi  ri whose positive degrees sum up to d bilinear polynomial
+transformations i  qi  ri  p and elements qi  qi and ri  ri  if no such k exists we say
+that p has infinite strength
+corollary 165 assume that char k  0 and that p is irreducible of degree  2 then an element
+of p has infinite strength if and only if its gl orbit is dense
+proof if p  p has finite strength then let i  qi  ri  p be as in the definition above and let
+  1      k  q 
+qi  ri   p
+be their sum so that p  im consider the closed subset x  im ie the closed subset
+defined by xv   imv  for all v  vec as dim qk n  is a polynomial in n of degree  d while
+dim p k n  is a polynomial in n of degree d we see that xk n  is a proper subset of p k n  for all
+n  0 since p  x  it follows that gl p is not dense
+suppose conversely that gl p is not dense then it is contained in x for some proper closed
+subset x of p  hence p has finite strength by main theorem i
+example 166 let p q be homogeneous functors of the same degree d  2 and let p  p be
+an element of infinite strength then p 0  p  q also has infinite strength but the orbit
+gl p 0 is not dense
+remark 167 in section 3 we will use a generalisation of notation introduced here for an integer
+m  0 we will write pm for the limit limn p k nm over all integers n  m this space is
+isomorphic to p  but the indices have been shifted by m on pm acts the group glm 
+ gl 
+which is the union of glk nm  over all n  m we denote the image of an element p  pm
+in p k nm  by pnm  the inclusions n  k nm  k n sending v 7 0 v allow us to view
+pm as a subset of p 
+corollary 168 let p be a homogeneous polynomial functor of degree d  2 and m  0 an integer
+let p  pm be a tensor whose glm orbit is not dense and let q  p be an element with finite
+strength then the gl orbit of p  q  p is also not dense
+proof note that p is contained in the image of   qm  pm for some polynomial transformation   q  p with q  p 6 theorem 425 and q is contained in the image of   r  p for
+some polynomial transformation   r  p with degr  d so since q  r  p by remark 151
+we see that p  q is contained in a proper closed subset of p  hence its gl orbit is not dense 
+17 linear endomorphisms our second goal in this paper is to show that there always exist
+minimal f with dense orbits this minimality relates to a monoid of linear endomorphisms extending
+gl  as follows elements of gl are n  n matrices of the block form
+g 0
+0 i
+where g  gln for some n and i is the infinite identity matrix
+definition 171 let e  gl be the monoid of n  n matrices with the property that each row
+contains only finitely many nonzero entries
+example 172 for every integer i  1 let i  k ni mi be a matrix then the block matrix
+is an element of e
+universality of highstrength tensors
+we define an action of e on p as follows let p  p0  p1      p and   e for each integer
+i  0 to compute qi in
+q  q0  q1      p p
+we choose ni  0 such that all the nonzero entries of the first i rows of  are in the first ni columns
+now we let i  k ini be the i  ni block in the upperleft corner of  so that
+i 0
+and we set qi  p i pni  note that if we replace ni by a larger number i  then the resulting matrix
+i satisfies i  i   where   k i  k ni is the projection consequently we then have
+p i pi  p i p pi  p i pni 
+so that qi is indeed welldefined a straightforward computation shows that for    e we have
+p   p   p    so that e does indeed act on p 
+for infinite degreed forms the action of   e is by linear variable substitutions xj 7 i1 ij xi 
+note that since each xi appears in the image of only finitely many xj  this substitution does indeed
+make sense on infinite degreed series
+since gl  e an estable subset of p is also gl stable the converse does not hold since
+for instance e also contains the zero matrix and p 0f  0 6 p gf for all nonzero f  p and
+g  gl when the polynomial functor p is pure however it is easy to see that gl stable closed
+subsets of p are also estable in particular we have gl f  p ef 
+18 a quasiorder on infinite tensors
+definition 181 for infinite tensors p q  p we write p  q if p  p eq in this case we say
+that q specialises to p
+from the fact that e is a unital monoid that acts on p  we find that  is transitive and reflexive
+hence it induces an equivalence relation  on p by
+p  q  p  q and q  p
+as well as a partial order on the equivalence classes of 
+example 182 fix an integer k  1 and consider the polynomial functor p  s 1 k  a tuple
+q  q1      qk   p has a dense gl orbit if and only if q1      qk  s
+are linearly independent
+suppose that q has a dense gl orbit and let a be the n  k matrix corresponding to q then a
+has full rank by acting with an element of gl  e we may assume that
+where b is again an n  k matrix now take
+and note that b a  ik 0  so that p b q  x1      xk  so any two tuples in p with a
+dense gl orbit are in the same equivalence class moreover the element of e specializing one tuple
+to the other can be chosen to be invertible in e as c c  i 
+there is an obvious relation between  and orbit closures namely if p  q then p  gl q the
+converse however is not true
+example 183 let p  x1 x21  x22     q  x31  x32      s
+ then q has infinite strength and
+so p  s  gl q however we have p 6 q suppose that
+f  x1 gx1  x2      hx2  x3      s 3 eq
+arthur bik alessandro danelon jan draisma and rob eggermont
+for some g  s
+and h  s
+ as only finitely many variables xi are substituted by linear forms
+containing x1 when specialising q to f  we see that
+x1 gx1  x2      hx2  x3      s 3 ex31  x32      x3n 
+for some integer n  1 and h  s
+ from this it is easy to see that g has finite strength hence
+f 6 p as x1  x2     has infinite strength so indeed p 6 q
+in order to have a tensor p  p with a dense gl orbit the polynomial functor p must be pure
+for some time we believed that when this is the case all elements p  p with a dense gl orbit
+might form a single equivalence class when p has degree  2 this is in fact true see example 414
+however it doesnt hold for cubics
+example 184 let p q  s
+be as before now also consider r  px1  x3      qx2  x4    
+we have q  r0 x1  0 x2      r and so s
+ gl q  gl r hence both q and r have dense
+gl orbits and we have r 6 q indeed otherwise p  rx1  0 x2  0     r  q but p 6 q
+19 minimal classes of elements with dense orbits our second main result is the following
+theorem 191 main theorem ii suppose that k is algebraically closed of characteristic zero
+let p be a pure homogeneous polynomial functor over k then there exist tensors p r  p whose
+gl orbits are dense such that p  q  r for all q  p whose gl orbit is dense
+the elements p that have this property form a single class which lies below the classes of all
+other q  p whose gl orbit is dense for the construction of such a tensor p  p  see 31 for
+the construction of the tensor r  p  see 34
+remark 192 in both our main theorems we require that the characteristic be zero this is
+because the results in 6 and 8 require this however the proof of topological noetherianity for
+polynomial functors in 11 does not require characteristic zero and shows that after a shift and a
+localisation a closed subset of a polynomial functor admits a homeomorphism into an open subset of
+a smaller polynomial functor in characteristic zero this is in fact a closed embedding so that it can
+be inverted and yields a parameterisation of part of the closed subset in positive characteristic it
+is not a closed embedding but the map still becomes invertible if one formally inverts the frobenius
+morphism this is touched upon in 8 this might imply variants of our main theorems in arbitrary
+characteristic but we have not yet pursued this direction in detail
+acknowledgments we thank andrew snowden who first pointed out to us the action of the
+monoid e on p and asked about its orbit structure there
+2 proof of main theorem i
+21 the linear approximation of a polynomial functor
+let p be a polynomial functor over
+an infinite field and let u v  vec then p u  v   de0 qde u v  where
+qde u v   v  p u  v   s t  k  p s idu  t idv v  sd te v  pde u  v 
+the terms with e  0 add up to p u  and the terms with e  1 add up to a polynomial bifunctor
+evaluated at u v  that is linear in v  this is necessarily of the form p  u   v  where p  is a
+polynomial functor in other words we have
+p u  v   p u   p  u   v   higherdegree terms in v
+we informally think of the first two terms as the linear approximation of p around u  now suppose
+that we have a short exact sequence
+0p qr0
+of polynomial functors this implies that for all u v we have a short exact sequence
+0  p u  v   qu  v   ru  v   0
+universality of highstrength tensors
+and inspecting the degree1 parts in v we find a short exact sequence
+0  p   q  r  0
+this and further straightforward computations shows that p 7 p  is an exact functor from the
+category of polynomial functors to itself
+remark 211 for u  vec fixed denote the polynomial functor sending v 7 p u  v  and
+ 7 p idu  by shu p  then we have
+shu p e v   v  p u  v   t  k  p idu  t idv v  te v
+and from this we see that qde u v   shu p e v   pde u  v  in particular when p is homold
+geneous of degree d we see that p u  v   e0 qdee u v  where qdee u v   shu p e v 
+also note that in this case shu p 0 v   p u  and shu p d v   p v  via the inclusions of u v
+into u  v 
+example 212 if p  s d  then the formula
+s d u  v  
+s de u   s e v   s d u   s d1 u   v     
+identifies p with s
+example 213 let k be an algebraically closed field of characteristic p then s p contains the
+subfunctor p v   v p  v  v  we have p u  v   p u   p v  and hence p   0
+22 proof of main theorem i in this subsection we prove theorem 152 we start with a result
+of independent interest
+theorem 221 let p be a pure polynomial functor over an algebraically closed field kof characteristic 0 or  degp  and let x be a subset of p such that xv  is dense in p v  for all v  vec
+then in fact xv  is equal to p v  for all v  vec
+example 133 shows that the condition that k be algebraically closed cannot be dropped we do
+not know if the condition on the characteristic of k can be dropped but the proof will use that the
+polynomial functor p  introduced in 21 is sufficiently large which by example 213 need not be
+the case when char k is too small
+proof let q  p k n  for each k  n we consider the incidence variety
+zk   r  homk k  k n   p k k   rk  n and p r  q
+we write ek  dimk p k k  since for every   homk k  k n  of rank n the linear map p  is
+surjective zk is a vector bundle of rank ek  en over the rankn locus in homk k  k n  hence zk is
+an irreducible variety with dim zk  knek en  we therefore expect the projection   zk  p k k 
+to be dominant for k  n to prove that this is indeed the case we need to show that for z  zk
+sufficiently general the local dimension at z of the fibre 1 z is at most dimzk ek  knen 
+by the upper semicontinuity of the fibre dimension it suffices to exhibit a single point z with this
+property and indeed it suffices to show that the tangent space to the fibre at z has dimension at
+most kn  en 
+to find such a point z set u  k n and v  k kn and consider
+z  u  p u q  r  zk 
+where u  u  v  u is the projection and u  u  u  v is the inclusion and where we will choose
+r  p  u   v  p u  v  note that then
+p u q  r  p u   p  u   v   p u  v 
+and that p u r  0 so that z does indeed lie in zk 
+arthur bik alessandro danelon jan draisma and rob eggermont
+the tangent space tz 1 z projected into homk k  k n  is contained in the solution space
+of the linear system of equations
+p u  p u q  r  q
+mod 2
+for  by the rank theorem the dimension of this solution space equals kn  dimhomk k  k n 
+minus the rank of the linear map
+homu  v u   p u   7 the coefficient of  in p u  p u q  r
+so it suffices to prove that for all k  n there is a suitable r such that this linear map is surjective in
+fact we will restrict the domain to those   homu  v u  of the form   v where v  u  v  v
+is the projection and   homv u  then
+p u  p u q  p u    v   u q  p idu q  q
+so p u q does not contribute to the coefficient of  and this coefficient equals
+p idu  idu idp  u  r
+where idu  idu  u  u  u is the map sending u1  u2  to u1  u2  note that the codomain of
+idp  u   equals p  u   u  p u  u  so that the composition above makes sense below we will
+show that for k  n  dim v  n and suitable r  p  u   v the linear map
+pvr  homv u   p u 
+ 7 p idu  idu idp  u  r
+is surjective
+hence there exists a k such that zk  p k k  is dominant by chevalleys theorem the image
+contains a dense open subset of p k k  and this dense open subset intersects the dense set xk k 
+hence there exists an element p  xk k  and a   homk k  k n  such that p p  q finally
+since x is a subset of p  also q is a point in xk n  hence xk n   p k n  for each n as desired 
+lemma 222 let p be a polynomial functor over an infinite field k with chark  0 or chark 
+degp  and let u  vec then for v  vec with dim v  dim u  there exists an r  p  u   v
+such that
+pvr  homv u   p u 
+ 7 p idu  idu idp  u  r
+is surjective
+proof when chark  0 the abelian category of polynomial functors is semisimple with the
+schur functors as a basis when chark  p  0 the situation is more complicated the irreducible
+polynomial functors still correspond to partitions 16 theorem 35 a degreed irreducible polynomial
+functor is a submodule of the functor t v   v d if and only if the corresponding partition is column
+pregular 19 theorem 32 luckily this is always the case when d  p and the abelian category of
+polynomial functors of degree  p is semisimple 16 corollary 26e now if p q are such polynomial
+functors and r1  p  u   v and r2  q u   w have the required property for p q respectively
+then
+r  r1  r2   p  u   v   q u   w   p  u   q u   v  w 
+ p  q u   v  w 
+has the required property for p  q hence it suffices to prove the lemma in the case where p is an
+irreducible polynomial functor of degree d we then have t  p  q where t v   v d and q
+is another polynomial functor by a similar argument as above if r  t  u   v has the required
+property for t  then its image in p  u   v has the required property for p  hence it suffices to prove
+the lemma for t 
+universality of highstrength tensors
+now we have
+t u  v   t u   v  u  u      u   u  v  u      u 
+     u  u  u      v   terms of higher degree in v 
+so that t is a direct sum of d copies of u 7 u d1  we take r in the first of these copies as follows
+let e1      en be a basis of u and set
+v  e1      ed1
+nd1
+where the v are a basis of a space v of dimension nd1  for every   nd1 and i  n the linear
+map  that maps v to ei and all other v to zero is a witness to the fact that ei  e1      ed1
+is in the image of tvr  hence this linear map is surjective
+lemma 223 assume that k is algebraically closed of characteristic zero let p q be polynomial
+functors assume that p is irreducible of degree d q has degree  d and let   q  p be a
+polynomial transformation then there is a uniform bound on the strength of elements of imv  that
+is independent of v 
+proof let r be the sum of the components of q of strictly positive degree any element in imv 
+is also in imv  for a polynomial transformation v  r  p obtained from  by a suitable specialisation write r  r1      rk  where the ri are schur functors of degrees 0  di  d the
+polynomial transformation  factors uniquely as the polynomial transformation
+  r1      rk  f 
+s ei ri
+1 ek 0 i1
+i ei di d
+r1      rk  7 r1e1      rkek e1 ek
+and a linear polynomial transformation   f  p  as  is linear we see that strv v  strv
+for all v  vec and v  f v  so it suffices to prove that the elements of the subset im which
+depends only on q and d have bounded strength we have
+strr1e1      rkek  
+strr1e1      rkek e1 ek 
+1 ek 0
+i ei di d
+i ei
+ 2 whenever
+i ei di
+1 ek 0
+i ei di d
+ d so this is indeed the case
+proof of theorem 152 main theorem i let x be a subset of a pure polynomial functor p over
+an algebraically closed field k of characteristic zero for each v  vec define y v   xv  if
+y is a proper closed subset of p  then by 6 theorem
+s 425 there exist finitely many polynomial
+transformations i  qi  p with qi  p and y v   i imiv  for all v  vec since x  y  we
+are done otherwise if y v   p v  for all v  then theorem 221 implies that also xv   p v 
+for all v  the last statement follows from the previous lemma
+proof of corollary 154 let x be the subset of p constisting of all elements f  p v  such that
+homv u   p u 
+ 7 p f
+is not surjective by main theorem i it suffices to prove that x 6 p  as before we claim that in
+fact xv  6 p v  already when dim v  degp   dim p u 
+first suppose that p is irreducible then p is a schur functor take v0  k d and l  dim p u 
+then it is known that homv0  u   p v0  spans p u  let p 1 p1      p l pl be a basis of p u 
+let i  v0  v0l and i  v0l  v0 be the inclusion and projection maps and take
+p  p i p1      p l pl  p v0l 
+arthur bik alessandro danelon jan draisma and rob eggermont
+then p i  i p  p i pi  hence
+homv0l  u   p u 
+ 7 p p
+is surjective
+next suppose that p  q  r and that there exist f  qv  and g  rw  such that
+homv u   qu 
+and
+homw u   ru 
+ 7 qf
+ 7 rg
+are surjective by induction we can assume such f g exist when dim v  degp   dim qu  and
+dim w  degp   dim ru  now we see that
+homv  w u   p u 
+ 7 p p 1 f   p 2 g
+is surjective this proves the first part of the corollary for the second statement we note that when
+p is irreducible the elements of imi  have bounded strength as the bound depends only on x and
+x only depends on dim u  we see that f 6 ki1 imi  for all f with strength greater than some
+function of dim u only
+3 proof of main theorem ii
+31 construction of the minimal class let p be a homogeneous polynomial functor of degree
+d  0 over an algebraically closed field k of characteristic zero decompose
+p  p 1      p l
+into schur functors for each u  vec of dimension  d the glu module p i u  is irreducible
+and in particular nonzero let v  vec be a vector space of dimension d let v 1i be a copy of v
+for each i  1     l and choose any nonzero q 1i  p i v 1i  we write
+q 1  q 11      q 1l  p 1 v 11       p l v 1l   p w 1 
+where w 1  v 11      v 1l  we take independent copies w j  v j1      v jl of w 1
+and copies q j  q j1      q jl  p w j  of q1 and set
+q  q 1  q 2      p
+where we concatenate copies of a basis in the lddimensional space w 1 to identify w 1      w k
+with k kld 
+ so that we may take v  k d  we may take q 11  xd1 
+example 311 let p  s d 
+vd 12
+ where x1      xd and xd1      x2d are bases of
+s d v 11  and q 12  xd1      x2d 
+v 11 and v 12  respectively we then have
+q  xd1  xd1      x2d   xd2d1  x3d1      x4d     
+we will prove first that any q constructed in this manner has a dense gl orbit in p  and
+second that q  p for all p  p with a dense gl orbit
+32 density of the orbit of q
+proposition 321 the gl orbit of q is dense in p 
+proof it suffices to prove that for each u  vec and each p  p u  there exists a k  1 and a linear
+map   w 1      w k  u such that p q 1      q k   p furthermore we may assume
+that u has dimension at least d fix a linear injection   v  u  now q i  p q ji  is a nonzero
+vector in the glu module p i u  which is is irreducible hence the component pi of p in p i u 
+can be written as
+pi  p g 1i q i      p g ki i q i
+universality of highstrength tensors
+for suitable elements g 1i      g ki i  endu  do this for all i  1     l by taking the maximum
+of the numbers ki and setting the irrelevant g ji equal to zero we may assume that the ki are
+all equal to a fixed number k this is the k that we needed now we may define  by declaring its
+restriction on v ji to be equal to g ji   we then have
+p q1      qk  
+k x
+p g ji q i 
+j1 i1
+pi  p
+as desired
+33 minimality of the class of q
+proposition 331 we have q  p for every p  p with a dense gl orbit
+proof let p  p be a tensor with a dense gl orbit and write p  p0  p1  p2     with pi  p k i 
+take m0  n0  0 there exists a linear map 0  k m0  k n0 such that p 0 pm0  qn0  0
+namely the zero map write ni  n0  ild our goal is to contruct for each integer i  1 an integer
+mi  mi1 and a linear map i  k mi mi1   w i such that the linear map i  k mi  k ni
+making the diagram
+i mi1 
+ k ni1  w i  k ni
+k mi  k mi1  k m
+idmi1  i
+ i1  idw i
+k mi1  w i
+commute satisfies p i pmi  qni  q 1      q i 
+let i  1 be an integer as observed in 21 we can write
+p k mi1  v   p k mi1   r1 v       rd1 v   p v 
+where rj  shk mi1 p j is a homogeneous polynomial functor of degree j writing k n as k mi1 
+k nmi1   we obtain a corresponding decomposition
+p  pmi1  r1      rd1  p
+where rj  rjmi1 and p  pmi1 and we claim that p has a dense glmi1 orbit here we
+use the notation from remark 167
+the polynomial bifunctor u v  7 p u  v  is a direct sum of bifunctors of the form u v  7
+qu   rv  where q r are schur functors it follows that rj v  is the direct sum of spaces
+qk mi1   rv  where q r are schur functors of degrees d  j j respectively hence the elements r1      rd1 have finite strength also note that pmi1  p k mi1  has finite strength so by
+corollary 168 we see that the glmi1 orbit of p must be dense
+ld1
+the tuple r1      rd1  
+j1 rjmi1 may not have a dense glmi1 orbit however
+there exists a polynomial functor r less than or equal to r1      rd1 with r0  0 an
+r  rmi1 and a polynomial transformation
+  1      d1   r  r1      rd1
+such that r has a dense glmi1 orbit and r  r1      rd1  since p is homogeneous of degree
+d  degr the pair r p  has a dense orbit in rmi1  pmi1 by 6 lemma 453 hence by
+corollary 163 there exists an mi  mi1  ld and a linear map i  k mi mi1   w i such that
+ri rmi mi1   0 and p i pmi mi1   q i 
+since polynomial transformations between polynomial functors with zero constant term map zero
+to zero the first equality implies that for all j  1     d  1
+rj i rjmi mi1   rj i j rmi mi1    j ri rmi mi1    j 0  0
+thus informally applying the map i makes p specialise to the required q i  while the terms
+r1      rd1 are specialised to zero
+arthur bik alessandro danelon jan draisma and rob eggermont
+we define i as above and we have
+p i pmi  p i1  idw i p idmi1  i  pmi1 
+ p i1  idw i  pmi1 
+rjmi mi1  
+pmi mi1  
+rj i rjmi mi1   p i pmi mi1  
+ p i1  idw i pmi1  q i   qni1  q i  q 1      q i 
+iterating this argument we find that the infinite matrix
+  e
+has the property that p ep  q 1  q 2      q as desired
+remark 332 note that the element e  e constructed above has only finitely many nonzero entries
+in each row and in each column
+remark 333 fix an integer k  0 then we have the following strengthening of the previous
+1 k
+theorem we have x1      xk  q  l1      lk  p for every l1      lk  p  s
+  p with a dense
+gl orbit here q is defined as before in variables distinct from x1      xk  to see this note that a
+1 k
+tensor in s
+  p with a dense gl orbit is of the form l1      lk  p where l1      lk  s
+are linearly independent and p  p has a dense gl orbit by acting with an invertible element of
+e as in example 182 we may assume that li  xi  take n0  k similar to induction step in the
+proof of the previous theorem there exists an integer m0  k and a linear map   k m0 k  k n0
+such that the linear map 0  idk    k k  k m0 k  k n0 satisfies p 0 pm0  qn0  0 we now
+proceed as in the proof of the theorem with these m0  n0  0 to find the result
+proof of theorem 191 existence of p the existence of a minimal p among all elements with a dense
+gl orbit follows directly from propositions 321 and 331
+34 maximal tensors next we construct maximal elements with respect to  of p for any
+pure polynomial functor p  we start with nway tensors then do schur functors and finally general
+polynomial functors let d  1 be an integer and let t d be the polynomial functor sending v 7 v d 
+lemma 341 there exists a tensor rd  t
+such that p  rd for all p  t
+proof for d  1 we know that the element r1  x1  t
+satisfies p  r1 for all p  t
+ now
+suppose that d  2 and that rd1  rd1 x1  x2      t satisfies p  rd1 for all p  t  we
+define a rd  t
+satisfying p  rd for all p  t
+for j  1     d we define the map  j   t
+as the inverse limit of the bilinear
+maps  j   v  v
+such that vj j v1      vj1  vj1      vd   v1      vd
+for all finitedimensional vector space v and all vectors v1      vd  v  now we take
+rd 
+xij1 j rd1 xij2  xij3    
+i1 j1
+where   n  1     d  n  n is any injective map we claim that p  rd for all p  t
+ indeed
+any such p can we written as
+xi j pi xi  xi1    
+i1 j1
+universality of highstrength tensors
+with p1  p2      t
+and by assumption we can specialize rd1 to pi using an element of e for all i
+combined this yields a specialization of rd to p note here that xij1 7 xi and xijk 7 lijk for
+k  1 in such a way that xl occurs when ranging over k in only finitely many lijk when i  l and
+xl does not occur in lijk when i  l this means that the specialization of rd to p indeed goes via
+an element of e so for all d  1 the space t
+has a maximal element with respect to 
+lemma 342 let p be a schur functor of degree d  1 then there exists a tensor r  p such
+that p  r for all p  p 
+proof the space p is a direct summand of t
+ let r be the component in p of rd from the
+previous lemma then p  r for all p  p 
+proof of theorem 191 the existence of r let p be a polynomial functor and write
+p  p 1      p k
+as a direct sum of schur functors for each i  1     k let ri  ri x1  x2      p be a tensor
+such that pi  ri for all pi  p and take r  r1 x1  xk1         rk xk  x2k      p  then
+p  r for all p  p 
+4 further examples
+in this section we give more examples we prove that tensors in p with a dense gl orbit for a
+single equivalence class when p has degree  2 we compare candidates for minimal tensors in a direct
+sum of s d s of distinct degrees and we construct maximal elements in p for all p with p 0  0
+41 polynomial functors of degree  2
+example 411 take p  s 1  s 1  then a pair v w  s
+has one of the following forms
+1 the pair v w with v w  s
+linearly independent vectors
+2 the pair u u with u  s nonzero and     p1  or
+3 the pair 0 0
+in the first case the pair v w has a dense gl orbit and is equivalent to x1  x2  when vw  0
+for some    k then this also holds for all specialisations of v w so the poset of equivalence
+classes is given by
+x1  x2 
+0 0
+where a point     p1 corresponds to the class of u u with u  s
+nonzero and all points in
+p are incomparable
+example 412 take p  s 2  by proposition 331 each infinite quadric
+aij xi xj
+1ij
+of infinite rank specialises to the quadric q  x1 x2  x3 x4     via a suitable linear change of
+coordinates here each variable is only allowed to occur in only finitely many of the linear forms that
+x1  x2     are substituted by conversely it is not difficult to see that q specialises to p as well by
+arthur bik alessandro danelon jan draisma and rob eggermont
+applying the following element of e
+a11
+a12
+a13
+a14
+a22
+a23
+a24
+a33
+a34
+we conclude that the infiniterank quadrics form a single equivalence class under  and that the rank
+function is an isomorphism from the poset of equivalence classes to the wellordered set 0 1 2     
+example 413 take p  2  by proposition 331 each infinite alternating tensor
+aij xi  xj
+1ij
+of infinite rank specialises to q  x1  x2  x3  x4     and q specialises to p as well by applying
+the following element of e
+1 0 0 0 0 0 
+0 a12 1 0 0 0   
+0 a13 0 a23 1 0   
+0 a14 0 a24 0 a34   
+as before we conclude that the infiniterank alternating tensors form a single equivalence class and
+that the rank function is an isomorphism from the poset of equivalence classes to the wellordered set
+0 1 2     
+example 414 take p  s 1 a  s 2 b   2 c for integers a b c  0 by remark 333 any
+tuple in p with a dense gl orbit specialises to the tuple
+x1      xa  y1 y2  y2b1 y2b2          y2b1 y2b  y4b1 y4b     
+z1  z2  z2c1  z2c2          z2c1  z2c  z4c1  z4c    
+where y2ibj  xa2ib2icj for i  0 and 1  j  2b and z2icj  xa2i1b2icj for i  0 and
+1  j  2c by the previous examples each of the entries in this latter tuple independently specialises
+to any tensor in the same space so the entire tuple also specialises to any other tuple in p  so the
+tuple with a dense gl orbit again form a single equivalence class
+42 nonhomogeneous polynomial functors the proof of proposition 331 relies on the fact
+that p is homogeneous apart from the slight generalisation from remark 333 we dont know if
+such a result holds in a more general setting
+question 421 take p  s 2  s 3  does there exist a tensor q  p with a dense gl orbit such
+that q  p for all p  p with a dense gl orbit
+the next example compares different candidates for such a minimal element
+example 422 take p  s d1  s d2      s dk with 1  d1  d2      dk  by 6 lemma 453
+an element f1      fk   p has dense gl orbit if and only if fi  s
+has dense gl orbit for
+all i  1     k in particular the elements
+q  q 1      q k   xd11  xd21          xd1k  xd2k    
+and
+p  p1      pk   xd11  xdk1
+         xdkk  xd2kk    
+have dense gl orbits clearly q  p by corollary 163 there exists an n  1 and linear forms
+l1      ln in x1      xk such that qn l1      ln   xj j for j  1     k take
+lhni  li xhn1      xhnn 
+universality of highstrength tensors
+for j  1     k so
+for h  1 and i  1     k then we see that qn lhn1      lhnn   xhnj
+since
+q j  qnj  qnj xn1      x2n     
+we see that q l1  l2      p  let a be the k  n matrix corresponding to l1      ln and take
+e  
+then p eq j  q j l1  l2     so p  q hence p  q
+references
+1 tigran ananyan melvin hochster small subalgebras of polynomial rings and stillmans conjecture journal of the
+american mathematical society 33 2020 no 1 pp 291309
+2 tigran ananyan melvin hochster strength conditions small subalgebras and stillman bounds in degree  4
+transactions of the american mathematical society 373 2020 pp 47574806
+3 edoardo ballico arthur bik alessandro oneto emanuele ventura the set of forms with bounded strength is not
+closed preprint arxiv201201237
+4 edoardo ballico arthur bik alessandro oneto emanuele ventura strength and slice rank of forms are generically
+equal preprint arxiv210211549
+5 edoardo ballico emanuele ventura the strength for line bundles mathematica scandinavica to appear 2020
+6 arthur bik strength and noetherianity for infinite tensors phd thesis universitt bern 2020 httpsbiblio
+unibechdownloadeldiss20bikmapdf
+7 arthur bik jan draisma rob h eggermont polynomials and tensors of bounded strength communications in
+contemporary mathematics 21 2019 no 7 1850062 24 pages
+8 arthur bik jan draisma rob h eggermont andrew snowden the geometry of polynomial representations
+in preparation
+9 arthur bik alessandro oneto on the strength of general polynomials preprint arxiv200508617
+10 harm derksen rob h eggermont andrew snowden topological noetherianity for cubic polynomials algebra 
+number theory 11 2017 no 9 pp 21972212
+11 jan draisma topological noetherianity of polynomial functors journal of the american mathematical society 32
+2019 no 3 pp 691707
+12 daniel erman steven v sam andrew snowden big polynomial rings and stillmans conjecture inventiones
+mathematicae 218 2019 no 2 pp 413439
+13 daniel erman steven v sam andrew snowden strength and hartshornes conjecture in high degree mathematische zeitschrift 297 2021 pp 14671471
+14 daniel erman steven v sam andrew snowden big polynomial rings with imperfect coefficient fields michigan
+mathematical journal to appear 2020
+15 eric m friedlander andrei suslin cohomology of finite group schemes over a field inventiones mathematicae
+127 1997 pp 209270
+16 james a green polynomial representations of gln  lecture notes in mathematics 830 springer berlin 2007
+17 david kazhdan tamar ziegler on ranks of polynomials algebras and representation theory 21 2018 no 5
+pp 10171021
+18 david kazhdan tamar ziegler properties of high rank subvarieties of affine spaces geometric and functional
+analysis 30 2020 pp 10631096
+19 gordon d james the decomposition of tensors over fields of prime characteristics mathematische zeitschrift
+172 1980 pp 161178
+mpi for mathematics in the sciences leipzig germany
+email address arthurbikmismpgde
+eindhoven university of technology the netherlands
+email address adanelontuenl
+university of bern switzerland and eindhoven university of technology the netherlands
+email address jandraismamathunibech
+eindhoven university of technology the netherlands
+email address rheggermonttuenl

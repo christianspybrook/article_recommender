@@ -1,0 +1,2510 @@
+arXiv:0704.0043v1 [cond-mat.stat-mech] 31 Mar 2007
+
+Nonequilibrium entropy limiters
+in lattice Boltzmann methods 1
+R. A. Brownlee, A. N. Gorban ∗, J. Levesley
+Department of Mathematics, University of Leicester, Leicester LE1 7RH, UK
+
+Abstract
+We construct a system of nonequilibrium entropy limiters for the lattice Boltzmann methods (LBM). These limiters erase spurious oscillations without blurring
+of shocks, and do not affect smooth solutions. In general, they do the same work
+for LBM as flux limiters do for finite differences, finite volumes and finite elements
+methods, but for LBM the main idea behind the construction of nonequilibrium entropy limiter schemes is to transform a field of a scalar quantity - nonequilibrium
+entropy. There are two families of limiters: (i) based on restriction of nonequilibrium
+entropy (entropy "trimming") and (ii) based on filtering of nonequilibrium entropy
+(entropy filtering). The physical properties of LBM provide some additional benefits: the control of entropy production and accurate estimate of introduced artificial
+dissipation are possible. The constructed limiters are tested on classical numerical examples: 1D athermal shock tubes with an initial density ratio 1:2 and the
+2D lid-driven cavity for Reynolds numbers Re between 2000 and 7500 on a coarse
+100 × 100 grid. All limiter constructions are applicable for both entropic and nonentropic quasiequilibria.
+Key words: lattice Boltzmann method, numerical regularisation, entropy
+PACS: 47.11.Qr, 47.20.-k, 47.11.-j, 51.10.+y
+
+1
+
+Introduction
+
+In 1959, S.K. Godunov [17] demonstrated that a (linear) scheme for a PDE
+could not, at the same time, be monotone and second order accurate. Hence,
+∗ Corresponding author.
+Email addresses: r.brownlee@mcs.le.ac.uk (R. A. Brownlee),
+a.gorban@mcs.le.ac.uk (A. N. Gorban), j.levesley@mcs.le.ac.uk
+(J. Levesley).
+1 This work is supported by EPSRC grant number GR/S95572/01.
+
+Preprint submitted to Physica A
+
+1 February 2008
+
+we should choose between spurious oscillation in high order non-monotone
+schemes and additional dissipation in first order schemes. Flux limiter schemes
+are invented to combine high resolution schemes in areas with smooth fields
+and first order schemes in areas with sharp gradients.
+The idea of flux limiters can be illustrated by computation of the flux F0,1
+of the conserved quantity u between a cell marked by 0 and one of two its
+neighbour cells marked by ±1:
+high
+low
+F0,1 = (1 − φ(r))f0,1
++ φ(r)f0,1
+,
+
+where f0,low1 , f0,high
+1 are low and high resolution scheme fluxes, respectively, r =
+(u0 − u−1 )/(u1 − u0 ), and φ(r) ≥ 0 is a flux limiter function. For r close to 1,
+the flux limiter function φ(r) should be also close to 1.
+Many flux limiter schemes have been invented during the last two decades [43].
+No particular limiter works well for all problems, and a choice is usually made
+on a trial and error basis.
+Below are several examples of flux limiter functions:
+φmm (r) = max [0, min (r, 1)] (minmod, [36]);
+φos (r) = max [0, min (r, β)] , (1 ≤ β ≤ 2) (Osher, [10]);
+φmc (r) = max [0, min (2r, 0.5(1 + r), 2)] (monotonised central [42]);
+φsb (r) = max [0, min (2r, 1) , min (r, 2)] (superbee, [36]);
+φsw (r) = max [0, min (βr, 1) , (r, β)] , (1 ≤ β ≤ 2) (Sweby, [40]).
+The lattice Boltzmann method has been proposed as a discretization of Boltzmann's kinetic equation and is now in wide use in fluid dynamics and beyond
+(for an introduction and review see [38]). Instead of fields of moments M, the
+lattice Boltzmann method operates with fields of discrete distributions f . This
+allows us to construct very simple limiters that do not depend on slopes or
+gradients.
+All the limiters we construct are based on the representation of distributions
+f in the form:
+f − f∗
+f = f ∗ + kf − f ∗ k
+,
+kf − f ∗ k
+where f ∗ is the correspondent quasiequilibrium (conditional equilibrium) for
+given moments M, f − f ∗ is the nonequilibrium "part" of the distribution,
+which is represented in the form "norm×direction" and kf − f ∗ k is the norm
+of that nonequilibrium component (usually this is the entropic norm). Limiters change the norm of the nonequilibrium component f − f ∗ , but do not
+touch its direction or the equilibrium. In particular, limiters do not change the
+2
+
+macroscopic variables, because moments for f and f ∗ coincide. All limiters we
+use are transformations of the form
+f 7→ f ∗ + φ × (f − f ∗ )
+
+(1)
+
+with φ > 0. If f − f ∗ is too big, then the limiter should decrease its norm.
+The outline of the paper is as follows. In Sec. 2 we introduce the notions and
+notations from lattice Boltzmann theory we need, in Sec. 3 we elaborate the
+idea of entropic limiters in more detail and construct several nonequilibrium
+entropy limiters for LBM, in Sec. 4 some numerical experiments are described:
+(1) 1D athermal shock tube examples;
+(2) steady state vortex centre locations and observation of first Hopf bifurcation in 2D lid-driven cavity flow.
+Concluding remarks are given in Sec. 5.
+
+2
+
+Background
+
+The essence of lattice Boltzmann methods was formulated by S. Succi in the
+following maxim: "Nonlinearity is local, non-locality is linear" 2 . We should
+even strengthen this statement. Non-locality (a) is linear; (b) is exactly and
+explicitly solvable for all time steps; (c) space discretization is an exact operation.
+The lattice Boltzmann method is a discrete velocity method. The finite set
+of velocity vectors {v i } (i = 1, ...m) is selected, and a fluid is described by
+associating, with each velocity v i , a single-particle distribution function fi =
+fi (x, t) which is evolved by advection and interaction (collision) on a fixed
+computational lattice. The values fi are named populations. If we look at all
+lattice Boltzmann models, one finds that there are two steps: free flight for
+time δt and a local collision operation.
+The free flight transformation for continuous space is
+fi (x, t + δt) = fi (x − v i δt, t).
+After the free flight step the collision step follows:
+fi (x) 7→ Fi ({fj (x)}),
+2
+
+(2)
+
+S. Succi, "Lattice Boltzmann at all-scales: from turbulence to DNA translocation", Mathematical Modelling Centre Distinguished Lecture, University of Leicester, Leicester UK, 15th November 2006.
+
+3
+
+or in the vector form
+f (x) 7→ F (f (x)).
+
+Here, the collision operator F is the set of functions Fi ({fj }) (i = 1, ...m).
+Each function Fi depends on all fj (j = 1, ...m): new values of the populations
+fi at a point x are known functions of all previous population values at the
+same point.
+The lattice Boltzmann chain "free flight → collision → free flight → collision
+* * * " can be exactly restricted onto any space lattice which is invariant with
+respect to space shifts of the vectors v i δt (i = 1, ...m). Indeed, free flight transforms the population values at sites of the lattice into the population values
+at sites of the same lattice. The collision operator (2) acts pointwise at each
+lattice site separately. Much effort has been applied to answer the questions:
+"how does the lattice Boltzmann chain approximate the transport equation for
+the moments M?", and "how does one construct the lattice Boltzmann model
+for a given macroscopic transport phenomenon?" (a review is presented in
+book [38]).
+In our paper we propose a universal construction of limiters for all possible
+collision operators, and the detailed construction of Fi ({fj }) is not important
+for this purpose. The only part of this construction we use is the local equilibria
+(sometimes these states are named conditional equilibria, quasiequilibria, or
+even simpler, equilibria).
+The lattice Boltzmann models should describe the macroscopic dynamic, i.e.,
+the dynamic of macroscopic variables. The macroscopic variables Ml (x) are
+some linear functions of the population values at the same point: Ml (x) =
+P
+i mli fi (x), or in the vector form, M(x) = m(f (x)). The macroscopic variables are invariants of collisions:
+X
+i
+
+mli fi =
+
+X
+i
+
+mli Fi ({fj }) (or m(f ) = m(F (f ))).
+
+The standard example of the macroscopic variables are hydrodynamic fields
+P
+(density–velocity–energy density): {n, nu, E}(x) := i {1, vi , vi2 /2}fi(x). But
+this is not an obligatory choice. If we would like to solve, by LBM methods,
+the Grad equations [22] or some extended thermodynamic equations [25], we
+should extend the list of moments (but, at the same time, we should be ready
+to introduce more discrete velocities for a proper description of these extended
+moment systems). On the other hand, the athermal lattice Boltzmann models
+with a shortened list of macroscopic variables {n, nu} are very popular.
+The quasiequilibrium is the positive fixed point of the collision operator for
+the given macroscopic variables M. We assume that this point exists, is unique
+and depends smoothly on M. For the quasiequilibrium population vector for
+∗
+given M we use the notation fM
+, or simply f ∗ , if the correspondent value of
+4
+
+M is obvious. We use Π∗ to denote the equilibration projection operation of
+a distribution f into the corresponding quasiequilibrium state:
+∗
+Π∗ (f ) = fm(f
+).
+
+For some of the collision models an entropic description of equilibrium is possible: an entropy density function S(f ) is defined and the quasiequilibrium
+∗
+point fM
+is the entropy maximiser for given M [26,39].
+As a basic example we shall consider the lattice Bhatnagar–Gross–Krook
+(LBGK) model with overrelaxation (see, e.g., [3,12,23,28,38]). The LBGK collision operator is
+F (f ) := Π∗ (f ) + (2β − 1)(Π∗ (f ) − f ),
+
+(3)
+
+where β ∈ [0, 1]. For β = 0, LBGK collisions do not change f , for β = 1/2
+these collisions act as equilibration (this corresponds to the Ehrenfests' coarse
+graining [15] further developed in [14,19,20]), for β = 1, LBGK collisions act
+as a point reflection with the center at the quasiequilibrium Π∗ (f ).
+It is shown [8] that under some stability conditions and after an initial period
+of relaxation, the simplest LBGK collision with overrelaxation [23,38] provides
+second order accurate approximation for the macroscopic transport equation
+with viscosity proportional to δt(1 − β)/β.
+The entropic LBGK (ELBM) method [5,20,26,39] differs in the definition
+of (3): for β = 1 it should conserve the entropy, and in general has the following
+form:
+F (f ) := (1 − β)f + β f ̃,
+(4)
+∗
+ ̃
+where f = (1 − α)f + αΠ (f ). The number α = α(f ) is chosen so that the
+constant entropy condition is satisfied: S(f ) = S(f ̃). For LBGK (3), α = 2. Of
+course, for ELBM the entropic definition of quasiequilibrium should be valid.
+In the low-viscosity regime, LBGK suffers from numerical instabilities which
+readily manifest themselves as local blow-ups and spurious oscillations.
+The LBM experiences the same spurious oscillation problems near sharp gradients as high order schemes do. The physical properties of the LBM schemes
+allows one to construct new types of limiters: the nonequilibrium entropy limiters. In general, they do the same work for LBM as flux limiters do for finite
+differences, finite volumes and finite elements methods, but for LBM the main
+idea behind the construction of nonequilibrium entropy limiter schemes is to
+limit a scalar quantity - nonequilibrium entropy (and not the vectors or tensors of spatial derivatives, as it is for flux limiters). These limiters introduce
+some additional dissipation, but all this dissipation could easily be evaluated
+through analysis of nonequilibrium entropy production.
+5
+
+Two examples of such limiters have been recently proposed: the positivity
+rule [6,31,41] and the Ehrenfests' regularisation [7]. The positivity rule just
+provides positivity of distributions: if a collision step produces negative populations, then the positivity rule returns them to the boundary of positivity. In
+the Ehrenfests' regularisation, one selects the k sites with highest nonequilibrium entropy (the difference between entropy of the state f and entropy of the
+corresponding quasiequilibrium state f ∗ at a given space point) that exceed a
+given threshold and equilibrates the state in these sites.
+The positivity rule and Ehrenfests' regularisation provide rare, intense and
+localised corrections. It is easy and also computationally cheap to organise
+more gentle transformation with smooth shift of highly nonequilibrium states
+to quasiequilibrium. The following regularisation transformation distributes
+its action smoothly: we can just choose in (1) φ = φ(∆S(f )) with sufficiently
+smooth function φ(∆S(f )). Here f is the state at some site, f ∗ is the corresponding quasiequilibrium state, S is entropy, and ∆S(f ) := S(f ∗ ) − S(f ).
+The next step in the development of the nonequilibrium entropy limiters is in
+the usage of local entropy filters. The filter of choice here is the median filter: it
+does not erase sharp fronts, and is much more robust than convolution filters.
+An important problem is: "how does one create nonequilibrium entropy limiters for LBM with non-entropic quasiequilibria?". We propose a solution
+of this problem based on the nonequilibrium Kullback entropy. For entropic
+quasiequilibrium the Kullback entropy approach gives the same entropic limiters. In thermodynamics, Kullback entropy belongs to the family of Massieu–
+Planck–Kramers functions (canonical or grandcanonical potentials).
+
+3
+
+Nonequilibrium entropy limiters for LBM
+
+3.1 Positivity rule
+
+There is a simple recipe for positivity preservation [6,31,41]: to substitute
+nonpositive I0β (f )(x) by the closest nonnegative state that belongs to the
+straight line
+
+ff
+λf (x) + (1 − λ)Π∗ (f (x))| λ ∈ R
+
+(5)
+
+defined by the two points, f (x) and corresponding quasiequilibrium. This operation is to be applied pointwise, at points of the lattice where positivity
+is violated. The coefficient λ depends on x too. Let us call this recipe the
+positivity rule (Fig. 1). This recipe preserves positivity of populations and
+probabilities, but can affect accuracy of approximation. The same rule is nec6
+
+-
+
+f
+Positivity fixation
+
+f*
+
+Positivity domain
+
+F(f )
+Fig. 1. Positivity rule in action. The motions stops at the positivity boundary.
+
+essary for ELBM (4) when the positive "mirror state" f ̃ with the same entropy
+as f does not exists on the straight line (5).
+
+3.2 Ehrenfests' regularisation
+
+To discuss methods with additional dissipation, the entropic approach is very
+convenient. Let entropy S(f ) be defined for each population vector f = (fi )
+(below we use the same letter S for local in space entropy, and hope that
+context will make this notation always clear). We assume that the global
+entropy is a sum of local entropies for all sites. The local nonequilibrium
+entropy is
+∆S(f ) := S(f ∗ ) − S(f ),
+(6)
+where f ∗ is the corresponding local quasiequilibrium at the same point.
+
+The Ehrenfests' regularisation [6,7] provides "entropy trimming": we monitor local deviation of f from the corresponding quasiequilibrium, and when
+∆S(f )(x) exceeds a pre-specified threshold value δ, perform local Ehrenfests'
+steps to the corresponding quasiequilibrium: f 7→ f ∗ at those points.
+So that the Ehrenfests' steps are not allowed to degrade the accuracy of LBGK
+it is pertinent to select the k sites with highest ∆S > δ. The a posteriori
+estimates of added dissipation could easily be performed by analysis of entropy
+production in Ehrenfests' steps. Numerical experiments show (see, e.g., [6,7])
+that even a small number of such steps drastically improve stability.
+To avoid the change of accuracy order "on average", the number of sites with
+this step should be ≤ O(Nh/L) where N is the total number of sites, h is
+the step of the space discretization and L is the macroscopic characteristic
+length. But this rough estimate of accuracy in average might be destroyed
+by concentration of Ehrenfests' steps in the most nonequilibrium areas, for
+example, in the boundary layer. In that case, instead of the total number of
+sites N in O(Nh/L) we should take the number of sites in a specific region.
+The effects of concentration could be easily analysed a posteriori.
+7
+
+3.3 Smooth limiters of nonequilibrium entropy
+The positivity rule and Ehrenfests' regularisation provide rare, intense and
+localised corrections. Of course, it is easy and also computationally cheap to
+organise more gentle transformation with a smooth shift of highly nonequilibrium states to quasiequilibrium. The following regularisation transformation
+distributes its action smoothly:
+f 7→ f ∗ + φ(∆S(f ))(f − f ∗ ).
+
+(7)
+
+The choice of function φ is highly ambiguous, for example, φ = 1/(1 + α∆S k )
+for some α > 0 and k > 0. There are two significantly different choices: (i)
+ensemble-independent φ (i.e., the value of φ depends on local value of ∆S
+only) and (ii) ensemble-dependent φ, for example
+1 + (∆S/(αE(∆S)))k−1/2
+φ(∆S) =
+,
+1 + (∆S/(αE(∆S)))k
+
+(8)
+
+where E(∆S) is the average value of ∆S in the computational area, k ≥ 1,
+andqα & 1. For small ∆S, φ(∆S) ≈ 1 and for ∆S ≫ αE(∆S), φ(∆S) tends
+to αE(∆S)/∆S. It is easy to select an ensemble-dependent φ with control
+of total additional dissipation.
+
+3.4 Monitoring of total dissipation
+For given β, the entropy production in one LBGK step in quadratic approximation for ∆S is:
+δLBGK S ≈ [1 − (2β − 1)2 ]
+
+X
+
+∆S(x),
+
+x
+
+where x is the grid point, ∆S(x) is nonequilibrium entropy (6) at point x,
+δLBGK S is the total entropy production in a single LBGK step. It would be
+desirable if the total entropy production for the limiter δlim S was small relative
+to δLBGK S:
+δlim S < δ0 δLBGK S.
+(9)
+A simple ensemble-dependent limiter (perhaps, the simplest one) for a given
+δ0 operates as follows. Let us collect the histogram of the ∆S(x) distribution,
+and estimate the distribution density, p(∆S). We have to estimate a value
+∆S0 that satisfies the following equation:
+Z
+
+∞
+
+∆S0
+
+p(∆S)(∆S − ∆S0 ) d∆S = δ0 [1 − (2β − 1)2 ]
+8
+
+Z
+
+0
+
+∞
+
+p(∆S)∆S d∆S. (10)
+
+In order not to affect distributions with small expectation of ∆S, we choose
+a threshold ∆St = max{∆S0 , δ}, where δ is some predefined value (as in
+the Ehrenfests' regularisation). For states at sites with ∆S ≥q∆St we provide homothety with quasiequilibrium center f ∗ and coefficient ∆St /∆S (in
+quadratic approximation for nonequilibrium entropy):
+f (x) 7→ f ∗ (x) +
+
+s
+
+∆St
+(f (x) − f ∗ (x)).
+∆S
+
+(11)
+
+3.5 Median entropy filter
+The limiters described above provide pointwise correction of nonequilibrium
+entropy at the "most nonequilibrium" points. Due to the pointwise nature,
+the technique does not introduce any nonisotropic effects, and provides some
+other benefits. But if we involve the local structure, we can correct local nonmonotone irregularities without touching regular fragments. For example, we
+can discuss monotone increase or decrease of nonequilibrium entropy as regular
+fragments and concentrate our efforts on reduction of "speckle noise" or "salt
+and pepper noise". This approach allows us to use the accessible resource of
+entropy change (9) more thriftily.
+Among all possible filters, we suggest the median filter. The median is a more
+robust average than the mean (or the weighted mean) and so a single very
+unrepresentative value in a neighborhood will not affect the median value
+significantly. Hence, we suppose that the median entropy filter will work better
+than entropy convolution filters.
+The median filter considers each site in turn and looks at its nearby neighbours.
+It replaces the nonequilibrium entropy value ∆S at the point with the median
+of those values ∆Smedq
+, then updates f by the transformation (11) with the
+homothety coefficient ∆Smed /∆S. The median, ∆Smed , is calculated by first
+sorting all the values from the surrounding neighbourhood into numerical order
+and then replacing that being considered with the middle value. For example,
+if a point has 3 nearest neighbors including itself, then after sorting we have
+3 values ∆S: ∆S1 ≤ ∆S2 ≤ ∆S3 . The median value is ∆Smed = ∆S2 . For 9
+nearest neighbors (including itself) we have after sorting ∆Smed = ∆S5 . For
+27 nearest neighbors ∆Smed = ∆S14 .
+We accept only dissipative corrections (those resulting in a decrease of ∆S,
+∆Smed < ∆S) because of the second law of thermodynamics. The analogue
+of (10) is also useful for acceptance of the most significant corrections.
+Median filtering is a common step in image processing [34] for the smoothing
+of signals and the suppression of impulse noise with preservation of edges.
+9
+
+3.6 Entropic steps for non-entropic quasiequilibria
+Beyond the quadratic approximation for nonequilibrium entropy all the logic of
+the above mentioned constructions remain the same. There exists only
+q one significant change: instead of a simple homothety (11) with coefficient ∆St /∆S
+the transformation (7) should be applied, where the multiplier φ is a solution
+of the nonlinear equation
+S(f ∗ + φ(f − f ∗ )) = S(f ∗ ) − ∆St .
+This is essentially the same equation that appears in the definition of ELBM
+steps (4).
+More differences emerge for LBM with non-entropic quasiequilibria. The main
+idea here is to reason that non-entropic quasiequilibria appear only because of
+technical reasons, and approximate continuous physical entropic quasiequilibria. This is not an approximation of a density function, but an approximation
+of measure, i.e., from the cubature formula:
+f (v) ≈
+Z
+
+φ(v)f (v) dv ≈
+
+X
+i
+
+X
+
+fi δ(v − v i )
+φ(v i )fi .
+
+i
+
+The discrete populations fi are connected to continuous (and sufficiently
+smooth) densities f (v) by cubature weights fi ≈ wi f (v i ). These weights for
+quasiequilibria are found by moment and flux matching conditions [37]. It
+R
+is impossible to approximate the BGS entropy f ln f dv just by discretization (to change integration by summation, and continuous distribution f by
+discrete fi ), because cubature weights appear as additional variables. Nevertheless, the approximate discretization of the Kullback entropy SK [30] does
+not change its form:
+SK (f ) = −
+
+Z
+
+f (v)
+f (v) ln
+f ∗ (v)
+
+!
+
+dv ≈ −
+
+X
+i
+
+!
+
+fi
+fi ln
+,
+fi∗
+
+(12)
+
+because fi /fi∗ approximates
+the ratio of functions f (v)/f ∗ (v) and i fi . . .
+R
+gives the integral f (v) . . . dv approximation. Here, in (12), the state f ∗ is the
+quasiequilibrium with the same values of the macroscopic variables as f . Moreover, for given values of the macroscopic variables, SK (f ) achieves its maximum at the point f = f ∗ (both for continuous and for discrete distributions).
+The corresponding maximal value is zero. Below, SK is the discrete Kullback
+entropy. If the approximate discrete quasiequilibrium f ∗ is non-entropic, we
+can use −SK (f ) instead of ∆S(f ).
+P
+
+For entropic quasiequilibria with perfect entropy the discrete Kullback entropy
+10
+
+gives the same ∆S: −SK (f ) = ∆S(f ). Let the discrete entropy have the
+standard form for an ideal (perfect) mixture [27].
+S(f ) = −
+
+X
+i
+
+!
+
+fi
+fi ln
+.
+Wi
+
+After the classical work of Zeldovich [44], this function is recognised as a
+useful instrument for the analysis of kinetic equations (especially in chemical
+kinetics [21]). If we define f ∗ as the conditional entropy maximum for given
+P
+Mj = k mjk fk , then
+X
+μj mjk ,
+ln fk∗ =
+j
+
+where μj (M) are the Lagrange multipliers (or "potentials"). For this entropy
+and conditional equilibrium we find
+∗
+
+∆S = S(f ) − S(f ) =
+
+X
+i
+
+!
+
+fi
+fi ln ∗ ,
+fi
+
+(13)
+
+if f and f ∗ have the same moments, m(f ) = m(f ∗ ). The right hand side
+of (13) is −SK (f ).
+In thermodynamics, the Kullback entropy belongs to the family of Massieu–
+Planck–Kramers functions (canonical or grandcanonical potentials). There is
+another sense of this quantity: SK is the relative entropy of f with respect to
+f ∗ [18,35].
+In quadratic approximation,
+−SK (f ) =
+
+X
+i
+
+fi
+fi ln ∗
+fi
+
+!
+
+≈
+
+X
+i
+
+(fi − fi∗ )2
+.
+fi∗
+
+3.7 ELBM collisions as a smooth limiter
+
+On the base of numerical tests, the authors of [41] claim that the positivity
+rule provides the same results (in the sense of stability and absence/presence
+of spurious oscillations) as the ELBM models, but ELBM provides better
+accuracy.
+For the formal definition of ELBM (4) our tests do not support claims that
+ELBM erases spurious oscillations (see below). Similar observation for Burgers
+equation was previously published in [4]. We understand this situation in the
+following way. The entropic method consists at least of three components:
+(1) entropic quasiequilibrium, defined by entropy maximisation;
+11
+
+(2) entropy balanced collisions (4) that have to provide proper entropy balance;
+(3) a method for the solution of the transcendental equation S(f ) = S(f ̃) to
+find α = α(f ) in (4).
+It appears that the first two items do not affect spurious oscillations at all,
+if we solve the equation for α(f ) with high accuracy. Additional viscosity
+is, potentially, added by explicit analytic formulas for α(f ). In order not to
+decrease entropy, errors in these formulas always increase dissipation. This
+can be interpreted as a hidden transformation of the form (7), where the
+coefficients in φ depend also on f ∗ .
+
+3.8 Monotonic and double monotonic limiters
+Two monotonicity properties are important in the theory of nonequilibrium
+entropy limiters:
+(1) a limiter should move the distribution to equilibrium: in all cases of (1)
+0 ≤ φ ≤ 1. This is the dissipativity condition which means that limiters
+never produce negative entropy.
+(2) a limiter should not change the order of states on the line: if for two
+distributions with the same moments, f and f ′ , ∆S(f ) > ∆S(f ′ ) before
+the limiter transformation, then the same inequality should hold after the
+limiter transformation too. For example, for the limiter (7) it means that
+∆S(f ∗ + xφ(∆S(f ∗ + x(f − f ∗ ))(f − f ∗ )) is a monotonically increasing
+function of x > 0.
+In quadratic approximation,
+∆S(f ∗ + x(f − f ∗ )) = x2 ∆S(f ),
+∆S(f ∗ + xφ(∆S(f ∗ + x(f − f ∗ ))(f − f ∗ )) = x2 φ2 (x2 ∆S(f )),
+and the second monotonicity condition transforms into the following requirement: yφ(y 2s) is a monotonically increasing (not decreasing) function of y > 0
+for any s > 0.
+If a limiter satisfies both monotonicity conditions, we call it "double monotonic". For example, Ehrenfests' regularisation satisfies the first monotonicity
+condition, but obviously violates the second one. The limiter (8) violates the
+first condition for small ∆S, but is dissipative and satisfies the second one in
+quadratic approximation for large ∆S. The limiter with φ = 1/(1 + α∆S k ) always satisfies the first monotonicity condition, violates the second if k > 1/2,
+and is double monotonic (in quadratic approximation for the second condition), if 0 < k ≤ 1/2. The threshold limiters (11) are also double monotonic.
+12
+
+Of course, it is not forbidden to use any type of limiters under the local and
+global control of dissipation, but double monotonic limiters provide some natural properties automatically, without additional care.
+
+4
+
+Numerical experiment
+
+To conclude this paper we report some numerical experiments conducted to
+demonstrate the performance of some of the proposed nonequilibrium entropy
+limiters for LBM from Sec. 3.
+
+4.1 Velocities and quasiequilibria
+
+We will perform simulations using both entropic and non-entropic quasiequilibria, but we always work with an athermal LBM model. Whenever we use
+non-entropic quasiequilibria we employ Kullback entropy (13).
+In 1D, we use a lattice with spacing and time step δt = 1 and a discrete
+velocity set {v1 , v2 , v3 } := {0, −1, 1} so that the model consists of static, leftand right-moving populations only. The subscript i denotes population (not
+lattice site number) and f1 , f2 and f3 denote the static, left- and right-moving
+populations, respectively. The entropy is S = −H, with
+H = f1 log(f1 /4) + f2 log(f2 ) + f3 log(f3 ),
+(see, e.g., [27]) and, for this entropy, the local entropic quasiequilibrium state
+f ∗ is available explicitly:
+
+√
+2ρ 
+2 − 1 + 3u2 ,
+3
+
+√
+ρ
+∗
+f2 = (3u − 1) + 2 1 + 3u2 ,
+6 
+
+√
+ρ
+∗
+f3 = − (3u + 1) − 2 1 + 3u2 ,
+6
+
+f1∗ =
+
+(14)
+
+where
+ρ :=
+
+X
+
+fi ,
+
+u :=
+
+i
+
+13
+
+1X
+vi fi .
+ρ i
+
+(15)
+
+The standard non-entropic polynomial quasiequilibria [38] are:
+2ρ
+3u2
+=
+1−
+,
+3
+2
+ρ
+f2∗ = (1 − 3u + 3u2),
+6
+ρ
+∗
+f3 = (1 + 3u + 3u2 ).
+6
+!
+
+f1∗
+
+(16)
+
+In 2D, we employ a uniform 9-speed square lattice with discrete velocities
+{v i | i = 0, 1, . .√. 8}: v 0 = 0, v i = (cos((i − 1)π/2), sin((i − 1)π/2)) for i =
+1, 2, 3, 4, v i = 2(cos((i − 5) π2 + π4 ), sin((i − 5) π2 + π4 )) for i = 5, 6, 7, 8. The
+numbering f0 , f1 , . . . , f8 are for the static, east, north, west, south, northeast, northwest, southwest and southeast-moving populations, respectively.
+As usual, the entropic quasiequilibrium state, f ∗ , can be uniquely determined
+by maximising an entropy functional
+S(f ) = −
+
+X
+i
+
+fi
+,
+fi log
+Wi
+
+
+
+
+subject to the constraints of conservation of mass and momentum [2]:
+fi∗
+
+= ρWi
+
+2 
+Y
+
+j=1
+
+2−
+
+
+ 2u
+j
+1 + 3u2 
+
+q
+
+j
+
++
+
+q
+
+1 + 3u2j
+
+vi,j
+
+
+1 − uj
+
+.
+
+(17)
+
+Here, the lattice weights, Wi , are given lattice-specific constants: W0 = 4/9,
+W1,2,3,4 = 1/9 and W5,6,7,8 = 1/36. Analogously to (15), the macroscopic variables ρ and u = (u1 , u2 ) are the zeroth and first moments of the distribution
+f , respectively. The standard non-entropic polynomial quasiequilibria [38] are:
+fi∗
+
+9(v i u)2 3u2
+.
+−
+= ρWi 1 + 3v i u +
+2
+2
+!
+
+(18)
+
+4.2 LBGK and ELBM
+The governing equations for LBGK are
+fi (x + vi , t + 1) = fi∗ (x, t) + (2β − 1)(fi∗ (x, t) −fi (x, t)),
+
+(19)
+
+where β = 1/(2ν + 1).
+For ELBM (4) the governing equations are:
+fi (x + vi , t + 1) = (1 − β)fi∗(x, t) + β f ̃i(x, t),
+14
+
+(20)
+
+with β as above and f ̃ = (1−α)f +αf ∗. The parameter, α, is chosen to satisfy
+a constant entropy condition. This involves finding the nontrivial root of the
+equation
+S((1 − α)f + αf ∗ ) = S(f ).
+(21)
+To solve (21) numerically we employ a robust routine based on bisection. The
+root is solved to an accuracy of 10−15 and we always ensure that the returned
+value of α does not lead to a numerical entropy decrease. We stipulate that
+if, at some site, no nontrivial root of (21) exists we will employ the positivity
+rule instead (Fig. 1).
+
+4.3 Shock tube
+The 1D shock tube for a compressible athermal fluid is a standard benchmark
+test for hydrodynamic codes. Our computational domain will be the interval
+[0, 1] and we discretize this interval with 801 uniformly spaced lattice sites.
+We choose the initial density ratio as 1:2 so that for x ≤ 400 we set ρ = 1.0
+else we set ρ = 0.5. We will fix the kinematic viscosity of the fluid at ν = 10−9 .
+
+4.3.1 Comparison of LBGK and ELBM
+In Fig. 2 we compare the shock tube density profile obtained with LBGK
+(using entropic quasiequilibria (14)) and ELBM. On the same panel we also
+P
+display both the total entropy S(t) := x S(x, t) and total nonequilibrium
+P
+entropy ∆S(t) := x ∆S(x, t) time histories. As expected, by construction,
+we observe that total entropy is (effectively) constant for ELBM. On the other
+hand, LBGK behaves non-entropically for this problem. In both cases we observe that nonequilibrium entropy grows with time.
+As we can see, the choice between the two collision formulas LBGK (19)
+or ELBM (20) does not affect spurious oscillation, and reported regularisation [29] is, perhaps, the result of approximate analytical solution of the equation (21). Inaccuracy in the solution of (21) can be interpreted as a hidden
+nonequilibrium entropy limiter. But it should be mentioned that the entropic
+method consists not only of the collision formula, but, what is important, includes a special choice of quasiequilibrium that could improve stability (see,
+e.g., [13]). Indeed, when we compare ELBM with LBGK using either entopic or
+standard polynomial quasiequilibria, there appears to be some gain in employing entropic quasiequilibria (Fig. 3). We observe that the post-shock region
+for the LBGK simulations is more oscillatory when polynomial quasiequilibria
+are used. In Fig. 3 we have also included a panel with the simulation resulting from a much higher viscosity (ν = 3.3333 × 10−2 ). Here, we observe no
+appreciable differences in the results of LBGK and ELBM.
+15
+
+1216
+
+0.3
+
+1
+0.2
+
+ρ
+
+S
+
+∆S
+
+0.1
+
+(a)
+
+0.5
+0
+
+(c)
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+(e)
+100
+
+200
+
+300
+
+0
+
+400
+
+0
+
+100
+
+t
+
+200
+
+300
+
+400
+
+t
+
+1216
+
+0.3
+
+1
+0.2
+
+ρ
+
+S
+
+∆S
+
+0.1
+
+(b)
+
+0.5
+0
+
+(d)
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+100
+
+(f)
+200
+
+300
+
+0
+
+400
+
+0
+
+100
+
+t
+
+200
+
+300
+
+400
+
+t
+
+Fig. 2. Density and profile of the 1:2 athermal shock tube simulation with ν = 10−9
+after 400 time steps using (a) LBGK (19); (b) ELBM (20). In this example, no
+negative population are produced by any of the methods so the positivity rule is
+redundant. For ELBM in this example, (21) always has a nontrivial root. Total
+entropy and nonequilibrium entropy time histories are shown in panels (c), (d) and
+(e), (f) for LBGK and ELBM, respectively.
+
+1
+
+1
+
+ρ
+
+1
+
+ρ
+(a)
+
+0.5
+0
+
+ρ
+(b)
+
+0.5
+0.5
+
+x
+
+1
+
+0
+
+1
+
+0.5
+
+x
+
+1
+
+0
+
+1
+
+ρ
+(d)
+0
+
+x
+
+1
+
+1
+
+0.5
+
+1
+
+x
+
+ρ
+(e)
+
+0.5
+0.5
+
+0.5
+
+1
+
+ρ
+
+0.5
+
+(c)
+
+0.5
+
+0
+
+(f)
+
+0.5
+0.5
+
+x
+
+1
+
+0
+
+x
+
+Fig. 3. Density and velocity profile of the 1:2 isothermal shock tube simulation after 400 time steps using (a) LBGK (19) with polynomial quasiequilibria (16) [ν = 3.3333 × 10−2 ]; (b) LBGK (19) with entropic quasiequilibria (14)
+[ν = 3.3333 × 10−2 ]; (c) ELBM (20) [ν = 3.3333 × 10−2 ]; (d) LBGK (19) with
+polynomial quasiequilibria (16) [ν = 10−9 ]; (e) LBGK (19) with entropic quasiequilibria (14) [ν = 10−9 ]; (f) ELBM (20) [ν = 10−9 ].
+
+16
+
+4.3.2 Nonequilibrium entropy limiters.
+Now, we would like to demonstrate just a representative sample of the many
+possibilities of limiters suggested in Sec. 3. In each case the limiter is implemented by a post-processing routine immediately following the collision
+step (either LBGK (19) or ELBM (20)). Here, we will only consider LBGK
+collisions and entropic quasiequilibria (14).
+The post-processing step adjusts f by the update formula:
+f 7→ f ∗ + φ(∆S)(f − f ∗ ),
+where ∆S is defined by (6) and φ is a limiter function.
+For the Ehrenfests' regularisation one would choose
+φ(∆S)(x) =
+
+(
+
+1,
+0,
+
+∆S(x) ≤ δ,
+otherwise,
+
+where δ is a pre-specified threshold value. Furthermore, it is pertinent to select
+just k sites with highest ∆S > δ. This limiter has been previously applied to
+the shock tube problem in [6,7,8] and we will not reproduce those results here.
+Instead, our first example will be the following smooth limiter:
+φ(∆S) =
+
+1
+.
+1 + α∆S k
+
+(22)
+
+For this limiter, we will fix k = 1/2 (so that the limiter is double monotonic in
+quadratic approximation to entropy) and compare the density profiles for α =
+δ/(E(∆S)k ), δ = 0.1, 0.01, 0.001. We have also ensured an ensemble-dependent
+limiter because of the dependence of α on the average E(∆S). As with Fig. 2,
+we accompany each panel with the total entropy and nonequilibrium entropy
+histories. Note the different scales for nonequilibrium entropy. Note also that
+entropy (necessarily) now grows due to the additional dissipation.
+Our next example (Fig. 5) considers the threshold filter (10). In this example
+we choose the estimates ∆S0 = 5E(∆S), 10E(∆S), 20E(∆S) and fix the tolerance δ = 0 so that the influence of the threshold alone can be studied. Only
+entropic adjustments are accepted in the limiter: ∆St ≤ ∆S. As the threshold
+increases, nonequilibrium entropy grows faster and spurious begin to appear.
+Finally, we test the median filter (Fig. 6). We choose a minimal filter so that
+only the nearest neighbours are considered. As with the threshold filter, we
+introduce a tolerance δ and we try the values δ = 10−3 , 10−4 , 10−5. Only
+entropic adjustments are accepted in the limiter: ∆Smed ≤ ∆S.
+17
+
+−3
+
+1217
+
+5
+
+x 10
+
+1
+0.8
+
+ρ
+
+S
+
+∆S
+
+0.6
+
+(a)
+0.4
+
+0
+
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+100
+
+200
+
+300
+
+0
+
+400
+
+0
+
+100
+
+t
+
+200
+
+300
+
+400
+
+300
+
+400
+
+300
+
+400
+
+t
+
+1217
+
+0.025
+
+1
+0.8
+
+ρ
+
+S
+
+∆S
+
+0.6
+
+(b)
+0.4
+
+0
+
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+100
+
+200
+
+300
+
+0
+
+400
+
+0
+
+100
+
+t
+
+200
+
+t
+
+1217
+
+0.2
+
+1
+0.8
+
+ρ
+
+S
+
+∆S
+
+0.6
+
+(c)
+0.4
+
+0
+
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+100
+
+200
+
+t
+
+300
+
+400
+
+0
+
+0
+
+100
+
+200
+
+t
+
+Fig. 4. Density and profile of the 1:2 athermal shock tube simulation with ν = 10−9
+after 400 time steps using LBGK (19) and the smooth limiter (22) with k = 1/2,
+α = δ/(E(∆S)k ) and (a) δ = 0.1; (b) δ = 0.01 and (c) δ = 0.001. Total entropy and
+nonequilibrium entropy time histories for each parameter set {k, α(δ)} are displayed
+in the adjacent panels.
+
+We have seen that each of the examples we have considered (Fig. 4, Fig. 5
+and Fig. 6) is capable of subduing spurious post-shock oscillations compared
+with LBGK (or ELBM) on this problem (cf. Fig. 2). Of course, by limiting
+nonequilibrium entropy the result is necessarily an increase in entropy.
+From our experiences our recommendation is that the median filter is the
+superior choice amongst all the limiters suggested in Sec. 3. The action of the
+median filter is found to be both extremely gentle and, at the same time, very
+effective.
+
+4.4 Lid-driven cavity
+Our second numerical example is the classical 2D lid-driven cavity flow. A
+square cavity of side length L is filled with fluid with kinematic viscosity ν
+(initially at rest) and driven by the cavity lid moving at a constant velocity
+(u0 , 0) (from left to right in our geometry).
+18
+
+−3
+
+1217
+
+2
+
+x 10
+
+1
+0.8
+
+ρ
+
+S
+
+∆S
+
+0.6
+
+(a)
+0.4
+
+0
+
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+100
+
+200
+
+300
+
+400
+
+0
+
+0
+
+t
+
+100
+−3
+
+1217
+
+3
+
+200
+
+300
+
+400
+
+300
+
+400
+
+300
+
+400
+
+t
+
+x 10
+
+1
+0.8
+
+ρ
+
+S
+
+∆S
+
+0.6
+
+(b)
+0.4
+
+0
+
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+100
+
+200
+
+300
+
+400
+
+0
+
+0
+
+t
+
+100
+−3
+
+1217
+
+7
+
+200
+
+t
+
+x 10
+
+1
+0.8
+
+ρ
+
+S
+
+∆S
+
+0.6
+
+(c)
+0.4
+
+0
+
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+100
+
+200
+
+t
+
+300
+
+400
+
+0
+
+0
+
+100
+
+200
+
+t
+
+Fig. 5. Density and profile of the 1:2 athermal shock tube simulation with ν = 10−9
+after 400 time steps using LBGK (19) and the threshold limiter (10) with (a)
+∆St = 5E(∆S); (b) ∆St = 10E(∆S) and (c) ∆St = 20E(∆S). Total entropy and
+nonequilibrium entropy time histories for each threshold ∆St are displayed in the
+adjacent panels.
+
+We will simulate the flow on a 100 × 100 grid using LBGK regularised with
+the median filter limiter. Unless otherwise stated, we use entropic quasiequilibria (17). The implementation of the filter is as follows: the filter is not applied
+to boundary nodes; for nodes which immediately neighbour the boundary the
+stencil consists of the 3 nearest neighbours (including itself) closest to the
+boundary; for all other nodes the minimal stencil of 9 nearest neighbours is
+used.
+We have purposefully selected such a coarse grid simulation because it is readily found that, on this problem, unregularised LGBK fails (blows-up) for all
+but the most modest Reynolds numbers Re := Lu0 /ν.
+
+4.4.1 Steady-state vortex centres
+For modest Reynolds number the system settles to a steady state in which the
+dominant features are a primary central rotating vortex, with several counterrotating secondary vortices located in the bottom-left, bottom-right (and pos19
+
+1217
+
+0.02
+
+1
+0.8
+
+ρ
+
+S
+
+∆S
+
+0.6
+
+(a)
+0.4
+
+0
+
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+100
+
+200
+
+300
+
+0
+
+400
+
+0
+
+100
+
+t
+
+200
+
+300
+
+400
+
+300
+
+400
+
+300
+
+400
+
+t
+
+1217
+
+0.02
+
+1
+0.8
+
+ρ
+
+S
+
+∆S
+
+0.6
+
+(a)
+0.4
+
+0
+
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+100
+
+200
+
+300
+
+0
+
+400
+
+0
+
+100
+
+t
+
+200
+
+t
+
+1217
+
+0.05
+
+1
+0.8
+
+ρ
+
+S
+
+∆S
+
+0.6
+
+(a)
+0.4
+
+0
+
+0.5
+
+x
+
+1
+
+1215
+
+0
+
+100
+
+200
+
+t
+
+300
+
+400
+
+0
+
+0
+
+100
+
+200
+
+t
+
+Fig. 6. Density and profile of the 1:2 athermal shock tube simulation with ν = 10−9
+after 400 time steps using LBGK (19) and the minimal median limiter with (a)
+δ = 10−5 ; (b) δ = 10−4 and (c) δ = 10−3 . Total entropy and nonequilibrium
+entropy time histories for each tolerance δ are displayed in the adjacent panels.
+
+sibly top-left) corners.
+Steady state has been extensively investigated in the literature. The study
+of Hou et al [24] simulates the flow over a range of Reynolds numbers using
+unregularised LBGK on a 256×256 grid. Primary and secondary vortex centre
+data is provided. We compare this same statistic for the present median filtered
+coarse grid simulation. We will employ the same convergence criteria used
+in [24]. Namely, we deem that steady state has been reached by ensuring
+that the difference between the maximum value of the stream function for
+successive 10, 000 time steps is less that 10−5 . The stream function, which is
+not a primary variable in the LBM simulation, is obtained from the velocity
+data by integration using Simpson's rule. Vortex centres are characterised as
+local extrema of the stream function.
+We compare our results with the LBGK simulations in [24] and [41]. To align
+ourselves with these studies we specify the following boundary condition: lid
+profile is constant; remaining cavity walls are subject to the "bounce-back"
+condition [38]. In our simulations, the initial uniform fluid density profile is
+ρ = 2.7 and the velocity of the lid is u0 = 1/10 (in lattice units).
+20
+
+Collected in Table 1, for Re = 2000, 5000 and 7500, are the coordinates of
+the primary and secondary vortex centres using (a) unregularised LBGK; (b)
+LBGK with median filter limiter (δ = 10−3 ); (c) LBGK with median filter limiter (δ = 10−4 ), all with non-entropic polynomial quasiequilibria (18). Lines
+(d), (e) and (f) are the same but with entropic quasiequilibria (17). The remaining lines of Table 1 are as follows: (g) literature data [24] (unregularised
+LBGK on a 256 × 256 grid); (h) literature data [41] (positivity rule); (i) literature data [41] (ELBM). With the exception of (g), all simulation are conducted
+on a 100 × 100 grid. The top-left vortex does not appear at Re = 2000 and
+no data was provided for it in [41] at Re = 5000. The unregularised LBGK
+Re = 7500 simulation blows-up in finite time and the simulation becomes
+meaningless. The y-coordinate of the two lower-vortices at Re = 5000 in (i)
+appear anomalously small and were not reproduced by our experiments with
+the positivity rule (not shown).
+We have conducted two runs of the experiment with the median filter parameter δ = 10−3 and δ = 10−4 . Despite the increased number of realisations the
+vortex centre locations remain effectively unchanged and we detect no significant variation between the two runs. This demonstrates the gentle nature of
+the median filter. At Reynolds Re = 2000 the median filter has no effect at all
+on the vortex centres compared with LBGK.
+We find no significant differences between the experiments with entropic and
+non-entropic polynomial quasiequilibria in this test.
+The coordinates of the primary vortex centre for unregularised LBGK at Re =
+5000 are already quite inaccurate as LBGK begins to lose stability. Stability
+is lost entirely at some critical Reynolds number 5000 < Re ≤ 7500 and the
+simulation blows-up.
+Furthermore, we have agreement (within grid resolution) with the data given
+in [24]. Also compiled in Table 1 is the data from the limiter experiments
+conducted in [41] (although not explicitly discussed in the language of limiters
+by the authors of that work). In [41] the authors give vortex centre data for
+the positivity rule (Fig. 1) and for ELBM (which we interpret as containing a
+hidden limiter). In [41] the positivity rule is called FIX-UP.
+As Reynolds number increases the flow in the cavity is no longer steady and a
+more complicated flow pattern emerges. On the way to a fully developed turbulent flow, the lid-driven cavity flow is known to undergo a series of period
+doubling Hopf bifurcations. On our coarse grid, we observe that the coordinates of the primary vortex centre (maximum of the stream function) is a very
+robust feature of the flow, with little change between coordinates (no change
+in y-coordinates) computed at Re = 5000 and Re = 7500 with the median filter. On one hand, because of this observation it becomes inconclusive whether
+21
+
+Table 1
+Primary and secondary vortex centre coordinates for the lid-driven cavity flow at
+Re = 2000, 5000, 7500.
+Primary
+Re
+
+Lower-left
+
+Lower-right
+
+Top-left
+
+x
+
+y
+
+x
+
+y
+
+x
+
+y
+
+x
+
+y
+
+2000
+
+(a)
+
+0.5253
+
+0.5455
+
+0.0909
+
+0.1010
+
+0.8384
+
+0.1010
+
+Not applicable
+
+2000
+
+(b)
+
+0.5253
+
+0.5455
+
+0.0909
+
+0.1010
+
+0.8384
+
+0.1010
+
+Not applicable
+
+2000
+
+(c)
+
+0.5253
+
+0.5455
+
+0.0909
+
+0.1010
+
+0.8384
+
+0.1010
+
+Not applicable
+
+2000
+
+(d)
+
+0.5253
+
+0.5455
+
+0.0909
+
+0.1010
+
+0.8384
+
+0.1010
+
+Not applicable
+
+2000
+
+(e)
+
+0.5253
+
+0.5455
+
+0.0909
+
+0.1010
+
+0.8384
+
+0.1010
+
+Not applicable
+
+2000
+
+(f)
+
+0.5253
+
+0.5455
+
+0.0909
+
+0.1010
+
+0.8384
+
+0.1010
+
+Not applicable
+
+2000
+
+(g)
+
+0.5255
+
+0.5490
+
+0.0902
+
+0.1059
+
+0.8471
+
+0.0980
+
+Not applicable
+
+2000
+
+(h)
+
+0.5200
+
+0.5450
+
+0.0900
+
+0.1000
+
+0.8300
+
+0.0950
+
+Not applicable
+
+2000
+
+(i)
+
+0.5200
+
+0.5500
+
+0.0890
+
+0.1000
+
+0.8300
+
+0.1000
+
+Not applicable
+
+5000
+
+(a)
+
+0.5152
+
+0.6061
+
+0.0808
+
+0.1313
+
+0.7980
+
+0.0707
+
+0.0505
+
+0.8990
+
+5000
+
+(b)
+
+0.5152
+
+0.5354
+
+0.0808
+
+0.1313
+
+0.8081
+
+0.0808
+
+0.0606
+
+0.8990
+
+5000
+
+(c)
+
+0.5152
+
+0.5354
+
+0.0808
+
+0.1313
+
+0.8081
+
+0.0808
+
+0.0707
+
+0.8889
+
+5000
+
+(d)
+
+0.5152
+
+0.5960
+
+0.0808
+
+0.1313
+
+0.8081
+
+0.0808
+
+0.0505
+
+0.8990
+
+5000
+
+(e)
+
+0.5152
+
+0.5354
+
+0.0808
+
+0.1313
+
+0.8081
+
+0.0808
+
+0.0606
+
+0.8990
+
+5000
+
+(f)
+
+0.5152
+
+0.5354
+
+0.0808
+
+0.1313
+
+0.8081
+
+0.0808
+
+0.0707
+
+0.8889
+
+5000
+
+(g)
+
+0.5176
+
+0.5373
+
+0.0784
+
+0.1373
+
+0.8078
+
+0.0745
+
+0.0667
+
+0.9059
+
+5000
+
+(h)
+
+0.5150
+
+0.5680
+
+0.0950
+
+0.0100
+
+0.8450
+
+0.0100
+
+Not available
+
+5000
+
+(i)
+
+0.5150
+
+0.5400
+
+0.0780
+
+0.1350
+
+0.8050
+
+0.0750
+
+Not available
+
+7500
+
+(a)
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+7500
+
+(b)
+
+0.5051
+
+0.5354
+
+0.0707
+
+0.1515
+
+0.7879
+
+0.0707
+
+0.0606
+
+0.8990
+
+7500
+
+(c)
+
+0.5051
+
+0.5354
+
+0.0707
+
+0.1515
+
+0.7879
+
+0.0707
+
+0.0707
+
+0.8889
+
+7500
+
+(d)
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+7500
+
+(e)
+
+0.5051
+
+0.5354
+
+0.0707
+
+0.1515
+
+0.7879
+
+0.0707
+
+0.0606
+
+0.8990
+
+7500
+
+(f)
+
+0.5051
+
+0.5354
+
+0.0707
+
+0.1515
+
+0.7879
+
+0.0707
+
+0.0707
+
+0.8889
+
+7500
+
+(g)
+
+0.5176
+
+0.5333
+
+0.0706
+
+0.1529
+
+0.7922
+
+0.0667
+
+0.0706
+
+0.9098
+
+22
+
+the median limiter is adding too much additional dissipation. On the other
+hand, a more studious choice of control criteria may indicate that the first
+bifurcation has already occurred by Re = 7500.
+4.4.2 First Hopf bifurcation
+A survey of available literature reveals that the precise value of Re at which
+the first Hopf bifurcation occurs is somewhat contentious, with most current
+studies (all of which are for incompressible flow) ranging from around Re =
+7400–8500 [9,32,33]. Here, we do not intend to give a precise value because
+it is a well observed grid effect that the critical Reynolds number increases
+(shifts to the right) with refinement (see, e.g., Fig. 3 in [33]). Rather, we
+will be content to localise the first bifurcation and, in doing so, demonstrate
+that limiters are capable of regularising without effecting fundamental flow
+features.
+To localise the first bifurcation we take the following algorithmic approach.
+Entropic quasiequilibria are in use. The initial uniform fluid density profile
+is ρ = 1.0 and the velocity of the lid is u0 = 1/10 (in lattice units). We
+record the unsteady velocity data at a single control point with coordinates
+(L/16, 13L/16) and run the simulation for 5000 non-dimensionless time units
+(5000L/u0 time steps). Let us denote the final 1% of this signal by (usig , vsig ).
+We then compute the energy Eu (l2 -norm normalised by non-dimensional
+signal duration) of the deviation of usig from its mean:
+Eu :=
+
+s
+
+L
+(usig − usig )
+u0 |usig |
+
+,
+
+(23)
+
+l2
+
+where |usig | and usig denote the length and mean of usig , respectively. We
+choose this robust statistic instead of attempting to measure signal amplitude
+because of numerical noise in the LBM simulation. The source of noise in LBM
+is attributed to the existence of an inherently unavoidable neutral stability
+direction in the numerical scheme (see, e.g., [8]).
+We opt not to employ the "bounce-back" boundary condition used in the previous steady state study. Instead we will use the diffusive Maxwell boundary
+condition (see, e.g., [11]), which was first applied to LBM in [1]. The essence
+of the condition is that populations reaching a boundary are reflected, proportional to equilibrium, such that mass-balance (in the bulk) and detail-balance
+are achieved. The boundary condition coincides with "bounce-back" in each
+corner of the cavity.
+To illustrate, immediately following the advection of populations consider the
+situation of a wall, aligned with the lattice, moving with velocity uwall and
+with outward pointing normal to the wall in the negative y-direction (this is
+23
+
+the situation on the lid of the cavity with uwall = u0 ). The implementation
+of the diffusive Maxwell boundary condition at a boundary site (x, y) on this
+wall consists of the update
+fi (x, y, t + 1) = γfi∗ (uwall ),
+
+i = 4, 7, 8,
+
+with
+γ=
+
+f2 (x, y, t) + f5 (x, y, t) + f6 (x, y, t)
+.
+f4∗ (uwall ) + f7∗ (uwall ) + f8∗ (uwall )
+
+Observe that, because density is a linear factor of the quasiequilibria (17),
+the density of the wall is inconsequential in the boundary condition and can
+therefore be taken as unity for convenience. As is usual, only those populations
+pointing in to the fluid at a boundary site are updated. Boundary sites do not
+undergo the collisional step that the bulk of the sites are subjected to.
+We prefer the diffusive boundary condition over the often preferred "bounceback" boundary condition with constant lid profile. This is because we have
+experienced difficulty in separating the aforementioned numerical noise from
+the genuine signal at a single control point using "bounce-back". We remark
+that the diffusive boundary condition does not prevent unregularised LBGK
+from failing at some critical Reynolds number Re > 5000.
+Now, we conduct an experiment and record (23) over a range of Reynolds
+numbers. In each case the median filter limiter is employed with parameter
+δ = 10−3 . Since the transition between steady and periodic flow in the liddriven cavity is known to belong to the class of standard Hopf bifurcations
+we are assured that Eu2 ∝ Re [16]. Fitting a line of best fit to the resulting
+data localises the first bifurcation in the lid-driven cavity flow to Re = 7135
+(Fig. 7). This value is within the tolerance of Re = 7402 ± 4% given in [33] for
+a 100×100 grid. We also provide a (time averaged) phase space trajectory and
+Fourier spectrum for Re = 7375 at the monitoring point (Fig. 8 and Fig. 9)
+which clearly indicate that the first bifurcation has been observed.
+
+5
+
+Conclusions
+
+Entropy and thermodynamics are important for stability of the lattice Boltzmann methods. It is now clear: after almost 10 years of work since the publication of [26] proved this statement (the main reviews are [5,28,39]). The
+question is now: "how does one utilise, optimally, entropy and thermodynamic structures in lattice Boltzmann methods?". In our paper we attempt to
+propose a solution (temporary, at least). Our approach is applicable to both
+entropic as well as for non-entropic polynomial quasiequilibria.
+24
+
+0.05
+0.045
+0.04
+0.035
+0.03
+
+Eu2
+
+0.025
+0.02
+0.015
+0.01
+0.005
+0
+
+5750
+
+(7135,0)
+6000
+
+6250
+
+6500
+
+6750
+
+7000
+
+7250
+
+7500
+
+7750
+
+8000
+
+Re
+
+Fig. 7. Plot of energy squared, Eu2 (23), as a function of Reynolds number, Re, using
+LBGK regularised with the median filter limiter with δ = 10−3 on a 100 × 100 grid.
+Straight lines are lines of best fit. The intersection of the sloping line with the x-axis
+occurs close to Re = 7135.
+
+We have constructed a system of nonequilibrium entropy limiters for the lattice
+Boltzmann methods (LBM):
+• the positivity rule that provides positivity of distribution;
+• the pointwise entropy limiters based on selection and correction of most
+nonequilibrium values;
+• filters of nonequilibrium entropy, and the median filter as a filter of choice.
+All these limiters exploit physical properties of LBM and allow control of total
+additional entropy production. In general, they do the same work for LBM as
+flux limiters do for finite differences, finite volumes and finite elements methods, and come into operation when sharp gradients are present. For smoothly
+changing waves, the limiters do not operate and the spatial derivatives can be
+represented by higher order approximations without introducing non-physical
+oscillations. But there are some differences too: for LBM the main idea behind
+the construction of nonequilibrium entropy limiter schemes is to limit a scalar
+quantity - the nonequilibrium entropy - or to delete the "salt and pepper"
+noise from the field of this quantity. We do not touch the vectors or tensors
+of spatial derivatives, as it is for flux limiters.
+Standard test examples demonstrate that the developed limiters erase spurious
+oscillations without blurring of shocks, and do not affect smooth solutions. The
+limiters we have tested do not produce a noticeable additional dissipation and
+25
+
+Fig. 8. Velocity components as a function of time for the signal (usig , vsig ) at the
+monitoring point (L/16, 13L/16) using LBGK regularised with the median filter
+limiter with δ = 10−3 on a 100 × 100 grid (Re = 7375). Dots represent simulation
+results and the solid line is a 100 step time average of the signal.
+
+allow us to reproduce the first Hopf bifurcation for 2D lid-driven cavity on a
+coarse 100 × 100 grid. At the same time the simplest median filter deletes the
+spurious post-shock oscillations for low viscosity.
+Perhaps, it is impossible to find one best nonequilibrium entropy limiter for
+all problems. It is a special task to construct the optimal limiters for a specific
+classes of problems.
+
+Acknowledgments
+
+Discussion of the preliminary version of this work with S. Succi and participants of the lattice Boltzmann workshop held on 15th November 2006
+in Leicester (UK) was very important. Author A. N. Gorban is grateful to
+S. K. Godunov for the course of numerical methods given many years ago at
+Novosibirsk University. This work is supported by Engineering and Physical
+Sciences Research Council (EPSRC) grant number GR/S95572/01.
+26
+
+1
+0.9
+
+Relative amplitude
+
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+Frequency
+
+Fig. 9. Relative amplitude spectrum for the signal usig at the monitoring point
+(L/16, 13L/16) using LBGK regularised with the median filter limiter with δ = 10−3
+on a 100 × 100 grid (Re = 7375). We measure a dominant frequency of ω = 0.525.
+
+References
+[1] S. Ansumali, and I. V. Karlin. Kinetic boundary conditions in the lattice
+Boltzmann method. Phys. Rev. E 66, 026311 2002.
+[2] S. Ansumali S, I. V. Karlin, H. C. Ottinger. Minimal entropic kinetic models
+for hydrodynamics Europhys. Let. 63 (6): 798-804. 2003
+[3] R. Benzi, S. Succi, and M. Vergassola. The lattice Boltzmann-equation - theory
+and applications. Physics Reports, 222(3):145–197, 1992.
+[4] B. M. Boghosian, P. J. Love, and J. Yepez. Entropic lattice Boltzmann model
+for Burgers equation. Phil. Trans. Roy. Soc. A, 362:1691–1702, 2004.
+[5] B. M. Boghosian, J. Yepez, P. V. Coveney, and A. J. Wager. Entropic lattice
+Boltzmann methods. R. Soc. Lond. Proc. Ser. A Math. Phys. Eng. Sci.,
+457(2007):717–766, 2001.
+[6] R. A. Brownlee, A. N. Gorban, and J. Levesley. Stabilisation of the latticeBoltzmann method using the Ehrenfests' coarse-graining. cond-mat/0605359,
+2006.
+[7] R. A. Brownlee, A. N. Gorban, and J. Levesley. Stabilisation of the latticeBoltzmann method using the Ehrenfests' coarse-graining. Phys. Rev. E,
+74:037703, 2006.
+
+27
+
+[8] R. A. Brownlee, A.N. Gorban, and J. Levesley. Stability and stabilization of the
+lattice Boltzmann method, Phys. Rev. E, to appear. cond-mat/0611444, 2006.
+[9] C.-H. Bruneau, and M. Saad. The 2D lid-driven cavity problem revisited.
+Comput. Fluids, 35:326–348, 2006.
+[10] S. R. Chatkravathy, and S. Osher. High resolution applications of the Osher
+upwind scheme for the Euler equations, AIAA Paper 83-1943, Proc. AIAA 6th
+Comutational Fluid Dynamics Conference, (1983), 363–373.
+[11] C. Cercignani. Theory and Application of the Boltzmann Equation. Scottish
+Academic Press, Edinburgh, 1975.
+[12] S. Chen and G. D. Doolen. Lattice Boltzmann method for fluid flows. Annu.
+Rev. Fluid. Mech., 30:329–364, 1998.
+[13] S. S. Chikatamarla and I. V. Karlin. Entropy and Galilean Invariance of Lattice
+Boltzmann Theories. Phys. Rev. Lett. 97, 190601 (2006)
+[14] A. J. Chorin, O. H. Hald, R. Kupferman. Optimal prediction with memory,
+Physica D 166 (2002), 239–257.
+[15] P. Ehrenfest and T. Ehrenfest. The conceptual foundations of the statistical
+approach in mechanics. Dover Publications Inc., New York, 1990.
+[16] N. K. Ghaddar, K. Z. Korczak, B. B. Mikic, and A. T. Patera. Numerical
+investigation of incompressible flow in grooved channels. Part 1. Stability and
+self-sustained oscillations. J. Fluid Mech., 163:99–127, 1986.
+[17] S. K. Godunov. A Difference Scheme for Numerical Solution of Discontinuous
+Solution of Hydrodynamic Equations, Math. Sbornik, 47 (1959), 271-306.
+[18] A. N. Gorban. Equilibrium encircling. Equations of chemical kinetics and their
+thermodynamic analysis, Nauka, Novosibirsk, 1984.
+[19] A. N. Gorban, I. V. Karlin, H. C. Öttinger, and L. L. Tatarinova. Ehrenfest's
+argument extended to a formalism of nonequilibrium thermodynamics. Phys.
+Rev. E, 62:066124, 2001.
+[20] A. N. Gorban. Basic types of coarse-graining. In A. N. Gorban, N. Kazantzis,
+I. G. Kevrekidis, H.-C. Öttinger, and C. Theodoropoulos, editors, Model
+Reduction and Coarse-Graining Approaches for Multiscale Phenomena, pages
+117–176. Springer, Berlin-Heidelberg-New York, 2006. cond-mat/0602024.
+[21] A. Gorban, B. Kaganovich, S. Filippov, A. Keiko, V. Shamansky, I. Shirkalin,
+Thermodynamic Equilibria and Extrema: Analysis of Attainability Regions and
+Partial Equilibrium, Springer, Berlin, Heidelberg, New York, 2006.
+[22] H. Grad. On the kinetic theory of rarefied gases, Comm. Pure and Appl. Math.
+2 4, (1949), 331–407.
+[23] F. Higuera, S. Succi, and R. Benzi. Lattice gas – dynamics with enhanced
+collisions. Europhys. Lett., 9:345–349, 1989.
+
+28
+
+[24] S. Hou, Q. Zou, S. Chen, G. Doolen and A. C. Cogley. Simulation of cavity
+flow by the lattice Boltzmann method. J. Comp. Phys., 118:329–347, 1995.
+[25] D. Jou, J. Casas-Vázquez, G. Lebon. Extended irreversible thermodynamics,
+Springer, Berlin, 1993.
+[26] I. V. Karlin, A. N. Gorban, S. Succi, and V. Boffi. Maximum entropy principle
+for lattice kinetic equations. Phys. Rev. Lett., 81:6–9, 1998.
+[27] I. V. Karlin, A. Ferrante, and H. C. Öttinger. Perfect entropy functions of the
+lattice Boltzmann method. Europhys. Lett., 47:182–188, 1999.
+[28] I. V. Karlin, S. Ansumali, C. E. Frouzakis, and S. S. Chikatamarla. Elements of
+the lattice Boltzmann method I: Linear advection equation. Commun. Comput.
+Phys., 1 (2006), 616–655.
+[29] I. V. Karlin, S. S. Chikatamarla and S. Ansumali. Elements of the lattice
+Boltzmann method II: Kinetics and hydrodynamics in one dimension. Commun.
+Comput. Phys., 2 (2007), 196–238.
+[30] S. Kullback. Information theory and statistics, Wiley, New York, 1959.
+[31] Y. Li, R. Shock, R. Zhang, and H. Chen. Numerical study of flow past an
+impulsively started cylinder by the lattice-Boltzmann method. J. Fluid Mech.,
+519:273–300, 2004.
+[32] T. W. Pan, and R. Glowinksi. A projection/wave-like equation method for
+the numerical simulation of incompressible viscous fluid flow modeled by the
+Navier–Stokes equations. Comp. Fluid Dyn. J., 9:28–42, 2000.
+[33] Y.-F. Peng, Y.-H. Shiau, and R. R. Hwang. Transition in a 2-D lid-driven cavity
+flow. Comput. Fluids, 32:337–352, 2003.
+[34] W. K. Pratt. Digital Image Processing, Wiley, New York, 1978.
+[35] H. Qian. Relative entropy: free energy associated with equilibrium fluctuations
+and nonequilibrium deviations, Phys. Rev. E. 63 (2001), 042103.
+[36] P. L. Roe. Characteristic-based schemes for the Euler equations, Ann. Rev.
+Fluid Mech., 18 (1986), 337-365.
+[37] X. Shan, X-F. Yuan, and H. Chen. Kinetic theory representation of
+hydrodynamics: a way beyond the NavierStokes equation. J. Fluid Mech. 550
+(2006), 413-441.
+[38] S. Succi. The lattice Boltzmann equation for fluid dynamics and beyond. Oxford
+University Press, New York, 2001.
+[39] S. Succi, I. V. Karlin, and H. Chen. Role of the H theorem in lattice Boltzmann
+hydrodynamic simulations. Rev. Mod. Phys., 74:1203–1220, 2002.
+[40] P. K. Sweby. High resolution schemes using flux-limiters for hyperbolic
+conservation laws. SIAM J. Num. Anal., 21 (1984), 995–1011.
+
+29
+
+[41] F. Tosi, S. Ubertini, S. Succi, H. Chen, and I.V. Karlin. Numerical stability of
+entropic versus positivity-enforcing lattice Boltzmann schemes. Math. Comput.
+Simulation, 72:227–231, 2006.
+[42] B. Van Leer. Towards the ultimate conservative difference scheme III.
+Upstream-centered finite-difference schemes for ideal compressible flow., J.
+Comp. Phys., 23 (1977), 263–275.
+[43] P. Wesseling. Principles of Computational Fluid Dynamics, Springer Series in
+Computational Mathematics (Springer-Verlag, Berlin, 2001), Vol. 29.
+[44] Y. B. Zeldovich, Proof of the Uniqueness of the Solution of the Equations of
+the Law of Mass Action, In: Selected Works of Yakov Borisovich Zeldovich,
+Vol. 1, J. P. Ostriker (Ed.), Princeton University Press, Princeton, USA, 1996,
+144–148.
+
+30
+

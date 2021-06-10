@@ -1,0 +1,3220 @@
+arXiv:0704.0086v2 [math.PR] 17 Jun 2008
+
+The Annals of Applied Probability
+2008, Vol. 18, No. 3, 1026–1058
+DOI: 10.1214/07-AAP481
+c Institute of Mathematical Statistics, 2008
+
+CLUSTERING IN A STOCHASTIC MODEL OF
+ONE-DIMENSIONAL GAS
+By Vladislav V. Vysotsky1
+St. Petersburg State University
+We give a quantitative analysis of clustering in a stochastic model
+of one-dimensional gas. At time zero, the gas consists of n identical
+particles that are randomly distributed on the real line and have zero
+initial speeds. Particles begin to move under the forces of mutual
+attraction. When particles collide, they stick together forming a new
+particle, called cluster, whose mass and speed are defined by the laws
+of conservation.
+We are interested in the asymptotic behavior of Kn (t) as n → ∞,
+where Kn (t) denotes the number of clusters at time t in the system
+with n initial particles. Our main result is a functional limit theorem
+for Kn (t). Its proof is based on the discovered localization property
+of the aggregation process, which states that the behavior of each
+particle is essentially defined by the motion of neighbor particles.
+
+1. Introduction.
+1.1. Description of the model. We give a quantitative analysis of clustering in a stochastic model of one-dimensional gas. At time zero, the gas
+consists of n point particles, each one of mass n1 . These particles are randomly distributed on the real line and have zero initial speeds. Particles
+begin to move under the forces of mutual attraction. When two or more
+particles collide, they stick together forming a new particle, called cluster,
+whose mass and speed are defined by the laws of mass and momentum
+conservation. Between collisions, particles move according to the laws of
+Newtonian mechanics.
+We suppose that the force of mutual attraction does not depend on distance and equals the product of masses. This assumption is natural for
+Received March 2007; revised September 2007.
+Supported in part by the Grants NSh-4222.2006.1 and DFG-RFBR 436 RUS
+113/773/0-1(R).
+AMS 2000 subject classifications. Primary 60K35, 82C22; secondary 60F17, 70F99.
+Key words and phrases. Sticky particles, particle systems, gravitating particles, number
+of clusters, aggregation, adhesion.
+1
+
+This is an electronic reprint of the original article published by the
+Institute of Mathematical Statistics in The Annals of Applied Probability,
+2008, Vol. 18, No. 3, 1026–1058. This reprint differs from the original in
+pagination and typographic detail.
+1
+
+2
+
+V. V. VYSOTSKY
+
+one-dimensional models because, by the Gauss law applied to flux of the
+gravitational field, gravitation is proportional to the distance to the power
+one minus dimension of the space. At any moment, the acceleration of a
+particle is thus equal to difference of masses located to the right and to the
+left of the particle.
+Random initial positions of particles are usually described (see [8, 16,
+25]) by the following natural models: in the uniform model, n particles are
+independently and uniformly spread on [0, 1]; in the Poisson model, particles
+are located at points n1 S1 , n1 S2 , . . . , n1 Sn , where Si is a standard exponential
+random walk. In other words, particles are located at points of first n jumps
+of a Poisson process with intensity n.
+These two models are the most natural and interesting; let us call them
+the main models of initial positions. However, we will see that behavior
+of the Poisson model is essentially defined by independence of initial distances between particles rather than by the particular type of the distances'
+distribution. Therefore, it is of a great mathematical interest to generalize the Poisson model by introducing the i.d. model, where "i.d." stands
+for "independent distances," as follows. Particles are initially located at
+1
+1
+1
+n S1 , n S2 , . . . , n Sn , where Si is a positive random walk whose nonnegative
+i.i.d. increments Xi satisfy the normalization condition EXi = 1. Note that
+if we proceed to the limit as n → ∞, we consider a system of total mass one,
+which consists of, roughly speaking, infinitesimal particles homogeneously
+spread on [0, 1]; this is true for all the mentioned models of initial positions.
+The mathematical interest in sticky particles systems arises mainly from
+relations between these systems and some nonlinear partial differential equations originating from fluid mechanics, for example, the Burgers equation.
+These equations admit interpretation in terms of sticky particles; see Gurbatov et al. [10], Brenier and Grenier [4] or E, Rykov and Sinai [6]. Sticky
+particles models are also used for numerical solving of other partial differential equations; see Chertock et al. [5] for explanations and further references.
+As time goes, particles aggregate in clusters. Clusters become larger and
+larger while the number of clusters decreases until they merge into a single
+cluster containing all initial particles. This process of mass aggregation is
+strongly connected with additive coalescence; see Bertoin [2] and Giraud [9]
+for the most recent results and references.
+The aggregation process resembles formation of a star from dispersed
+space dust and sticky particles models indeed have relations to astrophysics.
+It is appropriate to clarify these relations since they are not so direct and
+cause a lot of misunderstanding.
+It is known that the distribution of galaxies in the universe is very inhomogeneous and the regions of high density form a peculiar cellular structure.
+The first attempt to understand the formation of such structures was made
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+3
+
+in 1970 by Zeldovich. Most of the mass in the universe is believed to exist in the form of particles that practically do not collide with each other
+and interact only gravitationally, for example, neutrinos. In his model, Zeldovich considered an initially homogeneous collisionless medium of particles
+moving by pure inertia; the gravitational interaction was taken away by an
+appropriate time change. He showed that singularities, that is, the thin regions of very high density of particles, so called "pancakes," appear even if
+initial speeds of particles form a smooth velocity field.
+Zeldovich's approximate model, however, does not explain formation of
+the cellular structure of matter. His approximation does not take into account that particles hitting a "pancake" are hampered by its strong gravitational field and start oscillating inside the "pancake" instead of flying away.
+Although this gravitational adhesion of collisionless particles is not precisely
+the same as the real sticking, the model of sticky particles serves as a reasonable approximation. The effect of gravitational adhesion was then analyzed
+by the use of the Burgers equation; Gurbatov, Saichev and Shandarin proposed it in 1984 to extend Zeldovich's approximation, which is invalid after
+formation of "pancakes."
+The model of sticky particles is directly mentioned in Gurbatov et al. [11];
+a comprehensive survey of the formation of the Universe's large-scale structure could be found in Shandarin and Zeldovich [23].
+1.2. Statement of the problem and the results. In general, the problem
+is to describe the process of mass aggregation. How fast is it? How large
+the clusters are? Where do clusters appear most intensively, and so forth?
+Numerous papers on the model (e.g., [8, 14, 16, 20, 25]) are dedicated to
+probabilistic description of various properties of the aggregation process as
+the number of initial particles n tends to infinity. Thus, the behavior of a
+typical system consisting of a large number of particles is studied.
+In this paper, we are interested in the asymptotic behavior of Kn (t), which
+denotes the number of clusters at time t in the system with n initial particles.
+This variable is a decreasing random step function satisfying Kn (0) = n
+and Kn (t) = 1 for t ≥ Tnlast , where Tnlast denotes the moment of the last
+collision. While calculating Kn (t), we also count initial particles that have
+not experienced any collisions; in other words, Kn (t) is the total number of
+particles existing at time t.
+It is very important to know the behavior of Kn (t). This gives us a deep
+understanding of the aggregation process since the average size of a cluster
+at time t is Knn(t) .
+At first we give a short deterministic example. Suppose that particles are
+located at points n1 , n2 , . . . , nn , that is, Si = i. By simple calculations, we find
+that there would not be any collisions before t = 1. At the moment t = 1, all
+
+4
+
+V. V. VYSOTSKY
+
+particles simultaneously stick together, hence Kn (t) = n for 0 ≤ t < 1 and
+Kn (t) = 1 for t ≥ 1.
+However, when the initial positions are random, the aggregation process
+behaves entirely differently. In [25], the author proved the following statement.
+Fact 1. There exists a deterministic function a(t) such that both in the
+Poisson and the uniform models of initial positions, for any t ≥ 0, we have
+(1)
+
+Kn (t) P
+−→ a(t),
+n
+
+n → ∞.
+
+The function a(t) is continuous, a(0) = 1, and a(t) = 0 for t ≥ 1. We conjecture, on the basis of numerical simulations, that a(t) = 1 − t2 for 0 ≤ t ≤ 1.
+The relation a(t) = 0 for t > 1 is not of a surprise because we know from
+P
+Giraud [8] that both in the Poisson and the uniform models, Tnlast −→ 1 (the
+limit constant is so "fine" due to the proper scaling of the model). Therefore,
+we say that the moment t = 1 is critical; note that this moment coincides
+with the moment of the total collision in the deterministic model.
+The aim of this paper is to strengthen the result of [25]. We first generalize Fact 1 and prove it for the i.d. model. We will see [relations (19)
+and (27) below] that a(t) is equal to the probability of a certain event that
+is expressed in terms of Xi . Also, we will prove that a(t) depends on the
+√
+common distribution of Xi as follows: a(t) = 1 on [0, μ), where
+μ := sup{y : P{Xi < y} = 0};
+√
+a(t) ∈ (0, 1) on ( μ, 1); and a(t) = 0 on (1, ∞).
+Furthermore, the recent results of the author [26] allow us to prove the
+conjecture from Fact 1 that aPoiss (t) = aUnif (t) = 1 − t2 for 0 ≤ t ≤ 1. There
+is an amazing contrast between the simplicity of this formula and the hard
+calculations one needs to obtain it. It is remarkable that now we know the
+limit function a(t) for the main models of initial positions.
+Our main goal is to improve (1) by finding the next term in the asymptotics of Kn (t). The result is the following statement, where the standard
+D
+symbol −→ denotes weak convergence and D denotes the Skorohod space.
+Theorem 1. In the i.d. model with continuous Xi satisfying EXiγ < ∞
+for some γ > 4, there exists a centered Gaussian process K(*) on [0, 1) such
+that
+(2)
+
+Kn (*) − na(*) D
+√
+−→ K(*)
+n
+
+in D[0, 1 − ε] for all ε ∈ (0, 1)
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+5
+
+as n → ∞. The process K(*) depends on the distribution of Xi . This process satisfies K(0) = 0 and has a.s. continuous trajectories. The covariance
+√
+function R(s, t) of K(*) is continuous on [0, 1)2 , R(s, t) > 0 on ( μ, 1)2 , and
+√
+R(s, t) = 0 on [0, 1)2 \ ( μ, 1)2 .
+In the uniform model, (2) holds for some centered Gaussian process K Unif (*)
+on [0, 1). This process satisfies K Unif (0) = 0 and has a.s. continuous trajectories. The covariance function RUnif (s, t) of K Unif (*) is continuous on [0, 1)2 ,
+and RUnif (s, t) = RPoiss (s, t) − s2 t2 .
+Thus, the Poisson and the uniform models lead to different limit processes
+K Poiss (*) and K Unif (*), although aPoiss (*) = aUnif (*).
+As an immediate corollary of Theorem 1 (see Billingsley [3], Section 15),
+we get
+(3)
+
+Kn (t) − na(t) D
+√
+−→ N (0, σ 2 (t)),
+n
+
+n→∞
+
+for any t < 1, where σ 2 (t) := R(t, t). It is possible to show that in the i.d.
+model, (3) holds for all t 6= 1 under the less restrictive condition EXi2 < ∞,
+with σ 2 (t) = 0 for t > 1; continuity of Xi is not required.
+We also study convergence of the left-hand side of (3) at the critical
+moment t = 1. Apparently, the limit is not Gaussian, but this complicated
+problem is related to a curious, but hardly provable conjecture on integrated
+random walks. In view of this non-Gaussianity, it seems impossible to prove
+any extended version of Theorem 1 that describes the weak convergence of
+trajectories on the whole interval [0, 1]; we refer to Section 7 for further
+discussion.
+We finish this subsection with a note on scaling. In our model, the masses
+of particles are equal to n1 and the distances between them are of the order
+1
+n . Let us rescale the i.d. model by multiplying all masses and distances
+by n: the system of particles of mass one each, initially located at points
+S1 − S[n/2] , S2 − S[n/2] , . . . , Sn − S[n/2] , is called the expanding model. The
+particles are shifted by S[n/2] because we want the system to expand "filling"
+the whole line as n → ∞ rather than only the positive half-line.
+All results of our paper hold true for the expanding model. This is not
+unexpected because the shift does not produce any changes and the rescaling
+of masses is equivalent to the time contraction by n times while the rescaling
+of distances is equivalent to the time expansion by n times. We refer the
+reader to Section 2 below or to Lifshits and Shi [16] for rigorous arguments.
+1.3. Organization of the paper. In Section 2 we describe a general method
+which is used to study systems of sticky particles. This method is applied for
+studying the i.d. model in Section 3, where we investigate some properties of
+
+6
+
+V. V. VYSOTSKY
+
+the aggregation process. We will show that the aggregation process is highly
+local, that is, the behavior of a particle is essentially defined by the motion
+of neighbor particles. This localization property suggests that we could use
+limit theorems for weakly dependent variables to prove both Fact 1 and
+Theorem 1 for the i.d. model; this will be done in Section 4. Then we will
+prove Theorem 1 for the uniform model in Section 5. In Section 6 we study
+the number of clusters at the critical moment t = 1. Some open questions
+are discussed in Section 7.
+2. Method of barycenters. In this section we briefly describe the method
+of barycenters, which is the main tool used to study systems of sticky particles; it is also applicable to more general models where particles could
+have nonzero initial speeds and different masses. The method of barycenters
+was independently introduced by E, Rykov and Sinai [6] and Martin and
+Piasecki [20].
+Let us start with several definitions. We always numerate particles from
+left to right and identify particles with their numbers. A block of particles is
+a nonempty set J ⊂ [1, n] consisting of consecutive numbers. For example,
+the block (i, i + k] consists of particles i + 1, . . . , i + k. Note that there are not
+any relations between blocks and clusters: for example, a block's particles
+could be contained in different clusters and these clusters could even contain
+particles that do not belong to the block.
+It is convenient to assume that initial particles do not vanish at collisions
+but continue to exist in created clusters. Then the coordinate xi,n (t) of a
+particle i could be defined as the coordinate of a cluster that contains the
+particle at time t. The second subscript n always indicates the number of
+initial particles; we will
+omit this subscript as often as possible.
+P
+By xJ (t) := |J|−1 i∈J xi (t) denote the position of the barycenter of a
+block J at time t. Further, define
+(R)
+
+x∗J (t) := xJ (0) + 21 (MJ
+(R)
+
+(L)
+
+(L)
+
+− MJ )t2 ,
+
+where MJ := n−1 (n − maxj∈J ) and MJ := n−1 (minj∈J −1) are the total masses of particles located to the right and to the left of the block J ,
+respectively.
+A block is free from the right up to time t if, up to this time, the block's
+particles did not collide with particles initially located to the right of the
+block. We similarly define blocks that are free from the left and say that a
+block is free up to time t if it is both free from the right and from the left.
+The next statement plays the key role in the analysis of sticky particles
+systems. The barycenter of a free block moves as an imaginary particle consisting of all particles of the block put together at the initial barycenter. In a
+more precise and general way, we state the following.
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+7
+
+Proposition 1. If a block J is free from the right (resp. left) up to time
+t, then xJ (s) ≥ x∗J (s) for s ∈ [0, t] [resp. xJ (s) ≤ x∗J (s)]. If a block J is free
+up to time t, then xJ (s) = x∗J (s) for s ∈ [0, t].
+This statement could be found, for example, in Lifshits and Shi [16],
+Proposition 4.1. The easy proof is based on the property of conservation of
+momentum.
+The moment when a particle j sticks with its right-hand side neighbor
+j + 1 is called the merging time Tj,n of the particle j. In other words, Tj,n
+is the first moment when particles j and j + 1 are contained in a common
+cluster; here j ∈ [1, n − 1]. Proposition 4.3 from Lifshits and Shi [16], which
+is stated below, gives us a way to calculate Tj,n .
+Proposition 2.
+(4)
+
+For every j ∈ [1, n − 1], we have
+
+Tj,n = min {s ≥ 0 : x∗(j,k] (s) = x∗(l,j] (s)}.
+j<k≤n
+0≤l<j
+
+Thus, Tj,n is expressed by means of barycenters. Note that since
+k−l 2
+s ,
+2n
+each of the equations x∗(j,k] (s) = x∗(l,j] (s) has a unique nonnegative solution.
+We also mention that at the moment Tj,n appears a cluster that consists of
+the particles l + 1, . . . , k, where k and l are minimizers of the right-hand side
+of (4).
+We will prove Proposition 2 since the proof is simple and perfectly illustrates the sense of the method of barycenters.
+(5)
+
+x∗(j,k](s) − x∗(l,j] (s) = x(j,k](0) − x(l,j] (0) −
+
+Proof of Proposition 2. For any u < Tj,n , the particles j and j + 1
+are contained in different clusters. Therefore, for every l < j, the block [l, j]
+is free from the right up to time u, and for every k > j, the block [j + 1, k]
+is free from the left. By Proposition 1,
+x∗(l,j] (u) ≤ x(l,j] (u) ≤ xj (u) < xj+1 (u)
+≤ x(j,k] (u) ≤ x∗(j,k] (u),
+
+and since, by (5), the function x∗(j,k] (s) − x∗(l,j] (s) is decreasing for s ≥ 0, we
+conclude that
+u <{s ≥ 0 : x∗(j,k](s) = x∗(l,j] (s)}.
+Taking minimum over k, l and taking supremum over u, we get Tj,n ≤
+min{* * *}.
+
+8
+
+V. V. VYSOTSKY
+
+Let us prove the last inequality in the other direction. By the definition of
+Tj,n , there exist an l < j and a k > j such that the blocks (l, j] and (j, k] are
+free up to time Tj,n (clusters containing particles from these blocks collide
+exactly at time Tj,n ). In view of Proposition 1,
+x∗(l,j] (Tj,n ) = x(l,j] (Tj,n ) = x(j,k](Tj,n ) = x∗(j,k] (Tj,n );
+hence Tj,n = {s ≥ 0 : x∗(j,k] (s) = x∗(l,j] (s)} and Tj,n ≥ min{* * *}. 
+3. Study of the i.d. model. The localization property. At first, note that
+Kn (t) = 1 +
+
+(6)
+
+n−1
+X
+i=1
+
+1{t<Ti,n }
+
+because the total number of clusters decreases by one at each moment Ti,n .
+This representation plays the key role in the investigation of Kn (t). Clearly,
+we need to study properties of the r.v.'s Ti,n to prove limit theorems for
+Kn (t); such study will be done in this section.
+3.1. The initial study. Let us simplify the representation for Tj,n from
+Proposition 2. In this section we consider the i.d. model of initial positions,
+where xj,n (0) = n1 Sj . Recall that Sj is a random walk with i.i.d. increments
+{Xj }j∈Z (we will need the variables {Xj }j≤0 later).
+Rewrite the initial distance between barycenters as
+x(j,k] (0) − x(l,j] (0)
+j
+k
+X
+1
+1
+1 X 1
+=
+Si −
+Si
+k − j i=j+1 n
+j − l i=l+1 n
+j
+k
+X
+1 X
+1
+1
+(Si − Sj+1 ) +
+(Sj − Si ) + (Sj+1 − Sj )
+=
+n k − j i=j+1
+j − l i=l+1
+
+!
+
+k−j−1
+j−l−1
+X
+1
+1
+1 X
+=
+(Sj+i+1 − Sj+1 ) +
+(Sj − Sj−i ) + Xj+1 ;
+n k − j i=1
+j − l i=1
+
+!
+
+let us agree that
+
+P
+
+∅
+
+:= 0. Further, by
+
+x(j,k] (0) − x(l,j] (0)
+k−j−1
+j−l−1
+j
+X j+i+1
+X
+X
+1
+1
+1 X
+=
+Xm +
+Xm + Xj+1
+n k − j i=1 m=j+2
+j − l i=1 m=j−i+1
+
+=
+
+k−j−1
+X
+1
+1
+(k − j − i)Xj+i+1
+n k − j i=1
+
+!
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+9
+
+j−l−1
+1 X
++
+(j − l − i)Xj−i+1 + Xj+1 ,
+j − l i=1
+
+!
+
+and (5), we have
+x∗(j,k](s) − x∗(l,j] (s) =
+
+1
+Fk−j,j,j−l(s),
+n
+
+where
+p−1
+
+Fp,j,q (s) :=
+(7)
+
+1X
+(p − i)Xj+i+1
+p i=1
+q−1
+
+p+q 2
+1X
+(q − i)Xj−i+1 + Xj+1 −
+s
++
+q i=1
+2
+
+(for p, q ≥ 1 and j ∈ Z). Now, by Proposition 2, we get
+
+Tj,n = min {s ≥ 0 : Fk−j,j,j−l(s) = 0}
+j<k≤n
+0≤l<j
+
+=
+
+(8)
+
+min {s ≥ 0 : Fk,j,l (s) = 0}.
+
+1≤k≤n−j
+1≤l≤j
+
+Note that Fp,j,q (0) ≥ 0 for all p, j, q and Fp,j,q (s) is decreasing for s ≥ 0.
+This function could be also written in the more convenient form:
+p−1
+
+Fp,j,q (s) =
+(9)
+
+1X
+(p − i)(Xj+i+1 − s2 )
+p i=1
+q−1
+
+1X
++
+(q − i)(Xj−i+1 − s2 ) + (Xj+1 − s2 ).
+q i=1
+3.2. Localization property of the aggregation process. We see that Tj,n
+is a function of X2 , . . . , Xn ; in other words, it is necessary to know the
+distances between all n particles to find Tj,n . The aggregation process is
+actually highly local, that is, the value of Tj,n is essentially defined by the
+initial distances between neighbor particles {i} of j for which |j − i| is small
+enough.
+To make this statement rigorous, we need to introduce the following notation. Let us put
+(M )
+
+Tj
+
+:=
+
+min {s ≥ 0 : Fk,j,l (s) = 0},
+
+1≤k,l≤M
+
+j ∈ Z, M ∈ N,
+
+which is expressed in terms of the variables {Xi }|j−i|≤M only. Also, define
+Tj := inf {s ≥ 0 : Fk,j,l (s) = 0},
+k,l≥1
+
+j ∈ Z,
+
+10
+
+V. V. VYSOTSKY
+
+which is, in some sense, the merging time in an appropriate infinite system
+of particles. The reader could construct such system by considering the limit
+of the expanding model, see Section 1.
+It is clear that
+(10)
+
+(j∧n−j)
+
+Tj ≤ Tj,n ≤ Tj
+
+j, n ∈ N, j ≤ n,
+
+,
+
+where by ∧ and ∨ we denote minimum and maximum, respectively, and
+(M )
+
+Tj ≤ Tj
+
+(11)
+
+,
+
+j ∈ Z, M ∈ N.
+(M )
+
+Let us estimate the rate of the convergence of P{Tj 6= Tj } to zero as the
+"radius of the neighborhood" M tends to infinity. We thus could "measure"
+the above-mentioned locality of the aggregation process. In fact, by (10), we
+(M )
+(M )
+have P{Tj,n 6= Tj } ≤ P{Tj 6= Tj } for any n ∈ N, j ≤ n, and M ≤ j ∧n−j.
+Lemma 1. Suppose EXiγ < ∞ for some γ ≥ 1. Then there exists a nondecreasing function ρ(t) such that
+(M )
+
+(12) max(P{1{t≤Tj } 6= 1{t≤T (M ) } }, P{Tj 6= Tj
+j
+
+(M )
+
+, Tj
+
+≤ t}) ≤ ρ(t)M 1−γ
+
+for any t ∈ (0, 1), j ∈ Z, and M ∈ N. Moreover, for any t < 1, the left-hand
+side of (12) is o(M 1−γ ).
+Proof. Let us estimate the first probability in the left-hand side of
+(M )
+(12). By properties of Fk,j,l (*) and definitions of Tj
+and of Tj ,
+(M )
+
+P{1{t≤Tj } 6= 1{t≤T (M ) } } = P{Tj < t ≤ Tj
+j
+
+=P
+
+
+
+}
+
+inf Fk,j,l (t) < 0, min Fk,j,l (t) ≥ 0 .
+
+k,l≥1
+
+1≤k,l≤M
+
+By (9), this expression does not depend on j, and putting j := −1,
+P{1{t≤Tj } 6= 1{t≤T (M ) } }
+j
+
+(
+
+= P inf
+
+k≥1
+
+1
+k
+
+k−1
+X
+i=1
+
+(k − i)(Xi − t2 )
+
+l−1
+1X
+(l − i)(X−i − t2 ) + (X0 − t2 ) < 0,
+l≥1 l
+i=1
+
++ inf
+
+min
+
+1≤k≤M
+
+ff
+
+X
+1 k−1
+(k − i)(Xi − t2 )
+k i=1
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+11
+
+l−1
+1X
+(l − i)(X−i − t2 ) + (X0 − t2 ) ≥ 0 .
++ min
+1≤l≤M l
+i=1
+
+)
+
+We then compare the inequalities in the braces and obtain
+P{1{t≤Tj } 6= 1{t≤T (M ) } }
+j
+
+X
+X
+1 k−1
+1 k−1
+2
+(k − i)(Xi − t ) < min
+(k − i)(Xi − t2 )
+≤ 2P inf
+1≤k≤M k
+k>M k
+i=1
+i=1
+
+)
+
+(
+
+X
+X
+1 k−1
+1 k−1
+2
+= 2P inf
+(Si − it ) < min
+(Si − it2 )
+k>M k
+1≤k≤M k
+i=1
+i=1
+(
+
+)
+
+X
+X
+1 k−1
+1 k−1
+(Si − it2 ) < min
+(Si − it2 ) .
+≤ 2P inf
+k>M k
+k∈{1,M } k
+i=1
+i=1
+)
+
+(
+
+Now rewrite the event in the last line as
+(
+
+−1
+X
+X
+1 k−1
+1 M
+∃k > M :
+(Si − it2 ) < min 0,
+(Si − it2 )
+k i=1
+M i=1
+
+!)
+
+(
+
+= ∃k > M :
+
+−1
+1 MX
+(Si − it2 )
+k i=1
+
+−1
+X
+X
+1 k−1
+1 M
+2
++
+(Si − it2 )
+(Si − it ) < min 0,
+k i=M
+M i=1
+
+!)
+
+M −1
+1
+2
+Analyzing both cases 0 ≤ M
+i=1 (Si − it ) and 0 >
+conclude that the considered event implies
+
+P
+
+(
+
+1
+M
+
+PM −1
+i=1
+
+.
+
+(Si − it2 ), we
+
+k−1
+X
+X
+1 k−1
+∃k > M :
+(Si − it2 ) < 0 = ∃k > M :
+(Si − it2 ) < 0 .
+k i=M
+i=M
+
+)
+
+(
+
+)
+
+Clearly, the latter implies
+Si
+< t2 ;
+{∃i ≥ M : Si − it < 0} = inf
+i≥M i
+2
+
+ff
+
+
+
+hence, combining all the estimates together, we get
+(13)
+
+Si
+P{1{t≤Tj } 6= 1{t≤T (M ) } } ≤ 2P inf
+< t2 .
+i≥M i
+j
+
+
+ff
+
+Note that we obtained (13) without any assumptions on the moments of Xi .
+We now estimate the right-hand side of (13); recall that EXi = 1. Then
+the first part of (12) immediately follows from the classical result of Baum
+and Katz [1] (see their Theorem 3 and Lemma):
+
+12
+
+V. V. VYSOTSKY
+
+If EXi = a and E|Xi |γ < ∞ for some γ ≥ 1, then
+
+Fact 2.
+
+
+
+Si
+− a > ε = o(k1−γ ),
+i
+ff
+
+P sup
+i≥k
+
+for any ε > 0. In addition, the series
+for all ε > 0 if γ = 2.
+
+k→∞
+
+P∞
+
+Si
+k=1 P{supi≥k | i
+
+− a| > ε} converges
+
+The estimation of the second probability in the left-hand side of (12) is
+completely analogous, since
+(M )
+
+{Tj 6= Tj
+
+(M )
+
+, Tj
+
+≤ t}
+
+(M )
+
+= {Tj < Tj
+=
+
+
+
+inf
+
+1≤k,l
+
+≤ t}
+
+(M )
+Fk,j,l (Tj ) < 0,
+
+min
+
+1≤k,l≤M
+
+(M )
+(M )
+Fk,j,l (Tj ) = 0, Tj
+
+We put j := −1, repeat the estimates, and get
+(M )
+
+P{Tj 6= Tj
+
+(M )
+
+, Tj
+
+(M ) 2
+
+ff
+
+≤t .
+
+(M )
+
+≤ t} ≤ 2P{∃i ≥ M : Si − i[T−1 ] < 0, T−1 ≤ t}
+
+instead of (13). The right-hand side does not exceed 2P{∃i ≥ M : Si − it2 <
+0}, hence
+(14)
+
+(M )
+
+P{Tj 6= Tj
+
+(M )
+
+, Tj
+
+
+
+≤ t} ≤ 2P inf
+
+i≥M
+
+Si
+< t2 .
+i
+ff
+
+
+
+3.3. The distribution function of T0 in the Poisson model. It is amazing
+that in the Poisson model, the distribution function of T0 could be found
+explicitly. This is important because by (27) below, the limit function a(t)
+equals P{T0 > t} for the i.d. model. Also, in the proof of Theorem 1 for the
+uniform model, we will need aPoiss (t) = P{T0Poiss ≥ t} to be twice differentiable and have a continuous second derivative.
+Lemma 2.
+(15)
+
+In the Poisson model, for 0 ≤ t ≤ 1, we have
+P{T0 ≥ t} = 1 − t2 .
+
+In addition, for t ≥ 0, n ≥ 2, and 1 ≤ j ≤ n − 1, we have
+t2
+
+P{Tj,n ≥ t} = e P
+(16)
+×P
+
+(
+
+(
+
+min
+
+1≤k≤j
+
+k
+X
+i=1
+
+min
+
+1≤k≤n−j
+
+)
+
+2
+
+(Si − it ) ≥ 0
+
+k
+X
+i=1
+
+2
+
+)
+
+(Si − it ) ≥ 0 ,
+
+where Si is a standard exponential random walk.
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+13
+
+Proof. We start with (16). By (8), (9) and properties of Fk,j,l (*),
+P{Tj,n ≥ t} = P
+
+
+
+=P
+
+(
+
+(17)
+
+ff
+
+Fk,j,l (t) ≥ 0
+
+min
+
+1≤k≤n−j
+1≤l≤j
+
+X
+1 k−1
+(k − i)(Xj+i+1 − t2 )
+1≤k≤n−j k
+i=1
+
+min
+
+l−1
+1X
+(l − i)(Xj−i+1 − t2 ) + Xj+1 − t2 ≥ 0 .
++ min
+1≤l≤j l
+i=1
+
+)
+
+In the right-hand side of the last equality, by Y denote the first minimum
+and by Ỹ denote the second one.
+Suppose X is a standard exponential r.v., Z is a nonnegative r.v., and
+that X and Z are independent; then
+P{Z ≤ X} =
+=
+
+Z
+
+∞
+
+0
+
+Z
+
+∞
+
+0
+
+P{Z ≤ x}e−x dx
+E1{Z≤x} e
+
+−x
+
+dx = E
+
+Z
+
+∞
+
+0
+
+1{Z≤x} e−x dx = Ee−Z .
+
+Hence in view of independence of Y , Ỹ , Xj+1 we get
+2
+
+2
+
+2
+
+2
+
+P{Y + Ỹ + Xj+1 − t2 ≥ 0} = EeY +Ỹ −t = et EeY −t EeỸ −t ;
+and therefore,
+2
+
+P{Tj,n ≥ t} = et P{Y + Xj+1 − t2 ≥ 0} * P{Ỹ + Xj+1 − t2 ≥ 0}.
+Now, by
+P{Ỹ + Xj+1 − t2 ≥ 0}
+l−1
+1X
+(l − i)(Xj−i+1 − t2 ) + Xj+1 − t2 ≥ 0
+= P min
+1≤l≤j l
+i=1
+
+)
+
+(
+
+(18)
+
+(
+
+= P min
+(
+
+1≤l≤j
+
+= P min
+
+1≤l≤j
+
+l−1
+X
+i=1
+
+l
+X
+i=1
+
+2
+
+2
+
+!
+
+)
+
+(l − i)(Xi+1 − t ) + l(X1 − t ) ≥ 0
+2
+
+)
+
+(l − i + 1)(Xi − t ) ≥ 0 ,
+
+we conclude the proof of (16). Indeed, the expression in the last line equals
+the first probability in the right-hand side of (16).
+
+14
+
+V. V. VYSOTSKY
+(k)
+
+Now let us prove (15). From the definition of T0 and T0
+1{t≤T (k) } → 1{t≤T0 } a.s. as k → ∞; then by (16),
+
+we see that
+
+0
+
+t2 2
+
+P{T0 ≥ t} = e P
+Then we need to check that
+(
+
+P inf
+
+k≥1
+
+k
+X
+i=1
+
+(
+
+inf
+
+k≥1
+
+k
+X
+i=1
+
+)
+
+)
+
+2
+
+(Si − it ) ≥ 0 .
+
+(Si − it) ≥ 0 =
+
+√
+
+1 − te−t/2
+
+for 0 ≤ t ≤ 1. The complicated calculations of this probability take more
+then ten pages. Therefore, they were separated into independent paper [26].
+Although these calculations seem to be technical, they are based on quite
+original ideas. 
+3.4. Some properties of the variables Ti . In this subsection we prove
+several important properties of the r.v.'s Ti .
+1. The sequence Ti is stationary.
+Proof. This statement immediately follows from the definition of Ti and
+stationarity of Xi , which are i.i.d.
+2. The common distribution function of Ti is defined by
+X
+1 k−1
+(k − i)(Xi − t2 )
+k≥1 k
+i=1
+
+(
+
+P{Ti ≥ t} = P inf
+(19)
+
+l−1
+1X
++ inf
+(l − i)(X−i − t2 ) + (X0 − t2 ) ≥ 0 .
+l≥1 l
+i=1
+
+)
+
+Proof. This formula follows from (9).
+√
+√
+3. We have P{ μ ≤ Ti ≤ 1} = 1 while sup{y : P{Ti < y} = 0} = μ and
+inf{y : P{Ti < y} = 1} = 1; recall that μ = sup{y : P{Xi < y} = 0}. In addition, if 0 < DXi < ∞, then P{Ti = 1} = 0.
+√
+Proof. First, P{ μ ≤ Ti } = 1 is trivial, because both infima in (19) are
+nonpositive.
+Second, fix a t ≥ 1 and consider P{Ti ≥ t}. Taking into account that infima
+in (19) are nonpositive, we obtain
+X
+1 k−1
+P{Ti ≥ t} ≤ P inf
+(k − i)(Xi − t2 ) + (X0 − t2 ) ≥ 0 .
+k≥1 k
+i=1
+(
+
+)
+
+Then by the same arguments as in (18),
+(
+
+P{Ti ≥ t} ≤ P inf
+
+k≥1
+
+k
+X
+i=1
+
+2
+
+)
+
+(
+
+(k − i + 1)(Xi − t ) ≥ 0 = P inf
+
+k≥1
+
+k
+X
+i=1
+
+2
+
+)
+
+(Si − it ) ≥ 0 .
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+15
+
+By the strong law of large numbers, this probability is zero for all t > 1.
+If t = 1 and 0 < DXi < ∞, then
+(
+
+P inf
+
+k≥1
+
+k
+X
+i=1
+
+)
+
+(Si − i) ≥ 0 = lim P
+n→∞
+
+(
+
+min
+
+1≤k≤n
+
+k
+X
+i=1
+
+)
+
+(Si − i) ≥ 0
+
+k
+S −i
+1X
+√i
+≥0 ,
+= lim P min
+n→∞
+1≤k≤n n
+nDXi
+i=1
+
+)
+
+(
+
+and from the invariance principle, we get
+P{Ti ≥ 1} ≤ P
+
+
+
+min
+
+s
+
+Z
+
+0≤s≤1 0
+
+ff
+
+W (u) du ≥ 0 .
+
+It follows from the asymptotics of unilateral small deviation probabilities of
+an integrated Wiener process, see (43) and (44) below, that the last expression equals zero.
+√
+Third, sup{y : P{Ti < y} = 0} = μ and inf{y : P{Ti < y} = 1} = 1 follow
+if we prove that for any t < EXi = 1, the common distribution of the i.i.d.
+infima in (19) has an atom at zero. But we have
+X
+X
+1 k−1
+1 k−1
+(k − i)(Xi − t2 ) = 0 = P inf
+(Si − it2 ) = 0
+P inf
+k≥1 k
+k≥1 k
+i=1
+i=1
+)
+
+(
+
+(
+
+)
+
+Si
+≥ P inf
+≥ t2 ,
+i≥1 i
+
+
+ff
+
+and it could be shown via the strong law of large numbers that the last
+probability is strictly positive for all t < 1.
+(k)
+4. Suppose Xi is continuous. Then Tj and Tj,n are continuous for any
+j, k, n and the common distribution of Tj could have an atom only at 1. In
+addition, if EXi2 < ∞, then Tj are continuous.
+Proof. By (7) and (8),
+Tj,n =
+
+(20)
+
+min
+
+1≤k≤n−j
+1≤l≤j
+
+q
+
+H(k, j, l),
+
+where
+p−1
+
+q−1
+
+!
+
+1X
+2
+1X
+H(p, j, q) :=
+(p − i)Xj+i+1 +
+(q − i)Xj−i+1 + Xj+1 .
+p + q p i=1
+q i=1
+Hence Tj,n is continuous as a minimum of a finite number of continuous
+(k)
+
+r.v.'s. The Tj
+
+(k) D
+
+are also continuous because Tj
+
+= Tk,2k .
+
+16
+
+V. V. VYSOTSKY
+
+Now we prove the continuity of Tj . By Property 3, it only remains to
+(k)
+verify that P{Tj ≥ t} is continuous on [0, 1). But P{Tj ≥ t} − P{Tj ≥ t} =
+P{1{t≤Tj } 6= 1{t≤T (k) } }, and in view of (13),
+j
+
+(k)
+
+sup |P{Tj
+
+0≤t≤s
+
+Sm
+Sm
+< t2 = 2P inf
+< s2
+m≥k m
+m≥k m
+ff
+
+
+
+≥ t}−P{Tj ≥ t}| ≤ sup 2P inf
+0≤t≤s
+
+
+
+ff
+
+for every s < 1 = EXi . The last expression tends to zero by the strong law
+of large numbers; then P{Tj ≥ t} is continuous on [0, s] as a uniform limit
+(k)
+of continuous functions P{Tj ≥ t}. Since s < 1 is arbitrary, P{Tj ≥ t} is
+continuous on [0, 1).
+5. The cov(1{s≤T0 } , 1{t≤Tk } ) tends to zero as k → ∞ for all s, t ∈ [0, 1). If,
+in addition, EXiγ < ∞ for some γ > 1, then for any s, t ∈ [0, 1) and k ∈ N,
+we have
+(21)
+
+|cov(1{s≤T0 } , 1{t≤Tk } )| ≤ 2γ (ρ(s) + ρ(t))k1−γ .
+
+Proof. The idea is to approximate 1{s≤T0 } and 1{t≤Tk } by 1{s≤T (k/2) } and
+0
+
+1{t≤T (k/2) } , respectively; here by k/2 we mean ⌈k/2⌉, where ⌈x⌉ = min{m ∈
+k
+Z : m ≥ x}. Note that 1{s≤T (k/2) } and 1{t≤T (k/2) } are independent because the
+0
+
+k
+
+first is a function of {Xi }i≤k/2 while the second is a function of {Xi }i≥k/2+1 .
+We then have
+|cov(1{s≤T0} , 1{t≤Tk } )|
+
+= |cov(1{s≤T0 } , 1{t≤Tk } ) − cov(1{s≤T (k/2) } , 1{t≤T (k/2) } )|
+0
+
+k
+
+≤ |E(1{s≤T0 } 1{t≤Tk } − 1{s≤T (k/2) } 1{t≤T (k/2) } )|
+0
+
+(22)
+
+k
+
++ |E(1{s≤T0 } − 1{s≤T (k/2) } )| + |E(1{t≤Tk } − 1{t≤T (k/2) } )|
+0
+
+k
+
+= P{1{s≤T0 } 1{t≤Tk } 6= 1{s≤T (k/2) } 1{t≤T (k/2) } }
+0
+
+k
+
++ P{1{s≤T0 } 6= 1{s≤T (k/2) } } + P{1{t≤Tk } 6= 1{t≤T (k/2) } }.
+0
+
+k
+
+But
+P{1{s≤T0 } 1{t≤Tk } 6= 1{s≤T (k/2) } 1{t≤T (k/2) } }
+0
+
+k
+
+≤ P{1{s≤T0 } 6= 1{s≤T (k/2) } ∪ 1{t≤Tk } 6= 1{t≤T (k/2) } },
+0
+
+k
+
+therefore the result follows from Lemma 1.
+(k)
+n−1
+6. The r.v.'s {Ti }i∈Z , {Ti }i∈Z , and {Ti,n }i=1
+are associated; the author
+owes this observation to M. A. Lifshits.
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+17
+
+Proof. Let us first recall the definition and some basic properties of associated variables. R.v.'s ξ1 , . . . , ξm are associated if for any coordinate-wise
+nondecreasing functions f, g : Rm → R, it is true that
+cov(f (ξ1 , . . . , ξm ), g(ξ1 , . . . , ξm )) ≥ 0
+(assuming that the left-hand side is well defined). An infinite set of r.v.'s is
+associated if any finite subset of its variables is associated.
+The following sufficient conditions of association are well known; see [7].
+(a) Independent variables are associated.
+(b) Coordinate-wise nondecreasing functions (of finite number of arguments) of associated r.v.'s are associated.
+(c) If the variables ξ1,k , . . . , ξm,k are associated for every k and (ξ1,k , . . . ,
+D
+
+ξm,k ) −→ (ξ1 , . . . , ξm ) as k → ∞, then ξ1 , . . . , ξm are associated.
+(d) If two sets of associated variables are independent, then the union of
+these sets is also associated.
+n−1
+Then {Ti,n }i=1
+are associated for every n by (a), (b) and (20). Analo(k)
+(k)
+gously, {Ti }i∈Z are associated for every k. Finally, since Ti → Ti a.s. as
+k → ∞ for every i, (c) ensures the association of {Ti }i∈Z .
+7. For any s, t ∈ R and k ∈ Z,
+
+cov(1{T0 ≤s} , 1{Tk ≤t} ) ≥ 0.
+
+(23)
+
+Proof. This inequality follows from cov(1{T0 ≤s} , 1{Tk ≤t} ) = cov(1{s<T0 } ,
+
+1{t<Tk } ), the association of T0 , Tk and (b).
+
+8. If EXiγ < ∞ for some γ ≥ 2, then the stationary sequence min{Ti , t}
+is strongly mixing for any t < 1 and its coefficients of strong mixing α(k)
+satisfy α(k) = o(k2−γ ).
+Proof. Recall that stationary r.v.'s ξi are strongly mixing if α(k) → 0 as
+k → ∞, where α(k) are the coefficients of strong mixing defined as
+α(k) :=
+
+sup
+0
+A∈F−∞
+,B∈Fk∞
+
+|P(AB) − P(A)P(B)|;
+
+0
+here F−∞
+:= σ(ξ0 , ξ−1 , . . .) and Fk∞ := σ(ξk , ξk+1 , . . .) are the σ-algebras of
+"past" and "future," respectively. It is readily seen that
+
+(24)
+
+α(k) ≤ sup | cov(f (ξ0 , ξ−1 , . . .), g(ξk , ξk+1 , . . .))|,
+0≤f,g≤1
+
+where the supremum is taken over Borel functions f, g : R∞ → [0, 1].
+Let us estimate α(k) in the same way we estimated the left-hand side
+of (21). Fix some Borel functions f, g : R∞ → [0, 1]. We approximate the
+(k/2)
+(k/2+1)
+variables from the "past" T0 ∧ t, T−1 ∧ t, T−2 ∧ t, . . . by T0
+∧ t, T−1
+∧ t,
+(k/2+2)
+
+T−2
+
+∧ t, . . . , respectively; and for the variables from the "future," we
+
+18
+
+V. V. VYSOTSKY
+(k/2)
+
+use the analogous approximation. Now, f (T0
+
+(k/2+1)
+(k/2)
+∧ t, . . .)
+∧ t, Tk+1
+g(Tk
+of {Xi }i≤k/2 and the second
+
+(k/2+1)
+
+∧ t, T−1
+
+∧ t, . . .) and
+
+are independent because the first is a function
+is a function of {Xi }i≥k/2+1 . We then argue in
+the same way as in (22) to get
+| cov(f (T0 ∧ t, T−1 ∧ t, . . .), g(Tk ∧ t, Tk+1 ∧ t, . . .))|
+≤ 2P
+
+(∞
+[
+
+i=0
+
++ 2P
+≤4
+
+(k/2+i)
+(T−i ∧ t) 6= (T−i
+
+)
+
+∧ t)
+
+(∞
+[
+
+∞
+X
+
+i=k/2
+
+(k/2+i)
+(Tk+i ∧ t) 6= (Tk+i
+i=0
+
+)
+
+∧ t)
+
+(i)
+
+P{(T0 ∧ t) 6= (T0 ∧ t)}.
+
+Now, by the formula of total probability, we have
+(i)
+
+P{(T0 ∧ t) 6= (T0 ∧ t)}
+
+(i)
+
+(i)
+
+(i)
+
+(i)
+
+= P{(T0 ∧ t) 6= (T0 ∧ t), T0 ≥ t} + P{(T0 ∧ t) 6= (T0 ∧ t), T0 < t}
+(i)
+
+(i)
+
+≤ P{1{t≤T0 } 6= 1{t≤T (i) } } + P{T0 6= T0 , T0 ≤ t}
+0
+
+and combining all the estimates together, by Lemma 1 (24) and arbitrariness
+P
+1−γ ) = o(k 2−γ ) if γ > 2. For γ = 2, we
+of f and g, we get α(k) ≤ 8 ∞
+i=k/2 o(i
+P∞
+get α(k) ≤ 16 i=k/2 P{inf i≥M Sii < t2 } = o(1) using the same argument and
+applying (13), (14), and Fact 2 instead of Lemma 1.
+3.5. The last collision. We finish this section with a statement on the
+convergence of the moments of the last collision.
+Proposition 3.
+
+P
+
+In the i.d. model, Tnlast −→ 1 as n → ∞ if EXi2 < ∞.
+
+This result is well known for the Poisson model; see Giraud [8].
+Proof of Proposition 3. Let us first prove that P{Tnlast ≥ t} → 0 as
+n → ∞ for all t > 1. Since Tnlast = max1≤j≤n−1 Tj,n , we have
+(25)
+
+P{Tnlast ≥ t} ≤
+
+n−1
+X
+j=1
+
+P{Tj,n ≥ t}.
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+19
+
+By taking into account that the minima in (17) are nonpositive and by
+arguing as in (18),
+X
+1 k−1
+(k − i)(Xj+i+1 − t2 ) + Xj+1 − t2 ≥ 0
+P{Tj,n ≥ t} ≤ P
+min
+1≤k≤j∨n−j k
+i=1
+
+)
+
+(
+
+=P
+
+≤P
+
+(
+(
+
+min
+
+1≤k≤j∨n−j
+
+min
+
+1≤k≤n/2
+
+k
+X
+i=1
+
+k
+X
+i=1
+
+)
+
+2
+
+(k − i + 1)(Xi − t ) ≥ 0
+)
+
+(Si − it2 ) ≥ 0 .
+
+We claim that (without any assumptions on the moments of Xi )
+S i 1 + t2
+P{Tj,n ≥ t} ≤ P
+sup
+>
+;
+2
+i≥(t−1)/4tn i
+
+
+(26)
+
+ff
+
+recall that t > 1. Clearly, (26) follows if we check that
+(
+
+k
+X
+
+)
+
+S i 1 + t2
+>
+.
+(Si − it ) ≥ 0 ⊂
+sup
+min
+2
+1≤k≤n/2
+i≥(t−1)/4tn i
+i=1
+2
+
+ff
+
+
+
+Assume the converse; then, by the nonnegativity of Si ,
+
+where c :=
+
+0≤
+
+n/2
+X
+
+(Si − it ) =
+
+≤
+
+cn
+X
+
+(Scn − it2 ) +
+
+t−1
+4t .
+
+i=1
+
+i=1
+
+2
+
+cn
+X
+i=1
+
+2
+
+(Si − it ) +
+
+2
+
+i=cn+1
+
+(Si − it2 )
+
+i=cn+1
+
+n/2 
+X
+1 + t2
+
+i
+
+n/2
+X
+
+
+
+− it2 ,
+
+We estimate the last expression with
+
+(cn)2 2 (n/2)2 − (cn)2 t2 − 1 c2 2 1/4 − c2 t2 − 1 2
+t −
+*
+≤ n −
+*
+n .
+2
+2
+2
+2
+2
+2
+It is simple to check that the right-hand side is negative, thus we have a
+contradiction.
+Then from (25), (26) and Fact 2 it follows that P{Tnlast ≥ t} =
+Pn−1
+−1
+i=1 o((cn) ) = o(1) for all t > 1.
+Now let us prove that P{Tnlast < t} → 0 as n → ∞ for all t < 1. Since
+last
+Tn = max1≤j≤n−1 Tj,n , we estimate
+cnScn −
+
+P{Tnlast < t} ≤ P
+
+
+
+=P
+
+
+
+max
+√
+
+1≤j≤ n−1
+
+Tj √n,n < t
+
+√
+( n/2)
+√
+T
+max
+√
+1≤j≤ n−1 j n
+
+ff
+ff
+
+<t +
+
+√
+
+n−1
+X
+
+j=1
+
+P{1{t≤Tj√n,n } 6= 1{t≤T (√√n/2) } }.
+j
+
+n
+
+20
+
+V. V. VYSOTSKY
+
+P√n−1
+
+In view of (10) and Lemma 1, the sum is j=1 o(n−1/2 ) = o(1), hence it
+remains to check that
+√ the first probability in the last line tends to zero.
+( n/2)
+are independent because each one is a function of
+For a fixed n, all Tj √n
+√
+√
+{Xi }|j n−i|≤ n/2 (to be precise, of Xj √n−√n/2+2 , . . . , Xj √n+√n/2 ). Thus,
+P
+
+
+
+max
+√
+
+1≤j≤ n−1
+
+√
+( n/2)
+
+Tj √n
+
+ff
+
+<t =P
+
+√
+n−1
+
+√
+( n/2)
+
+{T√n
+
+< t} ≤ P
+
+√
+n−1
+
+{T0 < t},
+
+which tends to zero; indeed, P{T0 < t} < 1 by Property 3, Section 3.4. 
+4. Proofs of Fact 1 and Theorem 1 for the i.d. model. Recall
+Pn−1that the
+number of clusters Kn (t) is given by (6). Our idea is to study i=1
+1{t<Ti }
+Pn−1
+instead of i=1 1{t<Ti,n } : We thus deal with a single sequence Ti and avoid
+considering the triangular array Ti,n .
+Let us now prove Fact 1 for the i.d. model. We prove (1) for t 6= 1 without
+any additional assumptions on Xi ; for t = 1, we require EXi2 < ∞. The
+properties of the limit function a(t) were studied in Section 3.4, Properties
+3 and 4.
+Proof of Fact 1.
+(27)
+
+We put
+a(t) := P{T0 > t}.
+
+Let us first prove (1) for all t < 1. It is sufficient to check that
+n
+Kn (t) 1 X
+P
+1
+−
+−→ 0,
+n
+n i=1 {t<Ti }
+
+(28)
+
+n → ∞.
+
+Indeed, the stationary sequence 1{t<Ti } satisfies the law of large numbers by
+Property 5, Section 3.4, and the well-known result of S. N. Bernstein:
+Fact 3. The law of large numbers holds for r.v.'s ξi if there exists a
+sequence r(k) → 0 such that cov(ξi , ξj ) ≤ r(|i − j|) for all i, j ∈ N.
+By (6),
+n
+X
+Kn (t) 1 X
+1 1 n−1
+(1
+−
+− 1{t<Ti } ),
+1{t<Ti } ≤ +
+n
+n i=1
+n n i=1 {t<Ti,n }
+
+where we used (10) to get the nonnegativity of the right-hand side. Then
+(28) immediately follows from the Chebyshev inequality provided that the
+expectation of the right-hand side tends to zero. By using (10), we obtain
+X
+X
+1 n−1
+1 n−1
+E(1{t<Ti,n } − 1{t<Ti } ) ≤
+(E1{t<T (i∧n−i) } − E1{t<Ti } )
+n i=1
+n i=1
+i
+
+=
+
+X
+1 n−1
+P{1{t<Ti } 6= 1{t<T (i∧n−i) } },
+n i=1
+i
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+21
+
+Pn/2
+
+which is n2 i=1 o(1) = o(1) by Lemma 1. To be very precise, Lemma 1
+deals with slightly different indicators, but we can estimate the considered
+probability by repeating the proof of Lemma 1 word for word (or just use
+Property 4, Section 3.4).
+We now check that (1) holds for all t > 1. Using (26) gives E Knn(t) =
+P
+
+P{Ti,n > t} → 0 as n → ∞ and Knn(t) −→ a(t) = 0 follows from the
+Chebyshev inequality.
+It remains to check that (1) holds for t = 1 if EXi2 < ∞ to conclude
+the proof. If DXi = 0, then the situation is deterministic, this case was
+described in Introduction. Here we always have Kn (1) = 1 and (1) is true.
+If 0 < DXi < ∞, then by Property 3 from Section 3.4, we have a(1) = 0 and
+P{T0 = 1} = 0; consequently, a(t) = P{T0 > t} is continuous at t = 1. Then
+P
+(1) is true for t = 1 since 0 < Knn(1) ≤ Knn(t) −→ a(t) for any t ∈ (0, 1) and
+a(t) → a(1) = 0 as t ր 1. 
+1
+n
+
+Pn−1
+i=1
+
+Now we prove Theorem 1 for the i.d. model. We think of D[0, 1] as of a
+separable metric space equipped with the Skorohod metric d, which induces
+the Skorohod topology.
+Proof of Theorem 1. At first, we prove (2). In view of representation
+(6) for Kn (t), relation (2) follows from the relation
+(29)
+
+n
+X
+1 X
+1 n−1
+P
+√
+−→ 0
+1{t<Ti,n } − √
+1
+n i=1
+n i=1 {t<Ti }
+
+sup
+0≤t≤1−ε
+
+for all ε ∈ (0, 1)
+
+and the existence of a centered Gaussian process K(*) on [0, 1) such that
+n
+1 X
+D
+(30) √
+− na(t) −→ K(*)
+1
+n i=1 {t<Ti }
+
+(
+
+)
+
+D
+
+in D[0, 1 − ε] for all ε ∈ (0, 1).
+
+P
+
+Indeed, if Yn −→ Y and d(Yn , Yn′ ) −→ 0 for some random elements Yn , Yn′ , Y
+D
+of the separable metric space D[0, 1−ε], then Yn′ −→ Y ; recall that d(Yn , Yn′ ) ≤
+supt∈[0,1−ε] |Yn (t) − Yn′ (t)|.
+We start with (29). It is sufficient to prove that the expectation of the
+left-hand side tends to zero. Since the supremum of a sum does not exceed
+the sum of suprema, let us check that
+(31)
+
+X
+1 n−1
+√
+E sup |1
+− 1{t<Ti } | −→ 0
+n i=1 0≤t≤1−ε {t<Ti,n }
+
+for all ε ∈ (0, 1).
+
+By (10), we have
+E sup |1{t<Ti,n } − 1{t<Ti } | ≤ E sup (1{t<T (i∧n−i) } − 1{t<Ti } )
+0≤t≤1−ε
+
+0≤t≤1−ε
+
+i
+
+22
+
+V. V. VYSOTSKY
+(i∧n−i)
+
+= P{Ti 6= Ti
+
+, Ti ≤ 1 − ε}
+
+= P{Ti 6= Ti
+
+, Ti
+
+(i∧n−i)
+
+(i∧n−i)
+
+< 1 − ε}
+
++ P{1{1−ε≤Ti } 6= 1{1−ε≤T (i∧n−i) } },
+i
+
+where the last equality was obtained via the formula of total probability.
+Combining the estimates together and using Lemma 1,
+X
+1 n−1
+√
+E sup |1
+− 1{t<Ti } |
+n i=1 0≤t≤1−ε {t<Ti,n }
+n/2
+
+X
+2ρ(1 − ε) n−1
+4ρ(1 − ε) X 1−γ
+√
+√
+≤
+i .
+(i ∧ n − i)1−γ =
+n
+n
+i=1
+i=1
+
+The last expression is O(n3/2−γ ) and (31), which implies (29), follows.
+Now let us prove (30). As long as
+n
+n
+√ 1X
+1 X
+− (1 − a(t)) ,
+1{t<Ti } − na(t) = n
+1
+Un (t) := − √
+n i=1
+n i=1 {Ti ≤t}
+
+)
+
+(
+
+(
+
+)
+
+the Un (*) is the empirical process of stationary r.v.'s Ti with the continuous
+D
+common distribution function 1 − a(t). By K(*) = −K(*), (30) is equivalent
+to the existence of a centered Gaussian process K(*) on [0, 1) such that
+(32)
+
+D
+
+Un (*) −→ K(*)
+
+in D[0, 1 − ε] for all ε ∈ (0, 1).
+
+We will use the following result from Lin and Lu [17], Section 12 on
+convergence of empirical processes. They attribute this statement to Q.-M.
+Shao, who published it in 1986, in Chinese.
+Fact 4. Let ξi be a sequence of stationary strongly mixing r.v.'s distributed on [0, 1], and let F be the common distribution function of ξi .
+Suppose F (x) = x on [0, 1] (i.e., ξi are uniformly distributed) and the coefficients of strong mixing of the sequence F (ξi ) decrease as O(k−(2+δ) )
+as k → ∞ for some δ > 0. Then the empirical processes of ξi weakly converge
+in D[0, 1] to a centered Gaussian process with the covariance function
+P
+cov(
+1{ξ0 ≤s} , 1{ξi ≤t} ).
+i∈Z
+
+Remark. The limit Gaussian process is a.s. continuous on [0, 1]. Fact 4
+also holds true if F is an arbitrary continuous distribution function.
+
+The a.s. continuity of the limit process could be concluded by a comparison of the proof from Lin and Lu [17] with the proof of Theorem 22.1 from
+Billingsley [3]. The statements and the proofs of these theorems are identical,
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+23
+
+but Lin and Lu do not state the continuity while Billingsley does. Further,
+since F (ξi ) is uniformly distributed on [0, 1] if F is continuous, Fact 4 holds
+true for every continuous F ; see the proof of Theorem 22.1 by Billingsley [3]
+for explanations.
+Recall that we need to prove the convergence of the empirical process of
+Ti . It seems that the r.v.'s Ti are not strongly mixing; but min{Ti , 1 − ε} are
+strongly mixing because of Property 8, Section 3.4. These variables are not
+continuous and so we need to fix them. Let us fix an ε ∈ (0, 1), and let αi
+be i.i.d. r.v.'s independent of all Ti and, say, uniformly distributed on [0, ε];
+we define T̃i := min{Ti , 1 − ε} + 1{Ti ≥1−ε} αi .
+The stationary variables T̃i are distributed on [0, 1], their common distribution function G is continuous, and the coefficients of strong mixing
+of G(T̃i ) decrease as o(k2−γ ). The proof of the last statement is the same
+as the proof of Property 8 from Section 3.4. Indeed, approximate the vari(k/2)
+(k/2+1)
+ables G(T̃0 ), G(T̃−1 ), . . . from the "past" by G(T̃0
+), G(T̃−1
+), . . . where
+(m)
+
+(m)
+
+T̃i := min{Ti , 1 − ε} + 1{T (m) ≥1−ε} αi ; use the analogous approximation
+i
+for the variables from the "future"; and then repeat word for word the arguments of the previous proof.
+Now, recalling that γ > 4, we see that T̃i satisfy the assumptions of Fact 4,
+with the only difference that their distribution is not uniform. By Ũn (*)
+denote the empirical process of T̃i ; clearly, Ũn (*) coincides with the empirical
+process Un (*) of Ti on [0, 1 − ε]. By the remark to Fact 4, we conclude that
+first,
+(33)
+
+D
+
+Ũn (*) −→ K̃(*)
+
+in D[0, 1],
+
+where K̃(*) is a centered Gaussian process with the covariance function
+R̃(s, t) :=
+
+X
+i∈Z
+
+cov(1{T̃0 ≤s} , 1{T̃i ≤t} )
+
+and, second, trajectories of K̃(*) are a.s. continuous on [0, 1].
+[There exists a simpler and more elegant proof of (33). Note that {T̃i }i∈Z
+are associated as coordinate-wise nondecreasing functions of associated r.v.'s
+{Ti , αi }i∈Z , see (a), (b) and (d) from Property 6, Section 3.4. Then we can
+obtain (33) applying the result of Louhichi [18] on convergence of empirical
+processes of stationary associated r.v.'s ξi instead of using Fact 4. This theorem requires only cov(F (ξ0 ), F (ξk )) = O(k−(4+δ) ), which could be proved
+analogously to Property 5, Section 3.4. Thus we avoid the complicated estimations of the strong mixing coefficients, and the proof of (33) is becomes
+much simpler. The only problem is that this proof requires γ > 5.
+We also note that the a.s. continuity of K̃(*) could be proved directly,
+without referring to the proof of Fact 4. The arguments should be the same
+as in the proof of the continuity of K Unif (*) in Section 5.]
+
+24
+
+V. V. VYSOTSKY
+
+Define
+(34)
+
+R(s, t) :=
+
+X
+i∈Z
+
+cov(1{T0 ≤s} , 1{Ti ≤t} ),
+
+which is, evidently, equal to R̃(s, t) on [0, 1 − ε]2 . Since R̃(s, t) is positive
+definite and ε > 0 is arbitrary, the function R(s, t) is positive definite on
+[0, 1)2 . Therefore, by Lifshits [15], Section 4, there exists a centered Gaussian
+process K(*) on [0, 1) with the covariance function R(s, t). The trajectories
+D
+of K(*) are a.s. continuous on [0, 1) by K(*) = K̃(*) on [0, 1 − ε], arbitrariness
+of ε > 0, and the a.s. continuity of K̃(*) on [0, 1].
+D
+Finally, by (33), Ũn (*) = Un (*) on [0, 1 − ε], K̃(*) =
+K(*) on [0, 1 − ε], and
+the a.s. continuity of K̃(*), we get (32). Since (32) implies (30), we conclude
+the proof of (2).
+Only the stated properties of R(s, t) remain to be proven. The continuity
+of the joint distribution function of continuous variables T0 and Ti implies
+that cov(1{T0 ≤s} , 1{Ti ≤t} ) is continuous on [0, 1)2 for every i ≥ 0. Then, in
+view of (21), R(s, t) is continuous on [0, 1)2 as a sum of uniformly converging
+series of continuous functions.
+√
+The strict positivity of R(s, t) on ( μ, 1)2 trivially follows from (34), (23)
+and cov(1{T0 ≤s} , 1{T0 ≤t} ) = a(s ∨ t)(1 − a(s ∧ t)) > 0; the last inequality holds
+√
+by Property 3, Section 3.4. The R(s, t) = 0 on [0, 1)2 \ ( μ, 1)2 follows from
+√
+P{Ti ≤ μ} = 0, which holds by Properties 3 and 4 from Section 3.4. 
+We note that (3) holds for t 6= 1 under the less restrictive condition EXi2 <
+∞. For t < 1, the proof is almost the same: By (29), which is true for γ > 3/2,
+we conclude that (3) holds if the stationary associated sequence 1{t<Ti }
+satisfies the central limit theorem. Then we refer to the central limit theorem
+for stationary associated sequences from Newman [21]; his theorem requires
+only R(t, t) < ∞, that is, the convergence of the right-hand side of (34). This
+condition holds by (13) and Fact 2. For t > 1, relation (3) holds true with
+σ 2 (t) = 0 because of Proposition 3.
+Finally, note that the process K(*) is associated, that is, the r.v.'s
+{K(t)}t∈[0,1) are associated. In fact, by (6), Property 6 from Section 3.4,
+√
+are
+and Condition (b) from the same Property 6, the processes Kn (*)−na(*)
+n
+associated for every n. Then K(*) is associated by (2) and (c), Property 6.
+
+5. Proof of Theorem 1 for the uniform model. There exists a simple
+method that allows to extend results from the Poisson model to the uniform
+model and vise versa. The method is based on the next statement (see
+Karlin [13], Section 9.1).
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+25
+
+Fact 5.
+have
+
+Let Si be an exponential random walk. Then for any k ≥ 1, we
+
+(35)
+
+
+
+S2
+Sk
+S1
+,
+,...,
+Sk+1 Sk+1
+Sk+1
+
+
+
+D
+
+= (U1,k , U2,k , . . . , Uk,k ),
+
+where Ui,k are the order statistics of k i.i.d. r.v.'s uniformly distributed on
+[0, 1]. Moreover, the random vector in the left-hand side of (35) is independent of Sk+1 .
+1
+Therefore, if xPoiss
+j,n (0) = n Sj are the initial positions of particles in the
+Poisson model, then for the initial positions of particles in the uniform model,
+n
+Poiss
+we have xUnif
+j,n (0) = Sn+1 * xj,n (0). By Proposition 2 and (5), we conclude
+that
+Unif
+Poiss
+Tj,n
+= βn−1 Tj,n
+,
+
+(36)
+
+βn :=
+
+s
+
+Sn+1
+,
+n
+
+and hence, using (6), we get
+KnUnif (t) = KnPoiss (βn t).
+
+(37)
+
+Note that the process KnUnif (*) and the r.v. βn are independent since valUnif
+ues of the process are defined by xUnif
+1,n (0), . . . , xn,n (0), which are mutually
+independent of βn by Fact 5.
+Now we prove Theorem 1 for the uniform model.
+Proof of Theorem 1.
+Yn (t) :=
+
+Denote
+
+KnUnif (t) − na(t)
+√
+
+n
+
+,
+
+Zn (t) :=
+
+√
+
+n(a(t) − a(βn t));
+
+we stress that Yn (*) and Zn (*) are independent.
+Fix an ε ∈ (0, 1). First, it follows from (2) for the Poisson model and (37)
+that
+(38)
+
+D
+
+Yn (*) + Zn (*) −→ K Poiss (*)
+
+in D[0, 1 − ε].
+
+√1 (K Poiss (*) − na(*)) by
+n
+n
+P
+kβn t − tkC[0,1−ε] −→ 0, we have
+
+Indeed, the process Yn (*) + Zn (*) is obtained from
+the random time change t 7→ βn t; and since
+
+
+d Yn (*) + Zn (*),
+
+KnPoiss (*) − na(*)
+P
+√
+−→ 0
+n
+
+
+by the definition of the Skorohod metric d.
+Second, from Fact 1, (15), and (27) it follows that aUnif (t) = aPoiss (t) =
+P{T0Poiss ≥ t} = 1 − t2 for 0 ≤ t ≤ 1, and by the central limit theorem,
+(39)
+
+D
+
+Zn (t) −→ t2 η
+
+in D[0, 1 − ε],
+
+26
+
+V. V. VYSOTSKY
+
+where η is a standard Gaussian r.v.
+We claim that (38), the independence of Yn (*) and Zn (*), and (39) yield
+the weak convergence of Yn (*) in D[0, 1 − ε]. Let us check the tightness of
+Yn (*) and the convergence of their finite-dimensional distributions.
+The tightness of Yn (*) in D[0, 1 − ε] follows from Yn (*) = (Yn (*) + Zn (*)) −
+Zn (*), (38), and (39). Indeed, by the Prokhorov theorem, (38) and (39) yield
+that both sequences Yn (*) + Zn (*) and −Zn (*) are tight. But trajectories
+of −Zn (*) are a.s. continuous because of the continuity of a(*), and the
+tightness follows from the continuity of addition + : D × C → D and the fact
+that under any continuous mapping, the image of a compact set is also a
+compact set.
+Now we study convergence of finite dimensional distributions of Yn (*).
+Recall that the characteristic function of a centered Gaussian vector in Rm
+is e−1/2(Ru,u) , where u ∈ Rm and R is the covariance matrix of the vector.
+Then (38), the independence of Yn (*) and Zn (*), and (39) yield that for the
+characteristic functions of all finite-dimensional distributions of Yn (*), we
+have
+(40)
+
+Poiss (t ,t )−t2 t2 }m
+j k
+j k j,k=1 u,u)
+
+Eei(Yn (t),u) −→ e−1/2({R
+
+,
+
+where u ∈ Rm , t = (t1 , . . . , tm ) ∈ [0, 1−ε]m , and Yn (t) := (Yn (t1 ), . . . , Yn (tm )).
+We stress that (40) is true for every t ∈ [0, 1 − ε]m since the limit processes
+in (38) and (39) have continuous trajectories.
+We see that the matrix {RPoiss (tj , tk ) − t2j t2k }m
+j,k=1 is positive definite for
+m
+any t = (t1 , . . . , tm ) ∈ [0, 1 − ε] and m ≥ 1 since the absolute value of the
+left-hand side of (40) does not exceed one. Putting
+RUnif (s, t) := RPoiss (s, t) − s2 t2 ,
+Unif (t , t )}m
+we have {RPoiss (tj , tk ) − t2j t2k }m
+j k j,k=1 ; then the function
+j,k=1 = {R
+Unif
+2
+R
+(s, t) is positive definite on [0, 1) since ε > 0 is arbitrary. Thus, by
+Lifshits [15], Section 4, RUnif (s, t) is the covariance function of some centered
+Gaussian process K Unif (*) on [0, 1).
+Relation (2) is thus proved. Now check that K Unif (*) ∈ C[0, 1 − ε] a.s. to
+conclude the proof of Theorem 1 for the uniform model.
+For this purpose, let us prove that a.s., trajectories of Yn (*) have jumps
+of size √1n only. In fact, the jumps of Yn (*) coincide with the jumps of
+√1 K Unif (*),
+n n
+
+whose jumps are of size
+
+√1
+n
+
+for
+6= TjUnif
+if and only if TjUnif
+2 ,n
+1 ,n
+
+a.s.
+6= TjPoiss
+1 ≤ j1 6= j2 ≤ n − 1. By (36), we need to verify that TjPoiss
+2 ,n
+1 ,n
+for 1 ≤ j1 6= j2 ≤ n − 1. This relation follows from (20) if H(k1 , j1 , l1 ) 6=
+H(k2 , j2 , l2 ) a.s. for j1 6= j2 and k1 , k2 , l1 , l2 ≥ 1. The last a.s. nonequality is
+obvious because if the equality holds true, then a certain nontrivial linear
+combination of i.i.d. exponential Xi equals zero.
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+27
+
+Then there exist a.s. continuous Ỹn (*) such that supt∈[0,1−ε] |Ỹn (t)−Yn (t)| ≤
+
+√1
+n
+
+a.s.; consequently, d(Ỹn , Yn ) ≤
+
+D
+
+√1
+n
+
+a.s. Then by Yn (*) −→ K Unif (*), we
+
+D
+
+also have Ỹn (*) −→ K Unif (*). But 1 = lim inf P{Ỹn (*) ∈ C} ≤ P{K Unif (*) ∈ C}
+since C ⊂ D is closed in the Skorohod topology, therefore, a.s., K Unif (*) is
+continuous on [0, 1 − ε].
+Since ε ∈ (0, 1) is arbitrary, a.s., K Unif (*) is continuous on the whole interval [0, 1). The RUnif (s, t) = RPoiss (s, t) − s2 t2 is continuous on [0, 1)2 because
+RPoiss (s, t) is. 
+6. The number of clusters at the critical moment. Now we turn our
+attention to the number of clusters at the critical moment t = 1. We are
+interested in the behavior of
+Kn (1) − na(1) Kn (1)
+√
+= √ ,
+n
+n
+which is the left-hand side of (3) at t = 1; here we have a(1) = 0 under
+EXi2 < ∞, see Property 3, Section 3.4.
+We do not know if this sequence is weakly convergent, but we hope that
+it is. We also have a naive guess that its limit is Gaussian because the limit
+in Theorem 1 is Gaussian. In view of Kn (1) ≥ 1, this conjectured weak limit
+is nonnegative, hence it is Gaussian if and only if it is identically equal to
+zero. However, the results of this section show that the limit is nonzero, thus
+our guess on Gaussianity fails.
+The study of convergence of K√n (1)
+is quite complicated. Therefore, in this
+n
+section, we consider only the Poisson model. First, let us prove the following
+statement.
+In the Poisson model, we have limn→∞ P{Kn (1) =
+
+Proposition 4.
+1} > 0.
+
+last
+Proof. On the one hand, Kn (1) = 1 is equivalent to Tn;Poiss
+≤ 1, where
+last
+Tn;Poiss denotes the moment of the last collision in the Poisson model. On
+the other hand, a result by Giraud [8] states that in the uniform model,
+
+√
+
+D
+
+last
+n(Tn;Unif
+− 1) −→ sup
+
+
+
+0≤x≤1
+
+◦
+
+1
+1−x
+
+Z
+
+1 ◦
+
+x
+
+W (y) dy −
+
+1
+x
+
+Z
+
+0
+
+x ◦
+
+
+
+W (y) dy =: τ,
+
+last
+last
+where W (*) is a Brownian bridge. Now, by (36), we have Tn;Unif
+,
+= βn−1 Tn;Poiss
+hence
+√
+D
+last
+(41)
+n(βn−1 Tn;Poiss
+− 1) −→ τ.
+
+28
+
+V. V. VYSOTSKY
+
+But from the central limit theorem and the law of large numbers,
+√
+Sn+1 − n
+n
+D η
+√
+√ −→ ,
+n(βn−1 − 1) = − √
+(42)
+*√
+n
+Sn+1 ( Sn+1 + n)
+2
+where η is a standard Gaussian r.v. and Si is a standard exponential random walk that defines initial positions of particles. Since, in view of Fact 5,
+last
+last
+and βn are independent, from (41), (42), and the law
+Tn;Unif
+= βn−1 Tn;Poiss
+of large numbers it follows that
+√
+η
+η D
+D
+last
+n(Tn;Poiss
+− 1) −→ τ − = τ + ,
+2
+2
+where τ and η are independent. Thus,
+last
+lim P{Kn (1) = 1} = lim P{Tn;Poiss
+n→∞
+n→∞
+
+η
+≤ 1} = P τ + ≤ 0 > 0.
+2
+
+
+ff
+
+
+
+The main advantage of the Poisson model is that, by Lemma 2 and Property 4, Section 3.4 we have P{Tj,n > 1} = epj pn−j , where
+pk := P
+
+(
+
+min
+
+1≤m≤k
+
+m
+X
+i=1
+
+)
+
+(Si − ESi ) ≥ 0
+
+and SP
+i is a standard exponential random walk. We say that the sequence of
+r.v.'s m
+i=1 (Si − ESi ) is an integrated random walk. In the proof of Property
+3, Section 3.4, we showed that pk → 0 as k → ∞. Therefore, it is reasonable
+to say that pk are the unilateral small deviation probabilities of an integrated
+centered random walk.
+We need to obtain the asymptotics of pk → 0 to continue the study of
+convergence of K√n (1)
+. Unfortunately, the results of the rest of this section
+n
+are completely dependent on the correctness of the following conjecture.
+Conjecture 1.
+
+We have pk ∼ c1 k−1/4 as k → ∞ for some c1 ∈ (0, ∞).
+
+Simulations show that the conjecture is true and c1 ≈ 0.36. The weaker
+form pk ≍ k−1/4 of Conjecture 1 was proved by Sinai [22], but only for integrated symmetric Bernoulli random walks. It also interesting to note that,
+by McKean [19], the unilateral small deviation probabilities of an integrated
+Wiener process have the same order as T → ∞:
+(43)
+
+P
+
+
+
+min
+
+0≤s≤T
+
+Z
+
+0
+
+s
+
+ff
+
+W (u) du ≥ −1 ∼ c2 T −1/4
+
+for some c2 ∈ (0, ∞). The left-hand side of (43) is a unilateral small deviation
+probability since
+(44) P
+
+
+
+min
+
+0≤s≤T
+
+Z
+
+0
+
+s
+
+ff
+
+W (u) du ≥ −1 = P
+
+
+
+min
+
+Z
+
+0≤s≤1 0
+
+s
+
+ff
+
+W (u) du ≥ −T −3/2 .
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+29
+
+To be precise, McKean was interested in a more general problem, and
+some calculations are required to obtain (43) from his results. Therefore,
+we additionally refer to Isozaki and Watanabe [12] who state (43) explicitly.
+By the results mentioned above, we also suppose that Conjecture 1 is
+true for other integrated centered random walks that satisfy some moment
+conditions.
+Now we are able to prove the following result on convergence of K√n (1)
+.
+n
+Proposition 5.
+model, we have
+(45)
+
+Suppose Conjecture 1 holds true. Then in the Poisson
+
+Kn (1)
+lim E √
+= c3 ,
+n→∞
+n
+
+
+Kn (1)
+sup E √
+n
+n≥1
+
+
+
+for some c3 ∈ (0, ∞); the sequence
+
+
+
+K√
+n (1)
+n
+
+2
+
+<∞
+
+is tight and uniformly integrable;
+
+takes value zero
+and the limit of any weakly converging subsequence of K√n (1)
+n
+with positive probability, but is not identically equal to zero.
+is weakly convergent and that this
+Numerical simulations show that K√n (1)
+n
+convergence is quite fast. In Figure 1 we present the (empirical) distribution
+for n = 10, 000. Since the simulations performed for n =
+function of K√n (1)
+n
+40, 000 showed a hardly perceptible difference, this function seems to be a
+good candidate for the distribution function of the conjectured limit.
+Note that if we weaken Conjecture 1 to pk ≍ k−1/4 , then Proposition 5
+≍ 1.
+still holds true with the only difference that E K√n (1)
+n
+Proof of Proposition 5. We start with the convergence of the expectation. On the one hand, by (6) and Lemma 2,
+X
+Kn (1)
+e n−1
+1
+E √
+pi pn−i ,
+=√ +√
+n
+n
+n i=1
+
+
+
+
+and on the other hand,
+X
+X i
+1 n−1
+1 n−1
+−1/4
+−1/4
+√
+i
+(n − i)
+=
+n i=1
+n i=1 n
+
+ −1/4 
+
+i
+1−
+n
+
+−1/4
+
+−→ B(3/4, 3/4)
+
+as the integral sum of Beta function. Then it follows from Conjecture 1 and
+converges to c3 := ec21 B(3/4, 3/4) > 0.
+standard arguments that E K√n (1)
+n
+
+30
+
+V. V. VYSOTSKY
+
+Fig. 1.
+
+The distribution function of
+
+Kn (1)
+√
+n
+
+for n = 10, 000.
+
+Now we check the uniform boundedness of E( K√n (1)
+)2 . By (6) it is sufficient
+n
+to prove that
+(46)
+
+X
+1 n−1
+P{Ti,n > 1, Tj,n > 1} < ∞.
+n≥1 n i,j=1,i6=j
+
+sup
+
+Suppose i < j; then by using (8) and properties of Fk,j,l (*), we get
+P{Ti,n > 1, Tj,n > 1} = P
+
+
+
+≤P
+
+
+
+min Fk,i,l (1) > 0,
+
+1≤k≤n−i
+1≤l≤i
+
+min
+
+1≤k≤(j−i)/2
+1≤l≤i
+
+min
+
+1≤k≤n−j
+1≤l≤j
+
+Fk,i,l (1) > 0,
+
+ff
+
+Fk,j,l (1) > 0
+
+min
+
+1≤k≤n−j
+1≤l≤(j−i)/2
+
+ff
+
+Fk,j,l (1) > 0 ,
+
+where by (j − i)/2 we mean ⌈(j − i)/2⌉. The minima in the last expression are independent as functions of {Xm }m≤(i+j)/2 and {Xm }m≥(i+j)/2+1 ,
+respectively; hence
+P{Ti,n > 1, Tj,n > 1} ≤ P
+
+
+
+min
+
+1≤k≤(j−i)/2
+1≤l≤i
+
+o
+
+Fk,i,l (1) > 0 * P
+
+
+
+min
+
+1≤k≤n−j
+1≤l≤(j−i)/2
+
+ff
+
+Fk,j,l (1) > 0
+
+31
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+= P{Ti,i+(j−i)/2 > 1} * P{T(j−i)/2,n−j+(j−i)/2 > 1}
+
+= e2 pi p2⌈(j−i)/2⌉ pn−j ,
+
+where the first equality follows from (8) and the second follows from Lemma 2.
+Recalling Conjecture 1, we get
+X
+X
+1 n−1
+1 n−1
+P{Ti,n > 1, Tj,n > 1} ≤
+e2 pi p2⌈|j−i|/2⌉ pn−j
+n i,j=1,i6=j
+n i,j=1,i6=j
+
+≤
+
+X
+c n−1
+i−1/4 ⌈|j − i|/2⌉−1/2 (n − j)−1/4
+n i,j=1,i6=j
+
+≤
+
+X
+c n−1
+i
+2
+n i,j=1,i6=j n
+
+ −1/4
+
+i
+j
+−
+n n
+
+−1/2 
+
+1−
+
+j
+n
+
+−1/4
+
+for some c > 0. The last expression is an integral sum converging to
+c
+
+Z
+
+0
+
+1Z 1
+0
+
+x−1/4 |x − y|−1/2 (1 − y)−1/4 dx dy,
+
+and it is a simple exercise to check that the integral is finite. This concludes
+(46).
+follows from the second relation from
+The uniform integrability of K√n (1)
+n
+(45), see Billingsley [3], Section 5, and the tightness follows from the uniform
+integrability.
+K (1) D
+Finally, suppose √nini −→ ξ for some subsequence ni → ∞ and some
+r.v. ξ. Then Eξ = c3 > 0 by the uniform integrability and (45), and hence
+ξ is not identically equal to zero. But the distribution of ξ has an atom at
+zero since by Proposition 4 and properties of weak convergence,
+P{ξ = 0} = lim P{ξ ≤ ε}
+εց0
+
+≥ lim lim sup P
+εց0
+
+i→∞
+
+
+
+Kni (1)
+≤ε
+√
+ni
+
+ff
+
+≥ lim lim P{Kni (1) = 1} > 0.
+εց0 i→∞
+
+
+
+7. Open questions. 1. The number of clusters at the critical moment
+t = 1.
+Here the main question is if Conjecture 1 holds true. Even by itself, this
+problem is worth studying.
+But even if Conjecture 1 is true, we still do not have a proof of weak
+, it is only known that this sequence is tight. The author
+convergence of K√n (1)
+n
+
+32
+
+V. V. VYSOTSKY
+
+strongly believes, relying on numerical simulations, that the limit exists. It
+would be interesting to find this conjectured limit, which should be nontrivial
+by Proposition 5, in an explicit form.
+√
+2. The weak convergence of Kn (*)−na(*)
+on the whole interval [0, 1].
+n
+It is very natural to ask if it is possible to strengthen Theorem 1 by
+√
+in D[0, 1]. This complicated
+proving the weak convergence of Kn (*)−na(*)
+n
+problem returns us again to Question 1 because the weak convergence of
+Kn (*)−na(*)
+√
+√
+in D[0, 1] implies the weak convergence of Kn (1)−na(1)
+= K√n (1)
+, see
+n
+n
+n
+converges, its weak limit K(1)
+Billingsley [3], Section 15. But even if K√n (1)
+n
+is not Gaussian, hence the limit process K(*), which is Gaussian on [0, 1),
+is no more Gaussian on [0, 1]. Therefore, it is doubtful that Theorem 1 is
+true in D[0, 1]; at least, one should provide a proof completely different from
+the presented one. Also, it is unclear how to define the finite-dimensional
+distributions of the non-Gaussian K(*) on [0, 1] because simulations show
+that K(1) would not be independent with K(t) for t < 1.
+3. The number of clusters in the warm gas.
+In the presented case, initial speeds of particles are zero. This model is often called the cold gas according to its zero initial temperature. We introduce
+a new model stating that initial speeds of particles are an v1 , an v2 , . . . , an vn ,
+where vi are some i.i.d. r.v.'s and an is a sequence of normalization constants. This model, called the warm gas, was studied in many papers, for
+example, [14, 16, 20, 25].
+It is of a great interest to study the behavior of Kn (t) in the warm gas.
+In [25], the author proved that in the basic case where an = 1 for all n and
+P
+Evi2 < ∞, we have Knn(t) −→ 0 for all t > 0. The question is to find a normalization of Kn (t) leading to some nontrivial limit. Clearly, this normalization
+depends on an , but it is very possible that there is an effect of phase transition similar to the one discovered by Lifshits and Shi [16]: If an are small
+enough, then the gas has a low temperature and the normalization is the
+same as in the cold gas. If an are big enough, as in the basic case an ≡ 1,
+then the normalization and the behavior of the gas differ entirely from the
+case of the cold gas.
+The author believes that the localization property, which is described in
+Section 3, could be helpful in a study of these questions.
+It is also interesting to compare the behavior of Kn (1) in the warm and in
+the cold gases; in the warm gas, the moment t = 1 plays the same "critical"
+role as in the cold gas, see Lifshits and Shi [16]. The variable Kn (1) was
+studied by Suidan [24], who considered the warm gas with an ≡ 1 and deterministic initial positions of particles (his initial positions were n1 , n2 , . . . , nn ).
+For this case, Suidan found the distribution of Kn (1) and showed
+that
+√
+EKn (1) ∼ log n. Recall that in the presented case, EKn (1) ∼ c3 n.
+
+CLUSTERING IN A STOCHASTIC MODEL OF ONE-DIMENSIONAL GAS
+
+33
+
+4. The number of clusters in ballistic systems of sticky particles.
+A sticky particles model is called ballistic if it evolves according to the
+laws introduced in Section 1, but in the absence of gravitation. Such models
+are, in some sense, more natural than gravitational ones because the basic assumption that gravitation does not depend on distance is sometimes
+confusing. However, an unpublished paper of Lifshits and Kuoza shows that
+certain gravitational and ballistic models are tightly connected.
+It seems interesting to study the number of clusters in the ballistic model.
+The author does not know any results in this field.
+Acknowledgments. I am grateful to my adviser Mikhail A. Lifshits for
+drawing my attention into the subject and for his guidance. I also thank the
+anonymous referees for carefully reading this paper and useful comments.
+REFERENCES
+[1] Baum, L. E. and Katz, M. (1965). Convergence rates in the law of large numbers.
+Trans. Amer. Math. Soc. 120 108–123. MR0198524
+[2] Bertoin, J. (2002). Self-attracting Poisson clouds in an expanding universe. Comm.
+Math. Phys. 232 59–81. MR1942857
+[3] Billingsley, P. (1968). Convergence of Probability Measures. Wiley, New York.
+MR0233396
+[4] Brenier, Y. and Grenier, E. (1998). Sticky particles and scalar conservation laws.
+SIAM J. Numer. Anal. 35 2317–2328. MR1655848
+[5] Chertock, A., Kurganov, A. and Rykov, Yu. (2007). A new sticky particle
+method for pressureless gas dynamics. SIAM J. Numer. Anal. 45 2408–2441.
+MR2361896
+[6] E, W., Rykov, Yu. G. and Sinai, Ya. G. (1996). Generalized variational principles,
+global weak solutions and behavior with random initial data for systems of
+conservation laws arising in adhesion particle dynamics. Comm. Math. Phys.
+177 349–380. MR1384139
+[7] Esary, J. D., Proschan, F. and Walkup, D. W. (1967). Association of random
+variables, with applications. Ann. Math. Stat. 38 1466–1474. MR0217826
+[8] Giraud, C. (2001). Clustering in a self-gravitating one-dimensional gas at zero temperature. J. Statist. Phys. 105 585–604. MR1871658
+[9] Giraud, C. (2005). Gravitational clustering and additive coalescence. Stochastic Process. Appl. 115 1302–1322. MR2152376
+[10] Gurbatov, S. N., Malakhov, A. N. and Saichev, A. I. (1991). Nonlinear Random Waves and Turbulence in Nondispersive Media: Waves, Rays, Particles.
+Manchester Univ. Press. MR1255826
+[11] Gurbatov, S. N., Saichev, A. I. and Shandarin, S. F. (1989). The large-scale
+structure of the universe in the frame of the model equation of nonlinear diffusion. Mon. Not. R. Astr. Soc. 236 385–402.
+[12] Isozaki, Y. and Watanabe, S. (1994). An asymptotic formula for the Kolmogorov
+diffusion and a refinement of Sinai's estimates for the integral of Brownian motion. Proc. Japan Acad. Ser. A Math. Sci. 70 271–276. MR1313176
+[13] Karlin, S. (1968). A First Course in Stochastic Processes. Academic Press, New
+York. MR0208657
+
+34
+
+V. V. VYSOTSKY
+
+[14] Kuoza, L. V. and Lifshits, M. A. (2006). Aggregation in one-dimensional gas model
+with stable initial data. J. Math. Sci. 133 1298–1307. MR2092206
+[15] Lifshits, M. A. (1995). Gaussian Random Functions. Kluwer, Dordrecht.
+MR1472736
+[16] Lifshits, M. and Shi, Z. (2005). Aggregation rates in one-dimensional stochastic
+systems with adhesion and gravitation. Ann. Probab. 33 53–81. MR2118859
+[17] Lin, Z. and Lu, C. (1996). Limit Theory for Mixing Dependent Random Variables.
+Kluwer, Dordrecht. MR1486580
+[18] Louhichi, S. (2000). Weak convergence for empirical processes of associated sequences. Ann. Inst. H. Poincare Probab. Statist. 36 547–567. MR1792655
+[19] McKean, H. P. (1963). A winding problem for a resonator driven by a white noise.
+J. Math. Kyoto Univ. 2 227–235. MR0156389
+[20] Martin, Ph. A. and Piasecki, J. (1996). Aggregation dynamics in a self-gravitating
+one-dimensional gas. J. Statist. Phys. 84 837–857. MR1400187
+[21] Newman, C. M. (1980). Normal fluctuations and the FKG inequalities. Comm.
+Math. Phys. 74 119–128. MR0576267
+[22] Sinai, Ya. G. (1992). Distribution of some functionals of the integral of a random
+walk. Theor. Math. Phys. 90 219–241. MR1182301
+[23] Shandarin, S. F. and Zeldovich, Ya. B. (1989). The large-scale structure of the
+universe: Turbulence, intermittency, structures in a self-gravitating medium.
+Rev. Modern Phys. 61 185–220. MR0989562
+[24] Suidan, T. M. (2001). A one-dimensional gravitationally interacting gas and the convex minorant of Brownian motion. Russ. Math. Surv. 56 687–708. MR1861441
+[25] Vysotsky, V. V. (2006). On energy and clusters in stochastic systems of sticky
+gravitating particles. Theory Probab. Appl. 50 265–283. MR2221711
+[26] Vysotsky, V. V. (2007). The area of exponential random walk and partial sums of
+uniform order statistics. J. Math. Sci. 147 6873–6883.
+Department of Probability Theory
+and Mathematical Statistics
+Faculty of Mathematics and Mechanics
+St. Petersburg State University
+Bibliotechnaya pl. 2
+Stary Peterhof 198504
+Russia
+E-mail: vlad.vysotsky@gmail.com
+

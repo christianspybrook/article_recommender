@@ -1,0 +1,3857 @@
+ON NUMERICAL APPROXIMATIONS OF FRACTIONAL AND
+NONLOCAL MEAN FIELD GAMES
+
+arXiv:2105.00073v1 [math.AP] 30 Apr 2021
+
+INDRANIL CHOWDHURY, OLAV ERSLAND, AND ESPEN R. JAKOBSEN
+
+Abstract. We construct numerical approximations for Mean Field Games with
+fractional or nonlocal diffusions. The schemes are based on semi-Lagrangian approximations of the underlying control problems/games along with dual approximations
+of the distributions of agents. The methods are monotone, stable, and consistent,
+and we prove convergence along subsequences for (i) degenerate equations in one
+space dimension and (ii) nondegenerate equations in arbitrary dimensions. We also
+give results on full convergence and convergence to classical solutions. Numerical
+tests are implemented for a range of different nonlocal diffusions and support our
+analytical findings.
+
+Contents
+1. Introduction
+2. Assumptions and Preliminaries
+3. Discretisation of the MFG system
+4. Convergence to the MFG system
+5. On the SL scheme for the HJB equation
+6. On the dual SL scheme for the FPK equation
+7. Proof of convergence – Theorem 4.1 and 4.3
+8. Numerical examples
+Appendix A. Proof of Proposition 3.4
+Appendix B. Proof of Lemma 5.6 (ii) and (iii)
+Appendix C. Proof of Lemma 6.9
+Acknowledgements
+References
+
+1
+4
+8
+13
+17
+22
+28
+30
+34
+34
+35
+36
+36
+
+1. Introduction
+In this article we study numerical approximations of Mean Field Games (MFGs) with
+fractional and general non-local diffusions. We consider the mean field game system
+
+
+in (0, T ) × Rd ,
+ −ut − Lu + H(x, Du) = F (x, m(t)),
+(1)
+mt − L∗ m − div(mDp H(x, Du)) = 0
+in (0, T ) × Rd ,
+
+
+u(T, x) = G(x, m(T )), m(0) = m0
+in Rd ,
+where
+Z
+(2)
+
+Lφ(x) =
+|z|>0
+
+
+
+φ(x + z) − φ(x) − 1{|z|<1} Dφ(x) * z dν(z),
+
+2020 Mathematics Subject Classification. 35Q89, 47G20, 35Q84, 49L12, 45K05, 35K61, 65M12,
+91A16, 65M22, 35R11 , 35R06,
+Key words and phrases. Mean Field Games, jump diffusion, anomalous diffusion, nonlocal operators,
+fractional PDEs, nonlocal PDEs, degenerate PDEs, semi-Lagrangian scheme, convergence, compactness,
+Fokker-Planck equations, Hamilton-Jacobi-Bellman equations, duality methods.
+1
+
+2
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+is a nonlocal diffusion operator (possibly degenerate), ν is a Lévy measure (see assumption (ν0)), and the adjoint L∗ is defined as (L∗ φ, ψ)L2 = (φ, Lψ)L2 for φ, ψ ∈ Cc∞ (Rd ).
+The first equation in (1) is a backward in time Hamilton-Jacobi-Bellman (HJB) equation with terminal data G, and the second equation is a forward in time Fokker-PlanckKolmogorov (FPK) equation with initial data m0 . Here H is the Hamiltonian, and the
+system is coupled through the cost functions F and G. There are two different types
+of couplings: (i) Local couplings where F and G depend on point values of m, and (ii)
+non-local or smoothing couplings where they depend on distributional properties induced
+from m through integration or convolution. Here we work with nonlocal couplings.
+A mathematical theory of MFGs were introduced by Lasry–Lions [49] and Caines–
+Huang–Malhame [44], and describes the limiting behavior of N -player stochastic differential games when the number of players N tends to ∞ [18]. In recent years there
+has been significant progress on MFG systems with local (or no) diffusion, including e.g. modeling, wellposedness, numerical approximations, long time behavior, convergence of Nash equilibria, and various control and game theoretic questions, see
+e.g. [5, 27, 18, 13, 39, 43] and references therein. The study of MFGs with 'non-local
+diffusion' is quite recent, and few results exist so far. Stationary problems with fractional Laplacians were studied in [30], and parabolic problems including (1), in [33] and
+[37]. We refer to [48] and references therein for some development using probabilistic
+methods.
+The difference between problem (1) and standard MFG formulations lies in the type of
+noise driving the underlying controlled stochastic differential equations (SDEs). Usually
+Gaussian noise is considered [49, 51, 20, 26, 5], or there is no noise (the first order case)
+[17, 19]. Here the underlying SDEs are driven by pure jump Lévy processes, which
+leads to nonlocal operators (2) in the MFG system. In many real world applications,
+jump processes model the observed noise better than Gaussian processes [9, 50, 34,
+54]. Prototypical examples are symmetric σ-stable processes and their generators, the
+σ
+fractional Laplace operators (−4) 2 . In Economy and Finance the observed noise is not
+symmetric and σ-stable, but rather non-symmetric and tempered. A typical example is
+C
+−Gz + −M z −
+the one-dimensional CGMY process [34] where dν
+for C, G, M >
+dz (z) = |z|1+Y e
+0 and Y ∈ (0, 2). Such models are covered by the results of this article. Our assumptions
+on the nonlocal operators (cf. (ν1)) are quite general, allowing for degenerate operators
+and no restrictions on the tail of the Lévy measure ν.
+There has been some development on numerical approximations for MFG systems
+with local operators. Finite difference schemes for nondegenerate second order equations
+have been designed and analyzed e.g. by Achdou et al. [1, 2, 3, 4, 7, 8, 6] and Gueant
+[40, 42, 41]. Semi-Lagrangian (SL) schemes for MFG system have been developed by
+Carlini–Silva both for first order equations [23] and possibly degenerate second order
+equations [24]. Other numerical schemes for MFGs include recent machine learning
+methods [28, 29, 52] for high dimensional problems. We refer to the survey article [6]
+for recent developments on numerical methods for MFG. We know of no prior schemes
+or numerical analysis for MFGs with fractional or nonlocal diffusions.
+In this paper we will focus on SL schemes. They are monotone, stable, connected
+to the underlying control problem, easily handles degenerate and arbitrarily directed
+diffusions, and large time steps are allowed. Although the SL schemes for HJB equations
+have been studied for some time (see e.g. [38, 16, 14, 35]), there are few results for FPK
+equations (but see [25]) and the coupled MFG system. For nonlocal problems we only
+know of the results in [15] for HJB equations.
+Our contributions.
+A. Derivation. We construct fully discrete monotone numerical schemes for the
+MFG system (1). These dual SL schemes are closely related to the underlying control
+
+APPROXIMATION OF NONLOCAL MFGS
+
+3
+
+formulation of the MFG. In our case it is based on the following controlled SDE:
+dXt = −αt dt + dLt ,
+where αt is the control and Lt a pure jump Lévy process (cf. (6)). Note that Lt can
+be decomposed into small and large jumps, where the small jumps may have infinite
+intensity. We derive our approximation in several steps:
+1. (Approximate small jumps) The small jumps are approximated by Brownian motion
+(see (7)) following e.g. [10, 15, 36]. This is done to avoid infinitely many jumps per
+time-interval and singular integrals, and gives a better approximation compared to
+simply neglecting these terms.
+2. (SL scheme for HJB) We discretise the resulting SDE from step 1 in time and approximate the noise by random walks and approximate compound Poisson processes in
+the spirit of [15] (Section 3.1). From the corresponding discrete time optimal control
+problem, dynamic programming, and interpolation we construct an SL scheme for
+the HJB equation (Section 3.2).
+3. (Approximate control) We define an approximate optimal feedback control for the
+SL scheme in step 2 from the continuous optimal feedback control as in [23, 24]:
+∗
+= Dp H(*, Dud ), where ud is a regularization of the (interpolated) solution
+αapprox
+from step 2 (Section 3.3).
+4. (Dual SL scheme for FPK) The control of step 3 and the scheme in step 2 define
+a controlled approximate SDE with a corresponding discrete FPK equation for the
+densities of the solutions. We explicitly derive this FPK equation in weak form, and
+obtain the final dual SL scheme taking test functions to be linear interpolation basis
+functions (Section 3.4).
+See (18) and (24) in Section 3 for the specific form of our discretizations. These seem
+to be the first numerical approximations of MFG systems with nonlocal or fractional
+diffusion and the first SL approximations of nonlocal FPK equations. Our dual SL
+schemes are extensions to the nonlocal case of the schemes in [23, 24, 25], but a clear
+derivation of such type of schemes seems to be new. The schemes come in the form of
+nonlinear coupled systems (27) that need to be resolved numerically. We prove existence
+of solutions using fixed point arguments, see Proposition 3.4.
+B. Analysis. We establish a range of properties for the scheme including monotonicity, consistency, stability, (discrete) regularity, convergence of individual equations, and
+convergence to the full MFG system.
+1. (HJB approximation) For the approximation of the HJB equation we prove pointwise consistency and uniform discrete L∞ , Lipschitz, and semiconcavity bounds.
+Convergence to a viscosity solution is obtained via the half relaxed limit method
+[12].
+2. (FKP approximation) We prove consistency in the sense of distributions, preservation of mass and positivity, L1 -stability, tightness, and equi-continuity in time. In
+dimension d = 1, we also prove uniform Lp -estimates for all p ∈ (1, ∞]. Convergence
+is obtained from compactness and stability arguments.
+3. (The full MFG approximation) We prove convergence along subsequences to viscosityvery weak solutions of the MFG system in two cases: (i) Degenerate equations in
+dimension d = 1, and (ii) non-degenerate equation in Rd under the assumption that
+solutions of the HJB equation are C 1 in space. Full convergence follows for MFGs
+with unique solutions, and convergence to classical solutions follows under certain
+regularity and weak uniqueness conditions. Applying the results to the setting of
+[37], we obtain full convergence to classical solutions in this case.
+Because of the nonlocal or smoothing couplings, the HJB approximation can be analysed almost independently of the FKP approximation. The analysis of the FKP scheme
+
+4
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+on the other hand, strongly depends on boundedness and regularity properties of solutions of the HJB scheme. Compactness in measure is enough in the nondegenerate case
+when the HJB equation has C 1 solutions, while stronger weak (∗) compactness in Lp
+for some p ∈ (1, ∞] is needed in the degenerate case. As in [23], we are only able to
+prove this latter compactness in dimension d = 1. A priori estimates and convergence
+for p ∈ (1, ∞) seems to be new also for local MFGs.
+In this paper we study general Lévy jump processes and nonlocal operators. This
+means that the underlying stochastic processes may not have first moments whatever
+initial distribution we take (like e.g. σ-stable processes with σ < 1), and then we can no
+longer work in the commonly used Wasserstein-1 space (P1 , d1 ) for the FKP equations.
+Instead we work in the space (P, d0 ) of probability measures under weak convergence
+metrizised by the Rubinstein-Kantorovich metric d0 (see Section 2). Surprisingly, a
+result from [31] (Proposition 6.1) allow us to prove tightness and compactness in this
+space without any moment assumptions! We refer to section 4.3 for a more detailed
+discussion along with convergence results in the traditional (P1 , d1 ) topology when first
+moments are available.
+This (P, d0 ) setting can be adapted to local problems, to give results also there without
+moment assumptions. Finally, we note that our results for degenerate problems cover the
+first order equations and improve [23] in the sense that more general initial distributions
+m0 are allowed: P ∩ Lp for some p ∈ (1, ∞] instead of P1+δ ∩ L∞ for some δ > 0.
+C. Testing. We provide several numerical simulations. In Example 1 and 2 we
+use a similar setup as in [24], comparing the effects of a range of different diffusion
+operators: Fractional Laplacians of different powers, CGMY-diffusions, a degenerate
+diffusion, a spectrally one-sided diffusion, as well as classical local diffusion and the case
+of no diffusion. In Example 3 we solve the MFG system on a long time horizon and
+observe the turnpike property in a nonlocal setting. Finally, in Example 4 we study the
+convergence of the scheme.
+Outline of the paper. In section 2 we list our assumptions and state mostly known
+results of the MFG system (1) and its individual HJB and FKP equations. In section
+3 we construct the discrete schemes for the HJB, FKP, and full MFG equations from
+the underlying stochastic control problem/game. The convergence results are given in
+Section 4, along with extensions and a discussion section. In sections 5 and 6 we analyze
+the discretisations of the HJB and FKP equations respectively, including establishing a
+priori estimates, stability, and some consistency results. Using these results, we prove
+the convergence results of section 4 in section 7. In section 8 we provide and discuss
+numerical simulations of various nonlocal MFG systems. Finally, there are three appendices with proofs of technical results.
+2. Assumptions and Preliminaries
+We start with some notation. By C, K we mean various constants which may change
+from line to line. The Euclidean norm on any Rd -type space is denoted by | * |. For
+any subset Q ⊆ Rd or Q ⊆ [0, T ] × Rd , and for any bounded, possibly vector valued
+function on Q, we will consider Lp -spaces Lp (Q) and spaces Cb (Q) of bounded continuous
+functions. Often we use the notation k * k0 as an alternative notation for the norms in
+Cb or L∞ . The space Cbm (Q) is the subset of Cb (Q) with m bounded and continuous
+derivatives, and for Q ⊆ [0, T ] × Rd , Cbl,k (Q) is the subset of Cb (Q) with l bounded and
+continuous derivatives in time and k in space. By P (Rd ) we denote the set of probability
+measure on Rd . The Kantorovich-Rubinstein distance d0 (μ1 , μ2 ) on the space P (Rd ) is
+defined as
+nZ
+o
+d0 (μ1 , μ2 ) :=
+sup
+f (x)d(μ1 − μ2 )(x) ,
+Rd
+f ∈Lip1,1 (Rd )
+
+APPROXIMATION OF NONLOCAL MFGS
+
+5
+
+n
+o
+where Lip1,1 (Rd ) = f : f is Lipschitz continuous and kf k0 , kDf k0 ≤ 1 . We define the
+Legendre transform L of H as:
+
+L(x, q) := sup p * q − H(x, p) .
+p∈Rd
+
+We use the following assumptions for equation (1):
+(ν0): (Lévy condition) ν is a positive Radon measure that satisfies
+Z
+1 ∧ |z|2 dν(z) < ∞.
+Rd
+
+(ν1): (Growth near singularity) There exists constants σ ∈ (0, 2) and C > 0 such
+that the density of ν for |z| < 1 satisfies
+0≤
+
+dν
+C
+≤ d+σ , for |z| < 1.
+dz
+|z|
+
+(L0): (Continuity and local boundedness) The function L : Rd × Rd → R is
+continuous in x, q, and for any K > 0, there exists CL (K) > 0 such that
+sup |L(x, q)| ≤ CL (K),
+
+x ∈ Rd .
+
+|q|≤K
+
+(L1): (Convexity and growth) The function L(x, q) is convex in q and satisfies
+lim
+
+|q|→+∞
+
+L(x, q)
+= +∞,
+|q|
+
+x ∈ Rd .
+
+(L2): (Lipschitz regularity) There exists a constant LL > 0 independent of q,
+such that
+|L(x, q) − L(y, q)| ≤ LL |x − y|.
+(L3): (Semi-concavity) There exists a constant cL > 0 independent of q, such
+that
+L(x + y, q) − 2L(x, q) + L(x − y, q) ≤ cL |y|2 .
+(F1): (Uniform bounds) There exists constants CF , CG > 0 such that
+|F (x, μ)| ≤ CF , |G(x, μ)| ≤ CG ,
+
+∀x ∈ Rd , μ ∈ P (Rd ).
+
+(F2): (Lipschitz assumption) There exists constants LF , LG > 0 such that
+
+
+|F (x, μ1 ) − F (y, μ2 )| ≤ LF |x − y| + d0 (μ1 , μ2 ) ,
+
+
+|G(x, μ1 ) − G(y, μ2 )| ≤ LG |x − y| + d0 (μ1 , μ2 ) .
+(F3): (Semi-concavity) There exists constants cF , cG > 0 such that
+F (x + y, μ) − 2F (x, μ) + F (x − y, μ) ≤ cF
+G(x + y, μ) − 2G(x, μ) + G(x − y, μ) ≤ cG
+(M): (Initial condition) We assume m0 ∈ P (Rd ).
+(M'): The dimension d = 1, and m0 ∈ P (R) ∩ Lp (R) for some p ∈ (1, ∞].
+By (L1), the Legendre transform H = L∗ is welldefined and the optimal q is q ∗ =
+Dp H(x, p). To study the convergence of the numerical schemes we further assume local
+uniform bounds on the derivatives of Hamiltonian:
+(H1): The function Dp H ∈ C(Rd × Rd ), and for every R > 0, there is a constant
+CR > 0 such that for every x ∈ Rd and p ∈ BR we have |Dp H(x, p)| ≤ CR .
+
+6
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+(H2): The function Dp H ∈ C 1 (Rd ×Rd ). For every R > 0 there exists a constant
+CR > 0 such that for every x ∈ Rd and p ∈ BR we have
+|Dpp H(x, p)| + |Dpx H(x, p)| ≤ CR .
+Remark 2.1. We impose most of the conditions on L, and not on H, as L appears in
+optimal control problem, which would be the basis of our semi-Lagrangian approximation. Assumptions (L1) and (L2) (but, not (L3)!) would immediately carry forward to
+the corresponding Hamiltonian H from the definition of Legendre transform. Whereas,
+we require to assume (H1)–(H2) on H, in contrary to the other assumptions, as it does
+not follow from the condition on L in general. However, when the Lagrangian L behaves
+like | * |r in q variable for large q and r > 1, the growth of the corresponding Hamiltonian
+r
+H would be | * | r−1 in p variable for large p (cf. [32, Proposition 2.1]). The growth of
+the derivatives of H for large p can be computed similarly, which would correspond to
+similar condition as in (H1)–(H2).
+In most of this paper solutions of the HJB equation in (1) are interpreted in the
+viscosity sense, we refer to [46] and references therein for general definition and wellposedness results, while solutions of FPK equation in (1) are considered in the very weak
+sense defined as follows:
+Definition 2.2. (a) If u ∈ Cb0,1 ((0, T ) × Rd ), a measure m ∈ C([0, T ], P (Rd )) is a very
+weak solution of the FPK equation in (1), if for every φ ∈ Cc∞ (Rd ) and t ∈ [0, T ]
+Z
+Z
+φ(x) dm(t)(x) −
+φ(x) dm0 (x)
+Rd
+Rd
+(3)
+Z tZ 
+
+=
+L[φ](x) − Dp H(x, Du) * Dφ(x) dm(s)(x)ds.
+0
+
+Rd
+
+(b) If u ∈ L∞ (0, T ; W 1,∞ (Rd )) and p ∈ [1, ∞], a function m ∈ C([0, T ], P (Rd )) ∩
+Lp ([0, T ] × Rd ), is a very weak solution of the FPK equation in (1), if (3) holds for
+every φ ∈ Cc∞ (Rd ) and t ∈ [0, T ].
+Remark 2.3. Inequality (3) holding for every φ ∈ Cc∞ (Rd ) and t ∈ [0, T ] is equivalent to
+Z
+Z
+φ(T, x) d(m(T ))(x) −
+φ(0, x) dm0 (x)
+Rd
+
+Rd
+
+Z
+
+T
+
+Z
+
+=
+0
+
+
+
+
+φt (s, x) + L[φ](s, x) − Dp H(x, Du) * Dφ(s, x) dm(s)(x)ds,
+
+Rd
+
+holding for every φ ∈ Cb1,2 ([0, T ] × Rd ) (cf. [31, Lemma 6.1]).
+Definition 2.4. A pair (u, m) is a viscosity-very weak solution of the MFG system (1),
+if u is a viscosity solution of the HJB equation, and m is a very weak solution of the
+FPK equation (see, Definition 2.2).
+Proposition 2.5. Fix, μ ∈ C([0, T ], P (Rd )). Let (ν0), (L2) and (F1) hold.
+(a) (Comparison principle) If u is a viscosity subsolution and v is a viscosity supersolution of the HJB equation in (1) with u(T, *) ≤ v(T, *), then u ≤ v.
+(b) There exists a unique bounded viscosity solution u ∈ Cb ([0, T ] × Rd ) of the HJB
+equation in (1), and for any t ∈ [0, T ] we have ku(t)k0 ≤ CF T + CG .
+(c) If (L2) and (F2) hold, then the viscosity solution u is Lipschitz continuous in space
+variable and for every t ∈ [0, T ] and x, y ∈ Rd we have
+
+|u(t, x) − u(t, x + y)| ≤ T (LL + LF ) + LG |y|.
+
+APPROXIMATION OF NONLOCAL MFGS
+
+7
+
+In addition, if (L3) and (F3) hold, then u is semiconcave in space variable and for every
+t ∈ [0, T ] and x, y ∈ Rd we have
+
+u(t, x + y) + u(t, x − y) − 2u(t, x) ≤ T (cL + cF ) + cG |y|2 .
+Proof. These results are by now standard: (a) follows by a similar argument as for
+[46, Theorem 3.1], (b) follows by e.g. Perron's method, and (c) by adapting the comparison arguments of [46] in a standard way. We omit the details. Under some extra
+assumptions, (b) and (c) also follows from Theorem 5.4 and Lemma 5.3 below.
+
+Proposition 2.6. Assume (ν0), (ν1), (H1), and (M).
+(a) If u ∈ C([0, T ]; Cb1 (Rd )), then there exists a very weak solution m ∈ C([0, T ]; P (Rd ))
+of the FPK equation in (1).
+(b) If d = 1, u ∈ C([0, T ]; W 1,∞ (R)), u semi-concave, and (M') holds, then there exists
+a very weak solution m ∈ C([0, T ]; P (R)) ∩ Lp ([0, T ] × R) of the FPK equation in (1).
+Moreover, km(t)kLp (R) ≤ eCT km0 kLp (R) for some constant C > 0 and t ∈ [0, T ].
+Proof. The results follow from the convergence of the discrete scheme in this article.
+The proof of (a) follows the proof of Theorem 4.3, setting Duρ,h = Du. The proof of
+(b) follows the proof of Theorem 4.1 and Theorem 6.7, setting Duρ,h = Du. Note that
+semi-concavity of u is crucial for the the Lp -bound of Theorem 6.7.
+
+Existence and uniqueness results are given in [37] for classical solutions of MFGs with
+nonlocal diffusions under additional assumptions:
+(ν2): (Growth near singularity) There exists constants σ ∈ (1, 2) and c > 0 such
+that the density of ν for |z| < 1 satisfies
+dν
+c
+≤
+, for |z| < 1.
+|z|d+σ
+dz
+(F4): There exists constants CF , CG > 0, such that kF (*, m)kCb2 ≤ CF and
+kG(*, m̃)kCb3 ≤ CG for all m, m̃ ∈ P (Rd ).
+(F5): F and G satisfy monotonicity conditions:
+Z
+(F (x, m1 ) − F (x, m2 )) d (m1 − m2 ) (x) ≥ 0
+
+∀m1 , m2 ∈ P (Rd ),
+
+Rd
+
+Z
+(G (x, m1 ) − G (x, m2 )) d (m1 − m2 ) (x) ≥ 0
+
+∀m1 , m2 ∈ P (Rd ).
+
+Rd
+
+(H3): The Hamiltonian H ∈ C 3 (Rd × Rd ), and for every R > 0 there is CR > 0
+α
+such that for x ∈ Rd , p ∈ BR , α ∈ NN
+0 , |α| ≤ 3, then |D H(x, p)| ≤ CR .
+(H4): For every R > 0 there is CR > 0 such that for x, y ∈ Rd , u ∈ [−R, R] , p ∈
+Rd : |H (x, u, p) − H (y, u, p) | ≤ CR (|p| + 1) |x − y|.
+(H5): (Uniform convexity) There exists a constant C > 0 such that
+2
+Dpp
+H (x, p) ≤ CId .
+
+1
+C Id
+
+≤
+
+(M"): The probability measure m0 has a density (also denoted by m0 ) m0 ∈ Cb2 .
+Theorem 2.7. Assume (ν0), (ν1), (ν2), (F2), (F4), (H3),(H4), and (M").
+(a) There exists a classical solution (u, m) of (1) such that u ∈ Cb1,3 ((0, T ) × Rd ) and
+m ∈ Cb1,2 ((0, T ) × Rd ) ∩ C(0, T ; P (Rd )).
+(b) If in addition (F5) and (H5) hold, then the classical solution is unique.
+
+8
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+This is a consequence of [37, Theorem 2.5 and Theorem 2.6]. We refer to [37] for
+more general results, where in particular assumptions (ν1) and (ν2) can be relaxed to
+allow for a much larger class of nonlocal operators L. In the nondegenerate case, for the
+individual equations in (1) we also have uniqueness of viscosity-very weak solutions and
+existence of classical solutions. Uniqueness for HJB equations and existence for HJB
+and FPK equations follows by Theorem 5.3, Theorem 5.5, and Proposition 6.8 in [37].
+We prove uniqueness for very weak solutions of FPK equations here.
+Proposition 2.8 (Uniqueness for the FPK equation). Assume (ν0), (ν1), (ν2), and
+Dp H(x, Du(t)) ∈ Cb0,2 ((0, T ) × Rd ). Then there is at most one very weak solution of the
+FPK equation in (1).
+Proof. Let m
+ 1 , m2 be two very weak solutions, define m̃ := m1 − m2 and take any
+ψ ∈ Cc∞ Rd . For any τ ∈ (0, T ), the terminal value problem
+∂t φ + Lφ − Dφ * Dp H(x, Du) = 0
+
+in Rd × (0, τ )
+
+and φ(x, τ ) = ψ(x)
+
+in Rd ,
+
+has a unique classical solution φ ∈ Cb1,2 ((0, τ ) × Rd ) essentially by [37, Theorem 5.5]
+(the result follows from Proposition 5.8 with k = 2 and the observation that the proof
+of Theorem 5.5 also holds for k = 2). Using the definition of very weak solution (see
+Remark 2.3) we get
+Z
+Z τZ
+
+∂t φ + Lφ − Dφ * Dp H(x, Du) dm̃(t)(x) dt = 0,
+ψ(x) dm̃(τ )(x) =
+Rd
+
+Rd
+
+0
+
+for any τ ∈ [0, T ]. Since ψ was arbitrary, it follows that m̃(τ ) = 0 in P (Rd ) for every
+τ ∈ [0, T ], and uniqueness follows.
+
+3. Discretisation of the MFG system
+To discretise the MFG system (1), we first follow [15] and derive a Semi-Lagrange
+approximation of the HJB equation in (1). Using this approximation and the optimal
+control of the original problem, we derive an approximation of the FPK equation in (1)
+which is in (approximate) duality with the approximation of the HJB-equation.
+This derivation is based on the following control interpretation of the HJB equation.
+For a fixed given density m = μ, the solution u of the HJB equation in (1) is the value
+function of the optimal stochastic control problem:
+
+(4)
+u(t, x) = inf J x, t, α ,
+α
+
+where αt is an admissible control, J is the total cost to be minimized,
+Z T 
+
+
+
+J x, t, α = E
+L(X̃s , αs ) + F (X̃s , μs ds + G(X̃T , μT ) ,
+(5)
+t
+
+and X̃s =
+
+X̃sx,t
+(
+
+(6)
+
+solves the controlled stochastic differential equation (SDE)
+R
+R
+dX̃s = −αs ds + |z|<1 z Ñ (dz, ds) + |z|≥1 zN (dz, ds), s > t,
+X̃t = x,
+
+where N a Poisson random measure with intensity/Lévy measure ν(dz)ds, and Ñ =
+N (dz, ds) − ν(dz)ds is the compensated Poisson measure.1
+3.1. Approximation of the underlying controlled SDE.
+1The N -integral is just a (difficult way of writing a) compound Poisson jump-process, while the
+Ñ -integral is a centered jump process with an infinite number of (small) jumps per time interval a.s.
+[9].
+
+APPROXIMATION OF NONLOCAL MFGS
+
+9
+
+A. Approximate small jumps by Brownian motion. First we approximate small jumps
+in (6) by (vanishing) Brownian motion2 (cf. [10]): For r ∈ (0, 1), let Xs = Xsx,t solve
+(
+R
+dXs = b̄(αs )ds + σr dWs + |z|≥r zN (dz, ds), s > t
+(7)
+Xt = x,
+where Ws is a standard Brownian motion, b̄(αs ) = − αs − bσr , and
+Z
+bσr :=
+(8)
+z ν(dz),
+r<|z|<1
+
+1/2
+ Z
+1
+T
+zz ν(dz)
+.
+σr :=
+2 |z|<r
+
+(9)
+
+The last integral in (7) is a compound Poisson process (cf. e.g. [9]): For any t ≥ 0,
+Z tZ
+(10)
+
+zN (dz, dt) =
+0
+
+|z|≥r
+
+N̂t
+X
+
+Jj
+
+j=1
+
+where the number of jumps up to time t is N̂t ∼ Poisson(tλr ), the jumps {Jj }j are iid
+rv's in Rd with distribution νr and J0 = 0, and for r ∈ (0, 1],
+Z
+(11)
+νr := ν 1|z|>r
+and
+λr :=
+νr (dz).
+Rd
+
+The infinitesimal generators Lα and L̂α of the SDEs (6) and (7) are (cf. [9])
+Lα φ(x) = −αt * ∇φ + L1 φ(x) + L1 φ(x),
+
+L̂α φ(x) = b̄(αt ) * ∇φ(x) + tr σrT * D2 φ(x) * σr + Lr [φ](x)
+for φ ∈ Cb2 (Rd ), where
+(12)
+
+Lφ(x) = Lr φ(x) + Lr φ(x)
+Z
+
+Z
+
+:=
++
+φ(x + z) − φ(x) − 1{|z|<1} Dφ(x) * z dν(z).
+|z|<r
+
+|z|>r
+
+The operator L̂α is an approximation of Lα .
+Lemma 3.1 ([47]). If (ν1) holds and φ ∈ Cb3 (Rd ), then for Lr and σr defined in (12)
+and (9) respectively, we have
+
+|Lr φ(x) − tr σrT * D2 φ(x) * σr | ≤ Cr3−σ kD3 φk0 .
+If in addition, φ ∈ Cb4 (Rd ) and the Lévy measure ν is symmetric, then
+
+|Lr φ(x) − tr σrT * D2 φ(x) * σr | ≤ Cr4−σ kD4 φk0 .
+T
+B. Time discretization of the approximate SDE. Fix a time step h = N
+∈ (0, 1) for some
+N ∈ N and discrete times tk = kh for k ∈ {0, 1, . . . , N }. Following [15], we propose
+the following Euler-Maruyama discretization of the SDE (7): Let Xntl ,x ≈ Xttnl ,x , where
+Xn = Xntl ,x solves
+
+
+Xl = x
+
+
+
+d
+
+√ X
+m
+(13)
+Xn = Xn−1 + hb̄(αn−1 ) + h
+σrm ξn−1
+, n = l + Ni + 1, . . . , l + Ni+1 − 1,
+
+
+m=1
+
+
+X
+=X
++J .
+l+Ni+1
+
+2
+
+l+Ni+1 −1
+
+i
+
+To avoid singular integrals and infinite number of jumps per time interval.
+
+10
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+Here the control αn is constant on each time interval, σrm is the mth-column of σr , and
+ξn = (ξn1 , . . . , ξnd ) is a random walk in Rd with
+
+1
+.
+P ξni = ±1 =
+2d
+The processes Jk and Nk defines an approximation of the compound Poisson part of (7)
+through equation (10) where N̂t is replaced by an approximation
+Ñt = max{k : ∆T1 + ∆T2 + * * * + ∆Tk ≤ t},
+where exponentially distributed waiting times (time between jumps) are replaced by
+approximations {∆Tk }k∈N 3: ∆Tk = h∆Nk = h(Nk − Nk−1 ) where Nk : Ω → N ∪ {0},
+N0 = 0, and ∆Nk iid with approximate hλr -exponential distribution given by
+P[∆Nk > j] = e−hλr j
+
+for j = 0, 1, 2, . . . .
+
+Then for pj := P [∆Nk = j], p0 = 0 and
+pj = P [∆Nk > j − 1] − PP
+[∆Nk > j] =
+P∞
+∞
+e−jhλr (ehλr − 1) for j > 0. We find that j=0 pj = 1 and E(∆Nk ) = j=0 e−jhλr =
+ehλr
+.
+ehλr −1
+
+Note that in each time interval, approximation (13) either diffuses (the second
+equation) or jumps (the third equation), and that we have ignored the unlikely event of
+more than one jump per time interval. For the scheme to converge, we will see that we
+need to send both h → 0 and hλr → 0. In this case E(∆Nk ) → ∞ and the jumps become
+less and less frequent and the random walk dominates the evolution of Xk (which is to
+be expected).
+3.2. Semi-Lagrangian approximation of the HJB equation.
+A. Control approximation of the HJB equation. We approximate the control problem
+(4) – (6) by a discrete time control problem: Define the value function
+
+(14)
+ũh (tl , x) = inf Jh x, tl , {αn } ,
+{αn }
+
+where the controls {αn } are piecewise constant in time, the cost function Jh is given by
+(15)
+
+
+ NX
+−1 
+
+
+Jh x, tl , {αn } = E
+L(Xn , αn ) + F (Xn , μ(tn )) h + G(XN , μ(tN )) ,
+n=l
+
+and the controlled discrete time process Xn = Xntl ,x is the solution of (13). By the
+(discrete time) Dynamic Programming principle it follows that
+X
+
+l+p 
+
+tl ,x
+ũh (tl , x) = inf E
+L(Xntl ,x , αn ) + F (Xntl ,x , μ(tn )) h + ũh (tl+p+1 , Xl+p+1
+) ,
+αn
+
+n=l
+
+for l + p + 1 ≤ N . Taking p = 0 and computing the expectation using conditional
+probabilities (the probability to jump in a time interval is p1 = 1 − e−hλr ), we find a
+(discrete time) HJB equation
+
+d
+h e−hλr X
+√
+ũh (tl , x) = inf hF (x, μ(tl )) + hL(x, α) +
+ũh (tl + h, x + hb̄(α) + hdσrm )
+α
+2d m=1
+Z
+iff
+√
+ 1 − e−hλr
+(16)
++ ũh (tl + h, x + hb̄(α) − hdσrm ) +
+ũh (tl + h, x + z)ν(dz) .
+λr
+|z|≥r
+3In the new model, Ñ still gives the number of jumps up to time t.
+t
+
+APPROXIMATION OF NONLOCAL MFGS
+
+11
+
+B. Interpolation and the fully discrete scheme. For ρ > 0 we fix a grid Gρ = {iρ : i ∈ Zd }
+and a linear/multilinear Gρ -interpolation I. For functions f : Gρ → R,
+X
+(17)
+I[f ](x) :=
+f (xi )βi (x),
+x ∈ Rd ,
+i∈Zd
+
+where the βj 's are piecewise linear/multilinear basis functions satisfying
+X
+βj ≥ 0, βj (xi ) = δj,i ,
+βj (x) = 1, and kI[φ] − φk0 = kD2 φk0 ρ2
+j
+
+for any φ ∈ Cb2 (Rd ). A fully discrete scheme is then obtained from (16) as follows:
+(18)
+
+ũi,k [μ] = Sρ,h,r [μ](ũ*,k+1 , i, k), k < N,
+
+and ũi,N [μ] = G(xi , μ(tN )),
+
+where
+(
+Sρ,h,r [μ](v, i, k) = inf
+α
+
+(19)
+
+hF (xi , μ(tk )) + hL(xi , α) +
+
+1 − e−hλr
+λr
+
+Z
+I[v](xi + z)ν(dz)
+|z|≥r
+
+)
+d
+
+√
+√
+e−hλr X 
+m
+m
++
+I[v](xi + hb̄(α) + hdσr ) + I[v](xi + hb̄(α) − hdσr ) .
+2d m=1
+
+Finally, we extend the solution of the discrete scheme ũi,k [μ] to the whole Rd × [0, T ]
+by linear interpolation in x and piecewise constant interpolation in t:
+X
+
+(20) ũρ,h [μ](t, x) = I ũ*,[ ht ] [μ] (x) =
+βi (x) ũi,[ ht ] [μ] for any (t, x) ∈ [0, T ) × Rd .
+i∈Zd
+
+3.3. Approximate optimal feedback control.
+For the HJB equation in (1), satisfied by the value function (4), it easily follows that
+the optimal feedback control is
+α(t, x) = Dp H(x, Du[μ](t, x)).
+Based on this feedback law, we define an approximate feedback control for the discrete
+time optimal control problem (13)–(15) in the following way: For h, ρ,  > 0 and (t, x) ∈
+Rd × [0, T ],
+(21)
+
+αnum (t, x) := Dp H(x, Dũρ,h [μ](t, x)),
+
+where ũρ,h [μ] is given by (20),
+ũρ,h [μ](t, x) = ũρ,h [μ](t, *) ∗ ρ (x),
+
+R
+and the mollifier ρ (x) = 1d ρ x for 0 ≤ ρ ∈ Cc∞ (Rd ) with Rd ρ(x)dx = 1. We state a
+standard result on mollification.
+(22)
+
+Lemma 3.2. If u ∈ W 1,∞ (Rd ),  > 0, and u = u ∗ ρ . Then u ∈ Cb∞ (Rd ), and there
+exists a constant cρ > 0, such that for all  > 0,
+ku − uk0 ≤ kDuk0 
+
+and
+
+kDp u k0 ≤ cρ kDuk0 1−p for any p ∈ N.
+
+By construction, we expect αnum to be an approximation of the optimal feedback
+control for the approximate control problem with value function (14) when h, ρ,  are
+small and ũρ,h is close to u.
+3.4. Dual SL discretization of the FPK equation.
+
+12
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+A. Dual approximation of the FPK equation. First note that if X̃s = X̃s0,Z0 solves
+(6) with t = 0 and X0 = Z0 , a rv with distribution m0 , then the FPK equation for
+m̃ := Law(X̃s ) is
+(
+m̃t − L∗ m̃ − div(m̃α) = 0,
+m̃(0) = m0 .
+Setting α = αnum , this equation becomes an approximation of the FPK equation in (1).
+With this choice of α, we further approximate m̃ by the density m̃k := Law(Xk ), of the
+approximate process Xk = Xk0,Z0 solving (13) with l = 0 and X0 = Z0 .
+We now derive a FPK equation for m̃k which in discretised form will serve as our
+approximation of the FPK equation in (1). To simplify we consider dimension d = 1.
+By definition of m̃k ,
+Z
+E[φ(Xk+1 )] =
+φ(x) dm̃k+1 (x),
+R
+
+for φ ∈ Cb (Rd ) and k ∈ N ∪ {0}. Let Ak be the event of at least one jump in [tk , tk+1 ),
+i.e. Ak = {ω : Nk+1 (ω) − Nk (ω) ≥ 1} where Nk is the random jump time defined in
+Section 3.1 B. Then by the definition of Xk in (13), the fact that Nk , Jk , and ξk are
+i.i.d. and hence independent of Xk , and conditional expectations, we find that
+Z
+φ(x) dm̃k+1 (x) = E[φ(Xk+1 )]
+R
+
+= E[φ(Xk+1 )|Ack ] P (Ack ) + E[φ(Xk+1 )|Ak ] P (Ak )
+√
+= e−hλr E(φ(Xk + hb̄(αnum ) + hσr ξk )) + (1 − e−hλr )E(φ(Xk + Ji ))
+Z
+√
+√
+
+e−hλr
+φ(x + hb̄(αnum ) + hσr ) + φ(x + hb̄(αnum ) − hσr ) m̃k (dx)
+=
+2
+R
+Z Z
+ν(dz)
++ (1 − e−hλr )
+φ(x + z)
+m̃k (dx).
+λr
+R |z|>r
+
+R
+Let Ei := xi − ρ2 , xi + ρ2 , m̃j,k = Ej m̃k (dx). We approximate the above expression
+R
+by a midpoint (quadrature) approximation, i.e. Ej f (x)m̃k (dx) ≈ f (xj )m̃j,k , then by
+choosing φ(x) = βj (x) (linear interpolant) for j ∈ Z and using βj (xi ) = δj,i we get a
+fully discrete approximation
+m̃j,k+1 ≈
+
+X
+
+m̃i,k
+
+h e−hλr 
+2
+
+i∈Z
+
++
+
+√
+βj (xi + hb̄(αnum ) +
+
+1 − e−hλr
+λr
+
+Z
+
+hσr ) + βj (xi + hb̄(αnum ) −
+
+√
+
+
+hσr )
+
+i
+βj (xi + z)ν(dz) .
+
+|z|>r
+
+In arbitrary dimension d, we denote
+(23)
+
+ √
+
+σ
+Φ,±
+hdσrp .
+j,k,p := xj − h Hp (xj , Dũρ,h [μ](tk , xj )) + Br ±
+
+for j ∈ Zd , k = 0, . . . , N , p = 1, . . . , d. Redefining Ei := xi + ρ2 (−1, 1)d and reasoning
+as for d = 1 above, we get the following discrete FPK equation
+
+X
+
+m̃i,k+1 [μ] :=
+m̃j,k [μ] Bρ,h,r [Hp (*, Dũρ,h [μ])(i, j, k),
+
+
+Zj∈Zd
+(24)
+
+
+=
+dm0 (x),
+ m̃i,0
+Ei
+
+APPROXIMATION OF NONLOCAL MFGS
+
+13
+
+where
+Bρ,h,r [Hp (*, Dũρ,h [μ]](i, j, k) :=
+
+
+
+(25)
+
+d
+
+
+e−λr h X 
+,− 
+βi Φ,+
++
+β
+Φ
+i
+j,k,p
+j,k,p
+2d p=1
+
+Z
+1 − e−λr h
+βi (xj + z)ν(dz) .
++
+λr
+|z|>r
+
+The solution is a probability distribution on Gρ × hNh , where Nh := {0, . . . , N }:
+Lemma 3.3. Let (m̃i,k ) bePthe solution of (24). If m0 ∈ P (Rd ), then (m̃i,k )i ∈ P (Zd ),
+i.e. m̃i,k ≥ 0, i ∈ Zd , and j∈Zd m̃j,k = 1 for all k ∈ Nh .
+Proof. First note that m̃i,k ≥ 0 follows directly from
+P the definition of the scheme and
+mi,0 ≥ 0. Changing the order of summation and as i Bρ,h,r [Hp (*, Dũρ,h [μ]](i, j, k) = 1,
+we find that
+X
+XX
+X
+m̃i,k+1 =
+m̃j,k Bρ,h,r [Hp (*, Dũρ,h [μ]](i, j, k) =
+m̃j,k .
+i
+
+i
+
+j
+
+The result follows by iteration since
+
+j
+
+P
+
+j
+
+m̃j,0 = 1.
+
+
+
+We extend (m̃i,k [μ]) to Rd by piecewise constant interpolation in x and then to [0, T ]
+by linear interpolation in t: For t ∈ [tk , tk+1 ] and k ∈ Nh ,
+tk+1 − t 
+t − tk 
+(26)
+m̃ρ,h [μ](tk+1 , x) +
+m̃ρ,h [μ](tk , x),
+m̃ρ,h [μ](t, x) :=
+h
+h
+P
+where, m̃ρ,h [μ](tk , x) := ρ1d i∈Zd m̃i,k [μ] 1Ei (x). Note that m̃ρ,h [μ] ∈ C([0, T ], P (Rd ))
+and the duality with the linear in x/constant in t interpolation used for ũρ,h in (20).
+3.5. Discretisation of the coupled MFG system.
+The discretisation of the MFG system is obtained by coupling the two discretisations
+above by setting μ = m̃ρ,h [μ]. With this choice and u = ũ[μ] and m = m̃[μ] we get the
+following discretisation of (1):
+
+ui,k = Sρ,h,r [mρ,h ](u*,k+1 , i, k),
+
+
+
+
+
+
+ ui,N = G(xi , mρ,h (tN )),
+(27)
+P
+
+
+mi,k+1 = j∈Zd mj,k Bρ,h,r [Hp (*, Duρ,h )](i, j, k),
+
+
+
+
+R
+
+mi,0 = Ei dm0 (x),
+where Sρ,h,r , Bρ,h,r , uρ,h , mρ,h are defined above.
+The individual discretisations are explicit, but due to the forward-backward nature
+of the coupling, the total discretisation is not explicit. It yields a nonlinear system
+that must be solved by some method like e.g. a fixed point iteration or a Newton type
+method.
+The approximation scheme (27) has a least one solution:
+Proposition 3.4. (Existence for the discrete MFG system) Assume (ν0), (ν1), (L1)–
+(L2), (F1)–(F2), (H1), and (M). Then there exist a pair (uρ,h , mρ,h ) solving (27).
+The proof of this result is non-constructive and given in Appendix A.
+4. Convergence to the MFG system
+In this section we give the main theoretical results of this paper, various convergence
+results as h, ρ, , r → 0 under CFL-conditions. The proofs will be given in Section 7 and
+require results for the individual schemes given in Sections 5 and 6.
+
+14
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+4.1. Convergence to viscosity-very weak solutions. We consider degenerate and
+non-degenerate cases separately. For the degenerate case, the convergence holds only in
+dimension d = 1.
+Theorem 4.1 (Degenerate case, d = 1). Assume (ν0), (ν1), (L1)–(L3), (F1)–(F3),
+(H1)–(H2), (M'), {(uρ,h , mρ,h )}ρ,h,>0 are solutions of the discrete MFG system (27).
+If ρn , hn , n , rn → 0 under the CFL conditions
+
+√
+ρ2n hn
+hn
+σ , 
+hn , rn
+n
+
+= o(1), then:
+
+(i) {uρn ,hn }n is precompact in Cb ([0, T ] × K) for every compact set K ⊂ R.
+(ii) {mρnn ,hn }n is sequentially precompact in C([0, T ], P (R)), and (a) in L1 weak if
+p ∈ (1, ∞) in (M'), or (b) in L∞ weak ∗ if p = ∞ in (M').
+(iii) If (u, m) is a limit point of {(uρn ,hn , mρnn ,hn )}n , then (u, m) is a viscosity-very
+weak solution of the MFG system (1).
+Note that {mρ,h } is precompact in C([0, T ], P (Rd )), just by assuming (M) for the
+initial distribution. But in the degenerate case this is not enough for convergence of
+the MFG system, due to lower regularity of the solutions of the HJB equation (no
+longer C 1 ). Therefore we need assumption (M') and the stronger compactness given by
+Theorem 4.1(ii) part (a) or (b). This latter result we are only able to show in d = 1.
+In arbitrary dimensions we assume more regularity on solutions of the HJB equation
+in (1):
+(U): Let u[m] be a viscosity solution of the HJB equation in (1). For any m ∈
+C([0, T ], P (Rd )) and t ∈ (0, T ), u[m](t) ∈ C 1 (Rd ).
+Remark 4.2. Assumption (U) holds in non-degenerate cases, e.g. under assumption
+(ν2), see Theorem 2.7 and the discussion below.
+We have the following convergence result in arbitrary dimensions.
+Theorem 4.3 (Non-degenerate case). Assume (ν0), (ν1), (L1)–(L3), (F1)–(F3), (H1)–
+(H2), (U), (M), {(uρ,h , mρ,h )}ρ,h,>0 are solutions of the discrete MFG system (27). If
+ρn , hn , n , rn → 0 under the CFL conditions
+
+√
+ρ2n hn
+hn
+,
+,
+σ
+h n rn
+n
+
+= o(1), then:
+
+(i) {uρn ,hn }n is precompact in Cb ([0, T ] × K) for every compact set K ⊂ Rd .
+(ii) {mρnn ,hn }n is precompact in C([0, T ], P (Rd )).
+(iii) If (u, m) is a limit point of {(uρn ,hn , mρnn ,hn )}n , then (u, m) is a viscosity-very
+weak solution of the MFG system (1).
+These results give compactness of the approximations and convergence along subsequences. To be precise, by part (i) and (ii) there are convergent subsequences, and by
+part (iii) the corresponding limits are solutions of the MFG system (1).
+We immediately have existence for (1).
+Corollary 4.4 (Existence of solutions of (1)). Under the assumptions of either Theorem
+4.1 or 4.3, there exists a viscosity-very weak solution (u, m) of the MFG system (1).
+If in addition we have uniqueness for the MFG system (1), then we have full convergence of the sequence of approximations.
+Corollary 4.5. Under the assumption of either Theorem 4.1 or Theorem 4.3, if the
+MFG system (1) has at most one viscosity-very weak solution, then the whole sequence
+{(uρn ,hn , mρnn ,hn )}n converges to a limit (u, m) which is the (unique) viscosity-very weak
+solution of the MFG system (1).
+4.2. Convergence to classical solutions. In the case the individual equations are
+regularising, we can get convergence to classical solutions of the MFG system. To be
+precise we need:
+
+APPROXIMATION OF NONLOCAL MFGS
+
+15
+
+1. ("Weak" uniqueness of individual PDEs) The HJB equation have unique viscosity solutions, and the FPK equation have unique very weak solutions.
+2. (Smoothness of individual PDEs) Both equations have classical solutions.
+This means that viscosity-very weak solutions of the MFG system automatically (by
+uniqueness for individual equations) are classical solutions. If in addition
+3. (Classical uniqueness for MFG) classical solutions of the MFG system are
+unique,
+we get full convergence of the approximate solutions to the solution of the MFG system.
+We now give a precise result in the setting of [37], see Theorem 2.7 in Section 2 for
+existence and uniqueness of classical solutions of (1).
+Corollary 4.6. Assume (ν0)–(ν2), (L1)–(L3), (F1)–(F4), (H3)–(H4), and (M"). Let
+(uρ,h , mρ,h ) be solutions of the discrete MFG system (27). If ρn , hn , n , rn → 0 under
+the CFL conditions
+
+√
+ρ2n hn
+hn
+,
+,
+σ
+hn rn
+n
+
+= o(1), then:
+
+{(uρn ,hn , mρnn ,hn )}n
+d
+
+(a)
+has a convergent subsequence in the space Cb,loc ([0, T ] × Rd ) ×
+C([0, T ], P (R )), and any limit point is a classical-classical solution of (1).
+(b) If in addition (F5) and (H5) hold, then the whole sequence in (a) converges to the
+unique classical-classical solution (u, m) of (1).
+Proof. 1. Assumption (U) holds by Theorem 2.7, and then by Theorem 4.3, there is
+a convergent subsequence {(uρn ,hn , mρnn ,hn )}n such that (uρn ,hn , mρnn ,hn ) → (u, m) and
+(u, m) is a viscosity-very weak solution of (1).
+2. Since m ∈ C([0, T ], P (Rd )), the viscosity solution u is unique by Proposition 2.5
+(b) (see also [37, Theorem 5.3]). Hence it coincides with the classical Cb1,3 ((0, T ) × Rd )
+solution given by [37, Theorem 5.5].
+3. Now Dp H(x, Du(t)) ∈ Cb2 (Rd ) by part 2 and (H3), and then by Proposition 2.8 there
+is at most one very weak solution of the FPK equation. Hence it coincides with the
+classical Cb1,2 ((0, T ) × Rd ) solution given by [37, Proposition 6.8].
+4. In addition if (F5) and (H5) hold, there is a most one classical solution (u, m) by
+Theorem 2.7 (b).
+5. This shows (compactness, smoothness, and uniqueness) that all convergent subsequences of {(uρn ,hn , mρnn ,hn )}n have the same limit, and thus the whole sequence
+converges to (u, m), the unique classical solution of (1).
+
+4.3. Extension and discussion.
+Extension to more general Lévy operators. The results of Theorem 4.1 and 4.3
+hold under much more general assumptions on the Lévy operator L. In [37] they use
+(ν0) together with the assumptions,
+Z
+Z
+Z
+−2+σ
+2
+−1+σ
+σ
+0
+(ν1 ): r
+|z| dν + r
+|z|dν + r
+dν ≤ c, r ∈ (0, 1).
+|z|<r
+
+r<|z|<1
+
+r<|z|<1
+
+0
+
+(ν2 ): There are σ ∈ (1, 2) and K > 0 such that the heat kernels Kσ and Kσ∗ of
+L and L∗ satisfy for K = Kσ , Kσ∗ : K ≥ 0, kK(t, *)kL1 (Rd ) = 1, and
+
+1
+1
+kDβ K(t, *)kLp (Rd ) ≤ Kt− σ |β|+(1− p )d
+for t ∈ (0, T )
+and any p ∈ [1, ∞) and multi-index β ∈ Nd ∪ {0}.
+where the heat kernel of the operator L is defined as the fundamental solution of the heat
+equation ∂t u−Lu = 0. These assumptions cover lots of new cases compared to (ν0), (ν1),
+and (ν2). New cases include (i) sums of operators satisfying (ν1) on subspaces spanning
+
+16
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+Rd , having possibly different orders, (ii) more general non-absolutely continuous Lévy
+measures, and (iii) Lévy measures supported on positive cones. An example of (i) (cf.
+[37]) is
+ ∂ 2 σd /2
+ ∂ 2 σ1 /2
+−
+*
+*
+*
+−
+−
+,
+σ1 , . . . , σd ∈ (1, 2),
+L=− −
+∂x21
+∂x2d
+Pd
+dzi
+which satisfies (ν10 ) with σ = mini σi and dν(z) =
+i=1 |zi |1+σi Πj6=i δ0 (dzj ). This
+is a sum of one-dimensional fractional Laplacians of different orders. An example of
+(iii) is given
+R ∞ by the spectrally positive "fractional Laplacian" in one space dimension:
+Lu = cσ 0 (u(x + z) − u(x) − Du(x) * z 1{z<1} )z −1−σ dz.
+We have the following generalization of the wellposedness result for classical solutions
+given in Theorem 2.7.
+Theorem 4.7 ([37]). Theorem 2.7 holds when you replace (ν1) – (ν2) by (ν10 ) – (ν20 ).
+It follows that (U) holds whenever Theorem 4.7 holds. Since (ν1) implies (ν10 ) and
+the integrals in (ν10 ) are what appear in the different proofs, it is easy to check that
+all estimates in this paper are true for Lévy measures satisfying (ν10 ) instead of (ν1).
+This means that under assumption (ν10 ) and (ν20 ) we have the following extensions of
+Theorems 4.1 and 4.3 and Corollary 4.6.
+Theorem 4.8. Theorem 4.1 holds when you replace (ν1) with (ν10 ).
+Theorem 4.9. Theorem 4.3 holds when you replace (ν1) – (ν2) by (ν10 ) – (ν20 ).
+Corollary 4.10. Corollary 4.6 holds when you replace (ν1) – (ν2) by (ν10 ) – (ν20 ).
+The Wasserstein metric d1 versus our metric d0 . The typical setting for the
+FPK equations in the MFG literature seems to be the metric space (P1 (Rd ), d1 ), that
+is the 1−Wasserstein space W1 of probability measures with finite first moment. This
+is also the case in [25] where convergence results are given for SL schemes for local
+nondegenerate MFGs in Rd . In this paper we can not assume finite first moments if
+we want to cover general non-local operators. An example is the fractional Laplacian
+σ
+−(−∆) 2 for σ < 1, where the underlying σ-stable process only has finite moments of
+order less than σ. Instead we consider the weaker metric space (P (Rd ), d0 ), which is
+just a metrization of the weak (weak-* in Cb ) convergence of probability measures. In
+this topology we can consider processes, probability measures and solutions of the FPK
+equations that do not have any finite moments or any restrictions on the tail behaviour
+of the corresponding Lévy measures.
+Of course, under additional assumptions convergence in d0 implies convergence in d1 .
+Lemma 4.11. If mn converges to m in (P (Rd ), d0 ) and mn and m has uniformly
+bounded (1 + δ)-moments for δ > 0, then mn → m in (P1 (Rd ), d1 ).
+Convergence in P1 (Rd ) [53, Definition 6.8] is by definition equivalent to weak convergence plus convergence of first moments, and the result follows from e.g. Proposition
+1.1 and Lemma 1.5 in [5].
+We then have the following version of Theorem 4.1 and Theorem 4.3.
+R
+Corollary 4.12. Assume m0 ∈ P1+δ (R), Rd \B1 |z|1+δ dν(z) < ∞ for some δ > 0, and
+the assumptions of Theorem 4.1 and Theorem 4.3. Then the statements of Theorem 4.1
+and Theorem 4.3 hold if we replace (P, d0 ) by (P1 , d1 ) in part (ii).
+Note that the number of moments of m is determined by the number of moments of
+1|z|>1 ν (and m0 ), see e.g. the discussion in section 2.3 in [37]. Moreover, if 1|z|>1 ν has
+at most α finite moments, then Lu is well-defined only if u has at most order α growth
+at infinity. Hence in the nonlocal case there is "duality" between the moments of m and
+
+APPROXIMATION OF NONLOCAL MFGS
+
+17
+
+the growth ofR u. Note that um will always be integrable which is natural since then e.g.
+Eu(Xt , t) = u(x, t)m(dx, t) is finite.
+In our case we assume no moments and have to work with bounded solutions u.
+On moments and weak compactness in Lp in the degenerate case. Previous
+results for Semi-Lagrangian schemes in the first order and the degenerate second order
+case [23, 24] cover the case m0 ∈ P1 (R) ∩ L∞ (R), which means that m0 has finite firstmoments. Our results assume m0 ∈ P (R) ∩ Lp (R), for p ∈ (1, ∞], and hence no moment
+bounds and possibly unbounded m0 . When p < ∞ we have weak compactness in L1
+instead of weak-* compactness in L∞ .
+Since our results in the degenerate case allows for L = 0, they immediately give an
+extension to this P ∩ Lp setting for the convergence results for first order problems of
+[23]. Moreover, the same conditions, arguments, and results easily also holds in the local
+diffusive case considered in [24].
+5. On the SL scheme for the HJB equation
+We prove results for the numerical approximation of the HJB equation, including
+monotonicity, consistency, and different uniform a priori stability and regularity estimates. Using the "half-relaxed" limit method [12], we then show convergence in the
+form of vρn ,hn [μn ](tn , xn ) → v[μ](t, x), where v[μ] is the (viscosity) solution of the continuous HJB equation. Let B(Gρ ) be the set of all bounded functions defined on Gρ .
+Theorem 5.1. Assume (ν0), (L1), ρ, h, r > 0, μ ∈ C([0, T ], P (Rd )), and let Sρ,h,r [μ]
+denote the scheme defined in (18).
+(i) (Bounded control) If φ ∈ Lip(Rd ), Sρ,h,r [μ](φ, i, k) has a minimal control and
+|α| ≤ K where K only depends on kDx φk0 and the growth of L as |x| → ∞.
+(ii) (Monotonicity) For all v, w ∈ B(Gρ ) with v ≤ w we have,
+Sρ,h,r [μ](v, i, k) ≤ Sρ,h,r [μ](w, i, k) for all i ∈ Gρ , k = 0, . . . , N − 1.
+(iii) (Commutation by constant) For every c ∈ R and w ∈ B(Gρ ),
+Sρ,h,r [μ](w + c, i, k) = Sρ,h,r [μ](w, i, k) + c for all i ∈ Gρ , k = 0, . . . , N − 1.
+Assume also (ν1) and (F2).
+n→∞
+
+ρ2
+
+(iv) (Consistency) Let ρn , hn , rn −−−−→ 0 under CFL conditions hnn , hrσn = o(1),
+n
+grid points (tkn , xin ) → (t, x), and μn , μ ∈ C([0, T ]; P (Rd )) such that μn → μ.
+Then, for every φ ∈ Cc∞ (Rd × [0, T )),
+
+1 
+φ(tkn +1 , xin )−Sρn ,hn ,rn [μn ](φ*,kn +1 , in , kn )
+lim
+n→∞ hn
+
+
+= − ∂t φ(t, x) − inf L(x, α) − Dφ * α − Lφ(x) − F (x, μ(t)).
+α∈Rd
+
+Proof. (i) Since
+h(α) :=
+
+d
+√
+√
+e−hλr X
+I[φ](xi + hb̄(α) + hσrm ) + I[φ](xi + hb̄(α) − hσrm )
+2d m=1
+
+is Lipschitz in α (maximum linear growth at infinity), while L(x, α) is coercive (more
+than linear growth at infinity) by (L1), there exists a ball BR , where R depends on the
+Lipschitz constant of I[φ] and the growth of L, such that the minimizing control ᾱ of
+Sρ,h,r [μ](φ, i, k) belongs to BR .
+(ii) and (iii) Follows directly from the definition of the scheme.
+
+18
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+(iv) For ease of notation, we write ρ, h, r, μ instead of ρn , hn , rn , μn . A 4th order Taylor
+expansion of φ gives
+√
+√
+φ(x + hb̄(α)± hdσrm ) = φ(x) + Dφ(x) * (hb̄(α) ± hdσrm )
+√ 3
+hd m T 2
+h2
++
+(σr ) D φ(x)σrm ± d h 2 b(α)T D2 φ(x)σrm + b̄(α)T D2 φ(x)b̄(α)
+2
+2
+X Dβ φ(x)
+X Dβ φ(ξ± )
+√
+√
+(hb̄(α) ± hd σrm )β +
+(hb̄(α) ± hd σrm )β ,
+β!
+β!
+|β|=3
+|β|=4
+R
+R
+for some ξ± ∈ Rd . Using that b̄(α) = −α− r≤|z|≤1 zν(dz), and by (ν1) r≤|z|≤1 zν(dz) =
+O(r1−σ ), we get that
+√
+√
+(28)
+φ(x + hb̄(α) + hdσrm ) + φ(x + hb̄(α) − hdσrm ) − 2φ(x)
+Z
+
+= −2hDφ(x) * α − 2h
+Dφ(x) * zν(dz) + hd(σrm )T * D2 φ(x) * σrm + O h2 r2−2σ .
++
+
+r<|z|<1
+2
+used that h2 b̄(α)T D2 φ(x)b̄(α)
+3 3−3σ
+2 1−σ
+
+is of order O(h2 r2−2σ ), the 3rd order terms are of orWe
+√
+der O(h r
++h r
+), and the 4th order terms are of order ( hdσr )4 = O(h2 r4−2σ ).
+Then the error of the Taylor expansion is O(h2 r2−2σ ). Using Lemma 3.1,
+φ(xi ) − Sρ,h,r [μ](φ, i, k)
+
+d
+e−hλr X 
+= φ(xi ) − inf hF (xi , μ(tk+1 )) + hL(xi , α) +
+2φ(xi ) − 2hDφ(xi ) * α
+α
+2d m=1
+Z
+
+m T 2
+m
++ hd(σr ) D φ(xi )σr − 2h
+Dφ(xi ) * zν(dz)
+r<|z|<1
+
+
+Z
+1 − e−hλr
+φ(xi + z)ν(dz) + O(ρ2 ) + O(h2 r2−2σ )
++
+λr
+|z|>r
+
+
+(29) = hF (xi , μ(tk+1 )) − inf hL(xi , α) − he−hλr Dφ(xi ) * α + (1 − e−hλr )φ(xi )
+α
+Z
+
+
+− he−hλr Lr φ(xi ) + O(r3−σ ) + he−hλr
+Dφ(xi ) * zν(dz)
+r<|z|<1
+−hλr
+
+−
+
+1−e
+λr
+R
+
+Z
+
+φ(xi + z)ν(dz) + O(ρ2 + h2 r2−2σ ).
+
+|z|>r
+
+Using that |z|<r |z|2 ν(dz) ≤ Kr2−σ (by (ν1)), for the small jump operator Lr (defined
+in (12)) we have
+|Lr φ(xi ) − e−hλr Lr φ(xi )| ≤ hλr r2−σ kD2 φk0 .
+R
+R
+Again, as r<|z|<1 |z|ν(dz) ≤ Kr1−σ and |z|>1 ν(dz) ≤ K, for the long jump operator
+Lr (defined in (12)) we have that
+Z
+Z
+1 − e−hλr
+r
+−hλr
+(φ(xi + z) − φ(xi ))ν(dz)
+L φ(xi ) + e
+Dφ(xi ) * zν(dz) −
+hλr
+|z|>r
+r<|z|<1
+
+
+1 − e−hλr  1−σ
+≤ K(1 − e−hλr )r1−σ kDφk0 + K 1 −
+r
+kDφk0 + kφk0
+hλr
+
+
+1−σ
+(31)
+≤ K hλr r
+kDφk0 + hλr kφk0 .
+(30)
+
+Recalling that Lφ(xi ) = Lr φ(xi ) + Lr φ(xi ), combining (29) with (30) and (31), we find
+
+
+φ(xi ) − Sρ,h,r [μ](φ, i, k) = hF (xi , μ(tk+1 )) − h inf L(xi , α) − Dφ(xi ) * α − hLφ(xi )
+α
+
+APPROXIMATION OF NONLOCAL MFGS
+
+19
+
+
++ O h2 λr + hr3−σ + h2 λr r1−σ + ρ2 + h2 r2−2σ .
+As |λr | ≤ Cr−σ , we have
+
+φ(tk , xi ) − φ(tk+1 , xi )
+1
+φ(tk+1 , xi ) − Sρ,h [μ](φ*,k+1 , i, k)
++
+h
+h
+
+
+
+
+= −∂t φ(tk , xi ) − Lφ(tk+1 , xi ) + F (xi , μ(tk+1 )) − inf L(xi , α) − Dφ(tk+1 , xi ) * α
+α
+
++ O h + hr−σ + r3−σ + hr1−2σ +
+Hence the result follows by taking the limit n → ∞ with
+
+ρ2n hn
+σ
+hn , rn
+
+
+ρ2
++ hr2−2σ .
+h
+= o(1).
+
+
+
+Theorem 5.2. (Comparison) Assume μ1 , μ2 ∈ C([0, T ], P (Rd )), (ν0), and (L1). Let
+uρ,h [μ1 ] and uρ,h [μ2 ] be defined by the scheme (20) for μ = μ1 , μ2 , respectively. Then,
+kuρ,h [μ1 ] − uρ,h [μ2 ]k0 ≤ T kF (*, μ1 ) − F (*, μ2 )k0 + kG(*, μ1 (T )) − G(*, μ2 (T ))k0 .
+√
+hdσrm , and note that
+Proof. Let c±
+m (α) := hb̄(α) ±
+X
+(32)
+I[u*,k+1 [μ1 ]](x) − I[u*,k+1 [μ2 ]](x) =
+βp (x)(up,k+1 [μ1 ] − up,k+1 [μ2 ]).
+p∈Zd
+
+By (18) and the definition of inf, for any  > 0, there is α ∈ Rd such that
+d
+e−hλr X h
+I[u*,k+1 [μ2 ]](xi + c+
+m (α ))
+2d m=1
+i 1 − e−hλr Z
+−
++ I[u*,k+1 [μ2 ]](xi + cm (α )) +
+I[u*,k+1 [μ2 ]](xi + z)ν(dz) − .
+λr
+|z|≥r
+
+ui,k [μ2 ] ≥ hF (xi , μ2 (tk )) + hL(xi , α ) +
+(33)
+
+We then find, using (18), (32), (33),
+
+ui,k [μ1 ] − ui,k [μ2 ] ≤ h F (xi , μ1 (tk )) − F (xi , μ2 (tk ) + h(L(xi , α ) − L(xi , α ))
+d 
+
+X  e−hλr X
+
+−
+βp (c+
+(α
+))
++
+β
+(c
+(α
+))
+up+i,k+1 [μ1 ] − up+i,k+1 [μ2 ]
++
+
+p m
+
+m
+2d m=1
+p∈Zd
+
+Z
+
+1 − e−hλr
++
+βp (z) up+i,k+1 [μ1 ] − up+i,k+1 [μ2 ] ν(dz) + 
+λr
+|z|≥r
+≤ hkF (*, μ1 ) − F (*, μ2 )k0 + c sup |ui,k+1 − ũi,k+1 | + ,
+i
+
+where since
+
+P
+
+p
+
+βp ≡ 1,
+
+d
+ 1 − e−hλr Z
+X
+e−hλr X X 
+−
++
+βp (cm (α )) + βp (ci (α )) +
+βp (z)ν(dz) = 1.
+c=
+2d m=1
+λr
+|z|≥r
+d
+d
+p∈Z
+
+p∈Z
+
+Since |ui,N [μ1 ] − ui,N [μ2 ]| ≤ kG(*, μ1 (tN )) − G(*, μ2 (tN ))k0 , a symmetry and iteration
+argument shows that
+ui,k [μ1 ] − ui,k [μ2 ] ≤ (N − k)hkF (*, μ1 ) − F (*, μ2 )k0 + kG(*, μ1 (tN )) − G(*, μ2 (tN ))k0 .
+The result then follows from interpolation and T = N h.
+
+
+
+The SL scheme is very stable in the sense that we have uniform in h, ρ, μ boundedness,
+Lipschitz continuity, and semi-concavity of the solutions ui,k .
+Lemma 5.3. Let μ ∈ C([0, T ], P (Rd )) and ui,k [μ] be defined by the scheme (18).
+
+20
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+(a) (Lipschitz continuity) Assume (ν0), (L2) and (F2). Then
+|ui,k − uj,k |
+≤ (LF + LL )(T − tk ) + LG ,
+|xi − xj |
+
+i, j ∈ Zd , k ∈ {0, 1, . . . N }.
+
+(b) (Semi-concavity) Assume (ν0) , (L3) and (F3). Then
+ui+j,k − 2ui,k + ui−j,k
+≤ (cF + cL )(T − tk ) + cG , i, j ∈ Zd , k ∈ {0, 1, . . . N }.
+|xj |2
+(c) (Uniformly bounded) Assume (ν0), (L0)–(L2), (F1), and (F2). Then
+i, j ∈ Zd , k ∈ {0, 1, . . . N },
+
+|ui,k | ≤ (CF + CL (K))(T − tk ) + CG ,
+where K is defined in Theorem 5.1 (i).
+
+Proof. (a) Note that since βm (xj + x) = βm−j (x),
+X
+(34)
+βp (x)(up+j,k+1 − up+i,k+1 ).
+I[u*,k+1 ](xj + x) − I[u*,k+1 ](xi + x) =
+p∈Zd
+
+Then, by (L2), (F2), and similar computations as in Theorem 5.2, we find that
+uj,k − ui,k ≤ h(Lf + LL )|xi − xj | + sup |ui,k+1 − uj,k+1 | + ,
+j
+
+Since |ui,N +1 − uj,N +1 | = |G(xi , m(tN +1 )) − G(xj , m(tN +1 ))| ≤ LG |xi − xj | by (F2), the
+result follows by iteration.
+(b) Similar to (34) we see
+I[u*,k+1 ](xi+j + x) − 2I[u*,k+1 ](xi + x) + I[u*,k+1 ](xi−j + x)
+X
+=
+βp (xi + x)(up+j,k+1 − 2up,k+1 + up−j,k+1 ).
+p∈Zd
+
+Then, by (L3), (F3), and similar computations as in Theorem 5.2, we find that
+ui+j,k − 2ui,k + ui−j,k ≤ (cL + cF )h|xj |2 + sup(ui+j,k+1 − 2ui,k+1 + ui−j,k+1 ).
+i
+2
+
+Since ui+j,N − 2ui,N + ui−j,N ≤ cG |xj | by (F3), the result follows by iteration.
+(c) By part (a) and Theorem 5.1 (i), |α| ≤ K, and then a direct calculation shows that
+
+
+
+
+− sup h(|F | + |L|) + sup |uj,k+1 | ≤ ui,k ≤ sup h(|F | + |L|) + sup |uj,k+1 | .
+|α|≤K
+
+j
+
+|α|≤K
+
+The result follows from (L1) and (F1).
+
+j
+
+
+
+Theorem 5.4. (Convergence of the HJB scheme) Assume (ν0), (ν1), (F1), (F2), (L2),
+n→∞
+ρ2
+ρn , hn , rn −−−−→ 0 under CFL conditions hnn , hrσn = o(1), μn → μ in C([0, T ], P (Rd )),
+n
+and uρn ,hn [μn ] is the solution of the scheme (18) defined by (20). Then there is a
+continuous bounded function u[μ] such that uρn ,hn [μn ] → u[μ] locally uniformly in Rd ×
+[0, T ], and u[μ] is the viscosity solution of the HJB equation in (1) for m = μ.
+Proof. The result follows from the Barles-Perthame-Souganidis relaxed limit method
+[12], using the monotonicity, consistency, and L∞ -stability properties of the scheme (cf.
+Theorem 5.1 (ii), (iii), and Lemma 5.3 (c)), and the strong comparison principle for the
+HJB equation in Proposition 2.5 (a). We refer to the proof of [23, Theorem 3.3] for a
+standard but more detailed proof in a similar case.
+
+We recall that the continuous extensions uρ,h [μ](t, x) and uρ,h [μ](t, x) are defined in
+(20) and (22), respectively. The results of Lemma 5.3 transfers to uρ,h [μ](t, x).
+Lemma 5.5. Let μ ∈ C([0, T ], P (Rd )) and uρ,h [μ] be given by (22).
+
+APPROXIMATION OF NONLOCAL MFGS
+
+21
+
+(a) (Lipschitz continuity) Assume (ν0), (L2) and (F2). Then
+uρ,h [μ](t, x) − uρ,h [μ](t, y) ≤ ((LL + LF )T + LG )|x − y|.
+(b) (Approximate semiconcavity) Assume (ν0), (L2),(L3), (F2), and (F3). Then
+there exist a constant c1 > 0, independent of ρ, h,  and μ, such that
+ρ2
+uρ,h [μ](t, x + y) − 2uρ,h [μ](t, x) + uρ,h [μ](t, x − y) ≤ c1 (|y|2 + ρ2 + ), and
+
+
+ρ2 
+
+
+2
+hDuρ,h [μ](t, y) − Duρ,h [μ](t, x), y − xi ≤ c1 |x − y| + 2 .
+
+(c) Assume d = 1, (ν0), (L3), and (F3). Then there exists a constant c2 > 0,
+independent of ρ, h,  and μ, such that for each i, j ∈ Zd and k ∈ Nh
+hDuρ,h [μ](tk , xj ) − Duρ,h [μ](tk , xi ), xj − xi i ≤ c2 |xj − xi |2 .
+Proof. (a) Since ui,k satisfies the discrete Lipschitz bound of Lemma 5.3 (a), uρ,h [μ] is
+Lipschitz with same Lipschitz constant as ui,k by properties of linear interpolation, and
+uρ,h [μ] is Lipschitz with same constant as uρ,h [μ] by properties of mollifiers (Lemma
+3.2).
+(b) For i, j ∈ Zd we have by Lemma 5.3 (b), ui+j + ui−j − 2ui ≤ c|xj |2 . Multiplying
+both sides by βi (x), and summing over Zd , we get
+uρ,h (x + xj ) + uρ,h (x − xj ) − 2uρ,h (x) ≤ c|xj |2 .
+Letting x → x − z, multiplying by a positive mollifier ρ (z) and integrating, we get
+uρ,h (x + xj ) + uρ,h (x − xj ) − 2uρ,h (x) ≤ c|xj |2 .
+We multiply both sides with βj (y), and sum over Zd ,
+I[uρ,h ](x + y) + I[uρ,h ](x − y) − 2I[uρ,h ](x) ≤ cI[| * |2 ](y) ≤ c(|y|2 + ρ2 ).
+2
+
+By Lemma 3.2 and part (a), we have that |I[uρ,h ](ξ) − uρ,h (ξ)| ≤ KkD2 uρ,h k0 ρ2 ≤ K ρ ,
+where the Lipschitz bound K depends on the constants in (L2) and (F2). Thus,
+uρ,h (x + y) + uρ,h (x − y) − 2uρ,h (x) ≤ c(|y|2 + ρ2 +
+
+ρ2
+).
+
+
+The second part of (b) then follows as in [3, Remark 6].
+(c) The proof is given in [23, Lemma 3.6].
+
+
+
+Under our assumptions, the continuous HJB equation has a (viscosity) solution u(t) ∈
+W 1,∞ (Rd ), that is, the derivative exists almost everywhere [37, Theorem 4.3]. We have
+the following result for Duρ,h [μ].
+n→∞
+
+Theorem 5.6. Assume (ν0), (ν1), (L1)–(L2), (F1)–(F2), ρn , hn , rn , n −−−−→ 0 under
+ρ2
+CFL conditions hnn , hrσn = o(1), and μn → μ in C([0, T ], P (Rd )). Let uρnn ,hn [μn ] be
+n
+defined by (22) and u[μ] the viscosity solution of the HJB equation in (1) for m = μ.
+Then
+(i) uρnn ,hn [μn ] → u[μ] locally uniformly,
+(ii) Assume also (L3), (F3) and ρnn = o(1). Then Duρnn ,hn [μn ](t, x) → Du[μ](t, x)
+whenever Du(t, x) exists, that is, the convergence is almost everywhere.
+(iii) Assume also (L3), (F3), ρnn = o(1), and (U). Then Duρnn ,hn [μn ] → Du[μ]
+locally uniformly.
+Proof. (i) This follows from the convergence result Theorem 5.4 and Lemma 3.2.
+(ii) and (iii). We refer to [23, Theorem 3.5] and [25, Proposition 5.1]. Estimates from
+Lemma 5.5 are needed. For completeness we give the proof in Appendix B.
+
+
+22
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+6. On the dual SL scheme for the FPK equation
+In this section we establish more properties of the discrete FPK equation (24), including tightness, equicontinuity in time, L1 -stability of solutions with respect to μ, and
+Lp -bounds in dimension d = 1. To prove tightness we will use a result from [31].
+Proposition 6.1. Assume (ν0) and (M). Then there exists a function 0 ≤ Ψ ∈ C 2 (Rd )
+with kDΨk0 , kD2 Ψk0 < ∞, and lim Ψ(x) = ∞, such that
+|x|→∞
+
+Z
+(35)
+
+
+Ψ(x + z) − Ψ(z) ν(dz) < ∞
+
+sup
+x∈Rd
+
+Z
+Ψ(x) m0 (dx) < ∞.
+
+and
+Rd
+
+|z|>1
+
+Proof. We use [31, Lemma 4.9] on the family
+of measures {ν1 , m0 }, where ν1 is defined
+p
+in (11), to get a function Ψ(x) = V0 ( 1 + |x|2 ) such that V0 : [0, ∞) → [0, ∞) is a
+non-decreasing sub-additive function, kV00 k0 , kV000 k0 < ∞, lim V0 (x) = ∞, and
+x→∞
+Z
+Ψ(x) μ(dx) < ∞
+for
+μ ∈ {ν1 , m0 }.
+Rd
+
+We immediately get the result except for the first part of (35). But this estimate follows
+from sub-additivity and ν1 -integrability of V0 , see [31, Lemma 4.13 (ii)].
+
+R
+C
+≤ |z|d+σ
+for |z| > 1 and Rd |x|σ2 m0 (dx) < ∞ for σ1 , σ2 > 0,
+Remark 6.2. (a) If dν
+1
+p dz
+then Ψ(z) = log( 1 + |z|2 ) is a possible explicit choice for the function in Proposition
+6.1.
+(b) Since Ψ ∈ C 2 (Rd ), the first part of (35) is equivalent to kLΨk0 < ∞ (see [31, Lemma
+4.13 (ii)]).
+Lemma 6.3. Assume {μα }α∈A ⊂ P (RRd ) and there exists a function 0 ≤ ψ ∈ C(Rd )
+such that lim|x|→∞ ψ(x) = ∞ and supα Rd ψ(x)μα (dx) ≤ C. Then {μα }α is tight.
+This result is classical and can be proved in a similar way as the Chebychev inequality.
+Theorem 6.4 (Tightness). Assume (ν0), (ν1), (L1)–(L2), (F2), (H1), (M), the CFL
+2
+condition ρh , hr1−2σ = O(1), μ ∈ C([0, T ], P (Rd )), and mρ,h [μ] is defined by (26). Take
+Ψ as in Proposition 6.1. Then there exists C > 0, independent of ρ, h,  and μ, such
+that
+Z
+Ψ(x) dmρ,h [μ](t) ≤ C
+for any
+t ∈ [0, T ].
+Rd
+
+Proof. Essentially we start by multiplying the scheme (24) by Ψ and integrating in
+space. By the definition of mρ,h = mρ,h [μ] in (26) and (24), we find that
+Z
+Z
+1 X
+Ψ(x)dmρ,h (tk+1 ) = d
+mi,k+1
+Ψ(x)dx
+ρ
+Rd
+Ei
+d
+i∈Z
+X 1 Z
+X
+=
+Ψ(x)dx
+mj,k Bρ,h,r [Hp (*, Duρ,h )](i, j, k).
+d
+ρ
+Ei
+d
+j
+i∈Z
+
+By the definition of Bρ,h,r in (25) and interchanging the order of summation and integration, we have
+Z
+d X Z
+X mj,k  e−λr h X
+,− 
+
+Ψ(x) βi (Φ,+
+Ψ(x)d mρ,h (tk+1 ) =
+j,k,p ) + βi (Φj,k,p ) dx
+d
+ρ
+2d p=1 d Ei
+Rd
+i∈Z
+j∈Zd
+
+−λr h Z
+XZ
+1−e
++
+Ψ(x)βi (xj + z)dx ν(dz) .
+λr
+|z|>r
+Ei
+d
+i∈Z
+
+APPROXIMATION OF NONLOCAL MFGS
+
+23
+
+Since Ψ ∈ C 2 (Rd ), by properties
+of midpoint approximation
+and linear/multilinear
+R
+P
+interpolation we have ρ1d Ei Ψ(x)dx − Ψ(xi ) + Ψ(x) − i∈Zd βi (x)Ψ(xi ) ≤ O(ρ2 ).
+Therefore
+ −λr h X
+Z
+d
+X
+
+e
+,− 
+
+mj,k
+(36)
+Ψ(x)d mρ,h (tk+1 ) ≤
+Ψ Φ,+
+j,k,p + Ψ Φj,k,p
+2d
+Rd
+p=1
+j∈Zd
+
+−λr h Z
+1−e
++
+Ψ(xj + z) ν(dz) + O(ρ2 ).
+λr
+|z|>r
+±
+We estimate the terms on the right hand side. Let Φ,±
+j,k,p = xj ± ah,j where
+ √
+
+
+
+σ
+(37)
+hσrp .
+a±
+=
+h
+D
+H
+x
+,
+Du
+(t
+,
+x
+)
++
+B
+p
+j
+j
+ρ,h k
+r ±
+h,j
+
+By the fundamental theorem of Calculus,
+−
++
+−
+Ψ(xj − a+
+h,j ) + Ψ(xj − ah,j ) = 2Ψ(xj ) − (ah,j + ah,j ) * DΨ(xj ) + E1
+
+
+−
+
+σ
+where a+
+h,j + ah,j = 2h Dp H xj , Duρ,h (tk , xj ) + Br and
+Z 1h
+
+i
++
+−
+−
+E1 = −
+a+
+h,j * DΨ(xj − tah,j ) − DΨ(xj ) + ah,j * DΨ(xj − tah,j ) − DΨ(xj ) dt.
+
+(38)
+
+0
+
+By Lemma 5.5 (a) and (H1), we find that kDp H(*, Duρ,h )k0 ≤ CR with R = (LL +
+LF )T + LG + 1, and then that
+
+− 2
+2
+2
+2
+2
+σ 2
+p 2
+|E1 | ≤ kD2 Ψk0 (|a+
+h,j | + |ah,j | ) ≤ 4kD Ψk0 h (CR + |Br | ) + h|σr | .
+To estimate the nonlocal term, we write
+Z
+Z
+Ψ(xj + z) ν(dz) =
+Ψ(xj + z)ν(dz)
+|z|>r
+
+|z|>1
+
+Z
++
+Z
+
+Z
+n
+Ψ(xj ) + z * DΨ(xj ) +
+
+r<|z|<1
+
+≤
+|z|>1
+
+1
+
+h
+i o
+z * DΨ(xj + tz) − DΨ(xj ) dt ν(dz)
+
+0
+
+
+Ψ(xj + z) − Ψ(xj ) ν(dz) + λr Ψ(xj ) + Brσ * DΨ(xj )
+Z
++ kD2 Ψk0
+|z|2 ν(dz)
+r<|z|<1
+
+≤ λr Ψ(xj ) + Brσ * DΨ(xj ) + E2 ,
+where E2 is finite and independent of ρ, h,  by Proposition 6.1 and
+Going back to (36) and using the above estimates then leads to
+Z
+Ψ(x)d mρ,h (tk+1 )
+
+R
+|z|<1
+
+|z|2 ν(dz) < ∞.
+
+Rd
+
+d
+
+
+
+
+e−λr h X 
+2Ψ(xj ) − 2h Dp H xj , Duρ,h (tk , xj ) + Brσ * DΨ(xj ) + |E1 |
+2d p=1
+j∈Zd
+
+1 − e−λr h 
++
+λr Ψ(xj ) + Brσ * DΨ(xj ) + E2 + Cρ2
+λr
+
+
+X
+≤
+mj,k Ψ(xj ) + C h2 λr |Brσ | + h2 |Brσ |2 + h + ρ2 ,
+
+≤
+
+X
+
+
+
+mj,k
+
+j∈Zd
+−λr h
+
+where we used |−he−λr h + 1−eλr
+
+| ≤ 23 λr h2 and
+
+1−e−λr h
+λr
+
+≤ h to get the last inequality.
+
+24
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+R
+With Ak+1 = Rd Ψ(x)d mρ,h (tk+1 ), the above estimate becomes Ak+1 ≤ Ak + E
+where E = C(λr h2 |Brσ | + h2 |Brσ |2 + h + ρ2 ). By iteration, |Brσ |2 ≤ λr |Brσ | ≤ Cr1−2σ (by
+(ν0), (ν1)), and k ≤ N ≤ Ch , we find that
+
+ρ2 
+(39)
+Ak+1 ≤ A0 + (k + 1)E ≤ A0 + C hr1−2σ + 1 +
+.
+h
+R
+2
+By assumption ρh , hr1−2σ = O(1), and by Proposition 6.1, A0 = Rd Ψ(x)d m0 < ∞.
+Therefore
+Z
+Ψ(x)d mρ,h (tk ) ≤ C
+for
+k = 0, 1, . . . , N,
+Rd
+
+for some constant C > 0 independent of ρ, h, , μ, and hence by (26) the result follows
+for t ∈ [0, T ].
+
+Theorem 6.5 (Equicontinuity in time). Assume (ν0), (ν1), (L1)–(L2), (F2), (H1),
+2
+(M), μ ∈ C([0, T ], P (Rd )), and mρ,h [μ] is defined by (26). Let ρh , rhσ = O(1) if
+2
+
+σ ∈ (0, 1), or ρh , hr1−2σ = O(1) if σ ∈ (1, 2). Then there exists a constant C0 > 0,
+independent of ρ, h,  and μ, such that for any t1 , t2 ∈ [0, T ],
+p
+d0 (mρ,h [μ](t1 ), mρ,h [μ](t2 )) ≤ C0 |t1 − t2 |.
+Proof. We start by the case σ > 1. For δ > 0, let φδ := φ ∗ ρδ for ρδ defined just before
+Lemma 3.2. With mρ,h = mρ,h [μ] we first note that
+Z
+
+
+d0 (mρ,h (t1 ), mρ,h (t2 )) = sup
+φ(x)(mρ,h (t1 ) − mρ,h (t2 ))dx
+φ∈Lip1,1 Rd
+Z
+nZ
+o
+
+
+= sup
+(φ − φδ )(mρ,h (t1 ) − mρ,h (t2 ))dx +
+φδ (mρ,h (t1 ) − mρ,h (t2 ))dx
+Rd
+Rd
+φ∈Lip1,1
+(40)
+Z
+≤ 2δkDφk0 +
+
+sup
+φ∈Lip1,1
+
+Rd
+
+φδ (mρ,h (t1 ) − mρ,h (t2 ))dx,
+
+R
+where Lemma 3.2 was used to estimate the φ − φδ term and mρ,h dx = 1. Since mρ,h
+R
+R
+and Rd φδ (x)mρ,h (t, x)dx are affine on each interval [tk , tk+1 ], Rd φδ (x) mρ,h (*, x)dx ∈
+W 1,∞ [0, T ] and
+Z
+d
+φδ (x) mρ,h (*, x)dx ≤ sup |Ik |.
+dt Rd
+0
+k
+
+
+R
+mρ,h (tk+1 ,x)−mρ,h (tk ,x)
+where Ik = Rd φδ (x)
+dx. It follows that
+h
+Z
+(41)
+φδ (mρ,h (t1 , x) − mρ,h (t2 , x))dx ≤ |t1 − t2 | sup |Ik |.
+Rd
+
+k
+
+Let us estimate Ik . By (26), (24), (25), the midpoint quadrature approximation error
+bound, and the linear/multi-linear interpolation error bound, we have
+Z
+1X 1
+Ik =
+φδ (x) dx[mi,k+1 − mi,k ]
+h i ρ d Ei
+Z
+h
+i
+1 X
+= d
+φδ (x)dx mj,k Bρ,h,r [Hp (*, Duρ,h )](i, j, k) − mi,k δi,j
+hρ j,i
+Ei
+h
+i
+X
+X
+1
+=
+mj,k
+φδ (xi )Bρ,h,r [Hp (*, Duρ,h )](i, j, k) − φδ (xj ) + CkD2 φδ k0 ρ2
+h j
+i
+
+APPROXIMATION OF NONLOCAL MFGS
+
+=
+
+25
+
+d
+h e−λr h  X
+
+1X
+,−
+mj,k
+φδ (Φ,+
+)
++
+φ
+(Φ
+)
+−
+2φ
+(x
+)
+δ
+δ
+j
+j,k,p
+j,k,p
+h j
+2d
+p=1
+Z
+i
+
+1 − e−λr h
+φδ (xj + z) − φδ (xj ) ν(dz) + CkD2 φδ k0 ρ2 .
++
+λr
+|z|>r
+
+±
+Since Φ,±
+j,k,p = xj + ah,j by (37), a 2nd order Taylor's expansion gives us
+
+
+
+1X
+mj,k e−λr h (−hDp H xj , Duρ,h [μ](tk , xj ) − hBrσ ) * Dφδ (xj )
+Ik ≤
+h j
+d
+ 1 − e−λr h  σ
+kD2 φδ k0 X + 2
+2
+Br * Dφδ (xj )
+|ah,j | + |a−
+|
++
+h,j
+2d
+λr
+p=1
+Z
+Z
+
++ kD2 φδ k0
+|z|2 ν(dz) + 2kφδ k0
+ν(dz) + CkD2 φδ k0 ρ2
+
++
+
+|z|>1
+
+r<|z|<1
+
+≤
+
+
+1 
+h
+
+
+hkDp H(*, Duρ,h )k0 + h2 λr |Brσ | kDφδ k0 + c3 hkφδ k0
+
+
+2
+
++ c1 h
+
+2
+kDp H(*, Duρ,h )k
+
+2
+
++h
+
+2
+|Brσ |
+
+2
+
+2
+
++ h|σr | + h + ρ
+
+
+
+2
+
+kD φδ k0
+
+X
+
+mj,k .
+
+j
+−λr h
+
+The above inequality follows since ( 1−eλr
+− he−hλr ) ≤ h2 λr (used for the Brσ * Dφδ R
+R
+2
+terms), and r<|z|<1 |z| ν(dz) + |z|>1 ν(dz) ≤ C independently of r by (ν0) and (ν1).
+By Lemma 5.5 (a) and (H1), kDp H(*, Duρ,h )k0 ≤ CR with R = (LL + LF )T + LG + 1.
+P
+0
+Since
+mj,k = 1, φ ∈ Lip1,1 , kD2 φδ k0 ≤ kDφk
+, and |Brσ |2 ≤ λr |Brσ | ≤ Kr1−2σ (by
+δ
+(ν0), (ν1)), we get that
+ρ2  1
+.
+h δ
+To conclude the proof in the case σ > 1, we go back to (40) and (41). In view of the
+2
+above estimate on Ik and the assumption that ρh , hr1−2σ = O(1), we find that
+
+1
+d0 (mρ,h (t1 ), mρ,h (t2 )) ≤ 2δ + C|t1 − t2 | 1 +
+.
+δ
+p
+p
+Finally taking δ = |t1 − t2 | we get d0 (mρ,h (t1 ), mρ,h (t2 )) ≤ C |t1 − t2 |.
+|Ik | ≤ C(1 + hr1−2σ ) + C 1 + h + hr1−2σ +
+
+When σ < 1, we find that |Brσ | ≤ C and hence that
+|Ik | ≤ C(1 + hr−σ ) + C 1 + h + hr−σ +
+By assumption hr−σ +
+
+ρ2
+h
+
+ρ2  1
+.
+h δ
+
+= O(1), so again we find that
+
+
+1
+d0 (mρ,h (t1 ), mρ,h (t2 )) ≤ 2δ + C|t1 − t2 | 1 +
+,
+δ
+and can conclude as before.
+
+
+
+We also need a L1 -stability result for mρ,h [μ] with respect to variations in μ.
+Lemma 6.6 (L1 -stability). Assume (ν0), (H1), and mρ,h [μ] is defined by (26). Then
+for μ1 , μ2 ∈ C([0, T ], P (Rd )),
+sup kmρ,h [μ1 ](t, *) − mρ,h [μ2 ](t, *)kL1 (Rd )
+t∈[0,T ]
+
+≤
+
+cKT −hλr
+e
+Dp H(*, Duρ,h [μ1 ]) − Dp H(*, Duρ,h [μ2 ])
+ρ
+
+0
+
+.
+
+26
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+Proof. Let α = Dp H(*, Duρ,h [μ1 ]), α̃ = Dp H(*, Duρ,h [μ2 ]), mj,k = mj,k [μ1 ], and m̃j,k =
+mj,k [μ2 ]. By (25) and Lemma 3.3, Bρ,h,r [α](i, j, k) ≥ 0 and mj,k ≥ 0, so that
+X
+X X
+mi,k+1 − m̃i,k+1 =
+(mj,k Bρ,h,r [α](i, j, k) − m̃j,k Bρ,h,r [α̃](i, j, k))
+i
+
+≤
+
+i
+
+XX
+i
+
+Since
+
+j
+
+
+mj,k Bρ,h,r [α](i, j, k) − Bρ,h,r [α̃](i, j, k) + mj,k − m̃j,k Bρ,h,r [α̃](i, j, k) .
+
+j
+
+P
+
+i
+
+P
+Bρ,h,r [α̃](i, j, k) = 1 (follows from i βi = 1 and (25)),
+XX
+X
+mj,k − m̃j,k Bρ,h,r [α̃](i, j, k) =
+mj,k − m̃j,k .
+i
+
+j
+
+j
+
+Moreover, since only a finite number
+Kd of βi 's are non-zero at any given point, βi is
+P
+Lipschitz with constant ρc , and j mj,k = 1 by Lemma 3.3, by the definitions of Bρ,h,r
+(25) and Φ±
+j,k,p (23),
+XX
+mj,k Bρ,h,r [α](i, j, k) − Bρ,h,r [α̃](i, j, k)
+i
+
+j
+
+≤
+
+X
+j
+
+d
+e−hλr X X
++
+mj,k
+βi (Φ+
+j,k,p [μ1 ]) − βi (Φj,k,p [μ2 ])
+2d p=1 i
+−
++ βi (Φ−
+j,k,p [μ1 ]) − βi (Φj,k,p [μ2 ]) ≤ Kd
+
+che−hλr
+kα − α̃k0 .
+ρ
+
+An iteration then shows that
+X
+X
+cKd T −hλr
+mi,k+1 − m̃i,k+1 ≤
+mi,0 − m̃i,0 +
+e
+kα − α̃k0 .
+ρ
+i
+i
+R
+Since mi,0 = m̃i,0 = Ei m0 dx, the result follows by interpolation.
+
+
+
+We end this section by a uniform Lp -bound on mρ,h in dimension d = 1.
+Theorem 6.7 (Lp bounds). Assume d = 1, (ν0), (ν1), (L1), (L3), (F3), (H2), (M'),
+μ ∈ C([0, T ], P (Rd )), and mρ,h [μ] be defined by (26). Then mρ,h [μ] ∈ Lp (R) and there
+exist a constant K > 0 independent of , h, ρ and μ such that
+kmρ,h [μ](*, t)kLp (R) ≤ eKT km0 kLp (R) .
+To prove the theorem we need few technical lemmas.
+Lemma 6.8. Assume d = 1, (ν0), (ν1), (L1), (L3), (F3), and (H2). There exists a
+constant c0 > 0 independent of ρ, h, , μ such that
+
+
+
+Dp H xj , Duρ,h (tk , xj ) − Dp H xi , Duρ,h (tk , xi ) (xj − xi ) ≤ c0 |xj − xi |2 .
+Proof. By (L1) and (H2) for R = ((LF + LL )T + LG ) + 1 we have
+
+
+
+Dp H xj , Duρ,h (tk , xj ) − Dp H xi , Duρ,h (tk , xi ) (xj − xi )
+Z 1 
+
+d
+= (xj − xi )
+Dp H xj , t Duρ,h (tk , xj ) + (1 − t)Duρ,h (tk , xi ) dt
+0 dt
+
+
+
++ (xj − xi ) Dp H xj , Duρ,h (tk , xi ) − Dp H xi , Duρ,h (tk , xi )
+Z 1
+
+= (xj − xi )
+Dpp H xj , t Duρ,h (tk , xj )
+0
+
+
++ (1 − t)Duρ,h (tk , xi ) Duρ,h (tk , xj ) − Duρ,h (tk , xi ) dt
+
+APPROXIMATION OF NONLOCAL MFGS
+
+27
+
+
+
+
++ (xj − xi ) Dp H xj , Duρ,h (tk , xi ) − Dp H xi , Duρ,h (tk , xi )
+≤ CR c2 |xj − xi |2 + CR |xj − xi |2 ,
+where the last inequality follows from convexity of H (since L is convex by (L1)), semiconcavity of uρ,h in Lemma 5.5 (c), and regularity of H in (H2).
+
+Lemma 6.9. Assume d = 1, (ν0), (ν1), (L1), (L3), (F3), (H2), μ ∈ C([0, T ], P (Rd )),
+and let Φ,±
+j,k [μ] be defined in (23). There exist a constant K0 > 0 independent of , ρ, h, μ,
+such that for all i ∈ Z and k = Nh ,
+nX
+o
+X
+max
+βi (Φ,+
+βi (Φ,−
+j,k )[μ],
+j,k )[μ] ≤ 1 + K0 h.
+j∈Z
+
+j∈Z
+
+The proof of this result is similar to the proof of [23, Lemma 3.8] – a slightly expanded
+proof is given in Appendix C. A similar result holds for the integral-term:
+Lemma 6.10. Assume d = 1. Then we have
+Z
+1 X
+βi (xj + z)ν(dz) = 1.
+λr
+|z|>r
+j∈Z
+
+Proof. By (11) and properties of the basis functions βj we have
+Z
+Z
+Z
+X
+1 X
+1
+1
+βi (xj + z)ν(dz) =
+βi−j (z)ν(dz) =
+ν(dz) = 1.
+λr
+λr |z|>r
+λr |z|>r
+|z|>r
+j∈Z
+
+
+
+j∈Z
+
+Proof of Theorem 6.7. By definition of mρ,h in (26) and the scheme (24),
+Z
+Z  X
+p
+1
+mi,k+1 1Ei (x) dx
+(mρ,h (x, tk+1 ))p dx =
+R
+R ρ i
+p
+X
+1 XX
+1
+(mi,k+1 )p = p−1
+mj,k Bρ,h,r (i, j, k) ,
+= p−1
+ρ
+ρ
+i
+j
+i∈Z
+
+where Bρ,h,r = Bρ,h,r [Hp (*, Duρ,h [μ])] is defined in (25). By Jensen's inequality we have
+p X  X
+p−1  X
+
+XX
+p
+mj,k Bρ,h,r (i, j, k) ≤
+Bρ,h,r (i, p, k)
+mj,k Bρ,h,r (i, j, k) ,
+i∈Z
+
+j
+
+i∈Z
+
+j
+
+p∈Z
+
+and by Lemma 6.9 and 6.10,
+X
+
+Bρ,h,r (i, p, k) ≤ 1 + K0 h,
+
+p∈Z
+
+P
+where
+K0 is independent of i, ρ, h,  and μ. Since i Bρ,h,r (i, p, k) = 1 (follows from
+P
+i βi = 1), we find that
+X
+X
+p X
+(mi,k+1 )p ≤ (1 + K0 h)p−1
+mj,k
+Bρ,h,r (i, j, k)
+i∈Z
+
+≤ρ
+
+p−1
+
+j
+
+kmρ,h (tk , *)kpLp (R) (1
+
+i
+
++ K0 h)p−1 .
+1
+
+By iteration and kmρ,h (*, t0 )kLp = km0 kLp , kmρ,h (tk+1 , *)kLp ≤ eK0 T (1− p ) km0 kLp , and
+the result follows for p ∈ [1, ∞).
+The proof of p = ∞ is simpler, and in view of Lemma 6.9 and 6.10, the proof follows
+as in [24] for 2nd order case.
+
+
+28
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+7. Proof of convergence – Theorem 4.1 and 4.3
+The main structure of the proofs are similar, so we present the proofs together. We
+proceed by several steps.
+Step 1. (Compactness of mρnn ,hn ) In view of Theorem 6.4 and 6.5, mρ,h is precompact
+in C([0, T ], P (Rd )) by the Prokhorov and Arzelà-Ascoli Theorem. Hence there exist a
+subsequence {mρnn ,hn } and m in C([0, T ], P (Rd )) such that
+mρnn ,hn → m
+
+in C([0, T ], P (Rd )).
+
+This proves Theorem 4.3 (a) (ii) and the first part of Theorem 4.1 (a) (ii).
+If (M') holds with p = ∞, then Theorem 6.7 and Helly's weak ∗ compactness theorem
+imply that {mρ,h } is weak ∗ precompact in L∞ ([0, T ] × R) and there is a subsequence
+∗
+
+{mρnn ,hn } and function m such that mρnn ,hn * m in L∞ ([0, T ] × R). If (M') holds with
+p ∈ (1, ∞), then {mρ,h } is equiintegrable in [0, T ] × R by Theorem 6.4 and 6.7 and de
+la Vallée Poussin's theorem. By Dunford-Pettis' theorem, it is then weakly precompact
+in L1 ([0, T ] × R) and there exists a subsequence {mρnn ,hn } and function m such that
+mρnn ,hn * m in L1 ([0, T ] × R). The second part of Theorem 4.1 (a) (ii) follows.
+Step 2. (Compactness and limit points for uρn ,hn ) Part (i) and limit points u as
+viscosity solutions in part (iii) of both Theorem 4.1 and 4.3 follow from step 1 and
+Theorem 5.6 (i).
+Step 3. (Consistency for mρnn ,hn ) Let (u, m) be a limit point of {(uρnn ,hn , mρnn ,hn )}n .
+Then by step 2, u is a viscosity solution of the HJB equation in (1). We now show that
+m is a very weak solution of the FPK equation in (1) with u as the input data, i.e.
+m satisfies (3) for t ∈ [0, T ] and φ ∈ Cc∞ (Rd ). In the rest of the proof we use ρ, h, r, 
+b
+b
+instead of ρn , hn , rn , n to simplify. We also let m
+b = mρnn ,hn , w = uρnn ,hn [m],
+b and take
+ t 
+tn = hn hn . Then we note that
+Z
+
+Z
+b
+φ(x)dm(t
+b n )(x) =
+
+Rd
+
+φ(0)dm0 (x) +
+Rd
+
+n−1
+XZ
+k=0
+
+Rd
+
+b
+b
+φ(x)d[m(t
+b k+1 ) − m(t
+b k )],
+
+so to prove (3), we must estimate the sum on the right.
+By the midpoint approximation and (26), the scheme (24), and (25) combined with
+linear/multilinear interpolation, and finally midpoint approximation again, we find that
+Z
+Z
+X
+1 X
+b
+φ(x)dm(t
+b k+1 ) = d
+mi,k+1
+φ(x)dx =
+mi,k+1 φ(xi ) + O(ρ2 )
+ρ
+Rd
+E
+i
+i
+i∈Zd
+X
+X
+φ(xi )
+mj,k Bρ,h,r [Hp (*, Dw)](i, j, k) + O(ρ2 )
+=
+i
+
+=
+
+X
+
+j
+
+mj,k
+
+d
+ e−λr h X
+
+2d
+
+j
+
+=
+
+X mj,k
+j
+
+ρd
+
+Z
+Ej
+
+,−
+[φ(Φ,+
+j,k,p ) + φ(Φj,k,p )] +
+
+p=1
+
+e
+
+1 − e−λr h
+λr
+
+Z
+
+
+φ(xj + z)ν(dz) + O(ρ2 )
+
+|z|>r
+
+d
+−λr h X
+
+2d
+
+,−
+[φ(Φ,+
+k,p )(x) + φ(Φk,p )(x)]
+
+p=1
+
+1 − e−λr h
++
+λr
+
+Z
+
+
+φ(x + z)ν(dz) dx + O(ρ2 ) + EΦ + Eν ,
+
+|z|>r
+
+ √
+,±
+σ
+where Φ,±
+hdσrp ,
+j,k,p is defined in (23), Φk,p (x) = x − h Hp (x, Dw(tk , x)) + Br ±
+and EΦ + Eν is the error of the last midpoint approximation. Since φ is smooth, uρ,h
+
+APPROXIMATION OF NONLOCAL MFGS
+CkDu
+
+29
+
+k
+
+ρ,h 0
+, and by assumption (H2),
+uniformly Lipschitz (Lemma 5.5 (a)), kD2 wk0 ≤
+
+Z
+1
+φ(Φ,±
+φ(Φ,±
+j,k,p ) − d
+k,p )(x)dx
+ρ Ej
+Z
+Z
+kDφk0
+hkDφk0
+≤
+Dp H(xj , Dw(tk , xj )) − Dp H(x, Dw(tk , x)) dx
+|x
+−
+x
+|dx
++
+j
+ρd
+ρd
+Ej
+Ej
+
+
+h
+≤ Kρ 1 + h(kHpp k0 kD2 wk0 + kHpx k0 ) ≤ Kρ 1 + kDuρ,h k0 ,
+
+2
+
+hρ
+2
+and hence EΦ = O( hρ
+ ). Similarly, Eν = O(hρ λr ) = O( r σ ).
+From the above estimates, we find that
+Z
+Z  −λr h X
+d
+
+e
+,−
+b
+b
+b k+1 ) − m(t
+b k ) (x) =
+φ(x)d m(t
+[φ(Φ,+
+k,p )(x) + φ(Φk,p )(x) − 2φ(x)]
+2d p=1
+Rd
+Rd
+Z
+
+
+1 − e−λr h
+hρ hρ2 
+b
++
+φ(x + z) − φ(x) ν(dz) dm(t
+b k )(x) + O ρ2 +
++ σ .
+λr
+
+r
+|z|>r
+
+By a similar argument as in (28) and using Lemma 3.1,
+
+
+,−
+σ
+φ(Φ,+
+k,p )(x) + φ(Φk,p )(x) − 2φ(x) = − 2h Dφ(x) * Dp H(x, Dw(tk , x)) + Br * Dφ(x)
++ 2hLr [φ](x) + O(h2 r2−2σ + hr3−σ ).
+Hence using (30) and (31) we have
+Z
+b
+b
+φ(x)d(m(t
+b k+1 ) − m(t
+b k ))(x)
+Rd
+Z
+
+
+b
+=h
+− Dφ(x) * Dp H(x, Dw(tk , x)) + Lr [φ](x) + Lr [φ](x) dm(t
+b k )(x)
+Rd
+
+hρ hρ2
++ σ + h2 r2−2σ + hr3−σ ).
+
+r
+Summing from k = 0 to k = n − 1 and approximating sums by integrals, we obtain
+Z
+Z
+b
+b
+φ(x)dm(t
+b n )(x) −
+φ(x)dm(t
+b 0)
++ O(h2 r−σ + h2 r1−2σ + h2 r2−2σ ) + O(ρ2 +
+
+Rd
+
+Rd
+
+=h
+
+n−1
+XZ
+
+
+
+Rd
+
+k=0
+
+(42)
+
+
+b
+− Dφ(x) * Dp H(x, Dw(tk , x)) + L[φ](x) dm(t
+b k )(x)
+
++ n O(ρ2 +
+Z
+
+Z
+
+=
+Rd
+
+0
+
+hρ hρ2
++ σ + h2 r−σ + hr3−σ )
+
+r
+
+tn
+
+
+
+
+b
+− Dφ(x) * Dp H(x, Dw(s, x)) + L[φ](x) dm(s)(x)
+b
+ds
+
+
+ρ ρ2 + h
+3−σ
++
++
+r
++ E,
+h
+
+rσ
+where E is Riemann sum approximation error. Let Ik (x) := −Dφ(x)*Dp H(x, Dw(tk , x))
+b
++L[φ](x) and use time-continuity m
+b in the d0 -metric (Theorem 6.5), that w(*, x) is
+CkDuρ,h k0
+, to conclude that for s ∈
+constant on [tk , tk+1 ), (H1), (H2) and kD2 wk0 ≤
+
+[tk , tk+1 )
+Z tk+1 Z
+
+
+√
+b
+b
+s − tk
+Ik (x)d m(t
+b k ) − m(s)
+b
+(x)ds ≤ h kIk k0 + kDIk k0 C0 sup
++O
+
+tk
+
+ ρ2
+
++
+
+Rd
+
+
+√
+
+1 √
+≤ Kh 1 + kDwk0 + kD2 wk0 h ≤ Kh 1 +
+h.
+
+
+s∈[tk ,tk+1 )
+
+30
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+√
+
+Pn−1 R tk+1 R
+b
+b
+Summing over k, we have E =
+b k ) − m(s)
+b
+(x)ds = O( h ).
+I (x)d m(t
+k=0 tk
+Rd k
+b
+Since m
+b converges to m in C([0, T ], P (Rd )) and φ ∈ Cc∞ (Rd ) implies L[φ] ∈ Cb (Rd ),
+we have
+Z Z t
+Z Z tn
+n→∞
+b
+(43)
+L[φ](x)dm(s)(x).
+L[φ](x)dm(s)(x)
+b
+−−−−→
+Rd
+
+Rd
+
+0
+
+0
+
+It now remains to show convergence of the Dp H-term and pass to the limit in (42) to
+get that m is a very weak solution satisfying (3).
+Step 4 (Proof of Theorem 4.1 (a) (iii)). Now d = 1 and part (ii) of Theorem 4.1 (a)
+∗
+b
+b
+implies that m
+b * m in L∞ ([0, t] × R) if m0 ∈ L∞ (R), or m
+b * m in L1 ([0, t] × R) if
+p
+
+m0 ∈ L (R) for p ∈ (1, ∞). We also have Dw(t, x) = Duρ,h (t, x) → Du(t, x) almost
+everywhere in [0, T ] × R by Theorem 5.6 (ii). Since Dφ ∈ Cc∞ (R) and Dp H(*, Dw)
+uniformly bounded, by the triangle inequality and the dominated convergence Theorem
+we find that
+Z Z tn
+b
+Dφ(x)*Dp H(x, Dw(s, x)) dm(s)(x)
+b
+R 0
+Z Z t
+Dφ(x) * Dp H(x, Du(s, x)) dm(s)(x).
+−→
+R
+
+0
+
+Then by√ passing to the limit in (42) using the above limit, (43), and the CFL conditions
+ρ2 h
+h
+2
+h , r σ ,  = o(1) (note that ρ ≤ h for large n), we see that (3) holds and m is a very
+weak solution of the FPK equation. This completes the proof of Theorem 4.1 (a) (iii).
+Now (U) holds and Dw = Duρ,h → Du loR
+b
+b
+= 1, by
+cally uniformly by Theorem 5.6 (iii). Since Dφ ∈ Cc∞ (Rd ) and Rd dm(s)(x)
+continuity and uniform boundedness of Dp H(*, Dw), it follows that
+Z Z tn
+b
+Dφ(x) * Dp H(x, Dw(s, x)) dm(s)(x)
+b
+Rd 0
+Z Z tn
+b
+(44)
+Dφ(x) * Dp H(x, Du(s, x)) dm(s)(x)
+−
+b
+Rd 0
+Z
+b
+≤ T kDφk0 kDpp Hk0 kDw − DukL∞ (supp(φ))
+dm(s)(x)
+b
+−→ 0.
+
+Step 5(Proof of Theorem 4.3(iii)).
+
+Rd
+
+b
+Since m
+b → m in C([0, T ], P (Rd )) and Dφ * Dp H(*, Du)(t) ∈ Cb (Rd ) by (U), we get
+Z Z tn
+b
+Dφ(x)*Dp H(x, Du(s, x)) dm(s)(x)
+b
+Rd 0
+Z Z t
+−→
+Dφ(x) * Dp H(x, Du(s, x)) dm(s)(x).
+Rd
+
+0
+
+Then by passing to
+the limit in (42) using the above limit, (44), (43), and the CFL
+√
+2
+conditions ρh , rhσ , h = o(1), we see that (3) holds and m is a very weak solution of the
+FPK equation. This completes the proof of Theorem 4.3(iii).
+8. Numerical examples
+For numerical experiments we look at
+
+(45)
+
+
+1
+2
+2
+
+ −ut − σ Lu + 2 |ux | = f (t, x) + K φδ ∗ m(t, x)
+2 ∗
+mt − σ L m − div(mux ) = 0
+
+
+u(T, x) = G(x, m(T )),
+m(x, 0) = m0 (x)
+
+in (0, T ) × [a, b],
+in (0, T ) × [a, b],
+in [a, b],
+
+APPROXIMATION OF NONLOCAL MFGS
+
+31
+x2
+
+where a < b are real numbers, L is a diffusion operator, φδ = δ√12π e− 2δ2 , K some real
+number, and f is some bounded smooth function. We will specify these quantities in
+the examples below.
+Artificial boundary conditions. Our schemes (18) and (24) for approximating (45)
+are posed in all of R. To work in a bounded domain we impose (artificial) exterior
+conditions:
+(U1) u ≡ ku0 k0 + T * kf kL∞ ((0,T )×(a,b)) in (R \ [a, b]) × [0, T ],
+(M1) m ≡ 0 in (R \ [a, b]) × [0, T ], and m0 is compactly supported in [a, b].
+Condition (U1) penalize
+being in [a, b]c ensuring that optimal controls α in (18) are such
+√
+that xi − hα ± hσr ∈ [a, b]. Moreover, the contributions to non-local operators of u
+from [a, b]c will be small away from the boundary. Condition (M1) ensures that the mass
+of m is essentially contained in [a, b] up to some finite time (but some mass will leak
+out due to nonlocal effects), and there is no contribution from [a, b]c when we compute
+non-local operators of m. We will present numerical results from a region of interest
+that is far away from the boundary of [a, b], and where the influence of the (artificial)
+exterior data is expected to be negligible.
+Evaluating the integrals. To implement the scheme, we need to evaluate the integral
+Z
+X
+I[f ](xi + z)ν(dz) =
+f [xi ]ωj−i,ν ,
+|z|≥r
+
+j∈Z
+
+where
+Z
+ωj−i,ν =
+
+βj−i (z)ν(dz),
+|z|≥r
+
+see (17). In addition, we need to compute the values of σr , br , and λr (see (9), (8), and
+(11)). To compute the weights ωj−i,ν we use two different methods. For the fractional
+Laplacians, we use the explicit weights of [45], while for CGMY diffusions we calculate
+the weights numerically using the inbuilt integral function in MATLAB. When tested on
+the fractional Laplacian, the MATLAB integrator produced an error of less than 10−15 .
+Below the quantities σr , br , λr are computed explicitly, except in the CGMY case where
+we use numerical integration.
+Solving the coupled system. We use a fixed point iteration scheme: (i) Let μ = m0 ,
+and solve for uρ,h in (18)–(20). (ii) With approximate optimal control Duρ,h as in (21),
+we solve for mρ,h in (24). (iii) Let μnew = (mρ,h + μ)/2, and repeat the process with
+μ = μnew . We continue until we have converged to a fixed point to within machine
+accuracy.
+Remark 8.1. Instead μnew = mρ,h , we take μnew = (mρ,h + μ)/2. I.e. we use a fixed
+point iteration with some memory. This gives much faster convergence in our examples.
+Example 1. Problem (45) with [0, T ] × [a, b] = [0, 2] × [0, 1], G = 0, f (t, x) = 5(x −
+Rb
+(x−0.5)2
+0.5(1 − sin(2πt)))2 , m0 (x) = Ce− 0.12 , where C is such that a m0 = 1. Furthermore,
+1
+in accordance
+with the CFL-conditions of Theorem 4.1, we let h = ρ = 0.005, r = h 2s ,
+√
+ = h ≈ 0.0707, σ = 0.09, δ = 0.4, K = 1.
+s
+For the diffusions, we consider L = (−∆) 2 for s = 0.5, 1.5, 1.9, L = ∆, and L ≡ 0.
+In figure 1 we plot the different solutions at time t = 0.5 and t = 1.5.
+In figure 2 we plot the solution with s = 1.5 on the time interval [0, 2].
+Example 2. Problem (45) with the same cost functions as in Example 1, but different
+diffusions with parameter s = 1.5:
+
+32
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+(a) t = 0.5
+
+(b) t = 1.5
+
+Figure 1. The solutions m in Example 1.
+
+(a) m(t, x)
+
+(b) u(t, x)
+
+Figure 2. Solution m and u in Example 1 with diffusion parameter
+s = 1.5
+s
+
+(i ) L = σ 2 (−∆)R 2 ,
+(ii ) L = σ 2 Cd,s R [u(x + y) − u(x) − Du(x) * y 1|y|<1 ] 1[0,+∞) |y|dy
+1+s ,
+R
+2
+(iii ) L = σ Cd,s R [u(x + y) − u(x) − Du(x) * y 1|y|<1 ] 1[−0.5,0.5]c |y|dy
+1+s ,
+R
+2
+−10y − −y + dy
+(iv ) L = σ Cd,s R [u(x + y) − u(x) − Du(x) * y 1|y|<1 ] e
+|y|1+s ,
+where Cd,s is the normalizing constant for the fractional Laplacian (see [45]). Case (i)
+is the reference solution, a symmetric and uniformly elliptic operator. Case (ii) is nonsymmetric and non-degenerate, case (iii) is symmetric and degenerate, and case (iv) is
+a CGMY-diffusion (see e.g. [34]). We have plotted m at t = 0.5 and t = 1.5 in Figure 3.
+Example 3. (Long time behaviour). Under certain conditions (see e.g. [22, 21]), the
+solution of time dependent MFG systems will quickly converge to the solution of the
+corresponding stationary ergodic MFG system, as the time horizon T increases. We
+check numerically that this is also the case for nonlocal diffusions. In (45), we take
+s
+L = (−∆) 2 , with s = 1.5, [0, T ] × [a, b] = [0, 10] × [−1, 2], G(x) = (x − 2)2 , f (t, x) = x2 ,
+and m0 (x) = 1[1,2] (x). We expect (from the cost functions f and G) that the solution
+m will approach the line x = 0 quite fast, and then travel along this line, until it goes
+towards the point x = 2 in the very end. Our numerical simulations shows that this
+is the case also for nonlocal diffusions. Here we have considered the cases K = 0 (no
+
+APPROXIMATION OF NONLOCAL MFGS
+
+(a) t = 0.5
+
+33
+
+(b) t = 1.5
+
+Figure 3. The solutions m in Example 2
+coupling in the u equation) and K√= 0.4 (some coupling). The parameters used in the
+simulations are h = ρ = 0.01,  = h, r = h1/2s , and the results are shown in Figure 4.
+
+(a) f
+
+(b) f + 0.4φδ
+
+Figure 4. The solutions m in Example 3
+The players want to avoid each other in the case of K = 0.4, so the solution is more
+spread out in space direction than in the case of K = 0.
+Example 4. We compute the convergence rate when f , G, m0 are as in Example 1,
+s = 1.5, ν = 0.2, δ = 0.4, and the domain [0, T ] × [a, b] = [0, 0.5] × [0, 1]. We take ρ = h,
+1
+r = h 2s , and for simplicity  = 0.25.
+We calculate solutions for different values of h, and compare with a reference solution
+computed at h = 2−10 . We calculate L∞ and L1 relative errors restricted to the xinterval [ 13 , 23 ] (to avoid boundary effects), and t = 0 for u and t = T for m:
+ERRu :=
+
+kuρ,h (0, *) − uref (0, *)kL∞ ( 31 , 32 )
+kuref (0, *)kL∞ ( 13 , 32 )
+
+,
+
+ERRm :=
+
+kmρ,h (T, *) − mref (T, *)kL1 ( 31 , 23 )
+kmref (T, *)kL1 ( 31 , 23 )
+
+.
+
+The results are given in the table below.
+h
+ERRu
+ERRm
+
+2−2
+0.3155
+0.8055
+
+2−3
+0.1951
+0.4583
+
+2−4
+2−5
+0.0920 0.0446
+0.2886 0.1869
+
+2−6
+0.0218
+0.1023
+
+2−7
+2−8
+0.0097 0.0035
+0.0596 0.0300
+
+2−9
+0.0013
+0.0186
+
+We see that when we halve h, the error is halved, i.e we observe an error of order O(h).
+
+34
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+Appendix A. Proof of Proposition 3.4
+The proof is an adaptation of the Schauder fixed point argument used to prove existence for MFGs. We will use a direct consequence of Theorem 6.4 and 6.5:
+Corollary A.1. Assume (ν0),(ν1), (L1)–(L2), (H1), (F2), (M), Ψ is given by Proposition 6.1, and mρ,h [μ] is defined by (26). Then there is Cρ,h, > 0, such that for any
+μ ∈ C([0, T ], P (Rd )) and t, s ∈ [0, T ],
+Z
+d0 (mρ,h [μ](t), mρ,h [μ](s))
+p
+≤ Cρ,h, .
+Ψ(x) dmρ,h [μ](t) +
+|t − s|
+Rd
+The point is that ρ, h,  are fixed in this result. Let
+n
+C := μ ∈ C(0, T ; P (Rd )) : μ(0) = m0 ,
+hZ
+o
+d0 (μ(t), μ(s)) i
+sup
+ψ(x)dμ(t, x) + p
+≤ Cρ,h, ,
+|t − s|
+t,s∈[0,T ]
+Rd
+where Cρ,h, is defined in Corollary A.1. For μ ∈ C, let uρ,h [μ] be solution of (18) and
+uρ,h [μ] defined by (22). Then mρ,h = S(μ) is defined to the corresponding solution of
+(24). Note that a fixed point of S will give a solution (u, m) of the scheme (27). We
+now conclude the proof by applying Schauder's fixed point theorem since:
+1. (C is a convex, closed, compact set). It is a convex and closed by standard arguments
+and compact by the Prokhorov and Arzelà-Ascoli theorems.
+2. (S is a self-map on C). The map S maps C into itself by Corollary A.1 (tightness and
+equicontinuity), and Lemma 3.3 (positivity and mass preservation).
+3. (S is continuous). Let μn → μ in C. By Theorem 5.2 (comparison) and (F2),
+kuρ,h [μn ] − uρ,h [μ]k0
+≤ T sup |F (x, μn (t)) − F (x, μ(t))| + sup |G(x, μn (T )) − G(x, μ(T ))|
+t,x
+
+x
+
+≤ T LF sup d0 (μn (t), μ(t)) + LG d0 (μn (T ), μ(T )) → 0.
+t
+u [μ ]−u
+[μ ]
+u [μ]−ui−j,k [μ]
+supi i,k n ρ i−j,k n − i,k
+ρ
+
+Then
+Duρ,h [μ]k0 → 0, and finally by Lemma 6.6,
+
+sup kmρ,h [μn ](t, *) − mρ,h [μ](t, *)kL1 (Rd ) ≤
+t∈[0,T ]
+
+→ 0 uniformly for |i−j| = 1, kDuρ,h [μn ]−
+cKT −hλr
+e
+kDuρ,h [μn ] − Duρ,h [μ]k0 → 0.
+ρ
+
+Hence S is continuous.
+Appendix B. Proof of Lemma 5.6 (ii) and (iii)
+Fix (t, x) ∈ [0, T ] × Rd and consider a sequence (tk , xk ) → (t, x). For any y ∈ Rd , a
+Taylor expansion shows that
+uρnn ,hn [μn ](tk , xk + y) − uρnn ,hn [μn ](tk , xk ) − Duρnn ,hn [μn ](tk , xk ) * y
+Z 1
+Z 1
+(46)
+
+=
+Duρnn ,hn [μn ](tk , xk + sy) − Duρnn ,hn [μn ](tk , xk ) * y ds :=
+I(s) * y ds.
+0
+
+0
+
+Using first Lemma 5.5 (a) and then part two of Lemma 5.5 (b), we find that
+Z  ρn|y|
+n
+ρn
+ρn
+≤ 2((LL + LF )T + LG )
+I(s) * y ds ≤ 2kDuρnn ,hn [μn ]k0
+
+n
+n
+0
+Z 1
+Z 1
+Z 1 
+
+2
+1
+ρ
+1 ρ2n 
+ds
+I(s) * y ds ≤ c1
+|sy|2 + 2n ds = c1 |y|2
+s+
+ρn
+ρn
+ρn
+s
+n
+s |y|2 2n
+ |y|
+ |y|
+ |y|
+n
+
+n
+
+n
+
+APPROXIMATION OF NONLOCAL MFGS
+
+≤ c1 |y|2
+
+Z
+
+1
+
+
+
+ρn
+n |y|
+
+35
+
+1 
+s + s2 ds ≤ c1 |y|2 .
+s
+
+By Lemma 5.5 (a), the sequence Duρnn ,hn [μn ](tk , xk ) is precompact. Now take any
+convergent subsequence as n, k → ∞ and ρnn = o(1). If p is the limit, then by passing
+to the limit in (46) along this subsequence we have
+u[μ](x + y) − u[μ](x) − p * y ≤ c1 |y|2
+
+for every y ∈ Rd ,
+
+and p ∈ D+ u[μ](t, x), the superdifferential of u[μ](t, x). At points (x, t) where u[μ] is
+differentiable, D+ u[μ](t, x) = {Du[μ](t, x)} and p = Du[μ](t, x), and then since the
+subsequence was arbitrary in the above argument and all limit points p coincide,
+lim sup
+(tk ,xk )→(t,x),n→∞
+
+(47)
+
+=
+
+Duρnn ,hn [μn ](tk , xk )
+
+lim inf
+(tk ,xk )→(t,x),n→∞
+
+Duρnn ,hn [μn ](tk , xk )
+
+= Du(t, x).
+We conclude that Duρnn ,hn [μn ] → Du[μ] at (t, x). Part (ii) now follows since u[μ] is
+Lipschitz in space by Proposition 2.5 (c) and then x-differentiable for a.e. x and every
+t.
+To prove part (iii), we note that u is C 1 by (U), so now (47) holds for every (t, x).
+Then in view of the uniform Lipschitz estimate from Lemma 5.5 (a), local uniform
+convergence follows from [11, Chapter V, Lemma 1.9]. The proof is complete.
+Appendix C. Proof of Lemma 6.9
+We first show strong separation between any two characteristics Φ,± : By Lemma
+6.8,
+
+√
+√
+,± 2
+=
+x
+−
+x
+±
+hσ
+∓
+hσ
+−
+h
+Dp H(xj , Duρ,h (tk , xj )) + Brσ
+Φ,±
+−
+Φ
+r
+r
+j
+i
+j,k
+i,k
+2
+− Dp H(xi , Duρ,h (tk , xi )) − Brσ
+
+
+
+≥ |xj − xi |2 − 2h Dp H xj , Duρ,h (tk , xj ) − Dp H xi , Duρ,h (tk , xi ) (xj − xi )
+≥ (1 − c0 h)|xj − xi |2 .
+Hence, we have
+n
+o p
+p
+,+
+,−
+,−
+−
+Φ
+,
+Φ
+−
+Φ
+(48)
+min Φ,+
+≥ 1 − c0 h|j − i|ρ > ρ 1 − c0 h.
+j,k
+i,k
+j,k
+i,k
+The result now holds following the proof of [23, Lemma 3.8]. We give the proof for
+completeness.
+Since the diameter of the support of a (hat) basis functions βi is 2ρ, by (48) there can
+be at most 3 characteristics inside the supp(βi ) for small enough h. The result is trivial
+if there is only one in characteristic supp(βi ). When supp(βi ) contains 2 characteristics,
+,+
+,+
+,+
+say Φ,+
+j1 ,k and Φj2 ,k , we see by (48) (check the different orderings of xk , Φj1 ,k , Φj2 ,k )
+that
+βi (Φ,+
+j1 ,k )
+
++
+
+βi (Φj,+
+)
+2 ,k
+
+=1 −
+
+≤2 −
+
+xi − Φ,+
+j1 ,k
+ρ
+Φ,+
+j1 ,k
+
+−
+ρ
+
++1−
+
+Φ,+
+j2 ,k
+
+xi − Φ,+
+j2 ,k
+
+≤2−
+
+ρ
+p
+1 − c0 h ≤ 1 + K0 h.
+
+36
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+,+
+,+
+Finally, assume support(βi ) contains 3 characteristics Φ,+
+j1 ,k , Φj2 ,k and Φj3 ,k . By (48)
+that all three characteristics can not be on one side (left or right) of xi . Without loss
+,+
+,+
+of generality we assume Φ,+
+j1 ,k < xi < Φj2 ,k < Φj3 ,k , and find
+,+
+,+
+βi (Φ,+
+j1 ,k ) + βi (Φj2 ,k ) + βi (Φj3 ,k ) = 1 −
+
+≤ 3−
+
+Φ,+
+j2 ,k
+
+−
+
+Φ,+
+j1 ,k
+
+ρ
+
+−
+
+Φ,+
+j3 ,k
+
+−
+
+xi − Φ,+
+j1 ,k
+ρ
+
++1−
+
+Φ,+
+j2 ,k − xi
+ρ
+
++1−
+
+Φ,+
+j3 ,k − xi
+ρ
+
+Φ,+
+j2 ,k
+
+ρ
+p
+p
+≤ 3 − 2 1 − c0 h ≤ 1 + 2(1 − 1 − c0 h) ≤ 1 + K0 h.
+Combining all three cases we get
+X
+βi (Φ,+
+j,k ) ≤ 1 + K0 h for any i ∈ Z.
+j∈Z
+
+The estimate of
+
+P
+
+j∈Z
+
+βi (Φ,−
+j,k ) is similar. This completes the proof.
+Acknowledgements
+
+The authors are supported by the Toppforsk (research excellence) project Waves and
+Nonlinear Phenomena (WaNP), grant no. 250070 from the Research Council of Norway.
+IC is partially supported by the Croatian Science Foundation under the project 4197.
+The authors would like to thank Elisabetta Carlini for sharing the code of the numerical
+methods introduced in [23].
+References
+[1] Y. Achdou, F. Camilli, and I. Capuzzo-Dolcetta. Mean Field Games: Numerical methods for the
+planning problem. SIAM J. Control Optim, 50(1):77–109, 2012.
+[2] Y. Achdou, F. Camilli, and I. Capuzzo-Dolcetta. Mean Field Games: Convergence of a finite
+difference method. SIAM J. Numer. Anal., 51(5):2585–2612, 2013.
+[3] Y. Achdou, F. Camilli, and L. Corrias. On numerical approximation of the Hamilton-Jacobitransport system arising in high frequency approximations. Discrete Contin. Dyn. Syst. Ser. B,
+19(3):629–650, 2014.
+[4] Y. Achdou and I. Capuzzo-Dolcetta. Mean Field Games: Numerical methods. SIAM J. Numer.
+Anal., 48(3):1136–1162, 2010.
+[5] Y. Achdou, P. Cardaliaguet, F. Delarue, A. Porretta, F. Santambrogio. Mean field games. Lecture
+Notes in Mathematics, CIME vol. 2281, Springer, 2020.
+[6] Y. Achdou and M. Laurière. Mean Field Games and applications: Numerical aspects. arXiv
+preprint arXiv:2003.04444, 2020.
+[7] Y. Achdou and V. Perez. Iterative strategies for solving linearized discrete Mean Field Games
+systems. Netw. Heterog. Media, 7(2):197, 2012.
+[8] Y. Achdou and A. Porretta. Convergence of a finite difference scheme to weak solutions of the system of partial differential equations arising in mean field games. SIAM J. Numer. Anal., 54(1):161–
+186, 2016.
+[9] D. Applebaum. Lévy processes and stochastic calculus. Cambridge university press, 2009.
+[10] S. Asmussen and J. Rosiński. Approximations of small jumps of Lévy processes with a view towards
+simulation. J. Appl. Probab., 38(2):482–493, 2001.
+[11] M. Bardi and I. Capuzzo-Dolcetta. Optimal Control and Viscosity Solutions of Hamilton-JacobiBellman Equations. Birkhäuser, 1997.
+[12] G. Barles and P. E. Souganidis. Convergence of approximation schemes for fully nonlinear second
+order equations. Asymptotic Anal., 4(3):271–283, 1991.
+[13] A. Bensoussan, J. Frehse, and P. Yam Mean field games and mean field type control theory SpringerBriefs in Mathematics, Springer, 2013.
+[14] F. Camilli and M. Falcone. An approximation scheme for the optimal control of diffusion processes.
+RAIRO Modél. Math. Anal. Numér., 29(1):97–122, 1995.
+[15] F. Camilli and E. R. Jakobsen. A finite element like scheme for integro-partial differential Hamilton–
+Jacobi–Bellman equations. SIAM J. Numer. Anal., 47(4):2407–2431, 2009.
+[16] I. Capuzzo Dolcetta. On a discrete approximation of the Hamilton-Jacobi equation of dynamic
+programming. Appl. Math. Optim. 10(4): 367–377, 1983.
+
+APPROXIMATION OF NONLOCAL MFGS
+
+37
+
+[17] P. Cardaliaguet. Weak solutions for first order Mean Field Games with local coupling. In Analysis
+and geometry in control theory and its applications, volume 11 of Springer INdAM Ser., pages
+111–158. Springer, Cham, 2015.
+[18] P. Cardaliaguet, F. Delarue, J.-M. Lasry, and P.-L. Lions. The Master Equation and the Convergence Problem in Mean Field Games. Annals of Mathematics Studies, vol. 201, Princeton University Press, 2019.
+[19] P. Cardaliaguet and P. J. Graber. Mean Field Games systems of first order. ESAIM Control Optim.
+Calc. Var., 21(3):690–722, 2015.
+[20] P. Cardaliaguet, P. J. Graber, A. Porretta, and D. Tonon. Second order Mean Field Games with degenerate diffusion and local coupling. NoDEA Nonlinear Differential Equations Appl., 22(5):1287–
+1317, 2015.
+[21] P. Cardaliaguet, J.-M. Lasry, P.-L. Lions, and A. Porretta. Long time average of Mean Field Games
+with a nonlocal coupling. SIAM J. Control Optim., 51(5):3558–3591, 2013.
+[22] P. Cardaliaguet, J.-M. Lasry, P.-L. Lions, and A. Porretta. Long time average of mean field games.
+Netw. Heterog. Media, 7(2):279, 2012.
+[23] E. Carlini and F. J. Silva. A fully discrete semi-Lagrangian scheme for a first order Mean Field
+Game problem. SIAM J. Numer. Anal., 52(1):45–67, 2014.
+[24] E. Carlini and F. J. Silva. A semi-Lagrangian scheme for a degenerate second order Mean Field
+Game system. Discrete Contin. Dyn. Syst., 35(9):4269, 2015.
+[25] E. Carlini and F. J. Silva. On the discretization of some nonlinear Fokker-Planck-Kolmogorov
+equations and applications. SIAM J. Numer. Anal., 56(4):2148–2177, 2018.
+[26] R. Carmona and F. Delarue. Probabilistic analysis of Mean-Field Games. SIAM J. Control Optim.,
+51(4):2705–2734, 2013.
+[27] R. Carmona and F. Delarue. Probabilistic theory of mean field games with applications. I-II, Probability Theory and Stochastic Modelling 84, Springer 2018.
+[28] R. Carmona and M. Laurière. Convergence analysis of machine learning algorithms for the numerical solution of Mean Field Control and Games: II–the finite horizon case. arXiv preprint
+arXiv:1908.01613, 2019.
+[29] R. Carmona, M. Laurière, and Z. Tan. Linear-quadratic Mean-Field reinforcement learning: Convergence of policy gradient methods. arXiv preprint arXiv:1910.04295, 2019.
+[30] A. Cesaroni, M. Cirant, S. Dipierro, M. Novaga, and E. Valdinoci. On stationary fractional Mean
+Field Games. J. Math. Pures Appl., 122(9):1-22, 2017.
+[31] I. Chowdhury, E. R. Jakobsen, and M. Krupski. On fully nonlinear parabolic mean field games
+with examples of nonlocal and local diffusions. arXiv preprint arXiv:2104.06985, 2021.
+[32] M. Cirant. On the solvability of some ergodic control problems in Rd . SIAM J. Control Optim.,
+52(6):4001–4026, 2014.
+[33] M. Cirant and A. Goffi. On the existence and uniqueness of solutions to time-dependent fractional
+MFG. SIAM J. Math. Anal., 51(2):913–954, 2019.
+[34] R. Cont and P. Tankov. Financial modelling with jump processes. CRC press, 2003.
+[35] K. Debrabant and E. R. Jakobsen. Semi-Lagrangian schemes for linear and fully non-linear diffusion
+equations. Math. Comp., 82(283):1433–1462, 2013.
+[36] S. Elghanjaoui and K. H. Karlsen. A markov chain approximation scheme for a singular investment-consumption problem with Lévy driven stock prices. Online available url:
+https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.15.2182&rep=rep1&type=pdf, 2002.
+[37] O. Ersland and E. R. Jakobsen. On fractional and nonlocal parabolic Mean Field Games in the
+whole space. arXiv preprint arXiv:2003.12302, 2020.
+[38] M. Falcone and R. Ferretti. Semi-Lagrangian approximation schemes for linear and HamiltonJacobi equations. Society for Industrial and Applied Mathematics (SIAM), 2014.
+[39] D. A. Gomes, E. A. Pimentel, and V. Voskanyan. Regularity theory for mean-field game systems.
+SpringerBriefs in Mathematics, Springer, 2016
+[40] O. Guéant. Mean Field Games equations with quadratic Hamiltonian: a specific approach. Math.
+Models Methods Appl. Sci., 22(09), 2012.
+[41] O. Guéant. New numerical methods for Mean Field Games with quadratic costs. Netw. Heterog.
+Media, 7(2):315-336, 2012.
+[42] O. Guéant. Mean Field Games with a quadratic Hamiltonian: a constructive scheme. Advances in
+dynamic games, pages 229–241. Springer, 2013.
+[43] O. Guéant, J.-M. Lasry, and P.-L. Lions. Mean field games and applications, in Paris–Princeton
+Lectures on Mathematical Finance 2010. Lecture Notes in Mathematics 2003, 205–266, Springer,
+2011.
+[44] M. Huang, R. P. Malhamé, and P. E. Caines. Large population stochastic dynamic games: closedloop McKean-Vlasov systems and the Nash certainty equivalence principle. Commun. Inf. Syst.,
+6(3):221–251, 2006.
+
+38
+
+I. CHOWDHURY, O. ERSLAND, AND E. R. JAKOBSEN
+
+[45] Y. Huang and A. Oberman. Numerical methods for the fractional Laplacian: A finite differencequadrature approach. SIAM J. Numer. Anal., 52(6):3056–3084, 2014.
+[46] E. R. Jakobsen and K. H. Karlsen. Continuous dependence estimates for viscosity solutions of
+integro-PDEs. J. Differential Equations, 212(2):278–318, 2005.
+[47] E. R. Jakobsen, K. H. Karlsen and C. La Chioma. Error estimates for approximate solutions
+to Bellman equations associated with controlled jump-diffusions. Numer. Math., 110(2):221–255,
+2008.
+[48] V. N. Kolokoltsov, M. S. Troeva, and W. Yang. Mean Field Games based on stable-like processes.
+Autom. Remote Control, 77(11):2044–2064, 2016.
+[49] J.-M. Lasry and P.-L. Lions. Mean Field Games. Jpn. J. Math., 2(1):229–260, 2007.
+[50] R. Metzler and J. Klafter. The random walk's guide to anomalous diffusion: a fractional dynamics
+approach. Phys. Rep., 339(1):1–77, 2000.
+[51] A. Porretta. Weak solutions to Fokker-Planck equations and Mean Field Games. Arch. Ration.
+Mech. Anal., 216(1):1–62, 2015.
+[52] L. Ruthotto, S. J. Osher, W. Li, L. Nurbekyan, and S. W. Fung. A machine learning framework for
+solving high-dimensional Mean Field Game and Mean Field Control problems. Proc. Natl. Acad.
+Sci. U.S.A., 117(17):9183–9193, 2020.
+[53] C. Villani. Optimal transport: Old and new. Springer Science & Business Media, 2008.
+[54] W. A. Woyczyński. Lévy processes in the physical sciences. Lévy processes, pages 241–266. Springer,
+2001.
+(I. Chowdhury) Department of Mathematics, Faculty of Science, University of Zagreb,
+Croatia
+Email address: indranil.chowdhury@ntnu.no, indranill2011@gmail.com
+(O. Ersland) Norwegian University of Science and Technology, Norway
+Email address: olav.ersland@ntnu.no
+(E. R. Jakobsen) Norwegian University of Science and Technology, Norway
+Email address: espen.jakobsen@ntnu.no
+
