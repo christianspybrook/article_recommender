@@ -4,7 +4,7 @@ import os
 import operator
 from future.utils import iteritems
 
-from raw_text_cleaner import show_progress
+import show_progress
 
 libraries = ['nltk', 'spacy', 'gensim', 'sklearn']
 
@@ -62,8 +62,8 @@ def read_file(file):
 
 		return doc
 
-def get_articles_with_word2idx():
-	"""Returns tuple of article word indices and mapping of words to their indices"""
+def get_word_idx_and_count():
+	"""Returns mappings of article word indices and word count"""
 
 	# set first article index to 0
 	i = 0
@@ -116,7 +116,7 @@ def get_top_words(n_words):
 if __name__ == '__main__':
 
 	# genrerate word to index map and word index count
-	word2idx, word_idx_count = get_articles_with_word2idx()
+	word2idx, word_idx_count = get_word_idx_and_count()
 
 	# create index to word map
 	idx2word = dict((v, k) for k, v in iteritems(word2idx))
