@@ -3,6 +3,8 @@ import string
 import os
 from gensim.parsing.preprocessing import STOPWORDS
 
+import show_progress
+
 # retrieve my home directory
 local_file = '../home_directory/home_dir.txt'
 with open(local_file, 'r') as file:
@@ -103,12 +105,6 @@ def clean_file(file):
 			new_doc.append(new_string)
 	# save new cleaned file
 	write_new_file(file, new_doc)
-
-def show_progress(num_files):
-	"""Prints files left to process"""
-	if num_files % 100 == 0:
-		print(num_files, end='')
-		print('\r', end='')
 
 
 
