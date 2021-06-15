@@ -1,5 +1,3 @@
-import re
-import string
 import os
 import operator
 from future.utils import iteritems
