@@ -3,7 +3,14 @@ import string
 import os
 from gensim.parsing.preprocessing import STOPWORDS
 
-import show_progress
+# import custom process display
+from util import show_progress
+
+
+#######################################################
+#################### PATH PARSING #####################
+#######################################################
+
 
 # retrieve my home directory
 local_file = '../home_directory/home_dir.txt'
@@ -15,6 +22,8 @@ raid_path = my_home + '/mnt/4T_nvme'
 # set repository folder path
 repo_path = my_home + '/github/article_recommender'
 
+#################### SAMPLE PATHS ####################
+
 # select directories to clean
 data_directories = {0: '/0704', 
 					1: '/2105'
@@ -24,14 +33,14 @@ data_directories = {0: '/0704',
 d = 1
 
 # map stages of cleaning to separate folders for analysis
-text_folders = {0: '/sample_data' + data_directories[d] + '/sample_100_raw_text', 
-				1: '/sample_data' + data_directories[d] + '/sample_100_no_hexadecimal', 
-				2: '/sample_data' + data_directories[d] + '/sample_100_with_short_lines', 
-				3: '/sample_data' + data_directories[d] + '/sample_100_with_new_lines', 
-				4: '/sample_data' + data_directories[d] + '/sample_100_with_stopwords', 
-				5: '/data' + data_directories[d] + '/full_month_with_stopwords', 
-				6: '/sample_data' + data_directories[d] + '/sample_100_cleaned', 
-				7: '/data' + data_directories[d] + '/full_month_cleaned'
+text_folders = {0: '/sample_data' + '/sample_100_raw_text' + data_directories[d], 
+				1: '/sample_data' + '/sample_100_no_hexadecimal' + data_directories[d], 
+				2: '/sample_data' + '/sample_100_with_short_lines' + data_directories[d], 
+				3: '/sample_data' + '/sample_100_with_new_lines' + data_directories[d], 
+				4: '/sample_data' + '/sample_100_with_stopwords' + data_directories[d], 
+				5: '/data' + '/full_month_with_stopwords' + data_directories[d], 
+				6: '/sample_data' + '/sample_100_cleaned' + data_directories[d], 
+				7: '/data' + '/full_month_cleaned' + data_directories[d]
 				}
 
 # capture cleaning stage to perform
@@ -40,6 +49,38 @@ f = 7
 # set text directory paths
 read_directory = raid_path + '/arxiv_data/raw_text_latest' + data_directories[d]
 write_directory = repo_path + text_folders[f]
+
+#################### FULL DATA PATHS ####################
+
+# set text directory path
+deep_read_directory = raid_path + '/arxiv_data/raw_text_latest'
+deep_write_directory = raid_path + '/arxiv_data/clean_text_latest'
+
+########################################################
+#################### I/O FUNCTIONS #####################
+########################################################
+
+
+def read_file(path):
+	"""Returns document read in by line"""
+	with open(path, 'r') as f_in:
+		# read in text file
+		doc = f_in.readlines()
+
+		return doc
+
+def write_file(path, new_doc):
+	"""Writes new file to specified path"""
+	with open(path, 'w') as f_out:
+		# write new text string to new text file
+		for new_line in new_doc:
+			f_out.write(new_line)
+
+
+########################################################
+#################### TEXT CLEANING #####################
+########################################################
+
 
 # define ligature mapping to restore words
 ligatures = {'': 'ff', 
@@ -53,23 +94,6 @@ keys = list(ligatures.keys())
 hex_string = ''
 pattern = '[' + hex_string + ']'
 
-def read_file(file):
-	"""Returns document read in by line"""
-	read_path = read_directory + '/' + file
-	with open(read_path, 'r') as f_in:
-		# read in text file
-		doc = f_in.readlines()
-
-		return doc
-
-def write_new_file(file, new_doc):
-	"""Writes new file to specified path"""
-	write_path = write_directory + '/' + file
-	with open(write_path, 'w') as f_out:
-		# write new text string to new text file
-		for new_line in new_doc:
-			f_out.write(new_line)
-
 def remove_hex(string):
 	"""Returns text string free of hexadecimal coding"""
 	for key in keys:
@@ -81,10 +105,10 @@ def remove_hex(string):
 
 	return string
 
-def clean_file(file):
+def clean_file(read_path, write_path):
 	"""Reads in a file, cleans its text, and writes a new file"""
 	# get next file
-	doc = read_file(file)
+	doc = read_file(read_path)
 	# instantiate text file to return
 	new_doc = []
 	# iterate through text string
@@ -104,20 +128,50 @@ def clean_file(file):
 			# add filtered string to new string list
 			new_doc.append(new_string)
 	# save new cleaned file
-	write_new_file(file, new_doc)
+	write_file(write_path, new_doc)
 
 
+#########################################################
+#################### MAIN EXECUTION #####################
+#########################################################
 
 
 if __name__ == '__main__':
 
-	# set limit to number of files to clean
-	n_files = None
-	files_to_clean = sorted(os.listdir(read_directory))[:n_files]
-	files_left_to_clean = len(files_to_clean)
+	DEEP = True
 
-	# iterate through and clean first 100 files from given folder
-	for file in files_to_clean:
-		show_progress(files_left_to_clean)
-		clean_file(file)
-		files_left_to_clean += -1
+	if DEEP:
+		directories = (deep_read_directory, deep_write_directory)
+
+		for dir in sorted(os.listdir(directories[0])):
+
+			files_to_clean = sorted(os.listdir(os.path.join(directories[0], dir)))
+			files_left_to_clean = len(files_to_clean)
+
+			for file in files_to_clean:
+				show_progress(files_left_to_clean)
+
+				read_path = directories[0] + '/' + dir + '/' + file
+				write_path = directories[1] + '/' + dir + '/' + file
+
+				clean_file(read_path, write_path)
+
+				files_left_to_clean += -1
+
+	else:
+		directories = (read_directory, write_directory)
+
+		# set limit to number of files to clean
+		n_files = None
+		files_to_clean = sorted(os.listdir(directories[0]))[:n_files]
+		files_left_to_clean = len(files_to_clean)
+
+		for file in files_to_clean:
+			show_progress(files_left_to_clean)
+
+			read_path = directories[0] + '/' + file
+			write_path = directories[1] + '/' + file
+
+			clean_file(read_path, write_path)
+
+			files_left_to_clean += -1
