@@ -6,7 +6,6 @@ from shutil import copyfile
 local_file = '../home_directory/home_dir.txt'
 with open(local_file, 'r') as file:
     my_home = file.read().rstrip('\r\n')
-    file.close()
 
 # set text directory path
 old_directory = my_home + '/mnt/4T_nvme/arxiv_data/raw_text'
