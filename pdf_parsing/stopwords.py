@@ -2,7 +2,8 @@ import os
 import operator
 from future.utils import iteritems
 
-import show_progress
+# import custom process display
+from util import show_progress
 
 libraries = ['nltk', 'spacy', 'gensim', 'sklearn']
 
