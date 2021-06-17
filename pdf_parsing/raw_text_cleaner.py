@@ -144,6 +144,7 @@ if __name__ == '__main__':
 		directories = (deep_read_directory, deep_write_directory)
 
 		for dir in sorted(os.listdir(directories[0])):
+			print(dir)
 
 			files_to_clean = sorted(os.listdir(os.path.join(directories[0], dir)))
 			files_left_to_clean = len(files_to_clean)
