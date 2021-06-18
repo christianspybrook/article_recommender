@@ -8,8 +8,8 @@ with open(local_file, 'r') as file:
     my_home = file.read().rstrip('\r\n')
 
 # set text directory path
-old_directory = my_home + '/mnt/4T_nvme/arxiv_data/raw_text'
-new_directory = my_home + '/mnt/4T_nvme/arxiv_data/raw_text_latest'
+old_directory = my_home + '/mnt/4T_nvme/arxiv_data/astro-ph' # raw_text (arxiv)
+new_directory = my_home + '/mnt/4T_nvme/arxiv_data/astro-ph_latest' # raw_text_latest (arxiv)
 
 # loop through folders sorted by month
 for dir in sorted(os.listdir(old_directory)):
@@ -19,9 +19,9 @@ for dir in sorted(os.listdir(old_directory)):
 		# split filenames by version number and article number
 		date_list = re.split('v|\.', file)
 		# extract article number
-		article_num = date_list[1]
+		article_num = date_list[0] # make [1] for arxiv articles
 		# extract version number
-		version = int(date_list[2])
+		version = int(date_list[1]) # make [2] for arxiv articles
 
 		# check if we are on a new batch of articles
 		if article_num != working_article:
