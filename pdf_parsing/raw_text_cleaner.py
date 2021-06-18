@@ -1,15 +1,20 @@
 import re
 import string
 import os
-from gensim.parsing.preprocessing import STOPWORDS
+from gensim.parsing.preprocessing import remove_stopwords
+from joblib import Parallel, delayed, dump, load
 
 # import custom process display
 from util import show_progress
 
 
+
+
 #######################################################
 #################### PATH PARSING #####################
 #######################################################
+
+
 
 
 # retrieve my home directory
@@ -22,43 +27,18 @@ raid_path = my_home + '/mnt/4T_nvme'
 # set repository folder path
 repo_path = my_home + '/github/article_recommender'
 
-#################### SAMPLE PATHS ####################
-
-# select directories to clean
-data_directories = {0: '/0704', 
-					1: '/2105'
-					}
-
-# capture month and year directory to clean
-d = 1
-
-# map stages of cleaning to separate folders for analysis
-text_folders = {0: '/sample_data' + '/sample_100_raw_text' + data_directories[d], 
-				1: '/sample_data' + '/sample_100_no_hexadecimal' + data_directories[d], 
-				2: '/sample_data' + '/sample_100_with_short_lines' + data_directories[d], 
-				3: '/sample_data' + '/sample_100_with_new_lines' + data_directories[d], 
-				4: '/sample_data' + '/sample_100_with_stopwords' + data_directories[d], 
-				5: '/data' + '/full_month_with_stopwords' + data_directories[d], 
-				6: '/sample_data' + '/sample_100_cleaned' + data_directories[d], 
-				7: '/data' + '/full_month_cleaned' + data_directories[d]
-				}
-
-# capture cleaning stage to perform
-f = 7
-
-# set text directory paths
-read_directory = raid_path + '/arxiv_data/raw_text_latest' + data_directories[d]
-write_directory = repo_path + text_folders[f]
-
-#################### FULL DATA PATHS ####################
-
 # set text directory path
-deep_read_directory = raid_path + '/arxiv_data/raw_text_latest'
-deep_write_directory = raid_path + '/arxiv_data/clean_text_latest'
+read_directory = raid_path + '/arxiv_data/raw_text_latest' # astro-ph_latest
+write_directory = raid_path + '/arxiv_data/clean_text_latest' # clean_astro-ph_latest
+
+
+
 
 ########################################################
 #################### I/O FUNCTIONS #####################
 ########################################################
+
+
 
 
 def read_file(path):
@@ -77,9 +57,13 @@ def write_file(path, new_doc):
 			f_out.write(new_line)
 
 
+
+
 ########################################################
 #################### TEXT CLEANING #####################
 ########################################################
+
+
 
 
 # define ligature mapping to restore words
@@ -105,8 +89,39 @@ def remove_hex(string):
 
 	return string
 
-def clean_file(read_path, write_path):
+def keep_alphanumeric(string):
+	"""Returns string with only alphanumeric and whitespace type characters"""
+	string = re.sub(r'[^A-Za-z0-9\s]+', '', string)
+
+	return string
+
+def downcase(string):
+	"""Returns string with lowercase characters"""
+	string = string.lower()
+
+	return string
+
+def no_stopwords(string):
+	"""Returns string without stopwords"""
+	string = remove_stopwords(string)
+
+	return string
+
+def no_short_lines(string):
+	"""Returns final cleaned string"""
+	if len(string) > 3:
+		# remove whitespace and new line character
+		string = re.sub('\s+', ' ', string)
+		# remove stopwords
+		string = no_stopwords(string)
+
+	return string
+
+def clean_file(path_pair):
 	"""Reads in a file, cleans its text, and writes a new file"""
+
+	# split file path tuple
+	read_path, write_path = path_pair
 	# get next file
 	doc = read_file(read_path)
 	# instantiate text file to return
@@ -115,20 +130,41 @@ def clean_file(read_path, write_path):
 	for line in doc:
 		# remove hexadecimal codes and restore English words
 		new_string = remove_hex(line)
-		# remove all characters except alpha-numeric and whitespace
-		new_string = re.sub(r'[^A-Za-z0-9\s]+', '', new_string)
+		# remove all characters except alphanumeric and whitespace
+		new_string = keep_alphanumeric(new_string)
 		# downcase text
-		new_string = new_string.lower()
+		new_string = downcase(new_string)
 		# eliminate short lines created by parsing equations, figures, tables, and page numbers
 		if len(new_string) > 3:
 			# remove whitespace and new line character
-			new_string = re.sub('\s+', ' ', new_string)
-			# remove stopwords
-			new_string = ' '.join([t for t in new_string.split() if t not in STOPWORDS])
+			new_string = no_short_lines(new_string)
+			# remove stopwords and add whitespace for end of each line
+			new_string = remove_stopwords(new_string) + ' '
 			# add filtered string to new string list
 			new_doc.append(new_string)
 	# save new cleaned file
 	write_file(write_path, new_doc)
+
+def make_chunks(paths, chunksize):
+	"""Returns path pairs broken into chunks"""
+	chunks = (paths[idx: idx + chunksize] 
+			  for idx in range(0, len(paths), chunksize))
+
+	return chunks
+
+def parallel_cleaner(paths, chunksize):
+	"""Runs parallel processed cleaned text"""
+
+	# instantiate parallel helper
+	executor = Parallel(n_jobs=-1, backend='multiprocessing', prefer="processes")
+	# create jobs to distribute execution of test cleaner
+	jobs = delayed(clean_file)
+	# create task chain
+	task_chain = (jobs(chunk[0]) for chunk in make_chunks(paths, chunksize=chunksize))
+	# execute parallel jobs
+	executor(task_chain)
+
+
 
 
 #########################################################
@@ -136,43 +172,37 @@ def clean_file(read_path, write_path):
 #########################################################
 
 
+
+
 if __name__ == '__main__':
 
-	DEEP = True
+	# instantiate directories list
+	paths = []
 
-	if DEEP:
-		directories = (deep_read_directory, deep_write_directory)
+	# iterate through directories
+	for dir in sorted(os.listdir(read_directory)):
+		# display cirectory being cleaned
+		print(dir)
 
-		for dir in sorted(os.listdir(directories[0])):
-			print(dir)
-
-			files_to_clean = sorted(os.listdir(os.path.join(directories[0], dir)))
-			files_left_to_clean = len(files_to_clean)
-
-			for file in files_to_clean:
-				show_progress(files_left_to_clean)
-
-				read_path = directories[0] + '/' + dir + '/' + file
-				write_path = directories[1] + '/' + dir + '/' + file
-
-				clean_file(read_path, write_path)
-
-				files_left_to_clean += -1
-
-	else:
-		directories = (read_directory, write_directory)
-
-		# set limit to number of files to clean
-		n_files = None
-		files_to_clean = sorted(os.listdir(directories[0]))[:n_files]
+		# iterate through files from given path
+		files_to_clean = sorted(os.listdir(os.path.join(read_directory, dir)))
+		# set starting number of files to clean for progress display
 		files_left_to_clean = len(files_to_clean)
 
 		for file in files_to_clean:
+			# display progress
 			show_progress(files_left_to_clean)
 
-			read_path = directories[0] + '/' + file
-			write_path = directories[1] + '/' + file
+			# set file paths to nested folders
+			read_path = read_directory + '/' + dir + '/' + file
+			write_path = write_directory + '/' + dir + '/' + file
+			path_pair = read_path, write_path
 
-			clean_file(read_path, write_path)
+			# add both file paths to directories list
+			paths.append(path_pair)
 
+			# update progress display
 			files_left_to_clean += -1
+
+	# execute parallel text cleaning jobs
+	parallel_cleaner(paths, chunksize=1000)
