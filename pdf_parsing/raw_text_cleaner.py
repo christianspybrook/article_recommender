@@ -145,6 +145,16 @@ def clean_file(path_pair):
 	# save new cleaned file
 	write_file(write_path, new_doc)
 
+
+
+
+##########################################################
+#################### PARALLELIZATION #####################
+##########################################################
+
+
+
+
 def make_chunks(paths, chunksize):
 	"""Returns path pairs broken into chunks"""
 	chunks = (paths[idx: idx + chunksize] 
