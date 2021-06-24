@@ -7,6 +7,8 @@ from joblib import Parallel, delayed, dump, load
 # import custom process display
 from util import show_progress
 
+import time
+
 
 
 
@@ -162,15 +164,15 @@ def make_chunks(paths, chunksize):
 
 	return chunks
 
-def parallel_cleaner(paths, chunksize):
+def parallel_cleaner(paths):
 	"""Runs parallel processed cleaned text"""
 
 	# instantiate parallel helper
-	executor = Parallel(n_jobs=-1, backend='multiprocessing', prefer="processes")
+	executor = Parallel(n_jobs=20, backend='multiprocessing', prefer="processes")
 	# create jobs to distribute execution of test cleaner
 	jobs = delayed(clean_file)
 	# create task chain
-	task_chain = (jobs(chunk[0]) for chunk in make_chunks(paths, chunksize=chunksize))
+	task_chain = (jobs(chunk) for chunk in paths)
 	# execute parallel jobs
 	executor(task_chain)
 
@@ -186,12 +188,13 @@ def parallel_cleaner(paths, chunksize):
 
 if __name__ == '__main__':
 
-	# instantiate directories list
-	paths = []
+	# instantiate directories lists
+	files_to_read = []
+	files_to_write = []
 
 	# iterate through directories
 	for dir in sorted(os.listdir(read_directory)):
-		# display cirectory being cleaned
+		# display directory being cleaned
 		print(dir)
 
 		# iterate through files from given path
@@ -206,13 +209,23 @@ if __name__ == '__main__':
 			# set file paths to nested folders
 			read_path = read_directory + '/' + dir + '/' + file
 			write_path = write_directory + '/' + dir + '/' + file
-			path_pair = read_path, write_path
 
-			# add both file paths to directories list
-			paths.append(path_pair)
+			# add both file paths to directories lists
+			files_to_read.append(read_path)
+			files_to_write.append(write_path)
 
 			# update progress display
 			files_left_to_clean += -1
 
+	# create chunked path generator
+	paths = list(zip(files_to_read, files_to_write))
+	chunked_paths = make_chunks(paths, chunksize=1000)
+
+	start = time.time()
+
 	# execute parallel text cleaning jobs
-	parallel_cleaner(paths, chunksize=1000)
+	parallel_cleaner(paths)
+
+	end = time.time()
+	total_time = end - start
+	print(total_time)
