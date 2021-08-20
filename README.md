@@ -31,7 +31,7 @@ After some exploratory analysis of different cleaning methods, a final preproces
 
 [raw_text_cleaner.py](https://github.com/christianspybrook/article_recommender/blob/master/training/pdf_parsing/raw_text_cleaner.py)
 
-Here is where to find all of the preprocessing methods used to clean the text data, before tokenization and embedding :
+The preprocessing methods used to clean the text data, before tokenization and embedding, can be found here :
 
 [pdf_parsing](https://github.com/christianspybrook/article_recommender/tree/master/training/pdf_parsing)
 
