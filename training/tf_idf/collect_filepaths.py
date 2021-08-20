@@ -56,8 +56,9 @@ for dir in sorted(os.listdir(arxiv_read_directory)):
 # shuffle file paths
 random.shuffle(all_arxiv_paths)
 
-# store data and labels
+# store data and labels for all paths and smaller subset
+dump(all_arxiv_paths[:int(1e5)], data_directory + '/arxiv_paths_100k.joblib')
 dump(all_arxiv_paths, data_directory + '/all_arxiv_paths.joblib')
 
 print('Done.')
-print(f'List of all file paths stored in {data_directory} directory.')
+print(f'List of file paths stored in {data_directory} directory.')
