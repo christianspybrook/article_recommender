@@ -4,7 +4,7 @@ ArXiv Science Article Recommender System
 Project Scope
 -------------
 
-This project builds and deploys a recommender system that can be used to source scientific articles with topics closely related to that of a given article. Currently, the input must be in the form of the ArXiv unique number for an article from the [ArXiv](https://arxiv.org/) website. For example, the article titled ["Attention Is All You Need"](https://arxiv.org/pdf/1706.03762.pdf) has the ArXiv number 1706.03762. This is the value to give to use as input. The engine will return 5 URLs for articles that are most similar from a random sample of ArXiv articles dating back to April 2007.
+This project builds and deploys a recommender system that can be used to source scientific articles with topics closely related to that of a given article. Currently, the input must be in the form of the unique number for an article from the [ArXiv](https://arxiv.org/) website. For example, the article titled ["Attention Is All You Need"](https://arxiv.org/pdf/1706.03762.pdf) has the ArXiv number 1706.03762. This is the value to give to use as input. The application will return 5 URLs to articles, from a random sample of 100,000 ArXiv articles dating back to April 2007, that are most similar to the input article.
 
 Stage 1 - Data Sourcing and Text Extraction
 -------------------------------------------
@@ -12,26 +12,31 @@ Stage 1 - Data Sourcing and Text Extraction
 The data was originally downloaded from Google Storage buckets as full PDFs of the articles.
 Raw text was then extracted from each PDF, using code that was sourced and adapted from a public repository.
 
-This is the source project whose modules were modified to perform these tasks:
+Here you can find the source project whose modules were modified to perform these tasks:
 
 [Dataset Source and Extraction Tools](https://github.com/mattbierbaum/arxiv-public-datasets)
 
-This is where to find the modified code used to parse the PDFs:
+This is where to find my modified code, used to parse the PDFs:
 
 [arxiv_public_data](https://github.com/christianspybrook/article_recommender/tree/master/arxiv_public_data)
 
-This is the script that filtered out the draft versions of the articles, keeping only the final versions:
+Stage 2 - Document Selection and TextPreprocessing
+--------------------------------------------------
 
-[duplicate_article_filter.py](https://github.com/christianspybrook/article_recommender/blob/master/training/pdf_parsing/duplicate_article_filter.py)
+After the raw text had been extracted from the full PDFs, preprocessing of the data could begin.
 
-Stage 2 - Preprocessing and Tokenization
-----------------------------------------
+As the original dataset contained all of the draft stages of the articles, I created a filter to keep only the final version of each. I filtered out a small set of articles that gave encoding errors, as well.
+To decide which stopwords to remove from the text, I wrote a script to identify which library would filter the greatest number of stopwords from a large sample of the dataset. The stopwords used by the Gensim library were chosen.
+After some exploratory analysis of different cleaning methods, a final preprocessing pipeline was built. This is the final script used:
 
-Now that the raw text has been extracted from the full PDFs, preprocessing of the data can begin.
+[raw_text_cleaner.py](https://github.com/christianspybrook/article_recommender/blob/master/training/pdf_parsing/raw_text_cleaner.py)
 
-Here is where to find the text tokenization method:
+Here is where to find all of the preprocessing methods used to clean the text data, before tokenization and embedding :
 
 [pdf_parsing](https://github.com/christianspybrook/article_recommender/tree/master/training/pdf_parsing)
+
+Stage 3 - Tokenization and Embedding
+------------------------------------
 
 <!-- Algorithms, Framaeworks, and Libraries Demonstrated:
 ----------------------------------------------------
