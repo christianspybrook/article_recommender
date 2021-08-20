@@ -1,6 +1,21 @@
 ArXiv Science Article Recommender System
 ========================================
 
+Algorithms, Frameworks, and Libraries Demonstrated:
+----------------------------------------------------
+
+1. Pdf2txt
+2. Numpy
+3. Joblib (Parallel Processing)
+4. TF-IDF (Custom Implementation)
+5. Gensim
+6. Flask
+<!-- 7. Dask
+8. Docker
+9. AWS (EC2)
+10. GCS (Data Extraction)
+ -->
+
 Project Scope
 -------------
 
@@ -9,7 +24,7 @@ This project builds and deploys a recommender system that can be used to source 
 Stage 1 - Data Sourcing and Text Extraction
 -------------------------------------------
 
-The data was originally downloaded from Google Storage buckets as full PDFs of the articles.
+The data were originally downloaded from Google Storage buckets as full PDFs of the articles.
 Raw text was then extracted from each PDF, using code that was sourced and adapted from a public repository.
 
 Here you can find the source project whose modules were modified to perform these tasks:
@@ -20,14 +35,16 @@ This is where to find my modified code, used to parse the PDFs:
 
 [arxiv_public_data](https://github.com/christianspybrook/article_recommender/tree/master/arxiv_public_data)
 
-Stage 2 - Document Selection and TextPreprocessing
---------------------------------------------------
+Stage 2 - Document Selection and Text Preprocessing
+---------------------------------------------------
 
 After the raw text had been extracted from the full PDFs, preprocessing of the data could begin.
 
 As the original dataset contained all of the draft stages of the articles, I created a filter to keep only the final version of each. I filtered out a small set of articles that gave encoding errors, as well.
 To decide which stopwords to remove from the text, I wrote a script to identify which library would filter the greatest number of stopwords from a large sample of the dataset. The stopwords used by the Gensim library were chosen.
-After some exploratory analysis of different cleaning methods, a final preprocessing pipeline was built. This is the final script used:
+After some exploratory analysis of different cleaning methods, a final preprocessing pipeline was built.
+
+This is the final script used:
 
 [raw_text_cleaner.py](https://github.com/christianspybrook/article_recommender/blob/master/training/pdf_parsing/raw_text_cleaner.py)
 
@@ -35,23 +52,16 @@ The preprocessing methods used to clean the text data, before tokenization and e
 
 [pdf_parsing](https://github.com/christianspybrook/article_recommender/tree/master/training/pdf_parsing)
 
-Stage 3 - Tokenization and Embedding
-------------------------------------
+Stage 3 - Word Embedding and Model Construction
+-----------------------------------------------
 
-<!-- Algorithms, Framaeworks, and Libraries Demonstrated:
-----------------------------------------------------
+Before beginning the tokenization process, I wrote scripts to collect the file paths for either a random subset of the articles or the full set of nearly 1.5 million articles to use for the model's possible recommendations. After building this list of articles, I constructed a function designed to generate a word embedding of the data. Subsequently, the function can be used to remove tokens from the embedding based on specified minimum document appearances and desired maximum dictionary size. Finally, the function builds a dictionary mapping between the words and their index representations, a Term Frequency (TF) matrix, and an Inverse Document Frequency (IDF) matrix. The two matrices are combined to build the TF-IDF model. The final Numpy array holds over 7 trillion parameters.
 
-1. Laten Dirichlet Allocation
-2. Convolutional Neural Network
-3. GPU Parallelization
-4. Random Forest
-5. Tensorflow
-6. spaCy
-7. Scikit-learn
-8. Joblib
-9. Dask
+The embedding and model construction scripts can be found here:
 
-Project Workflow:
+[tf_idf](https://github.com/christianspybrook/article_recommender/tree/master/training/tf_idf)
+
+<!-- Project Workflow:
 -----------------
 
 [Data Preprocessing](https://github.com/christianspybrook/eluvio_coding_challenge/blob/master/data_preprocessing/preprocessing.ipynb):  
