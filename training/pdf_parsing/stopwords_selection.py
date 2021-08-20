@@ -50,7 +50,7 @@ text_folders = {0: '/full_month_with_stopwords',
 f = 1
 
 # set text directory path
-read_directory = repo_path + '/data' + data_directories[d] + text_folders[f]
+read_directory = repo_path + '/data' + text_folders[f] + data_directories[d]
 
 def read_file(file):
 	"""Returns document read in from given path"""
