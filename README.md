@@ -21,20 +21,17 @@ This is where to find the modified code used to parse the PDFs:
 [arxiv_public_data](https://github.com/christianspybrook/article_recommender/tree/master/arxiv_public_data)
 
 This is the script that filtered out the draft versions of the articles, keeping only the final versions:
-[preprocessing](https://github.com/christianspybrook/article_recommender/tree/master/preprocessing)
+
+[duplicate_article_filter.py](https://github.com/christianspybrook/article_recommender/blob/master/training/pdf_parsing/duplicate_article_filter.py)
 
 Stage 2 - Preprocessing and Tokenization
 ----------------------------------------
 
 Now that the raw text has been extracted from the full PDFs, preprocessing of the data can begin.
 
-This is a sample selection of the raw text data:
-
-[sample_data](https://github.com/christianspybrook/article_recommender/tree/master/sample_data)
-
 Here is where to find the text tokenization method:
 
-[pdf_parsing](https://github.com/christianspybrook/article_recommender/tree/master/pdf_parsing)
+[pdf_parsing](https://github.com/christianspybrook/article_recommender/tree/master/training/pdf_parsing)
 
 <!-- Algorithms, Framaeworks, and Libraries Demonstrated:
 ----------------------------------------------------
